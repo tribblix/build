@@ -1,0 +1,14 @@
+This is the framework used to build SVR4 packages for Tribblix.
+
+The primary script is dobuild, which unpacks a tarball, runs configure
+and make. Then genpkg will create a package.
+
+dobuild xrestop-0.4
+genpkg TRIBxrestop xrestop-0.4
+
+You need to create a directory for each package. Minimally, this must
+contain a pkginfo fragment. There is optionally a depend file with
+package dependencies (the autodepend script can help generate that
+list). If any SMF services should be restarted on package
+install/removal, list them in a restart_fmri_list file. And if you want
+to modify the proto area, add a fixit script.
