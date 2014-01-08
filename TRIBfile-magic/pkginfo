@@ -1,0 +1,3 @@
+PKG="TRIBfile-magic"
+NAME="A better file and libmagic"
+VERSION="5.14.0"

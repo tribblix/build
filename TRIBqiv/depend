@@ -1,0 +1,8 @@
+P TRIBgdk-pixbuf
+P TRIBimlib2
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-gtk
+P TRIBlib-desktop-pango
+P TRIBlib-glib2
+P TRIBx11-libx11
+P TRIBx11-libxinerama

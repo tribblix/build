@@ -1,0 +1,132 @@
+#!/bin/ksh
+#
+# build some software
+#
+# assumes ./configure ; make
+#
+
+BUILD="/packages/localsrc/Tribblix/build"
+GMAKE="/usr/bin/gmake"
+
+#
+# if a dual 32- and 64-bit build is desired, specify -64 *first*
+# +64 means just do the 64-bit (useful for testing it in isolation)
+# note that +64 will wipe the 32-bit directory
+#
+DO32="true"
+DO64="false"
+UNPACK_FLAGS=""
+case $1 in
+-64)
+	DO64="true"
+	UNPACK_FLAGS="-64"
+	shift
+	;;
++64)
+	DO64="true"
+	DO32="false"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
+esac
+
+#
+# if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
+# then specify -gnu
+#
+DOGNU="false"
+case $1 in
+-gnu)
+	DOGNU="true"
+	shift
+	;;
+esac
+
+#
+# FIXME
+# just one package, followed by
+# -P alternate_prefix
+# -C configure_args
+# -M make_args
+# -I install_args
+#
+IPREFIX="/usr"
+CONFARGS=""
+MAKEARGS=""
+INSTARGS=""
+SUBDIR=""
+
+THISPKG="$1"
+shift
+case $1 in
+-S)
+	shift
+	SUBDIR="/$1"
+	shift
+	;;
+esac
+case $1 in
+-P)
+	shift
+	IPREFIX="$1"
+	shift
+	;;
+esac
+case $1 in
+-C)
+	shift
+	CONFARGS="$1"
+	shift
+	;;
+esac
+case $1 in
+-M)
+	shift
+	MAKEARGS="$1"
+	shift
+	;;
+esac
+case $1 in
+-I)
+	shift
+	INSTARGS="$1"
+	shift
+	;;
+esac
+
+for pkg in ${THISPKG}
+do
+	${BUILD}/unpack ${UNPACK_FLAGS} ${pkg}
+	if [ "x$DO64" != "xfalse" ]; then
+	    cd ${pkg}-64bit${SUBDIR}
+	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
+		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    if [ "x$DOGNU" != "xfalse" ]; then
+		env PATH=/usr/gnu/bin:$PATH CFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/amd64 --libdir=${IPREFIX}/lib/amd64
+	    else
+		env CFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/amd64 --libdir=${IPREFIX}/lib/amd64
+	    fi
+	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
+		${BUILD}/patches/${pkg}.postconf
+	    fi
+	    ${GMAKE} -j 4 ${MAKEARGS}
+	    cd ..
+	fi
+	if [ "x$DO32" != "xfalse" ]; then
+	    cd ${pkg}${SUBDIR}
+	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
+		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    if [ "x$DOGNU" != "xfalse" ]; then
+		env PATH=/usr/gnu/bin:$PATH CFLAGS="-O" ./configure ${CONFARGS} --prefix=${IPREFIX}
+	    else
+		env CFLAGS="-O" ./configure ${CONFARGS} --prefix=${IPREFIX}
+	    fi
+	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
+		${BUILD}/patches/${pkg}.postconf
+	    fi
+	    ${GMAKE} -j 4 ${MAKEARGS}
+	    cd ..
+	fi
+done

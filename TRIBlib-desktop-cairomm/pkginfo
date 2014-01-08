@@ -1,0 +1,3 @@
+PKG="TRIBlib-desktop-cairomm"
+NAME="Cairo Graphics C++ bindings"
+VERSION="1.10.0.0"

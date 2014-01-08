@@ -1,0 +1,7 @@
+P TRIBgnutls
+P TRIBlib-zlib
+P TRIBlibgcrypt
+P TRIBlibgpg-error
+P TRIBsvc-security-kerberos-5
+P TRIBsys-lib-security-gss
+P TRIBsys-libdbus

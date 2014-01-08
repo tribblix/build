@@ -1,0 +1,89 @@
+#!/bin/ksh
+#
+# creates a repo - actually, create a repo directory and keep it up to date
+#
+
+DOCHECK="false"
+DOUPDATE="false"
+BUILDROOT="/packages/localsrc/Tribblix"
+PKGDIR="/var/tmp/illumos-pkgs/pkgs"
+PKGBUILD="${BUILDROOT}/build"
+
+case $1 in
+-c)
+	DOCHECK="true"
+	shift
+	;;
+-u)
+	DOUPDATE="true"
+	shift
+	;;
+esac
+
+case $# in
+1)
+	REPODIR="$1"
+	;;
+*)
+	echo "Usage: $0 [-c | -u] repo_dir"
+	exit 1
+	;;
+esac
+
+#
+# FIXME implement check and update
+#
+
+if [ -d ${REPODIR} ]; then
+   echo "ERROR: repodir must not exist for new creation"
+   exit 1
+else
+   mkdir $REPODIR
+fi
+
+if [ ! -d ${REPODIR} ]; then
+   echo "ERROR: unable to create ${REPODIR}"
+   exit 1
+fi
+
+#
+# create the catalog file
+# FIXME: how to handle the illumos and oi repos?
+# FIXME: arch hardcoded for i386
+#
+${PKGBUILD}/create-illumos-catalog > ${REPODIR}/catalog
+mkdir -p ${REPODIR}
+#
+# then find all the packages
+#
+# if we find a correctly versioned package, then assume it's good
+# if not, get the version out of the unversioned package
+#
+IFS="|"
+cat ${REPODIR}/catalog | while read pkgname pkgvers deplist
+do
+  pkgfull="${pkgname}.${pkgvers}"
+  if [ -f ${PKGDIR}/${pkgfull}.zap ]; then
+    if [ "X${DOCHECK}" = "Xfalse" ]; then
+      cp -p ${PKGDIR}/${pkgfull}.zap ${REPODIR}/${pkgfull}.zap
+    fi
+  elif [ -f ${PKGDIR}/${pkgname}.zap ]; then
+    npkgvers=`zipgrep VERSION= ${PKGDIR}/${pkgname}.zap ${pkgname}/pkginfo | awk -F= '{print $2}' | sed 's="==g'`
+    if [ "X${pkgvers}" = "X${npkgvers}" ]; then
+      if [ "X${DOCHECK}" = "Xfalse" ]; then
+        cp -p ${PKGDIR}/${pkgname}.zap ${REPODIR}/${pkgfull}.zap
+      fi
+    fi
+  elif [ -f ${PKGDIR}/${pkgname}.pkg ]; then
+    npkgvers=`pkginfo -l -d ${PKGDIR}/${pkgname}.pkg | grep VERSION: | awk '{print $NF}' | sed 's="==g'`
+    if [ "X${pkgvers}" = "X${npkgvers}" ]; then
+      if [ "X${DOCHECK}" = "Xfalse" ]; then
+        ${PKGBUILD}/pkg2zap ${PKGDIR}/${pkgname}.pkg ${REPODIR}
+        mv ${REPODIR}/${pkgname}.zap ${REPODIR}/${pkgfull}.zap
+        cp ${REPODIR}/${pkgfull}.zap ${PKGDIR}
+      fi
+    fi
+  else
+    echo Unable to find package for ${pkgname}
+  fi
+done

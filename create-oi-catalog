@@ -1,0 +1,23 @@
+#!/bin/ksh
+#
+# catalog format is
+#  name|version|dependencies
+#
+PKGDIR=/var/tmp/created-pkgs/pkgs
+PKGVERS="0.8o"
+case $# in
+1)
+	PKGVERS="$1"
+	;;
+esac
+
+#
+# FIXME get dependencies out of the package
+#
+DEPLIST=""
+cd $PKGDIR
+for PKGI in *.pkg
+do
+  PKG=${PKGI%.pkg}
+  echo "${PKG}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
+done

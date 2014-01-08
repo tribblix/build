@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# put in the regular path
+#
+VERSION=3.0.1
+mkdir usr/bin
+cd usr/bin
+ln -s ../versions/R-${VERSION}/bin/R .

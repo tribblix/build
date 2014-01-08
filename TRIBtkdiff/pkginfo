@@ -1,0 +1,3 @@
+PKG="TRIBtkdiff"
+NAME="TkDiff - a Tcl/Tk front-end to diff"
+VERSION="4.2.0"

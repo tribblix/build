@@ -1,0 +1,3 @@
+PKG="TRIBcppunit"
+NAME="CPPunit C++ unit testing"
+VERSION="1.12.1.0"

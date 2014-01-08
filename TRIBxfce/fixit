@@ -1,0 +1,131 @@
+#!/bin/sh
+#
+# get all the icons in place
+# assumes the gnome icon theme is installed
+#
+rm -fr usr/share/gtk-doc
+mkdir -p usr/share/icons/hicolor/16x16/apps
+mkdir -p usr/share/icons/hicolor/24x24/apps
+mkdir -p usr/share/icons/hicolor/48x48/apps
+mkdir -p usr/share/icons/hicolor/16x16/actions
+mkdir -p usr/share/icons/hicolor/24x24/actions
+mkdir -p usr/share/icons/hicolor/48x48/actions
+mkdir -p usr/share/icons/hicolor/16x16/places
+mkdir -p usr/share/icons/hicolor/24x24/places
+mkdir -p usr/share/icons/hicolor/48x48/places
+mkdir -p usr/share/icons/hicolor/16x16/devices
+mkdir -p usr/share/icons/hicolor/24x24/devices
+mkdir -p usr/share/icons/hicolor/48x48/devices
+mkdir -p usr/share/icons/hicolor/16x16/categories
+mkdir -p usr/share/icons/hicolor/24x24/categories
+mkdir -p usr/share/icons/hicolor/48x48/categories
+mkdir -p usr/share/icons/hicolor/16x16/mimetypes
+mkdir -p usr/share/icons/hicolor/24x24/mimetypes
+mkdir -p usr/share/icons/hicolor/48x48/mimetypes
+
+SIZE="16x16"
+cd usr/share/icons/hicolor/${SIZE}/apps
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-theme.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-wallpaper.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-keyboard.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-system-windows.png .
+ln -s ../../../gnome/${SIZE}/apps/web-browser.png .
+ln -s ../../../gnome/${SIZE}/apps/utilities-terminal.png .
+ln -s ../../../gnome/${SIZE}/apps/system-file-manager.png .
+ln -s ../../../gnome/${SIZE}/apps/file-manager.png .
+cd usr/share/icons/hicolor/${SIZE}/actions
+ln -s ../../../gnome/${SIZE}/actions/gtk-remove.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-fullscreen.png
+ln -s ../../../gnome/${SIZE}/actions/system-log-out.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-help.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-find.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-quit.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-refresh.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-execute.png
+ln -s ../../../gnome/${SIZE}/actions/insert-link.png
+cd usr/share/icons/hicolor/${SIZE}/places
+ln -s ../../../gnome/${SIZE}/places/user-desktop.png .
+ln -s ../../../gnome/${SIZE}/places/folder.png .
+ln -s ../../../gnome/${SIZE}/places/inode-directory.png .
+cd usr/share/icons/hicolor/${SIZE}/devices
+ln -s ../../../gnome/${SIZE}/devices/video-display.png .
+cd usr/share/icons/hicolor/${SIZE}/categories
+ln -s ../../../gnome/${SIZE}/categories/applications-system.png .
+ln -s ../../../gnome/${SIZE}/categories/preferences-system.png .
+ln -s ../../../gnome/${SIZE}/categories/preferences-desktop-peripherals.png .
+ln -s ../../../gnome/${SIZE}/categories/preferences-desktop.png .
+cd usr/share/icons/hicolor/${SIZE}/mimetypes
+ln -s ../../../gnome/${SIZE}/mimetypes/application-x-executable.png .
+ln -s ../../../gnome/${SIZE}/mimetypes/x-office-calendar.png office-calendar.png
+
+SIZE="24x24"
+cd usr/share/icons/hicolor/${SIZE}/apps
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-accessibility.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-wallpaper.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-theme.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-keyboard.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-system-windows.png .
+ln -s ../../../gnome/${SIZE}/apps/web-browser.png .
+ln -s ../../../gnome/${SIZE}/apps/utilities-terminal.png .
+ln -s ../../../gnome/${SIZE}/apps/system-file-manager.png .
+ln -s ../../../gnome/${SIZE}/apps/file-manager.png .
+cd usr/share/icons/hicolor/${SIZE}/actions
+ln -s ../../../gnome/${SIZE}/actions/gtk-remove.png
+ln -s ../../../gnome/${SIZE}/actions/system-log-out.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-fullscreen.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-help.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-find.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-quit.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-refresh.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-execute.png
+ln -s ../../../gnome/${SIZE}/actions/insert-link.png
+cd usr/share/icons/hicolor/${SIZE}/places
+ln -s ../../../gnome/${SIZE}/places/user-desktop.png .
+ln -s ../../../gnome/${SIZE}/places/folder.png .
+ln -s ../../../gnome/${SIZE}/places/inode-directory.png .
+cd usr/share/icons/hicolor/${SIZE}/devices
+ln -s ../../../gnome/${SIZE}/devices/video-display.png .
+cd usr/share/icons/hicolor/${SIZE}/categories
+ln -s ../../../gnome/${SIZE}/categories/applications-system.png .
+ln -s ../../../gnome/${SIZE}/categories/preferences-system.png .
+ln -s ../../../gnome/${SIZE}/categories/preferences-desktop-peripherals.png .
+ln -s ../../../gnome/${SIZE}/categories/preferences-desktop.png .
+cd usr/share/icons/hicolor/${SIZE}/mimetypes
+ln -s ../../../gnome/${SIZE}/mimetypes/application-x-executable.png .
+ln -s ../../../gnome/${SIZE}/mimetypes/x-office-calendar.png office-calendar.png
+
+SIZE="48x48"
+cd usr/share/icons/hicolor/${SIZE}/apps
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-accessibility.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-wallpaper.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-theme.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-keyboard.png .
+ln -s ../../../gnome/${SIZE}/apps/preferences-system-windows.png .
+ln -s ../../../gnome/${SIZE}/apps/web-browser.png .
+ln -s ../../../gnome/${SIZE}/apps/utilities-terminal.png .
+ln -s ../../../gnome/${SIZE}/apps/system-file-manager.png .
+ln -s ../../../gnome/${SIZE}/apps/file-manager.png .
+cd usr/share/icons/hicolor/${SIZE}/actions
+ln -s ../../../gnome/${SIZE}/actions/gtk-remove.png
+ln -s ../../../gnome/${SIZE}/actions/system-log-out.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-fullscreen.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-help.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-find.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-quit.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-refresh.png
+ln -s ../../../gnome/${SIZE}/actions/gtk-execute.png
+ln -s ../../../gnome/${SIZE}/actions/insert-link.png
+cd usr/share/icons/hicolor/${SIZE}/places
+ln -s ../../../gnome/${SIZE}/places/user-desktop.png .
+ln -s ../../../gnome/${SIZE}/places/folder.png .
+ln -s ../../../gnome/${SIZE}/places/inode-directory.png .
+cd usr/share/icons/hicolor/${SIZE}/devices
+ln -s ../../../gnome/${SIZE}/devices/video-display.png .
+cd usr/share/icons/hicolor/${SIZE}/categories
+ln -s ../../../gnome/${SIZE}/categories/applications-system.png .
+ln -s ../../../gnome/${SIZE}/categories/preferences-system.png .
+ln -s ../../../gnome/${SIZE}/categories/preferences-desktop-peripherals.png .
+ln -s ../../../gnome/${SIZE}/categories/preferences-desktop.png .
+cd usr/share/icons/hicolor/${SIZE}/mimetypes
+ln -s ../../../gnome/${SIZE}/mimetypes/application-x-executable.png .
+ln -s ../../../gnome/${SIZE}/mimetypes/x-office-calendar.png office-calendar.png

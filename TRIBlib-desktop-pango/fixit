@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Yurk; why doesn't the installer do this?
+#
+if [ ! -f usr/etc/pango/pango.modules ]; then
+  if [ -f /usr/etc/pango/pango.modules ]; then
+      cp /usr/etc/pango/pango.modules usr/etc/pango/pango.modules
+  else
+      env LD_LIBRARY_PATH=./usr/lib ./usr/bin/pango-querymodules > usr/etc/pango/pango.modules
+  fi
+fi

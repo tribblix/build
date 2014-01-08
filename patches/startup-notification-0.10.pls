@@ -1,0 +1,2 @@
+-p1 sn-xcb.patch
+-p1 sn-xcb2.patch

@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# add a g-prefixed link
+#
+rm -f usr/gnu/lib/charset.alias
+rmdir usr/gnu/lib
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../gnu/bin/diff gdiff
+ln -s ../gnu/bin/diff3 gdiff3
+ln -s ../gnu/bin/sdiff gsdiff
+ln -s ../gnu/bin/cmp gcmp

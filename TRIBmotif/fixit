@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# kill .la files for Motif
+#
+/bin/rm -f usr/lib/lib*.la

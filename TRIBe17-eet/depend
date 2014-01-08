@@ -1,0 +1,6 @@
+P TRIBe17-eina
+P TRIBgnutls
+P TRIBimage-libjpeg
+P TRIBlib-zlib
+P TRIBlibgcrypt
+P TRIBlibgpg-error

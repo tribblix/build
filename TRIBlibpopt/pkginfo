@@ -1,0 +1,3 @@
+PKG="TRIBlibpopt"
+NAME="libpopt option parser"
+VERSION="1.16.0"

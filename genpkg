@@ -1,0 +1,87 @@
+#!/bin/ksh
+#
+# generate a package
+#
+case $# in
+0)
+	echo "Usage: $0 pkg_name [build_dir ...]"
+	exit 1
+	;;
+1)
+	PKGNAME="$1"
+	;;
+*)
+	SOFTDIR="$2"
+	PKGNAME="$1"
+	;;
+esac
+
+#
+# Default locations
+#
+BUILD="/packages/localsrc/Tribblix/build"
+BROOT="/tmp/pct"
+GMAKE="/usr/bin/gmake"
+
+#
+# sanity check
+#
+if [ ! -d $BUILD ]; then
+   echo "ERROR: unable to find build directory $BUILD"
+   exit 1
+fi
+if [ ! -d $BROOT ]; then
+   echo "ERROR: unable to find temporary directory $BROOT"
+   exit 1
+fi
+if [ ! -x $GMAKE ]; then
+   echo "ERROR: unable to find $GMAKE"
+   exit 1
+fi
+if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+   echo "ERROR: missing package data"
+   echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
+   exit 1
+fi
+
+#
+# define and create working location
+#
+BDIR="${BROOT}/pkg.$$"
+rm -fr ${BDIR}
+mkdir $BDIR
+
+#
+# install the package(s) specified to that location
+#
+case $# in
+1)
+	$GMAKE -k install DESTDIR=$BDIR INSTALL=ginstall
+	;;
+*)
+	shift
+	for SOFTDIR in $*
+	do
+	    if [ -d ${SOFTDIR}-64bit ]; then
+		cd ${SOFTDIR}-64bit
+		$GMAKE -k install DESTDIR=$BDIR INSTALL=ginstall
+		cd ..
+	    fi
+	    cd ${SOFTDIR}
+	    $GMAKE -k install DESTDIR=$BDIR INSTALL=ginstall
+	    if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
+		${BUILD}/${PKGNAME}/fixinstall $BDIR
+	    fi
+	    cd ..
+	done
+	;;
+esac
+
+#
+# create the SVR4 package
+#
+${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+
+# remove our temporary files
+rm -fr ${BDIR}
+rm -fr ${BROOT}/${PKGNAME}

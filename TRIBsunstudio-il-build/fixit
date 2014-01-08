@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# put in the regular path
+#
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../opt/sunstudio12.1/bin/* .

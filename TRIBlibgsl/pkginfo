@@ -1,0 +1,3 @@
+PKG="TRIBlibgsl"
+NAME="GNU Scientific library"
+VERSION="1.15.0"

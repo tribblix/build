@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# add a gm4 link
+#
+mkdir -p usr/bin
+ln -s ../gnu/bin/m4 usr/bin/gm4

@@ -1,0 +1,17 @@
+P TRIBgdk-pixbuf
+P TRIBimage-libexif
+P TRIBlib-desktop-atk
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-gtk
+P TRIBlib-desktop-pango
+P TRIBlib-glib2
+P TRIBsys-lib-fontconfig
+P TRIBsys-lib-freetype-2
+P TRIBsys-lib-math
+P TRIBsys-libdbus
+P TRIBsys-libdbus-glib
+P TRIBsys-library
+P TRIBx11-libice
+P TRIBx11-libsm
+P TRIBx11-libx11
+P TRIBxfce

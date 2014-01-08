@@ -1,0 +1,5 @@
+P TRIBlib-security-openssl
+P TRIBlib-zlib
+P TRIBlibxml2
+P TRIBsvc-security-kerberos-5
+P TRIBsys-lib-security-gss

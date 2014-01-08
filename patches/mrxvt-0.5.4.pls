@@ -1,0 +1,1 @@
+-p1 mrxvt-0.5.4-001-fix-segfault-when-wd-empty.patch

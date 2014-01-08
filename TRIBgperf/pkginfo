@@ -1,0 +1,3 @@
+PKG="TRIBgperf"
+NAME="GNU perfect hash generator"
+VERSION="3.0.4.1"

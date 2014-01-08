@@ -1,0 +1,3 @@
+PKG="TRIBrsync"
+NAME="Fast incremental file transfer utility"
+VERSION="3.0.9.0"

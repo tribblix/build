@@ -1,0 +1,24 @@
+Tribblix build patches
+
+There are two sorts of patches here.
+
+The name (inclduing version) of a package is referred to as $PKG below
+
+1. Source patches
+
+If there is a file
+
+$PKG.pls
+
+then each line represents a patch that will be applied. The first entry
+on each line is the strip argumanet to the patch program (generally
+-p1); the second is the name of the patch file in this diresctory.
+
+2. Post-configure patches
+
+If there is an executable script
+
+$PKG.postconf
+
+then it will be run after configure and before make. This is to fix up
+any dynamically generated files that configure creates.

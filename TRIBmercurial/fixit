@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../versions/python-2.7.6/bin/hg .

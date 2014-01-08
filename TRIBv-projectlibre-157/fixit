@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+mkdir -p usr/bin
+cd usr/bin
+cat > projectlibre <<EOF
+#!/bin/sh
+exec /usr/versions/projectlibre-1.5.7/projectlibre.sh "$@"
+EOF
+chmod 755 projectlibre

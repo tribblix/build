@@ -1,0 +1,91 @@
+--- a/xfce4-eyes-plugin-4.4.1/configure
++++ b/xfce4-eyes-plugin-4.4.1/configure
+@@ -13264,22 +13264,22 @@
+   fi
+ 
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for libxfcegui4-1.0 >= 4.3.90.2" >&5
+-$as_echo_n "checking for libxfcegui4-1.0 >= 4.3.90.2... " >&6; }
+-  if $PKG_CONFIG "--atleast-version=4.3.90.2" "libxfcegui4-1.0" >/dev/null 2>&1; then
+-    LIBXFCEGUI4_VERSION=`$PKG_CONFIG --modversion "libxfcegui4-1.0"`
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for libxfce4ui-1 >= 4.3.90.2" >&5
++$as_echo_n "checking for libxfce4ui-1 >= 4.3.90.2... " >&6; }
++  if $PKG_CONFIG "--atleast-version=4.3.90.2" "libxfce4ui-1" >/dev/null 2>&1; then
++    LIBXFCEGUI4_VERSION=`$PKG_CONFIG --modversion "libxfce4ui-1"`
+     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $LIBXFCEGUI4_VERSION" >&5
+ $as_echo "$LIBXFCEGUI4_VERSION" >&6; }
+ 
+     { $as_echo "$as_me:${as_lineno-$LINENO}: checking LIBXFCEGUI4_CFLAGS" >&5
+ $as_echo_n "checking LIBXFCEGUI4_CFLAGS... " >&6; }
+-    LIBXFCEGUI4_CFLAGS=`$PKG_CONFIG --cflags "libxfcegui4-1.0"`
++    LIBXFCEGUI4_CFLAGS=`$PKG_CONFIG --cflags "libxfce4ui-1"`
+     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $LIBXFCEGUI4_CFLAGS" >&5
+ $as_echo "$LIBXFCEGUI4_CFLAGS" >&6; }
+ 
+     { $as_echo "$as_me:${as_lineno-$LINENO}: checking LIBXFCEGUI4_LIBS" >&5
+ $as_echo_n "checking LIBXFCEGUI4_LIBS... " >&6; }
+-    LIBXFCEGUI4_LIBS=`$PKG_CONFIG --libs "libxfcegui4-1.0"`
++    LIBXFCEGUI4_LIBS=`$PKG_CONFIG --libs "libxfce4ui-1"`
+     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $LIBXFCEGUI4_LIBS" >&5
+ $as_echo "$LIBXFCEGUI4_LIBS" >&6; }
+ 
+@@ -13291,15 +13291,15 @@
+ 
+ 
+ 
+-  elif $PKG_CONFIG --exists "libxfcegui4-1.0" >/dev/null 2>&1; then
+-    xdt_cv_version=`$PKG_CONFIG --modversion "libxfcegui4-1.0"`
++  elif $PKG_CONFIG --exists "libxfce4ui-1" >/dev/null 2>&1; then
++    xdt_cv_version=`$PKG_CONFIG --modversion "libxfce4ui-1"`
+     { $as_echo "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+ $as_echo "found, but $xdt_cv_version" >&6; }
+ 
+ 
+-      echo "*** The required package libxfcegui4-1.0 was found on your system,"
++      echo "*** The required package libxfce4ui-1 was found on your system,"
+       echo "*** but the installed version ($xdt_cv_version) is too old."
+-      echo "*** Please upgrade libxfcegui4-1.0 to atleast version 4.3.90.2, or adjust"
++      echo "*** Please upgrade libxfce4ui-1 to atleast version 4.3.90.2, or adjust"
+       echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+       echo "*** the new version of the package in a nonstandard prefix so"
+       echo "*** pkg-config is able to find it."
+@@ -13310,8 +13310,8 @@
+ $as_echo "not found" >&6; }
+ 
+ 
+-      echo "*** The required package libxfcegui4-1.0 was not found on your system."
+-      echo "*** Please install libxfcegui4-1.0 (atleast version 4.3.90.2) or adjust"
++      echo "*** The required package libxfce4ui-1 was not found on your system."
++      echo "*** Please install libxfce4ui-1 (atleast version 4.3.90.2) or adjust"
+       echo "*** the PKG_CONFIG_PATH environment variable if you"
+       echo "*** installed the package in a nonstandard prefix so that"
+       echo "*** pkg-config is able to find it."
+
+--- a/xfce4-eyes-plugin-4.4.1/panel-plugin/Makefile.am
++++ b/xfce4-eyes-plugin-4.4.1/panel-plugin/Makefile.am
+@@ -13,12 +13,12 @@ xfce4_eyes_plugin_SOURCES =						\
+ 	themes.c
+ 
+ xfce4_eyes_plugin_CFLAGS =						\
+-	$(LIBXFCEGUI4_CFLAGS)						\
++	$(LIBXFCE4UI_CFLAGS)						\
+ 	$(LIBXFCE4PANEL_CFLAGS)
+ 	
+ xfce4_eyes_plugin_LDADD =						\
+ 	$(LIBXFCE4PANEL_LIBS)						\
+-	$(LIBXFCEGUI4_LIBS)
++	$(LIBXFCE4UI_LIBS)
+ 
+ desktopdir = $(datadir)/xfce4/panel-plugins
+ desktop_in_in_files = eyes.desktop.in.in
+--- a/xfce4-eyes-plugin-4.4.1/panel-plugin/eyes.c
++++ b/xfce4-eyes-plugin-4.4.1/panel-plugin/eyes.c
+@@ -33,7 +33,7 @@
+ #include <stdlib.h>
+ 
+ #include <libxfce4util/libxfce4util.h>
+-#include <libxfcegui4/libxfcegui4.h>
++#include <libxfce4ui/libxfce4ui.h>
+ 
+ #include "eyes.h"
+ #include "themes.h"

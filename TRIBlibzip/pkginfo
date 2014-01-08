@@ -1,0 +1,3 @@
+PKG="TRIBlibzip"
+NAME="Library for manipulating zip archives"
+VERSION="0.10.1.0"

@@ -1,0 +1,17 @@
+*** old/orage-4.8.4/tz_convert/tz_convert.c   Thu Jan 20 21:24:39 2011
+--- new/orage-4.8.4/tz_convert/tz_convert.c   Tue Feb 12 15:36:03 2013
+***************
+*** 46,55 ****
+--- 46,57 ----
+   * Documentation says the define is _XOPEN_SOURCE, but it
+   * does not work. __USE_XOPEN_EXTENDED works 
+   * Same with _GNU_SOURCE and __USE_GNU */
++ /*
+  #define _XOPEN_SOURCE 500
+  #define __USE_XOPEN_EXTENDED 1
+  #define _GNU_SOURCE 1
+  #define __USE_GNU 1
++ */
+  #include <ftw.h>
+      /* nftw */
+  #ifndef FTW_ACTIONRETVAL

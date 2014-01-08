@@ -1,0 +1,3 @@
+PKG="TRIBshell-bash"
+NAME="GNU Bourne-Again shell (bash)"
+VERSION="4.2.0"

@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# pkgproto generates garbage when fed hard links, so a symlink is just as good
+#
+VERSION=11.4.4
+mkdir -p usr/bin
+ln -s ../versions/Amaya${VERSION}/Amaya/wx/bin/amaya usr/bin/amaya
+rm usr/versions/Amaya11.4.4/bin/amaya
+rmdir usr/versions/Amaya11.4.4/bin

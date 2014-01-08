@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# setuid bit
+#
+chmod 4511 usr/sbin/fping

@@ -1,0 +1,3 @@
+PKG="TRIBlib-lcms"
+NAME="Little Color Management System"
+VERSION="1.19.0"

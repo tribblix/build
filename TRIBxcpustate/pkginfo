@@ -1,0 +1,3 @@
+PKG="TRIBxcpustate"
+NAME="Xcpustate system load monitor"
+VERSION="2.9.0"

@@ -1,0 +1,156 @@
+#!/bin/sh
+#
+# unpack a source tarball, optionally creating a 64-bit build directory
+# as well
+#
+# if a patchlist is found, apply patches from it
+#
+TOPDIR="/packages/localsrc/Tribblix"
+
+SRCDIR="${TOPDIR}/tarballs"
+PATCHDIR="${TOPDIR}/build/patches"
+
+GZCAT="/usr/bin/gzcat"
+BZCAT="/usr/bin/bzcat"
+XZCAT="/usr/bin/xz"
+UNZIP="/usr/bin/unzip"
+GPATCH="/usr/bin/gpatch"
+ZCAT="/usr/bin/zcat"
+
+DO32="true"
+DO64="false"
+case $1 in
+-64)
+	DO64="true"
+	shift
+	;;
++64)
+	DO32="false"
+	DO64="true"
+	shift
+	;;
+esac
+
+dopatch() {
+  if [ -f ${PATCHDIR}/${1}.pls ]; then
+      cat ${PATCHDIR}/${1}.pls | while read patcharg patchfile
+      do
+	  ${GPATCH} $patcharg -i ${PATCHDIR}/${patchfile}
+      done
+  fi
+}
+
+for pkg in $*
+do
+	/usr/bin/rm -fr ${pkg} ${pkg}-64bit
+	if [ -f ${SRCDIR}/${pkg}.tar.Z ]; then
+	   ${ZCAT} ${SRCDIR}/${pkg}.tar.Z | gtar xf -
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${ZCAT} ${SRCDIR}/${pkg}.tar.Z | gtar xf -
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}.tar.gz ]; then
+	   ${GZCAT} ${SRCDIR}/${pkg}.tar.gz | gtar xf -
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${GZCAT} ${SRCDIR}/${pkg}.tar.gz | gtar xf -
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}.tgz ]; then
+	   ${GZCAT} ${SRCDIR}/${pkg}.tgz | gtar xf -
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${GZCAT} ${SRCDIR}/${pkg}.tgz | gtar xf -
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}.src.tgz ]; then
+	   ${GZCAT} ${SRCDIR}/${pkg}.src.tgz | gtar xf -
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${GZCAT} ${SRCDIR}/${pkg}.src.tgz | gtar xf -
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}.src.tar.gz ]; then
+	   ${GZCAT} ${SRCDIR}/${pkg}.src.tar.gz | gtar xf -
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${GZCAT} ${SRCDIR}/${pkg}.src.tar.gz | gtar xf -
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}.tar.bz2 ]; then
+	   ${BZCAT} ${SRCDIR}/${pkg}.tar.bz2 | gtar xf -
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${BZCAT} ${SRCDIR}/${pkg}.tar.bz2 | gtar xf -
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}-source.tar.bz2 ]; then
+	   ${BZCAT} ${SRCDIR}/${pkg}-source.tar.bz2 | gtar xf -
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${BZCAT} ${SRCDIR}/${pkg}-source.tar.bz2 | gtar xf -
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}.tar.xz ]; then
+	   ${XZCAT} -d -c ${SRCDIR}/${pkg}.tar.xz | gtar xf -
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${XZCAT} -d -c ${SRCDIR}/${pkg}.tar.xz | gtar xf -
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}.tar ]; then
+	   gtar xf ${SRCDIR}/${pkg}.tar
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  gtar xf ${SRCDIR}/${pkg}.tar
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}.zip ]; then
+	   ${UNZIP} -q ${SRCDIR}/${pkg}.zip
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${UNZIP} -q ${SRCDIR}/${pkg}.zip
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+done

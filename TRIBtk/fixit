@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+cd usr/bin
+ln -s wish8.6 wish

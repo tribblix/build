@@ -1,0 +1,3 @@
+PKG="TRIBcurl"
+NAME="Curl groks URLs"
+VERSION="7.34.0.0"

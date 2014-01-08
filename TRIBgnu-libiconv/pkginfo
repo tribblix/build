@@ -1,0 +1,3 @@
+PKG="TRIBgnu-libiconv"
+NAME="Gnu libiconv"
+VERSION="1.14.0"

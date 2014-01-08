@@ -1,0 +1,3 @@
+PKG="TRIBsunstudio-il-build"
+NAME="Legacy Sun Studio for Illumos build"
+VERSION="12.1.0"

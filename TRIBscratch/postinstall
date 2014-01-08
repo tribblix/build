@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# scratch has many files whose names contain spaces, so we unpack them
+# rather than package them
+#
+cd ${BASEDIR}/usr/share
+if [ -f scratch.tar ]; then
+  /usr/bin/tar xf scratch.tar
+  /usr/bin/chown -hR root:root scratch
+  /usr/bin/chmod -R a+rX scratch
+fi

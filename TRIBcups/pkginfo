@@ -1,0 +1,3 @@
+PKG="TRIBcups"
+NAME="CUPS print subsystem"
+VERSION="1.6.4.0"

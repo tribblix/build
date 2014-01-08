@@ -1,0 +1,8 @@
+#!/sbin/sh
+#
+# Automatically generated install script
+#
+if [ "${BASEDIR}" = "/" ]; then
+  /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas
+fi
+exit 0

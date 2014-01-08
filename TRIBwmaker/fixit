@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+
+rm -fr usr/share/man/sk
+rm -fr usr/share/man/cs
+rm -fr usr/share/man/ru
+
+mkdir -p usr/share/pixmaps/backgrounds
+mv usr/share/WindowMaker/Backgrounds/* usr/share/pixmaps/backgrounds
+rmdir usr/share/WindowMaker/Backgrounds
+ln -s ../pixmaps/backgrounds usr/share/WindowMaker/Backgrounds
+
+cd usr/share/WindowMaker
+for file in  *menu*
+do
+mv $file temp.$file
+cat temp.$file | sed s:/usr/local/GNUstep/Applications/WPrefs.app/WPrefs:/usr/bin/WPrefs:g | sed s:/usr/local/share:/usr/share:g > $file
+rm temp.$file
+done
+
+exit 0
+
+#
+# the following was for wmaker 0.92
+#
+rm -fr usr/man/sk
+mkdir -p usr/GNUstep/Applications
+mv usr/share/WPrefs usr/GNUstep/Applications/WPrefs.app
+ln usr/bin/WPrefs usr/GNUstep/Applications/WPrefs.app
+mkdir -p usr/share/pixmaps/backgrounds
+mv usr/share/WindowMaker/Backgrounds/* usr/share/pixmaps/backgrounds
+rmdir usr/share/WindowMaker/Backgrounds
+ln -s ../pixmaps/backgrounds usr/share/WindowMaker/Backgrounds
+
+cd usr/share/WindowMaker
+for file in  *menu*
+do
+mv $file temp.$file
+cat temp.$file | sed s:/usr/local/GNUstep:/usr/GNUstep:g > $file
+rm temp.$file
+done

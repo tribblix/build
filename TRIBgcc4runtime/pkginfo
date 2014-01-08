@@ -1,0 +1,3 @@
+PKG="TRIBgcc4runtime"
+NAME="Essential GCC runtime libraries"
+VERSION="4.7.3.0"

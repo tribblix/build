@@ -1,0 +1,10 @@
+P TRIBsys-lib-c++-sunpro
+P TRIBsys-library
+P TRIBlib-desktop-atk
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-gtk
+P TRIBlib-desktop-pango
+P TRIBlib-glib2
+P TRIBsys-lib-fontconfig
+P TRIBsys-lib-freetype-2
+P TRIBx11-libx11

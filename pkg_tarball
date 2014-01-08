@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# package something that's already a tarball, assumed to be into
+# it's named subdirectory of /usr/versions
+#
+case $# in
+2)
+        SOFTDIR="$2"
+        PKGNAME="$1"
+	;;
+*)
+	echo "Usage: $0 pkg_name file_root"
+	exit 1
+	;;
+esac
+
+#
+# Default locations
+#
+BUILD="/packages/localsrc/Tribblix/build"
+BROOT="/tmp/pct"
+
+if [ ! -d $BUILD ]; then
+   echo "ERROR: unable to find build directory $BUILD"
+   exit 1
+fi
+if [ ! -d $BROOT ]; then
+   echo "ERROR: unable to find temporary directory $BROOT"
+   exit 1
+fi
+if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+   echo "ERROR: missing package data"
+   echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
+   exit 1
+fi
+
+#
+# define and create working location
+#
+BDIR="${BROOT}/pkg.$$"
+rm -fr ${BDIR}
+mkdir -p ${BDIR}/usr/versions
+cd ${BDIR}/usr/versions
+
+${BUILD}/unpack $SOFTDIR
+${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+cd /
+
+# remove our temporary files
+rm -fr ${BDIR}
+rm -fr ${BROOT}/${PKGNAME}

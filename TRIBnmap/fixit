@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# add nc as a symlink
+#
+cd usr/bin
+ln -s ncat nc

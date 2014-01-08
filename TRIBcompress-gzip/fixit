@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# fix the names
+#
+rm -f usr/lib/charset.alias
+rmdir usr/lib
+cd usr/bin
+rm uncompress
+mv zcat gzcat
+mv zcmp gzcmp
+mv zdiff gzdiff
+mv zegrep gzegrep
+mv zfgrep gzfgrep
+mv zforce gzforce
+mv zgrep gzgrep
+mv zless gzless
+mv zmore gzmore
+mv znew gznew
+cd ../share/man/man1
+mv zcat.1 gzcat.1
+mv zcmp.1 gzcmp.1
+mv zdiff.1 gzdiff.1
+mv zforce.1 gzforce.1
+mv zgrep.1 gzgrep.1
+mv zless.1 gzless.1
+mv zmore.1 gzmore.1
+mv znew.1 gznew.1

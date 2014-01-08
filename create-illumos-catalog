@@ -1,0 +1,22 @@
+#!/bin/ksh
+#
+# catalog format is
+#  name|version|dependencies
+#
+PKGDIR=/var/tmp/illumos-pkgs/pkgs
+case $# in
+1)
+	PKGVERS="$1"
+	;;
+esac
+#
+# FIXME get dependencies out of the package
+#
+DEPLIST=""
+cd $PKGDIR
+for PKGI in *.pkg
+do
+  PKG=${PKGI%.pkg}
+  PKGVERS=`pkginfo -l -d ${PKGI} | grep VERSION: | awk '{print $NF}' | sed 's="==g'`
+  echo "${PKG}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
+done

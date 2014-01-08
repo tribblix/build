@@ -1,0 +1,47 @@
+#!/bin/ksh
+#
+# autodepend - automatically generate dependency files
+#
+# do not just use the output untouched; at least scan it for obvious
+# errors and omissions (including the package the target itself is in)
+# this is just to help and minimise typing rather than being authoritative
+#
+# assumes a shared object
+#
+case $# in
+1)
+	TARG=$1
+	;;
+*)
+	echo "Usage: $0 target"
+	exit 1
+	;;
+esac
+
+if [ ! -e $1 ]; then
+   echo "$TARG not found"
+   exit 1
+fi
+
+#
+# for simple cases like this, gnu grep is several times quicker
+#
+EGREP=/usr/bin/egrep
+if [ -x /usr/gnu/bin/egrep ]; then
+   EGREP=/usr/gnu/bin/egrep
+fi
+
+#
+# find shared objects
+# look for library followed by a space (the actual file) or 
+# by =, which is for a symlink
+#
+getdeps()
+{
+for dep in `/usr/bin/dump -Lv $TARG | grep NEEDED | awk '{print $NF}'`
+do
+  $EGREP "lib/$dep( |=)" /var/sadm/install/contents
+done
+}
+
+getdeps | awk '{print "P "$NF}'|sort|uniq

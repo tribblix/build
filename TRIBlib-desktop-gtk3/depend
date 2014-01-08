@@ -1,0 +1,12 @@
+P TRIBlib-desktop-at-spi2
+P TRIBlib-desktop-atk
+P TRIBlib-desktop-atk-bridge
+P TRIBlib-glib2
+P TRIBsys-libdbus
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-pango
+P TRIBlib-graphics-pixman
+P TRIBlib-zlib
+P TRIBx11-libx11
+P TRIBsys-lib-fontconfig
+P TRIBsys-lib-freetype-2

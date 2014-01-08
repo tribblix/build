@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# add a g-prefixed link
+#
+rm -f usr/gnu/lib/charset.alias
+rmdir usr/gnu/lib
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../gnu/bin/find gfind
+ln -s ../gnu/bin/xargs gxargs

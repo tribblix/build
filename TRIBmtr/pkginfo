@@ -1,0 +1,3 @@
+PKG="TRIBmtr"
+NAME="my traceroute - combined traceroute and ping"
+VERSION="0.82.0"

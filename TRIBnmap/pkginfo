@@ -1,0 +1,3 @@
+PKG="TRIBnmap"
+NAME="nmap - powerful network scanner"
+VERSION="6.40.0"

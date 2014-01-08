@@ -1,0 +1,3 @@
+PKG="TRIBimage-librsvg"
+NAME="CAIRO SVG renderer"
+VERSION="2.36.4.1"

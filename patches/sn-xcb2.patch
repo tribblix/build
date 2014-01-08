@@ -1,0 +1,23 @@
+--- a/startup-notification-0.10/libsn/sn-xutils.c	2013-05-07 21:30:47.604617604 +0000
++++ b/startup-notification-0.10/libsn/sn-xutils.c	2013-05-07 21:29:35.635831393 +0000
+@@ -30,6 +30,20 @@
+ #include <xcb/xcb.h>
+ #include <xcb/xcb_atom.h>
+ 
++xcb_atom_t xcb_atom_get(xcb_connection_t *connection, const char *atom_name)
++{
++	if(atom_name == NULL)
++		return XCB_NONE;
++	xcb_intern_atom_reply_t *reply = xcb_intern_atom_reply(connection,
++		xcb_intern_atom(connection, 0, strlen(atom_name), atom_name), NULL);
++	if(!reply)
++		return XCB_NONE;
++	xcb_atom_t atom = reply->atom;
++	free(reply);
++	return atom;
++}
++
++
+ Atom
+ sn_internal_atom_get (SnDisplay  *display,
+                       const char *atom_name)

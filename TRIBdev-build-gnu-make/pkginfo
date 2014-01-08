@@ -1,0 +1,3 @@
+PKG="TRIBdev-build-gnu-make"
+NAME="GNU make"
+VERSION="3.81.0"

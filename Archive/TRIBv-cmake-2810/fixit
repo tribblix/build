@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# put in the regular path
+#
+VERSION=2.8.10
+mkdir usr/bin
+cd usr/bin
+ln -s ../versions/cmake-${VERSION}/bin/c* .

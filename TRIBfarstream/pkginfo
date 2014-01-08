@@ -1,0 +1,3 @@
+PKG="TRIBfarstream"
+NAME="GStreamer videoconferencing modules"
+VERSION="0.1.2.1"

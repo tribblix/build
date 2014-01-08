@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# add g prefixes in /usr/bin, and other convenience links
+#
+rm -f usr/gnu/lib/charset.alias
+rmdir usr/gnu/lib
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../gnu/bin/[ .
+ln -s ../gnu/bin/printenv .
+ln -s ../gnu/bin/md5sum .
+ln -s ../gnu/bin/md5sum gmd5sum
+ln -s ../gnu/bin/readlink .
+ln -s ../gnu/bin/stat .
+ln -s ../gnu/bin/install ginstall
+ln -s ../gnu/bin/tac .
+ln -s ../gnu/bin/sha*sum .

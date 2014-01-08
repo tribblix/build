@@ -1,0 +1,179 @@
+#!/bin/ksh
+#
+# package the files in a given directory
+#
+case $# in
+3)
+	PKGNAME="$1"
+	BDIR="$2"
+	BROOT="$3"
+	;;
+*)
+	echo "Usage: $0 pkg_name tmp_dir output_root"
+	exit 1
+	;;
+esac
+
+#
+# Default locations
+#
+BUILD="/packages/localsrc/Tribblix/build"
+
+#
+# sanity check
+#
+if [ ! -d $BUILD ]; then
+   echo "ERROR: unable to find build directory $BUILD"
+   exit 1
+fi
+if [ ! -d $BROOT ]; then
+   echo "ERROR: unable to find temporary directory $BROOT"
+   exit 1
+fi
+if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+   echo "ERROR: missing package data"
+   echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
+   exit 1
+fi
+
+#
+# if there are services that should be restarted, add them to the postinstall
+# script; this copied from ips2svr4
+#
+handle_restarts() {
+if [ -f ${BDIR}/restart_fmri_list ]; then
+mkdir -p ${BDIR}/install
+if [ ! -f ${BDIR}/install/postinstall ]; then
+cat > ${BDIR}/install/postinstall <<EOF
+#!/sbin/sh
+#
+# Automatically generated service restart script
+#
+EOF
+cat > ${BDIR}/install/postremove <<EOF
+#!/sbin/sh
+#
+# Automatically generated service restart script
+#
+EOF
+chmod a+x ${BDIR}/install/postremove ${BDIR}/install/postinstall
+echo "i postinstall=./install/postinstall" >> ${BDIR}/pp.$$
+echo "i postremove=./install/postremove" >> ${BDIR}/pp.$$
+fi
+#
+# this check is so we only actually restart if the install is to the
+# current system. If we're installing to an alternate image, then the
+# restarts will happen automatically when it boots
+#
+# FIXME should the restart be -s
+#
+cat >> ${BDIR}/install/postinstall <<EOF
+if [ "\${BASEDIR}" = "/" ]; then
+EOF
+cat >> ${BDIR}/install/postremove <<EOF
+if [ "\${BASEDIR}" = "/" ]; then
+EOF
+/usr/bin/cat ${BDIR}/restart_fmri_list | /usr/bin/sort | /usr/bin/uniq | /usr/bin/awk '{print "/usr/sbin/svcadm restart "$1}' >> ${BDIR}/install/postinstall
+/usr/bin/cat ${BDIR}/restart_fmri_list | /usr/bin/sort | /usr/bin/uniq | /usr/bin/awk '{print "/usr/sbin/svcadm restart "$1}' >> ${BDIR}/install/postremove
+echo "fi" >> ${BDIR}/install/postinstall
+echo "fi" >> ${BDIR}/install/postremove
+#
+# some of the packages have broken dependencies, so we exit cleanly to
+# stop errors from missing services messing up pkgadd or pkgrm
+#
+echo "exit 0" >> ${BDIR}/install/postinstall
+echo "exit 0" >> ${BDIR}/install/postremove
+/usr/bin/rm ${BDIR}/restart_fmri_list
+fi
+}
+
+PKGVER=`/usr/bin/grep '^VERSION=' ${BUILD}/${PKGNAME}/pkginfo | /usr/bin/awk -F= '{print $2}' | /usr/bin/sed 's:"::g'`
+cd $BDIR
+# copy packaging files from archive
+cp ${BUILD}/${PKGNAME}/pkginfo .
+if [ -f ${BUILD}/${PKGNAME}/pkginfo.arch ]; then
+    cat ${BUILD}/${PKGNAME}/pkginfo.arch >> pkginfo
+else
+    MYARCH=`/usr/bin/uname -p`
+    echo "ARCH=\"$MYARCH\"" >> pkginfo
+fi
+cat ${BUILD}/pkginfo.base >> pkginfo
+echo "i pkginfo=./pkginfo" > pp.$$
+if [ -x ${BUILD}/${PKGNAME}/fixit ]; then
+   echo "Fixing..."
+   ${BUILD}/${PKGNAME}/fixit
+fi
+if [ -x ${BUILD}/fixit.man ]; then
+   ${BUILD}/fixit.man
+fi
+#
+# if 'allowstatic' exists, don't delete the static libs
+#
+if [ ! -f ${BUILD}/${PKGNAME}/allowstatic ]; then
+   if [ -x ${BUILD}/fixit.static ]; then
+      ${BUILD}/fixit.static
+   fi
+fi
+# add dependencies
+if [ -f ${BUILD}/${PKGNAME}/depend ]; then
+   mkdir -p install
+   cp ${BUILD}/${PKGNAME}/depend install
+   echo "i depend=./install/depend" >> pp.$$
+fi
+# add post scripts
+#ls -l ${BUILD}/${PKGNAME}/restart_fmri_list
+#if [ -f ${BUILD}/${PKGNAME}/restart_fmri_list ]; then
+#   cp ${BUILD}/${PKGNAME}/restart_fmri_list ${BDIR}
+#   handle_restarts
+#fi
+if [ -f ${BUILD}/${PKGNAME}/postinstall ]; then
+    mkdir -p ${BDIR}/install
+    cp ${BUILD}/${PKGNAME}/postinstall ${BDIR}/install
+    chmod a+x ${BDIR}/install/postinstall
+    echo "i postinstall=./install/postinstall" >> ${BDIR}/pp.$$
+fi
+if [ -f ${BUILD}/${PKGNAME}/postremove ]; then
+    mkdir -p ${BDIR}/install
+    cp ${BUILD}/${PKGNAME}/postremove ${BDIR}/install
+    chmod a+x ${BDIR}/install/postremove
+    echo "i postremove=./install/postremove" >> ${BDIR}/pp.$$
+fi
+if [ -f ${BUILD}/${PKGNAME}/restart_fmri_list ]; then
+   cp ${BUILD}/${PKGNAME}/restart_fmri_list ${BDIR}
+   handle_restarts
+fi
+# FIXME verify both scripts and restart_fmri_list
+(cd ${BDIR} ; pkgproto usr | ${BUILD}/fixproto) >> pp.$$
+if [ -d ${BDIR}/etc ]; then
+   (cd ${BDIR} ; pkgproto etc | ${BUILD}/fixproto) >> pp.$$
+fi
+if [ -d ${BDIR}/lib ]; then
+   (cd ${BDIR} ; pkgproto lib | ${BUILD}/fixproto) >> pp.$$
+fi
+if [ -d ${BDIR}/sbin ]; then
+   (cd ${BDIR} ; pkgproto sbin | ${BUILD}/fixproto) >> pp.$$
+fi
+if [ -d ${BDIR}/var ]; then
+   (cd ${BDIR} ; pkgproto var | ${BUILD}/fixproto) >> pp.$$
+fi
+if [ -d ${BDIR}/opt ]; then
+   (cd ${BDIR} ; pkgproto opt | ${BUILD}/fixproto) >> pp.$$
+fi
+# zonelib is just for TRIBblix-zones
+if [ -d ${BDIR}/zonelib ]; then
+   (cd ${BDIR} ; pkgproto zonelib | ${BUILD}/fixproto) >> pp.$$
+fi
+# create the package
+pkgmk -d ${BROOT} -f pp.$$ -r ${BDIR} ${PKGNAME}
+/usr/bin/rm pp.$$
+pkgtrans -s ${BROOT} ${BROOT}/${PKGNAME}.${PKGVER}.pkg ${PKGNAME}
+# create the zap file
+cd $BROOT
+#zip -9 -q -r ${PKGNAME} ${PKGNAME}
+rm -f ${PKGNAME}.${PKGVER}.zap
+7za a -tzip -mx=9 -mfb=256 ${PKGNAME}.${PKGVER}.zap ${PKGNAME}
+chmod a+r ${PKGNAME}.${PKGVER}.zap
+#mv ${PKGNAME}.zip ${PKGNAME}.zap
+cd /
+ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.pkg
+ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.zap

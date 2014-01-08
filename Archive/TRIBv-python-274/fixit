@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+mkdir -p usr/bin
+mkdir -p usr/lib/pkgconfig
+cd usr/bin
+ln -s ../versions/python-2.7.4/bin/py* .
+cd ../lib
+ln -s ../versions/python-2.7.4/lib/libpython2.7.so* .
+cd pkgconfig
+ln -s ../../versions/python-2.7.4/lib/pkgconfig/python-2.7.pc .
+ln -s ../../versions/python-2.7.4/lib/pkgconfig/python2.pc .

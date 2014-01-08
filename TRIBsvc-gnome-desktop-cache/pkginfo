@@ -1,0 +1,3 @@
+PKG="TRIBsvc-gnome-desktop-cache"
+NAME="A set of SMF services to update the various GNOME desktop caches."
+VERSION="0.2.2"

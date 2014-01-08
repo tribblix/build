@@ -1,0 +1,3 @@
+PKG="TRIBweb-curl"
+NAME="Legacy libcurl emulation"
+VERSION="0.0.0"

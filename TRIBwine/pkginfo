@@ -1,0 +1,3 @@
+PKG="TRIBwine"
+NAME="Wine - Windows compatibility layer"
+VERSION="1.7.6.0"

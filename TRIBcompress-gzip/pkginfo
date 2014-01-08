@@ -1,0 +1,3 @@
+PKG="TRIBcompress-gzip"
+NAME="GNU Zip (gzip)"
+VERSION="1.5.0"

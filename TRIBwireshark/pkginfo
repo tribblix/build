@@ -1,0 +1,3 @@
+PKG="TRIBwireshark"
+NAME="network protocol analyzer"
+VERSION="1.10.0.0"

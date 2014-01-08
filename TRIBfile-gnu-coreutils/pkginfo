@@ -1,0 +1,3 @@
+PKG="TRIBfile-gnu-coreutils"
+NAME="Gnu coreutils"
+VERSION="8.21.0.0"

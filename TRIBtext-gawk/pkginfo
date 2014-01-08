@@ -1,0 +1,3 @@
+PKG="TRIBtext-gawk"
+NAME="GNU awk"
+VERSION="4.1.0.0"

@@ -1,0 +1,11 @@
+--- a/startup-notification-0.10/test/test-launcher-xcb.c  2009-04-03 10:59:56.000000000 +0000
++++ b/startup-notification-0.10/test/test-launcher-xcb.c  2011-05-05 09:34:34.000000000 +0000
+@@ -64,7 +64,7 @@
+     name = "Fake Window";
+ 
+     xcb_change_property (xconnection, XCB_PROP_MODE_REPLACE,
+-                         xwindow, WM_NAME, STRING, 8,
++                         xwindow, XCB_ATOM_WM_NAME, XCB_ATOM_STRING, 8,
+                          strlen (name), name);
+   }
+ 

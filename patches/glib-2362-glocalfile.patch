@@ -1,0 +1,10 @@
+--- a/glib-2.36.2/gio/glocalfile.c
++++ b/glib-2.36.2/gio/glocalfile.c
+@@ -2435,6 +2435,7 @@ is_remote_fs (const gchar *filename)
+ 
+ #elif defined(USE_STATVFS)
+   struct statvfs statfs_buffer;
++  int statfs_result = 0;
+ 
+   statfs_result = statvfs (filename, &statfs_buffer);
+ #else

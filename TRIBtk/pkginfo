@@ -1,0 +1,3 @@
+PKG=TRIBtk
+NAME=Tk - Tcl GUI toolkit
+VERSION=8.6.0.0

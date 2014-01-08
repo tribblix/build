@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# has to be setuid root to read the shadow file
+#
+chmod 4511 usr/bin/xscreensaver

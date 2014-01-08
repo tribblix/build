@@ -1,0 +1,3 @@
+PKG="TRIBgnu-gettext"
+NAME="Gnu gettext"
+VERSION="0.18.1.1"

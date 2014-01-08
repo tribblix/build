@@ -1,0 +1,3 @@
+PKG="TRIBlibwpd"
+NAME="Library for reading and writing Corel WordPerfect(tm) documents"
+VERSION="0.9.6.0"

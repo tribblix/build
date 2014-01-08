@@ -1,0 +1,37 @@
+*** gnu-ghostscript-9.05.0/base/lcms2.mak	Mon Sep  3 20:10:31 2012
+--- gnu-ghostscript-9.05.0-new/base/lcms2.mak	Sun Dec  2 12:48:27 2012
+***************
+*** 45,50 ****
+--- 45,51 ----
+  	$(LCMS2OBJ)cmserr.$(OBJ) \
+  	$(LCMS2OBJ)cmsgamma.$(OBJ) \
+  	$(LCMS2OBJ)cmsgmt.$(OBJ) \
++ 	$(LCMS2OBJ)cmshalf.$(OBJ) \
+  	$(LCMS2OBJ)cmsintrp.$(OBJ) \
+  	$(LCMS2OBJ)cmsio0.$(OBJ) \
+  	$(LCMS2OBJ)cmsio1.$(OBJ) \
+***************
+*** 113,118 ****
+--- 114,122 ----
+  $(LCMS2OBJ)cmsgmt.$(OBJ) : $(LCMS2SRC)cmsgmt.c $(lcms2_HDRS)
+  	$(LCMS2_CC) $(LCMS2O_)cmsgmt.$(OBJ) $(C_) $(LCMS2SRC)cmsgmt.c
+  
++ $(LCMS2OBJ)cmshalf.$(OBJ) : $(LCMS2SRC)cmshalf.c $(lcms2_HDRS)
++ 	$(LCMS2_CC) $(LCMS2O_)cmshalf.$(OBJ) $(C_) $(LCMS2SRC)cmshalf.c
++ 
+  $(LCMS2OBJ)cmsintrp.$(OBJ) : $(LCMS2SRC)cmsintrp.c $(lcms2_HDRS)
+  	$(LCMS2_CC) $(LCMS2O_)cmsintrp.$(OBJ) $(C_) $(LCMS2SRC)cmsintrp.c
+  
+***************
+*** 161,165 ****
+  $(LCMS2OBJ)cmsvirt.$(OBJ) : $(LCMS2SRC)cmsvirt.c $(lcms2_HDRS)
+  	$(LCMS2_CC) $(LCMS2O_)cmsvirt.$(OBJ) $(C_) $(LCMS2SRC)cmsvirt.c
+  
+! $(LCMS2OBJ)cmsxform.$(OBJ) : $(LCMS2SRC)cmsxform.c $(LCMS2SRC)cmsxform.h $(lcms2_HDRS)
+  	$(LCMS2_CC) $(LCMS2O_)cmsxform.$(OBJ) $(C_) $(LCMS2SRC)cmsxform.c
+--- 165,169 ----
+  $(LCMS2OBJ)cmsvirt.$(OBJ) : $(LCMS2SRC)cmsvirt.c $(lcms2_HDRS)
+  	$(LCMS2_CC) $(LCMS2O_)cmsvirt.$(OBJ) $(C_) $(LCMS2SRC)cmsvirt.c
+  
+! $(LCMS2OBJ)cmsxform.$(OBJ) : $(LCMS2SRC)cmsxform.c $(lcms2_HDRS)
+  	$(LCMS2_CC) $(LCMS2O_)cmsxform.$(OBJ) $(C_) $(LCMS2SRC)cmsxform.c

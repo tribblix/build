@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# some files have "odd" names incompatible with SVR4 packaging
+#
+mv usr/share/samba/setup/cn=replicator.ldif usr/share/samba/setup/cn-replicator.ldif
+mv usr/share/samba/setup/cn=samba-admin.ldif usr/share/samba/setup/cn-samba-admin.ldif
+mv usr/share/samba/setup/cn=samba.ldif usr/share/samba/setup/cn-samba.ldif
+#
+# this is a Solaris base command
+#
+mv usr/bin/profiles usr/bin/smbprofiles
