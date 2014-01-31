@@ -1,0 +1,13 @@
+*** a/libreoffice-4.1.4.2/bridges/Library_cpp_uno.mk Tue Dec 10 08:11:21 2013
+--- b/libreoffice-4.1.4.2/bridges/Library_cpp_uno.mk  Fri Jan 17 13:55:59 2014
+***************
+*** 146,151 ****
+--- 146,153 ----
+  bridge_exception_objects := except
+  
+  endif
++ bridges_SELECTED_BRIDGE := gcc3_solaris_intel
++ bridge_exception_objects := cpp2uno except uno2cpp
+  
+  $(eval $(call gb_Library_use_external,$(gb_CPPU_ENV)_uno,boost_headers))
+  

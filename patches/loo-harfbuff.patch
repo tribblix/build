@@ -1,0 +1,11 @@
+--- a/libreoffice-4.1.4.2/harfbuzz/UnpackedTarball_harfbuzz.mk        2013-08-21 04:40:03.000000000 -0700
++++ b/libreoffice-4.1.4.2/harfbuzz/UnpackedTarball_harfbuzz.mk    2014-01-19 06:02:55.718316455 -0800
+@@ -13,6 +13,8 @@
+
+ $(eval $(call gb_UnpackedTarball_add_patches,harfbuzz, \
+ 	harfbuzz/harfbuzz.configure.patch.1 \
++	harfbuzz/harfbuzz.configure.patch.2 \
++	harfbuzz/harfbuzz.visibility.patch.1 \
+ 	harfbuzz/harfbuzz-0.9.16-winxp.patch.1 \
+ ))
+ 

@@ -1,0 +1,14 @@
+--- a/libreoffice-4.1.4.2/liborcus/liborcus_0.1.0-configure2.patch   Sun Jan 26 09:50:01 2014
++++ b/libreoffice-4.1.4.2/liborcus/liborcus_0.1.0-configure2.patch    Mon Jan 27 13:04:20 2014
+@@ -1,0 +1,11 @@
++--- configure    Fri Apr 12 18:56:48 2013
+++++ configure Mon Jan 27 13:02:10 2014
++@@ -3211,7 +3211,7 @@
++ ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
++ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
++ 
++-CXXFLAGS="$CXXFLAGS -O2 -fvisibility=hidden -Wall"
+++CXXFLAGS="$CXXFLAGS -O2 -Wall"
++ 
++ # ===========================
++ # Find required base packages
