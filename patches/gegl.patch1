@@ -1,4 +1,4 @@
---- a/gegl-0.2.0/operations/common/exp-combine.c     Thu Mar 29 13:05:50 2012
+--- gegl-0.2.0/operations/common/exp-combine.c     Thu Mar 29 13:05:50 2012
 +++ b/gegl-0.2.0/operations/common/exp-combine.c     Sat Jan 19 13:42:10 2013
 @@ -55,6 +55,7 @@
  

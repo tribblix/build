@@ -1,0 +1,38 @@
+--- bridges/source/cpp_uno/gcc3_solaris_intel/uno2cpp.cxx.old	Δευ Ιαν 27 17:38:53 2014
++++ bridges/source/cpp_uno/gcc3_solaris_intel/uno2cpp.cxx	Δευ Ιαν 27 17:34:30 2014
+@@ -45,12 +45,20 @@
+ {
+ 
+ //==================================================================================================
+-static void callVirtualMethod(
++void callVirtualMethod(
+     void * pAdjustedThisPtr,
+     sal_Int32 nVtableIndex,
+     void * pRegisterReturn,
+     typelib_TypeClass eReturnType,
+     sal_Int32 * pStackLongs,
++    sal_Int32 nStackLongs ) __attribute__((noinline));
++
++void callVirtualMethod(
++    void * pAdjustedThisPtr,
++    sal_Int32 nVtableIndex,
++    void * pRegisterReturn,
++    typelib_TypeClass eReturnType,
++    sal_Int32 * pStackLongs,
+     sal_Int32 nStackLongs )
+ {
+ 	// parameter list is mixed list of * and values
+@@ -67,6 +75,13 @@
+     void * stackptr;
+ 	asm volatile (
+         "mov   %%esp, %6\n\t"
++       // preserve potential 128bit stack alignment
++        "and   $0xfffffff0, %%esp\n\t"
++        "mov   %0, %%eax\n\t"
++        "lea   -4(,%%eax,4), %%eax\n\t"
++        "and   $0xf, %%eax\n\t"
++        "sub   $0xc, %%eax\n\t"
++        "add   %%eax, %%esp\n\t"
+ 		// copy values
+ 		"mov   %0, %%eax\n\t"
+ 		"mov   %%eax, %%edx\n\t"

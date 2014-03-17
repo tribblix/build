@@ -1,5 +1,5 @@
-*** a/libreoffice-4.1.4.2/liborcus/UnpackedTarball_liborcus.mk       Tue Dec 10 08:11:21 2013
---- b/libreoffice-4.1.4.2/liborcus/UnpackedTarball_liborcus.mk        Mon Jan 27 13:08:17 2014
+*** a/libreoffice-4.2.0.4/external/liborcus/UnpackedTarball_liborcus.mk       Tue Dec 10 08:11:21 2013
+--- b/libreoffice-4.2.0.4/external/liborcus/UnpackedTarball_liborcus.mk        Mon Jan 27 13:08:17 2014
 ***************
 *** 15,20 ****
 --- 15,22 ----

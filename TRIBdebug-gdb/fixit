@@ -1,2 +1,5 @@
 #!/bin/sh
 rm -fr usr/share/info
+mkdir -p usr/gnu/bin usr/gnu/share/man/man1
+mv usr/bin/gcore usr/gnu/bin
+mv usr/share/man/man1/gcore.1 usr/gnu/share/man/man1

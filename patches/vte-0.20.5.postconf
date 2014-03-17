@@ -1,0 +1,4 @@
+#!/bin/sh
+gsed -i 's/#define GDK_DISABLE_DEPRECATED 1/#undef GDK_DISABLE_DEPRECATED/' config.h
+gsed -i 's/#define GTK_DISABLE_DEPRECATED 1/#undef GTK_DISABLE_DEPRECATED/' config.h
+gsed -i 's/#define G_DISABLE_DEPRECATED 1/#undef G_DISABLE_DEPRECATED/' config.h

@@ -103,8 +103,8 @@ if [ -x ${BUILD}/${PKGNAME}/fixit ]; then
    echo "Fixing..."
    ${BUILD}/${PKGNAME}/fixit
 fi
-if [ -x ${BUILD}/fixit.man ]; then
-   ${BUILD}/fixit.man
+if [ -x ${BUILD}/fixit.default ]; then
+   ${BUILD}/fixit.default
 fi
 #
 # if 'allowstatic' exists, don't delete the static libs
@@ -141,6 +141,16 @@ fi
 if [ -f ${BUILD}/${PKGNAME}/restart_fmri_list ]; then
    cp ${BUILD}/${PKGNAME}/restart_fmri_list ${BDIR}
    handle_restarts
+fi
+#
+# handle anything that's a link to isaexec
+#
+if [ -f ${BUILD}/${PKGNAME}/isaexec ]; then
+  for ifile in `cat ${BUILD}/${PKGNAME}/isaexec`
+  do
+    rm -f $ifile
+    echo "l none ${ifile}=/usr/lib/isaexec" >> pp.$$
+  done
 fi
 # FIXME verify both scripts and restart_fmri_list
 (cd ${BDIR} ; pkgproto usr | ${BUILD}/fixproto) >> pp.$$

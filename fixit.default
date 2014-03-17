@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# default fixes to installed packages
+# - relocate /usr/man to /usr/share/man
+# - remove info files
+#
+if [ -d usr/man ]; then
+    mkdir -p usr/share
+    mv usr/man usr/share
+fi
+if [ -d usr/gnu/man ]; then
+    mkdir -p usr/gnu/share
+    mv usr/gnu/man usr/gnu/share
+fi
+if [ -d usr/info ]; then
+    rm -fr usr/info
+fi
+if [ -d usr/share/info ]; then
+    rm -fr usr/share/info
+fi
+if [ -d usr/gnu/info ]; then
+    rm -fr usr/gnu/info
+fi
+if [ -d usr/gnu/share/info ]; then
+    rm -fr usr/gnu/share/info
+fi
+#
+# don't embed compiler location in .la files
+#
+for file in `find . -name '*.la'`
+do
+gsed -i -e s:/usr/sfw/lib/libstdc++.la:-lstdc++:g -e s:/usr/sfw/lib/amd64/libstdc++.la:-lstdc++:g $file
+done

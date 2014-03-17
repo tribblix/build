@@ -1,0 +1,16 @@
+--- cairo-1.12.6/src/cairo-wideint-type-private.h	Wed Feb  1 16:48:14 2012
++++ b/cairo-1.12.6/src/cairo-wideint-type-private.h	Sun Oct 28 15:34:24 2012
+@@ -125,11 +125,13 @@
+ } cairo_quorem64_t;
+ 
+ /* gcc has a non-standard name. */
++/*
+ #if HAVE___UINT128_T && !HAVE_UINT128_T
+ typedef __uint128_t uint128_t;
+ typedef __int128_t int128_t;
+ #define HAVE_UINT128_T 1
+ #endif
++*/
+ 
+ #if !HAVE_UINT128_T
+ 

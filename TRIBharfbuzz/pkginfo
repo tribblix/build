@@ -1,0 +1,3 @@
+PKG="TRIBharfbuzz"
+NAME="Harfbuzz text shaping engine"
+VERSION="0.9.26.0"

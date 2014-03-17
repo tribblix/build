@@ -3,7 +3,7 @@
 # catalog format is
 #  name|version|dependencies
 #
-PKGDIR=/var/tmp/created-pkgs/pkgs
+PKGDIR=/packages/localsrc/Tribblix/oi-pkgs-0.8/pkgs.repo
 PKGVERS="0.8o"
 case $# in
 1)
@@ -16,8 +16,8 @@ esac
 #
 DEPLIST=""
 cd $PKGDIR
-for PKGI in *.pkg
+for PKGI in *.zap
 do
-  PKG=${PKGI%.pkg}
+  PKG=${PKGI%.${PKGVERS}.zap}
   echo "${PKG}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
 done

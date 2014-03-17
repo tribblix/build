@@ -1,6 +1,6 @@
---- a/libreoffice-4.1.4.2/liborcus/liborcus_0.1.0-configure2.patch   Sun Jan 26 09:50:01 2014
-+++ b/libreoffice-4.1.4.2/liborcus/liborcus_0.1.0-configure2.patch    Mon Jan 27 13:04:20 2014
-@@ -1,0 +1,11 @@
+--- /dev/null   1969-12-31 16:00:00.000000000 -0800
++++ b/libreoffice-4.2.0.4/external/liborcus/liborcus_0.1.0-configure2.patch    Mon Jan 27 13:04:20 2014
+@@ -0,0 +1,11 @@
 +--- configure    Fri Apr 12 18:56:48 2013
 ++++ configure Mon Jan 27 13:02:10 2014
 +@@ -3211,7 +3211,7 @@

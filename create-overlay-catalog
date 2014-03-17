@@ -1,0 +1,12 @@
+#!/bin/ksh
+#
+# catalog format is
+#  name|version|other data
+#
+for PKGI in *.ovl
+do
+  PKG=${PKGI%.*}
+  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI | sed 's="==g'`
+  DEPLIST=""
+  echo "${PKG}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
+done

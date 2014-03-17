@@ -1,6 +1,6 @@
 Index: src/tabbar.c
 ===================================================================
---- old/mrxvt-0.5.4/src/tabbar.c	(revision 337)
+--- mrxvt-0.5.4/src/tabbar.c	(revision 337)
 +++ new/mrxvt-0.5.4/src/tabbar.c	(working copy)
 @@ -1327,7 +1327,7 @@
  		if( p.we_wordc > 1)

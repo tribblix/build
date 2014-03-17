@@ -1,5 +1,5 @@
-*** a/libreoffice-4.1.4.2/sal/osl/unx/file.cxx        Tue Dec 10 08:11:21 2013
---- b/libreoffice-4.1.4.2/sal/osl/unx/file.cxx  Fri Jan 17 13:51:26 2014
+*** libreoffice-4.2.0.4/sal/osl/unx/file.cxx        Tue Dec 10 08:11:21 2013
+--- b/libreoffice-4.2.0.4/sal/osl/unx/file.cxx  Fri Jan 17 13:51:26 2014
 ***************
 *** 1231,1237 ****
               OSL_TRACE(

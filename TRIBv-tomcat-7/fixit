@@ -2,6 +2,6 @@
 #
 # just name off the primary version
 #
-VERSION=7.0.42
+VERSION=7.0.52
 cd usr/versions
 ln -s apache-tomcat-${VERSION} tomcat7

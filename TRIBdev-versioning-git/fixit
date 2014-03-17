@@ -1,0 +1,4 @@
+#!/bin/sh
+mkdir -p usr/share
+cd usr/share
+/packages/localsrc/Tribblix/build/unpack git-manpages-1.9.0

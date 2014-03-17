@@ -1,1 +1,1 @@
--p0 gs-lcms2.patch
+-p1 gs-lcms2.patch

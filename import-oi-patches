@@ -1,0 +1,32 @@
+#!/bin/sh
+
+TOPDIR=/packages/localsrc/Tribblix
+OI_DIR=${TOPDIR}/oi-userland/components
+PATCH_DIR=${TOPDIR}/build/patches
+
+case $# in
+2)
+	OINAME=$1
+	TRNAME=$2
+	;;
+*)
+	echo "Usage: $0 oi_name tribblix_name"
+	exit 1
+	;;
+esac
+
+OI_PDIR=${OI_DIR}/${OINAME}/patches
+
+if [ ! -d ${OI_PDIR} ]; then
+   echo "Missing patch directory $OI_PDIR"
+   exit 1
+fi
+
+rm -f ${PATCH_DIR}/${TRNAME}.pls
+touch ${PATCH_DIR}/${TRNAME}.pls
+cd ${OI_PDIR}
+for pfile in *.patch
+do
+  cp ${pfile} ${PATCH_DIR}/${OINAME}-${pfile}
+  echo "-p1 ${OINAME}-${pfile}" >> ${PATCH_DIR}/${TRNAME}.pls
+done

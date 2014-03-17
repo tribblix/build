@@ -1,5 +1,5 @@
-*** old/orage-4.8.4/tz_convert/tz_convert.c   Thu Jan 20 21:24:39 2011
---- new/orage-4.8.4/tz_convert/tz_convert.c   Tue Feb 12 15:36:03 2013
+*** orage-4.10.0/tz_convert/tz_convert.c   Thu Jan 20 21:24:39 2011
+--- new/orage-4.10.0/tz_convert/tz_convert.c   Tue Feb 12 15:36:03 2013
 ***************
 *** 46,55 ****
 --- 46,57 ----

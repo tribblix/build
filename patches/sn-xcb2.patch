@@ -1,4 +1,4 @@
---- a/startup-notification-0.10/libsn/sn-xutils.c	2013-05-07 21:30:47.604617604 +0000
+--- startup-notification-0.10/libsn/sn-xutils.c	2013-05-07 21:30:47.604617604 +0000
 +++ b/startup-notification-0.10/libsn/sn-xutils.c	2013-05-07 21:29:35.635831393 +0000
 @@ -30,6 +30,20 @@
  #include <xcb/xcb.h>

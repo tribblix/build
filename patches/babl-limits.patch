@@ -1,4 +1,4 @@
---- a/babl-0.1.10/babl/babl-palette.c        Thu Mar 29 16:10:26 2012
+--- babl-0.1.10/babl/babl-palette.c        Thu Mar 29 16:10:26 2012
 +++ b/babl-0.1.10/babl/babl-palette.c     Sat Jan 19 13:31:44 2013
 @@ -21,6 +21,7 @@
  #include <stdio.h>

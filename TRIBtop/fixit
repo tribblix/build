@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# the top build has the wrong arch
+#
+mv usr/bin/i386 usr/bin/i86

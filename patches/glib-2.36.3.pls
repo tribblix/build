@@ -1,2 +1,2 @@
--p0 glib-2363-sol.patch 
--p1 glib-2363-glocalfile.patch
+-p1 glib-sol.patch 
+-p1 glib-glocalfile.patch

@@ -1,5 +1,5 @@
---- misc/cppunit-1.12.1/include/cppunit/portability/FloatingPoint.h	Mon Mar  5 04:16:42 2007
-+++ misc/build/cppunit-1.12.1/include/cppunit/portability/FloatingPoint.h	Thu Dec  3 16:34:23 2009
+--- cppunit-1.12.1/include/cppunit/portability/FloatingPoint.h	Mon Mar  5 04:16:42 2007
++++ build/cppunit-1.12.1/include/cppunit/portability/FloatingPoint.h	Thu Dec  3 16:34:23 2009
 @@ -3,6 +3,11 @@
  
  #include <cppunit/Portability.h>

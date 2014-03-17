@@ -1,4 +1,4 @@
---- a/xfce4-eyes-plugin-4.4.1/configure
+--- xfce4-eyes-plugin-4.4.1/configure
 +++ b/xfce4-eyes-plugin-4.4.1/configure
 @@ -13264,22 +13264,22 @@
    fi
@@ -61,7 +61,7 @@
        echo "*** installed the package in a nonstandard prefix so that"
        echo "*** pkg-config is able to find it."
 
---- a/xfce4-eyes-plugin-4.4.1/panel-plugin/Makefile.am
+--- xfce4-eyes-plugin-4.4.1/panel-plugin/Makefile.am
 +++ b/xfce4-eyes-plugin-4.4.1/panel-plugin/Makefile.am
 @@ -13,12 +13,12 @@ xfce4_eyes_plugin_SOURCES =						\
  	themes.c
@@ -78,7 +78,7 @@
  
  desktopdir = $(datadir)/xfce4/panel-plugins
  desktop_in_in_files = eyes.desktop.in.in
---- a/xfce4-eyes-plugin-4.4.1/panel-plugin/eyes.c
+--- xfce4-eyes-plugin-4.4.1/panel-plugin/eyes.c
 +++ b/xfce4-eyes-plugin-4.4.1/panel-plugin/eyes.c
 @@ -33,7 +33,7 @@
  #include <stdlib.h>
