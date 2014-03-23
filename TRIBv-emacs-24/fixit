@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# pkgproto generates garbage when fed hard links, so a symlink is just as good
+#
+VERSION=24.3
+rm usr/versions/emacs-${VERSION}/bin/emacs
+ln -s emacs-${VERSION} usr/versions/emacs-${VERSION}/bin/emacs 
+mkdir usr/bin
+ln -s ../versions/emacs-${VERSION}/bin/emacs usr/bin/emacs
