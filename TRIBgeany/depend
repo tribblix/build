@@ -12,8 +12,6 @@ P TRIBlibffi
 P TRIBlibxcb
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
-P TRIBsys-lib-math
-P TRIBsys-library
 P TRIBx11-libx11
 P TRIBx11-libxau
 P TRIBx11-libxdmcp

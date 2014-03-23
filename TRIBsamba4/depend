@@ -3,6 +3,4 @@ P TRIBgnutls
 P TRIBlib-zlib
 P TRIBlibgcrypt
 P TRIBlibpopt
-P TRIBsys-lib-math
-P TRIBsys-library
-P TRIBv-python-273
+P TRIBv-python-276
