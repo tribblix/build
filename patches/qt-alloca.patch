@@ -1,0 +1,14 @@
+--- a/qtdeclarative/src/qml/jsruntime/qv4stringobject.cpp
++++ b/qtdeclarative/src/qml/jsruntime/qv4stringobject.cpp
+@@ -73,6 +73,11 @@
+ #  include <windows.h>
+ #endif
+
++
++#if OS(SOLARIS)
++#include <alloca.h>
++#endif
++
+ using namespace QV4;
+
+ DEFINE_MANAGED_VTABLE(StringObject);

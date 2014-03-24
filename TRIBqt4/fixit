@@ -1,0 +1,9 @@
+#!/bin/sh
+VERSION=4.8.5
+rm -fr usr/versions/Qt-${VERSION}/doc
+rm -fr usr/versions/Qt-${VERSION}/examples
+mkdir -p usr/lib/pkgconfig
+cd usr/lib/pkgconfig
+ln -s ../../versions/Qt-${VERSION}/lib/pkgconfig/* .
+cd ../../versions/Qt-${VERSION}/lib/pkgconfig
+gsed -i -e 's: -L/usr/versions/Qt-4.8.5/lib: -L/usr/versions/Qt-4.8.5/lib -R/usr/versions/Qt-4.8.5/lib:g' -e 's: -L/usr/sfw/lib::g' -e 's: -L/usr/openwin/lib::g' -e 's: -L${libdir}: -L${libdir} -R${libdir}:' *

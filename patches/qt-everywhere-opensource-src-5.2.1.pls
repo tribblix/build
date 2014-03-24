@@ -1,0 +1,4 @@
+-p1 qt-pcre.patch
+-p1 qt-thread_np.patch
+-p1 qt-alloca.patch
+-p1 qt-jsruntime.patch
