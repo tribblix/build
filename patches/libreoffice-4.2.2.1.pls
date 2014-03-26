@@ -1,3 +1,4 @@
 -p1 loo-bridges-cpu.patch
 -p1 loo-sal-madvise.patch
 -p1 loo-orcus.patch3
+-p1 loo-plugin.patch

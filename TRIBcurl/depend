@@ -1,3 +1,4 @@
 P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBlibidn
+P TRIBca-bundle

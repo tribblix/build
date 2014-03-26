@@ -1,0 +1,3 @@
+PKG="TRIBca-bundle"
+NAME="CA certificate bundle"
+VERSION="1.0.0"
