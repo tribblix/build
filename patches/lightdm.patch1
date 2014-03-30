@@ -1,0 +1,18 @@
+--- a/src/session-child.c	Mon Mar 10 18:50:47 2014
++++ b/src/session-child.c	Wed Mar 26 15:09:27 2014
+@@ -197,6 +197,7 @@
+     return x_authority_new (x_authority_family, x_authority_address, x_authority_address_length, x_authority_number, x_authority_name, x_authority_data, x_authority_data_length);
+ }
+ 
++#ifndef sun
+ /* GNU provides this but we can't rely on that so let's make our own version */
+ static void
+ updwtmpx (const gchar *wtmp_file, struct utmpx *ut)
+@@ -219,6 +220,7 @@
+   
+     updwtmp (wtmp_file, &u);
+ }
++#endif
+ 
+ int
+ session_child_run (int argc, char **argv)

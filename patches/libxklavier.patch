@@ -1,0 +1,10 @@
+--- origsrc/libxklavier-5.3/libxklavier/libxklavier.public	2012-12-16 20:10:09.079171500 -0600
++++ src/libxklavier-5.3/libxklavier/libxklavier.public	2012-12-16 20:10:21.710894000 -0600
+@@ -80,7 +80,6 @@ xkl_engine_start_listen
+ xkl_engine_state_change_get_type
+ xkl_engine_stop_listen
+ xkl_engine_ungrab_key
+-xkl_engine_VOID__FLAGS_INT_BOOLEAN
+ xkl_get_country_name
+ xkl_get_language_name
+ xkl_get_last_error

@@ -1,0 +1,30 @@
+--- a/common/privileges.c	Wed Feb 19 16:22:51 2014
++++ b/common/privileges.c	Sun Mar 30 05:26:31 2014
+@@ -23,13 +23,11 @@
+ #ifdef HAVE_SETRESGID
+     g_assert (setresgid (gid, gid, -1) == 0);
+ #else
+-    g_assert (setgid (gid) == 0);
+     g_assert (setegid (gid) == 0);
+ #endif
+ #ifdef HAVE_SETRESUID
+     g_assert (setresuid (uid, uid, -1) == 0);
+ #else
+-    g_assert (setuid (uid) == 0);
+     g_assert (seteuid (uid) == 0);
+ #endif
+ }
+@@ -40,13 +38,11 @@
+ #ifdef HAVE_SETRESUID
+     g_assert (setresuid (0, 0, -1) == 0);
+ #else
+-    g_assert (setuid (0) == 0);
+     g_assert (seteuid (0) == 0);
+ #endif
+ #ifdef HAVE_SETRESGID
+     g_assert (setresgid (0, 0, -1) == 0);
+ #else
+-    g_assert (setgid (0) == 0);
+     g_assert (setegid (0) == 0);
+ #endif
+ }

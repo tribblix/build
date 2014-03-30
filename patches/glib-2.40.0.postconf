@@ -1,0 +1,4 @@
+#!/bin/sh
+gsed -i s:__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4:__GCC_DOESNT_HAVE_SYNC_COMPARE_AND_SWAP_4: config.h
+gsed -i '/G_ATOMIC_LOCK_FREE/d' glib/glibconfig.h
+touch glib/glibconfig-stamp

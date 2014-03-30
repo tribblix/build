@@ -1,0 +1,3 @@
+PKG="TRIBlightdm-gtk"
+NAME="Lightdm gtk greeter"
+VERSION="1.8.3.0"

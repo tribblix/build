@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+rm -fr usr/share/gtk-doc
+#
+# the following only make sense for Linux
+#
+rm -fr etc/init
+rm -fr etc/apparmor.d
+#
+# default customizations
+#
+gsed -i 's:#greeter-user=lightdm:greeter-user=gdm:' etc/lightdm/lightdm.conf
+gsed -i 's:#greeter-session=example-gtk-gnome:greeter-session=lightdm-gtk-greeter:' etc/lightdm/lightdm.conf
+gsed -i 's:#minimum-vt=7:minimum-vt=-1:' etc/lightdm/lightdm.conf
+#
+# user data lives here, create it to keep lightdm quiet
+#
+mkdir -p var/lib/lightdm-data
+#
+# and the greeters need the gdm homedir to exist
+#
+mkdir -p var/lib/gdm
