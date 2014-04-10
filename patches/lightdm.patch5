@@ -1,0 +1,28 @@
+--- a/src/session-child.c	Tue Apr  1 13:09:53 2014
++++ b/src/session-child.c	Wed Apr  2 14:46:16 2014
+@@ -328,7 +328,9 @@
+ #ifdef PAM_XDISPLAY
+         pam_set_item (pam_handle, PAM_XDISPLAY, xdisplay);
+ #endif
++#ifndef sun
+         pam_set_item (pam_handle, PAM_TTY, xdisplay);
++#endif
+     }
+     else if (tty)
+         pam_set_item (pam_handle, PAM_TTY, tty);    
+@@ -503,6 +505,7 @@
+         }
+     }
+ 
++#ifndef sun
+     /* Set credentials */
+     result = pam_setcred (pam_handle, PAM_ESTABLISH_CRED);
+     if (result != PAM_SUCCESS)
+@@ -518,6 +521,7 @@
+         g_printerr ("Failed to open PAM session: %s\n", pam_strerror (pam_handle, result));
+         return EXIT_FAILURE;
+     }
++#endif
+ 
+     /* Open a connection to the system bus for ConsoleKit - we must keep it open or CK will close the session */
+     bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);

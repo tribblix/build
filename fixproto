@@ -23,6 +23,8 @@ nawk '
 {if ($3 == "var/run")  $6 = "sys"}
 {if ($3 == "sbin")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest")  $6 = "sys"}
+{if ($3 == "lib/svc/manifest/application")  $6 = "sys"}
+{if ($3 == "lib/svc/manifest/application/x11")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/system")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/system/filesystem")  $6 = "sys"}
 {if ($3 == "etc")  $6 = "sys"}

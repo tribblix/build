@@ -1,0 +1,3 @@
+PKG="TRIBprotobuf"
+NAME="Protocol Buffers"
+VERSION="2.5.0.0"

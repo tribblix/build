@@ -1,0 +1,3 @@
+PKG="TRIBlib-perl-5-io-tty"
+NAME="Perl IO::Tty module"
+VERSION="1.10.0"
