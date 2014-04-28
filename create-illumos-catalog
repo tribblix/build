@@ -10,13 +10,20 @@ case $# in
 	;;
 esac
 #
-# FIXME get dependencies out of the package
+# prefer zap as we can get dependencies, and it's quicker
 #
-DEPLIST=""
 cd $PKGDIR
 for PKGI in *.pkg
 do
+  DEPLIST=""
   PKG=${PKGI%.pkg}
-  PKGVERS=`pkginfo -l -d ${PKGI} | grep VERSION: | awk '{print $NF}' | sed 's="==g'`
-  echo "${PKG}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
+  ZPKG=${PKG}.zap
+  PNAME=${PKGI%%.*}
+  if [ -f $ZPKG ]; then
+    PKGVERS=`bash zipgrep '^VERSION=' $ZPKG ${PNAME}/pkginfo 2>/dev/null| awk -F= '{print $NF}'`
+    DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
+  else
+    PKGVERS=`pkginfo -l -d ${PKGI} | grep VERSION: | awk '{print $NF}' | sed 's="==g'`
+  fi
+  echo "${PNAME}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
 done
