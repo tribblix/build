@@ -1,0 +1,54 @@
+#!/bin/ksh
+#
+# catalog format is
+#  name|version|dependencies
+#
+PKGDIR=/packages/localsrc/Tribblix/repo-master/oi-151a8
+PKGVERS="0.8o"
+
+cat <<EOF
+<html>
+<Head><title>Tribblix package catalog</title></head>
+<body>
+<h1>OpenIndiana packages for Tribblix</h1>
+<dl>
+EOF
+
+#
+# FIXME get dependencies out of the package
+#
+DEPLIST=""
+cd $PKGDIR
+for ZPKG in *.zap
+do
+  PNAME=${ZPKG%.${PKGVERS}.zap}
+  OIPKGVERS=`bash zipgrep '^VERSION=' $ZPKG ${PNAME}/pkginfo 2>/dev/null| awk -F= '{print $NF}'`
+  PKGNAME=`bash zipgrep '^NAME=' $ZPKG ${PNAME}/pkginfo 2>/dev/null| awk -F= '{print $NF}'`
+  DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
+  #echo "${PKG}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
+  echo "<dt><a name=\"${PNAME}\"></a><b>${PNAME}</b></dt>"
+  echo "<dd>"
+  echo "${PKGNAME}"
+  echo "<ul>"
+  echo "<li>Version: ${PKGVERS} (origin ${OIPKGVERS})</li>"
+  echo "<li><a href=\"${PNAME}.${PKGVERS}.zap\">Download</a></li>"
+  for mypkgdep in $DEPLIST
+  do
+      mydep=`/bin/ls -1d ${mypkgdep}.*.zap 2>/dev/null`
+      if [ -f $mydep ]; then
+	  echo "<li>Requires: <a href=\"#${mypkgdep}\">$mypkgdep</a></li>"
+      else
+	  echo "<li>Requires: $mypkgdep</li>"
+      fi
+  done
+  echo "</ul>"
+  echo "</dd>"
+done
+
+cat <<EOF
+</dl>
+<hr>
+<p><a href="http://www.tribblix.org/">Tribblix</a></p>
+</body>
+</html>
+EOF

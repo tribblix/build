@@ -3,7 +3,7 @@
 # catalog format is
 #  name|version|dependencies
 #
-PKGDIR=/packages/localsrc/Tribblix/oi-pkgs-0.8/pkgs.repo
+PKGDIR=/packages/localsrc/Tribblix/repo-master/oi-151a8
 PKGVERS="0.8o"
 case $# in
 1)
@@ -19,5 +19,6 @@ cd $PKGDIR
 for PKGI in *.zap
 do
   PKG=${PKGI%.${PKGVERS}.zap}
+  DEPLIST=`bash zipgrep '^P' $PKGI ${PKG}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
   echo "${PKG}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
 done

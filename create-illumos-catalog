@@ -3,12 +3,8 @@
 # catalog format is
 #  name|version|dependencies
 #
-PKGDIR=/var/tmp/illumos-pkgs/pkgs
-case $# in
-1)
-	PKGVERS="$1"
-	;;
-esac
+PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m10/pkgs
+
 #
 # prefer zap as we can get dependencies, and it's quicker
 #
