@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# convert all the packages in a directory to zap format
+#
+
+THOME=/packages/localsrc/Tribblix
+PKG2ZAP=${THOME}/build/pkg2zap
+
+case $# in
+1)
+	PKGDIR=$1
+	;;
+*)
+	echo "Usage: $0 directory"
+	exit 1
+	;;
+esac
+
+if [ ! -d $PKGDIR ]; then
+   echo "ERROR: directory $PKGDIR not found"
+   exit 1
+fi
+
+for file in ${PKGDIR}/*.pkg
+do
+	$PKG2ZAP $file $PKGDIR
+done
