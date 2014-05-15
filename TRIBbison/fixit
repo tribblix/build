@@ -4,3 +4,10 @@
 #
 rm -f usr/lib/charset.alias
 rmdir usr/lib
+#
+# don't stomp on the real yacc
+#
+mkdir -p usr/gnu/bin
+mv usr/bin/yacc usr/gnu/bin
+mkdir -p usr/gnu/share/man/man1
+mv usr/share/man/man1/yacc.1 usr/gnu/share/man/man1
