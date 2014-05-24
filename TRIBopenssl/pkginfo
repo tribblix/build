@@ -1,0 +1,3 @@
+PKG="TRIBopenssl"
+NAME="OpenSSL toolkit"
+VERSION="1.0.1.7"

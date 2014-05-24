@@ -5,3 +5,8 @@
 mkdir -p usr/sfw/bin
 cd usr/sfw/bin
 ln -s ../../gnu/bin/as gas
+#
+# and the illumos build has these locations hard coded
+#
+ln -s ../../gnu/bin/ld gld
+ln -s ../../gnu/bin/objcopy gobjcopy
