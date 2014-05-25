@@ -16,6 +16,16 @@ mv usr/lib/64 usr/lib/amd64
 mkdir -p lib/amd64
 mv usr/lib/lib*so* lib
 mv usr/lib/amd64/lib*so* lib/amd64
+#
+# for binary compatibility, ship the 0.9.8 libs
+#
+cp -p /lib/libcrypto.so.0.9.8 lib
+cp -p /lib/libssl.so.0.9.8 lib
+cp -p /lib/amd64/libcrypto.so.0.9.8 lib/amd64
+cp -p /lib/amd64/libssl.so.0.9.8 lib/amd64
+#
+# the files live under /lib, symlinks under usr/lib
+#
 cd usr/lib
 ln -s ../../lib/libssl.so* .
 ln -s ../../lib/libcrypto.so* .
