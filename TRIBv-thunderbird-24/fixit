@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# create a versioned directory
+# put a symlink in /usr/bin
+# disable autoupdate - see
+# https://support.mozilla.org/en-US/questions/944982
+#
+VERSION=24.5.0
+mkdir -p usr/bin
+cd usr/versions
+mkdir thunderbird-${VERSION}
+mv thunderbird thunderbird-${VERSION}
+cd ../../usr/bin
+ln -s ../versions/thunderbird-${VERSION}/thunderbird/thunderbird .
+cd ../versions/thunderbird-${VERSION}/thunderbird
+rm -fr depend
+mkdir depend
+ln -s /usr/bin /usr/lib depend
+cat > defaults/pref/local-settings.js <<EOF
+pref("general.config.obscure_value", 0);
+pref("general.config.filename", "mozilla.cfg");
+EOF
+cat > mozilla.cfg <<EOF
+lockPref("app.update.auto", false);
+lockPref("app.update.enabled", false); 
+EOF
