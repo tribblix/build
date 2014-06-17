@@ -5,7 +5,7 @@
 # disable autoupdate - see
 # https://support.mozilla.org/en-US/questions/944982
 #
-VERSION=24.5.0
+VERSION=24.6.0
 mkdir -p usr/bin
 cd usr/versions
 mkdir thunderbird-${VERSION}
