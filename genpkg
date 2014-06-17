@@ -84,4 +84,3 @@ ${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
 
 # remove our temporary files
 rm -fr ${BDIR}
-rm -fr ${BROOT}/${PKGNAME}

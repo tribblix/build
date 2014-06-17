@@ -187,3 +187,4 @@ chmod a+r ${PKGNAME}.${PKGVER}.zap
 cd /
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.pkg
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.zap
+rm -fr ${BROOT}/${PKGNAME}
