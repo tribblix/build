@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# just name off the primary version
+#
+VERSION=8.0.9
+cd usr/versions
+ln -s apache-tomcat-${VERSION} tomcat8
