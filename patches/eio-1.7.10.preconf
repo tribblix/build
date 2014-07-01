@@ -1,2 +1,2 @@
 #!/bin/sh
-gsed -i s:-mt:-threads: configure
+gsed -i s:-mt:-pthreads: configure

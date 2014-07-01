@@ -1,0 +1,9 @@
+#!/bin/sh
+gsed -i 's: __attribute__ ((visibility("default")))::' src/bin/e.h
+gsed -i 's: __attribute__ ((visibility("hidden")))::' src/bin/e.h
+gsed -i 's: __attribute__ ((visibility("default")))::' src/bin/e_sha1.h
+gsed -i 's: __attribute__ ((visibility("hidden")))::' src/bin/e_sha1.h
+gsed -i 's: __attribute__ ((visibility("default")))::' src/bin/e_init_main.c
+gsed -i 's: __attribute__ ((visibility("hidden")))::' src/bin/e_init_main.c
+gsed -i 's: __attribute__ ((visibility("default")))::' src/modules/mixer/Pulse.h
+gsed -i 's: __attribute__ ((visibility("hidden")))::' src/modules/mixer/Pulse.h
