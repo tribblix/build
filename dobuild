@@ -94,6 +94,8 @@ case $1 in
 	;;
 esac
 
+UNPACKER=${BUILD}/unpack
+export UNPACKER
 for pkg in ${THISPKG}
 do
 	${BUILD}/unpack ${UNPACK_FLAGS} ${pkg}

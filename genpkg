@@ -52,11 +52,26 @@ rm -fr ${BDIR}
 mkdir $BDIR
 
 #
+# normally we want the makefiles to use ginstall rather than the
+# SVR4 install program
+#
+MYINSTALL="INSTALL=ginstall"
+#
+# except for some stupid makefiles that randomly
+# violate conventional norms
+#
+case $2 in
+httpd*)
+	MYINSTALL=""
+	;;
+esac
+
+#
 # install the package(s) specified to that location
 #
 case $# in
 1)
-	$GMAKE -k install DESTDIR=$BDIR INSTALL=ginstall
+	$GMAKE -k install DESTDIR=$BDIR $MYINSTALL
 	;;
 *)
 	shift
@@ -64,11 +79,11 @@ case $# in
 	do
 	    if [ -d ${SOFTDIR}-64bit ]; then
 		cd ${SOFTDIR}-64bit
-		$GMAKE -k install DESTDIR=$BDIR INSTALL=ginstall
+		$GMAKE -k install DESTDIR=$BDIR $MYINSTALL
 		cd ..
 	    fi
 	    cd ${SOFTDIR}
-	    $GMAKE -k install DESTDIR=$BDIR INSTALL=ginstall
+	    $GMAKE -k install DESTDIR=$BDIR $MYINSTALL
 	    if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 		${BUILD}/${PKGNAME}/fixinstall $BDIR
 	    fi

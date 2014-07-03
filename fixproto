@@ -15,6 +15,7 @@ nawk '
 {if ($3 == "usr/share/doc")  $6 = "other"}
 {if ($3 == "usr/share/icons")  $6 = "other"}
 {if ($3 == "usr/share/pixmaps/backgrounds")  $6 = "other"}
+{if ($3 == "opt")  $6 = "sys"}
 {if ($3 == "usr")  $6 = "sys"}
 {if ($3 == "var")  $6 = "sys"}
 {if ($3 == "var/lib")  $6 = "other"}

@@ -1,0 +1,5 @@
+#!/bin/sh
+for file in `find . -name Makefile`
+do
+gsed -i 's/-D_POSIX_PTHREAD_SEMANTICS//' $file
+done
