@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# cleanup to save space
+#
+INSTDIR="opt/tribblix/mysql"
+rm -fr ${INSTDIR}/mysql-test
+rm -fr ${INSTDIR}/sql-bench
+rm ${INSTDIR}/lib/*.a
