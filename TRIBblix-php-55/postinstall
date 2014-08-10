@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# add the php module to httpd.conf
+#
+if [ ! -x /opt/tribblix/apache2/bin/apxs ]; then
+  exit 0
+fi
+cp -p /opt/tribblix/apache2/conf/httpd.conf /opt/tribblix/apache2/conf/httpd.conf.pre-php
+/opt/tribblix/apache2/bin/apxs -e -a -n php5 libphp5.so
+exit 0
