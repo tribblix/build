@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i "s:#include <jpeg:#include <stdio.h>\n&:" libmng_types.h
