@@ -1,3 +1,3 @@
 PKG="TRIBlib-desktop-gtkmm"
 NAME="GTK C++ bindings"
-VERSION="2.24.2.1"
+VERSION="2.24.2.2"

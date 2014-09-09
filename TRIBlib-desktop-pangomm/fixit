@@ -1,2 +1,3 @@
 #!/bin/sh
 rm -fr usr/share/doc
+rm -fr usr/share/devhelp
