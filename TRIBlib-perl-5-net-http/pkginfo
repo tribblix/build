@@ -1,0 +1,3 @@
+PKG="TRIBlib-perl-5-net-http"
+NAME="Perl Net::HTTP module"
+VERSION="6.07.0"

@@ -1,0 +1,3 @@
+PKG="TRIBlib-perl-5-http-date"
+NAME="Perl HTTP::Date module"
+VERSION="6.02.0"

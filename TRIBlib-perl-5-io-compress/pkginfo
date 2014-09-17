@@ -1,0 +1,3 @@
+PKG="TRIBlib-perl-5-io-compress"
+NAME="Perl IO::Compress module"
+VERSION="2.064.0"

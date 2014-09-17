@@ -1,0 +1,3 @@
+PKG="TRIBlib-perl-5-libwww"
+NAME="Perl LWP module"
+VERSION="6.08.0"

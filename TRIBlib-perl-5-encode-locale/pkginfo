@@ -1,0 +1,3 @@
+PKG="TRIBlib-perl-5-encode-locale"
+NAME="Perl Encode::Locale module"
+VERSION="1.03.0"
