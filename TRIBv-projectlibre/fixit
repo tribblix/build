@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# just name off the primary version
+#
+VERSION=1.5.9
+mkdir -p usr/bin
+cat > usr/bin/projectlibre <<EOF
+#!/bin/sh
+exec /usr/local/versions/projectlibre-${VERSION}/projectlibre.sh "\$@"
+EOF
+chmod a+x usr/bin/projectlibre
