@@ -1,0 +1,26 @@
+#!/bin/ksh
+#
+# alias catalog format is
+#  alias|pkgname
+#
+# -v to verify there are no duplicates
+#
+case $1 in
+-v)
+  DUPS=`cat */alias|sort|uniq -d`
+  if [[ -n $DUPS ]]; then
+    echo "ERROR: duplicates found"
+    cat */alias|sort|uniq -d
+  fi
+  exit 0
+  ;;
+esac
+
+for PKGI in */alias
+do
+  PKG=${PKGI%/*}
+  for PALIAS in `cat $PKGI`
+  do
+    echo "${PALIAS}|${PKG}"
+  done
+done
