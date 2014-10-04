@@ -2,4 +2,4 @@
 #
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../versions/python-2.7.6/bin/hg .
+ln -s ../../usr/versions/python-2.7/bin/hg .

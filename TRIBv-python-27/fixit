@@ -6,7 +6,7 @@ mkdir -p usr/lib/pkgconfig
 cd usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/py* .
 cd ../lib
-ln -s ../versions/python-${VERSION}/lib/libpython2.7.so* .
+ln -s ../../usr/versions/python-${VERSION}/lib/libpython2.7.so* .
 cd pkgconfig
 ln -s ../../versions/python-${VERSION}/lib/pkgconfig/python-2.7.pc .
 ln -s ../../versions/python-${VERSION}/lib/pkgconfig/python2.pc .

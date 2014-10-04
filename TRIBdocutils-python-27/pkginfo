@@ -1,0 +1,3 @@
+PKG="TRIBdocutils-python-27"
+NAME="Python docutils"
+VERSION="0.12.0"
