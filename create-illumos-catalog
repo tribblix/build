@@ -1,7 +1,7 @@
 #!/bin/ksh
 #
 # catalog format is
-#  name|version|dependencies
+#  name|version|dependencies|size|md5|
 #
 PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m11/pkgs
 
@@ -9,17 +9,20 @@ PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m11/pkgs
 # prefer zap as we can get dependencies, and it's quicker
 #
 cd $PKGDIR
-for PKGI in *.pkg
+for ZPKG in *.zap
 do
   DEPLIST=""
-  PKG=${PKGI%.pkg}
-  ZPKG=${PKG}.zap
-  PNAME=${PKGI%%.*}
-  if [ -f $ZPKG ]; then
-    PKGVERS=`bash zipgrep '^VERSION=' $ZPKG ${PNAME}/pkginfo 2>/dev/null| awk -F= '{print $NF}'`
-    DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
+  PNAME=${ZPKG%%.*}
+  PF=${ZPKG%.zap}
+  PKGVERS=${PF#*.}
+  PKGSIZE=`/bin/ls -l ${ZPKG} | /usr/bin/awk '{print $5}'`
+  if [ ${ZPKG}.md5 -nt ${ZPKG} ]; then
+    PKGMD5=`/bin/cat ${ZPKG}.md5`
   else
-    PKGVERS=`pkginfo -l -d ${PKGI} | grep VERSION: | awk '{print $NF}' | sed 's="==g'`
+    PKGMD5=`openssl md5 ${ZPKG} | /usr/bin/awk '{print $NF}'`
+    /bin/rm -f ${ZPKG}.md5
+    echo $PKGMD5 > ${ZPKG}.md5
   fi
-  echo "${PNAME}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
+  DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
+  echo "${PNAME}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|" | sed 's: |:|:'
 done

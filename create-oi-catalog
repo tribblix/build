@@ -1,24 +1,26 @@
 #!/bin/ksh
 #
 # catalog format is
-#  name|version|dependencies
+#  name|version|dependencies|size|md5|
 #
 PKGDIR=/packages/localsrc/Tribblix/repo-master/oi-151a8
-PKGVERS="0.8o"
-case $# in
-1)
-	PKGVERS="$1"
-	;;
-esac
 
 #
-# FIXME get dependencies out of the package
-#
-DEPLIST=""
 cd $PKGDIR
-for PKGI in *.zap
+for ZPKG in *.zap
 do
-  PKG=${PKGI%.${PKGVERS}.zap}
-  DEPLIST=`bash zipgrep '^P' $PKGI ${PKG}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
-  echo "${PKG}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
+  DEPLIST=""
+  PNAME=${ZPKG%%.*}
+  PF=${ZPKG%.zap}
+  PKGVERS=${PF#*.}
+  PKGSIZE=`/bin/ls -l ${ZPKG} | /usr/bin/awk '{print $5}'`
+  if [ ${ZPKG}.md5 -nt ${ZPKG} ]; then
+    PKGMD5=`/bin/cat ${ZPKG}.md5`
+  else
+    PKGMD5=`openssl md5 ${ZPKG} | /usr/bin/awk '{print $NF}'`
+    /bin/rm -f ${ZPKG}.md5
+    echo $PKGMD5 > ${ZPKG}.md5
+  fi
+  DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
+  echo "${PNAME}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|" | sed 's: |:|:'
 done
