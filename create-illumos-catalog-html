@@ -3,7 +3,7 @@
 # catalog format is
 #  name|version|dependencies
 #
-PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m11/pkgs
+PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m12/pkgs
 
 cat <<EOF
 <html>
