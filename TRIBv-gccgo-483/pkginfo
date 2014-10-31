@@ -1,0 +1,3 @@
+PKG="TRIBv-gccgo-483"
+NAME="The GCC 4.8.3 go compiler"
+VERSION="4.8.3.0"
