@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# remove everything except the qt gui
+#
+mv usr/bin/wireshark-qt .
+rm -fr usr
+mkdir -p usr/bin
+mv wireshark-qt usr/bin

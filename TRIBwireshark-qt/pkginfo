@@ -1,0 +1,3 @@
+PKG="TRIBwireshark-qt"
+NAME="network protocol analyzer QT gui"
+VERSION="1.12.1.0"
