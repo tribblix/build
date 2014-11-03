@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# mismatch between pcc and pcc-libs versions
+#
+NVER=1.2.0.DEVEL
+OVER=1.1.0
+mv usr/versions/pcc/lib/pcc/i386-pc-solaris2.11/${OVER}/include/* usr/versions/pcc/lib/pcc/i386-pc-solaris2.11/${NVER}/include
+mv usr/versions/pcc/lib/pcc/i386-pc-solaris2.11/${OVER}/lib/* usr/versions/pcc/lib/pcc/i386-pc-solaris2.11/${NVER}/lib
+rmdir usr/versions/pcc/lib/pcc/i386-pc-solaris2.11/${OVER}/lib
+rmdir usr/versions/pcc/lib/pcc/i386-pc-solaris2.11/${OVER}/include
+rmdir usr/versions/pcc/lib/pcc/i386-pc-solaris2.11/${OVER}
+cd usr/versions/pcc/lib/pcc/i386-pc-solaris2.11
+ln -s $NVER $OVER
