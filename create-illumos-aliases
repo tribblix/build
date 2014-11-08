@@ -1,0 +1,21 @@
+#!/bin/ksh
+#
+# catalog format is
+#  alias|name
+#
+PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m12/pkgs
+
+#
+cd $PKGDIR
+for ZPKG in *.zap
+do
+  PNAME=${ZPKG%%.*}
+  ANAME=${PNAME#TRIB}
+  echo "${ANAME}|${PNAME}"
+case $ANAME in
+net-*)
+  XNAME=${ANAME#net-}
+  echo "${XNAME}|${PNAME}"
+  ;;
+esac
+done

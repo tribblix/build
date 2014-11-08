@@ -1,0 +1,37 @@
+#!/bin/ksh
+#
+# catalog format is
+#  alias|name
+#
+PKGDIR=/packages/localsrc/Tribblix/repo-master/oi-151a8
+
+#
+cd $PKGDIR
+for ZPKG in *.zap
+do
+  PNAME=${ZPKG%%.*}
+  ANAME=${PNAME#TRIB}
+  echo "${ANAME}|${PNAME}"
+case $ANAME in
+x11-lib*)
+  XNAME=${ANAME#x11-}
+  echo "${XNAME}|${PNAME}"
+  ;;
+compress-*)
+  XNAME=${ANAME#compress-}
+  echo "${XNAME}|${PNAME}"
+  ;;
+image-lib*)
+  XNAME=${ANAME#image-}
+  echo "${XNAME}|${PNAME}"
+  ;;
+x11-x*)
+  XNAME=${ANAME#x11-}
+  echo "${XNAME}|${PNAME}"
+  ;;
+x11-server-*)
+  XNAME=${ANAME#x11-server-}
+  echo "${XNAME}|${PNAME}"
+  ;;
+esac
+done
