@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# remove conflicting files
+# these will be regenerated correctly by the package
+# install and remove scripts
+#
+rm -f usr/share/mime/*
+rm -f usr/share/applications/mimeinfo.cache
