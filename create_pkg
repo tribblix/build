@@ -143,6 +143,15 @@ if [ -f ${BUILD}/${PKGNAME}/restart_fmri_list ]; then
    handle_restarts
 fi
 #
+# any class action scripts
+#
+if [ -f ${BUILD}/${PKGNAME}/cas_list ]; then
+  for ifile in `cat ${BUILD}/${PKGNAME}/cas_list`
+  do
+      echo "i $ifile=install/$ifile" >> pp.$$
+  done
+fi
+#
 # handle anything that's a link to isaexec
 #
 if [ -f ${BUILD}/${PKGNAME}/isaexec ]; then
