@@ -7,4 +7,5 @@ if [ ! -x /opt/tribblix/apache2/bin/apxs ]; then
 fi
 cp -p /opt/tribblix/apache2/conf/httpd.conf /opt/tribblix/apache2/conf/httpd.conf.pre-php
 /opt/tribblix/apache2/bin/apxs -e -a -n php5 libphp5.so
+echo "AddType application/x-httpd-php .php .phtml" >> /opt/tribblix/apache2/conf/httpd.conf
 exit 0
