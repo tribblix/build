@@ -5,3 +5,5 @@
 VERSION=7.0.56
 cd usr/versions
 ln -s apache-tomcat-${VERSION} tomcat7
+chmod a+x apache-tomcat-${VERSION}/bin/*.sh
+rm apache-tomcat-${VERSION}/bin/*.bat
