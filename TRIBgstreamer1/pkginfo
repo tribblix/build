@@ -1,0 +1,3 @@
+PKG="TRIBgstreamer1"
+NAME="GStreamer (stable) multimedia framework"
+VERSION="1.4.4.0"

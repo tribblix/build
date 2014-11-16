@@ -1,0 +1,3 @@
+PKG="TRIBgstreamer1-plugins-good"
+NAME="GStreamer (stable) good plugins"
+VERSION="1.4.4.0"

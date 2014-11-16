@@ -1,0 +1,3 @@
+PKG="TRIBgstreamer1-plugins-base"
+NAME="GStreamer (stable) base plugins"
+VERSION="1.4.4.0"
