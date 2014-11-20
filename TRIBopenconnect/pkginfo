@@ -1,0 +1,5 @@
+PKG="TRIBopenconnect"
+NAME="OpenConnect VPN client"
+VERSION="6.00.0"
+ZAP_URL="http://www.infradead.org/openconnect/"
+ZAP_LICENSE="LGPL 2.1"
