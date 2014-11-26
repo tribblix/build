@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+VERSION=2.1.2
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/qemu-${VERSION}/bin/qemu-* .
