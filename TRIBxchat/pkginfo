@@ -1,0 +1,5 @@
+PKG="TRIBxchat"
+NAME="XChat - IRC chat program"
+VERSION="2.8.8.0"
+ZAP_URL="http://xchat.org/"
+ZAP_LICENSE="GPLv2"
