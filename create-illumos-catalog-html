@@ -1,9 +1,15 @@
 #!/bin/ksh
 #
 # catalog format is
-#  name|version|dependencies
+#  name|version|dependencies|size|md5|
 #
 PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m13/pkgs
+
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
 
 cat <<EOF
 <html>

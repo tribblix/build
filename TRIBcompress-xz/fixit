@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# fix the names
+#
+rm -fr usr/share/doc/xz/examples_old

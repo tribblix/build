@@ -5,6 +5,12 @@
 #
 PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m13/pkgs
 
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
+
 #
 # prefer zap as we can get dependencies, and it's quicker
 #

@@ -4,6 +4,12 @@
 #  name|version|dependencies|size|md5|
 #
 PKGDIR="../pkgs"
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
+
 for PKGI in */pkginfo
 do
   PKG=${PKGI%/*}

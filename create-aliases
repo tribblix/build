@@ -5,6 +5,14 @@
 #
 # -v to verify there are no duplicates
 #
+
+PKGDIR="../pkgs"
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
+
 case $1 in
 -v)
   DUPS=`cat */alias|sort|uniq -d`
@@ -19,8 +27,11 @@ esac
 for PKGI in */alias
 do
   PKG=${PKGI%/*}
-  for PALIAS in `cat $PKGI`
-  do
-    echo "${PALIAS}|${PKG}"
-  done
+  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' ${PKG}/pkginfo | sed 's="==g'`
+  if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
+    for PALIAS in `cat $PKGI`
+    do
+      echo "${PALIAS}|${PKG}"
+    done
+  fi
 done

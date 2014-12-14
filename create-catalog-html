@@ -3,6 +3,13 @@
 # like the catalog, but neatly formatted as html
 #
 
+PKGDIR="../pkgs"
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
+
 cat <<EOF
 <html>
 <Head><title>Tribblix package catalog</title></head>
@@ -15,27 +22,29 @@ for PKGI in */pkginfo
 do
   PKG=${PKGI%/*}
   PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI | sed 's="==g'`
-  PKGNAME=`awk -F= '{if ($1 == "NAME") print $2}' $PKGI | sed 's="==g'`
-  DEPLIST=""
-  if [ -f ${PKG}/depend ]; then
-     DEPLIST=`awk '{printf("%s ", $2)}' ${PKG}/depend`
+  if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
+    PKGNAME=`awk -F= '{if ($1 == "NAME") print $2}' $PKGI | sed 's="==g'`
+    DEPLIST=""
+    if [ -f ${PKG}/depend ]; then
+       DEPLIST=`awk '{printf("%s ", $2)}' ${PKG}/depend`
+    fi
+    echo "<dt><a name=\"${PKG}\"></a><b>${PKG}</b></dt>"
+    echo "<dd>"
+    echo "${PKGNAME}"
+    echo "<ul>"
+    echo "<li>Version: ${PKGVERS}</li>"
+    echo "<li><a href=\"${PKG}.${PKGVERS}.zap\">Download</a></li>"
+    for mydep in $DEPLIST
+    do
+        if [ -d $mydep ]; then
+	    echo "<li>Requires: <a href=\"#${mydep}\">$mydep</a></li>"
+        else
+	    echo "<li>Requires: $mydep</li>"
+        fi
+    done
+    echo "</ul>"
+    echo "</dd>"
   fi
-  echo "<dt><a name=\"${PKG}\"></a><b>${PKG}</b></dt>"
-  echo "<dd>"
-  echo "${PKGNAME}"
-  echo "<ul>"
-  echo "<li>Version: ${PKGVERS}</li>"
-  echo "<li><a href=\"${PKG}.${PKGVERS}.zap\">Download</a></li>"
-  for mydep in $DEPLIST
-  do
-      if [ -d $mydep ]; then
-	  echo "<li>Requires: <a href=\"#${mydep}\">$mydep</a></li>"
-      else
-	  echo "<li>Requires: $mydep</li>"
-      fi
-  done
-  echo "</ul>"
-  echo "</dd>"
 done
 
 cat <<EOF
