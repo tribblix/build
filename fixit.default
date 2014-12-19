@@ -29,5 +29,5 @@ fi
 #
 for file in `find . -name '*.la'`
 do
-gsed -i -e s:/usr/sfw/lib/libstdc++.la:-lstdc++:g -e s:/usr/sfw/lib/amd64/libstdc++.la:-lstdc++:g $file
+gsed -i -e s:/usr/sfw/lib/libstdc++.la:-lstdc++:g -e s:/usr/sfw/lib/amd64/libstdc++.la:-lstdc++:g -e s:/usr/sfw/lib/sparcv9/libstdc++.la:-lstdc++:g $file
 done

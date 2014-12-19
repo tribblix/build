@@ -9,4 +9,6 @@
 #/bin/rm -f usr/lib/lib*.la
 /bin/rm -f usr/lib/amd64/lib*.a
 #/bin/rm -f usr/lib/amd64/lib*.la
+/bin/rm -f usr/lib/sparcv9/lib*.a
+#/bin/rm -f usr/lib/sparcv9/lib*.la
 /bin/rm -f usr/gnu/lib/lib*.a

@@ -94,6 +94,18 @@ case $1 in
 	;;
 esac
 
+#
+# 64-bit files go in these subdirectories
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 UNPACKER=${BUILD}/unpack
 export UNPACKER
 for pkg in ${THISPKG}
@@ -105,9 +117,9 @@ do
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    if [ "x$DOGNU" != "xfalse" ]; then
-		env PATH=/usr/gnu/bin:$PATH CFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/amd64 --libdir=${IPREFIX}/lib/amd64
+		env PATH=/usr/gnu/bin:$PATH CFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
 	    else
-		env CFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/amd64 --libdir=${IPREFIX}/lib/amd64
+		env CFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
 	    fi
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf

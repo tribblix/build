@@ -2,14 +2,22 @@
 #
 # add a g-prefixed link
 #
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
 rm -f usr/gnu/lib/charset.alias
 rmdir usr/gnu/lib
-mkdir -p usr/bin/amd64
+mkdir -p usr/bin/${ARCH64}
 cd usr/bin
 ln -s ../gnu/bin/grep ggrep
 ln -s ../gnu/bin/egrep gegrep
 ln -s ../gnu/bin/fgrep gfgrep
-cd amd64
-ln -s ../../gnu/bin/amd64/grep ggrep
-ln -s ../../gnu/bin/amd64/egrep gegrep
-ln -s ../../gnu/bin/amd64/fgrep gfgrep
+cd ${ARCH64}
+ln -s ../../gnu/bin/${ARCH64}/grep ggrep
+ln -s ../../gnu/bin/${ARCH64}/egrep gegrep
+ln -s ../../gnu/bin/${ARCH64}/fgrep gfgrep

@@ -7,6 +7,7 @@ nawk '
 { $5 = "root"; $6 = "bin" } 
 {if ($3 == "usr/lib/pkgconfig")  $6 = "other"}
 {if ($3 == "usr/lib/amd64/pkgconfig")  $6 = "other"}
+{if ($3 == "usr/lib/sparcv9/pkgconfig")  $6 = "other"}
 {if ($3 == "usr/share")  $6 = "sys"}
 {if ($1 == "d" && $3 ~ /^usr\/share\/locale/)  $6 = "other"}
 {if ($3 == "usr/share/xsessions")  $6 = "other"}
