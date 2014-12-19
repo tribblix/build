@@ -1,4 +1,4 @@
 #!/bin/sh
 mkdir -p usr/share
 cd usr/share
-/packages/localsrc/Tribblix/build/unpack git-manpages-2.1.0
+/packages/localsrc/Tribblix/build/unpack git-manpages-2.2.1
