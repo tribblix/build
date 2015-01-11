@@ -4,6 +4,11 @@
 #  name|version|dependencies|size|md5|
 #
 PKGDIR=/packages/localsrc/Tribblix/opensxce-pkgs/pkgs
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
 
 #
 cd $PKGDIR
