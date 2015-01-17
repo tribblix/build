@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i 's:#ifdef AF_PACKET:#if defined(AF_PACKET) && !defined(__sun):' ext/socket/raddrinfo.c
