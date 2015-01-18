@@ -24,6 +24,7 @@ do
   PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI | sed 's="==g'`
   if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
     PKGNAME=`awk -F= '{if ($1 == "NAME") print $2}' $PKGI | sed 's="==g'`
+    PKGHOME=`awk -F= '{if ($1 == "ZAP_URL") print $2}' $PKGI | sed 's="==g'`
     DEPLIST=""
     if [ -f ${PKG}/depend ]; then
        DEPLIST=`awk '{printf("%s ", $2)}' ${PKG}/depend`
@@ -31,6 +32,9 @@ do
     echo "<dt><a name=\"${PKG}\"></a><b>${PKG}</b></dt>"
     echo "<dd>"
     echo "${PKGNAME}"
+    if [ -n "${PKGHOME}" ]; then
+	echo " [<a href=\"${PKGHOME}\">Home</a>]"
+    fi
     echo "<ul>"
     echo "<li>Version: ${PKGVERS}</li>"
     echo "<li><a href=\"${PKG}.${PKGVERS}.zap\">Download</a></li>"
