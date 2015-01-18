@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# remove the created httpd.conf; we will fix that in package postinstall
+#
+rm -f opt/tribblix/apache2/conf/httpd.conf
+rmdir opt/tribblix/apache2/conf
