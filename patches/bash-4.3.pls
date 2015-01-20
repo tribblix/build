@@ -28,3 +28,6 @@
 -p0 bash43-028
 -p0 bash43-029
 -p0 bash43-030
+-p0 bash43-031
+-p0 bash43-032
+-p0 bash43-033

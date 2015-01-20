@@ -5,12 +5,11 @@
 # disable autoupdate - see
 # https://support.mozilla.org/en-US/questions/944982
 #
-VERSION=31.3.0esr
+VERSION=31.4.0esr
 mkdir -p usr/bin
 cd usr/versions
 mkdir firefox-${VERSION}
 mv firefox firefox-${VERSION}
-mkdir -p usr/bin
 cd ../../usr/bin
 ln -s ../versions/firefox-${VERSION}/firefox/firefox .
 cd ../versions/firefox-${VERSION}/firefox
