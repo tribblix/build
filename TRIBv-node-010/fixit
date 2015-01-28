@@ -2,7 +2,7 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=0.10.35
+VERSION=0.10.36
 mkdir -p usr/bin
 ln -s ../versions/node-v${VERSION}/bin/node usr/bin/
 ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/
