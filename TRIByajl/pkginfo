@@ -1,0 +1,4 @@
+PKG="TRIByajl"
+NAME="Yet Another JSON Library"
+VERSION="2.1.0.0"
+ZAP_URL="https://github.com/lloyd/yajl"

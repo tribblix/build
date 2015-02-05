@@ -1,0 +1,4 @@
+PKG="TRIBlibev"
+NAME="High performance event loop"
+VERSION="4.19.0"
+ZAP_URL="http://software.schmorp.de/pkg/libev.html"
