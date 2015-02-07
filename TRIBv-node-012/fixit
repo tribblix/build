@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# pkgproto generates garbage when fed hard links, so a symlink is just as good
+#
+# new release, switch defaults later
+#
+VERSION=0.12.0
+mkdir -p usr/bin
+ln -s ../versions/node-v${VERSION}/bin/node usr/bin/node-0.12
+ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/npm-0.12
