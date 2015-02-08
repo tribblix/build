@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# verifies a repo; specifically that all the packages listed in the
+# catalog are present
+#
+
+if [ ! -f catalog ]; then
+   echo "No catalog. Is this a repo?"
+   exi t1
+fi
+
+cat catalog | awk -F'|' '{print $1,$2}' | while read pkg ver
+do
+  if [ ! -f ${pkg}.${ver}.zap ]; then
+    echo "ERROR: ${pkg}.${ver}.zap missing"
+  fi
+done
