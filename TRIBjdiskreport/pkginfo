@@ -1,0 +1,4 @@
+PKG="TRIBjdiskreport"
+NAME="Java disk usage reporting"
+VERSION="1.4.1.0"
+ZAP_URL="http://www.jgoodies.com/freeware/jdiskreport/"
