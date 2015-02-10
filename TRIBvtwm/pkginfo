@@ -1,0 +1,4 @@
+PKG="TRIBvtwm"
+NAME="Vtwm - The Virtual tab Window Manager"
+VERSION="5.4.7.0"
+ZAP_URL="http://www.vtwm.org/"

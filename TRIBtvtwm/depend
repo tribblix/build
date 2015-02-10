@@ -1,0 +1,7 @@
+P TRIBx11-libx11
+P TRIBx11-libxext
+P TRIBx11-libxmu
+P TRIBx11-libxpm
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBlib-zlib

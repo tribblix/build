@@ -1,0 +1,4 @@
+PKG="TRIBtvtwm"
+NAME="Tom's Virtual tab Window Manager"
+VERSION="1.0.1.0"
+ZAP_URL="http://www.petertribble.co.uk/Solaris/ptvtwm.html"
