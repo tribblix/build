@@ -1,0 +1,4 @@
+PKG="TRIBamiwm"
+NAME="amiwm - Window Manager like Amiga Workbench"
+VERSION="0.21.2.0"
+ZAP_URL="http://www.lysator.liu.se/~marcus/amiwm.html"
