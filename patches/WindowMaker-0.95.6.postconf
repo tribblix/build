@@ -1,0 +1,3 @@
+#!/bin/sh
+gsed -i s:PATH_MAX:1024: src/misc.c
+gsed -i s:-std=c11:: `find . -name Makefile`
