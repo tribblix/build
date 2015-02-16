@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# despite instructions, hal gets enabled.
+#
+gsed -i 's:#define HAVE_HAL 1:#undef HAVE_HAL:' config.h

@@ -1,0 +1,4 @@
+PKG="TRIBe19-elementary"
+NAME="Enlightenment Elementary Widget set"
+VERSION="1.12.4.0"
+ZAP_URL="https://www.enlightenment.org/"

@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# I'm sure edbus should be eldbus
+#
+gsed -i s:edbus:eldbus: configure

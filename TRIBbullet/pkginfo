@@ -1,3 +1,4 @@
 PKG="TRIBbullet"
 NAME="3D Collision Detection and Rigid Body Dynamics Library"
-VERSION="2.82.0.0"
+VERSION="2.82.0.1"
+ZAP_URL="http://bulletphysics.org/wordpress/"
