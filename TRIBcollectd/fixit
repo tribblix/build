@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# move any perl manpages that end up in the wrong place
+#
+mv usr/man/man3 usr/share/man

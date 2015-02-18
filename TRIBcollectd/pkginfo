@@ -1,0 +1,4 @@
+PKG="TRIBcollectd"
+NAME="Collectd - The system statistics collection daemon"
+VERSION="5.4.1.0"
+ZAP_URL="https://collectd.org/"

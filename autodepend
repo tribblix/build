@@ -9,12 +9,16 @@
 # assumes a shared object
 #
 case $# in
+0)
+	echo "Usage: $0 target"
+	exit 1
+	;;
 1)
 	TARG=$1
 	;;
 *)
-	echo "Usage: $0 target"
-	exit 1
+	for f in $* ; do $0 $f ; done | sort | uniq
+	exit 0
 	;;
 esac
 
