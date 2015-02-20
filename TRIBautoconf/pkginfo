@@ -1,3 +1,4 @@
 PKG="TRIBautoconf"
 NAME="Gnu autoconf"
 VERSION="2.69.0"
+ZAP_URL="https://www.gnu.org/software/autoconf/"

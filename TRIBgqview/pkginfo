@@ -1,3 +1,4 @@
 PKG="TRIBgqview"
 NAME="GQview image browser"
 VERSION="2.0.4.0"
+ZAP_URL="http://gqview.sourceforge.net/"

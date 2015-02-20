@@ -1,3 +1,4 @@
 PKG="TRIBopenexr"
 NAME="OpenEXR"
 VERSION="1.7.0.1"
+ZAP_URL="http://www.openexr.com/"

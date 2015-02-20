@@ -1,3 +1,4 @@
 PKG="TRIBbluefish"
 NAME="Bluefish editor"
 VERSION="2.2.6.0"
+ZAP_URL="http://bluefish.openoffice.nl/"

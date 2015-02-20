@@ -1,3 +1,4 @@
 PKG="TRIBgtkspell"
 NAME="GTK+ spell widget"
 VERSION="2.0.16.2"
+ZAP_URL="http://gtkspell.sourceforge.net/"

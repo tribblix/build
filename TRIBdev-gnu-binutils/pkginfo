@@ -1,3 +1,4 @@
 PKG="TRIBdev-gnu-binutils"
 NAME="Gnu Binutils"
 VERSION="2.23.2.2"
+ZAP_URL="http://www.gnu.org/software/binutils/"

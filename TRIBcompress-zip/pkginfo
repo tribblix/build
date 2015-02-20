@@ -1,3 +1,4 @@
 PKG="TRIBcompress-zip"
 NAME="The Info-Zip (zip) compression utility"
 VERSION="3.0.0"
+ZAP_URL="http://www.info-zip.org/Zip.html"

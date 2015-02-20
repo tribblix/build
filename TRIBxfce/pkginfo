@@ -1,3 +1,4 @@
 PKG="TRIBxfce"
 NAME="Xfce desktop, 4.10"
 VERSION="4.10.2"
+ZAP_URL="http://www.xfce.org/"

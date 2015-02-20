@@ -1,3 +1,4 @@
 PKG="TRIBenchant"
 NAME="Enchant spell checking library"
 VERSION="1.6.0.0"
+ZAP_URL="http://www.abisource.com/projects/enchant/"

@@ -1,3 +1,4 @@
 PKG="TRIBclucene"
 NAME="CLucene search engine"
 VERSION="2.3.3.4"
+ZAP_URL="http://clucene.sourceforge.net/"

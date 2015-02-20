@@ -1,3 +1,4 @@
 PKG="TRIBxfce-ristretto"
 NAME="Xfce Ristretto image viewer"
 VERSION="0.6.3.1"
+ZAP_URL="http://goodies.xfce.org/projects/applications/ristretto"
