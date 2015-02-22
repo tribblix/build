@@ -30,4 +30,6 @@ fi
 for file in `find . -name '*.la'`
 do
 gsed -i -e s:/usr/sfw/lib/libstdc++.la:-lstdc++:g -e s:/usr/sfw/lib/amd64/libstdc++.la:-lstdc++:g -e s:/usr/sfw/lib/sparcv9/libstdc++.la:-lstdc++:g $file
+gsed -i -e s:/usr/versions/gcc-4.7.3/lib/libstdc++.la:-lstdc++:g -e s:/usr/versions/gcc-4.7.3/lib/amd64/libstdc++.la:-lstdc++:g -e s:/usr/versions/gcc-4.7.3/lib/sparcv9/libstdc++.la:-lstdc++:g $file
+gsed -i -e s:/usr/versions/gcc-4.8.3/lib/libstdc++.la:-lstdc++:g -e s:/usr/versions/gcc-4.8.3/lib/amd64/libstdc++.la:-lstdc++:g -e s:/usr/versions/gcc-4.8.3/lib/sparcv9/libstdc++.la:-lstdc++:g $file
 done
