@@ -2,7 +2,7 @@
 #
 # just name off the primary version
 #
-VERSION=8.0.18
+VERSION=8.0.20
 cd usr/versions
 ln -s apache-tomcat-${VERSION} tomcat8
 chmod a+x apache-tomcat-${VERSION}/bin/*.sh
