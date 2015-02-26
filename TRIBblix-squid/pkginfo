@@ -1,0 +1,4 @@
+PKG="TRIBblix-squid"
+NAME="Squid caching proxy"
+VERSION="3.5.2.0"
+ZAP_URL="http://www.squid-cache.org/"
