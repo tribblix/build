@@ -1,0 +1,4 @@
+PKG="TRIBnasm"
+NAME="NASM - the netwide assembler"
+VERSION="2.11.08.0"
+ZAP_URL="https://www.nasm.us/"
