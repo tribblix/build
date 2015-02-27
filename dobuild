@@ -49,12 +49,14 @@ esac
 # -C configure_args
 # -M make_args
 # -I install_args
+# -J parallelism
 #
 IPREFIX="/usr"
 CONFARGS=""
 MAKEARGS=""
 INSTARGS=""
 SUBDIR=""
+GMAKEFLAGS="-j 4"
 
 THISPKG="$1"
 shift
@@ -93,6 +95,13 @@ case $1 in
 	shift
 	;;
 esac
+case $1 in
+-J)
+	shift
+	GMAKEFLAGS="-j $1"
+	shift
+	;;
+esac
 
 #
 # 64-bit files go in these subdirectories
@@ -124,7 +133,7 @@ do
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    ${GMAKE} -j 4 ${MAKEARGS}
+	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
 	    cd ..
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
@@ -140,7 +149,7 @@ do
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    ${GMAKE} -j 4 ${MAKEARGS}
+	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
 	    cd ..
 	fi
 done

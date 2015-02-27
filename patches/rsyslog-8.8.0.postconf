@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# something about the cpp flags hides these
+#
+gsed -i 's:INT_MAX):2147483647):' runtime/glbl.c
+gsed -i 's:INT_MAX;:2147483647;:' runtime/glbl.c
+gsed -i 's:INT_MAX:2147483647:' plugins/omelasticsearch/cJSON/cjson.c
+gsed -i 's:INT_MAX:2147483647:' contrib/mmsequence/mmsequence.c
+gsed -i 's:INT_MIN:(-2147483647-1):' plugins/omelasticsearch/cJSON/cjson.c
