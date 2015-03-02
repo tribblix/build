@@ -1,0 +1,27 @@
+--- xfce4-session-4.12.0/xfsm-shutdown-helper/main.c~	Sat Feb 28 08:28:00 2015
++++ xfce4-session-4.12.0/xfsm-shutdown-helper/main.c	Sun Mar  1 09:40:15 2015
+@@ -215,6 +215,7 @@
+             return EXIT_CODE_FAILED;
+           }
+     }
++#ifdef UP_BACKEND_SUSPEND_COMMAND
+   else if(suspend)
+     {
+       if (run (UP_BACKEND_SUSPEND_COMMAND))
+@@ -226,6 +227,8 @@
+             return EXIT_CODE_FAILED;
+           }
+     }
++#endif
++#ifdef UP_BACKEND_HIBERNATE_COMMAND
+   else if(hibernate)
+     {
+       if (run (UP_BACKEND_HIBERNATE_COMMAND))
+@@ -237,6 +240,7 @@
+             return EXIT_CODE_FAILED;
+           }
+     }
++#endif
+ 
+   /* how did we get here? */
+   return EXIT_CODE_FAILED;

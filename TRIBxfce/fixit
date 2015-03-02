@@ -23,6 +23,11 @@ mkdir -p usr/share/icons/hicolor/16x16/mimetypes
 mkdir -p usr/share/icons/hicolor/24x24/mimetypes
 mkdir -p usr/share/icons/hicolor/48x48/mimetypes
 
+#
+# remember where we are so it's easier to get back to square one
+#
+MYDIR=`/bin/pwd`
+
 SIZE="16x16"
 cd usr/share/icons/hicolor/${SIZE}/apps
 ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-theme.png .
@@ -33,6 +38,7 @@ ln -s ../../../gnome/${SIZE}/apps/web-browser.png .
 ln -s ../../../gnome/${SIZE}/apps/utilities-terminal.png .
 ln -s ../../../gnome/${SIZE}/apps/system-file-manager.png .
 ln -s ../../../gnome/${SIZE}/apps/file-manager.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/actions
 ln -s ../../../gnome/${SIZE}/actions/gtk-remove.png
 ln -s ../../../gnome/${SIZE}/actions/gtk-fullscreen.png
@@ -43,22 +49,27 @@ ln -s ../../../gnome/${SIZE}/actions/gtk-quit.png
 ln -s ../../../gnome/${SIZE}/actions/gtk-refresh.png
 ln -s ../../../gnome/${SIZE}/actions/gtk-execute.png
 ln -s ../../../gnome/${SIZE}/actions/insert-link.png
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/places
 ln -s ../../../gnome/${SIZE}/places/user-desktop.png .
 ln -s ../../../gnome/${SIZE}/places/folder.png .
 ln -s ../../../gnome/${SIZE}/places/inode-directory.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/devices
 ln -s ../../../gnome/${SIZE}/devices/video-display.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/categories
 ln -s ../../../gnome/${SIZE}/categories/applications-system.png .
 ln -s ../../../gnome/${SIZE}/categories/preferences-system.png .
 ln -s ../../../gnome/${SIZE}/categories/preferences-desktop-peripherals.png .
 ln -s ../../../gnome/${SIZE}/categories/preferences-desktop.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/mimetypes
 ln -s ../../../gnome/${SIZE}/mimetypes/application-x-executable.png .
 ln -s ../../../gnome/${SIZE}/mimetypes/x-office-calendar.png office-calendar.png
 
 SIZE="24x24"
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/apps
 ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-accessibility.png .
 ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-wallpaper.png .
@@ -69,6 +80,7 @@ ln -s ../../../gnome/${SIZE}/apps/web-browser.png .
 ln -s ../../../gnome/${SIZE}/apps/utilities-terminal.png .
 ln -s ../../../gnome/${SIZE}/apps/system-file-manager.png .
 ln -s ../../../gnome/${SIZE}/apps/file-manager.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/actions
 ln -s ../../../gnome/${SIZE}/actions/gtk-remove.png
 ln -s ../../../gnome/${SIZE}/actions/system-log-out.png
@@ -79,22 +91,27 @@ ln -s ../../../gnome/${SIZE}/actions/gtk-quit.png
 ln -s ../../../gnome/${SIZE}/actions/gtk-refresh.png
 ln -s ../../../gnome/${SIZE}/actions/gtk-execute.png
 ln -s ../../../gnome/${SIZE}/actions/insert-link.png
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/places
 ln -s ../../../gnome/${SIZE}/places/user-desktop.png .
 ln -s ../../../gnome/${SIZE}/places/folder.png .
 ln -s ../../../gnome/${SIZE}/places/inode-directory.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/devices
 ln -s ../../../gnome/${SIZE}/devices/video-display.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/categories
 ln -s ../../../gnome/${SIZE}/categories/applications-system.png .
 ln -s ../../../gnome/${SIZE}/categories/preferences-system.png .
 ln -s ../../../gnome/${SIZE}/categories/preferences-desktop-peripherals.png .
 ln -s ../../../gnome/${SIZE}/categories/preferences-desktop.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/mimetypes
 ln -s ../../../gnome/${SIZE}/mimetypes/application-x-executable.png .
 ln -s ../../../gnome/${SIZE}/mimetypes/x-office-calendar.png office-calendar.png
 
 SIZE="48x48"
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/apps
 ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-accessibility.png .
 ln -s ../../../gnome/${SIZE}/apps/preferences-desktop-wallpaper.png .
@@ -105,6 +122,7 @@ ln -s ../../../gnome/${SIZE}/apps/web-browser.png .
 ln -s ../../../gnome/${SIZE}/apps/utilities-terminal.png .
 ln -s ../../../gnome/${SIZE}/apps/system-file-manager.png .
 ln -s ../../../gnome/${SIZE}/apps/file-manager.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/actions
 ln -s ../../../gnome/${SIZE}/actions/gtk-remove.png
 ln -s ../../../gnome/${SIZE}/actions/system-log-out.png
@@ -115,17 +133,29 @@ ln -s ../../../gnome/${SIZE}/actions/gtk-quit.png
 ln -s ../../../gnome/${SIZE}/actions/gtk-refresh.png
 ln -s ../../../gnome/${SIZE}/actions/gtk-execute.png
 ln -s ../../../gnome/${SIZE}/actions/insert-link.png
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/places
 ln -s ../../../gnome/${SIZE}/places/user-desktop.png .
 ln -s ../../../gnome/${SIZE}/places/folder.png .
 ln -s ../../../gnome/${SIZE}/places/inode-directory.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/devices
 ln -s ../../../gnome/${SIZE}/devices/video-display.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/categories
 ln -s ../../../gnome/${SIZE}/categories/applications-system.png .
 ln -s ../../../gnome/${SIZE}/categories/preferences-system.png .
 ln -s ../../../gnome/${SIZE}/categories/preferences-desktop-peripherals.png .
 ln -s ../../../gnome/${SIZE}/categories/preferences-desktop.png .
+cd $MYDIR
 cd usr/share/icons/hicolor/${SIZE}/mimetypes
 ln -s ../../../gnome/${SIZE}/mimetypes/application-x-executable.png .
 ln -s ../../../gnome/${SIZE}/mimetypes/x-office-calendar.png office-calendar.png
+
+#
+# compatibility fix, seems to catch most things until they're
+# rebuilt
+#
+cd $MYDIR
+cd usr/lib
+ln -s libxfce4util.so.7.0.0 libxfce4util.so.6

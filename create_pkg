@@ -126,6 +126,12 @@ fi
 #   cp ${BUILD}/${PKGNAME}/restart_fmri_list ${BDIR}
 #   handle_restarts
 #fi
+
+#
+# clean up any scripts from a previous run
+#
+rm -f ${BDIR}/install/postinstall
+rm -f ${BDIR}/install/postremove
 if [ -f ${BUILD}/${PKGNAME}/postinstall ]; then
     mkdir -p ${BDIR}/install
     cp ${BUILD}/${PKGNAME}/postinstall ${BDIR}/install
