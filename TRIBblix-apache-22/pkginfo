@@ -1,0 +1,4 @@
+PKG="TRIBblix-apache-22"
+NAME="Apache httpd - illumos build compatibility"
+VERSION="2.2.29.0"
+ZAP_URL="http://httpd.apache.org/"
