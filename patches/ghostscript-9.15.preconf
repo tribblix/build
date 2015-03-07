@@ -1,0 +1,3 @@
+#!/bin/sh
+rm -fr expat freetype zlib jpeg libpng
+gsed -i 's/ZLIBDIR=src/ZLIBDIR=$includedir/' configure configure.ac
