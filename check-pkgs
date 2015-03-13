@@ -1,0 +1,30 @@
+#!/bin/ksh
+#
+# check to see if all the packages from the build directory
+# are present
+#
+PKGDIR="../pkgs"
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
+
+NFOUND=0
+NMISSING=0
+
+for PKGI in */pkginfo
+do
+  PKG=${PKGI%/*}
+  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI | sed 's="==g'`
+  DEPLIST=""
+  if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
+      echo "FOUND ${PKG} at version ${PKGVERS}"
+      NFOUND=$(($NFOUND+1))
+  else
+      echo "MISSING ${PKG} at version ${PKGVERS}"
+      NMISSING=$(($NMISSING+1))
+  fi
+done
+
+echo "Totals - found ${NFOUND}, missing ${NMISSING}"
