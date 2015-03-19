@@ -4,7 +4,7 @@ mkdir -p etc/zap
 # this should be the current version
 #
 cat > etc/zap/version.current <<EOF
-m13
+m14
 EOF
 #
 # this should initially include only the current version
@@ -14,5 +14,5 @@ EOF
 # a release
 #
 cat > etc/zap/version.list <<EOF
-m13|http://pkgs.tribblix.org/tribblix-m13/TRIBzap.0.13.0.zap|Milestone 13
+m14|http://pkgs.tribblix.org/tribblix-m14/TRIBzap.0.14.0.zap|Milestone 14
 EOF
