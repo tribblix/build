@@ -1,4 +1,4 @@
 PKG="TRIBnmap"
 NAME="nmap - powerful network scanner"
-VERSION="6.47.0"
+VERSION="6.47.1"
 ZAP_URL="https://nmap.org/"
