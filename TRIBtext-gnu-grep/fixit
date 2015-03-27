@@ -15,9 +15,31 @@ rmdir usr/gnu/lib
 mkdir -p usr/bin/${ARCH64}
 cd usr/bin
 ln -s ../gnu/bin/grep ggrep
-ln -s ../gnu/bin/egrep gegrep
-ln -s ../gnu/bin/fgrep gfgrep
+#
+# in newer versions, egrep and fgrep are buggy wrapper scripts, and
+# they need to be replaced by fixed wrappers rather than symlinks
+#
+#ln -s ../gnu/bin/egrep gegrep
+#ln -s ../gnu/bin/fgrep gfgrep
+cat > gegrep <<EOF
+#!/bin/sh
+exec /usr/gnu/bin/grep -E "\$@"
+EOF
+cat > gfgrep <<EOF
+#!/bin/sh
+exec /usr/gnu/bin/grep -F "\$@"
+EOF
+chmod 755 gegrep gfgrep
 cd ${ARCH64}
 ln -s ../../gnu/bin/${ARCH64}/grep ggrep
-ln -s ../../gnu/bin/${ARCH64}/egrep gegrep
-ln -s ../../gnu/bin/${ARCH64}/fgrep gfgrep
+#ln -s ../../gnu/bin/${ARCH64}/egrep gegrep
+#ln -s ../../gnu/bin/${ARCH64}/fgrep gfgrep
+cat > gegrep <<EOF
+#!/bin/sh
+exec /usr/gnu/bin/${ARCH64}/grep -E "\$@"
+EOF
+cat > gfgrep <<EOF
+#!/bin/sh
+exec /usr/gnu/bin/${ARCH64}/grep -F "\$@"
+EOF
+chmod 755 gegrep gfgrep
