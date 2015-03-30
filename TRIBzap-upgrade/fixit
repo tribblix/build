@@ -13,6 +13,15 @@ EOF
 # ideally, add the new release to the old version just before making
 # a release
 #
+case `uname -p` in
+sparc)
+cat > etc/zap/version.list <<EOF
+m14|http://pkgs.tribblix.org/tribblix-m14.sparc/TRIBzap.0.14.0.zap|Milestone 14
+EOF
+;;
+i386)
 cat > etc/zap/version.list <<EOF
 m14|http://pkgs.tribblix.org/tribblix-m14/TRIBzap.0.14.0.zap|Milestone 14
 EOF
+;;
+esac
