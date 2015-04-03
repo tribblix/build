@@ -200,6 +200,7 @@ rm -f ${PKGNAME}.${PKGVER}.zap
 chmod a+r ${PKGNAME}.${PKGVER}.zap
 #mv ${PKGNAME}.zip ${PKGNAME}.zap
 cd /
+openssl md5 ${BROOT}/${PKGNAME}.${PKGVER}.zap| /usr/bin/awk '{print $NF}' > ${BROOT}/${PKGNAME}.${PKGVER}.zap.md5
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.pkg
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.zap
 rm -fr ${BROOT}/${PKGNAME}

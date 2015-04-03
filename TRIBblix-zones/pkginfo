@@ -1,4 +1,4 @@
 PKG="TRIBblix-zones"
 NAME="Sparse and whole root zones"
-VERSION="0.11.2.0"
+VERSION="0.14.0.0"
 ZAP_URL="https://github.com/tribblix/tribblix-zones"
