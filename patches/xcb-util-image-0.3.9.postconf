@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# overzealous use of -Werror
+#
+gsed -i s:-Werror=return-type:: Makefile
+gsed -i s:-Werror=return-type:: image/Makefile

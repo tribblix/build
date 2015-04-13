@@ -2,7 +2,7 @@
 #
 # move the python stuff to the right place
 #
-mkdir -p usr/versions/python-2.7.6/lib/python2.7
-mv usr/lib/python2.7/site-packages usr/versions/python-2.7.6/lib/python2.7
+mkdir -p usr/versions/python-2.7/lib/python2.7
+mv usr/lib/python2.7/site-packages usr/versions/python-2.7/lib/python2.7
 rmdir usr/lib/python2.7
 rm -fr usr/share/doc
