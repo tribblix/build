@@ -1,4 +1,4 @@
 PKG="TRIBv-scala-211"
 NAME="Scala"
-VERSION="2.11.5.0"
+VERSION="2.11.6.0"
 ZAP_URL="http://www.scala-lang.org/"
