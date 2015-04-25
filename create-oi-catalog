@@ -3,7 +3,7 @@
 # catalog format is
 #  name|version|dependencies|size|md5|
 #
-PKGDIR=/packages/localsrc/Tribblix/repo-master/oi-151a8
+PKGDIR=/packages/localsrc/Tribblix/repo-master/oi-151a9
 
 #
 cd $PKGDIR

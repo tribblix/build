@@ -3,7 +3,7 @@
 # catalog format is
 #  alias|name
 #
-PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m14/pkgs
+PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m15/pkgs
 
 #
 cd $PKGDIR
