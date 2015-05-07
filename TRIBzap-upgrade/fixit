@@ -4,7 +4,7 @@ mkdir -p etc/zap
 # this should be the current version
 #
 cat > etc/zap/version.current <<EOF
-m14
+m15
 EOF
 #
 # this should initially include only the current version
@@ -16,12 +16,12 @@ EOF
 case `uname -p` in
 sparc)
 cat > etc/zap/version.list <<EOF
-m15|http://pkgs.tribblix.org/tribblix-m15.sparc/TRIBzap.0.15.0.zap|Milestone 15
+m15|http://pkgs.tribblix.org/tribblix-m15.sparc/TRIBzap.0.0.15.0.zap|Milestone 15
 EOF
 ;;
 i386)
 cat > etc/zap/version.list <<EOF
-m15|http://pkgs.tribblix.org/tribblix-m15/TRIBzap.0.15.0.zap|Milestone 15
+m15|http://pkgs.tribblix.org/tribblix-m15/TRIBzap.0.0.15.0.zap|Milestone 15
 EOF
 ;;
 esac
