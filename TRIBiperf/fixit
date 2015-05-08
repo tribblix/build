@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# add unversioned symlinks
+#
+cd usr/share/man
+ln -s iperf3.1 iperf.1
+cd ../../..
+cd usr/bin
+ln -s iperf3 iperf

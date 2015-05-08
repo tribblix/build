@@ -1,0 +1,4 @@
+PKG="TRIBnetperf"
+NAME="Netperf networking performance benchmark"
+VERSION="2.6.0.0"
+ZAP_URL="http://www.netperf.org/netperf/"
