@@ -1,0 +1,13 @@
+#!/bin/ksh
+#
+# lists packages that don't have ZAP_URL set
+#
+
+for PKGI in */pkginfo
+do
+    PKG=${PKGI%/*}
+    PKGHOME=`awk -F= '{if ($1 == "ZAP_URL") print $2}' $PKGI | sed 's="==g'`
+    if [ -z "${PKGHOME}" ]; then
+	echo "$PKG does not have ZAP_URL set"
+    fi
+done
