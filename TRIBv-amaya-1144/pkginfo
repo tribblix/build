@@ -1,3 +1,4 @@
 PKG="TRIBv-amaya-1144"
 NAME="W3C Amaya web browser"
 VERSION="11.4.4.0"
+ZAP_URL="http://www.w3.org/Amaya/"

@@ -1,3 +1,4 @@
 PKG="TRIBgnuplot"
 NAME="Command line graphing utility"
 VERSION="4.6.6.0"
+ZAP_URL="http://www.gnuplot.info/"

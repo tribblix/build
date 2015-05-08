@@ -1,3 +1,4 @@
 PKG="TRIBv-clojure-160"
 NAME="Clojure"
 VERSION="1.6.0.0"
+ZAP_URL="http://clojure.org/"
