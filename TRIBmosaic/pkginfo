@@ -1,0 +1,4 @@
+PKG="TRIBmosaic"
+NAME="Patched version of NCSA Mosaic"
+VERSION="2.7.10.0"
+ZAP_URL="http://www.floodgap.com/retrotech/machten/mosaic/"
