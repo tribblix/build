@@ -1,0 +1,4 @@
+PKG="TRIBgophervr"
+NAME="GopherVR virtual reality for Gopherspace"
+VERSION="0.5.0"
+ZAP_URL="http://www.floodgap.com/software/gophervr/"

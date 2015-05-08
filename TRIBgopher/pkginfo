@@ -1,0 +1,4 @@
+PKG="TRIBgopher"
+NAME="Gopher CLI client"
+VERSION="3.0.13.0"
+ZAP_URL="https://packages.debian.org/wheezy/net/gopher"
