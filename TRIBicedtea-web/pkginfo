@@ -1,0 +1,4 @@
+PKG="TRIBicedtea-web"
+NAME="IcedTea-web - java plugin"
+VERSION="1.6.0"
+ZAP_URL="http://icedtea.classpath.org/wiki/IcedTea-Web"
