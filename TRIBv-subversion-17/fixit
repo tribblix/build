@@ -2,7 +2,7 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=1.7.19
+VERSION=1.7.20
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../versions/subversion-${VERSION}/bin/svn* .
