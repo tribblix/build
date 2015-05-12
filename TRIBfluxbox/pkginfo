@@ -1,4 +1,4 @@
 PKG="TRIBfluxbox"
 NAME="Fluxbox window manager"
-VERSION="1.3.6.0"
+VERSION="1.3.7.0"
 ZAP_URL="http://www.fluxbox.org/"
