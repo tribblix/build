@@ -5,7 +5,8 @@ ln -s tclsh8.6 tclsh
 cd ..
 mv man/man1 share/man
 mv man/man3 share/man
+mv man/man3/* share/man/man3
 mv man/mann/* share/man/mann
+rmdir man/man3
 rmdir man/mann
 rmdir man
-
