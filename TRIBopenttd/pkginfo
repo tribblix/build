@@ -1,5 +1,5 @@
 PKG="TRIBopenttd"
 NAME="OpenTTD simulation game"
-VERSION="1.4.4.0"
+VERSION="1.5.0.0"
 ZAP_URL=http://www.openttd.org/
 ZAP_LICENSE="GPL 2.0"
