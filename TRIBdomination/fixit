@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# put things in the right place
+#
+VERSION=1.1.5
+mkdir -p usr/bin usr/share/applications usr/share/pixmaps
+cd usr/versions
+rm -fr Domination/Map*
+rm -f Domination/*.cmd
+rm -f Domination/*.exe
+mv Domination Domination-${VERSION}
+cd ../..
+cd usr/bin
+cat > domination << _EOF
+#!/bin/sh
+cd /usr/versions/Domination-${VERSION}
+java -jar Domination.jar "$@"
+_EOF
+chmod a+x domination
+cd ../..
+cd usr/share/applications
+cat > domination.desktop << _EOF
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=Domination
+Comment=Domination (Risk Board Game)
+Exec=domination
+Icon=domination
+Terminal=false
+Type=Application
+Categories=Application;Game;
+_EOF
+cd ../../..
+cp usr/versions/Domination-${VERSION}/resources/icon.png usr/share/pixmaps/domination.png
