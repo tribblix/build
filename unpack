@@ -16,6 +16,7 @@ XZCAT="/usr/bin/xz"
 UNZIP="/usr/bin/unzip"
 GPATCH="/usr/bin/gpatch"
 ZCAT="/usr/bin/zcat"
+LZIP="/usr/bin/lzip"
 
 DO32="true"
 DO64="false"
@@ -129,6 +130,17 @@ do
 	      mv ${pkg} ${pkg}-64bit
 	      if [ "x$DO32" != "xfalse" ]; then
 		  ${XZCAT} -d -c ${SRCDIR}/${pkg}.tar.xz | gtar xf -
+		  dopatch $pkg
+	      fi
+	   fi
+	fi
+	if [ -f ${SRCDIR}/${pkg}.tar.lz ]; then
+	   ${LZIP} -d -c ${SRCDIR}/${pkg}.tar.lz | gtar xf -
+	   dopatch $pkg
+	   if [ "x$DO64" != "xfalse" ]; then
+	      mv ${pkg} ${pkg}-64bit
+	      if [ "x$DO32" != "xfalse" ]; then
+		  ${LZIP} -d -c ${SRCDIR}/${pkg}.tar.lz | gtar xf -
 		  dopatch $pkg
 	      fi
 	   fi
