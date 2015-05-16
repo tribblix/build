@@ -1,1 +1,4 @@
-P TRIBlibgcrypt
+P TRIBlib-gmp
+P TRIBlib-security-trousers
+P TRIBlib-zlib
+P TRIBnettle

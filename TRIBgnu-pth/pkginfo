@@ -1,0 +1,4 @@
+PKG="TRIBgnu-pth"
+NAME="GNU Portable Threads"
+VERSION="2.0.7.0"
+ZAP_URL="http://www.gnu.org/software/pth/"
