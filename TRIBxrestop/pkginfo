@@ -1,3 +1,4 @@
 PKG="TRIBxrestop"
 NAME="A tool for monitoring X Client server resource usage"
 VERSION="0.4.0"
+ZAP_URL="http://www.freedesktop.org/wiki/Software/xrestop/"

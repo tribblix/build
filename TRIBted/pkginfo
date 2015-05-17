@@ -1,3 +1,4 @@
 PKG="TRIBted"
 NAME="Ted - RTF editor"
 VERSION="2.23.0"
+ZAP_URL="http://www.nllgg.nl/Ted/"

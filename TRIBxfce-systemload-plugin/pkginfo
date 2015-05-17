@@ -1,3 +1,4 @@
 PKG="TRIBxfce-systemload-plugin"
 NAME="Xfce system load Plugin"
 VERSION="1.1.2.0"
+ZAP_URL="http://goodies.xfce.org/projects/panel-plugins/xfce4-systemload-plugin"
