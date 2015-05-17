@@ -1,4 +1,4 @@
 PKG="TRIBmercurial"
 NAME="Mercurial distributed version control system"
-VERSION="3.1.2.0"
+VERSION="3.4.0"
 ZAP_URL="http://mercurial.selenic.com/"
