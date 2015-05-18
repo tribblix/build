@@ -12,3 +12,5 @@
 /bin/rm -f usr/lib/sparcv9/lib*.a
 #/bin/rm -f usr/lib/sparcv9/lib*.la
 /bin/rm -f usr/gnu/lib/lib*.a
+/bin/rm -f usr/gnu/lib/amd64/lib*.a
+/bin/rm -f usr/gnu/lib/sparcv9/lib*.a
