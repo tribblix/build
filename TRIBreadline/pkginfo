@@ -1,0 +1,4 @@
+PKG="TRIBreadline"
+NAME="GNU readline"
+VERSION="6.3.0"
+ZAP_URL="https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html"
