@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i 's:getenv("P7ZIP_HOME_DIR"):"/usr/lib/7z/":' CPP/Windows/DLL.cpp

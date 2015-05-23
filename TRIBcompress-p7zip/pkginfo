@@ -1,0 +1,4 @@
+PKG="TRIBcompress-p7zip"
+NAME="p7zip"
+VERSION="9.38.1.0"
+ZAP_URL="http://p7zip.sourceforge.net/"
