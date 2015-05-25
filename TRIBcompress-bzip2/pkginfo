@@ -1,0 +1,4 @@
+PKG="TRIBcompress-bzip2"
+NAME="The bzip compression utility"
+VERSION="1.0.6.0"
+ZAP_URL="http://www.bzip.org/"
