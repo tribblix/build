@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+mkdir -p usr/bin usr/share/man/man1
+cd usr/bin
+ln -s ../../usr/versions/python-2.7/bin/scons .
+ln -s ../../usr/versions/python-2.7/bin/sconsign .
+ln -s ../../usr/versions/python-2.7/bin/scons-time .
+cd ../../usr/share/man/man1
+ln -s ../../../../usr/versions/python-2.7/man/man1/scons.1 .
+ln -s ../../../../usr/versions/python-2.7/man/man1/sconsign.1 .
+ln -s ../../../../usr/versions/python-2.7/man/man1/scons-time.1 .
