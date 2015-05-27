@@ -1,0 +1,4 @@
+PKG="TRIBsmpeg"
+NAME="SDL MPEG Player library"
+VERSION="0.4.5.0"
+ZAP_URL="http://icculus.org/smpeg/"
