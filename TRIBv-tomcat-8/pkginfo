@@ -1,4 +1,4 @@
 PKG="TRIBv-tomcat-8"
 NAME="Tomcat 8"
-VERSION="8.0.22.0"
+VERSION="8.0.23.0"
 ZAP_URL="http://tomcat.apache.org/"
