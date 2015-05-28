@@ -1,0 +1,4 @@
+PKG="TRIBlibsdl-net"
+NAME="SDL network library"
+VERSION="1.2.8.0"
+ZAP_URL="http://www.libsdl.org/projects/SDL_net/release-1.2.html"

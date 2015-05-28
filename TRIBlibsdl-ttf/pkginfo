@@ -1,0 +1,4 @@
+PKG="TRIBlibsdl-ttf"
+NAME="SDL TrueType font rendering library"
+VERSION="2.0.11.0"
+ZAP_URL="http://www.libsdl.org/projects/SDL_ttf/release-1.2.html"
