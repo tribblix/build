@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# add the default skin, without which things will fail
+#
+mkdir -p usr/share/mplayer/skins
+cd usr/share/mplayer/skins
+/packages/localsrc/Tribblix/build/unpack Blue-1.10
+ln -s Blue default
