@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# these binaries are only useful on windows
+#
+rm -f usr/bin/vsyasm
+rm -f usr/bin/ytasm
