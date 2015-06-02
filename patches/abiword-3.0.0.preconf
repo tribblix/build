@@ -1,2 +1,0 @@
-#!/bin/sh
-gsed -i 's:FS,:FSabc,:' src/text/fmt/xp/fv_FrameEdit.h

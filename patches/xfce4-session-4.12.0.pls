@@ -1,1 +1,0 @@
--p1 xfce4-session-pm.patch

@@ -1,2 +1,0 @@
-#!/bin/sh
-gsed -i s:-mt:-threads: configure
