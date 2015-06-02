@@ -1,0 +1,11 @@
+--- a/llvm-3.6.1.src/Makefile.rules	Wed Nov  5 00:35:15 2014
++++ b/llvm-3.6.1.src/Makefile.rules	Tue Jun  2 16:08:30 2015
+@@ -638,7 +638,7 @@
+   ifeq ($(HOST_OS),Darwin)
+     LD.Flags += -Wl,-dead_strip
+   else
+-    ifneq ($(HOST_OS), $(filter $(HOST_OS), Cygwin MingW))
++    ifneq ($(HOST_OS), $(filter $(HOST_OS), Cygwin MingW SunOS))
+       LD.Flags += -Wl,--gc-sections
+     endif
+   endif

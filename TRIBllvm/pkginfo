@@ -1,0 +1,4 @@
+PKG="TRIBllvm"
+NAME="LLVM Compiler Infrastructure"
+VERSION="3.6.1.0"
+ZAP_URL="http://llvm.org/"
