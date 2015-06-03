@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# ncurses is in /usr/gnu
+#
+gsed -i 's:/usr/local/include/:/usr/gnu/include:' makefile.solaris_gcc
+gsed -i 's:-L/usr/local/lib/:-L/usr/gnu/lib -R/usr/gnu/lib:' makefile.solaris_gcc
+#
+# and we need xclip.o linked in
+#
+gsed -i 's:selbox.o:selbox.o xclip.o:' makefile.solaris_gcc

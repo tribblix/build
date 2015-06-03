@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# actually use the conf file
+#
+mv etc/multitail.conf.new etc/multitail.conf
