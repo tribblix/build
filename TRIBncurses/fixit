@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# fix up sun-color
+#
+if [ -d usr/gnu/share/terminfo/s ]; then
+    cp /usr/share/lib/terminfo/s/sun-color usr/gnu/share/terminfo/s
+fi
