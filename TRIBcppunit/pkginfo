@@ -1,4 +1,4 @@
 PKG="TRIBcppunit"
 NAME="CPPunit C++ unit testing"
-VERSION="1.12.1.1"
+VERSION="1.13.2.0"
 ZAP_URL="http://sourceforge.net/projects/cppunit/"
