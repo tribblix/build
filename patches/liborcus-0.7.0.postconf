@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# need -pthreads for boots threading to compile correctly
+#
+gsed -i 's:-DMDDS_HASH_CONTAINER_BOOST:-pthreads -DMDDS_HASH_CONTAINER_BOOST:' `find . -name Makefile`

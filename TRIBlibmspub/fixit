@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# our zlib doesn't supply a .pc file
+#
+gsed -i 's: zlib::' usr/lib/pkgconfig/libmspub-0.1.pc

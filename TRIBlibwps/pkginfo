@@ -1,3 +1,4 @@
 PKG="TRIBlibwps"
 NAME="Library for reading MS Works documents"
-VERSION="0.2.7.0"
+VERSION="0.3.1.0"
+ZAP_URL="http://libwps.sourceforge.net/"
