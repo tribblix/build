@@ -1,0 +1,25 @@
+--- a/tools/clang/lib/Driver/Tools.cpp	Tue Feb  3 22:57:34 2015
++++ b/tools/clang/lib/Driver/Tools.cpp	Tue Jun  9 20:19:27 2015
+@@ -6070,7 +6070,7 @@
+                                   const ArgList &Args,
+                                   const char *LinkingOutput) const {
+   // FIXME: Find a real GCC, don't hard-code versions here
+-  std::string GCCLibPath = "/usr/gcc/4.5/lib/gcc/";
++  std::string GCCLibPath = "/usr/versions/gcc-4.8.3/lib/gcc/";
+   const llvm::Triple &T = getToolChain().getTriple();
+   std::string LibPath = "/usr/lib/";
+   llvm::Triple::ArchType Arch = T.getArch();
+@@ -6077,11 +6077,11 @@
+   switch (Arch) {
+   case llvm::Triple::x86:
+     GCCLibPath +=
+-        ("i386-" + T.getVendorName() + "-" + T.getOSName()).str() + "/4.5.2/";
++        ("i386-" + T.getVendorName() + "-" + T.getOSName()).str() + "/4.8.3/";
+     break;
+   case llvm::Triple::x86_64:
+     GCCLibPath += ("i386-" + T.getVendorName() + "-" + T.getOSName()).str();
+-    GCCLibPath += "/4.5.2/amd64/";
++    GCCLibPath += "/4.8.3/amd64/";
+     LibPath += "amd64/";
+     break;
+   default:
