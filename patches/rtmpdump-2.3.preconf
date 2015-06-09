@@ -1,0 +1,5 @@
+#!/bin/sh
+gsed -i 's:LIBS_posix=:LIBS_posix=-lsocket -lnsl:' Makefile
+gsed -i 's:prefix=/usr/local:prefix=/usr:' Makefile
+gsed -i 's:prefix=/usr/local:prefix=/usr:' librtmp/Makefile
+gsed -i 's:LIBRTMP=librtmp/librtmp.a:LIBRTMP=-Llibrtmp -lrtmp:' Makefile
