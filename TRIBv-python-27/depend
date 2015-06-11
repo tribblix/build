@@ -1,1 +1,7 @@
+P TRIBcompress-bzip2
+P TRIBdatabase-sqlite-3
+P TRIBlib-security-openssl
+P TRIBlib-zlib
+P TRIBtcl
 P TRIBtk
+P TRIBx11-libx11
