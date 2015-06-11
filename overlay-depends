@@ -24,5 +24,33 @@ do
      cat ../build/${PKGI}/depend >> $TMPF
   fi
 done
+echo "Overlay ${OVL} depends on:"
+echo "============================================="
 cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs
-rm -f $TMPF
+#
+# find any dependencies that aren't handled by prerequisite overlays
+#
+touch ${TMPF}.p
+for POVL in base `grep '^REQUIRES=' ${OVL}.ovl | awk -F= '{print $2}'`
+do
+  cat ${POVL}.pkgs >> ${TMPF}.p
+  for PPOVL in base `grep '^REQUIRES=' ${POVL}.ovl | awk -F= '{print $2}'`
+  do
+    cat ${PPOVL}.pkgs >> ${TMPF}.p
+    for PPPOVL in base `grep '^REQUIRES=' ${PPOVL}.ovl | awk -F= '{print $2}'`
+    do
+      cat ${PPPOVL}.pkgs >> ${TMPF}.p
+      for PPPPOVL in base `grep '^REQUIRES=' ${PPPOVL}.ovl | awk -F= '{print $2}'`
+      do
+        cat ${PPPPOVL}.pkgs >> ${TMPF}.p
+      done
+    done
+  done
+done
+cat ${TMPF}.p |sort|uniq >${TMPF}.t
+echo ""
+echo "Missing dependencies in overlay ${OVL}:"
+echo "============================================="
+cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs| /usr/bin/fgrep -v -f ${TMPF}.t
+
+rm -f $TMPF ${TMPF}.t ${TMPF}.p
