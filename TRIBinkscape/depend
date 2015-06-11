@@ -1,5 +1,4 @@
 P TRIBboehm-gc
-P TRIBgcc4runtime
 P TRIBgdk-pixbuf
 P TRIBimage-libpng
 P TRIBlib-desktop-atk
