@@ -1,0 +1,4 @@
+PKG="TRIBlibical"
+NAME="libical"
+VERSION="1.0.1.0"
+ZAP_URL="https://github.com/libical"
