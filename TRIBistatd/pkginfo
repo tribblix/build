@@ -1,0 +1,4 @@
+PKG="TRIBistatd"
+NAME="Daemon for iStat App"
+VERSION="0.5.9.0"
+ZAP_URL="https://github.com/tiwilliam/istatd"

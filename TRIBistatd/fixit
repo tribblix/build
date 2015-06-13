@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# more sensible defaults
+#
+gsed -i s:12345:44268: etc/istat.conf
+gsed -i -e s:/home:/export/home: -e s:/vault:: etc/istat.conf 
+gsed -i s:eth0:e1000g0: etc/istat.conf
+gsed -i 's: istat$:daemon:' etc/istat.conf
+gsed -i 's:# server_user:server_user:' etc/istat.conf
+gsed -i 's:# server_group:server_group:' etc/istat.conf
+#
+# fixproto will correct the ownership of the following
+#
+mkdir -p var/run/istat
+mkdir -p var/cache/istat
