@@ -126,9 +126,9 @@ do
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    if [ "x$DOGNU" != "xfalse" ]; then
-		env PATH=/usr/gnu/bin:$PATH LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
+		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/gnu/bin:$PATH LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
 	    else
-		env LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
+		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
 	    fi
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
