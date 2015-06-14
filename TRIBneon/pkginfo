@@ -1,4 +1,4 @@
 PKG="TRIBneon"
 NAME="Neon WebDav library"
-VERSION="0.29.6.3"
+VERSION="0.29.6.4"
 ZAP_URL="http://www.webdav.org/neon/"
