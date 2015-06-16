@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# replace the menu with something more appropriate
+#
+cp /packages/localsrc/Tribblix/build/patches/openbox-menu.xml usr/etc/xdg/openbox/menu.xml

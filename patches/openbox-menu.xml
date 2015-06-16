@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+
+<menu id="apps-accessories-menu" label="Accessories">
+  <item label="Calculator">
+    <action name="Execute">
+      <command>xcalc</command>
+    </action>
+  </item>
+  <item label="Orage Calendar">
+    <action name="Execute">
+      <command>orage</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="Thunar File Manager">
+    <action name="Execute">
+      <command>Thunar</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+</menu>
+
+<menu id="apps-editors-menu" label="Editors">
+  <item label="GVim">
+    <action name="Execute">
+      <command>gvim</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+        <wmclass>GVim</wmclass>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="Emacs">
+    <action name="Execute">
+      <command>emacs</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+        <wmclass>Emacs</wmclass>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="Mousepad">
+    <action name="Execute">
+      <command>mousepad</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="Leafpad">
+    <action name="Execute">
+      <command>leafpad</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+</menu>
+
+<menu id="apps-term-menu" label="Terminals">
+  <item label="Xfce Terminal">
+    <action name="Execute">
+      <command>Terminal</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="mrxvt">
+    <action name="Execute">
+      <command>mrxvt</command>
+    </action>
+  </item>
+  <item label="Xterm">
+    <action name="Execute"><command>xterm</command></action>
+  </item>
+</menu>
+
+<menu id="apps-net-menu" label="Internet">
+  <item label="Firefox">
+    <action name="Execute">
+      <command>firefox</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+        <wmclass>Firefox</wmclass>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="Pidgin Instant Messenger">
+    <action name="Execute">
+      <command>pidgin</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="XChat">
+    <action name="Execute">
+      <command>xchat</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+</menu>
+
+<menu id="apps-office-menu" label="Office">
+  <item label="LibreOffice Base">
+    <action name="Execute">
+      <command>soffice -base</command>
+    </action>
+  </item>
+  <item label="LibreOffice Calc">
+    <action name="Execute">
+      <command>soffice -calc</command>
+    </action>
+  </item>
+  <item label="LibreOffice Draw">
+    <action name="Execute">
+      <command>soffice -draw</command>
+    </action>
+  </item>
+  <item label="LibreOffice Impress">
+    <action name="Execute">
+      <command>soffice -impress</command>
+    </action>
+  </item>
+  <item label="LibreOffice Math">
+    <action name="Execute">
+      <command>soffice -math</command>
+    </action>
+  </item>
+  <item label="LibreOffice Writer">
+    <action name="Execute">
+      <command>soffice -writer</command>
+    </action>
+  </item>
+</menu>
+
+<menu id="apps-graphics-menu" label="Graphics">
+  <item label="Gimp">
+    <action name="Execute">
+      <command>gimp</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="Inkscape">
+    <action name="Execute">
+      <command>inkscape</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+</menu>
+
+<menu id="system-menu" label="System">
+  <item label="Openbox Configuration Manager">
+    <action name="Execute">
+      <command>obconf</command>
+      <startupnotify><enabled>yes</enabled></startupnotify>
+    </action>
+  </item>
+  <item label="Xfce Settings">
+    <action name="Execute">
+      <command>xfce-settings-manager</command>
+      <startupnotify><enabled>yes</enabled></startupnotify>
+    </action>
+  </item>
+  <item label="Manage Cups Printers">
+    <action name="Execute">
+      <command>xdg-open http://localhost:631/</command>
+      <startupnotify>
+        <enabled>no</enabled>
+        <icon>cups</icon>
+      </startupnotify>
+    </action>
+  </item>
+  <separator />
+  <item label="Reconfigure Openbox">
+    <action name="Reconfigure" />
+  </item>
+</menu>
+
+<menu id="root-menu" label="Openbox 3">
+  <separator label="Applications" />
+  <menu id="apps-accessories-menu"/>
+  <menu id="apps-editors-menu"/>
+  <menu id="apps-graphics-menu"/>
+  <menu id="apps-net-menu"/>
+  <menu id="apps-office-menu"/>
+  <menu id="apps-term-menu"/>
+  <separator label="System" />
+  <menu id="system-menu"/>
+  <separator />
+  <item label="Log Out">
+    <action name="Exit">
+      <prompt>yes</prompt>
+    </action>
+  </item>
+</menu>
+
+</openbox_menu>

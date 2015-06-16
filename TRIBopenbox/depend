@@ -1,5 +1,8 @@
+P TRIBgdk-pixbuf
+P TRIBharfbuzz
 P TRIBimage-libpng
 P TRIBimage-librsvg
+P TRIBimlib2
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-pango
 P TRIBlib-expat
