@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# assumes gnu find
+#
+gsed -i s:find:/usr/gnu/bin/find: usr/share/fish/functions/__fish_print_commands.fish 
