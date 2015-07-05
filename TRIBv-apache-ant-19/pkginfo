@@ -1,4 +1,4 @@
 PKG="TRIBv-apache-ant-19"
 NAME="Apache Ant, jsch, ivy, and svnant"
-VERSION="1.9.5.0"
+VERSION="1.9.6.0"
 ZAP_URL="http://ant.apache.org/"
