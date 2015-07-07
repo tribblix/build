@@ -1,0 +1,4 @@
+PKG="TRIBv-clojure-170"
+NAME="Clojure"
+VERSION="1.7.0.0"
+ZAP_URL="http://clojure.org/"
