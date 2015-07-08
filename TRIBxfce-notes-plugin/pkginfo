@@ -1,0 +1,4 @@
+PKG="TRIBxfce-notes-plugin"
+NAME="Xfce Notes Plugin"
+VERSION="1.8.1.0"
+ZAP_URL="http://goodies.xfce.org/projects/panel-plugins/xfce4-notes-plugin"
