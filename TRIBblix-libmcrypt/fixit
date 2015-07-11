@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# get it to link correctly
+#
+gsed -i 's:-L${exec_prefix}/lib:-L${exec_prefix}/lib -R${exec_prefix}/lib:' opt/tribblix/mcrypt/bin/libmcrypt-config

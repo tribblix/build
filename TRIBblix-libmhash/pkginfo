@@ -1,0 +1,4 @@
+PKG="TRIBblix-libmhash"
+NAME="Library that provides a uniform interface to several hash algorithms"
+VERSION="0.9.9.9.0"
+ZAP_URL="http://mhash.sourceforge.net/"

@@ -1,0 +1,4 @@
+PKG="TRIBblix-mcrypt"
+NAME="Mcrypt - replacement for crypt"
+VERSION="2.6.8.0"
+ZAP_URL="http://mcrypt.sourceforge.net/"
