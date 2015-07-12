@@ -1,3 +1,4 @@
 PKG="TRIBlib-desktop-cairomm"
 NAME="Cairo Graphics C++ bindings"
-VERSION="1.10.0.2"
+VERSION="1.11.2.0"
+ZAP_URL="http://cairographics.org/cairomm/"
