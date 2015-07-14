@@ -1,0 +1,4 @@
+#!/bin/sh
+gsed -i 's/G_THREAD_LIBS="-lpthread -lthread"/G_THREAD_LIBS=""/' configure
+# recent builds choke on major_t and friends
+gsed -i 's/-Werror=format=2 //' configure

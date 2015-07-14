@@ -1,0 +1,2 @@
+-p1 inkscape-math-utils.patch
+-p1 inkscape-image-resolution.patch

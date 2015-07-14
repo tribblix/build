@@ -1,0 +1,12 @@
+--- a/src/extension/internal/image-resolution.cpp	Sun Nov 30 18:45:32 2014
++++ b/src/extension/internal/image-resolution.cpp	Sun Jul 12 19:38:53 2015
+@@ -26,7 +26,9 @@
+ 
+ #ifdef HAVE_JPEG
+ #define IR_TRY_JFIF 1
++extern "C" {
+ #include <jpeglib.h>
++}
+ #include <setjmp.h>
+ #endif
+ 
