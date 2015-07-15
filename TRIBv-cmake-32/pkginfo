@@ -1,0 +1,4 @@
+PKG="TRIBv-cmake-32"
+NAME="CMake 3.2.x"
+VERSION="3.2.3.0"
+ZAP_URL="http://www.cmake.org/"
