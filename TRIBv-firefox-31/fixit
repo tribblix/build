@@ -5,7 +5,7 @@
 # disable autoupdate - see
 # https://support.mozilla.org/en-US/questions/944982
 #
-VERSION=31.7.0esr
+VERSION=31.8.0esr
 mkdir -p usr/bin
 cd usr/versions
 mkdir firefox-${VERSION}
