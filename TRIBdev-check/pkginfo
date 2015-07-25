@@ -1,0 +1,4 @@
+PKG="TRIBdev-check"
+NAME="Check: a unit test framework for C"
+VERSION="0.9.14.0"
+ZAP_URL="http://check.sourceforge.net/"
