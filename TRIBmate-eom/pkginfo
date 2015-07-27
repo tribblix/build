@@ -1,0 +1,4 @@
+PKG="TRIBmate-eom"
+NAME="Eye of MATE"
+VERSION="1.10.3.0"
+ZAP_URL="http://mate-desktop.org/"

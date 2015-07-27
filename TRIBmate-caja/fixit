@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# remove conflicts with shared-mime-info
+#
+rm usr/share/mime/XMLnamespaces
+rm usr/share/mime/aliases
+rm usr/share/mime/generic-icons
+rm usr/share/mime/globs
+rm usr/share/mime/globs2
+rm usr/share/mime/icons
+rm usr/share/mime/magic
+rm usr/share/mime/mime.cache
+rm usr/share/mime/subclasses
+rm usr/share/mime/treemagic
+rm usr/share/mime/types
+rm usr/share/mime/version
