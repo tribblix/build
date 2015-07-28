@@ -1,0 +1,4 @@
+PKG="TRIBboot2docker"
+NAME="Boot2docker CLI"
+VERSION="1.7.1.0"
+ZAP_URL="http://boot2docker.io/"

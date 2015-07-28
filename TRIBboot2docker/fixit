@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# add docker convenience wrapper
+#
+cat > usr/bin/docker <<EOF
+#!/bin/sh
+exec /usr/bin/boot2docker ssh -t docker "\$@"
+EOF
+chmod a+x usr/bin/docker
