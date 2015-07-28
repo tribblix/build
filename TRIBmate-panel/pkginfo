@@ -1,0 +1,4 @@
+PKG="TRIBmate-panel"
+NAME="MATE panel"
+VERSION="1.10.1.0"
+ZAP_URL="http://mate-desktop.org/"
