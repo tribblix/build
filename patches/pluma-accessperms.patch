@@ -1,0 +1,11 @@
+--- a/tests/document-saver.c	Tue Dec 16 12:05:53 2014
++++ b/tests/document-saver.c	Mon Jul 27 22:08:29 2015
+@@ -27,6 +27,8 @@
+ #include <string.h>
+ #include <sys/stat.h>
+ 
++#define ACCESSPERMS (S_IRWXU|S_IRWXG|S_IRWXO)
++
+ #define DEFAULT_LOCAL_URI "/tmp/pluma-document-saver-test.txt"
+ #define DEFAULT_REMOTE_URI "sftp://localhost/tmp/pluma-document-saver-test.txt"
+ #define DEFAULT_CONTENT "hello world!"

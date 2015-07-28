@@ -1,0 +1,4 @@
+PKG="TRIBmate-pluma"
+NAME="Pluma - MATE editor"
+VERSION="1.10.1.0"
+ZAP_URL="http://mate-desktop.org/"
