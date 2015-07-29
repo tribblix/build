@@ -23,6 +23,11 @@ do
   if [ -f ../build/${PKGI}/depend ]; then
      cat ../build/${PKGI}/depend >> $TMPF
   fi
+  if [ ! -d ../build/${PKGI} ]; then
+      if [ -f /var/sadm/pkg/${PKGI}/install/depend ] ; then
+	  grep '^P' /var/sadm/pkg/${PKGI}/install/depend >> $TMPF
+      fi
+  fi
 done
 echo "Overlay ${OVL} depends on:"
 echo "============================================="
