@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+VERSION="2.7"
+cd usr/versions/python-${VERSION}/lib/python${VERSION}/site-packages
+tar cf setuptools.tar setuptools
+rm -fr setuptools

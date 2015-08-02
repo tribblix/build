@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# setuptools has files whose names contain spaces, so we unpack them
+# rather than package them
+#
+cd ${BASEDIR}/usr/versions/python-2.7/lib/python2.7/site-packages
+if [ -f setuptools.tar ]; then
+  /usr/bin/tar xf setuptools.tar
+  /usr/bin/chown -hR root:root setuptools
+  /usr/bin/chmod -R a+rX setuptools
+fi
