@@ -1,0 +1,7 @@
+P TRIBboehm-gc
+P TRIBcompress-bzip2
+P TRIBlib-expat
+P TRIBlib-security-openssl
+P TRIBlib-zlib
+P TRIBlibidn
+P TRIBx11-libx11
