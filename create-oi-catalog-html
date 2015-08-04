@@ -4,7 +4,7 @@
 #  name|version|dependencies
 #
 PKGDIR=/packages/localsrc/Tribblix/repo-master/oi-151a9
-PKGVERS="0.8o"
+PKGVERS="0.9o"
 
 cat <<EOF
 <html>
