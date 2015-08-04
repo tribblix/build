@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# just name off the primary version
+#
+VERSION=1.7.5.0
+cd usr/versions
+ln -s ec2-api-tools-${VERSION} ec2-api-tools
+rm ec2-api-tools-${VERSION}/bin/*.cmd
+chmod a+x ec2-api-tools-${VERSION}/bin/*
+chmod g-w ec2-api-tools-${VERSION}/bin/*
