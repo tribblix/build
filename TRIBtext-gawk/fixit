@@ -3,7 +3,8 @@
 # add a g-prefixed link
 #
 rm -f usr/gnu/lib/charset.alias
-rmdir usr/gnu/lib
-mkdir -p usr/bin
+mkdir -p usr/bin/amd64
 cd usr/bin
 ln -s ../gnu/bin/gawk .
+cd amd64
+ln -s ../../gnu/bin/amd64/gawk .
