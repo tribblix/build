@@ -1,4 +1,4 @@
 PKG="TRIBscreen"
 NAME="GNU Screen"
-VERSION="4.2.1.0"
+VERSION="4.3.1.0"
 ZAP_URL="http://www.gnu.org/software/screen/"
