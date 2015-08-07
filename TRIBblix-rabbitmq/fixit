@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+cd opt/tribblix
+
+#
+# Normalize the directory name
+#
+VERSION="3.5.4"
+mv rabbitmq_server-${VERSION} rabbitmq
+
+#
+# this is the directory tree
+#
+mkdir -p rabbitmq/var/lib/rabbitmq
+mkdir -p rabbitmq/var/log/rabbitmq
+
+#
+# scripts are bash-specific
+#
+cd rabbitmq/sbin
+gsed -i s:/bin/sh:/bin/bash: *
+
+#
+# don't ship compressed man pages
+#
+cd ../share/man
+gunzip */*.gz

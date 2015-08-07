@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+nawk '
+{if ($3 ~ /^opt\/tribblix\/rabbitmq\/var/) { $6 = "rabbitmq" ; $5 = "rabbitmq" }}
+{if ($3 ~ /^opt\/tribblix\/rabbitmq\/etc/) { $6 = "rabbitmq" ; $5 = "rabbitmq" }}
+{print}
+'
