@@ -87,6 +87,53 @@ echo "exit 0" >> ${BDIR}/install/postremove
 fi
 }
 
+#
+# deal with users and groups
+#
+init_preinstall() {
+if [ ! -f ${BDIR}/install/preinstall ]; then
+cat > ${BDIR}/install/preinstall <<EOF
+#!/sbin/sh
+#
+# Automatically generated preinstall script
+#
+EOF
+echo "i preinstall=./install/preinstall" >> ${BDIR}/pp.$$
+fi
+}
+close_preinstall() {
+if [ -f ${BDIR}/install/preinstall ]; then
+    echo "exit 0" >> ${BDIR}/install/preinstall
+fi
+}
+do_group() {
+    init_preinstall
+    cat ${BUILD}/${PKGNAME}/group | while read gline
+    do
+	gname=`echo $gline|awk -F: '{print $1}'`
+	cat >> ${BDIR}/install/preinstall <<EOF
+if ! /usr/bin/grep -q "^${gname}" \${BASEDIR}/etc/group
+then
+   echo "$gline" >> \${BASEDIR}/etc/group
+fi
+EOF
+    done
+}
+do_passwd() {
+    init_preinstall
+    cat ${BUILD}/${PKGNAME}/passwd | while read pline
+    do
+	pname=`echo $pline|awk -F: '{print $1}'`
+	cat >> ${BDIR}/install/preinstall <<EOF
+if ! /usr/bin/grep -q "^${pname}" \${BASEDIR}/etc/passwd
+then
+   echo "$pline" >> \${BASEDIR}/etc/passwd
+   echo "${pname}:NP:::::::" >> \${BASEDIR}/etc/shadow
+fi
+EOF
+    done
+}
+
 PKGVER=`/usr/bin/grep '^VERSION=' ${BUILD}/${PKGNAME}/pkginfo | /usr/bin/awk -F= '{print $2}' | /usr/bin/sed 's:"::g'`
 cd $BDIR
 # copy packaging files from archive
@@ -158,6 +205,17 @@ if [ -f ${BUILD}/${PKGNAME}/cas_list ]; then
   done
 fi
 #
+# deal with users and groups
+#
+rm -f ${BDIR}/install/preinstall
+if [ -f ${BUILD}/${PKGNAME}/group ]; then
+    do_group
+fi
+if [ -f ${BUILD}/${PKGNAME}/passwd ]; then
+    do_passwd
+fi
+close_preinstall
+#
 # handle anything that's a link to isaexec
 #
 if [ -f ${BUILD}/${PKGNAME}/isaexec ]; then
@@ -187,6 +245,14 @@ fi
 # zonelib is just for TRIBblix-zones
 if [ -d ${BDIR}/zonelib ]; then
    (cd ${BDIR} ; pkgproto zonelib | ${BUILD}/fixproto) >> pp.$$
+fi
+#
+# any per-package proto fixes
+#
+if [ -x ${BUILD}/${PKGNAME}/fixproto ]; then
+    mv pp.$$ old.pp.$$
+    cat old.pp.$$ | ${BUILD}/${PKGNAME}/fixproto > pp.$$
+    rm old.pp.$$
 fi
 # create the package
 pkgmk -d ${BROOT} -f pp.$$ -r ${BDIR} ${PKGNAME}
