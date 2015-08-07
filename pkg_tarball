@@ -1,15 +1,24 @@
 #!/bin/sh
 #
 # package something that's already a tarball, assumed to be into
-# it's named subdirectory of /usr/versions
+# it's named subdirectory of /usr/versions (or /opt/tribblix if the
+# -T flag is supplied)
 #
+STD_DESTINATION="usr/versions"
+case $1 in
+-T)
+    STD_DESTINATION="opt/tribblix"
+    shift
+    ;;
+esac
+
 case $# in
 2)
         SOFTDIR="$2"
         PKGNAME="$1"
 	;;
 *)
-	echo "Usage: $0 pkg_name file_root"
+	echo "Usage: $0 [-T] pkg_name file_root"
 	exit 1
 	;;
 esac
@@ -39,8 +48,8 @@ fi
 #
 BDIR="${BROOT}/pkg.$$"
 rm -fr ${BDIR}
-mkdir -p ${BDIR}/usr/versions
-cd ${BDIR}/usr/versions
+mkdir -p ${BDIR}/${STD_DESTINATION}
+cd ${BDIR}/${STD_DESTINATION}
 
 ${BUILD}/unpack $SOFTDIR
 ${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
