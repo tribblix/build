@@ -1,0 +1,8 @@
+Userid allocation for Tribblix.
+
+Start at 101, leaving 100 and below for illumos.
+
+By default, reserver the group id as well
+
+
+101 rabbitmq
