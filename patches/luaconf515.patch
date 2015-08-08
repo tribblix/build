@@ -1,0 +1,20 @@
+--- lua-5.1.5/src/luaconf.h	Mon Feb 11 16:25:08 2008
++++ olua/src/luaconf.h	Sat Aug  8 21:19:15 2015
+@@ -94,7 +94,7 @@
+ 	".\\?.dll;"  LUA_CDIR"?.dll;" LUA_CDIR"loadall.dll"
+ 
+ #else
+-#define LUA_ROOT	"/usr/local/"
++#define LUA_ROOT	"/usr/"
+ #define LUA_LDIR	LUA_ROOT "share/lua/5.1/"
+ #define LUA_CDIR	LUA_ROOT "lib/lua/5.1/"
+ #define LUA_PATH_DEFAULT  \
+@@ -184,7 +184,7 @@
+ 
+ #elif defined(__GNUC__) && ((__GNUC__*100 + __GNUC_MINOR__) >= 302) && \
+       defined(__ELF__)
+-#define LUAI_FUNC	__attribute__((visibility("hidden"))) extern
++#define LUAI_FUNC	extern
+ #define LUAI_DATA	LUAI_FUNC
+ 
+ #else
