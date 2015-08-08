@@ -1,0 +1,3 @@
+PKG="TRIBlibxdg-basedir"
+NAME="Implementation of XDG Base Directory specification"
+VERSION="1.2.0.0"
