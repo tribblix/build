@@ -92,6 +92,7 @@ fi
 #
 init_preinstall() {
 if [ ! -f ${BDIR}/install/preinstall ]; then
+mkdir -p ${BDIR}/install
 cat > ${BDIR}/install/preinstall <<EOF
 #!/sbin/sh
 #
