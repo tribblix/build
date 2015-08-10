@@ -2,7 +2,8 @@ Userid allocation for Tribblix.
 
 Start at 101, leaving 100 and below for illumos.
 
-By default, reserver the group id as well
+By default, reserve the group id as well
 
 
-101 rabbitmq
+101 rabbitmq	    TRIBblix-rabbitmq
+123 ntp 	    TRIBopenntpd
