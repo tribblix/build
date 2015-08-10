@@ -1,3 +1,4 @@
 PKG="TRIBnedit"
 NAME="NEdit - multipurpose text editor"
 VERSION="5.5.1"
+ZAP_URL="http://sourceforge.net/projects/nedit/"

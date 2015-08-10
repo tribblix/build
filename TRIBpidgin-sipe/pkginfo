@@ -1,3 +1,4 @@
 PKG="TRIBpidgin-sipe"
 NAME="Pidgin OCS/Lync plugin"
 VERSION="1.18.4.1"
+ZAP_URL="http://sipe.sourceforge.net/"
