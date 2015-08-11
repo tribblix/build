@@ -1,4 +1,4 @@
 PKG="TRIBrcs"
 NAME="Gnu rcs"
-VERSION="5.9.3.0"
+VERSION="5.9.4.0"
 ZAP_URL="http://www.gnu.org/software/rcs/"
