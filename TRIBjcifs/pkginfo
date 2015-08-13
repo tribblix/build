@@ -1,0 +1,4 @@
+PKG="TRIBjcifs"
+NAME="The Java CIFS Client Library"
+VERSION="1.3.18.0"
+ZAP_URL="https://jcifs.samba.org/"

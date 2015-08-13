@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# clean up; we just want the jarfile and minimal wrapping
+#
+mkdir -p usr/share
+cd usr/share
+/packages/localsrc/Tribblix/build/unpack jcifs-1.3.18
+mv jcifs_1.3.18 jcifs
+cd jcifs
+rm -fr src patches examples docs
+rm build.xml
