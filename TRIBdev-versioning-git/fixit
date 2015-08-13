@@ -1,5 +1,5 @@
 #!/bin/sh
 mkdir -p usr/share/man
 cd usr/share/man
-/packages/localsrc/Tribblix/build/unpack git-manpages-2.5.0
+${BUILDROOT}/unpack git-manpages-2.5.0
 chmod a+rx .

@@ -147,6 +147,11 @@ else
 fi
 cat ${BUILD}/pkginfo.base >> pkginfo
 echo "i pkginfo=./pkginfo" > pp.$$
+#
+# export BUILDROOT so the fixit script knows where to find stuff
+#
+BUILDROOT="${BUILD}"
+export BUILDROOT
 if [ -x ${BUILD}/${PKGNAME}/fixit ]; then
    echo "Fixing..."
    ${BUILD}/${PKGNAME}/fixit
