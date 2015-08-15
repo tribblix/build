@@ -1,4 +1,4 @@
 PKG="TRIBcompress-unzip"
-NAME="The Info-Zip (unzip) compression utility"
-VERSION="6.0.0"
+NAME="The Info-Zip unzip compression utility"
+VERSION="6.0.1"
 ZAP_URL="http://www.info-zip.org/UnZip.html"
