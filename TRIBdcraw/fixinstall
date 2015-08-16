@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# add locales
+#
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+for dclang in fr it de pt es nl sv ca da cs hu pl ro eo ru ja zh_TW zh_CN
+do
+    if [ -f dcraw_${dclang}.po ]; then
+	mkdir -p -m 755 ${DESTDIR}/usr/share/locale/${dclang}/LC_MESSAGES
+	msgfmt -o ${DESTDIR}/usr/share/locale/${dclang}/LC_MESSAGES/dcraw.mo dcraw_${dclang}.po
+    fi
+done
