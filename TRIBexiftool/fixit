@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# move the binary to regular path
+#
+mkdir -p usr/bin
+mv usr/versions/perl-5.22/bin/exiftool usr/bin
+rmdir usr/versions/perl-5.22/bin
