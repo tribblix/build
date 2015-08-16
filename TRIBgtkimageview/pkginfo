@@ -1,0 +1,4 @@
+PKG="TRIBgtkimageview"
+NAME="GTK image viewer widget"
+VERSION="1.64.0"
+ZAP_URL="http://trac.bjourne.webfactional.com/"
