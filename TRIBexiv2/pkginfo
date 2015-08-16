@@ -1,0 +1,4 @@
+PKG="TRIBexiv2"
+NAME="Image metadata library and tools"
+VERSION="0.25.0"
+ZAP_URL="http://www.exiv2.org/"

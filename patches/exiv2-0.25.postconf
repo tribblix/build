@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# errno.h is where errno is defined
+#
+gsed -i s:sys/errno:errno: src/http.cpp
+#
+# mkdir -pv is a gnuism
+#
+gsed -i 's:mkdir -pv:mkdir -p:' src/Makefile
+gsed -i 's:mkdir -pv:mkdir -p:' samples/Makefile
+#
+# libtool is delusional here
+#
+gsed -i 's:/usr/versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.3 /usr/versions/gcc-4.8.3/lib ::' libtool
+gsed -i 's:/usr/versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.3 /usr/versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.3/../../..::' libtool
+gsed -i 's:-L/usr/versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.3 -L/usr/versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.3/../../..::' libtool
