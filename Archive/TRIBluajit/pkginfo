@@ -1,3 +1,0 @@
-PKG="TRIBluajit"
-NAME="A JIT compiler for the Lua programming language"
-VERSION="2.0.3.0"
