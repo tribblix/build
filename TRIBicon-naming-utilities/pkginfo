@@ -1,3 +1,4 @@
 PKG="TRIBicon-naming-utilities"
 NAME="GNOME icon naming utilities"
-VERSION="0.8.90.0"
+VERSION="0.8.90.1"
+ZAP_URL="http://tango.freedesktop.org/Tango_Icon_Library"
