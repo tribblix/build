@@ -1,3 +1,4 @@
 PKG="TRIBgnome-icon-theme"
 NAME="GNOME icon theme"
-VERSION="2.30.3.0"
+VERSION="2.31.0.0"
+ZAP_URL="http://ftp.gnome.org/pub/GNOME/sources/gnome-icon-theme/"
