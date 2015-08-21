@@ -1,0 +1,4 @@
+PKG="TRIBtango-icon-theme"
+NAME="Tango icon theme"
+VERSION="0.8.90.0"
+ZAP_URL="http://tango.freedesktop.org/Tango_Icon_Library"
