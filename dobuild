@@ -8,6 +8,16 @@
 BUILD="/packages/localsrc/Tribblix/build"
 GMAKE="/usr/bin/gmake"
 
+case $# in
+    0)
+	echo "Usage: $0 [-64|+64] [-gnu] src_name \\"
+        echo "  [-S subdir] [-P alt_prefix] [-C configure_args] \\"
+	echo "  [-M make_args] [-J parallelism]"
+	echo "Arguments must be supplied in the order specified"
+	exit 1
+	;;
+esac
+
 #
 # if a dual 32- and 64-bit build is desired, specify -64 *first*
 # +64 means just do the 64-bit (useful for testing it in isolation)
@@ -45,16 +55,16 @@ esac
 #
 # FIXME
 # just one package, followed by
+# -S subdir
 # -P alternate_prefix
 # -C configure_args
 # -M make_args
-# -I install_args
+# -I install_args [unused]
 # -J parallelism
 #
 IPREFIX="/usr"
 CONFARGS=""
 MAKEARGS=""
-INSTARGS=""
 SUBDIR=""
 GMAKEFLAGS="-j 4"
 
@@ -85,13 +95,6 @@ case $1 in
 -M)
 	shift
 	MAKEARGS="$1"
-	shift
-	;;
-esac
-case $1 in
--I)
-	shift
-	INSTARGS="$1"
 	shift
 	;;
 esac
