@@ -1,0 +1,4 @@
+PKG="TRIBdia-extra-shapes"
+NAME="Extra shapes for dia"
+VERSION="1.0"
+ZAP_URL="http://dia-installer.de/shapes/"
