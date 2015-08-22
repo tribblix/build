@@ -2,12 +2,21 @@
 #
 # generate a merged list of dependencies for the given overlay
 #
+case $1 in
+-a)
+    for pkg in `ls -1 *.pkgs | sed s:.pkgs::`
+    do
+	$0 $pkg
+    done
+    ;;
+esac
+
 case $# in
 1)
 	OVL="$1"
 	;;
 *)
-	echo "Usage: $0 overlay"
+	echo "Usage: $0 -a|overlay"
 	exit 1
 	;;
 esac
@@ -29,9 +38,12 @@ do
       fi
   fi
 done
-echo "Overlay ${OVL} depends on:"
-echo "============================================="
-cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs
+##
+## This is only useful for debug
+##
+##echo "Overlay ${OVL} depends on:"
+##echo "============================================="
+##cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs
 #
 # find any dependencies that aren't handled by prerequisite overlays
 #
