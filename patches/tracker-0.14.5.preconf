@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# we have uuid, but not the pc file for it
+#
+gsed -i s:uuid:: configure
+#
+# the code is protected correctly by a guard, the test isn't
+#
+gsed -i '/SCHED_IDLE/d' tests/libtracker-common/tracker-sched-test.c
