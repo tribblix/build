@@ -1,0 +1,4 @@
+PKG="TRIBrygel"
+NAME="Rygel home media solution"
+VERSION="0.27.4.0"
+ZAP_URL="https://wiki.gnome.org/Projects/Rygel"
