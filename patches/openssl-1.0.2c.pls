@@ -1,3 +1,0 @@
--p0 openssl-unused-dep.patch 
--p1 openssl-102-pkcs11.patch
--p1 openssl-man_sections.patch

@@ -1,2 +1,0 @@
-#!/bin/sh
-gsed -i 's/G_THREAD_LIBS="-lpthread -lthread"/G_THREAD_LIBS=""/' configure
