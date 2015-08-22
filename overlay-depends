@@ -1,13 +1,36 @@
 #!/bin/sh
 #
-# generate a merged list of dependencies for the given overlay
+# generate a merged list of dependencies for the given overlay(s)
 #
+
+VERBOSE=""
+case $1 in
+-v)
+    # must come first, and pass it on
+    VERBOSE="-v"
+    shift
+    ;;
+esac
+
 case $1 in
 -a)
+    # look for all overlays
     for pkg in `ls -1 *.pkgs | sed s:.pkgs::`
     do
-	$0 $pkg
+	$0 $VERBOSE $pkg
     done
+    exit 0
+    ;;
+-f)
+    # useful for overlays.iso
+    if [ -f $2 ]; then
+	for pkg in `cat $2`
+	do
+	    $0 $VERBOSE $pkg
+	done
+    else
+	echo "Missing file $2"
+    fi
     exit 0
     ;;
 esac
@@ -17,7 +40,7 @@ case $# in
 	OVL="$1"
 	;;
 *)
-	echo "Usage: $0 -a|overlay"
+	echo "Usage: $0 [-v] -a|overlay|-f listfile"
 	exit 1
 	;;
 esac
@@ -70,5 +93,22 @@ echo ""
 echo "Missing dependencies in overlay ${OVL}:"
 echo "============================================="
 cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs| /usr/bin/fgrep -v -f ${TMPF}.t
+
+if [ "X$VERBOSE" = "X-v" ]; then
+for ndep in `cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs| /usr/bin/fgrep -v -f ${TMPF}.t`
+do
+for PKGI in `cat ${OVL}.pkgs`
+do
+  if [ -f ../build/${PKGI}/depend ]; then
+     grep -w $ndep ../build/${PKGI}/depend /dev/null
+  fi
+  if [ ! -d ../build/${PKGI} ]; then
+      if [ -f /var/sadm/pkg/${PKGI}/install/depend ] ; then
+	  grep -w $ndep /var/sadm/pkg/${PKGI}/install/depend /dev/null
+      fi
+  fi
+done
+done
+fi
 
 rm -f $TMPF ${TMPF}.t ${TMPF}.p
