@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+rm -fr usr/share/gtk-doc
+#
+# it does need uuid, but that comes from the base os and
+# there is no uuid.pc file for it
+#
+gsed -i 's:uuid::' usr/lib/pkgconfig/gupnp-1.0.pc
