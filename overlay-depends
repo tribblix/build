@@ -8,6 +8,7 @@ case $1 in
     do
 	$0 $pkg
     done
+    exit 0
     ;;
 esac
 
