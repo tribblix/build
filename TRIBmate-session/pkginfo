@@ -1,0 +1,4 @@
+PKG="TRIBmate-session"
+NAME="MATE session manager"
+VERSION="1.10.2.0"
+ZAP_URL="http://mate-desktop.org/"

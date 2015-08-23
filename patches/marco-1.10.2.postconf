@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# fixes for random abuses of standards
+#
+gsed -i '/_XOPEN_SOURCE/d' src/tools/marco-mag.c
+gsed -i '/_POSIX_C_SOURCE/d' src/core/util.c
+gsed -i '/_XOPEN_SOURCE/d' src/ui/preview-widget.c

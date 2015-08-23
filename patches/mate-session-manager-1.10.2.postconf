@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# mate-session/gsm-xsmp-server.c calls _IceTransNoListen which is
+# private, and thus won't work. The guard checked for by configure is
+# incorrect anyway, so this disables it
+#
+gsed -i 's:#define HAVE_X11_XTRANS_XTRANS_H 1:#undef HAVE_X11_XTRANS_XTRANS_H:' config.h
