@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# the installer puts things in completely the wrong place
+#
+mkdir -p usr/versions/python-2.7/lib/python2.7/site-packages
+mv usr/lib/python2.7/site-packages/xml2po usr/versions/python-2.7/lib/python2.7/site-packages
+rmdir usr/lib/python2.7/site-packages
+rmdir usr/lib/python2.7
+rmdir usr/lib
