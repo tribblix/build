@@ -1,0 +1,4 @@
+PKG="TRIBmate-backgrounds"
+NAME="MATE backgrounds"
+VERSION="1.10.0.0"
+ZAP_URL="http://mate-desktop.org/"
