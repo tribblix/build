@@ -1,4 +1,4 @@
 PKG="TRIBv-thunderbird-31"
 NAME="Thunderbird mail client"
-VERSION="31.4.0.0"
+VERSION="31.7.0.0"
 ZAP_URL="https://www.mozilla.org/en-US/"
