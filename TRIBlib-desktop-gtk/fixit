@@ -1,3 +1,15 @@
 #!/bin/sh
 #
 rm -fr usr/share/gtk-doc
+#
+# see /lib/svc/method/input-method-cache
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+mkdir -p usr/etc/${ARCH64}/gtk-2.0
