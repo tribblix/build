@@ -7,6 +7,7 @@
 
 BUILD="/packages/localsrc/Tribblix/build"
 GMAKE="/usr/bin/gmake"
+WORKING_ROOT=`pwd`
 
 case $# in
     0)
@@ -124,35 +125,35 @@ for pkg in ${THISPKG}
 do
 	${BUILD}/unpack ${UNPACK_FLAGS} ${pkg}
 	if [ "x$DO64" != "xfalse" ]; then
+	    cd ${WORKING_ROOT}
 	    cd ${pkg}-64bit${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    if [ "x$DOGNU" != "xfalse" ]; then
-		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/gnu/bin:$PATH LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
+		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/gnu/bin:$PATH LDFLAGS="-m64" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
 	    else
-		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
+		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig LDFLAGS="-m64" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
 	    fi
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
 	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
-	    cd ..
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
+	    cd ${WORKING_ROOT}
 	    cd ${pkg}${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    if [ "x$DOGNU" != "xfalse" ]; then
-		env PATH=/usr/gnu/bin:$PATH CFLAGS="-O" CXXFLAGS="-O" ./configure ${CONFARGS} --prefix=${IPREFIX}
+		env PATH=/usr/gnu/bin:$PATH CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ./configure ${CONFARGS} --prefix=${IPREFIX}
 	    else
-		env CFLAGS="-O" CXXFLAGS="-O" ./configure ${CONFARGS} --prefix=${IPREFIX}
+		env CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ./configure ${CONFARGS} --prefix=${IPREFIX}
 	    fi
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
 	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
-	    cd ..
 	fi
 done
