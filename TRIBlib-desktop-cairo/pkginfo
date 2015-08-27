@@ -1,4 +1,4 @@
 PKG="TRIBlib-desktop-cairo"
 NAME="Cairo Graphics"
-VERSION="1.12.16.0"
+VERSION="1.12.16.1"
 ZAP_URL="http://cairographics.org/"

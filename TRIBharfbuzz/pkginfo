@@ -1,4 +1,4 @@
 PKG="TRIBharfbuzz"
 NAME="Harfbuzz text shaping engine"
-VERSION="0.9.35.1"
+VERSION="0.9.35.2"
 ZAP_URL="http://www.freedesktop.org/wiki/Software/HarfBuzz/"
