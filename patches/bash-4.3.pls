@@ -31,3 +31,12 @@
 -p0 bash43-031
 -p0 bash43-032
 -p0 bash43-033
+-p0 bash43-034
+-p0 bash43-035
+-p0 bash43-036
+-p0 bash43-037
+-p0 bash43-038
+-p0 bash43-039
+-p0 bash43-040
+-p0 bash43-041
+-p0 bash43-042
