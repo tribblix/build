@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# fltk doesn't use LDFLAGS when constructing shared libraries,
+# so it ignores the -m64 we set. Fix the variable it does use.
+# Only if we're in the 64-bit directory, though,
+#
+case `pwd` in
+*64bit)
+	gsed -i 's:DSOFLAGS	= -L.:DSOFLAGS	= -m64 -L.:' makeinclude
+	;;
+esac

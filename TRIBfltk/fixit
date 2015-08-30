@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# clean up examples
+#
+rm -fr usr/share/doc
+#
+# don't ship preformatted man pages
+#
+rm -fr usr/share/man/cat1
+rm -fr usr/share/man/cat3
