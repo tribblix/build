@@ -2,11 +2,18 @@
 #
 # some files have "odd" names incompatible with SVR4 packaging
 #
-mv usr/share/samba/setup/cn=replicator.ldif usr/share/samba/setup/cn-replicator.ldif
-mv usr/share/samba/setup/cn=samba-admin.ldif usr/share/samba/setup/cn-samba-admin.ldif
+#mv usr/share/samba/setup/cn=replicator.ldif usr/share/samba/setup/cn-replicator.ldif
+#mv usr/share/samba/setup/cn=samba-admin.ldif usr/share/samba/setup/cn-samba-admin.ldif
 mv usr/share/samba/setup/cn=samba.ldif usr/share/samba/setup/cn-samba.ldif
 #
 # this is a Solaris base command
 #
 mv usr/bin/profiles usr/bin/smbprofiles
 mv usr/share/man/man1/profiles.1 usr/share/man/man1/smbprofiles.1
+#
+# this is where our python really lives
+#
+mkdir -p usr/versions/python-2.7/lib/python2.7/site-packages
+mv usr/lib/python2.7/site-packages/* usr/versions/python-2.7/lib/python2.7/site-packages
+rmdir usr/lib/python2.7/site-packages
+rmdir usr/lib/python2.7
