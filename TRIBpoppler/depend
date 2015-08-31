@@ -1,0 +1,6 @@
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBimage-libtiff
+P TRIBlib-lcms
+P TRIBsys-lib-fontconfig
+P TRIBsys-lib-freetype-2
