@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-rm -fr usr/share/gtk-doc
-#
 # the following only make sense for Linux
 #
 rm -fr etc/init

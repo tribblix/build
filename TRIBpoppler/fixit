@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-rm -fr usr/share/gtk-doc
-
 
 #
 # we need to install poppler-data as well

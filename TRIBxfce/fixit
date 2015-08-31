@@ -3,7 +3,6 @@
 # get all the icons in place
 # assumes the gnome icon theme is installed
 #
-rm -fr usr/share/gtk-doc
 mkdir -p usr/share/icons/hicolor/16x16/apps
 mkdir -p usr/share/icons/hicolor/24x24/apps
 mkdir -p usr/share/icons/hicolor/48x48/apps

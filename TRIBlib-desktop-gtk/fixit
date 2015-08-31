@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-rm -fr usr/share/gtk-doc
-#
 # see /lib/svc/method/input-method-cache
 #
 case `uname -p` in

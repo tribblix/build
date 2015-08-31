@@ -3,6 +3,7 @@
 # default fixes to installed packages
 # - relocate /usr/man to /usr/share/man
 # - remove info files
+# - remove gtk-doc
 #
 if [ -d usr/man ]; then
     mkdir -p usr/share
@@ -23,6 +24,9 @@ if [ -d usr/gnu/info ]; then
 fi
 if [ -d usr/gnu/share/info ]; then
     rm -fr usr/gnu/share/info
+fi
+if [ -d usr/share/gtk-doc ]; then
+    rm -fr usr/share/gtk-doc
 fi
 #
 # don't embed compiler location in .la files

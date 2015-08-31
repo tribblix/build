@@ -6,5 +6,3 @@ if [ ! -f usr/etc/pango/pango.modules ]; then
     mkdir -p usr/etc/pango
     env LD_LIBRARY_PATH=./usr/lib ./usr/bin/pango-querymodules > usr/etc/pango/pango.modules
 fi
-#
-rm -fr usr/share/gtk-doc
