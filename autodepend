@@ -6,24 +6,21 @@
 # errors and omissions (including the package the target itself is in)
 # this is just to help and minimise typing rather than being authoritative
 #
+# Dependencies on the following are considered fundamental and should
+# not normally be recorded for applications
+#   TRIBsys-library TRIBsys-lib-math TRIBgcc4runtime SUNWcs
+#
 # assumes a shared object
 #
 case $# in
 0)
-	echo "Usage: $0 target"
+	echo "Usage: $0 target [...]"
 	exit 1
-	;;
-1)
-	TARG=$1
-	;;
-*)
-	for f in $* ; do $0 $f ; done | sort | uniq
-	exit 0
 	;;
 esac
 
 if [ ! -e $1 ]; then
-   echo "$TARG not found"
+   echo "$1 not found"
    exit 1
 fi
 
@@ -42,10 +39,10 @@ fi
 #
 getdeps()
 {
-for dep in `/usr/bin/dump -Lv $TARG | grep NEEDED | awk '{print $NF}'`
+for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort | uniq`
 do
   $EGREP "lib/$dep( |=)" /var/sadm/install/contents
 done
 }
 
-getdeps | awk '{print "P "$NF}'|sort|uniq
+getdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|SUNWcs)$'
