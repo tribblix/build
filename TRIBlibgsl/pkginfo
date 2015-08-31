@@ -1,3 +1,4 @@
 PKG="TRIBlibgsl"
 NAME="GNU Scientific library"
-VERSION="1.15.0"
+VERSION="1.16.0"
+ZAP_URL="http://www.gnu.org/software/gsl/"
