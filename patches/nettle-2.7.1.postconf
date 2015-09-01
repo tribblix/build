@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# creating a shared library takes more than simply calling it .so
+#
+gsed -i 's:LIBNETTLE_LINK = $(CC) $(CFLAGS) $(LDFLAGS) -G -h $(LIBNETTLE_SONAME):LIBNETTLE_LINK = $(CC) -shared $(CFLAGS) $(LDFLAGS) -G -h $(LIBNETTLE_SONAME):' config.make
+gsed -i 's:LIBHOGWEED_LINK = $(CC) $(CFLAGS) $(LDFLAGS) -L. -G -h $(LIBHOGWEED_SONAME):LIBHOGWEED_LINK = $(CC) -shared $(CFLAGS) $(LDFLAGS) -L. -G -h $(LIBHOGWEED_SONAME):' config.make
