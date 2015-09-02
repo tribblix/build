@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ -f usr/man/man1/qiv.1.gz ]; then
+   gunzip usr/man/man1/qiv.1.gz
+fi
+if [ -f usr/share/man/man1/qiv.1.gz ]; then
+   gunzip usr/share/man/man1/qiv.1.gz
+fi

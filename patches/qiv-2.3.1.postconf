@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i -e 's:GIF ::' -e 's:^MAGIC:#MAGIC:' -e s:/usr/local:/usr: -e 's:install -: ginstall -:' Makefile
