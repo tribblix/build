@@ -1,4 +1,4 @@
 PKG="TRIBlibmediaart"
 NAME="GNOME libmediaart"
-VERSION="1.9.0.0"
+VERSION="1.9.0.1"
 ZAP_URL="http://ftp.gnome.org/pub/GNOME/sources/libmediaart/"
