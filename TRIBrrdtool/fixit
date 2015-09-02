@@ -3,3 +3,11 @@ mkdir -p usr/share/man/man3
 mv usr/man/man3/RRDp.3 usr/share/man/man3
 rmdir usr/man/man3 usr/man
 rm -fr usr/share/doc
+rm -fr usr/share/rrdtool
+#
+# this is where our python really lives
+#
+mkdir -p usr/versions/python-2.7/lib/python2.7/site-packages
+mv usr/lib/python2.7/site-packages/* usr/versions/python-2.7/lib/python2.7/site-packages
+rmdir usr/lib/python2.7/site-packages
+rmdir usr/lib/python2.7
