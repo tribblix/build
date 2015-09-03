@@ -11,3 +11,9 @@ i386)
   ;;
 esac
 mkdir -p usr/etc/${ARCH64}/gtk-2.0
+#
+# clean up
+# (in 2 steps just in case something gets added later)
+#
+rm -fr usr/share/gtk-2.0/demo
+rmdir usr/share/gtk-2.0

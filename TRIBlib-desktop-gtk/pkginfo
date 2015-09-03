@@ -1,4 +1,4 @@
 PKG="TRIBlib-desktop-gtk"
 NAME="The GIMP Toolkit"
-VERSION="2.24.13.3"
+VERSION="2.24.28.0"
 ZAP_URL="http://www.gtk.org/"
