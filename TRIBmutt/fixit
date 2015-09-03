@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# remove files that don't apply to us
+#
+rm -fr usr/share/doc/mutt/samples/iconv
+rm usr/share/doc/mutt/samples/colors.linux
+rm usr/etc/mime.types.dist
+mv usr/etc/mime.types usr/etc/mime.types.mutt
+#
+# some of these files are development only
+#
+cd usr/share/doc/mutt
+rm applying-patches.txt INSTALL devel-notes.txt patch-notes.txt
+rm NEWS ChangeLog PGP-Notes.txt
+#
+# manual.html is the other html files combined, and manual.txt contains
+# the same information, so just keep one
+#
+mv manual.html tmp1
+rm *.html
+rm manual.txt
+mv tmp1 manual.html
