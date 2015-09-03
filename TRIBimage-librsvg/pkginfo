@@ -1,4 +1,4 @@
 PKG="TRIBimage-librsvg"
 NAME="CAIRO SVG renderer"
-VERSION="2.36.4.3"
+VERSION="2.36.4.4"
 ZAP_URL="https://wiki.gnome.org/Projects/LibRsvg"
