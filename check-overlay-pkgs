@@ -1,0 +1,50 @@
+#!/bin/sh
+#
+# check validity of the package names for the given overlay(s)
+#
+
+case $1 in
+-a)
+    # look for all overlays
+    for pkg in `ls -1 *.pkgs | sed s:.pkgs::`
+    do
+	$0 $pkg
+    done
+    exit 0
+    ;;
+-f)
+    # useful for overlays.iso
+    if [ -f $2 ]; then
+	for pkg in `cat $2`
+	do
+	    $0 $pkg
+	done
+    else
+	echo "Missing file $2"
+    fi
+    exit 0
+    ;;
+esac
+
+case $# in
+1)
+	OVL="$1"
+	;;
+*)
+	echo "Usage: $0 -a|overlay|-f listfile"
+	exit 1
+	;;
+esac
+if [ ! -f "${OVL}.pkgs" ]; then
+    echo "ERROR: unable to find overlay $OVL"
+    exit 1
+fi
+for PKGI in `cat ${OVL}.pkgs`
+do
+  if [ ! -d ../build/${PKGI} ]; then
+      NVER=`/usr/lib/zap/get-version $PKGI`
+      if [ "X${NVER}" = "X${PKGI}" ]; then
+	  echo "ERROR: invalid package $PKGI"
+      fi
+  fi
+done
