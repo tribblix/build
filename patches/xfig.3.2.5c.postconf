@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# we don't have Xaw3d (yet)
+#
+gsed -i 's:#define XAW3D:XCOMM #define XAW3D:' Imakefile
+gsed -i 's:/usr/local:/usr:' Imakefile
+#
+# this is an imake distribution
+#
+xmkmf -a
+#
+# it's not that we're cygwin, but that's the easiest place to change it
+#
+gsed -i s:CYGWIN:sun: w_keyboard.c
