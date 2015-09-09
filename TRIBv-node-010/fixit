@@ -4,5 +4,5 @@
 #
 VERSION=0.10.40
 mkdir -p usr/bin
-ln -s ../versions/node-v${VERSION}/bin/node usr/bin/
-ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/
+ln -s ../versions/node-v${VERSION}/bin/node usr/bin/node-010
+ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/npm-010
