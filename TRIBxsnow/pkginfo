@@ -1,0 +1,4 @@
+PKG="TRIBxsnow"
+NAME="X11 snowflakes"
+VERSION="1.40.0"
+ZAP_URL="http://www.ibiblio.org/pub/X11/contrib/games/"
