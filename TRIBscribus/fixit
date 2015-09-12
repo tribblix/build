@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# slim down the docs
+#
+rm -fr usr/share/doc/scribus/de
+rm -fr usr/share/doc/scribus/it
+#
+# bundle filenames with spaces
+#
+cd usr/share/scribus
+tar cf swatches.tar swatches
+rm -fr swatches

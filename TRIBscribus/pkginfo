@@ -1,0 +1,4 @@
+PKG="TRIBscribus"
+NAME="Open Source Desktop Publishing"
+VERSION="1.4.5.0"
+ZAP_URL="http://www.scribus.net/"
