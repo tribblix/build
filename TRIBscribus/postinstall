@@ -5,7 +5,7 @@
 #
 cd ${BASEDIR}/usr/share/scribus
 if [ -f swatches.tar ]; then
-  /usr/bin/tar xf swatches
+  /usr/bin/tar xf swatches.tar
   /usr/bin/chown -hR root:root swatches
   /usr/bin/chmod -R a+rX swatches
 fi
