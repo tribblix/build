@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+mkdir -p ${DESTDIR}/usr/share/fonts/TrueType/liberation
+mkdir -p ${DESTDIR}/etc/X11/fontpath.d
+ln -s ../../../usr/share/fonts/TrueType/liberation ${DESTDIR}/etc/X11/fontpath.d/liberation:pri
+cp LICENSE ${DESTDIR}/usr/share/fonts/TrueType/liberation
+cp *ttf ${DESTDIR}/usr/share/fonts/TrueType/liberation
+cd ${DESTDIR}/usr/share/fonts/TrueType/liberation
+mkfontscale .
+ln fonts.scale fonts.dir
