@@ -10,18 +10,20 @@ EOF
 # this should initially include only the current version
 # and then be updated for all later versions
 #
-# ideally, add the new release to the old version just before making
-# a release
+# add the new release to the old version just before making
+# a release, then respin this one for the release itself
 #
 case `uname -p` in
 sparc)
 cat > etc/zap/version.list <<EOF
 m15|http://pkgs.tribblix.org/tribblix-m15.sparc/TRIBzap.0.0.15.0.zap|Milestone 15
+m16|http://pkgs.tribblix.org/tribblix-m16.sparc/TRIBzap.0.0.16.0.zap|Milestone 16
 EOF
 ;;
 i386)
 cat > etc/zap/version.list <<EOF
 m15|http://pkgs.tribblix.org/tribblix-m15/TRIBzap.0.0.15.0.zap|Milestone 15
+m16|http://pkgs.tribblix.org/tribblix-m16/TRIBzap.0.0.16.0.zap|Milestone 16
 EOF
 ;;
 esac
