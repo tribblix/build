@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-xml-parser"
+NAME="Perl XML::Parser and associated module"
+VERSION="2.44.0"
+ZAP_URL="http://search.cpan.org/~toddr/XML-Parser-2.44/"

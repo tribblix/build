@@ -1,0 +1,16 @@
+#!/bin/sh
+/bin/rm -fr usr/perl5/5.22.0/lib
+#
+# the install tries to write this in place
+#
+cat > usr/perl5/site_perl/5.22.0/XML/SAX/ParserDetails.ini <<EOF
+[XML::SAX::PurePerl]
+http://xml.org/sax/features/namespaces = 1
+
+[XML::SAX::Expat]
+http://xml.org/sax/features/namespaces = 1
+http://xml.org/sax/features/external-parameter-entities = 1
+http://xml.org/sax/features/external-general-entities = 1
+
+
+EOF
