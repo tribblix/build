@@ -1,5 +1,17 @@
 #!/bin/sh
+#
+# the man pages come in a separate download
+#
 mkdir -p usr/share/man
 cd usr/share/man
-${BUILDROOT}/unpack git-manpages-2.5.0
+${BUILDROOT}/unpack git-manpages-2.5.3
 chmod a+rx .
+cd ../../..
+#
+# and it has no clue where perl is, really
+#
+rm usr/lib/i86pc-solaris-thread-multi-64int/perllocal.pod      
+rmdir usr/lib/i86pc-solaris-thread-multi-64int
+mkdir -p usr/perl5
+mv usr/lib/site_perl usr/perl5
+rmdir usr/lib
