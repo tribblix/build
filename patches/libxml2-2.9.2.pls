@@ -1,0 +1,5 @@
+-p1 libxml2.xmlcatalog.patch
+-p1 libxml2.test_errors_name2.patch
+-p1 libxml2.parser.patch
+-p1 libxml2.mapfile.patch
+-p1 libxml2.lib-run-path-fix.patch
