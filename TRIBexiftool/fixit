@@ -3,5 +3,6 @@
 # move the binary to regular path
 #
 mkdir -p usr/bin
-mv usr/versions/perl-5.22/bin/exiftool usr/bin
-rmdir usr/versions/perl-5.22/bin
+mv usr/perl5/5.22.0/bin/exiftool usr/bin
+rmdir usr/perl5/5.22.0/bin
+rm -fr usr/perl5/5.22.0/lib
