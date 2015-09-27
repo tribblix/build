@@ -1,4 +1,4 @@
 PKG="TRIBlib-security-trousers"
 NAME="TrouSerS - TCG software stack"
-VERSION="0.3.8.0"
+VERSION="0.3.8.1"
 ZAP_URL="http://sourceforge.net/projects/trousers/"
