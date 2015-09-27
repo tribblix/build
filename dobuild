@@ -121,6 +121,8 @@ esac
 
 UNPACKER=${BUILD}/unpack
 export UNPACKER
+PATCHDIR=${BUILD}/patches
+export PATCHDIR
 for pkg in ${THISPKG}
 do
 	${BUILD}/unpack ${UNPACK_FLAGS} ${pkg}
@@ -131,9 +133,9 @@ do
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    if [ "x$DOGNU" != "xfalse" ]; then
-		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/gnu/bin:$PATH LDFLAGS="-m64" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
+		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/gnu/bin:$PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
 	    else
-		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig LDFLAGS="-m64" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
+		env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
 	    fi
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
@@ -147,9 +149,9 @@ do
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    if [ "x$DOGNU" != "xfalse" ]; then
-		env PATH=/usr/gnu/bin:$PATH CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ./configure ${CONFARGS} --prefix=${IPREFIX}
+		env PATH=/usr/gnu/bin:$PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ./configure ${CONFARGS} --prefix=${IPREFIX}
 	    else
-		env CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ./configure ${CONFARGS} --prefix=${IPREFIX}
+		env LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ./configure ${CONFARGS} --prefix=${IPREFIX}
 	    fi
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
