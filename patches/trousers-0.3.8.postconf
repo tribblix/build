@@ -1,6 +1,8 @@
 #!/bin/sh
+gsed -i 's/LIBS = .*/LIBS = -lnsl -lsocket -lgen/;' src/trspi/Makefile
+gsed -i 's/LIBS = .*/LIBS = -lnsl -lsocket -lgen/;' src/tspi/Makefile
 gsed -i 's/-Werror//' tools/Makefile
 #
 # force no linkage against libgcc_s
 #
-perl -pi -e 's#(\$CC.*\$compiler_flags)#$1 -nostdlib -lc#g;' libtool
+perl -pi -e 's#(\$CC.*\$compiler_flags)#$1 -static-libgcc#g;' libtool

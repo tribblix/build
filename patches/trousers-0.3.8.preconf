@@ -1,4 +1,8 @@
 #!/bin/sh
+for file in `find src/include -name '*.h'`
+do
+    /usr/bin/dos2unix $file $file
+done
 libtoolize -f
 aclocal
 automake --add-missing
