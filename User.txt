@@ -6,4 +6,5 @@ By default, reserve the group id as well
 
 
 101 rabbitmq	    TRIBblix-rabbitmq
-123 ntp 	    TRIBopenntpd
+123 jack	    live image
+223 ntp 	    TRIBopenntpd
