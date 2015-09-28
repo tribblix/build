@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# we never shipped .la files before, no need to do so now
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+rm usr/lib/libxslt.la
+rm usr/lib/${ARCH64}/libxslt.la
+rm usr/lib/libexslt.la
+rm usr/lib/${ARCH64}/libexslt.la
+#
+# remove docs (gtk-doc is done automatically)
+#
+rm -fr usr/share/doc
