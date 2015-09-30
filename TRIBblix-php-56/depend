@@ -1,5 +1,4 @@
 P TRIBblix-apache-24
-P TRIBblix-mysql-56
 P TRIBcurl
 P TRIBimage-libjpeg
 P TRIBimage-libpng
@@ -8,3 +7,4 @@ P TRIBlib-zlib
 P TRIBlibidn
 P TRIBlibxml2
 P TRIBblix-libmcrypt
+P TRIBsys-lib-freetype-2
