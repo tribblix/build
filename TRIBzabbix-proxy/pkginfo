@@ -1,0 +1,4 @@
+PKG="TRIBzabbix-proxy"
+NAME="Zabbix proxy"
+VERSION="2.4.6.0"
+ZAP_URL="http://www.zabbix.com/"

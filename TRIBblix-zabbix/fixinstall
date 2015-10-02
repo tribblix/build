@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+# set up the apache framework
+#
+mkdir -p ${DESTDIR}/opt/tribblix/zabbix/apache2/conf
+mkdir -p ${DESTDIR}/opt/tribblix/zabbix/apache2/logs
+mkdir -p ${DESTDIR}/opt/tribblix/zabbix/apache2/htdocs
+ln -s ../../apache2/modules ${DESTDIR}/opt/tribblix/zabbix/apache2
+ln -s ../../../apache2/conf/magic ${DESTDIR}/opt/tribblix/zabbix/apache2/conf
+ln -s ../../../apache2/conf/mime.types ${DESTDIR}/opt/tribblix/zabbix/apache2/conf
+#
+# and copy the web frontend into place
+#
+cd frontends/php
+cp -a . ${DESTDIR}/opt/tribblix/zabbix/apache2/htdocs
+cd ../..
+#
+# the database scripts go here
+#
+mkdir -p ${DESTDIR}/opt/tribblix/zabbix/scripts
+cd database
+cp -a postgresql ${DESTDIR}/opt/tribblix/zabbix/scripts

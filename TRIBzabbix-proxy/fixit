@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/zabbix-proxy.xml var/svc/manifest/network
+#
+# this is where the sqlite db will live
+# we just need to create the directory, the proxy will create the
+# actual database itself on startup
+# ownership set in the postinstall script
+#
+mkdir -p var/zabbix_proxy
+chmod 0750 var/zabbix_proxy
+gsed -i s:DBName=zabbix_proxy:DBName=/var/zabbix_proxy/zabbix_proxy: etc/zabbix_proxy.conf

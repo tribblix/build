@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<service_bundle type='manifest' name='zabbix-server'>
+<service name='network/zabbix-server' type='service' version='1'>
+<create_default_instance enabled='false' />
+<single_instance />
+<dependency name='fs-local' grouping='require_all' restart_on='none' type='service'>
+  <service_fmri value='svc:/system/filesystem/local' />
+</dependency>
+<dependency name='zabbix-db' grouping='require_all' restart_on='restart' type='service'>
+  <service_fmri value='svc:/network/zabbix-db:default' />
+</dependency>
+<exec_method type='method' name='start' exec='/opt/tribblix/zabbix/sbin/zabbix_server' timeout_seconds='60'>
+  <method_context>
+    <method_credential user='zabbix' group='zabbix' />
+  </method_context>
+</exec_method>
+<exec_method type='method' name='stop' exec=':kill' timeout_seconds='60' />
+<property_group name='startd' type='framework'>
+  <!-- sub-process core dumps shouldn't restart session -->
+  <propval name='ignore_error' type='astring' value='core,signal' />
+</property_group>
+<stability value='External' />
+<template>
+  <common_name>
+    <loctext xml:lang='C'>Zabbix Agent</loctext>
+  </common_name>
+</template>
+</service>
+</service_bundle>

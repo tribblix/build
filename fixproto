@@ -29,8 +29,14 @@ nawk '
 {if ($3 == "lib/svc/manifest")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/application")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/application/x11")  $6 = "sys"}
+{if ($3 == "lib/svc/manifest/network")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/system")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/system/filesystem")  $6 = "sys"}
+{if ($3 == "var/svc")  $6 = "sys"}
+{if ($3 == "var/svc/manifest")  $6 = "sys"}
+{if ($3 == "var/svc/manifest/network")  $6 = "sys"}
+{if ($3 == "var/svc/manifest/site")  $6 = "sys"}
+{if ($3 == "var/svc/manifest/application")  $6 = "sys"}
 {if ($3 == "etc")  $6 = "sys"}
 {if ($3 == "etc/security")  $6 = "sys"}
 {if ($3 == "etc/security/exec_attr.d")  $6 = "sys"}

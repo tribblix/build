@@ -6,5 +6,10 @@ By default, reserve the group id as well
 
 
 101 rabbitmq	    TRIBblix-rabbitmq
+111 zabbixa	    TRIBzabbix-agent
+112 zabbixp	    TRIBzabbix-proxy
+113 zabbix	    TRIBblix-zabbix (server)
+114 zabweb	    TRIBblix-zabbix (web front end)
+115 zabbixdb 	    TRIBblix-zabbix (database)
 123 jack	    live image
 223 ntp 	    TRIBopenntpd

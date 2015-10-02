@@ -116,7 +116,7 @@ do_group() {
     do
 	gname=`echo $gline|awk -F: '{print $1}'`
 	cat >> ${BDIR}/install/preinstall <<EOF
-if ! /usr/bin/grep -q "^${gname}" \${BASEDIR}/etc/group
+if ! /usr/bin/grep -q "^${gname}:" \${BASEDIR}/etc/group
 then
    echo "$gline" >> \${BASEDIR}/etc/group
 fi
@@ -129,7 +129,7 @@ do_passwd() {
     do
 	pname=`echo $pline|awk -F: '{print $1}'`
 	cat >> ${BDIR}/install/preinstall <<EOF
-if ! /usr/bin/grep -q "^${pname}" \${BASEDIR}/etc/passwd
+if ! /usr/bin/grep -q "^${pname}:" \${BASEDIR}/etc/passwd
 then
    echo "$pline" >> \${BASEDIR}/etc/passwd
    echo "${pname}:NP:::::::" >> \${BASEDIR}/etc/shadow

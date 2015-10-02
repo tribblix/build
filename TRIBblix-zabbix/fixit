@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/zabbix-server.xml var/svc/manifest/network
+cp ${BUILDROOT}/patches/zabbix-apache.xml var/svc/manifest/network
+cp ${BUILDROOT}/patches/zabbix-db.xml var/svc/manifest/network
+#
+# this is the starting apache configuration
+#
+mkdir -p opt/tribblix/zabbix/apache2/conf
+cp ${BUILDROOT}/patches/zabbix.php.ini opt/tribblix/zabbix/apache2/conf/php.ini
+cp ${BUILDROOT}/patches/zabbix.httpd.conf opt/tribblix/zabbix/apache2/conf/httpd.conf
+cp ${BUILDROOT}/patches/zabbix.httpd.conf opt/tribblix/zabbix/apache2/conf/httpd.conf.bak
+#
+# the databases live here
+#
+mkdir -p opt/tribblix/zabbix/db
+#
+# any tribblix admin scripts would go here
+#
+mkdir -p opt/tribblix/zabbix/scripts
+cp ${BUILDROOT}/patches/zabbix-db.sh opt/tribblix/zabbix/scripts
+chmod 755 opt/tribblix/zabbix/scripts/zabbix-db.sh

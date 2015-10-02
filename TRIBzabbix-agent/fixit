@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/zabbix-agent.xml var/svc/manifest/network
