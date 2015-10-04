@@ -1,0 +1,4 @@
+PKG="TRIBswig"
+NAME="SWIG interface compiler"
+VERSION="3.0.7.0"
+ZAP_URL="http://www.swig.org/"
