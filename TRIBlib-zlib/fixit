@@ -13,8 +13,16 @@ esac
 #
 rm lib/libz.so.1
 mv lib/libz.so.1.* lib/libz.so.1
+cd lib
+rm libz.so
+ln -s libz.so.1  libz.so
+cd ..
 rm lib/${ARCH64}/libz.so.1
 mv lib/${ARCH64}/libz.so.1.* lib/${ARCH64}/libz.so.1
+cd lib/${ARCH64}
+rm libz.so
+ln -s libz.so.1  libz.so
+cd ../..
 #
 # the installation and build correctly puts the libs in /lib instead of
 # /usr/lib so they are in the root archive because wget will need them if

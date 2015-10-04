@@ -1,4 +1,4 @@
 PKG="TRIBlib-zlib"
 NAME="A Massively Spiffy Yet Delicately Unobtrusive Compression Library"
-VERSION="1.2.8.0"
+VERSION="1.2.8.1"
 ZAP_URL="http://zlib.net/"
