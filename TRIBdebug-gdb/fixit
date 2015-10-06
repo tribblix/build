@@ -1,4 +1,24 @@
 #!/bin/sh
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
 mkdir -p usr/gnu/bin usr/gnu/share/man/man1
 mv usr/bin/gcore usr/gnu/bin
 mv usr/share/man/man1/gcore.1 usr/gnu/share/man/man1
+if [ -f usr/bin/${ARCH64}/gcore ]; then
+    mkdir -p usr/gnu/bin/${ARCH64}
+    mv usr/bin/${ARCH64}/gcore usr/gnu/bin/${ARCH64}
+fi
+#
+# libbfd and libopcodes are static libraries and get stripped
+# away by default. The .la files and the locale files are associated
+# with those libraries and can thus be removed
+#
+rm -fr usr/lib
+rm -fr usr/share/locale
+rm -fr usr/include
