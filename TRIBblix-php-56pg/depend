@@ -1,12 +1,2 @@
-P TRIBblix-apache-24
-P TRIBcurl
-P TRIBimage-libjpeg
-P TRIBimage-libpng
-P TRIBlib-security-openssl
-P TRIBlib-zlib
-P TRIBlibidn
-P TRIBlibxml2
-P TRIBblix-libmcrypt
-P TRIBsys-lib-freetype-2
+P TRIBblix-php-56
 P TRIBblix-postgres94
-I TRIBblix-php-56
