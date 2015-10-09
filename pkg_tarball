@@ -34,6 +34,9 @@ if [ ! -d $BUILD ]; then
    exit 1
 fi
 if [ ! -d $BROOT ]; then
+    mkdir -p $BROOT
+fi
+if [ ! -d $BROOT ]; then
    echo "ERROR: unable to find temporary directory $BROOT"
    exit 1
 fi
