@@ -83,6 +83,9 @@ case $# in
 	    if [ -d ${SOFTDIR}-64bit ]; then
 		cd ${SOFTDIR}-64bit
 		$GMAKE -k install DESTDIR=$BDIR $MYINSTALL
+		if [ -x ${BUILD}/${PKGNAME}/fixinstall.64 ]; then
+		    ${BUILD}/${PKGNAME}/fixinstall.64 $BDIR
+		fi
 		cd ..
 	    fi
 	    cd ${SOFTDIR}

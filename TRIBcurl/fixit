@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# fixinstall.64 saved the 64-bit curlbuild.h for us, now
+# we wrap it
+#
+mv usr/include/curl/curlbuild.h usr/include/curl/curlbuild-32.h
+cp ${BUILDROOT}/patches/curlbuild.h usr/include/curl/curlbuild.h
