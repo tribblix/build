@@ -1,4 +1,4 @@
 PKG="TRIBblix-zabbix"
 NAME="Zabbix server"
-VERSION="2.4.6.0"
+VERSION="2.4.6.1"
 ZAP_URL="http://www.zabbix.com/"

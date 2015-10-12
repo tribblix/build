@@ -23,3 +23,7 @@ mkdir -p opt/tribblix/zabbix/db
 mkdir -p opt/tribblix/zabbix/scripts
 cp ${BUILDROOT}/patches/zabbix-db.sh opt/tribblix/zabbix/scripts
 chmod 755 opt/tribblix/zabbix/scripts/zabbix-db.sh
+#
+# this is the default user
+#
+gsed -i s:DBUser=root:DBUser=zabbix: opt/tribblix/zabbix/etc/zabbix_server.conf
