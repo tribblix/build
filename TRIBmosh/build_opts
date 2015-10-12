@@ -1,0 +1,2 @@
+tribblix_srcs=mosh-1.2.5
+tribblix_C_opt="--enable-hardening=no"
