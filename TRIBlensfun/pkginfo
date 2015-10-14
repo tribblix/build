@@ -1,0 +1,4 @@
+PKG="TRIBlensfun"
+NAME="Lensfun library"
+VERSION="0.3.1.0"
+ZAP_URL="http://lensfun.sourceforge.net/"
