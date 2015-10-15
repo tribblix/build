@@ -1,3 +1,4 @@
 PKG="TRIBlibtool"
 NAME="Gnu libtool"
-VERSION="2.4.2.0"
+VERSION="2.4.6.0"
+ZAP_URL="https://www.gnu.org/software/libtool/"
