@@ -1,0 +1,4 @@
+PKG="TRIBexpect"
+NAME="Expect - tool for automating interactive applications"
+VERSION="5.45.0"
+ZAP_URL="http://expect.sourceforge.net/"
