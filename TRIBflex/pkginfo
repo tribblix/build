@@ -1,4 +1,4 @@
 PKG="TRIBflex"
 NAME="Flex lexical anayzer"
-VERSION="2.5.37.0"
+VERSION="2.5.39.0"
 ZAP_URL="http://flex.sourceforge.net/"
