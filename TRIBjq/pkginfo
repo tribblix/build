@@ -1,0 +1,4 @@
+PKG="TRIBjq"
+NAME="jq - lightweight and flexible cli JSON processor"
+VERSION="1.5.0"
+ZAP_URL="https://stedolan.github.io/jq/"

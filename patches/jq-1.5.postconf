@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i /_XOPEN_SOURCE/d builtin.c
