@@ -5,3 +5,12 @@
 VERSION=3.3.3
 mkdir -p usr/bin
 ln -s ../versions/apache-maven-${VERSION}/bin/mvn usr/bin/mvn
+#
+# no need for windows batch files
+#
+rm -f usr/versions/apache-maven-${VERSION}/bin/mvn.cmd
+rm -f usr/versions/apache-maven-${VERSION}/bin/mvnDebug.cmd
+#
+# mvn is bash, not sh
+#
+gsed -i s:/bin/sh:/usr/bin/bash: usr/versions/apache-maven-${VERSION}/bin/mvn
