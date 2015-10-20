@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# pekwm erroneously hardcodes libpng12 on Solaris
+#
+gsed -i s:libpng12:libpng14:g configure
+gsed -i s:libpng12:libpng14:g `find . -name Makefile.in`

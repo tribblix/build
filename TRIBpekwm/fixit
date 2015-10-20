@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# add a couple of themes
+#
+cd usr/share/pekwm/themes
+#
+# http://box-look.org/content/show.php/Win7?content=162490
+#
+${BUILDROOT}/unpack pekwm-theme-win7
+chmod -R a+r win7
+#
+# http://box-look.org/content/show.php/Menda+Pekwm+Theme?content=170660
+#
+${BUILDROOT}/unpack Menda-Pekwm-Theme-master
+mv Menda-Pekwm-Theme-master/Menda Menda
+rm -fr Menda-Pekwm-Theme-master
+chmod -R a+r Menda
