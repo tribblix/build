@@ -1,0 +1,4 @@
+PKG="TRIBseqtest"
+NAME="seqtest -- test TCP under load"
+VERSION="1.0"
+ZAP_URL="https://github.com/luceracloud/seqtest"
