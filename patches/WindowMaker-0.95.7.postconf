@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i s:-std=c11:: `find . -name Makefile`
