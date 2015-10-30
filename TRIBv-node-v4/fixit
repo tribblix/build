@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# new stable release
+# Only LTS releases have standard symlinks
 #
 VERSION=4
 mkdir -p usr/bin
