@@ -1,0 +1,6 @@
+P TRIBgnutls
+P TRIBlib-gmp
+P TRIBlib-security-trousers
+P TRIBlib-zlib
+P TRIBnettle
+P TRIBsvc-security-kerberos-5
