@@ -43,3 +43,16 @@ cat > gfgrep <<EOF
 exec /usr/gnu/bin/${ARCH64}/grep -F "\$@"
 EOF
 chmod 755 gegrep gfgrep
+#
+# in even newer versions, the wrappers grow more bugs
+# we are in usr/bin/$ARCH64 at this point
+#
+rm ../../gnu/bin/${ARCH64}/egrep
+cp gegrep ../../gnu/bin/${ARCH64}/egrep
+rm ../../gnu/bin/${ARCH64}/fgrep
+cp gfgrep ../../gnu/bin/${ARCH64}/fgrep
+cd ..
+rm ../gnu/bin/egrep
+cp gegrep ../gnu/bin/egrep
+rm ../gnu/bin/fgrep
+cp gfgrep ../gnu/bin/fgrep
