@@ -75,6 +75,9 @@ esac
 case $# in
 1)
 	$GMAKE -k install DESTDIR=$BDIR $MYINSTALL
+	if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
+	    ${BUILD}/${PKGNAME}/fixinstall $BDIR
+	fi
 	;;
 *)
 	shift

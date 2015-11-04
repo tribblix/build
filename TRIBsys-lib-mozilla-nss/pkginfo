@@ -1,0 +1,4 @@
+PKG="TRIBsys-lib-mozilla-nss"
+NAME="Network Security Services"
+VERSION="3.20.1"
+ZAP_URL="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS"

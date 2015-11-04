@@ -1,0 +1,4 @@
+PKG="TRIBlib-nspr"
+NAME="Netscape Portable Runtime"
+VERSION="4.10.10"
+ZAP_URL="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS"

@@ -1,0 +1,65 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   mkdir -p ${DESTDIR}
+fi
+
+#
+# local package tweaks below
+#
+
+#
+# the assumption here is that 'make install' just fell flat on its face
+# so we just copy the files we need
+#
+# also assume we're in the nss directory that the build ran from
+#
+mkdir -p ${DESTDIR}/usr/lib/mps/amd64
+ln -s amd64 ${DESTDIR}/usr/lib/mps/64
+mkdir -p ${DESTDIR}/usr/lib/mps/secv1/amd64
+ln -s amd64 ${DESTDIR}/usr/lib/mps/secv1/64
+mkdir -p ${DESTDIR}/usr/include/mps
+mkdir -p ${DESTDIR}/usr/lib/pkgconfig
+
+NSARCH=`uname -m`
+OBJDIR32=SunOS5.11_${NSARCH}_gcc_OPT.OBJ
+OBJDIR64=SunOS5.11_${NSARCH}_gcc_64_OPT.OBJ
+
+for file in libfreebl3.so libnss3.so libnssckbi.so libnssdbm3.so libnssutil3.so libsmime3.so libsoftokn3.so libssl3.so libfreebl3.chk libnssdbm3.chk libsoftokn3.chk
+do
+    cp ../dist/${OBJDIR32}/lib/$file ${DESTDIR}/usr/lib/mps
+    ln -s ../$file ${DESTDIR}/usr/lib/mps/secv1
+    cp ../dist/${OBJDIR64}/lib/$file ${DESTDIR}/usr/lib/mps/amd64
+    ln -s ../../amd64/$file ${DESTDIR}/usr/lib/mps/secv1/amd64
+done
+
+cd ../dist/public/nss
+tar cf - . | (cd ${DESTDIR}/usr/include/mps ; tar xf -)
+
+cat >> ${DESTDIR}/usr/lib/pkgconfig/nss.pc <<EOF
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib/mps
+includedir=/usr/include/mps
+
+Name: NSS
+Description: Network Security Services
+Version: 3.20.1
+Requires: nspr >= 4.10
+Libs: -L/usr/lib/mps -R/usr/lib/mps -lnss3 -lsmime3 -lssl3 -lnssutil3
+Cflags: -I/usr/include/mps
+EOF
