@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# clean up and move
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+#
+# for binary compatibility, ship older libs and related files
+#
+# the TRIBlibpng-compat package ships even older versions
+#
+mkdir -p usr/lib/${ARCH64}
+cp -a /usr/lib/libpng14.so* usr/lib
+cp -a /usr/lib/${ARCH64}/libpng14.so* usr/lib/${ARCH64}
+mkdir -p usr/lib/pkgconfig
+mkdir -p usr/lib/${ARCH64}/pkgconfig
+cp -p /usr/lib/pkgconfig/libpng14.pc usr/lib/pkgconfig
+cp -p /usr/lib/${ARCH64}/pkgconfig/libpng14.pc usr/lib/${ARCH64}/pkgconfig
+mkdir -p usr/bin/${ARCH64}
+cp -p /usr/bin/libpng14-config usr/bin
+cp -p /usr/bin/${ARCH64}/libpng14-config usr/bin/${ARCH64}
+mkdir -p usr/include
+cp -pr /usr/include/libpng14 usr/include
+#
+# we never shipped .la files before, don't do so now
+#
+rm -f usr/lib/lib*.la
+rm -f usr/lib/${ARCH64}/lib*.la

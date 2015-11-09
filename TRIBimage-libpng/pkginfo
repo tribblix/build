@@ -1,0 +1,4 @@
+PKG="TRIBimage-libpng"
+NAME="Portable Network Graphics library"
+VERSION="1.6.18.0"
+ZAP_URL="http://www.libpng.org/pub/png/libpng.html"
