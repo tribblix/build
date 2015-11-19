@@ -2,7 +2,7 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=3.3.3
+VERSION=3.3.9
 mkdir -p usr/bin
 ln -s ../versions/apache-maven-${VERSION}/bin/mvn usr/bin/mvn
 #
