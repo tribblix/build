@@ -1,0 +1,3 @@
+-p1 openssh.man-sections.patch
+-p1 sshd_config.patch
+-p1 0032-Accept-LANG-and-LC_-environment-variables-from-clien.patch
