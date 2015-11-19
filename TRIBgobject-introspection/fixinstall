@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+
+#
+# this assumes you have a copy of pango built
+#
+cp ../pango-1.36.8/pango/Pango*gir ${DESTDIR}/usr/share/gir-1.0
+cp ../pango-1.36.8/pango/Pango*typelib ${DESTDIR}/usr/lib/girepository-1.0

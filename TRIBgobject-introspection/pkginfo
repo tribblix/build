@@ -1,4 +1,4 @@
 PKG="TRIBgobject-introspection"
 NAME="GObject Introspection"
-VERSION="1.44.0.0"
+VERSION="1.44.0.1"
 ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/"
