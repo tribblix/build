@@ -1,0 +1,4 @@
+PKG="TRIBnet-snmp"
+NAME="Net-SNMP"
+VERSION="5.7.3.0"
+ZAP_URL="http://www.net-snmp.org/"
