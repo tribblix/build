@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# The original solaris had ssh split into 3 packages
+# We replicate the split here
+#
+
+mv usr .usr
+
+mkdir -p usr/sbin
+mkdir -p usr/lib/ssh
+mkdir -p usr/share/man/man1m
+mkdir -p usr/share/man/man4
+
+mv .usr/lib/ssh/sftp-server usr/lib/ssh/sftp-server
+mv .usr/sbin/sshd usr/sbin/sshd
+mv .usr/share/man/man1m/sftp-server.1m usr/share/man/man1m/sftp-server.1m
+mv .usr/share/man/man1m/sshd.1m usr/share/man/man1m/sshd.1m
+mv .usr/share/man/man4/sshd_config.4 usr/share/man/man4/sshd_config.4
+
+rm -f etc/ssh/moduli
+rm -f etc/ssh/ssh_config
+
+rm -fr .usr
+
+#
+# Now add the SMF services
+#
+mkdir -p lib/svc/manifest/network
+mkdir -p lib/svc/method
+cp ${BUILDROOT}/patches/openssh-ssh.xml lib/svc/manifest/network/ssh.xml
+cp ${BUILDROOT}/patches/openssh-method lib/svc/method/sshd
+chmod 444 lib/svc/manifest/network/ssh.xml
+chmod 555 lib/svc/method/sshd
+
+#
+# temporary fix to allow connection from older sunssh
+#
+cat >> etc/ssh/sshd_config <<EOF
+KexAlgorithms +diffie-hellman-group1-sha1
+EOF

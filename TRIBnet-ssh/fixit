@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# The original solaris had ssh split into 3 packages
+# We replicate the split here
+#
+
+# remove files from TRIBnet-ssh-ssh-key
+rm -f usr/bin/ssh-keygen
+rm -f usr/bin/ssh-keyscan
+rm -f usr/lib/ssh/ssh-keysign
+rm -f usr/share/man/man1/ssh-keygen.1
+rm -f usr/share/man/man1/ssh-keyscan.1
+rm -f usr/share/man/man1m/ssh-keysign.1m
+
+# remove files from TRIBsvc-net-ssh
+rm -f etc/ssh/sshd_config
+rm -f usr/lib/ssh/sftp-server
+rm -f usr/sbin/sshd
+rm -f usr/share/man/man1m/sftp-server.1m
+rm -f usr/share/man/man1m/sshd.1m
+rm -f usr/share/man/man4/sshd_config.4
+rm -fr var
+
+cp ${BUILDROOT}/patches/ssh-askpass usr/lib/ssh/ssh-askpass
+chmod 555 usr/lib/ssh/ssh-askpass
+
+#
+# temporary fix for compatibility with older clients that just have dsa keys
+#
+cat >> etc/ssh/ssh_config <<EOF
+PubkeyAcceptedKeyTypes +ssh-dss
+EOF

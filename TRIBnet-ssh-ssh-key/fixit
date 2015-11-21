@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# The original solaris had ssh split into 3 packages
+# We replicate the split here
+#
+
+mv usr .usr
+
+mkdir -p usr/bin
+mkdir -p usr/lib/ssh
+mkdir -p usr/share/man/man1
+mkdir -p usr/share/man/man1m
+
+mv .usr/bin/ssh-keygen usr/bin/ssh-keygen
+mv .usr/bin/ssh-keyscan usr/bin/ssh-keyscan
+mv .usr/lib/ssh/ssh-keysign usr/lib/ssh/ssh-keysign
+mv .usr/share/man/man1/ssh-keygen.1 usr/share/man/man1/ssh-keygen.1
+mv .usr/share/man/man1/ssh-keyscan.1 usr/share/man/man1/ssh-keyscan.1
+mv .usr/share/man/man1m/ssh-keysign.1m usr/share/man/man1m/ssh-keysign.1m
+
+rm -fr .usr var etc
