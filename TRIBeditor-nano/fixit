@@ -1,0 +1,3 @@
+#!/bin/sh
+rm -fr usr/share/man/fr
+rm -fr usr/share/doc
