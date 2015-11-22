@@ -1,0 +1,4 @@
+PKG="TRIBaalib"
+NAME="Ascii Art Library"
+VERSION="1.4.0.0"
+ZAP_URL="http://aa-project.sourceforge.net/"
