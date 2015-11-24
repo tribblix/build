@@ -1,0 +1,1 @@
+-p1 libxslt-CVE-2015-7995.patch
