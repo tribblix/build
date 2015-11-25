@@ -3,6 +3,10 @@
 # catalog format is
 #  name|version|dependencies|size|md5|
 #
+
+builtin cat
+builtin echo
+
 PKGDIR="../pkgs"
 case $# in
 1)
@@ -13,12 +17,13 @@ esac
 for PKGI in */pkginfo
 do
   PKG=${PKGI%/*}
-  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI | sed 's="==g'`
+  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI`
+  PKGVERS=${PKGVERS//\"/}
   DEPLIST=""
   if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
     PKGSIZE=`/bin/ls -l ${PKGDIR}/${PKG}.${PKGVERS}.zap | /usr/bin/awk '{print $5}'`
     if [ ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5 -nt ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
-	PKGMD5=`/bin/cat ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5`
+	PKGMD5=`cat ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5`
     else
 	PKGMD5=`openssl md5 ${PKGDIR}/${PKG}.${PKGVERS}.zap| /usr/bin/awk '{print $NF}'`
 	/bin/rm -f ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
@@ -27,6 +32,7 @@ do
     if [ -f ${PKG}/depend ]; then
       DEPLIST=`awk '{printf("%s ", $2)}' ${PKG}/depend`
     fi
-    echo "${PKG}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|" | sed 's: |:|:'
+    DEPLIST=${DEPLIST/% /}
+    echo "${PKG}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|"
   fi
 done

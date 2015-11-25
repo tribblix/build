@@ -3,6 +3,9 @@
 # like the catalog, but neatly formatted as html
 #
 
+builtin cat
+builtin echo
+
 PKGDIR="../pkgs"
 case $# in
 1)
@@ -21,10 +24,13 @@ EOF
 for PKGI in */pkginfo
 do
   PKG=${PKGI%/*}
-  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI | sed 's="==g'`
+  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI`
+  PKGVERS=${PKGVERS//\"/}
   if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
-    PKGNAME=`awk -F= '{if ($1 == "NAME") print $2}' $PKGI | sed 's="==g'`
-    PKGHOME=`awk -F= '{if ($1 == "ZAP_URL") print $2}' $PKGI | sed 's="==g'`
+    PKGNAME=`awk -F= '{if ($1 == "NAME") print $2}' $PKGI`
+    PKGNAME=${PKGNAME//\"/}
+    PKGHOME=`awk -F= '{if ($1 == "ZAP_URL") print $2}' $PKGI`
+    PKGHOME=${PKGHOME//\"/}
     DEPLIST=""
     if [ -f ${PKG}/depend ]; then
        DEPLIST=`awk '{printf("%s ", $2)}' ${PKG}/depend`
