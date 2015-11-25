@@ -17,3 +17,8 @@ rmdir usr/lib
 # and we don't want to ship uninstall_ndiff
 #
 rm usr/bin/uninstall_ndiff
+#
+# or the localised man pages
+#
+rm -fr usr/share/man/??
+rm -fr usr/share/man/??_??
