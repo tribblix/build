@@ -3,4 +3,12 @@
 # remove the qt gui which is shipped separately
 # in the TRIBwireshark-qt package
 #
-rm -f usr/bin/wireshark-qt
+
+#
+# in 2.0 /usr/bin/wireshark is the qt version by default
+# but we should restore it to the original defaults
+#
+#rm -f usr/bin/wireshark-qt
+rm -f usr/bin/wireshark
+cd usr/bin
+ln -s wireshark-gtk wireshark

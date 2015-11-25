@@ -2,7 +2,12 @@
 #
 # remove everything except the qt gui
 #
-mv usr/bin/wireshark-qt .
+
+#
+# in 2.0 /usr/bin/wireshark is the qt version by default
+# but we should restore it to the original defaults
+#
+mv usr/bin/wireshark .
 rm -fr usr
 mkdir -p usr/bin
-mv wireshark-qt usr/bin
+mv wireshark usr/bin/wireshark-qt
