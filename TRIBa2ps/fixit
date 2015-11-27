@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# the only lib is static, which gets automatically elided
+# so make sure to remove the .la file too
+#
+rm -f usr/lib/liba2ps.la
+rmdir usr/lib
