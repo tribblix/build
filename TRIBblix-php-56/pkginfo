@@ -1,4 +1,4 @@
 PKG="TRIBblix-php-56"
 NAME="PHP for Apache"
-VERSION="5.6.15.0"
+VERSION="5.6.16.0"
 ZAP_URL="http://php.net/"
