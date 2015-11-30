@@ -1,0 +1,9 @@
+P TRIBgdk-pixbuf
+P TRIBlib-desktop-atk
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-gtk
+P TRIBlib-desktop-pango
+P TRIBlib-glib2
+P TRIBlib-security-openssl
+P TRIBsys-lib-fontconfig
+P TRIBsys-lib-freetype-2
