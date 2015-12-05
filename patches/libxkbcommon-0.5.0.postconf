@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# convert mapfile invocation from gnu syntax
+#
+gsed -i 's:--version-script=:-M -Wl,:' Makefile
