@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# don't let it call the wrong versions of libpng
+#
+gsed -i s:-I/usr/include/libpng16:-I/usr/include/libpng14: `find . -name Makefile`
+gsed -i 's:-lpng :-lpng14 :' `find . -name Makefile`
+gsed -i s:--no-undefined:: src/Makefile

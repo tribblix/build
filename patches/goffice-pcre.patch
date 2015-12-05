@@ -1,0 +1,12 @@
+--- a/goffice/utils/regutf8.c	Sun Sep  6 00:52:09 2009
++++ b/goffice/utils/regutf8.c	Sat Dec  5 20:27:05 2015
+@@ -155,7 +155,8 @@
+ 		default: return GO_REG_BADPAT;
+ 		}
+ 	} else {
+-		gor->re_nsub = pcre_info (r, NULL, NULL);
++		pcre_fullinfo(r, NULL,
++			PCRE_INFO_CAPTURECOUNT, &(gor->re_nsub));
+ 		gor->nosub = (cflags & GO_REG_NOSUB) != 0;
+ 		return 0;
+ 	}
