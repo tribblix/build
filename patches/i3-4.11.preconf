@@ -1,0 +1,4 @@
+#!/bin/sh
+gsed -i s:c99:gnu99: common.mk
+gsed -i 's:-lrt:-lrt -lsocket -lnsl:' common.mk 
+gsed -i s:-liconv:: common.mk
