@@ -1,0 +1,2 @@
+#!/bin/sh
+perl -pi -e 's#(\$CC.*\$compiler_flags)#$1 -nostdlib '"-lc"'#g;' libtool
