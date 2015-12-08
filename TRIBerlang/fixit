@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# erlang delivers a few useless files
+#
+rm -f usr/lib/erlang/misc/format_man_pages
+rm -f usr/lib/erlang/misc/makewhatis
+rmdir usr/lib/erlang/misc
+rm -f usr/lib/erlang/Install
