@@ -3,7 +3,7 @@
 # create a versioned directory
 # put a symlink to firefox in /usr/bin
 #
-VERSION=38.2.1esr
+VERSION=38.4.0esr
 mkdir -p usr/bin
 cd usr/versions
 mkdir firefox-${VERSION}
@@ -43,6 +43,7 @@ ln -s /usr/lib/libatk-1.0.so{,.0} .
 rm -fr gio gtk-2.0
 ln -s /usr/lib/gio .
 ln -s /usr/lib/gtk-2.0 .
+cd ..
 cd ..
 #
 # disable autoupdate - see
