@@ -1,4 +1,4 @@
 PKG="TRIBocaml"
 NAME="OCaml programming language"
-VERSION="4.02.1.0"
+VERSION="4.02.3.0"
 ZAP_URL="https://ocaml.org/"

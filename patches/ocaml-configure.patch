@@ -1,0 +1,11 @@
+--- a/configure	Tue May 12 15:46:37 2015
++++ b/configure	Fri Dec 11 18:31:36 2015
+@@ -716,7 +716,7 @@
+         *gcc*)
+           sharedcccompopts="-fPIC"
+           if sh ./solaris-ld; then
+-            mksharedlib="$bytecc -shared"
++            mksharedlib="ld -G"
+             byteccrpath="-R"
+             mksharedlibrpath="-R"
+           else
