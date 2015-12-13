@@ -3,46 +3,30 @@
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
+# Copyright 2015 Peter Tribble <peter.tribble@gmail.com>
+#
 
 . /lib/svc/share/ipf_include.sh
 . /lib/svc/share/smf_include.sh
 
-SSHDIR=/etc/ssh
-KEYGEN="/usr/bin/ssh-keygen -q"
 PIDFILE=/var/run/sshd.pid
 
-# Checks to see if RSA, and DSA host keys are available
-# if any of these keys are not present, the respective keys are created.
-create_key()
+# Check if the privsep user exists and create it if not
+check_user()
 {
-	keypath=$1
-	keytype=$2
-
-	if [ ! -f $keypath ]; then
-		# 
-		# HostKey keywords in sshd_config may be preceded or
-		# followed by a mix of any number of space or tabs,
-		# and optionally have an = between keyword and
-		# argument.  We use two grep invocations such that we
-		# can match HostKey case insensitively but still have
-		# the case of the path name be significant, keeping
-		# the pattern somewhat more readable.
-		#
-		# The character classes below contain one literal
-		# space and one literal tab.
-		#
-		grep -i "^[ 	]*HostKey[ 	]*=\{0,1\}[ 	]*$keypath" \
-		    $SSHDIR/sshd_config | grep "$keypath" > /dev/null 2>&1
-
-		if [ $? -eq 0 ]; then
-			echo Creating new $keytype public/private host key pair
-			$KEYGEN -f $keypath -t $keytype -N ''
-			if [ $? -ne 0 ]; then
-				echo "Could not create $keytype key: $keypath"
-				exit $SMF_EXIT_ERR_CONFIG
-			fi
-		fi
-	fi
+    if [ ! -d /var/empty ]; then
+	mkdir -p /var/empty
+	chmod 755 /var/empty
+	chown root:bin /var/empty
+    fi
+    grep "^sshd:" /etc/group > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+	groupadd -g 92 sshd
+    fi
+    grep "^sshd:" /etc/passwd > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+	useradd -u 92 -g sshd -d /var/empty -c "OpenSSH privsep user" sshd
+    fi
 }
 
 create_ipf_rules()
@@ -73,8 +57,7 @@ create_ipf_rules()
 case $1 in 
 	# sysidconfig/sys-unconfig arguments (-c and -u)
 '-c')
-	create_key $SSHDIR/ssh_host_rsa_key rsa
-	create_key $SSHDIR/ssh_host_dsa_key dsa
+	/usr/bin/ssh-keygen -A
 	;;
 
 '-u')
@@ -91,13 +74,10 @@ case $1 in
 
 'start')
 	#
-	# If host keys don't exist when the service is started, create
-	# them; sysidconfig is not run in every situation (such as on
-	# the install media).
-	# 
-	create_key $SSHDIR/ssh_host_rsa_key rsa
-	create_key $SSHDIR/ssh_host_dsa_key dsa
-
+	# Check for privsep user, create any missing host keys
+	#
+	check_user
+	/usr/bin/ssh-keygen -A || exit $SMF_EXIT_ERR_FATAL
 	/usr/sbin/sshd
 	;;
 
