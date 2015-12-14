@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# the download links here were derived from manually
+# navigating the website http://wallpaper.soa-admin.eu/
+#
+BDIR=usr/share/backgrounds
+NDIR=${BDIR}/mate/nature
+XDIR=${BDIR}/xfce
+mkdir -p $NDIR
+wget http://wallpaper.soa-admin.eu/upload/0000000043/1600.jpg -q -O ${NDIR}/A-Flower.jpg
+wget http://wallpaper.soa-admin.eu/upload/0000000049/1600.jpg -q -O ${NDIR}/A-ButterFly.jpg
+wget http://wallpaper.soa-admin.eu/upload/0000000122/1600.jpg -q -O ${NDIR}/A-Berberys.jpg
+wget http://wallpaper.soa-admin.eu/upload/0000000129/1600.jpg -q -O ${NDIR}/A-Squirrel.jpg
+wget http://wallpaper.soa-admin.eu/upload/0000000251/1600.jpg -q -O ${NDIR}/A-Lake.jpg
+wget http://wallpaper.soa-admin.eu/upload/0000000259/1600.jpg -q -O ${NDIR}/A-Current.jpg
+wget http://wallpaper.soa-admin.eu/upload/0000000282/1600.jpg -q -O ${NDIR}/A-Christianso.jpg
+wget http://wallpaper.soa-admin.eu/upload/0000000472/1600.jpg -q -O ${NDIR}/A-Winter.jpg
+chmod -R a+rX usr
+mkdir -p $XDIR
+cd $XDIR
+ln -s ../mate/nature/*jpg .
