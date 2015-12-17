@@ -12,9 +12,17 @@
 #
 # assumes a shared object
 #
+
+case $1 in
+    -l)
+	STYLE=recurse
+	shift
+	;;
+esac
+
 case $# in
 0)
-	echo "Usage: $0 target [...]"
+	echo "Usage: $0 [-l] target [...]"
 	exit 1
 	;;
 esac
@@ -44,5 +52,25 @@ do
   $EGREP "lib/$dep( |=)" /var/sadm/install/contents
 done
 }
+
+#
+# find shared objects
+# look for library followed by a space (the actual file) or 
+# by =, which is for a symlink
+#
+getlongdeps()
+{
+for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort | uniq`
+do
+  $EGREP "lib/$dep( |=)" /var/sadm/install/contents
+done
+}
+
+case $STYLE in
+    'recurse')
+	getlongdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|SUNWcs)$'
+	exit 0
+	;;
+esac
 
 getdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|SUNWcs)$'
