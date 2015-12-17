@@ -11,22 +11,12 @@ i386)
   ;;
 esac
 #
-# for binary compatibility, ship older libs and related files
+# the TRIBlibpng-compat package ships older versions
 #
-# the TRIBlibpng-compat package ships even older versions
+# this package briefly shipped libpng16, with 1.4 as
+# compatibility libraries, which didn't work out so well
+# so ship plain 1.4 only for now
 #
-mkdir -p usr/lib/${ARCH64}
-cp -a /usr/lib/libpng14.so* usr/lib
-cp -a /usr/lib/${ARCH64}/libpng14.so* usr/lib/${ARCH64}
-mkdir -p usr/lib/pkgconfig
-mkdir -p usr/lib/${ARCH64}/pkgconfig
-cp -p /usr/lib/pkgconfig/libpng14.pc usr/lib/pkgconfig
-cp -p /usr/lib/${ARCH64}/pkgconfig/libpng14.pc usr/lib/${ARCH64}/pkgconfig
-mkdir -p usr/bin/${ARCH64}
-cp -p /usr/bin/libpng14-config usr/bin
-cp -p /usr/bin/${ARCH64}/libpng14-config usr/bin/${ARCH64}
-mkdir -p usr/include
-cp -pr /usr/include/libpng14 usr/include
 #
 # we never shipped .la files before, don't do so now
 #
