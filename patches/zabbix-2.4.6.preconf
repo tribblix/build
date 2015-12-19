@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# we build 3 separate packages from the same source
-#
-# override 64-bit by default behaviour
-#
-gsed -i s:-m64:-m32: configure
