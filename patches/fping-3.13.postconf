@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i 's:#include <netinet/ip_icmp.h>:#include <netinet/in_systm.h>\n#include <netinet/ip_icmp.h>:' src/socket4.c
