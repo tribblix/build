@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# pkgproto generates garbage when fed hard links, so a symlink is just as good
+#
+VERSION=9.0.4.0
+#mkdir -p usr/bin
+#ln -s ../versions/jruby-${VERSION}/bin/jruby usr/bin/
+#ln -s ../versions/jruby-${VERSION}/bin/jrubyc usr/bin/
+#ln -s ../versions/jruby-${VERSION}/bin/jgem usr/bin/
+cd usr/versions/jruby-${VERSION}
+rm bin/*.bat
+rm bin/*.exe
+rm bin/*.dll
+rm -fr lib/ruby/stdlib/ffi/platform/*linux
+rm -fr lib/ruby/stdlib/ffi/platform/*darwin
+rm -fr lib/ruby/stdlib/ffi/platform/*windows
+rm -fr lib/ruby/stdlib/ffi/platform/*bsd
+rm -fr lib/ruby/stdlib/ffi/platform/*aix
+rm -fr lib/ruby/stdlib/ffi/platform/i486-gnu
+rm -fr lib/jni/*Windows
+rm -fr lib/jni/*Linux
+rm -fr lib/jni/*BSD
+rm -fr lib/jni/*AIX
+rm -fr lib/jni/Darwin
+#
+# build nailgun
+#
+if [ -f tool/nailgun/configure ]; then
+    cd tool/nailgun
+    ./configure
+    make
+    if [ -f ng ]; then
+	mv ng ../../bin
+    fi
+    rm -f config.log
+    rm -f config.status
+    rm -f ng.exe
+    rm -f Makefile
+fi
