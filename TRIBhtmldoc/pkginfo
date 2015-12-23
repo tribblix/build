@@ -1,0 +1,4 @@
+PKG="TRIBhtmldoc"
+NAME="HTMLDOC"
+VERSION="1.8.28.0"
+ZAP_URL="https://www.msweet.org/projects.php?Z1"
