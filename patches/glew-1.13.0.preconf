@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# the default is cc, change to gcc
+#
+rm -f config/Makefile.solaris
+mv config/Makefile.solaris-gcc config/Makefile.solaris

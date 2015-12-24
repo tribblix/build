@@ -1,0 +1,4 @@
+PKG="TRIBglew"
+NAME="The OpenGL Extension Wrangler Library"
+VERSION="1.13.0"
+ZAP_URL="http://glew.sourceforge.net/"
