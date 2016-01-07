@@ -2,10 +2,8 @@
 #
 # create a versioned directory
 # put a symlink in /usr/bin
-# disable autoupdate - see
-# https://support.mozilla.org/en-US/questions/944982
 #
-VERSION=38.4.0
+VERSION=38.5.0
 mkdir -p usr/bin
 cd usr/versions
 mkdir thunderbird-${VERSION}
