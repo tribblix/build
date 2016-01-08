@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# create locations to drop configuration into
+#
+mkdir -p opt/tribblix/nginx/conf.d
+mkdir -p opt/tribblix/nginx/sites-enabled
+#
+# this is the default configuration (which activates the above)
+#
+cp ${BUILDROOT}/patches/nginx.conf opt/tribblix/nginx/conf/nginx.conf
+cp ${BUILDROOT}/patches/nginx-default.conf opt/tribblix/nginx/sites-enabled/nginx-default.conf
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/nginx.xml var/svc/manifest/network
