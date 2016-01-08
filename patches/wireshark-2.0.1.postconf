@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# some of the install invocations don't use the macros correctly
+#
+gsed -i 's:install -m 644:\$(INSTALL_DATA):' Makefile

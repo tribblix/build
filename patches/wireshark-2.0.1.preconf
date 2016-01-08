@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# the gethostbyname check is plain busted
+#
+gsed -i 's:ac_cv_lib_nsl_gethostbyname=yes:ac_cv_lib_nsl_gethostbyname=yes\nac_cv_func_gethostbyname=yes:' configure
