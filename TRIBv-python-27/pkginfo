@@ -1,4 +1,4 @@
 PKG="TRIBv-python-27"
-NAME="Python 2.7.10"
-VERSION="2.7.10.0"
+NAME="Python 2.7.11"
+VERSION="2.7.11.0"
 ZAP_URL="https://www.python.org/"
