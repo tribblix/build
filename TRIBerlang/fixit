@@ -2,7 +2,21 @@
 #
 # erlang delivers a few useless files
 #
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 rm -f usr/lib/erlang/misc/format_man_pages
 rm -f usr/lib/erlang/misc/makewhatis
 rmdir usr/lib/erlang/misc
 rm -f usr/lib/erlang/Install
+
+rm -f usr/lib/${ARCH64}/erlang/misc/format_man_pages
+rm -f usr/lib/${ARCH64}/erlang/misc/makewhatis
+rmdir usr/lib/${ARCH64}/erlang/misc
+rm -f usr/lib/${ARCH64}/erlang/Install
