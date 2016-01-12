@@ -1,0 +1,4 @@
+PKG="TRIBblix-vulcand"
+NAME="Programmatic load balancer backed by Etcd"
+VERSION="0.0"
+ZAP_URL="http://vulcand.github.io/"
