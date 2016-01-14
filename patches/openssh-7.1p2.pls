@@ -1,0 +1,4 @@
+-p1 openssh.man-sections.patch
+-p1 sshd_config.patch
+-p1 0028-Don-t-use-krb5-config-to-check-for-GSSAPI-on-Illumos.patch
+-p1 0032-Accept-LANG-and-LC_-environment-variables-from-clien.patch
