@@ -8,6 +8,11 @@ case $# in
 	BDIR="$2"
 	BROOT="$3"
 	;;
+2)
+	PKGNAME="$1"
+	BDIR="$2"
+	BROOT="/tmp/pct"
+	;;
 *)
 	echo "Usage: $0 pkg_name tmp_dir output_root"
 	exit 1
