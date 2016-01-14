@@ -1,0 +1,4 @@
+PKG="TRIBblix-leofs"
+NAME="Distributed object store"
+VERSION="1.2.18.0"
+ZAP_URL="http://leo-project.net/"

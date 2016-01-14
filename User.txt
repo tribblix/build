@@ -8,6 +8,7 @@ By default, reserve the group id as well
 92  sshd    	    TRIBsvc-net-ssh
 101 rabbitmq	    TRIBblix-rabbitmq
 102 nginx	    TRIBblix-nginx
+103 leofs	    TRIBblix-leofs
 111 zabbixa	    TRIBzabbix-agent
 112 zabbixp	    TRIBzabbix-proxy
 113 zabbix	    TRIBblix-zabbix (server)
