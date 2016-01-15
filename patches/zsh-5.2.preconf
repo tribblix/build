@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i '/#define _POSIX_C_SOURCE 200809L/d' configure
