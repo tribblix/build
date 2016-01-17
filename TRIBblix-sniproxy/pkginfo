@@ -1,0 +1,4 @@
+PKG="TRIBblix-sniproxy"
+NAME="TLS and HTTP proxy"
+VERSION="0.4.0"
+ZAP_URL="https://github.com/dlundquist/sniproxy"
