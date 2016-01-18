@@ -1,4 +1,4 @@
 PKG="TRIBdebug-gdb"
 NAME="GNU debugger (gdb)"
-VERSION="7.10.0.0"
+VERSION="7.10.1.0"
 ZAP_URL="http://www.gnu.org/software/gdb/"
