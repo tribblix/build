@@ -1,0 +1,4 @@
+PKG="TRIBv-go-15-gox"
+NAME="Gox - Simple Go Cross Compilation"
+VERSION="1.5.0"
+ZAP_URL="https://github.com/mitchellh/gox"
