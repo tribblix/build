@@ -1,4 +1,4 @@
 PKG="TRIBlibxml2"
 NAME="GNOME XML library"
-VERSION="2.9.2.0"
+VERSION="2.9.3.0"
 ZAP_URL="http://www.xmlsoft.org/"
