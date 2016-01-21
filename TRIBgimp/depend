@@ -2,7 +2,7 @@ P TRIBaalib
 P TRIBgdk-pixbuf
 P TRIBimage-libexif
 P TRIBimage-libjpeg
-P TRIBimage-libmng
+P TRIBlibmng
 P TRIBimage-libpng
 P TRIBimage-librsvg
 P TRIBimage-libtiff
