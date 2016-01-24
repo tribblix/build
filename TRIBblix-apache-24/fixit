@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# don't need static libs or la files for anything else to build against
+#
+rm -f opt/tribblix/apache2/lib/*.a
+rm -f opt/tribblix/apache2/lib/*.la
+rm -f opt/tribblix/apache2/lib/apr-util-1/*.a
+rm -f opt/tribblix/apache2/lib/apr-util-1/*.la
