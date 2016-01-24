@@ -1,0 +1,4 @@
+PKG="TRIBterminal-urxvt"
+NAME="rxvt-unicode terminal emulator"
+VERSION="9.22.0"
+ZAP_URL="http://software.schmorp.de/pkg/rxvt-unicode.html"
