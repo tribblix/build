@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# gnutls erroneously declares a dependency on zlib, which doesn't
-# have a .pc file to satisfy it
-#
-mv usr/lib/pkgconfig/gnutls.pc usr/lib/pkgconfig/gnutls.pc.old
-grep -v zlib usr/lib/pkgconfig/gnutls.pc.old > usr/lib/pkgconfig/gnutls.pc
-rm usr/lib/pkgconfig/gnutls.pc.old
