@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# it appears to be very hard to persuade nettle to build in 64-bit
+# correctly, it has it's own mechanism that incorrectly guesses
+# based on the host triplet
+#
+gsed -i 's:ABI=standard:ABI=64:' configure
+gsed -i 's:asm_path=x86$:asm_path=x86_64:' configure

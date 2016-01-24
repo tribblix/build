@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# we don't really need the 64-bit binaries
+#
+rm -fr usr/bin/amd64
