@@ -138,11 +138,15 @@ do
 	if [ "x$DO64" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
 	    cd ${pkg}-64bit${SUBDIR}
-	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
+	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
+		${BUILD}/patches/${pkg}.preconf.64
+	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
-	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
+	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
+		${BUILD}/patches/${pkg}.postconf.64
+	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
 	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
