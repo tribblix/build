@@ -12,12 +12,13 @@ P TRIBlib-desktop-pango
 P TRIBlib-expat
 P TRIBlib-glib2
 P TRIBlib-graphics-pixman
-P TRIBlib-lcms
+P TRIBlib-lcms2
 P TRIBlib-zlib
 P TRIBlibffi
 P TRIBlibxcb
 P TRIBlibxml2
 P TRIBpoppler
+P TRIBshared-mime-info
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBx11-libice
