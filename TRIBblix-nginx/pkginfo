@@ -1,4 +1,4 @@
 PKG="TRIBblix-nginx"
 NAME="High performance http server"
-VERSION="1.8.0.3"
+VERSION="1.8.1.0"
 ZAP_URL="http://wiki.nginx.org/Main"
