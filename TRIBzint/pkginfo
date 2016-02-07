@@ -1,0 +1,4 @@
+PKG="TRIBzint"
+NAME="Zint barcode generator"
+VERSION="2.4.4.0"
+ZAP_URL="http://www.zint.org.uk/zint.aspx"

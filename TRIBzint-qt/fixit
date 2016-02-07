@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# this is the Qt GUI, delete CLI files
+#
+rm -f usr/lib/libzint.so*
+rm -f usr/include/zint.h
+rm -f usr/bin/zint
+rm -fr usr/share
