@@ -1,0 +1,4 @@
+PKG="TRIBx11-xedit"
+NAME="xedit"
+VERSION="1.2.2.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/app/"
