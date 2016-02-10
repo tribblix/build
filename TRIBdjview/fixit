@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# the project is called djview, the desktop file calls it djview4
+# so install the binary under that name
+#
+ln usr/bin/djview usr/bin/djview4
