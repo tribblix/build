@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# make install doesn't exist in the leveldb makefile, so manually fake it
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# whare are we?
+#
+NPWD=`pwd`
+NVER=`basename $NPWD`
+case $NPWD in
+*-64bit)
+	echo "skip 64-bit fix"
+	;;
+*)
+	mkdir -p ${DESTDIR}/usr/lib
+	tar cf - libleveldb.so* | (cd ${DESTDIR}/usr/lib ; tar xf -)
+	tar cf - include | (cd ${DESTDIR}/usr ; tar xf -)
+	if [ -d ../${NVER}-64bit ]; then
+	   cd ../${NVER}-64bit
+	   mkdir -p ${DESTDIR}/usr/lib/${ARCH64}
+	   tar cf - libleveldb.so* | (cd ${DESTDIR}/usr/lib/${ARCH64} ; tar xf -)
+	fi
+	;;
+esac
