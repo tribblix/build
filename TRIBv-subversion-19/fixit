@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# pkgproto generates garbage when fed hard links, so a symlink is just as good
+#
+VERSION=1.9
+rm -f usr/versions/subversion-${VERSION}/lib/lib*.a
+rm -f usr/versions/subversion-${VERSION}/lib/lib*.la
+rm -f usr/versions/subversion-${VERSION}/lib/apr-util-1/*.a
+rm -f usr/versions/subversion-${VERSION}/lib/apr-util-1/*.la
+# make this version the default
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../versions/subversion-${VERSION}/bin/svn* .

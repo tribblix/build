@@ -1,0 +1,5 @@
+P TRIBdatabase-sqlite-3
+P TRIBfile-magic
+P TRIBlib-expat
+P TRIBlib-security-openssl
+P TRIBlib-zlib

@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# need to unpack sqlite
+#
+SQLVER=3071501
+$UNPACKER sqlite-amalgamation-${SQLVER}
+mv sqlite-amalgamation-${SQLVER} sqlite-amalgamation
