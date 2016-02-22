@@ -244,6 +244,9 @@ fi
 if [ -d ${BDIR}/etc ]; then
    (cd ${BDIR} ; pkgproto etc | ${BUILD}/fixproto) >> pp.$$
 fi
+if [ -d ${BDIR}/kernel ]; then
+   (cd ${BDIR} ; pkgproto kernel | ${BUILD}/fixproto) >> pp.$$
+fi
 if [ -d ${BDIR}/lib ]; then
    (cd ${BDIR} ; pkgproto lib | ${BUILD}/fixproto) >> pp.$$
 fi
