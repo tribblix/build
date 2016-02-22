@@ -1,3 +1,3 @@
-tribblix_srcs='node-v4.3.0'
+tribblix_srcs='node-v4.3.1'
 tribblix_P_opt='/usr/versions/node-v4"
 tribblix_C_opt="--without-dtrace"
