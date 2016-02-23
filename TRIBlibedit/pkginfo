@@ -1,0 +1,4 @@
+PKG="TRIBlibedit"
+NAME="Port of the NetBSD Editline/libedit library"
+VERSION="3.1.0"
+ZAP_URL="http://thrysoee.dk/editline/"
