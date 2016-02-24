@@ -9,6 +9,8 @@ nawk '
 {if ($3 == "usr/lib/amd64/pkgconfig")  $6 = "other"}
 {if ($3 == "usr/lib/sparcv9/pkgconfig")  $6 = "other"}
 {if ($3 == "usr/share")  $6 = "sys"}
+{if ($3 == "usr/lib/devfsadm")  $6 = "sys"}
+{if ($3 == "usr/lib/devfsadm/linkmod")  $6 = "sys"}
 {if ($1 == "d" && $3 ~ /^usr\/share\/locale/)  $6 = "other"}
 {if ($3 == "usr/share/xsessions")  $6 = "other"}
 {if ($3 == "usr/share/pixmaps")  $6 = "other"}
@@ -18,6 +20,7 @@ nawk '
 {if ($3 == "usr/share/pixmaps/backgrounds")  $6 = "other"}
 {if ($3 == "usr/bin/gkrellm")  $6 = "sys"}
 {if ($3 == "usr/bin/gkrellmd")  $6 = "sys"}
+{if ($3 ~ /^kernel/)  $6 = "sys"}
 {if ($3 == "opt")  $6 = "sys"}
 {if ($3 == "usr")  $6 = "sys"}
 {if ($3 == "var")  $6 = "sys"}
