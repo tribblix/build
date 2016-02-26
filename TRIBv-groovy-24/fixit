@@ -2,7 +2,7 @@
 #
 # links into normal PATH
 #
-VERSION=2.4.5
+VERSION=2.4.6
 mkdir -p usr/bin
 rm usr/versions/groovy-${VERSION}/bin/*.bat
 cd usr/bin
