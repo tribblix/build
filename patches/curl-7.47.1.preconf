@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# disable the check for SSLv2
+#
+gsed -i '/SSLv2_client_method/d' configure
