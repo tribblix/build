@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+cd opt/tribblix
+
+#
+# this is the directory tree
+#
+mkdir -p clamav/var/lib
+mkdir -p clamav/var/log
+
+#
+# tweaks to config file below
+#
+cp clamav/etc/freshclam.conf.sample clamav/etc/freshclam.conf
+cp clamav/etc/clamd.conf.sample clamav/etc/clamd.conf
+gsed -i '/^Example/d' clamav/etc/clamd.conf
+gsed -i '/^Example/d' clamav/etc/freshclam.conf
+gsed -i 's=#LogFile /tmp/clamd.log=LogFile /opt/tribblix/clamav/var/log/clamd.log=' clamav/etc/clamd.conf
+gsed -i 's=#UpdateLogFile /var/log/freshclam.log=UpdateLogFile /opt/tribblix/clamav/var/log/freshclam.log=' clamav/etc/freshclam.conf
+gsed -i 's=#DatabaseDirectory /var/lib/clamav=DatabaseDirectory /opt/tribblix/clamav/var/lib=' clamav/etc/clamd.conf
+gsed -i 's=#DatabaseDirectory /var/lib/clamav=DatabaseDirectory /opt/tribblix/clamav/var/lib=' clamav/etc/freshclam.conf

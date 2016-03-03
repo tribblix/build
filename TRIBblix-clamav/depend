@@ -1,0 +1,7 @@
+P TRIBcompress-bzip2
+P TRIBcurl
+P TRIBlib-pcre
+P TRIBlib-security-openssl
+P TRIBlib-zlib
+P TRIBlibidn
+P TRIBlibxml2
