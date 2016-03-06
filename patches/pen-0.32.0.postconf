@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# this isn't properly guarded
+#
+gsed -i '/int accept4/d' pen.c
