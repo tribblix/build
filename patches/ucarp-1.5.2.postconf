@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# we have SIOCGIFHWADDR but it's not the same
+#
+gsed -i s:SIOCGIFHWADDR:XXSIOCGIFHWADDR: src/fillmac.c

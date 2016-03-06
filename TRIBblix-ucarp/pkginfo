@@ -1,0 +1,4 @@
+PKG="TRIBblix-ucarp"
+NAME="Portable implementation of the CARP protocol"
+VERSION="1.5.2.0"
+ZAP_URL="http://ucarp.org/"
