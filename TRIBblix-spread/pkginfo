@@ -1,0 +1,4 @@
+PKG="TRIBblix-spread"
+NAME="Spread messaging toolkit"
+VERSION="4.4.0.0"
+ZAP_URL="http://www.spread.org/"

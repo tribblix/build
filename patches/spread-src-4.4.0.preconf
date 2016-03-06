@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# solaris settings are broken
+#
+gsed -i '/SHLDCONVERTSTATIC="/d' configure
+gsed -i '/SHLDCONVERTSTATICEND="/d' configure
