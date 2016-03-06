@@ -1,0 +1,4 @@
+PKG="TRIBhoneybadger"
+NAME="TCP attack inquisitor and 0-day catcher"
+VERSION="0.0.1.0"
+ZAP_URL="https://honeybadger.readthedocs.org/en/latest/"

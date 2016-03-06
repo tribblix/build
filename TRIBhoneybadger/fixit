@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+mkdir -p usr/share/HoneyBadger
+cat > usr/share/HoneyBadger/README.txt <<EOF
+Documentation: https://honeybadger.readthedocs.org/en/latest/
+For illumos: https://honeybadger.readthedocs.org/en/latest/#deployment-on-smartos-illumos-opensolaris-solaris
+Source: https://github.com/david415/HoneyBadger
+EOF
