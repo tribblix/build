@@ -1,2 +1,0 @@
-#!/bin/sh
-gsed -i 's:HAVE_SYS_VNODE_H:BROKEN_HAVE_SYS_VNODE_H:' dlls/ntdll/directory.c
