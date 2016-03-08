@@ -3,7 +3,7 @@
 # create a versioned directory
 # put a symlink in /usr/bin
 #
-VERSION=38.5.1
+VERSION=38.6.0
 mkdir -p usr/bin
 cd usr/versions
 mkdir thunderbird-${VERSION}
