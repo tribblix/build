@@ -1,0 +1,4 @@
+PKG="TRIBxapian-core"
+NAME="Open Source Search Engine Library"
+VERSION="1.2.22.0"
+ZAP_URL="https://xapian.org/"
