@@ -1,4 +1,4 @@
 PKG="TRIBtext-gnu-grep"
 NAME="GNU grep utilities"
-VERSION="2.23.0"
+VERSION="2.24.0"
 ZAP_URL="http://www.gnu.org/software/grep/"
