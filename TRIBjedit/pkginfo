@@ -1,4 +1,4 @@
 PKG="TRIBjedit"
 NAME="jEdit - programmer's text editor written in Java"
-VERSION="5.2.0.0"
+VERSION="5.3.0.0"
 ZAP_URL="http://www.jedit.org/"
