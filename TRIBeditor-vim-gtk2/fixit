@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# remove localized man pages
+#
+rm -fr usr/share/man/*/man1
+rmdir usr/share/man/*
+#
+# this package supplies a graphical vim
+# the regular vim (non-gui) is shipped as TRIBeditor-vim
+# we remove all the files that are duplicate
+#
+# we also rename vim as gvim. we don't do that using the
+# --with-vim-name flag to configure because it changes the names
+# of all the other binaries and man pages
+#
+rm -fr usr/share/vim
+cd usr/bin
+rm ex rview rvim view vimdiff vimtutor xxd
+rm gvim
+mv vim gvim
+rm eview
+ln -s gvim eview
+rm evim
+ln -s gvim evim
+rm gview
+ln -s gvim gview
+rm gvimdiff
+ln -s gvim gvimdiff
+rm rgview
+ln -s gvim rgview
+rm rgvim
+ln -s gvim rgvim
+cd ../share/man/man1
+rm evim.1 ex.1 rview.1 rvim.1 view.1 vim.1 vimdiff.1 vimtutor.1 xxd.1

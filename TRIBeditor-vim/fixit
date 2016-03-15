@@ -8,8 +8,5 @@ rmdir usr/share/man/*
 # this package also owns /bin/vi, which I point at the
 # traditional (but xpg6) vi
 #
-# one reason for the split is that this vim has graphics enabled,
-# so make vi point to something that doesn't need a gui.
-#
 cd usr/bin
 ln -s ../xpg6/bin/edit vi

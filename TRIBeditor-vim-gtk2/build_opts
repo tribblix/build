@@ -1,0 +1,2 @@
+tribblix_srcs=vim74
+tribblix_C_opt="--enable-gui=gtk2 --with-compiledby=ptribble@tribblix"
