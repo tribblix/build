@@ -24,10 +24,10 @@ EOF
 # prefer zap as we can get dependencies, and it's quicker
 #
 cd $PKGDIR
-for PKGI in *.pkg
+for PKGI in *.zap
 do
   DEPLIST=""
-  PKG=${PKGI%.pkg}
+  PKG=${PKGI%.zap}
   ZPKG=${PKG}.zap
   PNAME=${PKGI%%.*}
   if [ -f $ZPKG ]; then
