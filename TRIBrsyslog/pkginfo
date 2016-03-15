@@ -1,4 +1,4 @@
 PKG="TRIBrsyslog"
 NAME="RSYSLOG - rocket-fast system for log processing"
-VERSION="8.8.0.0"
+VERSION="8.17.0.0"
 ZAP_URL="http://www.rsyslog.com/"
