@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# we modified configure.ac so need to regenerate configure
-#
-autoreconf

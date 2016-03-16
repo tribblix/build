@@ -1,0 +1,8 @@
+-p1 sshd_config.patch
+-p1 0001-Add-missing-priv.h-include-in-port-solaris.h.patch
+-p1 0002-Skip-config-check.patch
+-p1 0003-PAM-Support.patch
+-p1 0004-lastlogin.patch
+-p1 0005-Reorganise-man-pages-into-Illumos-numbering-adjust-t.patch
+-p1 0028-Don-t-use-krb5-config-to-check-for-GSSAPI-on-Illumos.patch
+-p1 0031-Accept-LANG-and-LC_-environment-variables-from-clien.patch
