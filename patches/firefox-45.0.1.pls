@@ -1,0 +1,15 @@
+-p1 ff/01-FF43.0b3_OpenSXCE_x86_x64.patch
+-p1 ff/02-arc4random.patch
+-p1 ff/03-paths.patch
+-p1 ff/04-gnu-ld-wrapper.patch
+-p1 ff/05-libstagefright.patch
+-p1 ff/06-libevent.patch
+-p1 ff/07-branding.patch
+-p1 ff/08-media_libpng_pngpriv.h.patch
+-p1 ff/09-recreateDefault.diff.patch
+-p1 ff/10-xopensource_extended.patch
+-p1 ff/11-Memory.cpp.patch
+-p1 ff/12-signatures.patch
+-p1 ff/13-rename_log2.patch
+-p1 ff/14-thank-Martin.patch
+-p1 ff/15-5876-fix.patch
