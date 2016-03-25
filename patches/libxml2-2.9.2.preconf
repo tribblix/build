@@ -1,4 +1,0 @@
-#!/bin/sh
-#
-/usr/bin/autoreconf -i
-cp ${PATCHDIR}/libxml2.mapfile libxml2.syms
