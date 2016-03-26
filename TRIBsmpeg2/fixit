@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# plaympeg is the name used by smpeg, for smpeg2 use the name
+# plaympeg2 so as not to conflict
+#
+mv usr/bin/plaympeg usr/bin/plaympeg2
+mv usr/share/man/man1/plaympeg.1 usr/share/man/man1/plaympeg2.1
