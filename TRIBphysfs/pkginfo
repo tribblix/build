@@ -1,0 +1,4 @@
+PKG="TRIBphysfs"
+NAME="PhysicsFS srchive abstraction library"
+VERSION="2.0.3.0"
+ZAP_URL="https://icculus.org/physfs/"
