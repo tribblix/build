@@ -1,2 +1,2 @@
-tribblix_srcs=git-2.7.4
+tribblix_srcs=git-2.8.0
 tribblix_C_opt="--with-perl=/usr/perl5/5.22.0/bin/perl"
