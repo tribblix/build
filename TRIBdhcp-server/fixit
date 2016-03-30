@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# this is where dhpcd stores its data
+#
+mkdir -p var/db
+touch var/db/dhcpd.leases
+touch var/db/dhcpd6.leases
