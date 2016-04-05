@@ -1,0 +1,4 @@
+PKG="TRIBshib-opensaml-c"
+NAME="OpenSAML-C for Shibboleth"
+VERSION="2.5.5.0"
+ZAP_URL="https://wiki.shibboleth.net/confluence/display/OpenSAML/OSTwoUsrManCPPInstall"
