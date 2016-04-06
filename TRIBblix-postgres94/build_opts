@@ -1,4 +1,4 @@
-tribblix_srcs=postgresql-9.4.6
+tribblix_srcs=postgresql-9.4.7
 tribblix_P_opt='/opt/tribblix/postgres94'
 tribblix_C_opt="--without-readline"
 tribblix_M_opt="world"
