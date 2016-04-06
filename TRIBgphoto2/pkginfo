@@ -1,0 +1,4 @@
+PKG="TRIBgphoto2"
+NAME="CLI interface to libgphoto2"
+VERSION="2.5.10.0"
+ZAP_URL="http://www.gphoto.org/proj/gphoto2/"
