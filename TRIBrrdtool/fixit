@@ -1,9 +1,10 @@
 #!/bin/sh
-mkdir -p usr/share/man/man3
-mv usr/man/man3/RRDp.3 usr/share/man/man3
-rmdir usr/man/man3 usr/man
+#mkdir -p usr/share/man/man3
+#mv usr/man/man3/RRDp.3 usr/share/man/man3
+#rmdir usr/man/man3 usr/man
 rm -fr usr/share/doc
 rm -fr usr/share/rrdtool
+rm -f usr/lib/*.la
 #
 # this is where our python really lives
 #
