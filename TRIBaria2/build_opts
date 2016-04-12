@@ -1,0 +1,2 @@
+tribblix_srcs=aria2-1.21.0
+tribblix_C_opt="--with-openssl --without-nettle --without-sqlite3 --without-libgmp --without-gnutls --with-ca-bundle=/etc/openssl/cacert.pem"

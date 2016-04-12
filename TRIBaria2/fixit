@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+rm -fr usr/share/man/??
+rm -fr usr/share/doc
