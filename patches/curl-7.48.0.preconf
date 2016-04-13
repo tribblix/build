@@ -2,4 +2,5 @@
 #
 # disable the check for SSLv2
 #
+gsed -i 's/SSL_get_shutdown \\/SSL_get_shutdown/' configure
 gsed -i '/SSLv2_client_method/d' configure
