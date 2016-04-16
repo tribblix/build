@@ -14,7 +14,7 @@ case $# in
 	BROOT="/tmp/pct"
 	;;
 *)
-	echo "Usage: $0 pkg_name tmp_dir output_root"
+	echo "Usage: $0 pkg_name tmp_dir [output_root]"
 	exit 1
 	;;
 esac
@@ -277,13 +277,26 @@ pkgmk -d ${BROOT} -f pp.$$ -r ${BDIR} ${PKGNAME}
 pkgtrans -s ${BROOT} ${BROOT}/${PKGNAME}.${PKGVER}.pkg ${PKGNAME}
 # create the zap file
 cd $BROOT
+# 7z gives us an extra 2-3% reduction in file size
 #zip -9 -q -r ${PKGNAME} ${PKGNAME}
-rm -f ${PKGNAME}.${PKGVER}.zap
+rm -f ${PKGNAME}.${PKGVER}.zap ${PKGNAME}.${PKGVER}.zap.md5 ${PKGNAME}.${PKGVER}.zap.sig
 7za a -tzip -mx=9 -mfb=256 ${PKGNAME}.${PKGVER}.zap ${PKGNAME}
 chmod a+r ${PKGNAME}.${PKGVER}.zap
-#mv ${PKGNAME}.zip ${PKGNAME}.zap
 cd /
+# pregenerate the md5 checksum ready for catalog creation
 openssl md5 ${BROOT}/${PKGNAME}.${PKGVER}.zap| /usr/bin/awk '{print $NF}' > ${BROOT}/${PKGNAME}.${PKGVER}.zap.md5
+# if the passphrase file exists, sign the package
+# otherwise, it will have to be signed manually
+if [ -f ${HOME}/Tribblix/Sign.phrase ]; then
+    echo ""
+    echo "Signing package."
+    echo ""
+    gpg --detach-sign --no-secmem-warning --passphrase-file ${HOME}/Tribblix/Sign.phrase ${BROOT}/${PKGNAME}.${PKGVER}.zap
+    if [ -f ${BROOT}/${PKGNAME}.${PKGVER}.zap.sig ]; then
+	echo "Package signed successfully."
+	echo ""
+    fi
+fi
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.pkg
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.zap
 rm -fr ${BROOT}/${PKGNAME}

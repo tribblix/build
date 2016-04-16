@@ -18,5 +18,8 @@ do
   else
      ln ${SRCDIR}/${pkg}.${ver}.zap .
   fi
+  if [ -f ${SRCDIR}/${pkg}.${ver}.zap.sig ]; then
+     ln ${SRCDIR}/${pkg}.${ver}.zap.sig .
+  fi
 done
 cp ${SRCDIR}/catalog ${SRCDIR}/aliases ${SRCDIR}/index.html .

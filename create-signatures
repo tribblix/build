@@ -1,0 +1,38 @@
+#!/bin/ksh
+#
+# this will sign just the current versions of packages
+# (otherwise, you could use a trivial loop over all files)
+#
+
+builtin echo
+
+PKGDIR="../pkgs"
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
+
+if [ ! -f ${HOME}/Tribblix/Sign.phrase ]; then
+    echo "Missing passphrase, must sign packages manually"
+    exit 1
+fi
+
+for PKGI in */pkginfo
+do
+  PKG=${PKGI%/*}
+  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI`
+  PKGVERS=${PKGVERS//\"/}
+  if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
+    if [ ! -f ${PKGDIR}/${PKG}.${PKGVERS}.zap.sig ]; then
+	echo ""
+	echo "Signing package ${PKG}.${PKGVERS}."
+	echo ""
+	gpg --detach-sign --no-secmem-warning --passphrase-file ${HOME}/Tribblix/Sign.phrase ${PKGDIR}/${PKG}.${PKGVERS}.zap
+	if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap.sig ]; then
+	    echo "Package signed successfully."
+	    echo ""
+	fi
+    fi
+  fi
+done
