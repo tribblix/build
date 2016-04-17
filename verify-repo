@@ -15,3 +15,12 @@ do
     echo "ERROR: ${pkg}.${ver}.zap missing"
   fi
 done
+
+if [ -f catalog.sig ]; then
+    cat catalog | awk -F'|' '{print $1,$2}' | while read pkg ver
+    do
+	if [ ! -f ${pkg}.${ver}.zap.sig ]; then
+	    echo "ERROR: ${pkg}.${ver}.zap.sig missing"
+	fi
+    done
+fi
