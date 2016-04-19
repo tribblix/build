@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# need to use gnu find
+#
+gsed -i s:/usr/bin/find:/usr/gnu/bin/find: `find . -name Makefile`

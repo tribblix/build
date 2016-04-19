@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# clean up
+#
+rmdir usr/share/afterstep_old
+#
+# customize settings
+#
+gsed -i '/urxvt/d' usr/share/afterstep/wharf
+gsed -i '/aterm/d' usr/share/afterstep/wharf
+gsed -i '/ETerm/d' usr/share/afterstep/wharf
+gsed -i '/rxvt/d' usr/share/afterstep/wharf
+gsed -i -e 's:nautilus:thunar:' -e 's:Nautilus:Thunar:' -e 's:--no-desktop::' usr/share/afterstep/wharf
+gsed -i '/TermTabs/d' usr/share/afterstep/autoexec
