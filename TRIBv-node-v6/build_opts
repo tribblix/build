@@ -1,0 +1,3 @@
+tribblix_srcs='node-v6.0.0'
+tribblix_P_opt='/usr/versions/node-v6"
+tribblix_C_opt="--without-dtrace"
