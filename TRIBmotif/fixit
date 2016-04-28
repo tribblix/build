@@ -3,3 +3,8 @@
 # kill .la files for Motif
 #
 /bin/rm -f usr/lib/lib*.la
+#
+# these are programming demos
+#
+/bin/rm -fr usr/share/Xm
+/bin/rm -fr usr/share/man/manm
