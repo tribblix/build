@@ -1,0 +1,4 @@
+PKG="TRIBxfce-dict"
+NAME="Xfce Dictionary"
+VERSION="0.7.2.0"
+ZAP_URL="http://goodies.xfce.org/projects/applications/xfce4-dict"
