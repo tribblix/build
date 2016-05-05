@@ -1,0 +1,4 @@
+PKG="TRIBclaws-mail"
+NAME="Claws Mail email client"
+VERSION="3.13.2.0"
+ZAP_URL="http://www.claws-mail.org/"
