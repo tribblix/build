@@ -108,12 +108,25 @@ done
 #
 case `uname -p` in
 sparc)
-  ARCH64="sparcv9"
-  ;;
+    ARCH64="sparcv9"
+    ;;
 i386)
-  ARCH64="amd64"
-  ;;
+    ARCH64="amd64"
+    ;;
 esac
+
+#
+# default linker options
+#
+case `uname -p` in
+sparc)
+    LD_OPTIONS="-M /usr/lib/ld/map.noexbss -M /usr/lib/ld/map.noexstk -M /usr/lib/ld/map.pagealign -Bdirect -z ignore"
+    ;;
+i386)
+    LD_OPTIONS="-M /usr/lib/ld/map.noexdata -M /usr/lib/ld/map.noexstk -M /usr/lib/ld/map.pagealign -Bdirect -z ignore"
+    ;;
+esac
+export LD_OPTIONS
 
 #
 # with -gnu, add /usr/gnu/bin at the head of PATH
@@ -133,6 +146,13 @@ do
 	${BUILD}/unpack ${UNPACK_FLAGS} ${pkg}
 	if [ "x$DO64" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
+	    cd ${pkg}-64bit
+	    touch .tribblix_ldopts
+	    cat >> .tribblix_ldopts <<EOF
+LD_OPTIONS="${LD_OPTIONS}"
+export LD_OPTIONS
+EOF
+	    cd ${WORKING_ROOT}
 	    cd ${pkg}-64bit${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
 		${BUILD}/patches/${pkg}.preconf.64
@@ -148,6 +168,13 @@ do
 	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
+	    cd ${WORKING_ROOT}
+	    cd ${pkg}
+	    touch .tribblix_ldopts
+	    cat >> .tribblix_ldopts <<EOF
+LD_OPTIONS="${LD_OPTIONS}"
+export LD_OPTIONS
+EOF
 	    cd ${WORKING_ROOT}
 	    cd ${pkg}${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then

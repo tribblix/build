@@ -74,6 +74,9 @@ esac
 #
 case $# in
 1)
+	if [ -f .tribblix_ldopts ]; then
+	    . ./.tribblix_ldopts
+	fi
 	$GMAKE -k install DESTDIR=$BDIR $MYINSTALL
 	if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 	    ${BUILD}/${PKGNAME}/fixinstall $BDIR
@@ -85,6 +88,9 @@ case $# in
 	do
 	    if [ -d ${SOFTDIR}-64bit ]; then
 		cd ${SOFTDIR}-64bit
+		if [ -f .tribblix_ldopts ]; then
+		    . ./.tribblix_ldopts
+		fi
 		$GMAKE -k install DESTDIR=$BDIR $MYINSTALL
 		if [ -x ${BUILD}/${PKGNAME}/fixinstall.64 ]; then
 		    ${BUILD}/${PKGNAME}/fixinstall.64 $BDIR
@@ -92,6 +98,9 @@ case $# in
 		cd ..
 	    fi
 	    cd ${SOFTDIR}
+	    if [ -f .tribblix_ldopts ]; then
+		. ./.tribblix_ldopts
+	    fi
 	    $GMAKE -k install DESTDIR=$BDIR $MYINSTALL
 	    if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 		${BUILD}/${PKGNAME}/fixinstall $BDIR
