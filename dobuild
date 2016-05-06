@@ -27,35 +27,16 @@ esac
 DO32="true"
 DO64="false"
 UNPACK_FLAGS=""
-case $1 in
--64)
-	DO64="true"
-	UNPACK_FLAGS="-64"
-	shift
-	;;
-+64)
-	DO64="true"
-	DO32="false"
-	UNPACK_FLAGS="+64"
-	shift
-	;;
-esac
 
 #
 # if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
 # then specify -gnu
 #
 DOGNU="false"
-case $1 in
--gnu)
-	DOGNU="true"
-	shift
-	;;
-esac
 
 #
-# FIXME
-# just one package, followed by
+# Other arguments are
+# package name
 # -S subdir
 # -P alternate_prefix
 # -C configure_args
@@ -69,43 +50,58 @@ MAKEARGS=""
 SUBDIR=""
 GMAKEFLAGS="-j 4"
 
-THISPKG="$1"
-shift
+while [[ $# > 0 ]]; do
 case $1 in
+-64)
+	DO64="true"
+	UNPACK_FLAGS="-64"
+	shift
+	;;
++64)
+	DO64="true"
+	DO32="false"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
+-gnu)
+	DOGNU="true"
+	shift
+	;;
 -S)
 	shift
 	SUBDIR="/$1"
 	shift
 	;;
-esac
-case $1 in
 -P)
 	shift
 	IPREFIX="$1"
 	shift
 	;;
-esac
-case $1 in
 -C)
 	shift
 	CONFARGS="$1"
 	shift
 	;;
-esac
-case $1 in
 -M)
 	shift
 	MAKEARGS="$1"
 	shift
 	;;
-esac
-case $1 in
 -J)
 	shift
 	GMAKEFLAGS="-j $1"
 	shift
 	;;
+-*)
+	echo "Invalid argument $1"
+	exit 1
+	;;
+*)
+	THISPKG="$THISPKG $1"
+	shift
+	;;
 esac
+done
 
 #
 # 64-bit files go in these subdirectories
