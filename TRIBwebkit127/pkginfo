@@ -1,0 +1,4 @@
+PKG="TRIBwebkit127"
+NAME="Webkit GTK 1.2.7"
+VERSION="1.2.7.0"
+ZAP_URL="http://webkitgtk.org/"

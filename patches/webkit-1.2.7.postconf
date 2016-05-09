@@ -1,0 +1,8 @@
+#!/bin/sh
+gsed -i s:/usr/sfw/bin/gcc:/usr/bin/gcc: WebCore/dom/make_names.pl
+gsed -i s:/usr/sfw/bin/gcc:/usr/bin/gcc: WebCore/bindings/scripts/IDLParser.pm
+gsed -i s:/usr/sfw/bin/gcc:/usr/bin/gcc: WebCore/css/make-css-file-arrays.pl
+gsed -i 's:-P ::' WebCore/dom/make_names.pl
+# strip off incorrect trailing }
+head -5416 WebCore/css/CSSParser.cpp > WebCore/css/tt1
+mv WebCore/css/tt1 WebCore/css/CSSParser.cpp
