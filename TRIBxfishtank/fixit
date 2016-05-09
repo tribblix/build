@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# move the manpage to the right place
+#
+
+# packaging relocates this under /usr/share *after* fixit is run
+gsed -i s:1x:1: usr/man/man1/xfishtank.1x
+mv usr/man/man1/xfishtank.1x usr/man/man1/xfishtank.1
