@@ -9,4 +9,4 @@ that we use GCC 4.9
  //MKSHLIB = /usr/bin/gld $(DSO_PIC_CFLAGS) $(DSO_LDOPTS) -h $(DSO_SONAME) -o $@
  //OS_LDFLAGS = -lpthread	 -z text -z ignore -R,'$$ORIGIN:$$ORIGIN/..' -z lazyload -z combreloc -z muldefs
 -MKSHLIB = /usr/bin/env LD_ALTEXEC=/usr/bin/gld PATH=/usr/gcc/4.5/bin:/usr/gcc/4.7/bin:/usr/gcc/4.8/bin:$PATH $(CXX) $(CXXFLAGS) $(DSO_PIC_CFLAGS) $(DSO_LDOPTS) -Wl,-h,$(DSO_SONAME) -o $@
-+MKSHLIB = /usr/bin/env LD_ALTEXEC=$(GLD_WRAPPER) PATH=/usr/gcc/4.9/bin:/usr/gcc/4.5/bin:/usr/gcc/4.7/bin:/usr/gcc/4.8/bin:$PATH $(CXX) $(CXXFLAGS) $(DSO_PIC_CFLAGS) $(DSO_LDOPTS) -Wl,-h,$(DSO_SONAME) -o $@
++MKSHLIB = /usr/bin/env LD_ALTEXEC=$(GLD_WRAPPER) $(CXX) $(CXXFLAGS) $(DSO_PIC_CFLAGS) $(DSO_LDOPTS) -Wl,-h,$(DSO_SONAME) -o $@
