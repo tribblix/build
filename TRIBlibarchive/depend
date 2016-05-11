@@ -1,0 +1,5 @@
+P TRIBcompress-bzip2
+P TRIBcompress-xz
+P TRIBlib-zlib
+P TRIBlibxml2
+P TRIBnettle

@@ -1,0 +1,4 @@
+PKG="TRIBlibarchive"
+NAME="Multi-format archive and compression library"
+VERSION="3.2.0.0"
+ZAP_URL="http://libarchive.org/"
