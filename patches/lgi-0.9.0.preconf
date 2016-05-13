@@ -1,3 +1,8 @@
 #!/bin/sh
 gsed -i s:/usr/local:/usr: tests/Makefile
 gsed -i s:/usr/local:/usr: lgi/Makefile
+#
+# it uses the version to decide where to install the files, we need
+# to install them into 5.3
+#
+gsed -i s:5.1:5.3: lgi/Makefile
