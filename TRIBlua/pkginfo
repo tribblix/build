@@ -1,4 +1,4 @@
 PKG="TRIBlua"
 NAME="LUA scripting language"
-VERSION="5.1.5.2"
-ZAP_URL="http://www.lua.org"
+VERSION="5.3.2.0"
+ZAP_URL="http://www.lua.org/"
