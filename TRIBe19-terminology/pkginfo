@@ -1,0 +1,4 @@
+PKG="TRIBe19-terminology"
+NAME="Enlightenment Terminal Emulator"
+VERSION="0.9.1.0"
+ZAP_URL="https://www.enlightenment.org/"
