@@ -1,0 +1,4 @@
+PKG="TRIBfreealut"
+NAME="Free OpenAL ALUT implementation"
+VERSION="1.1.0.0"
+ZAP_URL="https://slackbuilds.org/repository/12.2/libraries/freealut/"

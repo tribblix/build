@@ -1,0 +1,11 @@
+P TRIBfreealut
+P TRIBimage-libpng
+P TRIBimlib2
+P TRIBlib-zlib
+P TRIBlibxml2
+P TRIBopenal
+P TRIBsvc-opengl-ogl-select
+P TRIBsys-lib-fontconfig
+P TRIBsys-lib-freetype-2
+P TRIBx11-libx11
+P TRIBx11-libxxf86vm

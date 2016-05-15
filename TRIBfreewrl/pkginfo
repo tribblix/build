@@ -1,0 +1,4 @@
+PKG="TRIBfreewrl"
+NAME="Free WRL/X3D viewer"
+VERSION="3.0.0.0"
+ZAP_URL="http://freewrl.sourceforge.net/"
