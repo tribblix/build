@@ -17,11 +17,13 @@ case `uname -p` in
 sparc)
 cat > etc/zap/version.list <<EOF
 m16|http://pkgs.tribblix.org/tribblix-m16.sparc/TRIBzap.0.0.16.0.zap|Milestone 16
+m17|http://pkgs.tribblix.org/tribblix-m17.sparc/TRIBzap.0.0.17.0.zap|Milestone 17
 EOF
 ;;
 i386)
 cat > etc/zap/version.list <<EOF
 m16|http://pkgs.tribblix.org/tribblix-m16/TRIBzap.0.0.16.0.zap|Milestone 16
+m17|http://pkgs.tribblix.org/tribblix-m17/TRIBzap.0.0.17.0.zap|Milestone 17
 EOF
 ;;
 esac
