@@ -4,7 +4,6 @@
 #
 
 builtin cat
-builtin echo
 
 PKGDIR="../pkgs"
 case $# in
