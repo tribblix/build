@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# we need libtool installed while doing this piece
+#
+if [ -f /usr/bin/libtool ]; then
+   autoreconf -vi
+else
+   echo "Oops - libtool should be installed"
+fi
+
+#
+# we don't have htobeXX et al
+#
+gsed -i 's:htobe16:BE_16:' libvncserver/websockets.c
+gsed -i 's:htobe32:BE_32:' libvncserver/websockets.c
+gsed -i 's:htobe64:BE_64:' libvncserver/websockets.c
+gsed -i 's:#include "rfbcrypto.h":#include "rfbcrypto.h"\n#include <sys/byteorder.h>:' libvncserver/websockets.c

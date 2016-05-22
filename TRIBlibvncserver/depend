@@ -1,0 +1,5 @@
+P TRIBgnutls
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBlib-zlib
+P TRIBlibgcrypt
