@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# we already have a libuuid that works for almost all cases, so need
+# to make sure the OSSP version doesn't conflict or get used by accident
+#
+# the build resets most of the names, catch some more
+#
+rm -fr usr/share
+mv usr/bin/uuid usr/bin/ossp-uuid
+mv usr/bin/uuid-config usr/bin/ossp-uuid-config
+mv usr/lib/pkgconfig/uuid.pc usr/lib/pkgconfig/ossp-uuid.pc

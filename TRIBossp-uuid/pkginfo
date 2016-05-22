@@ -1,0 +1,4 @@
+PKG="TRIBossp-uuid"
+NAME="The OSSP libuuid"
+VERSION="1.6.2.0"
+ZAP_URL="http://www.ossp.org/pkg/lib/uuid/"

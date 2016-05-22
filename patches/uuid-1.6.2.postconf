@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# the library needs to link against -lsocket -lnsl
+#
+gsed -i 's:-rpath:-lsocket -lnsl -rpath:' Makefile

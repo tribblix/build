@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# we already have libuuid, so this must be installed under a different name
+#
+gsed -i s:libuuid.la:libossp-uuid.la: Makefile.in
+#
+# unfortunately that doesn't propagate to the places it should
+#
+gsed -i 's:-luuid:-lossp-uuid:' uuid-config.in
+gsed -i 's:-luuid:-lossp-uuid:' uuid.pc.in
+#
+# and neither does the change of include directory
+# we build with --includedir=/usr/include/ossp
+#
+gsed -i 's:includedir}:includedir}/ossp:' uuid.pc.in
