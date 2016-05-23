@@ -1,7 +1,10 @@
 #!/bin/sh
 #
-# pkgproto generates garbage when fed hard links, so a symlink is just as good
+# put some commands in the default path
 #
 VERSION=2.3
-mkdir -p usr/bin
-ln -s ../versions/ruby-${VERSION}/bin/ruby usr/bin/ruby
+mkdir -p usr/bin usr/share/man/man1
+ln -s ../../usr/versions/ruby-${VERSION}/bin/ruby usr/bin/ruby
+ln -s ../../usr/versions/ruby-${VERSION}/bin/irb usr/bin/irb
+ln -s ../../../../usr/versions/ruby-${VERSION}/share/man/man1/ruby.1 usr/share/man/man1
+ln -s ../../../../usr/versions/ruby-${VERSION}/share/man/man1/irb.1 usr/share/man/man1
