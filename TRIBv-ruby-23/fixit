@@ -2,6 +2,6 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-#VERSION=2.3
-#mkdir -p usr/bin
-#ln -s ../versions/ruby-${VERSION}/bin/ruby usr/bin/ruby
+VERSION=2.3
+mkdir -p usr/bin
+ln -s ../versions/ruby-${VERSION}/bin/ruby usr/bin/ruby
