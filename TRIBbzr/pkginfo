@@ -1,4 +1,4 @@
 PKG="TRIBbzr"
 NAME="Bazaar version control system"
-VERSION="2.6.0.0"
+VERSION="2.7.0.0"
 ZAP_URL="http://bazaar.canonical.com/en/"
