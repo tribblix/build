@@ -1,4 +1,4 @@
 PKG="TRIBlibmatekbd"
 NAME="MATE keyboard shared library"
-VERSION="1.10.0.0"
+VERSION="1.14.1.0"
 ZAP_URL="http://mate-desktop.org/"

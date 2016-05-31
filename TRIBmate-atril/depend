@@ -1,7 +1,10 @@
 P TRIBdconf
+P TRIBdjvulibre
 P TRIBgdk-pixbuf
 P TRIBharfbuzz
+P TRIBimage-libjpeg
 P TRIBimage-libpng
+P TRIBimage-libtiff
 P TRIBlib-desktop-atk
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk
@@ -9,11 +12,14 @@ P TRIBlib-desktop-pango
 P TRIBlib-expat
 P TRIBlib-glib2
 P TRIBlib-graphics-pixman
+P TRIBlib-lcms2
 P TRIBlib-zlib
 P TRIBlibffi
 P TRIBlibxcb
 P TRIBlibxml2
+P TRIBmate-caja
 P TRIBmate-desktop
+P TRIBpoppler
 P TRIBstartup-notification
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
