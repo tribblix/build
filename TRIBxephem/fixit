@@ -1,0 +1,5 @@
+#!/bin/sh
+mkdir -p etc
+cat > etc/XEphem << _EOF
+XEphem.ShareDir: /usr/share/xephem
+_EOF
