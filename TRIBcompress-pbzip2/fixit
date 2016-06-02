@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# correct the symlinks
-#
-cd usr/bin
-/usr/bin/rm pbunzip2 pbzcat
-ln -s pbzip2 pbunzip2
-ln -s pbzip2 pbzcat
