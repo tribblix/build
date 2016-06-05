@@ -1,0 +1,4 @@
+PKG="TRIBliba52"
+NAME="liba52 - a free ATSC A/52 stream decoder"
+VERSION="0.7.4.0"
+ZAP_URL="http://liba52.sourceforge.net/"
