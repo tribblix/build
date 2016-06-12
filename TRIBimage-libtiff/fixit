@@ -25,3 +25,9 @@ mv usr/share/man/man3 usr/share/man/man3tiff
 # don't ship html docs
 #
 rm -fr usr/share/doc/tiff-*/html
+#
+# fixinstall.64 saved the 64-bit tiffconf.h for us, now
+# we wrap it
+#
+mv usr/include/tiffconf.h usr/include/tiffconf-32.h
+cp ${BUILDROOT}/patches/tiffconf.h usr/include/tiffconf.h
