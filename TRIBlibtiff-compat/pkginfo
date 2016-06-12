@@ -1,0 +1,3 @@
+PKG="TRIBlibtiff-compat"
+NAME="Old libtiff files for compatibility"
+VERSION="0.9o"
