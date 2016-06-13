@@ -1,4 +1,4 @@
 PKG="TRIBgeany"
 NAME="Geany lightweight gtk editor/IDE"
-VERSION="1.26.0"
+VERSION="1.27.0"
 ZAP_URL="http://www.geany.org/"
