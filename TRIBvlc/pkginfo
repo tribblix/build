@@ -1,0 +1,4 @@
+PKG="TRIBvlc"
+NAME="VLC media player"
+VERSION="2.2.4.0"
+ZAP_URL="http://www.videolan.org/vlc/"
