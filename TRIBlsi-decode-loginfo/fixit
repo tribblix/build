@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# this is the entire install
+#
+mkdir -p usr/bin
+wget https://github.com/baruch/lsi_decode_loginfo/raw/master/lsi_decode_loginfo.py
+mv lsi_decode_loginfo.py usr/bin/lsi_decode_loginfo
+chmod a+x usr/bin/lsi_decode_loginfo

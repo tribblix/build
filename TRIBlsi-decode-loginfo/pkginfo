@@ -1,0 +1,4 @@
+PKG="TRIBlsi-decode-loginfo"
+NAME="Decode LSI LogInfo codes"
+VERSION="0.0"
+ZAP_URL="https://github.com/baruch/lsi_decode_loginfo"
