@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+VERSION=4.4.0
+chmod 4511 ${DESTDIR}/usr/bin/screen-4.4.0
+mkdir -p ${DESTDIR}/etc
+cp etc/etcscreenrc ${DESTDIR}/etc/screenrc
