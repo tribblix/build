@@ -3,5 +3,6 @@ P TRIBimage-libpng
 P TRIBlib-zlib
 P TRIBlibicu
 P TRIBlibsdl
+P TRIBlibxdg-basedir
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
