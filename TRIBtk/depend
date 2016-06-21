@@ -1,6 +1,7 @@
 P TRIBlib-zlib
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
+P TRIBtcl
 P TRIBx11-libx11
 P TRIBx11-libxext
 P TRIBx11-libxft
