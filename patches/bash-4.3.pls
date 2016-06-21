@@ -40,3 +40,7 @@
 -p0 bash43-040
 -p0 bash43-041
 -p0 bash43-042
+-p0 bash43-043
+-p0 bash43-044
+-p0 bash43-045
+-p0 bash43-046
