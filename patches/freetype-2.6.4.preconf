@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# their symbol exports are plain broken and include mac-only functions
+#
+gsed -i '/export-symbols/d' builds/unix/unix-cc.in
