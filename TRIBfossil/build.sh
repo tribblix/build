@@ -1,4 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild fossil-src-1.34
-${THOME}/build/genpkg TRIBfossil fossil-src-1.34
+# rename the tarball
+#  mv fossil-src-1.35.tar.gz fossil-1.35.tar.gz
+#
+${THOME}/build/dobuild fossil-1.35
+${THOME}/build/genpkg TRIBfossil fossil-1.35
