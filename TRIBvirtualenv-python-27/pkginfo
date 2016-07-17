@@ -1,0 +1,4 @@
+PKG="TRIBvirtualenv-python-27"
+NAME="Tool to create isolated Python environments"
+VERSION="15.0.2.0"
+ZAP_URL="https://virtualenv.pypa.io/en/stable/"
