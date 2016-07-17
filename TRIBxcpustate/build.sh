@@ -6,5 +6,5 @@ rm -fr /tmp/xc
 mkdir -p /tmp/xc/usr/bin /tmp/xc/usr/share/man/man1
 cp xcpustate /tmp/xc/usr/bin
 cp xcpustate.man /tmp/xc/usr/share/man/man1/xcpustate.1
-${THOME}/build/create_pkg TRIBxcpustate /tmp/xc /tmp/pct
+${THOME}/build/create_pkg TRIBxcpustate /tmp/xc
 rm -fr /tmp/xc

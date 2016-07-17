@@ -6,5 +6,5 @@ gmake
 rm -fr /tmp/uu
 mkdir -p /tmp/uu/usr/bin
 cp unrar /tmp/uu/usr/bin
-${THOME}/build/create_pkg TRIBcompress-unrar /tmp/uu /tmp/pct
+${THOME}/build/create_pkg TRIBcompress-unrar /tmp/uu
 rm -fr /tmp/uu

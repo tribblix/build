@@ -9,5 +9,5 @@ env CXXFLAGS="-std=c++11 -fpermissive" ../configure --with-gtk --prefix=/usr --d
 gmake -j 12
 rm -fr /tmp/wxg
 gmake install DESTDIR=/tmp/wxg
-${THOME}/build/create_pkg TRIBwxwidgets /tmp/wxg /tmp/pct
+${THOME}/build/create_pkg TRIBwxwidgets /tmp/wxg
 rm -fr /tmp/wxg

@@ -8,5 +8,5 @@ gsed -i s:/etc/ssl/certs/ca-certificates.crt:/etc/openssl/cacert.pem: bzrlib/tra
 python setup.py build
 rm -fr /tmp/bz
 python setup.py install --root=/tmp/bz
-${THOME}/build/create_pkg TRIBbzr /tmp/bz /tmp/pct
+${THOME}/build/create_pkg TRIBbzr /tmp/bz
 rm -fr /tmp/bz

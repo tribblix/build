@@ -17,7 +17,7 @@ cd haproxy-smf-wrapper
 gmake
 cd ..
 rm -fr /tmp/h1
-mkdir -p /tmp/pct /tmp/h1/opt/tribblix/haproxy/bin /tmp/h1/opt/tribblix/haproxy/doc /tmp/h1/opt/tribblix/haproxy/man/man1
+mkdir -p /tmp/h1/opt/tribblix/haproxy/bin /tmp/h1/opt/tribblix/haproxy/doc /tmp/h1/opt/tribblix/haproxy/man/man1
 cp haproxy /tmp/h1/opt/tribblix/haproxy/bin
 cp haproxy-smf-wrapper/haproxy-smf-wrapper /tmp/h1/opt/tribblix/haproxy/bin
 cp LICENSE doc/configuration.txt doc/gpl.txt doc/lgpl.txt /tmp/h1/opt/tribblix/haproxy/doc

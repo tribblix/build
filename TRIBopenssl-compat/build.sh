@@ -5,5 +5,5 @@
 #
 rm -fr /tmp/csl
 mkdir /tmp/csl
-${THOME}/build/create_pkg TRIBopenssl-compat /tmp/csl /tmp/pct
+${THOME}/build/create_pkg TRIBopenssl-compat /tmp/csl
 rm -fr /tmp/csl

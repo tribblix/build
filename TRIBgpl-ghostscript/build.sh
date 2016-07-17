@@ -17,4 +17,4 @@ ${THOME}/build/unpack ghostscript-fonts-std-8.11
 ${THOME}/build/unpack gnu-gs-fonts-other-6.0
 rm 9.15/doc/*.*
 cd
-${THOME}/build/create_pkg TRIBgpl-ghostscript /tmp/ags /tmp/pct
+${THOME}/build/create_pkg TRIBgpl-ghostscript /tmp/ags
