@@ -7,9 +7,9 @@
 #
 # also builds the pg package
 #
-${THOME}/build/unpack php-7.0.8
-cd php-7.0.8
-./configure --prefix=/opt/tribblix/php --with-mcrypt=/opt/tribblix/mcrypt --with-ldap=no --with-libxml-dir=/usr --with-apxs2=/opt/tribblix/apache2/bin/apxs --enable-bcmath --enable-mbstring --enable-mysqlnd --with-pgsql=shared,/opt/tribblix/postgres94 --with-pdo-pgsql=shared,/opt/tribblix/postgres94 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --without-sqlite3 --without-pdo-sqlite --with-curl=/usr --with-gd --with-jpeg-dir=/usr --with-png-dir=/usr --with-zlib-dir=/usr --with-freetype-dir=/usr --enable-sockets
+${THOME}/build/unpack php-7.0.9
+cd php-7.0.9
+./configure --prefix=/opt/tribblix/php --with-mcrypt=/opt/tribblix/mcrypt --with-ldap=no --with-libxml-dir=/usr --with-apxs2=/opt/tribblix/apache2/bin/apxs --enable-bcmath --enable-mbstring --enable-mysqlnd --with-pgsql=shared,/opt/tribblix/postgres94 --with-pdo-pgsql=shared,/opt/tribblix/postgres94 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --without-sqlite3 --without-pdo-sqlite --with-curl=/usr --with-gd --with-jpeg-dir=/usr --with-png-dir=/usr --with-zlib-dir=/usr --with-freetype-dir=/usr --enable-sockets --enable-fpm
 gsed -i 's:ext/sockets/ \$:ext/sockets/ -D_XPG4_2 \$:' Makefile
 gmake -j 6
 rm -fr /tmp/m2 /tmp/m2g /tmp/pear
