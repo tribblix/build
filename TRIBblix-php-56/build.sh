@@ -3,13 +3,16 @@
 # you must revert #70002 related to file main/php_open_temporary_file.c,
 # and disable ldap for now, see #70260
 #
+# must not have libtool installed
+#
 # also builds the pg package
 #
 # must have apache24 installed
 #
-${THOME}/build/unpack php-5.6.23
-cd php-5.6.23
-./configure --prefix=/opt/tribblix/php --with-mcrypt=/opt/tribblix/mcrypt --with-ldap --with-libxml-dir=/usr --with-apxs2=/opt/tribblix/apache2/bin/apxs --enable-bcmath --enable-mbstring --with-mysql=mysqlnd --with-pgsql=shared,/opt/tribblix/postgres94 --with-pdo-pgsql=shared,/opt/tribblix/postgres94 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --without-sqlite3 --without-pdo-sqlite --with-curl=/usr --with-gd --with-jpeg-dir=/usr --with-png-dir=/usr --with-zlib-dir=/usr --with-freetype-dir=/usr --enable-sockets
+zap uninstall TRIBlibtool
+${THOME}/build/unpack php-5.6.24
+cd php-5.6.24
+./configure --prefix=/opt/tribblix/php --with-mcrypt=/opt/tribblix/mcrypt --with-ldap --with-libxml-dir=/usr --with-apxs2=/opt/tribblix/apache2/bin/apxs --enable-bcmath --enable-mbstring --with-mysql=mysqlnd --with-pgsql=shared,/opt/tribblix/postgres94 --with-pdo-pgsql=shared,/opt/tribblix/postgres94 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --without-sqlite3 --without-pdo-sqlite --with-curl=/usr --with-gd --with-jpeg-dir=/usr --with-png-dir=/usr --with-zlib-dir=/usr --with-freetype-dir=/usr --enable-sockets --enable-fpm
 gsed -i 's:ext/sockets/ \$:ext/sockets/ -D_XPG4_2 \$:' Makefile
 gmake -j 6
 rm -fr /tmp/m2 /tmp/m2g /tmp/pear
