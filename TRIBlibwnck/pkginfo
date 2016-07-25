@@ -1,3 +1,4 @@
 PKG="TRIBlibwnck"
 NAME="GNOME libwnck 2.31"
 VERSION="2.31.0.2"
+ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/libwnck/"

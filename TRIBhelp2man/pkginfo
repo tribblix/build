@@ -1,3 +1,4 @@
 PKG="TRIBhelp2man"
 NAME="GNU help2man"
 VERSION="1.45.1.0"
+ZAP_URL="https://www.gnu.org/software/help2man/"
