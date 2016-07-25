@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack wxWidgets-3.0.2
-cd wxWidgets-3.0.2
+${THOME}/build/unpack wxWidgets-3.1.0
+cd wxWidgets-3.1.0
 rm -fr buildgtk
 mkdir buildgtk
 cd buildgtk

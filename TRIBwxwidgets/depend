@@ -1,6 +1,6 @@
 P TRIBgdk-pixbuf
-P TRIBgstreamer
-P TRIBgstreamer-plugins-base
+P TRIBgstreamer1
+P TRIBgstreamer1-plugins-base
 P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-libtiff
