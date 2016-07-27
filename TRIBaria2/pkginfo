@@ -1,4 +1,4 @@
 PKG="TRIBaria2"
-NAME="lightweight download utility"
-VERSION="1.23.0.0"
+NAME="Lightweight download utility"
+VERSION="1.25.0.0"
 ZAP_URL="https://aria2.github.io/"
