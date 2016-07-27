@@ -1,4 +1,4 @@
 PKG="TRIBncftp"
-NAME=NcFTP Client""
-VERSION="3.2.5.0"
+NAME="NcFTP Client"
+VERSION="3.2.5.1"
 ZAP_URL="http://www.ncftp.com/ncftp/"
