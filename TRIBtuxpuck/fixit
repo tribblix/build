@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# we don't have compressed man pages
+# (not usr/share/man as it gets relocated after the fixit step)
+#
+gunzip usr/man/man6/tuxpuck.6
