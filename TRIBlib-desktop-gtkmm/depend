@@ -1,4 +1,4 @@
-P TRIBlib-glibmm
-P TRIBlibsigcpp
 P TRIBlib-desktop-atkmm
 P TRIBlib-desktop-gtk
+P TRIBlib-glibmm
+P TRIBlibsigcpp

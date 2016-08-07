@@ -1,6 +1,6 @@
 P TRIBdjvulibre
-P TRIBgsettings-desktop-schemas
 P TRIBgdk-pixbuf
+P TRIBgsettings-desktop-schemas
 P TRIBharfbuzz
 P TRIBimage-libjpeg
 P TRIBimage-libpng

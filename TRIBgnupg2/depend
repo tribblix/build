@@ -1,6 +1,6 @@
 P TRIBcompress-bzip2
+P TRIBgnu-pth
 P TRIBlib-zlib
 P TRIBlibassuan
 P TRIBlibgcrypt
 P TRIBlibgpg-error
-P TRIBgnu-pth

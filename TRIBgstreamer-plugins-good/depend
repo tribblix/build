@@ -1,9 +1,9 @@
 P TRIBgstreamer
-P TRIBliboil
-P TRIBlibogg
-P TRIBlibtheora
-P TRIBlibvorbis
-P TRIBlibflac
-P TRIBlibspeex
 P TRIBlibcddb
 P TRIBlibcdio
+P TRIBlibflac
+P TRIBlibogg
+P TRIBliboil
+P TRIBlibspeex
+P TRIBlibtheora
+P TRIBlibvorbis

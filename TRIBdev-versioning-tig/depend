@@ -1,4 +1,4 @@
-P TRIBncurses
 P TRIBdev-versioning-git
-P TRIBreadline
 P TRIBgnu-libiconv
+P TRIBncurses
+P TRIBreadline

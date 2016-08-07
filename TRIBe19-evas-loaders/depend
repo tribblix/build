@@ -1,8 +1,8 @@
 P TRIBe19-efl
-P TRIBgstreamer1
-P TRIBlib-glib2
-P TRIBlib-zlib
 P TRIBgdk-pixbuf
+P TRIBgstreamer1
 P TRIBimage-librsvg
 P TRIBlib-desktop-cairo
+P TRIBlib-glib2
+P TRIBlib-zlib
 P TRIBpoppler

@@ -1,11 +1,11 @@
 P TRIBgdk-pixbuf
+P TRIBgobject-introspection
 P TRIBlib-desktop-cairo
 P TRIBlib-glib2
 P TRIBlibxcb
 P TRIBlibxdg-basedir
 P TRIBlua
+P TRIBlua-lgi
 P TRIBstartup-notification
 P TRIBsys-libdbus
 P TRIBx11-libx11
-P TRIBlua-lgi
-P TRIBgobject-introspection

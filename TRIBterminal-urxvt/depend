@@ -1,5 +1,6 @@
 P TRIBgdk-pixbuf
 P TRIBlib-glib2
+P TRIBperl-522
 P TRIBstartup-notification
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
@@ -10,4 +11,3 @@ P TRIBx11-libx11
 P TRIBx11-libxft
 P TRIBx11-libxmu
 P TRIBx11-libxrender
-P TRIBperl-522

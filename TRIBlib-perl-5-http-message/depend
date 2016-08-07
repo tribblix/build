@@ -1,5 +1,5 @@
-P TRIBlib-perl-5-http-date
 P TRIBlib-perl-5-encode-locale
-P TRIBlib-perl-5-lwp-mediatypes
-P TRIBlib-perl-5-io-html
+P TRIBlib-perl-5-http-date
 P TRIBlib-perl-5-io-compress
+P TRIBlib-perl-5-io-html
+P TRIBlib-perl-5-lwp-mediatypes
