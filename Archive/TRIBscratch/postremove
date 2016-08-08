@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# scratch has many files whose names contain spaces, so we unpack them
-# rather than package them
-#
-cd ${BASEDIR}/usr/share
-if [ -d scratch ]; then
-  /usr/bin/rm -fr scratch
-fi

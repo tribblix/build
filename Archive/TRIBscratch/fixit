@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# don't force ALSA
-#
-cd usr/bin
-mv scratch scratch.orig
-cat scratch.orig | sed s:ALSA:Sun: > scratch
-rm scratch.orig
-chmod 755 scratch

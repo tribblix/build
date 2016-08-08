@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# fix expr syntax
-#
-cd usr/bin
-mv squeak squeak.orig
-cat squeak.orig | sed s:expr:/usr/gnu/bin/expr: > squeak
-rm squeak.orig
-chmod 755 squeak

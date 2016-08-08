@@ -1,4 +1,0 @@
-PKG="TRIBv-go-14-lint"
-NAME="Lint for GO"
-VERSION="1.4.0.0"
-ZAP_URL="https://github.com/golang/lint"
