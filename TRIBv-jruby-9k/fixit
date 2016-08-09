@@ -3,12 +3,18 @@
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
 VERSION=9.1.2.0
+#
+# jruby 9k is a bit broken on solarish systems and gem doesn't work
+# so don't make it the default until that's fixed
+#
 #mkdir -p usr/bin
-#ln -s ../versions/jruby-${VERSION}/bin/jruby usr/bin/
-#ln -s ../versions/jruby-${VERSION}/bin/jrubyc usr/bin/
-#ln -s ../versions/jruby-${VERSION}/bin/jgem usr/bin/
+#ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
+#ln -s ../../usr/versions/jruby-${VERSION}/bin/jrubyc usr/bin/
+#ln -s ../../usr/versions/jruby-${VERSION}/bin/jgem usr/bin/
+#ln -s ../../usr/versions/jruby-${VERSION}/bin/jirb usr/bin/
 cd usr/versions/jruby-${VERSION}
 rm bin/*.bat
+rm bin/jruby.sh bin/jruby.bash
 rm bin/*.exe
 rm bin/*.dll
 rm -fr lib/ruby/stdlib/ffi/platform/*linux
@@ -22,6 +28,12 @@ rm -fr lib/jni/*Linux
 rm -fr lib/jni/*BSD
 rm -fr lib/jni/*AIX
 rm -fr lib/jni/Darwin
+#
+# We need to fix the jruby script as the Solaris/illumos
+# basename in /usr/bin is utter bilge. Either the xpg4 or
+# the gnu version is fine, both are in the base overlay.
+#
+gsed -i 's:basename:/usr/xpg4/bin/basename:g' bin/jruby
 #
 # build nailgun
 #
