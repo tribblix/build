@@ -1,4 +1,4 @@
 PKG="TRIBtext-gnu-diffutils"
 NAME="GNU diffutils"
-VERSION="3.3.0"
+VERSION="3.4.0"
 ZAP_URL="http://www.gnu.org/software/diffutils/"
