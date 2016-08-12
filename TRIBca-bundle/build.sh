@@ -1,13 +1,15 @@
-#!/bin/sh
+#!/bin/tcsh
 #
 # Add the CA bundle
 # (has an extra symlink for wget compatibility)
 # http://stackoverflow.com/questions/3777075/ssl-certificate-rejected-trying-to-access-github-over-https-behind-firewall
 #
+rm -fr ca-bundle
 mkdir ca-bundle
 cd ca-bundle
 wget http://curl.haxx.se/ca/cacert.pem
 cat cacert.pem | gawk 'split_after==1{n++;split_after=0} /-----END CERTIFICATE-----/ {split_after=1} {print > "cert" n ".pem"}'
+rm -fr /tmp/cab
 mkdir -p /tmp/cab/etc/openssl/certs
 cp cacert.pem /tmp/cab/etc/openssl
 foreach file ( cert*.pem )
