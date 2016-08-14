@@ -1,4 +1,4 @@
 PKG="TRIBmotif"
 NAME="The Motif toolkit"
-VERSION="2.3.5.0"
+VERSION="2.3.6.0"
 ZAP_URL="https://sourceforge.net/projects/motif/"
