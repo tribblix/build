@@ -300,3 +300,6 @@ fi
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.pkg
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.zap
 rm -fr ${BROOT}/${PKGNAME}
+
+echo "Checking dependencies"
+${THOME}/build/instdepcheck.sh ${PKGNAME} ${BDIR}
