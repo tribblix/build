@@ -2,8 +2,8 @@
 #
 # haproxy - add smf wrapper
 #
-${THOME}/build/unpack haproxy-1.6.7
-cd haproxy-1.6.7
+${THOME}/build/unpack haproxy-1.6.8
+cd haproxy-1.6.8
 #first fix only necessary for lua
 # gsed -i s:-Wl,--export-dynamic:: Makefile
 #these 2 fixes no longer necessary for 1.6.6
