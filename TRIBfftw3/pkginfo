@@ -1,0 +1,4 @@
+PKG="TRIBfftw3"
+NAME="Fastest Fourier Transform in the West."
+VERSION="3.3.5.0"
+ZAP_URL="http://www.fftw.org/"
