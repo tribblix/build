@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# this is where our python really lives
+#
+mkdir -p usr/versions/python-2.7/lib/python2.7/site-packages
+mv usr/lib/python2.7/site-packages/* usr/versions/python-2.7/lib/python2.7/site-packages
+rmdir usr/lib/python2.7/site-packages
+rmdir usr/lib/python2.7
