@@ -1,0 +1,4 @@
+PKG="TRIBblix-allmark"
+NAME="allmark - the markdown server."
+VERSION="0.9.13plus.0"
+ZAP_URL="https://allmark.io/"
