@@ -1,0 +1,4 @@
+PKG="TRIBabook"
+NAME="Address Book Manager"
+VERSION="0.5.6.0"
+ZAP_URL="http://abook.sourceforge.net/"
