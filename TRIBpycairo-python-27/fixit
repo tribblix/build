@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# shuffle the python files into the right place
+#
+mkdir -p usr/versions/python-2.7/lib/python2.7
+mv usr/lib/python2.7/site-packages usr/versions/python-2.7/lib/python2.7
+rmdir usr/lib/python2.7
