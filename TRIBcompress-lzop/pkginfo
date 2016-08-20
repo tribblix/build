@@ -1,0 +1,4 @@
+PKG="TRIBcompress-lzop"
+NAME="LZOP file compressor"
+VERSION="1.03.0"
+ZAP_URL="http://www.lzop.org/"

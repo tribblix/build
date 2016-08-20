@@ -1,0 +1,4 @@
+PKG="TRIBcompress-lzo"
+NAME="LZO library"
+VERSION="2.09.0"
+ZAP_URL="http://www.oberhumer.com/opensource/lzo/"
