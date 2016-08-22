@@ -3,8 +3,8 @@
 # build tcl and tk together
 #
 
-${THOME}/build/unpack tk8.6.5-src
-cd tk8.6.5/unix
+${THOME}/build/unpack tk8.6.6-src
+cd tk8.6.6/unix
 env CFLAGS=-O ./configure --prefix=/usr
 gmake -j 4
 gmake install DESTDIR=/tmp/tk1
