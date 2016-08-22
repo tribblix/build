@@ -16,5 +16,6 @@ By default, reserve the group id as well
 115 zabbixdb 	    TRIBblix-zabbix (database)
 116 clamav	    TRIBblix-clamav
 117 elastic	    TRIBblix-elasticsearch
+118 kibana	    TRIBblix-kibana
 123 jack	    live image
 223 ntp 	    TRIBopenntpd
