@@ -1,0 +1,4 @@
+PKG="TRIBblix-elasticsearch"
+NAME="Elasticsearch"
+VERSION="2.3.5.0"
+ZAP_URL="https://www.elastic.co/products/elasticsearch"

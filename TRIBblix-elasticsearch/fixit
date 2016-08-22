@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+
+#
+# this is the directory tree for data and logs
+#
+mkdir -p var/elasticsearch/logs
+mkdir -p var/elasticsearch/data
+mkdir -p var/elasticsearch/plugins
+mkdir -p var/elasticsearch/scripts
+
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/elasticsearch.xml var/svc/manifest/network
+
+cd opt/tribblix
+#
+# Normalize the directory name
+#
+VERSION="2.3.5"
+mv elasticsearch-${VERSION} elasticsearch
+
+#
+# fix the configuration
+#
+cat >> elasticsearch/config/elasticsearch.yml <<EOF
+#
+# default data locations for ES on Tribblix
+#
+path.data: /var/elasticsearch/data
+path.logs: /var/elasticsearch/logs
+path.plugins: /var/elasticsearch/plugins
+path.scripts: /var/elasticsearch/scripts
+EOF
