@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# wrapper to start logstash, with valid arguments
+#
+
+LDIR=/var/logstash
+
+#
+# only supply the flags if any files exist, as otherwise
+# logstash continually complains
+#
+# with no configuration just disable ourself
+#
+if [ -d "${LDIR}/config" ]; then
+    TLS=`/bin/ls ${LDIR}/config`
+    if [ -n "$TLS" ]; then
+	CONF_FLAG="-f ${LDIR}/config"
+    else
+	/usr/sbin/svcadm disable svc:/network/logstash:default
+    fi
+fi
+
+cd /opt/tribblix/logstash
+bin/logstash agent $CONF_FLAG -l ${LDIR}/logs/logstash.log < /dev/null > /dev/null 2>&1 &
+exit 0

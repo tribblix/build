@@ -1,0 +1,4 @@
+PKG="TRIBblix-logstash"
+NAME="Logstash"
+VERSION="2.3.4.0"
+ZAP_URL="https://www.elastic.co/products/logstash"

@@ -1,0 +1,1 @@
+logstash::::type=normal;auths=tribblix.smf.manage.logstash,tribblix.smf.modify.logstash

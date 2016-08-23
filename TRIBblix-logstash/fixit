@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/logstash.xml var/svc/manifest/network
+
+#
+# where config and logs live
+#
+mkdir -p var/logstash/logs
+mkdir -p var/logstash/config
+
+cd opt/tribblix
+#
+# Normalize the directory name
+#
+VERSION="2.3.4"
+mv logstash-${VERSION} logstash
+
+#
+# clean up a bit
+#
+cd logstash
+# copy in a startup wrapper
+cp ${BUILDROOT}/patches/svc-logstash bin/svc-logstash
+chmod a+x bin/svc-logstash
+rm -f bin/*.bat
+# this taken straight from jruby
+cd vendor/jruby
+rm bin/*.bat
+rm bin/*.exe
+rm bin/*.dll
+rm -fr lib/ruby/shared/ffi/platform/*linux
+rm -fr lib/ruby/shared/ffi/platform/*darwin
+rm -fr lib/ruby/shared/ffi/platform/*windows
+rm -fr lib/ruby/shared/ffi/platform/*bsd
+rm -fr lib/ruby/shared/ffi/platform/*aix
+rm -fr lib/ruby/shared/ffi/platform/i486-gnu
+rm -fr lib/jni/*Windows
+rm -fr lib/jni/*Linux
+rm -fr lib/jni/*BSD
+rm -fr lib/jni/*AIX
+rm -fr lib/jni/Darwin

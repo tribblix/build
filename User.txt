@@ -17,5 +17,6 @@ By default, reserve the group id as well
 116 clamav	    TRIBblix-clamav
 117 elastic	    TRIBblix-elasticsearch
 118 kibana	    TRIBblix-kibana
+119 logstash	    TRIBblix-logstash
 123 jack	    live image
 223 ntp 	    TRIBopenntpd
