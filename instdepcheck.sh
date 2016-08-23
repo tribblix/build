@@ -33,7 +33,7 @@ FLIST=/tmp/dep.fl.$$
 rm -f $FLIST
 TFILE=/tmp/dch.$$
 rm -f $TFILE
-find . -xdev -type f | egrep -v '/(share|pkgconfig|include)' > $FLIST
+find . -xdev -type f | egrep -v '/(share|pkgconfig|include|gems)/' | egrep -v '\.(rb|txt|jar|c|h|java|md|pem|gemspec)$' > $FLIST
 if [ -s $FLIST ]; then
     ${THOME}/build/autodepend `cat $FLIST` | grep -vw $THISPKG > $TFILE
 else
