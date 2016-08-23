@@ -142,6 +142,19 @@ fi
 EOF
     done
 }
+do_user_attr() {
+    init_preinstall
+    cat ${BUILD}/${PKGNAME}/user_attr | while read pline
+    do
+	pname=`echo $pline|awk -F: '{print $1}'`
+	cat >> ${BDIR}/install/preinstall <<EOF
+if ! /usr/bin/grep -q "^${pname}:" \${BASEDIR}/etc/user_attr
+then
+   echo "$pline" >> \${BASEDIR}/etc/user_attr
+fi
+EOF
+    done
+}
 
 PKGVER=`/usr/bin/grep '^VERSION=' ${BUILD}/${PKGNAME}/pkginfo | /usr/bin/awk -F= '{print $2}' | /usr/bin/sed 's:"::g'`
 cd $BDIR
@@ -227,6 +240,9 @@ if [ -f ${BUILD}/${PKGNAME}/group ]; then
 fi
 if [ -f ${BUILD}/${PKGNAME}/passwd ]; then
     do_passwd
+fi
+if [ -f ${BUILD}/${PKGNAME}/user_attr ]; then
+    do_user_attr
 fi
 close_preinstall
 #
