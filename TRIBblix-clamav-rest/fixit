@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/clamav-rest.xml var/svc/manifest/network
+
+mkdir -p opt/tribblix/clamav-rest/bin
+cd opt/tribblix/clamav-rest/bin
+
+# copy in a startup wrapper
+cp ${BUILDROOT}/patches/clamav-rest.sh clamav-rest.sh
+chmod a+x clamav-rest.sh

@@ -1,0 +1,4 @@
+PKG="TRIBblix-clamav-rest"
+NAME="REST interface to ClamAV"
+VERSION="1.0.0.0"
+ZAP_URL="https://github.com/solita/clamav-rest"
