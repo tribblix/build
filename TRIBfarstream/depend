@@ -1,5 +1,4 @@
 P TRIBgstreamer1
+P TRIBgstreamer1-plugins-base
 P TRIBlib-glib2
-P TRIBlibffi
 P TRIBlibnice
-P TRIBlibxml2
