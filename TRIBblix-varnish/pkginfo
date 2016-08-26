@@ -1,4 +1,4 @@
 PKG="TRIBblix-varnish"
 NAME="Varnish Cache"
-VERSION="4.1.1.0"
+VERSION="4.1.3.0"
 ZAP_URL="https://www.varnish-cache.org/"
