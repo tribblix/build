@@ -2,8 +2,8 @@
 #
 #
 #
-${THOME}/build/unpack Django-1.9.8
-cd Django-1.9.8
+${THOME}/build/unpack Django-1.10
+cd Django-1.10
 rm -fr /tmp/p2a
 python setup.py install --root=/tmp/p2a
 ${THOME}/build/create_pkg TRIBdjango-python-27 /tmp/p2a
