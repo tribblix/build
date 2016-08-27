@@ -3,15 +3,8 @@ P TRIBgdk-pixbuf
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk
 P TRIBlib-glib2
-P TRIBlib-graphics-pixman
-P TRIBlib-zlib
-P TRIBlibcanberra
-P TRIBlibffi
 P TRIBlibmatekbd
-P TRIBlibogg
-P TRIBlibtool
-P TRIBlibvorbis
-P TRIBlibxcb
+P TRIBlibxklavier
 P TRIBmate-desktop
 P TRIBsys-lib-fontconfig
 P TRIBsys-libdbus
