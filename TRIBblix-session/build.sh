@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/tcsh
 #
 rm -fr /tmp/ts
 mkdir /tmp/ts
