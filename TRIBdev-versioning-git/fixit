@@ -4,7 +4,7 @@
 #
 mkdir -p usr/share/man
 cd usr/share/man
-${BUILDROOT}/unpack git-manpages-2.8.3
+${BUILDROOT}/unpack git-manpages-2.9.3
 chmod a+rx .
 cd ../../..
 #
