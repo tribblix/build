@@ -3,4 +3,3 @@
 # clean up trash
 #
 rm -fr etc/rc5.d
-

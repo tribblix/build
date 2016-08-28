@@ -1,5 +1,4 @@
 P TRIBgnutls
 P TRIBlib-zlib
-P TRIBsvc-security-kerberos-5
 P TRIBsys-lib-security-gss
 P TRIBsys-libdbus
