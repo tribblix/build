@@ -1,5 +1,11 @@
 #!/bin/sh
 #
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/clamd.xml var/svc/manifest/network
+
 cd opt/tribblix
 
 #
@@ -19,3 +25,7 @@ gsed -i 's=#LogFile /tmp/clamd.log=LogFile /opt/tribblix/clamav/var/log/clamd.lo
 gsed -i 's=#UpdateLogFile /var/log/freshclam.log=UpdateLogFile /opt/tribblix/clamav/var/log/freshclam.log=' clamav/etc/freshclam.conf
 gsed -i 's=#DatabaseDirectory /var/lib/clamav=DatabaseDirectory /opt/tribblix/clamav/var/lib=' clamav/etc/clamd.conf
 gsed -i 's=#DatabaseDirectory /var/lib/clamav=DatabaseDirectory /opt/tribblix/clamav/var/lib=' clamav/etc/freshclam.conf
+#
+# enable TCP local listener for clamav-rest to talk to
+#
+gsed -i 's=#TCP=TCP=' clamav/etc/clamd.conf
