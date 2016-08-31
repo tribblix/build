@@ -2,7 +2,7 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=1.7.25
+VERSION=1.7.26
 mkdir -p usr/bin
 ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
 ln -s ../../usr/versions/jruby-${VERSION}/bin/jrubyc usr/bin/
@@ -19,11 +19,11 @@ rm -fr lib/ruby/shared/ffi/platform/*windows
 rm -fr lib/ruby/shared/ffi/platform/*bsd
 rm -fr lib/ruby/shared/ffi/platform/*aix
 rm -fr lib/ruby/shared/ffi/platform/i486-gnu
-rm -fr lib/native/*Windows
-rm -fr lib/native/*Linux
-rm -fr lib/native/*BSD
-rm -fr lib/native/*AIX
-rm -fr lib/native/Darwin
+rm -fr lib/jni/*Windows
+rm -fr lib/jni/*Linux
+rm -fr lib/jni/*BSD
+rm -fr lib/jni/*AIX
+rm -fr lib/jni/Darwin
 #
 # We need to fix the jruby script as the Solaris/illumos
 # basename in /usr/bin is utter bilge. Either the xpg4 or
