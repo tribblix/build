@@ -1,1 +1,0 @@
--p1 collectd-sol-ip6.patch
