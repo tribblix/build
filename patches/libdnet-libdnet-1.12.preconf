@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# this appears to be necessary to get the shared libraries
+# named correctly
+#
+libtoolize --automake --copy
+aclocal -I config
+autoheader
+automake --add-missing --copy
+autoconf
