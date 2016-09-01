@@ -1,0 +1,4 @@
+PKG="TRIBlibdnet"
+NAME="simplified, portable interface to low-level networking"
+VERSION="1.12.0"
+ZAP_URL="https://github.com/dugsong/libdnet"
