@@ -1,12 +1,9 @@
 #!/bin/sh
 #
-# TODO - why does it install conf to /etc rather than under prefix?
-# -DCMAKE_INSTALL_SYSCONFDIR=/opt/tribblix/icinga2/etc
-#
 # this builds the mysql and postgres packages too
 #
-${THOME}/build/unpack icinga2-2.4.10
-cd icinga2-2.4.10
+${THOME}/build/unpack icinga2-2.5.4
+cd icinga2-2.5.4
 mkdir build
 cd build
 gsed -i '/gc-sections/d' ../CMakeLists.txt
@@ -26,3 +23,5 @@ mv /tmp/ii/opt/tribblix/icinga2/etc/icinga2/features-available/ido-pgsql.conf /t
 ${THOME}/build/create_pkg TRIBblix-icinga2 /tmp/ii
 ${THOME}/build/create_pkg TRIBblix-icinga2-mysql /tmp/iim
 ${THOME}/build/create_pkg TRIBblix-icinga2-pgsql /tmp/iip
+
+rm -fr /tmp/ii /tmp/iip /tmp/iim
