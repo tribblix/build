@@ -3,4 +3,4 @@
 # simple wrapper for the clamav-rest service
 #
 cd /opt/tribblix/clamav-rest
-exec /usr/bin/java -jar /opt/tribblix/clamav-rest/lib/clamav-rest-1.0.0.jar --server.port=8080 --clamd.host=localhost --clamd.port=3310
+exec /usr/bin/java -jar /opt/tribblix/clamav-rest/lib/clamav-rest-1.0.1.jar --server.port=8080 --clamd.host=localhost --clamd.port=3310
