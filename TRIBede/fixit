@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# remove this pekwm and use our package instead
+#
+rm -f usr/bin/pekwm
+rm -fr usr/etc/pekwm
+rm -fr usr/share/pekwm

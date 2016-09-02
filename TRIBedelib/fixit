@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# need to add compile symlinks
+#
+cd usr/lib
+rm *.la
+ln -s libedelib.so.2.1.0 libedelib.so
+ln -s libedelib_dbus.so.2.1.0 libedelib_dbus.so
+ln -s libedelib_gui.so.2.1.0 libedelib_gui.so

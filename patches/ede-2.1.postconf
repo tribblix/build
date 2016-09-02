@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# there are screwy libintl errors to to buggy edelib headers
+#
+gsed -i 's:D_LARGEFILE_SOURCE:D_LARGEFILE_SOURCE -DUSE_NLS:' Jamconfig
+#
+# we don't ship pekwm as we already have a newer copy, but make sure it
+# doesn't break the build
+#
+gsed -i 's:/usr/include/libpng14:/usr/include/libpng14 -fpermissive:' Jamconfig
+gsed -i 's:png12:png14:g' Jamconfig
+gsed -i 's:-liconv::g' Jamconfig
