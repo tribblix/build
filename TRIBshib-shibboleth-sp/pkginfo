@@ -1,4 +1,4 @@
 PKG="TRIBshib-shibboleth-sp"
 NAME="Shibboleth Service Provider"
-VERSION="2.5.6.0"
+VERSION="2.6.0.0"
 ZAP_URL="http://shibboleth.net/products/service-provider.html"
