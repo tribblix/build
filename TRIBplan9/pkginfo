@@ -1,0 +1,4 @@
+PKG="TRIBplan9"
+NAME="Plan 9 from User Space"
+VERSION="20140306.0"
+ZAP_URL="https://swtch.com/plan9port/"

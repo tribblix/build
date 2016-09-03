@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# cleanup junk from the source tree
+#
+if [ -d usr/versions/plan9 ]; then
+    cd usr/versions/plan9
+    rm -fr .hg
+    rm -f .hg*
+    rm -f `find . -name .cvsignore`
+    rm -fr mac
+    rmdir log
+    rm -fr src
+    # this causes issues with packaging
+    rm -fr troff/font/devutf/charlib
+fi
