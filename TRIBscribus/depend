@@ -1,1 +1,11 @@
+P TRIBcups
+P TRIBimage-libjpeg
+P TRIBimage-libtiff
+P TRIBlib-desktop-cairo
+P TRIBlib-lcms2
+P TRIBlib-zlib
+P TRIBlibxml2
 P TRIBqt4
+P TRIBsys-lib-fontconfig
+P TRIBsys-lib-freetype-2
+P TRIBv-python-27
