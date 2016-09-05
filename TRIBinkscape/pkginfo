@@ -1,4 +1,4 @@
 PKG="TRIBinkscape"
 NAME="Inkscape"
-VERSION="0.91.0"
+VERSION="0.91.1"
 ZAP_URL="https://inkscape.org/en/"
