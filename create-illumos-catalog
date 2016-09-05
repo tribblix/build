@@ -3,7 +3,7 @@
 # catalog format is
 #  name|version|dependencies|size|md5|
 #
-PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m16/pkgs
+PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m18/pkgs
 
 case $# in
 1)
