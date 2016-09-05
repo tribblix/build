@@ -1,4 +1,4 @@
 PKG="TRIBlib-lcms"
 NAME="Little Color Management System"
-VERSION="1.19.0"
+VERSION="1.19.1"
 ZAP_URL="http://www.littlecms.com/"
