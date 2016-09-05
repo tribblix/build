@@ -3,9 +3,13 @@ P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-librsvg
 P TRIBimage-libtiff
+P TRIBlib-desktop-atk
 P TRIBlib-desktop-cairo
+P TRIBlib-desktop-gtk
+P TRIBlib-desktop-pango
 P TRIBlib-glib2
 P TRIBlib-zlib
+P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBsys-libdbus
 P TRIBx11-libice
