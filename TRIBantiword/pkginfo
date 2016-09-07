@@ -1,0 +1,4 @@
+PKG="TRIBantiword"
+NAME="Antiword is a free MS Word reader"
+VERSION="0.37.0"
+ZAP_URL="http://www.winfield.demon.nl/"
