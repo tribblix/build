@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# we only need 2 files
+#
+mv usr/bin/dbus-launch .
+mv usr/share/man/man1/dbus-launch.1 .
+rm -fr usr etc
+mkdir -p usr/bin usr/share/man/man1
+mv dbus-launch usr/bin/dbus-launch
+mv dbus-launch.1 usr/share/man/man1/dbus-launch.1

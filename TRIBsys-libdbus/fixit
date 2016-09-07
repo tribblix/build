@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# this part of dbus ships just the libraries and headers
+#
+rm -fr usr/share
+rm -fr etc
+rm -fr usr/bin
+rm -f usr/lib/dbus-daemon
+rm -f usr/lib/*.la
+rm -f usr/lib/${ARCH64}/*.la
+rm -f usr/lib/dbus-daemon-launch-helper

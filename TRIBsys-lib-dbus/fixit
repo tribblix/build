@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# general cleanup
+#
+rm -fr usr/share/doc
+# OI doesn't ship 64-bit binaries, so we don't either
+rm -fr usr/bin/amd64
+mkdir -p var/lib/dbus
+mkdir -p etc/dbus-1/session.d
+mkdir -p etc/dbus-1/system.d
+
+#
+# copy in startup, configuration etc
+#
+mkdir -p etc/X11/xinit/xinitrc.d
+cp ${BUILDROOT}/patches/0070.dbus etc/X11/xinit/xinitrc.d
+mkdir -p etc/security/auth_attr.d
+cp ${BUILDROOT}/patches/dbus-auth_attr etc/security/auth_attr.d/system-library-dbus
+mkdir -p etc/security/prof_attr.d
+cp ${BUILDROOT}/patches/dbus-prof_attr etc/security/prof_attr.d/system-library-dbus
+mkdir -p lib/svc/manifest/system
+cp ${BUILDROOT}/patches/dbus.xml lib/svc/manifest/system/dbus.xml
+mkdir -p lib/svc/method
+cp ${BUILDROOT}/patches/svc-dbus lib/svc/method/svc-dbus
+chmod 755 lib/svc/method/svc-dbus
+
+#
+# remove files that are present in the other dbus packages
+#
+
+#
+# TRIBsys-lib-dbus-dbus-x11
+#
+rm -f usr/bin/dbus-launch
+rm -f usr/share/man/man1/dbus-launch.1
+
+#
+# TRIBsys-libdbus
+#
+rm -fr usr/include
+rm -fr usr/lib/${ARCH64}
+rm -fr usr/lib/pkgconfig
+rm -fr usr/lib/dbus-1.0
+rm -f usr/lib/lib*
