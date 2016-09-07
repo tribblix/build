@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# there's no configure script, so hack the Makefile
+#
+gsed -i s:/usr/local:/usr/gnu: Makefile
+gsed -i s:LIBCGETOPT=1:LIBCGETOPT=0: Makefile
