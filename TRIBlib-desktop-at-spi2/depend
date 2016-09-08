@@ -1,3 +1,4 @@
 P TRIBlib-glib2
 P TRIBsys-libdbus
 P TRIBx11-libx11
+P TRIBx11-libxtst

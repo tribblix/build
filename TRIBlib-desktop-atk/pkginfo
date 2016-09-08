@@ -1,3 +1,4 @@
 PKG="TRIBlib-desktop-atk"
 NAME="GNOME accessibility toolkit"
-VERSION="2.8.0.2"
+VERSION="2.20.0.0"
+ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/atk/"
