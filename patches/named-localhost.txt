@@ -1,0 +1,11 @@
+$TTL 86400 ;
+$ORIGIN localhost.
+@ 1D IN SOA @ root (
+	  	2016090901 ; serial
+	      	10800 ; refresh
+	      	15 ; retry
+		604800 ; expire
+		10800 ; minimum
+	     	)
+@ 86400  IN  NS @
+  86400  IN  A  127.0.0.1

@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# populate the package, files and directories
+#
+
+mkdir -p etc
+mkdir -p var/named/log
+mkdir -p var/named/zones
+mkdir -p var/svc/manifest/network
+
+cp ${BUILDROOT}/patches/named.xml var/svc/manifest/network
+
+cp ${BUILDROOT}/patches/named-cache.conf etc/named-cache.conf
+cp ${BUILDROOT}/patches/named-localhost.txt var/named/localhost.zone
+cp ${BUILDROOT}/patches/named-127.0.0.1.txt var/named/127.0.0.1.zone
+cp ${BUILDROOT}/patches/named.root.txt var/named/named.root

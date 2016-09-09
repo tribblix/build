@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+nawk '
+{if ($3 ~ /^var\/named/) { $6 = "named" ; $5 = "named" }}
+{print}
+'

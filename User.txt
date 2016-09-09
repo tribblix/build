@@ -5,6 +5,7 @@ Start at 101, leaving 100 and below for illumos.
 By default, reserve the group id as well
 
 
+53  named   	    TRIBsvc-bind9
 92  sshd    	    TRIBsvc-net-ssh
 101 rabbitmq	    TRIBblix-rabbitmq
 102 nginx	    TRIBblix-nginx
