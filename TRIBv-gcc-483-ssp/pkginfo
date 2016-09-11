@@ -1,0 +1,4 @@
+PKG="TRIBv-gcc-483-ssp"
+NAME="The GCC 4.8.5 compiler, ssp components"
+VERSION="4.8.5.0"
+ZAP_URL="https://gcc.gnu.org/"

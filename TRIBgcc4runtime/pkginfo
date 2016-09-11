@@ -1,4 +1,4 @@
 PKG="TRIBgcc4runtime"
 NAME="Essential GCC runtime libraries"
-VERSION="4.8.3.0"
+VERSION="4.8.5.0"
 ZAP_URL="https://gcc.gnu.org/"
