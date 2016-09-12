@@ -1,4 +1,4 @@
 PKG="TRIBblix-privoxy"
 NAME="Non-caching filtering web proxy"
-VERSION="3.0.24.0"
+VERSION="3.0.26.0"
 ZAP_URL="http://www.privoxy.org/"
