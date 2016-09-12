@@ -1,4 +1,4 @@
 PKG="TRIBblix-pen"
 NAME="Pen tcp/udp load balancer"
-VERSION="0.33.1.0"
+VERSION="0.33.2.0"
 ZAP_URL="http://siag.nu/pen/"
