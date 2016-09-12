@@ -1,4 +1,4 @@
 PKG="TRIBblix-redis"
 NAME="Redis keyvalue cache and store"
-VERSION="3.2.0.0"
+VERSION="3.2.3.0"
 ZAP_URL="http://redis.io/"

@@ -2,8 +2,8 @@
 #
 # Update redis
 #
-env CC=gcc ${THOME}/build/dobuild redis-3.2.0 -P /opt/tribblix/redis
-cd redis-3.2.0
+env CC=gcc ${THOME}/build/dobuild redis-3.2.3 -P /opt/tribblix/redis
+cd redis-3.2.3
 gmake test
 rm -fr /tmp/rr
 gmake install PREFIX=/tmp/rr/opt/tribblix/redis
