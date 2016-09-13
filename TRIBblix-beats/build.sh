@@ -9,11 +9,11 @@ mkdir -p $GOPATH/src/github.com/elastic
 cd $GOPATH/src/github.com/elastic
 git clone https://github.com/elastic/beats.git
 cd beats/filebeat
-env PATH=/usr/versions/go-1.6/bin:$PATH gmake
+env PATH=/usr/versions/go-1.7/bin:$PATH gmake
 cd ../metricbeat
-env PATH=/usr/versions/go-1.6/bin:$PATH gmake
+env PATH=/usr/versions/go-1.7/bin:$PATH gmake
 cd ../packetbeat
-env PATH=/usr/versions/go-1.6/bin:$PATH gmake
+env PATH=/usr/versions/go-1.7/bin:$PATH gmake
 cd ..
 
 rm -fr /tmp/bbb

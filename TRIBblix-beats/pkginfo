@@ -1,4 +1,4 @@
 PKG="TRIBblix-beats"
 NAME="Beats for ELK stack - filebeat packetbeat metricbeat"
-VERSION="0.0"
+VERSION="0.1"
 ZAP_URL="https://www.elastic.co/products/beats"
