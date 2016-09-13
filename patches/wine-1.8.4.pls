@@ -1,0 +1,2 @@
+-p1 wine-ld.patch 
+-p1 wine-regset.patch
