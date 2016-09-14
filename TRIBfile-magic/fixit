@@ -2,8 +2,8 @@
 #
 # don't conflict with the solaris standard
 #
-VERSION=5.14
+VERSION=5.21
 mv usr/bin/file usr/bin/file-${VERSION}
-mv usr/share/man/man1/file.1 usr/share/man/man1/file-5.14.1
-mv usr/share/man/man4/magic.4 usr/share/man/man4/magic-5.14.1
+mv usr/share/man/man1/file.1 usr/share/man/man1/file-${VERSION}.1
+mv usr/share/man/man4/magic.4 usr/share/man/man4/magic-${VERSION}.1
 rmdir usr/share/man/man5
