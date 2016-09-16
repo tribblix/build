@@ -1,5 +1,5 @@
 #!/bin/sh
 mkdir etc
 cat > etc/release <<EOF
-Tribblix 0.17
+Tribblix 0.18
 EOF
