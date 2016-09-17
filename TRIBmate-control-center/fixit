@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# remove the following files as they conflict with shared-mime-info
+# need to update the mime cache in postinstall
+#
+/usr/bin/rm -f usr/share/mime/XMLnamespaces
+/usr/bin/rm -f usr/share/mime/aliases
+/usr/bin/rm -f usr/share/mime/generic-icons
+/usr/bin/rm -f usr/share/mime/globs
+/usr/bin/rm -f usr/share/mime/globs2
+/usr/bin/rm -f usr/share/mime/icons
+/usr/bin/rm -f usr/share/mime/magic
+/usr/bin/rm -f usr/share/mime/mime.cache
+/usr/bin/rm -f usr/share/mime/subclasses
+/usr/bin/rm -f usr/share/mime/treemagic
+/usr/bin/rm -f usr/share/mime/types
+/usr/bin/rm -f usr/share/mime/version
