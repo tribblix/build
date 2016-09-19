@@ -1,3 +1,4 @@
 PKG="TRIBlib-perl-5-http-message"
 NAME="Perl HTTP::Message module"
-VERSION="6.06.0"
+VERSION="6.11.0"
+ZAP_URL="http://search.cpan.org/~ether/HTTP-Message-6.11/"

@@ -1,3 +1,4 @@
 PKG="TRIBlib-perl-5-lwp-mediatypes"
 NAME="PerlLWP::MediaTypes module"
-VERSION="6.02.0"
+VERSION="6.02.1"
+ZAP_URL="http://search.cpan.org/~gaas/LWP-MediaTypes-6.02/"

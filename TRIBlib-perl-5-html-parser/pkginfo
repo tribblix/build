@@ -1,3 +1,4 @@
 PKG="TRIBlib-perl-5-html-parser"
 NAME="Perl HTML::Parser module"
-VERSION="3.71.0"
+VERSION="3.72.0"
+ZAP_URL="http://search.cpan.org/~gaas/HTML-Parser-3.72/"
