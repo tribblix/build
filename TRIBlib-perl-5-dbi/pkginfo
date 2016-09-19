@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-dbi"
+NAME="Perl DBI module"
+VERSION="1.636.0"
+ZAP_URL="http://search.cpan.org/~timb/DBI-1.636/"

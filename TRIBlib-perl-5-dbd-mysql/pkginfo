@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-dbd-mysql"
+NAME="Perl DBD::mysql module"
+VERSION="4.036.0"
+ZAP_URL="http://search.cpan.org/~michielb/DBD-mysql-4.036/"
