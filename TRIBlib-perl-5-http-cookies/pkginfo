@@ -1,3 +1,4 @@
 PKG="TRIBlib-perl-5-http-cookies"
 NAME="Perl HTTP::Cookies module"
-VERSION="6.01.0"
+VERSION="6.01.1"
+ZAP_URL="http://search.cpan.org/~gaas/HTTP-Cookies-6.01/"

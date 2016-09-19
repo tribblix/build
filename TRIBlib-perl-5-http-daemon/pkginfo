@@ -1,3 +1,4 @@
 PKG="TRIBlib-perl-5-http-daemon"
 NAME="Perl HTTP::Daemon module"
-VERSION="6.01.0"
+VERSION="6.01.1"
+ZAP_URL="http://search.cpan.org/~gaas/HTTP-Daemon-6.01/"

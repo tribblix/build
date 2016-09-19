@@ -1,3 +1,4 @@
 PKG="TRIBlib-perl-5-file-listing"
-NAME="Perl File::LIsting module"
-VERSION="6.04.0"
+NAME="Perl File::Listing module"
+VERSION="6.04.1"
+ZAP_URL="http://search.cpan.org/~gaas/File-Listing-6.04/"

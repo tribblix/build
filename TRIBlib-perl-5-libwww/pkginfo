@@ -1,3 +1,4 @@
 PKG="TRIBlib-perl-5-libwww"
 NAME="Perl LWP module"
-VERSION="6.08.0"
+VERSION="6.15.0"
+ZAP_URL="http://search.cpan.org/dist/libwww-perl/"

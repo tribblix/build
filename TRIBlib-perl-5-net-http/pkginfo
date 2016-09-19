@@ -1,3 +1,4 @@
 PKG="TRIBlib-perl-5-net-http"
 NAME="Perl Net::HTTP module"
-VERSION="6.07.0"
+VERSION="6.09.0"
+ZAP_URL="http://search.cpan.org/~ether/Net-HTTP-6.09/"
