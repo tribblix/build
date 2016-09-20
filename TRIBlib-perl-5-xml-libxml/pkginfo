@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-xml-libxml"
+NAME="Perl XML::LibXML module"
+VERSION="2.0128.0"
+ZAP_URL="http://search.cpan.org/~shlomif/XML-LibXML-2.0128/"

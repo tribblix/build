@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-http-oai"
+NAME="Perl HTTP::OAI module"
+VERSION="4.03.0"
+ZAP_URL="http://search.cpan.org/~timbrody/HTTP-OAI-4.03/"

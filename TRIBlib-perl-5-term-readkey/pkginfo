@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-term-readkey"
+NAME="Perl Term::ReadKey module"
+VERSION="2.33.0"
+ZAP_URL="http://search.cpan.org/~jstowe/TermReadKey-2.33/"
