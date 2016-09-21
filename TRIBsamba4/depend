@@ -1,6 +1,8 @@
 P TRIBcups
 P TRIBgnutls
-P TRIBlib-security-openssl
 P TRIBlib-zlib
+P TRIBlibarchive
 P TRIBlibpopt
+P TRIBncurses
+P TRIBsys-libdbus
 P TRIBv-python-27
