@@ -1,0 +1,4 @@
+PKG="TRIBwebalizer"
+NAME="web server log file analysis program"
+VERSION="2.23.08.0"
+ZAP_URL="http://www.webalizer.org/"

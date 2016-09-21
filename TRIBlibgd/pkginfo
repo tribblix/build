@@ -1,0 +1,4 @@
+PKG="TRIBlibgd"
+NAME="GD library and tools"
+VERSION="2.2.3.0"
+ZAP_URL="https://libgd.github.io/"
