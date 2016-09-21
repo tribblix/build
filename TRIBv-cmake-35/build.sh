@@ -2,8 +2,8 @@
 #
 #
 #
-${THOME}/build/unpack cmake-3.5.1
-cd cmake-3.5.1
+${THOME}/build/unpack cmake-3.5.2
+cd cmake-3.5.2
 ./bootstrap --prefix=/usr/versions/cmake-3.5
 gmake -j 4
 # [gmake test - all passed]
