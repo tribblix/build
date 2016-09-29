@@ -19,3 +19,4 @@ rmdir usr/lib/python2.7
 mkdir -p usr/perl5/site_perl
 rm usr/lib/perl/5.22.0/i86pc-solaris-thread-multi-64int/perllocal.pod
 mv usr/lib/perl/5.22.0 usr/perl5/site_perl
+rmdir usr/lib/perl
