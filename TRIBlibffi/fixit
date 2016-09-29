@@ -16,11 +16,6 @@ rm usr/lib/${ARCH64}/lib*.la
 # symlink previous library version for app compatibility
 #
 cd usr/lib
-ln -s libffi.so.6.0.1 libffi.so.5
+ln -s libffi.so.6.0.4 libffi.so.5
 cd $ARCH64
-ln -s libffi.so.6.0.1 libffi.so.5
-#
-# don't duplicate the includes
-#
-rm -fr libffi-3.0.13
-ln -s ../libffi-3.0.13 .
+ln -s libffi.so.6.0.4 libffi.so.5

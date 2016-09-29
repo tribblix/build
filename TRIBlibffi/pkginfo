@@ -1,3 +1,4 @@
 PKG="TRIBlibffi"
 NAME="Foreign Function Interface Library"
-VERSION="3.0.13.0"
+VERSION="3.2.1.0"
+ZAP_URL="https://sourceware.org/libffi/"
