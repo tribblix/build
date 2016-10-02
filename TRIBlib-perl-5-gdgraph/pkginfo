@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-gdgraph"
+NAME="Perl GD Graph module"
+VERSION="1.53.0"
+ZAP_URL="http://search.cpan.org/~ruz/GDGraph-1.53/"

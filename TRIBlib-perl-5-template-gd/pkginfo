@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-template-gd"
+NAME="Perl Template-GD module"
+VERSION="2.66.0"
+ZAP_URL="http://search.cpan.org/~abw/Template-GD-2.66/"

@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-gdtextutil"
+NAME="Perl GD Text module"
+VERSION="0.86.0"
+ZAP_URL="http://search.cpan.org/~mverb/GDTextUtil-0.86/"

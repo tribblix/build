@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-gd"
+NAME="Perl GD module"
+VERSION="2.56.0"
+ZAP_URL="http://search.cpan.org/~lds/GD-2.56/"

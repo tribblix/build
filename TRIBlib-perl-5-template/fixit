@@ -1,0 +1,2 @@
+#!/bin/sh
+/bin/rm -fr usr/perl5/5.22.0/lib

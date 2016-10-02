@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-template"
+NAME="Perl Template Toolkit module"
+VERSION="2.26.0"
+ZAP_URL="http://search.cpan.org/~abw/Template-Toolkit-2.26/"

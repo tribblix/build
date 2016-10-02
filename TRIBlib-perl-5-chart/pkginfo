@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-chart"
+NAME="Perl Chart module"
+VERSION="2.4.10.0"
+ZAP_URL="http://search.cpan.org/~chartgrp/Chart-2.4.10/"
