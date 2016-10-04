@@ -1,7 +1,15 @@
 #!/bin/sh
 #
-# NOTE: top is build with Studio; building with gcc results in a huge
-# memory leak
+# NOTE: top used to be built with Studio; building with gcc resulted in a huge
+# memory leak. That appears to no longer be the case.
 #
-env CC=${HOME}/sunstudio12.1/bin/cc ${THOME}/build/dobuild top-3.8beta1
+# the build here is rather manual as top has its own ideas on how to
+# create a dual 32+64 bit build
+#
+${THOME}/build/unpack top-3.8beta1
+cd top-3.8beta1
+${THOME}/build/patches/top-3.8beta1.preconf
+./configure --prefix=/usr
+gmake -j 8
+cd ..
 ${THOME}/build/genpkg TRIBtop top-3.8beta1
