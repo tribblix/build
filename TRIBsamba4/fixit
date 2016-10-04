@@ -17,3 +17,9 @@ mkdir -p usr/versions/python-2.7/lib/python2.7/site-packages
 mv usr/lib/python2.7/site-packages/* usr/versions/python-2.7/lib/python2.7/site-packages
 rmdir usr/lib/python2.7/site-packages
 rmdir usr/lib/python2.7
+#
+# this is where our perl really lives
+#
+mkdir -p usr/perl5/5.22.0/lib
+mv usr/share/perl5/* usr/perl5/5.22.0/lib
+rmdir usr/share/perl5
