@@ -1,0 +1,10 @@
+--- a/otherlibs/bigarray/mmap_unix.c	Mon Apr 25 14:36:01 2016
++++ b/otherlibs/bigarray/mmap_unix.c	Sat Oct  8 16:11:03 2016
+@@ -15,7 +15,6 @@
+ 
+ /* Needed (under Linux at least) to get pwrite's prototype in unistd.h.
+    Must be defined before the first system .h is included. */
+-#define _XOPEN_SOURCE 500
+ 
+ #include <stddef.h>
+ #include <string.h>
