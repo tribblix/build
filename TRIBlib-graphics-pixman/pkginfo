@@ -1,3 +1,4 @@
 PKG="TRIBlib-graphics-pixman"
 NAME="Pixman"
-VERSION="0.32.6.0"
+VERSION="0.34.0.0"
+ZAP_URL="http://www.pixman.org/"
