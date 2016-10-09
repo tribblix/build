@@ -1,4 +1,0 @@
-#!/bin/sh
-#
-gsed -i 's:-liconv::' tmake/lib/solaris-g++/tmake.conf
-gsed -i 's:/usr/bin/install:/usr/bin/ginstall:g' configure
