@@ -18,9 +18,9 @@ rm usr/lib/${ARCH64}/libexpat.la
 rm usr/bin/amd64/xmlwf
 rmdir usr/bin/amd64
 #
-# legacy from OI has a .0 symlink that we reproduce
+# legacy from OI had a .0 symlink that we no longer reproduce
 #
-cd usr/lib
-ln -s libexpat.so.1.6.0 libexpat.so.0
-cd ${ARCH64}
-ln -s libexpat.so.1.6.0 libexpat.so.0
+#cd usr/lib
+#ln -s libexpat.so.1.6.0 libexpat.so.0
+#cd ${ARCH64}
+#ln -s libexpat.so.1.6.0 libexpat.so.0
