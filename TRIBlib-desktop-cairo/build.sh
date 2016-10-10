@@ -13,5 +13,5 @@
 # on components that require it, so need to rebuild
 # cairo again after all the other components are built
 #
-${THOME}/build/dobuild -64 cairo-1.12.16 -M -k
-${THOME}/build/genpkg TRIBlib-desktop-cairo cairo-1.12.16
+${THOME}/build/dobuild -64 cairo-1.14.6 -M -k
+${THOME}/build/genpkg TRIBlib-desktop-cairo cairo-1.14.6
