@@ -1,4 +1,4 @@
 PKG="TRIBlib-desktop-gtkmm"
 NAME="GTK C++ bindings"
-VERSION="2.24.4.1"
+VERSION="2.24.5.0"
 ZAP_URL="http://www.gtkmm.org/en/"
