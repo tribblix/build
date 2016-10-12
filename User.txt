@@ -20,5 +20,6 @@ By default, reserve the group id as well
 118 kibana	    TRIBblix-kibana
 119 logstash	    TRIBblix-logstash
 120 clamrest	    TRIBblix-clamav-rest
+121 shibd	    TRIBshib-shibboleth-sp
 123 jack	    live image
 223 ntp 	    TRIBopenntpd
