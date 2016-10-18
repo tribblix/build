@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# an AWK variable is passed to the Makefiles but isn't used
+#
+gsed -i 's:awk :gawk :' man/Makefile
