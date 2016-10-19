@@ -1,4 +1,0 @@
-PKG="TRIBxfce-mixer"
-NAME="Xfce Volume Mixer"
-VERSION="4.10.0.1"
-ZAP_URL="http://archive.xfce.org/src/apps/xfce4-mixer/"
