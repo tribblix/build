@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i s:PATH_MAX:1024: smallapp/unbound-checkconf.c
