@@ -8,6 +8,10 @@
 # but we should restore it to the original defaults
 #
 mv usr/bin/wireshark .
+mv usr/share/applications/wireshark.desktop .
 rm -fr usr
 mkdir -p usr/bin
 mv wireshark usr/bin/wireshark-qt
+mkdir -p usr/share/applications
+gsed -i s:Exec=wireshark:Exec=wireshark-qt: wireshark.desktop
+mv wireshark.desktop usr/share/applications/wireshark-qt.desktop

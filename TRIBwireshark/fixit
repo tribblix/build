@@ -8,7 +8,8 @@
 # in 2.0 /usr/bin/wireshark is the qt version by default
 # but we should restore it to the original defaults
 #
-#rm -f usr/bin/wireshark-qt
 rm -f usr/bin/wireshark
+rm -f usr/share/applications/wireshark.desktop
+mv usr/share/applications/wireshark-gtk.desktop usr/share/applications/wireshark.desktop
 cd usr/bin
 ln -s wireshark-gtk wireshark
