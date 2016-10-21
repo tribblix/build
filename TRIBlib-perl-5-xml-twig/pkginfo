@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-xml-twig"
+NAME="Perl XML::Twig module"
+VERSION="3.49.0"
+ZAP_URL="http://search.cpan.org/~mirod/XML-Twig-3.49/"

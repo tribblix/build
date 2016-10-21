@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-mime-tools"
+NAME="Perl module for parsing and creating MIME entries"
+VERSION="5.508.0"
+ZAP_URL="http://search.cpan.org/~dskoll/MIME-tools-5.508/"
