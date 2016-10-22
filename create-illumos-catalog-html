@@ -3,7 +3,9 @@
 # catalog format is
 #  name|version|dependencies|size|md5|
 #
-PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m18/pkgs
+RELVER=18
+THOME=/packages/localsrc/Tribblix
+PKGDIR=${THOME}/illumos-pkgs-m${RELVER}/pkgs
 
 case $# in
 1)
@@ -45,9 +47,10 @@ do
   echo "<li><a href=\"${PNAME}.${PKGVERS}.zap\">Download</a></li>"
   for mypkgdep in $DEPLIST
   do
-      mydep=`/bin/ls -1d ${mypkgdep}.*.zap 2>/dev/null`
-      if [ -f $mydep ]; then
+      if [ -f ${PKGDIR}/${mypkgdep}.0.${RELVER}.0.zap ]; then
 	  echo "<li>Requires: <a href=\"#${mypkgdep}\">$mypkgdep</a></li>"
+      elif [ -d ${THOME}/build/${mypkgdep} ]; then
+	  echo "<li>Requires: <a href=\"../tribblix-m${RELVER}/#${mypkgdep}\">$mypkgdep</a></li>"
       else
 	  echo "<li>Requires: $mypkgdep</li>"
       fi
