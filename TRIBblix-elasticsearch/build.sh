@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball -T TRIBblix-elasticsearch elasticsearch-2.4.0
+${THOME}/build/pkg_tarball -T TRIBblix-elasticsearch elasticsearch-5.0.0

@@ -11,7 +11,7 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="4.6.1-linux-x86"
+VERSION="5.0.0-linux-x86"
 mv kibana-${VERSION} kibana
 
 #
@@ -19,4 +19,4 @@ mv kibana-${VERSION} kibana
 #
 cd kibana
 rm -fr node
-ln -s /usr/versions/node-v4 node
+ln -s /usr/versions/node-v6 node

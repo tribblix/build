@@ -19,7 +19,7 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="2.4.0"
+VERSION="5.0.0"
 mv elasticsearch-${VERSION} elasticsearch
 
 #
