@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# actually, we do almost all the installation here
+#
+
+mkdir -p usr/share/josm
+cd usr/share/josm
+wget https://josm.openstreetmap.de/josm-tested.jar
+cd ../../..
+
+mkdir -p usr/bin
+cd usr/bin
+cat > josm <<_EOF
+#!/bin/sh
+exec java -jar /usr/share/josm/josm-tested.jar
+_EOF
+chmod a+x josm
+cd ../..
+
+mkdir -p usr/share/applications
+cd usr/share/applications
+cat > josm.desktop <<_EOF
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=JOSM
+Comment=Java OpenStreetMap editor
+Exec=josm
+Icon=josm
+Terminal=false
+Type=Application
+Categories=Application;
+_EOF
+cd ../../..
+
+mkdir -p usr/share/pixmaps
+cd usr/share/pixmaps
+wget https://josm.openstreetmap.de/svn/trunk/images/logo.png
+mv logo.png josm.png
+cd ../../..
