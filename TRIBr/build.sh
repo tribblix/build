@@ -5,8 +5,8 @@
 #
 zap install-overlay fortran
 zap install TRIBgnu-libiconv TRIBreadline
-${THOME}/build/unpack R-3.3.1
-cd R-3.3.1
+${THOME}/build/unpack R-3.3.2
+cd R-3.3.2
 env PATH=/usr/gnu/bin:$PATH CPPFLAGS="-I/usr/gnu/include" LDFLAGS="-L/usr/gnu/lib -R/usr/gnu/lib" ./configure --prefix=/usr
 gmake -j 12
 gmake check
