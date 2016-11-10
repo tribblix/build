@@ -1,4 +1,4 @@
 PKG="TRIBlibao"
 NAME="A Cross-platform Audio Library"
-VERSION="1.2.0.0"
+VERSION="1.2.0.1"
 ZAP_URL="https://www.xiph.org/"
