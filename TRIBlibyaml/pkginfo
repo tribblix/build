@@ -1,4 +1,4 @@
 PKG="TRIBlibyaml"
 NAME="YAML 1.1 parser and emitter written in C"
-VERSION="0.1.5.0"
+VERSION="0.1.5.1"
 ZAP_URL="http://pyyaml.org/wiki/LibYAML"
