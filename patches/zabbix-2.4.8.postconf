@@ -17,4 +17,4 @@ gsed -i 's:-lkstat::' src/zabbix_server/Makefile
 #
 # this adds the RPATH for postgresql into the server
 #
-gsed -i 's:-L/opt/tribblix/postgres94/lib:-L/opt/tribblix/postgres94/lib -R/opt/tribblix/postgres94/lib:' `find . -name Makefile`
+gsed -i 's:-L/opt/tribblix/postgres96/lib:-L/opt/tribblix/postgres96/lib -R/opt/tribblix/postgres96/lib:' `find . -name Makefile`
