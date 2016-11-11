@@ -4,4 +4,4 @@
 # we know they must exist on the build system for the build to work
 #
 cd opt/tribblix/icinga2/lib/icinga2
-ln -s /opt/tribblix/postgres94/lib/libpq.so* .
+ln -s /opt/tribblix/postgres96/lib/libpq.so* .

@@ -7,7 +7,7 @@ cd icinga2-2.5.4
 mkdir build
 cd build
 gsed -i '/gc-sections/d' ../CMakeLists.txt
-env PostgreSQL_ROOT=/opt/tribblix/postgres94 MYSQL_DIR=/opt/tribblix/mysql MYSQL_INCLUDE_DIR=/opt/tribblix/mysql/include/mysql cmake .. -DCMAKE_INSTALL_PREFIX=/opt/tribblix/icinga2 -DCMAKE_INSTALL_SYSCONFDIR=/opt/tribblix/icinga2/etc -DCMAKE_C_FLAGS=-pthread -DCMAKE_CXX_FLAGS=-pthread
+env PostgreSQL_ROOT=/opt/tribblix/postgres96 MYSQL_DIR=/opt/tribblix/mysql MYSQL_INCLUDE_DIR=/opt/tribblix/mysql/include/mysql cmake .. -DCMAKE_INSTALL_PREFIX=/opt/tribblix/icinga2 -DCMAKE_INSTALL_SYSCONFDIR=/opt/tribblix/icinga2/etc -DCMAKE_C_FLAGS=-pthread -DCMAKE_CXX_FLAGS=-pthread
 gmake -j 8
 rm -fr /tmp/ii /tmp/iip /tmp/iim
 gmake install DESTDIR=/tmp/ii
