@@ -3,9 +3,14 @@
 # actually, we do almost all the installation here
 #
 
+#
+# there's clearly a problem somewhere, as the download frequently stalls
+# about 20% of the way through. Doesn't matter whether it's http or https,
+# or wget or curl. But if you keep repeating it will eventually work.
+#
 mkdir -p usr/share/josm
 cd usr/share/josm
-wget https://josm.openstreetmap.de/josm-tested.jar
+curl -O https://josm.openstreetmap.de/josm-tested.jar
 cd ../../..
 
 mkdir -p usr/bin
