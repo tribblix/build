@@ -1,4 +1,4 @@
 PKG="TRIBv-browser-45"
 NAME="Web browser built from Firefox 45 source"
-VERSION="45.4.0.0"
+VERSION="45.5.0.0"
 ZAP_URL="https://www.mozilla.org/en-US/"

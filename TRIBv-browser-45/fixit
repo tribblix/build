@@ -3,7 +3,7 @@
 # create a versioned directory
 # put a symlink to firefox in /usr/bin
 #
-VERSION=45.4.0esr
+VERSION=45.5.0esr
 mkdir -p usr/bin
 cd usr/bin
 rm -f firefox
@@ -11,6 +11,11 @@ ln -s /usr/versions/ff-${VERSION}/bin/firefox .
 cd ../..
 rm -fr usr/versions/ff-${VERSION}/include
 rm -fr usr/versions/ff-${VERSION}/lib/sdk
+#
+# create a desktop file so we populate the menus
+#
+mkdir -p usr/share/applications
+cp ${BUILDROOT}/patches/browser.desktop usr/share/applications
 #
 # NOTE: we currently disable updates at build time
 # disable autoupdate - see
