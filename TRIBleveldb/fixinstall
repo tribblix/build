@@ -36,11 +36,14 @@ case $NPWD in
 	;;
 *)
 	mkdir -p ${DESTDIR}/usr/lib
+	cd out-shared
 	tar cf - libleveldb.so* | (cd ${DESTDIR}/usr/lib ; tar xf -)
+	cd ..
 	tar cf - include | (cd ${DESTDIR}/usr ; tar xf -)
 	if [ -d ../${NVER}-64bit ]; then
 	   cd ../${NVER}-64bit
 	   mkdir -p ${DESTDIR}/usr/lib/${ARCH64}
+	   cd out-shared
 	   tar cf - libleveldb.so* | (cd ${DESTDIR}/usr/lib/${ARCH64} ; tar xf -)
 	fi
 	;;

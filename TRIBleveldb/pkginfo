@@ -1,4 +1,4 @@
 PKG="TRIBleveldb"
 NAME="Fast key-value storage library"
-VERSION="1.18.0"
+VERSION="1.19.0"
 ZAP_URL="http://leveldb.org/"
