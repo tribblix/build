@@ -5,5 +5,5 @@
 # uninstall TRIBlibtool, otherwise it gets linked against
 #
 zap uninstall TRIBlibtool
-env PATH=/usr/perl5/5.22.0/bin:$PATH ${THOME}/build/dobuild squid-3.5.21 -P /opt/tribblix/squid -C "--with-gnutls --disable-strict-error-checking --disable-static --disable-ltdl-install"
-env PATH=/usr/perl5/5.22.0/bin:$PATH ${THOME}/build/genpkg TRIBblix-squid squid-3.5.21
+env PATH=/usr/perl5/5.22.0/bin:$PATH ${THOME}/build/dobuild squid-3.5.22 -P /opt/tribblix/squid -C "--with-gnutls --disable-strict-error-checking --disable-static --disable-ltdl-install"
+env PATH=/usr/perl5/5.22.0/bin:$PATH ${THOME}/build/genpkg TRIBblix-squid squid-3.5.22
