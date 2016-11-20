@@ -1,4 +1,4 @@
 PKG="TRIBlibssh2"
 NAME="Libssh2 - the SSH library"
-VERSION="1.7.0.0"
+VERSION="1.8.0.0"
 ZAP_URL="http://www.libssh2.org/"
