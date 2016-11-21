@@ -1,4 +1,4 @@
 PKG="TRIBblix-haproxy"
 NAME="High Performance TCP/HTTP Load Balancer"
-VERSION="1.6.9.0"
+VERSION="1.6.10.0"
 ZAP_URL="http://www.haproxy.org/"
