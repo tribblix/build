@@ -1,0 +1,4 @@
+PKG="TRIBlibssh"
+NAME="Libssh - library implementing the SSH protocol"
+VERSION="0.7.3.0"
+ZAP_URL="http://www.libssh.org/"
