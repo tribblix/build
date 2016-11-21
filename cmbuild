@@ -1,0 +1,204 @@
+#!/bin/ksh
+#
+# build some software
+#
+# assumes cmake, currently somewhat limited compared to the autoconf
+# style of build
+#
+
+BUILD="/packages/localsrc/Tribblix/build"
+GMAKE="/usr/bin/gmake"
+WORKING_ROOT=`pwd`
+
+case $# in
+    0)
+	echo "Usage: $0 [-64|+64] [-gnu] src_name \\"
+        echo "  [-P alt_prefix] [-C configure_args] \\"
+	echo "  [-M make_args] [-J parallelism] [-L]"
+	exit 1
+	;;
+esac
+
+#
+# if a dual 32- and 64-bit build is desired, specify -64 *first*
+# +64 means just do the 64-bit (useful for testing it in isolation)
+# note that +64 will wipe the 32-bit directory
+#
+DO32="true"
+DO64="false"
+UNPACK_FLAGS=""
+
+#
+# if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
+# then specify -gnu
+#
+DOGNU="false"
+
+#
+# Other arguments are
+# package name
+# -S subdir [not supported for cmake]
+# -P alternate_prefix
+# -C configure_args
+# -M make_args
+# -I install_args [unused]
+# -J parallelism
+# -L disable LD_OPTIONS
+#
+IPREFIX="/usr"
+CONFARGS=""
+MAKEARGS=""
+GMAKEFLAGS="-j 4"
+DO_LD="yes"
+
+while [[ $# > 0 ]]; do
+case $1 in
+-64)
+	DO64="true"
+	UNPACK_FLAGS="-64"
+	shift
+	;;
++64)
+	DO64="true"
+	DO32="false"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
+-gnu)
+	DOGNU="true"
+	shift
+	;;
+-P)
+	shift
+	IPREFIX="$1"
+	shift
+	;;
+-C)
+	shift
+	CONFARGS="$1"
+	shift
+	;;
+-M)
+	shift
+	MAKEARGS="$1"
+	shift
+	;;
+-J)
+	shift
+	GMAKEFLAGS="-j $1"
+	shift
+	;;
+-L)
+	shift
+	DO_LD=""
+	;;
+-*)
+	echo "Invalid argument $1"
+	exit 1
+	;;
+*)
+	THISPKG="$THISPKG $1"
+	shift
+	;;
+esac
+done
+
+#
+# 64-bit files go in these subdirectories
+#
+case `uname -p` in
+sparc)
+    ARCH64="sparcv9"
+    ;;
+i386)
+    ARCH64="amd64"
+    ;;
+esac
+
+#
+# default linker options
+#
+if [[ -n $DO_LD ]]; then
+case `uname -p` in
+sparc)
+    LD_OPTIONS="-M /usr/lib/ld/map.noexbss -M /usr/lib/ld/map.noexstk -M /usr/lib/ld/map.pagealign -Bdirect -z ignore"
+    ;;
+i386)
+    LD_OPTIONS="-M /usr/lib/ld/map.noexdata -M /usr/lib/ld/map.noexstk -M /usr/lib/ld/map.pagealign -Bdirect -z ignore"
+    ;;
+esac
+export LD_OPTIONS
+fi
+
+#
+# with -gnu, add /usr/gnu/bin at the head of PATH
+#
+if [ "x$DOGNU" != "xfalse" ]; then
+    TRIBBLIX_PATH=/usr/gnu/bin:$PATH
+else
+    TRIBBLIX_PATH=$PATH
+fi
+
+UNPACKER=${BUILD}/unpack
+export UNPACKER
+PATCHDIR=${BUILD}/patches
+export PATCHDIR
+for pkg in ${THISPKG}
+do
+	${BUILD}/unpack ${UNPACK_FLAGS} ${pkg}
+	if [ "x$DO64" != "xfalse" ]; then
+	    cd ${WORKING_ROOT}
+	    if [[ -n $DO_LD ]]; then
+		cd ${pkg}-64bit
+		touch .tribblix_ldopts
+		cat >> .tribblix_ldopts <<EOF
+LD_OPTIONS="${LD_OPTIONS}"
+export LD_OPTIONS
+EOF
+		cd ${WORKING_ROOT}
+	    fi
+	    cd ${pkg}-64bit
+	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
+		${BUILD}/patches/${pkg}.preconf.64
+	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
+		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    touch .tribblix_cmake_build
+	    mkdir build
+	    cd build
+	    env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64" CFLAGS="-m64" CXXFLAGS="-m64" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/lib/${ARCH64} -DBIN_INSTALL_DIR=${IPREFIX}/bin/${ARCH64} ${CONFARGS} ..
+	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
+		${BUILD}/patches/${pkg}.postconf.64
+	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
+		${BUILD}/patches/${pkg}.postconf
+	    fi
+	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
+	    cd ..
+	fi
+	if [ "x$DO32" != "xfalse" ]; then
+	    cd ${WORKING_ROOT}
+	    if [[ -n $DO_LD ]]; then
+		cd ${pkg}
+		touch .tribblix_ldopts
+		cat >> .tribblix_ldopts <<EOF
+LD_OPTIONS="${LD_OPTIONS}"
+export LD_OPTIONS
+EOF
+		cd ${WORKING_ROOT}
+	    fi
+	    cd ${pkg}
+	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
+		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    touch .tribblix_cmake_build
+	    mkdir build
+	    cd build
+	    echo env PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} ..
+	    env PATH=$TRIBBLIX_PATH cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} ..
+	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
+		${BUILD}/patches/${pkg}.postconf
+	    fi
+	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
+	    cd ..
+	fi
+done

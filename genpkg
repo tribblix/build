@@ -91,9 +91,15 @@ case $# in
 		if [ -f .tribblix_ldopts ]; then
 		    . ./.tribblix_ldopts
 		fi
+		if [ -f .tribblix_cmake_build ]; then
+		    cd build
+		fi
 		$GMAKE -k install DESTDIR=$BDIR $MYINSTALL
 		if [ -x ${BUILD}/${PKGNAME}/fixinstall.64 ]; then
 		    ${BUILD}/${PKGNAME}/fixinstall.64 $BDIR
+		fi
+		if [ -f ../.tribblix_cmake_build ]; then
+		    cd ..
 		fi
 		cd ..
 	    fi
@@ -101,9 +107,15 @@ case $# in
 	    if [ -f .tribblix_ldopts ]; then
 		. ./.tribblix_ldopts
 	    fi
+	    if [ -f .tribblix_cmake_build ]; then
+		cd build
+	    fi
 	    $GMAKE -k install DESTDIR=$BDIR $MYINSTALL
 	    if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 		${BUILD}/${PKGNAME}/fixinstall $BDIR
+	    fi
+	    if [ -f ../.tribblix_cmake_build ]; then
+		cd ..
 	    fi
 	    cd ..
 	done
