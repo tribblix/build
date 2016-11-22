@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# the mtr 0.87 configure script was incorrectly generated
+# and contains broken gtk detection code, regenerate it
+#
+autoreconf
