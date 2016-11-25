@@ -2,5 +2,5 @@
 #
 # pinentry
 #
-${THOME}/build/dobuild pinentry-0.9.7
-${THOME}/build/genpkg TRIBpinentry pinentry-0.9.7
+${THOME}/build/dobuild pinentry-1.0.0
+${THOME}/build/genpkg TRIBpinentry pinentry-1.0.0
