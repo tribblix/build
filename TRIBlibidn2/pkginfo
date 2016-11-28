@@ -1,0 +1,4 @@
+PKG="TRIBlibidn2"
+NAME="GNU IDN2 library"
+VERSION="0.11.0"
+ZAP_URL="http://www.gnu.org/software/libidn/"
