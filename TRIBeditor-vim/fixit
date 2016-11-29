@@ -10,3 +10,10 @@ rmdir usr/share/man/*
 #
 cd usr/bin
 ln -s ../xpg6/bin/edit vi
+cd ../..
+#
+# icons and desktop integration are shipped by the gtk2 version
+# of the package
+#
+rm -fr usr/share/icons
+rm -fr usr/share/applications

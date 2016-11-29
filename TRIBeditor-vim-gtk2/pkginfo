@@ -1,4 +1,4 @@
 PKG="TRIBeditor-vim-gtk2"
 NAME="Vim - Vi IMproved (GUI)"
-VERSION="7.4.0"
+VERSION="8.0.0"
 ZAP_URL="http://www.vim.org/"

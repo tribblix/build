@@ -1,2 +1,0 @@
-tribblix_srcs=vim74
-tribblix_C_opt="--enable-gui=no --without-x --with-compiledby=ptribble@tribblix"

@@ -1,9 +1,10 @@
 #!/bin/sh
 #
-# we ship gvim in the TRIBeditor-vim-gtk2 package
+# we ship gvim and the desktop integration pieces in the
+# TRIBeditor-vim-gtk2 package
 #
 # Now most of the space is actually the shared stuff
 # Wrapper? [exec -a $0 /usr/bin/vim.variant "$@"]
 #
-${THOME}/build/dobuild vim74 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --without-x"
-${THOME}/build/genpkg TRIBeditor-vim vim74
+env TRIBBLIX_CFLAGS=-std=gnu99 PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild vim80 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --without-x"
+${THOME}/build/genpkg TRIBeditor-vim vim80
