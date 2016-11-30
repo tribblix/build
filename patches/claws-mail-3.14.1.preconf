@@ -1,3 +1,6 @@
 #!/bin/sh
-gsed -i s:-Wl,--export-dynamic:: src/Makefile
+#
+# why, oh why...
+#
+gsed -i '/--export-dynamic/d' configure
 gsed -i s:_XOPEN_SOURCE:_XXXX_XOPEN_SOURCE: src/plugins/rssyl/libfeed/date.c
