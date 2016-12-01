@@ -2,5 +2,5 @@
 #
 # zap install yajl
 #
-${THOME}/build/dobuild collectd-5.6.0 -C "--disable-static --localstatedir=/var CFLAGS=-std=gnu99"
-${THOME}/build/genpkg TRIBcollectd collectd-5.6.0
+${THOME}/build/dobuild collectd-5.6.2 -C "--disable-static --localstatedir=/var CFLAGS=-std=gnu99"
+${THOME}/build/genpkg TRIBcollectd collectd-5.6.2

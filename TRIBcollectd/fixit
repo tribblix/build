@@ -4,3 +4,9 @@
 #
 mv usr/man/man3 usr/share/man
 rmdir usr/man
+#
+# put perl files in the right place
+#
+mkdir -p usr/perl5
+mv usr/lib/site_perl usr/perl5
+rm -fr usr/lib/i86pc-solaris-thread-multi-64int
