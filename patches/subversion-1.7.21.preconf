@@ -1,2 +1,0 @@
-#!/bin/sh
-ksh get-deps.sh
