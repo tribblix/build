@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# we never want /usr/lib to be specified, and it's wrong for 64-bit
+# anyway
+#
+gsed -i 's:-L/usr/lib -logg:-logg:' `find . -name Makefile`
