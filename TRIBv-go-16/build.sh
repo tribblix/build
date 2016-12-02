@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 rm -fr go
-${THOME}/build/unpack go1.6.3.src
+${THOME}/build/unpack go1.6.4.src
 cd go/src
 env GOROOT_BOOTSTRAP=/usr/versions/go-1.5 GOROOT_FINAL=/usr/versions/go-1.6 ./all.bash
 cd ..

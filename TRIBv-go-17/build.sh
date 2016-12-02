@@ -4,7 +4,7 @@
 # test fails on Tribblix
 #
 rm -fr go
-${THOME}/build/unpack go1.7.3.src
+${THOME}/build/unpack go1.7.4.src
 cd go/src
 env GOROOT_BOOTSTRAP=/usr/versions/go-1.6 GOROOT_FINAL=/usr/versions/go-1.7 ./all.bash
 cd ..
