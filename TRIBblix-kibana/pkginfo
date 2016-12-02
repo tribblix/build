@@ -1,4 +1,4 @@
 PKG="TRIBblix-kibana"
 NAME="Kibana"
-VERSION="5.0.1.0"
+VERSION="5.0.2.0"
 ZAP_URL="https://www.elastic.co/products/kibana"
