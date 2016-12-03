@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack cdrtools-3.00
-cd cdrtools-3.00
+${THOME}/build/unpack cdrtools-3.01
+cd cdrtools-3.01
 env INS_BASE=/usr make -e
 rm -fr /tmp/cdr
 env INS_BASE=/tmp/cdr/usr INS_RBASE=/tmp/cdr make -e install
@@ -13,4 +13,5 @@ rm -f /tmp/cdr/usr/bin/scg* /tmp/cdr/usr/share/man/man1/scg*
 rm -f /tmp/cdr/usr/bin/iso* /tmp/cdr/usr/share/man/man8/iso*
 rm -f /tmp/cdr/usr/bin/btc* /tmp/cdr/usr/share/man/man1/btc*
 rm -f /tmp/cdr/usr/bin/dev* /tmp/cdr/usr/share/man/man8/dev*
+rm -fr /tmp/cdr/usr/share/man/man3
 ${THOME}/build/create_pkg TRIBcdrtools /tmp/cdr
