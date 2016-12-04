@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# cmake ignores setting the install locations for lib and bin
+# so we must manually correct them here
+#
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+case `uname -p` in
+sparc)
+    ARCH64="sparcv9"
+    ;;
+i386)
+    ARCH64="amd64"
+    ;;
+esac
+
+cd $DESTDIR
+mv usr/lib usr/l
+mkdir usr/lib
+mv usr/l usr/lib/${ARCH64}
+mv usr/bin usr/b
+mkdir usr/bin
+mv usr/b usr/bin/${ARCH64}
