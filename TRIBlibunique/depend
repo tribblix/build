@@ -1,3 +1,4 @@
+P TRIBlib-desktop-gtk
 P TRIBlib-glib2
-P TRIBsys-libdbus
 P TRIBsys-libdbus-glib
+P TRIBx11-libx11
