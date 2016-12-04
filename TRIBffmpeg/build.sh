@@ -2,5 +2,5 @@
 #
 # nasm (or yasm) is a build-time dependency - zap install nasm
 #
-${THOME}/build/dobuild ffmpeg-2.8.7 -C "--enable-shared --disable-static"
-${THOME}/build/genpkg TRIBffmpeg ffmpeg-2.8.7
+env CPPFLAGS=-std=gnu99 ${THOME}/build/dobuild -64 ffmpeg-2.8.9 -C "--enable-shared --disable-static"
+${THOME}/build/genpkg TRIBffmpeg ffmpeg-2.8.9
