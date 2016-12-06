@@ -1,6 +1,4 @@
 P TRIBdatabase-sqlite-3
 P TRIBglib-networking
 P TRIBlib-glib2
-P TRIBlib-zlib
-P TRIBlibffi
 P TRIBlibxml2
