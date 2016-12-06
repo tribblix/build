@@ -1,4 +1,4 @@
 PKG="TRIBdjvulibre"
 NAME="DjVuLibre"
-VERSION="3.5.27.1"
+VERSION="3.5.27.2"
 ZAP_URL="http://djvu.sourceforge.net/"
