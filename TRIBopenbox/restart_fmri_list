@@ -1,1 +1,2 @@
 svc:/application/desktop-cache/icon-cache:default
+svc:/application/desktop-cache/mime-types-cache:default
