@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild libnotify-0.4.5
-${THOME}/build/genpkg TRIBlibnotify libnotify-0.4.5
+# later versions require gtk3
+#
+${THOME}/build/dobuild -64 libnotify-0.5.2
+${THOME}/build/genpkg TRIBlibnotify libnotify-0.5.2
