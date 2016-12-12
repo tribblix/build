@@ -1,7 +1,20 @@
 #!/bin/sh
 #
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 cd usr/bin
 ln -s tclsh8.6 tclsh
+cd $ARCH64
+ln -s tclsh8.6 tclsh
+cd ..
 cd ..
 mv man/man1 share/man
 mv man/man3 share/man

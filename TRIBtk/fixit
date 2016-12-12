@@ -1,4 +1,15 @@
 #!/bin/sh
 #
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 cd usr/bin
+ln -s wish8.6 wish
+cd $ARCH64
 ln -s wish8.6 wish
