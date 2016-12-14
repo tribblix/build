@@ -13,3 +13,7 @@
 -p1 ff/13-rename_log2.patch
 -p1 ff/14-thank-Martin.patch
 -p1 ff/15-5876-fix.patch
+-p1 ff/16-donot-disable-locale-addon.patch
+-p1 ff/17-cast-getpid-to-int.patch
+-p1 ff/18-sleep-a-second.patch
+-p1 ff/19-uname.patch
