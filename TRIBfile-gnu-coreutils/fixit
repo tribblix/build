@@ -1,9 +1,20 @@
 #!/bin/sh
 #
+# chcon is selinux, which isn't relevant for us
+#
+rm -f usr/gnu/bin/chcon
+rm -f usr/gnu/bin/*/chcon
+rm -f usr/gnu/share/man/man1/chcon.1
+rm -f usr/gnu/bin/runcon
+rm -f usr/gnu/bin/*/runcon
+rm -f usr/gnu/share/man/man1/runcon.1
+#
 # add g prefixes in /usr/bin, and other convenience links
 #
 rm -f usr/gnu/lib/charset.alias
+rm -f usr/gnu/lib/*/charset.alias
 rmdir usr/gnu/lib
+rmdir usr/gnu/*/lib
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../gnu/bin/[ .
