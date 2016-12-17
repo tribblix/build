@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-data-processor"
+NAME="Perl Data::Processor module"
+VERSION="0.4.2.0"
+ZAP_URL="http://search.cpan.org/~mbp/Data-Processor-0.4.2/"

@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-il-smf"
+NAME="Perl Illumos::SMF module"
+VERSION="0.1.6.0"
+ZAP_URL="http://search.cpan.org/~hadfl/Illumos-SMF-0.1.6/"
