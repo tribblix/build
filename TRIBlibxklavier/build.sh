@@ -2,5 +2,5 @@
 #
 # needs iso-codes
 #
-${THOME}/build/dobuild libxklavier-5.3
-${THOME}/build/genpkg TRIBlibxklavier libxklavier-5.3
+${THOME}/build/dobuild -64 libxklavier-5.4 -C --disable-introspection
+${THOME}/build/genpkg TRIBlibxklavier libxklavier-5.4
