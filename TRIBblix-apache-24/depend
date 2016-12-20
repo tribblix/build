@@ -1,9 +1,5 @@
-P TRIBblix-libmcrypt
-P TRIBcurl
-P TRIBimage-libjpeg
-P TRIBimage-libpng
+P TRIBdatabase-sqlite-3
 P TRIBlib-pcre
 P TRIBlib-security-openssl
 P TRIBlib-zlib
-P TRIBlibidn
-P TRIBlibxml2
+P TRIBlibnghttp2
