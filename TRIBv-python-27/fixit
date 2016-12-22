@@ -1,12 +1,44 @@
 #!/bin/sh
 #
 VERSION="2.7"
+
+#
+# we don't yet ship a 64-bit python, but some of the code here is what
+# we might use if we did
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# fixinstall.64 saved the 64-bit pyconfig.h for us, now
+# we wrap it
+#
+#mv usr/versions/python-${VERSION}/include/python${VERSION}/pyconfig.h usr/versions/python-${VERSION}/include/python${VERSION}/pyconfig-32.h
+#cp ${BUILDROOT}/patches/pyconfig.h usr/versions/python-${VERSION}/include/python${VERSION}/pyconfig.h
+
 mkdir -p usr/bin
+#mkdir -p usr/bin/$ARCH64
 mkdir -p usr/lib/pkgconfig
+#mkdir -p usr/lib/$ARCH64/pkgconfig
 cd usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/py* .
+#cd $ARCH64
+#ln -s ../../../usr/versions/python-${VERSION}/bin/${ARCH64}/py* .
+#cd ..
 cd ../lib
 ln -s ../../usr/versions/python-${VERSION}/lib/libpython2.7.so* .
 cd pkgconfig
 ln -s ../../versions/python-${VERSION}/lib/pkgconfig/python-2.7.pc .
 ln -s ../../versions/python-${VERSION}/lib/pkgconfig/python2.pc .
+cd ..
+#cd $ARCH64
+#ln -s ../../../usr/versions/python-${VERSION}/lib/${ARCH64}/libpython2.7.so* .
+#cd pkgconfig
+#ln -s ../../../versions/python-${VERSION}/lib/${ARCH64}/pkgconfig/python-2.7.pc .
+#ln -s ../../../versions/python-${VERSION}/lib/${ARCH64}/pkgconfig/python2.pc .

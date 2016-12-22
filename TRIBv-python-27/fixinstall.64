@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+# save the 64-bit pyconfig.h; the fixit script will sort it out
+#
+
+mv ${DESTDIR}/usr/versions/python-2.7/include/python2.7/pyconfig.h ${DESTDIR}/usr/versions/python-2.7/include/python2.7/pyconfig-64.h
