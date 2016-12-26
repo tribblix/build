@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# setuptools has files whose names contain spaces, so we unpack them
+# rather than package them
+#
+cd ${BASEDIR}/usr/versions/python-3.6/lib/python3.6/site-packages
+if [ -d setuptools ]; then
+  /usr/bin/rm -fr setuptools
+fi

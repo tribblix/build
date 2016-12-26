@@ -1,0 +1,4 @@
+PKG="TRIBv-python-36"
+NAME="Python 3.6"
+VERSION="3.6.0.0"
+ZAP_URL="https://www.python.org/"
