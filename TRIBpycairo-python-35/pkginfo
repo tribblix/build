@@ -1,4 +1,0 @@
-PKG="TRIBpycairo-python-35"
-NAME="Cairo bindings for python"
-VERSION="1.10.0.0"
-ZAP_URL="https://cairographics.org/pycairo/"

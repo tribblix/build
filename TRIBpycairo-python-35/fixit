@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# shuffle the pkgconfig file into the right place
-#
-mkdir -p usr/lib
-mv usr/versions/python-3.5/lib/pkgconfig usr/lib
