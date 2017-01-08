@@ -1,2 +1,14 @@
 P TRIBimage-libexif
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBimage-libtiff
+P TRIBlib-expat
+P TRIBlib-zlib
+P TRIBlibgd
 P TRIBlibtool
+P TRIBlibwebp
+P TRIBlibxml2
+P TRIBsys-lib-fontconfig
+P TRIBsys-lib-freetype-2
+P TRIBx11-libx11
+P TRIBx11-libxpm
