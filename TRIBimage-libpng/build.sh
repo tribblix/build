@@ -5,5 +5,5 @@
 # we reverted to 1.4, otherwise we got a mess with both 1.4 and
 # 1.6 libraries linked
 #
-${THOME}/build/dobuild -64 libpng-1.4.19 -C --sysconfdir=/etc
-${THOME}/build/genpkg TRIBimage-libpng libpng-1.4.19
+${THOME}/build/dobuild -64 libpng-1.4.20 -C --sysconfdir=/etc
+${THOME}/build/genpkg TRIBimage-libpng libpng-1.4.20
