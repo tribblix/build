@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# pkcs11-common isn't correctly guarded
+#
+# remove it from the code
+#
+gsed -i '/pkcs11_common/d' src/tpmtool.c
+#
+# remove the option so it can't be called
+#
+gsed -i '/TEST_SIGN/d' src/tpmtool.c
