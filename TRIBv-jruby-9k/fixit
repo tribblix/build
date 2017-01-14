@@ -2,10 +2,11 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=9.1.6.0
+VERSION=9.1.7.0
 #
 # jruby 9k has been a bit broken on solarish systems and gem hasn't always
-# worked right so don't make it the default until that's fixed
+# worked right so don't make it the default until we're sure that's fixed
+# (it probably is, but need more testing)
 #
 #mkdir -p usr/bin
 #ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
