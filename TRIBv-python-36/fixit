@@ -3,6 +3,9 @@
 VERSION="3.6"
 mkdir -p usr/bin
 mkdir -p usr/lib/pkgconfig
+cd usr/versions/python-${VERSION}/bin
+ln -s python${VERSION} python
+cd ../../../..
 cd usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/python3 .
 ln -s ../../usr/versions/python-${VERSION}/bin/python3-config .
