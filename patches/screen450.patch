@@ -1,0 +1,10 @@
+--- a/screen.c	Tue Jan 17 19:28:29 2017
++++ b/screen.c	Thu Jan 19 10:08:45 2017
+@@ -67,6 +67,7 @@
+ #if defined(SYSV) && !defined(ISC)
+ # include <sys/utsname.h>
+ #endif
++#include <limits.h>
+ 
+ #if defined(sequent) || defined(SVR4)
+ # include <sys/resource.h>
