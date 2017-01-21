@@ -2,8 +2,8 @@
 #
 # needs TRIBlibsdl
 #
-${THOME}/build/unpack openttd-1.6.0-source
-cd openttd-1.6.0
+${THOME}/build/unpack openttd-1.6.1-source
+cd openttd-1.6.1
 ./configure --prefix=/usr --without-liblzo2
 gmake -j 4
 rm -fr /tmp/ott
