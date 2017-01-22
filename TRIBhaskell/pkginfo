@@ -1,0 +1,4 @@
+PKG="TRIBhaskell"
+NAME="Haskell, an advanced, purely functional programming language"
+VERSION="8.0.2.0"
+ZAP_URL="https://www.haskell.org/"

@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+VERSION="8.0.2"
+
+#
+# we don't yet ship a 64-bit haskell, but some of the code here is what
+# we might use if we did
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+mkdir -p usr/bin
+#mkdir -p usr/bin/$ARCH64
+cd usr/bin
+ln -s ../../usr/versions/haskell/bin/ghc .
+ln -s ../../usr/versions/haskell/bin/ghc-pkg .
+ln -s ../../usr/versions/haskell/bin/ghci .
+ln -s ../../usr/versions/haskell/bin/runghc .
+ln -s ../../usr/versions/haskell/bin/haskell .
+ln -s ../../usr/versions/haskell/bin/haddock .
+ln -s ../../usr/versions/haskell/bin/hpc .
+ln -s ../../usr/versions/haskell/bin/hsc2hs .
+#cd $ARCH64
+#ln -s ../../../usr/versions/haskell/$ARCH64/bin/* .
+#cd ..
