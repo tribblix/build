@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# this script does all the work
+#
+mkdir -p usr/bin
+mkdir -p usr/share
+cd usr/share
+${BUILDROOT}/unpack jodconverter-2.2.2
+mv jodconverter-2.2.2 jodconverter
+cd ../..
+cp ${BUILDROOT}/patches/jodconverter usr/bin

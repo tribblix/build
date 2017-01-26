@@ -1,0 +1,4 @@
+PKG="TRIBjodconverter"
+NAME="Java OpenDocument Converter"
+VERSION="2.2.2.0"
+ZAP_URL="http://www.artofsolving.com/opensource/jodconverter"

@@ -1,0 +1,64 @@
+#!/bin/sh
+#
+# wrapper around jodconverter
+#
+# Usage:
+#  jodconverter server
+#  jodconverter convert input_file output_file
+#
+
+usage() {
+	echo "Usage: $0 server"
+	echo "       $0 convert infile outfile"
+	exit 1
+}
+
+case $1 in
+'server')
+	unset DISPLAY
+	soffice --headless --accept="socket,host=127.0.0.1,port=8100;urp;" --nofirststartwizard
+	exit 0
+	;;
+'convert')
+	shift
+	;;
+*)
+	usage
+	;;
+esac
+
+#
+# verify that the server is in fact running
+#
+SPROC=`pgrep -u $USER soffice`
+if [ -z "$SPROC" ]; then
+   echo "WARNING: cannot see a server, run"
+   echo "  $0 server"
+   echo "in another window to start one"
+else
+   SPARGS=`pargs $SPROC|grep accept=socket`
+   if [ -z "$SPARGS" ]; then
+      echo "WARNING: cannot see a server, run"
+      echo "  $0 server"
+      echo "in another window to start one"
+   fi
+fi
+
+#
+# if we get here then we're doing a conversion
+#
+case $# in
+2)
+	INFILE="$1"
+	OUTFILE="$2"
+	if [ ! -f "$INFILE" ]; then
+	   echo "ERROR: No such file $INFILE"
+	   exit 1
+	fi
+	echo "Converting $INFILE to $OUTFILE"
+	java -jar /usr/share/jodconverter/lib/jodconverter-cli-2.2.2.jar "$INFILE" "$OUTFILE"
+	;;
+*)
+	usage
+	;;
+esac
