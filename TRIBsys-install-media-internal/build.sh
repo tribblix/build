@@ -6,7 +6,7 @@
 #
 rm -fr /tmp/lt2
 mkdir -p /tmp/lt2/sbin
-( cd ${THOME}/tribblix-media ; tar cf - etc lib usr ) | ( cd /tmp/lt2 ; tar xf -)
+( cd ${THOME}/tribblix-media ; tar cf - etc lib usr boot ) | ( cd /tmp/lt2 ; tar xf -)
 gcc -o /tmp/lt2/sbin/listcd -ldevinfo ${THOME}/tribblix-media/listcd.c
 gcc -o /tmp/lt2/sbin/listusb -ldevinfo ${THOME}/tribblix-media/listusb.c
 ${THOME}/build/create_pkg TRIBsys-install-media-internal /tmp/lt2

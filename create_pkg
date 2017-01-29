@@ -279,6 +279,10 @@ fi
 if [ -d ${BDIR}/zonelib ]; then
    (cd ${BDIR} ; pkgproto zonelib | ${BUILD}/fixproto) >> pp.$$
 fi
+# boot is just for TRIBsys-install-media-internal
+if [ -d ${BDIR}/boot ]; then
+   (cd ${BDIR} ; pkgproto boot | ${BUILD}/fixproto) >> pp.$$
+fi
 #
 # any per-package proto fixes
 #
