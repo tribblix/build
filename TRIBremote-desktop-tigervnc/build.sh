@@ -2,8 +2,8 @@
 #
 # our own tigervnc
 #
-${THOME}/build/unpack tigervnc-1.6.0
-cd tigervnc-1.6.0
+${THOME}/build/unpack tigervnc-1.7.1
+cd tigervnc-1.7.1
 mkdir build
 cd build
 cmake -G "Unix Makefiles" ..
