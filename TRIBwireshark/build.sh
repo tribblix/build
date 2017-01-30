@@ -5,6 +5,6 @@
 # need to explicitly tell it which qt as guessing is unreliable
 # as of 2.2, needs a little extra help with kerberos
 #
-env TRIBBLIX_CFLAGS=-I/usr/include/kerberosv5 PATH=${PATH}:/usr/versions/Qt-4.8/bin:/usr/perl5/5.22.0/bin ${THOME}/build/dobuild -gnu wireshark-2.2.2 -C "--with-qt=4 -without-lua --with-gtk2"
-${THOME}/build/genpkg TRIBwireshark wireshark-2.2.2
-${THOME}/build/genpkg TRIBwireshark-qt wireshark-2.2.2
+env TRIBBLIX_CFLAGS=-I/usr/include/kerberosv5 PATH=${PATH}:/usr/versions/Qt-4.8/bin:/usr/perl5/5.22.0/bin ${THOME}/build/dobuild -gnu wireshark-2.2.4 -C "--with-qt=4 -without-lua --with-gtk2"
+${THOME}/build/genpkg TRIBwireshark wireshark-2.2.4
+${THOME}/build/genpkg TRIBwireshark-qt wireshark-2.2.4
