@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+SAVEDIR=`pwd`
+TGDIR=tmp-build.$$
+mkdir $TGDIR
+cd $TGDIR
+# check out the repo
+git clone https://go.googlesource.com/image
+cd image/font/gofont/ttfs
+mkdir -p ${DESTDIR}/usr/share/fonts/TrueType/go
+mkdir -p ${DESTDIR}/etc/X11/fontpath.d
+ln -s ../../../usr/share/fonts/TrueType/go ${DESTDIR}/etc/X11/fontpath.d/go:pri
+cp README ${DESTDIR}/usr/share/fonts/TrueType/go
+cp *ttf ${DESTDIR}/usr/share/fonts/TrueType/go
+cd ${DESTDIR}/usr/share/fonts/TrueType/go
+mkfontscale .
+ln fonts.scale fonts.dir
+cd $SAVEDIR
+rm -fr $TGDIR

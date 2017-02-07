@@ -1,0 +1,4 @@
+PKG="TRIBfont-ttype-go"
+NAME="Go fonts"
+VERSION="1.0.0"
+ZAP_URL="https://blog.golang.org/go-fonts"
