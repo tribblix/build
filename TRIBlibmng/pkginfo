@@ -1,4 +1,4 @@
 PKG="TRIBlibmng"
 NAME="Multi-image Network Graphics library"
-VERSION="2.0.2.0"
+VERSION="2.0.3.0"
 ZAP_URL="http://www.libpng.org/pub/mng/"
