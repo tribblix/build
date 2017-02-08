@@ -3,3 +3,10 @@
 -p0 bash44-003
 -p0 bash44-004
 -p0 bash44-005
+-p0 bash44-006
+-p0 bash44-007
+-p0 bash44-008
+-p0 bash44-009
+-p0 bash44-010
+-p0 bash44-011
+-p0 bash44-012
