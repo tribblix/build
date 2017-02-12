@@ -3,7 +3,7 @@
 # create a versioned directory
 # put a symlink in /usr/bin
 #
-VERSION=45.5.1
+VERSION=45.7.0
 mkdir -p usr/bin
 cd usr/versions
 mkdir thunderbird-${VERSION}
@@ -43,6 +43,8 @@ ln -s /usr/lib/libatk-1.0.so{,.0} .
 rm -fr gio gtk-2.0
 ln -s /usr/lib/gio .
 ln -s /usr/lib/gtk-2.0 .
+# thunderbird is linked against libexpat.so.0, we only have .1
+ln -s /usr/lib/libexpat.so.1 libexpat.so.0
 cd ..
 cd ..
 #
