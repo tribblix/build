@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# we don't particularly want firefox integration
+# and it puts it in the wrong place anyway
+#
+rm -fr usr/share/xul-ext
+rm -fr usr/lib/thunderbird*
+rm -fr usr/lib/firefox*

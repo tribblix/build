@@ -1,13 +1,12 @@
 P TRIBdatabase-sqlite-3
+P TRIBgdk-pixbuf
 P TRIBimage-libexif
 P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-libtiff
-P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gsf
 P TRIBlib-glib2
-P TRIBlib-zlib
-P TRIBlibffi
 P TRIBlibicu
+P TRIBlibiptcdata
 P TRIBlibxml2
 P TRIBpoppler
