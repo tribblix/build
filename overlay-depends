@@ -92,7 +92,7 @@ cat ${TMPF}.p |sort|uniq >${TMPF}.t
 echo ""
 echo "Missing dependencies in overlay ${OVL}:"
 echo "============================================="
-cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs| /usr/bin/fgrep -v -f ${TMPF}.t
+cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t
 
 if [ "X$VERBOSE" = "X-v" ]; then
 for ndep in `cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs| /usr/bin/fgrep -v -f ${TMPF}.t`
