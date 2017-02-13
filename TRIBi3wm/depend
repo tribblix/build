@@ -4,6 +4,7 @@ P TRIBlib-glib2
 P TRIBlib-pcre
 P TRIBlibev
 P TRIBlibxcb
+P TRIBlibxcb-xrm
 P TRIBlibxkbcommon
 P TRIBstartup-notification
 P TRIByajl

@@ -1,15 +1,15 @@
 #!/bin/sh
 #
-# update/rebuild i3:
+# i3 switched to autoconf, but a slightly funky way of doing it
 #
-${THOME}/build/unpack i3-4.11
-cd i3-4.11
-${THOME}/build/patches/i3-4.11.preconf
-gmake CC=gcc
-gmake -C man
+env LIBS="-lsocket -lnsl -lgen" ${THOME}/build/dobuild i3-4.13 -M "-C i386-pc-solaris2.11"
+cd i3-4.13
 rm -fr /tmp/i3
-gmake CC=gcc DESTDIR=/tmp/i3 INSTALL=ginstall install
+cd i386-pc-solaris2.11
+gmake install DESTDIR=/tmp/i3
+cd ..
 mkdir -p /tmp/i3/usr/share/man/man1
 cp man/*.1 /tmp/i3/usr/share/man/man1
 ${THOME}/build/create_pkg TRIBi3wm /tmp/i3
 rm -fr /tmp/i3
+cd ..
