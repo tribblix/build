@@ -3,15 +3,33 @@
 # catalog format is
 #  name|version|dependencies|size|md5|
 #
-RELVER=18
+RELVER=m19
 THOME=/packages/localsrc/Tribblix
-PKGDIR=${THOME}/illumos-pkgs-m${RELVER}/pkgs
+PKGDIR=${THOME}/illumos-pkgs-${RELVER}/pkgs
 
 case $# in
 1)
 	PKGDIR=$1
 	;;
 esac
+
+#
+# try and work out if we're sparc
+#
+SSUFFIX=""
+case $PKGDIR in
+    *.sparc*)
+	SSUFFIX=".sparc"
+	;;
+esac
+
+#
+# try and work out the version number
+#
+NPKGDIR=${PKGDIR%/pkgs}
+NPKGDIR=${NPKGDIR%.sparc}
+RELVER=`echo $NPKGDIR|awk -F- '{print $NF}'`
+RELNUM=`echo $RELVER|sed s:m::`
 
 cat <<EOF
 <html>
@@ -47,10 +65,10 @@ do
   echo "<li><a href=\"${PNAME}.${PKGVERS}.zap\">Download</a></li>"
   for mypkgdep in $DEPLIST
   do
-      if [ -f ${PKGDIR}/${mypkgdep}.0.${RELVER}.0.zap ]; then
+      if [ -f ${mypkgdep}.0.${RELNUM}.0.zap ]; then
 	  echo "<li>Requires: <a href=\"#${mypkgdep}\">$mypkgdep</a></li>"
       elif [ -d ${THOME}/build/${mypkgdep} ]; then
-	  echo "<li>Requires: <a href=\"../tribblix-m${RELVER}/#${mypkgdep}\">$mypkgdep</a></li>"
+	  echo "<li>Requires: <a href=\"../tribblix-${RELVER}${SSUFFIX}/#${mypkgdep}\">$mypkgdep</a></li>"
       else
 	  echo "<li>Requires: $mypkgdep</li>"
       fi
