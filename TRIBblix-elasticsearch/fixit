@@ -19,8 +19,14 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="5.1.2"
+VERSION="5.2.1"
 mv elasticsearch-${VERSION} elasticsearch
+
+#
+# clean up files that are meant for windows
+#
+rm -f elasticsearch/*.bat
+rm -f elasticsearch/*.exe
 
 #
 # fix the configuration

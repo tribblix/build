@@ -9,8 +9,8 @@ mkdir -p $GOPATH/src/github.com/elastic
 cd $GOPATH/src/github.com/elastic
 git clone https://github.com/elastic/beats.git
 cd beats
-# thi isn't entirely accurate but master is now 6.x
-git checkout 5.1
+# this isn't entirely accurate but master is now 6.x
+git checkout 5.2
 cd filebeat
 env PATH=/usr/versions/go-1.7/bin:$PATH gmake
 cd ../metricbeat

@@ -17,7 +17,7 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="5.1.2"
+VERSION="5.2.1"
 mv logstash-${VERSION} logstash
 
 #
@@ -44,3 +44,7 @@ rm -fr lib/jni/*Linux
 rm -fr lib/jni/*BSD
 rm -fr lib/jni/*AIX
 rm -fr lib/jni/Darwin
+# and remove nailgun
+rm -fr tool/nailgun
+rmdir tool
+
