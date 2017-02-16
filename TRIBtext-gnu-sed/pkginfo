@@ -1,4 +1,4 @@
 PKG="TRIBtext-gnu-sed"
 NAME="GNU sed"
-VERSION="4.3.0"
+VERSION="4.4.0"
 ZAP_URL="http://www.gnu.org/software/sed/"
