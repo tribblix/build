@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# add convenience link
-#
-VERSION=1.5
-mkdir -p usr/bin
-cd usr/bin
-ln -s ../versions/go-${VERSION}/bin/gox .
