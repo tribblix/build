@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# clean up a bit
+#
+rm -fr usr/share/doc/xapian-core/apidoc
