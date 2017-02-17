@@ -1,0 +1,9 @@
+-p1 binutils-bfd.aoutfl1.h.patch
+-p1 binutils-bfd_config.patch
+-p1 binutils-cache.c.patch
+-p1 binutils-elf-common.h.patch
+-p1 binutils-gas.write.c.patch
+-p1 binutils-ihex.c.patch
+-p1 binutils-output.cc.patch
+-p1 binutils-srec.c.patch
+-p1 binutils-timer.cc.patch

@@ -10,3 +10,4 @@ ln -s ../../gnu/bin/as gas
 #
 ln -s ../../gnu/bin/ld gld
 ln -s ../../gnu/bin/objcopy gobjcopy
+ln -s ../../gnu/bin/strip gstrip
