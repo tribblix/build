@@ -1,0 +1,4 @@
+PKG="TRIBspelldict-en"
+NAME="Spell checking dictionaries - english"
+VERSION="2017.01.22.0"
+ZAP_URL="http://wordlist.aspell.net/dicts/"
