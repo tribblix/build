@@ -1,4 +1,4 @@
 PKG="TRIBrtmpdump"
 NAME="A toolkit for RTMP streams"
-VERSION="2.3.0"
+VERSION="2.4.0"
 ZAP_URL="https://rtmpdump.mplayerhq.hu/"
