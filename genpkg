@@ -2,16 +2,31 @@
 #
 # generate a package
 #
+
+#
+# handle arguments
+# -I what to install (normally "install")
+#
+INSTALLWHAT="install"
+while [[ $# > 0 ]]; do
+case $1 in
+-I)
+	INSTALLWHAT=$2
+	shift
+	shift
+	;;
+*)
+	break
+	;;
+esac
+done
+
 case $# in
 0)
 	echo "Usage: $0 pkg_name [build_dir ...]"
 	exit 1
 	;;
-1)
-	PKGNAME="$1"
-	;;
 *)
-	SOFTDIR="$2"
 	PKGNAME="$1"
 	;;
 esac
@@ -77,7 +92,7 @@ case $# in
 	if [ -f .tribblix_ldopts ]; then
 	    . ./.tribblix_ldopts
 	fi
-	$GMAKE -k install DESTDIR=$BDIR $MYINSTALL
+	$GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
 	if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 	    ${BUILD}/${PKGNAME}/fixinstall $BDIR
 	fi
@@ -94,7 +109,7 @@ case $# in
 		if [ -f .tribblix_cmake_build ]; then
 		    cd build
 		fi
-		$GMAKE -k install DESTDIR=$BDIR $MYINSTALL
+		$GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
 		if [ -x ${BUILD}/${PKGNAME}/fixinstall.64 ]; then
 		    ${BUILD}/${PKGNAME}/fixinstall.64 $BDIR
 		fi
@@ -110,7 +125,7 @@ case $# in
 	    if [ -f .tribblix_cmake_build ]; then
 		cd build
 	    fi
-	    $GMAKE -k install DESTDIR=$BDIR $MYINSTALL
+	    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
 	    if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 		${BUILD}/${PKGNAME}/fixinstall $BDIR
 	    fi
