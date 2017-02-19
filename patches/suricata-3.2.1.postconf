@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Incorrectly enables stack protector
+#
+gsed -i s:-fstack-protector:: libhtp/Makefile
+gsed -i s:-fstack-protector:: libhtp/htp/Makefile
+#
+# Time struct is borked
+#
+gsed -i '/tm_gmtoff/d' src/util-time.c
+gsed -i '/tm_zone/d' src/util-time.c
+#
+# doesn't honour INSTALL
+#
+gsed -i 's: install -m: ginstall -m:g' Makefile
+#
+# invokes tar incorrectly
+#
+gsed -i 's: tar : gtar :g' Makefile
