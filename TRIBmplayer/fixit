@@ -4,5 +4,5 @@
 #
 mkdir -p usr/share/mplayer/skins
 cd usr/share/mplayer/skins
-${BUILDROOT}/unpack Blue-1.10
+${BUILDROOT}/unpack Blue-1.12
 ln -s Blue default

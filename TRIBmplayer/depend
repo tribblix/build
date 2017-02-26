@@ -1,4 +1,6 @@
+P TRIBaalib
 P TRIBcompress-bzip2
+P TRIBffmpeg
 P TRIBfribidi
 P TRIBgdk-pixbuf
 P TRIBgiflib
@@ -11,7 +13,9 @@ P TRIBlib-desktop-gtk
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
 P TRIBlib-zlib
-P TRIBlibcdio
+P TRIBliba52
+P TRIBlibmad
+P TRIBlibmng
 P TRIBlibogg
 P TRIBlibsdl
 P TRIBlibspeex
@@ -22,3 +26,7 @@ P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBx11-libx11
 P TRIBx11-libxext
+P TRIBx11-libxinerama
+P TRIBx11-libxscrnsaver
+P TRIBx11-libxv
+P TRIBx11-libxxf86vm

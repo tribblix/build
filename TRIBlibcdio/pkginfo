@@ -1,3 +1,4 @@
 PKG="TRIBlibcdio"
 NAME="GNU Compact Disc Input and Control library"
-VERSION="0.83.1"
+VERSION="0.94.0"
+ZAP_URL="https://www.gnu.org/software/libcdio/"
