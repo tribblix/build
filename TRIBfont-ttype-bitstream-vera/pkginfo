@@ -1,0 +1,4 @@
+PKG="TRIBfont-ttype-bitstream-vera"
+NAME="Bitstream Vera fonts"
+VERSION="1.10.0"
+ZAP_URL="https://www.gnome.org/fonts/"

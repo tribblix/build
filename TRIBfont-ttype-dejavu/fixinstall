@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+mkdir -p ${DESTDIR}/etc/fonts/conf.avail
+cp fontconfig/* ${DESTDIR}/etc/fonts/conf.avail
+mkdir -p ${DESTDIR}/etc/X11/fontpath.d
+ln -s ../../../usr/share/fonts/TrueType/dejavu ${DESTDIR}/etc/X11/fontpath.d/dejavu:pri
+mkdir -p ${DESTDIR}/usr/share/fonts/TrueType/dejavu
+cp LICENSE README.md ${DESTDIR}/usr/share/fonts/TrueType/dejavu
+cp ttf/*ttf ${DESTDIR}/usr/share/fonts/TrueType/dejavu
+cd ${DESTDIR}/usr/share/fonts/TrueType/dejavu
+mkfontscale .
+ln fonts.scale fonts.dir

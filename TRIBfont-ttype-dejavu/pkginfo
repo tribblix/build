@@ -1,0 +1,4 @@
+PKG="TRIBfont-ttype-dejavu"
+NAME="DejaVu fonts"
+VERSION="2.37.0"
+ZAP_URL="http://dejavu-fonts.org/"

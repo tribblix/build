@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+mkdir -p ${DESTDIR}/etc/X11/fontpath.d
+ln -s ../../../usr/share/fonts/TrueType/bitstream-vera ${DESTDIR}/etc/X11/fontpath.d/bitstream-vera:pri
+mkdir -p ${DESTDIR}/usr/share/fonts/TrueType/bitstream-vera
+cp COPYRIGHT.TXT ${DESTDIR}/usr/share/fonts/TrueType/bitstream-vera
+cp *ttf ${DESTDIR}/usr/share/fonts/TrueType/bitstream-vera
+cd ${DESTDIR}/usr/share/fonts/TrueType/bitstream-vera
+mkfontscale .
+ln fonts.scale fonts.dir
