@@ -1,0 +1,4 @@
+PKG="TRIBicoutils"
+NAME="Tools to handle Windows(R) icon and cursor files"
+VERSION="0.31.2.0"
+ZAP_URL="http://www.nongnu.org/icoutils/"
