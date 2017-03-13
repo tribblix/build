@@ -1,7 +1,10 @@
 #!/bin/sh
 #
 # rename the tarball
-#  mv fossil-1.37.tar.gz Fossil_2017-01-16_205854_1669115ab9.tar.gz
+#  mv fossil-src-2.0.tar.gz fossil-2.0.tar.gz
 #
-${THOME}/build/dobuild Fossil_2017-01-16_205854_1669115ab9
-${THOME}/build/genpkg TRIBfossil Fossil_2017-01-16_205854_1669115ab9
+# probably want to stick with 2.0 for a while as 2.1 is incompatible
+# with fossil versions before 2.0
+#
+${THOME}/build/dobuild fossil-2.0
+${THOME}/build/genpkg TRIBfossil fossil-2.0
