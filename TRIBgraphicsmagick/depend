@@ -1,0 +1,12 @@
+P TRIBcompress-bzip2
+P TRIBgraphics-jasper
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBimage-libtiff
+P TRIBlib-lcms2
+P TRIBlib-zlib
+P TRIBlibwebp
+P TRIBlibxml2
+P TRIBsys-lib-freetype-2
+P TRIBx11-libx11
+P TRIBx11-libxext
