@@ -2,8 +2,8 @@
 #
 # python-dateutil - needs six
 #
-${THOME}/build/unpack python-dateutil-2.4.2
-cd python-dateutil-2.4.2
+${THOME}/build/unpack python-dateutil-2.6.0
+cd python-dateutil-2.6.0
 python setup.py build
 python ./updatezinfo.py 
 rm -fr /tmp/pil
