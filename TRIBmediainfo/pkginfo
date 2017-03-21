@@ -1,0 +1,4 @@
+PKG="TRIBmediainfo"
+NAME="Display information for video and audio files"
+VERSION="0.7.93.0"
+ZAP_URL="https://mediaarea.net/en/MediaInfo"
