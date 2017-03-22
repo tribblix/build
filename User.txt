@@ -23,3 +23,4 @@ By default, reserve the group id as well
 121 shibd	    TRIBshib-shibboleth-sp
 123 jack	    live image
 223 ntp 	    TRIBopenntpd
+124 barman	    TRIBpgbarman

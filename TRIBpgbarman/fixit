@@ -1,0 +1,20 @@
+#!/bin/sh
+PYVERS=2.7
+
+mkdir -p usr/bin
+mkdir -p usr/share/man/man1
+mkdir -p usr/share/man/man5
+
+cd usr/bin
+ln -s ../../usr/versions/python-${PYVERS}/bin/barman .
+cd ../..
+
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/python-${PYVERS}/share/man/man1/barman.1 .
+cd ../../../..
+
+cd usr/share/man/man5
+ln -s ../../../../usr/versions/python-${PYVERS}/share/man/man5/barman.5 .
+cd ../../../..
+
+mkdir -p var/barman
