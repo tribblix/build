@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# prototype mismatch within the same file
+#
+gsed -i 's:static pid_t watchdog_main:static int watchdog_main:' src/watchdog/watchdog.c
+#
+# some of the ifdefs are pretty random
+#
+gsed -i 's:__FreeBSD__:sun:' src/watchdog/wd_escalation.c
