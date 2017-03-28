@@ -32,8 +32,11 @@ cp packetbeat/packetbeat /tmp/bbb/opt/tribblix/beats/bin
 #
 # and sample config files
 #
+# fix the default filebeat paths to match illumos locations
+#
 mkdir -p /tmp/bbb/opt/tribblix/beats/conf
-cp filebeat/filebeat*.yml /tmp/bbb/opt/tribblix/beats/conf
+cat filebeat/filebeat.yml | gsed 's:/var/log/\*.log:/var/log/syslog\n    - /var/adm/messages:' > /tmp/bbb/opt/tribblix/beats/conf/filebeat.yml
+cat filebeat/filebeat.full.yml | gsed 's:/var/log/\*.log:/var/log/syslog\n    - /var/adm/messages:' > /tmp/bbb/opt/tribblix/beats/conf/filebeat.full.yml
 cp filebeat/filebeat*.json /tmp/bbb/opt/tribblix/beats/conf
 cp metricbeat/metricbeat*.yml /tmp/bbb/opt/tribblix/beats/conf
 cp metricbeat/metricbeat*.json /tmp/bbb/opt/tribblix/beats/conf
