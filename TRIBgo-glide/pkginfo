@@ -1,0 +1,4 @@
+PKG="TRIBgo-glide"
+NAME="Glide - Package Management for Golang"
+VERSION="3.1.1.0"
+ZAP_URL="https://github.com/Masterminds/glide"
