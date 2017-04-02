@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# symlinks
+#
+mkdir -p usr/bin
+cd usr/versions/simh
+for file in *
+do
+  ln -s ../../usr/versions/simh/$file ../../bin/simh-$file
+done
+rm ../../bin/simh-README.md
