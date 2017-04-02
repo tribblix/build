@@ -1,2 +1,3 @@
 P TRIBcompress-bzip2
+P TRIBlib-security-openssl
 P TRIBlib-zlib

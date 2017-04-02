@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# ldap_open is a standard ldap api, applications shouldn't
+# go defining their own
+#
+gsed -i s:ldap_open:ldap_open_icap: modules/ldap_module.c
