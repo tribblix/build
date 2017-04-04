@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack boto-2.42.0
-cd boto-2.42.0
+${THOME}/build/unpack boto-2.46.1
+cd boto-2.46.1
 python setup.py build
 rm -fr /tmp/sut
 python setup.py install --root=/tmp/sut
