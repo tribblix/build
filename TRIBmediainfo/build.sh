@@ -6,9 +6,9 @@
 # needs libtool installed so autogen.sh works
 #
 rm -fr ZenLib MediaInfoLib MediaInfo
-${THOME}/build/unpack libzen_0.4.34
-${THOME}/build/unpack libmediainfo_0.7.93
-${THOME}/build/unpack mediainfo_0.7.93
+${THOME}/build/unpack libzen_0.4.35
+${THOME}/build/unpack libmediainfo_0.7.94
+${THOME}/build/unpack mediainfo_0.7.94
 
 zap install libtool
 
