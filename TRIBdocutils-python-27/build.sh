@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack docutils-0.12
-cd docutils-0.12
+${THOME}/build/unpack docutils-0.13.1
+cd docutils-0.13.1
 python setup.py build
 rm -fr /tmp/pdu
 python setup.py install --root=/tmp/pdu
