@@ -1,0 +1,8 @@
+#!/bin/sh
+mkdir -p usr/bin
+cd usr/bin
+PYVERS=2.7
+ln -s ../../usr/versions/python-${PYVERS}/bin/mog .
+# the symlink for pygmentize comes in this package because
+# this is where we know which version we want
+ln -s ../../usr/versions/python-${PYVERS}/bin/pygmentize .
