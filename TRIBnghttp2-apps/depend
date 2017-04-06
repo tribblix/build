@@ -1,4 +1,6 @@
 P TRIBlib-security-openssl
 P TRIBlib-zlib
+P TRIBlibcares
 P TRIBlibev
+P TRIBlibnghttp2
 P TRIBlibxml2

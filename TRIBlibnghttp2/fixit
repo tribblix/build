@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# the nghttp2 applications have additional dependencies, so
+# remove them from here and ship them in a separate package
+#
+rm -fr usr/bin
+#
+# two steps just in case library manpages get added later
+#
+rm -fr usr/share/man/man1
+rmdir usr/share/man

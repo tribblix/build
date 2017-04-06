@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# the nghttp2 applications have additional dependencies, so
+# ship them in a separate package here
+#
+rm -fr usr/lib
+#
+# don't duplicate anything that is shipped in the library package
+#
+rm -fr usr/share/nghttp2
+rm -fr usr/share/doc
+rm -fr usr/include
