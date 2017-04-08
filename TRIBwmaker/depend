@@ -4,6 +4,7 @@ P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-libtiff
 P TRIBimagemagick
+P TRIBlibwebp
 P TRIBsys-lib-fontconfig
 P TRIBx11-libx11
 P TRIBx11-libxext

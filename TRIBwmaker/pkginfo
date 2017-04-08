@@ -1,4 +1,4 @@
 PKG=TRIBwmaker
 NAME=Window Maker - Your Next Window Manager
-VERSION=0.95.7.2
+VERSION=0.95.8.0
 ZAP_URL="http://windowmaker.org/"
