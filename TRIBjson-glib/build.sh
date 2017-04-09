@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild json-glib-0.16.2
-${THOME}/build/genpkg TRIBjson-glib json-glib-0.16.2
+${THOME}/build/dobuild -64 json-glib-1.2.8 -C --disable-introspection
+${THOME}/build/genpkg TRIBjson-glib json-glib-1.2.8
