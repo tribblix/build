@@ -1,0 +1,2 @@
+-p1 gegl.patch1
+-p1 gegl.patch2
