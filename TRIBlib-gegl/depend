@@ -1,2 +1,13 @@
+P TRIBgdk-pixbuf
+P TRIBgraphics-jasper
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBimage-librsvg
+P TRIBimage-libtiff
+P TRIBjson-glib
 P TRIBlib-babl
+P TRIBlib-desktop-cairo
 P TRIBlib-glib2
+P TRIBlib-lcms2
+P TRIBlibsdl
+P TRIBlibwebp
