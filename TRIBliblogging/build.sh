@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild liblogging-1.0.5 -C --disable-journal
-${THOME}/build/genpkg TRIBliblogging liblogging-1.0.5
+${THOME}/build/dobuild -64 liblogging-1.0.6
+${THOME}/build/genpkg TRIBliblogging liblogging-1.0.6
