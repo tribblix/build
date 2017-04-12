@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# this is where our timezone files live
+#
+gsed -i s:/usr/share/zoneinfo/posix/:/usr/share/lib/zoneinfo/: plugins/clock/clock.c

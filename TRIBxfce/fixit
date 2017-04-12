@@ -158,3 +158,20 @@ ln -s ../../../gnome/${SIZE}/mimetypes/x-office-calendar.png office-calendar.png
 cd $MYDIR
 cd usr/lib
 ln -s libxfce4util.so.7.0.0 libxfce4util.so.6
+
+#
+# ugly fix to pass timezone to the panel clock
+# and for it to display it
+#
+cd $MYDIR
+cd usr/etc/xdg/xfce4
+mv xinitrc tt1
+head -89 tt1 > xinitrc
+cat >> xinitrc <<EOF
+eval `grep '^TZ=' /etc/default/init`
+export TZ
+EOF
+tail +89 tt1 >> xinitrc
+rm tt1
+cd $MYDIR
+cd usr/share ; ln -s lib/zoneinfo .
