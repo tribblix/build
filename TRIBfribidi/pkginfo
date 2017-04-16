@@ -1,4 +1,4 @@
 PKG="TRIBfribidi"
 NAME="GNU FriBidi"
-VERSION="0.19.7.0"
+VERSION="0.19.7.1"
 ZAP_URL="http://fribidi.org/"
