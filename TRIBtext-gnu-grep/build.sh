@@ -3,5 +3,5 @@
 # ggrep
 # NB. Must not have gnu iconv installed
 #
-${THOME}/build/dobuild -64 -gnu grep-2.28 -P /usr/gnu
-${THOME}/build/genpkg TRIBtext-gnu-grep grep-2.28
+${THOME}/build/dobuild -64 -gnu grep-3.0 -P /usr/gnu
+${THOME}/build/genpkg TRIBtext-gnu-grep grep-3.0
