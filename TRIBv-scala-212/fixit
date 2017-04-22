@@ -2,9 +2,9 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=2.12.1
+VERSION=2.12.2
 mkdir -p usr/bin
 ln -s ../versions/scala-${VERSION}/bin/scala usr/bin/
 ln -s ../versions/scala-${VERSION}/bin/scalac usr/bin/
-cd versions/scala-${VERSION}
+cd usr/versions/scala-${VERSION}
 rm bin/*.bat
