@@ -1,4 +1,4 @@
 PKG="TRIBiso-codes"
 NAME="iso-codes"
-VERSION="3.70.0"
+VERSION="3.74.0"
 ZAP_URL="http://pkg-isocodes.alioth.debian.org/"
