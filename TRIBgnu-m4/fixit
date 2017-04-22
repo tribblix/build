@@ -2,5 +2,14 @@
 #
 # add a gm4 link
 #
-mkdir -p usr/bin
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+mkdir -p usr/bin/${ARCH64}
 ln -s ../gnu/bin/m4 usr/bin/gm4
+ln -s ../../gnu/bin/${ARCH64}/m4 usr/bin/${ARCH64}/gm4

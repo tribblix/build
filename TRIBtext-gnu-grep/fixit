@@ -11,6 +11,7 @@ i386)
   ;;
 esac
 rm -f usr/gnu/lib/charset.alias
+rm -f usr/gnu/lib/${ARCH64}/charset.alias
 rmdir usr/gnu/lib
 mkdir -p usr/bin/${ARCH64}
 cd usr/bin
