@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# tesseract needs trained data to function
+# as a shortcut, just download the english one and assume
+# whoever might run it knows what they're doing if they need
+# something else (tesseract requires a degree of competence
+# in any case, so we may be ok)
+#
+# if users request languages, then it's easy enough to add them
+#
+
+#
+# this is the version of the datafiles, not of the application
+#
+VERSION=3.04.00
+URLBASE=https://github.com/tesseract-ocr/tessdata/raw/${VERSION}
+
+mkdir -p usr/share/tessdata
+cd usr/share/tessdata
+#
+# if you want other languages, just add them here
+#
+for tlang in eng
+do
+  echo "Retrieving ${URLBASE}/${tlang}.traineddata"
+  wget ${URLBASE}/${tlang}.traineddata
+done

@@ -1,0 +1,4 @@
+PKG="TRIBtesseract"
+NAME="OCR engine"
+VERSION="3.05.00.0"
+ZAP_URL="https://github.com/tesseract-ocr/tesseract"
