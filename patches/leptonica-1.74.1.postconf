@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# the guard is presumably for some other compiler
+#
+gsed -i s:__SOLARIS__:__sun__: src/sarray1.c

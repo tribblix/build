@@ -1,0 +1,4 @@
+PKG="TRIBleptonica"
+NAME="Image processing toolkit"
+VERSION="1.74.1.0"
+ZAP_URL="http://www.leptonica.com/"
