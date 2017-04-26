@@ -1,0 +1,4 @@
+PKG="TRIBx11-xfd"
+NAME="xfd"
+VERSION="1.1.2.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/app/"
