@@ -1,4 +1,4 @@
 PKG="TRIBv-emacs-25"
 NAME="Gnu Emacs 25"
-VERSION="25.1.0"
+VERSION="25.2.0"
 ZAP_URL="http://www.gnu.org/software/emacs/"
