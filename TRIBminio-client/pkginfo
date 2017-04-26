@@ -1,0 +1,4 @@
+PKG="TRIBminio-client"
+NAME="Minio Client"
+VERSION="2017.04.0"
+ZAP_URL="https://minio.io/"
