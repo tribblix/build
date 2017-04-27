@@ -1,6 +1,16 @@
 #!/bin/sh
 #
-# cleanup to avoid conflicts
-#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 rm -f usr/lib/charset.alias
-rm -f usr/lib/amd64/charset.alias
+rm -f usr/lib/${ARCH64}/charset.alias
+
+rm -f usr/bin/idn2_noinstall
+rm -f usr/bin/${ARCH64}/idn2_noinstall
