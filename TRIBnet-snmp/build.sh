@@ -19,7 +19,20 @@ env LDFLAGS=-Wl,-zignore CFLAGS=-O CC=gcc CXX=g++ \
     --with-transports="UDP TCP UDPIPv6 TCPIPv6" \
     --with-mib-modules="host disman/event-mib ucd-snmp/diskio udp-mib tcp-mib if-mib"
 perl -pi -e 's#^^(archive_cmds=.*)"$#$1 -nostdlib"#g;' libtool
+
+#
+# fix library dependencies, configure guesses wrong
+#
+gsed -i s:-lkvm:: agent/Makefile
+gsed -i s:-lelf:: agent/Makefile
+gsed -i 's:lkstat:lkstat -lsocket -lnsl:' snmplib/Makefile
+
 gmake -j 8
+
+#
+# yes, genpkg ought to be equivalent to the followong, but it's not
+# so do it the long way
+#
 rm -fr /tmp/ns
 gmake install DESTDIR=/tmp/ns
 ${THOME}/build/create_pkg TRIBnet-snmp /tmp/ns
