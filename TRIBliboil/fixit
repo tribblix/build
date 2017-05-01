@@ -1,0 +1,18 @@
+#!/bin/sh
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# there really isn't much point in shipping this as end-users wouldn't
+# be able to submit meaningful reports
+#
+rm -f usr/bin/$ARCH64/oil-bugreport
+rmdir usr/bin/$ARCH64
+rm -f usr/bin/oil-bugreport
+rmdir usr/bin

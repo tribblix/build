@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# there is autodetection going on that goes wrong because solaris
+# reports i386 for 64-bit as well, so force
+#
+case `pwd` in
+*64bit)
+  case `uname -p` in
+  i386)
+    gsed -i 's:host_cpu=\$1:host_cpu=amd64:' configure
+    ;;
+  esac
+  ;;
+esac
