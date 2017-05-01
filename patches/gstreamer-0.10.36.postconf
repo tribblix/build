@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# caused by bison changes
+#
+gsed -i 's:int priv_gst_parse_yylex (void \* yylval_param , :int priv_gst_parse_yylex (:' gst/parse/grammar.y

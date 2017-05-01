@@ -1,5 +1,12 @@
 P TRIBgstreamer
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-pango
+P TRIBlib-glib2
+P TRIBlib-zlib
 P TRIBlibogg
-P TRIBliboil
 P TRIBlibtheora
 P TRIBlibvorbis
+P TRIBlibxml2
+P TRIBx11-libx11
+P TRIBx11-libxext
+P TRIBx11-libxv
