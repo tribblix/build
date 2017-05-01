@@ -1,0 +1,4 @@
+PKG="TRIBmbrowse"
+NAME="GTK+ mib browser"
+VERSION="0.4.3.0"
+ZAP_URL="https://sourceforge.net/projects/mbrowse/"
