@@ -2,7 +2,7 @@
 #
 # just name off the primary version
 #
-VERSION=1.6.2
+VERSION=1.7.0
 mkdir -p usr/bin
 rm -f usr/versions/projectlibre-${VERSION}/projectlibre.bat
 cat > usr/bin/projectlibre <<EOF
@@ -10,3 +10,4 @@ cat > usr/bin/projectlibre <<EOF
 exec /usr/versions/projectlibre-${VERSION}/projectlibre.sh "\$@"
 EOF
 chmod a+x usr/bin/projectlibre
+chmod a+x usr/versions/projectlibre-${VERSION}/projectlibre.sh
