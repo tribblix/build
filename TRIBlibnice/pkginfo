@@ -1,4 +1,4 @@
 PKG="TRIBlibnice"
 NAME="GLib ICE library"
-VERSION="0.1.10.0"
+VERSION="0.1.14.0"
 ZAP_URL="http://nice.freedesktop.org/wiki/"

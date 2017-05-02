@@ -1,5 +1,4 @@
+P TRIBgnutls
+P TRIBgstreamer
 P TRIBgstreamer1
 P TRIBlib-glib2
-P TRIBlib-zlib
-P TRIBlibffi
-P TRIBlibxml2

@@ -2,5 +2,5 @@
 #
 # libnice has both old and new gstreamer plugins
 #
-${THOME}/build/dobuild libnice-0.1.10 -C "--disable-static CFLAGS=-std=gnu99"
-${THOME}/build/genpkg TRIBlibnice libnice-0.1.10
+env TRIBBLIX_CFLAGS=-std=gnu99 ${THOME}/build/dobuild -64 libnice-0.1.14 -C "--disable-static --disable-introspection"
+${THOME}/build/genpkg TRIBlibnice libnice-0.1.14
