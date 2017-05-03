@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# go for consistency and uniformity
+#
+rm -fr usr/share/man/ru
+rm -f usr/etc/joe/joerc.zh_TW
