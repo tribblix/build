@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# dobuild can't pass configure arguments with spaces
+#
+gsed -i s:/usr/sbin/xterm:/usr/bin/xterm: config.h `find . -name Makefile`
+#
+# the build ignores some of the configuration settings
+#
+gsed -i s:BINDIR:/usr/bin:g man/xdm.man
+gsed -i s:BINDIR:/usr/bin:g config/Xsession.cpp

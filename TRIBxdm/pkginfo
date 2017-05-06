@@ -1,0 +1,4 @@
+PKG="TRIBxdm"
+NAME="X Display Manager"
+VERSION="1.1.11.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/app/"
