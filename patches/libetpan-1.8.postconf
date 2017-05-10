@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# there isn't a configure, so the configure step will fail
+# and we rerun it here
+#
+# this is postconf as it creates configure and we don't need to
+# efectively run it twice
+#
+env CFLAGS=-O ./autogen.sh --prefix=/usr
