@@ -3,7 +3,7 @@
 # postgres 9.6
 #
 ${THOME}/build/newbuild.sh build TRIBblix-postgres96
-cd postgresql-9.6.2
+cd postgresql-9.6.3
 rm -fr /tmp/pp
 gmake install-world DESTDIR=/tmp/pp
 ${THOME}/build/create_pkg TRIBblix-postgres96 /tmp/pp
