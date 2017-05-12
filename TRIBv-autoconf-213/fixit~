@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+# put a versioned binary in the normal path
+#
