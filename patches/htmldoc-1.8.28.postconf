@@ -1,3 +1,0 @@
-#!/bin/sh
-gsed -i s:CUPS_RAND:rand: htmldoc/http.c
-gsed -i s:CUPS_SRAND:srand: htmldoc/http.c
