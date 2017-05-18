@@ -2,8 +2,8 @@
 #
 #
 #
-${THOME}/build/unpack Django-1.11
-cd Django-1.11
+${THOME}/build/unpack Django-1.11.1
+cd Django-1.11.1
 rm -fr /tmp/p2a
 python setup.py install --root=/tmp/p2a
 ${THOME}/build/create_pkg TRIBdjango-python-27 /tmp/p2a
