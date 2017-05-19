@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack colorama-0.3.7
-cd colorama-0.3.7
+${THOME}/build/unpack colorama-0.3.9
+cd colorama-0.3.9
 python setup.py build
 rm -fr /tmp/pdu
 python setup.py install --root=/tmp/pdu

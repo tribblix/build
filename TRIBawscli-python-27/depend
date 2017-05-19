@@ -1,7 +1,9 @@
 P TRIBbotocore-python-27
 P TRIBcolorama-python-27
 P TRIBdocutils-python-27
+P TRIBfutures-python-27
 P TRIBjmespath-python-27
+P TRIBpyasn1-python-27
 P TRIBrsa-python-27
 P TRIBs3transfer-python-27
 P TRIBv-python-27
