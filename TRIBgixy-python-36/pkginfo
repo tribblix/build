@@ -1,0 +1,4 @@
+PKG="TRIBgixy-python-36"
+NAME="Nginx configuration security checker"
+VERSION="0.1.4.0"
+ZAP_URL="https://github.com/yandex/gixy"
