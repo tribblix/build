@@ -2,5 +2,5 @@
 #
 # Make sure libmng and aalib are installed
 #
-${THOME}/build/dobuild -gnu gimp-2.8.20 -C "--disable-python --with-lcms=lcms2"
-${THOME}/build/genpkg TRIBgimp gimp-2.8.20
+${THOME}/build/dobuild -gnu gimp-2.8.22 -C "--disable-python --with-lcms=lcms2"
+${THOME}/build/genpkg TRIBgimp gimp-2.8.22
