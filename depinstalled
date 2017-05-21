@@ -1,0 +1,26 @@
+#!/bin/sh
+
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BDIR=${THOME}/build
+
+for dir in $*
+do
+  if [ -d ${BDIR}/${dir} ]; then
+    echo "Checking $dir"
+    if [ -f ${BDIR}/${dir}/depend ]; then
+      for pkg in `awk '{print $2}' ${BDIR}/${dir}/depend`
+      do
+	if pkginfo -q $pkg 2>/dev/null
+	then
+	  echo "  $pkg .. ok"
+	else
+	  echo "  $pkg .. missing"
+	fi
+      done
+    else
+      "  ... no dependencies to check"
+    fi
+  else
+    echo "No such package $dir"
+  fi
+done
