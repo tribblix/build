@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# this gets the install location embedded, fix it back
+#
+rm -f usr/bin/requestchoice
+ln -s /usr/lib/amiwm/requestchoice usr/bin/requestchoice
