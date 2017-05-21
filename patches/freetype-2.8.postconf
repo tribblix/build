@@ -3,3 +3,16 @@
 # force no linkage against libgcc_s
 #
 perl -pi -e 's#(\$CC.*\$compiler_flags)#$1 -nostdlib#g;' builds/unix/libtool
+#
+# the sparc build ends up with libraries that have unresolved symbols
+# symbol not found: __clzsi2 (32-bit)
+# symbol not found: __clzdi2 (64-bit)
+# which cause anything linking against them to fail
+#
+# the following removes the broken definitions that lead to that
+#
+case `uname -p` in
+sparc)
+  gsed -i /builtin_clz/d include/freetype/internal/ftcalc.h
+  ;;
+esac
