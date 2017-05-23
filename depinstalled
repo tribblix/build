@@ -18,7 +18,7 @@ do
 	fi
       done
     else
-      "  ... no dependencies to check"
+      echo "  ... no dependencies to check"
     fi
   else
     echo "No such package $dir"

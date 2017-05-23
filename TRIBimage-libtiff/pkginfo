@@ -1,4 +1,4 @@
 PKG="TRIBimage-libtiff"
 NAME="TIFF Library and Utilities"
-VERSION="4.0.7.0"
+VERSION="4.0.8.0"
 ZAP_URL="http://www.remotesensing.org/libtiff/"
