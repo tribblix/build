@@ -2,7 +2,7 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=1.7.26
+VERSION=1.7.27
 mkdir -p usr/bin
 ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
 ln -s ../../usr/versions/jruby-${VERSION}/bin/jrubyc usr/bin/
@@ -30,3 +30,8 @@ rm -fr lib/jni/Darwin
 # the gnu version is fine, both are in the base overlay.
 #
 gsed -i 's:basename:/usr/xpg4/bin/basename:g' bin/jruby
+
+if [ -f tool/nailgun/configure ]; then
+    cd tool/nailgun
+    rm -f ng.exe
+fi

@@ -1,4 +1,4 @@
 PKG="TRIBv-jruby-17"
 NAME="JRuby"
-VERSION="1.7.26.0"
+VERSION="1.7.27.0"
 ZAP_URL="http://jruby.org/"
