@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# workaround the existing state
+#
+# there's already a showrgb binary delivered by SUNWxwplt
+#
+rm -fr usr/bin/showrgb
