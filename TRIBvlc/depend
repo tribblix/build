@@ -7,6 +7,7 @@ P TRIBgstreamer1-plugins-base
 P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-librsvg
+P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk
 P TRIBlib-glib2
 P TRIBlib-zlib
@@ -16,6 +17,7 @@ P TRIBlibgcrypt
 P TRIBlibgpg-error
 P TRIBlibidn
 P TRIBlibmad
+P TRIBlibmodplug
 P TRIBlibnotify
 P TRIBlibogg
 P TRIBlibsdl
@@ -32,6 +34,7 @@ P TRIBsamba4
 P TRIBsvc-opengl-ogl-select
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
+P TRIBsys-libdbus
 P TRIBx11-libx11
 P TRIBx11-libxext
 P TRIBx11-libxinerama

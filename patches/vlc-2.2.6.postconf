@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# you go to all this effort to look for gtar and then use the wrong one anyway
+#
+gsed -i 's:tar cvvzf:gtar cvvzf:' share/Makefile
