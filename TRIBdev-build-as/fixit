@@ -7,4 +7,11 @@
 #
 # The tarball was created on an older system, we just unpack it here
 #
-tar xf ${BUILDROOT}/patches/binary-as-files.tar
+case `uname -p` in
+    i386)
+	tar xf ${BUILDROOT}/patches/binary-as-files.tar
+	;;
+    sparc)
+	tar xf ${BUILDROOT}/patches/binary-as-files.sparc.tar
+	;;
+esac

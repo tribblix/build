@@ -1,0 +1,14 @@
+usr/bin/as
+usr/ccs/bin/as
+usr/lib/sparcv9/libtdf.so
+usr/lib/sparcv9/libtdf.so.1
+usr/lib/sparcv9/libxprof.so
+usr/lib/sparcv9/libxprof.so.1
+usr/lib/sparcv9/libxprof_audit.so
+usr/lib/sparcv9/libxprof_audit.so.1
+usr/lib/libtdf.so
+usr/lib/libtdf.so.1
+usr/lib/libxprof.so
+usr/lib/libxprof.so.1
+usr/lib/libxprof_audit.so
+usr/lib/libxprof_audit.so.1
