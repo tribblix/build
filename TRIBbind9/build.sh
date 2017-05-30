@@ -2,5 +2,5 @@
 #
 # must not have TRIBlibedit installed
 #
-${THOME}/build/dobuild bind-9.11.0-P5 -C "--sysconfdir=/etc --localstatedir=/var"
-${THOME}/build/genpkg TRIBbind9 bind-9.11.0-P5
+${THOME}/build/dobuild bind-9.11.1 -C "--sysconfdir=/etc --localstatedir=/var"
+${THOME}/build/genpkg TRIBbind9 bind-9.11.1
