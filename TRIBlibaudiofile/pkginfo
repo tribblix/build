@@ -1,0 +1,4 @@
+PKG="TRIBlibaudiofile"
+NAME="The Audio File Library"
+VERSION="0.3.6.0"
+ZAP_URL="https://audiofile.68k.org/"
