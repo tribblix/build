@@ -1,4 +1,3 @@
 #!/bin/sh
 #
-env LIBS="-lsocket -lnsl" TRIBBLIX_CXXFLAGS=-fpermissive ${THOME}/build/dobuild -64 nghttp2-1.21.0
-${THOME}/build/genpkg TRIBlibnghttp2 nghttp2-1.21.0
+echo "See TRIBlibnghttp2 - both packages are created from a single build"
