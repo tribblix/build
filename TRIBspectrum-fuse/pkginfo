@@ -1,0 +1,4 @@
+PKG="TRIBspectrum-fuse"
+NAME="Fuse - the Free Unix Spectrum Emulator"
+VERSION="1.3.5.0"
+ZAP_URL="http://fuse-emulator.sourceforge.net/"
