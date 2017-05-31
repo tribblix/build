@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# configure lies to us
+#
+gsed -i 's:CCASFLAGS = :CCASFLAGS = -m64:' Makefile
