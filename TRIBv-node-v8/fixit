@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Only LTS releases have standard symlinks
+#
+VERSION=8
+#mkdir -p usr/bin
+#ln -s ../versions/node-v${VERSION}/bin/node usr/bin/node
+#ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/npm
