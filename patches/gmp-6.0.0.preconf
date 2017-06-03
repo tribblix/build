@@ -1,0 +1,2 @@
+#!/bin/sh
+gsed -i 's:}_sol2:}:' configure

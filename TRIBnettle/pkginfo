@@ -1,4 +1,4 @@
 PKG="TRIBnettle"
 NAME="Nettle - a low-level cryptographic library"
-VERSION="2.7.1.2"
+VERSION="2.7.1.3"
 ZAP_URL="http://www.lysator.liu.se/~nisse/nettle/"
