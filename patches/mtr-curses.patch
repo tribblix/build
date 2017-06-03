@@ -1,0 +1,13 @@
+--- a/ui/curses.c	Sun Feb  5 07:27:33 2017
++++ b/ui/curses.c	Sat Jun  3 11:39:49 2017
+@@ -786,8 +786,10 @@
+     raw();
+     noecho();
+     start_color();
++#ifdef HAVE_USE_DEFAULT_COLORS
+     if (use_default_colors() == OK)
+         bg_col = -1;
++#endif
+     for (i = 0; i < NUM_FACTORS; i++)
+         init_pair(i + 1, i, bg_col);
+ 
