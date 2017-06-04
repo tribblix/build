@@ -1,4 +1,4 @@
 PKG="TRIBec2-api-tools"
 NAME="AWS EC2 API tools"
-VERSION="1.7.5.0"
-ZAP_URL="https://aws.amazon.com/developertools/Amazon-EC2/351"
+VERSION="1.7.5.1"
+ZAP_URL="https://aws.amazon.com/items/351?externalID=351"
