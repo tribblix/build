@@ -1,4 +1,4 @@
 PKG="TRIBv-tomcat-7"
 NAME="Tomcat 7"
-VERSION="7.0.77.0"
+VERSION="7.0.78.0"
 ZAP_URL="http://tomcat.apache.org/"
