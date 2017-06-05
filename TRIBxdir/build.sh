@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 ${THOME}/build/unpack llnlxdir2_1_2
-cd llnlxdir2_1_2/source
+cd llnlxdir2_1_2/sources
 make -f Makefile.alt CC=gcc LIBS="-lXm -lXt -lX11 -lsocket -lnsl" CFLAGS="-DSYSV"
 rm -fr /tmp/xd1
 mkdir -p /tmp/xd1/usr/bin
