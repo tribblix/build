@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# put a wrapper in the regular path
+#
+mkdir -p usr/bin
+cd usr/bin
+cat > nikto <<EOF
+#!/bin/sh
+cd /usr/versions/nikto
+exec /usr/bin/perl ./nikto.pl "\$@"
+EOF
+chmod a+x nikto
