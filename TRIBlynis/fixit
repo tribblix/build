@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# put a link in the regular path
+#
+mkdir -p usr/bin
+cd usr/bin
+cat > lynis <<EOF
+#!/bin/sh
+cd /usr/versions/lynis
+exec ./lynis "\$@"
+EOF
+chmod a+x lynis

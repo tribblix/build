@@ -1,0 +1,4 @@
+PKG="TRIBlynis"
+NAME="Lynis System Auditing Tool"
+VERSION="2.5.1.0"
+ZAP_URL="https://cisofy.com/lynis/"
