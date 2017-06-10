@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# put a wrapper in the regular path
+#
+mkdir -p usr/bin
+cd usr/bin
+cat > commix <<EOF
+#!/bin/sh
+cd /usr/versions/commix
+exec /usr/versions/python-2.7/bin/python ./commix.py "\$@"
+EOF
+chmod a+x commix
