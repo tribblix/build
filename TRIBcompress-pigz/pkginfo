@@ -1,4 +1,4 @@
 PKG="TRIBcompress-pigz"
 NAME="Parallel implementation of gzip"
-VERSION="2.3.3.0"
+VERSION="2.3.4.0"
 ZAP_URL="http://zlib.net/pigz/"

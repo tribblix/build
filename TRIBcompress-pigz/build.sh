@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pigz-2.3.3
-cd pigz-2.3.3
+${THOME}/build/unpack pigz-2.3.4
+cd pigz-2.3.4
 gmake CC=gcc CFLAGS="-std=gnu99 -O3 -Wall -Wextra"
 rm -fr /tmp/pp
 mkdir -p /tmp/pp/usr/bin /tmp/pp/usr/share/man/man1
