@@ -2,6 +2,8 @@
 #
 # need to unpack apr and apr-util
 #
+# the newer 1.6.x versions of apr don't build, so stay with 1.5.x
+#
 APRVER=1.5.2
 APRUVER=1.5.4
 $UNPACKER apr-${APRVER}
