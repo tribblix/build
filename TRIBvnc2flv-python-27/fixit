@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# add a convenience link
+#
+# (this is safer than usual because this application does not work at
+# all with python3)
+#
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/python-2.7/bin/flv* .
