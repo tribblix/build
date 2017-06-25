@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# cleanup
+#
+rm -fr usr/share/man/nl
+rm -fr usr/share/man/ru
+

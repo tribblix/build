@@ -1,0 +1,4 @@
+PKG="TRIBhttping"
+NAME="Ping for HTTP requests"
+VERSION="2.5.0"
+ZAP_URL="https://www.vanheusden.com/httping/"

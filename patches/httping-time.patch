@@ -1,0 +1,11 @@
+--- a/utils.c	Mon Sep 12 08:45:50 2016
++++ b/utils.c	Sun Jun 25 16:36:07 2017
+@@ -23,7 +23,7 @@
+ 	if (gettimeofday(&ts, &tz) == -1)
+ 		error_exit(gettext("gettimeofday failed"));
+ 
+-	return (double)ts.tv_sec + ((double)ts.tv_usec)/1000000.0 + (double)(tz.tz_minuteswest * 60);
++	return (double)ts.tv_sec + ((double)ts.tv_usec)/1000000.0;
+ }
+ 
+ void split_string(const char *in, const char *split, char ***list, int *list_n)
