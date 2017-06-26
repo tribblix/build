@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/repo-apache.xml var/svc/manifest/network
+#
+# the repo itself lives here
+#
+mkdir -p var/repo
+#
+# this is the starting apache configuration
+#
+mkdir -p opt/tribblix/repo/apache2/conf
+mkdir -p opt/tribblix/repo/apache2/logs
+mkdir -p opt/tribblix/repo/apache2/htdocs
+ln -s ../../apache2/modules opt/tribblix/repo/apache2
+ln -s ../../../apache2/conf/magic opt/tribblix/repo/apache2/conf
+ln -s ../../../apache2/conf/mime.types opt/tribblix/repo/apache2/conf
+cp ${BUILDROOT}/patches/repo.httpd.conf opt/tribblix/repo/apache2/conf/httpd.conf
+cp ${BUILDROOT}/patches/repo.httpd.conf opt/tribblix/repo/apache2/conf/httpd.conf.bak
+
+#
+# these are the helper scripts
+#
+mkdir -p opt/tribblix/repo/scripts
+cp ${BUILDROOT}/patches/repo-ipxe.sh opt/tribblix/repo/scripts/repo-ipxe
