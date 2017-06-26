@@ -1,0 +1,4 @@
+PKG="TRIBterminal-luit"
+NAME="luit - Locale and ISO 2022 support for Unicode terminals"
+VERSION="1.1.1.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/app/"
