@@ -1,0 +1,39 @@
+#!/bin/ksh
+#
+# this will sign every zap file in the given directory
+#
+
+builtin echo
+
+case $# in
+1)
+    PKGDIR=$1
+    ;;
+*)
+    echo "Usage: $0 pkg_directory"
+    exit 1
+    ;;
+esac
+
+if [ ! -f ${HOME}/Tribblix/Sign.phrase ]; then
+    echo "Missing passphrase, must sign packages manually"
+    exit 1
+fi
+
+if [ ! -d ${PKGDIR} ]; then
+    echo "Cannot find $PKGDIR"
+    exit 1
+fi
+
+cd $PKGDIR
+for PKG in *.zap
+do
+    echo ""
+    echo "Signing ${PKG}"
+    echo ""
+    gpg --detach-sign --no-secmem-warning --passphrase-file ${HOME}/Tribblix/Sign.phrase ${PKG}
+    if [ -f ${PKG}.sig ]; then
+	echo "Package signed successfully."
+	echo ""
+    fi
+done
