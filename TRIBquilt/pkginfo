@@ -1,0 +1,4 @@
+PKG="TRIBquilt"
+NAME="Quilt - manage patches"
+VERSION="0.65.0"
+ZAP_URL="http://savannah.nongnu.org/projects/quilt"
