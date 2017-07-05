@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# wrapper to build the catalog, index, alsia
+# files for an illumos repo
+#
+
+case $# in
+1)
+	TARGET="$1"
+	;;
+*)
+	echo "Usage: $0 target_dir"
+	exit 1
+	;;
+esac
+
+if [ ! -d "$TARGET" ]; then
+   echo "Cannot find target directory $TARGET"
+   exit 1
+fi
+
+TESTFILE=`/bin/ls -1 ${TARGET}/SUNWcs.*.zap`
+if [ ! -f "$TESTFILE" ]; then
+   echo "Unable to find any packages in $TARGET"
+   exit 1
+fi
+
+if [ ! -f "${TESTFILE}.sig" ]; then
+   echo "Signing packages"
+   ./sign-directory $TARGET
+fi
+
+echo "Creating catalog"
+./create-illumos-catalog $TARGET > $TARGET/catalog
+
+echo "Creating index.html"
+./create-illumos-catalog-html $TARGET > $TARGET/index.html
+
+echo "Creating alsies"
+./create-illumos-aliases $TARGET > $TARGET/aliases
