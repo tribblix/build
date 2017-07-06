@@ -36,5 +36,5 @@ echo "Creating catalog"
 echo "Creating index.html"
 ./create-illumos-catalog-html $TARGET > $TARGET/index.html
 
-echo "Creating alsies"
+echo "Creating aliases"
 ./create-illumos-aliases $TARGET > $TARGET/aliases
