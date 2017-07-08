@@ -1,3 +1,4 @@
 #!/bin/sh
+rm -f usr/lib/charset.alias
 rm -fr usr/share/man/fr
 rm -fr usr/share/doc
