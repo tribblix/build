@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# should be fixed in 4.6.6
+#
+gsed -i s:MSG_NOSIGNAL:0: source3/lib/messages_dgm.c
