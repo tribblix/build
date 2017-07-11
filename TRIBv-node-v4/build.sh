@@ -2,5 +2,5 @@
 #
 #
 #
-env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v4.8.3 -P /usr/versions/node-v4 -C --without-dtrace
-${THOME}/build/genpkg TRIBv-node-v4 node-v4.8.3
+env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v4.8.4 -P /usr/versions/node-v4 -C --without-dtrace
+${THOME}/build/genpkg TRIBv-node-v4 node-v4.8.4
