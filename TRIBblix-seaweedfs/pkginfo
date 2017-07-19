@@ -1,4 +1,4 @@
 PKG="TRIBblix-seaweedfs"
 NAME="SeweedFS distributed file store"
-VERSION="0.72.0"
+VERSION="0.76.0"
 ZAP_URL="https://github.com/chrislusf/seaweedfs"

@@ -2,7 +2,7 @@
 #
 mkdir w
 cd w
-env GOPATH=`pwd`go get github.com/chrislusf/seaweedfs/weed
+env GOPATH=`pwd` go get github.com/chrislusf/seaweedfs/weed
 #
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/seaweedfs/bin
