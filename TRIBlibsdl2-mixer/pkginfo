@@ -1,4 +1,4 @@
 PKG="TRIBlibsdl2-mixer"
 NAME="SDL2 mixer library"
-VERSION="2.0.1.0"
+VERSION="2.0.1.1"
 ZAP_URL="http://www.libsdl.org/projects/SDL_mixer/"

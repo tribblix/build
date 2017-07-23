@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# configure lies to us
+#
+gsed -i 's:SDL_CFLAGS = :SDL_CFLAGS = -m64 :' Makefile
