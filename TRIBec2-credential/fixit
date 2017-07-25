@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+#
+mkdir -p lib/svc/manifest/system
+cp ${BUILDROOT}/patches/ec2-credential.xml lib/svc/manifest/system
+chmod 0644 lib/svc/manifest/system/ec2-credential.xml
+mkdir -p usr/bin
+cp ${BUILDROOT}/patches/install-ec2-credential usr/bin
+chmod 0755 usr/bin/install-ec2-credential
