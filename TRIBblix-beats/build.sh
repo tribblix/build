@@ -10,13 +10,13 @@ cd $GOPATH/src/github.com/elastic
 git clone https://github.com/elastic/beats.git
 cd beats
 # this isn't entirely accurate but master is now 6.x
-git checkout 5.2
+git checkout 5.5
 cd filebeat
-env PATH=/usr/versions/go-1.7/bin:$PATH gmake
+env PATH=/usr/versions/go-1.8/bin:$PATH gmake
 cd ../metricbeat
-env PATH=/usr/versions/go-1.7/bin:$PATH gmake
+env PATH=/usr/versions/go-1.8/bin:$PATH gmake
 cd ../packetbeat
-env PATH=/usr/versions/go-1.7/bin:$PATH gmake
+env PATH=/usr/versions/go-1.8/bin:$PATH gmake
 cd ..
 
 rm -fr /tmp/bbb

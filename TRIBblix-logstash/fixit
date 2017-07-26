@@ -17,7 +17,7 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="5.2.2"
+VERSION="5.5.1"
 mv logstash-${VERSION} logstash
 
 #

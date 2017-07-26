@@ -1,4 +1,4 @@
 #!/bin/sh
 #
 #
-${THOME}/build/pkg_tarball -T TRIBblix-logstash logstash-5.2.2
+${THOME}/build/pkg_tarball -T TRIBblix-logstash logstash-5.5.1
