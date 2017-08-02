@@ -1,4 +1,4 @@
 PKG="TRIBmosh"
 NAME="Mobile Shell"
-VERSION="1.2.5.0"
-ZAP_URL="https://mosh.mit.edu/"
+VERSION="1.3.2.0"
+ZAP_URL="https://mosh.org/"
