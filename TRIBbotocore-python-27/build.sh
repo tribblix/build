@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack botocore-1.5.81
-cd botocore-1.5.81
+${THOME}/build/unpack botocore-1.5.92
+cd botocore-1.5.92
 python setup.py build
 rm -fr /tmp/pdu
 python setup.py install --root=/tmp/pdu
