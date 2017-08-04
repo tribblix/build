@@ -2,8 +2,8 @@
 #
 # needs botocore colorama s3transfer docutils rsa yaml
 #
-${THOME}/build/unpack awscli-1.11.118
-cd awscli-1.11.118
+${THOME}/build/unpack awscli-1.11.129
+cd awscli-1.11.129
 python setup.py build
 rm -fr /tmp/sut
 python setup.py install --root=/tmp/sut
