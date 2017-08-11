@@ -1,0 +1,4 @@
+-p1 sqlite3-01-using-mapfile.patch
+-p1 sqlite3-02-using-libcurses.patch
+-p1 sqlite3-03-posix_fallocate64.patch
+-p1 sqlite3-04-CVE-2017-10989.patch
