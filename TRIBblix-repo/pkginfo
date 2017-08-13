@@ -1,4 +1,4 @@
 PKG="TRIBblix-repo"
 NAME="Tribblix repo server"
-VERSION="0.20.2"
+VERSION="0.20.3"
 ZAP_URL="http://pkgs.tribblix.org/"

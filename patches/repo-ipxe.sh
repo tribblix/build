@@ -18,15 +18,25 @@ case $# in
 	ISODIR="$2"
 	;;
     *)
-	echo "Usage: $o release [iso_directory]"
+	echo "Usage: $0 release [iso_directory]"
 	exit 1
+	;;
+esac
+
+#
+# naming is always an interesting problem
+#
+TRIBNAME=tribblix
+case $RELVER in
+    *lx*)
+	TRIBNAME=omnitribblix
 	;;
 esac
 
 #
 # sanity check
 #
-ISOFILE=${ISODIR}/tribblix-${RELVER}.iso
+ISOFILE=${ISODIR}/${TRIBNAME}-${RELVER}.iso
 if [ ! -f "${ISOFILE}" ]; then
     echo "Unable to find iso file ${ISOFILE}"
     exit 1
