@@ -2,5 +2,5 @@
 #
 # [needs a postconf patch]
 #
-${THOME}/build/dobuild -64 curl-7.54.1 -C "--with-ca-bundle=/etc/openssl/cacert.pem"
-${THOME}/build/genpkg TRIBcurl curl-7.54.1
+${THOME}/build/dobuild -64 curl-7.55.1 -C "--with-ca-bundle=/etc/openssl/cacert.pem"
+${THOME}/build/genpkg TRIBcurl curl-7.55.1
