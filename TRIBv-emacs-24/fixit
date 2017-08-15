@@ -5,5 +5,3 @@
 VERSION=24.5
 rm usr/versions/emacs-${VERSION}/bin/emacs
 ln -s emacs-${VERSION} usr/versions/emacs-${VERSION}/bin/emacs 
-mkdir usr/bin
-ln -s ../versions/emacs-${VERSION}/bin/emacs usr/bin/emacs
