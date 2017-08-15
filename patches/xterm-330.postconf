@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# guide it a bit on termios
+#
+sed -i s:__INTERIX:__sun: xterm_io.h
