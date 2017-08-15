@@ -4,5 +4,5 @@
 #
 zap uninstall TRIBgraphviz
 zap install openjpeg libwebp
-${THOME}/build/dobuild ImageMagick-6.9.8-5
-${THOME}/build/genpkg TRIBimagemagick ImageMagick-6.9.8-5
+${THOME}/build/dobuild -64 ImageMagick-7.0.6-7
+${THOME}/build/genpkg TRIBimagemagick ImageMagick-7.0.6-7

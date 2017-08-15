@@ -1,2 +1,21 @@
 #!/bin/sh
 rm -fr usr/share/doc/ImageMagick-*/www
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ARCH32="sparcv7"
+  ;;
+i386)
+  ARCH64="amd64"
+  ARCH32="i86"
+  ;;
+esac
+#
+rm -f usr/lib/lib*.la
+rm -f usr/lib/${ARCH64}/lib*.la
+
+#
+# use isaexec
+#
+mkdir -p usr/bin/${ARCH32}
+mv usr/bin/magick usr/bin/${ARCH32}
