@@ -1,0 +1,5 @@
+-p1 boost-gpp-01-cstdint.patch
+-p1 boost-gpp-02-usr-include.patch
+-p1 boost-gpp-03-log-xopensource.patch
+-p1 boost-gpp-04-make-array.patch
+-p1 boost-gpp-05-serialization.patch
