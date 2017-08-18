@@ -1,0 +1,2 @@
+-p1 nss-makefile.patch
+-p1 nss-modernize.patch
