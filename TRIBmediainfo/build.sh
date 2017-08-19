@@ -6,9 +6,9 @@
 # needs libtool installed so autogen.sh works
 #
 rm -fr ZenLib MediaInfoLib MediaInfo
-${THOME}/build/unpack libzen_0.4.35
-${THOME}/build/unpack libmediainfo_0.7.97
-${THOME}/build/unpack mediainfo_0.7.97
+${THOME}/build/unpack libzen_0.4.37
+${THOME}/build/unpack libmediainfo_0.7.98
+${THOME}/build/unpack mediainfo_0.7.98
 
 zap install libtool
 
@@ -17,6 +17,8 @@ sh autogen.sh
 ./configure --prefix=/usr
 gmake -j
 cd ../../../..
+
+sed -i s=/pow=/std::pow= MediaInfoLib/Source/MediaInfo/Multiple/File_Mk.cpp
 
 cd MediaInfoLib/Project/GNU/Library
 sh autogen.sh
