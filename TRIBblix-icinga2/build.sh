@@ -2,8 +2,8 @@
 #
 # this builds the mysql and postgres packages too
 #
-${THOME}/build/unpack icinga2-2.5.4
-cd icinga2-2.5.4
+${THOME}/build/unpack icinga2-2.7.0
+cd icinga2-2.7.0
 mkdir build
 cd build
 gsed -i '/gc-sections/d' ../CMakeLists.txt
@@ -14,9 +14,9 @@ gmake install DESTDIR=/tmp/ii
 mkdir -p /tmp/iip/opt/tribblix/icinga2/share /tmp/iip/opt/tribblix/icinga2/lib/icinga2 /tmp/iip/opt/tribblix/icinga2/etc/icinga2/features-available
 mkdir -p /tmp/iim/opt/tribblix/icinga2/share /tmp/iim/opt/tribblix/icinga2/lib/icinga2 /tmp/iim/opt/tribblix/icinga2/etc/icinga2/features-available
 mv /tmp/ii/opt/tribblix/icinga2/share/icinga2-ido-pgsql /tmp/iip/opt/tribblix/icinga2/share
-mv /tmp/ii/opt/tribblix/icinga2/lib/icinga2/libdb_ido_pgsql.so /tmp/iip/opt/tribblix/icinga2/lib/icinga2
+mv /tmp/ii/opt/tribblix/icinga2/lib/icinga2/libdb_ido_pgsql.* /tmp/iip/opt/tribblix/icinga2/lib/icinga2
 mv /tmp/ii/opt/tribblix/icinga2/share/icinga2-ido-mysql /tmp/iim/opt/tribblix/icinga2/share
-mv /tmp/ii/opt/tribblix/icinga2/lib/icinga2/libdb_ido_mysql.so /tmp/iim/opt/tribblix/icinga2/lib/icinga2
+mv /tmp/ii/opt/tribblix/icinga2/lib/icinga2/libdb_ido_mysql.* /tmp/iim/opt/tribblix/icinga2/lib/icinga2
 mv /tmp/ii/opt/tribblix/icinga2/etc/icinga2/features-available/ido-mysql.conf /tmp/iim/opt/tribblix/icinga2/etc/icinga2/features-available
 mv /tmp/ii/opt/tribblix/icinga2/etc/icinga2/features-available/ido-pgsql.conf /tmp/iip/opt/tribblix/icinga2/etc/icinga2/features-available
 

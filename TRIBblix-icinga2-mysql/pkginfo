@@ -1,4 +1,4 @@
 PKG="TRIBblix-icinga2-mysql"
 NAME="Icinga mysql"
-VERSION="2.5.4.1"
+VERSION="2.7.0.0"
 ZAP_URL="https://www.icinga.org/"
