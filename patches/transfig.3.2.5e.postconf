@@ -1,5 +1,0 @@
-#!/bin/sh
-xmkmf -a
-gsed -i s:/usr/local:/usr:g fig2dev/Makefile
-gsed -i s:/usr/local:/usr:g fig2dev/dev/Makefile
-gsed -i s:/usr/local:/usr:g fig2dev/Imakefile
