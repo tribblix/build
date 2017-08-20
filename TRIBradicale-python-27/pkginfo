@@ -1,4 +1,4 @@
 PKG="TRIBradicale-python-27"
 NAME="Radicale calendar server"
-VERSION="1.1.1.0"
+VERSION="1.1.6.0"
 ZAP_URL="http://radicale.org/"

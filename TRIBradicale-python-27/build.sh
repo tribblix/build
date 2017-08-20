@@ -2,8 +2,8 @@
 #
 # radicale - no dependencies
 #
-${THOME}/build/unpack Radicale-1.1.1
-cd Radicale-1.1.1
+${THOME}/build/unpack Radicale-1.1.6
+cd Radicale-1.1.6
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
