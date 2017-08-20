@@ -1,0 +1,74 @@
+#!/bin/ksh
+#
+# like the catalog, but neatly formatted as html
+#
+# derived from the catalog, so can be used for repos that
+# aren't up to date with the build tree
+#
+
+builtin cat
+
+PKGDIR="../pkgs"
+case $# in
+1)
+    CATALOG=$1
+    ;;
+*)
+    echo "Usage: $0 catalog-file"
+    exit 1
+    ;;
+esac
+
+if [ ! -f "$CATALOG" ]; then
+    echo "Cannot find $CATALOG"
+    exit 1
+fi
+
+cat <<EOF
+<html>
+<Head><title>Tribblix package catalog</title></head>
+<body>
+<h1>Tribblix packages</h1>
+<dl>
+EOF
+
+cat $CATALOG | while read line
+do
+  PKG=`echo $line | awk -F'|' '{print $1}'`
+  PKGVERS=`echo $line | awk -F'|' '{print $2}'`
+  DEPLIST=`echo $line | awk -F'|' '{print $3}'`
+  PKGI=${PKG}/pkginfo
+  if [ -f ${PKGI} ]; then
+    PKGNAME=`awk -F= '{if ($1 == "NAME") print $2}' $PKGI`
+    PKGNAME=${PKGNAME//\"/}
+    PKGHOME=`awk -F= '{if ($1 == "ZAP_URL") print $2}' $PKGI`
+    PKGHOME=${PKGHOME//\"/}
+    echo "<dt><a name=\"${PKG}\"></a><b>${PKG}</b></dt>"
+    echo "<dd>"
+    echo "${PKGNAME}"
+    if [ -n "${PKGHOME}" ]; then
+	echo " [<a href=\"${PKGHOME}\">Home</a>]"
+    fi
+    echo "<ul>"
+    echo "<li>Version: ${PKGVERS}</li>"
+    echo "<li><a href=\"${PKG}.${PKGVERS}.zap\">Download</a></li>"
+    for mydep in $DEPLIST
+    do
+        if [ -d $mydep ]; then
+	    echo "<li>Requires: <a href=\"#${mydep}\">$mydep</a></li>"
+        else
+	    echo "<li>Requires: $mydep</li>"
+        fi
+    done
+    echo "</ul>"
+    echo "</dd>"
+  fi
+done
+
+cat <<EOF
+</dl>
+<hr>
+<p><a href="http://www.tribblix.org/">Tribblix</a></p>
+</body>
+</html>
+EOF
