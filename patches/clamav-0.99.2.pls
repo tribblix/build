@@ -1,0 +1,2 @@
+-p1 clamav-CVE-2017-6418.patch
+-p1 clamav-CVE-2017-6420.patch
