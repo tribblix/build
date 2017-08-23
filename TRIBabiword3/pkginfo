@@ -1,4 +1,4 @@
 PKG="TRIBabiword3"
 NAME="AbiWord word processor v3"
-VERSION="3.0.1.0"
+VERSION="3.0.2.0"
 ZAP_URL="http://www.abiword.org/"
