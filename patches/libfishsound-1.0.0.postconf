@@ -1,0 +1,2 @@
+#!/bin/sh
+sed -i s:--version-script=:-M: `find . -name Makefile`

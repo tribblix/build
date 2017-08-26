@@ -1,0 +1,4 @@
+PKG="TRIBlibfishsound"
+NAME="Libfishsound"
+VERSION="1.0.0.0"
+ZAP_URL="https://www.xiph.org/"
