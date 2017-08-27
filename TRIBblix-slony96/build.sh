@@ -6,5 +6,5 @@
 # installs into the same prefix as the postgres version it's built
 # against, and is versioned to match
 #
-$THOME/build/dobuild slony1-2.2.5 -P /opt/tribblix/postgres96 -C "--with-pgconfigdir=/opt/tribblix/postgres96/bin --sysconfdir=/etc"
-$THOME/build/genpkg TRIBblix-slony96 slony1-2.2.5
+$THOME/build/dobuild slony1-2.2.6 -P /opt/tribblix/postgres96 -C "--with-pgconfigdir=/opt/tribblix/postgres96/bin --sysconfdir=/etc"
+$THOME/build/genpkg TRIBblix-slony96 slony1-2.2.6
