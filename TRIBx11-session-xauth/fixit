@@ -1,0 +1,7 @@
+#!/bin/sh
+mkdir -p usr/lib/X11
+cd usr/lib/X11
+cp ${BUILDROOT}/patches/mkcookie.c .
+gcc -O -DTCPCONN -DUNIXCONN -DIPv6 -c mkcookie.c
+gcc -o mkcookie mkcookie.o -lsocket -lnsl -lXau
+rm -f mkcookie.o mkcookie.c
