@@ -1,0 +1,5 @@
+#!/bin/sh
+mkdir -p usr/X11/bin
+cd usr/X11/bin
+ln -s ../../bin/startx .
+ln -s ../../bin/xinit .
