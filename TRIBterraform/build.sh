@@ -1,5 +1,9 @@
 #!/bin/sh
 #
+# need to checkout precisely the version we're going to build
+#
+# having build problems with v0.10.x
+#
 
 mkdir tf
 cd tf
@@ -8,8 +12,13 @@ mkdir -p src/github.com/hashicorp
 cd src/github.com/hashicorp
 git clone git@github.com:hashicorp/terraform.git
 cd terraform
+git checkout v0.9.11
 
-env PATH=${GOPATH}/bin:$PATH gmake dev
+#
+# explicitly specify the target, and create a production build
+# rather than a development build
+#
+env PATH=${GOPATH}/bin:$PATH XC_OS=solaris XC_ARCH=amd64 gmake bin
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
