@@ -1,4 +1,4 @@
 PKG="TRIBgnupg"
 NAME="The GNU Privacy Guard"
-VERSION="1.4.21.0"
+VERSION="1.4.22.0"
 ZAP_URL="https://www.gnupg.org/"
