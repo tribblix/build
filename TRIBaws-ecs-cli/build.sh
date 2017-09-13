@@ -8,6 +8,10 @@ mkdir -p src/github.com/aws
 cd src/github.com/aws
 git clone git@github.com:aws/amazon-ecs-cli.git
 cd amazon-ecs-cli
+#
+# check out the precise version we want
+#
+git checkout v0.6.4
 
 #
 # a vanilla 'gmake build' fails with Termios errors, because
