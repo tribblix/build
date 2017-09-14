@@ -1,4 +1,4 @@
 PKG="TRIBremote-desktop-tigervnc"
 NAME="TigerVNC viewer"
-VERSION="1.7.1.0"
+VERSION="1.8.0.0"
 ZAP_URL="http://tigervnc.org/"
