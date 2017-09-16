@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# we don't need to build against these
+#
+rm -f usr/lib/pdsh/*.a
+rm -f usr/lib/pdsh/*.la
