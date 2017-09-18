@@ -1,4 +1,4 @@
 PKG="TRIBlibxslt"
 NAME="The XSLT C library for GNOME"
-VERSION="1.1.29.0"
+VERSION="1.1.30.0"
 ZAP_URL="http://xmlsoft.org/XSLT/"
