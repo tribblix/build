@@ -1,2 +1,0 @@
--p0 rubygems-2612-ruby24.patch
--p0 rubygems-2613-ruby24.patch
