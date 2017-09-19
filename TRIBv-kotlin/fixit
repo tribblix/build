@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+cd usr/versions/kotlinc
+rm bin/*.bat
+cd ../../..
+mkdir usr/bin
+cd usr/bin
+ln -s ../../usr/versions/kotlinc/bin/* .
