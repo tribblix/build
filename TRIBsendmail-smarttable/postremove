@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# if and only if the config is empty, remove it
+#
+cd ${BASEDIR}/etc/mail
+if [ ! -s smarttable ]; then
+  /usr/bin/rm -f smarttable
+  /usr/bin/rm -f smarttable.db
+fi

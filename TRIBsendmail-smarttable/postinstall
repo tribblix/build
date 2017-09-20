@@ -1,0 +1,9 @@
+#!/sbin/sh
+#
+# we want this to exist, but don't want to have it in the package database
+#
+if [ ! -f ${BASEDIR}/etc/mail/smarttable ]; then
+    touch ${BASEDIR}/etc/mail/smarttable
+    chown root:bin ${BASEDIR}/etc/mail/smarttable
+    chmod 644 ${BASEDIR}/etc/mail/smarttable
+fi

@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+#
+mkdir -p etc/mail/cf/feature
+cp ${BUILDROOT}/patches/smarttable.m4 etc/mail/cf/feature
+chmod 0444 etc/mail/cf/feature/smarttable.m4
