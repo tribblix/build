@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack numpy-1.10.4
-cd numpy-1.10.4
+${THOME}/build/unpack numpy-1.13.1
+cd numpy-1.13.1
 python setup.py build -j 4
 rm -fr /tmp/hg1
 python setup.py install --root=/tmp/hg1
