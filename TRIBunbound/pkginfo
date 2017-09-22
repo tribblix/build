@@ -1,4 +1,4 @@
 PKG="TRIBunbound"
 NAME="Unbound validating, recursive, and caching DNS resolver."
-VERSION="1.6.5.0"
+VERSION="1.6.6.0"
 ZAP_URL="http://unbound.net/"
