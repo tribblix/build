@@ -2,8 +2,8 @@
 #
 # this builds the mysql and postgres packages too
 #
-${THOME}/build/unpack icinga2-2.7.0
-cd icinga2-2.7.0
+${THOME}/build/unpack icinga2-2.7.1
+cd icinga2-2.7.1
 mkdir build
 cd build
 gsed -i '/gc-sections/d' ../CMakeLists.txt
