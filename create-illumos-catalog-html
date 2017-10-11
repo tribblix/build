@@ -31,6 +31,12 @@ NPKGDIR=${NPKGDIR%.sparc}
 RELVER=`echo $NPKGDIR|awk -F- '{print $NF}'`
 RELNUM=`echo $RELVER|sed s:m::`
 
+#
+# updates and variants share the same Tribblix release
+#
+TRELVER=${RELVER%.*}
+TRELVER=${TRELVER%lx}
+
 cat <<EOF
 <html>
 <Head><title>Tribblix package catalog</title></head>
@@ -68,7 +74,7 @@ do
       if [ -f ${mypkgdep}.0.${RELNUM}.0.zap ]; then
 	  echo "<li>Requires: <a href=\"#${mypkgdep}\">$mypkgdep</a></li>"
       elif [ -d ${THOME}/build/${mypkgdep} ]; then
-	  echo "<li>Requires: <a href=\"../tribblix-${RELVER}${SSUFFIX}/#${mypkgdep}\">$mypkgdep</a></li>"
+	  echo "<li>Requires: <a href=\"../tribblix-${TRELVER}${SSUFFIX}/#${mypkgdep}\">$mypkgdep</a></li>"
       else
 	  echo "<li>Requires: $mypkgdep</li>"
       fi
