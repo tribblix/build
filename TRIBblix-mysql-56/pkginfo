@@ -1,4 +1,4 @@
 PKG="TRIBblix-mysql-56"
 NAME="MySQL server"
-VERSION="5.6.37.0"
+VERSION="5.6.38.0"
 ZAP_URL="http://dev.mysql.com/"
