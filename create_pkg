@@ -206,6 +206,7 @@ fi
 #
 rm -f ${BDIR}/install/postinstall
 rm -f ${BDIR}/install/postremove
+rm -f ${BDIR}/install/preremove
 if [ -f ${BUILD}/${PKGNAME}/postinstall ]; then
     mkdir -p ${BDIR}/install
     cp ${BUILD}/${PKGNAME}/postinstall ${BDIR}/install
@@ -217,6 +218,12 @@ if [ -f ${BUILD}/${PKGNAME}/postremove ]; then
     cp ${BUILD}/${PKGNAME}/postremove ${BDIR}/install
     chmod a+x ${BDIR}/install/postremove
     echo "i postremove=./install/postremove" >> ${BDIR}/pp.$$
+fi
+if [ -f ${BUILD}/${PKGNAME}/preremove ]; then
+    mkdir -p ${BDIR}/install
+    cp ${BUILD}/${PKGNAME}/preremove ${BDIR}/install
+    chmod a+x ${BDIR}/install/preremove
+    echo "i postremove=./install/preremove" >> ${BDIR}/pp.$$
 fi
 if [ -f ${BUILD}/${PKGNAME}/restart_fmri_list ]; then
    cp ${BUILD}/${PKGNAME}/restart_fmri_list ${BDIR}
