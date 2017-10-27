@@ -1,4 +1,4 @@
 PKG="TRIBzile"
 NAME="GNU Zile is a text editor development kit"
-VERSION="2.4.13.0"
+VERSION="2.4.14.0"
 ZAP_URL="http://www.gnu.org/software/zile/"
