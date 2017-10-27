@@ -10,8 +10,8 @@
 # must have apache24 installed
 #
 zap uninstall TRIBlibtool
-${THOME}/build/unpack php-5.6.31
-cd php-5.6.31
+${THOME}/build/unpack php-5.6.32
+cd php-5.6.32
 ./configure --prefix=/opt/tribblix/php --with-mcrypt=/opt/tribblix/mcrypt --with-ldap --with-libxml-dir=/usr --with-apxs2=/opt/tribblix/apache2/bin/apxs --enable-bcmath --enable-mbstring --with-mysql=mysqlnd --with-pgsql=shared,/opt/tribblix/postgres96 --with-pdo-pgsql=shared,/opt/tribblix/postgres96 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --without-sqlite3 --without-pdo-sqlite --with-curl=/usr --with-gd --with-jpeg-dir=/usr --with-png-dir=/usr --with-zlib-dir=/usr --with-freetype-dir=/usr --enable-sockets --enable-fpm
 gsed -i 's:ext/sockets/ \$:ext/sockets/ -D_XPG4_2 \$:' Makefile
 gmake -j 6
@@ -24,3 +24,4 @@ mv /tmp/m2/opt/tribblix/php/lib/php/extensions/no-debug-zts-20131226/*pgsql* /tm
 ${THOME}/build/create_pkg TRIBblix-php-56 /tmp/m2
 ${THOME}/build/create_pkg TRIBblix-php-56pg /tmp/m2g
 rm -fr /tmp/m2 /tmp/m2g /tmp/pear
+cd ..

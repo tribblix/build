@@ -12,8 +12,8 @@
 # must have apache24 installed
 #
 zap uninstall TRIBlibtool
-${THOME}/build/unpack php-7.1.9
-cd php-7.1.9
+${THOME}/build/unpack php-7.1.11
+cd php-7.1.11
 #
 # CFLAGS because Zend.m4 hasn't a hope of correctness
 #
@@ -29,3 +29,4 @@ mv /tmp/m2/opt/tribblix/php/lib/php/extensions/no-debug-zts-20160303/*pgsql* /tm
 ${THOME}/build/create_pkg TRIBblix-php-7 /tmp/m2
 ${THOME}/build/create_pkg TRIBblix-php-7pg /tmp/m2g
 rm -fr /tmp/m2 /tmp/m2g /tmp/pear
+cd ..
