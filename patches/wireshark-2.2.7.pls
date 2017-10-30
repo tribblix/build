@@ -1,1 +1,0 @@
--p1 wireshark-2.2.7-qt4.patch
