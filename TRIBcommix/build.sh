@@ -6,10 +6,8 @@
 rm -fr /tmp/ckx
 mkdir -p /tmp/ckx/usr/versions
 cd /tmp/ckx/usr/versions
-git clone https://github.com/commixproject/commix.git commix
-cd commix
-rm -fr .git
-rm -f .gitignore .travis.yml
+${THOME}/build/unpack commix-2.1-20171003
+mv commix-2.1-20171003 commix
 cd
 ${THOME}/build/create_pkg TRIBcommix /tmp/ckx
 rm -fr /tmp/ckx
