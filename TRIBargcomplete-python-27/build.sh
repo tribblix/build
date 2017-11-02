@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack argcomplete-1.8.2
-cd argcomplete-1.8.2
+${THOME}/build/unpack argcomplete-1.9.2
+cd argcomplete-1.9.2
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
