@@ -2,5 +2,5 @@
 #
 #
 #
-env LIBS="-lsocket -lnsl" ${THOME}/build/dobuild iperf-3.1.7 -C CFLAGS="-std=gnu99"
-${THOME}/build/genpkg TRIBiperf iperf-3.1.7
+env LIBS="-lsocket -lnsl" ${THOME}/build/dobuild iperf-3.3 -C CFLAGS="-std=gnu99"
+${THOME}/build/genpkg TRIBiperf iperf-3.3
