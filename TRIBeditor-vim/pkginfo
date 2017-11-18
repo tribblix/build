@@ -1,4 +1,4 @@
 PKG="TRIBeditor-vim"
 NAME="Vim - Vi IMproved"
-VERSION="8.0.0"
+VERSION="8.0.1307.0"
 ZAP_URL="http://www.vim.org/"

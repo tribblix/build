@@ -6,5 +6,5 @@
 # Now most of the space is actually the shared stuff
 # Wrapper? [exec -a $0 /usr/bin/vim.variant "$@"]
 #
-env TRIBBLIX_CFLAGS=-std=gnu99 PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild vim80 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --without-x"
-${THOME}/build/genpkg TRIBeditor-vim vim80
+env TRIBBLIX_CFLAGS=-std=gnu99 PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild vim-8.0.1307 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --without-x"
+${THOME}/build/genpkg TRIBeditor-vim vim-8.0.1307
