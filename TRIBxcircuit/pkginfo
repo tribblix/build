@@ -1,0 +1,4 @@
+PKG="TRIBxcircuit"
+NAME="XCircuit"
+VERSION="3.9.70.0"
+ZAP_URL="http://opencircuitdesign.com/xcircuit/"

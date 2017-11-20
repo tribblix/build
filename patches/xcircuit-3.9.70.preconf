@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# it's shipped against a specific and wrong version of the autotools
+#
+aclocal
+automake
