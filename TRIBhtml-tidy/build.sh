@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tidy-html5-5.4.0
-cd tidy-html5-5.4.0
+${THOME}/build/unpack tidy-html5-5.6.0
+cd tidy-html5-5.6.0
 mkdir build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX:PATH=/usr
