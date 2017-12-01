@@ -3,8 +3,8 @@
 #
 #
 zap install TRIBdocutils-python-27
-${THOME}/build/unpack mercurial-4.3.3
-cd mercurial-4.3.3
+${THOME}/build/unpack mercurial-4.4.1
+cd mercurial-4.4.1
 gmake all
 rm -fr /tmp/hg1
 python setup.py install --root=/tmp/hg1
