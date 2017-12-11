@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# we don't want main() in a shared library
-#
-gsed -i 's:-G:-shared:' configure
