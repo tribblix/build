@@ -11,7 +11,7 @@ cd amazon-ecs-cli
 #
 # check out the precise version we want
 #
-git checkout v1.0.0
+git checkout v1.1.0
 
 #
 # a vanilla 'gmake build' fails with Termios errors, because
