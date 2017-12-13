@@ -22,3 +22,6 @@ fi
 # local package tweaks below
 #
 cp README LICENSE ${DESTDIR}/opt/tribblix/varnish
+rm -f ${DESTDIR}/opt/tribblix/varnish/lib/*.la
+rm -f ${DESTDIR}/opt/tribblix/varnish/lib/varnish/*.la
+rm -f ${DESTDIR}/opt/tribblix/varnish/lib/varnish/vmods/*.la
