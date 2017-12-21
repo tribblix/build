@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/haproxy.xml var/svc/manifest/network
+#
+# we don't ship a configuration (which would go in /etc/haproxy.cfg)
+# but this is where the pid file is expected to end up
+#
+mkdir -p var/haproxy

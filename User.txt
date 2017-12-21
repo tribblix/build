@@ -25,3 +25,4 @@ By default, reserve the group id as well
 223 ntp 	    TRIBopenntpd
 124 barman	    TRIBpgbarman
 125 repoweb	    TRIBblix-repo
+126 haproxy	    TRIBBblix-haproxy
