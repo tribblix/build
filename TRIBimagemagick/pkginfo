@@ -1,4 +1,4 @@
 PKG="TRIBimagemagick"
 NAME="Image Magick"
-VERSION="7.0.6.7"
+VERSION="7.0.7.17"
 ZAP_URL="http://www.imagemagick.org/"
