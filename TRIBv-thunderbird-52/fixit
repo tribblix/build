@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+# create a versioned directory
+# put a symlink in /usr/bin
+#
+VERSION=52.0
+mkdir -p usr/bin
+cd usr/versions
+mkdir thunderbird-${VERSION}
+mv thunderbird thunderbird-${VERSION}
+cd ../../usr/bin
+ln -s ../versions/thunderbird-${VERSION}/thunderbird/thunderbird .
+cd ../versions/thunderbird-${VERSION}/thunderbird
+#
+# we can use the system libraries for most purposes, but keep
+# the pango and cairo that come with the download
+#
+# the clear symptom of these libraries being incompatible with the
+# system ones is in the file browser dialog having boxes for fonts
+#
+cd depend
+cd bin
+rm gdk-pixbuf-query-loaders
+ln -s /usr/bin/gdk-pixbuf-query-loaders .
+rm gtk-query-immodules-2.0
+ln -s /usr/bin/gtk-query-immodules-2.0 .
+cd ..
+cd lib
+rm libpixman-1.so*
+ln -s /usr/lib/libpixman-1.so{,.0} .
+rm libg*
+ln -s /usr/lib/libgailutil.so{,.18} .
+ln -s /usr/lib/libgdk-x11-2.0.so{,.0} .
+ln -s /usr/lib/libgdk_pixbuf*.so{,.0} .
+ln -s /usr/lib/libgio-2.0.so{,.0} .
+ln -s /usr/lib/libglib-2.0.so{,.0} .
+ln -s /usr/lib/libgmodule-2.0.so{,.0} .
+ln -s /usr/lib/libgobject-2.0.so{,.0} .
+ln -s /usr/lib/libgthread-2.0.so{,.0} .
+ln -s /usr/lib/libgtk-x11-2.0.so{,.0} .
+rm libatk*
+ln -s /usr/lib/libatk-1.0.so{,.0} .
+rm -fr gio gtk-2.0
+ln -s /usr/lib/gio .
+ln -s /usr/lib/gtk-2.0 .
+# thunderbird is linked against libexpat.so.0, we only have .1
+ln -s /usr/lib/libexpat.so.1 libexpat.so.0
+cd ..
+cd ..
+#
+# disable autoupdate - see
+# https://support.mozilla.org/en-US/questions/944982
+#
+cat > defaults/pref/local-settings.js <<EOF
+pref("general.config.obscure_value", 0);
+pref("general.config.filename", "mozilla.cfg");
+EOF
+cat > mozilla.cfg <<EOF
+lockPref("app.update.auto", false);
+lockPref("app.update.enabled", false); 
+EOF
