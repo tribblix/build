@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-VERSION=3.5.0
+VERSION=3.5.2
 mkdir -p usr/bin
 ln -s ../versions/apache-maven-${VERSION}/bin/mvn usr/bin/mvn
 #
