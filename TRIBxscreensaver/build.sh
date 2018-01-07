@@ -1,8 +1,9 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -gnu xscreensaver-5.37 -C "--with-gtk"
-cd xscreensaver-5.37
+${THOME}/build/dobuild -gnu xscreensaver-5.38 -C "--with-gtk"
+cd xscreensaver-5.38
 rm -fr /tmp/xs
 gmake install install_prefix=/tmp/xs
 ${THOME}/build/create_pkg TRIBxscreensaver /tmp/xs
 rm -fr /tmp/xs
+cd ..
