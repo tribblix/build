@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# put some commands in the default path
+# currently disabled
+#
+VERSION=2.5
+exit 0
+mkdir -p usr/bin usr/share/man/man1
+ln -s ../../usr/versions/ruby-${VERSION}/bin/ruby usr/bin/ruby
+ln -s ../../usr/versions/ruby-${VERSION}/bin/irb usr/bin/irb
+ln -s ../../usr/versions/ruby-${VERSION}/bin/gem usr/bin/gem
+ln -s ../../usr/versions/ruby-${VERSION}/bin/ri usr/bin/ri
+ln -s ../../usr/versions/ruby-${VERSION}/bin/rake usr/bin/rake
+ln -s ../../usr/versions/ruby-${VERSION}/bin/rdoc usr/bin/rdoc
+ln -s ../../../../usr/versions/ruby-${VERSION}/share/man/man1/ruby.1 usr/share/man/man1
+ln -s ../../../../usr/versions/ruby-${VERSION}/share/man/man1/irb.1 usr/share/man/man1
+ln -s ../../../../usr/versions/ruby-${VERSION}/share/man/man1/ri.1 usr/share/man/man1
