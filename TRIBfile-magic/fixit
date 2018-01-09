@@ -2,8 +2,18 @@
 #
 # don't conflict with the solaris standard
 #
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 VERSION=5.21
 mv usr/bin/file usr/bin/file-${VERSION}
+mv usr/bin/${ARCH64}/file usr/bin/${ARCH64}/file-${VERSION}
 mv usr/share/man/man1/file.1 usr/share/man/man1/file-${VERSION}.1
 mv usr/share/man/man4/magic.4 usr/share/man/man4/magic-${VERSION}.1
 rmdir usr/share/man/man5

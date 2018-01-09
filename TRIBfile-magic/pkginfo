@@ -1,4 +1,4 @@
 PKG="TRIBfile-magic"
 NAME="A better file and libmagic"
-VERSION="5.21.0"
+VERSION="5.21.1"
 ZAP_URL="https://www.darwinsys.com/file/"
