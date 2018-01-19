@@ -1,0 +1,3 @@
+#!/bin/sh
+sed -i s:whereis:which: .default src/Makefile po/Makefile
+sed -i 's:-L$(prefix)/local/lib:-lX11 -lsocket -lnsl:' src/Makefile
