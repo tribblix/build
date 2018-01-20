@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack s3transfer-0.1.11
-cd s3transfer-0.1.11
+${THOME}/build/unpack s3transfer-0.1.12
+cd s3transfer-0.1.12
 python setup.py build
 rm -fr /tmp/pdu
 python setup.py install --root=/tmp/pdu
