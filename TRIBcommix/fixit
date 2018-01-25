@@ -10,3 +10,8 @@ cd /usr/versions/commix
 exec /usr/versions/python-2.7/bin/python ./commix.py "\$@"
 EOF
 chmod a+x commix
+#
+# clean up some junk
+#
+cd ../versions/commix
+rm -f .gitignore .travis.yml
