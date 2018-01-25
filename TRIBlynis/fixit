@@ -10,3 +10,9 @@ cd /usr/versions/lynis
 exec ./lynis "\$@"
 EOF
 chmod a+x lynis
+#
+# put the man page somewhere man might find it
+#
+cd ..
+mkdir -p share/man/man8
+mv versions/lynis/lynis.8 share/man/man8
