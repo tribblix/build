@@ -1,2 +1,0 @@
-#!/bin/sh
-gsed -i 's:^CPPFLAGS = :CPPFLAGS = -I/usr/include/pcre:' clamsubmit/Makefile
