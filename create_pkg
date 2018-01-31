@@ -223,7 +223,7 @@ if [ -f ${BUILD}/${PKGNAME}/preremove ]; then
     mkdir -p ${BDIR}/install
     cp ${BUILD}/${PKGNAME}/preremove ${BDIR}/install
     chmod a+x ${BDIR}/install/preremove
-    echo "i postremove=./install/preremove" >> ${BDIR}/pp.$$
+    echo "i preremove=./install/preremove" >> ${BDIR}/pp.$$
 fi
 if [ -f ${BUILD}/${PKGNAME}/restart_fmri_list ]; then
    cp ${BUILD}/${PKGNAME}/restart_fmri_list ${BDIR}
