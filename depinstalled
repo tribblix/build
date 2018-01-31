@@ -6,7 +6,12 @@ BDIR=${THOME}/build
 for dir in $*
 do
   if [ -d ${BDIR}/${dir} ]; then
-    echo "Checking $dir"
+    if pkginfo -q $dir 2>/dev/null
+    then
+      echo "Checking $dir (installed)"
+    else
+      echo "Checking $dir (not installed)"
+    fi
     if [ -f ${BDIR}/${dir}/depend ]; then
       for pkg in `awk '{print $2}' ${BDIR}/${dir}/depend`
       do
