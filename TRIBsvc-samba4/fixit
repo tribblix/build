@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# populate the package, files and directories
+#
+
+mkdir -p etc/samba
+mkdir -p var/svc/manifest/network
+mkdir -p var/samba
+
+cp ${BUILDROOT}/patches/samba.xml var/svc/manifest/network
+
+cp ${BUILDROOT}/patches/smb.conf etc/samba/smb.conf
