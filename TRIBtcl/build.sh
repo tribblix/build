@@ -15,7 +15,7 @@ mkdir -p 64bit
 cd 64bit
 ${THOME}/build/unpack tcl8.6.8-src
 cd tcl8.6.8/unix
-env CFLAGS=-O ./configure --prefix=/usr --enable-64bit --bindir=/usr/bin/amd64 --libdir=/usr/lib/amd64
+env CFLAGS=-O ./configure --prefix=/usr --enable-64bit --bindir=/usr/bin/`isainfo -k` --libdir=/usr/lib/`isainfo -k`
 env AWK=nawk gmake -j 4
 env LD_LIBRARY_PATH=/tmp/tc1/usr/lib gmake install DESTDIR=/tmp/tc1
 
