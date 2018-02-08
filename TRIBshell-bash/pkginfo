@@ -1,4 +1,4 @@
 PKG="TRIBshell-bash"
 NAME="GNU Bourne-Again shell (bash)"
-VERSION="4.4.12.0"
+VERSION="4.4.18.0"
 ZAP_URL="http://www.gnu.org/software/bash/"
