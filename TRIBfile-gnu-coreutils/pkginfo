@@ -1,4 +1,4 @@
 PKG="TRIBfile-gnu-coreutils"
 NAME="Gnu coreutils"
-VERSION="8.29.1"
+VERSION="8.29.2"
 ZAP_URL="http://www.gnu.org/software/coreutils/"
