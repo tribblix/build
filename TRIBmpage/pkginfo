@@ -1,0 +1,4 @@
+PKG="TRIBmpage"
+NAME="Print multiple pages on a single sheet"
+VERSION="2.5.7.0"
+ZAP_URL="ftp://ftp.mesa.nl/pub/mpage/"

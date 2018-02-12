@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# put the man pages in the right place
+#
+mv usr/man usr/share
