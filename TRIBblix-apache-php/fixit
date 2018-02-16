@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/apache-php.xml var/svc/manifest/network
+#
+# the website itself lives here
+#
+mkdir -p var/phpweb
+#
+# this is the starting apache configuration
+#
+mkdir -p opt/tribblix/phpweb/apache2/conf
+mkdir -p opt/tribblix/phpweb/apache2/logs
+mkdir -p opt/tribblix/phpweb/apache2/htdocs
+ln -s ../../apache2/modules opt/tribblix/phpweb/apache2
+ln -s ../../../apache2/conf/magic opt/tribblix/phpweb/apache2/conf
+ln -s ../../../apache2/conf/mime.types opt/tribblix/phpweb/apache2/conf
+cp ${BUILDROOT}/patches/php.httpd.conf opt/tribblix/phpweb/apache2/conf/httpd.conf
+cp ${BUILDROOT}/patches/php.httpd.conf opt/tribblix/phpweb/apache2/conf/httpd.conf.bak
