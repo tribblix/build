@@ -1,4 +1,4 @@
 PKG="TRIBblix-php-7"
 NAME="PHP7 for Apache"
-VERSION="7.1.14.0"
+VERSION="7.1.14.1"
 ZAP_URL="http://php.net/"
