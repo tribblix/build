@@ -1,0 +1,4 @@
+PKG="TRIBmagic-python-27"
+NAME="Python python-magic"
+VERSION="0.4.15.0"
+ZAP_URL="https://pypi.python.org/pypi/python-magic"
