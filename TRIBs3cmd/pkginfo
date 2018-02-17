@@ -1,4 +1,4 @@
 PKG="TRIBs3cmd"
 NAME="Command Line S3 Client"
-VERSION="1.6.1.0"
+VERSION="2.0.1.0"
 ZAP_URL="http://s3tools.org/s3cmd"
