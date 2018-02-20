@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# spelling mistake
+#
+sed -i s:S_ISDOOR:S_IFDOOR: tree.c
