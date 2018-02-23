@@ -1,0 +1,10 @@
+#!/sbin/sh
+#
+# put an unpackaged sudoers file in place
+#
+if [ -f ${BASEDIR}/etc/sudoers ]; then
+    exit 0
+fi
+if [ -f ${BASEDIR}/etc/sudoers.dist ]; then
+    cp -p ${BASEDIR}/etc/sudoers.dist ${BASEDIR}/etc/sudoers
+fi

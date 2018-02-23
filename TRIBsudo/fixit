@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# we don't want to package sudoers, because then that would
+# (a) lead to package validation errors, and
+# (b) overwrite changes on update
+#
+# so we delete it from the package and copy it in postinstall
+#
+rm -f etc/sudoers

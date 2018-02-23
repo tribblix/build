@@ -1,0 +1,74 @@
+--- sudo-1.8.22/plugins/sudoers/bsm_audit.c~	Mon Jan 15 17:31:32 2018
++++ sudo-1.8.22/plugins/sudoers/bsm_audit.c	Fri Feb 23 09:26:19 2018
+@@ -35,6 +35,8 @@
+ #include "sudoers.h"
+ #include "bsm_audit.h"
+ 
++#define	AUE_sudo 6650
++
+ /*
+  * Solaris auditon() returns EINVAL if BSM audit not configured.
+  * OpenBSM returns ENOSYS for unimplemented options.
+@@ -91,7 +93,7 @@
+ 	    if (rc == -1)
+ #endif
+ 
+-		sudo_warn("au_preselect");
++	      /* sudo_warn("au_preselect"); */
+ 	}
+         debug_return_int(rc);
+ }
+@@ -140,7 +142,7 @@
+ 	pid = getpid();
+ 	if (getaudit_addr(&ainfo_addr, sizeof(ainfo_addr)) == 0) {
+ 		tok = au_to_subject_ex(auid, geteuid(), getegid(), getuid(),
+-		    getuid(), pid, pid, &ainfo_addr.ai_termid);
++		    getuid(), pid, ainfo_addr.ai_asid, &ainfo_addr.ai_termid);
+ #ifdef BSM_AUDIT_COMPAT
+ 	} else if (errno == ENOSYS) {
+ 		/*
+@@ -151,7 +153,7 @@
+ 			debug_return_int(-1);
+ 		}
+ 		tok = au_to_subject(auid, geteuid(), getegid(), getuid(),
+-		    getuid(), pid, pid, &ainfo.ai_termid);
++		    getuid(), pid, ainfo_addr.ai_asid, &ainfo.ai_termid);
+ #endif /* BSM_AUDIT_COMPAT */
+ 	} else {
+ 		sudo_warn("getaudit_addr");
+@@ -174,7 +176,7 @@
+ 		debug_return_int(-1);
+ 	}
+ 	au_write(aufd, tok);
+-#ifdef __sun
++#ifndef __sun
+ 	if (au_close(aufd, 1, sudo_audit_event, 0) == -1)
+ #else
+ 	if (au_close(aufd, 1, sudo_audit_event) == -1)
+@@ -226,7 +228,7 @@
+ 	pid = getpid();
+ 	if (getaudit_addr(&ainfo_addr, sizeof(ainfo_addr)) == 0) { 
+ 		tok = au_to_subject_ex(auid, geteuid(), getegid(), getuid(),
+-		    getuid(), pid, pid, &ainfo_addr.ai_termid);
++		    getuid(), pid, ainfo_addr.ai_asid, &ainfo_addr.ai_termid);
+ #ifdef BSM_AUDIT_COMPAT
+ 	} else if (errno == ENOSYS) {
+ 		if (getaudit(&ainfo) < 0) {
+@@ -234,7 +236,7 @@
+ 			debug_return_int(-1);
+ 		}
+ 		tok = au_to_subject(auid, geteuid(), getegid(), getuid(),
+-		    getuid(), pid, pid, &ainfo.ai_termid);
++		    getuid(), pid, ainfo_addr.ai_asid, &ainfo.ai_termid);
+ #endif /* BSM_AUDIT_COMPAT */
+ 	} else {
+ 		sudo_warn("getaudit_addr");
+@@ -264,7 +266,7 @@
+ 		debug_return_int(-1);
+ 	}
+ 	au_write(aufd, tok);
+-#ifdef __sun
++#ifndef __sun
+ 	if (au_close(aufd, 1, sudo_audit_event, PAD_FAILURE) == -1)
+ #else
+ 	if (au_close(aufd, 1, sudo_audit_event) == -1)
