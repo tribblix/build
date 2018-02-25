@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+# create a versioned directory
+# put a symlink to firefox in /usr/bin
+#
+VERSION=52.0.2esr
+mkdir -p usr/bin
+cd usr/versions
+mkdir firefox-${VERSION}
+mv firefox firefox-${VERSION}
+cd ../../usr/bin
+ln -s ../versions/firefox-${VERSION}/firefox/firefox .
+cd ../versions/firefox-${VERSION}/firefox
+#
+# we can use the system libraries for most purposes, but keep
+# the pango and cairo that come with the download
+#
+# the clear symptom of these libraries being incompatible with the
+# system ones is in the file browser dialog having boxes for fonts
+#
+cd depend
+cd bin
+rm gdk-pixbuf-query-loaders
+ln -s /usr/bin/gdk-pixbuf-query-loaders .
+rm gtk-query-immodules-2.0
+ln -s /usr/bin/gtk-query-immodules-2.0 .
+cd ..
+cd lib
+rm libpixman-1.so*
+ln -s /usr/lib/libpixman-1.so{,.0} .
+rm libg*
+ln -s /usr/lib/libgailutil.so{,.18} .
+ln -s /usr/lib/libgdk-x11-2.0.so{,.0} .
+ln -s /usr/lib/libgdk_pixbuf*.so{,.0} .
+ln -s /usr/lib/libgio-2.0.so{,.0} .
+ln -s /usr/lib/libglib-2.0.so{,.0} .
+ln -s /usr/lib/libgmodule-2.0.so{,.0} .
+ln -s /usr/lib/libgobject-2.0.so{,.0} .
+ln -s /usr/lib/libgthread-2.0.so{,.0} .
+ln -s /usr/lib/libgtk-x11-2.0.so{,.0} .
+rm libatk*
+ln -s /usr/lib/libatk-1.0.so{,.0} .
+rm -fr gio gtk-2.0
+ln -s /usr/lib/gio .
+ln -s /usr/lib/gtk-2.0 .
+rm libfontconfig*
+ln -s /usr/lib/libfontconfig.so{,.1} .
+cd ..
+cd ..
+#
+# disable autoupdate - see
+# https://support.mozilla.org/en-US/questions/944982
+#
+cat > defaults/pref/local-settings.js <<EOF
+pref("general.config.obscure_value", 0);
+pref("general.config.filename", "mozilla.cfg");
+EOF
+cat > mozilla.cfg <<EOF
+lockPref("app.update.auto", false);
+lockPref("app.update.enabled", false);
+lockPref("security.tls.version.min", 1);
+EOF
