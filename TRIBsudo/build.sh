@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# take most of the options and he bsm audit patches from OI
+# take most of the options and the bsm audit patches from OI
 #
 ${THOME}/build/dobuild sudo-1.8.22 -C "--disable-hardening --with-project --with-rundir=/var/run/sudo --with-pam --with-pam-login --disable-pam-session --with-tty-tickets --without-insults --without-lecture --with-ignore-dot --with-bsm-audit"
 #
