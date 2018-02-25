@@ -1,0 +1,71 @@
+#!/bin/sh
+#
+# create-file-list
+#
+# generates a listing of files contained in all packages
+# uses the catalog as a source
+#
+
+case $# in
+1)
+    WDIR="$1"
+    ;;
+*)
+    echo "Usage: $0 directory"
+    exit 1
+    ;;
+esac
+
+if [ ! -d "$WDIR" ]; then
+    echo "ERROR: directory $WDIR not found"
+    exit 1
+fi
+
+if [ ! -f "${WDIR}/catalog" ]; then
+    echo "ERROR: $WDIR does not contain a catalog"
+    exit 1
+fi
+
+cd $WDIR
+
+#
+# loop over every zap file in the current catalog
+#
+rm -f filelist.new
+touch filelist.new
+cat catalog | awk -F'|' '{print $1,$2}' | while read pkgname pkgver
+do
+    echo $pkgname $pkgver
+    if [ -f ${pkgname}.${pkgver}.zap ]; then
+	#
+	# grep / out of the pkgmap file to get the list of paths
+	# this also skips the informational files
+	# field 2 in the result is the file type
+	# field 4 in the result is the file name
+	# ignore directories
+	# strip any leading / off the names
+	#
+	/usr/bin/zipgrep / ${pkgname}.${pkgver}.zap ${pkgname}/pkgmap | nawk -v PKG=$pkgname '{if ($2 != "d") print $4,$2,PKG}' | sed 's:^/::' >> filelist.new
+    else
+	echo "Missing file ${pkgname}.${pkgver}.zap"
+    fi
+done
+
+#
+# the resulting file has 3 fields
+# 1 - pathname without the leading /
+# 2 - file type
+# 3 - package name
+#
+
+#
+# the file is pretty compressible, which we want to do to minimize
+# bandwidth utilization and download times
+#
+# initial main database: 32M, compressed 1.7M
+#
+ls -lh filelist.new
+pbzip2 filelist.new
+ls -lh filelist.new.bz2
+rm -f filelist.bz2
+mv filelist.new.bz2 filelist.bz2
