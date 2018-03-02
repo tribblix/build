@@ -1,0 +1,5 @@
+-p1 openblas-01-shared-lib.patch
+-p1 openblas-02-disable-x86-only-cpu.patch
+-p1 openblas-03-link-flag.patch
+-p1 openblas-04-paths.patch
+-p1 openblas-05-memory.patch
