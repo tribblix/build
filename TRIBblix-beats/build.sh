@@ -17,6 +17,8 @@ cd ../metricbeat
 env PATH=/usr/versions/go-1.8/bin:$PATH gmake
 cd ../packetbeat
 env PATH=/usr/versions/go-1.8/bin:$PATH gmake
+cd ../heartbeat
+env PATH=/usr/versions/go-1.8/bin:$PATH gmake
 cd ..
 
 rm -fr /tmp/bbb
@@ -28,6 +30,7 @@ mkdir -p /tmp/bbb/opt/tribblix/beats/bin
 cp filebeat/filebeat /tmp/bbb/opt/tribblix/beats/bin
 cp metricbeat/metricbeat /tmp/bbb/opt/tribblix/beats/bin
 cp packetbeat/packetbeat /tmp/bbb/opt/tribblix/beats/bin
+cp heartbeat/heartbeat /tmp/bbb/opt/tribblix/beats/bin
 
 #
 # and sample config files
@@ -42,6 +45,9 @@ cp metricbeat/metricbeat*.yml /tmp/bbb/opt/tribblix/beats/conf
 cp metricbeat/metricbeat*.json /tmp/bbb/opt/tribblix/beats/conf
 cp packetbeat/packetbeat*.yml /tmp/bbb/opt/tribblix/beats/conf
 cp packetbeat/packetbeat*.json /tmp/bbb/opt/tribblix/beats/conf
+cat heartbeat/heartbeat.yml | sed 's:/etc/pki/root/ca.pem:/etc/openssl/cacert.pem:' > /tmp/bbb/opt/tribblix/beats/conf/heartbeat.yml
+cat heartbeat/heartbeat.full.yml | sed 's:/etc/pki/root/ca.pem:/etc/openssl/cacert.pem:' > /tmp/bbb/opt/tribblix/beats/conf/heartbeat.full.yml
+cp heartbeat/heartbeat*.json /tmp/bbb/opt/tribblix/beats/conf
 
 #
 # and docs
