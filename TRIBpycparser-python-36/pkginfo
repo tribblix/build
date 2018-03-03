@@ -1,0 +1,4 @@
+PKG="TRIBpycparser-python-36"
+NAME="Python pycparser"
+VERSION="2.18.0"
+ZAP_URL="https://pypi.python.org/pypi/pycparser"
