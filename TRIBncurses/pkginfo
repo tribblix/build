@@ -1,4 +1,4 @@
 PKG="TRIBncurses"
 NAME="New curses library"
-VERSION="5.9.1"
+VERSION="6.1.0"
 ZAP_URL="http://www.gnu.org/software/ncurses/"
