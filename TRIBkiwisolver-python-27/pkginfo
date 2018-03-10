@@ -1,0 +1,4 @@
+PKG="TRIBkiwisolver-python-27"
+NAME="Python kiwisolver"
+VERSION="1.0.1.0"
+ZAP_URL="https://pypi.python.org/pypi/kiwisolver"
