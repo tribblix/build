@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# the problem here is that the word "multibyte" is redefined
+# elsewhere, so rename it to something else
+#
+sed -i s:multibyte:mmultibyte:g src/winio.c
