@@ -14,8 +14,8 @@ cd htop
 ./autogen.sh
 ./configure --disable-unicode
 gmake -j
-mkdir -p /tmp/ht1/usr/bin/`uname -m`
-cp htop /tmp/ht1/usr/bin/`uname -m`
+mkdir -p /tmp/ht1/usr/bin/`uname -p|sed s:i386:i86:`
+cp htop /tmp/ht1/usr/bin/`uname -p|sed s:i386:i86:`
 gmake clean
 env PATH=/usr/gnu/bin/`isainfo -k`:$PATH PKG_CONFIG_PATH=/usr/lib/`isainfo -k`/pkgconfig ./configure --disable-unicode LDFLAGS="-m64" CFLAGS="-O -m64"
 gmake -j
