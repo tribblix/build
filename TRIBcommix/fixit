@@ -15,3 +15,4 @@ chmod a+x commix
 #
 cd ../versions/commix
 rm -f .gitignore .travis.yml
+rm -fr .github
