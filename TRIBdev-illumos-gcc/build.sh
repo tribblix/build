@@ -29,5 +29,5 @@ gmake -j 8
 rm -fr /tmp/gc4
 gmake DESTDIR=/tmp/gc4 install
 rm -fr /tmp/gc4/opt/gcc/4.4.4/lib/gcc/i386-pc-solaris2.11/4.4.4/include-fixed
-${THOME}/build/create_pkg TRIBdev-illumos-gcc /tmp/gc4 /tmp/pct
+${THOME}/build/create_pkg TRIBdev-illumos-gcc /tmp/gc4
 rm -fr /tmp/gc4
