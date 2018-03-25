@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBv-scala-212 scala-2.12.4
+${THOME}/build/pkg_tarball TRIBv-scala-212 scala-2.12.5
