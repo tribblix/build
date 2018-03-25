@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# these libraries are private and have been deprecated
+#
+rm -f usr/lib/libbind9.a
+rm -f usr/lib/libdns.a
+rm -f usr/lib/libirs.a
+rm -f usr/lib/libisc.a
+rm -f usr/lib/libisccc.a
+rm -f usr/lib/libisccfg.a
