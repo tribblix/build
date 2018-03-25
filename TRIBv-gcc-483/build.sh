@@ -62,20 +62,27 @@ OK, so the sparc build fails with this if we use the sun ld:
 
 ld: fatal: relocation error: R_SPARC_32: file ../src/c++11/.libs/libc++11convenience.a(fstream-inst.o): symbol __gxx_personality_v0: offset 0xf8523 is non-aligned
 
+However, in order to build illumos-gate we need to ensure any dependent
+libraries are built with the sun ld; in order for that to work we also need
+to use the sun as. Build as close to illumos-gcc as we can.
+					
+
 FOR SPARC:
 
 cd t48
-env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/configure --prefix=/usr/versions/gcc-4.8.3 --enable-languages="c,c++,objc" --disable-libgomp --disable-libquadmath-support --disable-libquadmath --with-slibdir=/usr/lib --with-gnu-ld --with-ld=/usr/gnu/bin/ld --with-as=/usr/gnu/bin/as --with-gnu-as
+env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/configure --prefix=/usr/versions/gcc-4.8.3 --enable-languages="c,c++,objc" --disable-libgomp --disable-libquadmath-support --disable-libquadmath --with-slibdir=/usr/lib --without-gnu-as --with-as=/usr/ccs/bin/as --with-ld=/usr/bin/ld --without-gnu-ld
+
 env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" gmake -j 12
 cd ..
 
 cd t48f
-env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/configure --prefix=/usr/versions/gcc-4.8.3 --enable-languages="fortran" --disable-libgomp --disable-libquadmath-support --disable-libquadmath --with-slibdir=/usr/lib --with-gnu-ld --with-ld=/usr/gnu/bin/ld --with-as=/usr/gnu/bin/as --with-gnu-as
+env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/configure --prefix=/usr/versions/gcc-4.8.3 --enable-languages="fortran" --disable-libgomp --disable-libquadmath-support --disable-libquadmath --with-slibdir=/usr/lib --without-gnu-as --with-as=/usr/ccs/bin/as --with-ld=/usr/bin/ld --without-gnu-ld
+
 env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" gmake -j 12
 cd ..
 
 cd t48go
-env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/configure --prefix=/usr/versions/gcc-4.8.3 --enable-languages="go" --disable-libgomp --disable-libquadmath-support --disable-libquadmath --with-slibdir=/usr/lib --with-gnu-ld --with-ld=/usr/gnu/bin/ld --with-as=/usr/gnu/bin/as --with-gnu-as
+env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/configure --prefix=/usr/versions/gcc-4.8.3 --enable-languages="go" --disable-libgomp --disable-libquadmath-support --disable-libquadmath --with-slibdir=/usr/lib --without-gnu-as --with-as=/usr/ccs/bin/as --with-ld=/usr/bin/ld --without-gnu-ld
 env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" gmake -j 12
 cd ..
 
@@ -110,6 +117,23 @@ cd /tmp/gc3
 /bin/rm `cd ../gc1 ; find .`
 /bin/rmdir `find . -xdev -depth -type d`
 
+and for sparc
+
+cd /tmp/gc1/usr
+rm -fr versions/gcc-4.8.3/lib/gcc/sparc-sun-solaris2.11/4.8.5/include-fixed
+cd /tmp/gc2/usr
+rm -fr versions/gcc-4.8.3/lib/gcc/sparc-sun-solaris2.11/4.8.5/include-fixed
+cd /tmp/gc3/usr
+rm -fr versions/gcc-4.8.3/lib/gcc/sparc-sun-solaris2.11/4.8.5/include-fixed
+cd /tmp/gc1
+/bin/rmdir `find . -xdev -depth -type d`
+cd /tmp/gc2
+/bin/rm `cd ../gc1 ; find .`
+/bin/rmdir `find . -xdev -depth -type d`
+cd /tmp/gc3
+/bin/rm `cd ../gc1 ; find .`
+/bin/rmdir `find . -xdev -depth -type d`
+
 shuffle into default locations
 
 cd /tmp/gc1
@@ -133,6 +157,29 @@ ln -s ../../../lib/libgfortran.so* .
 cd amd64
 ln -s ../../../../lib/amd64/libgfortran.so* .
 
+and for sparc
+
+cd /tmp/gc1
+mkdir -p usr/lib/sparcv9
+mv usr/versions/gcc-4.8.3/lib/libstdc++.so* usr/lib
+mv usr/versions/gcc-4.8.3/lib/sparcv9/libstdc++.so* usr/lib/sparcv9
+mv usr/versions/gcc-4.8.3/lib/libssp.so* usr/lib
+mv usr/versions/gcc-4.8.3/lib/sparcv9/libssp.so* usr/lib/sparcv9
+cd usr/versions/gcc-4.8.3/lib
+ln -s ../../../lib/libssp.so* .
+ln -s ../../../lib/libstdc++.so* .
+cd sparcv9
+ln -s ../../../../lib/sparcv9/libssp.so* .
+ln -s ../../../../lib/sparcv9/libstdc++.so* .
+cd /tmp/gc2
+mkdir -p usr/lib/sparcv9
+mv usr/versions/gcc-4.8.3/lib/libgfortran.so* usr/lib
+mv usr/versions/gcc-4.8.3/lib/sparcv9/libgfortran.so* usr/lib/sparcv9
+cd usr/versions/gcc-4.8.3/lib
+ln -s ../../../lib/libgfortran.so* .
+cd sparcv9
+ln -s ../../../../lib/sparcv9/libgfortran.so* .
+
 Fix up errant la files
 
 cd /tmp/gc1
@@ -141,8 +188,20 @@ gsed -i s:/usr/versions/gcc-4.8.3/lib:/usr/lib: usr/versions/gcc-4.8.3/lib/libst
 gsed -i s:/usr/versions/gcc-4.8.3/lib/amd64:/usr/lib/amd64: usr/versions/gcc-4.8.3/lib/amd64/libssp.la
 gsed -i s:/usr/versions/gcc-4.8.3/lib:/usr/lib: usr/versions/gcc-4.8.3/lib/libssp.la
 cd /tmp/gc2
-gsed -i s:/usr/versions/gcc-4.8.3/lib/amd64:/usr/lib/amd64: usr/versions/gcc-4.8.3/lib/amd64/libgfortran.la 
-gsed -i s:/usr/versions/gcc-4.8.3/lib:/usr/lib: usr/versions/gcc-4.8.3/lib/libgfortran.la 
+gsed -i s:/usr/versions/gcc-4.8.3/lib/amd64:/usr/lib/amd64: usr/versions/gcc-4.8.3/lib/amd64/libgfortran.la
+gsed -i s:/usr/versions/gcc-4.8.3/lib:/usr/lib: usr/versions/gcc-4.8.3/lib/libgfortran.la
+
+Or for sparc
+
+cd /tmp/gc1
+gsed -i s:/usr/versions/gcc-4.8.3/lib/sparcv9:/usr/lib/sparcv9: usr/versions/gcc-4.8.3/lib/sparcv9/libstdc++.la
+gsed -i s:/usr/versions/gcc-4.8.3/lib:/usr/lib: usr/versions/gcc-4.8.3/lib/libstdc++.la
+gsed -i s:/usr/versions/gcc-4.8.3/lib/sparcv9:/usr/lib/sparcv9: usr/versions/gcc-4.8.3/lib/sparcv9/libssp.la
+gsed -i s:/usr/versions/gcc-4.8.3/lib:/usr/lib: usr/versions/gcc-4.8.3/lib/libssp.la
+cd /tmp/gc2
+gsed -i s:/usr/versions/gcc-4.8.3/lib/sparcv9:/usr/lib/sparcv9: usr/versions/gcc-4.8.3/lib/sparcv9/libgfortran.la
+gsed -i s:/usr/versions/gcc-4.8.3/lib:/usr/lib: usr/versions/gcc-4.8.3/lib/libgfortran.la
+
 
 mkdir -p /tmp/g48-{c,r}/usr /tmp/g48f-{c,r}/usr
 mv /tmp/gc1/usr/lib /tmp/g48-r/usr
@@ -163,6 +222,17 @@ mv /tmp/g48-r/usr/lib/*ssp* /tmp/g48-s/usr/lib
 mv /tmp/g48-c/usr/versions/gcc-4.8.3/lib/amd64/*ssp* /tmp/g48-s/usr/versions/gcc-4.8.3/lib/amd64
 mv /tmp/g48-c/usr/versions/gcc-4.8.3/lib/*ssp* /tmp/g48-s/usr/versions/gcc-4.8.3/lib
 mv /tmp/g48-c/usr/versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.5/include/ssp /tmp/g48-s/usr/versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.5/include
+
+and for sparc
+
+mkdir -p /tmp/g48-s/usr/lib/sparcv9
+mkdir -p /tmp/g48-s/usr/versions/gcc-4.8.3/lib/sparcv9
+mkdir -p /tmp/g48-s/usr/versions/gcc-4.8.3/lib/gcc/sparc-sun-solaris2.11/4.8.5/include
+mv /tmp/g48-r/usr/lib/sparcv9/*ssp* /tmp/g48-s/usr/lib/sparcv9
+mv /tmp/g48-r/usr/lib/*ssp* /tmp/g48-s/usr/lib
+mv /tmp/g48-c/usr/versions/gcc-4.8.3/lib/sparcv9/*ssp* /tmp/g48-s/usr/versions/gcc-4.8.3/lib/sparcv9
+mv /tmp/g48-c/usr/versions/gcc-4.8.3/lib/*ssp* /tmp/g48-s/usr/versions/gcc-4.8.3/lib
+mv /tmp/g48-c/usr/versions/gcc-4.8.3/lib/gcc/sparc-sun-solaris2.11/4.8.5/include/ssp /tmp/g48-s/usr/versions/gcc-4.8.3/lib/gcc/sparc-sun-solaris2.11/4.8.5/include
 
 Make convenience symlinks
 
