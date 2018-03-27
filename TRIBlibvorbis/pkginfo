@@ -1,4 +1,4 @@
 PKG="TRIBlibvorbis"
 NAME="Ogg Vorbis library"
-VERSION="1.3.5.1"
+VERSION="1.3.6.0"
 ZAP_URL="https://www.xiph.org/"
