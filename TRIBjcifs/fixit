@@ -4,8 +4,8 @@
 #
 mkdir -p usr/share
 cd usr/share
-${BUILDROOT}/unpack jcifs-1.3.18
-mv jcifs_1.3.18 jcifs
+${BUILDROOT}/unpack jcifs-1.3.19
+mv jcifs_1.3.19 jcifs
 cd jcifs
 rm -fr src patches examples docs
 rm build.xml
