@@ -7,7 +7,7 @@
 # https://github.com/golang/go/issues/20284
 #
 rm -fr go
-${THOME}/build/unpack go1.9.4.src
+${THOME}/build/unpack go1.9.5.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.9 GOROOT_BOOTSTRAP=/usr/versions/go-1.8 ./all.bash
 cd ..
