@@ -1,0 +1,113 @@
+#!/bin/sh
+#
+# does all the appropriate updates and uploads files
+# to the repo
+#
+# assumes the new packages are in the staging area (/tmp/pct)
+#
+# this is quite fragile
+#
+
+STAGE="/tmp/pct"
+REPOHOST="pkgs.tribblix.org"
+REPODIR="/var/repo"
+
+REPO="tribblix-m20"
+LREPODIR="${THOME}/pkgs"
+
+ACREATE="create-aliases"
+AFILE="aliases"
+CCREATE="create-catalog"
+CFILE="catalog"
+HCREATE="create-catalog-html"
+HFILE="index.html"
+FCREATE="create-file-list"
+FFILE="filelist.bz2"
+
+if [ ! -d "$LREPODIR" ]; then
+    echo "Cannot find local repo dir $LREPODIR"
+    exit 1
+fi
+
+#
+# sanity check
+#
+if [ ! -d "$THOME" ]; then
+    echo "Cannot find my home"
+    exit 1
+fi
+if [ ! -d "${THOME}/build" ]; then
+    echo "Cannot find the build repo"
+    exit 1
+fi
+
+#
+# check for all the creation scripts
+#
+cd ${THOME}/build
+if [ ! -f "$ACREATE" ]; then
+    echo "Cannot find $ACREATE"
+    exit 1
+fi
+if [ ! -f "$CCREATE" ]; then
+    echo "Cannot find $CCREATE"
+    exit 1
+fi
+if [ ! -f "$HCREATE" ]; then
+    echo "Cannot find $HCREATE"
+    exit 1
+fi
+if [ ! -f "$FCREATE" ]; then
+    echo "Cannot find $FCREATE"
+    exit 1
+fi
+
+#
+# is there anything to upload?
+#
+if [ ! -d "$STAGE" ]; then
+    echo "No staging area"
+    exit 2
+fi
+FTOUPLOAD=`/bin/ls -1 ${STAGE}/*.zap 2>/dev/null`
+if [ -z "$FTOUPLOAD" ]; then
+    echo "Cannot find anything to upload"
+    exit 2
+fi
+
+#
+# the first thing we need to do is copy the files from the staging area
+# to the local repo, because the metadata creation scripts rely on that
+#
+cd $STAGE
+for file in `/bin/ls -1 *.zap*`
+do
+    if [ -f "${LREPODIR}/${file}" ]; then
+	echo /bin/rm -f ${LREPODIR}/${file}
+    fi
+    # copy now, delete later
+    /bin/cp ${file} ${LREPODIR}/${file}
+done
+#
+# then we must create the metadata files
+#
+cd ${THOME}/build
+# FIXME: only create aliases if necessary
+echo "Creating aliases"
+./${ACREATE} > ${LREPODIR}/${AFILE}
+echo "Creating catalog"
+./${CCREATE} > ${LREPODIR}/${CFILE}
+echo "Creating html index"
+./${HCREATE} > ${LREPODIR}/${HFILE}
+echo "Creating file list"
+./${FCREATE} ${LREPODIR}
+
+#
+# we upload all the relevant files from the staging area
+# and delete them all once we're done
+#
+cd $STAGE
+echo "Uploading files"
+scp *.zap *.zap.sig ${LREPODIR}/${AFILE} ${LREPODIR}/${HFILE} ${LREPODIR}/${FFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
+cd $THOME
+/bin/rm -fr $STAGE
