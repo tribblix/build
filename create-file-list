@@ -35,7 +35,6 @@ rm -f filelist.new
 touch filelist.new
 cat catalog | awk -F'|' '{print $1,$2}' | while read pkgname pkgver
 do
-    echo $pkgname $pkgver
     if [ -f ${pkgname}.${pkgver}.zap ]; then
 	#
 	# grep / out of the pkgmap file to get the list of paths
@@ -64,8 +63,7 @@ done
 #
 # initial main database: 32M, compressed 1.7M
 #
-ls -lh filelist.new
 pbzip2 filelist.new
-ls -lh filelist.new.bz2
 rm -f filelist.bz2
 mv filelist.new.bz2 filelist.bz2
+ls -lh filelist.bz2
