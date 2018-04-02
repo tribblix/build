@@ -1,0 +1,15 @@
+--- a/source3/libads/kerberos_keytab.c	   :: 
++++ b/source3/libads/kerberos_keytab.c	   :: 
+@@ -639,11 +639,7 @@
+ 		return ret;
+ 	}
+ 
+-	if (keytab_name == NULL) {
+-		ret = ads_keytab_open(context, &keytab);
+-	} else {
+-		ret = smb_krb5_kt_open(context, keytab_name, False, &keytab);
+-	}
++	ret = smb_krb5_kt_open(context, keytab_name, False, &keytab);
+ 	if (ret) {
+ 		DEBUG(1, ("smb_krb5_kt_open failed (%s)\n",
+ 			  error_message(ret)));
