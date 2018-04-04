@@ -1,4 +1,0 @@
-PKG="TRIBblix-repmgr94"
-NAME="Replication manager for PostgreSQL clusters"
-VERSION="4.0.4.0"
-ZAP_URL="https://repmgr.org/"
