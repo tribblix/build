@@ -1,0 +1,4 @@
+PKG="TRIBblix-slony10"
+NAME="Slony-I replication for PostgreSQL 10"
+VERSION="2.2.6.0"
+ZAP_URL="http://www.slony.info/"
