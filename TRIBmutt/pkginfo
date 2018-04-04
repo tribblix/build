@@ -1,4 +1,4 @@
 PKG="TRIBmutt"
 NAME="Mutt mail client"
-VERSION="1.9.3.0"
+VERSION="1.9.4.0"
 ZAP_URL="http://www.mutt.org/"
