@@ -1,6 +1,9 @@
 P TRIBcompress-bzip2
-P TRIBgnu-pth
+P TRIBdatabase-sqlite-3
+P TRIBgnutls
 P TRIBlib-zlib
 P TRIBlibassuan
 P TRIBlibgcrypt
 P TRIBlibgpg-error
+P TRIBlibksba
+P TRIBnpth
