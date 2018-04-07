@@ -1,0 +1,4 @@
+PKG="TRIBnpth"
+NAME="New Portable Thread Library"
+VERSION="1.5.0"
+ZAP_URL="https://gnupg.org/software/npth/index.html"
