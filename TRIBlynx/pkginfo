@@ -1,4 +1,4 @@
 PKG="TRIBlynx"
 NAME="Lynx web browser"
-VERSION="2.8.8.0"
-ZAP_URL="http://lynx.isc.org/"
+VERSION="2.8.9.17.0"
+ZAP_URL="https://lynx.browser.org/"
