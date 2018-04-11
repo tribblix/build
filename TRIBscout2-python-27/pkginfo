@@ -1,0 +1,4 @@
+PKG="TRIBscout2-python-27"
+NAME="Python AWSScout2"
+VERSION="3.2.0.0"
+ZAP_URL="https://pypi.python.org/pypi/AWSScout2"
