@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# clean up plugins
+#
+rm -f usr/lib/claws-mail/plugins/*.a
+rm -f usr/lib/claws-mail/plugins/*.la
