@@ -1,5 +1,6 @@
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
+P TRIBlibgd
 P TRIBlua
 P TRIBx11-libx11
