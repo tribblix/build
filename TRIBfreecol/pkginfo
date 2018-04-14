@@ -1,4 +1,4 @@
 PKG="TRIBfreecol"
 NAME="Strategy game based on Sid Meier's Colonization"
-VERSION="0.11.3.0"
+VERSION="0.11.6.0"
 ZAP_URL="http://www.freecol.org/"
