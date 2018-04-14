@@ -1,3 +1,5 @@
+P TRIBaalib
 P TRIBimage-libexif
+P TRIBimage-libjpeg
 P TRIBlibgphoto2
-P TRIBlibtool
+P TRIBlibpopt
