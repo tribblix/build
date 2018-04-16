@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# put things in the right place
+#
+mkdir -p usr/bin usr/share/applications usr/share/pixmaps
+cd usr/versions
+cd ImageJ
+rm -fr ImageJ.app
+rm -f .DS_Store
+rm -f ImageJ.exe
+rm -f macros/About\ Startup\ Macros
+rm -f plugins/Examples/_Scripts/About\ Scripts
+mv plugins/3D/Stack\ 3D\ Surface\ Plot.ijm plugins/3D/Stack_3D_Surface_Plot.ijm 
+for file in macros/toolsets/*
+do
+    mv "$file" `echo $file | sed 's: :_:g'`
+done
+cd ..
+cd ../..
+cd usr/bin
+cat > imagej << _EOF
+#!/bin/sh
+cd /usr/versions/ImageJ
+java -Xmx512m -jar ij.jar "$@"
+_EOF
+chmod a+x imagej
+cd ../..
+cd usr/share/applications
+cat > imagej.desktop << _EOF
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=ImageJ
+Comment=ImageJ
+Exec=imagej
+Icon=imagej
+Terminal=false
+Type=Application
+Categories=Application;Graphics;
+_EOF
+cd ../../..
+unzip usr/versions/ImageJ/ij.jar microscope.gif
+convert microscope.gif usr/share/pixmaps/imagej.png
+rm -f microscope.gif

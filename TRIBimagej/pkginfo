@@ -1,0 +1,4 @@
+PKG="TRIBimagej"
+NAME="ImageJ"
+VERSION="1.5.0.0"
+ZAP_URL="https://imagej.nih.gov/ij/"
