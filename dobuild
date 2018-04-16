@@ -39,13 +39,19 @@ DOGNU="false"
 # -S subdir
 # -P alternate_prefix
 # -C configure_args
+# +C configure_args [64-bit]
+# -E set sysconfdir to arg
+# +E set sysconfdir to arg, with 64-bit subdir
 # -M make_args
 # -I install_args [unused]
 # -J parallelism
 # -L disable LD_OPTIONS
 #
 IPREFIX="/usr"
-CONFARGS=""
+CONFARGS32=""
+CONFARGS64=""
+ECONFARGS32=""
+ECONFARGS64=""
 MAKEARGS=""
 SUBDIR=""
 GMAKEFLAGS="-j 4"
@@ -80,7 +86,23 @@ case $1 in
 	;;
 -C)
 	shift
-	CONFARGS="$1"
+	CONFARGS32="$1"
+	shift
+	;;
++C)
+	shift
+	CONFARGS64="$1"
+	shift
+	;;
+-E)
+	shift
+	ECONFARGS32="--sysconfdir=$1"
+	ECONFARGS64="--sysconfdir=$1"
+	shift
+	;;
++E)
+	shift
+	ECONFARGS32="--sysconfdir=$1"
 	shift
 	;;
 -M)
@@ -109,6 +131,14 @@ esac
 done
 
 #
+# if we don't have specific 64-bit configure args,
+# then use the 32-bit ones
+#
+if [[ -z $CONFARGS64 ]]; then
+    CONFARGS64="$CONFARGS32"
+fi
+
+#
 # 64-bit files go in these subdirectories
 #
 case `uname -p` in
@@ -119,6 +149,16 @@ i386)
     ARCH64="amd64"
     ;;
 esac
+
+#
+# if we have a 32-bit ECONFARGS but not a 64-bit one, then
+# create a 64-bit one with the architecture subdir
+#
+if [[ -n $ECONFARGS32 ]]; then
+    if [[ -z $ECONFARGS64 ]]; then
+	ECONFARGS64="${ECONFARGS32}/${ARCH64}"
+    fi
+fi
 
 #
 # default linker options
@@ -168,7 +208,7 @@ EOF
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
+	    env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
@@ -191,7 +231,7 @@ EOF
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    env PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ./configure ${CONFARGS} --prefix=${IPREFIX}
+	    env PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ./configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
