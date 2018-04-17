@@ -2,5 +2,5 @@
 #
 # needs a postconf patch
 #
-env PATH=/opt/tribblix/postgres96/bin:$PATH ${THOME}/build/dobuild pgpool-II-3.7.2
-${THOME}/build/genpkg TRIBpgpool pgpool-II-3.7.2
+env PATH=/opt/tribblix/postgres96/bin:$PATH ${THOME}/build/dobuild pgpool-II-3.7.3 -C "--sysconfdir=/etc"
+${THOME}/build/genpkg TRIBpgpool pgpool-II-3.7.3

@@ -1,4 +1,4 @@
 PKG="TRIBpgpool"
 NAME="PostgreSQL middleware layer"
-VERSION="3.7.2.0"
+VERSION="3.7.3.0"
 ZAP_URL="http://www.pgpool.net/"
