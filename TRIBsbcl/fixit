@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+
+VERSION=1.4.6
+
+mkdir -p usr/bin usr/share/man/man1
+cd usr/bin
+ln -s ../../usr/versions/sbcl-${VERSION}/bin/sbcl .
+cd ../..
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/sbcl-${VERSION}/share/man/man1/sbcl.1 .
