@@ -1,4 +1,4 @@
 PKG="TRIBlibfastjson"
 NAME="Libfastjson fork of JSON-C"
-VERSION="0.99.7.0"
+VERSION="0.99.8.0"
 ZAP_URL="https://github.com/rsyslog/libfastjson"
