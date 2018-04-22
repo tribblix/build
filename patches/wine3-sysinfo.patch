@@ -1,0 +1,20 @@
+--- a/dlls/ntdll/virtual.c	Thu Jan 18 15:38:28 2018
++++ b/dlls/ntdll/virtual.c	Sat Apr 21 16:41:17 2018
+@@ -1687,7 +1687,7 @@
+  */
+ void virtual_get_system_info( SYSTEM_BASIC_INFORMATION *info )
+ {
+-#ifdef HAVE_SYSINFO
++#ifdef HAVE_LINUX_SYSINFO
+     struct sysinfo sinfo;
+ #endif
+ 
+@@ -1696,7 +1696,7 @@
+     info->PageSize                = page_size;
+     info->MmLowestPhysicalPage    = 1;
+     info->MmHighestPhysicalPage   = 0x7fffffff / page_size;
+-#ifdef HAVE_SYSINFO
++#ifdef HAVE_LINUX_SYSINFO
+     if (!sysinfo(&sinfo))
+     {
+         ULONG64 total = (ULONG64)sinfo.totalram * sinfo.mem_unit;

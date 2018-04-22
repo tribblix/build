@@ -1,11 +1,10 @@
-P TRIBgstreamer
-P TRIBgstreamer-plugins-base
+P TRIBgstreamer1
+P TRIBgstreamer1-plugins-base
 P TRIBlib-glib2
 P TRIBlib-lcms2
 P TRIBlib-zlib
 P TRIBlibpcap
 P TRIBlibxml2
 P TRIBopenal
-P TRIBx11-lib-mesa
 P TRIBx11-libx11
 P TRIBx11-libxext
