@@ -1,4 +1,4 @@
 PKG="TRIBsuricata"
 NAME="Suricata Intrusion Detection"
-VERSION="3.2.3.0"
+VERSION="4.0.4.0"
 ZAP_URL="https://suricata-ids.org/"
