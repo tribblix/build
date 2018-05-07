@@ -1,3 +1,4 @@
 #!/bin/sh
 mkdir -p var/zap/cache
 mkdir -p var/zap/zones
+mkdir -p var/zap/images
