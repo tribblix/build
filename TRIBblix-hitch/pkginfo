@@ -1,4 +1,4 @@
 PKG="TRIBblix-hitch"
 NAME="High Performance SSL/TLS proxy"
-VERSION="1.4.6.0"
+VERSION="1.4.8.0"
 ZAP_URL="http://hitch-tls.org/"
