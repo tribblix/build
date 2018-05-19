@@ -1,0 +1,4 @@
+PKG="TRIBplib"
+NAME="Steve's Portable Game Library"
+VERSION="1.8.5.0"
+ZAP_URL="http://plib.sourceforge.net/"
