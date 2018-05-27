@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack barman-2.3
-cd barman-2.3
+${THOME}/build/unpack barman-2.4
+cd barman-2.4
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
