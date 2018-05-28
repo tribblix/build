@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# pod2man is used to create the Makefiles
-#
-gsed -i s:pod2man:/usr/perl5/5.22.0/bin/pod2man: gdb/doc/Makefile
