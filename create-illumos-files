@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# wrapper to build the catalog, index, alsia
+# wrapper to build the catalog, index, alias, and list
 # files for an illumos repo
 #
 
@@ -38,3 +38,6 @@ echo "Creating index.html"
 
 echo "Creating aliases"
 ./create-illumos-aliases $TARGET > $TARGET/aliases
+
+echo "Creating file list"
+./create-file-list $TARGET
