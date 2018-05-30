@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# see https://github.com/omniosorg/omnios-build/tree/master/build/acpica
+#
+cp ${PATCHDIR}/acsolaris.h source/include/platform
+sed -i /Werror/d generate/unix/Makefile.config
+sed -i s:-Werror:: generate/unix/iasl/Makefile

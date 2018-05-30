@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# omnios moves this into /usr/sbin so we do the same
+#
+mv usr/bin usr/sbin
