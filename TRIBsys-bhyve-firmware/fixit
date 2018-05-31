@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+#
+#
+case `uname -p` in
+    i386)
+	tar xf ${BUILDROOT}/patches/bhyve-fw.tar
+	;;
+esac
