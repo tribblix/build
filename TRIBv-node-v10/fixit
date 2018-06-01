@@ -12,5 +12,5 @@ VERSION=10
 # postinstall and preremove scripts will put them
 # into the right place
 #
-mv 'usr/versions/node-v10/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/lib/$data.js' usr/versions/node-v10/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/lib/XXXdata.js
-mv 'usr/versions/node-v10/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/lib/refs/$data.json' usr/versions/node-v10/lib/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/lib/refs/XXXdata.json
+mv 'usr/versions/node-v10/lib/node_modules/npm/node_modules/ajv/lib/$data.js' usr/versions/node-v10/lib/node_modules/npm/node_modules/ajv/lib/XXXdata.js
+mv 'usr/versions/node-v10/lib/node_modules/npm/node_modules/ajv/lib/refs/$data.json' usr/versions/node-v10/lib/node_modules/npm/node_modules/ajv/lib/refs/XXXdata.json
