@@ -1,4 +1,4 @@
 PKG="TRIBxfce-mousepad"
 NAME="Xfce Mousepad Editor"
-VERSION="0.4.0.0"
+VERSION="0.4.1.0"
 ZAP_URL="http://archive.xfce.org/src/apps/mousepad/"
