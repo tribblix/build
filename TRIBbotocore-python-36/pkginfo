@@ -1,4 +1,4 @@
 PKG="TRIBbotocore-python-36"
 NAME="Python botocore"
-VERSION="1.10.9.0"
-ZAP_URL="https://pypi.python.org/pypi/botocore"
+VERSION="1.10.31.0"
+ZAP_URL="https://pypi.org/project/botocore/"
