@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pyasn1-0.4.2
-cd pyasn1-0.4.2
+${THOME}/build/unpack pyasn1-0.4.3
+cd pyasn1-0.4.3
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
