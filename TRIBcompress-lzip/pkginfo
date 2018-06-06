@@ -1,4 +1,4 @@
 PKG="TRIBcompress-lzip"
 NAME="Lzip - LZMA lossless data compression tools"
-VERSION="1.16.0"
+VERSION="1.20.0"
 ZAP_URL="http://lzip.nongnu.org/lzip.html"
