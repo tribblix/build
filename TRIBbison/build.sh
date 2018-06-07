@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild bison-3.0.4
-${THOME}/build/genpkg TRIBbison bison-3.0.4
+${THOME}/build/dobuild -64 bison-3.0.5
+${THOME}/build/genpkg TRIBbison bison-3.0.5
