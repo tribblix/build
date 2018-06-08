@@ -7,7 +7,7 @@
 # https://github.com/golang/go/issues/20284
 #
 rm -fr go
-${THOME}/build/unpack go1.9.6.src
+${THOME}/build/unpack go1.9.7.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.9 GOROOT_BOOTSTRAP=/usr/versions/go-1.8 ./all.bash
 cd ..
@@ -23,4 +23,5 @@ cp bin/godoc /tmp/gg/usr/versions/go-1.9/bin
 env GOROOT=/tmp/gg/usr/versions/go-1.9 GOPATH=`pwd` ../bin/go get github.com/mitchellh/gox
 cp bin/gox /tmp/gg/usr/versions/go-1.9/bin
 ${THOME}/build/create_pkg TRIBv-go-19 /tmp/gg
+cd ../..
 rm -fr /tmp/gg
