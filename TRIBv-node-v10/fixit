@@ -8,6 +8,11 @@ VERSION=10
 #ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/npm
 
 #
+# we don't have systemtap
+#
+rm -fr usr/versions/node-v${VERSION}/share/systemtap
+
+#
 # these are unpackageable files, rename
 # postinstall and preremove scripts will put them
 # into the right place
