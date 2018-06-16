@@ -1,0 +1,4 @@
+PKG="TRIBmkdocs-python-27"
+NAME="Python mkdocs"
+VERSION="0.17.4.0"
+ZAP_URL="https://pypi.python.org/pypi/mkdocs"
