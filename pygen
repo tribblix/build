@@ -48,7 +48,7 @@ cat > $PY2NAME/pkginfo <<EOF
 PKG="${PY2NAME}"
 NAME="Python $PNAME"
 VERSION="${PVER}.0"
-ZAP_URL="https://pypi.python.org/pypi/${PNAME}"
+ZAP_URL="https://pypi.org/project/${PNAME}"
 EOF
 cat > $PY2NAME/build.sh <<EOF
 #!/bin/sh
@@ -70,7 +70,7 @@ cat > $PY3NAME/pkginfo <<EOF
 PKG="${PY3NAME}"
 NAME="Python $PNAME"
 VERSION="${PVER}.0"
-ZAP_URL="https://pypi.python.org/pypi/${PNAME}"
+ZAP_URL="https://pypi.org/project/${PNAME}"
 EOF
 cat > $PY3NAME/build.sh <<EOF
 #!/bin/sh
