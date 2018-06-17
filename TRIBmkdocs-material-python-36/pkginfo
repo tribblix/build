@@ -1,0 +1,4 @@
+PKG="TRIBmkdocs-material-python-36"
+NAME="Python mkdocs-material"
+VERSION="2.9.0.0"
+ZAP_URL="https://pypi.org/project/mkdocs-material"
