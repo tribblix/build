@@ -1,10 +1,9 @@
 #!/bin/sh
 #
 # rename the tarball
-#  mv fossil-src-2.0.tar.gz fossil-2.0.tar.gz
+#  mv fossil-src-2.6.tar.gz fossil-2.6.tar.gz
 #
-# probably want to stick with 2.0 for a while as 2.1 is incompatible
-# with fossil versions before 2.0
+# we've had a while with 2.0 so the sha1/sha3 switch is history
 #
-${THOME}/build/dobuild fossil-2.0
-${THOME}/build/genpkg TRIBfossil fossil-2.0
+${THOME}/build/dobuild fossil-2.6 -C --enable-json
+${THOME}/build/genpkg TRIBfossil fossil-2.6
