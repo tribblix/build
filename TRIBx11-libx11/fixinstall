@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+
+#
+# our specific additional headers
+#
+mkdir -p ${DESTDIR}/usr/include/X11
+cp include/X11/Xvarargs.h ${DESTDIR}/usr/include/X11
+mkdir -p ${DESTDIR}/usr/include/X11/extensions
+cp include/X11/extensions/XInteractive.h ${DESTDIR}/usr/include/X11/extensions/XInteractive.h
+cp src/xlibi18n/XlcGeneric.h ${DESTDIR}/usr/include/X11
+cp src/xlibi18n/Xlcint.h ${DESTDIR}/usr/include/X11
+cp src/xlibi18n/XlcPubI.h ${DESTDIR}/usr/include/X11
+cp src/xlibi18n/XlcPublic.h ${DESTDIR}/usr/include/X11
+mkdir -p ${DESTDIR}/usr/include/X11/xcms
+cp src/xcms/Cv.h ${DESTDIR}/usr/include/X11/xcms
+cp src/xcms/Xcmsint.h ${DESTDIR}/usr/include/X11/xcms

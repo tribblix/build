@@ -1,0 +1,51 @@
+#!/bin/sh
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# junk we don't want
+#
+rm -fr usr/share/doc
+rm -f usr/lib/lib*.la
+rm -f usr/lib/${ARCH64}/lib*.la
+rm -f usr/lib/X11/locale/common/*.la
+rm -f usr/lib/${ARCH64}/X11/locale/common/*.la
+
+#
+sed -i 's: -L${libdir}: -L${libdir} -R${libdir}:' usr/lib/${ARCH64}/pkgconfig/x11.pc
+sed -i 's: -L${libdir}: -L${libdir} -R${libdir}:' usr/lib/${ARCH64}/pkgconfig/x11-xcb.pc
+sed -i 's: -L${libdir}: -L${libdir} -R${libdir}:' usr/lib/pkgconfig/x11.pc
+sed -i 's: -L${libdir}: -L${libdir} -R${libdir}:' usr/lib/pkgconfig/x11-xcb.pc
+
+#
+# additional legacy symlinks
+#
+cd usr/lib
+ln -s libX11.so libX.so
+ln -s libX11.so libX.so.4
+cd $ARCH64
+ln -s libX11.so libX.so
+ln -s libX11.so libX.so.4
+cd ../../..
+
+#
+# old /usr/X11/lib links
+#
+mkdir -p usr/X11/lib/$ARCH64
+cd usr/X11/lib
+ln -s ../../lib/libX.so .
+ln -s ../../lib/libX.so.4 .
+ln -s ../../lib/libX11.so .
+ln -s ../../lib/libX11.so.4 .
+cd $ARCH64
+ln -s ../../../lib/${ARCH64}/libX.so .
+ln -s ../../../lib/${ARCH64}/libX.so.4 .
+ln -s ../../../lib/${ARCH64}/libX11.so .
+ln -s ../../../lib/${ARCH64}/libX11.so.4 .
