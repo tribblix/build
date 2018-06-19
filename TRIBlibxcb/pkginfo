@@ -1,4 +1,4 @@
 PKG="TRIBlibxcb"
-NAME="XCB library 1.12, proto 1.12, pthread stubs 0.4, util 0.4.0"
-VERSION="1.12.0"
+NAME="XCB library 1.13, proto 1.13, pthread stubs 0.4, util 0.4.0"
+VERSION="1.13.0"
 ZAP_URL="http://xcb.freedesktop.org/"
