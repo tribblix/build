@@ -4,6 +4,12 @@
 # (has an extra symlink for wget compatibility)
 # http://stackoverflow.com/questions/3777075/ssl-certificate-rejected-trying-to-access-github-over-https-behind-firewall
 #
+# go here:
+#  https://curl.haxx.se/docs/caextract.html
+#
+# the version number in pkginfo is the date of the latest version, which
+# ought to be the top entry in the list of revisions
+#
 rm -fr ca-bundle
 mkdir ca-bundle
 cd ca-bundle
