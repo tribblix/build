@@ -1,4 +1,4 @@
 PKG="TRIBblix-h2o"
 NAME="H2O web server"
-VERSION="2.2.4.0"
+VERSION="2.2.5.0"
 ZAP_URL="https://h2o.examp1e.net/"
