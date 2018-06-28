@@ -1,4 +1,0 @@
-PKG="TRIBv-cmake-36"
-NAME="CMake 3.6.x"
-VERSION="3.6.3.1"
-ZAP_URL="http://www.cmake.org/"
