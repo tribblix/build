@@ -1,4 +1,4 @@
 PKG="TRIBgpl-ghostscript"
-NAME="GPL Ghostscript"
-VERSION="9.19.0"
+NAME="Ghostscript"
+VERSION="9.23.0"
 ZAP_URL="http://www.ghostscript.com/"

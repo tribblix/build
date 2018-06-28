@@ -1,2 +1,0 @@
-#!/bin/sh
-rm -fr tiff lcms2 freetype zlib jpeg libpng
