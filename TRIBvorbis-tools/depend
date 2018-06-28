@@ -1,9 +1,6 @@
 P TRIBcurl
-P TRIBlib-security-openssl
-P TRIBlib-zlib
 P TRIBlibao
 P TRIBlibflac
-P TRIBlibidn
 P TRIBlibogg
 P TRIBlibspeex
 P TRIBlibvorbis
