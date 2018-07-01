@@ -5,8 +5,8 @@ P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBlib-security-openssl
 P TRIBlib-zlib
-P TRIBlibidn
-P TRIBpekwm
+P TRIBlibnghttp2
+P TRIBlibssh2
 P TRIBstartup-notification
 P TRIBsys-lib-fontconfig
 P TRIBsys-libdbus
@@ -18,3 +18,4 @@ P TRIBx11-libxft
 P TRIBx11-libxinerama
 P TRIBx11-libxkbfile
 P TRIBx11-libxpm
+P TRIBx11-libxrender

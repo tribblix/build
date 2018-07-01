@@ -1,4 +1,4 @@
 PKG="TRIBedelib"
 NAME="EDElib"
 VERSION="2.1.0"
-ZAP_URL="http://www.equinox-project.org/"
+ZAP_URL="https://edeproject.org/"
