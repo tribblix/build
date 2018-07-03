@@ -1,0 +1,4 @@
+PKG="TRIBshell-etsh"
+NAME="Enhanced V6 Thompson Shell"
+VERSION="5.2.0.0"
+ZAP_URL="https://etsh.io/"

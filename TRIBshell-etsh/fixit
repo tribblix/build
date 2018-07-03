@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# remove conflicting manpages
+#
+rm -f usr/share/man/man1/fd2.1
+rm -f usr/share/man/man1/goto.1
+rm -f usr/share/man/man1/if.1
