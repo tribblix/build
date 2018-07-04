@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# symlinks so the X server can find the fonts
+#
+mkdir -p etc/X11/fontpath.d
+cd etc/X11/fontpath.d
+ln -s ../../../usr/share/fonts/X11/misc misc:unscaled:pri
+ln -s ../../../usr/share/fonts/X11/misc misc:pri
+ln -s ../../../usr/share/fonts/X11/Type1 Type1:pri
+ln -s ../../../usr/share/fonts/X11/100dpi 100dpi:unscaled:pri
+ln -s ../../../usr/share/fonts/X11/100dpi 100dpi:pri
+ln -s ../../../usr/share/fonts/X11/75dpi 75dpi:unscaled:pri
+ln -s ../../../usr/share/fonts/X11/75dpi 75dpi:pri
