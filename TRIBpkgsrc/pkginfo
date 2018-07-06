@@ -1,4 +1,4 @@
 PKG="TRIBpkgsrc"
 NAME="pkgsrc 32-bit bootstrap kit"
-VERSION="2017.1.0"
+VERSION="2018.2.0"
 ZAP_URL="http://pkgsrc.joyent.com/install-on-illumos/"
