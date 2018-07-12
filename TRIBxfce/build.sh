@@ -8,8 +8,8 @@ $THOME/build/dobuild -gnu garcon-0.4.0 -C "--disable-debug"
 $THOME/build/dobuild -gnu xfce4-appfinder-4.12.0 -C "--disable-debug"
 $THOME/build/dobuild -gnu xfce4-panel-4.12.2 -C "--disable-debug"
 $THOME/build/dobuild -gnu tumbler-0.1.31 -C "--disable-debug"
-$THOME/build/dobuild -gnu Thunar-1.6.14 -C "--disable-debug"
-$THOME/build/dobuild -gnu xfce4-settings-4.12.2 -C "--disable-debug"
+$THOME/build/dobuild -gnu Thunar-1.6.15 -C "--disable-debug"
+$THOME/build/dobuild -gnu xfce4-settings-4.12.4 -C "--disable-debug"
 $THOME/build/dobuild -gnu gtk-xfce-engine-2.10.1 -C "--disable-debug"
 $THOME/build/dobuild -gnu xfce4-session-4.12.1 -C "--disable-debug"
 $THOME/build/dobuild -gnu xfdesktop-4.12.3 -C "--disable-debug"
@@ -25,8 +25,8 @@ rm -fr /tmp/xfu
 (cd xfce4-appfinder-4.12.0; gmake DESTDIR=/tmp/xfu install)
 (cd xfce4-panel-4.12.2 ; gmake DESTDIR=/tmp/xfu install)
 (cd tumbler-0.1.31 ; gmake DESTDIR=/tmp/xfu install)
-(cd Thunar-1.6.14 ; gmake DESTDIR=/tmp/xfu install)
-(cd xfce4-settings-4.12.2 ; gmake DESTDIR=/tmp/xfu install)
+(cd Thunar-1.6.15 ; gmake DESTDIR=/tmp/xfu install)
+(cd xfce4-settings-4.12.4 ; gmake DESTDIR=/tmp/xfu install)
 (cd gtk-xfce-engine-2.10.1 ; gmake DESTDIR=/tmp/xfu install)
 (cd xfce4-session-4.12.1 ; gmake DESTDIR=/tmp/xfu install)
 (cd xfdesktop-4.12.3 ; gmake DESTDIR=/tmp/xfu install)
@@ -34,3 +34,5 @@ rm -fr /tmp/xfu
 (cd xfwm4-themes-4.10.0 ; gmake DESTDIR=/tmp/xfu install)
 
 $THOME/build/create_pkg TRIBxfce /tmp/xfu
+
+rm -fr /tmp/xfu
