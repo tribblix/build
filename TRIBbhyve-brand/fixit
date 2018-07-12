@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+#
+#
+case `uname -p` in
+    i386)
+	mkdir -p usr/lib/brand
+	cd usr/lib/brand
+	tar xf ${BUILDROOT}/patches/bhyve-brand.tar
+	;;
+esac
