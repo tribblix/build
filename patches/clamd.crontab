@@ -1,0 +1,5 @@
+#
+# this is a sample crontab to show how to run freshclam regularly to
+# retrieve definition updates
+#
+7 * * * * /opt/tribblix/clamav/bin/freshclam --daemon-notify=/opt/tribblix/clamav/etc/clamd.conf > /dev/null 2>&1

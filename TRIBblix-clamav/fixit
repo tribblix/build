@@ -29,3 +29,8 @@ gsed -i 's=#DatabaseDirectory /var/lib/clamav=DatabaseDirectory /opt/tribblix/cl
 # enable TCP local listener for clamav-rest to talk to
 #
 gsed -i 's=#TCP=TCP=' clamav/etc/clamd.conf
+#
+# copy in a sample cron
+#
+mkdir -p clamav/cron
+cp ${BUILDROOT}/patches/clamd.crontab clamav/cron

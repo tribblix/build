@@ -10,9 +10,6 @@
 <dependency name='config-file' grouping='require_all' restart_on='none' type='path'>
   <service_fmri value='file://localhost/opt/tribblix/clamav/etc/clamd.conf' />
 </dependency>
-<dependency name='database-file' grouping='require_all' restart_on='none' type='path'>
-  <service_fmri value='file://localhost/opt/tribblix/clamav/var/lib/main.cvd' />
-</dependency>
 <exec_method type='method' name='start' exec='/opt/tribblix/clamav/sbin/clamd' timeout_seconds='60'>
   <method_context working_directory='/opt/tribblix/clamav'>
     <method_credential user='clamav' group='clamav' />
