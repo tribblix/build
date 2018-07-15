@@ -2,7 +2,7 @@
 #
 # just name off the primary version
 #
-VERSION=1.7.0
+VERSION=1.8.0
 mkdir -p usr/bin
 rm -f usr/versions/projectlibre-${VERSION}/projectlibre.bat
 cat > usr/bin/projectlibre <<EOF
