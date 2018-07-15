@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#
+# don't ship docs to save a bit of space
+#
+rm -fr usr/share/doc
+
+#
+# legacy symlinks
+#
+mkdir -p usr/X11/include
+cd usr/X11/include
+ln -s ../../include/X11 .
+ln -s ../../include/GL .
+cd ../../..
+
+#
+# add sun extras
+#
+cp ${BUILDROOT}/patches/sun-ext-protos/* usr/include/X11/extensions
