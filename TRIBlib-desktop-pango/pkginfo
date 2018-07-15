@@ -1,4 +1,4 @@
 PKG="TRIBlib-desktop-pango"
 NAME="Pango text layout"
-VERSION="1.36.8.2"
+VERSION="1.40.5.0"
 ZAP_URL="http://www.pango.org/"
