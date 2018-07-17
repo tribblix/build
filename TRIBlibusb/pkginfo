@@ -1,0 +1,4 @@
+PKG="TRIBlibusb"
+NAME="libusb"
+VERSION="1.0.22.0"
+ZAP_URL="https://libusb.info/"
