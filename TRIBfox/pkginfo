@@ -1,0 +1,4 @@
+PKG="TRIBfox"
+NAME="FOX Toolkit"
+VERSION="1.6.57.0"
+ZAP_URL="http://www.fox-toolkit.org/"
