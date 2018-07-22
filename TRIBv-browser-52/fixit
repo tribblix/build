@@ -3,7 +3,7 @@
 # create a versioned directory
 # put a symlink to firefox in /usr/bin
 #
-VERSION=52.8.1esr
+VERSION=52.9.0esr
 mkdir -p usr/bin
 cd usr/bin
 rm -f firefox
