@@ -1,0 +1,4 @@
+PKG="TRIBazure-vhd-utils"
+NAME="Azure VHD utilities"
+VERSION="0.0.0.0"
+ZAP_URL="https://github.com/Microsoft/azure-vhd-utils"
