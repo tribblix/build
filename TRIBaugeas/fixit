@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# cleanup to avoid conflicts
+#
+rm -f usr/lib/charset.alias
+rm -f usr/lib/lib*.la
+
+#
+# install puts these in the wrong place
+#
+mv usr/share/vim/vimfiles usr/share/vim/vim80
