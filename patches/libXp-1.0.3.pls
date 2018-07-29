@@ -1,0 +1,2 @@
+-p1 libXp-abi.patch
+-p1 libXp-6724993.patch

@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# because we modified Makefile.am
+#
+autoreconf -f -i
