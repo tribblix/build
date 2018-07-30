@@ -1,0 +1,22 @@
+--- openssh-7.4p1.orig/sshd_config.5	Mon Dec 19 06:59:41 2016
++++ openssh-7.4p1/sshd_config.5	Wed Dec 21 12:03:05 2016
+@@ -1260,8 +1260,9 @@
+ .Xr sshd 8
+ should print the date and time of the last user login when a user logs
+ in interactively.
+-The default is
+-.Cm yes .
++This option is ignored on illumos, since
++.Xr pam_unix_session 5
++prints the last login time.
+ .It Cm PrintMotd
+ Specifies whether
+ .Xr sshd 8
+@@ -1666,6 +1667,7 @@
+ (though not necessary) that it be world-readable.
+ .El
+ .Sh SEE ALSO
++.Xr pam_unix_session 5,
+ .Xr sftp-server 8 ,
+ .Xr sshd 8
+ .Sh AUTHORS

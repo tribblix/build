@@ -10,19 +10,22 @@ rm -f usr/bin/ssh-keyscan
 rm -f usr/lib/ssh/ssh-keysign
 rm -f usr/share/man/man1/ssh-keygen.1
 rm -f usr/share/man/man1/ssh-keyscan.1
-rm -f usr/share/man/man1m/ssh-keysign.1m
+rm -f usr/share/man/man8/ssh-keysign.8
 
 # remove files from TRIBsvc-net-ssh
 rm -f etc/ssh/sshd_config
 rm -f usr/lib/ssh/sftp-server
 rm -f usr/sbin/sshd
-rm -f usr/share/man/man1m/sftp-server.1m
-rm -f usr/share/man/man1m/sshd.1m
-rm -f usr/share/man/man4/sshd_config.4
+rm -f usr/share/man/man8/sftp-server.8
+rm -f usr/share/man/man8/sshd.8
+rm -f usr/share/man/man5/sshd_config.5
 rm -fr var
 
-cp ${BUILDROOT}/patches/ssh-askpass usr/lib/ssh/ssh-askpass
+cp ${BUILDROOT}/patches/ssh-askpass-zenity usr/lib/ssh/ssh-askpass
 chmod 555 usr/lib/ssh/ssh-askpass
+mkdir -p usr/share/pixmaps
+cp ${BUILDROOT}/patches/ssh-askpass-zenity.png usr/share/pixmaps
+chmod 444 usr/share/pixmaps/ssh-askpass-zenity.png
 
 #
 # temporary fix for compatibility with older clients that just have dsa keys

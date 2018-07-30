@@ -6,7 +6,7 @@ diff -ru openssh-7.1p1.orig/sshd_config openssh-7.1p1/sshd_config
  
  #LoginGraceTime 2m
 -#PermitRootLogin prohibit-password
-+PermitRootLogin no
++PermitRootLogin without-password
  #StrictModes yes
  #MaxAuthTries 6
  #MaxSessions 10

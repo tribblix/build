@@ -1,0 +1,9 @@
+-p1 ssh/0002-Skip-config-check.patch
+-p1 ssh/0003-PAM-Support.patch
+-p1 ssh/0004-lastlogin.patch
+-p1 ssh/0007-GSS-store-creds-for-Solaris.patch
+-p1 ssh/0010-PAM-conversation-fix.patch
+-p1 ssh/0017-PAM-setcred-failures.patch
+-p1 ssh/0018-Don-t-call-do_pam_setcred-twice.patch
+-p1 ssh/0028-Don-t-use-krb5-config-to-check-for-GSSAPI-on-Illumos.patch
+-p1 ssh/sshd_config.patch

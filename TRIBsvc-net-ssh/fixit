@@ -8,14 +8,14 @@ mv usr .usr
 
 mkdir -p usr/sbin
 mkdir -p usr/lib/ssh
-mkdir -p usr/share/man/man1m
-mkdir -p usr/share/man/man4
+mkdir -p usr/share/man/man8
+mkdir -p usr/share/man/man5
 
 mv .usr/lib/ssh/sftp-server usr/lib/ssh/sftp-server
 mv .usr/sbin/sshd usr/sbin/sshd
-mv .usr/share/man/man1m/sftp-server.1m usr/share/man/man1m/sftp-server.1m
-mv .usr/share/man/man1m/sshd.1m usr/share/man/man1m/sshd.1m
-mv .usr/share/man/man4/sshd_config.4 usr/share/man/man4/sshd_config.4
+mv .usr/share/man/man8/sftp-server.8 usr/share/man/man8/sftp-server.8
+mv .usr/share/man/man8/sshd.8 usr/share/man/man8/sshd.8
+mv .usr/share/man/man5/sshd_config.5 usr/share/man/man5/sshd_config.5
 
 rm -f etc/ssh/moduli
 rm -f etc/ssh/ssh_config
