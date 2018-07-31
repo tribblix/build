@@ -1,4 +1,0 @@
-tribblix_srcs=postgresql-9.5.13
-tribblix_P_opt='/opt/tribblix/postgres95'
-tribblix_C_opt="--without-readline"
-tribblix_M_opt="world"
