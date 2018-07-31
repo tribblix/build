@@ -2,5 +2,5 @@
 #
 # this is a postgres extension, so it's specific to the postgres version
 #
-${THOME}/build/dobuild repmgr-4.0.6 -C PG_CONFIG=/opt/tribblix/postgres96/bin/pg_config
-${THOME}/build/genpkg TRIBblix-repmgr96 repmgr-4.0.6
+${THOME}/build/dobuild repmgr-4.1.0 -C PG_CONFIG=/opt/tribblix/postgres96/bin/pg_config
+${THOME}/build/genpkg TRIBblix-repmgr96 repmgr-4.1.0
