@@ -1,0 +1,12 @@
+#!/bin/sh
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/lxadm/bin/lxadm .
+cd ../..
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/lxadm/share/man/man1/lxadm.1 .
+#
+# this is where the image cache goes, must match the build
+#
+mkdir -p /var/zap/lxadm

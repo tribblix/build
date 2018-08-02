@@ -1,0 +1,4 @@
+PKG="TRIBlxadm"
+NAME="Manage illumos LX zones."
+VERSION="0.1.6.0"
+ZAP_URL="http://www.lxadm.org/"
