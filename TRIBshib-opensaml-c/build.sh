@@ -2,5 +2,5 @@
 #
 # shibboleth stack requires boost ssl curl apache
 #
-${THOME}/build/dobuild opensaml-2.6.1 -P /opt/tribblix/shibboleth-sp -C "--disable-static --with-log4shib=/opt/tribblix/shibboleth-sp"
-${THOME}/build/genpkg TRIBshib-opensaml-c opensaml-2.6.1
+env PKG_CONFIG_PATH=/opt/tribblix/shibboleth-sp/lib/pkgconfig:/usr/lib/pkgconfig ${THOME}/build/dobuild opensaml-3.0.0 -P /opt/tribblix/shibboleth-sp -C "--disable-static --disable-dependency-tracking"
+${THOME}/build/genpkg TRIBshib-opensaml-c opensaml-3.0.0

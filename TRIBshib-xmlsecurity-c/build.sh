@@ -2,5 +2,5 @@
 #
 # shibboleth stack requires boost ssl curl apache
 #
-${THOME}/build/dobuild xml-security-c-1.7.3 -P /opt/tribblix/shibboleth-sp -C "--disable-static --without-xalan --with-xerces=/opt/tribblix/shibboleth-sp"
-${THOME}/build/genpkg TRIBshib-xmlsecurity-c xml-security-c-1.7.3
+env PKG_CONFIG_PATH=/opt/tribblix/shibboleth-sp/lib/pkgconfig:/usr/lib/pkgconfig ${THOME}/build/dobuild xml-security-c-2.0.1 -P /opt/tribblix/shibboleth-sp -C "--disable-static --without-xalan"
+${THOME}/build/genpkg TRIBshib-xmlsecurity-c xml-security-c-2.0.1

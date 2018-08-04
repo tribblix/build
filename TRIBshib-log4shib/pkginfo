@@ -1,4 +1,4 @@
 PKG="TRIBshib-log4shib"
 NAME="Shibboleth fork of log4cpp"
-VERSION="1.0.9.0"
-ZAP_URL="https://wiki.shibboleth.net/confluence/display/OpenSAML/log4shib"
+VERSION="2.0.0.0"
+ZAP_URL="https://wiki.shibboleth.net/confluence/display/SP3/log4shib"
