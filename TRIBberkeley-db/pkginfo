@@ -1,0 +1,4 @@
+PKG="TRIBberkeley-db"
+NAME="Berkeley DB"
+VERSION="5.3.28"
+ZAP_URL="http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html"

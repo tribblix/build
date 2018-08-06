@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# the docs are huge, over 90M
+#
+mkdir -p usr/share/berkeleydb
+mv usr/docs/license usr/share/berkeleydb
+rm -fr usr/docs
+
+rm -f usr/lib/lib*.la usr/lib/*/lib*.la
