@@ -45,7 +45,9 @@ nawk '
 {if ($3 == "var/svc/manifest/application")  $6 = "sys"}
 {if ($3 == "etc")  $6 = "sys"}
 {if ($3 == "etc/security")  $6 = "sys"}
+{if ($3 == "etc/security/auth_attr.d")  $6 = "sys"}
 {if ($3 == "etc/security/exec_attr.d")  $6 = "sys"}
+{if ($3 == "etc/security/prof_attr.d")  $6 = "sys"}
 {if ($3 == "etc/ssh")  $6 = "sys"}
 {if ($3 == "etc/svc")  $6 = "sys"}
 {if ($3 == "etc/svc/profile")  $6 = "sys"}
