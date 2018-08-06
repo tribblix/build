@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+nawk '
+{if ($1 == "d" && $3 ~ /^var\/spool\/postfix\//) { $5 = "postfix" }}
+{if ($3 == "usr/sbin/postdrop") { $6 = "postdrop"; $4 = "02555" }}
+{if ($3 == "usr/sbin/postqueue") { $6 = "postdrop"; $4 = "02555" }}
+{if ($3 == "var/lib/postfix") { $5 = "postfix" }}
+{if ($3 == "usr/sbin/postqueue") { $6 = "postdrop" }}
+{if ($3 == "var/spool/postfix/maildrop") { $6 = "postdrop" }}
+{if ($3 == "var/spool/postfix/public") { $6 = "postdrop" }}
+{if ($3 == "var/spool/postfix/pid") { $5 = "root" }}
+{print}
+'

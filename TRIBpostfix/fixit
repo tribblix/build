@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+mkdir -p etc/security/auth_attr.d
+mkdir -p etc/security/prof_attr.d
+mkdir -p etc/security/exec_attr.d
+cp ${BUILDROOT}/patches/postfix/postfix.auth_attr etc/security/auth_attr.d/postfix
+cp ${BUILDROOT}/patches/postfix/postfix.prof_attr etc/security/prof_attr.d/postfix
+cp ${BUILDROOT}/patches/postfix/postfix.exec_attr etc/security/exec_attr.d/postfix
+
+mkdir -p lib/svc/manifest/network
+cp ${BUILDROOT}/patches/postfix/postfix.xml lib/svc/manifest/network/smtp-postfix.xml

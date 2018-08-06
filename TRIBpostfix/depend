@@ -1,0 +1,6 @@
+P TRIBberkeley-db
+P TRIBdatabase-sqlite-3
+P TRIBlib-pcre
+P TRIBlib-security-openssl
+P TRIBlibicu
+P TRIBsys-lib-security-libsasl
