@@ -1,0 +1,4 @@
+PKG="TRIBcpuid"
+NAME="CPUID decoder"
+VERSION="1.6.4.0"
+ZAP_URL="https://github.com/tycho/cpuid"

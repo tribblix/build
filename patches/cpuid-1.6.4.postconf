@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# easier than trying to pass arguments through the build system
+#
+sed -i s:/usr/local:/usr: GNUmakefile
+sed -i 's:install -D:/usr/gnu/bin/install -D:' GNUmakefile
