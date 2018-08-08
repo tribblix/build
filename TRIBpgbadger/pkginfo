@@ -1,0 +1,4 @@
+PKG="TRIBpgbadger"
+NAME="A fast PostgreSQL log analyzer"
+VERSION="9.2.0"
+ZAP_URL="http://dalibo.github.io/pgbadger/"

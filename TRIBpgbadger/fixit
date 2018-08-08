@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# actually, we do almost all the installation here
+#
+
+#
+# this is the version of pg_back
+#
+VERSION=1.5
+
+#
+# this is the default version of postgres we target
+#
+PGVERSION=96
+
+$THOME/build/unpack pg_back-${VERSION}
+
+mkdir -p usr/bin
+mv pg_back-${VERSION}/pg_back usr/bin
+chmod 555 usr/bin/pg_back
+
+mkdir -p etc/postgresql
+mv pg_back-${VERSION}/pg_back.conf etc/postgresql
+chmod 644 etc/postgresql/pg_back.conf
+sed -i s:PGBK_BIN=:PGBK_BIN=/opt/tribblix/postgres${PGVERSION}/bin: etc/postgresql/pg_back.conf
+
+mkdir -p usr/share/pg_back
+mv pg_back-${VERSION}/README usr/share/pg_back
+
+rm -fr pg_back-${VERSION}
