@@ -2,28 +2,29 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=9.1.17.0
+VERSION=9.2.0.0
 #
-# jruby 9k has been a bit broken on solarish systems and gem hasn't always
-# worked right so don't make it the default until we're sure that's fixed
-# (it probably is, but need more testing)
+# jruby 9k was a bit broken on solarish systems and gem hasn't always
+# worked right so wasn't always the default
 #
-#mkdir -p usr/bin
-#ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
-#ln -s ../../usr/versions/jruby-${VERSION}/bin/jrubyc usr/bin/
-#ln -s ../../usr/versions/jruby-${VERSION}/bin/jgem usr/bin/
-#ln -s ../../usr/versions/jruby-${VERSION}/bin/jirb usr/bin/
+mkdir -p usr/bin
+ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
+ln -s ../../usr/versions/jruby-${VERSION}/bin/jrubyc usr/bin/
+ln -s ../../usr/versions/jruby-${VERSION}/bin/jgem usr/bin/
+ln -s ../../usr/versions/jruby-${VERSION}/bin/jirb usr/bin/
+
 cd usr/versions/jruby-${VERSION}
 rm bin/*.bat
-rm bin/jruby.sh bin/jruby.bash
+rm bin/jruby.sh bin/jruby.bash bin/jruby200.sh
 rm bin/*.exe
 rm bin/*.dll
 rm -fr lib/ruby/stdlib/ffi/platform/*linux
 rm -fr lib/ruby/stdlib/ffi/platform/*darwin
+rm -fr lib/ruby/stdlib/ffi/platform/*cygwin
 rm -fr lib/ruby/stdlib/ffi/platform/*windows
 rm -fr lib/ruby/stdlib/ffi/platform/*bsd
 rm -fr lib/ruby/stdlib/ffi/platform/*aix
-rm -fr lib/ruby/stdlib/ffi/platform/i486-gnu
+rm -fr lib/ruby/stdlib/ffi/platform/*gnu
 rm -fr lib/jni/*Windows
 rm -fr lib/jni/*Linux
 rm -fr lib/jni/*BSD
