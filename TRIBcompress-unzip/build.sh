@@ -11,3 +11,4 @@ rm -fr /tmp/unzip
 gmake -f unix/Makefile install prefix=/tmp/unzip/usr
 ${THOME}/build/create_pkg TRIBcompress-unzip /tmp/unzip
 rm -fr /tmp/unzip
+cd ..

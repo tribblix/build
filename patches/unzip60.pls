@@ -1,4 +1,10 @@
+-p1 CVE-2014-8139.patch
+-p1 CVE-2014-8140.patch
+-p1 CVE-2014-8141.patch
 -p1 unzip-extract.c.patch
+-p1 CVE-2014-9913.patch
 -p1 unzip-overflow.patch
 -p1 CVE-2015-7696.patch
 -p1 CVE-2015-7697.patch
+-p1 CVE-2016-9844.patch
+-p1 CVE-2018-1000035.patch
