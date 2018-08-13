@@ -1,0 +1,4 @@
+PKG="TRIBautoconf-archive"
+NAME="Gnu autoconf-archive"
+VERSION="2018.03.13.0"
+ZAP_URL="https://www.gnu.org/software/autoconf-archive/"
