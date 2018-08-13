@@ -51,4 +51,5 @@ rm -fr usr/include
 rm -fr usr/lib/${ARCH64}
 rm -fr usr/lib/pkgconfig
 rm -fr usr/lib/dbus-1.0
+rm -fr usr/lib/cmake
 rm -f usr/lib/lib*

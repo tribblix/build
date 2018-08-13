@@ -5,3 +5,4 @@
 -p1 dbus-05-compile.patch
 -p1 dbus-06-m4.patch
 -p1 dbus-07-remove-setuid-check.patch
+-p1 dbus-09-dbus-daemon-full-path.patch
