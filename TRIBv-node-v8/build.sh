@@ -5,7 +5,7 @@
 # note that we can't use the normal -64 build mechanism as node
 # has its own way of doing it
 #
-env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v8.11.3 -P /usr/versions/node-v8 -C --without-dtrace
-mv node-v8.11.3 node-v8.11.3-32
-env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v8.11.3 -P /usr/versions/node-v8 -C "--without-dtrace --dest-cpu=x64"
-${THOME}/build/genpkg TRIBv-node-v8 node-v8.11.3
+env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v8.11.4 -P /usr/versions/node-v8 -C --without-dtrace
+mv node-v8.11.4 node-v8.11.4-32
+env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v8.11.4 -P /usr/versions/node-v8 -C "--without-dtrace --dest-cpu=x64"
+${THOME}/build/genpkg TRIBv-node-v8 node-v8.11.4
