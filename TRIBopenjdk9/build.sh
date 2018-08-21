@@ -37,7 +37,7 @@ cd openjdk9
 #
 # cp libsoftcrypto.h jdk/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto
 #
-cp ${THOME}/build/patches/jdk-libsoftcrypto.h jdk/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto
+cp ${THOME}/build/patches/jdk-libsoftcrypto.h jdk/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
 
 #
 # jdk9 needs objcopy, which is in /usr/gnu/bin
