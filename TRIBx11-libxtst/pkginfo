@@ -1,0 +1,4 @@
+PKG="TRIBx11-libxtst"
+NAME="libXtst"
+VERSION="1.2.3.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/lib/"
