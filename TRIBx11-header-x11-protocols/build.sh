@@ -49,8 +49,8 @@ $THOME/build/dobuild xcmiscproto-1.2.2
 $THOME/build/dobuild videoproto-2.3.3
 # KEEP: old 1.2.0 current 1.2.2 use 1.2.2
 $THOME/build/dobuild scrnsaverproto-1.2.2
-# DOWNREV: old 1.1.0 current 1.2.0 use 1.1.1
-$THOME/build/dobuild resourceproto-1.1.1
+# GOOD: old 1.1.0 current 1.2.0 use 1.2.0
+$THOME/build/dobuild resourceproto-1.2.0
 # GOOD: old 0.11.1 current 0.11.1
 $THOME/build/dobuild renderproto-0.11.1
 # KEEP: old 1.14 current 1.14.2 use 1.14.2
