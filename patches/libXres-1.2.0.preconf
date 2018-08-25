@@ -1,0 +1,3 @@
+#!/bin/sh
+sed -i 's;-version-number;-Wl,-M$(top_srcdir)/mapfile-vers -version-number;' src/Makefile.in
+cp ${PATCHDIR}/libXres.mapfile mapfile-vers
