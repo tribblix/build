@@ -1,0 +1,4 @@
+PKG="TRIBx11-data-xcursor-themes"
+NAME="xcursor-themes"
+VERSION="1.0.5.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/data/"
