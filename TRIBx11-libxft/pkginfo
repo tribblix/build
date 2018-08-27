@@ -1,0 +1,4 @@
+PKG="TRIBx11-libxft"
+NAME="libXft"
+VERSION="2.3.2.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/lib/"
