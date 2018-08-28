@@ -1,4 +1,4 @@
 PKG="TRIBx11-keyboard-data-xkb"
 NAME="xkeyboard-config"
-VERSION="2.24.0"
+VERSION="2.24.1"
 ZAP_URL="http://xorg.freedesktop.org/releases/individual/data/"

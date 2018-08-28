@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# HAL needs this as /usr/X11/lib/X11/xkb/xkbtable.map.
+#
+mkdir -p usr/share/X11/xkb
+cp ${BUILDROOT}/patches/xkbtable.map usr/share/X11/xkb/xkbtable.map
+mkdir -p usr/X11/lib/X11
+mkdir -p usr/X11/share/X11
+ln -s ../../../share/X11/xkb usr/X11/lib/X11
+ln -s ../../../share/X11/xkb usr/X11/share/X11/xkb
