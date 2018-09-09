@@ -5,7 +5,7 @@
 # note that we can't use the normal -64 build mechanism as node
 # has its own way of doing it
 #
-env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v10.9.0 -P /usr/versions/node-v10 -C --without-dtrace
-mv node-v10.9.0 node-v10.9.0-32
-env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v10.9.0 -P /usr/versions/node-v10 -C "--without-dtrace --dest-cpu=x64"
-${THOME}/build/genpkg TRIBv-node-v10 node-v10.9.0
+env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v10.10.0 -P /usr/versions/node-v10 -C --without-dtrace
+mv node-v10.10.0 node-v10.10.0-32
+env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v10.10.0 -P /usr/versions/node-v10 -C "--without-dtrace --dest-cpu=x64"
+${THOME}/build/genpkg TRIBv-node-v10 node-v10.10.0
