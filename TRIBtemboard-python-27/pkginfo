@@ -1,0 +1,4 @@
+PKG="TRIBtemboard-python-27"
+NAME="Python temboard"
+VERSION="2.0.0"
+ZAP_URL="https://pypi.org/project/temboard"
