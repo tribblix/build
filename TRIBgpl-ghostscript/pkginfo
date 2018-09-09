@@ -1,4 +1,4 @@
 PKG="TRIBgpl-ghostscript"
 NAME="Ghostscript"
-VERSION="9.23.0"
+VERSION="9.24.0"
 ZAP_URL="http://www.ghostscript.com/"
