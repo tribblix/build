@@ -1,0 +1,4 @@
+PKG="TRIBpycrypto-python-27"
+NAME="Python pycrypto"
+VERSION="2.6.1.0"
+ZAP_URL="https://pypi.org/project/pycrypto"
