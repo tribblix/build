@@ -1,4 +1,4 @@
 PKG="TRIBv-node-v8"
 NAME="Node v8 Current"
-VERSION="8.11.4.0"
+VERSION="8.12.0.0"
 ZAP_URL="https://nodejs.org/"
