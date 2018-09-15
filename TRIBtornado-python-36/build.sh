@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tornado-4.5.2
-cd tornado-4.5.2
+${THOME}/build/unpack tornado-5.1
+cd tornado-5.1
 /usr/versions/python-3.6/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.6/bin/python3 setup.py install --root=/tmp/pil

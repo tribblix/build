@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tornado-4.5.2
-cd tornado-4.5.2
+${THOME}/build/unpack tornado-5.1
+cd tornado-5.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
