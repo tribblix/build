@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack mkdocs-0.17.4
-cd mkdocs-0.17.4
+${THOME}/build/unpack mkdocs-1.0.4
+cd mkdocs-1.0.4
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
