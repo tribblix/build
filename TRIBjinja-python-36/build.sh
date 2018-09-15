@@ -2,8 +2,8 @@
 #
 # needs Babel MarkupSafe
 #
-${THOME}/build/unpack Jinja2-2.9.6
-cd Jinja2-2.9.6
+${THOME}/build/unpack Jinja2-2.10
+cd Jinja2-2.10
 /usr/versions/python-3.6/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.6/bin/python3 setup.py install --root=/tmp/pil
