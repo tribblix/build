@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack mkdocs-material-2.9.0
-cd mkdocs-material-2.9.0
+${THOME}/build/unpack mkdocs-material-3.0.4
+cd mkdocs-material-3.0.4
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
