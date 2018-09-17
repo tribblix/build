@@ -4,7 +4,7 @@
 #
 mkdir -p usr/share/man
 cd usr/share/man
-${BUILDROOT}/unpack git-manpages-2.17.1
+${BUILDROOT}/unpack git-manpages-2.19.0
 chmod a+rx .
 cd ../../..
 #
@@ -15,3 +15,9 @@ rmdir usr/lib/i86pc-solaris-thread-multi-64int
 mkdir -p usr/perl5
 mv usr/lib/site_perl usr/perl5
 rmdir usr/lib
+#
+# or it might put things here
+#
+mkdir -p usr/perl5/site_perl/5.22.0
+mv usr/share/perl5/* usr/perl5/site_perl/5.22.0
+rmdir usr/share/perl5
