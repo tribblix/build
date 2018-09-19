@@ -1,11 +1,12 @@
 #!/bin/sh
 #
-${THOME}/build/unpack dcraw-9.26.0
+${THOME}/build/unpack dcraw-9.28.0
 cd dcraw
-# Add to dcraw.c
-# #ifdef __sun
-# #include <locale.h>
-# #endif
+#
+# manual because the directoray name doesn't match the tarball
+#
+gpatch -p1 < ${THOME}/build/patches/dcraw.patch
+#
 gcc -O4 -o dcraw dcraw.c -Wall -Wno-unused-result -Wno-array-bounds -Wno-maybe-uninitialized -Wno-unused-but-set-variable -lm -ljasper -ljpeg -llcms2 -DLOCALEDIR=\"/usr/share/locale\"
 rm -fr /tmp/dr
 mkdir -p /tmp/dr/usr/bin /tmp/dr/usr/share/man/man1
