@@ -1,0 +1,4 @@
+PKG="TRIBroughtime"
+NAME="roughtime client"
+VERSION="0.1.0"
+ZAP_URL="https://github.com/cloudflare/roughtime"
