@@ -8,22 +8,12 @@
 #
 # requires ncurses 6
 #
-rm -fr /tmp/ht1
-git clone https://github.com/hishamhm/htop
-cd htop
-./autogen.sh
-./configure --disable-unicode
-gmake -j
-mkdir -p /tmp/ht1/usr/bin/`uname -p|sed -e s:i386:i86: -e s:sparc:sparcv7:`
-cp htop /tmp/ht1/usr/bin/`uname -p|sed -e s:i386:i86: -e s:sparc:sparcv7:`
-gmake clean
-env PATH=/usr/gnu/bin/`isainfo -k`:$PATH PKG_CONFIG_PATH=/usr/lib/`isainfo -k`/pkgconfig ./configure --disable-unicode LDFLAGS="-m64" CFLAGS="-O -m64"
-gmake -j
-mkdir -p /tmp/ht1/usr/bin/`isainfo -k`
-cp htop /tmp/ht1/usr/bin/`isainfo -k`
+$THOME/build/dobuild htop-2.2.0 -C --disable-unicode
+mv htop-2.2.0 htop-2.2.0-32
+#
+# 64-bit path to pick up 64-bit ncurses-config
+#
+env PATH=/usr/gnu/bin/`isainfo -k`:$PATH $THOME/build/dobuild +64 htop-2.2.0 -C --disable-unicode
+mv htop-2.2.0-32 htop-2.2.0
 
-mkdir -p /tmp/ht1/usr/share/man/man1
-cp htop.1 /tmp/ht1/usr/share/man/man1
-
-${THOME}/build/create_pkg TRIBhtop /tmp/ht1
-rm -fr /tmp/ht1
+${THOME}/build/genpkg TRIBhtop htop-2.2.0
