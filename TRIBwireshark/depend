@@ -8,4 +8,5 @@ P TRIBlib-zlib
 P TRIBlibgcrypt
 P TRIBlibgpg-error
 P TRIBlibpcap
+P TRIBlibssh
 P TRIBsvc-security-kerberos-5
