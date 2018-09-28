@@ -1,0 +1,12 @@
+-p0 rust/allow_override_bootstrap_flags.patch
+-p0 rust/src_bootstrap_bin_rustc.rs.patch
+-p0 rust/src_bootstrap_lib.rs.patch
+-p0 rust/src_ibcompiler_builtins_compiler-rt_lib_asan_CMakeList.txt.patch
+-p0 rust/src_libbacktrace_configure.patch
+-p0 rust/src_liblibc_src_unix_solaris_mod.rs.patch
+-p0 rust/src_libstd_build.rs.patch
+-p0 rust/src_libstd_sys_unix_thread.rs.patch
+-p0 rust/src_llvm-emscripten_include_llvm_Support_DataTypes.h.cmake.patch
+-p0 rust/src_llvm_CMakeLists.txt.patch
+-p0 rust/src_llvm_cmake_modules_AddLLVM.cmake.patch
+-p0 rust/src_vendor_libc_src_unix_solaris_mod.rs.patch

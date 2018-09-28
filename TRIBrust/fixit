@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# put in the regular path
+#
+mkdir usr/bin
+cd usr/bin
+ln -s ../versions/rust/bin/* .
+cd ../..
+mkdir -p usr/lib/${ARCH64}
+cd usr/lib/${ARCH64}
+ln -s ../../versions/rust/lib/lib*.so .
+cd ../../..
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../versions/rust/share/man/man1/*.1 .
+cd ../../../..
