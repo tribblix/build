@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# have a slighltly more relevant config
+#
+cp ${BUILDROOT}/patches/system.vtwmrc usr/share/X11/vtwm/system.vtwmrc

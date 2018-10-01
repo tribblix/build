@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# flex is broken, so use lex
+#
+sed -i 's:flex lex:lex:' configure

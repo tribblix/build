@@ -1,0 +1,283 @@
+#
+# system.vtwmrc.3D
+# 
+# Default VTWM configuration file; should be kept small to conserve string  
+# space in systems whose compilers don't handle medium-sized strings.
+#
+# Sites should tailor this file, providing any extra title buttons, menus, 
+# etc., that may be appropriate for their environment.  For example, if most    
+# of the users were accustomed to uwm, the defaults could be set up not to 
+# decorate any windows and to use meta-keys.  
+#
+
+#
+# Variables
+#
+
+NoGrabServer
+RestartPreviousState
+NoDefaults
+
+ShowIconManager
+SortIconManager
+IconifyByUnmapping
+
+RightHandSidePulldownMenus
+
+NaturalAutoPanBehavior
+NotVirtualGeometries
+FixManagedVirtualGeometries
+FixTransientVirtualGeometries
+
+ButtonColorIsFrame
+ShallowReliefWindowButton
+
+MoveDelta			3
+
+ResizeRegion			"NorthEast"
+
+FramePadding			2
+ButtonIndent			-2
+TitlePadding			0
+TitleButtonBorderWidth		0
+
+BorderWidth			6
+BorderBevelWidth		2
+ButtonBevelWidth		1
+DoorBevelWidth			1
+IconBevelWidth			2
+IconManagerBevelWidth		1
+InfoBevelWidth			2
+MenuBevelWidth			2
+TitleBevelWidth			1
+VirtualDesktopBevelWidth	1
+
+ClearBevelContrast		40
+DarkBevelContrast		40
+
+VirtualDesktop			"5x2-0-0" 16
+PanDistanceX			100
+PanDistanceY			100
+PanResistance			750
+AutoPan				100
+
+TitleFont		"-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+ResizeFont		"-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+MenuFont		"-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+MenuTitleFont		"-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+DoorFont		"-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*"
+IconFont		"-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*"
+InfoFont		"-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*"
+IconManagerFont		"-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*"
+VirtualDesktopFont	"-adobe-helvetica-medium-r-normal--*-80-*-*-*-*-*-*"
+
+#
+# Lists
+#
+
+NoHighlight
+
+SqueezeTitle
+
+WarpCursor
+
+NailedDown
+{
+	"VTWM *"
+	"xclock"
+	"xload"
+}
+
+NoTitle
+{
+	"VTWM *"
+	"xclock"
+	"xload"
+}
+
+DontShowInDisplay
+{
+	"VTWM *"
+	"xclock"
+	"xload"
+}
+
+IconManagerDontShow
+{
+	"VTWM *"
+	"xclock"
+	"xload"
+}
+
+Pixmaps
+{
+	TitleHighlight		":xpm:sunkenlines"
+	MenuIconPixmap		":xpm:rarrow"
+	IconManagerPixmap	":xpm:box"
+}
+
+Color
+{
+	DefaultBackground		"#20305a"
+	DefaultForeground		"gray85"
+	BorderColor			"gray70"
+	BorderTileBackground		"gray60"
+	BorderTileForeground		"gray60"
+	DoorBackground			"#20305a"
+	DoorForeground			"gray85"
+	TitleBackground			"#20305a"
+	TitleForeground			"gray85"
+	MenuBackground			"#20305a"
+	MenuForeground			"gray85"
+	MenuTitleBackground		"gray70"
+	MenuTitleForeground		"#20305a"
+	IconBackground			"#20305a"
+	IconForeground			"gray85"
+	IconBorderColor			"gray85"
+	IconManagerBackground		"#20305a"
+	IconManagerForeground		"gray85"
+	VirtualBackground		"gray70"
+	VirtualForeground		"black"
+	DesktopDisplayBackground	"gray85"
+	DesktopDisplayForeground	"black"
+        RealScreenBackground            "gray60" 
+}
+
+Monochrome
+{
+	DefaultBackground		"gray50"
+	DefaultForeground		"gray85"
+	BorderColor			"gray70"
+	BorderTileBackground		"gray60"
+	BorderTileForeground		"gray60"
+	DoorBackground			"gray50"
+	DoorForeground			"gray85"
+	TitleBackground			"gray50"
+	TitleForeground			"gray85"
+	MenuBackground			"gray50"
+	MenuForeground			"gray85"
+	MenuTitleBackground		"gray70"
+	MenuTitleForeground		"gray50"
+	IconBackground			"gray50"
+	IconForeground			"gray85"
+	IconBorderColor			"gray85"
+	IconManagerBackground		"gray50"
+	IconManagerForeground		"gray85"
+	VirtualBackground		"gray70"
+	VirtualForeground		"black"
+	DesktopDisplayBackground	"gray85"
+	DesktopDisplayForeground	"black"
+        RealScreenBackground            "gray60" 
+}
+
+#
+# Functions and Bindings
+#
+
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+Function "move-or-raiselower" { f.move f.deltastop f.raiselower }
+Function "warpwindow"         { f.warpsnug f.warp f.warpsnug }
+
+LeftTitleButton ":xpm:darrow" = f.menu "arrange"
+RightTitleButton ":xpm:dot" = f.iconify
+RightTitleButton ":xpm:resize" = f.resize
+
+Button1 = : root : f.version
+Button3 = : root : f.menu "main"
+
+Button1 = : title : f.function "move-or-raiselower"
+Button2 = : title : f.resize
+Button3 = : title : f.raiselower
+
+Button1 = : frame : f.resize
+Button2 = : frame : f.move
+Button3 = : frame : f.iconify
+
+Button1 = : door : f.enterdoor
+Button2 = : door : f.namedoor
+Button3 = : door : f.deletedoor
+
+Button1 = : icon : f.function "move-or-iconify"
+Button3 = : icon : f.menu "arrange"
+
+Button1 = : iconmgr : f.iconify
+Button3 = : iconmgr : f.warp
+
+Button1 = : virtual : f.movescreen
+Button2 = : virtual : f.movescreen
+Button3 = : virtual : f.movescreen
+
+Button1 = : desktop : f.movescreen
+Button2 = : desktop : f.warp                  # morph desktop to window
+Button3 = : desktop : f.function "warpwindow" # morph window to desktop
+
+
+#
+# Menus
+#
+
+menu "main"
+{
+	"  VTWM  "		f.title
+	"Applications"		f.menu "apps"
+	""			f.separator
+	"Operations"		f.menu "ops"
+	"Arrange"		f.menu "arrange"
+	""			f.separator
+	"Restart"		f.restart
+	"Exit"			f.quit
+}
+
+menu "apps"
+{
+	"  Applications  "	f.title
+	"xterm"			f.exec "xterm &"
+	"firefox"		f.exec "firefox &"
+	"xchat"			f.exec "xchat &"
+	"xclock"		f.exec "xclock &"
+}
+
+menu "ops"
+{
+	"  Operations  "	f.title
+	"Auto Pan"		f.autopan
+	"New Door"		f.newdoor
+	"Snap Screen"		f.snaprealscreen
+	"Static Icons"		f.staticiconpositions
+	"Warp Snug"		f.warpsnug
+	"Warp Visible"		f.warpvisible
+	""			f.separator
+	"Show Icon Mgr"		f.showiconmgr
+	"Hide Icon Mgr"		f.hideiconmgr
+	"Show Desktop"		f.showdesktopdisplay
+	"Hide Desktop"		f.hidedesktopdisplay
+	""			f.separator
+	"Refresh"		f.refresh
+}
+
+menu "arrange"
+{
+	"  Arrange  "		f.title
+	"Autoraise"		f.autoraise
+	"Raise"			f.raise
+	"Lower"			f.lower
+	"Nail"			f.nail
+	""			f.separator
+	"Move"			f.move
+	"Size"			f.resize
+	"Iconify"		f.iconify
+	""			f.separator
+	"Full Zoom"		f.fullzoom
+	"Horiz Zoom"		f.horizoom
+	"Vert Zoom"		f.zoom
+	""			f.separator
+	"Left Title"		f.squeezeleft
+	"Center Title"		f.squeezecenter
+	"Right Title"		f.squeezeright
+	""			f.separator
+	"Identify"		f.identify
+	""			f.separator
+	"Delete"		f.delete
+	"Destroy"		f.destroy
+}
+
