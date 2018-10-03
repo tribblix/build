@@ -193,6 +193,10 @@ do
 	${BUILD}/unpack ${UNPACK_FLAGS} ${pkg}
 	if [ "x$DO64" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
+	    if [ ! -d ${pkg}-64bit ]; then
+		echo "Cannot find source directory ${pkg}-64bit"
+		exit 1
+	    fi
 	    if [[ -n $DO_LD ]]; then
 		cd ${pkg}-64bit
 		touch .tribblix_ldopts
@@ -218,6 +222,10 @@ EOF
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
+	    if [ ! -d ${pkg} ]; then
+		echo "Cannot find source directory ${pkg}"
+		exit 1
+	    fi
 	    if [[ -n $DO_LD ]]; then
 		cd ${pkg}
 		touch .tribblix_ldopts
