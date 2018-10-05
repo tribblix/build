@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+nawk '
+{if ($3 ~ /^var\/activemq/) { $6 = "activemq" ; $5 = "activemq" }}
+{print}
+'

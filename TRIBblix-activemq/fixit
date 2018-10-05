@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+
+#
+# need to put the manifest under var for sparse-root zone support
+#
+# disabled for now as it doesn't actually work
+#
+#mkdir -p var/svc/manifest/network
+#cp ${BUILDROOT}/patches/activemq.xml var/svc/manifest/network
+
+#
+# where config and logs live
+#
+mkdir -p var/activemq/logs
+mkdir -p var/activemq/conf
+mkdir -p var/activemq/data
+
+cd opt/tribblix
+#
+# Normalize the directory name
+#
+VERSION="5.15.6"
+mv apache-activemq-${VERSION} activemq
+
+#
+# clean up a bit
+#
+cd activemq
+# copy in a startup wrapper
+# this just sets the environment sanely
+cp ${BUILDROOT}/patches/svc-activemq bin/svc-activemq
+chmod a+x bin/svc-activemq
+
