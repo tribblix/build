@@ -3,6 +3,8 @@
 # checks to see if the claimed dependencies of a package
 # are installed, and shows them
 #
+# also looks for build dependencies and incompatibilities
+#
 # with -q, prints nothing, exits 0 if they are, 1 if they aren't
 #
 # is unreliable on sparc where package names from opensxce are different
@@ -36,11 +38,11 @@ do
 		if pkginfo -q $pkg 2>/dev/null
 		then
 		    if [ -z "$QUIET" ]; then
-			echo "  $pkg .. ok"
+			echo "  runtime $pkg .. ok"
 		    fi
 		else
 		    if [ -z "$QUIET" ]; then
-			echo "  $pkg .. missing"
+			echo " **ERROR** runtime $pkg .. missing"
 		    fi
 		    STATUS=1
 		fi
@@ -49,6 +51,34 @@ do
 	    if [ -z "$QUIET" ]; then
 		echo "  ... no dependencies to check"
 	    fi
+	fi
+	if [ -f ${BDIR}/${dir}/build_require ]; then
+	    for pkg in `cat ${BDIR}/${dir}/build_require`
+	    do
+		if pkginfo -q $pkg 2>/dev/null
+		then
+		    if [ -z "$QUIET" ]; then
+			echo "  build $pkg .. ok"
+		    fi
+		else
+		    if [ -z "$QUIET" ]; then
+			echo " **ERROR** build $pkg .. missing"
+		    fi
+		    STATUS=1
+		fi
+	    done
+	fi
+	if [ -f ${BDIR}/${dir}/build_incompatible ]; then
+	    for pkg in `cat ${BDIR}/${dir}/build_incompatible`
+	    do
+		if pkginfo -q $pkg 2>/dev/null
+		then
+		    if [ -z "$QUIET" ]; then
+			echo "  **ERROR** incompatible build $pkg is installed"
+		    fi
+		    STATUS=1
+		fi
+	    done
 	fi
     else
 	if [ -z "$QUIET" ]; then
