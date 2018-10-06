@@ -1,31 +1,61 @@
 #!/bin/sh
+#
+# checks to see if the claimed dependencies of a package
+# are installed, and shows them
+#
+# with -q, prints nothing, exits 0 if they are, 1 if they aren't
+#
+# is unreliable on sparc where package names from opensxce are different
+#
 
 THOME=${THOME:-/packages/localsrc/Tribblix}
 BDIR=${THOME}/build
 
+QUIET=""
+STATUS=0
+
+if [ "X$1" = "X-q" ]; then
+    QUIET="yes"
+    shift
+fi
+
 for dir in $*
 do
-  if [ -d ${BDIR}/${dir} ]; then
-    if pkginfo -q $dir 2>/dev/null
-    then
-      echo "Checking $dir (installed)"
-    else
-      echo "Checking $dir (not installed)"
-    fi
-    if [ -f ${BDIR}/${dir}/depend ]; then
-      for pkg in `awk '{print $2}' ${BDIR}/${dir}/depend`
-      do
-	if pkginfo -q $pkg 2>/dev/null
-	then
-	  echo "  $pkg .. ok"
-	else
-	  echo "  $pkg .. missing"
+    if [ -d ${BDIR}/${dir} ]; then
+	if [ -z "$QUIET" ]; then
+	    if pkginfo -q $dir 2>/dev/null
+	    then
+		echo "Checking $dir (installed)"
+	    else
+		echo "Checking $dir (not installed)"
+	    fi
 	fi
-      done
+	if [ -f ${BDIR}/${dir}/depend ]; then
+	    for pkg in `awk '{print $2}' ${BDIR}/${dir}/depend`
+	    do
+		if pkginfo -q $pkg 2>/dev/null
+		then
+		    if [ -z "$QUIET" ]; then
+			echo "  $pkg .. ok"
+		    fi
+		else
+		    if [ -z "$QUIET" ]; then
+			echo "  $pkg .. missing"
+		    fi
+		    STATUS=1
+		fi
+	    done
+	else
+	    if [ -z "$QUIET" ]; then
+		echo "  ... no dependencies to check"
+	    fi
+	fi
     else
-      echo "  ... no dependencies to check"
+	if [ -z "$QUIET" ]; then
+	    echo "No such package $dir"
+	fi
+	STATUS=1
     fi
-  else
-    echo "No such package $dir"
-  fi
 done
+
+exit $STATUS
