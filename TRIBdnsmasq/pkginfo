@@ -1,0 +1,4 @@
+PKG="TRIBdnsmasq"
+NAME="Network infrastructure for small networks."
+VERSION="2.79.0"
+ZAP_URL="http://www.thekelleys.org.uk/dnsmasq/doc.html"
