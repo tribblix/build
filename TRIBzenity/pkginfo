@@ -1,4 +1,4 @@
 PKG="TRIBzenity"
 NAME="Zenity - dialog boxes"
-VERSION="2.32.1.0"
+VERSION="2.32.1.1"
 ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/zenity/"
