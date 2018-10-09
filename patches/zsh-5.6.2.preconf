@@ -1,0 +1,3 @@
+#!/bin/sh
+sed -i '/#define _POSIX_C_SOURCE 200809L/d' configure
+sed -i 's:DLLDFLAGS=-G:DLLDFLAGS=-shared:' configure
