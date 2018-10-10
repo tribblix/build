@@ -1,5 +1,9 @@
 #!/bin/sh
 #
+# the version number is a bit arbitrary as we're building from a currnt
+# git checkout, but use the latest release as the pkg version as that's
+# what weed reports itself
+#
 mkdir w
 cd w
 env GOPATH=`pwd` go get github.com/chrislusf/seaweedfs/weed
