@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+
+#
+# copy the man pages
+#
+mkdir -p ${DESTDIR}/usr/share/man/man3xmu
+cp man/*3xmu ${DESTDIR}/usr/share/man/man3xmu
+cp include/X11/Xmu/XmuSolaris.h ${DESTDIR}/usr/include/X11/Xmu

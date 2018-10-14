@@ -1,0 +1,4 @@
+PKG="TRIBx11-libxmuu"
+NAME="libXmuu compat package"
+VERSION="1.1.2.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/lib/"
