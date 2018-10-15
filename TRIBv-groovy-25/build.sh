@@ -2,4 +2,4 @@
 #
 #
 #
-${THOME}/build/pkg_tarball TRIBv-groovy-25 apache-groovy-binary-2.5.2
+${THOME}/build/pkg_tarball TRIBv-groovy-25 apache-groovy-binary-2.5.3
