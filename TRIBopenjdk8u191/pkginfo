@@ -1,0 +1,4 @@
+PKG="TRIBopenjdk8u191"
+NAME="OpenJDK 8u191"
+VERSION="1.8.0.191"
+ZAP_URL="http://openjdk.java.net/"
