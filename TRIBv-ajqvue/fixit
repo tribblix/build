@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# CLI wrapper
+#
+mkdir -p usr/bin
+cat > usr/bin/ajqvue <<EOF
+#!/bin/sh
+java -jar /usr/versions/Ajqvue/Ajqvue.jar "\$@"
+EOF
+chmod a+x usr/bin/ajqvue
+#
+# clean up source
+#
+cd usr/versions/Ajqvue
+rm -f *.sh
+rm -f *.bat
+rm -fr src
+rm -fr test
+rm -fr docs/javadocs
