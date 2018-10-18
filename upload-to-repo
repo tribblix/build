@@ -11,6 +11,7 @@
 STAGE="/tmp/pct"
 REPOHOST="pkgs.tribblix.org"
 REPODIR="/var/repo"
+QUICKMODE=""
 
 REPO="tribblix-m20"
 LREPODIR="${THOME}/pkgs"
@@ -23,6 +24,16 @@ HCREATE="create-catalog-html"
 HFILE="index.html"
 FCREATE="create-file-list"
 FFILE="filelist.bz2"
+
+#
+# with -q avoid the aliases and the file list
+# with many version updates they are unnecessary
+#
+case $1 in
+    -q)
+	QUICKMODE="y"
+	;;
+esac
 
 if [ ! -d "$LREPODIR" ]; then
     echo "Cannot find local repo dir $LREPODIR"
@@ -93,14 +104,18 @@ done
 #
 cd ${THOME}/build
 # FIXME: only create aliases if necessary
-echo "Creating aliases"
-./${ACREATE} > ${LREPODIR}/${AFILE}
+if [ -z "$QUICKMODE" ]; then
+    echo "Creating aliases"
+    ./${ACREATE} > ${LREPODIR}/${AFILE}
+fi
 echo "Creating catalog"
 ./${CCREATE} > ${LREPODIR}/${CFILE}
 echo "Creating html index"
 ./${HCREATE} > ${LREPODIR}/${HFILE}
-echo "Creating file list"
-./${FCREATE} ${LREPODIR}
+if [ -z "$QUICKMODE" ]; then
+    echo "Creating file list"
+    ./${FCREATE} ${LREPODIR}
+fi
 
 #
 # we upload all the relevant files from the staging area
@@ -108,6 +123,10 @@ echo "Creating file list"
 #
 cd $STAGE
 echo "Uploading files"
-scp *.zap *.zap.sig ${LREPODIR}/${AFILE} ${LREPODIR}/${HFILE} ${LREPODIR}/${FFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
+if [ -z "$QUICKMODE" ]; then
+    scp *.zap *.zap.sig ${LREPODIR}/${AFILE} ${LREPODIR}/${HFILE} ${LREPODIR}/${FFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
+else
+    scp *.zap *.zap.sig ${LREPODIR}/${HFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
+fi
 cd $THOME
 /bin/rm -fr $STAGE
