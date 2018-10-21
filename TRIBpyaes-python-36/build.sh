@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pyaes-1.6.0
-cd pyaes-1.6.0
+${THOME}/build/unpack pyaes-1.6.1
+cd pyaes-1.6.1
 /usr/versions/python-3.6/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.6/bin/python3 setup.py install --root=/tmp/pil
