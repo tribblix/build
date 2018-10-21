@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack httplib2-0.10.3
-cd httplib2-0.10.3
+${THOME}/build/unpack httplib2-0.11.3
+cd httplib2-0.11.3
 /usr/versions/python-3.6/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.6/bin/python3 setup.py install --root=/tmp/pil
