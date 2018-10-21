@@ -1,4 +1,4 @@
 PKG="TRIBjmespath-python-27"
 NAME="Python jmespath"
 VERSION="0.9.3.0"
-ZAP_URL="https://pypi.python.org/pypi/jmespath"
+ZAP_URL="https://pypi.org/project/jmespath"

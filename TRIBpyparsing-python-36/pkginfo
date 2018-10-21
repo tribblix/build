@@ -1,4 +1,4 @@
 PKG="TRIBpyparsing-python-36"
 NAME="Python pyparsing"
 VERSION="2.2.0.0"
-ZAP_URL="https://pypi.python.org/pypi/pyparsing"
+ZAP_URL="https://pypi.org/project/pyparsing"

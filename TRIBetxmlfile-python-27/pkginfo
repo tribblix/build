@@ -1,4 +1,4 @@
 PKG="TRIBetxmlfile-python-27"
 NAME="Python et_xmlfile"
 VERSION="1.0.1.0"
-ZAP_URL="https://pypi.python.org/pypi/et_xmlfile"
+ZAP_URL="https://pypi.org/project/et_xmlfile"

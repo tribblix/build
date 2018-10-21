@@ -1,4 +1,4 @@
 PKG="TRIBsubprocess32-python-27"
 NAME="Python subprocess32"
 VERSION="3.2.7.0"
-ZAP_URL="https://pypi.python.org/pypi/subprocess32"
+ZAP_URL="https://pypi.org/project/subprocess32"

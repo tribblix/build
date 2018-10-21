@@ -1,4 +1,4 @@
 PKG="TRIBcffi-python-27"
 NAME="Python cffi"
 VERSION="1.11.5.0"
-ZAP_URL="https://pypi.python.org/pypi/cffi"
+ZAP_URL="https://pypi.org/project/cffi"

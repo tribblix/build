@@ -1,4 +1,4 @@
 PKG="TRIBpysocks-python-36"
 NAME="Python PySocks"
 VERSION="1.6.7.0"
-ZAP_URL="https://pypi.python.org/pypi/PySocks"
+ZAP_URL="https://pypi.org/project/PySocks"

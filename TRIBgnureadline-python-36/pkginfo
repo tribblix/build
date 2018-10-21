@@ -1,4 +1,4 @@
 PKG="TRIBgnureadline-python-36"
 NAME="Python gnureadline"
 VERSION="6.3.3.0"
-ZAP_URL="https://pypi.python.org/pypi/gnureadline"
+ZAP_URL="https://pypi.org/project/gnureadline"

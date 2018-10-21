@@ -1,4 +1,4 @@
 PKG="TRIBidna-python-36"
 NAME="Python idna"
 VERSION="2.5.0"
-ZAP_URL="https://pypi.python.org/pypi/idna"
+ZAP_URL="https://pypi.org/project/idna"

@@ -1,4 +1,4 @@
 PKG="TRIBhttpie-python-36"
 NAME="Python httpie"
 VERSION="0.9.9.0"
-ZAP_URL="https://pypi.python.org/pypi/httpie"
+ZAP_URL="https://pypi.org/project/httpie"

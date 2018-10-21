@@ -1,4 +1,4 @@
 PKG="TRIBvobject-python-36"
 NAME="Python vobject"
 VERSION="0.9.5.0"
-ZAP_URL="https://pypi.python.org/pypi/vobject"
+ZAP_URL="https://pypi.org/project/vobject"

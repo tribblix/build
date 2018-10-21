@@ -1,4 +1,4 @@
 PKG="TRIBopenpyxl-python-36"
 NAME="Python openpyxl"
 VERSION="2.5.0b1.0"
-ZAP_URL="https://pypi.python.org/pypi/openpyxl"
+ZAP_URL="https://pypi.org/project/openpyxl"
