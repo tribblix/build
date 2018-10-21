@@ -3,8 +3,8 @@
 # needs libtool installed
 # zap install libtool
 #
-${THOME}/build/unpack pyjq-2.1.0
-cd pyjq-2.1.0
+${THOME}/build/unpack pyjq-2.2.0
+cd pyjq-2.2.0
 #
 # oh dear
 #
