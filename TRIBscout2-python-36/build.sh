@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack AWSScout2-3.2.0
-cd AWSScout2-3.2.0
+${THOME}/build/unpack AWSScout2-3.2.1
+cd AWSScout2-3.2.1
 /usr/versions/python-3.6/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.6/bin/python3 setup.py install --root=/tmp/pil
