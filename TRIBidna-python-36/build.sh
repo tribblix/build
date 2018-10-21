@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack idna-2.5
-cd idna-2.5
+${THOME}/build/unpack idna-2.7
+cd idna-2.7
 /usr/versions/python-3.6/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.6/bin/python3 setup.py install --root=/tmp/pil
