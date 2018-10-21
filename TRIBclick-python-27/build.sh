@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack click-6.7
-cd click-6.7
+${THOME}/build/unpack Click-7.0
+cd Click-7.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
