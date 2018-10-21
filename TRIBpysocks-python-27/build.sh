@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack PySocks-1.6.7
-cd PySocks-1.6.7
+${THOME}/build/unpack PySocks-1.6.8
+cd PySocks-1.6.8
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
