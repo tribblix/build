@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack humanfriendly-4.12.1
-cd humanfriendly-4.12.1
+${THOME}/build/unpack humanfriendly-4.17
+cd humanfriendly-4.17
 /usr/versions/python-3.6/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.6/bin/python3 setup.py install --root=/tmp/pil
