@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack gixy-0.1.9
-cd gixy-0.1.9
+${THOME}/build/unpack gixy-0.1.20
+cd gixy-0.1.20
 python setup.py build
 rm -fr /tmp/sut
 python setup.py install --root=/tmp/sut
