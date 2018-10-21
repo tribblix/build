@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pytoml-0.1.13
-cd pytoml-0.1.13
+${THOME}/build/unpack pytoml-0.1.19
+cd pytoml-0.1.19
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
