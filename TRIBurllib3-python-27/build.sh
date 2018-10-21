@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack urllib3-1.23
-cd urllib3-1.23
+${THOME}/build/unpack urllib3-1.24
+cd urllib3-1.24
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
