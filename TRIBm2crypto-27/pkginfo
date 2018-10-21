@@ -1,4 +1,4 @@
 PKG="TRIBm2crypto-27"
 NAME="A Python crypto and SSL toolkit"
-VERSION="0.25.1.0"
+VERSION="0.30.1.0"
 ZAP_URL="https://pypi.org/project/M2Crypto"
