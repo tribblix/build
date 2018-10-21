@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pandas-0.22.0
-cd pandas-0.22.0
+${THOME}/build/unpack pandas-0.23.4
+cd pandas-0.23.4
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
