@@ -8,6 +8,8 @@
 PY2VER=27
 PY3VER=36
 PY3DVER=3.6
+PY37VER=37
+PY37DVER=3.7
 
 case $# in
 2)
@@ -22,6 +24,7 @@ esac
 
 PY2NAME=TRIB${pkg_name}-python-${PY2VER}
 PY3NAME=TRIB${pkg_name}-python-${PY3VER}
+PY37NAME=TRIB${pkg_name}-python-${PY37VER}
 
 if [ -d "$PY2NAME" ]; then
    echo "$PY2NAME already exists"
@@ -29,6 +32,10 @@ if [ -d "$PY2NAME" ]; then
 fi
 if [ -d "$PY3NAME" ]; then
    echo "$PY3NAME already exists"
+   exit 1
+fi
+if [ -d "$PY37NAME" ]; then
+   echo "$PY37NAME already exists"
    exit 1
 fi
 
@@ -41,6 +48,10 @@ PVER=${TBALL##*-}
 
 #
 # OK, now we can create the package metadata
+#
+
+#
+# python 2.7
 #
 mkdir $PY2NAME
 echo "P TRIBv-python-$PY2VER" > $PY2NAME/depend
@@ -64,6 +75,9 @@ rm -fr /tmp/pil
 EOF
 chmod a+x $PY2NAME/build.sh
 
+#
+# python 3.6
+#
 mkdir $PY3NAME
 echo "P TRIBv-python-$PY3VER" > $PY3NAME/depend
 cat > $PY3NAME/pkginfo <<EOF
@@ -81,6 +95,30 @@ cd $TBALL
 rm -fr /tmp/pil
 /usr/versions/python-${PY3DVER}/bin/python3 setup.py install --root=/tmp/pil
 \${THOME}/build/create_pkg $PY3NAME /tmp/pil
+cd ..
+rm -fr /tmp/pil
+EOF
+
+#
+# python 3.7
+#
+mkdir $PY37NAME
+echo "P TRIBv-python-$PY37VER" > $PY37NAME/depend
+cat > $PY37NAME/pkginfo <<EOF
+PKG="${PY37NAME}"
+NAME="Python $PNAME"
+VERSION="${PVER}.0"
+ZAP_URL="https://pypi.org/project/${PNAME}"
+EOF
+cat > $PY37NAME/build.sh <<EOF
+#!/bin/sh
+#
+\${THOME}/build/unpack $TBALL
+cd $TBALL
+/usr/versions/python-${PY37DVER}/bin/python3 setup.py build
+rm -fr /tmp/pil
+/usr/versions/python-${PY37DVER}/bin/python3 setup.py install --root=/tmp/pil
+\${THOME}/build/create_pkg $PY37NAME /tmp/pil
 cd ..
 rm -fr /tmp/pil
 EOF
