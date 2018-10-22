@@ -1,0 +1,4 @@
+PKG="TRIBchardet-python-37"
+NAME="Python chardet"
+VERSION="3.0.4.0"
+ZAP_URL="https://pypi.org/project/chardet"

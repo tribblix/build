@@ -1,0 +1,4 @@
+PKG="TRIBboto-python-37"
+NAME="Boto - Amazon Web Services Library"
+VERSION="2.48.0.0"
+ZAP_URL="https://pypi.org/project/boto"

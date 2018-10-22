@@ -1,0 +1,4 @@
+PKG="TRIBbabel-python-37"
+NAME="Python Babel"
+VERSION="2.6.0.0"
+ZAP_URL="https://pypi.org/project/Babel"

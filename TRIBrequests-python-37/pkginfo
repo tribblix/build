@@ -1,0 +1,4 @@
+PKG="TRIBrequests-python-37"
+NAME="Python requests"
+VERSION="2.17.3.0"
+ZAP_URL="https://pypi.org/project/requests"

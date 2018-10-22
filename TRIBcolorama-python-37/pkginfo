@@ -1,0 +1,4 @@
+PKG="TRIBcolorama-python-37"
+NAME="Python colarama"
+VERSION="0.4.0.0"
+ZAP_URL="https://pypi.org/project/colorama"

@@ -1,0 +1,4 @@
+PKG="TRIBpyscrypt-python-37"
+NAME="Python pyscrypt"
+VERSION="1.6.2.0"
+ZAP_URL="https://pypi.org/project/pyscrypt"
