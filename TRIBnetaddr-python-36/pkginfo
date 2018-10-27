@@ -1,4 +1,0 @@
-PKG="TRIBnetaddr-python-36"
-NAME="Python netaddr"
-VERSION="0.7.19.0"
-ZAP_URL="https://pypi.org/project/netaddr"
