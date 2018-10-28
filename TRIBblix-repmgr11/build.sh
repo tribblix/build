@@ -5,5 +5,5 @@
 # the tarball name doesn't match the version number
 # mv repmgr-4.2.tar.gz repmgr-4.2.0.tar.gz
 #
-${THOME}/build/dobuild repmgr-4.2.0 -C PG_CONFIG=/opt/tribblix/postgres96/bin/pg_config
-${THOME}/build/genpkg TRIBblix-repmgr96 repmgr-4.2.0
+${THOME}/build/dobuild repmgr-4.2.0 -C PG_CONFIG=/opt/tribblix/postgres11/bin/pg_config
+${THOME}/build/genpkg TRIBblix-repmgr11 repmgr-4.2.0
