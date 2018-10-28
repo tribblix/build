@@ -1,4 +1,0 @@
-PKG="TRIBoauth2client-python-36"
-NAME="Python oauth2client"
-VERSION="4.1.3.0"
-ZAP_URL="https://pypi.org/project/oauth2client"

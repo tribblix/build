@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# put a conveneience link in the normal PATH
-#
-mkdir -p usr/bin
-cd usr/bin
-ln -s ../../usr/versions/python-3.6/bin/container-transform .

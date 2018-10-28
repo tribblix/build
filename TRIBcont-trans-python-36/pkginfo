@@ -1,4 +1,0 @@
-PKG="TRIBcont-trans-python-36"
-NAME="Python container-transform"
-VERSION="1.1.5.0"
-ZAP_URL="https://pypi.org/project/container-transform"
