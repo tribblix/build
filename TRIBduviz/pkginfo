@@ -1,4 +1,4 @@
 PKG="TRIBduviz"
 NAME="ASCII art disk usage visualization"
-VERSION="1.0.0"
+VERSION="1.1.0"
 ZAP_URL="http://stefaanlippens.net/duviz/"

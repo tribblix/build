@@ -6,6 +6,7 @@ cd /tmp/dvp/usr/bin
 wget https://raw.github.com/soxofaan/duviz/master/duviz.py
 ln -s duviz.py duviz
 chmod a+x duviz.py
+sed -i 's:/usr/bin/env python:/usr/bin/python3.7:' duviz.py
 ${THOME}/build/create_pkg TRIBduviz /tmp/dvp
 cd
 rm -fr /tmp/dvp
