@@ -1,4 +1,0 @@
-PKG="TRIBparamiko-python-36"
-NAME="Python paramiko"
-VERSION="2.4.2.0"
-ZAP_URL="https://pypi.org/project/paramiko"

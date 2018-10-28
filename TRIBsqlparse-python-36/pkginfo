@@ -1,4 +1,0 @@
-PKG="TRIBsqlparse-python-36"
-NAME="Python sqlparse"
-VERSION="0.2.4.0"
-ZAP_URL="https://pypi.org/project/sqlparse"

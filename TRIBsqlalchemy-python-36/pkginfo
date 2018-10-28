@@ -1,4 +1,0 @@
-PKG="TRIBsqlalchemy-python-36"
-NAME="Python SQLAlchemy"
-VERSION="1.2.12.0"
-ZAP_URL="https://pypi.org/project/SQLAlchemy"
