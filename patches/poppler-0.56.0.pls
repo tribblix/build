@@ -1,0 +1,8 @@
+-p1 poppler/01-CVE-2017-14517.patch
+-p1 poppler/02-CVE-2017-14519.patch
+-p1 poppler/03-CVE-2017-15565.patch
+-p1 poppler/04-CVE-2017-1000456.patch
+-p1 poppler/05-CVE-2017-14976.patch
+-p1 poppler/06-CVE-2017-14977.patch
+-p1 poppler/07-CVE-2017-18267.patch
+-p1 poppler/08-CVE-2018-13988.patch
