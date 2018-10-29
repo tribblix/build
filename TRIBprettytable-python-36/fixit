@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# the egg seems to be mode 0600
-#
-chmod -R a+r usr/versions
