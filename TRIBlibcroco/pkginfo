@@ -1,3 +1,4 @@
 PKG="TRIBlibcroco"
 NAME="GNOME libcroco 0.6.8"
 VERSION="0.6.8.1"
+ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/libcroco/"

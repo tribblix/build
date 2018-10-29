@@ -1,3 +1,4 @@
 PKG="TRIBlib-desktop-atkmm"
 NAME="Accessibility Toolkit C++ bindings"
 VERSION="2.22.7.0"
+ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/atkmm/"
