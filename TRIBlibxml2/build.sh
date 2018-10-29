@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# we build TRIBlibxml2-python at the same time
+# we build TRIBlibxml2-python-* at the same time
 #
 # ***MUST have libtool installed or -nostdlib won't take***
 #
@@ -17,10 +17,10 @@ cd ../..
 
 rm -fr /tmp/lxp
 cd libxml2-2.9.5/python
-/usr/versions/python-3.6/bin/python3 setup.py build
-/usr/versions/python-3.6/bin/python3 setup.py install --root=/tmp/lxp
-${THOME}/build/create_pkg TRIBlibxml2-python-36 /tmp/lxp
-/usr/versions/python-3.6/bin/python3 setup.py clean
+/usr/versions/python-3.7/bin/python3 setup.py build
+/usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/lxp
+${THOME}/build/create_pkg TRIBlibxml2-python-37 /tmp/lxp
+/usr/versions/python-3.7/bin/python3 setup.py clean
 cd ../..
 
 rm -fr /tmp/lxp
