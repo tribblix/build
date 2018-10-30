@@ -1,16 +1,18 @@
 #!/bin/tcsh
 #
 # You first need to download the tarballs
-# this method from BLFS
 #
-# are we now a single tarball? it's 85M or so, bzipped
+# now a single tarball - it's 85M or so, bzipped
+#
+# initial 11 release:
+# wget http://hg.openjdk.java.net/jdk/jdk11/archive/jdk-11+28.tar.bz2
 #
 cd /tmp
-wget http://hg.openjdk.java.net/jdk/jdk11/archive/jdk-11+28.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.1+13.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-11+28
-cd jdk11-jdk-11+28
+${THOME}/build/unpack jdk-11.0.1+13
+cd jdk11u-jdk-11.0.1+13
 
 #
 # We need a copy of libsoftcrypto.h
@@ -68,31 +70,11 @@ zap install autoconf
 # "/usr/include/sys/devpoll.h", line 58: error:
 #         syntax error before or at: sigset_t
 #
-# next try including signal.h explicitly#
-# now fails on
+# need to #include <signal.h> explicitly in DevPollArrayWrapper.c
+#
+# and
 # src/java.desktop/share/native/libfontmanager/harfbuzz/hb-blob.cc
 # the POSIX+C_SOURCE thing is broken - set it to 199506L
-#
-# --with-extra-cflags=-D__XOPEN_OR_POSIX
-# --with-extra-cxxflags=-D__XOPEN_OR_POSIX
-#
-# maybe not, that gives:
-#
-# "/usr/include/sys/ucontext.h", line 85: Error: stack_t is not defined.
-# "/usr/include/sys/lwp.h", line 51: Error: timestruc_t is not defined.
-# "/usr/include/sys/lwp.h", line 52: Error: timestruc_t is not defined.
-# "/usr/include/dlfcn.h", line 78: Error: mmapobj_result_t is not defined.
-# "/usr/include/thread.h", line 75: Error: stack_t is not defined.
-# "/usr/include/thread.h", line 75: Error: Operand expected instead of ")".
-# "/usr/include/ucontext.h", line 76: Error: stack_t is not defined.
-# ...
-#
-#
-# try
-# --with-extra-cflags="-D__XOPEN_OR_POSIX -D__EXTENSIONS__"
-# --with-extra-cxxflags="-D__XOPEN_OR_POSIX -D__EXTENSIONS__"
-#
-# Ugh, nope. Back to the original error.
 #
 
 #
@@ -130,21 +112,9 @@ env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k 
 #
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "11-internal" 2018-09-25
-# OpenJDK Runtime Environment (build 11-internal+0-adhoc.ptribble.jdk11-jdk-1128)
-# OpenJDK 64-Bit Server VM (build 11-internal+0-adhoc.ptribble.jdk11-jdk-1128, mixed mode)
-#
-
-
-#
-# there's a new wrinkle in jdk10. If you put it in /usr/version it fails
-#  java.lang.NullPointerException: native ops missing
-#     at java.desktop/sun.java2d.xr.XRSurfaceData.freeXSDOPicture(Native Method)
-#
-# this appears to be an issue wherever it goes if it's that many levels
-# deep in the hierarchy, so need to move it up or down a level
-#
-# until resolved, put it directly in /usr
+# openjdk version "11.0.1-internal" 2018-10-16
+# OpenJDK Runtime Environment (build 11.0.1-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.113)
+# OpenJDK 64-Bit Server VM (build 11.0.1-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.113, mixed mode)
 #
 
 rm -fr /tmp/jdk
@@ -155,7 +125,7 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk11 jdk11
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk11 .
-#jdk11 is unreleased, this is just for build/test so it's never "latest"
+#jdk11 isn't widely supported, so don't make it the default
 #ln -s openjdk11 latest
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin
@@ -167,17 +137,19 @@ rm `find . -name '*.diz'`
 #
 # need to create a certificate bundle
 #
-# the jdk10 build appears to create a working one, so leave it be
+# the jdk11 build appears to create a working one, so leave it be
 #
 # this actually needs to be a JKS keystore, not a PKCS12 keystore
 # https://bugs.launchpad.net/ubuntu/+source/ca-certificates-java/+bug/1739631
 #
 #${THOME}/build/patches/mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /usr/jdk/instances/jdk1.8.0/bin/keytool -s /usr/bin/openssl
 #
-#cp /tmp/cacerts /tmp/jdk/usr/openjdk10/lib/security
+#cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk11/lib/security
 
 #
-# edit .../conf/security/sunpkcs11-solaris.cfg and add the following to disabledMechanisms
+# edit conf/security/sunpkcs11-solaris.cfg and add the following to disabledMechanisms
+#
+# again, doesn't seem to be necessary
 #
 # # the following mechanisms are disabled due to lack of digest cloning support
 # # need to fix 6414899 first
