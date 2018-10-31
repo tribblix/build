@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# needs libtool installed
+# needs autoconf automake libtool installed
 # zap install libtool
 #
 ${THOME}/build/unpack pyjq-2.2.0
