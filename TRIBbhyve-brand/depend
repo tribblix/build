@@ -2,4 +2,4 @@ P TRIBdev-acpi-compiler
 P TRIBsys-bhyve
 P TRIBsys-bhyve-firmware
 P TRIBsys-zones
-P TRIBv-python-36
+P TRIBv-python-37
