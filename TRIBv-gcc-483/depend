@@ -1,5 +1,5 @@
 P SUNWcs
 P TRIBgcc4runtime
+P TRIBsys-header
 P TRIBsys-lib-math
 P TRIBsys-library
-P TRIBsys-header

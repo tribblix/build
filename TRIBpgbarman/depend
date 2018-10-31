@@ -1,7 +1,7 @@
-P TRIBv-python-27
-P TRIBargparse-python-27
-P TRIBargh-python-27
 P TRIBargcomplete-python-27
+P TRIBargh-python-27
+P TRIBargparse-python-27
+P TRIBblix-postgres96
 P TRIBdateutil-python-27
 P TRIBpsycopg2-27
-P TRIBblix-postgres96
+P TRIBv-python-27
