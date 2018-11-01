@@ -1,0 +1,4 @@
+PKG="TRIBfunctools32-python-27"
+NAME="Python functools32-3.2.3"
+VERSION="2.0"
+ZAP_URL="https://pypi.org/project/functools32-3.2.3"
