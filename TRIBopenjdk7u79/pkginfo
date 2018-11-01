@@ -1,4 +1,0 @@
-PKG="TRIBopenjdk7u79"
-NAME="OpenJDK 7u79"
-VERSION="1.7.0.79"
-ZAP_URL="http://openjdk.java.net/"
