@@ -10,7 +10,7 @@
 # when default, update alias and reinstate /usr/bin links
 #
 rm -fr go
-${THOME}/build/unpack go1.11.1.src
+${THOME}/build/unpack go1.11.2.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.11 GOROOT_BOOTSTRAP=/usr/versions/go-1.10 ./all.bash
 cd ..
