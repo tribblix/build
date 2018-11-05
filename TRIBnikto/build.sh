@@ -8,6 +8,7 @@ mkdir -p /tmp/ckx/usr/share/man/man1
 cd /tmp/ckx/usr/versions
 #
 # no real versions after 2.1.6, so just take a git checkout
+# it still claims 2.1.6 as the version, though
 #
 git clone https://github.com/sullo/nikto.git nikto
 mv nikto nikto.raw
