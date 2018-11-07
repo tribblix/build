@@ -1,0 +1,4 @@
+PKG="TRIBdev-illumos-gcc7"
+NAME="Illumos GCC 7"
+VERSION="7.3.0.1.0"
+ZAP_URL="https://github.com/illumos/gcc"
