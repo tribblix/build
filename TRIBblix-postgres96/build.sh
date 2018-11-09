@@ -2,10 +2,5 @@
 #
 # postgres 9.6
 #
-${THOME}/build/newbuild.sh build TRIBblix-postgres96
-cd postgresql-9.6.10
-rm -fr /tmp/pp
-gmake install-world DESTDIR=/tmp/pp
-${THOME}/build/create_pkg TRIBblix-postgres96 /tmp/pp
-cd ..
-rm -fr /tmp/pp
+${THOME}/build/dobuild -P /opt/tribblix/postgres96 postgresql-9.6.11 -C --without-readline -M world
+${THOME}/build/genpkg -I install-world TRIBblix-postgres96 postgresql-9.6.11
