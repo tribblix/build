@@ -6,12 +6,12 @@
 #
 # this is the version of pg_back
 #
-VERSION=1.6
+VERSION=1.7
 
 #
 # this is the default version of postgres we target
 #
-PGVERSION=96
+PGVERSION=11
 
 $THOME/build/unpack pg_back-${VERSION}
 
