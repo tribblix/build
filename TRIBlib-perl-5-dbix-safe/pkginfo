@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-dbix-safe"
+NAME="Perl DBIx-Safe module"
+VERSION="1.2.5.0"
+ZAP_URL="https://bucardo.org/DBIx-Safe/"
