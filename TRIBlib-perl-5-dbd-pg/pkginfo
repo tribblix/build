@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-dbd-pg"
 NAME="Perl DBD::Pg module"
-VERSION="3.5.3.1"
-ZAP_URL="http://search.cpan.org/~turnstep/DBD-Pg-3.5.3/"
+VERSION="3.7.4.0"
+ZAP_URL="http://search.cpan.org/~turnstep/DBD-Pg-3.7.4/"
