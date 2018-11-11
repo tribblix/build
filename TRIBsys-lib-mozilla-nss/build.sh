@@ -6,12 +6,12 @@
 # reflect the bare nss version so it has the same name as the directory it
 # unpacks into, else the patches won't get applied
 #
-# ln -s nss-3.32-with-nspr-4.16.tar.gz	nss-3.32.tar.gz
+# ln -s nss-3.40-with-nspr-4.20.tar.gz	nss-3.40.tar.gz
 #
 # build using the system sqlite, as the in-tree one gets built incorrectly
 #
-${THOME}/build/unpack nss-3.32
-cd nss-3.32/nss
+${THOME}/build/unpack nss-3.40
+cd nss-3.40/nss
 gmake NSS_USE_SYSTEM_SQLITE=1 BUILD_OPT=1 NS_USE_GCC=1 NO_MDUPDATE=1 NSDISTMODE=copy nss_build_all
 gmake NSS_USE_SYSTEM_SQLITE=1 BUILD_OPT=1 NS_USE_GCC=1 NO_MDUPDATE=1 NSDISTMODE=copy USE_64=1 nss_build_all
 ${THOME}/build/genpkg TRIBlib-nspr

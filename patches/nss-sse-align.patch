@@ -1,0 +1,57 @@
+
+GCC optimises the memcpy() instruction in this function to use SSE
+instructions - in particular it introduces movaps which requires
+16-byte aligned arguments..
+
+However, in 32-bit, the stack is only 8-byte aligned so there is no
+guarantee that the local newIV variable will be properly aligned.
+
+This was causing crashes in /usr/sbin/nscd with ldap enabled in
+nsswitch.conf with the following stack trace:
+
+	libfreebl3.so`rijndael_decryptCBC+0x23
+	libfreebl3.so`AES_Decrypt+0x5b
+	libsoftokn3.so`AES_Decrypt+0x37
+	libsoftokn3.so`NSC_DecryptUpdate+0xce
+	libnss3.so`PK11_CipherOp+0x15a
+	libssl3.so`ssl3_HandleRecord+0x89f
+	libssl3.so`ssl3_GatherCompleteHandshake+0x263
+	libssl3.so`ssl3_GatherAppDataRecord+0x34
+	libssl3.so`ssl_SecureRecv+0x2a3
+	libssl3.so`ssl_Recv+0x57
+	libnspr4.so`PR_Recv+0x1b
+	libldap.so.5`prldap_read+0x33
+	... elided ...
+
+From GCC documentation:
+
+	force_align_arg_pointer
+
+	On x86 targets, the force_align_arg_pointer attribute may be applied
+	to individual function definitions, generating an alternate prologue
+	and epilogue that realigns the run-time stack if necessary. This
+	supports mixing legacy codes that run with a 4-byte aligned stack with
+	modern codes that keep a 16-byte stack for SSE compatibility.
+
+diff -wpruN '--exclude=*.orig' a~/nss/lib/freebl/gcm.c a/nss/lib/freebl/gcm.c
+--- a~/nss/lib/freebl/gcm.c	1970-01-01 00:00:00
++++ a/nss/lib/freebl/gcm.c	1970-01-01 00:00:00
+@@ -220,6 +220,7 @@ bmul32(uint32_t x, uint32_t y, uint32_t
+     *r_low = (uint32_t)z;
+ }
+ 
++__attribute__((force_align_arg_pointer))
+ SECStatus
+ gcm_HashMult_sftw32(gcmHashContext *ghash, const unsigned char *buf,
+                     unsigned int count)
+diff -wpruN '--exclude=*.orig' a~/nss/lib/freebl/rijndael.c a/nss/lib/freebl/rijndael.c
+--- a~/nss/lib/freebl/rijndael.c	1970-01-01 00:00:00
++++ a/nss/lib/freebl/rijndael.c	1970-01-01 00:00:00
+@@ -760,6 +760,7 @@ rijndael_decryptECB(AESContext *cx, unsi
+     return SECSuccess;
+ }
+ 
++__attribute__((force_align_arg_pointer))
+ static SECStatus
+ rijndael_decryptCBC(AESContext *cx, unsigned char *output,
+                     unsigned int *outputLen, unsigned int maxOutputLen,

@@ -1,0 +1,11 @@
+--- a/nss/coreconf/SunOS5.mk	Sun Nov 11 13:34:51 2018
++++ b/nss/coreconf/SunOS5.mk	Sun Nov 11 13:39:02 2018
+@@ -34,7 +34,7 @@
+ 
+ ifdef NS_USE_GCC
+ 	CC         = gcc
+-	OS_CFLAGS += -Wall -Wno-format -Werror-implicit-function-declaration -Wno-switch
++	OS_CFLAGS += -Wall -Wno-format -Werror-implicit-function-declaration -Wno-switch -std=gnu99
+ 	CCC        = g++
+ 	CCC       += -Wall -Wno-format
+ 	ASFLAGS	  += -x assembler-with-cpp

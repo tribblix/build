@@ -14,6 +14,15 @@ case $# in
 	;;
 esac
 
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 if [ ! -d "${DESTDIR}" ]; then
    mkdir -p ${DESTDIR}
 fi
@@ -28,12 +37,13 @@ fi
 #
 # also assume we're in the nss directory that the build ran from
 #
-mkdir -p ${DESTDIR}/usr/lib/mps/amd64
-ln -s amd64 ${DESTDIR}/usr/lib/mps/64
-mkdir -p ${DESTDIR}/usr/lib/mps/secv1/amd64
-ln -s amd64 ${DESTDIR}/usr/lib/mps/secv1/64
+mkdir -p ${DESTDIR}/usr/lib/mps/${ARCH64}
+ln -s ${ARCH64} ${DESTDIR}/usr/lib/mps/64
+mkdir -p ${DESTDIR}/usr/lib/mps/secv1/${ARCH64}
+ln -s ${ARCH64} ${DESTDIR}/usr/lib/mps/secv1/64
 mkdir -p ${DESTDIR}/usr/include/mps
 mkdir -p ${DESTDIR}/usr/lib/pkgconfig
+mkdir -p ${DESTDIR}/usr/lib/${ARCH64}/pkgconfig
 
 NSARCH=`uname -m`
 OBJDIR32=SunOS5.11_${NSARCH}_gcc_OPT.OBJ
@@ -43,8 +53,8 @@ for file in libnspr4.so libplc4.so libplds4.so
 do
     cp ../dist/${OBJDIR32}/lib/$file ${DESTDIR}/usr/lib/mps
     ln -s ../$file ${DESTDIR}/usr/lib/mps/secv1
-    cp ../dist/${OBJDIR64}/lib/$file ${DESTDIR}/usr/lib/mps/amd64
-    ln -s ../../amd64/$file ${DESTDIR}/usr/lib/mps/secv1/amd64
+    cp ../dist/${OBJDIR64}/lib/$file ${DESTDIR}/usr/lib/mps/${ARCH64}
+    ln -s ../../${ARCH64}/$file ${DESTDIR}/usr/lib/mps/secv1/${ARCH64}
 done
 
 cd ../dist/${OBJDIR32}/include
@@ -58,7 +68,20 @@ includedir=/usr/include/mps
 
 Name: NSPR
 Description: The Netscape Portable Runtime
-Version: 4.16
+Version: 4.20
 Libs: -L/usr/lib/mps -R/usr/lib/mps -lplds4 -lplc4 -lnspr4
+Cflags: -I/usr/include/mps
+EOF
+
+cat >> ${DESTDIR}/usr/lib/${ARCH64}/pkgconfig/nspr.pc <<EOF
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib/mps/${ARCH64}
+includedir=/usr/include/mps
+
+Name: NSPR
+Description: The Netscape Portable Runtime
+Version: 4.20
+Libs: -L/usr/lib/mps/${ARCH64} -R/usr/lib/mps/${ARCH64} -lplds4 -lplc4 -lnspr4
 Cflags: -I/usr/include/mps
 EOF
