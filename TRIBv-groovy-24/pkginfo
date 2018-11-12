@@ -1,4 +1,4 @@
 PKG="TRIBv-groovy-24"
 NAME="Groovy - A dynamic language for the Java platform"
-VERSION="2.4.15.0"
+VERSION="2.4.15.1"
 ZAP_URL="http://www.groovy-lang.org/"
