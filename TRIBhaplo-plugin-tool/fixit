@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# check out the haplo plugin tool
+#
+mkdir -p usr/bin
+mkdir -p usr/versions
+
+
+cd usr/versions
+
+#
+# this is the tool itself
+#
+git clone https://github.com/haplo-org/haplo-plugin-tool
+
+#
+# we need a copy of haplo only for the build
+#
+git clone https://github.com/haplo-org/haplo
+
+cd haplo-plugin-tool
+./fetch_rhino.sh
+./build_haplo_templates.sh `pwd`/../haplo
+cd ..
+chmod a+x haplo-plugin-tool/bin/haplo-plugin
+#
+# it really is jruby we want
+#
+sed -i 's:#!/usr/bin/env ruby:#!/usr/bin/env jruby:' haplo-plugin-tool/bin/haplo-plugin
+
+#
+# delete the temporary haplo checkout
+#
+rm -fr haplo
+
+cd ../bin
+
+#
+# a symlink doesn't work because the script resolves it
+#
+
+cat > haplo-plugin <<_EOF
+#!/bin/sh
+exec /usr/versions/haplo-plugin-tool/bin/haplo-plugin "\$@"
+_EOF
+chmod a+x haplo-plugin
