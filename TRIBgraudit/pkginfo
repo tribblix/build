@@ -1,0 +1,4 @@
+PKG="TRIBgraudit"
+NAME="grep rough audit - source code auditing tool"
+VERSION="0.0"
+ZAP_URL="https://github.com/wireghoul/graudit/"
