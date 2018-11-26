@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# the docs largely duplicate the man pages
+#
+rm -fr usr/gnu/share/doc/parallel
