@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#
+# that really isn't the right place to put it
+#
+mv usr/local/share usr/share
+rmdir usr/local
+
+#
+# standard links
+#
+/bin/rm -fr usr/perl5/5.22.0/lib
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/perl5/5.22.0/bin/bucardo .
+cd ../..
+mv usr/perl5/5.22.0/man/man1/bucardo.1pm usr/perl5/5.22.0/man/man1/bucardo.1
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/perl5/5.22.0/man/man1/bucardo.1 .
