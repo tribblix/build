@@ -1,0 +1,3 @@
+-p1 idnkit/001-lib-api.c.patch
+-p1 idnkit/002-utf8-validation.patch
+-p1 idnkit/004-iconv.patch

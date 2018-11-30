@@ -1,0 +1,4 @@
+PKG="TRIBidnkit"
+NAME="Internationalized Domain Name toolkit"
+VERSION="2.3.0"
+ZAP_URL="https://jprs.co.jp/idn/index-e.html"
