@@ -1,2 +1,4 @@
-P TRIBblix-postgres96
+P TRIBblix-postgres11
 P TRIBcurl
+P TRIBlib-pcre
+P TRIBlib-zlib

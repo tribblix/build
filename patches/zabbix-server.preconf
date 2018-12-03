@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# dirty hack to build a static libevent
+#
+${THOME}/build/dobuild libevent-2.0.22-stable -P /tmp/mc -C "--enable-static --disable-shared"
+cd libevent-2.0.22-stable
+gmake install
+cd ..

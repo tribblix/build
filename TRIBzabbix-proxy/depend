@@ -1,2 +1,4 @@
 P TRIBcurl
 P TRIBdatabase-sqlite-3
+P TRIBlib-pcre
+P TRIBlib-zlib

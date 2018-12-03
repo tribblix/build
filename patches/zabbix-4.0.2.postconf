@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# we build 3 separate packages from the same source
+# we apply these patches to all builds, although they are ignored
+# in some cases
+#
+# linking against libkvm is never necessary
+#
+sed -i 's:-lkvm::' `find . -name Makefile`
+#
+# these components never need to link against libkstat
+#
+sed -i 's:-lkstat::' src/zabbix_get/Makefile
+sed -i 's:-lkstat::' src/zabbix_sender/Makefile
+sed -i 's:-lkstat::' src/zabbix_proxy/Makefile
+sed -i 's:-lkstat::' src/zabbix_server/Makefile
+#
+# this adds the RPATH for postgresql into the server
+#
+sed -i 's:-L/opt/tribblix/postgres11/lib:-L/opt/tribblix/postgres11/lib -R/opt/tribblix/postgres11/lib:' `find . -name Makefile`
