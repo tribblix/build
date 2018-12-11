@@ -2,7 +2,7 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=9.2.4.0
+VERSION=9.2.5.0
 #
 # jruby 9k was a bit broken on solarish systems and gem hasn't always
 # worked right so wasn't always the default
