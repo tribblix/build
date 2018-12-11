@@ -12,6 +12,7 @@ STAGE="/tmp/pct"
 REPOHOST="pkgs.tribblix.org"
 REPODIR="/var/repo"
 QUICKMODE=""
+PKGSKIP=""
 
 REPO="tribblix-m20"
 LREPODIR="${THOME}/pkgs"
@@ -29,9 +30,14 @@ FFILE="filelist.bz2"
 # with -q avoid the aliases and the file list
 # with many version updates they are unnecessary
 #
+# with -n just refresh the metadata, there are no packages
+#
 case $1 in
     -q)
 	QUICKMODE="y"
+	;;
+    -n)
+	PKGSKIP="y"
 	;;
 esac
 
@@ -73,6 +79,7 @@ if [ ! -f "$FCREATE" ]; then
     exit 1
 fi
 
+if [ -z "$PKGSKIP" ]; then
 #
 # is there anything to upload?
 #
@@ -100,6 +107,12 @@ do
     /bin/cp ${file} ${LREPODIR}/${file}
 done
 #
+# end of PKGSKIP
+#
+fi
+
+
+#
 # then we must create the metadata files
 #
 cd ${THOME}/build
@@ -121,11 +134,14 @@ fi
 # we upload all the relevant files from the staging area
 # and delete them all once we're done
 #
-cd $STAGE
 echo "Uploading files"
-if [ -z "$QUICKMODE" ]; then
+if [ -n "$PKGSKIP" ]; then
+    scp ${LREPODIR}/${AFILE} ${LREPODIR}/${HFILE} ${LREPODIR}/${FFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
+elif [ -z "$QUICKMODE" ]; then
+    cd $STAGE
     scp *.zap *.zap.sig ${LREPODIR}/${AFILE} ${LREPODIR}/${HFILE} ${LREPODIR}/${FFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
 else
+    cd $STAGE
     scp *.zap *.zap.sig ${LREPODIR}/${HFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
 fi
 cd $THOME
