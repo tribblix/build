@@ -10,8 +10,13 @@
 #
 # the build needs six and cffi and libzonecfg.h - see build_requires
 #
+# select a fixed checkout, later versions introduce incompatibilities
+# with the Tribblix pythons
+#
 git clone https://github.com/omniosorg/pkg5
-cd pkg5/src
+cd pkg5
+git checkout 3e168821b5bb792b69a1f0ef99a4cfeec095ab58
+cd src
 
 sed -i 's:build_64 = True:build_64 = False:' setup.py
 
@@ -49,5 +54,6 @@ rm -fr usr/share/lib
 rm -fr usr/share/man/ja_JP.UTF-8 usr/share/man/zh_CN.UTF-8
 rm -fr usr/share/man/man1m
 sed -i s=/usr/bin/amd64/python2.7=/usr/bin/python2.7= usr/bin/*
+sed -i s=/usr/bin/sparcv9/python2.7=/usr/bin/python2.7= usr/bin/*
 
 ${THOME}/build/create_pkg TRIBdev-pkg5 `pwd`
