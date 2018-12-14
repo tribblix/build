@@ -12,13 +12,13 @@ cd beats
 # this isn't entirely accurate but master is now 6.x
 git checkout 5.6
 cd filebeat
-env PATH=/usr/versions/go-1.9/bin:$PATH gmake
+env PATH=/usr/versions/go-1.10/bin:$PATH gmake
 cd ../metricbeat
-env PATH=/usr/versions/go-1.9/bin:$PATH gmake
+env PATH=/usr/versions/go-1.10/bin:$PATH gmake
 cd ../packetbeat
-env PATH=/usr/versions/go-1.9/bin:$PATH gmake
+env PATH=/usr/versions/go-1.10/bin:$PATH gmake
 cd ../heartbeat
-env PATH=/usr/versions/go-1.9/bin:$PATH gmake
+env PATH=/usr/versions/go-1.10/bin:$PATH gmake
 cd ..
 
 rm -fr /tmp/bbb
