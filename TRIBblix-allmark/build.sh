@@ -7,7 +7,7 @@ mkdir -p src/github.com/andreaskoch
 cd src/github.com/andreaskoch
 git clone https://github.com/andreaskoch/allmark.git
 cd allmark
-env PATH=/usr/versions/go-1.8/bin:$PATH gmake
+env PATH=/usr/versions/go-1.10/bin:$PATH gmake
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/allmark/bin
 cp bin/files/allmark /tmp/ee/opt/tribblix/allmark/bin
