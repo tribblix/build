@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# (requires go 1.8)
+# (requires go 1.8 or later)
 #
 mkdir ~/ud/c
 cd ~/ud/c
@@ -11,7 +11,7 @@ cd consul
 # this is the commit for 1.0.0
 git checkout 51ea240df8476e02215d53fbfad5838bf0d44d21
 # CONSUL_DEV to avoid cross-compiling for all platforms
-env CONSUL_DEV=1 GOPATH=${HOME}/ud/c GOROOT=/usr/versions/go-1.8 PATH=/usr/versions/go-1.8/bin:$PATH gmake
+env CONSUL_DEV=1 GOPATH=${HOME}/ud/c GOROOT=/usr/versions/go-1.10 PATH=/usr/versions/go-1.10/bin:$PATH gmake
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/consul/bin
 cp bin/consul /tmp/ee/opt/tribblix/consul/bin
