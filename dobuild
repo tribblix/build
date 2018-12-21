@@ -190,7 +190,7 @@ PATCHDIR=${BUILD}/patches
 export PATCHDIR
 for pkg in ${THISPKG}
 do
-	${BUILD}/unpack ${UNPACK_FLAGS} ${pkg}
+	${UNPACKER} ${UNPACK_FLAGS} ${pkg}
 	if [ "x$DO64" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
 	    if [ ! -d ${pkg}-64bit ]; then
