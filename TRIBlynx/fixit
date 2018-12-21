@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# add desktop menu item
+#
+mkdir -p usr/share/{applications,icons}
+cp ${BUILDROOT}/patches/lynx.desktop usr/share/applications
+cp ${BUILDROOT}/patches/lynx.png usr/share/icons
