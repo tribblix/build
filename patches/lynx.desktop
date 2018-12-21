@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Lynx
+Comment=Text-only browser
+Exec=lynx
+Icon=lynx
+Terminal=true
+Type=Application
+Categories=Network;
+StartupNotify=true
