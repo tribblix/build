@@ -54,124 +54,42 @@ dopatch() {
 for pkg in $*
 do
 	/usr/bin/rm -fr ${pkg} ${pkg}-64bit
-	if [ -f ${SRCDIR}/${pkg}.tar.Z ]; then
-	   ${ZCAT} ${SRCDIR}/${pkg}.tar.Z | gtar xf -
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${ZCAT} ${SRCDIR}/${pkg}.tar.Z | gtar xf -
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
-	if [ -f ${SRCDIR}/${pkg}.tar.gz ]; then
-	   ${GZCAT} ${SRCDIR}/${pkg}.tar.gz | gtar xf -
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${GZCAT} ${SRCDIR}/${pkg}.tar.gz | gtar xf -
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
-	if [ -f ${SRCDIR}/${pkg}.tgz ]; then
-	   ${GZCAT} ${SRCDIR}/${pkg}.tgz | gtar xf -
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${GZCAT} ${SRCDIR}/${pkg}.tgz | gtar xf -
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
-	if [ -f ${SRCDIR}/${pkg}.src.tgz ]; then
-	   ${GZCAT} ${SRCDIR}/${pkg}.src.tgz | gtar xf -
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${GZCAT} ${SRCDIR}/${pkg}.src.tgz | gtar xf -
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
-	if [ -f ${SRCDIR}/${pkg}.src.tar.gz ]; then
-	   ${GZCAT} ${SRCDIR}/${pkg}.src.tar.gz | gtar xf -
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${GZCAT} ${SRCDIR}/${pkg}.src.tar.gz | gtar xf -
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
-	if [ -f ${SRCDIR}/${pkg}.tar.bz2 ]; then
-	   ${BZCAT} ${SRCDIR}/${pkg}.tar.bz2 | gtar xf -
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${BZCAT} ${SRCDIR}/${pkg}.tar.bz2 | gtar xf -
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
-	if [ -f ${SRCDIR}/${pkg}-source.tar.bz2 ]; then
-	   ${BZCAT} ${SRCDIR}/${pkg}-source.tar.bz2 | gtar xf -
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${BZCAT} ${SRCDIR}/${pkg}-source.tar.bz2 | gtar xf -
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
-	if [ -f ${SRCDIR}/${pkg}.tar.xz ]; then
-	   ${XZCAT} -d -c ${SRCDIR}/${pkg}.tar.xz | gtar xf -
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${XZCAT} -d -c ${SRCDIR}/${pkg}.tar.xz | gtar xf -
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
-	if [ -f ${SRCDIR}/${pkg}.tar.lz ]; then
-	   ${LZIP} -d -c ${SRCDIR}/${pkg}.tar.lz | gtar xf -
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${LZIP} -d -c ${SRCDIR}/${pkg}.tar.lz | gtar xf -
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
-	if [ -f ${SRCDIR}/${pkg}.tar ]; then
-	   gtar xf ${SRCDIR}/${pkg}.tar
-	   dopatch $pkg
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  gtar xf ${SRCDIR}/${pkg}.tar
-		  dopatch $pkg
-	      fi
-	   fi
-	fi
+
+	for filetype in \
+			'.tar.Z' \
+			'.tar.gz' \
+			'.tgz' \
+			'.src.tgz' \
+			'.src.tar.gz' \
+			'.tar.bz2' \
+			'.tbz' \
+			'-source.tar.bz2' \
+			'.tar.xz' \
+			'.source.tar.xz' \
+			'.tar.lz' \
+			'.tar'
+        do
+           if [ -f ${SRCDIR}/${pkg}${filetype} ]; then
+              gtar axf ${SRCDIR}/${pkg}${filetype}
+              dopatch ${pkg}
+              if [ "x$DO64" != "xfalse" ]; then
+                 mv ${pkg} ${pkg}-64bit
+                 if [ "x$DO32" != "xfalse" ]; then
+                     gtar axf ${SRCDIR}/${pkg}${filetype}
+                     dopatch ${pkg}
+                 fi
+              fi
+           fi
+        done
+
 	if [ -f ${SRCDIR}/${pkg}.zip ]; then
 	   ${UNZIP} -q ${SRCDIR}/${pkg}.zip
-	   dopatch $pkg
+	   dopatch ${pkg}
 	   if [ "x$DO64" != "xfalse" ]; then
 	      mv ${pkg} ${pkg}-64bit
 	      if [ "x$DO32" != "xfalse" ]; then
 		  ${UNZIP} -q ${SRCDIR}/${pkg}.zip
-		  dopatch $pkg
+		  dopatch ${pkg}
 	      fi
 	   fi
 	fi
