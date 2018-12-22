@@ -1,8 +1,11 @@
 P TRIBboehm-gc
+P TRIBdev-illumos-gcc
+P TRIBdev-illumos-gcc7
 P TRIBgdk-pixbuf
 P TRIBgtkspell
 P TRIBimage-libjpeg
 P TRIBimage-libpng
+P TRIBimagemagick
 P TRIBlib-desktop-atkmm
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-cairomm
@@ -23,6 +26,7 @@ P TRIBlibwpg
 P TRIBlibxml2
 P TRIBlibxslt
 P TRIBpoppler
+P TRIBsunstudio-il-build
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBx11-libx11
