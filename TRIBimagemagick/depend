@@ -1,6 +1,9 @@
 P TRIBcompress-bzip2
 P TRIBcompress-xz
+P TRIBdev-illumos-gcc
+P TRIBdev-illumos-gcc7
 P TRIBdjvulibre
+P TRIBgpl-ghostscript
 P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-libtiff

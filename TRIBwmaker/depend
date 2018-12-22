@@ -1,8 +1,11 @@
+P TRIBdev-illumos-gcc
+P TRIBdev-illumos-gcc7
 P TRIBgiflib
 P TRIBimage-libexif
 P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-libtiff
+P TRIBimagemagick
 P TRIBlibwebp
 P TRIBsys-lib-fontconfig
 P TRIBx11-libx11
