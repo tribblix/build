@@ -47,7 +47,7 @@ fi
 #
 getdeps()
 {
-for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort | uniq`
+for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort | uniq | sed 's:\+:\\\\+:g'`
 do
   $EGREP "lib/$dep( |=)" /var/sadm/install/contents
 done
@@ -60,7 +60,7 @@ done
 #
 getlongdeps()
 {
-for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort | uniq`
+for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort | uniq | sed 's:\+:\\\\+:g'`
 do
   $EGREP "lib/$dep( |=)" /var/sadm/install/contents
 done
