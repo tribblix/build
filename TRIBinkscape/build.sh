@@ -2,5 +2,5 @@
 #
 # install the *mm packages, sigc++, TRIBboehm-gc TRIBlibgsl TRIBboost
 #
-${THOME}/build/dobuild -gnu inkscape-0.91
-${THOME}/build/genpkg TRIBinkscape inkscape-0.91
+${THOME}/build/cmbuild -gnu -C "--enable-dbusapi --enable-lcms --enable-poppler-cairo" inkscape-0.92.3
+${THOME}/build/genpkg TRIBinkscape inkscape-0.92.3

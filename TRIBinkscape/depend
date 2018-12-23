@@ -3,6 +3,7 @@ P TRIBgdk-pixbuf
 P TRIBgtkspell
 P TRIBimage-libjpeg
 P TRIBimage-libpng
+P TRIBimagemagick
 P TRIBlib-desktop-atkmm
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-cairomm
