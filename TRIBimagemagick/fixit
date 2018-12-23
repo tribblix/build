@@ -18,4 +18,15 @@ rm -f usr/lib/${ARCH64}/lib*.la
 # use isaexec
 #
 mkdir -p usr/bin/${ARCH32}
-mv usr/bin/magick usr/bin/${ARCH32}
+#mv usr/bin/magick usr/bin/${ARCH32}
+mv usr/bin/animate usr/bin/${ARCH32}
+mv usr/bin/compare usr/bin/${ARCH32}
+mv usr/bin/composite usr/bin/${ARCH32}
+mv usr/bin/conjure usr/bin/${ARCH32}
+mv usr/bin/convert usr/bin/${ARCH32}
+mv usr/bin/display usr/bin/${ARCH32}
+mv usr/bin/identify usr/bin/${ARCH32}
+mv usr/bin/import usr/bin/${ARCH32}
+mv usr/bin/mogrify usr/bin/${ARCH32}
+mv usr/bin/montage usr/bin/${ARCH32}
+mv usr/bin/stream usr/bin/${ARCH32}
