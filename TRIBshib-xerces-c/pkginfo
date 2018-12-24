@@ -1,4 +1,4 @@
 PKG="TRIBshib-xerces-c"
 NAME="Copy of Xerces-C++ for Shibboleth"
-VERSION="3.2.1.0"
+VERSION="3.2.2.0"
 ZAP_URL="http://xerces.apache.org/xerces-c/"
