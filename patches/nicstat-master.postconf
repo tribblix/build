@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# there's no configure, so put the right Makefile into place
+#
+mv Makefile.Solaris Makefile
+sed -i s:xO3:O: Makefile

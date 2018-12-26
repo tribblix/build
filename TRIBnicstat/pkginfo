@@ -1,0 +1,4 @@
+PKG="TRIBnicstat"
+NAME="Display network interface statistics"
+VERSION="1.95.0"
+ZAP_URL="https://github.com/scotte/nicstat/"
