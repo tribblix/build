@@ -1,9 +1,7 @@
 #!/bin/sh
 #
-# everything is done by the fixit script
-#
-${THOME}/build/unpack pgbadger-10.1
-cd pgbadger-10.1
+${THOME}/build/unpack pgbadger-10.2
+cd pgbadger-10.2
 # you need to run a make to create the manpage
 perl Makefile.PL
 sed -i 's:sed -i.bak:gsed -i.bak:' Makefile
