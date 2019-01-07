@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack boto3-1.9.33
-cd boto3-1.9.33
+${THOME}/build/unpack boto3-1.9.74
+cd boto3-1.9.74
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/sut
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/sut
