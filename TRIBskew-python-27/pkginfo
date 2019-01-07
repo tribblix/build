@@ -1,4 +1,4 @@
 PKG="TRIBskew-python-27"
 NAME="Python skew"
-VERSION="0.x.0"
+VERSION="0.17.0.0"
 ZAP_URL="https://github.com/scopely-devops/skew"
