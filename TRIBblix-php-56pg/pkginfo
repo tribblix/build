@@ -1,4 +1,4 @@
 PKG="TRIBblix-php-56pg"
 NAME="PHP postgres module"
-VERSION="5.6.39.0"
+VERSION="5.6.40.0"
 ZAP_URL="http://php.net/"
