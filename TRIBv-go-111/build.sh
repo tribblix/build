@@ -6,11 +6,10 @@
 # There have been issues with GOROOT_FINAL causing test failures
 # https://github.com/golang/go/issues/20284
 #
-# 1.11 release, not yet default
-# when default, update alias and reinstate /usr/bin links
+# 1.11 release, now default
 #
 rm -fr go
-${THOME}/build/unpack go1.11.4.src
+${THOME}/build/unpack go1.11.5.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.11 GOROOT_BOOTSTRAP=/usr/versions/go-1.10 ./all.bash
 cd ..
