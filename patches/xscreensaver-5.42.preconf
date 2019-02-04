@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# code is just broken
+#
+sed -i '/^\/\//d' hacks/fontglide.c

@@ -3,3 +3,10 @@
 # has to be setuid root to read the shadow file
 #
 chmod 4511 usr/bin/xscreensaver
+
+#
+# fireworkx keeps on dumping core
+#
+rm -f usr/libexec/xscreensaver/fireworkx
+rm -f usr/share/man/man6/fireworkx.6
+rm -f usr/share/xscreensaver/config/fireworkx.xml
