@@ -1,4 +1,4 @@
 PKG="TRIBpsycopg2-37"
 NAME="Python-PostgreSQL Database Adapter"
-VERSION="2.7.6.0"
+VERSION="2.7.7.0"
 ZAP_URL="http://initd.org/psycopg/"
