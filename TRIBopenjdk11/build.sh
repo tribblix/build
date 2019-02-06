@@ -7,12 +7,15 @@
 # initial 11 release:
 # wget http://hg.openjdk.java.net/jdk/jdk11/archive/jdk-11+28.tar.bz2
 #
-cd /tmp
-wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.1+13.tar.bz2
+# 11.0.1 release
+#wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.1+13.tar.bz2
+#
+cd ${THOME}/tarballs
+wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.2+9.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-11.0.1+13
-cd jdk11u-jdk-11.0.1+13
+${THOME}/build/unpack jdk-11.0.2+9
+cd jdk11u-jdk-11.0.2+9
 
 #
 # We need a copy of libsoftcrypto.h
@@ -94,6 +97,8 @@ zap install autoconf
 # cp amd64/libmmheap.so.1 ~/solarisstudio12.4/lib/compilers/sys/amd64/
 #
 # it wants objcopy, hence /usr/sfw/bin in the path
+#
+# src/hotspot/os/solaris/perfMemory_solaris.cpp
 # fix the d_fd error -> dd_fd
 #
 # the gobjcopy stuff doesn't actually work, so disable it
@@ -112,9 +117,9 @@ env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k 
 #
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "11.0.1-internal" 2018-10-16
-# OpenJDK Runtime Environment (build 11.0.1-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.113)
-# OpenJDK 64-Bit Server VM (build 11.0.1-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.113, mixed mode)
+# openjdk version "11.0.2-internal" 2019-01-15
+# OpenJDK Runtime Environment (build 11.0.2-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.29)
+# OpenJDK 64-Bit Server VM (build 11.0.2-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.29, mixed mode)
 #
 
 rm -fr /tmp/jdk
