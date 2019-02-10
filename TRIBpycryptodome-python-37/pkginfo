@@ -1,0 +1,4 @@
+PKG="TRIBpycryptodome-python-37"
+NAME="Python pycryptodome"
+VERSION="3.7.3.0"
+ZAP_URL="https://pypi.org/project/pycryptodome"
