@@ -1,4 +1,0 @@
-PKG="TRIBopenjdk7u141"
-NAME="OpenJDK 7u141"
-VERSION="1.7.0.141"
-ZAP_URL="http://openjdk.java.net/"
