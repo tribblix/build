@@ -1,8 +1,10 @@
 #!/bin/sh
 #
 # put some commands in the default path
+# disabeld; 2.5 is the default now
 #
 VERSION=2.4
+exit 0
 mkdir -p usr/bin usr/share/man/man1
 ln -s ../../usr/versions/ruby-${VERSION}/bin/ruby usr/bin/ruby
 ln -s ../../usr/versions/ruby-${VERSION}/bin/irb usr/bin/irb
