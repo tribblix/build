@@ -1,3 +1,4 @@
 PKG="TRIBlibidl"
 NAME="GNOME IDL library"
-VERSION="0.8.14.0"
+VERSION="0.8.14.1"
+ZAP_URL="https://ftp.gnome.org/pub/gnome/sources/libIDL/0.8/"
