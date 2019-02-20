@@ -1,4 +1,4 @@
 PKG="TRIBx11-diagnostic-xev"
 NAME="xev"
-VERSION="1.2.2.0"
+VERSION="1.2.3.0"
 ZAP_URL="http://xorg.freedesktop.org/releases/individual/app/"
