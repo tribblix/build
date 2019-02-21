@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# put in the regular path
+#
+PYVERS=3.7
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/python-${PYVERS}/bin/* .
