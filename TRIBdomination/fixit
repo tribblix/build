@@ -2,12 +2,14 @@
 #
 # put things in the right place
 #
-VERSION=1.1.1.6
+VERSION=1.2.0
 mkdir -p usr/bin usr/share/applications usr/share/pixmaps
 cd usr/versions
 rm -fr Domination/Map*
 rm -f Domination/*.cmd
 rm -f Domination/*.exe
+rm -f Domination/._*
+rm -f Domination/FlashGUI*
 rm -fr Domination/Domination.app
 mv Domination Domination-${VERSION}
 cd ../..
