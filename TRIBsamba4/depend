@@ -1,6 +1,7 @@
 P TRIBcups
 P TRIBgnutls
 P TRIBgpgme
+P TRIBjansson
 P TRIBlib-zlib
 P TRIBlibarchive
 P TRIBlibpopt
