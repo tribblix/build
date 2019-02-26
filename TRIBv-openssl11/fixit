@@ -1,0 +1,59 @@
+#!/bin/sh
+#
+# clean up and move
+#
+
+rm -fr usr/versions/openssl11/share/doc
+rmdir usr/versions/openssl11/ssl/certs
+ln -s /etc/ssl/certs usr/versions/openssl11/ssl
+rm -f usr/versions/openssl11/lib/lib*.a
+rm -f usr/versions/openssl11/lib/*/lib*.a
+
+#
+# fixinstall.64 saved the 64-bit opensslconf.h for us, now
+# we wrap it
+#
+mv usr/versions/openssl11/include/openssl/opensslconf.h usr/versions/openssl11/include/openssl/opensslconf-32.h
+cp ${BUILDROOT}/patches/opensslconf.h usr/versions/openssl11/include/openssl/opensslconf.h
+
+#
+# this package currently provides tools for testing
+# and is experimental; once we switch to openssl 1.1
+# properly this packge will be removed. So we don't
+# want anything from this package to exist in the
+# default paths
+#
+exit 0
+
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+rmdir usr/ssl/certs
+ln -s /etc/ssl/certs usr/ssl
+#
+# put manpages somewhere sane
+#
+mkdir usr/share
+mv usr/ssl/man usr/share
+#
+# libraries expect to live in /lib
+#
+mv usr/lib/64 usr/lib/${ARCH64}
+mkdir -p lib/${ARCH64}
+mv usr/lib/lib*so* lib
+mv usr/lib/${ARCH64}/lib*so* lib/${ARCH64}
+#
+# the files live under /lib, symlinks under usr/lib
+#
+cd usr/lib
+ln -s ../../lib/libssl.so* .
+ln -s ../../lib/libcrypto.so* .
+cd ${ARCH64}
+ln -s ../../../lib/${ARCH64}/libssl.so* .
+ln -s ../../../lib/${ARCH64}/libcrypto.so* .
