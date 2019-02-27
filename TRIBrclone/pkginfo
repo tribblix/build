@@ -1,0 +1,4 @@
+PKG="TRIBrclone"
+NAME="Rclone - rsync for cloud storage"
+VERSION="1.46.0"
+ZAP_URL="https://rclone.org/"
