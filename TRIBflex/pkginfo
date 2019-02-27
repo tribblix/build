@@ -1,4 +1,4 @@
 PKG="TRIBflex"
 NAME="Flex lexical anayzer"
-VERSION="2.6.4.0"
+VERSION="2.6.4.1"
 ZAP_URL="https://github.com/westes/flex"
