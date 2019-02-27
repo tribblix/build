@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# clean up
+#
+gunzip usr/share/man/man1/ctwm.1.gz
+rm -fr usr/share/doc
