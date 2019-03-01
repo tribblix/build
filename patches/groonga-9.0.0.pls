@@ -1,0 +1,1 @@
+-p1 groonga-hdr.patch

@@ -1,0 +1,16 @@
+Redefining off64_t? Seriously?
+
+--- a/lib/grn.h~	Wed Feb  6 06:56:36 2019
++++ b/lib/grn.h	Thu Feb 28 21:51:39 2019
+@@ -147,9 +147,11 @@
+ #  include <unistd.h>
+ # endif /* HAVE_UNISTD_H */
+ 
++/*
+ # ifndef __off64_t_defined
+ typedef off_t off64_t;
+ # endif
++*/
+ 
+ # ifndef PATH_MAX
+ #  if defined(MAXPATHLEN)
