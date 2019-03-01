@@ -1,0 +1,4 @@
+PKG="TRIBmsgpack-c"
+NAME="msgpack-c"
+VERSION="3.1.1.0"
+ZAP_URL="https://msgpack.org/"
