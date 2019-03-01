@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+rm -fr usr/share/doc
+
+#
+# make install helpfully moves an old version out of the way if it finds
+# it, so that we need to remove the saved version
+#
+# given the order we do the install, 64-bit first, the old binary is the
+# 64-bit one
+#
+rm -f usr/sbin/groonga-httpd.old
