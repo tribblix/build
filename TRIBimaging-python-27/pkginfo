@@ -1,4 +1,0 @@
-PKG="TRIBimaging-python-27"
-NAME="Python Imaging Library"
-VERSION="1.1.7.0"
-ZAP_URL="http://www.pythonware.com/products/pil/"
