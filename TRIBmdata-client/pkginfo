@@ -1,0 +1,4 @@
+PKG="TRIBmdata-client"
+NAME="SDC guest metadata client"
+VERSION="20190228.0"
+ZAP_URL="https://github.com/joyent/mdata-client"
