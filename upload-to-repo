@@ -96,14 +96,21 @@ fi
 #
 # the first thing we need to do is copy the files from the staging area
 # to the local repo, because the metadata creation scripts rely on that
+# they're copied now, deleted later
+#
+# exit if the pkg area already contains any matching files
+# as that's almost always a mistake
 #
 cd $STAGE
 for file in `/bin/ls -1 *.zap*`
 do
     if [ -f "${LREPODIR}/${file}" ]; then
-	echo /bin/rm -f ${LREPODIR}/${file}
+	echo "ERROR: preexisting file in repo ${LREPODIR}/${file}"
+	exit 1
     fi
-    # copy now, delete later
+done
+for file in `/bin/ls -1 *.zap*`
+do
     /bin/cp ${file} ${LREPODIR}/${file}
 done
 #
