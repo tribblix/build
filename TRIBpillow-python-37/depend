@@ -1,0 +1,8 @@
+P TRIBimage-libjpeg
+P TRIBimage-libtiff
+P TRIBlib-lcms2
+P TRIBlib-openjpeg
+P TRIBlib-zlib
+P TRIBlibwebp
+P TRIBsys-lib-freetype-2
+P TRIBv-python-37
