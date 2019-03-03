@@ -1,2 +1,0 @@
--p1 harfbuzz-configure.patch
--p1 harfbuzz-visibility.patch
