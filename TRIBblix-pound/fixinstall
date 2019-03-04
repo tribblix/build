@@ -29,3 +29,5 @@ cp GPL.txt ${DESTDIR}/opt/tribblix/pound/LICENSE
 chmod 444 ${DESTDIR}/opt/tribblix/pound/FAQ
 chmod 444 ${DESTDIR}/opt/tribblix/pound/README
 chmod 444 ${DESTDIR}/opt/tribblix/pound/LICENSE
+cp poundctl ${DESTDIR}/opt/tribblix/pound/sbin
+chmod 555 ${DESTDIR}/opt/tribblix/pound/sbin/*
