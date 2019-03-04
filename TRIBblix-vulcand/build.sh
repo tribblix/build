@@ -2,7 +2,7 @@
 #
 mkdir v
 cd v
-env GOPATH=`pwd` go get https://github.com/vulcand/vulcand
+env GOPATH=`pwd` go get github.com/vulcand/vulcand
 rm -fr /tmp/v
 mkdir -p /tmp/v/opt/tribblix/vulcand/bin
 cp bin/vulcand /tmp/v/opt/tribblix/vulcand/bin
