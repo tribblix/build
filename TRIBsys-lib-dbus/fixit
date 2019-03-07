@@ -14,7 +14,7 @@ esac
 #
 rm -fr usr/share/doc
 # OI doesn't ship 64-bit binaries, so we don't either
-rm -fr usr/bin/amd64
+rm -fr usr/bin/${ARCH64}
 mkdir -p var/lib/dbus
 mkdir -p etc/dbus-1/session.d
 mkdir -p etc/dbus-1/system.d
