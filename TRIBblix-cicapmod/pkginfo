@@ -1,4 +1,4 @@
 PKG="TRIBblix-cicapmod"
 NAME="c-icap ICAP modules"
-VERSION="0.5.1.0"
+VERSION="0.5.3.0"
 ZAP_URL="http://c-icap.sourceforge.net/"
