@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-git clone https://github.com/dlundquist/sniproxy.git
-cd sniproxy
+$THOME/build/unpack sniproxy-0.6.0
+cd sniproxy-0.6.0
 ./autogen.sh
 env LIBS="-lsocket -lnsl" CPPFLAGS="-D__EXTENSIONS__ -D_XPG4_2" CC="gcc -std=gnu99" ./configure --prefix=/opt/tribblix/sniproxy
 gmake -j 4
