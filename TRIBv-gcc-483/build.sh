@@ -5,8 +5,8 @@
 # 483 for any 4.8.x for compatibility
 #
 # there must be a better way to do this
-# we build gcc 3 times, once for C/C++, once for fortran, once for go
-# and remove common files from the fortran and go packages
+# we build gcc twice, once for C/C++, and once for fortran
+# and remove common files from the fortran package
 #
 # the original 4.8.3 build disabled ssp (-fstack-protector)
 # this build creates the ssp files but ships them separately
@@ -32,7 +32,7 @@ mv mpc-0.8.1 mpc
 mv gmp-4.3.2 gmp
 mv mpfr-2.4.2 mpfr
 cd ..
-mkdir t48{,f,go}
+mkdir t48{,f}
 
 FOR x86:
 
@@ -43,11 +43,6 @@ cd ..
 
 cd t48f
 env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/configure --prefix=/usr/versions/gcc-4.8.3 --enable-languages="fortran" --disable-libgomp --disable-libquadmath-support --disable-libquadmath --with-slibdir=/usr/lib --without-gnu-ld --with-ld=/bin/ld --with-as=/usr/gnu/bin/as --with-gnu-as
-env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" gmake -j 12
-cd ..
-
-cd t48go
-env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/configure --prefix=/usr/versions/gcc-4.8.3 --enable-languages="go" --disable-libgomp --disable-libquadmath-support --disable-libquadmath --with-slibdir=/usr/lib --without-gnu-ld --with-ld=/bin/ld --with-as=/usr/gnu/bin/as --with-gnu-as
 env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" gmake -j 12
 cd ..
 
@@ -81,11 +76,6 @@ env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/
 env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" gmake -j 12
 cd ..
 
-cd t48go
-env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" ../gcc-4.8.5/configure --prefix=/usr/versions/gcc-4.8.3 --enable-languages="go" --disable-libgomp --disable-libquadmath-support --disable-libquadmath --with-slibdir=/usr/lib --without-gnu-as --with-as=/usr/ccs/bin/as --with-ld=/usr/bin/ld --without-gnu-ld
-env PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -i" gmake -j 12
-cd ..
-
 Back to generic-ish instructions
 
 cd t48
@@ -94,26 +84,18 @@ cd ..
 cd t48f
 gmake DESTDIR=/tmp/gc2 install-strip
 cd ..
-cd t48go
-gmake DESTDIR=/tmp/gc3 install-strip
-cd ..
 
 kill the borked-includes
-clean the fortran and go installs of duplicates from the baseline
+clean the fortran install of duplicates from the baseline
 remove empty directories
 
 cd /tmp/gc1/usr
 rm -fr versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.5/include-fixed
 cd /tmp/gc2/usr
 rm -fr versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.5/include-fixed
-cd /tmp/gc3/usr
-rm -fr versions/gcc-4.8.3/lib/gcc/i386-pc-solaris2.11/4.8.5/include-fixed
 cd /tmp/gc1
 /bin/rmdir `find . -xdev -depth -type d`
 cd /tmp/gc2
-/bin/rm `cd ../gc1 ; find .`
-/bin/rmdir `find . -xdev -depth -type d`
-cd /tmp/gc3
 /bin/rm `cd ../gc1 ; find .`
 /bin/rmdir `find . -xdev -depth -type d`
 
@@ -123,14 +105,9 @@ cd /tmp/gc1/usr
 rm -fr versions/gcc-4.8.3/lib/gcc/sparc-sun-solaris2.11/4.8.5/include-fixed
 cd /tmp/gc2/usr
 rm -fr versions/gcc-4.8.3/lib/gcc/sparc-sun-solaris2.11/4.8.5/include-fixed
-cd /tmp/gc3/usr
-rm -fr versions/gcc-4.8.3/lib/gcc/sparc-sun-solaris2.11/4.8.5/include-fixed
 cd /tmp/gc1
 /bin/rmdir `find . -xdev -depth -type d`
 cd /tmp/gc2
-/bin/rm `cd ../gc1 ; find .`
-/bin/rmdir `find . -xdev -depth -type d`
-cd /tmp/gc3
 /bin/rm `cd ../gc1 ; find .`
 /bin/rmdir `find . -xdev -depth -type d`
 
@@ -209,8 +186,7 @@ mv /tmp/gc1/usr/versions /tmp/g48-c/usr
 mv /tmp/gc2/usr/lib /tmp/g48f-r/usr
 mv /tmp/gc2/usr/versions /tmp/g48f-c/usr
 
-[/tmp/gc1 and /tmp/gc2 should contain nothing but an empty usr now.
-/tmp/gc3 just contains gccgo.]
+[/tmp/gc1 and /tmp/gc2 should contain nothing but an empty usr now.]
 
 Separate out ssp
 
@@ -245,9 +221,6 @@ ln -s ../../usr/versions/gcc-4.8.3/bin/g++ .
 mkdir /tmp/g48f-c/usr/bin
 cd /tmp/g48f-c/usr/bin
 ln -s ../../usr/versions/gcc-4.8.3/bin/gfortran .
-mkdir /tmp/gc3/usr/bin
-cd /tmp/gc3/usr/bin
-ln -s ../../usr/versions/gcc-4.8.3/bin/gccgo	.
 
 build packages
 
@@ -255,5 +228,4 @@ ${THOME}/build/create_pkg TRIBv-gcc-483 /tmp/g48-c
 ${THOME}/build/create_pkg TRIBgcc4runtime /tmp/g48-r
 ${THOME}/build/create_pkg TRIBv-gfortran-483 /tmp/g48f-c
 ${THOME}/build/create_pkg TRIBgfortran4runtime /tmp/g48f-r
-${THOME}/build/create_pkg TRIBv-gccgo-483 /tmp/gc3
 ${THOME}/build/create_pkg TRIBv-gcc-483-ssp /tmp/g48-s
