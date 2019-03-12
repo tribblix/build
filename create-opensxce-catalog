@@ -3,7 +3,8 @@
 # catalog format is
 #  name|version|dependencies|size|md5|
 #
-PKGDIR=/packages/localsrc/Tribblix/opensxce-2014
+THOME=${THOME:-/packages/localsrc/Tribblix}
+PKGDIR=${THOME}/opensxce-2014
 case $# in
 1)
 	PKGDIR=$1

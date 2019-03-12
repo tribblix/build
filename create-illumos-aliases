@@ -3,7 +3,8 @@
 # catalog format is
 #  alias|name
 #
-PKGDIR=/packages/localsrc/Tribblix/illumos-pkgs-m18/pkgs
+THOME=${THOME:-/packages/localsrc/Tribblix}
+PKGDIR=${THOME}/illumos-pkgs-m18/pkgs
 
 case $# in
 1)

@@ -6,7 +6,8 @@
 # style of build
 #
 
-BUILD="/packages/localsrc/Tribblix/build"
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BUILD="${THOME}/build"
 GMAKE="/usr/bin/gmake"
 WORKING_ROOT=`pwd`
 

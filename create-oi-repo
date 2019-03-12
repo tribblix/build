@@ -5,9 +5,9 @@
 
 DOCHECK="false"
 DOUPDATE="false"
-BUILDROOT="/packages/localsrc/Tribblix"
+THOME=${THOME:-/packages/localsrc/Tribblix}
 PKGDIR="/var/tmp/created-pkgs/pkgs"
-PKGBUILD="${BUILDROOT}/build"
+PKGBUILD="${THOME}/build"
 
 case $1 in
 -c)

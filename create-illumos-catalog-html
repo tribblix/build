@@ -3,8 +3,8 @@
 # catalog format is
 #  name|version|dependencies|size|md5|
 #
-RELVER=m19
-THOME=/packages/localsrc/Tribblix
+RELVER=m20
+THOME=${THOME:-/packages/localsrc/Tribblix}
 PKGDIR=${THOME}/illumos-pkgs-${RELVER}/pkgs
 
 case $# in

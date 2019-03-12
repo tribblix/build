@@ -3,7 +3,8 @@
 # build + package wrapper
 #
 
-BUILD_DIR="/packages/localsrc/Tribblix/build"
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BUILD_DIR="${THOME}/build"
 HASREQUIRED=Y
 HASFORBIDDEN=N
 REQUIRED=" "

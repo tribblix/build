@@ -3,7 +3,8 @@
 # catalog format is
 #  name|version|dependencies|size|md5|
 #
-PKGDIR=/packages/localsrc/Tribblix/repo-master/oi-151a9
+THOME=${THOME:-/packages/localsrc/Tribblix}
+PKGDIR=${THOME}/repo-master/oi-151a9
 
 #
 cd $PKGDIR

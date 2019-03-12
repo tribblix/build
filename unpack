@@ -5,10 +5,10 @@
 #
 # if a patchlist is found, apply patches from it
 #
-TOPDIR="/packages/localsrc/Tribblix"
+THOME=${THOME:-/packages/localsrc/Tribblix}
 
-SRCDIR="${TOPDIR}/tarballs"
-PATCHDIR="${TOPDIR}/build/patches"
+SRCDIR="${THOME}/tarballs"
+PATCHDIR="${THOME}/build/patches"
 
 GZCAT="/usr/bin/gzcat"
 BZCAT="/usr/bin/bzcat"

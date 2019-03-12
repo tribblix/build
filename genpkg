@@ -34,7 +34,8 @@ esac
 #
 # Default locations
 #
-BUILD="/packages/localsrc/Tribblix/build"
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BUILD="${THOME}/build"
 BROOT="/tmp/pct"
 GMAKE="/usr/bin/gmake"
 
