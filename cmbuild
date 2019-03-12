@@ -45,12 +45,15 @@ DOGNU="false"
 # -I install_args [unused]
 # -J parallelism
 # -L disable LD_OPTIONS
+# -B run cmake directly in the source tree, not in a build subdir
 #
 IPREFIX="/usr"
 CONFARGS=""
 MAKEARGS=""
 GMAKEFLAGS="-j 4"
 DO_LD="yes"
+BFLAG="yes"
+BDIR=".."
 
 while [[ $# > 0 ]]; do
 case $1 in
@@ -92,6 +95,11 @@ case $1 in
 -L)
 	shift
 	DO_LD=""
+	;;
+-B)
+	shift
+	BFLAG=""
+	BDIR="."
 	;;
 -*)
 	echo "Invalid argument $1"
@@ -164,17 +172,21 @@ EOF
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    touch .tribblix_cmake_build
-	    mkdir build
-	    cd build
-	    env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64" CFLAGS="-m64" CXXFLAGS="-m64" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/lib/${ARCH64} -DBIN_INSTALL_DIR=${IPREFIX}/bin/${ARCH64} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/lib/${ARCH64} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/bin/${ARCH64} ${CONFARGS} ..
+	    if [[ -n $BFLAG ]]; then
+		touch .tribblix_cmake_build
+		mkdir build
+		cd build
+	    fi
+	    env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64" CFLAGS="-m64" CXXFLAGS="-m64" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/lib/${ARCH64} -DBIN_INSTALL_DIR=${IPREFIX}/bin/${ARCH64} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/lib/${ARCH64} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/bin/${ARCH64} ${CONFARGS} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
 	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
-	    cd ..
+	    if [[ -n $BFLAG ]]; then
+		cd ..
+	    fi
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
@@ -191,15 +203,19 @@ EOF
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    touch .tribblix_cmake_build
-	    mkdir build
-	    cd build
-	    echo env PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} ..
-	    env PATH=$TRIBBLIX_PATH cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} ..
+	    if [[ -n $BFLAG ]]; then
+		touch .tribblix_cmake_build
+		mkdir build
+		cd build
+	    fi
+	    echo env PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} $BDIR
+	    env PATH=$TRIBBLIX_PATH cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
 	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
-	    cd ..
+	    if [[ -n $BFLAG ]]; then
+		cd ..
+	    fi
 	fi
 done
