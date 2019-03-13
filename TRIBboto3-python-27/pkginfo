@@ -1,4 +1,4 @@
 PKG="TRIBboto3-python-27"
 NAME="Boto3 - Amazon Web Services Library"
-VERSION="1.9.74.0"
+VERSION="1.9.114.0"
 ZAP_URL="http://aws.amazon.com/sdk-for-python/"
