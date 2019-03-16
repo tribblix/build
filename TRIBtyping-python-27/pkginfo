@@ -1,0 +1,4 @@
+PKG="TRIBtyping-python-27"
+NAME="Python typing"
+VERSION="3.6.6.0"
+ZAP_URL="https://pypi.org/project/typing"
