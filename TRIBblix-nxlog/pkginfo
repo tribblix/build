@@ -1,0 +1,4 @@
+PKG="TRIBblix-nxlog"
+NAME="NXlog community edition"
+VERSION="2.10.2150.0"
+ZAP_URL="http://nxlog.co/products/nxlog-community-edition/download"
