@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# does a git clone and saves it as an archive
+#
+THOME=${THOME:-/packages/localsrc/Tribblix}
+SRCDIR="${THOME}/tarballs"
+GIT="/usr/bin/git"
+
+case $# in
+    1)
+	RURL="$1"
+	;;
+    *)
+	echo "Usage: $0 git-repo"
+	exit 1
+	;;
+esac
+
+RNAME=${RURL##*/}
+rm -fr $RNAME
+$GIT clone $RURL
+rm -fr ${RNAME}/.git
+rm -f ${SRCDIR}/${RNAME}.tar.bz2
+tar cf ${SRCDIR}/${RNAME}.tar ${RNAME}
+pbzip2 ${SRCDIR}/${RNAME}.tar
+rm -fr ${RNAME}
