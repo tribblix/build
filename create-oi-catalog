@@ -6,6 +6,12 @@
 THOME=${THOME:-/packages/localsrc/Tribblix}
 PKGDIR=${THOME}/repo-master/oi-151a9
 
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
+
 #
 cd $PKGDIR
 for ZPKG in *.zap

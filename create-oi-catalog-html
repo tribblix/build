@@ -7,6 +7,12 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 PKGDIR=${THOME}/repo-master/oi-151a9
 PKGVERS="0.9o"
 
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
+
 cat <<EOF
 <html>
 <Head><title>Tribblix package catalog</title></head>
