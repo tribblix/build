@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# don't ship html docs
-#
-rm -fr opt/tribblix/postgres96/share/doc/html
