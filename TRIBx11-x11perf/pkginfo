@@ -1,0 +1,4 @@
+PKG="TRIBx11-x11perf"
+NAME="x11perf"
+VERSION="1.6.1.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/app/"
