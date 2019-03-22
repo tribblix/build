@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBlynis lynis-2.7.2
+${THOME}/build/pkg_tarball TRIBlynis lynis-2.7.3
