@@ -9,7 +9,7 @@ P TRIBlib-graphics-pixman
 P TRIBlib-zlib
 P TRIBlibffi
 P TRIBstartup-notification
-P TRIBsys-lib-c++-sunpro
+P TRIBsys-lib-cpp-sunpro
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBsys-libdbus
