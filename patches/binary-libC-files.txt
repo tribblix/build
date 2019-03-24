@@ -1,0 +1,12 @@
+usr/include/demangle.h
+usr/lib/amd64/libCrun.so.1
+usr/lib/amd64/libCstd.so.1
+usr/lib/amd64/libdemangle.so
+usr/lib/amd64/libdemangle.so.1
+usr/lib/amd64/libiostream.so.1
+usr/lib/libC.so.5
+usr/lib/libCrun.so.1
+usr/lib/libCstd.so.1
+usr/lib/libdemangle.so
+usr/lib/libdemangle.so.1
+usr/lib/libiostream.so.1

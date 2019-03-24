@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# These are old closed binaries from DevPro
+#
+# The tarball was created on an older system, we just unpack it here
+#
+case `uname -p` in
+    i386)
+	tar xf ${BUILDROOT}/patches/binary-libC-files.tar
+	;;
+    sparc)
+	tar xf ${BUILDROOT}/patches/binary-libC-files.sparc.tar
+	;;
+esac
