@@ -50,28 +50,24 @@ EOF
 # prefer zap as we can get dependencies, and it's quicker
 #
 cd $PKGDIR
-for PKGI in *.zap
+for ZPKG in *.zap
 do
   DEPLIST=""
-  PKG=${PKGI%.zap}
-  ZPKG=${PKG}.zap
-  PNAME=${PKGI%%.*}
-  if [ -f $ZPKG ]; then
-    PKGVERS=`bash zipgrep '^VERSION=' $ZPKG ${PNAME}/pkginfo 2>/dev/null| awk -F= '{print $NF}'`
-    PKGNAME=`bash zipgrep '^NAME=' $ZPKG ${PNAME}/pkginfo 2>/dev/null| awk -F= '{print $NF}'`
-    DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
+  PKG=${ZPKG%.zap}
+  PNAME=${ZPKG%%.*}
+  PKGVERS=${PKG#*.}
+  PKGNAME=`bash zipgrep '^NAME=' $ZPKG ${PNAME}/pkginfo 2>/dev/null| awk -F= '{print $NF}'`
+  if [ -f catalog ]; then
+      DEPLIST=`grep "^${PKG}|" catalog |awk -F'|' '{print $3}'`
   else
-    PKGVERS=`pkginfo -l -d ${PKGI} | grep VERSION: | awk '{print $NF}' | sed 's="==g'`
+      DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
   fi
   echo "<dt><a name=\"${PNAME}\"></a><b>${PNAME}</b></dt>"
-  echo "<dd>"
-  echo "${PKGNAME}"
-  echo "<ul>"
-  echo "<li>Version: ${PKGVERS}</li>"
+  echo "<dd>\n${PKGNAME}\n<ul>\n<li>Version: ${PKGVERS}</li>"
   echo "<li><a href=\"${PNAME}.${PKGVERS}.zap\">Download</a></li>"
   for mypkgdep in $DEPLIST
   do
-      if [ -f ${mypkgdep}.0.${RELNUM}.0.zap ]; then
+      if [ -f ${mypkgdep}.0.${RELNUM}.zap ]; then
 	  echo "<li>Requires: <a href=\"#${mypkgdep}\">$mypkgdep</a></li>"
       elif [ -d ${THOME}/build/${mypkgdep} ]; then
 	  echo "<li>Requires: <a href=\"../tribblix-${TRELVER}${SSUFFIX}/#${mypkgdep}\">$mypkgdep</a></li>"
@@ -79,8 +75,7 @@ do
 	  echo "<li>Requires: $mypkgdep</li>"
       fi
   done
-  echo "</ul>"
-  echo "</dd>"
+  echo "</ul></dd>"
 done
 
 cat <<EOF
