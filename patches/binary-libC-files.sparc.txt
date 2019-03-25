@@ -1,0 +1,15 @@
+usr/include/demangle.h
+usr/lib/cpu/sparcv8plus/libCstd_isa.so.1
+usr/lib/libC.so.5
+usr/lib/libCrun.so.1
+usr/lib/libCstd.so.1
+usr/lib/libExbridge.so
+usr/lib/libExbridge.so.1
+usr/lib/libdemangle.so
+usr/lib/libdemangle.so.1
+usr/lib/libiostream.so.1
+usr/lib/sparcv9/libCrun.so.1
+usr/lib/sparcv9/libCstd.so.1
+usr/lib/sparcv9/libdemangle.so
+usr/lib/sparcv9/libdemangle.so.1
+usr/lib/sparcv9/libiostream.so.1
