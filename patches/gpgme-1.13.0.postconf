@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# not all compilers understand new obscure flags
+#
+sed -i s:-Wsuggest-override:: ./lang/cpp/src/Makefile

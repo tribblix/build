@@ -5,5 +5,5 @@
 #
 # gpgme 1.11 needs libgpg-error 1.29
 #
-${THOME}/build/dobuild -64 gpgme-1.12.0
-${THOME}/build/genpkg TRIBgpgme gpgme-1.12.0
+env TRIBBLIX_CFLAGS=-std=gnu99 ${THOME}/build/dobuild -64 gpgme-1.13.0
+${THOME}/build/genpkg TRIBgpgme gpgme-1.13.0
