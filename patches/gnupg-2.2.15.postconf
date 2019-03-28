@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# as of 2.2.11it builds the wks server unconditionally
+# as of 2.2.11 it builds the wks server unconditionally
 # unfortunately the wks server gets misconfigured
 #
 sed -i 's:-lgpg-error:-lgpg-error -lsocket:' tools/Makefile
