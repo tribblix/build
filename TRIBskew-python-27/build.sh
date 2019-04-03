@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# can now use a release tarball as it was recently update
+# can now use a release tarball as it was recently updated
 #
 ${THOME}/build/unpack skew-0.17.0
 cd skew-0.17.0
