@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+${BUILDROOT}/unpack clojure-tools-1.10.0.442
+#
+# that ended up in clojure-tools, so move it
+#
+mkdir -p usr/versions/clojure-110/lib/libexec
+mkdir -p usr/versions/clojure-110/bin
+mkdir -p usr/versions/clojure-110/man/man1
+sed -i -e 's@PREFIX@/usr/versions/clojure-110/lib@g' clojure-tools/clojure
+mv clojure-tools/clojure usr/versions/clojure-110/bin
+#
+# skip clj, as it requires rlwrap
+#
+#mv clojure-tools/clj usr/versions/clojure-110/bin
+mv clojure-tools/clojure-tools-1.10.0.442.jar usr/versions/clojure-110/lib/libexec
+mv clojure-tools/deps.edn clojure-tools/example-deps.edn usr/versions/clojure-110/lib
+mv clojure-tools/clojure.1 usr/versions/clojure-110/man/man1
+rm -rf clojure-tools
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/clojure-110/bin/clojure .
+cd ../..
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/clojure-110/man/man1/clojure.1 .

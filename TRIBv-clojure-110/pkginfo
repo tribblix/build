@@ -1,0 +1,4 @@
+PKG="TRIBv-clojure-110"
+NAME="Clojure"
+VERSION="1.10.0.0"
+ZAP_URL="http://clojure.org/"
