@@ -1,11 +1,11 @@
 #!/bin/sh
 #
-VERSION=3.6.0
+VERSION=3.6.1
 #
-# not yet default
+# default
 #
-#mkdir -p usr/bin
-#ln -s ../versions/apache-maven-${VERSION}/bin/mvn usr/bin/mvn
+mkdir -p usr/bin
+ln -s ../versions/apache-maven-${VERSION}/bin/mvn usr/bin/mvn
 #
 # no need for windows batch files
 #
