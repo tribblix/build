@@ -2,7 +2,7 @@
 #
 # just name off the primary version
 #
-VERSION=9.0.17
+VERSION=9.0.19
 cd usr/versions
 ln -s apache-tomcat-${VERSION} tomcat9
 chmod a+x apache-tomcat-${VERSION}/bin/*.sh
