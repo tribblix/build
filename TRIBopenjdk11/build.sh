@@ -9,13 +9,15 @@
 #
 # 11.0.1 release
 #wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.1+13.tar.bz2
+# 11.0.2 release
+#wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.2+9.tar.bz2
 #
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.2+9.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.3+7.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-11.0.2+9
-cd jdk11u-jdk-11.0.2+9
+${THOME}/build/unpack jdk-11.0.3+7
+cd jdk11u-jdk-11.0.3+7
 
 #
 # We need a copy of libsoftcrypto.h
@@ -41,7 +43,7 @@ cp ${THOME}/build/patches/jdk-libsoftcrypto.h src/jdk.crypto.ucrypto/solaris/nat
 #
 
 #
-# jdk11 needs autconf installed
+# jdk11 needs autoconf installed
 #
 zap install autoconf
 
@@ -54,28 +56,7 @@ zap install autoconf
 #
 
 #
-# Note for Solaris 10
-# first error is that it wants gmake
-# next it wants at least java 8 as the boot jdk
-# wants solaris as, so need /usr/ccs/bin in the path
-# wants objcopy, at least v21.1 (shipped 2.15 won't work)
-# patch 149064-01 or your own copy needed
-# needs cups, just copy /usr/include/cups from a system that has it
-# gobjcopy stuff doesn't actually work anyway, so try with -k
-# get a build error 
-# "/home/ptribble/ud/openjdk9/hotspot/src/os/solaris/vm/perfMemory_solaris.cpp", line 339: Error: d_fd is not a member of DIR.
-# [that's just posix - needs __XOPEN_OR_POSIX defined, or use dd_fd]
-#
-
-#
-# for jdk11, devpoll.h also fails to compile in
-# src/java.base/solaris/native/libnio/ch/DevPollArrayWrapper.c
-# "/usr/include/sys/devpoll.h", line 58: error:
-#         syntax error before or at: sigset_t
-#
-# need to #include <signal.h> explicitly in DevPollArrayWrapper.c
-#
-# and
+# for Solaris 10:
 # src/java.desktop/share/native/libfontmanager/harfbuzz/hb-blob.cc
 # the POSIX+C_SOURCE thing is broken - set it to 199506L
 #
@@ -101,6 +82,9 @@ zap install autoconf
 # src/hotspot/os/solaris/perfMemory_solaris.cpp
 # fix the d_fd error -> dd_fd
 #
+# src/java.base/solaris/native/libnio/ch/DevPollArrayWrapper.c
+# need to #include <signal.h> explicitly
+#
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
 #
@@ -117,9 +101,9 @@ env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k 
 #
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "11.0.2-internal" 2019-01-15
-# OpenJDK Runtime Environment (build 11.0.2-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.29)
-# OpenJDK 64-Bit Server VM (build 11.0.2-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.29, mixed mode)
+#openjdk version "11.0.3-internal" 2019-04-16
+#OpenJDK Runtime Environment (build 11.0.3-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.37)
+#OpenJDK 64-Bit Server VM (build 11.0.3-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.37, mixed mode)
 #
 
 rm -fr /tmp/jdk
