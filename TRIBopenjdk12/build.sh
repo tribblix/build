@@ -5,12 +5,14 @@
 # now a single tarball, 80M
 #
 # initial 12 release:
+# wget http://hg.openjdk.java.net/jdk/jdk12/archive/jdk-12+33.tar.bz2
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk/jdk12/archive/jdk-12+33.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk12u/archive/jdk-12.0.1+12.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-12+33
-cd jdk12-jdk-12+33
+${THOME}/build/unpack jdk-12.0.1+12
+cd jdk12u-jdk-12.0.1+12
 
 #
 # Unresolved issues:
@@ -33,8 +35,6 @@ cd jdk12-jdk-12+33
 # build host is supposed to provide it (either as part of the OS
 # or via devkit)
 #
-# src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
-#
 # removed in
 # http://hg.openjdk.java.net/jdk9/jdk9/jdk/rev/9db62c197dcd
 # so pull the version from the parent of that commit
@@ -51,7 +51,7 @@ cp ${THOME}/build/patches/jdk-libsoftcrypto.h src/jdk.crypto.ucrypto/solaris/nat
 #
 
 #
-# jdk12 needs autconf installed
+# jdk12 needs autoconf installed
 #
 zap install autoconf
 
@@ -65,27 +65,6 @@ zap install autoconf
 
 #
 # Note for Solaris 10
-# first error is that it wants gmake
-# next it wants at least java 8 as the boot jdk
-# wants solaris as, so need /usr/ccs/bin in the path
-# wants objcopy, at least v21.1 (shipped 2.15 won't work)
-# patch 149064-01 or your own copy needed
-# needs cups, just copy /usr/include/cups from a system that has it
-# gobjcopy stuff doesn't actually work anyway, so try with -k
-# get a build error 
-# "/home/ptribble/ud/openjdk9/hotspot/src/os/solaris/vm/perfMemory_solaris.cpp", line 339: Error: d_fd is not a member of DIR.
-# [that's just posix - needs __XOPEN_OR_POSIX defined, or use dd_fd]
-#
-
-#
-# for jdk12, devpoll.h also fails to compile in
-# src/java.base/solaris/native/libnio/ch/DevPollArrayWrapper.c
-# "/usr/include/sys/devpoll.h", line 58: error:
-#         syntax error before or at: sigset_t
-#
-# need to #include <signal.h> explicitly in DevPollArrayWrapper.c
-#
-# and
 # src/java.desktop/share/native/libfontmanager/harfbuzz/hb-blob.cc
 # the POSIX+C_SOURCE thing is broken - set it to 199506L
 #
@@ -111,10 +90,17 @@ zap install autoconf
 # src/hotspot/os/solaris/perfMemory_solaris.cpp
 # fix the d_fd error -> dd_fd
 #
+# src/java.base/solaris/native/libnio/ch/DevPollArrayWrapper.c
+# need to #include <signal.h> explicitly
+#
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
 #
-env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin bash ./configure --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk11 --with-native-debug-symbols=none --enable-dtrace=no
+# shenandoah doesn't build on Solaris x86, or SPARC at all
+# so disable it
+# --with-jvm-features=-shenandoahgc
+#
+env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin bash ./configure --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk11 --with-native-debug-symbols=none --enable-dtrace=no --with-jvm-features=-shenandoahgc
 env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k all
 
 #
@@ -125,17 +111,17 @@ env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k 
 #
 # first testing looks like this:
 #
-# cd build/solaris-x86_64-normal-server-release/images/jdk
+# cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "11.0.2-internal" 2019-01-15
-# OpenJDK Runtime Environment (build 11.0.2-internal+0-adhoc.ptribble.jdk12u-jdk-11.0.29)
-# OpenJDK 64-Bit Server VM (build 11.0.2-internal+0-adhoc.ptribble.jdk12u-jdk-11.0.29, mixed mode)
+# openjdk version "12.0.1-internal" 2019-04-16
+# OpenJDK Runtime Environment (build 12.0.1-internal+0-adhoc.ptribble.jdk12u-jdk-12.0.112)
+# OpenJDK 64-Bit Server VM (build 12.0.1-internal+0-adhoc.ptribble.jdk12u-jdk-12.0.112, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
 mkdir -p /tmp/jdk/usr/versions/openjdk12
 mkdir -p /tmp/jdk/usr/jdk/instances
-(cd build/solaris-x86_64-normal-server-release/images/jdk; tar cf - *) | ( cd /tmp/jdk/usr/versions/openjdk12 ; tar xf -)
+(cd build/solaris-x86_64-server-release/images/jdk; tar cf - *) | ( cd /tmp/jdk/usr/versions/openjdk12 ; tar xf -)
 cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk12 jdk12
 cd /tmp/jdk/usr/jdk
