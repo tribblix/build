@@ -67,7 +67,7 @@ getprop() {
     PROPVAL=""
     svcprop -q -p \$1 application/font/fc-cache
     if [ \$? -eq 0 ] ; then
-        PROPVAL=\$(svcprop -p $1 application/font/fc-cache)
+        PROPVAL=\$(svcprop -p \$1 application/font/fc-cache)
         if [ "\$PROPVAL" == "\"\"" ] ; then
             PROPVAL=""
         fi
