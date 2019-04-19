@@ -2,7 +2,7 @@
 #
 # put command in the default path
 #
-VERSION=2.4
+VERSION=2.5
 mkdir -p usr/bin usr/share/man/man8
 gunzip usr/versions/ruby-${VERSION}/share/man/man8/facter.8.gz
 ln -s ../../usr/versions/ruby-${VERSION}/bin/facter usr/bin/facter
