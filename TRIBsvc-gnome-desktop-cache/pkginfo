@@ -1,4 +1,4 @@
 PKG="TRIBsvc-gnome-desktop-cache"
 NAME="SMF services to update the various desktop caches."
-VERSION="0.17.0"
+VERSION="0.20.0"
 ZAP_URL="https://github.com/tribblix/desktop-cache"
