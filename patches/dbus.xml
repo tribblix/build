@@ -83,7 +83,7 @@
 			</loctext>
 		</common_name>
 		<documentation>
-			<manpage title='dbus-daemon' section='1' manpath='/usr/man' />
+			<manpage title='dbus-daemon' section='1' manpath='/usr/share/man'/>
 		</documentation>
 	</template>
 

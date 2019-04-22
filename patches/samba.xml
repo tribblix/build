@@ -36,7 +36,7 @@
                 </loctext>
             </common_name>
             <documentation>
-                <manpage title='smbd' section='1m' manpath='/usr/share/man'/>
+                <manpage title='smbd' section='8' manpath='/usr/share/man'/>
             </documentation>
         </template>
     </service>
