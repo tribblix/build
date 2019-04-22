@@ -4,4 +4,4 @@
 # the platform-specific component is node, which is
 # replaced by the fixit script
 #
-${THOME}/build/pkg_tarball -T TRIBblix-kibana kibana-5.6.14-linux-x86
+${THOME}/build/pkg_tarball -T TRIBblix-kibana kibana-5.6.16-linux-x86
