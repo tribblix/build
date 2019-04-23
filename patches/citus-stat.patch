@@ -1,0 +1,10 @@
+--- a/src/backend/distributed/worker/worker_sql_task_protocol.c	Wed Apr  3 22:21:29 2019
++++ b/src/backend/distributed/worker/worker_sql_task_protocol.c	Tue Apr 23 14:45:51 2019
+@@ -12,6 +12,7 @@
+ #include "postgres.h"
+ #include "funcapi.h"
+ #include "pgstat.h"
++#include <sys/stat.h>
+ 
+ #include "distributed/commands/multi_copy.h"
+ #include "distributed/multi_executor.h"
