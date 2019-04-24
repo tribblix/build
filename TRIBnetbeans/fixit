@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# remove some extraneous platforms
+#
+cd usr/versions/netbeans
+rm -fr ide/bin/nativeexecution/Windows*
+rm -fr ide/bin/nativeexecution/Linux*
+rm -fr ide/bin/nativeexecution/MacOSX*
+rm -fr profiler/lib/deployed/cvm
+rm -fr profiler/lib/deployed/jdk15/hpux*
+rm -fr profiler/lib/deployed/jdk15/linux*
+rm -fr profiler/lib/deployed/jdk15/mac*
+rm -fr profiler/lib/deployed/jdk15/win*
+rm -fr profiler/lib/deployed/jdk16/hpux*
+rm -fr profiler/lib/deployed/jdk16/linux*
+rm -fr profiler/lib/deployed/jdk16/mac*
+rm -fr profiler/lib/deployed/jdk16/win*
+rm -f bin/*.exe
+cd ../../..
+
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/netbeans/bin/netbeans .
+cd ../..
+
+mkdir -p usr/share/pixmaps
+cp usr/versions/netbeans/nb/netbeans.png usr/share/pixmaps
+
+mkdir -p usr/share/applications
+cd usr/share/applications
+cat > netbeans.desktop <<_EOF
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=NetBeans
+Comment=NetBeans IDE
+Exec=netbeans
+Icon=netbeans
+Terminal=false
+Type=Application
+Categories=Development;IDE;
+_EOF
+cd ../../..
