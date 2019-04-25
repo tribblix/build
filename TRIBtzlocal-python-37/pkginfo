@@ -1,0 +1,4 @@
+PKG="TRIBtzlocal-python-37"
+NAME="Python tzlocal"
+VERSION="1.5.1.0"
+ZAP_URL="https://pypi.org/project/tzlocal"
