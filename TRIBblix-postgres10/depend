@@ -1,3 +1,4 @@
 P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBperl-522
+P TRIBtext-locale
