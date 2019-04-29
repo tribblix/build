@@ -2,11 +2,14 @@ P TRIBcdiff-python-27
 P TRIBclick-python-27
 P TRIBdateutil-python-27
 P TRIBetcd-python-27
+P TRIBlibyaml
 P TRIBprettytable-python-27
 P TRIBpsutil-python-27
 P TRIBpsycopg2-27
 P TRIBrequests-python-27
+P TRIBsetuptools-python-27
 P TRIBsix-python-27
 P TRIBtzlocal-python-27
 P TRIBurllib3-python-27
 P TRIBv-python-27
+P TRIByaml-python-27
