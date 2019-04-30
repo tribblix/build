@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# populate the immodule cache
+#
+# do this once at package creation rather than
+# messing with the input-method-cache service
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# the cache will have the current dir in the pathnames
+#
+TDIR=`/bin/pwd`
+if [ -x usr/bin/gtk-query-immodules-3.0 ]; then
+   env LD_LIBRARY_PATH=${TDIR}/usr/lib usr/bin/gtk-query-immodules-3.0 ${TDIR}/usr/lib/gtk-3.0/3.0.0/immodules/*.so | sed s:${TDIR}:: > usr/lib/gtk-3.0/3.0.0/immodules.cache
+fi
+if [ -x usr/bin/${ARCH}/gtk-query-immodules-3.0 ]; then
+   env LD_LIBRARY_PATH=${TDIR}/usr/lib/${ARCH64} usr/bin/${ARCH64}/gtk-query-immodules-3.0 ${TDIR}/usr/lib/${ARCH64}/gtk-3.0/3.0.0/immodules/*.so | sed s:${TDIR}:: > usr/lib/${ARCH64}/gtk-3.0/3.0.0/immodules.cache
+fi
