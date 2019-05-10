@@ -1,4 +1,4 @@
 PKG="TRIBaide"
 NAME="AIDE - Advanced Intrusion Detection Environment"
-VERSION="0.16.0"
+VERSION="0.16.1.0"
 ZAP_URL="http://aide.sourceforge.net/"
