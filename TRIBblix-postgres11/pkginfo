@@ -1,4 +1,4 @@
 PKG="TRIBblix-postgres11"
 NAME="PostgreSQL database"
-VERSION="11.2.1"
+VERSION="11.3.0"
 ZAP_URL="http://www.postgresql.org/"
