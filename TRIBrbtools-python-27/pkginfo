@@ -1,0 +1,4 @@
+PKG="TRIBrbtools-python-27"
+NAME="Python RBTools"
+VERSION="1.0.2.0"
+ZAP_URL="https://pypi.org/project/RBTools"
