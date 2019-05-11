@@ -1,3 +1,4 @@
 PKG="TRIBnpapi-sdk"
 NAME="NPAPI SDK - headers needed for icedtea"
 VERSION="0.27.2.0"
+ZAP_URL="https://wiki.mozilla.org/NPAPI"
