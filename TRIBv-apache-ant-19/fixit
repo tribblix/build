@@ -1,10 +1,9 @@
 #!/bin/sh
 #
-# pkgproto generates garbage when fed hard links, so a symlink is just as good
-#
-VERSION=1.9.13
-mkdir -p usr/bin
-ln -s ../versions/apache-ant-${VERSION}/bin/ant usr/bin/ant
+VERSION=1.9.14
+# ant 1.10 is the default
+#mkdir -p usr/bin
+#ln -s ../versions/apache-ant-${VERSION}/bin/ant usr/bin/ant
 #
 rm usr/versions/apache-ant-${VERSION}/bin/*.bat
 rm usr/versions/apache-ant-${VERSION}/bin/*.cmd
