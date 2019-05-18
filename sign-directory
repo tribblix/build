@@ -28,12 +28,14 @@ fi
 cd $PKGDIR
 for PKG in *.zap
 do
-    echo ""
-    echo "Signing ${PKG}"
-    echo ""
-    gpg --detach-sign --no-secmem-warning --passphrase-file ${HOME}/Tribblix/Sign.phrase ${PKG}
-    if [ -f ${PKG}.sig ]; then
-	echo "Package signed successfully."
+    if [ ! -f ${PKG}.sig ]; then
 	echo ""
+	echo "Signing ${PKG}"
+	echo ""
+	gpg --detach-sign --no-secmem-warning --passphrase-file ${HOME}/Tribblix/Sign.phrase ${PKG}
+	if [ -f ${PKG}.sig ]; then
+	    echo "Package signed successfully."
+	    echo ""
+	fi
     fi
 done
