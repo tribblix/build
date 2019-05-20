@@ -74,8 +74,6 @@ fi
 # current system. If we're installing to an alternate image, then the
 # restarts will happen automatically when it boots
 #
-# FIXME should the restart be -s
-#
 cat >> ${BDIR}/install/postinstall <<EOF
 if [ "\${BASEDIR}" = "/" ]; then
 EOF
