@@ -18,19 +18,39 @@ if [ ! -f "$FPKG" ]; then
    exit 1
 fi
 
+if [ "${FPKG:0:1}" != / ]; then
+    echo "Input file must have absolute path"
+    exit 1
+fi
+
 if [ ! -d "$ODIR" ]; then
    echo "ERROR: output directory not found"
    exit 1
 fi
 
-# FIXME: uncompress compressed packages
-
+# uncompress compressed packages
+BPKG=${FPKG##*/}
 TDIR=/tmp/pkg2zap.`date '+%F-%T'`.$$
 rm -fr $TDIR
 mkdir -p $TDIR
+
+case $FPKG in
+    *.gz)
+	gzcat $FPKG > ${TDIR}/${BPKG%.gz}
+	FPKG=${TDIR}/${BPKG%.gz}
+	BPKG=${FPKG##*/}
+	;;
+    *.bz2)
+	bzcat $FPKG > ${TDIR}/${BPKG%.bz2}
+	FPKG=${TDIR}/${BPKG%.bz2}
+	BPKG=${FPKG##*/}
+	;;
+esac
+
 pkgtrans $FPKG $TDIR all
 cd $TDIR
-BPKG=${FPKG##*/}
+# remove an uncompressed pkg file if there is one
+rm -f $BPKG
 #zip -9 -q -r ${ODIR}/${BPKG%.pkg}.zap *
 7za a -tzip -mx=9 -mfb=256 ${ODIR}/${BPKG%.pkg}.zap *
 chmod a+r ${ODIR}/${BPKG%.pkg}.zap
