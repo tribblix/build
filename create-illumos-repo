@@ -38,7 +38,7 @@ if [ -d ${REPODIR} ]; then
    echo "ERROR: repodir must not exist for new creation"
    exit 1
 else
-   mkdir $REPODIR
+   mkdir -p $REPODIR
 fi
 
 if [ ! -d ${REPODIR} ]; then
@@ -48,11 +48,9 @@ fi
 
 #
 # create the catalog file
-# FIXME: how to handle the illumos and oi repos?
 # FIXME: arch hardcoded for i386
 #
 ${PKGBUILD}/create-illumos-catalog > ${REPODIR}/catalog
-mkdir -p ${REPODIR}
 #
 # then find all the packages
 #

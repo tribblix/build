@@ -48,16 +48,14 @@ fi
 
 #
 # create the catalog file
-# FIXME: how to handle the illumos and oi repos?
 # FIXME: arch hardcoded for i386
 #
 ${PKGBUILD}/create-oi-catalog > ${REPODIR}/catalog
-mkdir -p ${REPODIR}
 #
 # then find all the packages
 #
 # if we find a correctly versioned package, then assume it's perfect
-# if not, use the unversioned packae as package versions here are made up
+# if not, use the unversioned package as package versions here are made up
 #
 IFS="|"
 cat ${REPODIR}/catalog | while read pkgname pkgvers deplist
