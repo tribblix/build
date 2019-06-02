@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# OI ships iso9959-xx fonts in separate itty-bitty packages
+# OI ships iso8859-xx fonts in separate itty-bitty packages
 # Tribblix ships them all in TRIBfont-xorg-core
 # but we used to ship TRIBfont-xorg-iso8859-1, so this empty
 # package is necessary so that the prior TRIBfont-xorg-iso8859-1
