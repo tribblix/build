@@ -1,4 +1,4 @@
 PKG="TRIBdjango-python-27"
 NAME="Django web framework"
-VERSION="1.11.20.0"
+VERSION="1.11.21.0"
 ZAP_URL="https://www.djangoproject.com/"
