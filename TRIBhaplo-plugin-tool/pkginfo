@@ -1,4 +1,4 @@
 PKG="TRIBhaplo-plugin-tool"
 NAME="Haplo plugin tool"
-VERSION="1.1"
+VERSION="1.2"
 ZAP_URL="https://github.com/haplo-org/haplo-plugin-tool"

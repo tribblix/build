@@ -23,6 +23,8 @@ cd haplo-plugin-tool
 ./build_haplo_templates.sh `pwd`/../haplo
 cd ..
 chmod a+x haplo-plugin-tool/bin/haplo-plugin
+rm -fr haplo-plugin-tool/.git
+rm -f haplo-plugin-tool/.gitignore
 #
 # it really is jruby we want
 #
