@@ -1,21 +1,22 @@
 #!/bin/sh
 #
-# this gcc7 build is designed purely as a shadow compiler for illumos-gate
-# at some point in the future it may be promoted to the primary compiler
-# for Tribblix, which would be repcakaged in a different location, split
+# this gcc7 build is designed purely as a compiler for illumos-gate
+# at some point in the future it will be promoted to the primary compiler
+# for Tribblix, which would be repackaged in a different location, split
 # into dev and runtime packages, with fortran added, at which point this
 # package is obsolete
 #
-# as yet untested on sparc
+# while it builds on sparc, illumos-gate will not work with gcc7 on sparc
+# so it's only useful to find the gcc7 bugs in the source
 #
 # download the tarball like so
 #
-# wget https://github.com/illumos/gcc/archive/gcc-7.3.0-il-1.tar.gz
+# wget https://github.com/illumos/gcc/archive/gcc-7.3.0-il-2.tar.gz
 #
 
-${THOME}/build/unpack gcc-gcc-7.3.0-il-1
-mv gcc-gcc-7.3.0-il-1 gcc-7.3.0-il-1
-cd gcc-7.3.0-il-1
+${THOME}/build/unpack gcc-gcc-7.3.0-il-2
+mv gcc-gcc-7.3.0-il-2 gcc-7.3.0-il-2
+cd gcc-7.3.0-il-2
 
 #
 # these are the recommended versions
@@ -62,7 +63,7 @@ gmake -j 8
 
 #
 # plain install is ~700M on x86
-# with install-strip we get down to 242M
+# with install-strip we get down to 245M
 #
 rm -fr /tmp/gc7
 gmake DESTDIR=/tmp/gc7 install-strip
