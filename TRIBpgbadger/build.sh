@@ -1,11 +1,11 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pgbadger-10.3
-cd pgbadger-10.3
+${THOME}/build/unpack pgbadger-11.0
+cd pgbadger-11.0
 # you need to run a make to create the manpage
 perl Makefile.PL
 sed -i 's:sed -i.bak:gsed -i.bak:' Makefile
-make
+gmake
 rm -fr /tmp/pgb
 #
 # make install puts it inside the perl tree, so copy by hand
