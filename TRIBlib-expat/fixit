@@ -15,12 +15,5 @@ rm usr/lib/${ARCH64}/libexpat.la
 #
 # we don't need a 64-bit xmlwf
 #
-rm usr/bin/amd64/xmlwf
-rmdir usr/bin/amd64
-#
-# legacy from OI had a .0 symlink that we no longer reproduce
-#
-#cd usr/lib
-#ln -s libexpat.so.1.6.0 libexpat.so.0
-#cd ${ARCH64}
-#ln -s libexpat.so.1.6.0 libexpat.so.0
+rm usr/bin/${ARCH64}/xmlwf
+rmdir usr/bin/${ARCH64}
