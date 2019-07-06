@@ -1,0 +1,4 @@
+PKG="TRIBblix-zombodb11"
+NAME="Zombodb extension for PostgreSQL 11"
+VERSION="0.0"
+ZAP_URL="https://www.zombodb.com/"
