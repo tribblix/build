@@ -12,12 +12,15 @@
 # 11.0.2 release
 #wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.2+9.tar.bz2
 #
+# 11.0.3 release
+#wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.3+7.tar.bz2
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.3+7.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.4+11.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-11.0.3+7
-cd jdk11u-jdk-11.0.3+7
+${THOME}/build/unpack jdk-11.0.4+11
+cd jdk11u-jdk-11.0.4+11
 
 #
 # We need a copy of libsoftcrypto.h
@@ -62,7 +65,7 @@ zap install autoconf
 #
 
 #
-# build on Tribblix m20.5, which has the libc compatibility fixes
+# build on Tribblix m20.5 or later, which has the libc compatibility fixes
 #
 # cd $HOME
 # pbzcat /packages/localsrc/Studio/Studio12.4/SolarisStudio12.4-solaris-x86-bin.tar.bz2 | tar xf -
@@ -79,11 +82,18 @@ zap install autoconf
 #
 # it wants objcopy, hence /usr/sfw/bin in the path
 #
+#
+
+#
+# !!!!!!!!!!!!!! YOU MUST FIX THE FOLLOWING !!!!!!!!!!!!!!
+#
 # src/hotspot/os/solaris/perfMemory_solaris.cpp
 # fix the d_fd error -> dd_fd
 #
 # src/java.base/solaris/native/libnio/ch/DevPollArrayWrapper.c
 # need to #include <signal.h> explicitly
+#
+
 #
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
@@ -92,18 +102,13 @@ env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin bash ./co
 env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k all
 
 #
-# there's also a hint about
-# --disable-warnings-as-errors
-#
-
-#
 # first testing looks like this:
 #
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
-#openjdk version "11.0.3-internal" 2019-04-16
-#OpenJDK Runtime Environment (build 11.0.3-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.37)
-#OpenJDK 64-Bit Server VM (build 11.0.3-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.37, mixed mode)
+#openjdk version "11.0.4-internal" 2019-07-16
+#OpenJDK Runtime Environment (build 11.0.4-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.411)
+#OpenJDK 64-Bit Server VM (build 11.0.4-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.411, mixed mode)
 #
 
 rm -fr /tmp/jdk
