@@ -91,3 +91,4 @@ rm -fr /tmp/pil
 cd ..
 rm -fr /tmp/pil
 EOF
+chmod a+x $PY37NAME/build.sh
