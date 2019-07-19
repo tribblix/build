@@ -7,25 +7,18 @@
 # initial 12 release:
 # wget http://hg.openjdk.java.net/jdk/jdk12/archive/jdk-12+33.tar.bz2
 #
+# first update
+# wget http://hg.openjdk.java.net/jdk-updates/jdk12u/archive/jdk-12.0.1+12.tar.bz2
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk12u/archive/jdk-12.0.1+12.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk12u/archive/jdk-12.0.2+10.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-12.0.1+12
-cd jdk12u-jdk-12.0.1+12
+${THOME}/build/unpack jdk-12.0.2+10
+cd jdk12u-jdk-12.0.2+10
 
 #
-# Unresolved issues:
-#
-# shenandoah appears to be thoroughly broken
-#
-# a variety of enums have a trailing , after the last element
-#
-# shenandoahSharedVariables.hpp - some "value" -> "xxvalue" so
-# that some other "value" isn't hidden
-#
-# other errors aren't so easy to fix, just disable it make/autoconf/hotspot.m4
-# looks like dtrace is busted too, I suspect illumos and Solaris have diverged
+# looks like dtrace is busted, I suspect illumos and Solaris have diverged
 # enough to trip it up, so --enable-dtrace=no
 #
 
@@ -57,6 +50,7 @@ zap install autoconf
 
 #
 # jdk10-12 wants Studio 5.13 == Studio 12.4
+# there are creeping dependencies on Studio 12.6
 #
 
 #
@@ -70,7 +64,7 @@ zap install autoconf
 #
 
 #
-# build on Tribblix m20.5, which has the libc compatibility fixes
+# build on Tribblix m20.5 or later, which has the libc compatibility fixes
 #
 # cd $HOME
 # pbzcat /packages/localsrc/Studio/Studio12.4/SolarisStudio12.4-solaris-x86-bin.tar.bz2 | tar xf -
@@ -87,6 +81,10 @@ zap install autoconf
 #
 # it wants objcopy, hence /usr/sfw/bin in the path
 #
+
+#
+# !!!!!!!!!!!!!! YOU MUST FIX THE FOLLOWING !!!!!!!!!!!!!!
+#
 # src/hotspot/os/solaris/perfMemory_solaris.cpp
 # fix the d_fd error -> dd_fd
 #
@@ -96,26 +94,31 @@ zap install autoconf
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
 #
-# shenandoah doesn't build on Solaris x86, or SPARC at all
-# so disable it
+# there are two problems with harfbuzz:
+#
+# first, remove refmemnoconstr_aggr from DISABLED_WARNINGS_CXX_solstudio
+# in the file make/lib/Awt2dLibraries.gmk
+#
+# second, patch the source to stop it emitting the warning that would have
+# been gagged by the above flag if Studio12.4 had it
+#
+gpatch -p1 < ${THOME}/build/patches/jdk12-studio124.patch
+#
+# shenandoah doesn't build on SPARC so disable it with
 # --with-jvm-features=-shenandoahgc
+# (Bellsoft fixed shenandoah for Solaris x86 in 12.0.2)
 #
-env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin bash ./configure --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk11 --with-native-debug-symbols=none --enable-dtrace=no --with-jvm-features=-shenandoahgc
+env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin bash ./configure --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk11 --with-native-debug-symbols=none --enable-dtrace=no
 env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k all
-
-#
-# there's also a hint about
-# --disable-warnings-as-errors
-#
 
 #
 # first testing looks like this:
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "12.0.1-internal" 2019-04-16
-# OpenJDK Runtime Environment (build 12.0.1-internal+0-adhoc.ptribble.jdk12u-jdk-12.0.112)
-# OpenJDK 64-Bit Server VM (build 12.0.1-internal+0-adhoc.ptribble.jdk12u-jdk-12.0.112, mixed mode, sharing)
+# openjdk version "12.0.2-internal" 2019-04-16
+# OpenJDK Runtime Environment (build 12.0.2-internal+0-adhoc.ptribble.jdk12u-jdk-12.0.210)
+# OpenJDK 64-Bit Server VM (build 12.0.2-internal+0-adhoc.ptribble.jdk12u-jdk-12.0.210, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
