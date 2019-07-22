@@ -1,4 +1,0 @@
-PKG="TRIBzap"
-NAME="ZAP: Zip Archive Packaging"
-VERSION="0.0.19.0"
-ZAP_URL="https://github.com/tribblix/zap"

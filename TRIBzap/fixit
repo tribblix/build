@@ -1,9 +1,0 @@
-#!/bin/sh
-mkdir -p var/zap/cache
-mkdir -p var/zap/zones
-mkdir -p var/zap/images
-#
-# git doesn't track permissions, so we force them here
-#
-chmod 0700 etc/zap/sign/tribblix
-chmod 0600 etc/zap/sign/tribblix/*
