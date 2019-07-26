@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pytz-2018.5
-cd pytz-2018.5
+${THOME}/build/unpack pytz-2019.1
+cd pytz-2019.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
