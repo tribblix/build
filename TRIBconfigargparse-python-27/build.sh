@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack ConfigArgParse-0.13.0
-cd ConfigArgParse-0.13.0
+${THOME}/build/unpack ConfigArgParse-0.14.0
+cd ConfigArgParse-0.14.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
