@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack phonenumbers-8.10.7
-cd phonenumbers-8.10.7
+${THOME}/build/unpack phonenumbers-8.10.15
+cd phonenumbers-8.10.15
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
