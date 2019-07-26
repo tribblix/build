@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pycurl-7.43.0.2
-cd pycurl-7.43.0.2
+${THOME}/build/unpack pycurl-7.43.0.3
+cd pycurl-7.43.0.3
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
