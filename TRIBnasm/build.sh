@@ -1,9 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild nasm-2.13.03
-cd nasm-2.13.03
-rm -fr /tmp/nn
-gmake install INSTALLROOT=/tmp/nn
-${THOME}/build/create_pkg TRIBnasm /tmp/nn
-rm -fr /tmp/nn
-cd ..
+${THOME}/build/dobuild nasm-2.14.02
+${THOME}/build/genpkg TRIBnasm nasm-2.14.02
