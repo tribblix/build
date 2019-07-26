@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack dulwich-0.19.6
-cd dulwich-0.19.6
+${THOME}/build/unpack dulwich-0.19.11
+cd dulwich-0.19.11
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
