@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack backports.ssl_match_hostname-3.5.0.1
-cd backports.ssl_match_hostname-3.5.0.1
+${THOME}/build/unpack backports.ssl_match_hostname-3.7.0.1
+cd backports.ssl_match_hostname-3.7.0.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil

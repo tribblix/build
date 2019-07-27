@@ -1,4 +1,4 @@
 PKG="TRIBbackportssmh-python-27"
 NAME="Python backports.ssl_match_hostname"
-VERSION="3.5.0.1.0"
+VERSION="3.7.0.1.0"
 ZAP_URL="https://pypi.org/project/backports.ssl_match_hostname"
