@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack websocket_client-0.53.0
-cd websocket_client-0.53.0
+${THOME}/build/unpack websocket_client-0.56.0
+cd websocket_client-0.56.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
