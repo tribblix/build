@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack humanfriendly-4.17
-cd humanfriendly-4.17
+${THOME}/build/unpack humanfriendly-4.18
+cd humanfriendly-4.18
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
