@@ -1,0 +1,4 @@
+PKG="TRIBv-subversion-112"
+NAME="Subversion 1.12"
+VERSION="1.12.2.0"
+ZAP_URL="https://subversion.apache.org/"

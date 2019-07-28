@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# look for serf in the build location, not the install location
+#
+gsed -i s:I/usr/versions/subversion-1.12/include/serf-1:I`pwd`/../serf-1.3.8: Makefile
+gsed -i "s:-lserf-1:-L`pwd`/../serf-1.3.8 -lserf-1:" Makefile
