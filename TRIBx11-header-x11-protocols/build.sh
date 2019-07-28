@@ -55,8 +55,8 @@ $THOME/build/dobuild resourceproto-1.2.0
 $THOME/build/dobuild renderproto-0.11.1
 # KEEP: old 1.14 current 1.14.2 use 1.14.2
 $THOME/build/dobuild recordproto-1.14.2
-# DOWNREV: old 1.3.1 current 1.5.0 use 1.3.2
-$THOME/build/dobuild randrproto-1.3.2
+# DOWNREV: old 1.3.1 was 1.3.2 bump to 1.5.0
+$THOME/build/dobuild randrproto-1.5.0
 # KEEP: old 1.0.4 current 1.0.5 use 1.0.5
 $THOME/build/dobuild printproto-1.0.5
 # DOWNREV: old 2.0 current 2.3.2 use 2.0
