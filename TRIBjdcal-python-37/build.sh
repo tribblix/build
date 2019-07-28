@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack jdcal-1.4
-cd jdcal-1.4
+${THOME}/build/unpack jdcal-1.4.1
+cd jdcal-1.4.1
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
