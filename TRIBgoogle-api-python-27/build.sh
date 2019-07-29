@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack google-api-python-client-1.7.9
-cd google-api-python-client-1.7.9
+${THOME}/build/unpack google-api-python-client-1.7.10
+cd google-api-python-client-1.7.10
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
