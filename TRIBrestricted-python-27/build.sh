@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack RestrictedPython-4.0b2
-cd RestrictedPython-4.0b2
+${THOME}/build/unpack RestrictedPython-4.0
+cd RestrictedPython-4.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
