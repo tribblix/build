@@ -1,4 +1,4 @@
 PKG="TRIBrdesktop"
 NAME="Remote Desktop Client"
-VERSION="1.8.4.0"
+VERSION="1.8.6.0"
 ZAP_URL="http://www.rdesktop.org/"
