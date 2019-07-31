@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack kiwisolver-1.0.1
-cd kiwisolver-1.0.1
+${THOME}/build/unpack kiwisolver-1.1.0
+cd kiwisolver-1.1.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
