@@ -1,0 +1,41 @@
+commit cc3cd07122d34a66fa9676221e2b1181b7924903
+Author: Hubert Figuière <hub@figuiere.net>
+Date:   Sat Oct 22 15:17:04 2016 -0400
+
+    Bug 13819 - Remove nullptr as we don't require C++11
+
+diff --git a/src/af/gr/gtk/gr_UnixCairoGraphics.cpp b/src/af/gr/gtk/gr_UnixCairoGraphics.cpp
+index 509bd37..87f2fc1 100644
+--- a/src/af/gr/gtk/gr_UnixCairoGraphics.cpp
++++ b/src/af/gr/gtk/gr_UnixCairoGraphics.cpp
+@@ -180,7 +180,7 @@ void GR_UnixCairoGraphics::init3dColors(GtkWidget* /*w*/)
+ 	if (m_styleBg) {
+ 		g_object_unref(m_styleBg);
+ 	}
+-	m_styleBg = XAP_GtkStyle_get_style(nullptr, "GtkButton"); // "button"
++	m_styleBg = XAP_GtkStyle_get_style(NULL, "GtkButton"); // "button"
+ 	// guess colours
+ 	// WHITE
+ 	GdkRGBA rgba2;
+@@ -627,7 +627,7 @@ void GR_UnixCairoGraphics::fillRect(GR_Color3D c, UT_sint32 x, UT_sint32 y,
+ 		_setProps();
+ 		cairo_save (m_cr);
+ 
+-		GtkStyleContext *context = nullptr;
++		GtkStyleContext *context = NULL;
+ 		switch(c) {
+ 		case GR_Graphics::CLR3D_Background:
+ 			context = m_styleBg;
+diff --git a/src/wp/ap/xp/ap_Dialog_Spell.cpp b/src/wp/ap/xp/ap_Dialog_Spell.cpp
+index d2a7522..23d1a3f 100644
+--- a/src/wp/ap/xp/ap_Dialog_Spell.cpp
++++ b/src/wp/ap/xp/ap_Dialog_Spell.cpp
+@@ -251,7 +251,7 @@ bool AP_Dialog_Spell::nextMisspelledWord(void)
+ 					UT_return_val_if_fail (m_Suggestions, false);
+ 
+ 					// get suggestions from spelling engine
+-					const UT_GenericVector<UT_UCSChar*> *cpvEngineSuggestions = nullptr;
++					const UT_GenericVector<UT_UCSChar*> *cpvEngineSuggestions = NULL;
+ 
+ 					if (checker->checkWord(m_pWord, m_iWordLength) == SpellChecker::LOOKUP_FAILED)
+ 					{
