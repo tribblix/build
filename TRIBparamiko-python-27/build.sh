@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack paramiko-2.4.2
-cd paramiko-2.4.2
+${THOME}/build/unpack paramiko-2.6.0
+cd paramiko-2.6.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
