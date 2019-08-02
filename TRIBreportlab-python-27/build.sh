@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack reportlab-3.5.13
-cd reportlab-3.5.13
+${THOME}/build/unpack reportlab-3.5.23
+cd reportlab-3.5.23
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
