@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack wheel-0.32.3
-cd wheel-0.32.3
+${THOME}/build/unpack wheel-0.33.4
+cd wheel-0.33.4
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil

@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack wheel-0.32.3
-cd wheel-0.32.3
+${THOME}/build/unpack wheel-0.33.4
+cd wheel-0.33.4
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
