@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# this will override the default /usr/bin/perl
+#
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../perl5/5.30.0/bin/perl .
+cd ../perl5
+ln -s ./5.30.0/bin .
+ln -s ./5.30.0/man .
