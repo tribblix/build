@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pytz-2019.1
-cd pytz-2019.1
+${THOME}/build/unpack pytz-2019.2
+cd pytz-2019.2
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
