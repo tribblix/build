@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack sqlparse-0.2.4
-cd sqlparse-0.2.4
+${THOME}/build/unpack sqlparse-0.3.0
+cd sqlparse-0.3.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
