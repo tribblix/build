@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# missing include for FIONREAD
+#
+gsed -i 's:#include <string.h>:#include <string.h>\n#include <sys/filio.h>:' src/http.c
