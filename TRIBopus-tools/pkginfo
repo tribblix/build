@@ -1,0 +1,4 @@
+PKG="TRIBopus-tools"
+NAME="Opus Tools"
+VERSION="0.2.0"
+ZAP_URL="http://www.opus-codec.org/"
