@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# because....
+#
+sed -i 's:#! /bin/sh:#! /bin/bash:' configure

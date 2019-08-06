@@ -1,0 +1,4 @@
+PKG="TRIBsox"
+NAME="SoX, the Swiss Army knife of sound processing programs"
+VERSION="14.4.2.0"
+ZAP_URL="http://sox.sourceforge.net/"
