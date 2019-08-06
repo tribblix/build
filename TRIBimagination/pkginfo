@@ -1,0 +1,4 @@
+PKG="TRIBimagination"
+NAME="Imagination slide show maker"
+VERSION="3.4.0"
+ZAP_URL="http://imagination.sourceforge.net/"
