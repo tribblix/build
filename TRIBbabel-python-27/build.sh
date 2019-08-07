@@ -2,8 +2,8 @@
 #
 # needs pytz
 #
-${THOME}/build/unpack Babel-2.6.0
-cd Babel-2.6.0
+${THOME}/build/unpack Babel-2.7.0
+cd Babel-2.7.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
