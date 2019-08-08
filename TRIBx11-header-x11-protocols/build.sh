@@ -2,7 +2,7 @@
 #
 # this is a composite package
 #
-# we version it as 1.0.0 to reflect that its is an arbitrary
+# we version it as 1.0.x to reflect that its is an arbitrary
 # sequence rather than a real version number
 #
 # Q? presentproto dri3proto dmxproto xorgproto trapproto
@@ -41,8 +41,8 @@ $THOME/build/dobuild xf86driproto-2.1.1
 $THOME/build/dobuild xf86dgaproto-2.1
 # GOOD: old 1.2.0 current 1.2.0
 $THOME/build/dobuild xf86bigfontproto-1.2.0
-# DOWNREV: old 7.1.2 current 7.3.0 use 7.1.2
-$THOME/build/dobuild xextproto-7.1.2 -C --with-xmlto=no
+# DOWNREV: old 7.1.2 current 7.3.0 update to 7.3.0
+$THOME/build/dobuild xextproto-7.3.0 -C --with-xmlto=no
 # KEEP: old 1.2.0 current 1.2.2 use 1.2.2
 $THOME/build/dobuild xcmiscproto-1.2.2
 # HEEP: old 2.3.1 current 2.3.3 use 2.3.3

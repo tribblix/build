@@ -1,0 +1,2 @@
+-p1 libXext.shm.patch
+-p1 libXext.sun-exts.patch

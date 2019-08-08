@@ -1,0 +1,5 @@
+#!/bin/sh
+cp -r ${PATCHDIR}/libXext/* .
+cp ${PATCHDIR}/libXext.mapfile mapfile-vers
+autoreconf -vi
+sed -i 's;-version-number;-Wl,-M$(top_srcdir)/mapfile-vers -version-number;' src/Makefile.in
