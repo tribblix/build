@@ -2,5 +2,4 @@ P TRIBgtksourceview
 P TRIBlib-desktop-gtk
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
-P TRIBsys-libdbus
-P TRIBsys-libdbus-glib
+P TRIBxfce
