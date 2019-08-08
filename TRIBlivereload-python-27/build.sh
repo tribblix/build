@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack livereload-2.5.2
-cd livereload-2.5.2
+${THOME}/build/unpack livereload-2.6.1
+cd livereload-2.6.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
