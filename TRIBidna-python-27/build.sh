@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack idna-2.7
-cd idna-2.7
+${THOME}/build/unpack idna-2.8
+cd idna-2.8
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
