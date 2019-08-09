@@ -3,7 +3,7 @@ cp -r ${PATCHDIR}/libXmu/* .
 cp ${PATCHDIR}/mapfile-Xmu .
 cp ${PATCHDIR}/mapfile-Xmuu .
 #
-# we need to do this becasue our automake is 1.15
+# we need to do this because our automake is 1.15
 # and libXmu was assembled with automake 1.14
 #
 autoreconf -vi
