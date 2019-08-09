@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tqdm-4.32.2
-cd tqdm-4.32.2
+${THOME}/build/unpack tqdm-4.33.0
+cd tqdm-4.33.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
