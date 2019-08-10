@@ -2,7 +2,7 @@
 #
 # dirty hack to build a static libevent
 #
-${THOME}/build/dobuild libevent-2.0.22-stable -P /tmp/mc -C "--enable-static --disable-shared"
-cd libevent-2.0.22-stable
+${THOME}/build/dobuild libevent-2.1.11-stable -P /tmp/mc -C "--enable-static --disable-shared"
+cd libevent-2.1.11-stable
 gmake install
 cd ..
