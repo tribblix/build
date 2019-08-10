@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# we don't ship .la files for base libraries
+#
+/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
+#
+# don't ship documentation
+#
+/usr/bin/rm -fr usr/share/doc
+#
+# this will remove the directory if it's empty
+# if there are manpages, then it will have no effect
+#
+/usr/bin/rmdir usr/share
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# old /usr/X11/lib links
+#
+mkdir -p usr/X11/lib/$ARCH64
+cd usr/X11/lib
+ln -s ../../lib/libXinerama.so .
+ln -s ../../lib/libXinerama.so.1 .
+cd $ARCH64
+ln -s ../../../lib/${ARCH64}/libXinerama.so .
+ln -s ../../../lib/${ARCH64}/libXinerama.so.1 .
