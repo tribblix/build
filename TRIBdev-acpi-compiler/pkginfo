@@ -1,4 +1,0 @@
-PKG="TRIBdev-acpi-compiler"
-NAME="ACPICA"
-VERSION="20180508.0"
-ZAP_URL="https://www.acpica.org/downloads"
