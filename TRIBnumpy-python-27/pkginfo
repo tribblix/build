@@ -1,4 +1,0 @@
-PKG="TRIBnumpy-python-27"
-NAME="NumPy package for scientific computing with Python"
-VERSION="1.15.3.0"
-ZAP_URL="http://www.numpy.org/"
