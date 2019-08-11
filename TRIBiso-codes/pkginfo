@@ -1,4 +1,4 @@
 PKG="TRIBiso-codes"
 NAME="iso-codes"
-VERSION="3.77.0"
-ZAP_URL="http://pkg-isocodes.alioth.debian.org/"
+VERSION="4.3.0"
+ZAP_URL="https://salsa.debian.org/iso-codes-team/iso-codes"
