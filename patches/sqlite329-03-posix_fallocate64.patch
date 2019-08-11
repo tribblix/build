@@ -1,6 +1,6 @@
---- a/sqlite3.c	2011-06-08 14:50:51.185910263 +0800
-+++ b/sqlite3.c	2011-06-08 14:51:57.485764632 +0800
-@@ -24491,7 +24491,11 @@
+--- a/sqlite3.c	Wed Jul 10 19:07:04 2019
++++ b/sqlite3.c	Sun Aug 11 13:35:24 2019
+@@ -33018,7 +33018,11 @@
  #define osFchmod    ((int(*)(int,mode_t))aSyscall[14].pCurrent)
  
  #if defined(HAVE_POSIX_FALLOCATE) && HAVE_POSIX_FALLOCATE

@@ -27,6 +27,25 @@
 #
 $mapfile_version 2
 
+SYMBOL_VERSION sqlite_3.28.0 {
+    global:
+	sqlite3_stmt_isexplain;
+	sqlite3_value_frombind;
+} sqlite_3.22.0;
+
+SYMBOL_VERSION sqlite_3.22.0 {
+    global:
+	sqlite3_value_nochange;
+	sqlite3_vtab_collation;
+	sqlite3_vtab_nochange;
+} sqlite_3.20.0;
+
+SYMBOL_VERSION sqlite_3.20.0 {
+    global:
+	sqlite3_prepare16_v3;
+	sqlite3_prepare_v3;
+} sqlite_3.19.0;
+
 SYMBOL_VERSION sqlite_3.19.0 {
     global:
 	sqlite3_set_last_insert_rowid;
