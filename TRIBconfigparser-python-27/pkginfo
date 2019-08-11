@@ -1,4 +1,4 @@
 PKG="TRIBconfigparser-python-27"
 NAME="Python configparser"
-VERSION="3.7.4.0"
+VERSION="3.7.5.0"
 ZAP_URL="https://pypi.org/project/configparser"
