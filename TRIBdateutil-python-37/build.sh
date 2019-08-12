@@ -2,8 +2,8 @@
 #
 # python-dateutil - needs six
 #
-${THOME}/build/unpack python-dateutil-2.7.5
-cd python-dateutil-2.7.5
+${THOME}/build/unpack python-dateutil-2.8.0
+cd python-dateutil-2.8.0
 /usr/versions/python-3.7/bin/python3 setup.py build
 /usr/versions/python-3.7/bin/python3 ./updatezinfo.py 
 rm -fr /tmp/pil
