@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack temboard-agent-3.1
-cd temboard-agent-3.1
+${THOME}/build/unpack temboard-agent-4.0
+cd temboard-agent-4.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil

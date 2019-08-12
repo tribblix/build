@@ -1,4 +1,4 @@
-PKG="TRIBtemboard-agent-python-27"
+PKG="TRIBtemboard-agent-python-37"
 NAME="Python temboard-agent"
 VERSION="4.0.0"
 ZAP_URL="https://pypi.org/project/temboard-agent"
