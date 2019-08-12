@@ -1,6 +1,0 @@
-#!/sbin/sh
-#
-# don't rely on the owner being in the password file
-# (will fail if installing to an alternate root)
-#
-/usr/bin/chown -hR 125:125 ${BASEDIR}/opt/tribblix/repo/apache2/logs

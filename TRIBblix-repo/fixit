@@ -1,24 +1,26 @@
 #!/bin/sh
 #
-# need to put the manifest under var for sparse-root zone support
-#
-mkdir -p var/svc/manifest/network
-cp ${BUILDROOT}/patches/repo-apache.xml var/svc/manifest/network
-#
-# the repo itself lives here
+# the repo itself lives here (although it's usually a zfs dataset)
 #
 mkdir -p var/repo
+
+#
+# where the dehydrated well known location is
+#
+mkdir -p var/dehydrated/acme-challenge/pkgs.tribblix.org
+
+#
+# where the ssl certificates themselves live
+#
+mkdir -p var/sslcerts/pkgs.tribblix.org
+echo "pkgs.tribblix.org" > var/sslcerts/pkgs.tribblix.org/domains.txt
+cp ${BUILDROOT}/patches/repo-dehydrated.config var/sslcerts/pkgs.tribblix.org/config
+
 #
 # this is the starting apache configuration
 #
-mkdir -p opt/tribblix/repo/apache2/conf
-mkdir -p opt/tribblix/repo/apache2/logs
-mkdir -p opt/tribblix/repo/apache2/htdocs
-ln -s ../../apache2/modules opt/tribblix/repo/apache2
-ln -s ../../../apache2/conf/magic opt/tribblix/repo/apache2/conf
-ln -s ../../../apache2/conf/mime.types opt/tribblix/repo/apache2/conf
-cp ${BUILDROOT}/patches/repo.httpd.conf opt/tribblix/repo/apache2/conf/httpd.conf
-cp ${BUILDROOT}/patches/repo.httpd.conf opt/tribblix/repo/apache2/conf/httpd.conf.bak
+mkdir -p opt/tribblix/nginx/sites-enabled
+cp ${BUILDROOT}/patches/pkgs.tribblix.org.conf opt/tribblix/nginx/sites-enabled/pkgs.tribblix.org.conf
 
 #
 # these are the helper scripts
