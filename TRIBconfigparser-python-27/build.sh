@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack configparser-3.7.5
-cd configparser-3.7.5
+${THOME}/build/unpack configparser-3.8.1
+cd configparser-3.8.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
