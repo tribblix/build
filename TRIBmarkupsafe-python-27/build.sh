@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack MarkupSafe-1.0
-cd MarkupSafe-1.0
+${THOME}/build/unpack MarkupSafe-1.1.1
+cd MarkupSafe-1.1.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
