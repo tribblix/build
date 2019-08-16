@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack subprocess32-3.2.7
-cd subprocess32-3.2.7
+${THOME}/build/unpack subprocess32-3.5.4
+cd subprocess32-3.5.4
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
