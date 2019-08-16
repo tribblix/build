@@ -1,4 +1,4 @@
 PKG="TRIBdocutils-python-37"
 NAME="Python docutils"
-VERSION="0.14"
+VERSION="0.15.2.0"
 ZAP_URL="http://docutils.sourceforge.net/"
