@@ -1,4 +1,4 @@
 PKG="TRIBsnowballstemmer-python-37"
 NAME="Python snowballstemmer"
-VERSION="1.2.1.0"
+VERSION="1.9.0.0"
 ZAP_URL="https://pypi.org/project/snowballstemmer"
