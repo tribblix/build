@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wallpapers SYSTEM "mate-wp-list.dtd">
+<wallpapers>
+	<wallpaper deleted="false">
+		<name>Bodiam Castle</name>
+		<filename>/usr/share/backgrounds/xfce/bodiam1.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Everest Ride</name>
+		<filename>/usr/share/backgrounds/xfce/everest-ride.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Fishes</name>
+		<filename>/usr/share/backgrounds/xfce/fishtank.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Green Goddess, RHDCR</name>
+		<filename>/usr/share/backgrounds/xfce/goddess-engine.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Azure Window, Gozo</name>
+		<filename>/usr/share/backgrounds/xfce/gozowindow.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Lille Wheel</name>
+		<filename>/usr/share/backgrounds/xfce/lille-wheel.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Rapide</name>
+		<filename>/usr/share/backgrounds/xfce/rapide.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Tenterden Signal Box</name>
+		<filename>/usr/share/backgrounds/xfce/signal-box.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Tree of Life</name>
+		<filename>/usr/share/backgrounds/xfce/tree-of-life.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Castell Coch</name>
+		<filename>/usr/share/backgrounds/xfce/wcastle1.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Caerphilly Castle</name>
+		<filename>/usr/share/backgrounds/xfce/wcastle2.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+</wallpapers>

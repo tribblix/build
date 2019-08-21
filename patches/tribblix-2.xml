@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wallpapers SYSTEM "mate-wp-list.dtd">
+<wallpapers>
+	<wallpaper deleted="false">
+		<name>The end of a levada walk</name>
+		<filename>/usr/share/backgrounds/xfce/mbird1.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Cabo Girão from Camara de Lobos</name>
+		<filename>/usr/share/backgrounds/xfce/mcliff.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Liners at New Year, Funchal, Madeira</name>
+		<filename>/usr/share/backgrounds/xfce/mliners.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Roman Mosaic</name>
+		<filename>/usr/share/backgrounds/xfce/mosaic.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Airplane, Funchal</name>
+		<filename>/usr/share/backgrounds/xfce/mplane.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Radar on Madeira</name>
+		<filename>/usr/share/backgrounds/xfce/mradar.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Cityscape of Naples</name>
+		<filename>/usr/share/backgrounds/xfce/naples.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Nuns Valley</name>
+		<filename>/usr/share/backgrounds/xfce/nunsvalley.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Hot in Portugal</name>
+		<filename>/usr/share/backgrounds/xfce/phot.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+	<wallpaper deleted="false">
+		<name>Reykjavik</name>
+		<filename>/usr/share/backgrounds/xfce/reykjavik.jpg</filename>
+		<options>zoom</options>
+		<artist>Peter Tribble</artist>
+	</wallpaper>
+</wallpapers>
