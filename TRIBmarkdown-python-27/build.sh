@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Markdown-2.6.11
-cd Markdown-2.6.11
+${THOME}/build/unpack Markdown-3.1.1
+cd Markdown-3.1.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
