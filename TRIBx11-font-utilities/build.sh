@@ -10,5 +10,5 @@
 #
 ${THOME}/build/dobuild bdftopcf-1.1
 ${THOME}/build/dobuild mkfontscale-1.2.1
-${THOME}/build/dobuild font-util-1.3.1
-${THOME}/build/genpkg TRIBx11-font-utilities bdftopcf-1.1 mkfontscale-1.2.1 font-util-1.3.1
+${THOME}/build/dobuild font-util-1.3.2
+${THOME}/build/genpkg TRIBx11-font-utilities bdftopcf-1.1 mkfontscale-1.2.1 font-util-1.3.2
