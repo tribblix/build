@@ -30,3 +30,4 @@ By default, reserve the group id as well
 126 haproxy	    TRIBBblix-haproxy
 127 phpweb	    TRIBblix-apache-php
 128 activemq	    TRIBblix-activemq
+129 zookeeper	    TRIBblix-zookeeper

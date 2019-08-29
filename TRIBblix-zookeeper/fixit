@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/zookeeper.xml var/svc/manifest/network
+
+#
+# where config and logs live
+#
+mkdir -p var/zookeeper/logs
+mkdir -p var/zookeeper/conf
+mkdir -p var/zookeeper/data
+#
+# the smf startup looks for zoo.cfg in /var/zookeeper/conf
+# it's up to the user to specify that
+# but we set some useful defaults here
+#
+# for example, if the user copies the sample config to that file
+# then you need the following settings for the server to start
+#
+# ZOO_LOG_DIR otherwise default is sibling of bin
+#
+cat > var/zookeeper/conf/zookeeper-env.sh <<EOF
+ZOO_LOG_DIR=/var/zookeeper/logs
+EOF
+
+cd opt/tribblix
+#
+# Normalize the directory name
+#
+VERSION="3.5.5"
+mv apache-zookeeper-${VERSION}-bin zookeeper
+
+#
+# clean up a bit
+#
+cd zookeeper
+rm -f bin/*.cmd
+
+#
+# copy in a startup wrapper
+#
+cp ${BUILDROOT}/patches/svc-zookeeper bin/svc-zookeeper
+chmod a+x bin/svc-zookeeper

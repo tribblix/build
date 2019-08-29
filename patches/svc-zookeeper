@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# wrapper to start zookeeper, with valid arguments
+#
+
+ZDIR=/var/zookeeper
+
+#
+# with no configuration just disable ourself
+#
+# we ship a user_attr entry via packaging to make this work
+#
+if [ ! -f "${ZDIR}/conf/zoo.cfg" ]; then
+    /usr/sbin/svcadm disable svc:/network/zookeeper:default
+    exit 0
+fi
+
+cd /opt/tribblix/zookeeper
+
+#
+# don't support restart here, as that first deos a stop which makes smf
+# think the service has exited and it jumps in to do the restart anyway
+#
+case $1 in
+    start)
+	bin/zkServer.sh --config ${ZDIR}/conf start
+	;;
+    stop)
+	bin/zkServer.sh --config ${ZDIR}/conf stop
+	;;
+esac
+
+exit 0
