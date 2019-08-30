@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack typing-3.7.4
-cd typing-3.7.4
+${THOME}/build/unpack typing-3.7.4.1
+cd typing-3.7.4.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
