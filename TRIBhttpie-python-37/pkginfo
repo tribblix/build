@@ -1,4 +1,4 @@
 PKG="TRIBhttpie-python-37"
 NAME="Python httpie"
-VERSION="1.0.2.0"
+VERSION="1.0.3.0"
 ZAP_URL="https://pypi.org/project/httpie"
