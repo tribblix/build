@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack boto3-1.9.184
-cd boto3-1.9.184
+${THOME}/build/unpack boto3-1.9.220
+cd boto3-1.9.220
 python setup.py build
 rm -fr /tmp/sut
 python setup.py install --root=/tmp/sut
