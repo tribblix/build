@@ -2,5 +2,5 @@
 #
 # SPARC needs --without-ldap --without-ads
 #
-env TRIBBLIX_LDFLAGS="-lnsl" ${THOME}/build/dobuild samba-4.9.6 -P /usr -C "--enable-fhs --sysconfdir=/etc --localstatedir=/var" -M -k
-${THOME}/build/genpkg TRIBsamba4 samba-4.9.6
+env TRIBBLIX_LDFLAGS="-lnsl" ${THOME}/build/dobuild samba-4.9.12 -P /usr -C "--enable-fhs --sysconfdir=/etc --localstatedir=/var" -M -k
+${THOME}/build/genpkg TRIBsamba4 samba-4.9.12
