@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack psutil-5.4.7
-cd psutil-5.4.7
+${THOME}/build/unpack psutil-5.6.3
+cd psutil-5.6.3
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
