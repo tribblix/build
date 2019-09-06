@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+mkdir -p ${DESTDIR}/usr/share/wtf
+cp acronyms acronyms.comp ${DESTDIR}/usr/share/wtf
+cp acronyms-o.real ${DESTDIR}/usr/share/wtf/acronyms-o
+chmod 444 ${DESTDIR}/usr/share/wtf/acronyms*
+mkdir -p ${DESTDIR}/usr/bin
+cp wtf ${DESTDIR}/usr/bin
+sed -i s:/usr/share/misc:/usr/share/wtf: ${DESTDIR}/usr/bin/wtf
+chmod a+x ${DESTDIR}/usr/bin/wtf
+mkdir -p ${DESTDIR}/usr/share/man/man6
+cp wtf.6 ${DESTDIR}/usr/share/man/man6/wtf.6
