@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack snowballstemmer-1.9.0
-cd snowballstemmer-1.9.0
+${THOME}/build/unpack snowballstemmer-1.9.1
+cd snowballstemmer-1.9.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
