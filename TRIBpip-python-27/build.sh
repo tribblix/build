@@ -4,8 +4,8 @@
 #
 # python2.7 has ensurepip, but unlike py3 it's not run by default
 #
-${THOME}/build/unpack pip-19.2.2
-cd pip-19.2.2
+${THOME}/build/unpack pip-19.2.3
+cd pip-19.2.3
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
