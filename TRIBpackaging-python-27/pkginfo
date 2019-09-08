@@ -1,4 +1,0 @@
-PKG="TRIBpackaging-python-27"
-NAME="Python packaging"
-VERSION="19.1.0"
-ZAP_URL="https://pypi.org/project/packaging"

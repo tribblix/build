@@ -1,4 +1,0 @@
-PKG="TRIBsphinx-ws-python-27"
-NAME="Python sphinxcontrib-websupport"
-VERSION="1.1.2.0"
-ZAP_URL="https://pypi.org/project/sphinxcontrib-websupport"
