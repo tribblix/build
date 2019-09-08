@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBimagej ij150
+${THOME}/build/pkg_tarball TRIBimagej ij152
