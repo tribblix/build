@@ -6,7 +6,8 @@ mkdir -p usr/bin usr/share/applications usr/share/pixmaps
 cd usr/versions
 cd ImageJ
 rm -fr ImageJ.app
-rm -f .DS_Store
+rm -f .DS_Store plugins/.DS_Store plugins/jars/.DS_Store
+rm -f macros/.DS_Store
 rm -f ImageJ.exe
 rm -f macros/About\ Startup\ Macros
 rm -f plugins/Examples/_Scripts/About\ Scripts
@@ -15,6 +16,12 @@ for file in macros/toolsets/*
 do
     mv "$file" `echo $file | sed 's: :_:g'`
 done
+
+chmod 0755 macros/Examples
+chmod 0755 macros/Examples/*
+chmod a+r macros/Examples/*/*
+chmod a+x macros/Examples/Python/*
+
 cd ..
 cd ../..
 cd usr/bin
