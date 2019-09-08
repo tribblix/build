@@ -1,4 +1,4 @@
 PKG="TRIBsphinx-37"
 NAME="Python documentation generator"
-VERSION="1.8.5.0"
+VERSION="2.2.0.0"
 ZAP_URL="http://sphinx-doc.org/"

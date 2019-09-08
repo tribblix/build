@@ -6,9 +6,12 @@ P TRIBjinja-python-37
 P TRIBpackaging-python-37
 P TRIBpygments-37
 P TRIBrequests-python-37
-P TRIBsix-python-37
+P TRIBsc-applehelp-python-37
+P TRIBsc-devhelp-python-37
+P TRIBsc-htmlhelp-python-37
+P TRIBsc-jsmath-python-37
+P TRIBsc-qthelp-python-37
+P TRIBsc-serhtml-python-37
 P TRIBsnowballstemmer-python-37
-P TRIBsphinx-ws-python-37
-P TRIBsqlalchemy-python-37
 P TRIBv-python-37
 P TRIBwhoosh-python-37
