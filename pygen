@@ -9,13 +9,22 @@ PY2VER=27
 PY37VER=37
 PY37DVER=3.7
 
+PY3ONLY=""
+
+case $1 in
+-3)
+	PY3ONLY="yes"
+	shift
+	;;
+esac
+
 case $# in
 2)
 	pkg_name=$1
 	TBALL=$2
 	;;
 *)
-	echo "Usage: $0 pkg_name tarball_name"
+	echo "Usage: $0 [-3] pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -43,6 +52,8 @@ PVER=${TBALL##*-}
 # OK, now we can create the package metadata
 #
 
+if [ -z "${PY3ONLY}" ]; then
+
 #
 # python 2.7
 #
@@ -67,6 +78,8 @@ cd ..
 rm -fr /tmp/pil
 EOF
 chmod a+x $PY2NAME/build.sh
+
+fi
 
 #
 # python 3.7
