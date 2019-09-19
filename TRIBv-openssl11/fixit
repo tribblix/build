@@ -19,7 +19,7 @@ cp ${BUILDROOT}/patches/opensslconf.h usr/versions/openssl11/include/openssl/ope
 #
 # this package currently provides tools for testing
 # and is experimental; once we switch to openssl 1.1
-# properly this packge will be removed. So we don't
+# properly this package will be removed. So we don't
 # want anything from this package to exist in the
 # default paths
 #
