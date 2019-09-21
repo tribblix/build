@@ -1,0 +1,4 @@
+PKG="TRIBx11-libxxf86misc"
+NAME="libXxf86misc"
+VERSION="1.0.4.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/lib/"
