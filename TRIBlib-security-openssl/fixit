@@ -18,6 +18,16 @@ ln -s /etc/ssl/certs usr/ssl
 mkdir usr/share
 mv usr/ssl/man usr/share
 #
+# we no longer fiddle the manpage suffix, but some man pages conflict
+#
+mv usr/share/man/man1/errstr.1 usr/share/man/man1/openssl-errstr.1
+mv usr/share/man/man1/passwd.1 usr/share/man/man1/openssl-passwd.1
+#
+# we should have a 64-bit opensslconf.h saved, now fix it to be dual-arch
+#
+mv usr/include/openssl/opensslconf.h usr/include/openssl/opensslconf-32.h
+cp ${BUILDROOT}/patches/opensslconf.h usr/include/openssl/opensslconf.h
+#
 # libraries expect to live in /lib
 #
 mv usr/lib/64 usr/lib/${ARCH64}

@@ -3,22 +3,23 @@
 # openssl 1.0.2 updates
 # As of 1.0.2g, ignore md2 but must explicitly enable ssl2 to retain binary
 # compatibility
-${THOME}/build/unpack -64 openssl-1.0.2p
-cd openssl-1.0.2p
+${THOME}/build/unpack -64 openssl-1.0.2t
+cd openssl-1.0.2t
 ./Configure solaris-x86-gcc --pk11-libname=/usr/lib/libpkcs11.so.1 shared threads zlib enable-ssl2 --prefix=/usr
 make depend
 make
 cd ..
-cd openssl-1.0.2p-64bit
+cd openssl-1.0.2t-64bit
 ./Configure solaris64-x86_64-gcc --pk11-libname=/usr/lib/amd64/libpkcs11.so.1 shared threads zlib enable-ssl2 --prefix=/usr
 make depend
 make
 cd ..
 rm -fr /tmp/osl
-cd openssl-1.0.2p-64bit
+cd openssl-1.0.2t-64bit
 make install INSTALL_PREFIX=/tmp/osl
 cd ..
-cd openssl-1.0.2p
+mv /tmp/osl/usr/include/openssl/opensslconf.h /tmp/osl/usr/include/openssl/opensslconf-64.h
+cd openssl-1.0.2t
 make install INSTALL_PREFIX=/tmp/osl
 cd ..
 ${THOME}/build/create_pkg TRIBlib-security-openssl /tmp/osl
