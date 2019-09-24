@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack patroni-1.5.6
-cd patroni-1.5.6
+${THOME}/build/unpack patroni-1.6.0
+cd patroni-1.6.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
