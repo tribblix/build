@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-$THOME/build/unpack coredns-1.5.0
-cd coredns-1.5.0
+$THOME/build/unpack coredns-1.6.3
+cd coredns-1.6.3
 gmake
 
 rm -fr /tmp/ee
