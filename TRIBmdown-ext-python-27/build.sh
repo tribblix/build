@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pymdown-extensions-6.0
-cd pymdown-extensions-6.0
+${THOME}/build/unpack pymdown-extensions-6.1
+cd pymdown-extensions-6.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
