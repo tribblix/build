@@ -11,7 +11,7 @@
 # the tarball has some test files with UTF-8 filenames
 #
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.12.9.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.12.10.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.12 GOROOT_BOOTSTRAP=/usr/versions/go-1.11 ./all.bash
 cd ..
