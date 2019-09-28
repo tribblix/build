@@ -25,6 +25,6 @@ rm -f make.bat
 
 mkdir -p /tmp/ppv/usr/versions/v
 tar cf - . | (cd /tmp/ppv/usr/versions/v ; tar xf -)
-${THOME}/build/create_pkg TRIBv-go-112 /tmp/ppv
+${THOME}/build/create_pkg TRIBv-v /tmp/ppv
 rm -fr /tmp/ppv
 
