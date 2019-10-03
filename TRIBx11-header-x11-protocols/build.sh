@@ -67,8 +67,8 @@ $THOME/build/dobuild glproto-1.4.10
 $THOME/build/dobuild fontsproto-2.1.2
 # GOOD: old 0.1.3 current 0.1.3
 $THOME/build/dobuild fontcacheproto-0.1.3
-# DOWNREV: old 4.1.1 current 5.0 use 4.1.2
-$THOME/build/dobuild fixesproto-4.1.2
+# DOWNREV: old 4.1.1 bump to 5.0
+$THOME/build/dobuild fixesproto-5.0
 # KEEP: old 1.1.0 current 1.1.1 use 1.1.1
 $THOME/build/dobuild evieext-1.1.1
 # DOWNREV: old 2.1 current 2.8 use 2.1
