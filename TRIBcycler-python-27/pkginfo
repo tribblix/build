@@ -1,4 +1,0 @@
-PKG="TRIBcycler-python-27"
-NAME="Python cycler"
-VERSION="0.10.0.0"
-ZAP_URL="https://pypi.org/project/cycler"

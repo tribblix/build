@@ -1,4 +1,0 @@
-PKG="TRIBcrtsh-python-27"
-NAME="Python API for crt.sh"
-VERSION="0.2.0.0"
-ZAP_URL="https://pypi.org/project/crtsh"

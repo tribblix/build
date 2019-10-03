@@ -1,4 +1,0 @@
-PKG="TRIBimapclient-python-27"
-NAME="Python IMAPClient"
-VERSION="2.1.0.0"
-ZAP_URL="https://pypi.org/project/IMAPClient"

@@ -1,4 +1,0 @@
-PKG="TRIBmail-parser-python-27"
-NAME="Python mail-parser"
-VERSION="3.9.3.0"
-ZAP_URL="https://pypi.org/project/mail-parser"
