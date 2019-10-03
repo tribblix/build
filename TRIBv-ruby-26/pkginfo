@@ -1,4 +1,4 @@
 PKG="TRIBv-ruby-26"
 NAME="Ruby 2.6"
-VERSION="2.6.4.0"
+VERSION="2.6.5.0"
 ZAP_URL="https://www.ruby-lang.org/"
