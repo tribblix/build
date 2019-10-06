@@ -4,7 +4,7 @@
 #
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../perl5/5.30.0/bin/perl .
+ln -s ../perl5/5.30/bin/perl .
 cd ../perl5
-ln -s ./5.30.0/bin .
-ln -s ./5.30.0/man .
+ln -s ./5.30/bin .
+ln -s ./5.30/man .

@@ -9,18 +9,17 @@ cd perl-5.30.0
 -Duse64bitint -Dmyhostname="tribblix" \
 -Dcc=gcc -Dld=/usr/bin/ld -Dccflags="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_TS_ERRNO" \
 -Doptimize="-O3" \
--Dvendorprefix=/usr/perl5/5.30.0 -Dprefix=/usr/perl5/5.30.0 \
--Dbin=/usr/perl5/5.30.0/bin \
--Dsitebin=/usr/perl5/5.30.0/bin \
--Dvendorbin=/usr/perl5/5.30.0/bin \
--Dscriptdir=/usr/perl5/5.30.0/bin \
--Dsitescript=/usr/perl5/5.30.0/bin \
--Dvendorscript=/usr/perl5/5.30.0/bin \
--Dprivlib=/usr/perl5/5.30.0/lib \
--Dsitelib=/usr/perl5/site_perl/5.30.0 \
--Dvendorlib=/usr/perl5/vendor_perl/5.30.0 \
+-Dvendorprefix=/usr/perl5/5.30 -Dprefix=/usr/perl5/5.30 \
+-Dbin=/usr/perl5/5.30/bin \
+-Dsitebin=/usr/perl5/5.30/bin \
+-Dvendorbin=/usr/perl5/5.30/bin \
+-Dscriptdir=/usr/perl5/5.30/bin \
+-Dsitescript=/usr/perl5/5.30/bin \
+-Dvendorscript=/usr/perl5/5.30/bin \
+-Dprivlib=/usr/perl5/5.30/lib \
+-Dsitelib=/usr/perl5/site_perl/5.30 \
+-Dvendorlib=/usr/perl5/vendor_perl/5.30 \
 -des
 gmake -j 8
 gmake test
-rm -fr /tmp/pp ; gmake install DESTDIR=/tmp/pp
-${THOME}/build/create_pkg TRIBperl-530 /tmp/pp
+${THOME}/build/genpkg TRIBperl-530
