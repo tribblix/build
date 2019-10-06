@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack docker-4.0.2
-cd docker-4.0.2
+${THOME}/build/unpack docker-4.1.0
+cd docker-4.1.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
