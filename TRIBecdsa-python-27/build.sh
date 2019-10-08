@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack ecdsa-0.13.2
-cd ecdsa-0.13.2
+${THOME}/build/unpack ecdsa-0.13.3
+cd ecdsa-0.13.3
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
