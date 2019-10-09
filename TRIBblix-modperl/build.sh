@@ -4,8 +4,8 @@
 # it's split into 2 packages, one for the apache half, the other for the
 # perl half, as they go in different places
 #
-${THOME}/build/unpack mod_perl-2.0.9
-cd mod_perl-2.0.9
+${THOME}/build/unpack mod_perl-2.0.11
+cd mod_perl-2.0.11
 perl Makefile.PL MP_APXS=/opt/tribblix/apache2/bin/apxs
 make
 #

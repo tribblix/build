@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-modperl"
 NAME="mod_perl (perl module)"
-VERSION="2.0.9.0"
+VERSION="2.0.11.0"
 ZAP_URL="https://perl.apache.org/"
