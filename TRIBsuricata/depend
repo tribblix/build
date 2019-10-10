@@ -1,4 +1,6 @@
+P TRIBcompress-xz
 P TRIBfile-magic
+P TRIBjansson
 P TRIBlib-pcre
 P TRIBlib-zlib
 P TRIBlibpcap

@@ -12,3 +12,10 @@ rm -f usr/lib/*.la
 mkdir -p usr/versions/python-2.7/lib/python2.7
 mv usr/lib/python2.7/site-packages usr/versions/python-2.7/lib/python2.7
 rmdir usr/lib/python2.7
+#
+# places where suricata stores data
+#
+mkdir -p var/lib/suricata/rules
+mkdir -p var/log/suricata/certs
+mkdir -p var/log/suricata/files
+mkdir -p etc/suricata

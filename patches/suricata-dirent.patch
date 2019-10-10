@@ -1,0 +1,14 @@
+--- a/src/source-pcap-file-directory-helper.c	Mon Sep 23 12:44:03 2019
++++ b/src/source-pcap-file-directory-helper.c	Thu Oct 10 11:25:26 2019
+@@ -319,9 +319,11 @@
+ 
+     while ((dir = readdir(pv->directory)) != NULL) {
+ #ifndef OS_WIN32
++      /*
+         if (dir->d_type != DT_REG) {
+             continue;
+         }
++      */
+ #endif
+         if (strcmp(dir->d_name, ".") == 0 ||
+             strcmp(dir->d_name, "..") == 0) {

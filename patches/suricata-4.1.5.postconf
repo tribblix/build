@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# Incorrectly enables stack protector
+#
+sed -i s:-fstack-protector:: libhtp/Makefile
+sed -i s:-fstack-protector:: libhtp/htp/Makefile
+sed -i s:-fstack-protector:: libhtp/htp/lzma/Makefile
+#
+# *regex is a global defined by libgen and shouldn't be used in applications
+#
+sed -i 's:regex :suregex :' src/detect-classtype.c
+sed -i 's:regex,:suregex,:' src/detect-classtype.c
+sed -i 's:regex :suregex :' src/detect-priority.c
+sed -i 's:regex,:suregex,:' src/detect-priority.c
+sed -i 's:regex :suregex :' src/util-classification-config.c
+sed -i 's:regex,:suregex,:' src/util-classification-config.c
+sed -i 's:regex :suregex :' src/util-reference-config.c
+sed -i 's:regex,:suregex,:' src/util-reference-config.c
+#
+# Time struct is borked
+#
+sed -i '/tm_gmtoff/d' src/util-time.c
+sed -i '/tm_zone/d' src/util-time.c
+#
+# doesn't honour INSTALL
+#
+sed -i 's: install -m: ginstall -m:g' Makefile
