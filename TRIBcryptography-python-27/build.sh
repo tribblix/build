@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack cryptography-1.7.1
-cd cryptography-1.7.1
+${THOME}/build/unpack cryptography-2.7
+cd cryptography-2.7
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
