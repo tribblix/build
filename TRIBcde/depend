@@ -1,5 +1,6 @@
 P TRIBimage-libjpeg
 P TRIBmotif
+P TRIBtcl
 P TRIBx11-lib-toolkit-libxt
 P TRIBx11-libice
 P TRIBx11-libsm

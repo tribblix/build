@@ -2,10 +2,11 @@
 #
 # Since the 2.2.1 release, CDE should build out of the box
 #
-${THOME}/build/unpack cde-2.3.0
-cd cde-2.3.0
+${THOME}/build/unpack cde-2.3.0a
+cd cde-2.3.0a
 
 # ** edit config/imake/Makefile.ini cc->gcc
+# ** edit programs/dtdocbook/instant/Imakefile -ltcl -> -ltcl8
 make World
 
 #
