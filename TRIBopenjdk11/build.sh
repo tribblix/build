@@ -15,12 +15,15 @@
 # 11.0.3 release
 #wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.3+7.tar.bz2
 #
+# 11.0.4 release
+# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.4+11.tar.bz2
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.4+11.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.5+10.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-11.0.4+11
-cd jdk11u-jdk-11.0.4+11
+${THOME}/build/unpack jdk-11.0.5+10
+cd jdk11u-jdk-11.0.5+10
 
 #
 # We need a copy of libsoftcrypto.h
@@ -106,9 +109,9 @@ env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k 
 #
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
-#openjdk version "11.0.4-internal" 2019-07-16
-#OpenJDK Runtime Environment (build 11.0.4-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.411)
-#OpenJDK 64-Bit Server VM (build 11.0.4-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.411, mixed mode)
+#openjdk version "11.0.5-internal" 2019-10-15
+#OpenJDK Runtime Environment (build 11.0.5-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.510)
+#OpenJDK 64-Bit Server VM (build 11.0.5-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.510, mixed mode)
 #
 
 rm -fr /tmp/jdk
