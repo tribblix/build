@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+VERSION=v1.19.1
+mkdir -p usr/bin
+ln -s ../../usr/versions/yarn-${VERSION}/bin/yarn usr/bin/
+ln -s ../../usr/versions/yarn-${VERSION}/bin/yarnpkg usr/bin/
+cd usr/versions/yarn-${VERSION}
+rm bin/*.cmd

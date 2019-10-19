@@ -1,0 +1,4 @@
+PKG="TRIBv-yarn"
+NAME="Yarn package manager"
+VERSION="1.19.1.0"
+ZAP_URL="https://yarnpkg.com/lang/en/"
