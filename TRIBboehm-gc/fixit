@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# we don't ship .la files for base libraries
+#
+/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
+#
+# 
+#
+cd usr/share/gc
+rm -f README.DGUX386 README.Mac README.MacOSX README.OS2
+rm -f README.amiga README.arm.cross README.cmake README.darwin
+rm -f README.ews4800 README.hp README.linux README.rs6000
+rm -f README.sgi README.uts README.win32 README.win64
