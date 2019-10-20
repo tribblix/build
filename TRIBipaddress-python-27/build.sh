@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack ipaddress-1.0.22
-cd ipaddress-1.0.22
+${THOME}/build/unpack ipaddress-1.0.23
+cd ipaddress-1.0.23
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
