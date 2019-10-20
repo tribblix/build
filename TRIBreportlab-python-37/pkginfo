@@ -1,4 +1,4 @@
 PKG="TRIBreportlab-python-37"
 NAME="Python reportlab"
-VERSION="3.5.26.0"
+VERSION="3.5.31.0"
 ZAP_URL="https://pypi.org/project/reportlab"
