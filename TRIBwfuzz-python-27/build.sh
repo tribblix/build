@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack wfuzz-2.4
-cd wfuzz-2.4
+${THOME}/build/unpack wfuzz-2.4.1
+cd wfuzz-2.4.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
