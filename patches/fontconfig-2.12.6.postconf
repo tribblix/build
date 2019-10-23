@@ -1,2 +1,0 @@
-#!/bin/sh
-perl -pi -e 's#^^(archive_cmds=.*)"$#$1 -nostdlib -lc"#g;' libtool
