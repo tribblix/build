@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# create locations to drop configuration into
+#
+mkdir -p opt/tribblix/tengine/conf.d
+mkdir -p opt/tribblix/tengine/sites-enabled
+#
+# this is the default configuration (which activates the above)
+#
+# tengine calls itself nginx and uses nginx names for configuration
+# but it installed in a different prefix
+#
+cp ${BUILDROOT}/patches/tengine.conf opt/tribblix/tengine/conf/nginx.conf
+cp ${BUILDROOT}/patches/tengine-default.conf opt/tribblix/tengine/sites-enabled/nginx-default.conf
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/tengine.xml var/svc/manifest/network
