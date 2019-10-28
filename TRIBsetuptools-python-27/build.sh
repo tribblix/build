@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack setuptools-41.4.0
-cd setuptools-41.4.0
+${THOME}/build/unpack setuptools-41.5.0
+cd setuptools-41.5.0
 python setup.py build
 rm -fr /tmp/sut
 python setup.py install --root=/tmp/sut
