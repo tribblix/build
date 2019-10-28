@@ -1,4 +1,4 @@
 PKG="TRIBzabbix-agent"
 NAME="Zabbix agent"
-VERSION="4.0.12.0"
+VERSION="4.0.13.0"
 ZAP_URL="http://www.zabbix.com/"
