@@ -17,9 +17,14 @@ esac
 case `uname -p` in
 sparc)
   ARCH64="sparcv9"
+  OBJDIR32=SunOS5.11_gcc_OPT.OBJ
+  OBJDIR64=SunOS5.11_gcc_64_OPT.OBJ
   ;;
 i386)
   ARCH64="amd64"
+  NSARCH=`uname -m`
+  OBJDIR32=SunOS5.11_${NSARCH}_gcc_OPT.OBJ
+  OBJDIR64=SunOS5.11_${NSARCH}_gcc_64_OPT.OBJ
   ;;
 esac
 
@@ -45,14 +50,24 @@ mkdir -p ${DESTDIR}/usr/include/mps
 mkdir -p ${DESTDIR}/usr/lib/pkgconfig
 mkdir -p ${DESTDIR}/usr/lib/${ARCH64}/pkgconfig
 
-NSARCH=`uname -m`
-OBJDIR32=SunOS5.11_${NSARCH}_gcc_OPT.OBJ
-OBJDIR64=SunOS5.11_${NSARCH}_gcc_64_OPT.OBJ
-
 for file in libfreebl3.so libnss3.so libnssckbi.so libnssdbm3.so libnssutil3.so libsmime3.so libsoftokn3.so libssl3.so libfreebl3.chk libnssdbm3.chk libsoftokn3.chk
 do
     cp ../dist/${OBJDIR32}/lib/$file ${DESTDIR}/usr/lib/mps
     ln -s ../$file ${DESTDIR}/usr/lib/mps/secv1
+    cp ../dist/${OBJDIR64}/lib/$file ${DESTDIR}/usr/lib/mps/${ARCH64}
+    ln -s ../../${ARCH64}/$file ${DESTDIR}/usr/lib/mps/secv1/${ARCH64}
+done
+
+#
+# libfreebl is done differently on sparc
+#
+for file in libfreebl_32fpu_3.so libfreebl_32int64_3.so libfreebl_32fpu_3.chk libfreebl_32int64_3.chk
+do
+    cp ../dist/${OBJDIR32}/lib/$file ${DESTDIR}/usr/lib/mps
+    ln -s ../$file ${DESTDIR}/usr/lib/mps/secv1
+done
+for file in libfreebl_64fpu_3.so libfreebl_64int_3.so libfreebl_64fpu_3.chk libfreebl_64int_3.chk
+do
     cp ../dist/${OBJDIR64}/lib/$file ${DESTDIR}/usr/lib/mps/${ARCH64}
     ln -s ../../${ARCH64}/$file ${DESTDIR}/usr/lib/mps/secv1/${ARCH64}
 done

@@ -17,9 +17,14 @@ esac
 case `uname -p` in
 sparc)
   ARCH64="sparcv9"
+  OBJDIR32=SunOS5.11_gcc_OPT.OBJ
+  OBJDIR64=SunOS5.11_gcc_64_OPT.OBJ
   ;;
 i386)
   ARCH64="amd64"
+  NSARCH=`uname -m`
+  OBJDIR32=SunOS5.11_${NSARCH}_gcc_OPT.OBJ
+  OBJDIR64=SunOS5.11_${NSARCH}_gcc_64_OPT.OBJ
   ;;
 esac
 
@@ -45,10 +50,6 @@ mkdir -p ${DESTDIR}/usr/include/mps
 mkdir -p ${DESTDIR}/usr/lib/pkgconfig
 mkdir -p ${DESTDIR}/usr/lib/${ARCH64}/pkgconfig
 
-NSARCH=`uname -m`
-OBJDIR32=SunOS5.11_${NSARCH}_gcc_OPT.OBJ
-OBJDIR64=SunOS5.11_${NSARCH}_gcc_64_OPT.OBJ
-
 for file in libnspr4.so libplc4.so libplds4.so
 do
     cp ../dist/${OBJDIR32}/lib/$file ${DESTDIR}/usr/lib/mps
@@ -56,6 +57,15 @@ do
     cp ../dist/${OBJDIR64}/lib/$file ${DESTDIR}/usr/lib/mps/${ARCH64}
     ln -s ../../${ARCH64}/$file ${DESTDIR}/usr/lib/mps/secv1/${ARCH64}
 done
+
+case `uname -p` in
+sparc)
+  mkdir -p ${DESTDIR}/usr/lib/mps/cpu/sparcv8plus
+  mkdir -p ${DESTDIR}/usr/lib/mps/secv1/cpu/sparcv8plus
+  cp ../dist/${OBJDIR32}/lib/cpu/sparcv8plus/libnspr_flt4.so ${DESTDIR}/usr/lib/mps/cpu/sparcv8plus
+  ln -s ../../../cpu/sparcv8plus/libnspr_flt4.so ${DESTDIR}/usr/lib/mps/secv1/cpu/sparcv8plus
+  ;;
+esac
 
 cd ../dist/${OBJDIR32}/include
 tar cf - . | (cd ${DESTDIR}/usr/include/mps ; tar xf -)
