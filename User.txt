@@ -32,3 +32,4 @@ By default, reserve the group id as well
 128 activemq	    TRIBblix-activemq
 129 zookeeper	    TRIBblix-zookeeper
 130 tengine	    TRIBblix-tengine
+131 promnode	    TRIBblix-promnode

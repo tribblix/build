@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/prometheus-agent.xml var/svc/manifest/network
+#
+# the home directory must exist
+#
+mkdir -p var/empty

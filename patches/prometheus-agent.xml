@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<service_bundle type='manifest' name='prometheus-agent'>
+<service name='network/prometheus-agent' type='service' version='1'>
+<create_default_instance enabled='false' />
+<single_instance />
+<dependency name='fs-local' grouping='require_all' restart_on='none' type='service'>
+  <service_fmri value='svc:/system/filesystem/local' />
+</dependency>
+<exec_method type='method' name='start' exec='/opt/tribblix/prometheus/sbin/node_exporter --web.listen-address=%{listen_port}' timeout_seconds='60'>
+  <method_context>
+    <method_credential user='promnode' group='promnode' />
+  </method_context>
+</exec_method>
+<exec_method type='method' name='stop' exec=':kill' timeout_seconds='60' />
+<property_group name='startd' type='framework'>
+  <!-- sub-process core dumps shouldn't restart session -->
+  <propval name='ignore_error' type='astring' value='core,signal' />
+  <!-- not a daemonized service -->
+  <propval name='duration' type='astring' value='child' />
+</property_group>
+<property_group name='application' type='application'>
+  <!-- allow user to change the listening port -->
+  <propval name='listen_port' type='astring' value=':9100'/>
+</property_group>
+<stability value='External' />
+<template>
+  <common_name>
+    <loctext xml:lang='C'>Prometheus Node Exporter</loctext>
+  </common_name>
+</template>
+</service>
+</service_bundle>
