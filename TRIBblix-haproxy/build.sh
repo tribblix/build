@@ -2,8 +2,8 @@
 #
 # haproxy - add smf wrapper
 #
-${THOME}/build/unpack haproxy-1.7.11
-cd haproxy-1.7.11
+${THOME}/build/unpack haproxy-1.7.12
+cd haproxy-1.7.12
 #fix only necessary for lua
 # gsed -i s:-Wl,--export-dynamic:: Makefile
 gmake TARGET=solaris USE_PCRE=1 PCRE_INC=/usr/include/pcre USE_OPENSSL=1
