@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# the is the x86 version of the package, which supplies what OI
+# used to in prehistoric times
+#
+# except for dispswitch, which has been split out
+#
+ 
+#
+${THOME}/build/dobuild rgb-1.0.6 -C "--with-rgb-db-dir=/usr/lib/X11/rgb --with-rgb-db-type=ndbm"
+${THOME}/build/dobuild xcmsdb-1.0.5
+${THOME}/build/dobuild xgamma-1.0.6
+${THOME}/build/dobuild xhost-1.0.8
+# xinput is downrev
+${THOME}/build/dobuild xinput-1.5.4
+${THOME}/build/dobuild xmodmap-1.0.10
+${THOME}/build/dobuild xprop-1.2.4
+${THOME}/build/dobuild xrandr-1.5.1
+${THOME}/build/dobuild xrdb-1.2.0
+${THOME}/build/dobuild xrefresh-1.0.6
+${THOME}/build/dobuild xset-1.2.4
+${THOME}/build/dobuild xsetroot-1.1.2
+
+#
+# xmakemap installed by the fixit script
+#
+
+${THOME}/build/genpkg TRIBx11-x11-server-utilities rgb-1.0.6 xcmsdb-1.0.5 xgamma-1.0.6 xhost-1.0.8 xinput-1.5.4 xmodmap-1.0.10 xprop-1.2.4 xrandr-1.5.1 xrdb-1.2.0 xrefresh-1.0.6 xset-1.2.4 xsetroot-1.1.2

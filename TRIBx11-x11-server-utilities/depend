@@ -1,0 +1,8 @@
+P TRIBx11-libx11
+P TRIBx11-libxcursor
+P TRIBx11-libxext
+P TRIBx11-libxi
+P TRIBx11-libxmu
+P TRIBx11-libxrandr
+P TRIBx11-libxxf86misc
+P TRIBx11-libxxf86vm
