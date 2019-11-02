@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# configure has the wrong sparc flags
+#
+sed -i 's: -mv8::' configure
