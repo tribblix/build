@@ -18,3 +18,8 @@ cd ../../..
 # add sun extras
 #
 cp ${BUILDROOT}/patches/sun-ext-protos/* usr/include/X11/extensions
+
+#
+# libXvMC 1.0.12 provides this, so we shouldn't in future
+#
+rm -f usr/include/X11/extensions/vldXvMC.h
