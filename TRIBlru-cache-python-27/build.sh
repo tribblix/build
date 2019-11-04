@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack backports.functools_lru_cache-1.5
-cd backports.functools_lru_cache-1.5
+${THOME}/build/unpack backports.functools_lru_cache-1.6.1
+cd backports.functools_lru_cache-1.6.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
