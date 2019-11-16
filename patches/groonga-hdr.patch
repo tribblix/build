@@ -2,7 +2,7 @@ Redefining off64_t? Seriously?
 
 --- a/lib/grn.h~	Wed Feb  6 06:56:36 2019
 +++ b/lib/grn.h	Thu Feb 28 21:51:39 2019
-@@ -147,9 +147,11 @@
+@@ -148,9 +148,11 @@
  #  include <unistd.h>
  # endif /* HAVE_UNISTD_H */
  
