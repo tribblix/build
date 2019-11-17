@@ -2,10 +2,10 @@
 #
 # pkgproto generates garbage when fed hard links, so a symlink is just as good
 #
-VERSION=6.9.0
+VERSION=6.19.0
 mkdir -p usr/bin
 cat > usr/bin/pmd <<EOF
 #!/bin/sh
-/usr/versions/pmd-bin-6.9.0/bin/run.sh pmd \$*
+/usr/versions/pmd-bin-6.19.0/bin/run.sh pmd \$*
 EOF
 chmod a+x usr/bin/pmd
