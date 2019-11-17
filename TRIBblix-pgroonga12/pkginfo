@@ -1,0 +1,4 @@
+PKG="TRIBblix-pgroonga12"
+NAME="Groonga search for for PostgreSQL"
+VERSION="2.2.2.0"
+ZAP_URL="https://pgroonga.github.io/"
