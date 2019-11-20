@@ -1,4 +1,0 @@
-PKG="TRIBargparse-python-27"
-NAME="Python argparse"
-VERSION="1.4.0.0"
-ZAP_URL="https://pypi.org/project/argparse"
