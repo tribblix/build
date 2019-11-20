@@ -1,5 +1,5 @@
 #!/bin/sh
-PYVERS=2.7
+PYVERS=3.7
 
 mkdir -p usr/bin
 mkdir -p usr/share/man/man1
