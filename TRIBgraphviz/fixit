@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# dot, for example, can't find its plugins without this
+#
+env LD_LIBRARY_PATH=`pwd`/usr/lib GVBINDIR=`pwd`/usr/lib/graphviz `pwd`/usr/bin/dot -c
