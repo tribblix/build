@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# careless use of the wrong grep
+#
+# https://bugs.python.org/issue38527
+#
+sed -i 's:grep noonsees:ggrep noonsees:' configure
+sed -i 's:grep seesnoon:ggrep seesnoon:' configure
