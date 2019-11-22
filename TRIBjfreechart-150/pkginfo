@@ -1,0 +1,4 @@
+PKG="TRIBjfreechart-150"
+NAME="JFreeChart"
+VERSION="1.5.0"
+ZAP_URL="http://www.jfree.org/jfreechart/"

@@ -1,0 +1,6 @@
+#!/bin/sh
+mkdir -p usr/share/jfreechart-1.5.0
+cp ${THOME}/tarballs/jcommon-1.0.24.jar usr/share/jfreechart-1.5.0
+cp ${THOME}/tarballs/jfreechart-1.5.0.jar usr/share/jfreechart-1.5.0
+cd usr/share/jfreechart-1.5.0
+wget https://www.gnu.org/licenses/lgpl-3.0-standalone.html
