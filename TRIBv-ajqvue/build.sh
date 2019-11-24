@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBv-ajqvue ajqvue-3.0
+${THOME}/build/pkg_tarball TRIBv-ajqvue ajqvue-3.1
