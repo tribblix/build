@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild zabbix-4.0.14 -P /opt/tribblix/zabbix -C "--sysconfdir=/etc --localstatedir=/var --enable-agent --with-libpcre-include=/usr/include/pcre"
-${THOME}/build/genpkg TRIBzabbix-agent zabbix-4.0.14
+${THOME}/build/dobuild zabbix-4.0.15 -P /opt/tribblix/zabbix -C "--sysconfdir=/etc --localstatedir=/var --enable-agent --with-libpcre-include=/usr/include/pcre"
+${THOME}/build/genpkg TRIBzabbix-agent zabbix-4.0.15
