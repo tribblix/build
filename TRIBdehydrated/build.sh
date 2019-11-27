@@ -4,7 +4,7 @@
 #
 git clone https://github.com/lukas2511/dehydrated.git
 #
-# this is the commit for 0.5.0
+# get the matching commit
 #
 cd dehydrated
 git checkout v0.6.5
