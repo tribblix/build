@@ -2,8 +2,7 @@
 #
 # update php, modular extension for postgres now
 #
-# [looks like #70002 related to file main/php_open_temporary_file.c isn't
-# an issue, and disable ldap for now, see #70260]
+# disable ldap for now, see #70260
 #
 # must not have libtool installed
 #
@@ -12,8 +11,8 @@
 # must have apache24 installed
 #
 zap uninstall TRIBlibtool
-${THOME}/build/unpack php-7.2.24
-cd php-7.2.24
+${THOME}/build/unpack php-7.2.25
+cd php-7.2.25
 #
 # CFLAGS because Zend.m4 hasn't a hope of correctness
 #
