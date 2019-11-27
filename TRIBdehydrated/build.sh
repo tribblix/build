@@ -7,7 +7,7 @@ git clone https://github.com/lukas2511/dehydrated.git
 # this is the commit for 0.5.0
 #
 cd dehydrated
-git checkout  4a811759dc18fb1e08df0020060956da355abb9e
+git checkout v0.6.5
 rm -fr /tmp/dhd
 mkdir -p /tmp/dhd/usr/bin
 mkdir -p /tmp/dhd/usr/share/man/man1
