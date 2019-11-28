@@ -1,0 +1,4 @@
+PKG="TRIBlxml-python-37"
+NAME="Python lxml"
+VERSION="4.4.2.0"
+ZAP_URL="https://pypi.org/project/lxml"
