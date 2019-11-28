@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pyOpenSSL-19.0.0
-cd pyOpenSSL-19.0.0
+${THOME}/build/unpack pyOpenSSL-19.1.0
+cd pyOpenSSL-19.1.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
