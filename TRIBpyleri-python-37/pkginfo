@@ -1,0 +1,4 @@
+PKG="TRIBpyleri-python-37"
+NAME="Python pyleri"
+VERSION="1.3.2.0"
+ZAP_URL="https://pypi.org/project/pyleri"
