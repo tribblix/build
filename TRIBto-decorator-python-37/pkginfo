@@ -1,0 +1,4 @@
+PKG="TRIBto-decorator-python-37"
+NAME="Python timeout-decorator"
+VERSION="0.4.1.0"
+ZAP_URL="https://pypi.org/project/timeout-decorator"
