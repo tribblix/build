@@ -1,0 +1,4 @@
+PKG="TRIBelastic-dsl-python-37"
+NAME="Python elasticsearch-dsl-py"
+VERSION="6.4.0.0"
+ZAP_URL="https://pypi.org/project/elasticsearch-dsl-py"
