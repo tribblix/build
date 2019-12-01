@@ -1,0 +1,4 @@
+PKG="TRIBlibmaxminddb"
+NAME="C library for the MaxMind DB file format"
+VERSION="1.4.2.0"
+ZAP_URL="https://github.com/maxmind/libmaxminddb"
