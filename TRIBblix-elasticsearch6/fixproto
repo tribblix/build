@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+nawk '
+{if ($3 ~ /^var\/elasticsearch/) { $6 = "elastic" ; $5 = "elastic" }}
+{if ($3 ~ /^opt\/tribblix\/elasticsearch\/config/) { $6 = "elastic" ; $5 = "elastic" }}
+{print}
+'

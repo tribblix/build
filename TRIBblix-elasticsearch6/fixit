@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+
+#
+# this is the directory tree for data and logs
+#
+mkdir -p var/elasticsearch/logs
+mkdir -p var/elasticsearch/data
+mkdir -p var/elasticsearch/scripts
+
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/elasticsearch.xml var/svc/manifest/network
+
+cd opt/tribblix
+#
+# Normalize the directory name
+#
+VERSION="6.8.5"
+mv elasticsearch-${VERSION} elasticsearch
+
+#
+# clean up files that are meant for windows
+#
+rm -f elasticsearch/bin/*.bat
+rm -f elasticsearch/bin/*.exe
+
+#
+# this is quite big, and is linux/windows/mac
+#
+rm -fr elasticsearch/modules/x-pack-ml
+
+#
+# fix the configuration
+#
+cat >> elasticsearch/config/elasticsearch.yml <<EOF
+#
+# default data locations for ES on Tribblix
+#
+path.data: /var/elasticsearch/data
+path.logs: /var/elasticsearch/logs
+path.scripts: /var/elasticsearch/scripts
+EOF
+
+#
+# fix up the jna jar if we can
+# you obviously need a copy of the relevant jna release
+#
+cd elasticsearch
+JNAVER=4.5.1
+EJNAVER="${JNAVER}"
+mkdir jnatmp
+cd jnatmp
+${THOME}/build/unpack jna-${JNAVER}
+if [ -f jna-${JNAVER}/dist/jna.jar ]; then
+    cp jna-${JNAVER}/dist/jna.jar ../lib/jna-${EJNAVER}.jar
+fi
+cd ..
+rm -fr jnatmp
