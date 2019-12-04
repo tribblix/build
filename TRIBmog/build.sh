@@ -7,7 +7,7 @@ cd mog-0.6.0
 #
 # we need the file from file-magic
 #
-gsed -i "s:\['file':\['file-5.21':" mog/__init__.py
+gsed -i "s:\['file':\['file-5.37':" mog/__init__.py
 python setup.py build
 rm -fr /tmp/sut
 python setup.py install --root=/tmp/sut
