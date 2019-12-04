@@ -31,8 +31,10 @@ do
     PKGHOME=`awk -F= '{if ($1 == "ZAP_URL") print $2}' $PKGI`
     PKGHOME=${PKGHOME//\"/}
     DEPLIST=""
+    IDEPLIST=""
     if [ -f ${PKG}/depend ]; then
-       DEPLIST=`awk '{printf("%s ", $2)}' ${PKG}/depend`
+       DEPLIST=`grep '^P' ${PKG}/depend | awk '{printf("%s ", $2)}'`
+       IDEPLIST=`grep '^I' ${PKG}/depend | awk '{printf("%s ", $2)}'`
     fi
     echo "<dt><a name=\"${PKG}\"></a><b>${PKG}</b></dt>"
     echo "<dd>"
@@ -49,6 +51,14 @@ do
 	    echo "<li>Requires: <a href=\"#${mydep}\">$mydep</a></li>"
         else
 	    echo "<li>Requires: $mydep</li>"
+        fi
+    done
+    for mydep in $IDEPLIST
+    do
+        if [ -d $mydep ]; then
+	    echo "<li>Incompatible with: <a href=\"#${mydep}\">$mydep</a></li>"
+        else
+	    echo "<li>Incompatible with: $mydep</li>"
         fi
     done
     echo "</ul>"

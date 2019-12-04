@@ -29,7 +29,7 @@ do
 	echo $PKGMD5 > ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
     fi
     if [ -f ${PKG}/depend ]; then
-      DEPLIST=`awk '{printf("%s ", $2)}' ${PKG}/depend`
+      DEPLIST=`grep '^P' ${PKG}/depend | awk '{printf("%s ", $2)}'`
     fi
     DEPLIST=${DEPLIST/% /}
     echo "${PKG}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|"
