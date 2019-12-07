@@ -3,6 +3,7 @@
 # generate a merged list of dependencies for the given overlay(s)
 #
 
+#
 VERBOSE=""
 case $1 in
 -v)
@@ -89,10 +90,13 @@ do
   done
 done
 cat ${TMPF}.p |sort|uniq >${TMPF}.t
-echo ""
-echo "Missing dependencies in overlay ${OVL}:"
-echo "============================================="
-cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t
+OUTMISS=`cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t`
+if [ -n "${OUTMISS}" ]; then
+    echo ""
+    echo "Missing dependencies in overlay ${OVL}:"
+    echo "============================================="
+    cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t
+fi
 
 if [ "X$VERBOSE" = "X-v" ]; then
 for ndep in `cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs| /usr/bin/fgrep -v -f ${TMPF}.t`
