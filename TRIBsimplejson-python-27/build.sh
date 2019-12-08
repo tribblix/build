@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack simplejson-3.16.0
-cd simplejson-3.16.0
+${THOME}/build/unpack simplejson-3.17.0
+cd simplejson-3.17.0
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
