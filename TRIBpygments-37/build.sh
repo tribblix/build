@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Pygments-2.4.2
-cd Pygments-2.4.2
+${THOME}/build/unpack Pygments-2.5.2
+cd Pygments-2.5.2
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pdu
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pdu

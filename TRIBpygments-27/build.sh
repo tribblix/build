@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Pygments-2.4.2
-cd Pygments-2.4.2
+${THOME}/build/unpack Pygments-2.5.2
+cd Pygments-2.5.2
 python setup.py build
 rm -fr /tmp/pdu
 python setup.py install --root=/tmp/pdu
