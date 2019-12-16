@@ -10,8 +10,9 @@ git clone git@github.com:aws/amazon-ecs-cli.git
 cd amazon-ecs-cli
 #
 # check out the precise version we want
+# anything later than 1.3.0 fails with Termios errors
 #
-git checkout v1.1.0
+git checkout v1.3.0
 
 #
 # a vanilla 'gmake build' fails with Termios errors, because
