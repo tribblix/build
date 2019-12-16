@@ -1,4 +1,4 @@
 PKG="TRIBsamba4"
 NAME="Samba Windows interoperability suite"
-VERSION="4.9.15.0"
+VERSION="4.9.17.0"
 ZAP_URL="https://www.samba.org/"
