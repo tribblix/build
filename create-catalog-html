@@ -32,6 +32,7 @@ do
     PKGHOME=${PKGHOME//\"/}
     DEPLIST=""
     IDEPLIST=""
+    PKGCKSUM=`cat ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5`
     if [ -f ${PKG}/depend ]; then
        DEPLIST=`grep '^P' ${PKG}/depend | awk '{printf("%s ", $2)}'`
        IDEPLIST=`grep '^I' ${PKG}/depend | awk '{printf("%s ", $2)}'`
@@ -44,7 +45,7 @@ do
     fi
     echo "<ul>"
     echo "<li>Version: ${PKGVERS}</li>"
-    echo "<li><a href=\"${PKG}.${PKGVERS}.zap\">Download</a></li>"
+    echo "<li><a href=\"${PKG}.${PKGVERS}.zap\">Download</a> [MD5: ${PKGCKSUM}]</li>"
     for mydep in $DEPLIST
     do
         if [ -d $mydep ]; then
