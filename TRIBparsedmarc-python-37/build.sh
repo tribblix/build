@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack parsedmarc-6.7.2
-cd parsedmarc-6.7.2
+${THOME}/build/unpack parsedmarc-6.7.3
+cd parsedmarc-6.7.3
 #
 # urllib3 is overconstrained
 #

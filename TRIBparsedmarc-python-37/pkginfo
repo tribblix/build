@@ -1,4 +1,4 @@
 PKG="TRIBparsedmarc-python-37"
 NAME="Python parsedmarc"
-VERSION="6.7.2.0"
+VERSION="6.7.3.0"
 ZAP_URL="https://pypi.org/project/parsedmarc"
