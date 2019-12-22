@@ -1,6 +1,19 @@
 #!/bin/sh
 #
-# it's a tad convoluted...
+# 
+#
+
+
+${THOME}/build/pkg_tarball TRIBspotbugs spotbugs-3.1.12
+
+
+
+
+
+
+exit 0
+#
+# this is the old convoluted build from source version
 #
 ${THOME}/build/unpack spotbugs-3.1.8
 cd spotbugs-3.1.8
