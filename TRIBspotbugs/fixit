@@ -1,3 +1,5 @@
 #!/bin/sh
+VERSION=3.1.12
 mkdir -p usr/bin
-ln -s ../../usr/versions/spotbugs-3.1.12/bin/spotbugs usr/bin
+ln -s ../../usr/versions/spotbugs-${VERSION}/bin/spotbugs usr/bin
+cp ${THOME}/tarballs/findsecbugs-plugin-1.10.1.jar usr/versions/spotbugs-${VERSION}/plugin/
