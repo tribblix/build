@@ -10,7 +10,7 @@ gsed -i '/gc-sections/d' ../CMakeLists.txt
 env PostgreSQL_ROOT=/opt/tribblix/postgres11 MYSQL_DIR=/opt/tribblix/mysql MYSQL_INCLUDE_DIR=/opt/tribblix/mysql/include/mysql cmake .. -DCMAKE_INSTALL_PREFIX=/opt/tribblix/icinga2 -DCMAKE_INSTALL_SYSCONFDIR=/opt/tribblix/icinga2/etc -DCMAKE_C_FLAGS=-pthread -DCMAKE_CXX_FLAGS=-pthread
 #
 # PATH so flex finds the right m4
-# some of the compiles are memory iintensive, you may see out of
+# some of the compiles are memory intensive, you may see out of
 # memory errors with a parallel build
 #
 env PATH=/usr/gnu/bin:$PATH gmake -j 8

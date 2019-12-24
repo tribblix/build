@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# the build is, um, wacky - it interprets prefix rather oddly; explicity
+# the build is, um, wacky - it interprets prefix rather oddly; explicitly
 # uses "make" in subdirs which can't handle -j; manpage install ignores
 # DESTDIR.
 #

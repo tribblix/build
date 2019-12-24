@@ -9,7 +9,7 @@
 #  libnotify needs gtk
 #  librsvg needs gdk-pixbuf pango cairo libcroco
 #
-# expecially cairo, which has optional dependencies
+# especially cairo, which has optional dependencies
 # on components that require it, so need to rebuild
 # cairo again after all the other components are built
 #

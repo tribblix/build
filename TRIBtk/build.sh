@@ -4,7 +4,7 @@
 #
 
 #
-# the tarbal is called 8.6.9.1, but it's 8.6.9 inside
+# the tarball is called 8.6.9.1, but it's 8.6.9 inside
 #
 ${THOME}/build/unpack tk8.6.9.1-src
 cd tk8.6.9/unix

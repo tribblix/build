@@ -8,7 +8,7 @@ cd Amaya/tribblix
 #  Huh? Wants motif. It's broken; on linux it enables gtk, but it thinks
 #Solaris is FreeBSD and doesn't bother. So hack configure where it
 #checks for AMAYAOS
-#  HUh? Complains libpng is too old. But it uses the internal one anayway.
+#  HUh? Complains libpng is too old. But it uses the internal one anyway.
 gmake all
 #  comment out the 'typedef           long   intptr_t;' in
 #  ../thotlib/include/thot_sys.h because it's borked.
