@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# put a conveneience link in the normal PATH
+# put a convenience link in the normal PATH
 #
 mkdir -p usr/bin
 cd usr/bin

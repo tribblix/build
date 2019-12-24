@@ -1,5 +1,5 @@
 #!/bin/sh
 #
-# errant permisions
+# errant permissions
 #
 chmod -R a+r usr/versions
