@@ -3,7 +3,7 @@
 ${THOME}/build/unpack dcraw-9.28.0
 cd dcraw
 #
-# manual because the directoray name doesn't match the tarball
+# manual because the directory name doesn't match the tarball
 #
 gpatch -p1 < ${THOME}/build/patches/dcraw.patch
 #

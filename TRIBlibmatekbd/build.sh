@@ -14,7 +14,7 @@
 # TRIBmate-backgrounds
 # TRIBmate-icon-them
 # TRIBmate-caja
-# TRIBmate-engramp
+# TRIBmate-engrampa
 # TRIBmate-atril
 # TRIBmate-pluma
 # TRIBmate-eom (downrev)
