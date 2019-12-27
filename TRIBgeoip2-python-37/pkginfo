@@ -1,4 +1,4 @@
 PKG="TRIBgeoip2-python-37"
 NAME="Python geoip2"
-VERSION="2.9.0.0"
+VERSION="3.0.0.0"
 ZAP_URL="https://pypi.org/project/geoip2"
