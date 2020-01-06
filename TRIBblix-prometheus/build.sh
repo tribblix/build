@@ -27,6 +27,7 @@ cd prometheus
 env PATH=/usr/versions/yarn-v1.19.1/bin:/usr/versions/node-v8/bin:/usr/versions/go-1.13/bin:$PATH gmake build
 cd ..
 
+rm -fr /tmp/ppr1
 mkdir -p /tmp/ppr1/opt/tribblix/prometheus/bin
 cp prometheus/promtool /tmp/ppr1/opt/tribblix/prometheus/bin
 cp prometheus/prometheus /tmp/ppr1/opt/tribblix/prometheus/bin
