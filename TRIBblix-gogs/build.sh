@@ -4,9 +4,9 @@ mkdir ~/ud/gg
 cd ~/ud/gg
 
 setenv GOPATH `pwd`
-env GOPATH=`pwd` go get -u -tags "cert" github.com/gogs/gogs
-cd src/github.com/gogs/gogs
-go build -tags "cert"
+git clone --depth 1 https://github.com/gogs/gogs.git gogs
+cd gogs
+go build -tags "cert" -o gogs
 
 
 rm -fr /tmp/ee
