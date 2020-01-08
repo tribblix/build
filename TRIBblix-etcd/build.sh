@@ -1,11 +1,11 @@
 #!/bin/sh
 #
-# needs go 1.11
+# needs go 1.13
 #
 mkdir e2
 cd e2
-env GOPATH=`pwd` /usr/versions/go-1.11/bin/go get -v go.etcd.io/etcd
-env GOPATH=`pwd` /usr/versions/go-1.11/bin/go get -v go.etcd.io/etcd/etcdctl
+env GOPATH=`pwd` /usr/versions/go-1.13/bin/go get -v go.etcd.io/etcd
+env GOPATH=`pwd` /usr/versions/go-1.13/bin/go get -v go.etcd.io/etcd/etcdctl
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/etcd/bin
