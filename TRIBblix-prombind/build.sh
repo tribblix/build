@@ -1,19 +1,16 @@
 #!/bin/tcsh
 #
 
-
 mkdir pb1
 cd pb1
 setenv GOPATH `pwd`
-go get github.com/digitalocean/bind_exporter
-cd $GOPATH/src/github.com/digitalocean/bind_exporter
+go get github.com/prometheus-community/bind_exporter
+cd $GOPATH/src/github.com/prometheus-community/bind_exporter
 
 #
-# the makefile is broken; setting GOOS and GOARCH is almost always a mistake
-#
-# so run the build steps by hand
+# need promu first
 #
 env GO15VENDOREXPERIMENT=1 go get -u github.com/prometheus/promu
-$GOPATH/bin/promu build --prefix $GOPATH/src/github.com/digitalocean/bind_exporter
+env PATH=/usr/versions/go-1.13/bin:$PATH gmake
 
 ${THOME}/build/genpkg TRIBblix-prombind

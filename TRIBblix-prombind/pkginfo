@@ -1,4 +1,4 @@
 PKG="TRIBblix-prombind"
 NAME="Prometheus bind exporter"
-VERSION="0.2.0"
-ZAP_URL="https://github.com/digitalocean/bind_exporter"
+VERSION="0.3.0"
+ZAP_URL="https://github.com/prometheus-community/bind_exporter"
