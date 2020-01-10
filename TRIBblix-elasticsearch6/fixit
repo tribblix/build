@@ -18,7 +18,7 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="6.8.5"
+VERSION="6.8.6"
 mv elasticsearch-${VERSION} elasticsearch
 
 #
