@@ -84,8 +84,7 @@ RETVAL=\$SMF_EXIT_OK
 getprop options/force_rebuild
 if [ "\$PROPVAL" = "true" ] ; then
     ARGS="\$ARGS -f"
-    POSTCMD="svccfg -s application/font/fc-cache setprop options/force_rebuild=f
-alse"
+    POSTCMD="svccfg -s application/font/fc-cache setprop options/force_rebuild=false"
 fi
 
 /usr/bin/fc-cache \$ARGS
