@@ -1,4 +1,4 @@
 PKG="TRIBcurl"
 NAME="Curl groks URLs"
-VERSION="7.66.0.0"
+VERSION="7.68.0.0"
 ZAP_URL="http://curl.haxx.se/"
