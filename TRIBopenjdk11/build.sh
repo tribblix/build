@@ -18,12 +18,15 @@
 # 11.0.4 release
 # wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.4+11.tar.bz2
 #
+# 11.0.5 release
+# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.5+10.tar.bz2
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.5+10.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.6+10.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-11.0.5+10
-cd jdk11u-jdk-11.0.5+10
+${THOME}/build/unpack jdk-11.0.6+10
+cd jdk11u-jdk-11.0.6+10
 
 #
 # We need a copy of libsoftcrypto.h
@@ -94,7 +97,7 @@ zap install autoconf
 # fix the d_fd error -> dd_fd
 #
 # src/java.base/solaris/native/libnio/ch/DevPollArrayWrapper.c
-# need to #include <signal.h> explicitly
+# need to #include <signal.h> explicitly before devpoll.h
 #
 
 #
@@ -109,9 +112,9 @@ env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k 
 #
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
-#openjdk version "11.0.5-internal" 2019-10-15
-#OpenJDK Runtime Environment (build 11.0.5-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.510)
-#OpenJDK 64-Bit Server VM (build 11.0.5-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.510, mixed mode)
+#openjdk version "11.0.6-internal" 2020-01-14
+#OpenJDK Runtime Environment (build 11.0.6-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.610)
+#OpenJDK 64-Bit Server VM (build 11.0.6-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.610, mixed mode)
 #
 
 rm -fr /tmp/jdk
