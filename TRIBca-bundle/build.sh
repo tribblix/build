@@ -13,7 +13,7 @@
 rm -fr ca-bundle
 mkdir ca-bundle
 cd ca-bundle
-wget http://curl.haxx.se/ca/cacert.pem
+wget https://curl.haxx.se/ca/cacert.pem
 cat cacert.pem | gawk 'split_after==1{n++;split_after=0} /-----END CERTIFICATE-----/ {split_after=1} {print > "cert" n ".pem"}'
 rm -fr /tmp/cab
 mkdir -p /tmp/cab/etc/openssl/certs
