@@ -11,12 +11,12 @@
 #
 # download the tarball like so
 #
-# wget https://github.com/illumos/gcc/archive/gcc-7.3.0-il-3.tar.gz
+# wget https://github.com/illumos/gcc/archive/gcc-7.3.0-il-4.tar.gz
 #
 
-${THOME}/build/unpack gcc-gcc-7.3.0-il-3
-mv gcc-gcc-7.3.0-il-3 gcc-7.3.0-il-3
-cd gcc-7.3.0-il-3
+${THOME}/build/unpack gcc-gcc-7.3.0-il-4
+mv gcc-gcc-7.3.0-il-4 gcc-7.3.0-il-4
+cd gcc-7.3.0-il-4
 
 #
 # these are the recommended versions
