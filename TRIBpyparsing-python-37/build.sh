@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pyparsing-2.4.5
-cd pyparsing-2.4.5
+${THOME}/build/unpack pyparsing-2.4.6
+cd pyparsing-2.4.6
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
