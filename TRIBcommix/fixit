@@ -7,7 +7,7 @@ cd usr/bin
 cat > commix <<EOF
 #!/bin/sh
 cd /usr/versions/commix
-exec /usr/versions/python-2.7/bin/python ./commix.py "\$@"
+exec /usr/versions/python-3.7/bin/python ./commix.py "\$@"
 EOF
 chmod a+x commix
 #
