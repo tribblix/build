@@ -1,4 +1,0 @@
-PKG="TRIBmonotonic-python-27"
-NAME="Python monotonic"
-VERSION="1.5.0"
-ZAP_URL="https://pypi.org/project/monotonic"
