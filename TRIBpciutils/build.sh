@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pciutils-3.6.2
-cd pciutils-3.6.2
+${THOME}/build/unpack pciutils-3.6.3
+cd pciutils-3.6.3
 env PATH=/usr/gnu/bin:$PATH gmake PREFIX=/usr OPT="-O2 -DBYTE_ORDER=1234 -DLITTLE_ENDIAN=1234"
 # update the database
 ./update-pciids.sh
