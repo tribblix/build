@@ -10,6 +10,6 @@ rmdir usr/versions/go-${VERSION}/pkg/obj
 rm -fr usr/versions/go-${VERSION}/test
 rm -f usr/versions/go-${VERSION}/favicon.ico
 rm -f usr/versions/go-${VERSION}/robots.txt
-mkdir -p usr/bin
-cd usr/bin
-ln -s ../versions/go-${VERSION}/bin/* .
+#mkdir -p usr/bin
+#cd usr/bin
+#ln -s ../versions/go-${VERSION}/bin/* .
