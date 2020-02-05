@@ -1,2 +1,0 @@
-#!/bin/sh
-sed -i '/cli_strndup/d' libclamav/libclamav.map
