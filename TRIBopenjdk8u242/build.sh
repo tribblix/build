@@ -4,15 +4,15 @@
 # this method from BLFS
 #
 cd /tmp
-wget http://hg.openjdk.java.net/jdk8u/jdk8u/archive/jdk8u242-b07.tar.bz2
+wget http://hg.openjdk.java.net/jdk8u/jdk8u/archive/jdk8u242-b08.tar.bz2
 foreach file ( corba hotspot jaxp jaxws langtools jdk nashorn )
-wget http://hg.openjdk.java.net/jdk8u/jdk8u/${file}/archive/jdk8u242-b07.tar.bz2 -O ${file}-jdk8u242-b07.tar.bz2
+wget http://hg.openjdk.java.net/jdk8u/jdk8u/${file}/archive/jdk8u242-b08.tar.bz2 -O ${file}-jdk8u242-b08.tar.bz2
 end
-pbzcat jdk8u242-b07.tar.bz2 | tar xf -
-mv jdk8u-jdk8u242-b07 openjdk8u242
+pbzcat jdk8u242-b08.tar.bz2 | tar xf -
+mv jdk8u-jdk8u242-b08 openjdk8u242
 foreach file ( corba hotspot jaxp jaxws langtools jdk nashorn )
-pbzcat ${file}-jdk8u242-b07.tar.bz2 | tar xf -
-mv ${file}-jdk8u242-b07 openjdk8u242/$file
+pbzcat ${file}-jdk8u242-b08.tar.bz2 | tar xf -
+mv ${file}-jdk8u242-b08 openjdk8u242/$file
 end
 tar cf ${THOME}/tarballs/openjdk8u242.tar openjdk8u242
 pbzip2 ${THOME}/tarballs/openjdk8u242.tar
@@ -34,7 +34,7 @@ rm gobjcopy
 #
 # The fcs is magic to hide the milestone from the version string:
 #
-env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin bash ./configure --with-milestone=fcs --with-update-version=242 --with-build-number=b07 --enable-unlimited-crypto
+env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin bash ./configure --with-milestone=fcs --with-update-version=242 --with-build-number=b08 --enable-unlimited-crypto
 env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin gmake all
 
 #
@@ -49,12 +49,14 @@ ln -s ../../gnu/bin/objcopy gobjcopy
 # cd build/solaris-x86_64-normal-server-release/images/j2sdk-image
 # ./bin/java -version
 # openjdk version "1.8.0_242"
-# OpenJDK Runtime Environment (build 1.8.0_242-b07)
-# OpenJDK 64-Bit Server VM (build 25.242-b07, mixed mode)
+# OpenJDK Runtime Environment (build 1.8.0_242-b08)
+# OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode)
 #
 
 #
 # need to create a certificate bundle
+#
+# verify that the ca-bundle is current and update if necessary
 #
 ${THOME}/build/patches/mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /usr/jdk/instances/jdk1.8.0/bin/keytool -s /usr/bin/openssl
 
