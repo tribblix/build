@@ -1,0 +1,4 @@
+PKG="TRIBjtreg"
+NAME="Java test harness jtreg"
+VERSION="5.0.b01.0"
+ZAP_URL="https://hg.openjdk.java.net/code-tools/jtreg"
