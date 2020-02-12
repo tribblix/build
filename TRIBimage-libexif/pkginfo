@@ -1,4 +1,4 @@
 PKG="TRIBimage-libexif"
 NAME="libexif 0.6.21"
 VERSION="0.6.21.0"
-ZAP_URL="http://libexif.sourceforge.net/"
+ZAP_URL="https://libexif.github.io/"
