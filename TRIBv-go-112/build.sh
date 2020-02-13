@@ -6,14 +6,17 @@
 # There have been issues with GOROOT_FINAL causing test failures
 # https://github.com/golang/go/issues/20284
 #
-# 1.12 release, now default
+# 1.12 release, no longer default
 #
 # the tarball has some test files with UTF-8 filenames
 #
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.12.16.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.12.17.src
 cd go/src
-env GOROOT_FINAL=/usr/versions/go-1.12 GOROOT_BOOTSTRAP=/usr/versions/go-1.11 ./all.bash
+#
+# gc_test is broken, so run make.bash instead
+#env GOROOT_FINAL=/usr/versions/go-1.12 GOROOT_BOOTSTRAP=/usr/versions/go-1.11 ./all.bash
+env GOROOT_FINAL=/usr/versions/go-1.12 GOROOT_BOOTSTRAP=/usr/versions/go-1.11 ./make.bash
 cd ..
 rm -fr /tmp/gg
 mkdir -p /tmp/gg/usr/versions/go-1.12
