@@ -2,7 +2,7 @@
 #
 # put a link in the regular path
 #
-VERSION=1.3.11
+VERSION=1.4.2
 mv usr/versions/sqlmap-${VERSION} usr/versions/sqlmap
 mkdir -p usr/bin
 cd usr/bin
