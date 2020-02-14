@@ -24,6 +24,8 @@ cd ..
 #
 git clone https://github.com/prometheus/prometheus.git
 cd prometheus
+# be specific
+git checkout release-2.16.0
 env PATH=/usr/versions/yarn-v1.21.1/bin:/usr/versions/node-v8/bin:/usr/versions/go-1.13/bin:$PATH gmake build
 cd ..
 
