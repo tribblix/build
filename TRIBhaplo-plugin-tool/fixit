@@ -14,13 +14,21 @@ cd usr/versions
 git clone https://github.com/haplo-org/haplo-plugin-tool
 
 #
-# we need a copy of haplo only for the build
+# we need a copy of hsvt for the build
 #
-git clone https://github.com/haplo-org/haplo
+git clone https://github.com/haplo-org/haplo-safe-view-templates
+cd haplo-safe-view-templates
+mvn package
+cd ..
 
 cd haplo-plugin-tool
 ./fetch_rhino.sh
-./build_haplo_templates.sh `pwd`/../haplo
+#./build_haplo_templates.sh `pwd`/../haplo
+#
+# use the master copy from hsvt instead
+#
+cp ../haplo-safe-view-templates/target/hsvt-0.1-SNAPSHOT.jar lib/haplo-templates.jar
+
 cd ..
 chmod a+x haplo-plugin-tool/bin/haplo-plugin
 rm -fr haplo-plugin-tool/.git
@@ -31,9 +39,9 @@ rm -f haplo-plugin-tool/.gitignore
 sed -i 's:#!/usr/bin/env ruby:#!/usr/bin/env jruby:' haplo-plugin-tool/bin/haplo-plugin
 
 #
-# delete the temporary haplo checkout
+# delete the temporary hsvt checkout
 #
-rm -fr haplo
+rm -fr haplo-safe-view-templates
 
 cd ../bin
 
