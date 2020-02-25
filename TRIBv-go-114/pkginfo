@@ -1,0 +1,4 @@
+PKG="TRIBv-go-114"
+NAME="The GO programming language"
+VERSION="1.14.0"
+ZAP_URL="https://golang.org/"
