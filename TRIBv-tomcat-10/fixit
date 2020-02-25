@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# just name off the primary version
+#
+VERSION=10.0.0-M1
+cd usr/versions
+ln -s apache-tomcat-${VERSION} tomcat10
+chmod a+x apache-tomcat-${VERSION}/bin/*.sh
+rm apache-tomcat-${VERSION}/bin/*.bat
