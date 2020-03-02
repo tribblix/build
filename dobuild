@@ -12,7 +12,7 @@ WORKING_ROOT=`pwd`
 
 case $# in
     0)
-	echo "Usage: $0 [-64|+64] [-gnu] src_name \\"
+	echo "Usage: $0 [-64|+64|+64only] [-gnu] src_name \\"
         echo "  [-S subdir] [-P alt_prefix] [-C configure_args] \\"
 	echo "  [-M make_args] [-J parallelism] [-L]"
 	exit 1
@@ -21,11 +21,15 @@ esac
 
 #
 # if a dual 32- and 64-bit build is desired, specify -64 *first*
-# +64 means just do the 64-bit (useful for testing it in isolation)
+# +64 means just do the 64-bit (useful for testing it in isolation,
+# or for building 64-bit and 32-bit with different flags)
 # note that +64 will wipe the 32-bit directory
+# +64only means put the 64-bit objects in the
+# default path, rather than in a subdirectory
 #
 DO32="true"
 DO64="false"
+ONLY64="false"
 UNPACK_FLAGS=""
 
 #
@@ -68,6 +72,13 @@ case $1 in
 +64)
 	DO64="true"
 	DO32="false"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
++64only)
+	DO64="true"
+	DO32="false"
+	ONLY64="true"
 	UNPACK_FLAGS="+64"
 	shift
 	;;
@@ -150,6 +161,14 @@ i386)
     ARCH64="amd64"
     ;;
 esac
+BINDIR64="bin/${ARCH64}"
+if [ "x${ONLY64}" != "xfalse" ]; then
+    BINDIR64="bin"
+fi
+LIBDIR64="lib/${ARCH64}"
+if [ "x${ONLY64}" != "xfalse" ]; then
+    LIBDIR64="lib"
+fi
 
 #
 # if we have a 32-bit ECONFARGS but not a 64-bit one, then
@@ -213,7 +232,7 @@ EOF
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/bin/${ARCH64} --libdir=${IPREFIX}/lib/${ARCH64}
+	    env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} --libdir=${IPREFIX}/${LIBDIR64}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
