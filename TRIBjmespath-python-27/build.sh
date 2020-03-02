@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack jmespath-0.9.4
-cd jmespath-0.9.4
+${THOME}/build/unpack jmespath-0.9.5
+cd jmespath-0.9.5
 python setup.py build
 rm -fr /tmp/pdu
 python setup.py install --root=/tmp/pdu
