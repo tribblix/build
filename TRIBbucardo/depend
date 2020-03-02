@@ -1,2 +1,6 @@
+P TRIBlib-perl-5-cgi
+P TRIBlib-perl-5-dbd-pg
+P TRIBlib-perl-5-dbi
 P TRIBlib-perl-5-dbix-safe
+P TRIBlib-perl-5-encode-locale
 P TRIBperl-522
