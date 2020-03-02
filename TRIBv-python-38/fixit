@@ -1,11 +1,21 @@
 #!/bin/sh
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 #
 # not yet the primary version, so only the version-specific
 # symlinks are created
 #
 VERSION="3.8"
 mkdir -p usr/bin
-mkdir -p usr/lib/pkgconfig
+mkdir -p usr/lib/${ARCH64}/pkgconfig
 cd usr/versions/python-${VERSION}/bin
 ln -s python${VERSION} python
 cd ../../../..
@@ -27,11 +37,20 @@ ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
 ##ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
 ##ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv .
 ##ln -s ../../usr/versions/python-${VERSION}/bin/idle3 .
+#
+# python has its objects in paths without the 64-bit names
+# otherwise "Could not find platform dependent libraries <exec_prefix>"
+# but the system paths should be 64-bit
+#
 cd ../lib
-##ln -s ../versions/python-${VERSION}/lib/libpython3* .
+##cd $ARCH64
+##ln -s ../../versions/python-${VERSION}/lib/libpython3* .
+##cd ..
+cd $ARCH64
 cd pkgconfig
-ln -s ../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}.pc .
-##ln -s ../../versions/python-${VERSION}/lib/pkgconfig/python3.pc .
+ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}.pc .
+ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}-embed.pc .
+cd ..
 
 cd ../../versions/python-${VERSION}/lib/python${VERSION}/site-packages
 tar cf setuptools.tar setuptools
