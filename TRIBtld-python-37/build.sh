@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tld-0.11.9
-cd tld-0.11.9
+${THOME}/build/unpack tld-0.11.10
+cd tld-0.11.10
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
