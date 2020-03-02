@@ -1,4 +1,4 @@
 PKG="TRIBsc-serhtml-python-37"
 NAME="Python sphinxcontrib-serializinghtml"
-VERSION="1.1.3.0"
+VERSION="1.1.4.0"
 ZAP_URL="https://pypi.org/project/sphinxcontrib-serializinghtml"
