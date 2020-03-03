@@ -15,18 +15,22 @@ rm -f usr/lib/lib*.la
 rm -f usr/lib/${ARCH64}/lib*.la
 
 #
-# use isaexec
+# we need to ship 32-bit libraries, but aren't interested
+# in 32-bit binaries, so drop those entirely
 #
-mkdir -p usr/bin/${ARCH32}
-#mv usr/bin/magick usr/bin/${ARCH32}
-mv usr/bin/animate usr/bin/${ARCH32}
-mv usr/bin/compare usr/bin/${ARCH32}
-mv usr/bin/composite usr/bin/${ARCH32}
-mv usr/bin/conjure usr/bin/${ARCH32}
-mv usr/bin/convert usr/bin/${ARCH32}
-mv usr/bin/display usr/bin/${ARCH32}
-mv usr/bin/identify usr/bin/${ARCH32}
-mv usr/bin/import usr/bin/${ARCH32}
-mv usr/bin/mogrify usr/bin/${ARCH32}
-mv usr/bin/montage usr/bin/${ARCH32}
-mv usr/bin/stream usr/bin/${ARCH32}
+rm -f usr/bin/animate
+rm -f usr/bin/compare
+rm -f usr/bin/composite
+rm -f usr/bin/conjure
+rm -f usr/bin/convert
+rm -f usr/bin/display
+rm -f usr/bin/identify
+rm -f usr/bin/import
+rm -f usr/bin/mogrify
+rm -f usr/bin/montage
+rm -f usr/bin/stream
+#
+# we need to ship the existing 32-bit config scripts
+#
+# we still isaexec the 64-bit binaries for now
+#
