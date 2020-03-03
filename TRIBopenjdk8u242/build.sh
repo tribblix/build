@@ -35,6 +35,7 @@ rm gobjcopy
 # The fcs is magic to hide the milestone from the version string:
 #
 env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin bash ./configure --with-milestone=fcs --with-update-version=242 --with-build-number=b08 --enable-unlimited-crypto
+# SPARC requires env HOTSPOT_DISABLE_DTRACE_PROBES=true ...
 env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin gmake all
 
 #
@@ -73,7 +74,7 @@ ln -s openjdk1.8.0_242 latest
 mkdir -p /tmp/jdk/usr/bin
 cd /tmp/jdk/usr/bin
 ln -s ../jdk/latest/bin/* .
-rm amd64
+rm -f amd64 sparcv9
 cd /tmp/jdk/usr/versions
 rm `find . -name '*.diz'`
 cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk1.8.0_242/jre/lib/security
