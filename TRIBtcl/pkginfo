@@ -1,4 +1,4 @@
 PKG="TRIBtcl"
 NAME="Tcl - Tool Command Language"
-VERSION="8.6.9.0"
+VERSION="8.6.10.0"
 ZAP_URL="http://www.tcl.tk/"
