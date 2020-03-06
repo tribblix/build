@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pymdown-extensions-6.2.1
-cd pymdown-extensions-6.2.1
+${THOME}/build/unpack pymdown-extensions-6.3
+cd pymdown-extensions-6.3
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
