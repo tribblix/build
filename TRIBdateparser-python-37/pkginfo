@@ -1,4 +1,4 @@
 PKG="TRIBdateparser-python-37"
 NAME="Python dateparser"
-VERSION="0.7.2.0"
+VERSION="0.7.4.0"
 ZAP_URL="https://pypi.org/project/dateparser"
