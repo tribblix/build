@@ -2,6 +2,7 @@
 #
 # add a convenience link
 #
+PYVERS=3.7
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/versions/python-2.7/bin/rbt .
+ln -s ../../usr/versions/python-${PYVERS}/bin/rbt .
