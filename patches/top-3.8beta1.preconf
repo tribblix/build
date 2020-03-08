@@ -1,2 +1,2 @@
 #!/bin/sh
-gsed -i s:xarch=amd64:m64: configure
+sed -i s:xarch=amd64:m64: configure

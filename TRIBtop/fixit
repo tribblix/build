@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-# the top build has the wrong arch
+# we only want the 64-bit variant, without isaexec
 #
-mv usr/bin/i386 usr/bin/i86
-strip usr/bin/*/top
+rm -fr usr/bin/i386 
+rm -f usr/bin/top
+mv usr/bin/amd64/top usr/bin
+strip usr/bin/top

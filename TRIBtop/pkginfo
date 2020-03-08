@@ -1,4 +1,4 @@
 PKG="TRIBtop"
 NAME="Top process monitor"
-VERSION="3.8.1.2"
-ZAP_URL="http://www.unixtop.org/"
+VERSION="3.8.1.3"
+ZAP_URL="https://sourceforge.net/projects/unixtop"
