@@ -4,8 +4,8 @@
 #
 zap install TRIBblix-cicap
 zap install TRIBblix-clamav
-${THOME}/build/dobuild c_icap_modules-0.5.3 -P /opt/tribblix/c-icap -C "--with-c-icap=/opt/tribblix/c-icap --with-clamav=/opt/tribblix/clamav"
-cd c_icap_modules-0.5.3
+${THOME}/build/dobuild c_icap_modules-0.5.4 -P /opt/tribblix/c-icap -C "--with-c-icap=/opt/tribblix/c-icap --with-clamav=/opt/tribblix/clamav"
+cd c_icap_modules-0.5.4
 rm -fr /tmp/cm
 mkdir -p /tmp/cm/opt/tribblix/c-icap/etc
 gmake install DESTDIR=/tmp/cm
