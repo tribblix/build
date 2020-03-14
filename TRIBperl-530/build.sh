@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-# System perl (to replace 510), flags from omnios (so we're as
+# System perl (to replace 5.22), flags from omnios (so we're as
 # compatible as possible)
 #
-${THOME}/build/unpack perl-5.30.0
-cd perl-5.30.0
+${THOME}/build/unpack perl-5.30.1
+cd perl-5.30.1
 ./Configure -Dusethreads -Duseshrplib -Dusemultiplicity -Duselargefiles \
 -Duse64bitint -Dmyhostname="tribblix" \
 -Dcc=gcc -Dld=/usr/bin/ld -Dccflags="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_TS_ERRNO" \
