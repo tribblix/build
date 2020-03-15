@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "See TRIBv-gcc-483"
+echo "See TRIBv-gcc7"

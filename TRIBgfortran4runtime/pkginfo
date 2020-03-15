@@ -1,4 +1,4 @@
 PKG="TRIBgfortran4runtime"
 NAME="GCC fortran runtime libraries"
-VERSION="4.8.5.0"
-ZAP_URL="https://gcc.gnu.org/"
+VERSION="7.3.0.4.0"
+ZAP_URL="https://github.com/illumos/gcc"
