@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# put the unpackageable files in the place that node expects
+#
+cd ${BASEDIR:-/}
+mv usr/versions/node-v12/lib/node_modules/npm/node_modules/ajv/lib/XXXdata.js 'usr/versions/node-v12/lib/node_modules/npm/node_modules/ajv/lib/$data.js'
+mv usr/versions/node-v12/lib/node_modules/npm/node_modules/ajv/lib/refs/XXXdata.json 'usr/versions/node-v12/lib/node_modules/npm/node_modules/ajv/lib/refs/$data.json'
