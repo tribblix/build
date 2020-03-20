@@ -11,15 +11,15 @@ git clone https://github.com/elastic/beats.git
 cd beats
 # this isn't entirely accurate but master is now 6.x
 git checkout 5.6
-# go 1.12 fails due to cgo conflicts
 cd filebeat
-env PATH=/usr/versions/go-1.11/bin:$PATH gmake
+env PATH=/usr/versions/go-1.13/bin:$PATH gmake
 cd ../metricbeat
-env PATH=/usr/versions/go-1.11/bin:$PATH gmake
-cd ../packetbeat
-env PATH=/usr/versions/go-1.11/bin:$PATH gmake
+env PATH=/usr/versions/go-1.13/bin:$PATH gmake
+#cd ../packetbeat
+#generates errors with newer Go versions
+#env PATH=/usr/versions/go-1.11/bin:$PATH gmake
 cd ../heartbeat
-env PATH=/usr/versions/go-1.11/bin:$PATH gmake
+env PATH=/usr/versions/go-1.13/bin:$PATH gmake
 cd ..
 
 rm -fr /tmp/bbb
@@ -30,7 +30,7 @@ rm -fr /tmp/bbb
 mkdir -p /tmp/bbb/opt/tribblix/beats/bin
 cp filebeat/filebeat /tmp/bbb/opt/tribblix/beats/bin
 cp metricbeat/metricbeat /tmp/bbb/opt/tribblix/beats/bin
-cp packetbeat/packetbeat /tmp/bbb/opt/tribblix/beats/bin
+#cp packetbeat/packetbeat /tmp/bbb/opt/tribblix/beats/bin
 cp heartbeat/heartbeat /tmp/bbb/opt/tribblix/beats/bin
 
 #
