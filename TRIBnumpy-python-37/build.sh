@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack numpy-1.15.3
-cd numpy-1.15.3
+${THOME}/build/unpack numpy-1.18.2
+cd numpy-1.18.2
 /usr/versions/python-3.7/bin/python3 setup.py build -j 4
 rm -fr /tmp/hg1
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/hg1
