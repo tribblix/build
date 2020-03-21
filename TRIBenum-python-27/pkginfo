@@ -1,4 +1,4 @@
 PKG="TRIBenum-python-27"
 NAME="Python enum34"
-VERSION="1.1.6.0"
+VERSION="1.1.10.0"
 ZAP_URL="https://pypi.org/project/enum34"
