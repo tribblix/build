@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pycparser-2.19
-cd pycparser-2.19
+${THOME}/build/unpack pycparser-2.20
+cd pycparser-2.20
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
