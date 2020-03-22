@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack mail-parser-3.9.3
-cd mail-parser-3.9.3
+${THOME}/build/unpack mail-parser-3.12.0
+cd mail-parser-3.12.0
 #
 # requirements are plain wrong for python3
 #
