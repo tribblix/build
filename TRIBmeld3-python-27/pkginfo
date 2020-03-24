@@ -1,4 +1,0 @@
-PKG="TRIBmeld3-python-27"
-NAME="meld3 HTML/XML templating engine"
-VERSION="1.0.2.0"
-ZAP_URL="https://pypi.org/project/meld3"
