@@ -1,4 +1,0 @@
-PKG="TRIBpytz-python-27"
-NAME="Python pytz"
-VERSION="2019.3.0"
-ZAP_URL="https://pypi.org/project/pytz"
