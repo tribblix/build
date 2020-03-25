@@ -1,0 +1,4 @@
+PKG="TRIBjoblib-python-37"
+NAME="Python joblib"
+VERSION="0.14.1.0"
+ZAP_URL="https://pypi.org/project/joblib"
