@@ -2,10 +2,10 @@
 #
 ${THOME}/build/unpack -64 OpenBLAS-0.2.20
 cd OpenBLAS-0.2.20
-gmake -j PREFIX=/usr
+gmake -j PREFIX=/usr TARGET=PRESCOTT
 cd ..
 cd OpenBLAS-0.2.20-64bit
-gmake -j PREFIX=/usr BINARY=64
+gmake -j PREFIX=/usr BINARY=64 TARGET=PRESCOTT
 cd ..
 rm -fr /tmp/mm
 cd OpenBLAS-0.2.20-64bit
