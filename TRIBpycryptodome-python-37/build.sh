@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pycryptodome-3.9.4
-cd pycryptodome-3.9.4
+${THOME}/build/unpack pycryptodome-3.9.7
+cd pycryptodome-3.9.7
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
