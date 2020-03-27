@@ -23,3 +23,7 @@ cp ${BUILDROOT}/patches/sun-ext-protos/* usr/include/X11/extensions
 # libXvMC 1.0.12 provides this, so we shouldn't in future
 #
 rm -f usr/include/X11/extensions/vldXvMC.h
+#
+# now shipped as part of libX11
+#
+rm -f usr/include/X11/extensions/XKBgeom.h

@@ -59,8 +59,8 @@ $THOME/build/dobuild recordproto-1.14.2
 $THOME/build/dobuild randrproto-1.5.0
 # KEEP: old 1.0.4 current 1.0.5 use 1.0.5
 $THOME/build/dobuild printproto-1.0.5
-# DOWNREV: old 2.0 current 2.3.2 use 2.0
-$THOME/build/dobuild inputproto-2.0
+# DOWNREV: old 2.0 current 2.3.2 bump to 2.3.2
+$THOME/build/dobuild inputproto-2.3.2
 # DOWNREV: old 1.4.10 current 1.4.17 use 1.4.10
 $THOME/build/dobuild glproto-1.4.10
 # DOWNREV: old 2.1.0 current 2.1.3 use 2.1.2

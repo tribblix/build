@@ -1,0 +1,3 @@
+#!/bin/sh
+cp ${PATCHDIR}/libXi.mapfile mapfile-vers
+sed -i 's;-version-number;-Wl,-M$(top_srcdir)/mapfile-vers -version-number;' src/Makefile.in
