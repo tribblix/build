@@ -1,0 +1,4 @@
+PKG="TRIBgrisbi"
+NAME="Grisbi finance manager"
+VERSION="1.2.2.0"
+ZAP_URL="http://www.grisbi.org/"
