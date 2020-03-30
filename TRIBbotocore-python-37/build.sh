@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack botocore-1.15.11
-cd botocore-1.15.11
+${THOME}/build/unpack botocore-1.15.31
+cd botocore-1.15.31
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pdu
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pdu
