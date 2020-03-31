@@ -1,7 +1,3 @@
 #!/bin/sh
 #
-# add a convenience link
-#
-mkdir -p usr/bin
-cd usr/bin
-ln -s ../../usr/versions/python-2.7/bin/aws .
+rm -f usr/versions/python-2.7/bin/aws.cmd
