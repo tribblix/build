@@ -2,4 +2,9 @@
 #
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/versions/python-2.7/bin/s3cmd .
+ln -s ../../usr/versions/python-3.7/bin/s3cmd .
+cd ../..
+mkdir -p usr/share/man/man1
+mv usr/versions/python-3.7/share/man/man1/s3cmd.1 usr/share/man/man1
+rmdir usr/versions/python-3.7/share/man/man1
+rmdir usr/versions/python-3.7/share/man
