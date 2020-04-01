@@ -1,0 +1,58 @@
+#!/bin/sh
+#
+# simple wrapper to create a package
+#
+# you may need to modify the depend file
+# and add the ZAP_URL to pkginfo
+#
+
+case $1 in
+-64)
+	XFLAGS="-64 "
+	shift
+	;;
+esac
+
+case $# in
+2)
+	pkg_name=$1
+	TBALL=$2
+	;;
+*)
+	echo "Usage: $0 [-64] pkg_name tarball_name"
+	exit 1
+	;;
+esac
+
+PY2NAME=TRIB${pkg_name}
+
+if [ -d "$PY2NAME" ]; then
+   echo "$PY2NAME already exists"
+   exit 1
+fi
+
+#
+# guess the version from the filename
+#
+PVER=${TBALL##*-}
+
+#
+# OK, now we can create the package metadata
+#
+
+mkdir $PY2NAME
+cat > $PY2NAME/pkginfo <<EOF
+PKG="${PY2NAME}"
+NAME="$pkg_name"
+VERSION="${PVER}.0"
+EOF
+cat > $PY2NAME/build.sh <<EOF
+#!/bin/sh
+#
+\${THOME}/build/dobuild ${XFLAGS}$TBALL
+\${THOME}/build/genpkg $PY2NAME $TBALL
+EOF
+chmod a+x $PY2NAME/build.sh
+
+echo "Now check $PY2NAME/pkginfo"
+echo "After building, check $PY2NAME/depend"
