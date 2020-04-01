@@ -6,6 +6,7 @@ VERSION=12
 mkdir -p usr/bin
 ln -s ../versions/node-v${VERSION}/bin/node usr/bin/node
 ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/npm
+ln -s ../versions/node-v${VERSION}/bin/npx usr/bin/npx
 
 #
 # we don't have systemtap
