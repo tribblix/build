@@ -1,0 +1,3 @@
+-p1 xtrans/7162172.patch
+-p1 xtrans/inetv6.patch
+-p1 xtrans/tsol-unix-domain.patch

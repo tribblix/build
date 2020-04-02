@@ -1,0 +1,4 @@
+PKG="TRIBx11-lib-xtrans"
+NAME="xtrans"
+VERSION="1.4.0.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/lib/"
