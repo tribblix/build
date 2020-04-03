@@ -1,4 +1,4 @@
 PKG="TRIBv-openssl11"
 NAME="Experimental copy of OpenSSL 1.1.1"
-VERSION="1.1.1.5.0"
+VERSION="1.1.1.6.0"
 ZAP_URL="https://www.openssl.org/"
