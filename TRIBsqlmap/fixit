@@ -2,12 +2,12 @@
 #
 # put a link in the regular path
 #
-VERSION=1.4.2
+VERSION=1.4.4
 mv usr/versions/sqlmap-${VERSION} usr/versions/sqlmap
 mkdir -p usr/bin
 cd usr/bin
 cat > sqlmap <<EOF
 #!/bin/sh
-exec python /usr/versions/sqlmap/sqlmap.py "\$@"
+exec python3 /usr/versions/sqlmap/sqlmap.py "\$@"
 EOF
 chmod a+x sqlmap
