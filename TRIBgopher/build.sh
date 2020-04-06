@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack gopher_3.0.13
-cd gopher
+${THOME}/build/unpack gopher-release-3.0.17
+cd gopher-release-3.0.17
 ./configure --prefix=/usr
 gmake
 rm -fr /tmp/ggf
@@ -15,3 +15,5 @@ cp doc/gopher.1 doc/gophfilt.1 /tmp/ggf/usr/share/man/man1
 cp doc/gopherrc.5 /tmp/ggf/usr/share/man/man5
 ${THOME}/build/create_pkg TRIBgopher /tmp/ggf
 rm -fr /tmp/ggf
+cd ..
+
