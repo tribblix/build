@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack certifi-2019.11.28
-cd certifi-2019.11.28
+${THOME}/build/unpack certifi-2020.4.5.1
+cd certifi-2020.4.5.1
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
