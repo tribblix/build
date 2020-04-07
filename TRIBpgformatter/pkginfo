@@ -1,4 +1,4 @@
 PKG="TRIBpgformatter"
 NAME="pgFormatter SQL beautifier"
-VERSION="4.1.0"
+VERSION="4.3.0"
 ZAP_URL="http://sqlformat.darold.net/"
