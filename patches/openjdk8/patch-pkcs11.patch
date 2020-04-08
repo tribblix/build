@@ -1,0 +1,34 @@
+$OpenIndiana: Fix https://www.illumos.org/issues/7227 - Franklin Ronald <franklin@wiselabs.com.br>$
+
+diff -wpruN '--exclude=*.orig' a~/jdk/src/share/classes/sun/security/jca/ProviderConfig.java a/jdk/src/share/classes/sun/security/jca/ProviderConfig.java
+--- a~/jdk/src/share/classes/sun/security/jca/ProviderConfig.java	1970-01-01 00:00:00
++++ a/jdk/src/share/classes/sun/security/jca/ProviderConfig.java	1970-01-01 00:00:00
+@@ -102,15 +102,14 @@ final class ProviderConfig {
+         Boolean o = AccessController.doPrivileged(
+                                 new PrivilegedAction<Boolean>() {
+             public Boolean run() {
++                if ("true".equalsIgnoreCase(System.getProperty
++                        ("sun.security.pkcs11.enable-solaris"))) {
+                 File file = new File("/usr/lib/libpkcs11.so");
+-                if (file.exists() == false) {
+-                    return Boolean.FALSE;
++                    if (file.exists()) {
++                        return Boolean.TRUE;
+                 }
+-                if ("false".equalsIgnoreCase(System.getProperty
+-                        ("sun.security.pkcs11.enable-solaris"))) {
+-                    return Boolean.FALSE;
+                 }
+-                return Boolean.TRUE;
++                return Boolean.FALSE;
+             }
+         });
+         if (o == Boolean.FALSE) {
+@@ -282,6 +281,7 @@ final class ProviderConfig {
+         return AccessController.doPrivileged(new PrivilegedAction<String>() {
+             public String run() {
+                 try {
++
+                     return PropertyExpander.expand(value);
+                 } catch (GeneralSecurityException e) {
+                     throw new ProviderException(e);

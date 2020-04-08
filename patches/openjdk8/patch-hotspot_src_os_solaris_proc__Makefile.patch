@@ -1,0 +1,15 @@
+
+Use illumos libdemangle-sys
+
+diff -wpruN '--exclude=*.orig' a~/hotspot/agent/src/os/solaris/proc/Makefile a/hotspot/agent/src/os/solaris/proc/Makefile
+--- a~/hotspot/agent/src/os/solaris/proc/Makefile	1970-01-01 00:00:00
++++ a/hotspot/agent/src/os/solaris/proc/Makefile	1970-01-01 00:00:00
+@@ -63,7 +63,7 @@ i386 amd64 sparc sparcv9:: javahomecheck
+ 	@$(JAVA_HOME)/bin/javah -classpath $(CLASSES_DIR) -d $@ -jni sun.jvm.hotspot.asm.Disassembler sun.jvm.hotspot.debugger.proc.ProcDebuggerLocal
+ 	CC $(CFLAGS/$@) -c -g -Kpic ${SAPROC_INCLUDES} -I$@ saproc.cpp -o $@/saproc.o
+ 	cc $(CFLAGS/$@) -c -g -Kpic ${SAPROC_INCLUDES} -I$@ $(SADIS) -o $@/sadis.o
+-	CC $(CFLAGS/$@) -g -G -Kpic $@/saproc.o $@/sadis.o -M mapfile -o $@/libsaproc.so -ldemangle
++	CC $(CFLAGS/$@) -g -G -Kpic $@/saproc.o $@/sadis.o -M mapfile -o $@/libsaproc.so -ldemangle-sys
+ 	CC $(CFLAGS/$@) -o $@/libsaproc_audit.so -G -Kpic -z defs saproc_audit.cpp -lmapmalloc -ldl -lc 
+ 
+ clean::

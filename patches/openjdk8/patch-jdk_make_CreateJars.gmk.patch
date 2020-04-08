@@ -1,0 +1,16 @@
+$NetBSD: patch-jdk_make_CreateJars.gmk,v 1.2 2015/02/20 09:38:00 tnn Exp $
+
+Ensure global tool arguments are used.
+
+diff -wpruN '--exclude=*.orig' a~/jdk/make/CreateJars.gmk a/jdk/make/CreateJars.gmk
+--- a~/jdk/make/CreateJars.gmk	1970-01-01 00:00:00
++++ a/jdk/make/CreateJars.gmk	1970-01-01 00:00:00
+@@ -302,7 +302,7 @@ $(IMAGES_OUTPUTDIR)/lib$(PROFILE)/_the.r
+ 
+ # This is a hack but I don't know how to make this fit into the existing scheme
+ $(PROFILE_VERSION_CLASS_TARGETS): $(PROFILE_VERSION_JAVA_TARGETS)
+-	@$(JAVAC) -d $(@D)/../../ $(@D)/$(VERSION_JAVA_FILE)
++	@$(JAVA) $(NEW_JAVAC) -d $(@D)/../../ $(@D)/$(VERSION_JAVA_FILE)
+ 
+ 
+ # Support for removing the addPropertyChangeListener and removePropertyChangeListener

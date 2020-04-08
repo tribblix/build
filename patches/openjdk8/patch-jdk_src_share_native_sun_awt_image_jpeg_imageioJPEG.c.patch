@@ -1,0 +1,16 @@
+$NetBSD: patch-jdk_src_share_native_sun_awt_image_jpeg_imageioJPEG.c,v 1.2 2015/09/24 22:54:28 tnn Exp $
+
+Ensure we use the bundled jpeg.
+
+diff -wpruN '--exclude=*.orig' a~/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c a/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c
+--- a~/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c	1970-01-01 00:00:00
++++ a/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c	1970-01-01 00:00:00
+@@ -50,7 +50,7 @@
+ #include "com_sun_imageio_plugins_jpeg_JPEGImageWriter.h"
+ 
+ /* headers from the JPEG library */
+-#include <jpeglib.h>
++#include "jpeglib.h"
+ #include "jerror.h"
+ 
+ #undef MAX

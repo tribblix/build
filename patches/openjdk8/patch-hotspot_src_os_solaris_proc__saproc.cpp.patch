@@ -1,0 +1,33 @@
+
+Use illumos libdemangle-sys
+
+diff -wpruN '--exclude=*.orig' a~/hotspot/agent/src/os/solaris/proc/saproc.cpp a/hotspot/agent/src/os/solaris/proc/saproc.cpp
+--- a~/hotspot/agent/src/os/solaris/proc/saproc.cpp 1970-01-01 00:00:00
++++ a/hotspot/agent/src/os/solaris/proc/saproc.cpp  1970-01-01 00:00:00
+@@ -30,7 +30,7 @@
+ #include <thread_db.h>
+ #include <strings.h>
+ #include <limits.h>
+-#include <demangle.h>
++#include <demangle-sys.h>
+ #include <stdarg.h>
+ #include <stdlib.h>
+ #include <errno.h>
+@@ -1257,8 +1257,15 @@
+   const char* ptr = env->GetStringUTFChars(name, &isCopy);
+   char  buf[2*SYMBOL_BUF_SIZE + 1];
+   jstring res = 0;
+-  if (cplus_demangle((char*) ptr, buf, sizeof(buf)) != DEMANGLE_ESPACE) {
+-    res = env->NewStringUTF(buf);
++  char *demangled_symbol;
++
++  if ((demangled_symbol = sysdemangle(ptr, SYSDEM_LANG_CPP, NULL)) != NULL) {
++    if (strlcpy(buf, demangled_symbol, sizeof(buf)) < sizeof(buf)) {
++      res = env->NewStringUTF(buf);
++    } else {
++      res = name;
++    }
++    free(demangled_symbol);
+   } else {
+     res = name;
+   }

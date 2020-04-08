@@ -1,0 +1,30 @@
+
+Use illumos libdemangle-sys
+
+diff -wpruN '--exclude=*.orig' a~/hotspot/src/os/solaris/vm/decoder_solaris.cpp a/hotspot/src/os/solaris/vm/decoder_solaris.cpp
+--- a~/hotspot/src/os/solaris/vm/decoder_solaris.cpp	1970-01-01 00:00:00
++++ a/hotspot/src/os/solaris/vm/decoder_solaris.cpp	1970-01-01 00:00:00
+@@ -24,9 +24,21 @@
+ 
+ #include "utilities/decoder_elf.hpp"
+ 
+-#include <demangle.h>
++#include <strings.h>
++#include <demangle-sys.h>
+ 
+ bool ElfDecoder::demangle(const char* symbol, char *buf, int buflen) {
+-  return !cplus_demangle(symbol, buf, (size_t)buflen);
++  char *demangled_symbol;
++
++  if ((demangled_symbol = sysdemangle(symbol, SYSDEM_LANG_CPP, NULL)) != NULL) {
++    if (strlcpy(buf, demangled_symbol, (size_t)buflen) < (size_t)buflen) {
++      free(demangled_symbol);
++      return 1;
++    }
++    free(demangled_symbol);
++  }
++
++  strlcpy(buf, symbol, (size_t)buflen);
++  return 0;
+ }
+ 

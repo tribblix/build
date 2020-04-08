@@ -1,0 +1,46 @@
+$NetBSD: patch-jdk_src_solaris_native_java_net_NetworkInterface.c,v 1.4 2017/11/28 05:07:25 ryoon Exp $
+
+Zones support.
+
+diff -wpruN '--exclude=*.orig' a~/jdk/src/solaris/native/java/net/NetworkInterface.c a/jdk/src/solaris/native/java/net/NetworkInterface.c
+--- a~/jdk/src/solaris/native/java/net/NetworkInterface.c	1970-01-01 00:00:00
++++ a/jdk/src/solaris/native/java/net/NetworkInterface.c	1970-01-01 00:00:00
+@@ -39,6 +39,7 @@
+ #include <fcntl.h>
+ #include <stropts.h>
+ #include <sys/sockio.h>
++#include <zone.h>
+ #endif
+ 
+ #if defined(__linux__)
+@@ -78,7 +77,8 @@
+     #ifndef SIOCGLIFHWADDR
+         #define SIOCGLIFHWADDR _IOWR('i', 192, struct lifreq)
+     #endif
+-    #define DEV_PREFIX "/dev/"
++    #define NET_DEV_PREFIX "/dev/"
++    #define ZONE_NET_DEV_PREFIX    "/dev/net/"
+ #endif
+ 
+ #ifdef LIFNAMSIZ
+@@ -1853,9 +1853,18 @@ static int getMacFromDevice
+     char buf[128];
+     int flags = 0;
+ 
+-    // Device is in /dev.  e.g.: /dev/bge0
+-    strcpy(style1dev, DEV_PREFIX);
++   /*
++    * Device is in /dev in global zone / standalone
++    * Device is in /dev/net in a zone
++    * e.g.: /dev/net/net0
++    */
++    if (getzoneid()==(zoneid_t)GLOBAL_ZONEID) {
++        strcpy(style1dev, NET_DEV_PREFIX);
++    } else {
++        strcpy(style1dev, ZONE_NET_DEV_PREFIX);
++    }
+     strcat(style1dev, ifname);
++
+     if ((fd = open(style1dev, O_RDWR)) < 0) {
+         // Can't open it. We probably are missing the privilege.
+         // We'll have to try something else

@@ -1,0 +1,15 @@
+$NetBSD: patch-hotspot_make_solaris_makefiles_build__vm__def.sh,v 1.1 2015/07/03 20:40:59 fhajny Exp $
+
+Fix path to nm.
+
+diff -wpruN '--exclude=*.orig' a~/hotspot/make/solaris/makefiles/build_vm_def.sh a/hotspot/make/solaris/makefiles/build_vm_def.sh
+--- a~/hotspot/make/solaris/makefiles/build_vm_def.sh	1970-01-01 00:00:00
++++ a/hotspot/make/solaris/makefiles/build_vm_def.sh	1970-01-01 00:00:00
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ 
+-/usr/ccs/bin/nm -p $* \
++/usr/bin/nm -p $* \
+     | awk '{
+           if ($2 == "U") next
+           if ($3 ~ /^__1c.*__vtbl_$/ || $3 ~ /^gHotSpotVM/) print "\t" $3 ";"
