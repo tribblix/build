@@ -6,7 +6,7 @@
 # There have been issues with GOROOT_FINAL causing test failures
 # https://github.com/golang/go/issues/20284
 #
-# 1.14 release, not yet default
+# 1.14 release, now default
 #
 # the tarball has some test files with UTF-8 filenames
 #
@@ -15,7 +15,7 @@
 # solaris and illumos toolchain, which seems suboptimal
 #
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.14.1.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.14.2.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.14 GOROOT_BOOTSTRAP=/usr/versions/go-1.13 ./all.bash
 cd ..
