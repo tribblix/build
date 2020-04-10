@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack SQLAlchemy-1.3.15
-cd SQLAlchemy-1.3.15
+${THOME}/build/unpack SQLAlchemy-1.3.16
+cd SQLAlchemy-1.3.16
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
