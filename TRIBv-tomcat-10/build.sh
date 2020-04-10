@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBv-tomcat-10 apache-tomcat-10.0.0-M3
+${THOME}/build/pkg_tarball TRIBv-tomcat-10 apache-tomcat-10.0.0-M4
