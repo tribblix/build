@@ -1,4 +1,4 @@
 PKG="TRIBterminal-mlterm"
 NAME="Multi Lingual TERMinal emulator"
-VERSION="3.8.5.0"
+VERSION="3.8.9.0"
 ZAP_URL="https://sourceforge.net/projects/mlterm/"
