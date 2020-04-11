@@ -1,2 +1,0 @@
--p1 abiword-nullptr.patch
--p1 abiword-3.0.2-fix_flicker-1.patch
