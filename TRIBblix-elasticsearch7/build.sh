@@ -5,4 +5,4 @@
 #
 # also needs a copy of the jna distribution - see the fixit script
 #
-${THOME}/build/pkg_tarball -T TRIBblix-elasticsearch6 elasticsearch-6.8.8
+${THOME}/build/pkg_tarball -T TRIBblix-elasticsearch7 elasticsearch-oss-7.6.2-no-jdk-linux-x86_64

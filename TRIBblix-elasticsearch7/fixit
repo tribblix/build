@@ -17,7 +17,7 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="6.8.8"
+VERSION="7.6.2"
 mv elasticsearch-${VERSION} elasticsearch
 
 #
@@ -25,6 +25,12 @@ mv elasticsearch-${VERSION} elasticsearch
 #
 rm -f elasticsearch/bin/*.bat
 rm -f elasticsearch/bin/*.exe
+
+#
+# despite us using a no-jdk tarball, the start scripts assume that the
+# jdk lives inside elasticsearch
+#
+ln -s /usr/jdk/latest elasticsearch/jdk
 
 #
 # this is quite big, and is linux/windows/mac
