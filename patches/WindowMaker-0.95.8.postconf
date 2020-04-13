@@ -1,6 +1,0 @@
-#!/bin/sh
-gsed -i s:-std=c11:: `find . -name Makefile`
-#
-# this seems to cause failures on sparc
-#
-gsed -i s:awk:nawk: script/generate-mapfile-from-header.sh
