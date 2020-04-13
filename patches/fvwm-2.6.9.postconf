@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# tweak the programs menu so it's sane on Tribblix
+#
+sed -i s:xemacs:emacs:g default-config/config
+sed -i s:XEmacs:Emacs:g default-config/config
