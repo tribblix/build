@@ -1,0 +1,4 @@
+PKG="TRIBfacter-ruby-26"
+NAME="Legacy Ruby 2.6 version of facter"
+VERSION="2.5.7.0"
+ZAP_URL="https://github.com/puppetlabs/facter"
