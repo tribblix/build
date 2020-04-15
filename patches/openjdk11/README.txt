@@ -3,12 +3,15 @@ https://github.com/joyent/pkgsrc-joyent/tree/master/openjdk11
 
 All patches -p0
 
+This set of patches for jdk-11.0.7+10
+
 Removed:
 
 patch-make_autoconf_flags-other.m4 - breaks as
 patch-make_autoconf_lib-bundled.m4 - breaks zlib
 patch-make_lib_Lib-java.instrument.gmk - remove -liconv
 patch-make_lib_Lib-jdk.jdwp.agent.gmk - remove -liconv
+patch-make_autoconf_flags-ldflags.m4 - broken as of 11.0.7
 
 Modified:
 
@@ -30,6 +33,19 @@ tribblix-LauncherCommon.patch
 
 tribblix-agent-mt.patch
   remove -mt
+
+tribblix-flags-ldflags.patch
+tribblix-flags-ldflags2.patch
+  replace the broken patch-make_autoconf_flags-ldflags.m4
+
+tribblix-flags-ldflags3.patch
+  don't use -pie or --allow-shlib-undefined
+
+tribblix-demangle1.patch
+tribblix-demangle2.patch
+tribblix-demangle3.patch
+tribblix-demangle4.patch
+  use the gcc demangle rather than the Studio demangle
 
 Build:
 

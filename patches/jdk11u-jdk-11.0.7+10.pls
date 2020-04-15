@@ -1,7 +1,6 @@
 -p0 openjdk11/patch-make_GenerateLinkOptData.gmk
 -p0 openjdk11/patch-make_autoconf_basics.m4
 -p0 openjdk11/patch-make_autoconf_flags-cflags.m4
--p0 openjdk11/patch-make_autoconf_flags-ldflags.m4
 -p0 openjdk11/patch-make_autoconf_jdk-options.m4
 -p0 openjdk11/patch-make_autoconf_lib-x11.m4
 -p0 openjdk11/patch-make_autoconf_libraries.m4
@@ -33,3 +32,10 @@
 -p0 openjdk11/tribblix-agent-mt.patch
 -p0 openjdk11/tribblix-attachListener_solaris.patch
 -p0 openjdk11/tribblix-flags-cflags.patch
+-p0 openjdk11/tribblix-flags-ldflags.patch
+-p0 openjdk11/tribblix-flags-ldflags2.patch
+-p0 openjdk11/tribblix-flags-ldflags3.patch
+-p0 openjdk11/tribblix-demangle1.patch
+-p0 openjdk11/tribblix-demangle2.patch
+-p0 openjdk11/tribblix-demangle3.patch
+-p0 openjdk11/tribblix-demangle4.patch

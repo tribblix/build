@@ -18,7 +18,7 @@ Support for SunOS/gcc.
  
    elif test "x$TOOLCHAIN_TYPE" = xclang; then
      C_FLAG_REORDER=''
-@@ -468,6 +473,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
+@@ -454,6 +459,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
  
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE -D_REENTRANT"
