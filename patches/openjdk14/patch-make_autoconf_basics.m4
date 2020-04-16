@@ -22,7 +22,7 @@ Shell portability, and remove annoying warning.
        fi
        # Try to locate tool using the code snippet
        $2
-@@ -1226,7 +1226,7 @@ AC_DEFUN([BASIC_CHECK_GREP],
+@@ -1227,7 +1227,7 @@ AC_DEFUN([BASIC_CHECK_GREP],
    NEEDLE_SPACES='ccc bbb aaa'
    NEEDLE_LIST=${NEEDLE_SPACES// /$'\n'}
    RESULT="$($GREP -Fvx "$STACK_LIST" <<< "$NEEDLE_LIST")"

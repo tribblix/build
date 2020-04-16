@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk14"
 NAME="OpenJDK 14"
-VERSION="14.0.rc.0"
+VERSION="14.0.1.0"
 ZAP_URL="http://openjdk.java.net/"
