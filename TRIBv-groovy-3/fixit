@@ -2,8 +2,8 @@
 #
 # links into normal PATH
 #
-VERSION=3.0.2
+VERSION=3.0.3
 rm usr/versions/groovy-${VERSION}/bin/*.bat
-#mkdir -p usr/bin
-#cd usr/bin
-#ln -s ../versions/groovy-${VERSION}/bin/* .
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../versions/groovy-${VERSION}/bin/* .
