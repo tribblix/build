@@ -19,7 +19,7 @@ wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.3+3.tar.bz2
 ln jdk-13.0.3+3.tar.bz2 jdk13u-jdk-13.0.3+3.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-13.0.3+3
+${THOME}/build/unpack jdk13u-jdk-13.0.3+3
 cd jdk13u-jdk-13.0.3+3
 
 #
