@@ -32,3 +32,8 @@
 -p0 openjdk13/tribblix-agent-mt.patch
 -p0 openjdk13/tribblix-attachListener_solaris.patch
 -p0 openjdk13/tribblix-flags-cflags.patch
+-p0 openjdk13/tribblix-flags-ldflags3.patch
+-p0 openjdk13/tribblix-demangle1.patch
+-p0 openjdk13/tribblix-demangle2.patch
+-p0 openjdk13/tribblix-demangle3.patch
+-p0 openjdk13/tribblix-demangle4.patch

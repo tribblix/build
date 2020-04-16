@@ -16,7 +16,7 @@ Support SunOS/gcc.
    else ifeq ($(call isBuildOs, aix), true)
      ADLC_LDFLAGS := -q64
      ADLC_CFLAGS := -qnortti -qeh -q64 -DAIX
-@@ -91,7 +95,10 @@ ifeq ($(call check-jvm-feature, compiler
+@@ -90,7 +94,10 @@ ifeq ($(call check-jvm-feature, compiler
    ifeq ($(call isTargetOs, linux), true)
      ADLCFLAGS += -DLINUX=1 -D_GNU_SOURCE=1
    else ifeq ($(call isTargetOs, solaris), true)

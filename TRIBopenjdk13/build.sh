@@ -7,18 +7,33 @@
 # original release
 # wget http://hg.openjdk.java.net/jdk/jdk13/archive/jdk-13+33.tar.bz2
 #
+# 13.0.2 update
+# wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.2+8.tar.bz2
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.2+8.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.3+3.tar.bz2
+#
+# fix the tarball name to match the directory it unpacks into
+# this needed to get the patches to apply correctly
+#
+ln jdk-13.0.3+3.tar.bz2 jdk13u-jdk-13.0.3+3.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-13.0.2+8
-cd jdk13u-jdk-13.0.2+8
+${THOME}/build/unpack jdk-13.0.3+3
+cd jdk13u-jdk-13.0.3+3
+
+#
+# as of 13.0.3, switch to a gcc build to replace Stuido
+#
 
 #
 # looks like dtrace is busted, I suspect illumos and Solaris have diverged
 # enough to trip it up, so --enable-dtrace=no
 #
 
+#
+# Not for gcc builds, and ignoring for now as j2ucrypto is deprecated
+# in more recent versions
 #
 # We need a copy of libsoftcrypto.h
 # this was formerly shipped with the source, but got removed as the
@@ -33,12 +48,7 @@ cd jdk13u-jdk-13.0.2+8
 #
 # cp libsoftcrypto.h jdk/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto
 #
-cp ${THOME}/build/patches/jdk-libsoftcrypto.h src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
-
-#
-# needs objcopy, which is in /usr/gnu/bin
-# but the objcopy stuff doesn't actually work
-#
+#cp ${THOME}/build/patches/jdk-libsoftcrypto.h src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
 
 #
 # jdk13 needs autoconf installed
@@ -46,69 +56,8 @@ cp ${THOME}/build/patches/jdk-libsoftcrypto.h src/jdk.crypto.ucrypto/solaris/nat
 zap install autoconf
 
 #
-# jdk10-12 wants Studio 5.13 == Studio 12.4
-# there are creeping dependencies on Studio 12.6
-#
-
-#
-# I have no idea what the version string should look like
-#
-
-#
-# Note for Solaris 10
-# src/java.desktop/share/native/libfontmanager/harfbuzz/hb-blob.cc
-# the POSIX+C_SOURCE thing is broken - set it to 199506L
-#
-
-#
-# build on Tribblix m20.5 or later, which has the libc compatibility fixes
-#
-# cd $HOME
-# pbzcat /packages/localsrc/Studio/Studio12.4/SolarisStudio12.4-solaris-x86-bin.tar.bz2 | tar xf -
-# mv SolarisStudio12.4-solaris-x86-bin/solarisstudio12.4 .
-#
-# iropt needs libmmheap.so.1
-#
-# OK, they're in the Studio12.4 download
-# ~/SolarisStudio12.4-solaris-x86-bin/patches/system/120754-14
-# SUNWlibmsr/reloc/lib/{,amd64/}libmmheap.so.1
-#
-# cp libmmheap.so.1 ~/solarisstudio12.4/lib/compilers/sys/
-# cp amd64/libmmheap.so.1 ~/solarisstudio12.4/lib/compilers/sys/amd64/
-#
-# it wants objcopy, hence /usr/sfw/bin in the path
-#
-
-#
-# !!!!!!!!!!!!!! YOU MUST FIX THE FOLLOWING !!!!!!!!!!!!!!
-#
-# src/hotspot/os/solaris/perfMemory_solaris.cpp
-# fix the d_fd error -> dd_fd
-#
-# src/java.base/solaris/native/libnio/ch/DevPollArrayWrapper.c
-# need to #include <signal.h> explicitly, before devpoll.h
-#
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
-#
-# there are two problems with harfbuzz:
-#
-# first, remove refmemnoconstr_aggr from DISABLED_WARNINGS_CXX_solstudio
-# in the file make/lib/Awt2dLibraries.gmk
-#
-# second, patch the source to stop it emitting the warning that would have
-# been gagged by the above flag if Studio12.4 had it
-#
-gpatch -p1 < ${THOME}/build/patches/jdk12-studio124.patch
-
-#
-# this says 'studio 12.6 workaround'
-# it may fix it for studio 12.6, but breaks everything else
-# the symptom is SEGV if any -XX arguments are used, which they
-# are in the image optimization part of the build
-#
-sed -i 's:BUILD_LIBJVM_arguments.cpp_OPTIMIZATION:#BUILD_LIBJVM_arguments.cpp_OPTIMIZATION:' make/hotspot/lib/JvmOverrideFiles.gmk
-
 #
 # shenandoah doesn't build on SPARC so disable it with
 # --with-jvm-features=-shenandoahgc
@@ -116,18 +65,23 @@ sed -i 's:BUILD_LIBJVM_arguments.cpp_OPTIMIZATION:#BUILD_LIBJVM_arguments.cpp_OP
 #
 # the hotspot unit test don't build, hence --disable-hotspot-gtest
 #
-env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin bash ./configure --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk12 --with-native-debug-symbols=none --enable-dtrace=no --disable-hotspot-gtest
+env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk10 \
+--with-native-debug-symbols=none \
+--with-toolchain-type=gcc \
+--disable-hotspot-gtest --disable-dtrace \
+--disable-warnings-as-errors
 
-env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k all
+env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 
 #
 # first testing looks like this:
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "13.0.2-internal" 2020-01-14
-# OpenJDK Runtime Environment (build 13.0.2-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.28)
-# OpenJDK 64-Bit Server VM (build 13.0.2-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.28, mixed mode, sharing)
+# openjdk version "13.0.3-internal" 2020-04-14
+# OpenJDK Runtime Environment (build 13.0.3-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.33)
+# OpenJDK 64-Bit Server VM (build 13.0.3-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.33, mixed mode, sharing)
 # 
 
 rm -fr /tmp/jdk
@@ -143,33 +97,21 @@ ln -s ../versions/openjdk13 .
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin
 #ln -s ../jdk/latest/bin/* .
-#rm amd64
+#rm -f amd64 sparcv9
 cd /tmp/jdk/usr/versions/openjdk13
 rm `find . -name '*.diz'`
 
 #
 # need to create a certificate bundle
 #
-# the jdk13 build appears to create a working one, so leave it be
+# the jdk13 build appears to create a working one, but it uses
+# a horribly outdated set of certificates, so replace it
 #
 # this actually needs to be a JKS keystore, not a PKCS12 keystore
 # https://bugs.launchpad.net/ubuntu/+source/ca-certificates-java/+bug/1739631
 #
-#${THOME}/build/patches/mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /usr/jdk/instances/jdk1.8.0/bin/keytool -s /usr/bin/openssl
+${THOME}/build/patches/mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /usr/jdk/instances/jdk1.8.0/bin/keytool -s /usr/bin/openssl
 #
-#cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk13/lib/security
-
-#
-# edit conf/security/sunpkcs11-solaris.cfg and add the following to disabledMechanisms
-#
-# again, doesn't seem to be necessary
-#
-# # the following mechanisms are disabled due to lack of digest cloning support
-# # need to fix 6414899 first
-#   CKM_MD5
-#   CKM_SHA256
-#   CKM_SHA384
-#   CKM_SHA512
-#
+cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk13/lib/security
 
 ${THOME}/build/create_pkg TRIBopenjdk13 /tmp/jdk
