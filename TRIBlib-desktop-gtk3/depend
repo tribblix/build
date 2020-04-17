@@ -1,4 +1,5 @@
 P TRIBgdk-pixbuf
+P TRIBharfbuzz
 P TRIBlib-desktop-atk
 P TRIBlib-desktop-atk-bridge
 P TRIBlib-desktop-cairo
