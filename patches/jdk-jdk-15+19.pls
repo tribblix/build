@@ -1,6 +1,5 @@
 -p0 openjdk15/patch-make_GenerateLinkOptData.gmk
 -p0 openjdk15/patch-make_autoconf_flags-cflags.m4
--p0 openjdk15/patch-make_autoconf_flags-ldflags.m4
 -p0 openjdk15/patch-make_autoconf_jdk-options.m4
 -p0 openjdk15/patch-make_autoconf_lib-x11.m4
 -p0 openjdk15/patch-make_autoconf_libraries.m4
@@ -31,4 +30,9 @@
 -p0 openjdk15/tribblix-flags-cflags.patch
 -p0 openjdk15/tribblix-flags-ldflags.patch
 -p0 openjdk15/tribblix-flags-ldflags2.patch
+-p0 openjdk15/tribblix-flags-ldflags3.patch
 -p0 openjdk15/tribblix-wait.patch
+-p0 openjdk15/tribblix-demangle1.patch
+-p0 openjdk15/tribblix-demangle2.patch
+-p0 openjdk15/tribblix-demangle3.patch
+-p0 openjdk15/tribblix-demangle4.patch

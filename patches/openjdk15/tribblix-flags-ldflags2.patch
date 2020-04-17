@@ -1,6 +1,6 @@
 --- make/autoconf/flags-ldflags.m4~	Mon Apr 13 14:19:55 2020
 +++ make/autoconf/flags-ldflags.m4	Mon Apr 13 14:34:10 2020
-@@ -81,7 +81,11 @@
+@@ -86,7 +86,11 @@
        BASIC_LDFLAGS="$BASIC_LDFLAGS -Wl,--gc-sections -Wl,--print-gc-sections"
      fi
  

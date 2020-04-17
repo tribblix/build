@@ -25,6 +25,9 @@ remove:
 
 patch-make_autoconf_basics.m4
 
+patch-make_autoconf_flags-ldflags.m4
+  broken as of 15+19
+
 modified:
 
 patch-make_autoconf_libraries.m4
@@ -35,6 +38,15 @@ tribblix-flags-ldflags.patch
 tribblix-LauncherCommon.patch
 
 add:
+
+tribblix-flags-ldflags3.patch
+  fixes -pie and --shlib-undefined
+
+tribblix-demangle1.patch 
+tribblix-demangle2.patch 
+tribblix-demangle3.patch 
+tribblix-demangle4.patch 
+  replace the studio demangle with the gcc one
 
 Build:
 
