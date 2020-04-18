@@ -1,0 +1,1 @@
+-p1 gir-no-as-needed.patch

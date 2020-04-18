@@ -25,5 +25,5 @@ fi
 #
 # this assumes you have a copy of pango built
 #
-cp ../pango-1.36.8/pango/Pango*gir ${DESTDIR}/usr/share/gir-1.0
-cp ../pango-1.36.8/pango/Pango*typelib ${DESTDIR}/usr/lib/girepository-1.0
+cp ../pango-1.42.4/pango/Pango*gir ${DESTDIR}/usr/share/gir-1.0
+cp ../pango-1.42.4/pango/Pango*typelib ${DESTDIR}/usr/lib/girepository-1.0
