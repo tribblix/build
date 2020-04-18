@@ -23,7 +23,15 @@ fi
 #
 
 #
-# this assumes you have a copy of pango built
+# this assumes you have a sacrificial copy of these built
 #
 cp ../pango-1.42.4/pango/Pango*gir ${DESTDIR}/usr/share/gir-1.0
 cp ../pango-1.42.4/pango/Pango*typelib ${DESTDIR}/usr/lib/girepository-1.0
+cp ../gdk-pixbuf-2.34.0/gdk-pixbuf/GdkPixbuf-2.0.gir ${DESTDIR}/usr/share/gir-1.0
+cp ../gdk-pixbuf-2.34.0/gdk-pixbuf/GdkPixbuf-2.0.typelib ${DESTDIR}/usr/lib/girepository-1.0
+cp ../atk-2.20.0/atk/Atk-1.0.gir ${DESTDIR}/usr/share/gir-1.0
+cp ../atk-2.20.0/atk/Atk-1.0.typelib ${DESTDIR}/usr/lib/girepository-1.0
+cp ../gtk+-3.22.30/gdk/Gdk*gir ${DESTDIR}/usr/share/gir-1.0
+cp ../gtk+-3.22.30/gtk/Gtk-3.0.gir ${DESTDIR}/usr/share/gir-1.0
+cp ../gtk+-3.22.30/gdk/Gdk*typelib ${DESTDIR}/usr/lib/girepository-1.0
+cp ../gtk+-3.22.30/gtk/Gtk-3.0.typelib ${DESTDIR}/usr/lib/girepository-1.0
