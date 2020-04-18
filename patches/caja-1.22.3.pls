@@ -1,0 +1,2 @@
+-p1 caja-notify1.patch
+-p1 caja-notify2.patch

@@ -2,13 +2,12 @@ P TRIBgdk-pixbuf
 P TRIBimage-libexif
 P TRIBlib-desktop-atk
 P TRIBlib-desktop-cairo
-P TRIBlib-desktop-gtk
+P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
-P TRIBlibunique
+P TRIBlibnotify
 P TRIBlibxml2
 P TRIBmate-desktop
 P TRIBx11-libice
 P TRIBx11-libsm
 P TRIBx11-libx11
-P TRIBx11-libxrender

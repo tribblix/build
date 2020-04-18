@@ -1,14 +1,15 @@
 P TRIBgdk-pixbuf
+P TRIBgobject-introspection
 P TRIBimage-libexif
 P TRIBimage-libjpeg
 P TRIBimage-librsvg
 P TRIBlib-desktop-atk
 P TRIBlib-desktop-cairo
-P TRIBlib-desktop-gtk
+P TRIBlib-desktop-gtk3
 P TRIBlib-glib2
 P TRIBlib-lcms2
 P TRIBlib-zlib
+P TRIBlibpeas
 P TRIBlibxml2
 P TRIBmate-desktop
-P TRIBsys-libdbus-glib
 P TRIBx11-libx11

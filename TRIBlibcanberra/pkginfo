@@ -1,4 +1,4 @@
 PKG="TRIBlibcanberra"
 NAME="libcanberra"
-VERSION="0.30.0"
+VERSION="0.30.1"
 ZAP_URL="http://0pointer.de/lennart/projects/libcanberra/"

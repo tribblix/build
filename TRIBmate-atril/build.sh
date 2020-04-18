@@ -1,5 +1,4 @@
 #!/bin/sh
 #
-# atril needs caja
-${THOME}/build/dobuild -gnu atril-1.14.2 -C --without-keyring
-${THOME}/build/genpkg TRIBmate-atril atril-1.14.2
+env PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild -gnu atril-1.22.3 -C --without-keyring
+${THOME}/build/genpkg TRIBmate-atril atril-1.22.3
