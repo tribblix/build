@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack ctwm-4.0.2
-cd ctwm-4.0.2
+${THOME}/build/unpack ctwm-4.0.3
+cd ctwm-4.0.3
 sed -i s:std=c99:std=gnu99: cmake_files/compiler_feature_checks.cmake
 gmake CMAKE_EXTRAS="-DCMAKE_INSTALL_PREFIX=/usr"
 #

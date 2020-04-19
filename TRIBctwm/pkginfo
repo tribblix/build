@@ -1,4 +1,4 @@
 PKG="TRIBctwm"
 NAME="CTWM - The Window Manager for Smart Windows"
-VERSION="4.0.2.0"
+VERSION="4.0.3.0"
 ZAP_URL="http://www.ctwm.org/"
