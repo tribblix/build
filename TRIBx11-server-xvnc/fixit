@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# remove the client pieces
+#
+rm -fr usr/share/locale
+rm -fr usr/share/applications
+rm -fr usr/share/icons
+rm -f usr/bin/vncviewer
+rm -f usr/share/man/man1/vncviewer.1
+rm -fr usr/share/doc
+
+#
+# /var/run is ephemeral and recreated every boot
+#
+rm -fr var
+
+#
+# this is for the man Xserver package
+#
+rm -f usr/share/man/man1/Xserver.1
+
+rm -f usr/lib/xorg/modules/extensions/libvnc.la
+#so I'm not sure about this
+# should we ship libvnc.so or not?
+rm -fr usr/lib
+
+#
+# we are reponsible for this, apparently
+#
+cd usr/lib/mdb/proc
+ln -s Xserver.so Xvnc.so
