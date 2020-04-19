@@ -2,16 +2,12 @@
 #
 # our own tigervnc
 #
-${THOME}/build/unpack tigervnc-1.8.0
-cd tigervnc-1.8.0
+# 64-bit build fails with a runtime error in libfltk_images
+#
+${THOME}/build/unpack tigervnc-1.10.1
+cd tigervnc-1.10.1
 mkdir build
 cd build
-cmake -G "Unix Makefiles" ..
-gmake -k
-rm -fr /tmp/tg
-mkdir -p /tmp/tg/usr/bin
-mkdir -p /tmp/tg/usr/share/man/man1
-cp vncviewer/vncviewer /tmp/tg/usr/bin
-cp ../vncviewer/vncviewer.man /tmp/tg/usr/share/man/man1/vncviewer.1
-${THOME}/build/create_pkg TRIBremote-desktop-tigervnc /tmp/tg
-rm -fr /tmp/tg
+env PATH=/usr/gnu/bin:$PATH cmake -DCMAKE_INSTALL_PREFIX=/usr -G "Unix Makefiles" ..
+gmake -j
+${THOME}/build/genpkg TRIBremote-desktop-tigervnc

@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# this is the client package, so the only binary we want is
+# vncviewer
+#
+cd usr/bin
+for file in *
+do
+	if [ "x$file" != "xvncviewer" ]; then
+	   rm $file
+	fi
+done
+cd ../..
+cd usr/share/man/man1
+for file in *
+do
+	if [ "x$file" != "xvncviewer.1" ]; then
+	   rm $file
+	fi
+done
