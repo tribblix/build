@@ -1,2 +1,2 @@
-tribblix_srcs=libpcap-1.8.1
+tribblix_srcs=libpcap-1.9.1
 tribblix_64_opt="-64"
