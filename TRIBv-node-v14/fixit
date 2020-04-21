@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Only LTS releases have standard symlinks
+#
+VERSION=14
+#mkdir -p usr/bin
+#ln -s ../versions/node-v${VERSION}/bin/node usr/bin/node
+#ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/npm
+#ln -s ../versions/node-v${VERSION}/bin/npx usr/bin/npx
+
+#
+# we don't have systemtap
+#
+rm -fr usr/versions/node-v${VERSION}/share/systemtap
+
+#
+# these are unpackageable files, rename
+# postinstall and preremove scripts will put them
+# into the right place
+#
+mv 'usr/versions/node-v14/lib/node_modules/npm/node_modules/ajv/lib/$data.js' usr/versions/node-v14/lib/node_modules/npm/node_modules/ajv/lib/XXXdata.js
+mv 'usr/versions/node-v14/lib/node_modules/npm/node_modules/ajv/lib/refs/$data.json' usr/versions/node-v14/lib/node_modules/npm/node_modules/ajv/lib/refs/XXXdata.json
