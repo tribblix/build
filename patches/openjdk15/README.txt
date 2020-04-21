@@ -9,7 +9,7 @@ jdk15 is likely to see more significant changes as it's cur from a
 rapidly evolving trunk, whereas older versions were more static,
 getting bugfixes on a relatively static base
 
-This set currently based on jdk-15+18
+This set currently based on jdk-15+19
 
 openjdk15 fixes (besides fixing line number noise)
 
@@ -51,7 +51,7 @@ tribblix-demangle4.patch
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk13 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk14 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-hotspot-gtest --disable-dtrace \
