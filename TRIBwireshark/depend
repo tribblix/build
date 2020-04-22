@@ -1,12 +1,15 @@
 P TRIBgdk-pixbuf
 P TRIBgnutls
 P TRIBlib-desktop-cairo
-P TRIBlib-desktop-gtk
+P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
 P TRIBlib-zlib
 P TRIBlibgcrypt
-P TRIBlibgpg-error
+P TRIBlibnghttp2
 P TRIBlibpcap
+P TRIBlibspeex
 P TRIBlibssh
+P TRIBlibxml2
+P TRIBsnappy
 P TRIBsvc-security-kerberos-5
