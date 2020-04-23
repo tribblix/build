@@ -9,7 +9,7 @@ jdk15 is likely to see more significant changes as it's cur from a
 rapidly evolving trunk, whereas older versions were more static,
 getting bugfixes on a relatively static base
 
-This set currently based on jdk-15+19
+This set currently based on jdk-15+20
 
 openjdk15 fixes (besides fixing line number noise)
 
