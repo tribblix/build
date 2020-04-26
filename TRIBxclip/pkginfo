@@ -1,4 +1,4 @@
 PKG="TRIBxclip"
 NAME="CLI interface to the X11 clipboard"
-VERSION="0.12.0"
-ZAP_URL="http://sourceforge.net/projects/xclip/"
+VERSION="0.13.0"
+ZAP_URL="https://github.com/astrand/xclip"
