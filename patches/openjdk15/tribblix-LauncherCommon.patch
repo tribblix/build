@@ -1,5 +1,5 @@
---- make/launcher/LauncherCommon.gmk~	Thu Apr  9 18:18:09 2020
-+++ make/launcher/LauncherCommon.gmk	Tue Nov 26 00:55:54 2019
+--- make/common/modules/LauncherCommon.gmk~	Thu Apr  9 18:18:09 2020
++++ make/common/modules/LauncherCommon.gmk	Tue Nov 26 00:55:54 2019
 @@ -145,7 +145,7 @@
            -DLAUNCHER_NAME='"$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \

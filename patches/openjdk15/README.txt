@@ -9,7 +9,7 @@ jdk15 is likely to see more significant changes as it's cur from a
 rapidly evolving trunk, whereas older versions were more static,
 getting bugfixes on a relatively static base
 
-This set currently based on jdk-15+20
+This set currently based on jdk-15+21
 
 openjdk15 fixes (besides fixing line number noise)
 
@@ -29,6 +29,15 @@ patch-make_autoconf_flags-ldflags.m4
   broken as of 15+19
 
 modified:
+
+patch-make_lib_Lib-jdk.crypto.ucrypto.gmk 
+patch-make_lib_LibCommon.gmk 
+tribblix-agent-mt.patch 
+tribblix-demangle2.patch
+patch-make_lib_Awt2dLibraries.gmk 
+patch-make_launcher_LauncherCommon.gmk 
+tribblix-LauncherCommon.patch 
+  files moved around in 15+21
 
 patch-make_autoconf_libraries.m4
 tribblix-flags-cflags.patch

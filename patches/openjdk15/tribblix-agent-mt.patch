@@ -1,6 +1,6 @@
---- make/lib/Lib-jdk.hotspot.agent.gmk~	Tue Nov 26 00:55:54 2019
-+++ make/lib/Lib-jdk.hotspot.agent.gmk	Thu Apr  9 18:24:54 2020
-@@ -32,9 +32,6 @@
+--- make/modules/jdk.hotspot.agent/Lib.gmk~	Tue Nov 26 00:55:54 2019
++++ make/modules/jdk.hotspot.agent/Lib.gmk	Thu Apr  9 18:24:54 2020
+@@ -30,9 +30,6 @@
  ifeq ($(call isTargetOs, linux), true)
    SA_CFLAGS := -D_FILE_OFFSET_BITS=64
  
