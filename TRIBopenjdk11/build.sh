@@ -125,4 +125,18 @@ ${THOME}/build/patches/mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /
 #
 cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk11/lib/security
 
+#
+# edit conf/security/sunpkcs11-solaris.cfg and add the following to disabledMechanisms
+#
+# I thought this was fixed, but the Haplo test suite proves it isn't,
+# at least for this update version
+#
+# # the following mechanisms are disabled due to lack of digest cloning support
+# # need to fix 6414899 first
+#   CKM_MD5
+#   CKM_SHA256
+#   CKM_SHA384
+#   CKM_SHA512
+#
+
 ${THOME}/build/create_pkg TRIBopenjdk11 /tmp/jdk
