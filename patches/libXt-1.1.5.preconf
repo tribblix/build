@@ -1,0 +1,3 @@
+#!/bin/sh
+autoreconf -fi
+cp ${PATCHDIR}/libXt.mapfile mapfile-vers
