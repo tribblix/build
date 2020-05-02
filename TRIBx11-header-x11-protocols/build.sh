@@ -61,8 +61,8 @@ $THOME/build/dobuild randrproto-1.5.0
 $THOME/build/dobuild printproto-1.0.5
 # DOWNREV: old 2.0 current 2.3.2 bump to 2.3.2
 $THOME/build/dobuild inputproto-2.3.2
-# DOWNREV: old 1.4.10 current 1.4.17 use 1.4.10
-$THOME/build/dobuild glproto-1.4.10
+# CURRENT:
+$THOME/build/dobuild glproto-1.4.17
 # DOWNREV: old 2.1.0 current 2.1.3 use 2.1.2
 $THOME/build/dobuild fontsproto-2.1.2
 # GOOD: old 0.1.3 current 0.1.3
@@ -71,8 +71,8 @@ $THOME/build/dobuild fontcacheproto-0.1.3
 $THOME/build/dobuild fixesproto-5.0
 # KEEP: old 1.1.0 current 1.1.1 use 1.1.1
 $THOME/build/dobuild evieext-1.1.1
-# DOWNREV: old 2.1 current 2.8 use 2.1
-$THOME/build/dobuild dri2proto-2.1
+# CURRENT:
+$THOME/build/dobuild dri2proto-2.8
 # KEEP: old 1.2.0 current 1.2.1
 $THOME/build/dobuild damageproto-1.2.1
 # KEEP: old 0.4.1 current 0.4.2 use 0.4.2
