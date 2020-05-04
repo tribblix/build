@@ -1,4 +1,4 @@
 PKG="TRIBarchiver-gnu-tar"
 NAME="GNU tar"
 VERSION="1.32.0"
-ZAP_URL="http://www.gnu.org/software/tar/"
+ZAP_URL="https://www.gnu.org/software/tar/"

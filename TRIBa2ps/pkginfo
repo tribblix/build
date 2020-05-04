@@ -1,4 +1,4 @@
 PKG="TRIBa2ps"
 NAME="Any to PostScript filter"
 VERSION="4.14.0"
-ZAP_URL="http://www.gnu.org/software/a2ps/"
+ZAP_URL="https://www.gnu.org/software/a2ps/"

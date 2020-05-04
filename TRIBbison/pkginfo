@@ -1,4 +1,4 @@
 PKG="TRIBbison"
 NAME="Gnu bison"
 VERSION="3.3.2.0"
-ZAP_URL="http://www.gnu.org/software/bison/"
+ZAP_URL="https://www.gnu.org/software/bison/"

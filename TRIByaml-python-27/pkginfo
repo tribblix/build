@@ -1,4 +1,4 @@
 PKG="TRIByaml-python-27"
 NAME="PyYAML"
 VERSION="3.12.0"
-ZAP_URL="http://pyyaml.org/"
+ZAP_URL="https://pyyaml.org/"
