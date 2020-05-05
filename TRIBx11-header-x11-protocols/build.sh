@@ -63,8 +63,8 @@ $THOME/build/dobuild printproto-1.0.5
 $THOME/build/dobuild inputproto-2.3.2
 # CURRENT:
 $THOME/build/dobuild glproto-1.4.17
-# DOWNREV: old 2.1.0 current 2.1.3 use 2.1.2
-$THOME/build/dobuild fontsproto-2.1.2
+# CURRENT:
+$THOME/build/dobuild fontsproto-2.1.3
 # GOOD: old 0.1.3 current 0.1.3
 $THOME/build/dobuild fontcacheproto-0.1.3
 # DOWNREV: old 4.1.1 bump to 5.0
