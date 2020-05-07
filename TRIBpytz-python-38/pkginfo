@@ -1,4 +1,4 @@
-PKG="TRIBpytz-python-37"
+PKG="TRIBpytz-python-38"
 NAME="Python pytz"
 VERSION="2020.1.0"
 ZAP_URL="https://pypi.org/project/pytz"
