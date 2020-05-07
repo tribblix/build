@@ -1,4 +1,4 @@
-PKG="TRIBclick-python-37"
+PKG="TRIBclick-python-38"
 NAME="Python click"
 VERSION="7.1.2.0"
 ZAP_URL="https://pypi.org/project/click"
