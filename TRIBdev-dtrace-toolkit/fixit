@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# just clone the repo
+#
+mkdir -p usr/versions
+cd usr/versions
+git clone https://github.com/opendtrace/toolkit
+cd toolkit
+git checkout illumos
+cd ..
+mv toolkit dtrace-toolkit
+ln -s dtrace-toolkit DTT
+rm -fr dtrace-toolkit/.git
