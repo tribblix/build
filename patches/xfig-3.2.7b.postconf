@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# force the build not to remake this file
+#
+touch src/splash.xbm
