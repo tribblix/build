@@ -1,0 +1,7 @@
+#!/bin/sh
+PYVERS=3.7
+
+mkdir -p usr/bin
+
+cd usr/bin
+ln -s ../../usr/versions/python-${PYVERS}/bin/pg_activity .
