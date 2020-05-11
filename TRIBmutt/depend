@@ -1,4 +1,6 @@
 P TRIBgpgme
 P TRIBlib-security-openssl
+P TRIBlib-zlib
+P TRIBlibgpg-error
 P TRIBlibidn
 P TRIBslang
