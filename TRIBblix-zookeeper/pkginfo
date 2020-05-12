@@ -1,4 +1,4 @@
 PKG="TRIBblix-zookeeper"
 NAME="Zookeeper"
-VERSION="3.6.0.0"
-ZAP_URL="http://zookeeper.apache.org/"
+VERSION="3.6.1.0"
+ZAP_URL="https://zookeeper.apache.org/"
