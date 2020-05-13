@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-VERSION=1.10.7
+VERSION=1.10.8
 mkdir -p usr/bin
 ln -s ../versions/apache-ant-${VERSION}/bin/ant usr/bin/ant
 #
