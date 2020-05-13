@@ -1,4 +1,4 @@
 PKG="TRIBblix-pound"
 NAME="Reverse Proxy and Load Balancer"
 VERSION="2.8.0"
-ZAP_URL="http://www.apsis.ch/pound/"
+ZAP_URL="https://www.apsis.ch/pound.html"
