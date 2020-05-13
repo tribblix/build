@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBv-tomcat-8 apache-tomcat-8.5.54
+${THOME}/build/pkg_tarball TRIBv-tomcat-8 apache-tomcat-8.5.55
