@@ -7,12 +7,12 @@
 # prerelease versions from jdk master
 #
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk/jdk/archive/jdk-15+22.tar.bz2
-ln jdk-15+22.tar.bz2 jdk-jdk-15+22.tar.bz2
+wget http://hg.openjdk.java.net/jdk/jdk/archive/jdk-15+23.tar.bz2
+ln jdk-15+23.tar.bz2 jdk-jdk-15+23.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-15+22
-cd jdk-jdk-15+22
+${THOME}/build/unpack jdk-jdk-15+23
+cd jdk-jdk-15+23
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -57,8 +57,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "15-internal" 2020-09-15
-# OpenJDK Runtime Environment (build 15-internal+0-adhoc.ptribble.jdk-jdk-1522)
-# OpenJDK 64-Bit Server VM (build 15-internal+0-adhoc.ptribble.jdk-jdk-1522, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 15-internal+0-adhoc.ptribble.jdk-jdk-1523)
+# OpenJDK 64-Bit Server VM (build 15-internal+0-adhoc.ptribble.jdk-jdk-1523, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -74,7 +74,7 @@ ln -s ../versions/openjdk15 .
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin
 #ln -s ../jdk/latest/bin/* .
-#rm amd64
+#rm -f amd64 sparcv9
 cd /tmp/jdk/usr/versions/openjdk15
 rm `find . -name '*.diz'`
 

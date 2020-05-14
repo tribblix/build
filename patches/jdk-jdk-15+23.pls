@@ -36,3 +36,4 @@
 -p0 openjdk15/tribblix-demangle2.patch
 -p0 openjdk15/tribblix-demangle3.patch
 -p0 openjdk15/tribblix-demangle4.patch
+-p1 openjdk15/tribblix-main-23.patch

@@ -1,15 +1,15 @@
 This is derived from the pkgsrc-joyent set for openjdk11, building on
 my openjdk14 set.
 
-All patches -p0
+Most patches -p0
 
 JDK15:
 
-jdk15 is likely to see more significant changes as it's cur from a
+jdk15 is likely to see more significant changes as it's cut from a
 rapidly evolving trunk, whereas older versions were more static,
 getting bugfixes on a relatively static base
 
-This set currently based on jdk-15+22
+This set currently based on jdk-15+23
 
 openjdk15 fixes (besides fixing line number noise)
 
@@ -56,6 +56,10 @@ tribblix-demangle2.patch
 tribblix-demangle3.patch 
 tribblix-demangle4.patch 
   replace the studio demangle with the gcc one
+
+tribblix-main-23.patch
+  The logic in Main.gmk 15+23 is broken for --disable-hotspot-gtest
+  The target isn't properly guarded
 
 Build:
 
