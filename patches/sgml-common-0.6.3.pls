@@ -1,0 +1,6 @@
+-p1 sgml-common-01-umask.patch
+-p1 sgml-common-02-xmldir.patch
+-p1 sgml-common-03-quotes.patch
+-p1 sgml-common-04-automake.patch
+-p1 sgml-common-05-docdir.patch
+-p1 sgml-common-06-manpage.patch
