@@ -1,0 +1,251 @@
+#!/bin/sh
+#
+# this creates the data-docbook package
+#
+# in OI this is now split into 5 packages, we keep them as one
+#
+mkdir -p usr/share/sgml/docbook
+mkdir -p etc/xml
+mkdir -p etc/sgml
+mkdir -p usr/bin
+mkdir -p lib/svc/method
+mkdir -p var/svc/manifest/application/desktop-cache
+
+DPDIR=`pwd`/usr/share/sgml/docbook
+
+#
+# smf helpers
+#
+cp ${BUILDROOT}/patches/docbook/docbook-catalog-install.sh ${DPDIR}
+cp ${BUILDROOT}/patches/docbook/docbook-catalog-uninstall.sh ${DPDIR}
+cp ${BUILDROOT}/patches/docbook/docbook-catalog-update.sh lib/svc/method
+cp ${BUILDROOT}/patches/docbook/docbook-catalog-update.xml var/svc/manifest/application/desktop-cache
+
+#
+# sgml-common has no way to turn off docs, so we install them anyway and
+# then delete them
+#
+rm -fr usr/share/nodoc
+
+#
+# sgml-common - create the initial catalogs
+#
+XMLCATALOG=etc/xml/catalog
+# Create an empty XML catalog.
+/usr/bin/xmlcatalog --noout --create ${XMLCATALOG}
+# Now put the common DocBook entries in it
+/usr/bin/xmlcatalog --noout --add "delegatePublic" "-//OASIS//ENTITIES DocBook XML" "file:///usr/share/sgml/docbook/xmlcatalog" ${XMLCATALOG}
+/usr/bin/xmlcatalog --noout --add "delegatePublic" "-//OASIS//DTD DocBook XML" "file:///usr/share/sgml/docbook/xmlcatalog" ${XMLCATALOG}
+/usr/bin/xmlcatalog --noout --add "delegatePublic" "ISO 8879:1986" "file:///usr/share/sgml/docbook/xmlcatalog" ${XMLCATALOG}
+/usr/bin/xmlcatalog --noout --add "delegateSystem" "http://www.oasis-open.org/docbook/" "file:///usr/share/sgml/docbook/xmlcatalog" ${XMLCATALOG}
+/usr/bin/xmlcatalog --noout --add "delegateURI" "http://www.oasis-open.org/docbook/" "file:///usr/share/sgml/docbook/xmlcatalog" ${XMLCATALOG}
+# Also create the common DocBook catalog
+/usr/bin/xmlcatalog --noout --create usr/share/sgml/docbook/xmlcatalog
+touch etc/sgml/catalog
+#
+# follow OI here - xmlcatalog actually ends up in /etc/xml
+# and the above location is a symlink
+#
+mv usr/share/sgml/docbook/xmlcatalog etc/xml/docbook-xmlcatalog
+ln -s ../../../../etc/xml/docbook-xmlcatalog usr/share/sgml/docbook/xmlcatalog
+
+#
+# docbook-xsl
+#
+# OI puts in a Makefile, that's essentially the code here
+#
+SDVER=1.78.1
+DDIR=${DPDIR}/xsl-stylesheets-${SDVER}-5.1
+mkdir -p tbuild
+cd tbuild
+# wget http://prdownloads.sourceforge.net/docbook/docbook-xsl-1.78.1.tar.bz2
+# use unpack so the patches get applied
+${THOME}/build/unpack docbook-xsl-${SDVER}
+cd docbook-xsl-${SDVER}
+# start OI-derived fragment
+	mkdir -p ${DDIR}/common
+	mkdir -p ${DDIR}/fo
+	mkdir -p ${DDIR}/html
+	mkdir -p ${DDIR}/htmlhelp/doc
+	mkdir -p ${DDIR}/javahelp
+	mkdir -p ${DDIR}/lib
+	mkdir -p ${DDIR}/template
+	mkdir -p ${DDIR}/xhtml
+	mkdir -p ${DDIR}/manpages
+	mkdir -p ${DDIR}/profiling
+	cp common/*.dtd ${DDIR}/common
+	cp common/*.xml ${DDIR}/common
+	cp common/*.xsl ${DDIR}/common
+	cp fo/*.xml ${DDIR}/fo
+	cp fo/*.xsl ${DDIR}/fo
+	cp html/*.xml ${DDIR}/html
+	cp html/*.xsl ${DDIR}/html
+	cp htmlhelp/*.xsl ${DDIR}/htmlhelp
+	cp javahelp/*.xsl ${DDIR}/javahelp
+	cp lib/lib.xsl ${DDIR}/lib
+	cp template/*.xml ${DDIR}/template
+	cp template/*.xsl ${DDIR}/template
+	cp xhtml/*.xsl ${DDIR}/xhtml
+	cp manpages/*.xsl ${DDIR}/manpages
+	cp profiling/*.xsl ${DDIR}/profiling
+	mkdir -p ${DDIR}/images/callouts
+	cp images/*.gif ${DDIR}/images
+	cp images/*.png ${DDIR}/images
+	cp images/callouts/*.png ${DDIR}/images/callouts
+	mkdir -p ${DDIR}/extensions
+	cp -r extensions/* ${DDIR}/extensions
+	cp VERSION ${DDIR}
+# end OI-derived fragment
+cd ..
+cd ..
+rm -fr tbuild
+
+#
+# docbook-dsssl
+#
+DVER=1.79
+DDIR=${DPDIR}/dsssl-stylesheets-${DVER}
+mkdir -p tbuild
+cd tbuild
+# wget http://prdownloads.sourceforge.net/docbook/docbook-dsssl-1.79.tar.bz2
+${THOME}/build/unpack docbook-dsssl-${DVER}
+cd docbook-dsssl-${DVER}
+# start OI-derived fragment
+cp bin/collateindex.pl ${DPDIR}
+	mkdir -p ${DDIR}/dtds/decls
+	mkdir -p ${DDIR}/dtds/sdbdsssl
+	mkdir -p ${DDIR}/dtds/shtml
+	mkdir -p ${DDIR}/dtds/simagelib
+	mkdir -p ${DDIR}/dtds/solink
+	cp dtds/decls/docbook.dcl ${DDIR}/dtds/decls
+	cp dtds/decls/xml.dcl ${DDIR}/dtds/decls
+	cp dtds/dbdsssl/dbdsssl.dtd ${DDIR}/dtds/dbdsssl
+	cp dtds/html/dbhtml.dtd ${DDIR}/dtds/html
+	cp dtds/html/ISOlat1.gml ${DDIR}/dtds/html
+	cp dtds/imagelib/imagelib.dtd ${DDIR}/dtds/imagelib
+	cp dtds/olink/olinksum.dtd ${DDIR}/dtds/olink
+	mkdir -p ${DDIR}/lib
+	mkdir -p ${DDIR}/common
+	mkdir -p ${DDIR}/html
+	mkdir -p ${DDIR}/print
+	mkdir -p ${DDIR}/olink
+	cp lib/dblib.dsl ${DDIR}/lib
+	cp common/*.dsl ${DDIR}/common
+	cp common/*.ent ${DDIR}/common
+	cp html/*.dsl ${DDIR}/html
+	cp lib/dblib.dsl ${DDIR}/lib
+	cp print/*.dsl ${DDIR}/print
+	mkdir -p ${DDIR}/images/callouts
+	cp images/*.gif ${DDIR}/images
+	cp images/callouts/*.gif ${DDIR}/images/callouts
+	cp catalog ${DDIR}
+	cp VERSION ${DDIR}
+# end OI-derived fragment
+cd ..
+cd ..
+rm -fr tbuild
+
+#
+# unversioned symbolic links
+#
+cd $DPDIR
+ln -s dsssl-stylesheets-${DVER} dsssl-stylesheets
+ln -s xsl-stylesheets-${SDVER}-5.1 xsl-stylesheets
+#
+# docbook-dtds
+#
+# wget http://www.oasis-open.org/docbook/sgml/3.0/docbk30.zip
+# wget http://www.oasis-open.org/docbook/sgml/3.1/docbk31.zip
+# wget http://www.oasis-open.org/docbook/sgml/4.0/docbk40.zip
+# wget http://www.oasis-open.org/docbook/sgml/4.1/docbk41.zip
+# wget http://www.oasis-open.org/docbook/sgml/4.2/docbook-4.2.zip
+# wget http://www.oasis-open.org/docbook/sgml/4.3/docbook-4.3.zip
+# wget http://www.oasis-open.org/docbook/sgml/4.4/docbook-4.4.zip
+# wget http://www.oasis-open.org/docbook/sgml/4.5/docbook-4.5.zip
+#
+# wget http://www.oasis-open.org/docbook/xml/4.1.2/docbkx412.zip
+# wget http://www.oasis-open.org/docbook/xml/4.2/docbook-xml-4.2.zip
+# wget http://www.oasis-open.org/docbook/xml/4.3/docbook-xml-4.3.zip
+# wget http://www.oasis-open.org/docbook/xml/4.4/docbook-xml-4.4.zip
+# wget http://www.oasis-open.org/docbook/xml/4.5/docbook-xml-4.5.zip
+#
+# these all unpack into the current working directory
+# so we have to make the target directory and unpack in there
+#
+mkdir -p ${DPDIR}/sgml-dtd-3.0-1.0-30.1
+cd ${DPDIR}/sgml-dtd-3.0-1.0-30.1
+${THOME}/build/unpack docbk30
+rm -f *.txt
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/sgml-dtd-3.1-1.0-30.1
+cd ${DPDIR}/sgml-dtd-3.1-1.0-30.1
+${THOME}/build/unpack docbk31
+rm -f *.txt ChangeLog
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/sgml-dtd-4.0-1.0-30.1
+cd ${DPDIR}/sgml-dtd-4.0-1.0-30.1
+${THOME}/build/unpack docbk40
+rm -f *.txt
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/sgml-dtd-4.1-1.0-30.1
+cd ${DPDIR}/sgml-dtd-4.1-1.0-30.1
+${THOME}/build/unpack docbk41
+rm -f *.txt ChangeLog
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/sgml-dtd-4.2-1.0-30.1
+cd ${DPDIR}/sgml-dtd-4.2-1.0-30.1
+${THOME}/build/unpack docbook-4.2
+rm -f README ChangeLog *.xml
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/sgml-dtd-4.3-1.0-30.1
+cd ${DPDIR}/sgml-dtd-4.3-1.0-30.1
+${THOME}/build/unpack docbook-4.3
+rm -f README ChangeLog *.xml
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/sgml-dtd-4.4-1.0-30.1
+cd ${DPDIR}/sgml-dtd-4.4-1.0-30.1
+${THOME}/build/unpack docbook-4.4
+rm -f README ChangeLog *.xml
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/sgml-dtd-4.5-1.0-30.1
+cd ${DPDIR}/sgml-dtd-4.5-1.0-30.1
+${THOME}/build/unpack docbook-4.5
+rm -f README *.xml
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/xml-dtd-4.1.2-1.0-30.1
+cd ${DPDIR}/xml-dtd-4.1.2-1.0-30.1
+${THOME}/build/unpack docbkx412
+rm -f *.txt ChangeLog
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/xml-dtd-4.2-1.0-30.1
+cd ${DPDIR}/xml-dtd-4.2-1.0-30.1
+${THOME}/build/unpack docbook-xml-4.2
+rm -f README ChangeLog *.xml
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/xml-dtd-4.3-1.0-30.1
+cd  ${DPDIR}/xml-dtd-4.3-1.0-30.1
+${THOME}/build/unpack docbook-xml-4.3
+rm -f README ChangeLog *.xml
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/xml-dtd-4.4-1.0-30.1
+cd ${DPDIR}/xml-dtd-4.4-1.0-30.1
+${THOME}/build/unpack docbook-xml-4.4
+rm -f README ChangeLog *.xml
+mv docbook.cat catalog
+#
+mkdir -p ${DPDIR}/xml-dtd-4.5-1.0-30.1
+cd ${DPDIR}/xml-dtd-4.5-1.0-30.1
+${THOME}/build/unpack docbook-xml-4.5
+rm -f README ChangeLog *.xml
+mv docbook.cat catalog
