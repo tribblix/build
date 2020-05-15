@@ -1,0 +1,5 @@
+-p1 docbook-style-xsl-01-pagesetup.patch
+-p1 docbook-style-xsl-03-lists.patch
+-p1 docbook-style-xsl-04-sp.patch
+-p1 docbook-style-xsl-05-g11n-i18n-ja.patch
+-p1 docbook-style-xsl-06-mandir.patch
