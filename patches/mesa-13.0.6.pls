@@ -1,0 +1,5 @@
+-p0 mesa/isl-restrict.patch
+-p0 mesa/link-dri-modules-to-glapi.patch
+-p0 mesa/restrict.patch
+-p0 mesa/solaris-port.patch
+-p0 mesa/swrast-crash.patch
