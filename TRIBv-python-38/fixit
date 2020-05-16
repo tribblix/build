@@ -19,6 +19,10 @@ mkdir -p usr/lib/${ARCH64}/pkgconfig
 cd usr/versions/python-${VERSION}/bin
 ln -s python${VERSION} python
 cd ../../../..
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python${VERSION}.1 .
+cd ../../../..
 cd usr/bin
 #
 # symlinks for specific version
@@ -26,7 +30,7 @@ cd usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION}-config .
 ln -s ../../usr/versions/python-${VERSION}/bin/pydoc${VERSION} .
-ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv-${VERSION} .
+#ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv-${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
 #
@@ -37,6 +41,7 @@ ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
 ##ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
 ##ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv .
 ##ln -s ../../usr/versions/python-${VERSION}/bin/idle3 .
+##ln -s ../../usr/versions/python-${VERSION}/bin/pip3 .
 #
 # python has its objects in paths without the 64-bit names
 # otherwise "Could not find platform dependent libraries <exec_prefix>"
