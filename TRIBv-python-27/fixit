@@ -16,6 +16,40 @@ i386)
 esac
 
 #
+# first strip out the tests
+#
+TESTDIR=/tmp/ptest.$$
+rm -fr $TESTDIR
+mkdir -p $TESTDIR
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/sqlite3/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/sqlite3/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib2to3/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/lib2to3/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/email/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/email/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/ctypes/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/ctypes/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/distutils/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/distutils/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_ctypes_test.so | ( cd $TESTDIR ; tar xf -)
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_testcapi.so | ( cd $TESTDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_ctypes_test.so
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_testcapi.so
+#
+# having copied them off, package them
+#
+$THOME/build/create_pkg TRIBv-python-27-tests $TESTDIR
+rm -fr $TESTDIR
+
+#
 # fixinstall.64 saved the 64-bit pyconfig.h for us, now
 # we wrap it
 #
@@ -26,6 +60,12 @@ mkdir -p usr/bin
 #mkdir -p usr/bin/$ARCH64
 mkdir -p usr/lib/pkgconfig
 #mkdir -p usr/lib/$ARCH64/pkgconfig
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python${VERSION}.1 .
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python2.1 .
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python.1 .
+cd ../../../..
 cd usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/py* .
 #cd $ARCH64
