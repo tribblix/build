@@ -1,4 +1,4 @@
 PKG="TRIBnumpy-python-38"
 NAME="NumPy package for scientific computing with Python"
 VERSION="1.18.2.0"
-ZAP_URL="http://www.numpy.org/"
+ZAP_URL="https://numpy.org/"

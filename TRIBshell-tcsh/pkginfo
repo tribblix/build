@@ -1,4 +1,4 @@
 PKG="TRIBshell-tcsh"
 NAME="Tenex C-shell (tcsh)"
 VERSION="6.21.00.0"
-ZAP_URL="http://www.tcsh.org/"
+ZAP_URL="https://www.tcsh.org/"
