@@ -1,4 +1,4 @@
 PKG="TRIBdillo"
 NAME="Dillo web browser"
 VERSION="3.0.5.0"
-ZAP_URL="http://www.dillo.org/"
+ZAP_URL="https://www.dillo.org/"

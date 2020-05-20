@@ -1,4 +1,4 @@
 PKG="TRIBcommix"
 NAME="Commix command injection exploiter"
 VERSION="3.0.1"
-ZAP_URL="http://www.commixproject.com/"
+ZAP_URL="https://commixproject.com/"

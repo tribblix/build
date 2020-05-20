@@ -1,4 +1,4 @@
 PKG="TRIBawesome"
 NAME="The awesome window manager"
 VERSION="3.5.9.1"
-ZAP_URL="http://awesome.naquadah.org/"
+ZAP_URL="https://awesomewm.org/"
