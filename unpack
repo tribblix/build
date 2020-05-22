@@ -37,7 +37,7 @@ dopatch() {
       cd ${1}
       cat ${PATCHDIR}/${1}.pls | while read patcharg patchfile
       do
-	  ${GPATCH} $patcharg -i ${PATCHDIR}/${patchfile}
+	  ${GPATCH} ${patcharg/+/ } -i ${PATCHDIR}/${patchfile}
       done
       cd ..
   fi
@@ -45,7 +45,7 @@ dopatch() {
       cd ${1}
       cat ${PATCHDIR}/${1}.pls.`uname -p` | while read patcharg patchfile
       do
-	  ${GPATCH} $patcharg -i ${PATCHDIR}/${patchfile}
+	  ${GPATCH} ${patcharg/+/ } -i ${PATCHDIR}/${patchfile}
       done
       cd ..
   fi
