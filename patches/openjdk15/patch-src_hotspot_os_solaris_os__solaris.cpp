@@ -13,7 +13,7 @@ Fix building on SunOS in C99 mode.
  }
  
  // "default" initializers for pthread-based synchronization
-@@ -2144,7 +2144,7 @@ void os::pd_commit_memory_or_exit(char*
+@@ -2134,7 +2136,7 @@ void os::pd_commit_memory_or_exit(char*
  
  // Uncommit the pages in a specified region.
  void os::pd_free_memory(char* addr, size_t bytes, size_t alignment_hint) {
@@ -22,7 +22,7 @@ Fix building on SunOS in C99 mode.
      debug_only(warning("MADV_FREE failed."));
      return;
    }
-@@ -2171,7 +2173,7 @@ void os::pd_realign_memory(char *addr, s
+@@ -2163,7 +2165,7 @@ void os::pd_realign_memory(char *addr, s
  // Tell the OS to make the range local to the first-touching LWP
  void os::numa_make_local(char *addr, size_t bytes, int lgrp_hint) {
    assert((intptr_t)addr % os::vm_page_size() == 0, "Address should be page-aligned.");
@@ -31,7 +31,7 @@ Fix building on SunOS in C99 mode.
      debug_only(warning("MADV_ACCESS_LWP failed."));
    }
  }
-@@ -2179,7 +2182,7 @@ void os::numa_make_local(char *addr, siz
+@@ -2171,7 +2173,7 @@ void os::numa_make_local(char *addr, siz
  // Tell the OS that this range would be accessed from different LWPs.
  void os::numa_make_global(char *addr, size_t bytes) {
    assert((intptr_t)addr % os::vm_page_size() == 0, "Address should be page-aligned.");
