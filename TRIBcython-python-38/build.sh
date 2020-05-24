@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Cython-0.29.16
-cd Cython-0.29.16
+${THOME}/build/unpack Cython-0.29.19
+cd Cython-0.29.19
 /usr/versions/python-3.8/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pil
