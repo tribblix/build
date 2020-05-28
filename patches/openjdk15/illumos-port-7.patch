@@ -1,0 +1,30 @@
+--- a/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/runtime/VM.java	Thu May 28 00:44:10 2020
++++ b/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/runtime/VM.java	Wed May 20 19:29:11 2020
+@@ -76,6 +76,7 @@
+   private boolean      isBigEndian;
+   /** This is only present if in a debugging system */
+   private JVMDebugger  debugger;
++  private long         stackBias;
+   private long         logAddressSize;
+   private Universe     universe;
+   private ObjectHeap   heap;
+@@ -442,6 +443,7 @@
+ 
+     checkVMVersion(vmRelease);
+ 
++    stackBias    = db.lookupIntConstant("STACK_BIAS").intValue();
+     invocationEntryBCI = db.lookupIntConstant("InvocationEntryBci").intValue();
+ 
+     // We infer the presence of JVMTI from the presence of the InstanceKlass::_breakpoints field.
+@@ -670,6 +672,11 @@
+     return db.getJIntType().getSize();
+   }
+ 
++  /** NOTE: this offset is in BYTES in this system! */
++  public long getStackBias() {
++    return stackBias;
++  }
++
+   /** Indicates whether the underlying machine supports the LP64 data
+       model. This is needed for conditionalizing code in a few places */
+   public boolean isLP64() {

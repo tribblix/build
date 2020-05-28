@@ -9,7 +9,12 @@ jdk15 is likely to see more significant changes as it's cut from a
 rapidly evolving trunk, whereas older versions were more static,
 getting bugfixes on a relatively static base
 
-This set currently based on jdk-15+24
+Up to 15+24, mainline had solaris support. As of 15+25, JEP 381 has
+removed that, so we have to put it back. This will have to be done far
+more cleanly as things evolve, as the patches will be on an
+increasingly divergent base.
+
+This set currently based on jdk-15+25
 
 openjdk15 fixes (besides fixing line number noise)
 
@@ -56,6 +61,23 @@ tribblix-demangle2.patch
 tribblix-demangle3.patch 
 tribblix-demangle4.patch 
   replace the studio demangle with the gcc one
+
+Post JEP-381:
+
+illumos-port-1.patch
+  Drop use of UseLWPSynchronization (as opposed to restoring it)
+illumos-port-2.patch
+  Restore native fopen/fclose/pathconf in
+  src/java.base/unix/native/libnio/fs/UnixNativeDispatcher.c
+illumos-port-3.patch
+  and the java counterpart
+illumos-port-4.patch
+  restore newFileChannel variant that solaris uses
+illumos-port-5.patch
+  restore isSpecial() - this is one that should be fixed at the consumer
+illumos-port-6.patch
+illumos-port-7.patch
+  stack_bias
 
 Build:
 
