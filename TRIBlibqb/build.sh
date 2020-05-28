@@ -5,5 +5,5 @@
 # 2. mkdir -p /tmp/local/var/run
 # as the test suite needs to write into $prefix/var/run
 #
-${THOME}/build/dobuild -64 libqb-1.0 -C "--localstatedir=/var --sysconfdir=/etc"
-${THOME}/build/genpkg TRIBlibqb libqb-1.0
+${THOME}/build/dobuild -64 libqb-1.0.6 -C "--localstatedir=/var --sysconfdir=/etc"
+${THOME}/build/genpkg TRIBlibqb libqb-1.0.6
