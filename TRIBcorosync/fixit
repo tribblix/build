@@ -1,2 +1,6 @@
 #!/bin/sh
-rm -fr usr/share/doc/corosync/html
+#
+# we don't ship .la files for base libraries
+#
+/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
+/usr/bin/rm -fr usr/share/doc/corosync/html
