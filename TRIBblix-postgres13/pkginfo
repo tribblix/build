@@ -1,0 +1,4 @@
+PKG="TRIBblix-postgres13"
+NAME="PostgreSQL database"
+VERSION="13.b1.0"
+ZAP_URL="https://www.postgresql.org/"
