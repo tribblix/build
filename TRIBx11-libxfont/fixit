@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# we don't ship .la files for base libraries
+#
+/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
+#
+# libdir puts the libraries where we want them
+# now move the pkgconfig files back
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+mkdir -p usr/lib
+mkdir -p usr/lib/${ARCH64}
+mv usr/lib/xorg/pkgconfig usr/lib
+mv usr/lib/xorg/${ARCH64}/pkgconfig usr/lib/${ARCH64}
+
+#
+# don't ship documentation
+#
+/usr/bin/rm -fr usr/share/doc
+#
+# this will remove the directory if it's empty
+# if there are manpages, then it will have no effect
+#
+/usr/bin/rmdir usr/share
