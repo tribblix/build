@@ -36,8 +36,6 @@ zap install autoconf
 # --with-jvm-features=-shenandoahgc
 # (Bellsoft fixed shenandoah for Solaris x86 in 12.0.2)
 #
-# the hotspot unit test don't build, hence --disable-hotspot-gtest
-#
 # we're recognized as solaris, JEP 362 deprecated the solaris and sparc
 # ports, so we need to explicitly re-enable it
 #
@@ -45,7 +43,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk14 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
---disable-hotspot-gtest --disable-dtrace \
+--disable-dtrace \
 --disable-warnings-as-errors \
 --enable-deprecated-ports=yes
 
