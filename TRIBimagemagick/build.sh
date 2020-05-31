@@ -6,5 +6,9 @@
 #
 zap uninstall TRIBgraphviz
 zap install openjpeg libwebp
-${THOME}/build/dobuild -64 ImageMagick-6.9.10-97
-${THOME}/build/genpkg TRIBimagemagick ImageMagick-6.9.10-97
+#
+# need to disable openmp, otherwise it pulls in libgomp which we
+# ship with the compiler rather than the runtime
+#
+${THOME}/build/dobuild -64 ImageMagick-6.9.11-15 -C --disable-openmp
+${THOME}/build/genpkg TRIBimagemagick ImageMagick-6.9.11-15

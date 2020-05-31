@@ -15,22 +15,14 @@ rm -f usr/lib/lib*.la
 rm -f usr/lib/${ARCH64}/lib*.la
 
 #
-# we need to ship 32-bit libraries, but aren't interested
-# in 32-bit binaries, so drop those entirely
+# we need to ship 32-bit libraries, but aren't interested in
+# 32-bit binaries, so drop those entirely and ship 64-bit by default
 #
-rm -f usr/bin/animate
-rm -f usr/bin/compare
-rm -f usr/bin/composite
-rm -f usr/bin/conjure
-rm -f usr/bin/convert
-rm -f usr/bin/display
-rm -f usr/bin/identify
-rm -f usr/bin/import
-rm -f usr/bin/mogrify
-rm -f usr/bin/montage
-rm -f usr/bin/stream
+for imbin in animate compare composite conjure convert display identify import mogrify montage stream
+do
+    rm -f usr/bin/$imbin
+    mv usr/bin/${ARCH64}/$imbin usr/bin/$imbin
+done
 #
 # we need to ship the existing 32-bit config scripts
-#
-# we still isaexec the 64-bit binaries for now
 #
