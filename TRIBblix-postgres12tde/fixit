@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# don't ship html docs
+#
+rm -fr opt/tribblix/postgres12tde/share/doc/html

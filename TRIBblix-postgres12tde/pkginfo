@@ -1,0 +1,4 @@
+PKG="TRIBblix-postgres12tde"
+NAME="PostgreSQL database with transparent data encryption"
+VERSION="12.3.0"
+ZAP_URL="https://www.cybertec-postgresql.com/en/products/postgresql-transparent-data-encryption/"
