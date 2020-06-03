@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBsqlmap sqlmap-1.4.4
+${THOME}/build/pkg_tarball TRIBsqlmap sqlmap-1.4.6
