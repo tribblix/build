@@ -14,7 +14,7 @@ removed that, so we have to put it back. This will have to be done far
 more cleanly as things evolve, as the patches will be on an
 increasingly divergent base.
 
-This set currently based on jdk-15+25
+This set currently based on jdk-15+26
 
 openjdk15 fixes (besides fixing line number noise)
 

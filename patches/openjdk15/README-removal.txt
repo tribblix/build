@@ -27,3 +27,8 @@ filename alone.
 
 It turns out that gpatch couldn't cope with the original
 patch. Rebuilt it as 64-bit and it was much happier.
+
+For 15+26, I've trimmed about 2/3 of java-solaris-sparc.patch
+This is mostly about not restoring SPARC, there's still quite a lot
+more cleanup we could do. Also, we shouldn't have to separately patch
+the files we created by applying the main patch.

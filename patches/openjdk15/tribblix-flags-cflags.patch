@@ -22,6 +22,6 @@
 +    else
 +      LANGSTD_CFLAGS="-std=c99"
 +    fi
-   elif test "x$TOOLCHAIN_TYPE" = xsolstudio; then
-     # We can't turn on -std=c99 without breaking compilation of the splashscreen/png
-     # utilities. But we can enable c99 as below (previously achieved by using -Xa).
+   elif test "x$TOOLCHAIN_TYPE" = xmicrosoft; then
+     # MSVC doesn't support C99/C11 explicitly, unless you compile as C++:
+     # LANGSTD_CFLAGS="-TP"
