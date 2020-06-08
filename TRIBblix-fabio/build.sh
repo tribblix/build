@@ -2,7 +2,7 @@
 #
 mkdir ~/ud/ff
 cd ~/ud/ff
-env GOPATH=`pwd`go get github.com/fabiolb/fabio
+env GOPATH=`pwd` go get github.com/fabiolb/fabio
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/fabio/bin
