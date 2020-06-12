@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# configure guesses wrong
-#
-gsed -i s:-fstack-protector:: libtool `find . -name Makefile`

@@ -2,3 +2,4 @@
 rm -f usr/share/man/man8/stunnel.pl.8
 rm -f usr/share/doc/stunnel/stunnel.pl.html
 rm -f usr/lib/stunnel/libstunnel.la
+rm -f usr/bin/stunnel3
