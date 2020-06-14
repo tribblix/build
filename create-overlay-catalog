@@ -6,7 +6,6 @@
 for PKGI in *.ovl
 do
   PKG=${PKGI%.*}
-  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI | sed 's="==g'`
-  DEPLIST=""
-  echo "${PKG}|${PKGVERS}|${DEPLIST}|" | sed 's: |:|:'
+  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI`
+  echo "${PKG}|${PKGVERS}||"
 done
