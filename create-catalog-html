@@ -34,8 +34,8 @@ do
     IDEPLIST=""
     PKGCKSUM=`cat ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5`
     if [ -f ${PKG}/depend ]; then
-       DEPLIST=`grep '^P' ${PKG}/depend | awk '{printf("%s ", $2)}'`
-       IDEPLIST=`grep '^I' ${PKG}/depend | awk '{printf("%s ", $2)}'`
+       DEPLIST=`awk '$1 == "P" {printf("%s ", $2)}' ${PKG}/depend`
+       IDEPLIST=`awk '$1 == "I" {printf("%s ", $2)}' ${PKG}/depend`
     fi
     echo "<dt><a name=\"${PKG}\"></a><b>${PKG}</b></dt>"
     echo "<dd>"
