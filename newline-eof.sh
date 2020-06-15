@@ -5,16 +5,21 @@
 for file in $*
 do
     #
-    # force binaries, not builtins
+    # ignore zero-length files (like allowstatic)
     #
-    nl=`/usr/bin/tail -1 $file|/usr/bin/wc -l`
-    #
-    # cheat to trim surrounding spaces
-    #
-    nl=$(( $nl ))
-    case $nl in
-	0)
-	    echo "FAIL: $file"
-	    ;;
-    esac
+    if [ -s $file ]; then
+	#
+	# force binaries, not builtins
+	#
+	nl=`/usr/bin/tail -1 $file|/usr/bin/wc -l`
+	#
+	# cheat to trim surrounding spaces
+	#
+	nl=$(( $nl ))
+	case $nl in
+	    0)
+		echo "FAIL: $file"
+		;;
+	esac
+    fi
 done
