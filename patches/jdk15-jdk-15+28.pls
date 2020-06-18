@@ -42,5 +42,3 @@
 -p1 openjdk15/illumos-port-3.patch
 -p1 openjdk15/illumos-port-4.patch
 -p1 openjdk15/illumos-port-5.patch
--p1 openjdk15/illumos-port-6.patch
--p1 openjdk15/illumos-port-7.patch

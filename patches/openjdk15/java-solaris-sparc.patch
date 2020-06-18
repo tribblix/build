@@ -2777,7 +2777,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1083,23 +1083,9 @@
+@@ -1090,23 +1090,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
@@ -7616,7 +7616,7 @@
          _writer = new BufferedWriter(writer, BUFFER_SIZE);
 --- old/src/jdk.aot/share/classes/jdk.tools.jaotc.binformat/src/jdk/tools/jaotc/binformat/BinaryContainer.java	2020-05-20 18:02:54.373421880 -0700
 +++ new/src/jdk.aot/share/classes/jdk.tools.jaotc.binformat/src/jdk/tools/jaotc/binformat/BinaryContainer.java	2020-05-20 18:02:53.973414200 -0700
-@@ -552,7 +552,6 @@
+@@ -557,7 +557,6 @@
          String osName = System.getProperty("os.name");
          switch (osName) {
              case "Linux":
@@ -7770,7 +7770,7 @@
        Windows:  $(JAVA_HOME)\bin\sunec.dll
 --- old/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:09.173706056 -0700
 +++ new/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:08.789698683 -0700
-@@ -36,7 +36,6 @@
+@@ -39,7 +39,6 @@
  import sun.jvm.hotspot.debugger.NoSuchSymbolException;
  import sun.jvm.hotspot.debugger.bsd.BsdDebuggerLocal;
  import sun.jvm.hotspot.debugger.linux.LinuxDebuggerLocal;

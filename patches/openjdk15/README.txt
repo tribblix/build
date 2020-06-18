@@ -14,7 +14,9 @@ removed that, so we have to put it back. This will have to be done far
 more cleanly as things evolve, as the patches will be on an
 increasingly divergent base.
 
-This set currently based on jdk-15+26
+As of 15+27, jdk15 is in rampdown so should be relatively stable.
+
+This set currently based on jdk-15+28
 
 openjdk15 fixes (besides fixing line number noise)
 
@@ -75,9 +77,6 @@ illumos-port-4.patch
   restore newFileChannel variant that solaris uses
 illumos-port-5.patch
   restore isSpecial() - this is one that should be fixed at the consumer
-illumos-port-6.patch
-illumos-port-7.patch
-  stack_bias
 
 Build:
 
