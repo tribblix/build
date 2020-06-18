@@ -6,7 +6,7 @@
 #
 # this is the version of pg_back
 #
-VERSION=1.7
+VERSION=1.8
 
 #
 # this is the default version of postgres we target
