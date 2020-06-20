@@ -1,4 +1,0 @@
-PKG="TRIBnose-python-27"
-NAME="nose testing"
-VERSION="1.3.7.0"
-ZAP_URL="https://pypi.org/project/nose/"
