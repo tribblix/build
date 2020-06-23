@@ -1,4 +1,4 @@
 PKG="TRIBmultitail"
 NAME="Tail multiple files"
 VERSION="6.4.2.0"
-ZAP_URL="http://www.vanheusden.com/multitail/"
+ZAP_URL="https://www.vanheusden.com/multitail/"
