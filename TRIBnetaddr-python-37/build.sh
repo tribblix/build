@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack netaddr-0.7.19
-cd netaddr-0.7.19
+${THOME}/build/unpack netaddr-0.7.20
+cd netaddr-0.7.20
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
