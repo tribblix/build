@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack certifi-2020.4.5.2
-cd certifi-2020.4.5.2
+${THOME}/build/unpack certifi-2020.6.20
+cd certifi-2020.6.20
 /usr/versions/python-3.8/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pil
