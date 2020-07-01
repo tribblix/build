@@ -1,4 +1,4 @@
 PKG="TRIBv-node-v12"
 NAME="Node v12 LTS"
-VERSION="12.18.0.0"
+VERSION="12.18.2.0"
 ZAP_URL="https://nodejs.org/"
