@@ -1,4 +1,4 @@
 PKG="TRIBdjango3-python-37"
 NAME="Django 3 web framework"
-VERSION="3.0.7.0"
+VERSION="3.0.8.0"
 ZAP_URL="https://www.djangoproject.com/"
