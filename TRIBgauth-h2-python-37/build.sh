@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack google-auth-httplib2-0.0.3
-cd google-auth-httplib2-0.0.3
+${THOME}/build/unpack google-auth-httplib2-0.0.4
+cd google-auth-httplib2-0.0.4
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
