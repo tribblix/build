@@ -1,0 +1,11 @@
+--- a/hotspot/src/share/vm/runtime/thread.hpp	Sat Jun 27 23:21:57 2020
++++ b/hotspot/src/share/vm/runtime/thread.hpp	Wed Jul 15 08:53:57 2020
+@@ -196,7 +196,7 @@
+     _deopt_suspend          = 0x10000000U, // thread needs to self suspend for deopt
+ 
+     _has_async_exception    = 0x00000001U, // there is a pending async exception
+-    _critical_native_unlock = 0x00000002U, // Must call back to unlock JNI critical lock
++    _critical_native_unlock = 0x00000002U  // Must call back to unlock JNI critical lock
+ 
+     JFR_ONLY(_trace_flag    = 0x00000004U)  // call jfr tracing
+   };
