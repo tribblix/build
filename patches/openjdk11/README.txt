@@ -3,7 +3,7 @@ https://github.com/joyent/pkgsrc-joyent/tree/master/openjdk11
 
 All patches -p0
 
-This set of patches for jdk-11.0.7+10
+This set of patches for jdk-11.0.8+10
 
 Removed:
 
