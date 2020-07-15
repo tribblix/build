@@ -9,7 +9,7 @@
  #include <stdarg.h>
  #include <stdlib.h>
  #include <errno.h>
-@@ -1210,8 +1210,13 @@
+@@ -1216,8 +1216,13 @@
    CHECK_EXCEPTION_(NULL);
    char  buf[2*SYMBOL_BUF_SIZE + 1];
    jstring res = 0;

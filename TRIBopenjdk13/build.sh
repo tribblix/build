@@ -10,17 +10,20 @@
 # 13.0.2 update
 # wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.2+8.tar.bz2
 #
+# 13.0.3 update
+# wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.3+3.tar.bz2
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.3+3.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.4+8.tar.bz2
 #
 # fix the tarball name to match the directory it unpacks into
 # this needed to get the patches to apply correctly
 #
-ln jdk-13.0.3+3.tar.bz2 jdk13u-jdk-13.0.3+3.tar.bz2
+ln jdk-13.0.4+8.tar.bz2 jdk13u-jdk-13.0.4+8.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk13u-jdk-13.0.3+3
-cd jdk13u-jdk-13.0.3+3
+${THOME}/build/unpack jdk13u-jdk-13.0.4+8
+cd jdk13u-jdk-13.0.4+8
 
 #
 # as of 13.0.3, switch to a gcc build to replace Stuido
@@ -65,8 +68,11 @@ zap install autoconf
 #
 # the hotspot unit test don't build, hence --disable-hotspot-gtest
 #
+# 13.0.3 seemed to be happy with an older boot jdk, 13.0.4 requires
+# 12 or 13
+#
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk10 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk13 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-hotspot-gtest --disable-dtrace \
@@ -79,9 +85,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "13.0.3-internal" 2020-04-14
-# OpenJDK Runtime Environment (build 13.0.3-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.33)
-# OpenJDK 64-Bit Server VM (build 13.0.3-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.33, mixed mode, sharing)
+# openjdk version "13.0.4-internal" 2020-07-14
+# OpenJDK Runtime Environment (build 13.0.4-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.48)
+# OpenJDK 64-Bit Server VM (build 13.0.4-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.48, mixed mode, sharing)
 # 
 
 rm -fr /tmp/jdk
