@@ -4,7 +4,7 @@ Ensure support libraries can be found during build.
 
 --- make/autoconf/spec.gmk.in.orig	2019-01-08 09:40:27.000000000 +0000
 +++ make/autoconf/spec.gmk.in
-@@ -516,12 +516,12 @@ LD:=@FIXPATH@ @LD@
+@@ -519,12 +519,12 @@ LD:=@FIXPATH@ @LD@
  SDKROOT:=@SDKROOT@
  
  # LDFLAGS used to link the jdk native libraries (C-code)
@@ -19,7 +19,7 @@ Ensure support libraries can be found during build.
  JDKEXE_LIBS:=@JDKEXE_LIBS@
  
  # LDFLAGS specific to C++ linking.
-@@ -636,9 +636,9 @@ JAVA_SMALL=@FIXPATH@ $(JAVA_CMD) $(JAVA_
+@@ -639,9 +639,9 @@ JAVA_SMALL=@FIXPATH@ $(JAVA_CMD) $(JAVA_
  JAVA_JAVAC=@FIXPATH@ $(JAVA_CMD) $(JAVA_FLAGS_JAVAC) $(JAVA_FLAGS)
  JAVAC=@FIXPATH@ $(JAVAC_CMD)
  JAVADOC=@FIXPATH@ $(JAVADOC_CMD)
@@ -32,7 +32,7 @@ Ensure support libraries can be found during build.
  JARSIGNER=@FIXPATH@ $(JARSIGNER_CMD)
  # A specific java binary with specific options can be used to run
  # the long running background sjavac servers and other long running tasks.
-@@ -651,8 +651,8 @@ JAVAC_FLAGS?=@JAVAC_FLAGS@
+@@ -654,8 +654,8 @@ JAVAC_FLAGS?=@JAVAC_FLAGS@
  
  
  BUILD_JAVA_FLAGS := @BOOTCYCLE_JVM_ARGS_BIG@
