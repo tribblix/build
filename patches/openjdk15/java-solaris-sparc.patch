@@ -1100,7 +1100,7 @@
          "linux-aarch64", "linux-arm32", "linux-ppc64le", "linux-s390x"
      ];
  
-@@ -429,22 +429,6 @@
+@@ -432,22 +432,6 @@
                  "--with-macosx-version-max=10.9.0"),
          },
  
@@ -1123,7 +1123,7 @@
          "windows-x64": {
              target_os: "windows",
              target_cpu: "x64",
-@@ -533,7 +517,7 @@
+@@ -536,7 +520,7 @@
              "ANT_HOME": input.get("ant", "home_path")
          }
      };
@@ -1132,7 +1132,7 @@
          .forEach(function (name) {
              var maketestName = name + "-testmake";
              profiles[maketestName] = concatObjects(profiles[name], testmakeBase);
-@@ -607,7 +591,7 @@
+@@ -610,7 +594,7 @@
      // Bootcycle profiles runs the build with itself as the boot jdk. This can
      // be done in two ways. Either using the builtin bootcycle target in the
      // build system. Or by supplying the main jdk build as bootjdk to configure.
@@ -1141,7 +1141,7 @@
          .forEach(function (name) {
              var bootcycleName = name + "-bootcycle";
              var bootcyclePrebuiltName = name + "-bootcycle-prebuilt";
-@@ -634,7 +618,7 @@
+@@ -633,7 +617,7 @@
          });
  
      // JCov profiles build JCov-instrumented JDK image based on images provided through dependencies.
@@ -1150,7 +1150,7 @@
          .forEach(function (name) {
              var jcovName = name + "-jcov";
              profiles[jcovName] = clone(common.main_profile_base);
-@@ -663,12 +647,6 @@
+@@ -662,12 +646,6 @@
              platform: "osx-x64",
              jdk_subdir: "jdk-" + data.version +  ".jdk/Contents/Home",
          },
@@ -1163,7 +1163,7 @@
          "windows-x64": {
              platform: "windows-x64",
              jdk_suffix: "zip",
-@@ -795,7 +773,7 @@
+@@ -794,7 +772,7 @@
      });
  
      // Artifacts of JCov profiles
@@ -1172,7 +1172,7 @@
          .forEach(function (name) {
              var o = artifactData[name]
              var jdk_subdir = (o.jdk_subdir != null ? o.jdk_subdir : "jdk-" + data.version);
-@@ -984,8 +962,6 @@
+@@ -983,8 +961,6 @@
      var devkit_platform_revisions = {
          linux_x64: "gcc9.2.0-OL6.4+1.0",
          macosx_x64: "Xcode10.1-MacOSX10.14+1.0",
@@ -1181,7 +1181,7 @@
          windows_x64: "VS2019-16.5.3+1.0",
          linux_aarch64: "gcc9.2.0-OL7.6+1.0",
          linux_arm: "gcc8.2.0-Fedora27+1.0",
-@@ -1040,11 +1016,6 @@
+@@ -1039,11 +1015,6 @@
              environment_path: common.boot_jdk_home + "/bin"
          }
      }
