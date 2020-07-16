@@ -7,17 +7,20 @@
 # original release
 # wget http://hg.openjdk.java.net/jdk/jdk14/archive/jdk-14+36.tar.bz2
 #
+# 1st update
+# wget http://hg.openjdk.java.net/jdk-updates/jdk14u/archive/jdk-14.0.1+7.tar.bz2
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk14u/archive/jdk-14.0.1+7.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk14u/archive/jdk-14.0.2+12.tar.bz2
 #
 # fix the tarball name to match the directory it unpacks into
 # this needed to get the patches to apply correctly
 #
-ln jdk-14.0.1+7.tar.bz2 jdk14u-jdk-14.0.1+7.tar.bz2
+ln jdk-14.0.2+12.tar.bz2 jdk14u-jdk-14.0.2+12.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk14u-jdk-14.0.1+7
-cd jdk14u-jdk-14.0.1+7
+${THOME}/build/unpack jdk14u-jdk-14.0.2+12
+cd jdk14u-jdk-14.0.2+12
 
 #
 # looks like dtrace is busted, I suspect illumos and Solaris have diverged
@@ -56,9 +59,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 # 
-# openjdk version "14.0.1-internal" 2020-04-14
-# OpenJDK Runtime Environment (build 14.0.1-internal+0-adhoc.ptribble.jdk14u-jdk-14.0.17)
-# OpenJDK 64-Bit Server VM (build 14.0.1-internal+0-adhoc.ptribble.jdk14u-jdk-14.0.17, mixed mode, sharing)
+# openjdk version "14.0.2-internal" 2020-07-14
+# OpenJDK Runtime Environment (build 14.0.2-internal+0-adhoc.ptribble.jdk14u-jdk-14.0.212)
+# OpenJDK 64-Bit Server VM (build 14.0.2-internal+0-adhoc.ptribble.jdk14u-jdk-14.0.212, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
