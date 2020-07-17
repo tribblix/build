@@ -15,7 +15,7 @@
 # solaris and illumos toolchain, which seems suboptimal
 #
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.14.5.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.14.6.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.14 GOROOT_BOOTSTRAP=/usr/versions/go-1.13 ./all.bash
 cd ..
