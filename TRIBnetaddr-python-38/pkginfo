@@ -1,4 +1,4 @@
-PKG="TRIBnetaddr-python-37"
+PKG="TRIBnetaddr-python-38"
 NAME="Python netaddr"
 VERSION="0.8.0.0"
 ZAP_URL="https://pypi.org/project/netaddr"
