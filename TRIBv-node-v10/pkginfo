@@ -1,4 +1,4 @@
 PKG="TRIBv-node-v10"
-NAME="Node v10 Stable"
-VERSION="10.21.0.0"
+NAME="Node v10"
+VERSION="10.22.0.0"
 ZAP_URL="https://nodejs.org/"
