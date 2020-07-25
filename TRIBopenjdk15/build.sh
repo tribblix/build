@@ -9,12 +9,12 @@
 # as of 15+25, solaris support removed from mainline
 #
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk/jdk15/archive/jdk-15+32.tar.bz2
-ln jdk-15+32.tar.bz2 jdk15-jdk-15+32.tar.bz2
+wget http://hg.openjdk.java.net/jdk/jdk15/archive/jdk-15+33.tar.bz2
+ln jdk-15+33.tar.bz2 jdk15-jdk-15+33.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk15-jdk-15+32
-cd jdk15-jdk-15+32
+${THOME}/build/unpack jdk15-jdk-15+33
+cd jdk15-jdk-15+33
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -57,8 +57,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "15-internal" 2020-09-15
-# OpenJDK Runtime Environment (build 15-internal+0-adhoc.ptribble.jdk-jdk-1532)
-# OpenJDK 64-Bit Server VM (build 15-internal+0-adhoc.ptribble.jdk-jdk-1532, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 15-internal+0-adhoc.ptribble.jdk-jdk-1533)
+# OpenJDK 64-Bit Server VM (build 15-internal+0-adhoc.ptribble.jdk-jdk-1533, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -94,8 +94,6 @@ cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk15/lib/security
 #
 # edit conf/security/sunpkcs11-solaris.cfg and add the following to disabledMechanisms
 #
-# again, doesn't seem to be necessary
-#
 # # the following mechanisms are disabled due to lack of digest cloning support
 # # need to fix 6414899 first
 #   CKM_MD5
@@ -103,5 +101,7 @@ cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk15/lib/security
 #   CKM_SHA384
 #   CKM_SHA512
 #
+
+(cd /tmp/jdk/usr/versions/openjdk15/conf/security/ ; gpatch -p1 < ${THOME}/build/patches/sunpkcs11-solaris.cfg.patch)
 
 ${THOME}/build/create_pkg TRIBopenjdk15 /tmp/jdk

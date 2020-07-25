@@ -1,0 +1,13 @@
+--- old/sunpkcs11-solaris.cfg	Sat Jul 25 12:31:27 2020
++++ new/sunpkcs11-solaris.cfg	Mon Jul 20 12:13:22 2020
+@@ -19,5 +19,10 @@
+ disabledMechanisms = {
+   CKM_DSA_KEY_PAIR_GEN
+   SecureRandom
++# the following mechanisms are disabled due to lack of digest cloning support
++  CKM_MD5
++  CKM_SHA256
++  CKM_SHA384
++  CKM_SHA512
+ }
+ 
