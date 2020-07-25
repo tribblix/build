@@ -50,7 +50,8 @@ rm usr/lib/pkg.*
 mkdir -p usr/versions/python-2.7/lib
 mv usr/lib/python2.7 usr/versions/python-2.7/lib
 mv usr/versions/python-2.7/lib/python2.7/vendor-packages usr/versions/python-2.7/lib/python2.7/site-packages
-rm -fr usr/share/lib
+rm -fr usr/share/lib/pkg/web
+rm usr/share/lib/pkg/rad-invoke
 rm -fr usr/share/man/ja_JP.UTF-8 usr/share/man/zh_CN.UTF-8
 rm -fr usr/share/man/man1m
 sed -i s=/usr/bin/amd64/python2.7=/usr/bin/python2.7= usr/bin/*
