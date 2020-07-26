@@ -76,6 +76,7 @@ cd docbook-xsl-${SDVER}
 	cp common/*.dtd ${DDIR}/common
 	cp common/*.xml ${DDIR}/common
 	cp common/*.xsl ${DDIR}/common
+	cp common/entities.ent ${DDIR}/common
 	cp fo/*.xml ${DDIR}/fo
 	cp fo/*.xsl ${DDIR}/fo
 	cp html/*.xml ${DDIR}/html
@@ -95,6 +96,7 @@ cd docbook-xsl-${SDVER}
 	mkdir -p ${DDIR}/extensions
 	cp -r extensions/* ${DDIR}/extensions
 	cp VERSION ${DDIR}
+	ln -s VERSION ${DDIR}/VERSION.xsl
 # end OI-derived fragment
 cd ..
 cd ..
