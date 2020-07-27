@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# fixes up prototype files, by setting the correct permissions
-# for existing directories
-#
-nawk '
-{if ($3 ~ /^opt\/tribblix\/kibana\/optimize\/.babelcache.json/) { $6 = "kibana" ; $5 = "kibana" }}
-{print}
-'
