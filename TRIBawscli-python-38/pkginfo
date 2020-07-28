@@ -1,4 +1,4 @@
 PKG="TRIBawscli-python-38"
 NAME="AWS Command Line Interface"
-VERSION="1.18.66.0"
+VERSION="1.18.106.0"
 ZAP_URL="https://aws.amazon.com/cli/"
