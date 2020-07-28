@@ -493,7 +493,7 @@
              fi
 --- old/make/autoconf/lib-std.m4	2020-05-20 17:58:39.016518841 -0700
 +++ new/make/autoconf/lib-std.m4	2020-05-20 17:58:38.628511391 -0700
-@@ -77,14 +77,6 @@
+@@ -78,14 +78,6 @@
      fi
    fi
  
@@ -765,9 +765,9 @@
  TOOLCHAIN_DESCRIPTION_xlc="IBM XL C/C++"
  
  # Minimum supported versions, empty means unspecified
- TOOLCHAIN_MINIMUM_VERSION_clang="3.2"
+ TOOLCHAIN_MINIMUM_VERSION_clang="3.5"
  TOOLCHAIN_MINIMUM_VERSION_gcc="5.0"
- TOOLCHAIN_MINIMUM_VERSION_microsoft="16.00.30319.01" # VS2010
+ TOOLCHAIN_MINIMUM_VERSION_microsoft="19.10.0.0" # VS2017
 -TOOLCHAIN_MINIMUM_VERSION_solstudio="5.13"
  TOOLCHAIN_MINIMUM_VERSION_xlc=""
  
@@ -1045,7 +1045,7 @@
  		  $$($1_STRIP_CMD)
 --- old/make/common/TestFilesCompilation.gmk	2020-05-20 17:58:48.792706551 -0700
 +++ new/make/common/TestFilesCompilation.gmk	2020-05-20 17:58:48.452700023 -0700
-@@ -98,7 +98,6 @@
+@@ -102,7 +102,6 @@
          DISABLED_WARNINGS_gcc := format undef unused-function unused-value, \
          DISABLED_WARNINGS_clang := undef format-nonliteral \
              missing-field-initializers sometimes-uninitialized, \
@@ -1875,7 +1875,7 @@
  else ifeq ($(call isTargetOs, macosx), true)
    SA_CFLAGS := -Damd64 -D_GNU_SOURCE -mno-omit-leaf-frame-pointer \
        -mstack-alignment=16 -fPIC
-@@ -65,13 +62,11 @@
+@@ -65,14 +62,12 @@
      DISABLED_WARNINGS_microsoft := 4267, \
      DISABLED_WARNINGS_gcc := sign-compare pointer-arith, \
      DISABLED_WARNINGS_clang := sign-compare pointer-arith format-nonliteral, \
@@ -1885,6 +1885,7 @@
      EXTRA_SRC := $(LIBSA_EXTRA_SRC), \
 -    LDFLAGS := $(LDFLAGS_JDKLIB) $(SA_LDFLAGS), \
 +    LDFLAGS := $(LDFLAGS_JDKLIB), \
+     LIBS := $(LIBCXX), \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -ldl -ldemangle -lthread -lproc, \
      LIBS_macosx := -framework Foundation -framework JavaNativeFoundation \

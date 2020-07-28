@@ -18,6 +18,20 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+7
+
+There's a new os::cpu_microcode_revision()
+Linux pulls this out of /proc/cpuinfo
+Edit
+src/hotspot/os_cpu/solaris_x86/os_solaris_x86.hpp
+src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
+To add a stub implementation which returns 0
+(Other platforms return 0 on error.)
+Look at ucodeadm to see how to do this properly.
+See illumos-cpu_microcode_revision.patch
+
+In 16+6
+
 1. ExtendedPC has been removed
 fetch_frame_from_context is now an address
 fetch_frame_from_ucontext doesn't exist
