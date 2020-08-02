@@ -5,4 +5,10 @@
 mkdir -p usr/bin
 mv usr/perl5/5.22.0/bin/exiftool usr/bin
 rmdir usr/perl5/5.22.0/bin
+# and the man page
+mkdir -p usr/share/man/man1
+mv usr/perl5/5.22.0/man/man1/exiftool.1 usr/share/man/man1
+rmdir usr/perl5/5.22.0/man/man1
+# leave the man3 pages inside perl as they're associated with
+# the module rather than the utility
 rm -fr usr/perl5/5.22.0/lib

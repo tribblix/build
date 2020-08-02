@@ -1,4 +1,4 @@
 PKG="TRIBexiftool"
 NAME="ExifTool"
-VERSION="10.65.0"
+VERSION="12.03.0"
 ZAP_URL="http://www.sno.phy.queensu.ca/~phil/exiftool/"

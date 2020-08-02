@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Image-ExifTool-10.65
-cd Image-ExifTool-10.65
+${THOME}/build/unpack Image-ExifTool-12.03
+cd Image-ExifTool-12.03
 perl Makefile.PL
 make
 ${THOME}/build/genpkg TRIBexiftool
