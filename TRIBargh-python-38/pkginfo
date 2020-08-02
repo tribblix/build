@@ -1,0 +1,4 @@
+PKG="TRIBargh-python-38"
+NAME="Python argh"
+VERSION="0.26.2.0"
+ZAP_URL="https://pypi.org/project/argh"
