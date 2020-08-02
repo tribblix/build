@@ -1,4 +1,4 @@
-PKG="TRIBexifread-python-37"
+PKG="TRIBexifread-python-38"
 NAME="Python ExifRead"
 VERSION="2.2.1.0"
 ZAP_URL="https://pypi.org/project/ExifRead"
