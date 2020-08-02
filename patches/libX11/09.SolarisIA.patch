@@ -52,7 +52,7 @@ index a14d13b..ead8703 100644
  #if defined(XTHREADS) && defined(SUNSOFT)
  struct _DisplayPtrLink {
      Display *dpy;
-@@ -581,6 +587,21 @@ XOpenDisplay (
+@@ -582,6 +588,21 @@ XOpenDisplay (
  #ifdef XKB
  	XkbUseExtension(dpy,NULL,NULL);
  #endif

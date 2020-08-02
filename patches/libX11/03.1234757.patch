@@ -75,7 +75,7 @@ index 3793814..a14d13b 100644
  #ifdef XTHREADS
  #include "locking.h"
  int  (*_XInitDisplayLock_fn)(Display *dpy) = NULL;
-@@ -208,6 +223,13 @@ XOpenDisplay (
+@@ -209,6 +224,13 @@ XOpenDisplay (
  		return(NULL);
  	}
  
@@ -89,7 +89,7 @@ index 3793814..a14d13b 100644
  	if (!_XPollfdCacheInit(dpy)) {
  	        OutOfMemory (dpy);
  		return(NULL);
-@@ -576,6 +598,10 @@ XOpenDisplay (
+@@ -577,6 +599,10 @@ XOpenDisplay (
  
  void _XFreeDisplayStructure(Display *dpy)
  {
@@ -100,7 +100,7 @@ index 3793814..a14d13b 100644
  	/* move all cookies in the EQ to the jar, then free them. */
  	if (dpy->qfree) {
  	    _XQEvent *qelt = dpy->qfree;
-@@ -704,6 +730,103 @@ void _XFreeDisplayStructure(Display *dpy)
+@@ -697,6 +723,103 @@ void _XFreeDisplayStructure(Display *dpy)
  	Xfree (dpy);
  }
  
