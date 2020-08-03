@@ -18,6 +18,10 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+8
+
+No need to patch src/java.base/unix/native/libjava/jdk_util_md.h
+
 In 16+7
 
 There's a new os::cpu_microcode_revision()

@@ -2506,7 +2506,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1083,23 +1083,9 @@
+@@ -1082,23 +1082,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
@@ -2658,7 +2658,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -451,7 +451,7 @@
+@@ -450,7 +450,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2667,7 +2667,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -777,10 +777,8 @@
+@@ -776,10 +776,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -3940,21 +3940,6 @@
  #ifdef MACOSX
          /*
           * For the case on MacOS X where encoding is set to US-ASCII, but we
---- old/src/java.base/unix/native/libjava/jdk_util_md.h	2020-05-20 18:01:14.815510296 -0700
-+++ new/src/java.base/unix/native/libjava/jdk_util_md.h	2020-05-20 18:01:14.391502154 -0700
-@@ -27,11 +27,7 @@
- #define JDK_UTIL_MD_H
- 
- // checking for nanness
--#ifdef __solaris__
--#include <ieeefp.h>
--#define ISNANF(f) isnanf(f)
--#define ISNAND(d) isnand(d)
--#elif defined(MACOSX)
-+#if defined(MACOSX)
- #include <math.h>
- #define ISNANF(f) isnan(f)
- #define ISNAND(d) isnan(d)
 --- old/src/java.base/unix/native/libjava/jlong_md.h	2020-05-20 18:01:15.935531801 -0700
 +++ new/src/java.base/unix/native/libjava/jlong_md.h	2020-05-20 18:01:15.547524351 -0700
 @@ -23,8 +23,8 @@
@@ -5580,7 +5565,7 @@
                  ("Strike for " + fileFont + " at size = " + intPtSize +
 --- old/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:48.020147849 -0700
 +++ new/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:47.620140168 -0700
-@@ -44,8 +44,6 @@
+@@ -40,8 +40,6 @@
   */
  public final class FontUtilities {
  
@@ -5589,7 +5574,7 @@
      public static boolean isLinux;
  
      public static boolean isMacOSX;
-@@ -67,7 +65,6 @@
+@@ -63,7 +61,6 @@
              @Override
              public Object run() {
                  String osName = System.getProperty("os.name", "unknownOS");
@@ -5599,7 +5584,7 @@
  
 --- old/src/java.desktop/share/classes/sun/font/SunFontManager.java	2020-05-20 18:01:49.092168433 -0700
 +++ new/src/java.desktop/share/classes/sun/font/SunFontManager.java	2020-05-20 18:01:48.704160983 -0700
-@@ -443,24 +443,6 @@
+@@ -442,24 +442,6 @@
                      registerFontDirs(extraFontPath);
                  }
  
@@ -5624,7 +5609,7 @@
                  initCompositeFonts(fontConfig, null);
  
                  return null;
-@@ -2090,33 +2072,6 @@
+@@ -2072,33 +2054,6 @@
              }
          }
  
@@ -6055,7 +6040,7 @@
  
 --- old/src/java.desktop/unix/classes/sun/awt/X11FontManager.java	2020-05-20 18:02:35.237054448 -0700
 +++ new/src/java.desktop/unix/classes/sun/awt/X11FontManager.java	2020-05-20 18:02:34.897047919 -0700
-@@ -708,8 +708,7 @@
+@@ -701,8 +701,7 @@
           * and do the best we can.
           */
          FontConfiguration mFontConfig = new MFontConfiguration(this);

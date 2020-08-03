@@ -1,4 +1,5 @@
 P TRIBfont-ttype-dejavu
+P TRIBharfbuzz
 P TRIBlib-zlib
 P TRIBsys-lib-freetype-2
 P TRIBx11-libx11
