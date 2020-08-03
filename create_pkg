@@ -251,16 +251,6 @@ if [ -f ${BUILD}/${PKGNAME}/user_attr ]; then
     do_user_attr
 fi
 close_preinstall
-#
-# handle anything that's a link to isaexec
-#
-if [ -f ${BUILD}/${PKGNAME}/isaexec ]; then
-  for ifile in `cat ${BUILD}/${PKGNAME}/isaexec`
-  do
-    rm -f $ifile
-    echo "l none ${ifile}=/usr/lib/isaexec" >> pp.$$
-  done
-fi
 # FIXME verify both scripts and restart_fmri_list
 (cd ${BDIR} ; pkgproto usr | ${BUILD}/fixproto) >> pp.$$
 if [ -d ${BDIR}/etc ]; then
