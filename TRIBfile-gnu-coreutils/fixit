@@ -1,15 +1,6 @@
 #!/bin/sh
 #
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ARCH32="sparcv7"
-  ;;
-i386)
-  ARCH64="amd64"
-  ARCH32="i86"
-  ;;
-esac
+
 #
 # chcon is selinux, which isn't relevant for us
 #
@@ -19,11 +10,6 @@ rm -f usr/gnu/share/man/man1/chcon.1
 rm -f usr/gnu/bin/runcon
 rm -f usr/gnu/bin/*/runcon
 rm -f usr/gnu/share/man/man1/runcon.1
-#
-# want a 64-bit date if we can, so isaexec it
-#
-mkdir -p usr/gnu/bin/${ARCH32}
-mv usr/gnu/bin/date usr/gnu/bin/${ARCH32}
 
 #
 # add g prefixes in /usr/bin, and other convenience links
