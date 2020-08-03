@@ -1,1 +1,0 @@
--p0 coreutils-ln-s-catch-EINVAL.patch
