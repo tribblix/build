@@ -1,0 +1,4 @@
+PKG="TRIBjdcal-python-38"
+NAME="Python jdcal"
+VERSION="1.4.1.0"
+ZAP_URL="https://pypi.org/project/jdcal"
