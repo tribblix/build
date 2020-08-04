@@ -62,8 +62,12 @@ do
   else
       DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
   fi
+  FMRI=`bash zipgrep '^IPS_FMRI' $ZPKG ${PNAME}/pkginfo 2>/dev/null |nawk -F'[=@]' '{print $2}'`
   echo "<dt><a name=\"${PNAME}\"></a><b>${PNAME}</b></dt>"
   echo "<dd>\n${PKGNAME}\n<ul>\n<li>Version: ${PKGVERS}</li>"
+  FMRI=${FMRI/pkg:\/\/on-nightly\//}
+  FMRI=${FMRI/pkg:\/\/omnios\//}
+  echo "<li>IPS name: ${FMRI}</li>"
   echo "<li><a href=\"${PNAME}.${PKGVERS}.zap\">Download</a></li>"
   for mypkgdep in $DEPLIST
   do
