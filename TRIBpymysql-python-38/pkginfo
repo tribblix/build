@@ -1,4 +1,4 @@
-PKG="TRIBpymysql-python-37"
+PKG="TRIBpymysql-python-38"
 NAME="Python PyMySQL"
 VERSION="0.10.0.0"
 ZAP_URL="https://pypi.org/project/PyMySQL"
