@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Django-3.0.8
-cd Django-3.0.8
+${THOME}/build/unpack Django-3.1
+cd Django-3.1
 rm -fr /tmp/p3a
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/p3a
 ${THOME}/build/create_pkg TRIBdjango3-python-37 /tmp/p3a
