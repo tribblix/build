@@ -20,11 +20,12 @@ cat <<EOF
 <dl>
 EOF
 
-for PKGI in */pkginfo
+ggrep '^VERSION=' */pkginfo | while read vstring
 do
-  PKG=${PKGI%/*}
-  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI`
+  PKG=${vstring%/*}
+  PKGVERS=${vstring##*=}
   PKGVERS=${PKGVERS//\"/}
+  PKGI=${PKG}/pkginfo
   if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
     PKGNAME=`awk -F= '{if ($1 == "NAME") print $2}' $PKGI`
     PKGNAME=${PKGNAME//\"/}
@@ -34,8 +35,17 @@ do
     IDEPLIST=""
     PKGCKSUM=`cat ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5`
     if [ -f ${PKG}/depend ]; then
-       DEPLIST=`awk '$1 == "P" {printf("%s ", $2)}' ${PKG}/depend`
-       IDEPLIST=`awk '$1 == "I" {printf("%s ", $2)}' ${PKG}/depend`
+       DEPLIST=""
+       IDEPLIST=""
+       cat ${PKG}/depend | while read d p
+       do
+	   if [ "X$d" = "XP" ]; then
+	       DEPLIST="$DEPLIST$p "
+	   fi
+	   if [ "X$d" = "XI" ]; then
+	       IDEPLIST="$IDEPLIST$p "
+	   fi
+       done
     fi
     echo "<dt><a name=\"${PKG}\"></a><b>${PKG}</b></dt>"
     echo "<dd>"

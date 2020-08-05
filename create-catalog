@@ -40,7 +40,6 @@ do
 		DEPLIST="$DEPLIST$p "
 	    fi
 	done
-	#DEPLIST=`awk '$1 == "P" {printf("%s ", $2)}' ${PKG}/depend`
     fi
     DEPLIST=${DEPLIST/% /}
     echo "${PKG}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|"
