@@ -9,12 +9,12 @@
 # as of 15+25, solaris support removed from mainline
 #
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk/jdk15/archive/jdk-15+34.tar.bz2
-ln jdk-15+34.tar.bz2 jdk15-jdk-15+34.tar.bz2
+wget http://hg.openjdk.java.net/jdk/jdk15/archive/jdk-15+35.tar.bz2
+ln jdk-15+35.tar.bz2 jdk15-jdk-15+35.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk15-jdk-15+34
-cd jdk15-jdk-15+34
+${THOME}/build/unpack jdk15-jdk-15+35
+cd jdk15-jdk-15+35
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -57,8 +57,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "15-internal" 2020-09-15
-# OpenJDK Runtime Environment (build 15-internal+0-adhoc.ptribble.jdk-jdk-1534)
-# OpenJDK 64-Bit Server VM (build 15-internal+0-adhoc.ptribble.jdk-jdk-1534, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 15-internal+0-adhoc.ptribble.jdk-jdk-1535)
+# OpenJDK 64-Bit Server VM (build 15-internal+0-adhoc.ptribble.jdk-jdk-1535, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
