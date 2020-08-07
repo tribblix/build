@@ -18,6 +18,27 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+10
+
+The ProcDebuggerLocal stuff was modified, underlying commit
+http://hg.openjdk.java.net/jdk/jdk/rev/bdbb1c956626
+
+in ProcDebuggerLocal, lookupByName() can be removed
+
+in ProcDebuggerLocal, remove createLoadObject fillLoadObjectList0
+updateLoadObjectCache reresolveLoadObjects getLoadObjectList
+the only complex one is getLoadObjectList, which is required by the
+parent interface. Look for FIXME-ILLUMOS, I've stubbed it out
+
+in saproc.cpp, remove fillLoadObjectList0 createLoadObject_ID
+fill_load_object_list
+
+In 16+9
+
+was completely broken due to a shenandoah build failure
+
+missing symbols seen in ProcDebuggerLocal.java, but defer that to 16+10
+
 In 16+8
 
 No need to patch src/java.base/unix/native/libjava/jdk_util_md.h

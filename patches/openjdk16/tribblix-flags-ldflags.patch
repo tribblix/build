@@ -1,6 +1,6 @@
 --- make/autoconf/flags-ldflags.m4~	Mon Apr 13 13:55:05 2020
 +++ make/autoconf/flags-ldflags.m4	Mon Apr 13 14:10:29 2020
-@@ -63,9 +63,13 @@
+@@ -64,9 +64,13 @@
      fi
  
      # Add -z,defs, to forbid undefined symbols in object files.

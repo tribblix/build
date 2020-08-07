@@ -223,7 +223,7 @@
          modules/java.base/com/sun/net/ssl \
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -270,23 +270,15 @@
+@@ -269,23 +269,15 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR -v | $GREP "bsdtar")" != "x"; then
      TAR_TYPE="bsd"
@@ -247,7 +247,7 @@
    elif test "x$TAR_TYPE" = "aix"; then
      # -L InputList of aix tar: name of file listing the files and directories
      # that need to be   archived or extracted
-@@ -297,7 +289,6 @@
+@@ -296,7 +288,6 @@
      TAR_SUPPORTS_TRANSFORM="false"
    fi
    AC_SUBST(TAR_TYPE)
@@ -255,7 +255,7 @@
    AC_SUBST(TAR_INCLUDE_PARAM)
    AC_SUBST(TAR_SUPPORTS_TRANSFORM)
  ])
-@@ -415,8 +406,6 @@
+@@ -414,8 +405,6 @@
        fi
      fi
      UTIL_REQUIRE_PROGS(SETFILE, SetFile)
@@ -1064,7 +1064,7 @@
  endif
  
  LAUNCHER_SRC := $(TOPDIR)/src/java.base/share/native/launcher
-@@ -142,7 +140,6 @@
+@@ -152,7 +150,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -1072,7 +1072,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -152,14 +149,11 @@
+@@ -162,14 +159,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -2506,7 +2506,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1082,23 +1082,9 @@
+@@ -1083,23 +1083,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
@@ -2569,7 +2569,7 @@
                          "CodeEntryAlignment (" INTX_FORMAT ") must be "
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -410,7 +410,7 @@
+@@ -413,7 +413,7 @@
            "Trace external suspend wait failures")                           \
                                                                              \
    product(bool, MaxFDLimit, true,                                           \
@@ -2578,7 +2578,7 @@
                                                                              \
    diagnostic(bool, LogEvents, true,                                         \
            "Enable the various ring buffer event logs")                      \
-@@ -684,10 +684,6 @@
+@@ -687,10 +687,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2589,7 +2589,7 @@
    experimental(bool, DisablePrimordialThreadGuardPages, false,              \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -712,10 +708,6 @@
+@@ -715,10 +711,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2600,7 +2600,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1820,10 +1812,8 @@
+@@ -1823,10 +1815,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2613,7 +2613,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1848,7 +1838,6 @@
+@@ -1851,7 +1841,6 @@
            "The native priority at which compiler threads should run "       \
            "(-1 means no change)")                                           \
            range(min_jint, max_jint)                                         \
@@ -2621,7 +2621,7 @@
                                                                              \
    product(intx, VMThreadPriority, -1,                                       \
            "The native priority at which the VM thread should run "          \
-@@ -2386,8 +2375,7 @@
+@@ -2389,8 +2378,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2633,7 +2633,7 @@
                                                                              \
 --- old/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:32.322694403 -0700
 +++ new/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:31.930686876 -0700
-@@ -153,12 +153,6 @@
+@@ -152,12 +152,6 @@
    stubRoutines_init2(); // note: StubRoutines need 2-phase init
    MethodHandles::generate_adapters();
  
@@ -2648,7 +2648,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -565,7 +565,6 @@
+@@ -563,7 +563,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -2757,7 +2757,7 @@
  #else
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -640,12 +640,11 @@
+@@ -638,12 +638,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -3014,7 +3014,7 @@
  
 --- old/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:50.351040561 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:49.963033111 -0700
-@@ -495,7 +495,7 @@
+@@ -497,7 +497,7 @@
      private static native boolean isReusePortAvailable0();
  
      /*
@@ -5409,7 +5409,7 @@
      }
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
-@@ -1428,22 +1428,6 @@
+@@ -1426,22 +1426,6 @@
                  }
              }
          }
@@ -5731,7 +5731,7 @@
  
      /* This is intended to be called, and the returned value used,
       * from within a block synchronized on this font object.
-@@ -1046,14 +971,7 @@
+@@ -1043,14 +968,7 @@
              style = Font.ITALIC;
              break;
          case fsSelectionBoldBit:
@@ -37502,7 +37502,7 @@
 -}
 --- old/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/debugger/proc/ProcDebuggerLocal.java	2020-05-20 18:11:04.694836191 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,722 +0,0 @@
+@@ -1,658 +0,0 @@
 -/*
 - * Copyright (c) 2014, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37690,7 +37690,6 @@
 -        suspend0();
 -        suspended = true;
 -        enableCache();
--        reresolveLoadObjects();
 -    }
 -
 -    public synchronized void resume() throws DebuggerException {
@@ -37955,15 +37954,9 @@
 -
 -    /** From the ProcDebugger interface */
 -    public synchronized List<LoadObject> getLoadObjectList() throws DebuggerException {
--        requireAttach();
--        if (!suspended) {
--            throw new DebuggerException("Process not suspended");
--        }
--
--        if (loadObjectCache == null) {
--            updateLoadObjectCache();
--        }
--        return loadObjectCache;
+-        // FIXME-ILLUMOS
+-        // unimplemented
+-        throw new DebuggerException("Unimplemented");
 -    }
 -
 -    /** From the ProcDebugger interface */
@@ -38003,39 +37996,12 @@
 -    //
 -    //
 -
--    private void updateLoadObjectCache() {
--        List<LoadObject> res = new ArrayList<>();
--        nameToDsoMap = new HashMap<>();
--        fillLoadObjectList0(res);
--        loadObjectCache = sortLoadObjects(res);
--    }
--
 -    // sort load objects by base address
 -    private static List<LoadObject> sortLoadObjects(List<LoadObject> in) {
 -        // sort the list by base address
 -        LoadObject[] arr = in.toArray(new LoadObject[0]);
 -        Arrays.sort(arr, loadObjectComparator);
 -        return Arrays.asList(arr);
--    }
--
--    private long lookupByName(String objectName, String symbolName)
--    throws DebuggerException {
--        // NOTE: this assumes that process is suspended (which is probably
--        // necessary assumption given that DSOs can be loaded/unloaded as
--        // process runs). Should update documentation.
--        if (nameToDsoMap == null) {
--            getLoadObjectList();
--        }
--        SharedObject dso = (SharedObject) nameToDsoMap.get(objectName);
--        // The DSO can be null because we use this to search through known
--        // DSOs in HotSpotTypeDataBase (for example)
--        if (dso != null) {
--            ProcAddress addr = (ProcAddress) dso.lookupSymbol(symbolName);
--            if (addr != null) {
--                return addr.getValue();
--            }
--        }
--        return 0;
 -    }
 -
 -    private SharedObject findDSOByName(String fullPathName) {
@@ -38049,14 +38015,6 @@
 -        }
 -        return null;
 -    }
--
--    private void reresolveLoadObjects() throws DebuggerException {
--        if (loadObjectCache == null) {
--            return;
--        }
--        updateLoadObjectCache();
--    }
--
 -
 -    private void checkAttached() {
 -        if (attached) {
@@ -38125,28 +38083,6 @@
 -            f.setSender(sender);
 -        }
 -        return sender;
--    }
--
--    // shared objects
--    private native void fillLoadObjectList0(List<LoadObject> l) throws DebuggerException;
--
--    // helper called by fillLoadObjectList0
--    private LoadObject createLoadObject(String fileName, long textsize, long base) {
--        File f = new File(fileName);
--        Address baseAddr = newAddress(base);
--        SharedObject res = findDSOByName(fileName);
--        if (res != null) {
--            // already in cache. just change the base, if needed
--            Address oldBase = res.getBase();
--            if (! baseAddr.equals(oldBase)) {
--                res.setBase(baseAddr);
--            }
--        } else {
--            // new shared object.
--            res = new SharedObject(this, fileName, f.length(), baseAddr);
--        }
--        nameToDsoMap.put(f.getName(), res);
--        return res;
 -    }
 -
 -    // symbol-to-pc
@@ -39141,7 +39077,7 @@
 -#endif /* _SALIBPROC_H_ */
 --- old/src/jdk.hotspot.agent/solaris/native/libsaproc/saproc.cpp	2020-05-20 18:11:16.531063433 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,1337 +0,0 @@
+@@ -1,1292 +0,0 @@
 -/*
 - * Copyright (c) 2002, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -39251,7 +39187,6 @@
 -
 -static jmethodID getThreadForThreadId_ID = 0;
 -static jmethodID createSenderFrame_ID    = 0;
--static jmethodID createLoadObject_ID     = 0;
 -static jmethodID createClosestSymbol_ID  = 0;
 -static jmethodID listAdd_ID              = 0;
 -
@@ -39572,29 +39507,6 @@
 -  CHECK_EXCEPTION_(1);
 -  env->CallBooleanMethod(list, listAdd_ID, threadProxy);
 -  CHECK_EXCEPTION_(1);
--  return 0;
--}
--
--static int
--fill_load_object_list(void *cd, const prmap_t* pmp, const char* obj_name) {
--
--  if (obj_name) {
--     DebuggerWithObject* dbgo = (DebuggerWithObject*) cd;
--     JNIEnv* env = dbgo->env;
--     jobject this_obj = dbgo->this_obj;
--     jobject list = dbgo->obj;
--
--     jstring objectName = env->NewStringUTF(obj_name);
--     CHECK_EXCEPTION_(1);
--
--     jlong mapSize = (jlong) pmp->pr_size;
--     jobject sharedObject = env->CallObjectMethod(this_obj, createLoadObject_ID,
--                                  objectName, mapSize, (jlong)(uintptr_t)pmp->pr_vaddr);
--     CHECK_EXCEPTION_(1);
--     env->CallBooleanMethod(list, listAdd_ID, sharedObject);
--     CHECK_EXCEPTION_(1);
--  }
--
 -  return 0;
 -}
 -
@@ -40168,23 +40080,6 @@
 -
 -/*
 - * Class:       sun_jvm_hotspot_debugger_proc_ProcDebuggerLocal
-- * Method:      fillLoadObjectList0
-- * Signature:   (Ljava/util/List;)V
-- * Description: fills shared objects of the debuggee process/core
-- */
--JNIEXPORT void JNICALL Java_sun_jvm_hotspot_debugger_proc_ProcDebuggerLocal_fillLoadObjectList0
--  (JNIEnv *env, jobject this_obj, jobject list) {
--  DebuggerWithObject dbgo;
--  dbgo.env = env;
--  dbgo.this_obj = this_obj;
--  dbgo.obj = list;
--
--  jlong p_ps_prochandle = env->GetLongField(this_obj, p_ps_prochandle_ID);
--  Pobject_iter((struct ps_prochandle*) p_ps_prochandle, fill_load_object_list, &dbgo);
--}
--
--/*
-- * Class:       sun_jvm_hotspot_debugger_proc_ProcDebuggerLocal
 - * Method:      readBytesFromProcess0
 - * Signature:   (JJ)[B
 - * Description: read bytes from debuggee process/core
@@ -40458,10 +40353,6 @@
 -
 -  createSenderFrame_ID = env->GetMethodID(clazz,
 -                            "createSenderFrame", "(Lsun/jvm/hotspot/debugger/proc/ProcCFrame;JJ)Lsun/jvm/hotspot/debugger/proc/ProcCFrame;");
--  CHECK_EXCEPTION;
--
--  createLoadObject_ID = env->GetMethodID(clazz,
--                            "createLoadObject", "(Ljava/lang/String;JJ)Lsun/jvm/hotspot/debugger/cdbg/LoadObject;");
 -  CHECK_EXCEPTION;
 -
 -  createClosestSymbol_ID = env->GetMethodID(clazz,

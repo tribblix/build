@@ -4,7 +4,7 @@ Ensure support libraries can be found during build.
 
 --- make/autoconf/spec.gmk.in.orig	2019-01-08 09:40:27.000000000 +0000
 +++ make/autoconf/spec.gmk.in
-@@ -522,12 +522,12 @@ LD:=@FIXPATH@ @LD@
+@@ -518,12 +518,12 @@ LD:=@FIXPATH@ @LD@
  SDKROOT:=@SDKROOT@
  
  # LDFLAGS used to link the jdk native libraries (C-code)
