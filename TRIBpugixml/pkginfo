@@ -1,0 +1,4 @@
+PKG="TRIBpugixml"
+NAME="Light-weight C++ XML processing library"
+VERSION="1.10.0"
+ZAP_URL="https://pugixml.org/"
