@@ -1,7 +1,9 @@
 P TRIBcryptography-python-37
 P TRIBdocker-pycreds-python-37
 P TRIBidna-python-37
+P TRIBparamiko-python-37
 P TRIBpyopenssl-37
+P TRIBrequests-python-37
 P TRIBsix-python-37
 P TRIBv-python-37
 P TRIBwebsocket-python-37
