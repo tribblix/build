@@ -3,12 +3,12 @@
 # now a single tarball
 #
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk/jdk/archive/jdk-16+10.tar.bz2
-ln jdk-16+10.tar.bz2 jdk-jdk-16+10.tar.bz2
+wget http://hg.openjdk.java.net/jdk/jdk/archive/jdk-16+11.tar.bz2
+ln jdk-16+11.tar.bz2 jdk-jdk-16+11.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-16+10
-cd jdk-jdk-16+10
+${THOME}/build/unpack jdk-jdk-16+11
+cd jdk-jdk-16+11
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -51,8 +51,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "16-internal" 2021-03-16
-# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk-jdk-1610)
-# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk-jdk-1610, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk-jdk-1611)
+# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk-jdk-1611, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
