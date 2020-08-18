@@ -8,7 +8,7 @@
  src/jdk.dynalink : nashorn/src/jdk.dynalink
  src/jdk.editpad : jdk/src/jdk.editpad
  src/jdk.hotspot.agent : hotspot/src/jdk.hotspot.agent
-@@ -101,13 +100,11 @@
+@@ -101,7 +100,6 @@
  src/langtools/sample : langtools/src/sample
  src/linux : jdk/src/linux
  src/sample : jdk/src/sample
@@ -16,12 +16,6 @@
  src/hotspot/share : hotspot/src/share/vm
  src/hotspot/cpu/aarch64 : hotspot/src/cpu/aarch64/vm
  src/hotspot/cpu/arm : hotspot/src/cpu/arm/vm
- src/hotspot/cpu/ppc : hotspot/src/cpu/ppc/vm
- src/hotspot/cpu/s390 : hotspot/src/cpu/s390/vm
--src/hotspot/cpu/sparc : hotspot/src/cpu/sparc/vm
- src/hotspot/cpu/x86 : hotspot/src/cpu/x86/vm
- src/hotspot/cpu/zero : hotspot/src/cpu/zero/vm
- src/hotspot/os/aix : hotspot/src/os/aix/vm
 @@ -115,7 +112,6 @@
  src/hotspot/os/linux : hotspot/src/os/linux/vm
  src/hotspot/os/posix/dtrace : hotspot/src/os/posix/dtrace
@@ -30,14 +24,10 @@
  src/hotspot/os/windows : hotspot/src/os/windows/vm
  src/hotspot/os_cpu/aix_ppc : hotspot/src/os_cpu/aix_ppc/vm
  src/hotspot/os_cpu/bsd_x86 : hotspot/src/os_cpu/bsd_x86/vm
-@@ -124,11 +120,8 @@
- src/hotspot/os_cpu/linux_arm : hotspot/src/os_cpu/linux_arm/vm
- src/hotspot/os_cpu/linux_ppc : hotspot/src/os_cpu/linux_ppc/vm
+@@ -124,7 +120,6 @@
  src/hotspot/os_cpu/linux_s390 : hotspot/src/os_cpu/linux_s390/vm
--src/hotspot/os_cpu/linux_sparc : hotspot/src/os_cpu/linux_sparc/vm
  src/hotspot/os_cpu/linux_x86 : hotspot/src/os_cpu/linux_x86/vm
  src/hotspot/os_cpu/linux_zero : hotspot/src/os_cpu/linux_zero/vm
--src/hotspot/os_cpu/solaris_sparc : hotspot/src/os_cpu/solaris_sparc/vm
 -src/hotspot/os_cpu/solaris_x86 : hotspot/src/os_cpu/solaris_x86/vm
  src/hotspot/os_cpu/windows_x86 : hotspot/src/os_cpu/windows_x86/vm
  src/hotspot : hotspot/src
@@ -458,23 +448,6 @@
      fi
    fi
  
-@@ -92,11 +85,11 @@
- 
-   # This setup is to verify access to system installed freetype header and
-   # libraries. On Windows and MacOS this does not apply and using these options
--  # will report an error. On other platforms (Linux, Solaris), they will
--  # default to using the system libraries. If they are found automatically,
--  # nothing need be done. If they are not found, the configure
--  # "--with-freetype-*" options may be used to fix that. If the preference is
--  # to bundle on these platforms then use --with-freetype=bundled.
-+  # will report an error. On other platforms they will default to using the
-+  # system libraries. If they are found automatically, nothing need be done.
-+  # If they are not found, the configure "--with-freetype-*" options may be
-+  # used to fix that. If the preference is to bundle on these platforms then
-+  # use --with-freetype=bundled.
- 
-   FREETYPE_BASE_NAME=freetype
-   FREETYPE_CFLAGS=
 @@ -167,15 +160,6 @@
            if test "x$PKG_CONFIG" != "x" ; then
              PKG_CHECK_MODULES(FREETYPE, freetype2, [FOUND_FREETYPE=yes], [FOUND_FREETYPE=no])
@@ -491,23 +464,6 @@
                AC_MSG_CHECKING([for freetype])
                AC_MSG_RESULT([yes (using pkg-config)])
              fi
---- old/make/autoconf/lib-std.m4	2020-05-20 17:58:39.016518841 -0700
-+++ new/make/autoconf/lib-std.m4	2020-05-20 17:58:38.628511391 -0700
-@@ -78,14 +78,6 @@
-     fi
-   fi
- 
--  # libCrun is the c++ runtime-library with SunStudio (roughly the equivalent of gcc's libstdc++.so)
--  if test "x$TOOLCHAIN_TYPE" = xsolstudio && test "x$LIBCXX" = x; then
--    LIBCXX="${SYSROOT}/usr/lib${OPENJDK_TARGET_CPU_ISADIR}/libCrun.so.1"
--  fi
--  if test "x$TOOLCHAIN_TYPE" = xsolstudio; then
--    LIBCXX_JVM="-lCrun"
--  fi
--
-   AC_SUBST(LIBCXX)
- 
-   # Setup Windows runtime dlls
 --- old/make/autoconf/lib-x11.m4	2020-05-20 17:58:40.076539195 -0700
 +++ new/make/autoconf/lib-x11.m4	2020-05-20 17:58:39.684531668 -0700
 @@ -88,13 +88,6 @@
@@ -1043,27 +999,8 @@
  		          $$($1_LIBS) $$($1_EXTRA_LIBS)) ; \
  		  $$($1_CREATE_DEBUGINFO_CMDS)
  		  $$($1_STRIP_CMD)
---- old/make/common/TestFilesCompilation.gmk	2020-05-20 17:58:48.792706551 -0700
-+++ new/make/common/TestFilesCompilation.gmk	2020-05-20 17:58:48.452700023 -0700
-@@ -102,7 +102,6 @@
-         DISABLED_WARNINGS_gcc := format undef unused-function unused-value, \
-         DISABLED_WARNINGS_clang := undef format-nonliteral \
-             missing-field-initializers sometimes-uninitialized, \
--        DISABLED_WARNINGS_CXX_solstudio := wvarhidenmem doubunder, \
-         LIBS := $$($1_LIBS_$$(name)), \
-         TOOLCHAIN := $(if $$(filter %.cpp, $$(file)), TOOLCHAIN_LINK_CXX, TOOLCHAIN_DEFAULT), \
-         OPTIMIZATION := $$(if $$($1_OPTIMIZATION_$$(name)),$$($1_OPTIMIZATION_$$(name)),LOW), \
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -40,8 +40,6 @@
-   LDFLAGS_JDKEXE += -Wl,--exclude-libs,ALL
- else ifeq ($(TOOLCHAIN_TYPE), clang)
-   LAUNCHER_CFLAGS += -fvisibility=hidden
--else ifeq ($(TOOLCHAIN_TYPE), solstudio)
--  LAUNCHER_CFLAGS += -xldscope=hidden
- endif
- 
- LAUNCHER_SRC := $(TOPDIR)/src/java.base/share/native/launcher
 @@ -152,7 +150,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
@@ -1089,32 +1026,22 @@
            $(SUPPORT_OUTPUTDIR)/native/java.base/libjava/java.lib, \
 --- old/make/conf/jib-profiles.js	2020-05-20 17:58:52.904785507 -0700
 +++ new/make/conf/jib-profiles.js	2020-05-20 17:58:52.564778978 -0700
-@@ -239,8 +239,8 @@
+@@ -239,7 +239,7 @@
  
      // List of the main profile names used for iteration
      common.main_profile_names = [
 -        "linux-x64", "linux-x86", "macosx-x64", "solaris-x64",
--        "solaris-sparcv9", "windows-x64", "windows-x86",
 +        "linux-x64", "linux-x86", "macosx-x64",
-+        "windows-x64", "windows-x86",
+         "windows-x64", "windows-x86",
          "linux-aarch64", "linux-arm32", "linux-ppc64le", "linux-s390x"
      ];
- 
-@@ -432,22 +432,6 @@
+@@ -432,14 +432,6 @@
                  "--with-macosx-version-max=10.9.0"),
          },
  
 -        "solaris-x64": {
 -            target_os: "solaris",
 -            target_cpu: "x64",
--            dependencies: ["devkit", "cups"],
--            configure_args: concat(common.configure_args_64bit,
--                "--with-zlib=system", "--enable-dtrace", "--enable-deprecated-ports=yes"),
--        },
--
--        "solaris-sparcv9": {
--            target_os: "solaris",
--            target_cpu: "sparcv9",
 -            dependencies: ["devkit", "cups"],
 -            configure_args: concat(common.configure_args_64bit,
 -                "--with-zlib=system", "--enable-dtrace", "--enable-deprecated-ports=yes"),
@@ -1127,72 +1054,29 @@
              "ANT_HOME": input.get("ant", "home_path")
          }
      };
--    [ "linux-x64", "macosx-x64", "solaris-sparcv9", "solaris-x64", "windows-x64"]
+-    [ "linux-x64", "macosx-x64", "solaris-x64", "windows-x64"]
 +    [ "linux-x64", "macosx-x64", "windows-x64"]
          .forEach(function (name) {
              var maketestName = name + "-testmake";
              profiles[maketestName] = concatObjects(profiles[name], testmakeBase);
-@@ -610,7 +594,7 @@
-     // Bootcycle profiles runs the build with itself as the boot jdk. This can
-     // be done in two ways. Either using the builtin bootcycle target in the
-     // build system. Or by supplying the main jdk build as bootjdk to configure.
--    [ "linux-x64", "macosx-x64", "solaris-sparcv9", "windows-x64"]
-+    [ "linux-x64", "macosx-x64", "windows-x64" ]
-         .forEach(function (name) {
-             var bootcycleName = name + "-bootcycle";
-             var bootcyclePrebuiltName = name + "-bootcycle-prebuilt";
-@@ -633,7 +617,7 @@
-         });
- 
-     // JCov profiles build JCov-instrumented JDK image based on images provided through dependencies.
--    [ "linux-aarch64", "linux-x64", "macosx-x64", "solaris-sparcv9", "windows-x64"]
-+    [ "linux-aarch64", "linux-x64", "macosx-x64", "windows-x64" ]
-         .forEach(function (name) {
-             var jcovName = name + "-jcov";
-             profiles[jcovName] = clone(common.main_profile_base);
-@@ -662,12 +646,6 @@
+@@ -662,9 +646,6 @@
              platform: "osx-x64",
              jdk_subdir: "jdk-" + data.version +  ".jdk/Contents/Home",
          },
 -        "solaris-x64": {
 -            platform: "solaris-x64",
 -        },
--        "solaris-sparcv9": {
--            platform: "solaris-sparcv9",
--        },
          "windows-x64": {
              platform: "windows-x64",
              jdk_suffix: "zip",
-@@ -794,7 +772,7 @@
-     });
- 
-     // Artifacts of JCov profiles
--    [ "linux-aarch64", "linux-x64", "macosx-x64", "solaris-sparcv9", "windows-x64"]
-+    [ "linux-aarch64", "linux-x64", "macosx-x64", "windows-x64" ]
-         .forEach(function (name) {
-             var o = artifactData[name]
-             var jdk_subdir = (o.jdk_subdir != null ? o.jdk_subdir : "jdk-" + data.version);
-@@ -983,8 +961,6 @@
+@@ -983,7 +961,6 @@
      var devkit_platform_revisions = {
          linux_x64: "gcc9.2.0-OL6.4+1.0",
          macosx_x64: "Xcode11.3.1-MacOSX10.15+1.0",
 -        solaris_x64: "SS12u4-Solaris11u1+1.0",
--        solaris_sparcv9: "SS12u6-Solaris11u3+1.0",
          windows_x64: "VS2019-16.5.3+1.0",
          linux_aarch64: "gcc9.2.0-OL7.6+1.0",
          linux_arm: "gcc8.2.0-Fedora27+1.0",
-@@ -1039,11 +1015,6 @@
-             environment_path: common.boot_jdk_home + "/bin"
-         }
-     }
--    if (input.build_cpu == 'sparcv9') {
--        boot_jdk.file = "bundles/openjdk/GPL/" + boot_jdk_platform
--            + "/openjdk-" + common.boot_jdk_version + "_"
--            + boot_jdk_platform + "_bin" + boot_jdk_ext;
--    }
- 
-     var dependencies = {
-         boot_jdk: boot_jdk,
 --- old/make/hotspot/gensrc/GensrcAdlc.gmk	2020-05-20 17:58:54.036807242 -0700
 +++ new/make/hotspot/gensrc/GensrcAdlc.gmk	2020-05-20 17:58:53.652799869 -0700
 @@ -36,10 +36,6 @@
@@ -1579,13 +1463,7 @@
        SRC := $(TOPDIR)/src/$(MODULE)/unix/native/jspawnhelper, \
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
-@@ -47,13 +47,11 @@
-     DISABLED_WARNINGS_clang := parentheses-equality constant-logical-operand \
-         format-nonliteral undef, \
-     DISABLED_WARNINGS_microsoft := 4244 4047 4133 4996, \
--    DISABLED_WARNINGS_solstudio := E_ARG_INCOMPATIBLE_WITH_ARG_L, \
-     LDFLAGS := $(LDFLAGS_JDKLIB) \
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -47,7 +47,6 @@
      LDFLAGS_windows := -delayload:secur32.dll -delayload:iphlpapi.dll, \
      LIBS_unix := -ljvm -ljava, \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -1656,14 +1534,6 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBVERIFY_OPTIMIZATION := LOW
    endif
-@@ -98,7 +94,6 @@
-     EXTRA_HEADER_DIRS := libfdlibm, \
-     WARNINGS_AS_ERRORS_xlc := false, \
-     DISABLED_WARNINGS_gcc := unused-result unused-function, \
--    DISABLED_WARNINGS_solstudio := E_STATEMENT_NOT_REACHED, \
-     LDFLAGS := $(LDFLAGS_JDKLIB) \
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
-     LDFLAGS_macosx := -L$(SUPPORT_OUTPUTDIR)/native/$(MODULE)/, \
 @@ -106,7 +101,6 @@
      LIBS := $(BUILD_LIBFDLIBM_TARGET), \
      LIBS_unix := -ljvm, \
@@ -1764,13 +1634,7 @@
      ifeq ($(call isTargetOs, linux), true)
        ifeq ($(DISABLE_XRENDER), true)
          LIBAWT_XAWT_CFLAGS += -DDISABLE_XRENDER_BY_DEFAULT=true
-@@ -397,13 +378,11 @@
-           $(LIBAWT_HEADLESS_CFLAGS), \
-       EXTRA_HEADER_DIRS := $(LIBAWT_HEADLESS_EXTRA_HEADER_DIRS), \
-       DISABLED_WARNINGS_gcc := unused-function, \
--      DISABLED_WARNINGS_solstudio := E_EMPTY_TRANSLATION_UNIT, \
-       LDFLAGS := $(LDFLAGS_JDKLIB) \
-           $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -397,7 +378,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -1875,11 +1739,7 @@
  else ifeq ($(call isTargetOs, macosx), true)
    SA_CFLAGS := -Damd64 -D_GNU_SOURCE -mno-omit-leaf-frame-pointer \
        -mstack-alignment=16 -fPIC
-@@ -65,14 +62,12 @@
-     DISABLED_WARNINGS_microsoft := 4267, \
-     DISABLED_WARNINGS_gcc := sign-compare pointer-arith, \
-     DISABLED_WARNINGS_clang := sign-compare pointer-arith format-nonliteral, \
--    DISABLED_WARNINGS_CXX_solstudio := truncwarn unknownpragma doubunder, \
+@@ -65,10 +62,9 @@
      CFLAGS := $(CFLAGS_JDKLIB) $(SA_CFLAGS), \
      CXXFLAGS := $(CXXFLAGS_JDKLIB) $(SA_CFLAGS) $(SA_CXXFLAGS), \
      EXTRA_SRC := $(LIBSA_EXTRA_SRC), \
@@ -2735,26 +2595,6 @@
                      NativeCallStack(1, true) : NativeCallStack::empty_stack())
  
  class MemBaseline;
---- old/src/hotspot/share/utilities/count_trailing_zeros.hpp	2020-05-20 18:00:40.778856767 -0700
-+++ new/src/hotspot/share/utilities/count_trailing_zeros.hpp	2020-05-20 18:00:40.442850315 -0700
-@@ -87,17 +87,6 @@
- }
- 
- /*****************************************************************************
-- * Oracle Studio
-- *****************************************************************************/
--#elif defined(TARGET_COMPILER_solstudio)
--
--// No compiler built-in / intrinsic, so use inline assembler.
--
--#include "utilities/macros.hpp"
--
--#include OS_CPU_HEADER(count_trailing_zeros)
--
--/*****************************************************************************
-  * Unknown toolchain
-  *****************************************************************************/
- #else
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
 @@ -638,12 +638,11 @@
@@ -8282,177 +8122,6 @@
 -  echo "Creating $BUNDLE from $DEVKIT_ROOT"
 -  cd $DEVKIT_ROOT/..
 -  tar zcf $BUNDLE $DEVKIT_NAME
--else
--  echo "Skipping creation of $BUNDLE"
--fi
---- old/make/devkit/createSolarisDevkit12.6.sh	2020-05-20 18:08:15.167581362 -0700
-+++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,168 +0,0 @@
--#!/bin/bash
--#
--# Copyright (c) 2015, 2018, Oracle and/or its affiliates. All rights reserved.
--# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
--#
--# This code is free software; you can redistribute it and/or modify it
--# under the terms of the GNU General Public License version 2 only, as
--# published by the Free Software Foundation.  Oracle designates this
--# particular file as subject to the "Classpath" exception as provided
--# by Oracle in the LICENSE file that accompanied this code.
--#
--# This code is distributed in the hope that it will be useful, but WITHOUT
--# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
--# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
--# version 2 for more details (a copy is included in the LICENSE file that
--# accompanied this code).
--#
--# You should have received a copy of the GNU General Public License version
--# 2 along with this work; if not, write to the Free Software Foundation,
--# Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
--#
--# Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
--# or visit www.oracle.com if you need additional information or have any
--# questions.
--#
--
--# This script creates a devkit for building OpenJDK on Solaris by copying
--# part of a Solaris Studio installation and cretaing a sysroot by installing
--# a limited set of system packages. It is assumed that a suitable pkg
--# publisher is configured for the system where the script is executed.
--#
--# Note that you will need to be able to sudo to root to run the pkg install
--# part of this script. It should not affect the running system, but only
--# install in a separate temporary image.
--#
--# The Solaris Studio installation must contain at least these packages:
--#developer/developerstudio-126/backend                12.6-1.0.0.1
--#developer/developerstudio-126/c++                    12.6-1.0.2.0
--#developer/developerstudio-126/cc                     12.6-1.0.1.0
--#developer/developerstudio-126/dbx                    12.6-1.0.0.1
--#developer/developerstudio-126/library/c++-libs       12.6-1.0.2.0
--#developer/developerstudio-126/library/c-libs         12.6-1.0.0.1
--#developer/developerstudio-126/library/f90-libs       12.6-1.0.0.1
--#developer/developerstudio-126/library/math-libs      12.6-1.0.0.1
--#developer/developerstudio-126/library/studio-gccrt   12.6-1.0.0.1
--#developer/developerstudio-126/studio-common          12.6-1.0.0.1
--#developer/developerstudio-126/studio-ja              12.6-1.0.0.1
--#developer/developerstudio-126/studio-legal           12.6-1.0.0.1
--#developer/developerstudio-126/studio-zhCN            12.6-1.0.0.1
--#
--# erik.joelsson@oracle.com
--
--USAGE="$0 <Solaris Studio installation>"
--
--if [ "$1" = "" ]; then
--  echo $USAGE
--  exit 1
--fi
--
--SOLARIS_STUDIO_VERSION=12u6
--SOLARIS_VERSION=11u3
--SOLARIS_ENTIRE_VERSION=0.5.11-0.175.3.20.0.6.0
--case `uname -p` in
--  i*)
--    ARCH=x86
--    ;;
--  sparc*)
--    ARCH=sparc
--    ;;
--esac
--
--SOLARIS_STUDIO_SRC=$1
--
--SCRIPT_DIR="$(cd "$(dirname $0)" > /dev/null && pwd)"
--BUILD_DIR="${SCRIPT_DIR}/../../build/devkit"
--
--DEVKIT_NAME=SS${SOLARIS_STUDIO_VERSION}-Solaris${SOLARIS_VERSION}
--DEVKIT_ROOT=${BUILD_DIR}/${DEVKIT_NAME}
--BUNDLE_NAME=${DEVKIT_NAME}.tar.gz
--BUNDLE=${BUILD_DIR}/${BUNDLE_NAME}
--INSTALL_ROOT=${BUILD_DIR}/install-root-$SOLARIS_VERSION
--SYSROOT=${DEVKIT_ROOT}/sysroot
--SOLARIS_STUDIO_SUBDIR=SS${SOLARIS_STUDIO_VERSION}
--SOLARIS_STUDIO_DIR=${DEVKIT_ROOT}/${SOLARIS_STUDIO_SUBDIR}
--
--# Extract the publisher from the system
--if [ -z "${PUBLISHER_URI}" ]; then
--  PUBLISHER_URI="$(pkg publisher solaris | grep URI | awk '{ print $3 }')"
--fi
--
--if [ ! -d $INSTALL_ROOT ]; then
--  echo "Creating $INSTALL_ROOT and installing packages"
--  pkg image-create $INSTALL_ROOT
--  pkg -R $INSTALL_ROOT set-publisher -P -g ${PUBLISHER_URI} solaris
--  sudo pkg -R $INSTALL_ROOT install --accept entire@$SOLARIS_ENTIRE_VERSION \
--      system/install developer/gnu-binutils system/library/mmheap system/picl \
--      developer/assembler system/library/freetype-2
--else
--  echo "Skipping installing packages"
--fi
--
--if [ ! -d $SYSROOT ]; then
--  echo "Copying from $INSTALL_ROOT to $SYSROOT"
--  mkdir -p $SYSROOT
--  cp -rH $INSTALL_ROOT/lib $SYSROOT/
--  mkdir $SYSROOT/usr
--  cp -rH $INSTALL_ROOT/usr/lib $SYSROOT/usr/
--  cp -rH $INSTALL_ROOT/usr/include $SYSROOT/usr/
--  pkg -R $INSTALL_ROOT list > $SYSROOT/pkg-list.txt
--else
--  echo "Skipping copying to $SYSROOT"
--fi
--
--if [ ! -d $DEVKIT_ROOT/tools ]; then
--  # Some of the tools in sysroot are needed in the OpenJDK build. We need
--  # to copy them into a tools dir, including their specific libraries.
--  mkdir -p $DEVKIT_ROOT/tools/usr/bin $DEVKIT_ROOT/tools/lib/sparcv9 \
--      $DEVKIT_ROOT/tools/usr/gnu/bin $DEVKIT_ROOT/tools/usr/bin/sparcv9
--  cp $INSTALL_ROOT/usr/bin/{as,ar,nm,strip,ld,pigz,ldd} \
--       $DEVKIT_ROOT/tools/usr/bin/
--  cp $INSTALL_ROOT/usr/sbin/dtrace $DEVKIT_ROOT/tools/usr/bin/
--  cp $INSTALL_ROOT/usr/sbin/sparcv9/dtrace $DEVKIT_ROOT/tools/usr/bin/sparcv9/
--  cp -rH $INSTALL_ROOT/usr/gnu/bin/* $DEVKIT_ROOT/tools/usr/gnu/bin/
--  cp $INSTALL_ROOT/lib/sparcv9/{libelf.so*,libld.so*,liblddbg.so*} $DEVKIT_ROOT/tools/lib/sparcv9/
--  for t in $(ls $DEVKIT_ROOT/tools/usr/gnu/bin); do
--    if [ -f $DEVKIT_ROOT/tools/usr/gnu/bin/$t ]; then
--      ln -s ../gnu/bin/$t $DEVKIT_ROOT/tools/usr/bin/g$t
--    fi
--  done
--else
--  echo "Skipping copying to tools dir $DEVKIT_ROOT/tools"
--fi
--
--if [ ! -d $SOLARIS_STUDIO_DIR ]; then
--  echo "Copying Solaris Studio from $SOLARIS_STUDIO_SRC"
--  mkdir -p ${SOLARIS_STUDIO_DIR}
--  cp -rH $SOLARIS_STUDIO_SRC/. ${SOLARIS_STUDIO_DIR}/
--  # Solaris Studio 12.6 requires libmmheap.so.1 and libsunmath.so.1 to run, but
--  # these libs are not installed by default on all Solaris systems.
--  # Sneak them in from the sysroot to make it run OOTB on more systems.
--  cp $SYSROOT/lib/libsunmath.so.1 $SOLARIS_STUDIO_DIR/lib/compilers/sys/
--  cp $SYSROOT/lib/sparcv9/libsunmath.so.1 $SOLARIS_STUDIO_DIR/lib/compilers/sys/sparcv9/
--  cp $SYSROOT/lib/libmmheap.so.1 $SOLARIS_STUDIO_DIR/lib/compilers/sys/
--  cp $SYSROOT/lib/sparcv9/libmmheap.so.1 $SOLARIS_STUDIO_DIR/lib/compilers/sys/sparcv9/
--else
--  echo "Skipping copying of Solaris Studio"
--fi
--
--# Create the devkit.info file
--echo Creating devkit.info
--INFO_FILE=$DEVKIT_ROOT/devkit.info
--rm -f $INFO_FILE
--echo "# This file describes to configure how to interpret the contents of this devkit" >> $INFO_FILE
--echo "DEVKIT_NAME=\"Solaris Studio $SOLARIS_STUDIO_VERSION - Solaris $SOLARIS_VERSION - $ARCH\"" >> $INFO_FILE
--echo "DEVKIT_TOOLCHAIN_PATH=\"\$DEVKIT_ROOT/$SOLARIS_STUDIO_SUBDIR/bin:\$DEVKIT_ROOT/bin\"" >> $INFO_FILE
--echo "DEVKIT_EXTRA_PATH=\"\$DEVKIT_ROOT/tools/usr/bin\"" >> $INFO_FILE
--echo "DEVKIT_SYSROOT=\"\$DEVKIT_ROOT/sysroot\"" >> $INFO_FILE
--
--if [ ! -e $BUNDLE ]; then
--  GZIP=$(command -v pigz)
--  if [ -z "$GZIP" ]; then
--    GZIP="gzip"
--  fi
--  echo "Creating $BUNDLE from $DEVKIT_ROOT"
--  (cd $DEVKIT_ROOT && tar cf - . | $GZIP - > "$BUNDLE")
 -else
 -  echo "Skipping creation of $BUNDLE"
 -fi
@@ -21563,299 +21232,6 @@
 -}
 -
 -#endif /* SOLARIS */
---- old/src/hotspot/share/utilities/compilerWarnings_solstudio.hpp	2020-05-20 18:10:09.101768865 -0700
-+++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,30 +0,0 @@
--/*
-- * Copyright (c) 2019, Oracle and/or its affiliates. All rights reserved.
-- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-- *
-- * This code is free software; you can redistribute it and/or modify it
-- * under the terms of the GNU General Public License version 2 only, as
-- * published by the Free Software Foundation.
-- *
-- * This code is distributed in the hope that it will be useful, but WITHOUT
-- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-- * version 2 for more details (a copy is included in the LICENSE file that
-- * accompanied this code).
-- *
-- * You should have received a copy of the GNU General Public License version
-- * 2 along with this work; if not, write to the Free Software Foundation,
-- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
-- *
-- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
-- * or visit www.oracle.com if you need additional information or have any
-- * questions.
-- *
-- */
--
--#ifndef SHARE_UTILITIES_COMPILERWARNINGS_SOLSTUDIO_HPP
--#define SHARE_UTILITIES_COMPILERWARNINGS_SOLSTUDIO_HPP
--
--// Nothing here yet.
--
--#endif // SHARE_UTILITIES_COMPILERWARNINGS_SOLSTUDIO_HPP
---- old/src/hotspot/share/utilities/globalDefinitions_solstudio.hpp	2020-05-20 18:10:09.793782151 -0700
-+++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,257 +0,0 @@
--/*
-- * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
-- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-- *
-- * This code is free software; you can redistribute it and/or modify it
-- * under the terms of the GNU General Public License version 2 only, as
-- * published by the Free Software Foundation.
-- *
-- * This code is distributed in the hope that it will be useful, but WITHOUT
-- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-- * version 2 for more details (a copy is included in the LICENSE file that
-- * accompanied this code).
-- *
-- * You should have received a copy of the GNU General Public License version
-- * 2 along with this work; if not, write to the Free Software Foundation,
-- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
-- *
-- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
-- * or visit www.oracle.com if you need additional information or have any
-- * questions.
-- *
-- */
--
--#ifndef SHARE_UTILITIES_GLOBALDEFINITIONS_SOLSTUDIO_HPP
--#define SHARE_UTILITIES_GLOBALDEFINITIONS_SOLSTUDIO_HPP
--
--#include "jni.h"
--
--// This file holds compiler-dependent includes,
--// globally used constants & types, class (forward)
--// declarations and a few frequently used utility functions.
--
--
--# include <ctype.h>
--# include <string.h>
--# include <strings.h>     // for bsd'isms
--# include <stdarg.h>
--# include <stddef.h>      // for offsetof
--# include <stdio.h>
--# include <stdlib.h>
--# include <wchar.h>
--# include <stdarg.h>
--#ifdef SOLARIS
--# include <ieeefp.h>
--#endif
--# include <math.h>
--# include <time.h>
--# include <fcntl.h>
--# include <dlfcn.h>
--# include <pthread.h>
--#ifdef SOLARIS
--# include <thread.h>
--#endif
--# include <limits.h>
--# include <errno.h>
--#ifdef SOLARIS
--# include <sys/trap.h>
--# include <sys/regset.h>
--# include <sys/procset.h>
--# include <ucontext.h>
--# include <setjmp.h>
--#endif
--# ifdef SOLARIS_MUTATOR_LIBTHREAD
--# include <sys/procfs.h>
--# endif
--
--#include <inttypes.h>
--
--// Solaris 8 doesn't provide definitions of these
--#ifdef SOLARIS
--#ifndef PRIdPTR
--#if defined(_LP64)
--#define PRIdPTR                 "ld"
--#define PRIuPTR                 "lu"
--#define PRIxPTR                 "lx"
--#else
--#define PRIdPTR                 "d"
--#define PRIuPTR                 "u"
--#define PRIxPTR                 "x"
--#endif
--#endif
--#endif
--
--#ifdef LINUX
--# include <signal.h>
--# include <ucontext.h>
--# include <sys/time.h>
--#endif
--
--
--// 4810578: varargs unsafe on 32-bit integer/64-bit pointer architectures
--// When __cplusplus is defined, NULL is defined as 0 (32-bit constant) in
--// system header files.  On 32-bit architectures, there is no problem.
--// On 64-bit architectures, defining NULL as a 32-bit constant can cause
--// problems with varargs functions: C++ integral promotion rules say for
--// varargs, we pass the argument 0 as an int.  So, if NULL was passed to a
--// varargs function it will remain 32-bits.  Depending on the calling
--// convention of the machine, if the argument is passed on the stack then
--// only 32-bits of the "NULL" pointer may be initialized to zero.  The
--// other 32-bits will be garbage.  If the varargs function is expecting a
--// pointer when it extracts the argument, then we have a problem.
--//
--// Solution: For 64-bit architectures, redefine NULL as 64-bit constant 0.
--//
--// Note: this fix doesn't work well on Linux because NULL will be overwritten
--// whenever a system header file is included. Linux handles NULL correctly
--// through a special type '__null'.
--#ifdef SOLARIS
--#ifdef _LP64
--#undef NULL
--#define NULL 0L
--#else
--#ifndef NULL
--#define NULL 0
--#endif
--#endif
--#endif
--
--// NULL vs NULL_WORD:
--// On Linux NULL is defined as a special type '__null'. Assigning __null to
--// integer variable will cause gcc warning. Use NULL_WORD in places where a
--// pointer is stored as integer value. On some platforms, sizeof(intptr_t) >
--// sizeof(void*), so here we want something which is integer type, but has the
--// same size as a pointer.
--#ifdef LINUX
--  #ifdef _LP64
--    #define NULL_WORD  0L
--  #else
--    // Cast 0 to intptr_t rather than int32_t since they are not the same type
--    // on some platforms.
--    #define NULL_WORD  ((intptr_t)0)
--  #endif
--#else
--  #define NULL_WORD  NULL
--#endif
--
--#ifndef LINUX
--// Compiler-specific primitive types
--typedef unsigned short     uint16_t;
--#ifndef _UINT32_T
--#define _UINT32_T
--typedef unsigned int       uint32_t;
--#endif
--#if !defined(_SYS_INT_TYPES_H)
--#ifndef _UINT64_T
--#define _UINT64_T
--typedef unsigned long long uint64_t;
--#endif
--// %%%% how to access definition of intptr_t portably in 5.5 onward?
--typedef int                     intptr_t;
--typedef unsigned int            uintptr_t;
--// If this gets an error, figure out a symbol XXX that implies the
--// prior definition of intptr_t, and add "&& !defined(XXX)" above.
--#endif
--#endif
--
--// On solaris 8, UINTPTR_MAX is defined as empty.
--// Everywhere else it's an actual value.
--#if UINTPTR_MAX - 1 == -1
--#undef UINTPTR_MAX
--#ifdef _LP64
--#define UINTPTR_MAX UINT64_MAX
--#else
--#define UINTPTR_MAX UINT32_MAX
--#endif /* ifdef _LP64 */
--#endif
--
--// Additional Java basic types
--
--typedef unsigned char      jubyte;
--typedef unsigned short     jushort;
--typedef unsigned int       juint;
--typedef unsigned long long julong;
--
--
--#ifdef SOLARIS
--// ANSI C++ fixes
--// NOTE:In the ANSI committee's continuing attempt to make each version
--// of C++ incompatible with the previous version, you can no longer cast
--// pointers to functions without specifying linkage unless you want to get
--// warnings.
--//
--// This also means that pointers to functions can no longer be "hidden"
--// in opaque types like void * because at the invokation point warnings
--// will be generated. While this makes perfect sense from a type safety
--// point of view it causes a lot of warnings on old code using C header
--// files. Here are some typedefs to make the job of silencing warnings
--// a bit easier.
--//
--// The final kick in the teeth is that you can only have extern "C" linkage
--// specified at file scope. So these typedefs are here rather than in the
--// .hpp for the class (os:Solaris usually) that needs them.
--
--extern "C" {
--   typedef int (*int_fnP_thread_t_iP_uP_stack_tP_gregset_t)(thread_t, int*, unsigned *, stack_t*, gregset_t);
--   typedef int (*int_fnP_thread_t_i_gregset_t)(thread_t, int, gregset_t);
--   typedef int (*int_fnP_thread_t_i)(thread_t, int);
--   typedef int (*int_fnP_thread_t)(thread_t);
--
--   typedef int (*int_fnP_cond_tP_mutex_tP_timestruc_tP)(cond_t *cv, mutex_t *mx, timestruc_t *abst);
--   typedef int (*int_fnP_cond_tP_mutex_tP)(cond_t *cv, mutex_t *mx);
--
--   // typedef for missing API in libc
--   typedef int (*int_fnP_mutex_tP_i_vP)(mutex_t *, int, void *);
--   typedef int (*int_fnP_mutex_tP)(mutex_t *);
--   typedef int (*int_fnP_cond_tP_i_vP)(cond_t *cv, int scope, void *arg);
--   typedef int (*int_fnP_cond_tP)(cond_t *cv);
--};
--#endif
--
--// checking for nanness
--#ifdef SOLARIS
--#ifdef SPARC
--inline int g_isnan(float  f) { return isnanf(f); }
--#else
--// isnanf() broken on Intel Solaris use isnand()
--inline int g_isnan(float  f) { return isnand(f); }
--#endif
--
--inline int g_isnan(double f) { return isnand(f); }
--#elif LINUX
--inline int g_isnan(float  f) { return isnanf(f); }
--inline int g_isnan(double f) { return isnan(f); }
--#else
--#error "missing platform-specific definition here"
--#endif
--
--// Checking for finiteness
--
--inline int g_isfinite(jfloat  f)                 { return finite(f); }
--inline int g_isfinite(jdouble f)                 { return finite(f); }
--
--
--// Wide characters
--
--inline int wcslen(const jchar* x) { return wcslen((const wchar_t*)x); }
--
--// Formatting.
--#ifdef _LP64
--#define FORMAT64_MODIFIER "l"
--#else // !_LP64
--#define FORMAT64_MODIFIER "ll"
--#endif // _LP64
--
--#define offset_of(klass,field) offsetof(klass,field)
--
--#define THREAD_LOCAL __thread
--
--// Inlining support
--#define NOINLINE
--#define ALWAYSINLINE inline __attribute__((always_inline))
--
--// Alignment
--#define ATTRIBUTE_ALIGNED(x) __attribute__((aligned(x)))
--
--#endif // SHARE_UTILITIES_GLOBALDEFINITIONS_SOLSTUDIO_HPP
 --- old/src/java.base/solaris/classes/module-info.java.extra	2020-05-20 18:10:10.553796742 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,31 +0,0 @@
