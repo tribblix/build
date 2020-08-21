@@ -42,3 +42,4 @@
 -p1 openjdk16/illumos-port-5.patch
 -p1 openjdk16/illumos-cpu_microcode_revision.patch
 -p1 openjdk16/illumos-port-6.patch
+-p1 openjdk16/illumos-port-7.patch

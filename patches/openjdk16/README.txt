@@ -18,6 +18,18 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+12
+
+Fix the already defined warning for CS in
+src/hotspot/share/prims/methodHandles.cpp
+see illumos-port-7.patch
+
+ForceNUMA has disappeared, so don't use it
+src/hotspot/os/solaris/os_solaris.cpp
+
+Tidy up os::find in src/hotspot/os/solaris/os_solaris.cpp
+to silence format warnings (sync with linux version)
+
 In 16+10
 
 The ProcDebuggerLocal stuff was modified, underlying commit

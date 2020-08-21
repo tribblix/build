@@ -1643,15 +1643,15 @@
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
 @@ -464,9 +440,6 @@
- ifeq ($(call isTargetOs, linux macosx), true)
-   HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
- endif
--ifeq ($(call isTargetOs, solaris), true)
--  HARFBUZZ_CFLAGS += -DHAVE_SOLARIS_ATOMIC_OPS
--endif
- ifeq ($(call isTargetOs, macosx), true)
-   HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
- endif
+   ifeq ($(call isTargetOs, linux macosx), true)
+     HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
+   endif
+-  ifeq ($(call isTargetOs, solaris), true)
+-    HARFBUZZ_CFLAGS += -DHAVE_SOLARIS_ATOMIC_OPS
+-  endif
+   ifeq ($(call isTargetOs, macosx), true)
+     HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
+   endif
 @@ -626,10 +591,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
@@ -15494,9 +15494,8 @@
 -      size_t lgrp_num = os::numa_get_leaf_groups(lgrp_ids, lgrp_limit);
 -      FREE_C_HEAP_ARRAY(int, lgrp_ids);
 -      if (lgrp_num < 2) {
--        // There's only one locality group, disable NUMA unless
--        // user explicilty forces NUMA optimizations on single-node/UMA systems
--        UseNUMA = ForceNUMA;
+-        // There's only one locality group, disable NUMA
+-        UseNUMA = false;
 -      }
 -    }
 -  }
@@ -16082,11 +16081,12 @@
 -  Dl_info dlinfo;
 -  memset(&dlinfo, 0, sizeof(dlinfo));
 -  if (dladdr(addr, &dlinfo) != 0) {
--    st->print(PTR_FORMAT ": ", addr);
+-    st->print(PTR_FORMAT ": ", p2i(addr));
 -    if (dlinfo.dli_sname != NULL && dlinfo.dli_saddr != NULL) {
--      st->print("%s+%#lx", dlinfo.dli_sname, addr-(intptr_t)dlinfo.dli_saddr);
+-      st->print("%s+" PTR_FORMAT, dlinfo.dli_sname,
+-                p2i(addr) - p2i(dlinfo.dli_saddr));
 -    } else if (dlinfo.dli_fbase != NULL) {
--      st->print("<offset %#lx>", addr-(intptr_t)dlinfo.dli_fbase);
+-      st->print("<offset " PTR_FORMAT ">", p2i(addr) - p2i(dlinfo.dli_fbase));
 -    } else {
 -      st->print("<absolute address>");
 -    }
@@ -16094,7 +16094,7 @@
 -      st->print(" in %s", dlinfo.dli_fname);
 -    }
 -    if (dlinfo.dli_fbase != NULL) {
--      st->print(" at " PTR_FORMAT, dlinfo.dli_fbase);
+-      st->print(" at " PTR_FORMAT, p2i(dlinfo.dli_fbase));
 -    }
 -    st->cr();
 -
