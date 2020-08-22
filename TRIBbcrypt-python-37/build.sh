@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack bcrypt-3.1.7
-cd bcrypt-3.1.7
+${THOME}/build/unpack bcrypt-3.2.0
+cd bcrypt-3.2.0
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
