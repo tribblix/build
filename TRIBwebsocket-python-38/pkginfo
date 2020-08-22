@@ -1,0 +1,4 @@
+PKG="TRIBwebsocket-python-38"
+NAME="Python websocket_client"
+VERSION="0.57.0.0"
+ZAP_URL="https://pypi.org/project/websocket_client"
