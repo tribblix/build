@@ -9,11 +9,48 @@ i386)
   ;;
 esac
 
+VERSION="3.8"
+
+#
+# first strip out the tests
+#
+TESTDIR=/tmp/ptest.$$
+rm -fr $TESTDIR
+mkdir -p $TESTDIR
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/sqlite3/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/sqlite3/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib2to3/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/lib2to3/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/email/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/email/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/ctypes/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/ctypes/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/distutils/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/distutils/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_ctypes_test.so | ( cd $TESTDIR ; tar xf -)
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_testcapi.so | ( cd $TESTDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_ctypes_test.so
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_testcapi.so
+#
+# having copied them off, package them
+#
+$THOME/build/create_pkg TRIBv-python-38-tests $TESTDIR
+rm -fr $TESTDIR
+
 #
 # not yet the primary version, so only the version-specific
 # symlinks are created
 #
-VERSION="3.8"
 mkdir -p usr/bin
 mkdir -p usr/lib/${ARCH64}/pkgconfig
 cd usr/versions/python-${VERSION}/bin
