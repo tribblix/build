@@ -1,4 +1,4 @@
 PKG="TRIBblix-wg"
 NAME="wireguard vpn utilities"
-VERSION="1.0"
+VERSION="1.1"
 ZAP_URL="https://github.com/jclulow/wireguard-go-illumos-wip"
