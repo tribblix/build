@@ -4,15 +4,4 @@
 #
 mkdir -p usr/bin
 cd usr/bin
-cat > commix <<EOF
-#!/bin/sh
-cd /usr/versions/commix
-exec /usr/versions/python-3.7/bin/python ./commix.py "\$@"
-EOF
-chmod a+x commix
-#
-# clean up some junk
-#
-cd ../versions/commix
-rm -f .gitignore .travis.yml
-rm -fr .github
+ln -s ../../usr/versions/python-3.7/bin/commix .
