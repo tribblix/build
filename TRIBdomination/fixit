@@ -2,7 +2,6 @@
 #
 # put things in the right place
 #
-VERSION=1.2.0
 mkdir -p usr/bin usr/share/applications usr/share/pixmaps
 cd usr/versions
 rm -fr Domination/Map*
@@ -11,12 +10,12 @@ rm -f Domination/*.exe
 rm -f Domination/._*
 rm -f Domination/FlashGUI*
 rm -fr Domination/Domination.app
-mv Domination Domination-${VERSION}
+mv Domination Domination
 cd ../..
 cd usr/bin
 cat > domination << _EOF
 #!/bin/sh
-cd /usr/versions/Domination-${VERSION}
+cd /usr/versions/Domination
 java -jar Domination.jar "$@"
 _EOF
 chmod a+x domination
@@ -35,4 +34,4 @@ Type=Application
 Categories=Application;Game;
 _EOF
 cd ../../..
-cp usr/versions/Domination-${VERSION}/resources/icon.png usr/share/pixmaps/domination.png
+cp usr/versions/Domination/resources/icon.png usr/share/pixmaps/domination.png
