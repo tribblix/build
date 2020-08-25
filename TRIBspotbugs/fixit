@@ -1,5 +1,6 @@
 #!/bin/sh
-VERSION=3.1.12
+VERSION=4.1.2
 mkdir -p usr/bin
+chmod a+x usr/versions/spotbugs-${VERSION}/bin/spotbugs
 ln -s ../../usr/versions/spotbugs-${VERSION}/bin/spotbugs usr/bin
 cp ${THOME}/tarballs/findsecbugs-plugin-1.10.1.jar usr/versions/spotbugs-${VERSION}/plugin/
