@@ -2429,7 +2429,7 @@
                          "CodeEntryAlignment (" INTX_FORMAT ") must be "
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -413,7 +413,7 @@
+@@ -410,7 +410,7 @@
            "Trace external suspend wait failures")                           \
                                                                              \
    product(bool, MaxFDLimit, true,                                           \
@@ -2438,7 +2438,7 @@
                                                                              \
    diagnostic(bool, LogEvents, true,                                         \
            "Enable the various ring buffer event logs")                      \
-@@ -687,10 +687,6 @@
+@@ -684,10 +684,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2449,7 +2449,7 @@
    experimental(bool, DisablePrimordialThreadGuardPages, false,              \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -715,10 +711,6 @@
+@@ -712,10 +708,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2460,7 +2460,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1823,10 +1815,8 @@
+@@ -1830,10 +1822,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2473,7 +2473,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1851,7 +1841,6 @@
+@@ -1858,7 +1848,6 @@
            "The native priority at which compiler threads should run "       \
            "(-1 means no change)")                                           \
            range(min_jint, max_jint)                                         \
@@ -2481,7 +2481,7 @@
                                                                              \
    product(intx, VMThreadPriority, -1,                                       \
            "The native priority at which the VM thread should run "          \
-@@ -2389,8 +2378,7 @@
+@@ -2396,8 +2385,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -4024,7 +4024,7 @@
  /******************* Java entry points *****************************/
  
  /*
-@@ -1672,372 +1656,6 @@
+@@ -1674,372 +1658,6 @@
  
  #endif /* _AIX */
  
