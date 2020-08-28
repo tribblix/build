@@ -1,0 +1,4 @@
+PKG="TRIBxview"
+NAME="XView toolkit and clients"
+VERSION="3.2p1.4.0"
+ZAP_URL="https://github.com/ptribble/xview-illumos"
