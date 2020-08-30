@@ -1,0 +1,4 @@
+PKG="TRIBolvwm"
+NAME="olvwm - Open Look Virtual Window Manager"
+VERSION="4.1.0"
+ZAP_URL="https://github.com/ptribble/xview-illumos"
