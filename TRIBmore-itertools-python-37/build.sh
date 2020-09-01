@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack more-itertools-8.4.0
-cd more-itertools-8.4.0
+${THOME}/build/unpack more-itertools-8.5.0
+cd more-itertools-8.5.0
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
