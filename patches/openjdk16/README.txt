@@ -1,6 +1,8 @@
 This is originally derived from the pkgsrc-joyent set for openjdk11,
 considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
+See also README-zero.txt for patches to build a project zero variant.
+
 Most patches -p0
 
 JDK16:
