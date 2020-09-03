@@ -1,4 +1,4 @@
 PKG="TRIBphonenumbers-python-38"
 NAME="Python phonenumbers"
-VERSION="8.12.8.0"
+VERSION="8.12.9.0"
 ZAP_URL="https://pypi.org/project/phonenumbers"

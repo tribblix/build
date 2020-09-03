@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack phonenumbers-8.12.8
-cd phonenumbers-8.12.8
+${THOME}/build/unpack phonenumbers-8.12.9
+cd phonenumbers-8.12.9
 /usr/versions/python-3.8/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pil
