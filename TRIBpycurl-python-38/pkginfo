@@ -1,4 +1,4 @@
-PKG="TRIBpycurl-python-37"
+PKG="TRIBpycurl-python-38"
 NAME="Python pycurl"
 VERSION="7.43.0.6.0"
 ZAP_URL="https://pypi.org/project/pycurl"
