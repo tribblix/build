@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# we aren't Linux, and we don't have systemd
+#
+rm -fr usr/share/doc/gnupg/examples/systemd-user
+sed -i '/systemd/d' usr/share/doc/gnupg/examples/README

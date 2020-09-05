@@ -2,5 +2,5 @@
 #
 # gnupg2
 #
-${THOME}/build/dobuild gnupg-2.2.17 -C "--disable-ldap --enable-gpg-is-gpg2"
-${THOME}/build/genpkg TRIBgnupg2 gnupg-2.2.17
+${THOME}/build/dobuild gnupg-2.2.23 -C "--disable-ldap --enable-gpg-is-gpg2"
+${THOME}/build/genpkg TRIBgnupg2 gnupg-2.2.23
