@@ -1,4 +1,4 @@
 PKG="TRIBlibksba"
 NAME="Gnu libksba"
-VERSION="1.3.5.0"
+VERSION="1.4.0.0"
 ZAP_URL="https://www.gnupg.org/related_software/libksba/index.html"
