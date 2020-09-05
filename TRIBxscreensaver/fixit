@@ -10,3 +10,8 @@ chmod 4511 usr/bin/xscreensaver
 rm -f usr/libexec/xscreensaver/fireworkx
 rm -f usr/share/man/man6/fireworkx.6
 rm -f usr/share/xscreensaver/config/fireworkx.xml
+
+#
+# we don't ship the command, nor should we
+#
+rm -f usr/share/man/man1/xscreensaver-systemd.1
