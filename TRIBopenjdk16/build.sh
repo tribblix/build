@@ -1,14 +1,15 @@
 #!/bin/tcsh
 #
-# now a single tarball
+# jdk mainline has been migrated to git
+# go to https://github.com/openjdk/jdk/tags
 #
-cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk/jdk/archive/jdk-16+14.tar.bz2
-ln jdk-16+14.tar.bz2 jdk-jdk-16+14.tar.bz2
+#cd ${THOME}/tarballs
+#wget http://hg.openjdk.java.net/jdk/jdk/archive/jdk-16+14.tar.bz2
+#ln jdk-16+14.tar.bz2 jdk-jdk-16+14.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-16+14
-cd jdk-jdk-16+14
+${THOME}/build/unpack jdk-jdk-16+15
+cd jdk-jdk-16+15
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -51,8 +52,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "16-internal" 2021-03-16
-# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk-jdk-1614)
-# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk-jdk-1614, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk-jdk-1615)
+# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk-jdk-1615, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
