@@ -31,7 +31,7 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="3.6.1"
+VERSION="3.6.2"
 mv apache-zookeeper-${VERSION}-bin zookeeper
 
 #
