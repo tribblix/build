@@ -2,8 +2,8 @@
 #
 # i3 switched to autoconf, but a slightly funky way of doing it
 #
-env LIBS="-lsocket -lnsl -lgen" ${THOME}/build/dobuild i3-4.13 -M "-C i386-pc-solaris2.11"
-cd i3-4.13
+env LIBS="-lsocket -lnsl -lgen" ${THOME}/build/dobuild i3-4.18.2 -M "-C i386-pc-solaris2.11" -C --enable-mans
+cd i3-4.18.2
 rm -fr /tmp/i3
 cd i386-pc-solaris2.11
 gmake install DESTDIR=/tmp/i3
