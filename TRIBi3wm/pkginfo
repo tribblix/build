@@ -1,4 +1,4 @@
 PKG="TRIBi3wm"
 NAME="i3 tiling window manager"
 VERSION="4.13.0"
-ZAP_URL="http://i3wm.org/"
+ZAP_URL="https://i3wm.org/"
