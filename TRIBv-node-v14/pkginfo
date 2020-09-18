@@ -1,4 +1,4 @@
 PKG="TRIBv-node-v14"
 NAME="Node v14 Current"
-VERSION="14.9.0.0"
+VERSION="14.11.0.0"
 ZAP_URL="https://nodejs.org/"
