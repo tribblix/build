@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk16"
 NAME="OpenJDK 16 pre-release"
-VERSION="16.pre.15.0"
+VERSION="16.pre.16.0"
 ZAP_URL="http://openjdk.java.net/"

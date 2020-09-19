@@ -2025,7 +2025,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -462,7 +462,7 @@
+@@ -463,7 +463,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -2034,7 +2034,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -480,12 +480,6 @@
+@@ -481,12 +481,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -2287,7 +2287,7 @@
          }
 --- old/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -281,7 +281,7 @@
+@@ -282,7 +282,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -2298,7 +2298,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.990246402 -0700
 +++ new/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.654239951 -0700
-@@ -55,12 +55,10 @@
+@@ -56,12 +56,10 @@
  void VM_GC_Operation::notify_gc_begin(bool full) {
    HOTSPOT_GC_BEGIN(
                     full);
@@ -2394,7 +2394,7 @@
    }
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -410,7 +410,7 @@
+@@ -433,7 +433,7 @@
            "Trace external suspend wait failures")                           \
                                                                              \
    product(bool, MaxFDLimit, true,                                           \
@@ -2403,7 +2403,7 @@
                                                                              \
    diagnostic(bool, LogEvents, true,                                         \
            "Enable the various ring buffer event logs")                      \
-@@ -684,10 +684,6 @@
+@@ -707,10 +707,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2414,7 +2414,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -712,10 +708,6 @@
+@@ -735,10 +731,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2425,7 +2425,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1830,10 +1822,8 @@
+@@ -1852,10 +1844,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2438,14 +2438,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1858,6 +1848,6 @@
-           "The native priority at which compiler threads should run "       \
-           "(-1 means no change)")                                           \
-           range(min_jint, max_jint)                                         \
-                                                                             \
-   product(intx, VMThreadPriority, -1,                                       \
-           "The native priority at which the VM thread should run "          \
-@@ -2396,8 +2385,7 @@
+@@ -2413,8 +2402,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -5201,7 +5194,7 @@
  
 --- old/src/java.desktop/share/classes/javax/swing/UIManager.java	2020-05-20 18:01:40.480003072 -0700
 +++ new/src/java.desktop/share/classes/javax/swing/UIManager.java	2020-05-20 18:01:40.095995699 -0700
-@@ -672,9 +672,6 @@
+@@ -677,9 +677,6 @@
                      return "com.apple.laf.AquaLookAndFeel";
                  }
              }
@@ -6630,7 +6623,7 @@
          _writer = new BufferedWriter(writer, BUFFER_SIZE);
 --- old/src/jdk.aot/share/classes/jdk.tools.jaotc.binformat/src/jdk/tools/jaotc/binformat/BinaryContainer.java	2020-05-20 18:02:54.373421880 -0700
 +++ new/src/jdk.aot/share/classes/jdk.tools.jaotc.binformat/src/jdk/tools/jaotc/binformat/BinaryContainer.java	2020-05-20 18:02:53.973414200 -0700
-@@ -557,7 +557,6 @@
+@@ -577,7 +577,6 @@
          String osName = System.getProperty("os.name");
          switch (osName) {
              case "Linux":
@@ -10671,7 +10664,7 @@
 -#endif // OS_SOLARIS_OSTHREAD_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_perf_solaris.cpp	2020-05-20 18:09:33.261080763 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,820 +0,0 @@
+@@ -1,808 +0,0 @@
 -/*
 - * Copyright (c) 2012, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10766,18 +10759,6 @@
 -
 -static int get_psinfo(psinfo_t* info) {
 -  return get_psinfo2(info, sizeof(*info), 0);
--}
--
--static int get_psinfo(char* file, psinfo_t* info) {
--  assert(file != NULL, "file is NULL!");
--  assert(info != NULL, "info is NULL!");
--  return get_info(file, info, sizeof(*info), 0);
--}
--
--
--static int get_usage(prusage_t* usage) {
--  assert(usage != NULL, "usage is NULL!");
--  return get_info("/proc/self/usage", usage, sizeof(*usage), 0);
 -}
 -
 -static int read_cpustat(kstat_ctl_t* kstat_ctrl, CPUPerfTicks* load, cpu_stat_t* cpu_stat) {
