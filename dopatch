@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# applies patches from a patch list
+# for things that aren't unpacked from archives
+# such as the jdk repo checkouts
+#
+# uses a fully qualified name for the list, so it can be outside
+# the repo, but pulls the patches from the repo
+#
+THOME=${THOME:-/packages/localsrc/Tribblix}
+PATCHDIR="${THOME}/build/patches"
+GPATCH="/usr/bin/gpatch"
+
+case $# in
+1)
+    PATCHLIST=$1
+    ;;
+*)
+    echo "Usage: $0 patch_list"
+    exit 1
+    ;;
+esac
+
+if [ ! -f ${PATCHLIST} ]; then
+    echo "ERROR: cannot find patch list ${PATCHLIST}"
+    exit 1
+fi
+
+cat ${PATCHLIST} | while read patcharg patchfile
+do
+    ${GPATCH} ${patcharg/+/ } -i ${PATCHDIR}/${patchfile}
+done
+
