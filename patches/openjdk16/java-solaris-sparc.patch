@@ -5670,7 +5670,7 @@
                  continue;
 --- old/src/java.desktop/share/classes/sun/font/Type1Font.java	2020-05-20 18:01:52.356231105 -0700
 +++ new/src/java.desktop/share/classes/sun/font/Type1Font.java	2020-05-20 18:01:51.968223655 -0700
-@@ -168,7 +168,6 @@
+@@ -167,7 +167,6 @@
          throws FontFormatException {
          super(platname, nativeNames);
          fontRank = Font2D.TYPE1_RANK;
@@ -11520,7 +11520,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,5225 +0,0 @@
+@@ -1,5226 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11568,6 +11568,7 @@
 -#include "runtime/arguments.hpp"
 -#include "runtime/atomic.hpp"
 -#include "runtime/globals.hpp"
+-#include "runtime/globals_extension.hpp"
 -#include "runtime/interfaceSupport.inline.hpp"
 -#include "runtime/java.hpp"
 -#include "runtime/javaCalls.hpp"
@@ -21042,7 +21043,7 @@
 -
 --- old/src/hotspot/share/services/dtraceAttacher.cpp	2020-05-20 18:10:08.361754658 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,132 +0,0 @@
+@@ -1,133 +0,0 @@
 -/*
 - * Copyright (c) 2006, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -21075,12 +21076,13 @@
 -#include "runtime/vmThread.hpp"
 -#include "runtime/vmOperations.hpp"
 -#include "services/dtraceAttacher.hpp"
+-#include "runtime/flags/jvmFlagAccess.hpp"
 -
 -#ifdef SOLARIS
 -
 -static void set_bool_flag(const char* name, bool value) {
 -  JVMFlag* flag = JVMFlag::find_flag(name);
--  JVMFlag::boolAtPut(flag, &value, JVMFlag::ATTACH_ON_DEMAND);
+-  JVMFlagAccess::boolAtPut(flag, &value, JVMFlag::ATTACH_ON_DEMAND);
 -}
 -
 -// Enable only the "fine grained" flags. Do *not* touch

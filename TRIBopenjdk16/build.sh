@@ -4,9 +4,13 @@
 # go to https://github.com/openjdk/jdk/tags
 #
 
+#
+# the tag is 16+xx, the filename is 16-xx
+#
+
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-16-16
-cd jdk-jdk-16-16
+${THOME}/build/unpack jdk-jdk-16-17
+cd jdk-jdk-16-17
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -48,8 +52,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "16-internal" 2021-03-16
-# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-16)
-# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-16, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-17)
+# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-17, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
