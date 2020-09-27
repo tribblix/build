@@ -1,0 +1,2 @@
+-p1 xf86-video-intel.04.patch
+-p1 xf86-video-intel.05.patch

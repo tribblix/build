@@ -1,0 +1,4 @@
+PKG="TRIBxorg-driver-input-keyboard"
+NAME="Xorg keyboard driver"
+VERSION="1.9.0.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/driver/"

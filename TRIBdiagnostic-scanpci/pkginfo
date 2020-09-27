@@ -1,0 +1,4 @@
+PKG="TRIBdiagnostic-scanpci"
+NAME="libpciaccess and scanpci"
+VERSION="0.14.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/lib/"

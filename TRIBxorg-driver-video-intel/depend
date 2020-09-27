@@ -1,0 +1,6 @@
+P TRIBdiagnostic-scanpci
+P TRIBlib-graphics-pixman
+P TRIBlibxcb
+P TRIBx11-libx11
+P TRIBx11-libxvmc
+P TRIBx11-server-xorg

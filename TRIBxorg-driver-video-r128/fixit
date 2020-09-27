@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# we don't ship .la files for base libraries
+#
+/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
+#
+# don't ship documentr128on
+#
+/usr/bin/rm -fr usr/share/doc

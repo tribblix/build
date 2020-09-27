@@ -1,0 +1,4 @@
+PKG="TRIBx11-server-xorg"
+NAME="Xorg server"
+VERSION="1.16.4.0"
+ZAP_URL="https://www.x.org/"

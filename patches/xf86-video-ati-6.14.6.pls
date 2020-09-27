@@ -1,0 +1,1 @@
+-p1 xf86-video-ati.01.patch

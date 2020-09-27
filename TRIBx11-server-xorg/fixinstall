@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# we need to ship this so hal can find the devices correctly
+#
+mkdir -p ${DESTDIR}/etc/hal/fdi/preprobe/10osvendor
+cp config/x11-input.fdi ${DESTDIR}/etc/hal/fdi/preprobe/10osvendor/10-x11-input.fdi

@@ -1,0 +1,4 @@
+PKG="TRIBx11-lib-mesa"
+NAME="mesa"
+VERSION="13.0.6.0"
+ZAP_URL="https://www.mesa3d.org/"

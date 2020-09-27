@@ -1,0 +1,4 @@
+PKG="TRIBxorg-driver-video-vesa"
+NAME="Xorg vesa driver"
+VERSION="2.4.0.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/driver/"

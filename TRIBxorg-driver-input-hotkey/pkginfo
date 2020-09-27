@@ -1,0 +1,3 @@
+PKG="TRIBxorg-driver-input-hotkey"
+NAME="Xorg ACPI hotkey driver"
+VERSION="1.0"

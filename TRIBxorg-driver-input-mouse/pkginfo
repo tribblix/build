@@ -1,0 +1,4 @@
+PKG="TRIBxorg-driver-input-mouse"
+NAME="Xorg mouse driver"
+VERSION="1.9.3.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/driver/"

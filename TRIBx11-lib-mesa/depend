@@ -1,0 +1,11 @@
+P TRIBlib-expat
+P TRIBlib-security-openssl
+P TRIBlibxcb
+P TRIBx11-lib-toolkit-libxt
+P TRIBx11-libx11
+P TRIBx11-libxau
+P TRIBx11-libxdamage
+P TRIBx11-libxdmcp
+P TRIBx11-libxext
+P TRIBx11-libxfixes
+P TRIBx11-libxxf86vm

@@ -1,0 +1,4 @@
+-p1 xf86-input-mouse.01.patch
+-p1 xf86-input-mouse.02.patch
+-p1 xf86-input-mouse.03.patch
+-p1 xf86-input-mouse.04.patch

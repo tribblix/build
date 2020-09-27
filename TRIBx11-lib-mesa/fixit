@@ -1,0 +1,74 @@
+#!/bin/sh
+#
+# we don't ship .la files for base libraries
+#
+/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
+#
+# or static libraries by default
+#
+/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.a'`
+#
+# don't ship documentation
+#
+/usr/bin/rm -fr usr/share/doc
+#
+# this will remove the directory if it's empty
+# if there are manpages, then it will have no effect
+#
+/usr/bin/rmdir usr/share
+#
+# workarounds for applications we don't have
+#
+rm -f etc/drirc
+rmdir etc
+#
+# we now have to shuffle a bunch of stuff around
+# this is all tied up with TRIBsvc-opengl-ogl-select
+#
+# headers
+#
+mv usr/include/GL usr/include/mesa
+mkdir -p usr/include/GL/internal
+cd usr/include/GL
+ln -s ../mesa/osmesa.h osmesa.h
+cd internal
+ln -s ../../mesa/internal/dri_interface.h dri_interface.h
+cd ..
+ln -s ../mesa/GLw* .
+ln -s ../mesa/glu.h .
+cd ../../..
+#
+# libraries really end up in /usr/lib/mesa
+#
+mkdir -p usr/lib/mesa/amd64
+mv usr/lib/amd64/lib* usr/lib/mesa/amd64
+mv usr/lib/lib* usr/lib/mesa
+rm -f usr/lib/64
+ln -s amd64 usr/lib/mesa/64
+#
+# but there's a population in /usr/lib/GL
+#
+mkdir -p usr/lib/GL/amd64
+cd usr/lib/GL
+ln -s ../mesa/libglapi.so* .
+ln -s ../mesa/libgbm.so* .
+ln -s ../mesa/libGLU.so* .
+ln -s ../mesa/libGLw.so* .
+cd amd64
+ln -s ../../mesa/amd64/libglapi.so* .
+ln -s ../../mesa/amd64/libgbm.so* .
+ln -s ../../mesa/amd64/libGLU.so* .
+ln -s ../../mesa/amd64/libGLw.so* .
+cd ../../../..
+#
+# and some symlinks in the default places
+#
+cd usr/lib
+ln -s GL/libGLU* .
+ln -s GL/libGLw* .
+ln -s GL/libglapi.* .
+cd amd64
+ln -s ../GL/amd64/libGLU* .
+ln -s ../GL/amd64/libGLw* .
+ln -s ../GL/amd64/libglapi.* .
+cd ../../..

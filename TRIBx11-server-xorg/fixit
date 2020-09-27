@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+rm -f `find usr -name '*.la'`
+#
+# this is shipped by TRIBx11-server-xserver-common
+#
+rm -f usr/bin/X

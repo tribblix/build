@@ -1,0 +1,8 @@
+P TRIBdiagnostic-scanpci
+P TRIBlib-graphics-pixman
+P TRIBlibxcb
+P TRIBsvc-hal
+P TRIBsys-libdbus
+P TRIBx11-lib-mesa
+P TRIBx11-libxau
+P TRIBx11-libxdmcp

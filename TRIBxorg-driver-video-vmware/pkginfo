@@ -1,0 +1,4 @@
+PKG="TRIBxorg-driver-video-vmware"
+NAME="Xorg vmware driver"
+VERSION="13.3.0.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/driver/"

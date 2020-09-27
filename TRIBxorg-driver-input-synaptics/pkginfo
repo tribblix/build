@@ -1,0 +1,4 @@
+PKG="TRIBxorg-driver-input-synaptics"
+NAME="Xorg synaptics driver"
+VERSION="1.9.1.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/driver/"
