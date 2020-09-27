@@ -1,4 +1,4 @@
 PKG="TRIBregex-python-37"
 NAME="Python regex"
-VERSION="2020.7.14.0"
+VERSION="2020.9.27.0"
 ZAP_URL="https://pypi.org/project/regex"

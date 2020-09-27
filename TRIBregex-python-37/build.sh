@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack regex-2020.7.14
-cd regex-2020.7.14
+${THOME}/build/unpack regex-2020.9.27
+cd regex-2020.9.27
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
