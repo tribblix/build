@@ -1,0 +1,15 @@
+--- a/libxfsm/xfsm-shutdown-common.h	Sun May  5 23:00:21 2019
++++ b/libxfsm/xfsm-shutdown-common.h	Thu Apr 30 21:35:31 2020
+@@ -70,4 +70,12 @@
+ #define UP_BACKEND_HIBERNATE_COMMAND "/usr/sbin/ZZZ"
+ #endif
+ 
++/*
++ * Need to be defined for the code to compile, but shouldn't be used.
++ */
++#if defined(sun) || defined(__sun)
++#define UP_BACKEND_SUSPEND_COMMAND "/bin/false"
++#define UP_BACKEND_HIBERNATE_COMMAND "/bin/false"
++#endif
++
+ #endif /* __XFSM_SHUTDOWN_COMMON_H_ */

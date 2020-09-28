@@ -166,12 +166,10 @@ ln -s libxfce4util.so.7.0.0 libxfce4util.so.6
 cd $MYDIR
 cd usr/etc/xdg/xfce4
 mv xinitrc tt1
-head -89 tt1 > xinitrc
-cat >> xinitrc <<EOF
-eval `grep '^TZ=' /etc/default/init`
-export TZ
-EOF
-tail +89 tt1 >> xinitrc
+head -80 tt1 > xinitrc
+echo eval \`grep \'^TZ=\' /etc/default/init\` >> xinitrc
+echo export TZ >> xinitrc
+tail +80 tt1 >> xinitrc
 rm tt1
 cd $MYDIR
 cd usr/share ; ln -s lib/zoneinfo .
