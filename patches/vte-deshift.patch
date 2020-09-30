@@ -1,0 +1,38 @@
+--- a/src/vte.cc~	Tue Mar 15 15:23:06 2016
++++ b/src/vte.cc	Wed Sep 30 17:06:16 2020
+@@ -5088,7 +5088,7 @@
+ 		case GDK_KEY_KP_Page_Up:
+ 		case GDK_KEY_Page_Up:
+ 			if (terminal->pvt->screen == &terminal->pvt->normal_screen
+-			    && modifiers & GDK_SHIFT_MASK) {
++			    /* && modifiers & GDK_SHIFT_MASK */ ) {
+ 				vte_terminal_scroll_pages(terminal, -1);
+ 				scrolled = TRUE;
+ 				handled = TRUE;
+@@ -5098,7 +5098,7 @@
+ 		case GDK_KEY_KP_Page_Down:
+ 		case GDK_KEY_Page_Down:
+ 			if (terminal->pvt->screen == &terminal->pvt->normal_screen
+-			    && modifiers & GDK_SHIFT_MASK) {
++			    /* && modifiers & GDK_SHIFT_MASK */) {
+ 				vte_terminal_scroll_pages(terminal, 1);
+ 				scrolled = TRUE;
+ 				handled = TRUE;
+@@ -5108,7 +5108,7 @@
+ 		case GDK_KEY_KP_Home:
+ 		case GDK_KEY_Home:
+ 			if (terminal->pvt->screen == &terminal->pvt->normal_screen
+-			    && modifiers & GDK_SHIFT_MASK) {
++			    /* && modifiers & GDK_SHIFT_MASK */) {
+ 				vte_terminal_maybe_scroll_to_top(terminal);
+ 				scrolled = TRUE;
+ 				handled = TRUE;
+@@ -5117,7 +5117,7 @@
+ 		case GDK_KEY_KP_End:
+ 		case GDK_KEY_End:
+ 			if (terminal->pvt->screen == &terminal->pvt->normal_screen
+-			    && modifiers & GDK_SHIFT_MASK) {
++			    /* && modifiers & GDK_SHIFT_MASK */) {
+ 				vte_terminal_maybe_scroll_to_bottom(terminal);
+ 				scrolled = TRUE;
+ 				handled = TRUE;
