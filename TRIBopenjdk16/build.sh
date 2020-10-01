@@ -9,8 +9,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-16-17
-cd jdk-jdk-16-17
+${THOME}/build/unpack jdk-jdk-16-18
+cd jdk-jdk-16-18
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -36,7 +36,7 @@ zap install autoconf
 # ports, so we need to explicitly re-enable it
 #
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk14 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk15 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
@@ -52,8 +52,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "16-internal" 2021-03-16
-# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-17)
-# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-17, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-18)
+# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-18, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

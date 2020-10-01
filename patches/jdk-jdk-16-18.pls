@@ -22,7 +22,6 @@
 -p0 openjdk16/patch-src_hotspot_share_utilities_globalDefinitions__gcc.hpp
 -p0 openjdk16/patch-src_java.base_solaris_native_libnio_ch_DevPollArrayWrapper.c
 -p0 openjdk16/patch-src_java.desktop_share_native_libsplashscreen_libpng_pngpriv.h
--p0 openjdk16/patch-src_jdk.crypto.ec_share_native_libsunec_ECC__JNI.cpp
 -p0 openjdk16/tribblix-LauncherCommon.patch
 -p0 openjdk16/tribblix-agent-mt.patch
 -p0 openjdk16/tribblix-attachListener_solaris.patch

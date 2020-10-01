@@ -1071,11 +1071,11 @@
              jdk_suffix: "zip",
 @@ -983,7 +961,6 @@
      var devkit_platform_revisions = {
-         linux_x64: "gcc9.2.0-OL6.4+1.0",
+         linux_x64: "gcc10.2.0-OL6.4+1.0",
          macosx_x64: "Xcode11.3.1-MacOSX10.15+1.0",
 -        solaris_x64: "SS12u4-Solaris11u1+1.0",
-         windows_x64: "VS2019-16.5.3+1.0",
-         linux_aarch64: "gcc9.2.0-OL7.6+1.0",
+         windows_x64: "VS2019-16.7.2+1.0",
+         linux_aarch64: "gcc10.2.0-OL7.6+1.0",
          linux_arm: "gcc8.2.0-Fedora27+1.0",
 --- old/make/hotspot/gensrc/GensrcAdlc.gmk	2020-05-20 17:58:54.036807242 -0700
 +++ new/make/hotspot/gensrc/GensrcAdlc.gmk	2020-05-20 17:58:53.652799869 -0700
@@ -6730,16 +6730,6 @@
          }
          debug(keyword + ": " + lib);
  
---- old/src/jdk.crypto.ec/share/legal/ecc.md	2020-05-20 18:03:00.845546149 -0700
-+++ new/src/jdk.crypto.ec/share/legal/ecc.md	2020-05-20 18:03:00.453538623 -0700
-@@ -13,7 +13,6 @@
- Cryptography library, you may delete the Elliptic Curve Cryptography library by 
- removing:
- 
--      Solaris:  $(JAVA_HOME)/lib/libsunec.so
-       Linux:    $(JAVA_HOME)/lib/libsunec.so
-       macOS:    $(JAVA_HOME)/lib/libsunec.dylib
-       Windows:  $(JAVA_HOME)\bin\sunec.dll
 --- old/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:09.173706056 -0700
 +++ new/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:08.789698683 -0700
 @@ -39,7 +39,6 @@
@@ -11520,7 +11510,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,5226 +0,0 @@
+@@ -1,5223 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -13907,19 +13897,16 @@
 -  return mmap_chunk(addr, bytes, flags, PROT_NONE);
 -}
 -
--char* os::pd_reserve_memory(size_t bytes, char* requested_addr,
--                            size_t alignment_hint) {
--  char* addr = Solaris::anon_mmap(requested_addr, bytes, alignment_hint,
--                                  (requested_addr != NULL));
+-char* os::pd_reserve_memory(size_t bytes, size_t alignment_hint) {
+-  char* addr = Solaris::anon_mmap(NULL, bytes, alignment_hint,
+-                                  false);
 -
--  guarantee(requested_addr == NULL || requested_addr == addr,
--            "OS failed to return requested mmap address.");
 -  return addr;
 -}
 -
--char* os::pd_attempt_reserve_memory_at(size_t bytes, char* requested_addr, int file_desc) {
+-char* os::pd_attempt_reserve_memory_at(char* requested_addr, size_t bytes, int file_desc) {
 -  assert(file_desc >= 0, "file_desc is not valid");
--  char* result = pd_attempt_reserve_memory_at(bytes, requested_addr);
+-  char* result = pd_attempt_reserve_memory_at(requested_addr, bytes);
 -  if (result != NULL) {
 -    if (replace_existing_mapping_with_file_mapping(result, bytes, file_desc) == NULL) {
 -      vm_exit_during_initialization(err_msg("Error in mapping Java heap at the given filesystem directory"));
@@ -13931,7 +13918,7 @@
 -// Reserve memory at an arbitrary address, only if that area is
 -// available (and not reserved for something else).
 -
--char* os::pd_attempt_reserve_memory_at(size_t bytes, char* requested_addr) {
+-char* os::pd_attempt_reserve_memory_at(char* requested_addr, size_t bytes) {
 -  // Assert only that the size is a multiple of the page size, since
 -  // that's all that mmap requires, and since that's all we really know
 -  // about at this low abstraction level.  If we need higher alignment,
@@ -20904,7 +20891,7 @@
 -void JavaThread::cache_global_variables() { }
 --- old/src/hotspot/os_cpu/solaris_x86/thread_solaris_x86.hpp	2020-05-20 18:10:06.173712649 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,62 +0,0 @@
+@@ -1,59 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -20938,9 +20925,6 @@
 -  frame pd_last_frame();
 -
 - public:
--  // Mutators are highly dangerous....
--  intptr_t* last_Java_fp()                       { return _anchor.last_Java_fp(); }
--  void  set_last_Java_fp(intptr_t* fp)           { _anchor.set_last_Java_fp(fp);   }
 -
 -  void set_base_of_stack_pointer(intptr_t* base_sp)  {}
 -

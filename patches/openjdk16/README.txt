@@ -20,6 +20,21 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+18
+
+remove src/jdk.crypto.ec/share/legal/ecc.md from the patch, as it no
+longer exists
+
+remove patch-src_jdk.crypto.ec_share_native_libsunec_ECC__JNI.cpp
+
+In thread_solaris_x86.hpp, remove last_Java_fp and set_last_Java_fp
+
+pd_reserve_memory and friends signatures have changed
+pd_attempt_reserve_memory_at
+TODO: clean up anon_mmap
+
+Boot jdk has to be 15 as of 16+18
+
 In 16+12
 
 Fix the already defined warning for CS in
@@ -99,7 +114,7 @@ as it's merged into the main patch
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk14 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk15 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
