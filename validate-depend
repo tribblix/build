@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# verify that packages listed as dependencies actually exist
+#
+
+#
+# some packages depend explictly on illumos
+# which isn't present here, so try and catch those
+# guess the version off the current host
+#
+ILVER=$(uname -v)
+ILVER=${ILVER##tribblix-}
+ILREL=${ILVER/m/}
+
+#
+# just walk through all the depend files
+#
+for dep in `cat */depend | sort | uniq | awk '{print $2}'`
+do
+    if [ ! -d $dep ]; then
+	if [ ! -f ../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap ]; then
+	    echo "Missing dependency $dep"
+	fi
+    fi
+done
