@@ -1,3 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/newbuild.sh both TRIBlinks-browser
+${THOME}/build/dobuild links-2.21 -C "--enable-graphics --without-openmp"
+${THOME}/build/genpkg TRIBlinks-browser links-2.21

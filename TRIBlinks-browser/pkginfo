@@ -1,4 +1,4 @@
 PKG="TRIBlinks-browser"
 NAME="Links web browser"
-VERSION="2.20.2.0"
+VERSION="2.21.0"
 ZAP_URL="http://links.twibright.com/"
