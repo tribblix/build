@@ -1,0 +1,4 @@
+PKG="TRIBtabulate-python-38"
+NAME="Python tabulate"
+VERSION="0.8.7.0"
+ZAP_URL="https://pypi.org/project/tabulate"
