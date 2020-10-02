@@ -1,0 +1,2 @@
+-p1 chimera-common-tmpl.patch
+-p1 chimera-image-png.patch
