@@ -1,0 +1,4 @@
+PKG="TRIBxorg-driver-video-openchrome"
+NAME="Xorg openchrome driver"
+VERSION="0.6.0.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/driver/"
