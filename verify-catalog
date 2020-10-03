@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# verify a catalog
+# really for a manually maintained catalog, like sparc,
+# to catch packages that have been removed
+#
+case $# in
+    1)
+	CFILE=$1
+	;;
+    *)
+	echo "Usage: $1 catalog"
+	exit 1
+	;;
+esac
+
+if [ ! -f $CFILE ]; then
+    echo "ERROR: $CFILE not found"
+    exit 1
+fi
+
+#
+# assume we're in the build directory
+#
+for pkg in `awk -F'|' '{print $1}' $CFILE`
+do
+    if [ ! -d $pkg ]; then
+	echo "WARN: missing package $pkg"
+    fi
+done
