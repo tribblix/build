@@ -13,4 +13,4 @@ CXXFLAGS="-m64 -O2"
 gmake -j
 cd ..
 
-${THOME}/build/genpkg TRIBxorg-driver-video-cirrus xf86-video-vboxvideo-1.0.0
+${THOME}/build/genpkg TRIBxorg-driver-video-vbox xf86-video-vboxvideo-1.0.0
