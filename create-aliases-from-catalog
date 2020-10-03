@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# alias catalog format is
+#  alias|pkgname
+#
+# really for a manually maintained catalog, like sparc,
+#
+
+builtin cat
+
+case $# in
+    1)
+	CFILE=$1
+	;;
+    *)
+	echo "Usage: $1 catalog"
+	exit 1
+	;;
+esac
+
+if [ ! -f $CFILE ]; then
+    echo "ERROR: $CFILE not found"
+    exit 1
+fi
+
+#
+# assume we're in the build directory
+#
+for PKG in `awk -F'|' '{print $1}' $CFILE`
+do
+    PKGI=${PKG}/alias
+    if [ -f $PKGI ]; then	    
+	for PALIAS in `cat $PKGI`
+	do
+	    echo "${PALIAS}|${PKG}"
+	done
+    fi
+done
