@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# put a convenience link in the normal PATH
+#
+PYVERS=3.8
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/python-${PYVERS}/bin/container-transform .
