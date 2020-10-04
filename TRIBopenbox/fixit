@@ -3,3 +3,14 @@
 # replace the menu with something more appropriate
 #
 cp ${BUILDROOT}/patches/openbox-menu.xml usr/etc/xdg/openbox/menu.xml
+#
+# remove gnome and kde support, as we have neither
+#
+rm -f usr/bin/openbox-kde-session
+rm -f usr/share/man/man1/openbox-kde-session.1
+rm -f usr/share/xsessions/openbox-kde.desktop
+rm -fr usr/share/gnome-session
+rm -f usr/bin/openbox-gnome-session
+rm -f usr/share/man/man1/openbox-gnome-session.1
+rm -f usr/share/xsessions/openbox-gnome.desktop
+rm -fr usr/share/gnome

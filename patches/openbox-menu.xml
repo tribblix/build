@@ -66,7 +66,7 @@
 <menu id="apps-term-menu" label="Terminals">
   <item label="Xfce Terminal">
     <action name="Execute">
-      <command>Terminal</command>
+      <command>xfce4-terminal</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
@@ -78,7 +78,9 @@
     </action>
   </item>
   <item label="Xterm">
-    <action name="Execute"><command>xterm</command></action>
+    <action name="Execute">
+      <command>xterm</command>
+    </action>
   </item>
 </menu>
 
