@@ -1,0 +1,4 @@
+PKG="TRIBhtml2text-python-38"
+NAME="Python html2text"
+VERSION="2020.1.16.0"
+ZAP_URL="https://pypi.org/project/html2text"
