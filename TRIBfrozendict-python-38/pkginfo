@@ -1,0 +1,4 @@
+PKG="TRIBfrozendict-python-38"
+NAME="Python frozendict"
+VERSION="1.2.0"
+ZAP_URL="https://pypi.org/project/frozendict"
