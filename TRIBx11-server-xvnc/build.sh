@@ -8,9 +8,9 @@ TOPDIR=`pwd`
 
 #
 # must build the client first
-# can't be out for tree otherwise the server build is confused
+# can't be out of tree otherwise the server build is confused
 #
-env PATH=/usr/gnu/bin:$PATH cmake -DCMAKE_INSTALL_PREFIX=/usr -G "Unix Makefiles" ..
+env PATH=/usr/gnu/bin:$PATH cmake -DCMAKE_INSTALL_PREFIX=/usr -G "Unix Makefiles" .
 gmake -j
 
 #
