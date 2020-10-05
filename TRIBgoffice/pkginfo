@@ -1,4 +1,4 @@
 PKG="TRIBgoffice"
 NAME="GOffice support library"
-VERSION="0.8.17.5"
+VERSION="0.10.48.0"
 ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/goffice/"
