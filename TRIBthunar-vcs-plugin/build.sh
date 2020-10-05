@@ -2,5 +2,5 @@
 #
 #
 #
-${THOME}/build/dobuild -gnu thunar-vcs-plugin-0.1.5
-${THOME}/build/genpkg TRIBthunar-vcs-plugin thunar-vcs-plugin-0.1.5
+${THOME}/build/dobuild -gnu thunar-vcs-plugin-0.2.0
+${THOME}/build/genpkg TRIBthunar-vcs-plugin thunar-vcs-plugin-0.2.0
