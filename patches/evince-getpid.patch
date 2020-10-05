@@ -1,0 +1,11 @@
+--- a/libdocument/ev-file-helpers.c	Thu Jan 31 03:03:59 2019
++++ b/libdocument/ev-file-helpers.c	Mon Oct  5 20:42:21 2020
+@@ -94,7 +94,7 @@
+                 const gchar *prgname;
+ 
+                 prgname = g_get_prgname ();
+-                dirname = g_strdup_printf ("%s-%u", prgname ? prgname : "unknown", getpid ());
++                dirname = g_strdup_printf ("%s-%u", prgname ? prgname : "unknown", (unsigned int)getpid ());
+                 tmp_dir = g_build_filename (g_get_tmp_dir (), dirname, NULL);
+                 g_free (dirname);
+         }
