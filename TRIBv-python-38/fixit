@@ -48,6 +48,28 @@ $THOME/build/create_pkg TRIBv-python-38-tests $TESTDIR
 rm -fr $TESTDIR
 
 #
+# next strip out the idle/tkinter components so base python doesn't
+# drag in tk and x11
+#
+PTKDIR=/tmp/ptkidle.$$
+mkdir -p $PTKDIR
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter.so | ( cd $PTKDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter.so
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter | ( cd $PTKDIR ; tar xf -)
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib | ( cd $PTKDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib
+tar cf - usr/versions/python-${VERSION}/bin/idle* | ( cd $PTKDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/bin/idle*
+mkdir -p $PTKDIR/usr/bin
+ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} $PTKDIR/usr/bin
+#
+# having copied them off, package them
+#
+$THOME/build/create_pkg TRIBv-python-38-tkinter $PTKDIR
+rm -fr $PTKDIR
+
+#
 # not yet the primary version, so only the version-specific
 # symlinks are created
 #
@@ -68,7 +90,7 @@ ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION}-config .
 ln -s ../../usr/versions/python-${VERSION}/bin/pydoc${VERSION} .
 #ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv-${VERSION} .
-ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} .
+#ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
 #
 # symlinks for general version
