@@ -1,0 +1,99 @@
+#!/bin/sh
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+VERSION="3.9"
+
+#
+# first strip out the tests
+#
+TESTDIR=/tmp/ptest.$$
+rm -fr $TESTDIR
+mkdir -p $TESTDIR
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/sqlite3/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/sqlite3/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib2to3/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/lib2to3/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/email/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/email/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/ctypes/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/ctypes/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/distutils/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/distutils/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_ctypes_test.so | ( cd $TESTDIR ; tar xf -)
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_testcapi.so | ( cd $TESTDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_ctypes_test.so
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_testcapi.so
+#
+# having copied them off, package them
+#
+$THOME/build/create_pkg TRIBv-python-39-tests $TESTDIR
+rm -fr $TESTDIR
+
+#
+# not yet the primary version, so only the version-specific
+# symlinks are created
+#
+mkdir -p usr/bin
+mkdir -p usr/lib/${ARCH64}/pkgconfig
+cd usr/versions/python-${VERSION}/bin
+ln -s python${VERSION} python
+cd ../../../..
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python${VERSION}.1 .
+cd ../../../..
+cd usr/bin
+#
+# symlinks for specific version
+#
+ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION} .
+ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION}-config .
+ln -s ../../usr/versions/python-${VERSION}/bin/pydoc${VERSION} .
+#ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv-${VERSION} .
+ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} .
+ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
+#
+# symlinks for general version
+#
+##ln -s ../../usr/versions/python-${VERSION}/bin/python3 .
+##ln -s ../../usr/versions/python-${VERSION}/bin/python3-config .
+##ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
+##ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv .
+##ln -s ../../usr/versions/python-${VERSION}/bin/idle3 .
+##ln -s ../../usr/versions/python-${VERSION}/bin/pip3 .
+#
+# python has its objects in paths without the 64-bit names
+# otherwise "Could not find platform dependent libraries <exec_prefix>"
+# but the system paths should be 64-bit
+#
+cd ../lib
+##cd $ARCH64
+##ln -s ../../versions/python-${VERSION}/lib/libpython3* .
+##cd ..
+cd $ARCH64
+cd pkgconfig
+ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}.pc .
+ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}-embed.pc .
+cd ..
+
+cd ../../versions/python-${VERSION}/lib/python${VERSION}/site-packages
+tar cf setuptools.tar setuptools
+rm -fr setuptools
