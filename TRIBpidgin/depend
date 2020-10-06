@@ -1,6 +1,8 @@
+P TRIBfarstream
 P TRIBgdk-pixbuf
 P TRIBgnutls
 P TRIBgstreamer1
+P TRIBgstreamer1-plugins-base
 P TRIBgtkspell
 P TRIBlib-desktop-atk
 P TRIBlib-desktop-cairo
@@ -13,4 +15,5 @@ P TRIBsys-libdbus
 P TRIBsys-libdbus-glib
 P TRIBx11-libice
 P TRIBx11-libsm
+P TRIBx11-libx11
 P TRIBx11-libxscrnsaver
