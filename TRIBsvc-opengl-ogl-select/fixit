@@ -1,0 +1,91 @@
+#!/bin/sh
+#
+# populate the package by hand
+#
+FDIR=${BUILDROOT}/patches/opengl-select
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+# these are the files
+mkdir -p usr/share/man/man1
+cp ${FDIR}/ogl-select.1 usr/share/man/man1
+chmod 0444 usr/share/man/man1/ogl-select.1
+
+mkdir -p lib/svc/method
+cp ${FDIR}/ogl-select lib/svc/method
+chmod 0555 lib/svc/method/ogl-select
+
+mkdir -p lib/svc/manifest/application/opengl
+cp ${FDIR}/ogl-select.xml lib/svc/manifest/application/opengl
+chmod 0444 lib/svc/manifest/application/opengl/ogl-select.xml
+
+mkdir -p lib/opengl/ogl_select
+cp ${FDIR}/mesa_vendor_select lib/opengl/ogl_select
+cp ${FDIR}/nvidia_vendor_select lib/opengl/ogl_select
+chmod 0555 lib/opengl/ogl_select/*
+
+# populate some symbolic links
+mkdir -p usr/X11/lib/${ARCH64}
+cd usr/X11/lib
+ln -s ${ARCH64} 64
+ln -s ../../lib/GL GL
+cd ${ARCH64}
+ln -s libGL.so.1 libGL.so
+ln -s ../GL/${ARCH64}/libGL.so.1 libGL.so.1
+cd ..
+ln -s libGL.so.1 libGL.so
+ln -s GL/libGL.so.1 libGL.so.1
+cd ../../..
+
+mkdir -p usr/include/GL
+cd usr/include/GL
+ln -s ../../../var/run/opengl/include/gl.h .
+ln -s ../../../var/run/opengl/include/glx.h .
+ln -s ../../../var/run/opengl/include/glext.h .
+ln -s ../../../var/run/opengl/include/glxext.h .
+cd ../../..
+
+mkdir -p usr/lib/${ARCH64}
+mkdir -p usr/lib/GL/${ARCH64}
+cd usr/lib/${ARCH64}
+ln -s libGL.so.1 libGL.so
+ln -s libEGL.so.1 libEGL.so
+ln -s ../GL/${ARCH64}/libGL.so.1 libGL.so.1
+ln -s ../GL/${ARCH64}/libEGL.so.1 libEGL.so.1
+cd ../../..
+cd usr/lib/GL/${ARCH64}
+ln -s libGL.so.1 libGL.so
+ln -s libEGL.so.1 libEGL.so
+ln -s ../../../../var/run/opengl/lib/${ARCH64}/libGL.so.1 .
+ln -s ../../../../var/run/opengl/lib/${ARCH64}/libEGL.so.1 .
+cd ../../../..
+cd usr/lib/GL
+ln -s libGL.so.1 libGL.so
+ln -s libEGL.so.1 libEGL.so
+ln -s ../../../var/run/opengl/lib/libGL.so.1 .
+ln -s ../../../var/run/opengl/lib/libEGL.so.1 .
+ln -s ${ARCH64} 64
+cd ../../..
+cd usr/lib
+ln -s libGL.so.1 libGL.so
+ln -s libEGL.so.1 libEGL.so
+ln -s GL/libGL.so.1 libGL.so.1
+ln -s GL/libEGL.so.1 libEGL.so.1
+cd ../..
+
+#FIXME
+# The old version symlinked the Xorg modules
+# /usr/lib/xorg/modules/extensions/amd64/libglx.so
+# to
+# /var/run/opengl/server/amd64/libglx.so
+#
+# I don't do that, because my mesa does things differently
+# but it does mean that if someone were to install the nvidia module
+# then it wouldn't pick up their glx extension module

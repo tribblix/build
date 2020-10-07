@@ -1,0 +1,3 @@
+PKG="TRIBsvc-opengl-ogl-select"
+NAME="OpenGL selection service"
+VERSION="1.0"
