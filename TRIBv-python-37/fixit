@@ -38,6 +38,29 @@ rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_testcapi.
 $THOME/build/create_pkg TRIBv-python-37-tests $TESTDIR
 rm -fr $TESTDIR
 
+#
+# next strip out the idle/tkinter components so base python doesn't
+# drag in tk and x11
+#
+PTKDIR=/tmp/ptkidle.$$
+mkdir -p $PTKDIR
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter.so | ( cd $PTKDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter.so
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter | ( cd $PTKDIR ; tar xf -)
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib | ( cd $PTKDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib
+tar cf - usr/versions/python-${VERSION}/bin/idle* | ( cd $PTKDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/bin/idle*
+mkdir -p $PTKDIR/usr/bin
+ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} $PTKDIR/usr/bin
+ln -s ../../usr/versions/python-${VERSION}/bin/idle3 $PTKDIR/usr/bin
+#
+# having copied them off, package them
+#
+$THOME/build/create_pkg TRIBv-python-37-tkinter $PTKDIR
+rm -fr $PTKDIR
+
 mkdir -p usr/bin
 mkdir -p usr/lib/pkgconfig
 cd usr/versions/python-${VERSION}/bin
@@ -56,7 +79,7 @@ ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION}-config .
 ln -s ../../usr/versions/python-${VERSION}/bin/pydoc${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv-${VERSION} .
-ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} .
+#ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
 #
 # symlinks for general version
@@ -65,7 +88,7 @@ ln -s ../../usr/versions/python-${VERSION}/bin/python3 .
 ln -s ../../usr/versions/python-${VERSION}/bin/python3-config .
 ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
 ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv .
-ln -s ../../usr/versions/python-${VERSION}/bin/idle3 .
+#ln -s ../../usr/versions/python-${VERSION}/bin/idle3 .
 ln -s ../../usr/versions/python-${VERSION}/bin/pip3 .
 cd ../lib
 ln -s ../versions/python-${VERSION}/lib/libpython3* .
