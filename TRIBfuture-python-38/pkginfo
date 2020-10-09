@@ -1,0 +1,4 @@
+PKG="TRIBfuture-python-38"
+NAME="Python future"
+VERSION="0.18.2.0"
+ZAP_URL="https://pypi.org/project/future"
