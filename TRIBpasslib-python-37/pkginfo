@@ -1,4 +1,4 @@
 PKG="TRIBpasslib-python-37"
 NAME="Python passlib"
-VERSION="1.7.3.0"
+VERSION="1.7.4.0"
 ZAP_URL="https://pypi.org/project/passlib"
