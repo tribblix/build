@@ -16,7 +16,7 @@
  src/hotspot/share : hotspot/src/share/vm
  src/hotspot/cpu/aarch64 : hotspot/src/cpu/aarch64/vm
  src/hotspot/cpu/arm : hotspot/src/cpu/arm/vm
-@@ -114,7 +112,6 @@
+@@ -115,7 +112,6 @@
  src/hotspot/os/linux : hotspot/src/os/linux/vm
  src/hotspot/os/posix/dtrace : hotspot/src/os/posix/dtrace
  src/hotspot/os/posix : hotspot/src/os/posix/vm
@@ -24,7 +24,7 @@
  src/hotspot/os/windows : hotspot/src/os/windows/vm
  src/hotspot/os_cpu/aix_ppc : hotspot/src/os_cpu/aix_ppc/vm
  src/hotspot/os_cpu/bsd_x86 : hotspot/src/os_cpu/bsd_x86/vm
-@@ -125,7 +122,6 @@
+@@ -124,7 +120,6 @@
  src/hotspot/os_cpu/linux_s390 : hotspot/src/os_cpu/linux_s390/vm
  src/hotspot/os_cpu/linux_x86 : hotspot/src/os_cpu/linux_x86/vm
  src/hotspot/os_cpu/linux_zero : hotspot/src/os_cpu/linux_zero/vm
@@ -393,9 +393,9 @@
 -    fi
 -  elif test "x$TOOLCHAIN_TYPE" = xmicrosoft; then
 +  if test "x$TOOLCHAIN_TYPE" = xmicrosoft; then
-     if test "x$FLAGS_CPU" = xaarch64; then
-       $1_DEFINES_CPU_JDK="${$1_DEFINES_CPU_JDK} -D_ARM64_ -Darm64"
-     elif test "x$FLAGS_CPU" = xx86_64; then
+     if test "x$FLAGS_CPU" = xx86_64; then
+       $1_DEFINES_CPU_JDK="${$1_DEFINES_CPU_JDK} -D_AMD64_ -Damd64"
+     else
 --- old/make/autoconf/flags-other.m4	2020-05-20 17:58:32.576395187 -0700
 +++ new/make/autoconf/flags-other.m4	2020-05-20 17:58:32.200387967 -0700
 @@ -47,12 +47,10 @@
@@ -414,7 +414,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xaix; then
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -274,7 +274,7 @@
+@@ -291,7 +291,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -423,7 +423,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -287,7 +287,7 @@
+@@ -304,7 +304,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -1463,7 +1463,7 @@
        SRC := $(TOPDIR)/src/$(MODULE)/unix/native/jspawnhelper, \
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
-@@ -52,7 +52,6 @@
+@@ -47,7 +47,6 @@
      LDFLAGS_windows := -delayload:secur32.dll -delayload:iphlpapi.dll, \
      LIBS_unix := -ljvm -ljava, \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -1490,7 +1490,7 @@
  
 --- old/make/modules/java.base/gensrc/GensrcMisc.gmk	2020-05-20 17:59:11.161136042 -0700
 +++ new/make/modules/java.base/gensrc/GensrcMisc.gmk	2020-05-20 17:59:10.769128515 -0700
-@@ -110,21 +110,6 @@
+@@ -104,21 +104,6 @@
  
  endif
  
@@ -1542,7 +1542,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -214,7 +208,6 @@
+@@ -215,7 +209,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -2025,7 +2025,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -458,7 +458,7 @@
+@@ -463,7 +463,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -2034,7 +2034,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -476,12 +476,6 @@
+@@ -481,12 +481,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -2047,7 +2047,39 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -803,7 +797,7 @@
+@@ -1278,13 +1257,7 @@
+ bool os::signal_thread(Thread* thread, int sig, const char* reason) {
+   OSThread* osthread = thread->osthread();
+   if (osthread) {
+-#if defined (SOLARIS)
+-    // Note: we cannot use pthread_kill on Solaris - not because
+-    // its missing, but because we do not have the pthread_t id.
+-    int status = thr_kill(osthread->thread_id(), sig);
+-#else
+     int status = pthread_kill(osthread->pthread_id(), sig);
+-#endif
+     if (status == 0) {
+       Events::log(Thread::current(), "sent signal %d to Thread " INTPTR_FORMAT " because %s.",
+                   sig, p2i(thread), reason);
+@@ -1305,8 +1278,6 @@
+    return Bsd::ucontext_get_pc(ctx);
+ #elif defined(LINUX)
+    return Linux::ucontext_get_pc(ctx);
+-#elif defined(SOLARIS)
+-   return Solaris::ucontext_get_pc(ctx);
+ #else
+    VMError::report_and_die("unimplemented ucontext_get_pc");
+ #endif
+@@ -1319,8 +1290,6 @@
+    Bsd::ucontext_set_pc(ctx, pc);
+ #elif defined(LINUX)
+    Linux::ucontext_set_pc(ctx, pc);
+-#elif defined(SOLARIS)
+-   Solaris::ucontext_set_pc(ctx, pc);
+ #else
+    VMError::report_and_die("unimplemented ucontext_get_pc");
+ #endif
+@@ -1425,7 +1394,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -2056,7 +2088,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     JavaThread::stack_guard_zone_size() +
-@@ -1007,8 +1001,7 @@
+@@ -1635,11 +1604,9 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -2065,8 +2097,19 @@
 +  os::PlatformMutex::init();
  }
  
+-#ifndef SOLARIS
+ sigset_t sigs;
+ struct sigaction sigact[NSIG];
+ 
+@@ -1655,7 +1622,6 @@
+   sigact[sig] = oldAct;
+   sigaddset(&sigs, sig);
+ }
+-#endif
+ 
  // Not all POSIX types and API's are available on all notionally "posix"
-@@ -1120,7 +1096,6 @@
+ // platforms. If we have build-time support then we will check for actual
+@@ -1740,7 +1706,6 @@
  
    pthread_init_common();
  
@@ -2074,7 +2117,7 @@
    int status;
    if (_pthread_condattr_setclock != NULL && _clock_gettime != NULL) {
      if ((status = _pthread_condattr_setclock(_condAttr, CLOCK_MONOTONIC)) != 0) {
-@@ -1135,12 +1100,9 @@
+@@ -1755,12 +1720,9 @@
        _use_clock_monotonic_condattr = true;
      }
    }
@@ -2087,15 +2130,15 @@
    log_info(os)("Use of CLOCK_MONOTONIC is%s supported",
                 (_clock_gettime != NULL ? "" : " not"));
    log_info(os)("Use of pthread_condattr_setclock is%s supported",
-@@ -1148,7 +1110,6 @@
-                (_pthread_condattr_setclock != NULL ? "" : " not"));
+@@ -1768,7 +1730,6 @@
    log_info(os)("Relative timed-wait using pthread_cond_timedwait is associated with %s",
                 _use_clock_monotonic_condattr ? "CLOCK_MONOTONIC" : "the default clock");
+   sigemptyset(&sigs);
 -#endif // !SOLARIS
  }
  
  #else // !SUPPORTS_CLOCK_MONOTONIC
-@@ -1158,11 +1119,9 @@
+@@ -1778,12 +1739,10 @@
  }
  
  void os::Posix::init_2(void) {
@@ -2103,11 +2146,12 @@
    log_info(os)("Use of CLOCK_MONOTONIC is not supported");
    log_info(os)("Use of pthread_condattr_setclock is not supported");
    log_info(os)("Relative timed-wait using pthread_cond_timedwait is associated with the default clock");
+   sigemptyset(&sigs);
 -#endif // !SOLARIS
  }
  
  #endif // SUPPORTS_CLOCK_MONOTONIC
-@@ -1304,7 +1263,6 @@
+@@ -1924,7 +1883,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -2115,7 +2159,7 @@
  
  // PlatformEvent
  //
-@@ -1736,5 +1694,3 @@
+@@ -2356,5 +2314,3 @@
      return OS_OK;
    }
  }
@@ -2123,7 +2167,7 @@
 -#endif // !SOLARIS
 --- old/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:44.033767220 -0700
 +++ new/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:43.649759847 -0700
-@@ -134,8 +134,6 @@
+@@ -172,8 +172,6 @@
    sigjmp_buf _jmpbuf;
  };
  
@@ -2132,7 +2176,7 @@
  /*
   * This is the platform-specific implementation underpinning
   * the ParkEvent class, which itself underpins Java-level monitor
-@@ -298,6 +296,4 @@
+@@ -336,6 +334,4 @@
    void notify_all();
  };
  
@@ -2267,6 +2311,17 @@
  }
  
  // Allocations may fail in several threads at about the same time,
+--- old/src/hotspot/share/gc/shenandoah/shenandoahConcurrentRoots.cpp	2020-05-20 18:00:11.090286725 -0700
++++ new/src/hotspot/share/gc/shenandoah/shenandoahConcurrentRoots.cpp	2020-05-20 18:00:10.754280273 -0700
+@@ -37,7 +37,7 @@
+ }
+ 
+ bool ShenandoahConcurrentRoots::can_do_concurrent_class_unloading() {
+-#if (defined(X86) || defined(AARCH64)) && !defined(SOLARIS)
++#if (defined(X86) || defined(AARCH64))
+   return ShenandoahCodeRootsStyle == 2 &&
+          ClassUnloading;
+ #else
 --- old/src/hotspot/share/prims/jvmti.xml	2020-05-20 18:00:25.638566062 -0700
 +++ new/src/hotspot/share/prims/jvmti.xml	2020-05-20 18:00:25.266558920 -0700
 @@ -426,8 +426,8 @@
@@ -2420,7 +2475,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -459,7 +459,7 @@
+@@ -450,7 +450,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2429,7 +2484,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -786,10 +786,8 @@
+@@ -776,10 +776,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -2499,7 +2554,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -641,12 +641,11 @@
+@@ -638,12 +638,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -5511,7 +5566,7 @@
      }
  
      public int getNumGlyphs() {
-@@ -140,62 +134,31 @@
+@@ -141,62 +135,31 @@
      }
  
      public int charToGlyph(char unicode) {
@@ -5576,7 +5631,7 @@
  
              if (code >= HI_SURROGATE_START &&
                  code <= HI_SURROGATE_END && i < count - 1) {
-@@ -214,11 +177,6 @@
+@@ -215,11 +178,6 @@
              }
              glyphs[i] = getGlyphFromCMAP(code);
  
@@ -5588,7 +5643,7 @@
          }
      }
  
-@@ -230,12 +188,7 @@
+@@ -231,12 +189,7 @@
      public boolean charsToGlyphsNS(int count, char[] unicodes, int[] glyphs) {
  
          for (int i=0; i<count; i++) {
@@ -5602,7 +5657,7 @@
  
              if (code >= HI_SURROGATE_START &&
                  code <= HI_SURROGATE_END && i < count - 1) {
-@@ -250,10 +203,6 @@
+@@ -251,10 +204,6 @@
              }
  
              glyphs[i] = getGlyphFromCMAP(code);
@@ -6789,9 +6844,9 @@
  import sun.jvm.hotspot.types.*;
 -import sun.jvm.hotspot.runtime.solaris_x86.SolarisX86JavaThreadPDAccess;
 -import sun.jvm.hotspot.runtime.solaris_amd64.SolarisAMD64JavaThreadPDAccess;
- import sun.jvm.hotspot.runtime.win32_x86.Win32X86JavaThreadPDAccess;
  import sun.jvm.hotspot.runtime.win32_amd64.Win32AMD64JavaThreadPDAccess;
- import sun.jvm.hotspot.runtime.win32_aarch64.Win32AARCH64JavaThreadPDAccess;
+ import sun.jvm.hotspot.runtime.win32_x86.Win32X86JavaThreadPDAccess;
+ import sun.jvm.hotspot.runtime.linux_x86.LinuxX86JavaThreadPDAccess;
 @@ -98,13 +94,7 @@
  
          access = null;
@@ -10452,7 +10507,7 @@
 -#endif // OS_SOLARIS_GLOBALS_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/osThread_solaris.cpp	2020-05-20 18:09:31.813052962 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,47 +0,0 @@
+@@ -1,53 +0,0 @@
 -/*
 - * Copyright (c) 1998, 2014, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10500,9 +10555,15 @@
 -
 -void OSThread::pd_destroy() {
 -}
+-
+-// copied from synchronizer.cpp
+-
+-void OSThread::SR_handler(Thread* thread, ucontext_t* uc) {
+-  os::Solaris::SR_handler(thread, uc);
+-}
 --- old/src/hotspot/os/solaris/osThread_solaris.hpp	2020-05-20 18:09:32.557067247 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,93 +0,0 @@
+@@ -1,88 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10571,20 +10632,15 @@
 -  void set_native_priority(int prio) { _native_priority = prio; }
 -
 - public:
--  pthread_t pthread_id() const {
--    // Here: same as OSThread::thread_id()
--    return _thread_id;
--  }
 -  os::SuspendResume sr;
 -
 - private:
--  void* _siginfo;
 -  ucontext_t* _ucontext;
 -
 - public:
--  void set_siginfo(void* ptr)             { _siginfo = ptr;   }
 -  ucontext_t* ucontext() const { return _ucontext; }
 -  void set_ucontext(ucontext_t* ptr) { _ucontext = ptr; }
+-  static void SR_handler(Thread* thread, ucontext_t* uc);
 -
 -  // ***************************************************************
 -  // Platform dependent initialization and cleanup
@@ -11454,7 +11510,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4429 +0,0 @@
+@@ -1,5223 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11522,7 +11578,6 @@
 -#include "services/attachListener.hpp"
 -#include "services/memTracker.hpp"
 -#include "services/runtimeService.hpp"
--#include "signals_posix.hpp"
 -#include "utilities/align.hpp"
 -#include "utilities/decoder.hpp"
 -#include "utilities/defaultStream.hpp"
@@ -11610,6 +11665,8 @@
 -
 -// For diagnostics to print a message once. see run_periodic_checks
 -static bool check_addr0_done = false;
+-static sigset_t check_signal_done;
+-static bool check_signals = true;
 -
 -address os::Solaris::handler_start;  // start pc of thr_sighndlrinfo
 -address os::Solaris::handler_end;    // end pc of thr_sighndlrinfo
@@ -12056,7 +12113,7 @@
 -  assert(osthr->get_state() == RUNNABLE, "invalid os thread state");
 -
 -  // initialize signal mask for this thread
--  PosixSignals::hotspot_sigmask(thread);
+-  os::Solaris::hotspot_sigmask(thread);
 -
 -  os::Solaris::init_thread_fpu_state();
 -  std::set_terminate(_handle_uncaught_cxx_exception);
@@ -12109,6 +12166,26 @@
 -  return osthread;
 -}
 -
+-void os::Solaris::hotspot_sigmask(Thread* thread) {
+-  //Save caller's signal mask
+-  sigset_t sigmask;
+-  pthread_sigmask(SIG_SETMASK, NULL, &sigmask);
+-  OSThread *osthread = thread->osthread();
+-  osthread->set_caller_sigmask(sigmask);
+-
+-  pthread_sigmask(SIG_UNBLOCK, os::Solaris::unblocked_signals(), NULL);
+-  if (!ReduceSignalUsage) {
+-    if (thread->is_VM_thread()) {
+-      // Only the VM thread handles BREAK_SIGNAL ...
+-      pthread_sigmask(SIG_UNBLOCK, vm_signals(), NULL);
+-    } else {
+-      // ... all other threads block BREAK_SIGNAL
+-      assert(!sigismember(vm_signals(), SIGINT), "SIGINT should not be blocked");
+-      pthread_sigmask(SIG_BLOCK, vm_signals(), NULL);
+-    }
+-  }
+-}
+-
 -bool os::create_attached_thread(JavaThread* thread) {
 -#ifdef ASSERT
 -  thread->verify_not_published();
@@ -12124,7 +12201,7 @@
 -
 -  // initialize signal mask for this thread
 -  // and save the caller's signal mask
--  PosixSignals::hotspot_sigmask(thread);
+-  os::Solaris::hotspot_sigmask(thread);
 -
 -  log_info(os, thread)("Thread attached (tid: " UINTX_FORMAT ").",
 -    os::current_thread_id());
@@ -12150,7 +12227,7 @@
 -
 -  // initialize signal mask for this thread
 -  // and save the caller's signal mask
--  PosixSignals::hotspot_sigmask(thread);
+-  os::Solaris::hotspot_sigmask(thread);
 -
 -  return true;
 -}
@@ -12291,6 +12368,68 @@
 -
 -  // The thread is returned suspended (in state INITIALIZED), and is started higher up in the call chain
 -  return true;
+-}
+-
+-debug_only(static bool signal_sets_initialized = false);
+-static sigset_t unblocked_sigs, vm_sigs;
+-
+-void os::Solaris::signal_sets_init() {
+-  // Should also have an assertion stating we are still single-threaded.
+-  assert(!signal_sets_initialized, "Already initialized");
+-  // Fill in signals that are necessarily unblocked for all threads in
+-  // the VM. Currently, we unblock the following signals:
+-  // SHUTDOWN{1,2,3}_SIGNAL: for shutdown hooks support (unless over-ridden
+-  //                         by -Xrs (=ReduceSignalUsage));
+-  // BREAK_SIGNAL which is unblocked only by the VM thread and blocked by all
+-  // other threads. The "ReduceSignalUsage" boolean tells us not to alter
+-  // the dispositions or masks wrt these signals.
+-  // Programs embedding the VM that want to use the above signals for their
+-  // own purposes must, at this time, use the "-Xrs" option to prevent
+-  // interference with shutdown hooks and BREAK_SIGNAL thread dumping.
+-  // (See bug 4345157, and other related bugs).
+-  // In reality, though, unblocking these signals is really a nop, since
+-  // these signals are not blocked by default.
+-  sigemptyset(&unblocked_sigs);
+-  sigaddset(&unblocked_sigs, SIGILL);
+-  sigaddset(&unblocked_sigs, SIGSEGV);
+-  sigaddset(&unblocked_sigs, SIGBUS);
+-  sigaddset(&unblocked_sigs, SIGFPE);
+-  sigaddset(&unblocked_sigs, ASYNC_SIGNAL);
+-
+-  if (!ReduceSignalUsage) {
+-    if (!os::Posix::is_sig_ignored(SHUTDOWN1_SIGNAL)) {
+-      sigaddset(&unblocked_sigs, SHUTDOWN1_SIGNAL);
+-    }
+-    if (!os::Posix::is_sig_ignored(SHUTDOWN2_SIGNAL)) {
+-      sigaddset(&unblocked_sigs, SHUTDOWN2_SIGNAL);
+-    }
+-    if (!os::Posix::is_sig_ignored(SHUTDOWN3_SIGNAL)) {
+-      sigaddset(&unblocked_sigs, SHUTDOWN3_SIGNAL);
+-    }
+-  }
+-  // Fill in signals that are blocked by all but the VM thread.
+-  sigemptyset(&vm_sigs);
+-  if (!ReduceSignalUsage) {
+-    sigaddset(&vm_sigs, BREAK_SIGNAL);
+-  }
+-  debug_only(signal_sets_initialized = true);
+-
+-  // For diagnostics only used in run_periodic_checks
+-  sigemptyset(&check_signal_done);
+-}
+-
+-// These are signals that are unblocked while a thread is running Java.
+-// (For some reason, they get blocked by default.)
+-sigset_t* os::Solaris::unblocked_signals() {
+-  assert(signal_sets_initialized, "Not initialized");
+-  return &unblocked_sigs;
+-}
+-
+-// These are the signals that are blocked while a (non-VM) thread is
+-// running Java. Only the VM thread handles these signals.
+-sigset_t* os::Solaris::vm_signals() {
+-  assert(signal_sets_initialized, "Not initialized");
+-  return &vm_sigs;
 -}
 -
 -// CR 7190089: on Solaris, primordial thread's stack needs adjusting.
@@ -13049,21 +13188,100 @@
 -  (void) check_addr0(st);
 -}
 -
+-// Moved from whole group, because we need them here for diagnostic
+-// prints.
 -static int Maxsignum = 0;
+-static int *ourSigFlags = NULL;
+-
+-int os::Solaris::get_our_sigflags(int sig) {
+-  assert(ourSigFlags!=NULL, "signal data structure not initialized");
+-  assert(sig > 0 && sig < Maxsignum, "vm signal out of expected range");
+-  return ourSigFlags[sig];
+-}
+-
+-void os::Solaris::set_our_sigflags(int sig, int flags) {
+-  assert(ourSigFlags!=NULL, "signal data structure not initialized");
+-  assert(sig > 0 && sig < Maxsignum, "vm signal out of expected range");
+-  ourSigFlags[sig] = flags;
+-}
+-
+-
+-static const char* get_signal_handler_name(address handler,
+-                                           char* buf, int buflen) {
+-  int offset;
+-  bool found = os::dll_address_to_library_name(handler, buf, buflen, &offset);
+-  if (found) {
+-    // skip directory names
+-    const char *p1, *p2;
+-    p1 = buf;
+-    size_t len = strlen(os::file_separator());
+-    while ((p2 = strstr(p1, os::file_separator())) != NULL) p1 = p2 + len;
+-    jio_snprintf(buf, buflen, "%s+0x%x", p1, offset);
+-  } else {
+-    jio_snprintf(buf, buflen, PTR_FORMAT, handler);
+-  }
+-  return buf;
+-}
+-
+-static void print_signal_handler(outputStream* st, int sig,
+-                                 char* buf, size_t buflen) {
+-  struct sigaction sa;
+-
+-  sigaction(sig, NULL, &sa);
+-
+-  st->print("%s: ", os::exception_name(sig, buf, buflen));
+-
+-  address handler = (sa.sa_flags & SA_SIGINFO)
+-                  ? CAST_FROM_FN_PTR(address, sa.sa_sigaction)
+-                  : CAST_FROM_FN_PTR(address, sa.sa_handler);
+-
+-  if (handler == CAST_FROM_FN_PTR(address, SIG_DFL)) {
+-    st->print("SIG_DFL");
+-  } else if (handler == CAST_FROM_FN_PTR(address, SIG_IGN)) {
+-    st->print("SIG_IGN");
+-  } else {
+-    st->print("[%s]", get_signal_handler_name(handler, buf, buflen));
+-  }
+-
+-  st->print(", sa_mask[0]=");
+-  os::Posix::print_signal_set_short(st, &sa.sa_mask);
+-
+-  address rh = VMError::get_resetted_sighandler(sig);
+-  // May be, handler was resetted by VMError?
+-  if (rh != NULL) {
+-    handler = rh;
+-    sa.sa_flags = VMError::get_resetted_sigflags(sig);
+-  }
+-
+-  st->print(", sa_flags=");
+-  os::Posix::print_sa_flags(st, sa.sa_flags);
+-
+-  // Check: is it our handler?
+-  if (handler == CAST_FROM_FN_PTR(address, signalHandler)) {
+-    // It is our signal handler
+-    // check for flags
+-    if (sa.sa_flags != os::Solaris::get_our_sigflags(sig)) {
+-      st->print(
+-                ", flags was changed from " PTR32_FORMAT ", consider using jsig library",
+-                os::Solaris::get_our_sigflags(sig));
+-    }
+-  }
+-  st->cr();
+-}
 -
 -void os::print_signal_handlers(outputStream* st, char* buf, size_t buflen) {
 -  st->print_cr("Signal Handlers:");
--  PosixSignals::print_signal_handler(st, SIGSEGV, buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGBUS , buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGFPE , buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGPIPE, buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGXFSZ, buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGILL , buf, buflen);
--  PosixSignals::print_signal_handler(st, ASYNC_SIGNAL, buf, buflen);
--  PosixSignals::print_signal_handler(st, BREAK_SIGNAL, buf, buflen);
--  PosixSignals::print_signal_handler(st, SHUTDOWN1_SIGNAL , buf, buflen);
--  PosixSignals::print_signal_handler(st, SHUTDOWN2_SIGNAL , buf, buflen);
--  PosixSignals::print_signal_handler(st, SHUTDOWN3_SIGNAL, buf, buflen);
+-  print_signal_handler(st, SIGSEGV, buf, buflen);
+-  print_signal_handler(st, SIGBUS , buf, buflen);
+-  print_signal_handler(st, SIGFPE , buf, buflen);
+-  print_signal_handler(st, SIGPIPE, buf, buflen);
+-  print_signal_handler(st, SIGXFSZ, buf, buflen);
+-  print_signal_handler(st, SIGILL , buf, buflen);
+-  print_signal_handler(st, ASYNC_SIGNAL, buf, buflen);
+-  print_signal_handler(st, BREAK_SIGNAL, buf, buflen);
+-  print_signal_handler(st, SHUTDOWN1_SIGNAL , buf, buflen);
+-  print_signal_handler(st, SHUTDOWN2_SIGNAL , buf, buflen);
+-  print_signal_handler(st, SHUTDOWN3_SIGNAL, buf, buflen);
 -}
 -
 -static char saved_jvm_path[MAXPATHLEN] = { 0 };
@@ -13160,6 +13378,49 @@
 -  // no suffix required
 -}
 -
+-// sun.misc.Signal
+-
+-extern "C" {
+-  static void UserHandler(int sig, void *siginfo, void *context) {
+-    // Ctrl-C is pressed during error reporting, likely because the error
+-    // handler fails to abort. Let VM die immediately.
+-    if (sig == SIGINT && VMError::is_error_reported()) {
+-      os::die();
+-    }
+-
+-    os::signal_notify(sig);
+-    // We do not need to reinstate the signal handler each time...
+-  }
+-}
+-
+-void* os::user_handler() {
+-  return CAST_FROM_FN_PTR(void*, UserHandler);
+-}
+-
+-extern "C" {
+-  typedef void (*sa_handler_t)(int);
+-  typedef void (*sa_sigaction_t)(int, siginfo_t *, void *);
+-}
+-
+-void* os::signal(int signal_number, void* handler) {
+-  struct sigaction sigAct, oldSigAct;
+-  sigfillset(&(sigAct.sa_mask));
+-  sigAct.sa_flags = SA_RESTART & ~SA_RESETHAND;
+-  sigAct.sa_flags |= SA_SIGINFO;
+-  sigAct.sa_handler = CAST_TO_FN_PTR(sa_handler_t, handler);
+-
+-  if (sigaction(signal_number, &sigAct, &oldSigAct)) {
+-    // -1 means registration failed
+-    return (void *)-1;
+-  }
+-
+-  return CAST_FROM_FN_PTR(void*, oldSigAct.sa_handler);
+-}
+-
+-void os::signal_raise(int signal_number) {
+-  raise(signal_number);
+-}
+-
 -// The following code is moved from os.cpp for making this
 -// code platform specific, which it is by its very nature.
 -
@@ -13169,6 +13430,11 @@
 -static int *preinstalled_sigs = NULL;
 -static struct sigaction *chainedsigactions = NULL;
 -static Semaphore* sig_sem = NULL;
+-
+-int os::sigexitnum_pd() {
+-  assert(Sigexit > 0, "signal memory not yet initialized");
+-  return Sigexit;
+-}
 -
 -void os::Solaris::init_signal_mem() {
 -  // Initialize signal structures
@@ -13189,6 +13455,60 @@
 -    preinstalled_sigs = (int *)os::malloc(sizeof(int) * (Maxsignum + 1), mtInternal);
 -    memset(preinstalled_sigs, 0, (sizeof(int) * (Maxsignum + 1)));
 -  }
+-  ourSigFlags = (int*)malloc(sizeof(int) * (Maxsignum + 1), mtInternal);
+-  memset(ourSigFlags, 0, sizeof(int) * (Maxsignum + 1));
+-}
+-
+-static void jdk_misc_signal_init() {
+-  // Initialize signal semaphore
+-  sig_sem = new Semaphore();
+-}
+-
+-void os::signal_notify(int sig) {
+-  if (sig_sem != NULL) {
+-    Atomic::inc(&pending_signals[sig]);
+-    sig_sem->signal();
+-  } else {
+-    // Signal thread is not created with ReduceSignalUsage and jdk_misc_signal_init
+-    // initialization isn't called.
+-    assert(ReduceSignalUsage, "signal semaphore should be created");
+-  }
+-}
+-
+-static int check_pending_signals() {
+-  int ret;
+-  while (true) {
+-    for (int i = 0; i < Sigexit + 1; i++) {
+-      jint n = pending_signals[i];
+-      if (n > 0 && n == Atomic::cmpxchg(&pending_signals[i], n, n - 1)) {
+-        return i;
+-      }
+-    }
+-    JavaThread *thread = JavaThread::current();
+-    ThreadBlockInVM tbivm(thread);
+-
+-    bool threadIsSuspended;
+-    do {
+-      thread->set_suspend_equivalent();
+-      sig_sem->wait();
+-
+-      // were we externally suspended while we were waiting?
+-      threadIsSuspended = thread->handle_special_suspend_equivalent_condition();
+-      if (threadIsSuspended) {
+-        // The semaphore has been incremented, but while we were waiting
+-        // another thread suspended us. We don't want to continue running
+-        // while suspended because that would surprise the thread that
+-        // suspended us.
+-        sig_sem->signal();
+-
+-        thread->java_suspend_self();
+-      }
+-    } while (threadIsSuspended);
+-  }
+-}
+-
+-int os::signal_wait() {
+-  return check_pending_signals();
 -}
 -
 -////////////////////////////////////////////////////////////////////////////////
@@ -13556,9 +13876,20 @@
 -  return b;
 -}
 -
--char* os::Solaris::anon_mmap(char* requested_addr, size_t bytes) {
+-char* os::Solaris::anon_mmap(char* requested_addr, size_t bytes,
+-                             size_t alignment_hint, bool fixed) {
 -  char* addr = requested_addr;
 -  int flags = MAP_PRIVATE | MAP_NORESERVE;
+-
+-  assert(!(fixed && (alignment_hint > 0)),
+-         "alignment hint meaningless with fixed mmap");
+-
+-  if (fixed) {
+-    flags |= MAP_FIXED;
+-  } else if (alignment_hint > (size_t) vm_page_size()) {
+-    flags |= MAP_ALIGN;
+-    addr = (char*) alignment_hint;
+-  }
 -
 -  // Map uncommitted pages PROT_NONE so we fail early if we touch an
 -  // uncommitted page. Otherwise, the read/write might succeed if we
@@ -13566,8 +13897,9 @@
 -  return mmap_chunk(addr, bytes, flags, PROT_NONE);
 -}
 -
--char* os::pd_reserve_memory(size_t bytes) {
--  char* addr = Solaris::anon_mmap(NULL, bytes);
+-char* os::pd_reserve_memory(size_t bytes, size_t alignment_hint) {
+-  char* addr = Solaris::anon_mmap(NULL, bytes, alignment_hint,
+-                                  false);
 -
 -  return addr;
 -}
@@ -13595,7 +13927,7 @@
 -  assert(bytes % os::vm_page_size() == 0, "reserving unexpected size block");
 -
 -  // Since snv_84, Solaris attempts to honor the address hint - see 5003415.
--  char* addr = Solaris::anon_mmap(requested_addr, bytes);
+-  char* addr = Solaris::anon_mmap(requested_addr, bytes, 0, false);
 -
 -  volatile int err = errno;
 -  if (addr == requested_addr) {
@@ -14303,6 +14635,96 @@
 -}
 -
 -////////////////////////////////////////////////////////////////////////////////
+-// suspend/resume support
+-
+-//  The low-level signal-based suspend/resume support is a remnant from the
+-//  old VM-suspension that used to be for java-suspension, safepoints etc,
+-//  within hotspot. Currently used by JFR's OSThreadSampler
+-//
+-//  The remaining code is greatly simplified from the more general suspension
+-//  code that used to be used.
+-//
+-//  The protocol is quite simple:
+-//  - suspend:
+-//      - sends a signal to the target thread
+-//      - polls the suspend state of the osthread using a yield loop
+-//      - target thread signal handler (SR_handler) sets suspend state
+-//        and blocks in sigsuspend until continued
+-//  - resume:
+-//      - sets target osthread state to continue
+-//      - sends signal to end the sigsuspend loop in the SR_handler
+-//
+-//  Note that the SR_lock plays no role in this suspend/resume protocol,
+-//  but is checked for NULL in SR_handler as a thread termination indicator.
+-//  The SR_lock is, however, used by JavaThread::java_suspend()/java_resume() APIs.
+-//
+-//  Note that resume_clear_context() and suspend_save_context() are needed
+-//  by SR_handler(), so that fetch_frame_from_ucontext() works,
+-//  which in part is used by:
+-//    - Forte Analyzer: AsyncGetCallTrace()
+-//    - StackBanging: get_frame_at_stack_banging_point()
+-//    - JFR: get_topframe()-->....-->get_valid_uc_in_signal_handler()
+-
+-static void resume_clear_context(OSThread *osthread) {
+-  osthread->set_ucontext(NULL);
+-}
+-
+-static void suspend_save_context(OSThread *osthread, ucontext_t* context) {
+-  osthread->set_ucontext(context);
+-}
+-
+-static PosixSemaphore sr_semaphore;
+-
+-void os::Solaris::SR_handler(Thread* thread, ucontext_t* context) {
+-  // Save and restore errno to avoid confusing native code with EINTR
+-  // after sigsuspend.
+-  int old_errno = errno;
+-
+-  OSThread* osthread = thread->osthread();
+-  assert(thread->is_VM_thread() || thread->is_Java_thread(), "Must be VMThread or JavaThread");
+-
+-  os::SuspendResume::State current = osthread->sr.state();
+-  if (current == os::SuspendResume::SR_SUSPEND_REQUEST) {
+-    suspend_save_context(osthread, context);
+-
+-    // attempt to switch the state, we assume we had a SUSPEND_REQUEST
+-    os::SuspendResume::State state = osthread->sr.suspended();
+-    if (state == os::SuspendResume::SR_SUSPENDED) {
+-      sigset_t suspend_set;  // signals for sigsuspend()
+-
+-      // get current set of blocked signals and unblock resume signal
+-      pthread_sigmask(SIG_BLOCK, NULL, &suspend_set);
+-      sigdelset(&suspend_set, ASYNC_SIGNAL);
+-
+-      sr_semaphore.signal();
+-      // wait here until we are resumed
+-      while (1) {
+-        sigsuspend(&suspend_set);
+-
+-        os::SuspendResume::State result = osthread->sr.running();
+-        if (result == os::SuspendResume::SR_RUNNING) {
+-          sr_semaphore.signal();
+-          break;
+-        }
+-      }
+-
+-    } else if (state == os::SuspendResume::SR_RUNNING) {
+-      // request was cancelled, continue
+-    } else {
+-      ShouldNotReachHere();
+-    }
+-
+-    resume_clear_context(osthread);
+-  } else if (current == os::SuspendResume::SR_RUNNING) {
+-    // request was cancelled, continue
+-  } else if (current == os::SuspendResume::SR_WAKEUP_REQUEST) {
+-    // ignore
+-  } else {
+-    // ignore
+-  }
+-
+-  errno = old_errno;
+-}
 -
 -void os::print_statistics() {
 -}
@@ -14326,11 +14748,87 @@
 -  return buf[0] == 'y' || buf[0] == 'Y';
 -}
 -
+-static int sr_notify(OSThread* osthread) {
+-  int status = thr_kill(osthread->thread_id(), ASYNC_SIGNAL);
+-  assert_status(status == 0, status, "thr_kill");
+-  return status;
+-}
+-
+-// "Randomly" selected value for how long we want to spin
+-// before bailing out on suspending a thread, also how often
+-// we send a signal to a thread we want to resume
+-static const int RANDOMLY_LARGE_INTEGER = 1000000;
+-static const int RANDOMLY_LARGE_INTEGER2 = 100;
+-
+-static bool do_suspend(OSThread* osthread) {
+-  assert(osthread->sr.is_running(), "thread should be running");
+-  assert(!sr_semaphore.trywait(), "semaphore has invalid state");
+-
+-  // mark as suspended and send signal
+-  if (osthread->sr.request_suspend() != os::SuspendResume::SR_SUSPEND_REQUEST) {
+-    // failed to switch, state wasn't running?
+-    ShouldNotReachHere();
+-    return false;
+-  }
+-
+-  if (sr_notify(osthread) != 0) {
+-    ShouldNotReachHere();
+-  }
+-
+-  // managed to send the signal and switch to SUSPEND_REQUEST, now wait for SUSPENDED
+-  while (true) {
+-    if (sr_semaphore.timedwait(2000)) {
+-      break;
+-    } else {
+-      // timeout
+-      os::SuspendResume::State cancelled = osthread->sr.cancel_suspend();
+-      if (cancelled == os::SuspendResume::SR_RUNNING) {
+-        return false;
+-      } else if (cancelled == os::SuspendResume::SR_SUSPENDED) {
+-        // make sure that we consume the signal on the semaphore as well
+-        sr_semaphore.wait();
+-        break;
+-      } else {
+-        ShouldNotReachHere();
+-        return false;
+-      }
+-    }
+-  }
+-
+-  guarantee(osthread->sr.is_suspended(), "Must be suspended");
+-  return true;
+-}
+-
+-static void do_resume(OSThread* osthread) {
+-  assert(osthread->sr.is_suspended(), "thread should be suspended");
+-  assert(!sr_semaphore.trywait(), "invalid semaphore state");
+-
+-  if (osthread->sr.request_wakeup() != os::SuspendResume::SR_WAKEUP_REQUEST) {
+-    // failed to switch to WAKEUP_REQUEST
+-    ShouldNotReachHere();
+-    return;
+-  }
+-
+-  while (true) {
+-    if (sr_notify(osthread) == 0) {
+-      if (sr_semaphore.timedwait(2)) {
+-        if (osthread->sr.is_running()) {
+-          return;
+-        }
+-      }
+-    } else {
+-      ShouldNotReachHere();
+-    }
+-  }
+-
+-  guarantee(osthread->sr.is_running(), "Must be running!");
+-}
+-
 -void os::SuspendedThreadTask::internal_do_task() {
--  if (PosixSignals::do_suspend(_thread->osthread())) {
+-  if (do_suspend(_thread->osthread())) {
 -    SuspendedThreadTaskContext context(_thread, _thread->osthread()->ucontext());
 -    do_task(context);
--    PosixSignals::do_resume(_thread->osthread());
+-    do_resume(_thread->osthread());
 -  }
 -}
 -
@@ -14341,6 +14839,358 @@
 -                              Thread* thread) {
 -  f(value, method, args, thread);
 -}
+-
+-// This routine may be used by user applications as a "hook" to catch signals.
+-// The user-defined signal handler must pass unrecognized signals to this
+-// routine, and if it returns true (non-zero), then the signal handler must
+-// return immediately.  If the flag "abort_if_unrecognized" is true, then this
+-// routine will never retun false (zero), but instead will execute a VM panic
+-// routine kill the process.
+-//
+-// If this routine returns false, it is OK to call it again.  This allows
+-// the user-defined signal handler to perform checks either before or after
+-// the VM performs its own checks.  Naturally, the user code would be making
+-// a serious error if it tried to handle an exception (such as a null check
+-// or breakpoint) that the VM was generating for its own correct operation.
+-//
+-// This routine may recognize any of the following kinds of signals:
+-// SIGBUS, SIGSEGV, SIGILL, SIGFPE, BREAK_SIGNAL, SIGPIPE, SIGXFSZ,
+-// ASYNC_SIGNAL.
+-// It should be consulted by handlers for any of those signals.
+-//
+-// The caller of this routine must pass in the three arguments supplied
+-// to the function referred to in the "sa_sigaction" (not the "sa_handler")
+-// field of the structure passed to sigaction().  This routine assumes that
+-// the sa_flags field passed to sigaction() includes SA_SIGINFO and SA_RESTART.
+-//
+-// Note that the VM will print warnings if it detects conflicting signal
+-// handlers, unless invoked with the option "-XX:+AllowUserSignalHandlers".
+-//
+-extern "C" JNIEXPORT int JVM_handle_solaris_signal(int signo,
+-                                                   siginfo_t* siginfo,
+-                                                   void* ucontext,
+-                                                   int abort_if_unrecognized);
+-
+-
+-void signalHandler(int sig, siginfo_t* info, void* ucVoid) {
+-  int orig_errno = errno;  // Preserve errno value over signal handler.
+-  JVM_handle_solaris_signal(sig, info, ucVoid, true);
+-  errno = orig_errno;
+-}
+-
+-// This boolean allows users to forward their own non-matching signals
+-// to JVM_handle_solaris_signal, harmlessly.
+-bool os::Solaris::signal_handlers_are_installed = false;
+-
+-// For signal-chaining
+-bool os::Solaris::libjsig_is_loaded = false;
+-typedef struct sigaction *(*get_signal_t)(int);
+-get_signal_t os::Solaris::get_signal_action = NULL;
+-
+-struct sigaction* os::Solaris::get_chained_signal_action(int sig) {
+-  struct sigaction *actp = NULL;
+-
+-  if ((libjsig_is_loaded)  && (sig <= Maxsignum)) {
+-    // Retrieve the old signal handler from libjsig
+-    actp = (*get_signal_action)(sig);
+-  }
+-  if (actp == NULL) {
+-    // Retrieve the preinstalled signal handler from jvm
+-    actp = get_preinstalled_handler(sig);
+-  }
+-
+-  return actp;
+-}
+-
+-static bool call_chained_handler(struct sigaction *actp, int sig,
+-                                 siginfo_t *siginfo, void *context) {
+-  // Call the old signal handler
+-  if (actp->sa_handler == SIG_DFL) {
+-    // It's more reasonable to let jvm treat it as an unexpected exception
+-    // instead of taking the default action.
+-    return false;
+-  } else if (actp->sa_handler != SIG_IGN) {
+-    if ((actp->sa_flags & SA_NODEFER) == 0) {
+-      // automaticlly block the signal
+-      sigaddset(&(actp->sa_mask), sig);
+-    }
+-
+-    sa_handler_t hand;
+-    sa_sigaction_t sa;
+-    bool siginfo_flag_set = (actp->sa_flags & SA_SIGINFO) != 0;
+-    // retrieve the chained handler
+-    if (siginfo_flag_set) {
+-      sa = actp->sa_sigaction;
+-    } else {
+-      hand = actp->sa_handler;
+-    }
+-
+-    if ((actp->sa_flags & SA_RESETHAND) != 0) {
+-      actp->sa_handler = SIG_DFL;
+-    }
+-
+-    // try to honor the signal mask
+-    sigset_t oset;
+-    pthread_sigmask(SIG_SETMASK, &(actp->sa_mask), &oset);
+-
+-    // call into the chained handler
+-    if (siginfo_flag_set) {
+-      (*sa)(sig, siginfo, context);
+-    } else {
+-      (*hand)(sig);
+-    }
+-
+-    // restore the signal mask
+-    pthread_sigmask(SIG_SETMASK, &oset, 0);
+-  }
+-  // Tell jvm's signal handler the signal is taken care of.
+-  return true;
+-}
+-
+-bool os::Solaris::chained_handler(int sig, siginfo_t* siginfo, void* context) {
+-  bool chained = false;
+-  // signal-chaining
+-  if (UseSignalChaining) {
+-    struct sigaction *actp = get_chained_signal_action(sig);
+-    if (actp != NULL) {
+-      chained = call_chained_handler(actp, sig, siginfo, context);
+-    }
+-  }
+-  return chained;
+-}
+-
+-struct sigaction* os::Solaris::get_preinstalled_handler(int sig) {
+-  assert((chainedsigactions != (struct sigaction *)NULL) &&
+-         (preinstalled_sigs != (int *)NULL), "signals not yet initialized");
+-  if (preinstalled_sigs[sig] != 0) {
+-    return &chainedsigactions[sig];
+-  }
+-  return NULL;
+-}
+-
+-void os::Solaris::save_preinstalled_handler(int sig,
+-                                            struct sigaction& oldAct) {
+-  assert(sig > 0 && sig <= Maxsignum, "vm signal out of expected range");
+-  assert((chainedsigactions != (struct sigaction *)NULL) &&
+-         (preinstalled_sigs != (int *)NULL), "signals not yet initialized");
+-  chainedsigactions[sig] = oldAct;
+-  preinstalled_sigs[sig] = 1;
+-}
+-
+-void os::Solaris::set_signal_handler(int sig, bool set_installed,
+-                                     bool oktochain) {
+-  // Check for overwrite.
+-  struct sigaction oldAct;
+-  sigaction(sig, (struct sigaction*)NULL, &oldAct);
+-  void* oldhand =
+-      oldAct.sa_sigaction ? CAST_FROM_FN_PTR(void*,  oldAct.sa_sigaction)
+-                          : CAST_FROM_FN_PTR(void*,  oldAct.sa_handler);
+-  if (oldhand != CAST_FROM_FN_PTR(void*, SIG_DFL) &&
+-      oldhand != CAST_FROM_FN_PTR(void*, SIG_IGN) &&
+-      oldhand != CAST_FROM_FN_PTR(void*, signalHandler)) {
+-    if (AllowUserSignalHandlers || !set_installed) {
+-      // Do not overwrite; user takes responsibility to forward to us.
+-      return;
+-    } else if (UseSignalChaining) {
+-      if (oktochain) {
+-        // save the old handler in jvm
+-        save_preinstalled_handler(sig, oldAct);
+-      } else {
+-        vm_exit_during_initialization("Signal chaining not allowed for VM interrupt signal.");
+-      }
+-      // libjsig also interposes the sigaction() call below and saves the
+-      // old sigaction on it own.
+-    } else {
+-      fatal("Encountered unexpected pre-existing sigaction handler "
+-            "%#lx for signal %d.", (long)oldhand, sig);
+-    }
+-  }
+-
+-  struct sigaction sigAct;
+-  sigfillset(&(sigAct.sa_mask));
+-  sigAct.sa_handler = SIG_DFL;
+-
+-  sigAct.sa_sigaction = signalHandler;
+-  // Handle SIGSEGV on alternate signal stack if
+-  // not using stack banging
+-  if (!UseStackBanging && sig == SIGSEGV) {
+-    sigAct.sa_flags = SA_SIGINFO | SA_RESTART | SA_ONSTACK;
+-  } else {
+-    sigAct.sa_flags = SA_SIGINFO | SA_RESTART;
+-  }
+-  os::Solaris::set_our_sigflags(sig, sigAct.sa_flags);
+-
+-  sigaction(sig, &sigAct, &oldAct);
+-
+-  void* oldhand2 = oldAct.sa_sigaction ? CAST_FROM_FN_PTR(void*, oldAct.sa_sigaction)
+-                                       : CAST_FROM_FN_PTR(void*, oldAct.sa_handler);
+-  assert(oldhand2 == oldhand, "no concurrent signal handler installation");
+-}
+-
+-
+-#define DO_SIGNAL_CHECK(sig)                      \
+-  do {                                            \
+-    if (!sigismember(&check_signal_done, sig)) {  \
+-      os::Solaris::check_signal_handler(sig);     \
+-    }                                             \
+-  } while (0)
+-
+-// This method is a periodic task to check for misbehaving JNI applications
+-// under CheckJNI, we can add any periodic checks here
+-
+-void os::run_periodic_checks() {
+-  // A big source of grief is hijacking virt. addr 0x0 on Solaris,
+-  // thereby preventing a NULL checks.
+-  if (!check_addr0_done) check_addr0_done = check_addr0(tty);
+-
+-  if (check_signals == false) return;
+-
+-  // SEGV and BUS if overridden could potentially prevent
+-  // generation of hs*.log in the event of a crash, debugging
+-  // such a case can be very challenging, so we absolutely
+-  // check for the following for a good measure:
+-  DO_SIGNAL_CHECK(SIGSEGV);
+-  DO_SIGNAL_CHECK(SIGILL);
+-  DO_SIGNAL_CHECK(SIGFPE);
+-  DO_SIGNAL_CHECK(SIGBUS);
+-  DO_SIGNAL_CHECK(SIGPIPE);
+-  DO_SIGNAL_CHECK(SIGXFSZ);
+-  DO_SIGNAL_CHECK(ASYNC_SIGNAL);
+-
+-  // ReduceSignalUsage allows the user to override these handlers
+-  // see comments at the very top and jvm_solaris.h
+-  if (!ReduceSignalUsage) {
+-    DO_SIGNAL_CHECK(SHUTDOWN1_SIGNAL);
+-    DO_SIGNAL_CHECK(SHUTDOWN2_SIGNAL);
+-    DO_SIGNAL_CHECK(SHUTDOWN3_SIGNAL);
+-    DO_SIGNAL_CHECK(BREAK_SIGNAL);
+-  }
+-}
+-
+-typedef int (*os_sigaction_t)(int, const struct sigaction *, struct sigaction *);
+-
+-static os_sigaction_t os_sigaction = NULL;
+-
+-void os::Solaris::check_signal_handler(int sig) {
+-  char buf[O_BUFLEN];
+-  address jvmHandler = NULL;
+-
+-  struct sigaction act;
+-  if (os_sigaction == NULL) {
+-    // only trust the default sigaction, in case it has been interposed
+-    os_sigaction = (os_sigaction_t)dlsym(RTLD_DEFAULT, "sigaction");
+-    if (os_sigaction == NULL) return;
+-  }
+-
+-  os_sigaction(sig, (struct sigaction*)NULL, &act);
+-
+-  address thisHandler = (act.sa_flags & SA_SIGINFO)
+-    ? CAST_FROM_FN_PTR(address, act.sa_sigaction)
+-    : CAST_FROM_FN_PTR(address, act.sa_handler);
+-
+-
+-  switch (sig) {
+-  case SIGSEGV:
+-  case SIGBUS:
+-  case SIGFPE:
+-  case SIGPIPE:
+-  case SIGXFSZ:
+-  case SIGILL:
+-  case ASYNC_SIGNAL:
+-    jvmHandler = CAST_FROM_FN_PTR(address, signalHandler);
+-    break;
+-
+-  case SHUTDOWN1_SIGNAL:
+-  case SHUTDOWN2_SIGNAL:
+-  case SHUTDOWN3_SIGNAL:
+-  case BREAK_SIGNAL:
+-    jvmHandler = (address)user_handler();
+-    break;
+-
+-  default:
+-      return;
+-  }
+-
+-  if (thisHandler != jvmHandler) {
+-    tty->print("Warning: %s handler ", exception_name(sig, buf, O_BUFLEN));
+-    tty->print("expected:%s", get_signal_handler_name(jvmHandler, buf, O_BUFLEN));
+-    tty->print_cr("  found:%s", get_signal_handler_name(thisHandler, buf, O_BUFLEN));
+-    // No need to check this sig any longer
+-    sigaddset(&check_signal_done, sig);
+-    // Running under non-interactive shell, SHUTDOWN2_SIGNAL will be reassigned SIG_IGN
+-    if (sig == SHUTDOWN2_SIGNAL && !isatty(fileno(stdin))) {
+-      tty->print_cr("Running in non-interactive shell, %s handler is replaced by shell",
+-                    exception_name(sig, buf, O_BUFLEN));
+-    }
+-  } else if(os::Solaris::get_our_sigflags(sig) != 0 && act.sa_flags != os::Solaris::get_our_sigflags(sig)) {
+-    tty->print("Warning: %s handler flags ", exception_name(sig, buf, O_BUFLEN));
+-    tty->print("expected:");
+-    os::Posix::print_sa_flags(tty, os::Solaris::get_our_sigflags(sig));
+-    tty->cr();
+-    tty->print("  found:");
+-    os::Posix::print_sa_flags(tty, act.sa_flags);
+-    tty->cr();
+-    // No need to check this sig any longer
+-    sigaddset(&check_signal_done, sig);
+-  }
+-
+-  // Print all the signal handler state
+-  if (sigismember(&check_signal_done, sig)) {
+-    print_signal_handlers(tty, buf, O_BUFLEN);
+-  }
+-
+-}
+-
+-void os::Solaris::install_signal_handlers() {
+-  signal_handlers_are_installed = true;
+-
+-  // signal-chaining
+-  typedef void (*signal_setting_t)();
+-  signal_setting_t begin_signal_setting = NULL;
+-  signal_setting_t end_signal_setting = NULL;
+-  begin_signal_setting = CAST_TO_FN_PTR(signal_setting_t,
+-                                        dlsym(RTLD_DEFAULT, "JVM_begin_signal_setting"));
+-  if (begin_signal_setting != NULL) {
+-    end_signal_setting = CAST_TO_FN_PTR(signal_setting_t,
+-                                        dlsym(RTLD_DEFAULT, "JVM_end_signal_setting"));
+-    get_signal_action = CAST_TO_FN_PTR(get_signal_t,
+-                                       dlsym(RTLD_DEFAULT, "JVM_get_signal_action"));
+-    libjsig_is_loaded = true;
+-    assert(UseSignalChaining, "should enable signal-chaining");
+-  }
+-  if (libjsig_is_loaded) {
+-    // Tell libjsig jvm is setting signal handlers
+-    (*begin_signal_setting)();
+-  }
+-
+-  set_signal_handler(SIGSEGV, true, true);
+-  set_signal_handler(SIGPIPE, true, true);
+-  set_signal_handler(SIGXFSZ, true, true);
+-  set_signal_handler(SIGBUS, true, true);
+-  set_signal_handler(SIGILL, true, true);
+-  set_signal_handler(SIGFPE, true, true);
+-  set_signal_handler(ASYNC_SIGNAL, true, true);
+-
+-  if (libjsig_is_loaded) {
+-    // Tell libjsig jvm finishes setting signal handlers
+-    (*end_signal_setting)();
+-  }
+-
+-  // We don't activate signal checker if libjsig is in place, we trust ourselves
+-  // and if UserSignalHandler is installed all bets are off.
+-  // Log that signal checking is off only if -verbose:jni is specified.
+-  if (CheckJNICalls) {
+-    if (libjsig_is_loaded) {
+-      log_debug(jni, resolve)("Info: libjsig is activated, all active signal checking is disabled");
+-      check_signals = false;
+-    }
+-    if (AllowUserSignalHandlers) {
+-      log_debug(jni, resolve)("Info: AllowUserSignalHandlers is activated, all active signal checking is disabled");
+-      check_signals = false;
+-    }
+-  }
+-}
+-
 -
 -void report_error(const char* file_name, int line_no, const char* title,
 -                  const char* format, ...);
@@ -14586,12 +15436,12 @@
 -    FLAG_SET_ERGO_IF_DEFAULT(UseNUMAInterleaving, true);
 -  }
 -
--  PosixSignals::signal_sets_init();
+-  Solaris::signal_sets_init();
 -  Solaris::init_signal_mem();
--  PosixSignals::install_signal_handlers();
+-  Solaris::install_signal_handlers();
 -  // Initialize data for jdk.internal.misc.Signal
 -  if (!ReduceSignalUsage) {
--    PosixSignals::jdk_misc_signal_init();
+-    jdk_misc_signal_init();
 -  }
 -
 -  // initialize synchronization primitives to use either thread or
@@ -15886,7 +16736,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,328 +0,0 @@
+@@ -1,353 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15993,6 +16843,12 @@
 -
 -  static void try_enable_extended_io();
 -
+-  static struct sigaction *(*get_signal_action)(int);
+-  static struct sigaction *get_preinstalled_handler(int);
+-  static int (*get_libjsig_version)();
+-  static void save_preinstalled_handler(int, struct sigaction&);
+-  static void check_signal_handler(int sig);
+-
 -  typedef int (*pthread_setname_np_func_t)(pthread_t, const char*);
 -  static pthread_setname_np_func_t _pthread_setname_np;
 -
@@ -16014,6 +16870,11 @@
 -
 -  static bool get_frame_at_stack_banging_point(JavaThread* thread, ucontext_t* uc, frame* fr);
 -
+-  static void hotspot_sigmask(Thread* thread);
+-
+-  // SR_handler
+-  static void SR_handler(Thread* thread, ucontext_t* uc);
+-
 -  static void init_thread_fpu_state(void);
 -
 - protected:
@@ -16029,7 +16890,7 @@
 -  static int commit_memory_impl(char* addr, size_t bytes,
 -                                size_t alignment_hint, bool exec);
 -  static char* mmap_chunk(char *addr, size_t size, int flags, int prot);
--  static char* anon_mmap(char* requested_addr, size_t bytes);
+-  static char* anon_mmap(char* requested_addr, size_t bytes, size_t alignment_hint, bool fixed);
 -  static bool mpss_sanity_check(bool warn, size_t * page_size);
 -
 -  // Workaround for 4352906. thr_stksegment sometimes returns
@@ -16048,8 +16909,22 @@
 -  static void libthread_init();
 -  static void synchronization_init();
 -  static bool liblgrp_init();
+-  // This boolean allows users to forward their own non-matching signals
+-  // to JVM_handle_solaris_signal, harmlessly.
+-  static bool signal_handlers_are_installed;
 -
+-  static void signal_sets_init();
+-  static void install_signal_handlers();
+-  static void set_signal_handler(int sig, bool set_installed, bool oktochain);
 -  static void init_signal_mem();
+-  static void set_our_sigflags(int, int);
+-  static int get_our_sigflags(int);
+-
+-  // For signal-chaining
+-  static bool libjsig_is_loaded; // libjsig that interposes sigaction(),
+-                                 // signal(), sigset() is loaded
+-  static struct sigaction *get_chained_signal_action(int sig);
+-  static bool chained_handler(int sig, siginfo_t *siginfo, void *context);
 -
 -  // Allows us to switch between lwp and thread -based synchronization
 -  static int mutex_lock(mutex_t *mx)    { return _mutex_lock(mx); }
@@ -18351,7 +19226,6 @@
 -#include "runtime/stubRoutines.hpp"
 -#include "runtime/thread.inline.hpp"
 -#include "runtime/timer.hpp"
--#include "signals_posix.hpp"
 -#include "utilities/align.hpp"
 -#include "utilities/events.hpp"
 -#include "utilities/vmError.hpp"
@@ -18702,7 +19576,7 @@
 -  SignalHandlerMark shm(t);
 -
 -  if(sig == SIGPIPE || sig == SIGXFSZ) {
--    if (PosixSignals::chained_handler(sig, info, ucVoid)) {
+-    if (os::Solaris::chained_handler(sig, info, ucVoid)) {
 -      return true;
 -    } else {
 -      // Ignoring SIGPIPE/SIGXFSZ - see bugs 4229104 or 6499219
@@ -18713,7 +19587,7 @@
 -  JavaThread* thread = NULL;
 -  VMThread* vmthread = NULL;
 -
--  if (PosixSignals::are_signal_handlers_installed()) {
+-  if (os::Solaris::signal_handlers_are_installed) {
 -    if (t != NULL ){
 -      if(t->is_Java_thread()) {
 -        thread = (JavaThread*)t;
@@ -18726,8 +19600,9 @@
 -
 -  if (sig == ASYNC_SIGNAL) {
 -    if(thread || vmthread){
+-      OSThread::SR_handler(t, uc);
 -      return true;
--    } else if (PosixSignals::chained_handler(sig, info, ucVoid)) {
+-    } else if (os::Solaris::chained_handler(sig, info, ucVoid)) {
 -      return true;
 -    } else {
 -      // If ASYNC_SIGNAL not chained, and this is a non-vm and
@@ -18975,7 +19850,7 @@
 -  }
 -
 -  // signal-chaining
--  if (PosixSignals::chained_handler(sig, info, ucVoid)) {
+-  if (os::Solaris::chained_handler(sig, info, ucVoid)) {
 -    return true;
 -  }
 -
