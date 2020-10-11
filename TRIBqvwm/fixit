@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# have a slightly more relevant config
+#
+cp ${BUILDROOT}/patches/system.qvwmrc usr/share/qvwm/system.qvwmrc
+#cp ${BUILDROOT}/patches/default.qvwm-theme usr/share/qvwm/default.qvwm-theme
+#
+# these copied from other apps, sometimes converted from png to xpm
+#
+cp ${BUILDROOT}/patches/qvwm-pixmaps/* usr/share/qvwm/images
