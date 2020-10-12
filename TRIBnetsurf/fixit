@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# tidy up a bit
+#
+cd usr/bin
+ln -s netsurf-gtk3 netsurf-gtk
+cd ../..
+mkdir -p usr/share/pixmaps
+ln -s ../netsurf/netsurf.png usr/share/pixmaps
