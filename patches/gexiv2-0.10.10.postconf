@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# presumably it's expecting gnu ld
+#
+sed -i 's:^VERSION_SCRIPT_LDFLAGS:#VERSION_SCRIPT_LDFLAGS:' Makefile
