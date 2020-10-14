@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# we definitely don't have xdg-open
+# the best we can do is exo-open, which depends on xfce
+#
+sed -i s:xdg-open:exo-open: src/structures.h

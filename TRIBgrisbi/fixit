@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# the french documentation is bigger than the product itself
+#
+rm -fr usr/share/doc/grisbi/fr
+#
+# the english documentation is a duplicate of C
+#
+rm -fr usr/share/doc/grisbi/en
+ln -s C usr/share/doc/grisbi/en
