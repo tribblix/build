@@ -17,3 +17,7 @@ rm usr/lib/${ARCH64}/libexpat.la
 #
 rm usr/bin/${ARCH64}/xmlwf
 rmdir usr/bin/${ARCH64}
+#
+# the changelog isn't necessary
+#
+rm -fr usr/share/doc
