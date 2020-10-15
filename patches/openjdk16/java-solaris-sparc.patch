@@ -11454,7 +11454,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4429 +0,0 @@
+@@ -1,4423 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15705,14 +15705,8 @@
 -  argv[2] = cmd;
 -  argv[3] = NULL;
 -
--  // fork is async-safe, fork1 is not so can't use in signal handler
 -  pid_t pid;
--  Thread* t = Thread::current_or_null_safe();
--  if (t != NULL && t->is_inside_signal_handler()) {
--    pid = fork();
--  } else {
--    pid = fork1();
--  }
+-  pid = fork();
 -
 -  if (pid < 0) {
 -    // fork failed
