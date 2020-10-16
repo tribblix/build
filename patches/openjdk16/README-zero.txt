@@ -20,6 +20,8 @@ Fixes src/hotspot/cpu/zero/stubGenerator_zero.cpp
 illumos-zero-2.patch
 Adds the src/hotspot/os_cpu/solaris_zero directory and contents
 
+These are current and tested for jkd 16+20.
+
 cd to the jdk source that has the other patches applied and
 
 gpatch -p1 < ${THOME}/build/patches/openjdk16/illumos-zero-1.patch
@@ -28,7 +30,7 @@ gpatch -p1 < ${THOME}/build/patches/openjdk16/illumos-zero-2.patch
 Configure:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk14 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk15 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \

@@ -380,7 +380,7 @@ diff -ur -N /tmp/g/orderAccess_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zer
 diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.cpp
 --- /tmp/g/os_solaris_zero.cpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.cpp	2020-09-02 13:28:22.493092922 +0000
-@@ -0,0 +1,438 @@
+@@ -0,0 +1,434 @@
 +/*
 + * Copyright (c) 2003, 2020, Oracle and/or its affiliates. All rights reserved.
 + * Copyright 2007, 2008, 2009, 2010 Red Hat, Inc.
@@ -433,6 +433,7 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +#include "runtime/stubRoutines.hpp"
 +#include "runtime/thread.inline.hpp"
 +#include "runtime/timer.hpp"
++#include "signals_posix.hpp"
 +#include "utilities/events.hpp"
 +#include "utilities/vmError.hpp"
 +
@@ -516,7 +517,7 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +  SignalHandlerMark shm(t);
 +
 +  if(sig == SIGPIPE || sig == SIGXFSZ) {
-+    if (os::Solaris::chained_handler(sig, info, ucVoid)) {
++    if (PosixSignals::chained_handler(sig, info, ucVoid)) {
 +      return true;
 +    } else {
 +      // Ignoring SIGPIPE/SIGXFSZ - see bugs 4229104 or 6499219
@@ -527,7 +528,7 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +  JavaThread* thread = NULL;
 +  VMThread* vmthread = NULL;
 +
-+  if (os::Solaris::signal_handlers_are_installed) {
++  if (PosixSignals::are_signal_handlers_installed()) {
 +    if (t != NULL ){
 +      if(t->is_Java_thread()) {
 +        thread = (JavaThread*)t;
@@ -540,9 +541,8 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +
 +  if (sig == ASYNC_SIGNAL) {
 +    if(thread || vmthread){
-+      OSThread::SR_handler(t, uc);
 +      return true;
-+    } else if (os::Solaris::chained_handler(sig, info, ucVoid)) {
++    } else if (PosixSignals::chained_handler(sig, info, ucVoid)) {
 +      return true;
 +    } else {
 +      // If ASYNC_SIGNAL not chained, and this is a non-vm and
@@ -576,13 +576,19 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +    // Handle ALL stack overflow variations here
 +    if (sig == SIGSEGV && info->si_code == SEGV_ACCERR) {
 +      address addr = (address) info->si_addr;
-+      if (thread->in_stack_yellow_reserved_zone(addr)) {
++
++      // check if fault address is within thread stack
++      if (thread->is_in_full_stack(addr)) {
++        StackOverflow* overflow_state = thread->stack_overflow_state();
 +        // stack overflow
-+        thread->disable_stack_yellow_reserved_zone();
-+	ShouldNotCallThis();
-+      } else if (thread->in_stack_red_zone(addr)) {
-+        thread->disable_stack_red_zone();
-+        ShouldNotCallThis();
++        if (overflow_state->in_stack_yellow_reserved_zone(addr)) {
++          overflow_state->disable_stack_yellow_reserved_zone();
++          ShouldNotCallThis();
++        }
++        else if (overflow_state->in_stack_red_zone(addr)) {
++          overflow_state->disable_stack_red_zone();
++          ShouldNotCallThis();
++        }
 +      }
 +    }
 +
@@ -596,23 +602,13 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +  }
 +
 +  // signal-chaining
-+  if (os::Solaris::chained_handler(sig, info, ucVoid)) {
++  if (PosixSignals::chained_handler(sig, info, ucVoid)) {
 +    return true;
 +  }
 +
 +  if (!abort_if_unrecognized) {
 +    // caller wants another chance, so give it to him
 +    return false;
-+  }
-+
-+  if (!os::Solaris::libjsig_is_loaded) {
-+    struct sigaction oldAct;
-+    sigaction(sig, (struct sigaction *)0, &oldAct);
-+    if (oldAct.sa_sigaction != signalHandler) {
-+      void* sighand = oldAct.sa_sigaction ? CAST_FROM_FN_PTR(void*,  oldAct.sa_sigaction)
-+                                          : CAST_FROM_FN_PTR(void*, oldAct.sa_handler);
-+      warning("Unexpected Signal %d occurred under user-defined signal handler %#lx", sig, (long)sighand);
-+    }
 +  }
 +
 +  if (pc == NULL && uc != NULL) {
