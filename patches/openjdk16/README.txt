@@ -20,6 +20,17 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+20
+
+Mostly the stack overflow handlingg rorg
+8254158: Consolidate per-platform stack overflow handling code
+https://github.com/openjdk/jdk/commit/ba5dc67a
+covered by illumos-port-9.patch, although ideally we would merge
+these changes into the main patch
+
+illumos-port-8.patch - some Linux-specific code is guarded by !bsd and
+!aix
+
 In 16+19
 
 Quite a few changes this time, particularly the signal code merge in
