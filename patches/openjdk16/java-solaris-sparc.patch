@@ -18293,7 +18293,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ORDERACCESS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2020-05-20 18:10:01.145616115 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,928 +0,0 @@
+@@ -1,927 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -18689,11 +18689,10 @@
 -
 -  Thread* t = Thread::current_or_null_safe();
 -
--  // Must do this before SignalHandlerMark, if crash protection installed we will longjmp away
--  // (no destructors can be run)
+-  // If crash protection is installed we may longjmp away and no destructors
+-  // for objects in this scope will be run.
+-  // So don't use any RAII utilities before crash protection is checked.
 -  os::ThreadCrashProtection::check_crash_protection(sig, t);
--
--  SignalHandlerMark shm(t);
 -
 -  if(sig == SIGPIPE || sig == SIGXFSZ) {
 -    if (PosixSignals::chained_handler(sig, info, ucVoid)) {

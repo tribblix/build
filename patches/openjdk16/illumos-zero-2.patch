@@ -380,7 +380,7 @@ diff -ur -N /tmp/g/orderAccess_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zer
 diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.cpp
 --- /tmp/g/os_solaris_zero.cpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.cpp	2020-09-02 13:28:22.493092922 +0000
-@@ -0,0 +1,434 @@
+@@ -0,0 +1,433 @@
 +/*
 + * Copyright (c) 2003, 2020, Oracle and/or its affiliates. All rights reserved.
 + * Copyright 2007, 2008, 2009, 2010 Red Hat, Inc.
@@ -510,11 +510,10 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +
 +  Thread* t = Thread::current_or_null_safe();
 +
-+  // Must do this before SignalHandlerMark, if crash protection installed we will longjmp away
-+  // (no destructors can be run)
++  // If crash protection is installed we may longjmp away and no destructors
++  // for objects in this scope will be run.
++  // So don't use any RAII utilities before crash protection is checked.
 +  os::ThreadCrashProtection::check_crash_protection(sig, t);
-+
-+  SignalHandlerMark shm(t);
 +
 +  if(sig == SIGPIPE || sig == SIGXFSZ) {
 +    if (PosixSignals::chained_handler(sig, info, ucVoid)) {
