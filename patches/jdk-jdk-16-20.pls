@@ -23,7 +23,6 @@
 -p0 openjdk16/patch-src_java.base_solaris_native_libnio_ch_DevPollArrayWrapper.c
 -p0 openjdk16/patch-src_java.desktop_share_native_libsplashscreen_libpng_pngpriv.h
 -p0 openjdk16/tribblix-LauncherCommon.patch
--p0 openjdk16/tribblix-agent-mt.patch
 -p0 openjdk16/tribblix-attachListener_solaris.patch
 -p0 openjdk16/tribblix-flags-cflags.patch
 -p0 openjdk16/tribblix-flags-ldflags.patch
@@ -31,7 +30,6 @@
 -p0 openjdk16/tribblix-flags-ldflags3.patch
 -p0 openjdk16/tribblix-wait.patch
 -p0 openjdk16/tribblix-demangle1.patch
--p0 openjdk16/tribblix-demangle2.patch
 -p0 openjdk16/tribblix-demangle3.patch
 -p0 openjdk16/tribblix-demangle4.patch
 -p1 openjdk16/illumos-port-1.patch

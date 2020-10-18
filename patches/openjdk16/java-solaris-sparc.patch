@@ -1729,17 +1729,7 @@
  
 --- old/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.653337499 -0700
 +++ new/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.257329896 -0700
-@@ -30,9 +30,6 @@
- ifeq ($(call isTargetOs, linux), true)
-   SA_CFLAGS := -D_FILE_OFFSET_BITS=64
- 
--else ifeq ($(call isTargetOs, solaris), true)
--  SA_LDFLAGS := -mt
--
- else ifeq ($(call isTargetOs, macosx), true)
-   SA_CFLAGS := -Damd64 -D_GNU_SOURCE -mno-omit-leaf-frame-pointer \
-       -mstack-alignment=16 -fPIC
-@@ -65,10 +62,9 @@
+@@ -65,10 +65,9 @@
      CFLAGS := $(CFLAGS_JDKLIB) $(SA_CFLAGS), \
      CXXFLAGS := $(CXXFLAGS_JDKLIB) $(SA_CFLAGS) $(SA_CXXFLAGS), \
      EXTRA_SRC := $(LIBSA_EXTRA_SRC), \
@@ -1747,7 +1737,7 @@
 +    LDFLAGS := $(LDFLAGS_JDKLIB), \
      LIBS := $(LIBCXX), \
      LIBS_linux := $(LIBDL), \
--    LIBS_solaris := -ldl -ldemangle -lthread -lproc, \
+-    LIBS_solaris := -ldl -lstdc++ -lthread -lproc, \
      LIBS_macosx := -framework Foundation -framework JavaNativeFoundation \
          -framework JavaRuntimeSupport -framework Security -framework CoreFoundation, \
      LIBS_windows := dbgeng.lib, \
