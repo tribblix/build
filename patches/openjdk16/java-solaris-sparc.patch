@@ -2541,7 +2541,7 @@
  #endif /* defined(DTRACE_ENABLED) */
 --- old/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.978937412 -0700
 +++ new/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.586929885 -0700
-@@ -39,35 +39,15 @@
+@@ -39,36 +39,15 @@
  #include <stdlib.h>
  #include <wchar.h>
  
@@ -2568,6 +2568,7 @@
 -#include <sys/procset.h>
 -#include <ucontext.h>
 -#include <setjmp.h>
+-#include <inttypes.h>
 -#endif // SOLARIS
 -
 -# ifdef SOLARIS_MUTATOR_LIBTHREAD

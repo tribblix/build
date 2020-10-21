@@ -19,7 +19,6 @@
 -p0 openjdk16/patch-src_hotspot_os__cpu_solaris__x86_prefetch__solaris__x86.inline.hpp
 -p0 openjdk16/patch-src_hotspot_os_solaris_os__solaris.cpp
 -p0 openjdk16/patch-src_hotspot_share_gc_g1_g1Analytics.cpp
--p0 openjdk16/patch-src_hotspot_share_utilities_globalDefinitions__gcc.hpp
 -p0 openjdk16/patch-src_java.desktop_share_native_libsplashscreen_libpng_pngpriv.h
 -p0 openjdk16/tribblix-attachListener_solaris.patch
 -p0 openjdk16/tribblix-flags-cflags.patch
