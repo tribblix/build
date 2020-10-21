@@ -26177,9 +26177,9 @@
 - * questions.
 - */
 -
--#include <sys/devpoll.h>
 -#include <sys/types.h>
 -#include <sys/stat.h>
+-#include <devpoll.h>
 -#include <fcntl.h>
 -#include <poll.h>
 -
