@@ -1072,7 +1072,7 @@
 @@ -983,7 +961,6 @@
      var devkit_platform_revisions = {
          linux_x64: "gcc10.2.0-OL6.4+1.0",
-         macosx_x64: "Xcode11.3.1-MacOSX10.15+1.0",
+         macosx_x64: "Xcode11.3.1-MacOSX10.15+1.1",
 -        solaris_x64: "SS12u4-Solaris11u1+1.0",
          windows_x64: "VS2019-16.7.2+1.0",
          linux_aarch64: "gcc10.2.0-OL7.6+1.0",
@@ -2233,7 +2233,7 @@
          }
 --- old/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -289,7 +289,7 @@
+@@ -353,7 +353,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -2244,7 +2244,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.990246402 -0700
 +++ new/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.654239951 -0700
-@@ -56,12 +56,10 @@
+@@ -57,12 +57,10 @@
  void VM_GC_Operation::notify_gc_begin(bool full) {
    HOTSPOT_GC_BEGIN(
                     full);
@@ -2301,7 +2301,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1096,23 +1096,9 @@
+@@ -1150,23 +1150,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
@@ -2669,7 +2669,7 @@
  inline int g_isnan(float  f) { return isnanf(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700
-@@ -412,14 +412,6 @@
+@@ -416,14 +416,6 @@
  #define NOT_AIX(code) code
  #endif
  
@@ -2686,7 +2686,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1046,7 +1046,7 @@
+@@ -1034,7 +1034,7 @@
  
  #ifndef PRODUCT
  
