@@ -33,8 +33,6 @@ chmod 444 lib/svc/manifest/network/ssh.xml
 chmod 555 lib/svc/method/sshd
 
 #
-# temporary fix to allow connection from older sunssh
+# mitigation for CVE-2020-14871
 #
-cat >> etc/ssh/sshd_config <<EOF
-KexAlgorithms +diffie-hellman-group1-sha1
-EOF
+sed -i 's:#ChallengeResponseAuthentication yes:ChallengeResponseAuthentication no:' etc/ssh/sshd_config

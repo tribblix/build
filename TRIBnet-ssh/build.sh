@@ -9,15 +9,6 @@
 # Or a command line like:
 # ssh -o PubkeyAcceptedKeyTypes=+ssh-dss
 # 
-# Note from Andy Fiddaman on the OmniOS list:
-# 
-# To continue allowing connections from SunSSH (during migration for example),
-# add:
-# 
-#         KexAlgorithms +diffie-hellman-group1-sha1
-# 
-# to sshd_config.
-# 
 # Remember to update any entries in /etc/pam.conf
 # 
 # We needed:
