@@ -13,17 +13,20 @@
 # 13.0.3 update
 # wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.3+3.tar.bz2
 #
+# 13.0.4 update
+# wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.4+8.tar.bz2
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.4+8.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.5+3.tar.bz2
 #
 # fix the tarball name to match the directory it unpacks into
 # this needed to get the patches to apply correctly
 #
-ln jdk-13.0.4+8.tar.bz2 jdk13u-jdk-13.0.4+8.tar.bz2
+ln jdk-13.0.5+3.tar.bz2 jdk13u-jdk-13.0.5+3.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk13u-jdk-13.0.4+8
-cd jdk13u-jdk-13.0.4+8
+${THOME}/build/unpack jdk13u-jdk-13.0.5+3
+cd jdk13u-jdk-13.0.5+3
 
 #
 # as of 13.0.3, switch to a gcc build to replace Stuido
@@ -33,25 +36,6 @@ cd jdk13u-jdk-13.0.4+8
 # looks like dtrace is busted, I suspect illumos and Solaris have diverged
 # enough to trip it up, so --enable-dtrace=no
 #
-
-#
-# Not for gcc builds, and ignoring for now as j2ucrypto is deprecated
-# in more recent versions
-#
-# We need a copy of libsoftcrypto.h
-# this was formerly shipped with the source, but got removed as the
-# build host is supposed to provide it (either as part of the OS
-# or via devkit)
-#
-# removed in
-# http://hg.openjdk.java.net/jdk9/jdk9/jdk/rev/9db62c197dcd
-# so pull the version from the parent of that commit
-#
-# http://hg.openjdk.java.net/jdk9/jdk9/jdk/raw-file/48148c98c95a/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
-#
-# cp libsoftcrypto.h jdk/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto
-#
-#cp ${THOME}/build/patches/jdk-libsoftcrypto.h src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
 
 #
 # jdk13 needs autoconf installed
@@ -85,9 +69,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "13.0.4-internal" 2020-07-14
-# OpenJDK Runtime Environment (build 13.0.4-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.48)
-# OpenJDK 64-Bit Server VM (build 13.0.4-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.48, mixed mode, sharing)
+# openjdk version "13.0.5-internal" 2020-10-20
+# OpenJDK Runtime Environment (build 13.0.5-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.53)
+# OpenJDK 64-Bit Server VM (build 13.0.5-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.53, mixed mode, sharing)
 # 
 
 rm -fr /tmp/jdk
@@ -119,5 +103,7 @@ rm `find . -name '*.diz'`
 ${THOME}/build/patches/mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /usr/jdk/instances/jdk1.8.0/bin/keytool -s /usr/bin/openssl
 #
 cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk13/lib/security
+
+(cd /tmp/jdk/usr/versions/openjdk13/conf/security/ ; gpatch -p1 < ${THOME}/build/patches/sunpkcs11-solaris.cfg.patch)
 
 ${THOME}/build/create_pkg TRIBopenjdk13 /tmp/jdk
