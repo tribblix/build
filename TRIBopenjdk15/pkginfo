@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk15"
-NAME="OpenJDK 15 pre-release"
-VERSION="15.pre.36.0"
+NAME="OpenJDK 15"
+VERSION="15.0.1.0"
 ZAP_URL="http://openjdk.java.net/"
