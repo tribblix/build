@@ -1,7 +1,7 @@
 --- make/autoconf/flags-ldflags.m4~	Mon Apr 13 14:19:55 2020
 +++ make/autoconf/flags-ldflags.m4	Mon Apr 13 14:34:10 2020
 @@ -80,7 +80,11 @@
-       BASIC_LDFLAGS="$BASIC_LDFLAGS -Wl,--gc-sections -Wl,--print-gc-sections"
+       fi
      fi
  
 -    BASIC_LDFLAGS_JVM_ONLY="-Wl,-O1"

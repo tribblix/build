@@ -79,7 +79,7 @@
    _synchronization_initialized = true;
  }
 @@ -3139,8 +3122,7 @@
-     jdk_misc_signal_init();
+     PosixSignals::jdk_misc_signal_init();
    }
  
 -  // initialize synchronization primitives to use either thread or
