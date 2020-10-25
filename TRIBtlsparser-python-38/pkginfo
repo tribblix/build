@@ -1,0 +1,4 @@
+PKG="TRIBtlsparser-python-38"
+NAME="Python tls_parser"
+VERSION="1.2.2.0"
+ZAP_URL="https://pypi.org/project/tls_parser"
