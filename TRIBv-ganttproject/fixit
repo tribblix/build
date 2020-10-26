@@ -2,9 +2,9 @@
 #
 # just name off the primary version
 #
-VERSION=2.8.10
+VERSION=2.8.11
 
-UVER=r2364
+UVER=r2396
 mv usr/versions/ganttproject-${VERSION}-${UVER} usr/versions/ganttproject-${VERSION}
 
 mkdir -p usr/bin

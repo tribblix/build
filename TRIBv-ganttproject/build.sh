@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBv-ganttproject ganttproject-2.8.10-r2364
+${THOME}/build/pkg_tarball TRIBv-ganttproject ganttproject-2.8.11-r2396
