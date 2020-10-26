@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBv-projectlibre projectlibre-1.9.1
+${THOME}/build/pkg_tarball TRIBv-projectlibre projectlibre-1.9.2
