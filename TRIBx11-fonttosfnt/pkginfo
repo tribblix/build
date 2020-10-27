@@ -1,0 +1,4 @@
+PKG="TRIBx11-fonttosfnt"
+NAME="fonttosfnt"
+VERSION="1.2.0.0"
+ZAP_URL="http://xorg.freedesktop.org/releases/individual/app/"
