@@ -8,13 +8,10 @@
 #
 
 #
-# master doesn't support postgres 11 yet, so we have to build against
-# the develop branch
+# now supports postgres 10 and 11
 #
 git clone https://github.com/zombodb/zombodb
 cd zombodb
-git fetch origin
-git checkout -b develop origin/develop
 env PATH=/opt/tribblix/postgres11/bin:$PATH gmake
 env PATH=/opt/tribblix/postgres11/bin:$PATH $THOME/build/genpkg TRIBblix-zombodb11
 cd ..
