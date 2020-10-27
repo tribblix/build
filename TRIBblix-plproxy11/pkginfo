@@ -1,4 +1,4 @@
 PKG="TRIBblix-plproxy11"
 NAME="PL/Proxy for PostgreSQL"
-VERSION="2.9.0"
+VERSION="2.10.0.0"
 ZAP_URL="https://plproxy.github.io/"
