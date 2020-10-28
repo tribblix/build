@@ -1,0 +1,4 @@
+PKG="TRIBfont-ttype-juliamono"
+NAME="Julia Mono fonts"
+VERSION="1.0.0"
+ZAP_URL="https://github.com/cormullion/juliamono"
