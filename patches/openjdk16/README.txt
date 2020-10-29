@@ -20,6 +20,16 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+22
+
+Refactor due to
+8255254: Split os::reserve_memory and os::map_memory_to_file
+interfaces
+In os_solaris.cpp, change the 3-argument form of:
+pd_attempt_reserve_memory_at -> pd_attempt_map_memory_to_file_at
+
+One of the spec.gmk,in hunks failed, just delete it
+
 In 16+20
 
 Mostly the stack overflow handlingg rorg
