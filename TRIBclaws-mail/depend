@@ -8,10 +8,12 @@ P TRIBlib-desktop-gtk
 P TRIBlib-desktop-pango
 P TRIBlib-expat
 P TRIBlib-glib2
+P TRIBlib-zlib
 P TRIBlibarchive
 P TRIBlibetpan
 P TRIBlibgpg-error
 P TRIBlibnotify
+P TRIBnettle
 P TRIBpoppler
 P TRIBstartup-notification
 P TRIBsys-libdbus-glib
