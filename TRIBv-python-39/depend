@@ -4,6 +4,3 @@ P TRIBdatabase-sqlite-3
 P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBlibffi
-P TRIBtcl
-P TRIBtk
-P TRIBx11-libx11
