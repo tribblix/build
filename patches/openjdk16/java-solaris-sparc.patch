@@ -256,9 +256,9 @@
      UTIL_REQUIRE_BUILTIN_PROGS(ULIMIT, ulimit)
 --- old/make/autoconf/build-aux/config.guess	2020-05-20 17:58:28.372314465 -0700
 +++ new/make/autoconf/build-aux/config.guess	2020-05-20 17:58:27.980306938 -0700
-@@ -30,22 +30,6 @@
- DIR=`dirname $0`
- OUT=`. $DIR/autoconf-config.guess`
+@@ -41,22 +41,6 @@
+   fi
+ fi
  
 -# Test and fix solaris on x86_64
 -echo $OUT | grep i386-pc-solaris > /dev/null 2> /dev/null
@@ -374,7 +374,7 @@
    else
      DEBUG_CFLAGS_JDK="-DDEBUG"
  
-@@ -752,19 +652,14 @@
+@@ -769,19 +669,14 @@
      if test "x$FLAGS_OS" = xlinux || test "x$FLAGS_OS" = xmacosx; then
        $1_DEFINES_CPU_JDK="${$1_DEFINES_CPU_JDK} -D_LP64=1"
      fi
@@ -516,7 +516,7 @@
    fi
  
    # perfstat lib
-@@ -135,12 +126,6 @@
+@@ -136,12 +127,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -529,7 +529,7 @@
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib \
-@@ -158,7 +143,6 @@
+@@ -159,7 +144,6 @@
    AC_SUBST(JVM_LIBS)
    AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
    AC_SUBST(OPENJDK_BUILD_JVM_LIBS)
@@ -537,7 +537,7 @@
  ])
  
  ################################################################################
-@@ -189,28 +173,3 @@
+@@ -190,28 +174,3 @@
    LIBZIP_CAN_USE_MMAP=true
    AC_SUBST(LIBZIP_CAN_USE_MMAP)
  ])
@@ -579,7 +579,7 @@
      *darwin*)
        VAR_OS=macosx
        VAR_OS_TYPE=unix
-@@ -381,19 +389,6 @@
+@@ -415,19 +423,6 @@
    fi
    AC_SUBST(OPENJDK_$1_CPU_LEGACY_LIB)
  
@@ -599,7 +599,7 @@
    # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
    OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
    if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -510,9 +505,6 @@
+@@ -553,9 +548,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -609,7 +609,7 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -566,25 +558,9 @@
+@@ -611,25 +603,9 @@
    PLATFORM_SET_MODULE_TARGET_OS_VALUES
    PLATFORM_SET_RELEASE_FILE_OS_VALUES
    PLATFORM_SETUP_LEGACY_VARS
@@ -639,7 +639,7 @@
  AC_DEFUN_ONCE([PLATFORM_SETUP_OPENJDK_BUILD_OS_VERSION],
 --- old/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.488604709 -0700
 +++ new/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.064596567 -0700
-@@ -83,7 +83,6 @@
+@@ -85,7 +85,6 @@
  COMPILE_TYPE:=@COMPILE_TYPE@
  
  # Legacy support
@@ -647,7 +647,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -469,7 +468,6 @@
+@@ -477,7 +476,6 @@
  
  DISABLE_WARNING_PREFIX := @DISABLE_WARNING_PREFIX@
  CFLAGS_WARNINGS_ARE_ERRORS:=@CFLAGS_WARNINGS_ARE_ERRORS@
@@ -655,7 +655,7 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -519,7 +517,6 @@
+@@ -528,7 +526,6 @@
  # LDFLAGS used to link the jdk native libraries (C-code)
  LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
  JDKLIB_LIBS:=@JDKLIB_LIBS@
@@ -663,7 +663,7 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -569,10 +564,6 @@
+@@ -580,10 +575,6 @@
  # (Note absence of := assignment, because we do not want to evaluate the macro body here)
  SET_SHARED_LIBRARY_MAPFILE=@SET_SHARED_LIBRARY_MAPFILE@
  
@@ -674,7 +674,7 @@
  #
  # Options for generating debug symbols
  COMPILE_WITH_DEBUG_SYMBOLS := @COMPILE_WITH_DEBUG_SYMBOLS@
-@@ -735,7 +728,6 @@
+@@ -745,7 +738,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -682,7 +682,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -752,7 +744,6 @@
+@@ -762,7 +754,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -690,7 +690,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -769,7 +760,6 @@
+@@ -779,7 +770,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -867,7 +867,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/Modules.gmk	2020-05-20 17:58:46.776667842 -0700
 +++ new/make/common/Modules.gmk	2020-05-20 17:58:46.380660238 -0700
-@@ -122,10 +122,6 @@
+@@ -123,10 +123,6 @@
    PLATFORM_MODULES += jdk.crypto.mscapi
  endif
  
@@ -918,7 +918,7 @@
  
  ################################################################################
 @@ -474,7 +460,6 @@
- #   RC_FLAGS flags for RC.
+ #   RCFLAGS flags for RC.
  #   EMBED_MANIFEST if true, embed manifest on Windows.
  #   MAPFILE mapfile
 -#   REORDER reorder file
@@ -1035,8 +1035,8 @@
          "windows-x64", "windows-x86",
          "linux-aarch64", "linux-arm32", "linux-ppc64le", "linux-s390x"
      ];
-@@ -432,14 +432,6 @@
-                 "--with-macosx-version-max=10.9.0"),
+@@ -431,14 +431,6 @@
+                 "SETFILE=/usr/bin/SetFile"),
          },
  
 -        "solaris-x64": {
@@ -1050,7 +1050,7 @@
          "windows-x64": {
              target_os: "windows",
              target_cpu: "x64",
-@@ -536,7 +520,7 @@
+@@ -535,7 +519,7 @@
              "ANT_HOME": input.get("ant", "home_path")
          }
      };
@@ -1059,7 +1059,7 @@
          .forEach(function (name) {
              var maketestName = name + "-testmake";
              profiles[maketestName] = concatObjects(profiles[name], testmakeBase);
-@@ -662,9 +646,6 @@
+@@ -661,9 +645,6 @@
              platform: "osx-x64",
              jdk_subdir: "jdk-" + data.version +  ".jdk/Contents/Home",
          },
@@ -1069,7 +1069,7 @@
          "windows-x64": {
              platform: "windows-x64",
              jdk_suffix: "zip",
-@@ -983,7 +961,6 @@
+@@ -1008,7 +986,6 @@
      var devkit_platform_revisions = {
          linux_x64: "gcc10.2.0-OL6.4+1.0",
          macosx_x64: "Xcode11.3.1-MacOSX10.15+1.1",
@@ -1088,7 +1088,7 @@
 -    ADLC_CFLAGS := -m64
 -    ADLC_CFLAGS_WARNINGS := +w
    else ifeq ($(call isBuildOs, aix), true)
-     ADLC_LDFLAGS := -q64
+     ADLC_LDFLAGS += -q64
      ADLC_CFLAGS := -qnortti -qeh -q64 -DAIX
 @@ -88,8 +84,6 @@
    # ADLC flags depending on target OS
@@ -1187,7 +1187,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -185,13 +153,11 @@
+@@ -178,13 +146,11 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -1201,7 +1201,7 @@
      DISABLED_WARNINGS_xlc := $(DISABLED_WARNINGS_xlc), \
      DISABLED_WARNINGS_microsoft := $(DISABLED_WARNINGS_microsoft), \
      ASFLAGS := $(JVM_ASFLAGS), \
-@@ -275,30 +241,20 @@
+@@ -267,30 +233,20 @@
  # one) then the global definition will be used, triggering this check.
  
  ifneq ($(GENERATE_COMPILE_COMMANDS_ONLY), true)
@@ -1249,7 +1249,7 @@
  include lib/CompileJvm.gmk
 -include lib/CompileDtraceLibraries.gmk
  
- ifeq ($(BUILD_GTEST), true)
+ ifneq ($(GTEST_FRAMEWORK_SRC), )
    include lib/CompileGtest.gmk
 --- old/make/hotspot/lib/JvmMapfile.gmk	2020-05-20 17:59:00.372928900 -0700
 +++ new/make/hotspot/lib/JvmMapfile.gmk	2020-05-20 17:58:59.980921373 -0700
@@ -1433,9 +1433,9 @@
    DEF_POLICY_SRC_LIST += $(TOPDIR)/src/java.base/$(OPENJDK_TARGET_OS)/lib/security/default.policy
  endif
  
-@@ -189,7 +189,7 @@
+@@ -193,7 +193,7 @@
  
- TARGETS += $(COPY_NET_PROPERTIES)
+ TARGETS += $(NET_PROPERTIES_DST)
  
 -ifeq ($(call isTargetOs, solaris linux), true)
 +ifeq ($(call isTargetOs, linux), true)
@@ -1623,7 +1623,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -223,10 +211,6 @@
+@@ -220,10 +208,6 @@
          $(FONTCONFIG_CFLAGS) \
          $(CUPS_CFLAGS)
  
@@ -1634,7 +1634,7 @@
      ifeq ($(call isTargetOs, linux), true)
        ifeq ($(DISABLE_XRENDER), true)
          LIBAWT_XAWT_CFLAGS += -DDISABLE_XRENDER_BY_DEFAULT=true
-@@ -397,7 +378,6 @@
+@@ -406,7 +387,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -1642,7 +1642,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -464,9 +440,6 @@
+@@ -476,9 +452,6 @@
    ifeq ($(call isTargetOs, linux macosx), true)
      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
    endif
@@ -1652,7 +1652,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
    endif
-@@ -626,10 +591,7 @@
+@@ -681,10 +646,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1664,7 +1664,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -656,7 +618,6 @@
+@@ -711,7 +673,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1758,7 +1758,7 @@
 -    LIBS_solaris := $(LIBDL), \
      LIBS_macosx := -liconv, \
      LIBS_aix := -liconv, \
-     LIBS_windows := $(WIN_JAVA_LIB), \
+ ))
 --- old/make/modules/jdk.management/Lib.gmk	2020-05-20 17:59:24.761397176 -0700
 +++ new/make/modules/jdk.management/Lib.gmk	2020-05-20 17:59:24.373389726 -0700
 @@ -35,7 +35,7 @@
@@ -2015,7 +2015,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -459,7 +459,7 @@
+@@ -466,7 +466,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -2024,7 +2024,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -477,12 +477,6 @@
+@@ -484,12 +484,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -2037,7 +2037,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -803,7 +797,7 @@
+@@ -811,7 +805,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -2045,8 +2045,8 @@
 +  size_t os_min_stack_allowed = PTHREAD_STACK_MIN;
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
-                                    JavaThread::stack_guard_zone_size() +
-@@ -1007,8 +1001,7 @@
+                                    StackOverflow::stack_guard_zone_size() +
+@@ -1132,8 +1126,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -2056,7 +2056,7 @@
  }
  
  // Not all POSIX types and API's are available on all notionally "posix"
-@@ -1120,7 +1096,6 @@
+@@ -1232,7 +1208,6 @@
  
    pthread_init_common();
  
@@ -2064,7 +2064,7 @@
    int status;
    if (_pthread_condattr_setclock != NULL && _clock_gettime != NULL) {
      if ((status = _pthread_condattr_setclock(_condAttr, CLOCK_MONOTONIC)) != 0) {
-@@ -1135,12 +1100,9 @@
+@@ -1257,12 +1222,9 @@
        _use_clock_monotonic_condattr = true;
      }
    }
@@ -2077,7 +2077,7 @@
    log_info(os)("Use of CLOCK_MONOTONIC is%s supported",
                 (_clock_gettime != NULL ? "" : " not"));
    log_info(os)("Use of pthread_condattr_setclock is%s supported",
-@@ -1148,7 +1110,6 @@
+@@ -1269,7 +1231,6 @@
                 (_pthread_condattr_setclock != NULL ? "" : " not"));
    log_info(os)("Relative timed-wait using pthread_cond_timedwait is associated with %s",
                 _use_clock_monotonic_condattr ? "CLOCK_MONOTONIC" : "the default clock");
@@ -2085,7 +2085,7 @@
  }
  
  #else // !SUPPORTS_CLOCK_MONOTONIC
-@@ -1158,11 +1119,9 @@
+@@ -1279,11 +1240,9 @@
  }
  
  void os::Posix::init_2(void) {
@@ -2097,7 +2097,7 @@
  }
  
  #endif // SUPPORTS_CLOCK_MONOTONIC
-@@ -1304,7 +1263,6 @@
+@@ -1424,7 +1383,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -2105,7 +2105,7 @@
  
  // PlatformEvent
  //
-@@ -1736,5 +1694,3 @@
+@@ -1854,5 +1812,3 @@
      return OS_OK;
    }
  }
@@ -2329,16 +2329,16 @@
    }
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -433,7 +433,7 @@
+@@ -449,7 +449,7 @@
            "Trace external suspend wait failures")                           \
                                                                              \
    product(bool, MaxFDLimit, true,                                           \
 -          "Bump the number of file descriptors to maximum in Solaris")      \
 +          "Bump the number of file descriptors to maximum (Unix only)")     \
                                                                              \
-   diagnostic(bool, LogEvents, true,                                         \
+   diagnostic(bool, LogEvents, true, DIAGNOSTIC,                             \
            "Enable the various ring buffer event logs")                      \
-@@ -707,10 +707,6 @@
+@@ -720,10 +720,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2349,7 +2349,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -735,10 +731,6 @@
+@@ -748,10 +744,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2360,7 +2360,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1852,10 +1844,8 @@
+@@ -1860,10 +1852,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2373,7 +2373,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2413,8 +2402,7 @@
+@@ -2433,8 +2422,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2410,7 +2410,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -459,7 +459,7 @@
+@@ -458,7 +458,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2419,7 +2419,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -791,10 +791,8 @@
+@@ -790,10 +790,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -2443,7 +2443,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -351,12 +351,6 @@
+@@ -352,12 +352,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -2455,7 +2455,7 @@
 -
    // Set stack limits after thread is initialized.
    if (is_Java_thread()) {
-     ((JavaThread*) this)->set_stack_overflow_limit();
+     as_Java_thread()->stack_overflow_state()->initialize(stack_base(), stack_end());
 --- old/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.698816829 -0700
 +++ new/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.318809532 -0700
 @@ -41,12 +41,6 @@
@@ -2747,7 +2747,7 @@
  
 --- old/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:50.351040561 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:49.963033111 -0700
-@@ -497,7 +497,7 @@
+@@ -499,7 +499,7 @@
      private static native boolean isReusePortAvailable0();
  
      /*
@@ -3917,7 +3917,7 @@
  /******************* Java entry points *****************************/
  
  /*
-@@ -1674,372 +1658,6 @@
+@@ -1669,372 +1653,6 @@
  
  #endif /* _AIX */
  
@@ -4303,7 +4303,7 @@
  #include "net_util.h"
  
  #include "java_net_PlainDatagramSocketImpl.h"
-@@ -52,12 +48,6 @@
+@@ -57,12 +53,6 @@
  #endif
  #endif  //  __linux__
  
@@ -4316,7 +4316,7 @@
  #ifndef IPTOS_TOS_MASK
  #define IPTOS_TOS_MASK 0x1e
  #endif
-@@ -498,14 +488,6 @@
+@@ -503,14 +493,6 @@
      n = NET_RecvFrom(fd, buf, 1, MSG_PEEK, &rmtaddr.sa, &slen);
  
      if (n == -1) {
@@ -4331,7 +4331,7 @@
          if (errno == ECONNREFUSED) {
              JNU_ThrowByName(env, JNU_JAVANETPKG "PortUnreachableException",
                              "ICMP Port Unreachable");
-@@ -632,14 +614,6 @@
+@@ -637,14 +619,6 @@
          n = packetBufferLen;
      }
      if (n == -1) {
@@ -4346,7 +4346,7 @@
          (*env)->SetIntField(env, packet, dp_offsetID, 0);
          (*env)->SetIntField(env, packet, dp_lengthID, 0);
          if (errno == ECONNREFUSED) {
-@@ -1853,10 +1827,9 @@
+@@ -1851,10 +1825,9 @@
   * we must use the IPv4 socket options. This is because the IPv6 socket options
   * don't support IPv4-mapped addresses. This is true as per 2.2.19 and 2.4.7
   * kernel releases. In the future it's possible that IP_ADD_MEMBERSHIP
@@ -5012,7 +5012,7 @@
      int result;
 --- old/src/java.base/unix/native/libnio/ch/NativeThread.c	2020-05-20 18:01:33.783874502 -0700
 +++ new/src/java.base/unix/native/libnio/ch/NativeThread.c	2020-05-20 18:01:33.371866591 -0700
-@@ -41,9 +41,6 @@
+@@ -40,9 +40,6 @@
    #include <pthread.h>
    /* Also defined in net/aix_close.c */
    #define INTERRUPT_SIGNAL (SIGRTMAX - 1)
@@ -5022,7 +5022,7 @@
  #elif defined(_ALLBSD_SOURCE)
    #include <pthread.h>
    /* Also defined in net/bsd_close.c */
-@@ -79,22 +76,14 @@
+@@ -77,22 +74,14 @@
  JNIEXPORT jlong JNICALL
  Java_sun_nio_ch_NativeThread_current(JNIEnv *env, jclass cl)
  {
@@ -5067,7 +5067,7 @@
  #else
 --- old/src/java.base/unix/native/libnio/ch/nio_util.h	2020-05-20 18:01:36.115919279 -0700
 +++ new/src/java.base/unix/native/libnio/ch/nio_util.h	2020-05-20 18:01:35.695911215 -0700
-@@ -40,8 +40,6 @@
+@@ -41,8 +41,6 @@
  #ifndef SO_REUSEPORT
  #ifdef __linux__
  #define SO_REUSEPORT 15
@@ -6338,7 +6338,7 @@
       * instead it has to be installed from the "AIX Toolbox for Linux Applications"
 --- old/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:46.009261282 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:45.625253909 -0700
-@@ -409,12 +409,7 @@
+@@ -399,12 +399,7 @@
              xrenderLibHandle = dlopen("libXrender.so", RTLD_LAZY | RTLD_GLOBAL);
          }
  
@@ -6372,7 +6372,7 @@
   * It is used in setting the time in Java-level InputEvents
 --- old/src/java.desktop/unix/native/libawt_xawt/java2d/x11/XRBackendNative.c	2020-05-20 18:02:47.985299224 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/java2d/x11/XRBackendNative.c	2020-05-20 18:02:47.661293003 -0700
-@@ -35,21 +35,6 @@
+@@ -39,21 +39,6 @@
      #include <sys/utsname.h>
  #endif
  
@@ -6394,7 +6394,7 @@
  #ifndef X_RenderCreateLinearGradient
  typedef struct _XLinearGradient {
      XPointFixed p1;
-@@ -72,29 +57,6 @@
+@@ -76,29 +61,6 @@
  
  #include <dlfcn.h>
  
@@ -6424,7 +6424,7 @@
  #define BUILD_TRANSFORM_MATRIX(TRANSFORM, M00, M01, M02, M10, M11, M12)                        \
      {                                                                                          \
        TRANSFORM.matrix[0][0] = M00;                                                            \
-@@ -162,27 +124,6 @@
+@@ -166,27 +128,6 @@
      } else {
        available = JNI_FALSE;
      }
