@@ -1,4 +1,0 @@
-PKG="TRIBrsa-python-27"
-NAME="Python rsa module"
-VERSION="3.4.2.0"
-ZAP_URL="https://pypi.org/project/rsa"
