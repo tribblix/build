@@ -32,9 +32,11 @@ esac
 PY2NAME=TRIB${pkg_name}-python-${PY2VER}
 PY37NAME=TRIB${pkg_name}-python-${PY37VER}
 
-if [ -d "$PY2NAME" ]; then
-   echo "$PY2NAME already exists"
-   exit 1
+if [ -z "${PY3ONLY}" ]; then
+   if [ -d "$PY2NAME" ]; then
+       echo "$PY2NAME already exists"
+       exit 1
+   fi
 fi
 if [ -d "$PY37NAME" ]; then
    echo "$PY37NAME already exists"
