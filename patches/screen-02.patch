@@ -1,0 +1,13 @@
+diff -wpruN '--exclude=*.orig' a~/socket.c a/socket.c
+--- a~/socket.c	1970-01-01 00:00:00
++++ a/socket.c	1970-01-01 00:00:00
+@@ -33,7 +33,9 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
++#define _XPG4_2
+ # include <sys/socket.h>
++#undef _XPG4_2
+ # ifdef _OpenBSD_
+ #  include <sys/uio.h>
+ # endif

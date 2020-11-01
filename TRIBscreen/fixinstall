@@ -21,7 +21,7 @@ fi
 #
 # local package tweaks below
 #
-VERSION=4.5.1
+VERSION=4.8.0
 chmod 4511 ${DESTDIR}/usr/bin/screen-${VERSION}
 mkdir -p ${DESTDIR}/etc
 cp etc/etcscreenrc ${DESTDIR}/etc/screenrc

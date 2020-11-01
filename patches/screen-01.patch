@@ -1,0 +1,20 @@
+--- a/configure	Wed Feb  5 20:26:31 2020
++++ b/configure	Sun Nov  1 10:54:15 2020
+@@ -4109,7 +4109,7 @@
+ 
+ if test -n "$svr4" ; then
+ oldlibs="$LIBS"
+-LIBS="$LIBS -lelf"
++LIBS="$LIBS"
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking SVR4..." >&5
+ $as_echo "$as_me: checking SVR4..." >&6;}
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+@@ -4173,7 +4173,7 @@
+ _ACEOF
+ if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
+   $EGREP "YES_IS_DEFINED" >/dev/null 2>&1; then :
+-  LIBS="$LIBS -lsocket -lnsl -lkstat"
++  LIBS="$LIBS -lsocket"
+ fi
+ rm -f conftest*
+ 
