@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# add convenience link
-#
-mkdir -p usr/bin
-cd usr/bin
-ln -s ../../usr/versions/python-2.7/bin/virtualenv .
