@@ -374,6 +374,28 @@
    else
      DEBUG_CFLAGS_JDK="-DDEBUG"
  
+@@ -769,19 +669,14 @@
+     if test "x$FLAGS_OS" = xlinux || test "x$FLAGS_OS" = xmacosx; then
+       $1_DEFINES_CPU_JDK="${$1_DEFINES_CPU_JDK} -D_LP64=1"
+     fi
+-    if test "x$FLAGS_OS" != xsolaris && test "x$FLAGS_OS" != xaix; then
+-      # Solaris does not have _LP64=1 in the old build.
++    if test "x$FLAGS_OS" != xaix; then
+       # xlc on AIX defines _LP64=1 by default and issues a warning if we redefine it.
+       $1_DEFINES_CPU_JVM="${$1_DEFINES_CPU_JVM} -D_LP64=1"
+     fi
+   fi
+ 
+   # toolchain dependend, per-cpu
+-  if test "x$TOOLCHAIN_TYPE" = xsolstudio; then
+-    if test "x$FLAGS_CPU_ARCH" = xx86; then
+-      $1_DEFINES_CPU_JDK="${$1_DEFINES_CPU_JDK} -DcpuIntel -Di586 -D$FLAGS_CPU_LEGACY_LIB"
+-    fi
+-  elif test "x$TOOLCHAIN_TYPE" = xmicrosoft; then
++  if test "x$TOOLCHAIN_TYPE" = xmicrosoft; then
+     if test "x$FLAGS_CPU" = xaarch64; then
+       $1_DEFINES_CPU_JDK="${$1_DEFINES_CPU_JDK} -D_ARM64_ -Darm64"
+     elif test "x$FLAGS_CPU" = xx86_64; then
 --- old/make/autoconf/flags-other.m4	2020-05-20 17:58:32.576395187 -0700
 +++ new/make/autoconf/flags-other.m4	2020-05-20 17:58:32.200387967 -0700
 @@ -47,12 +47,10 @@
@@ -477,7 +499,7 @@
    fi # NEEDS_LIB_X11
 --- old/make/autoconf/libraries.m4	2020-05-20 17:58:41.188560546 -0700
 +++ new/make/autoconf/libraries.m4	2020-05-20 17:58:40.768552482 -0700
-@@ -122,15 +115,13 @@
+@@ -120,15 +113,13 @@
    BASIC_JVM_LIBS="$LIBM"
  
    # Dynamic loading library
@@ -494,7 +516,7 @@
    fi
  
    # perfstat lib
-@@ -138,12 +129,6 @@
+@@ -136,12 +127,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -507,7 +529,7 @@
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib \
-@@ -161,7 +146,6 @@
+@@ -159,7 +144,6 @@
    AC_SUBST(JVM_LIBS)
    AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
    AC_SUBST(OPENJDK_BUILD_JVM_LIBS)
@@ -515,7 +537,7 @@
  ])
  
  ################################################################################
-@@ -192,28 +176,3 @@
+@@ -190,28 +174,3 @@
    LIBZIP_CAN_USE_MMAP=true
    AC_SUBST(LIBZIP_CAN_USE_MMAP)
  ])
@@ -668,7 +690,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -778,7 +769,6 @@
+@@ -779,7 +770,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -1013,7 +1035,7 @@
          "windows-x64", "windows-x86",
          "linux-aarch64", "linux-arm32", "linux-ppc64le", "linux-s390x"
      ];
-@@ -433,14 +433,6 @@
+@@ -431,14 +431,6 @@
                  "SETFILE=/usr/bin/SetFile"),
          },
  
@@ -1047,7 +1069,7 @@
          "windows-x64": {
              platform: "windows-x64",
              jdk_suffix: "zip",
-@@ -1009,7 +987,6 @@
+@@ -1008,7 +986,6 @@
      var devkit_platform_revisions = {
          linux_x64: "gcc10.2.0-OL6.4+1.0",
          macosx_x64: "Xcode11.3.1-MacOSX10.15+1.1",
@@ -2211,7 +2233,7 @@
          }
 --- old/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -369,7 +369,7 @@
+@@ -353,7 +353,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -2279,7 +2301,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1145,23 +1145,9 @@
+@@ -1150,23 +1150,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
@@ -2378,7 +2400,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -570,7 +570,6 @@
+@@ -564,7 +564,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -2684,7 +2706,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1596,8 +1596,6 @@
+@@ -1609,8 +1609,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -2693,7 +2715,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1659,8 +1657,6 @@
+@@ -1672,8 +1670,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -2702,7 +2724,7 @@
  #endif
      tty->print_cr("\"%s\"...", cmd);
  
-@@ -1738,9 +1734,6 @@
+@@ -1751,9 +1747,6 @@
  }
  
  #ifndef PRODUCT
@@ -11423,7 +11445,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4418 +0,0 @@
+@@ -1,4423 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11624,6 +11646,10 @@
 -  assert((address)&st < (address)st.ss_sp, "Invalid stack base returned");
 -  assert((address)&st > (address)st.ss_sp-st.ss_size, "Invalid stack size returned");
 -  return st;
+-}
+-
+-static void _handle_uncaught_cxx_exception() {
+-  VMError::report_and_die("An uncaught C++ exception");
 -}
 -
 -bool os::is_primordial_thread(void) {
@@ -12024,6 +12050,7 @@
 -  PosixSignals::hotspot_sigmask(thread);
 -
 -  os::Solaris::init_thread_fpu_state();
+-  std::set_terminate(_handle_uncaught_cxx_exception);
 -
 -  thread->call_run();
 -
@@ -20148,7 +20175,7 @@
 -
 -static void set_bool_flag(const char* name, bool value) {
 -  JVMFlag* flag = JVMFlag::find_flag(name);
--  JVMFlagAccess::boolAtPut(flag, &value, JVMFlagOrigin::ATTACH_ON_DEMAND);
+-  JVMFlagAccess::boolAtPut(flag, &value, JVMFlag::ATTACH_ON_DEMAND);
 -}
 -
 -// Enable only the "fine grained" flags. Do *not* touch

@@ -11,7 +11,7 @@
  #else
  extern "C" JNIEXPORT int JVM_handle_linux_signal(int signo, siginfo_t* siginfo,
                                                 void* ucontext,
-@@ -497,6 +501,8 @@
+@@ -513,6 +517,8 @@
    JVM_handle_bsd_signal(sig, info, uc, true);
  #elif defined(AIX)
    JVM_handle_aix_signal(sig, info, uc, true);

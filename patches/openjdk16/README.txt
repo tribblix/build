@@ -20,6 +20,17 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+23
+
+The last hunk for flags-cflags.m4 removed; part of it was the _LP64=1
+change, the other part of the hunk was for studio
+
+JVMFlag::ATTACH_ON_DEMAND becomes JVMFlagOrigin::ATTACH_ON_DEMAND
+
+VMError::report_and_die() signature has changed; I can't see any
+similar use of it on other platforms that matches our usage, so
+easiest just to delete the code that calls it incorrectly.
+
 In 16+22
 
 Refactor due to

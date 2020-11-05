@@ -1,6 +1,6 @@
 --- make/autoconf/libraries.m4~	Mon Apr 13 16:53:05 2020
 +++ make/autoconf/libraries.m4	Wed Apr 15 13:55:46 2020
-@@ -130,7 +130,7 @@
+@@ -132,7 +132,7 @@
    fi
  
    if test "x$OPENJDK_TARGET_OS" = xsolaris; then

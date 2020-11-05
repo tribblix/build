@@ -4,7 +4,7 @@ Support SunOS/gcc.
 
 --- make/autoconf/libraries.m4.orig	2019-01-08 12:44:55.000000000 +0000
 +++ make/autoconf/libraries.m4
-@@ -191,6 +191,7 @@ AC_DEFUN_ONCE([LIB_SETUP_MISC_LIBS],
+@@ -193,6 +193,7 @@ AC_DEFUN_ONCE([LIB_SETUP_MISC_LIBS],
  AC_DEFUN_ONCE([LIB_SETUP_SOLARIS_STLPORT],
  [
    if test "x$OPENJDK_TARGET_OS" = "xsolaris"; then
