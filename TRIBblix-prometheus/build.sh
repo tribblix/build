@@ -1,6 +1,6 @@
 #!/bin/tcsh
 #
-# requires go 1.13
+# requires go, node, yarn
 #
 
 mkdir p1
@@ -16,17 +16,19 @@ cd $GOPATH/src/github.com/prometheus
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env PATH=/usr/versions/go-1.13/bin:$PATH gmake build
+env PATH=/usr/versions/go-1.15/bin:$PATH gmake build
 cd ..
 
 #
-# the new build with the react app requires yarn and node 8
+# the new build with the react app requires yarn and node
+# 2.18 builds clean
+# 2.20 vendor/github.com/docker/docker/client/client_unix.go build solaris
 #
 git clone https://github.com/prometheus/prometheus.git
 cd prometheus
 # be specific
-git checkout release-2.16.0
-env PATH=/usr/versions/yarn-v1.21.1/bin:/usr/versions/node-v8/bin:/usr/versions/go-1.13/bin:$PATH gmake build
+git checkout release-2.22
+env PATH=/usr/versions/yarn-v1.22.5/bin:/usr/versions/node-v12/bin:/usr/versions/go-1.15/bin:$PATH gmake build
 cd ..
 
 rm -fr /tmp/ppr1
