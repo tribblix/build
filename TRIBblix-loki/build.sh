@@ -17,11 +17,13 @@ ls -l ./loki
 go build ./cmd/promtail
 # edit vendor/github.com/hpcloud/tail/tail_posix.go - build solaris
 go build ./cmd/promtail
+go build ./cmd/logcli
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/loki/bin
 cp ./loki /tmp/ee/opt/tribblix/loki/bin
 cp ./promtail /tmp/ee/opt/tribblix/loki/bin
+cp ./logcli /tmp/ee/opt/tribblix/loki/bin
 cp README.md /tmp/ee/opt/tribblix/loki
 ${THOME}/build/create_pkg TRIBblix-loki /tmp/ee
 rm -fr /tmp/ee
