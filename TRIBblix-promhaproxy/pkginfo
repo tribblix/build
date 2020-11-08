@@ -1,4 +1,4 @@
 PKG="TRIBblix-promhaproxy"
 NAME="Prometheus haproxy exporter"
-VERSION="0.10.0"
+VERSION="0.11.0"
 ZAP_URL="https://github.com/prometheus/haproxy_exporter"

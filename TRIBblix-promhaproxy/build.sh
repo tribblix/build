@@ -15,11 +15,11 @@ cd $GOPATH/src/github.com/prometheus
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env PATH=/usr/versions/go-1.13/bin:$PATH gmake build
+env PATH=/usr/versions/go-1.15/bin:$PATH gmake build
 cd ..
 
 cd haproxy_exporter
-env PATH=/usr/versions/go-1.13/bin:$PATH gmake build
+env PATH=/usr/versions/go-1.15/bin:$PATH gmake build
 cd ..
 
 ${THOME}/build/genpkg TRIBblix-promhaproxy
