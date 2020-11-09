@@ -1,4 +1,4 @@
 PKG="TRIBxfce-places-plugin"
 NAME="Xfce Places Plugin"
-VERSION="1.7.0.0"
-ZAP_URL="http://goodies.xfce.org/projects/panel-plugins/xfce4-places-plugin"
+VERSION="1.8.1.0"
+ZAP_URL="https://docs.xfce.org/panel-plugins/xfce4-places-plugin"
