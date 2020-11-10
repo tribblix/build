@@ -25,4 +25,4 @@ Support for SunOS/gcc.
 +    ALWAYS_DEFINES_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
    elif test "x$TOOLCHAIN_TYPE" = xclang; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE"
-   elif test "x$TOOLCHAIN_TYPE" = xsolstudio; then
+   elif test "x$TOOLCHAIN_TYPE" = xxlc; then

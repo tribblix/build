@@ -855,7 +855,7 @@
 -
  JRE_TOOL_MODULES += \
      jdk.jdwp.agent \
-     jdk.incubator.jpackage \
+     jdk.jpackage \
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
 @@ -239,31 +239,17 @@
@@ -2307,15 +2307,6 @@
    }
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -449,7 +449,7 @@
-           "Trace external suspend wait failures")                           \
-                                                                             \
-   product(bool, MaxFDLimit, true,                                           \
--          "Bump the number of file descriptors to maximum in Solaris")      \
-+          "Bump the number of file descriptors to maximum (Unix only)")     \
-                                                                             \
-   diagnostic(bool, LogEvents, true, DIAGNOSTIC,                             \
-           "Enable the various ring buffer event logs")                      \
 @@ -720,10 +720,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
@@ -2351,7 +2342,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2433,8 +2422,7 @@
+@@ -2428,8 +2417,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2644,7 +2635,7 @@
 +#if defined(__APPLE__)
  inline int g_isnan(double f) { return isnan(f); }
  #elif defined(LINUX) || defined(_ALLBSD_SOURCE)
- inline int g_isnan(float  f) { return isnanf(f); }
+ inline int g_isnan(float  f) { return isnan(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700
 @@ -416,14 +416,6 @@
@@ -2702,16 +2693,6 @@
  #endif
      tty->print_cr("\"%s\"...", cmd);
  
-@@ -1738,9 +1734,6 @@
- }
- 
- #ifndef PRODUCT
--#if defined(__SUNPRO_CC) && __SUNPRO_CC >= 0x5140
--#pragma error_messages(off, SEC_NULL_PTR_DEREF)
--#endif
- typedef void (*voidfun_t)();
- // Crash with an authentic sigfpe
- static void crash_with_sigfpe() {
 --- old/src/java.base/share/classes/sun/net/sdp/SdpSupport.java	2020-05-20 18:00:49.295020283 -0700
 +++ new/src/java.base/share/classes/sun/net/sdp/SdpSupport.java	2020-05-20 18:00:48.903012757 -0700
 @@ -40,7 +40,7 @@
@@ -4282,8 +4263,8 @@
  
  #include "java_net_PlainDatagramSocketImpl.h"
 @@ -57,12 +53,6 @@
- #endif
- #endif  //  __linux__
+ #define IPV6_SNDBUF_LIMIT 65527
+ #endif  // __APPLE__
  
 -#ifdef __solaris__
 -#ifndef BSD_COMP
@@ -4991,15 +4972,15 @@
 --- old/src/java.base/unix/native/libnio/ch/NativeThread.c	2020-05-20 18:01:33.783874502 -0700
 +++ new/src/java.base/unix/native/libnio/ch/NativeThread.c	2020-05-20 18:01:33.371866591 -0700
 @@ -40,9 +40,6 @@
-   #include <pthread.h>
+ #elif defined(_AIX)
    /* Also defined in net/aix_close.c */
    #define INTERRUPT_SIGNAL (SIGRTMAX - 1)
 -#elif defined(__solaris__)
 -  #include <thread.h>
 -  #define INTERRUPT_SIGNAL (SIGRTMAX - 2)
  #elif defined(_ALLBSD_SOURCE)
-   #include <pthread.h>
    /* Also defined in net/bsd_close.c */
+   #define INTERRUPT_SIGNAL SIGIO
 @@ -77,22 +74,14 @@
  JNIEXPORT jlong JNICALL
  Java_sun_nio_ch_NativeThread_current(JNIEnv *env, jclass cl)
@@ -5272,8 +5253,8 @@
 -            }
 -        }
          if (FontUtilities.isLogging() && FontUtilities.isWindows) {
-             FontUtilities.getLogger().info
-                 ("Strike for " + fileFont + " at size = " + intPtSize +
+             FontUtilities.logInfo("Strike for " + fileFont + " at size = " + intPtSize +
+                  " use natives = " + useNatives +
 --- old/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:48.020147849 -0700
 +++ new/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:47.620140168 -0700
 @@ -40,8 +40,6 @@
