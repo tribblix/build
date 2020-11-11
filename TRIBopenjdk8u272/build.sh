@@ -1,5 +1,8 @@
 #!/bin/tcsh
 #
+# This is a respin; called 8u275-b01
+# the package name isn't updated as it it just a respin
+#
 # You first need to download the tarballs
 # this method from BLFS
 #
@@ -23,12 +26,12 @@ cd openjdk8u272
 
 #
 # alternatively the ga tarball can be obtained from
-# https://openjdk-sources.osci.io/openjdk8/openjdk8u272-ga.tar.xz
-# I think ga is b10
+# https://openjdk-sources.osci.io/openjdk8/openjdk8u275-ga.tar.xz
+# ga for 8u272 was b10, it's b01 for the respin
 #
 cd ~/ud
-${THOME}/build/unpack openjdk8u272-ga
-cd jdk8u272-ga
+${THOME}/build/unpack openjdk8u275-ga
+cd jdk8u275-ga
 
 #
 # the build fails if it finds gobjcopy
@@ -41,7 +44,7 @@ cd /usr/sfw/bin
 rm gobjcopy
 
 #
-# a couple of bugfixes that didn't make GA:
+# a couple of bugfixes that didn't make GA or the respin:
 #
 
 #
@@ -58,7 +61,7 @@ sed -i '/Java_sun_awt_X11_XToolkit_getDefaultScreenData/d' jdk/make/mapfiles/lib
 #
 # The fcs is magic to hide the milestone from the version string:
 #
-env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin bash ./configure --with-milestone=fcs --with-update-version=272 --with-build-number=b10 --enable-unlimited-crypto
+env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin bash ./configure --with-milestone=fcs --with-update-version=275 --with-build-number=b01 --enable-unlimited-crypto
 # SPARC requires env HOTSPOT_DISABLE_DTRACE_PROBES=true ...
 env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin gmake all
 
@@ -73,9 +76,9 @@ ln -s ../../gnu/bin/objcopy gobjcopy
 #
 # cd build/solaris-x86_64-normal-server-release/images/j2sdk-image
 # ./bin/java -version
-# openjdk version "1.8.0_272"
-# OpenJDK Runtime Environment (build 1.8.0_272-b10)
-# OpenJDK 64-Bit Server VM (build 25.272-b10, mixed mode)
+# openjdk version "1.8.0_275"
+# OpenJDK Runtime Environment (build 1.8.0_275-b01)
+# OpenJDK 64-Bit Server VM (build 25.275-b01, mixed mode)
 #
 
 #
@@ -91,21 +94,21 @@ ${THOME}/build/patches/mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /
 
 
 rm -fr /tmp/jdk
-mkdir -p /tmp/jdk/usr/versions/openjdk1.8.0_272
+mkdir -p /tmp/jdk/usr/versions/openjdk1.8.0_275
 mkdir -p /tmp/jdk/usr/jdk/instances
-(cd build/solaris-x86_64-normal-server-release/images/j2sdk-image; tar cf - *) | ( cd /tmp/jdk/usr/versions/openjdk1.8.0_272 ; tar xf -)
+(cd build/solaris-x86_64-normal-server-release/images/j2sdk-image; tar cf - *) | ( cd /tmp/jdk/usr/versions/openjdk1.8.0_275 ; tar xf -)
 cd /tmp/jdk/usr/jdk/instances
-ln -s ../../versions/openjdk1.8.0_272 jdk1.8.0
+ln -s ../../versions/openjdk1.8.0_275 jdk1.8.0
 cd /tmp/jdk/usr/jdk
-ln -s ../versions/openjdk1.8.0_272 .
-ln -s openjdk1.8.0_272 latest
+ln -s ../versions/openjdk1.8.0_275 .
+ln -s openjdk1.8.0_275 latest
 mkdir -p /tmp/jdk/usr/bin
 cd /tmp/jdk/usr/bin
 ln -s ../jdk/latest/bin/* .
 rm -f amd64 sparcv9
 cd /tmp/jdk/usr/versions
 rm `find . -name '*.diz'`
-cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk1.8.0_272/jre/lib/security
+cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk1.8.0_275/jre/lib/security
 
 #
 # edit .../jre/lib/security/sunpkcs11-solaris.cfg and add the following to disabledMechanisms
