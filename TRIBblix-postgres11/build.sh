@@ -2,5 +2,5 @@
 #
 # postgres 11
 #
-${THOME}/build/dobuild -P /opt/tribblix/postgres11 postgresql-11.9 -C "--without-readline --with-perl --with-openssl" -M world
-${THOME}/build/genpkg -I install-world TRIBblix-postgres11 postgresql-11.9
+${THOME}/build/dobuild -P /opt/tribblix/postgres11 postgresql-11.10 -C "--without-readline --with-perl --with-openssl" -M world
+${THOME}/build/genpkg -I install-world TRIBblix-postgres11 postgresql-11.10
