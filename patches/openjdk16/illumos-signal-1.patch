@@ -1,26 +1,15 @@
 --- a/src/hotspot/os/posix/signals_posix.cpp	Wed Oct  7 17:21:51 2020
 +++ b/src/hotspot/os/posix/signals_posix.cpp	Sat Oct 10 16:46:21 2020
-@@ -445,6 +445,10 @@
- extern "C" JNIEXPORT int JVM_handle_aix_signal(int signo, siginfo_t* siginfo,
-                                                void* ucontext,
-                                                int abort_if_unrecognized);
+@@ -505,6 +505,8 @@
+ #define JVM_HANDLE_XXX_SIGNAL JVM_handle_aix_signal
+ #elif defined(LINUX)
+ #define JVM_HANDLE_XXX_SIGNAL JVM_handle_linux_signal
 +#elif defined(SOLARIS)
-+extern "C" JNIEXPORT int JVM_handle_solaris_signal(int signo, siginfo_t* siginfo,
-+                                               void* ucontext,
-+                                               int abort_if_unrecognized);
++#define JVM_HANDLE_XXX_SIGNAL JVM_handle_solaris_signal
  #else
- extern "C" JNIEXPORT int JVM_handle_linux_signal(int signo, siginfo_t* siginfo,
-                                                void* ucontext,
-@@ -513,6 +517,8 @@
-   JVM_handle_bsd_signal(sig, info, uc, true);
- #elif defined(AIX)
-   JVM_handle_aix_signal(sig, info, uc, true);
-+#elif defined(SOLARIS)
-+  JVM_handle_solaris_signal(sig, info, uc, true);
- #else
-   JVM_handle_linux_signal(sig, info, uc, true);
+ #error who are you?
  #endif
-@@ -1314,6 +1320,8 @@
+@@ -1381,6 +1387,8 @@
     return os::Bsd::ucontext_get_pc(ctx);
  #elif defined(LINUX)
     return os::Linux::ucontext_get_pc(ctx);
@@ -29,7 +18,7 @@
  #else
     VMError::report_and_die("unimplemented ucontext_get_pc");
  #endif
-@@ -1326,6 +1334,8 @@
+@@ -1393,6 +1401,8 @@
     os::Bsd::ucontext_set_pc(ctx, pc);
  #elif defined(LINUX)
     os::Linux::ucontext_set_pc(ctx, pc);

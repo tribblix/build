@@ -1620,7 +1620,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -476,9 +452,6 @@
+@@ -475,9 +451,6 @@
    ifeq ($(call isTargetOs, linux macosx), true)
      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
    endif
@@ -1630,7 +1630,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
    endif
-@@ -681,10 +646,7 @@
+@@ -680,10 +645,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1642,7 +1642,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -711,7 +673,6 @@
+@@ -710,7 +672,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -2307,7 +2307,7 @@
    }
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -720,10 +720,6 @@
+@@ -717,10 +717,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2318,7 +2318,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -748,10 +744,6 @@
+@@ -759,10 +755,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2329,7 +2329,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1860,10 +1852,8 @@
+@@ -1867,10 +1859,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2342,7 +2342,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2428,8 +2417,7 @@
+@@ -2435,8 +2424,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2412,7 +2412,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -352,12 +352,6 @@
+@@ -348,12 +348,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -2675,7 +2675,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1596,8 +1596,6 @@
+@@ -1598,8 +1598,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -2684,7 +2684,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1659,8 +1657,6 @@
+@@ -1661,8 +1659,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -5076,29 +5076,6 @@
  
  /*
   * Since winsock doesn't have the equivalent of strerror(errno)
---- old/src/java.desktop/share/classes/com/sun/java/swing/plaf/motif/MotifLookAndFeel.java	2020-05-20 18:01:39.343981260 -0700
-+++ new/src/java.desktop/share/classes/com/sun/java/swing/plaf/motif/MotifLookAndFeel.java	2020-05-20 18:01:38.939973503 -0700
-@@ -82,7 +82,7 @@
- 
- 
-     public boolean isNativeLookAndFeel() {
--        return OSInfo.getOSType() == OSInfo.OSType.SOLARIS;
-+        return false;
-     }
- 
- 
---- old/src/java.desktop/share/classes/javax/swing/UIManager.java	2020-05-20 18:01:40.480003072 -0700
-+++ new/src/java.desktop/share/classes/javax/swing/UIManager.java	2020-05-20 18:01:40.095995699 -0700
-@@ -677,9 +677,6 @@
-                     return "com.apple.laf.AquaLookAndFeel";
-                 }
-             }
--            if (osType == OSInfo.OSType.SOLARIS) {
--                return "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
--            }
-         }
-         return getCrossPlatformLookAndFeelClassName();
-     }
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
 @@ -1426,22 +1426,6 @@

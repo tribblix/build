@@ -20,6 +20,19 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+24
+
+Signal handling shuffled around again. Modified
+illumos-signal-1.patch, and need to remove the old
+JVM_handle_solaris_signal from os_solaris_x86.cpp,
+and looks like we need to implement
+PosixSignals::pd_hotspot_signal_handler in its place
+- see illumos-signal-3.patch
+
+MotifLookAndFeel failed to compile due to our patch. As it's slated
+for removal in any case, we probably don't want to customise it on
+solaris, and don't advertise it in UIManager.java either
+
 In 16+23
 
 The last hunk for flags-cflags.m4 removed; part of it was the _LP64=1
