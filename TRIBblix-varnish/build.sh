@@ -1,6 +1,11 @@
 #!/bin/sh
 #
-zap install TRIBdocutils-python-27
+# the tgz is double-compressed
+# gunzip varnish-6.0.7.tgz ; mv varnish-6.0.7.tar varnish-6.0.7.tar.gz
+#
+zap install TRIBdocutils-python-37
+zap install TRIBsphinx-python-37
 zap install TRIBlibedit
-env PATH=/usr/gnu/bin:$PATH CPPFLAGS="-I/usr/gnu/include" LDFLAGS="-L/usr/gnu/lib -R/usr/gnu/lib" ${THOME}/build/dobuild varnish-4.1.10 -M -k -P /opt/tribblix/varnish -C "--with-rst2man=/usr/versions/python-2.7/bin/rst2man.py --with-rst2html=/usr/versions/python-2.7/bin/rst2html.py"
-${THOME}/build/genpkg TRIBblix-varnish varnish-4.1.10
+
+${THOME}/build/dobuild varnish-6.0.7 -P /opt/tribblix/varnish -C "--with-rst2man=/usr/versions/python-3.7/bin/rst2man.py --with-rst2html=/usr/versions/python-3.7/bin/rst2html.py --with-sphinx-build=/usr/versions/python-3.7/bin/sphinx-build"
+${THOME}/build/genpkg TRIBblix-varnish varnish-6.0.7
