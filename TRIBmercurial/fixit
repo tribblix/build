@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-mkdir -p usr/bin
-cd usr/bin
-ln -s ../../usr/versions/python-2.7/bin/hg .
