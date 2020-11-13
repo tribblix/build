@@ -3,9 +3,6 @@
 # either uninstall gdb, or run make.bash rather than all.bash, as the gdb
 # test fails on Tribblix
 #
-# There have been issues with GOROOT_FINAL causing test failures
-# https://github.com/golang/go/issues/20284
-#
 # 1.15 release, not yet default
 #
 # the tarball has some test files with UTF-8 filenames
@@ -15,7 +12,7 @@
 # solaris and illumos toolchain, which seems suboptimal
 #
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.15.4.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.15.5.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.15 GOROOT_BOOTSTRAP=/usr/versions/go-1.14 ./all.bash
 cd ..
