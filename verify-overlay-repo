@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# verifies an overlay repo; specifically that all the overlays listed in the
-# catalog are present and have the correct version
+# verifies an overlay repo
 #
 
 if [ ! -f catalog ]; then
@@ -9,6 +8,10 @@ if [ ! -f catalog ]; then
    exit 1
 fi
 
+#
+# check that all overlays listed in the catalog exist and are at the
+# correct version
+#
 awk -F'|' '{print $1, $2}' catalog | while read pkg iver
 do
   if [ ! -f ${pkg}.pkgs ]; then
@@ -22,4 +25,45 @@ do
   else
       echo "ERROR: ${pkg}.ovl missing"
   fi
+done
+
+#
+# check that every .ovl file has a .pkgs file, and vice versa
+#
+for file in *.ovl
+do
+    pkg=${file%.ovl}.pkgs
+    if [ ! -f "${pkg}" ]; then
+	echo "ERROR: no $pkg for $file"
+    fi
+done
+for file in *.pkgs
+do
+    ovl=${file%.pkgs}.ovl
+    if [ ! -f "${ovl}" ]; then
+	echo "ERROR: no $ovl for $file"
+    fi
+done
+
+#
+# check that every required overlay exists
+# and for circular dependencies
+#
+# note that we only detect direct circular dependencies, where two
+# overlays depend on each other
+#
+for file in *.ovl
+do
+    ovl=${file%.ovl}
+    for req in $(awk -F= '{if ($1 == "REQUIRES") print $2}' ${file})
+    do
+	if [ -f "${req}.ovl" ]; then
+	    CIRC=$(grep "^REQUIRES=$ovl\$" ${req}.ovl)
+	    if [ -n "${CIRC}" ]; then
+		echo "ERROR: circular dependency between $ovl and $req"
+	    fi
+	else
+	    echo "ERROR: missing require $req in $file"
+	fi
+    done
 done
