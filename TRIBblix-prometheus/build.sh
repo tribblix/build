@@ -22,7 +22,7 @@ cd ..
 #
 # the new build with the react app requires yarn and node
 # 2.18 builds clean
-# 2.20 vendor/github.com/docker/docker/client/client_unix.go build solaris
+# 2.20+ vendor/github.com/docker/docker/client/client_unix.go build solaris
 #
 git clone https://github.com/prometheus/prometheus.git
 cd prometheus
