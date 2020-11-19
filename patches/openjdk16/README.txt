@@ -20,6 +20,11 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+25
+
+Compile errors associated with jvmtiTimerInfo
+#include "jvmtifiles/jvmti.h" was removed from os.hpp and added to os_foo.cpp
+
 In 16+24
 
 Signal handling shuffled around again. Modified

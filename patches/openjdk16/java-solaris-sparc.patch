@@ -1013,7 +1013,7 @@
          "windows-x64", "windows-x86",
          "linux-aarch64", "linux-arm32", "linux-ppc64le", "linux-s390x"
      ];
-@@ -433,14 +433,6 @@
+@@ -446,14 +446,6 @@
                  "SETFILE=/usr/bin/SetFile"),
          },
  
@@ -1028,7 +1028,7 @@
          "windows-x64": {
              target_os: "windows",
              target_cpu: "x64",
-@@ -535,7 +519,7 @@
+@@ -555,7 +539,7 @@
              "ANT_HOME": input.get("ant", "home_path")
          }
      };
@@ -1037,7 +1037,7 @@
          .forEach(function (name) {
              var maketestName = name + "-testmake";
              profiles[maketestName] = concatObjects(profiles[name], testmakeBase);
-@@ -661,9 +645,6 @@
+@@ -681,9 +665,6 @@
              platform: "osx-x64",
              jdk_subdir: "jdk-" + data.version +  ".jdk/Contents/Home",
          },
@@ -1047,7 +1047,7 @@
          "windows-x64": {
              platform: "windows-x64",
              jdk_suffix: "zip",
-@@ -1009,7 +987,6 @@
+@@ -1036,7 +1014,6 @@
      var devkit_platform_revisions = {
          linux_x64: "gcc10.2.0-OL6.4+1.0",
          macosx_x64: "Xcode11.3.1-MacOSX10.15+1.1",
@@ -2279,7 +2279,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1145,23 +1145,9 @@
+@@ -1146,23 +1146,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
@@ -2307,7 +2307,7 @@
    }
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -717,10 +717,6 @@
+@@ -713,10 +713,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2318,7 +2318,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -759,10 +755,6 @@
+@@ -755,10 +751,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2329,7 +2329,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1867,10 +1859,8 @@
+@@ -1858,10 +1850,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2342,7 +2342,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2435,8 +2424,7 @@
+@@ -2426,8 +2415,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2379,7 +2379,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -458,7 +458,7 @@
+@@ -459,7 +459,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2388,7 +2388,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -790,10 +790,8 @@
+@@ -791,10 +791,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -2412,7 +2412,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -348,12 +348,6 @@
+@@ -349,12 +349,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -11381,7 +11381,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4418 +0,0 @@
+@@ -1,4419 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11416,6 +11416,7 @@
 -#include "compiler/compileBroker.hpp"
 -#include "compiler/disassembler.hpp"
 -#include "interpreter/interpreter.hpp"
+-#include "jvmtifiles/jvmti.h"
 -#include "logging/log.hpp"
 -#include "logging/logStream.hpp"
 -#include "memory/allocation.inline.hpp"
