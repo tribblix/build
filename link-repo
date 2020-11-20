@@ -22,4 +22,4 @@ do
      ln ${SRCDIR}/${pkg}.${ver}.zap.sig .
   fi
 done
-cp ${SRCDIR}/catalog ${SRCDIR}/aliases ${SRCDIR}/index.html .
+cp ${SRCDIR}/catalog ${SRCDIR}/aliases ${SRCDIR}/index.html ${SRCDIR}/filelist.bz2 .
