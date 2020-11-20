@@ -31,19 +31,15 @@ cat > usr/share/fluxbox/menu <<_EOF
 [submenu] (Net)
 [submenu] (Browsers)
       [exec]   (firefox) {firefox}
-      [exec]   (vncviewer) {vncviewer}
+      [exec]   (netsurf) {netsurf-gtk3}
       [exec]   (links-graphic) {links -driver x fluxbox.org}
-      [exec]   (Mosaic) {Mosaic}
-      [exec]   (links) {Terminal -e links fluxbox.org}
       [exec]   (lynx) {Terminal -e lynx fluxbox.org}
 [end]
 [submenu] (IM)
       [exec]   (pidgin) {pidgin}
 [end]
 [submenu] (Mail)
-      [exec]   (thunderbird) {thunderbird}
       [exec]   (mutt) {Terminal -e mutt}
-      [exec]   (pine) {Terminal -e pine}
 [end]
 [submenu] (IRC)
       [exec]   (xchat) {xchat}
@@ -52,22 +48,18 @@ cat > usr/share/fluxbox/menu <<_EOF
 [submenu] (FTP)
       [exec]   (ncftp) {Terminal -e ncftp}
       [exec]   (ftp) {Terminal -e ftp}
-      [exec]   (lftp) {Terminal -e lftp}
+      [exec]   (gftp) {gftp}
 [end]
 [end]
 [submenu] (Editors)
       [exec]   (bluefish) {bluefish}
       [exec]   (nedit) {nedit}
       [exec]   (geany) {geany}
-      [exec]   (xedit) {xedit}
+      [exec]   (leafpad) {leafpad}
       [exec]   (emacs) {emacs}
       [exec]   (Ted) {Ted}
       [exec]   (nano) {Terminal -e nano}
       [exec]   (vim) {Terminal -e vim}
-      [exec]   (vi) {Terminal -e vi}
-      [exec]   (zile) {Terminal -e zile}
-      [exec]   (jed) {Terminal -e jed}
-      [exec]   (joe) {Terminal -e joe}
 [end]
 [submenu] (File utils)
       [exec]   (Thunar) {Thunar}
@@ -77,16 +69,9 @@ cat > usr/share/fluxbox/menu <<_EOF
       [exec]   (gimp) {gimp}
       [exec]   (inkscape) {inkscape}
       [exec]   (gqview) {gqview}
-      [exec]   (xpaint) {xpaint}
-      [exec]   (xscreensaver-demo) {xscreensaver-demo}
-      [exec]   (xlock) {xlock}
-      [exec]   (tuxpaint) {tuxpaint}
 [end]
 [submenu] (X-utils)
       [exec]   (xfontsel) {xfontsel}
-      [exec]   (xman) {xman}
-      [exec]   (xload) {xload}
-      [exec]   (xbiff) {xbiff}
       [exec]   (editres) {editres}
       [exec]   (viewres) {viewres}
       [exec]   (xclock) {xclock}
@@ -100,18 +85,16 @@ cat > usr/share/fluxbox/menu <<_EOF
       [exec]   (Orage)   {orage}
       [exec]   (abiword) {abiword}
       [exec]   (gnumeric) {gnumeric}
+      [exec]   (grisbi) {grisbi}
 [end]
 [submenu] (Games)
       [exec]   (xeyes) {xeyes}
-      [exec]   (supertux) {supertux}
       [exec]   (OpenTTD) {openttd}
 [end]
 [submenu] (System Tools)
       [exec]   (top) {Terminal -e top}
       [exec]   (htop) {Terminal -e htop}
-      [exec]   (iotop) {Terminal -e iotop}
-      [exec]   (ntop) {Terminal -e ntop}
-      [exec]   (powertop) {Terminal -e powertop}
+      [exec]   (jkstat) {jkstat browser}
 [end]
 [submenu] (Fluxbox menu)
       [config] (Configure)
@@ -127,9 +110,8 @@ cat > usr/share/fluxbox/menu <<_EOF
       [exec]   (fluxkeys) {fluxkeys}
       [exec]   (fluxmenu) {fluxmenu}
       [exec] (Fluxbox panel) {fbpanel}
-      [exec] (Window name) {xprop WM_CLASS|cut -d \" -f 2|gxmessage -file - -center}
-      [exec] (Screenshot - JPG) {import screenshot.jpg && display -resize 50% screenshot.jpg}
-      [exec] (Screenshot - PNG) {import screenshot.png && display -resize 50% screenshot.png}
+      [exec] (Window name) {xprop WM_CLASS|cut -d \" -f 2|xmessage -file - -center}
+      [exec] (Screenshot) {xfce4-screenshooter}
       [exec] (Run) {fbrun}
       [exec] (Regen Menu) {fluxbox-generate_menu}
 [end]
@@ -148,7 +130,7 @@ cat > usr/share/fluxbox/menu <<_EOF
       [commanddialog] (Fluxbox Command)
       [reconfig] (Reload config)
       [restart] (Restart)
-      [exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) | gxmessage -file - -center}
+      [exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) | xmessage -file - -center}
       [separator]
       [exit] (Exit)
 [end]
