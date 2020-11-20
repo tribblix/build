@@ -1,4 +1,4 @@
 PKG="TRIBgoogle-auth-python-37"
 NAME="Python google-auth"
-VERSION="1.21.3.0"
+VERSION="1.23.0.0"
 ZAP_URL="https://pypi.org/project/google-auth"
