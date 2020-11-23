@@ -4,7 +4,7 @@
 #
 rm -f usr/gnu/lib/charset.alias
 rmdir usr/gnu/lib
-rmdur usr/gnu.var
+rmdir usr/gnu/var
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../gnu/bin/find gfind
