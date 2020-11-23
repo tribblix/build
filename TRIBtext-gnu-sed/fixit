@@ -2,19 +2,7 @@
 #
 # add a g-prefixed link
 #
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
 rm -f usr/gnu/lib/charset.alias
-rm -f usr/gnu/lib/${ARCH64}/charset.alias
 rmdir usr/gnu/lib
-mkdir -p usr/bin/${ARCH64}
 cd usr/bin
 ln -s ../gnu/bin/sed gsed
-cd ${ARCH64}
-ln -s ../../gnu/bin/${ARCH64}/sed gsed
