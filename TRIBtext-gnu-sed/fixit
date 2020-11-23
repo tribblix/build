@@ -4,5 +4,6 @@
 #
 rm -f usr/gnu/lib/charset.alias
 rmdir usr/gnu/lib
+mkdir usr/bin
 cd usr/bin
 ln -s ../gnu/bin/sed gsed
