@@ -3,20 +3,6 @@
 # add a g-prefixed link
 #
 
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
-
 rm -f usr/gnu/lib/charset.alias
-mkdir -p usr/bin/$ARCH64
 cd usr/bin
 ln -s ../gnu/bin/gawk .
-if [ -d "${ARCH64}" ]; then
-    cd $ARCH64
-    ln -s ../../gnu/bin/${ARCH64}/gawk .
-fi
