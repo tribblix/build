@@ -1,4 +1,4 @@
 PKG="TRIBlibxml2-python-27"
 NAME="Libxml2 python bindings"
-VERSION="2.9.5.0"
+VERSION="2.9.9.0"
 ZAP_URL="http://www.xmlsoft.org/"
