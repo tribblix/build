@@ -15,9 +15,16 @@
 #
 $mapfile_version 2
 
+SYMBOL_VERSION SUNW_1.7 {
+	global:
+		xsltParseStylesheetUser;
+		xsltCompMatchClearCache;
+} SUNW_1.6;
+
 SYMBOL_VERSION SUNW_1.6 {
 	global:
 		xsltFlagRVTs;
+		xsltDecimalFormatGetByQName;
 } SUNW_1.5;
 
 SYMBOL_VERSION SUNW_1.5 {
@@ -32,6 +39,7 @@ SYMBOL_VERSION SUNW_1.4 {
 		xsltCheckExtURI;
 		xsltExtensionInstructionResultFinalize;
 		xsltExtensionInstructionResultRegister;
+		xsltInitCtxtKey;
 		xsltFreeLocale;
 		xsltInit;
 		xsltInitAllDocKeys;
