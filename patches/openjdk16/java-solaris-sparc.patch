@@ -923,7 +923,7 @@
    endif
  
    ifeq (NONE, $$($1_OPTIMIZATION))
-@@ -942,17 +921,6 @@
+@@ -944,17 +923,6 @@
  
    ifneq ($(DISABLE_MAPFILES), true)
      $1_REAL_MAPFILE := $$($1_MAPFILE)
@@ -941,7 +941,7 @@
    endif
  
    # Pickup extra OPENJDK_TARGET_OS_TYPE and/or OPENJDK_TARGET_OS dependent variables
-@@ -986,7 +954,7 @@
+@@ -988,7 +956,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -950,7 +950,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).debuginfo
            # Setup the command line creating debuginfo files, to be run after linking.
            # It cannot be run separately since it updates the original target file
-@@ -1113,7 +1081,7 @@
+@@ -1115,7 +1083,7 @@
      endif
  
      $1_VARDEPS := $$($1_LD) $$($1_SYSROOT_LDFLAGS) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) \
@@ -959,7 +959,7 @@
          $$($1_CREATE_DEBUGINFO_CMDS) $$($1_MANIFEST_VERSION) \
          $$($1_STRIP_CMD)
      $1_VARDEPS_FILE := $$(call DependOnVariable, $1_VARDEPS, \
-@@ -1172,7 +1140,7 @@
+@@ -1174,7 +1142,7 @@
  
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -968,7 +968,7 @@
  		          $$($1_LIBS) $$($1_EXTRA_LIBS)) \
  		      | $(GREP) -v "^   Creating library .*\.lib and object .*\.exp" || \
  		          test "$$$$?" = "1" ; \
-@@ -1182,7 +1150,7 @@
+@@ -1184,7 +1152,7 @@
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$(if $$($1_LINK_OBJS_RELATIVE), $$(CD) $$(OUTPUTDIR) ; ) \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -2091,7 +2091,7 @@
 -#endif // !SOLARIS
 --- old/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:44.033767220 -0700
 +++ new/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:43.649759847 -0700
-@@ -138,8 +138,6 @@
+@@ -142,8 +142,6 @@
    sigjmp_buf _jmpbuf;
  };
  
@@ -2100,7 +2100,7 @@
  /*
   * This is the platform-specific implementation underpinning
   * the ParkEvent class, which itself underpins Java-level monitor
-@@ -302,6 +300,4 @@
+@@ -309,6 +307,4 @@
    void notify_all();
  };
  
@@ -2354,7 +2354,7 @@
                                                                              \
 --- old/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:32.322694403 -0700
 +++ new/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:31.930686876 -0700
-@@ -154,12 +154,6 @@
+@@ -156,12 +156,6 @@
    stubRoutines_init2(); // note: StubRoutines need 2-phase init
    MethodHandles::generate_adapters();
  
@@ -2379,7 +2379,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -459,7 +459,7 @@
+@@ -462,7 +462,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2388,7 +2388,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -791,10 +791,8 @@
+@@ -794,10 +794,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -2412,7 +2412,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -349,12 +349,6 @@
+@@ -348,12 +348,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -11381,7 +11381,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4419 +0,0 @@
+@@ -1,4392 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12974,21 +12974,6 @@
 -
 -static int Maxsignum = 0;
 -
--void os::print_signal_handlers(outputStream* st, char* buf, size_t buflen) {
--  st->print_cr("Signal Handlers:");
--  PosixSignals::print_signal_handler(st, SIGSEGV, buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGBUS , buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGFPE , buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGPIPE, buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGXFSZ, buf, buflen);
--  PosixSignals::print_signal_handler(st, SIGILL , buf, buflen);
--  PosixSignals::print_signal_handler(st, ASYNC_SIGNAL, buf, buflen);
--  PosixSignals::print_signal_handler(st, BREAK_SIGNAL, buf, buflen);
--  PosixSignals::print_signal_handler(st, SHUTDOWN1_SIGNAL , buf, buflen);
--  PosixSignals::print_signal_handler(st, SHUTDOWN2_SIGNAL , buf, buflen);
--  PosixSignals::print_signal_handler(st, SHUTDOWN3_SIGNAL, buf, buflen);
--}
--
 -static char saved_jvm_path[MAXPATHLEN] = { 0 };
 -
 -// Find the full path to the current module, libjvm.so
@@ -14249,14 +14234,6 @@
 -  return buf[0] == 'y' || buf[0] == 'Y';
 -}
 -
--void os::SuspendedThreadTask::internal_do_task() {
--  if (PosixSignals::do_suspend(_thread->osthread())) {
--    SuspendedThreadTaskContext context(_thread, _thread->osthread()->ucontext());
--    do_task(context);
--    PosixSignals::do_resume(_thread->osthread());
--  }
--}
--
 -// This does not do anything on Solaris. This is basically a hook for being
 -// able to use structured exception handling (thread-local exception filters) on, e.g., Win32.
 -void os::os_exception_wrapper(java_call_t f, JavaValue* value,
@@ -14509,16 +14486,12 @@
 -    FLAG_SET_ERGO_IF_DEFAULT(UseNUMAInterleaving, true);
 -  }
 -
--  PosixSignals::signal_sets_init();
 -  Solaris::init_signal_mem();
--  PosixSignals::install_signal_handlers();
--  // Initialize data for jdk.internal.misc.Signal
--  if (!ReduceSignalUsage) {
--    PosixSignals::jdk_misc_signal_init();
+-  if (PosixSignals::init() == JNI_ERR) {
+-    return JNI_ERR;
 -  }
 -
--  // initialize synchronization primitives to use either thread or
--  // lwp synchronization (controlled by UseLWPSynchronization)
+-  // initialize synchronization primitives
 -  Solaris::synchronization_init();
 -  DEBUG_ONLY(os::set_mutex_init_done();)
 -
@@ -15803,7 +15776,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,328 +0,0 @@
+@@ -1,326 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15926,8 +15899,6 @@
 -  static intptr_t*   ucontext_get_sp(const ucontext_t* uc);
 -  // ucontext_get_fp() is only used by Solaris X86 (see note below)
 -  static intptr_t*   ucontext_get_fp(const ucontext_t* uc);
--  static address    ucontext_get_pc(const ucontext_t* uc);
--  static void ucontext_set_pc(ucontext_t* uc, address pc);
 -
 -  static bool get_frame_at_stack_banging_point(JavaThread* thread, ucontext_t* uc, frame* fr);
 -
@@ -18208,7 +18179,7 @@
 -  compiler_barrier();
 -}
 -
--inline void OrderAccess::cross_modify_fence() {
+-inline void OrderAccess::cross_modify_fence_impl() {
 -  int idx = 0;
 -  __asm__ volatile ("cpuid " : "+a" (idx) : : "ebx", "ecx", "edx", "memory");
 -}
@@ -18399,7 +18370,7 @@
 -  return retuc;
 -}
 -
--void os::Solaris::ucontext_set_pc(ucontext_t* uc, address pc) {
+-void os::Posix::ucontext_set_pc(ucontext_t* uc, address pc) {
 -  uc->uc_mcontext.gregs [REG_PC]  = (greg_t) pc;
 -}
 -
@@ -18413,7 +18384,7 @@
 -  return (intptr_t*)uc->uc_mcontext.gregs[REG_FP];
 -}
 -
--address os::Solaris::ucontext_get_pc(const ucontext_t *uc) {
+-address os::Posix::ucontext_get_pc(const ucontext_t *uc) {
 -  return (address) uc->uc_mcontext.gregs[REG_PC];
 -}
 -
@@ -18424,7 +18395,7 @@
 -  const ucontext_t *uc = (const ucontext_t*)ucVoid;
 -
 -  if (uc != NULL) {
--    epc = os::Solaris::ucontext_get_pc(uc);
+-    epc = os::Posix::ucontext_get_pc(uc);
 -    if (ret_sp) *ret_sp = os::Solaris::ucontext_get_sp(uc);
 -    if (ret_fp) *ret_fp = os::Solaris::ucontext_get_fp(uc);
 -  } else {
@@ -18670,7 +18641,7 @@
 -    pc = (address) uc->uc_mcontext.gregs[REG_PC];
 -
 -    if (StubRoutines::is_safefetch_fault(pc)) {
--      os::Solaris::ucontext_set_pc(uc, StubRoutines::continuation_for_safefetch_fault(pc));
+-      os::Posix::ucontext_set_pc(uc, StubRoutines::continuation_for_safefetch_fault(pc));
 -      return true;
 -    }
 -
@@ -18886,7 +18857,7 @@
 -    if (thread != NULL) thread->set_saved_exception_pc(pc);
 -    // 12/02/99: On Sparc it appears that the full context is also saved
 -    // but as yet, no one looks at or restores that saved context
--    os::Solaris::ucontext_set_pc(uc, stub);
+-    os::Posix::ucontext_set_pc(uc, stub);
 -    return true;
 -  }
 -
@@ -18986,7 +18957,7 @@
 -  // Note: it may be unsafe to inspect memory near pc. For example, pc may
 -  // point to garbage if entry point in an nmethod is corrupted. Leave
 -  // this at the end, and hope for the best.
--  address pc = os::Solaris::ucontext_get_pc(uc);
+-  address pc = os::Posix::ucontext_get_pc(uc);
 -  print_instructions(st, pc, sizeof(char));
 -  st->cr();
 -}
@@ -19932,7 +19903,7 @@
 -void JavaThread::cache_global_variables() { }
 --- old/src/hotspot/os_cpu/solaris_x86/thread_solaris_x86.hpp	2020-05-20 18:10:06.173712649 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,59 +0,0 @@
+@@ -1,63 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -19971,6 +19942,10 @@
 -
 -  static ByteSize last_Java_fp_offset()          {
 -    return byte_offset_of(JavaThread, _anchor) + JavaFrameAnchor::last_Java_fp_offset();
+-  }
+-
+-  static ByteSize saved_rbp_address_offset() {
+-    return byte_offset_of(JavaThread, _anchor) + JavaFrameAnchor::saved_rbp_address_offset();
 -  }
 -
 -  intptr_t* base_of_stack_pointer()                  { return NULL; }

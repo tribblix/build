@@ -20,6 +20,26 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+26
+
+ucontext_get_pc() and ucontext_set_pc() moved into os::Posix
+just a renaming, and remove from os_solaris.hpp
+
+cross_modify_fence() now shared; individual implementations gain _impl
+
+error: 'saved_rbp_address_offset' is not a member of 'JavaThread'
+added a copy from the linux version
+
+PosixSignals shuffled around again
+no need for print_signal_handlers in os_solaris.cpp
+
+flags-ldflags assume that a gcc toolchain uses gld, and
+unconditionally adds --hash-style
+see illumos-port-10.patch
+
+'os::SuspendedThreadTask::internal_do_task()' is multiply-defined:
+remove it from os_solaris.cpp, as it's in signals_posix.cpp
+
 In 16+25
 
 Compile errors associated with jvmtiTimerInfo
