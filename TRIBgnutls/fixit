@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# copy the existing libraries for compat
+# libgnutlsxx retains its old SONAME, so no need to copy that
+# libgnutls-openssl is no longer shipped, and I can find no
+# coonsumers, so no need to copy that either
+#
+cp -p /usr/lib/libgnutls.so.28.43.4 usr/lib/libgnutls.so.28.43.4
+cp -p /usr/lib/${ARCH64}/libgnutls.so.28.43.4 usr/lib/${ARCH64}/libgnutls.so.28.43.4
+cd usr/lib
+ln -s libgnutls.so.28.43.4 libgnutls.so.28 
+cd ${ARCH64}
+ln -s libgnutls.so.28.43.4 libgnutls.so.28 
