@@ -1,5 +1,30 @@
 #!/bin/sh
 #
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
 # we don't really need the 64-bit binaries
 #
-rm -fr usr/bin/amd64
+rm -fr usr/bin/${ARCH64}
+
+#
+# copy the existing libraries for compat
+#
+cp -p /usr/lib/libnettle.so.4.7 usr/lib/libnettle.so.4.7
+cp -p /usr/lib/libhogweed.so.2.5 usr/lib/libhogweed.so.2.5
+cp -p /usr/lib/${ARCH64}/libnettle.so.4.7 usr/lib/${ARCH64}/libnettle.so.4.7
+cp -p /usr/lib/${ARCH64}/libhogweed.so.2.5 usr/lib/${ARCH64}/libhogweed.so.2.5
+cd usr/lib
+ln -s libnettle.so.4.7 libnettle.so.4
+ln -s libhogweed.so.2.5 libhogweed.so.2
+cd ${ARCH64}
+ln -s libnettle.so.4.7 libnettle.so.4
+ln -s libhogweed.so.2.5 libhogweed.so.2
