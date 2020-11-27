@@ -22,9 +22,6 @@ mv usr/ssl/man usr/share
 #
 mv usr/share/man/man1/errstr.1 usr/share/man/man1/openssl-errstr.1
 mv usr/share/man/man1/passwd.1 usr/share/man/man1/openssl-passwd.1
-mv usr/share/man/man1/rehash.1 usr/share/man/man1/openssl-rehash.1
-rm usr/share/man/man1/openssl-c_rehash.1
-ln -s openssl-rehash.1 usr/share/man/man1/openssl-c_rehash.1
 #
 # we should have a 64-bit opensslconf.h saved, now fix it to be dual-arch
 #
@@ -38,17 +35,7 @@ mkdir -p lib/${ARCH64}
 mv usr/lib/lib*so* lib
 mv usr/lib/${ARCH64}/lib*so* lib/${ARCH64}
 #
-# save copies of the openssl 1.0.2 libraries
-# which most applications are initially linked against
-# so they continue to work
-#
-cp -p /lib/libssl.so.1.0.0 lib/libssl.so.1.0.0
-cp -p /lib/libcrypto.so.1.0.0 lib/libcrypto.so.1.0.0
-cp -p /lib/${ARCH64}/libssl.so.1.0.0 lib/${ARCH64}/libssl.so.1.0.0
-cp -p /lib/${ARCH64}/libcrypto.so.1.0.0 lib/${ARCH64}/libcrypto.so.1.0.0
-#
-# the files live under /lib, symlinks under /usr/lib
-# this will also generate the compat sysmlinks in /usr/lib
+# the files live under /lib, symlinks under usr/lib
 #
 cd usr/lib
 ln -s ../../lib/libssl.so* .

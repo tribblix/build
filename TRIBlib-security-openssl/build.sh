@@ -1,31 +1,34 @@
 #!/bin/sh
 #
-# openssl 1.0.2 updates
-# As of 1.0.2g, ignore md2 but must explicitly enable ssl2 to retain binary
-# compatibility
-${THOME}/build/unpack -64 openssl-1.0.2u
-cd openssl-1.0.2u
-./Configure solaris-x86-gcc --pk11-libname=/usr/lib/libpkcs11.so.1 shared threads zlib enable-ssl2 --prefix=/usr
-make depend
-make
+# openssl 1.1 is incompatible with openssl 1.0
+# so we can ignore any of the illumos-specific tweaks
+# inherited from Solaris and just do a vanilla build
+#
+# the fixit script copies in the 1.0 libraries for binary
+#
+${THOME}/build/unpack -64 openssl-1.1.1h
+cd openssl-1.1.1h
+env __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=1.0.0 --prefix=/usr
+sed -i s:pod2man:/usr/perl5/bin/pod2man: util/process_docs.pl
+gmake -j 4
 cd ..
-cd openssl-1.0.2u-64bit
-./Configure solaris64-x86_64-gcc --pk11-libname=/usr/lib/amd64/libpkcs11.so.1 shared threads zlib enable-ssl2 --prefix=/usr
-make depend
-make
+#
+# you might have thought that asking for a solaris64-x86_64 build
+# would actually do the right thing, but no ...
+#
+cd openssl-1.1.1h-64bit
+env __CNF_CFLAGS=-m64 __CNF_LDFLAGS="-m64 -z aslr -z ignore" ./Configure solaris64-x86_64-gcc shared threads zlib --api=1.0.0 --prefix=/usr --libdir=lib/amd64
+sed -i s:pod2man:/usr/perl5/bin/pod2man: util/process_docs.pl
+gmake -j 4
 cd ..
-rm -fr /tmp/osl
-cd openssl-1.0.2u-64bit
-make install INSTALL_PREFIX=/tmp/osl
-cd ..
-mv /tmp/osl/usr/include/openssl/opensslconf.h /tmp/osl/usr/include/openssl/opensslconf-64.h
-cd openssl-1.0.2u
-make install INSTALL_PREFIX=/tmp/osl
-cd ..
-${THOME}/build/create_pkg TRIBlib-security-openssl /tmp/osl
-rm -fr /tmp/osl
+
+#
+# much easier now install understands DESTDIR
+#
+${THOME}/build/genpkg TRIBlib-security-openssl openssl-1.1.1h
+
 #
 # The sparc configure steps are:
 #
-# ./Configure solaris-sparcv9-gcc --pk11-libname=/usr/lib/libpkcs11.so.1 shared threads zlib enable-ssl2 --prefix=/usr
-# ./Configure solaris64-sparcv9-gcc --pk11-libname=/usr/lib/sparcv9/libpkcs11.so.1 shared threads zlib enable-ssl2 --prefix=/usr
+# ./Configure solaris-sparcv9-gcc shared threads zlib --api=1.0.0 --prefix=/usr/versions/openssl11
+# env __CNF_CFLAGS=-m64 __CNF_LDFLAGS=-m64 ./Configure solaris64-sparcv9-gcc shared threads zlib --api=1.0.0 --prefix=/usr/versions/openssl11
