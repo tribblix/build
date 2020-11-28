@@ -1,4 +1,4 @@
-PKG="TRIBblix-repmgr12"
+PKG="TRIBblix-repmgr13"
 NAME="Replication manager for PostgreSQL clusters"
 VERSION="5.2.0.0"
 ZAP_URL="https://repmgr.org/"
