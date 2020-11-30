@@ -6,6 +6,6 @@
 # so consumers will need to be rebuilt
 #
 # zap install TRIBlibtool
-${THOME}/build/dobuild libetpan-1.8
-${THOME}/build/genpkg TRIBlibetpan libetpan-1.8
+${THOME}/build/dobuild libetpan-1.9.4
+${THOME}/build/genpkg TRIBlibetpan libetpan-1.9.4
 #zap uninstall TRIBlibtool
