@@ -1,4 +1,4 @@
 PKG="TRIBlibzip"
 NAME="Library for manipulating zip archives"
-VERSION="1.5.1.0"
+VERSION="1.7.3.0"
 ZAP_URL="https://libzip.org/"
