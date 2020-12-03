@@ -20,6 +20,11 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+27
+
+Tidied up[ the main patch. Some of the unnecessary Studio stuff failed
+to apply, so just remove it.
+
 In 16+26
 
 ucontext_get_pc() and ucontext_set_pc() moved into os::Posix
