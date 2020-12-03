@@ -499,7 +499,7 @@
    fi
  
 -  if test "x$OPENJDK_TARGET_OS" = xsolaris; then
--    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lsocket -lsched -ldoor -ldemangle -lnsl \
+-    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lsocket -lsched -ldoor -lnsl \
 -        -lrt -lkstat"
 -    BASIC_JVM_LIBS="$BASIC_JVM_LIBS $LIBCXX_JVM"
 -  fi
@@ -515,35 +515,6 @@
  ])
  
  ################################################################################
-@@ -200,28 +184,3 @@
-   LIBZIP_CAN_USE_MMAP=true
-   AC_SUBST(LIBZIP_CAN_USE_MMAP)
- ])
--
--################################################################################
--# libstlport.so.1 is needed for running gtest on Solaris. Find it to
--# redistribute it in the test image.
--################################################################################
--AC_DEFUN_ONCE([LIB_SETUP_SOLARIS_STLPORT],
--[
--  if test "x$OPENJDK_TARGET_OS" = "xsolaris"; then
--    # Find the root of the Solaris Studio installation from the compiler path
--    SOLARIS_STUDIO_DIR="$(dirname $CC)/.."
--    STLPORT_LIB="$SOLARIS_STUDIO_DIR/lib/stlport4$OPENJDK_TARGET_CPU_ISADIR/libstlport.so.1"
--    AC_MSG_CHECKING([for libstlport.so.1])
--    if ! test -f "$STLPORT_LIB" && test "x$OPENJDK_TARGET_CPU_ISADIR" = "x/sparcv9"; then
--      # SS12u3 has libstlport under 'stlport4/v9' instead of 'stlport4/sparcv9'
--      STLPORT_LIB="$SOLARIS_STUDIO_DIR/lib/stlport4/v9/libstlport.so.1"
--    fi
--    if test -f "$STLPORT_LIB"; then
--      AC_MSG_RESULT([yes, $STLPORT_LIB])
--      UTIL_FIXUP_PATH([STLPORT_LIB])
--    else
--      AC_MSG_RESULT([no, not found at $STLPORT_LIB, cannot build Hotspot gtests])
--    fi
--    AC_SUBST(STLPORT_LIB)
--  fi
--])
 --- old/make/autoconf/platform.m4	2020-05-20 17:58:42.328582435 -0700
 +++ new/make/autoconf/platform.m4	2020-05-20 17:58:41.904574294 -0700
 @@ -178,10 +190,6 @@

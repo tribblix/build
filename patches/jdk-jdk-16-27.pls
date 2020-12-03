@@ -3,7 +3,6 @@
 -p0 openjdk16/patch-make_autoconf_flags-cflags.m4
 -p0 openjdk16/patch-make_autoconf_jdk-options.m4
 -p0 openjdk16/patch-make_autoconf_lib-x11.m4
--p0 openjdk16/patch-make_autoconf_libraries.m4
 -p0 openjdk16/patch-make_autoconf_spec.gmk.in
 -p0 openjdk16/patch-make_autoconf_toolchain.m4
 -p0 openjdk16/patch-make_hotspot_gensrc_GensrcAdlc.gmk
@@ -27,7 +26,6 @@
 -p0 openjdk16/tribblix-flags-ldflags3.patch
 -p0 openjdk16/tribblix-wait.patch
 -p0 openjdk16/tribblix-demangle1.patch
--p0 openjdk16/tribblix-demangle3.patch
 -p0 openjdk16/tribblix-demangle4.patch
 -p1 openjdk16/illumos-port-1.patch
 -p1 openjdk16/illumos-port-2.patch
