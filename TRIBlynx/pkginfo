@@ -1,4 +1,4 @@
 PKG="TRIBlynx"
 NAME="Lynx web browser"
-VERSION="2.8.9rel.1"
+VERSION="2.8.9rel.2"
 ZAP_URL="https://lynx.invisible-island.net"
