@@ -1,4 +1,4 @@
 PKG="TRIBv-ruby-27"
 NAME="Ruby 2.7"
-VERSION="2.7.2.0"
+VERSION="2.7.2.1"
 ZAP_URL="https://www.ruby-lang.org/"
