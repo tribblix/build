@@ -31,6 +31,9 @@ case $RELVER in
     *lx*)
 	TRIBNAME=omnitribblix
 	;;
+    r151*)
+	TRIBNAME=omniosce
+	;;
 esac
 
 #
@@ -65,6 +68,9 @@ mount -F hsfs -o ro $LDEV $TDIR
 # are the files where we expect them
 #
 if [ -f ${TDIR}/platform/i86pc/boot_archive ]; then
+    #
+    # this is what Tribblix looks like
+    #
     mkdir -p ${REPODIR}/${RELNAME}/platform/i86pc/kernel/amd64
     cp ${TDIR}/platform/i86pc/boot_archive ${REPODIR}/${RELNAME}/platform/i86pc
     cp ${TDIR}/platform/i86pc/kernel/amd64/unix ${REPODIR}/${RELNAME}/platform/i86pc/kernel/amd64/unix
@@ -77,6 +83,25 @@ if [ -f ${TDIR}/platform/i86pc/boot_archive ]; then
 dhcp
 kernel /${RELNAME}/platform/i86pc/kernel/amd64/unix
 initrd /${RELNAME}/platform/i86pc/boot_archive
+boot
+EOF
+elif [ -f ${TDIR}/platform/i86pc/amd64/boot_archive.gz ]; then
+    #
+    # OmniOSce is slightly different; the boot archive on media
+    # has the 64-bit path and the .gz suffix
+    #
+    mkdir -p ${REPODIR}/${RELNAME}/platform/i86pc/kernel/amd64
+    mkdir -p ${REPODIR}/${RELNAME}/platform/i86pc/amd64
+    cp ${TDIR}/platform/i86pc/amd64/boot_archive.gz ${REPODIR}/${RELNAME}/platform/i86pc/amd64
+    cp ${TDIR}/platform/i86pc/kernel/amd64/unix ${REPODIR}/${RELNAME}/platform/i86pc/kernel/amd64/unix
+    gunzip ${REPODIR}/${RELNAME}/platform/i86pc/amd64/boot_archive.gz
+    chmod a+r ${REPODIR}/${RELNAME}/platform/i86pc/amd64/boot_archive
+    chmod a+r ${REPODIR}/${RELNAME}/platform/i86pc/kernel/amd64/unix
+    cat > ${REPODIR}/${RELNAME}/ipxe.txt <<EOF
+#!ipxe
+dhcp
+kernel /${RELNAME}/platform/i86pc/kernel/amd64/unix
+initrd /${RELNAME}/platform/i86pc/amd64/boot_archive
 boot
 EOF
 fi
