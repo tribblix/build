@@ -1,0 +1,4 @@
+PKG="TRIBv-python-27-tkinter"
+NAME="Python 2.7 tkinter and idle components"
+VERSION="2.7.18.1"
+ZAP_URL="https://www.python.org/"

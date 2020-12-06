@@ -33,6 +33,8 @@ tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests | ( cd $
 rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests
 tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test | ( cd $TESTDIR ; tar xf -)
 rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/bsddb/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/bsddb/test
 tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/email/test | ( cd $TESTDIR ; tar xf -)
 rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/email/test
 tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/ctypes/test | ( cd $TESTDIR ; tar xf -)
@@ -50,16 +52,27 @@ $THOME/build/create_pkg TRIBv-python-27-tests $TESTDIR
 rm -fr $TESTDIR
 
 #
-# fixinstall.64 saved the 64-bit pyconfig.h for us, now
-# we wrap it
+# next strip out the idle/tkinter components so base python doesn't
+# drag in tk and x11
 #
-#mv usr/versions/python-${VERSION}/include/python${VERSION}/pyconfig.h usr/versions/python-${VERSION}/include/python${VERSION}/pyconfig-32.h
-#cp ${BUILDROOT}/patches/pyconfig.h usr/versions/python-${VERSION}/include/python${VERSION}/pyconfig.h
+PTKDIR=/tmp/ptkidle.$$
+mkdir -p $PTKDIR
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter.so | ( cd $PTKDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter.so
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk | ( cd $PTKDIR ; tar xf -)
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib | ( cd $PTKDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib
+tar cf - usr/versions/python-${VERSION}/bin/idle* | ( cd $PTKDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/bin/idle*
+#
+# having copied them off, package them
+#
+$THOME/build/create_pkg TRIBv-python-27-tkinter $PTKDIR
+rm -fr $PTKDIR
 
 mkdir -p usr/bin
-#mkdir -p usr/bin/$ARCH64
 mkdir -p usr/lib/pkgconfig
-#mkdir -p usr/lib/$ARCH64/pkgconfig
 mkdir -p usr/share/man/man1
 cd usr/share/man/man1
 ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python${VERSION}.1 .
@@ -68,17 +81,9 @@ ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python.1 .
 cd ../../../..
 cd usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/py* .
-#cd $ARCH64
-#ln -s ../../../usr/versions/python-${VERSION}/bin/${ARCH64}/py* .
-#cd ..
 cd ../lib
 ln -s ../../usr/versions/python-${VERSION}/lib/libpython2.7.so* .
 cd pkgconfig
 ln -s ../../versions/python-${VERSION}/lib/pkgconfig/python-2.7.pc .
 ln -s ../../versions/python-${VERSION}/lib/pkgconfig/python2.pc .
 cd ..
-#cd $ARCH64
-#ln -s ../../../usr/versions/python-${VERSION}/lib/${ARCH64}/libpython2.7.so* .
-#cd pkgconfig
-#ln -s ../../../versions/python-${VERSION}/lib/${ARCH64}/pkgconfig/python-2.7.pc .
-#ln -s ../../../versions/python-${VERSION}/lib/${ARCH64}/pkgconfig/python2.pc .
