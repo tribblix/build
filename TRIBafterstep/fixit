@@ -13,19 +13,24 @@ gsed -i '/rxvt/d' usr/share/afterstep/wharf
 gsed -i -e 's:nautilus:thunar:' -e 's:Nautilus:Thunar:' -e 's:--no-desktop::' usr/share/afterstep/wharf
 gsed -i '/TermTabs/d' usr/share/afterstep/autoexec
 
-case `uname -p` in
-sparc)
-    ARCH64="sparcv9"
-    ;;
-i386)
-    ARCH64="amd64"
-    ;;
-esac
-
-#
-# no need to ship duplicate perl scripts
-#
-/bin/rm -f usr/bin/${ARCH64}/*.pl
-
 gsed -i s:/usr/local/share:/usr/share: usr/bin/makeastheme.pl
 gsed -i s:/usr/local/share:/usr/share: usr/bin/installastheme.pl
+
+#
+# fix up manpage issues
+#
+cd usr/share/man
+
+#
+# the development functions are unlikely to be terribly useful
+#
+rm -fr man3
+
+#
+# the others have the wrong filenames
+#
+cd man1
+for file in *.1x
+do
+    mv $file `echo $file | sed 's:.1x:.1:'`
+done
