@@ -24,12 +24,14 @@ esac
 # +64 means just do the 64-bit (useful for testing it in isolation,
 # or for building 64-bit and 32-bit with different flags)
 # note that +64 will wipe the 32-bit directory
-# +64only means put the 64-bit objects in the
+# -64only means put the 64-bit binaries in the default path
+# +64only means put all 64-bit objects in the
 # default path, rather than in a subdirectory
 #
 DO32="true"
 DO64="false"
 ONLY64="false"
+ONLY64BIN="false"
 UNPACK_FLAGS=""
 
 #
@@ -79,10 +81,18 @@ case $1 in
 	UNPACK_FLAGS="+64"
 	shift
 	;;
+-64only)
+	DO64="true"
+	DO32="false"
+	ONLY64BIN="true"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
 +64only)
 	DO64="true"
 	DO32="false"
 	ONLY64="true"
+	ONLY64BIN="true"
 	UNPACK_FLAGS="+64"
 	shift
 	;;
@@ -171,7 +181,7 @@ i386)
     ;;
 esac
 BINDIR64="bin/${ARCH64}"
-if [ "x${ONLY64}" != "xfalse" ]; then
+if [ "x${ONLY64BIN}" != "xfalse" ]; then
     BINDIR64="bin"
 fi
 
