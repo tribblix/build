@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64 bison-3.3.2
-${THOME}/build/genpkg TRIBbison bison-3.3.2
+${THOME}/build/dobuild -64only bison-3.7.4 -C --disable-yacc
+${THOME}/build/genpkg TRIBbison bison-3.7.4

@@ -1,26 +1,5 @@
 #!/bin/sh
-
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
-
 #
-# just clean conflicts
+# slim down a bit
 #
-rm -f usr/lib/charset.alias
-rm -f usr/lib/${ARCH64}/charset.alias
-rmdir usr/lib/${ARCH64}
-rmdir usr/lib
-#
-# don't stomp on the real yacc
-#
-mkdir -p usr/gnu/bin/${ARCH64}
-mv usr/bin/yacc usr/gnu/bin
-mv usr/bin/${ARCH64}/yacc usr/gnu/bin/${ARCH64}
-mkdir -p usr/gnu/share/man/man1
-mv usr/share/man/man1/yacc.1 usr/gnu/share/man/man1
+rm -fr usr/share/doc
