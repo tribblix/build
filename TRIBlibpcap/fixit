@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# the man pages have a mismatch between suffix and location
+# easiest to fix the location
+#
+mv usr/share/man/man3 usr/share/man/man3pcap
