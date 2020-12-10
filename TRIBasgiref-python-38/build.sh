@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack asgiref-3.3.0
-cd asgiref-3.3.0
+${THOME}/build/unpack asgiref-3.3.1
+cd asgiref-3.3.1
 /usr/versions/python-3.8/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pil
