@@ -1,4 +1,4 @@
-PKG="TRIBhumanfriendly-python-37"
+PKG="TRIBhumanfriendly-python-38"
 NAME="Python humanfriendly"
 VERSION="9.1.0"
 ZAP_URL="https://pypi.org/project/humanfriendly"
