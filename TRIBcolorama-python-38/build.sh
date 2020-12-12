@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack colorama-0.4.3
-cd colorama-0.4.3
+${THOME}/build/unpack colorama-0.4.4
+cd colorama-0.4.4
 /usr/versions/python-3.8/bin/python3 setup.py build
 rm -fr /tmp/pdu
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pdu
