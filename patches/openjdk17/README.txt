@@ -1,0 +1,44 @@
+This is originally derived from the pkgsrc-joyent set for openjdk11,
+considerably modified. Cut from the jdk15 patches as of jdk15+32.
+
+See also README-zero.txt for patches to build a project zero variant.
+
+Most patches -p0
+
+JDK17:
+
+Quite a lot of refactoring of the toolchain stuff.
+
+The page_size rework is really quite massive. The old _page_sizes was
+an array you manipulated directly. It's now a set. This needs various
+changes:
+
+os::Solaris::is_valid_page_size() is just _page_sizes.contains()
+
+Not strictly broken, but easy to fix: in mpss_sanity_check, we can
+simplify the getpagesizes() stuff as we know we're modern
+
+Rework listing of valid page sizes
+
+This is a bit ugly because we don't really end up using the new
+_page_sizes, but instead emulate the old array. Still, I can't find
+examples of how the new way is supposed to work on any other platform.
+
+Also need to implement print_memory_mappings, as a no-op (like AIX is)
+
+That's enough to make it compile; it blows up with an arithmetic
+exception, apparently inside apply_ergo(). In mpss_sanity_check, we
+need to make sure page_size (which is really a pointer to
+_large_page_size) is initialized to the largest valid page size.
+
+Build:
+
+env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk15 \
+--with-native-debug-symbols=none \
+--with-toolchain-type=gcc \
+--disable-dtrace \
+--disable-warnings-as-errors \
+--enable-deprecated-ports=yes
+
+env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
