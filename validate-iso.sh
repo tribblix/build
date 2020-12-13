@@ -52,9 +52,6 @@ get_all_deps (){
     if [ -f wifi.ovl ]; then
 	get_deps wifi
     fi
-    if [ -f boot-server.ovl ]; then
-	get_deps boot-server
-    fi
     get_deps server-manage
 }
 
