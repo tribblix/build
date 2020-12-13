@@ -13,10 +13,18 @@ esac
 rmdir usr/ssl/certs
 ln -s /etc/ssl/certs usr/ssl
 #
+# we don't want the html docs
+#
+rm -fr usr/share/doc
+#
 # put manpages somewhere sane
 #
 mkdir usr/share
 mv usr/ssl/man usr/share
+#
+# there are almost 3500 symlinks here, cut the clutter
+#
+rm -fr usr/share/man/man3
 #
 # we no longer fiddle the manpage suffix, but some man pages conflict
 #
