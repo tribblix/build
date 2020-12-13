@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# need symlinks for the mysql libraries
-# we know they must exist on the build system for the build to work
-#
-cd opt/tribblix/icinga2/lib/icinga2
-ln -s /opt/tribblix/mysql/lib/lib* .

@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# need symlinks for the postgresql libraries
-# we know they must exist on the build system for the build to work
-#
-cd opt/tribblix/icinga2/lib/icinga2
-ln -s /opt/tribblix/postgres11/lib/libpq.so* .
