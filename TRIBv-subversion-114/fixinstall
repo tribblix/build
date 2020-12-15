@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   mkdir -p ${DESTDIR}
+fi
+
+cd ../serf-1.3.9
+cp -p serf-1.pc.save serf-1.pc
+scons PREFIX=${DESTDIR}/usr/versions/subversion-1.14 install

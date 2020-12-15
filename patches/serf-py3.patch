@@ -1,0 +1,20 @@
+--- a/SConstruct	Thu Sep 17 13:46:24 2015
++++ b/SConstruct	Tue Dec 15 21:07:08 2020
+@@ -166,7 +166,7 @@
+ match = re.search('SERF_MAJOR_VERSION ([0-9]+).*'
+                   'SERF_MINOR_VERSION ([0-9]+).*'
+                   'SERF_PATCH_VERSION ([0-9]+)',
+-                  env.File('serf.h').get_contents(),
++                  env.File('serf.h').get_contents().decode(),
+                   re.DOTALL)
+ MAJOR, MINOR, PATCH = [int(x) for x in match.groups()]
+ env.Append(MAJOR=str(MAJOR))
+@@ -183,7 +183,7 @@
+ 
+ unknown = opts.UnknownVariables()
+ if unknown:
+-  print 'Warning: Used unknown variables:', ', '.join(unknown.keys())
++  print( 'Warning: Used unknown variables:', ', '.join(unknown.keys()))
+ 
+ apr = str(env['APR'])
+ apu = str(env['APU'])
