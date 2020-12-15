@@ -20,9 +20,35 @@ That's to do with freetype, I think.
 
 Changes:
 
+In 16+28 (essentially identical to the changes that went into 17+1)
+
+Quite a lot of refactoring of the toolchain stuff.
+
+The page_size rework is really quite massive. The old _page_sizes was
+an array you manipulated directly. It's now a set. This needs various
+changes:
+
+os::Solaris::is_valid_page_size() is just _page_sizes.contains()
+
+Not strictly broken, but easy to fix: in mpss_sanity_check, we can
+simplify the getpagesizes() stuff as we know we're modern
+
+Rework listing of valid page sizes
+
+This is a bit ugly because we don't really end up using the new
+_page_sizes, but instead emulate the old array. Still, I can't find
+examples of how the new way is supposed to work on any other platform.
+
+Also need to implement print_memory_mappings, as a no-op (like AIX is)
+
+That's enough to make it compile; it blows up with an arithmetic
+exception, apparently inside apply_ergo(). In mpss_sanity_check, we
+need to make sure page_size (which is really a pointer to
+_large_page_size) is initialized to the largest valid page size.
+
 In 16+27
 
-Tidied up[ the main patch. Some of the unnecessary Studio stuff failed
+Tidied up the main patch. Some of the unnecessary Studio stuff failed
 to apply, so just remove it.
 
 In 16+26

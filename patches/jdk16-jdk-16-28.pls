@@ -3,7 +3,6 @@
 -p0 openjdk16/patch-make_autoconf_flags-cflags.m4
 -p0 openjdk16/patch-make_autoconf_jdk-options.m4
 -p0 openjdk16/patch-make_autoconf_lib-x11.m4
--p0 openjdk16/patch-make_autoconf_spec.gmk.in
 -p0 openjdk16/patch-make_hotspot_gensrc_GensrcAdlc.gmk
 -p0 openjdk16/patch-make_hotspot_gensrc_GensrcDtrace.gmk
 -p0 openjdk16/patch-make_hotspot_lib_JvmOverrideFiles.gmk
@@ -15,7 +14,6 @@
 -p0 openjdk16/patch-src_hotspot_os__cpu_solaris__x86_bytes__solaris__x86.inline.hpp
 -p0 openjdk16/patch-src_hotspot_os__cpu_solaris__x86_os__solaris__x86.inline.hpp
 -p0 openjdk16/patch-src_hotspot_os__cpu_solaris__x86_prefetch__solaris__x86.inline.hpp
--p0 openjdk16/patch-src_hotspot_os_solaris_os__solaris.cpp
 -p0 openjdk16/patch-src_hotspot_share_gc_g1_g1Analytics.cpp
 -p0 openjdk16/patch-src_java.desktop_share_native_libsplashscreen_libpng_pngpriv.h
 -p0 openjdk16/tribblix-attachListener_solaris.patch

@@ -1,7 +1,7 @@
 #!/bin/tcsh
 #
 # jdk mainline has been migrated to git
-# go to https://github.com/openjdk/jdk/tags
+# go to https://github.com/openjdk/jdk16/tags
 #
 
 #
@@ -9,8 +9,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-16-27
-cd jdk-jdk-16-27
+${THOME}/build/unpack jdk16-jdk-16-28
+cd jdk16-jdk-16-28
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -52,8 +52,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "16-internal" 2021-03-16
-# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-27)
-# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk-jdk-16-27, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk16-jdk-16-28)
+# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk16-jdk-16-28, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

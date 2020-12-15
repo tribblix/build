@@ -158,7 +158,7 @@
  endif
  
  ifeq ($(OPENJDK_TARGET_OS), windows)
-@@ -223,11 +203,6 @@
+@@ -229,11 +209,6 @@
  else ifeq ($(OPENJDK_TARGET_OS), macosx)
    NUM_CORES := $(shell /usr/sbin/sysctl -n hw.ncpu)
    MEMORY_SIZE := $(shell $(EXPR) `/usr/sbin/sysctl -n hw.memsize` / 1024 / 1024)
@@ -170,7 +170,7 @@
  else ifeq ($(OPENJDK_TARGET_OS), windows)
    NUM_CORES := $(NUMBER_OF_PROCESSORS)
    MEMORY_SIZE := $(shell \
-@@ -259,11 +234,6 @@
+@@ -265,11 +240,6 @@
      LD_JAOTC := $(DEVKIT_HOME)/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
      LIBRARY_PREFIX := lib
      SHARED_LIBRARY_SUFFIX := .dylib
@@ -184,7 +184,7 @@
    LD := ld
 --- old/make/RunTestsPrebuiltSpec.gmk	2020-05-20 17:58:25.304255556 -0700
 +++ new/make/RunTestsPrebuiltSpec.gmk	2020-05-20 17:58:24.916248106 -0700
-@@ -172,16 +172,6 @@
+@@ -176,16 +176,6 @@
  HG := hg
  ULIMIT := ulimit
  
@@ -199,7 +199,7 @@
 -endif
 -
  ifeq ($(OPENJDK_BUILD_OS), windows)
-   PATHTOOL := cygpath
+   CYGPATH := cygpath
  endif
 --- old/make/ZipSecurity.gmk	2020-05-20 17:58:26.308274834 -0700
 +++ new/make/ZipSecurity.gmk	2020-05-20 17:58:25.972268382 -0700
@@ -213,7 +213,7 @@
          modules/java.base/com/sun/net/ssl \
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -270,23 +270,15 @@
+@@ -268,23 +268,15 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR -v | $GREP "bsdtar")" != "x"; then
      TAR_TYPE="bsd"
@@ -237,7 +237,7 @@
    elif test "x$TAR_TYPE" = "aix"; then
      # -L InputList of aix tar: name of file listing the files and directories
      # that need to be   archived or extracted
-@@ -297,7 +289,6 @@
+@@ -295,7 +287,6 @@
      TAR_SUPPORTS_TRANSFORM="false"
    fi
    AC_SUBST(TAR_TYPE)
@@ -245,7 +245,7 @@
    AC_SUBST(TAR_INCLUDE_PARAM)
    AC_SUBST(TAR_SUPPORTS_TRANSFORM)
  ])
-@@ -408,8 +399,6 @@
+@@ -413,8 +404,6 @@
        fi
      fi
      UTIL_REQUIRE_PROGS(SETFILE, SetFile)
@@ -253,7 +253,7 @@
 -    UTIL_REQUIRE_PROGS(ELFEDIT, elfedit)
    fi
    if ! test "x$OPENJDK_TARGET_OS" = "xwindows"; then
-     UTIL_REQUIRE_PROGS(ULIMIT, ulimit)
+     UTIL_REQUIRE_BUILTIN_PROGS(ULIMIT, ulimit)
 --- old/make/autoconf/build-aux/config.guess	2020-05-20 17:58:28.372314465 -0700
 +++ new/make/autoconf/build-aux/config.guess	2020-05-20 17:58:27.980306938 -0700
 @@ -41,22 +41,6 @@
@@ -354,7 +354,7 @@
    AC_SUBST(SET_EXECUTABLE_ORIGIN)
    AC_SUBST(SET_SHARED_LIBRARY_ORIGIN)
    AC_SUBST(SET_SHARED_LIBRARY_NAME)
-@@ -432,9 +380,6 @@
+@@ -431,9 +379,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -364,7 +364,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
      CFLAGS_OS_DEF_JVM="-D_ALLBSD_SOURCE -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE"
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
-@@ -470,9 +415,6 @@
+@@ -469,9 +414,6 @@
    # Setup debug/release defines
    if test "x$DEBUG_LEVEL" = xrelease; then
      DEBUG_CFLAGS_JDK="-DNDEBUG"
@@ -596,7 +596,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -481,7 +480,6 @@
+@@ -477,7 +476,6 @@
  
  DISABLE_WARNING_PREFIX := @DISABLE_WARNING_PREFIX@
  CFLAGS_WARNINGS_ARE_ERRORS:=@CFLAGS_WARNINGS_ARE_ERRORS@
@@ -604,7 +604,7 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -532,7 +530,6 @@
+@@ -528,7 +526,6 @@
  # LDFLAGS used to link the jdk native libraries (C-code)
  LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
  JDKLIB_LIBS:=@JDKLIB_LIBS@
@@ -612,7 +612,7 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -584,10 +579,6 @@
+@@ -580,10 +575,6 @@
  # (Note absence of := assignment, because we do not want to evaluate the macro body here)
  SET_SHARED_LIBRARY_MAPFILE=@SET_SHARED_LIBRARY_MAPFILE@
  
@@ -623,7 +623,7 @@
  #
  # Options for generating debug symbols
  COMPILE_WITH_DEBUG_SYMBOLS := @COMPILE_WITH_DEBUG_SYMBOLS@
-@@ -742,7 +735,6 @@
+@@ -744,7 +737,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -631,7 +631,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -760,7 +752,6 @@
+@@ -761,7 +753,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -639,7 +639,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -776,7 +767,6 @@
+@@ -777,7 +768,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -650,7 +650,7 @@
 --- old/make/autoconf/toolchain.m4	2020-05-20 17:58:44.612626291 -0700
 +++ new/make/autoconf/toolchain.m4	2020-05-20 17:58:44.216618687 -0700
 @@ -35,11 +35,10 @@
- m4_include([toolchain_microsoft.m4])
+ m4_include([toolchain_windows.m4])
  
  # All valid toolchains, regardless of platform (used by help.m4)
 -VALID_TOOLCHAINS_all="gcc clang solstudio xlc microsoft"
@@ -677,38 +677,109 @@
  TOOLCHAIN_MINIMUM_VERSION_xlc=""
  
  # Minimum supported linker versions, empty means unspecified
-@@ -299,13 +296,11 @@
+@@ -296,13 +293,11 @@
    TOOLCHAIN_CC_BINARY_clang="clang"
    TOOLCHAIN_CC_BINARY_gcc="gcc"
-   TOOLCHAIN_CC_BINARY_microsoft="cl"
+   TOOLCHAIN_CC_BINARY_microsoft="cl$EXE_SUFFIX"
 -  TOOLCHAIN_CC_BINARY_solstudio="cc"
    TOOLCHAIN_CC_BINARY_xlc="xlclang"
  
    TOOLCHAIN_CXX_BINARY_clang="clang++"
    TOOLCHAIN_CXX_BINARY_gcc="g++"
-   TOOLCHAIN_CXX_BINARY_microsoft="cl"
+   TOOLCHAIN_CXX_BINARY_microsoft="cl$EXE_SUFFIX"
 -  TOOLCHAIN_CXX_BINARY_solstudio="CC"
    TOOLCHAIN_CXX_BINARY_xlc="xlclang++"
  
    # Use indirect variable referencing
-@@ -731,13 +693,7 @@
+@@ -784,16 +746,8 @@
    #
    # Setup the assembler (AS)
    #
 -  if test "x$OPENJDK_TARGET_OS" = xsolaris; then
--    UTIL_LOOKUP_TOOLCHAIN_PROGS(AS, as)
+-    UTIL_PATH_PROGS(AS, as)
 -    UTIL_FIXUP_EXECUTABLE(AS)
 -    if test "x$AS" = x; then
--      AC_MSG_ERROR([Solaris assembler (as) is required.])
+-      AC_MSG_ERROR([Solaris assembler (as) is required. Please install via "pkg install pkg:/developer/assembler".])
 -    fi
--  elif test "x$TOOLCHAIN_TYPE" != xmicrosoft; then
-+  if test "x$TOOLCHAIN_TYPE" != xmicrosoft; then
-     AS="$CC -c"
-   else
-     # On windows, the assember is "ml.exe"
+-  else
+-    # FIXME: is this correct for microsoft?
+-    AS="$CC -c"
+-  fi
++  # FIXME: is this correct for microsoft?
++  AS="$CC -c"
+   AC_SUBST(AS)
+ 
+   #
+@@ -842,15 +796,7 @@
+     AC_CHECK_PROG([MSBUILD], [msbuild$EXE_SUFFIX], [msbuild$EXE_SUFFIX],,,)
+   fi
+ 
+-  if test "x$OPENJDK_TARGET_OS" = xsolaris; then
+-    UTIL_PATH_PROGS(STRIP, strip)
+-    UTIL_FIXUP_EXECUTABLE(STRIP)
+-    UTIL_PATH_PROGS(NM, nm)
+-    UTIL_FIXUP_EXECUTABLE(NM)
+-    UTIL_PATH_PROGS(GNM, gnm)
+-    UTIL_FIXUP_EXECUTABLE(GNM)
+-  elif test "x$OPENJDK_TARGET_OS" != xwindows; then
+-    # FIXME: we should unify this with the solaris case above.
++  if test "x$OPENJDK_TARGET_OS" != xwindows; then
+     UTIL_CHECK_TOOLS(STRIP, strip)
+     UTIL_FIXUP_EXECUTABLE(STRIP)
+     if test "x$TOOLCHAIN_TYPE" = xgcc; then
+@@ -865,48 +811,11 @@
+ 
+   # objcopy is used for moving debug symbols to separate files when
+   # full debug symbols are enabled.
+-  if test "x$OPENJDK_TARGET_OS" = xsolaris || test "x$OPENJDK_TARGET_OS" = xlinux; then
++  if test "x$OPENJDK_TARGET_OS" = xlinux; then
+     UTIL_CHECK_TOOLS(OBJCOPY, [gobjcopy objcopy])
+     # Only call fixup if objcopy was found.
+     if test -n "$OBJCOPY"; then
+       UTIL_FIXUP_EXECUTABLE(OBJCOPY)
+-      if test "x$OPENJDK_BUILD_OS" = xsolaris; then
+-        # objcopy prior to 2.21.1 on solaris is broken and is not usable.
+-        # Rewrite objcopy version output to VALID_VERSION or BAD_VERSION.
+-        # - version number is last blank separate word on first line
+-        # - version number formats that have been seen:
+-        #   - <major>.<minor>
+-        #   - <major>.<minor>.<micro>
+-        OBJCOPY_VERSION=`$OBJCOPY --version | $HEAD -n 1`
+-        # The outer [ ] is to prevent m4 from eating the [] in the sed expression.
+-        [ OBJCOPY_VERSION_CHECK=`$ECHO $OBJCOPY_VERSION | $SED -n \
+-              -e 's/.* //' \
+-              -e '/^[01]\./b bad' \
+-              -e '/^2\./{' \
+-              -e '  s/^2\.//' \
+-              -e '  /^[0-9]$/b bad' \
+-              -e '  /^[0-9]\./b bad' \
+-              -e '  /^1[0-9]$/b bad' \
+-              -e '  /^1[0-9]\./b bad' \
+-              -e '  /^20\./b bad' \
+-              -e '  /^21\.0$/b bad' \
+-              -e '  /^21\.0\./b bad' \
+-              -e '}' \
+-              -e ':good' \
+-              -e 's/.*/VALID_VERSION/p' \
+-              -e 'q' \
+-              -e ':bad' \
+-              -e 's/.*/BAD_VERSION/p' \
+-              -e 'q'` ]
+-        if test "x$OBJCOPY_VERSION_CHECK" = xBAD_VERSION; then
+-          OBJCOPY=
+-          AC_MSG_WARN([Ignoring found objcopy since it is broken (prior to 2.21.1). No debug symbols will be generated.])
+-          AC_MSG_NOTICE([objcopy reports version $OBJCOPY_VERSION])
+-          AC_MSG_NOTICE([Note: patch 149063-01 or newer contains the correct Solaris 10 SPARC version])
+-          AC_MSG_NOTICE([Note: patch 149064-01 or newer contains the correct Solaris 10 X86 version])
+-          AC_MSG_NOTICE([Note: Solaris 11 Update 1 contains the correct version])
+-        fi
+-      fi
+     fi
+   fi
+ 
 --- old/make/common/MakeBase.gmk	2020-05-20 17:58:45.708647335 -0700
 +++ new/make/common/MakeBase.gmk	2020-05-20 17:58:45.324639962 -0700
-@@ -264,33 +264,7 @@
+@@ -261,33 +261,7 @@
  ################################################################################
  # All install-file and related macros automatically call DecodeSpace when needed.
  
@@ -758,7 +829,7 @@
      #
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -469,7 +469,6 @@
+@@ -465,7 +465,6 @@
  #   RCFLAGS flags for RC.
  #   EMBED_MANIFEST if true, embed manifest on Windows.
  #   MAPFILE mapfile
@@ -766,7 +837,7 @@
  #   USE_MAPFILE_FOR_SYMBOLS if true and this is a STATIC_BUILD, just copy the
  #       mapfile for the output symbols file
  #   CC the compiler to use, default is $(CC)
-@@ -707,11 +706,6 @@
+@@ -703,11 +702,6 @@
      $1_EXTRA_ASFLAGS += $$(ASFLAGS_DEBUG_SYMBOLS)
    endif
  
@@ -778,7 +849,7 @@
    # Pass the library name for static JNI library naming
    ifeq ($$($1_TYPE), STATIC_LIBRARY)
      $1_EXTRA_CFLAGS += -DLIBRARY_NAME=$$($1_NAME)
-@@ -745,7 +739,6 @@
+@@ -741,7 +735,6 @@
    ifeq ($$($1_WARNINGS_AS_ERRORS_$(TOOLCHAIN_TYPE)), true)
      $1_EXTRA_CFLAGS += $(CFLAGS_WARNINGS_ARE_ERRORS)
      $1_EXTRA_CXXFLAGS += $(CFLAGS_WARNINGS_ARE_ERRORS)
@@ -786,7 +857,7 @@
    endif
  
    ifeq (NONE, $$($1_OPTIMIZATION))
-@@ -939,17 +932,6 @@
+@@ -935,17 +928,6 @@
  
    ifneq ($(DISABLE_MAPFILES), true)
      $1_REAL_MAPFILE := $$($1_MAPFILE)
@@ -804,7 +875,7 @@
    endif
  
    # Pickup extra OPENJDK_TARGET_OS_TYPE and/or OPENJDK_TARGET_OS dependent variables
-@@ -983,7 +965,7 @@
+@@ -979,7 +961,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -813,7 +884,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).debuginfo
            # Setup the command line creating debuginfo files, to be run after linking.
            # It cannot be run separately since it updates the original target file
-@@ -1110,7 +1092,7 @@
+@@ -1106,7 +1088,7 @@
      endif
  
      $1_VARDEPS := $$($1_LD) $$($1_SYSROOT_LDFLAGS) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) \
@@ -822,7 +893,7 @@
          $$($1_CREATE_DEBUGINFO_CMDS) $$($1_MANIFEST_VERSION) \
          $$($1_STRIP_CMD)
      $1_VARDEPS_FILE := $$(call DependOnVariable, $1_VARDEPS, \
-@@ -1169,7 +1151,7 @@
+@@ -1165,7 +1147,7 @@
  
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -831,7 +902,7 @@
  		          $$($1_LIBS) $$($1_EXTRA_LIBS)) \
  		      | $(GREP) -v "^   Creating library .*\.lib and object .*\.exp" || \
  		          test "$$$$?" = "1" ; \
-@@ -1182,7 +1164,7 @@
+@@ -1175,7 +1157,7 @@
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$(if $$($1_LINK_OBJS_RELATIVE), $$(CD) $$(OUTPUTDIR) ; ) \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -873,7 +944,7 @@
      common.main_profile_names = [
 -        "linux-x64", "linux-x86", "macosx-x64", "solaris-x64",
 +        "linux-x64", "linux-x86", "macosx-x64",
-         "windows-x64", "windows-x86", "windows-aarch64",
+         "windows-x64", "windows-x86",
          "linux-aarch64", "linux-arm32", "linux-ppc64le", "linux-s390x"
      ];
 @@ -446,14 +446,6 @@
@@ -891,7 +962,7 @@
          "windows-x64": {
              target_os: "windows",
              target_cpu: "x64",
-@@ -564,7 +548,7 @@
+@@ -555,7 +539,7 @@
              "ANT_HOME": input.get("ant", "home_path")
          }
      };
@@ -900,7 +971,7 @@
          .forEach(function (name) {
              var maketestName = name + "-testmake";
              profiles[maketestName] = concatObjects(profiles[name], testmakeBase);
-@@ -690,9 +674,6 @@
+@@ -681,9 +665,6 @@
              platform: "osx-x64",
              jdk_subdir: "jdk-" + data.version +  ".jdk/Contents/Home",
          },
@@ -910,12 +981,12 @@
          "windows-x64": {
              platform: "windows-x64",
              jdk_suffix: "zip",
-@@ -1049,7 +1027,6 @@
+@@ -1036,7 +1014,6 @@
      var devkit_platform_revisions = {
          linux_x64: "gcc10.2.0-OL6.4+1.0",
          macosx_x64: "Xcode11.3.1-MacOSX10.15+1.1",
 -        solaris_x64: "SS12u4-Solaris11u1+1.0",
-         windows_x64: "VS2019-16.7.2+1.1",
+         windows_x64: "VS2019-16.7.2+1.0",
          linux_aarch64: "gcc10.2.0-OL7.6+1.0",
          linux_arm: "gcc8.2.0-Fedora27+1.0",
 --- old/make/hotspot/gensrc/GensrcAdlc.gmk	2020-05-20 17:58:54.036807242 -0700
@@ -1243,11 +1314,12 @@
                  </confElem>
 --- old/make/ide/visualstudio/hotspot/CreateVSProject.gmk	2020-05-20 17:59:05.797033047 -0700
 +++ new/make/ide/visualstudio/hotspot/CreateVSProject.gmk	2020-05-20 17:59:05.409025597 -0700
-@@ -76,7 +76,6 @@
+@@ -84,8 +84,6 @@
      -ignorePath linux \
      -ignorePath posix \
      -ignorePath ppc \
 -    -ignorePath solaris \
+-    -ignorePath sparc \
      -ignorePath x86_32 \
      -ignorePath zero \
        #
@@ -1264,7 +1336,7 @@
          <os family="unix"/>
 --- old/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.941074214 -0700
 +++ new/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.553066764 -0700
-@@ -152,7 +152,7 @@
+@@ -149,7 +149,7 @@
  DEF_POLICY_SRC_LIST := $(DEF_POLICY_SRC)
  DEF_POLICY_SRC_LIST += $(CUSTOM_POLICY_SRC_LIST)
  
@@ -1273,7 +1345,7 @@
    DEF_POLICY_SRC_LIST += $(TOPDIR)/src/java.base/$(OPENJDK_TARGET_OS)/lib/security/default.policy
  endif
  
-@@ -196,7 +196,7 @@
+@@ -193,7 +193,7 @@
  
  TARGETS += $(NET_PROPERTIES_DST)
  
@@ -1320,7 +1392,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation -framework CoreServices, \
-@@ -141,7 +137,6 @@
+@@ -140,7 +136,6 @@
          LDFLAGS := $(LDFLAGS_JDKLIB) \
              $(call SET_SHARED_LIBRARY_ORIGIN), \
          LIBS_linux := $(LIBDL), \
@@ -1989,7 +2061,7 @@
  #endif // OS_POSIX_OS_POSIX_INLINE_HPP
 --- old/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:46.085806620 -0700
 +++ new/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:45.745800092 -0700
-@@ -39,9 +39,6 @@
+@@ -38,9 +38,6 @@
  #include <sys/syscall.h>
  #include <unistd.h>
  #endif
@@ -2191,7 +2263,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1855,10 +1847,8 @@
+@@ -1858,10 +1850,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2204,7 +2276,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2423,8 +2412,7 @@
+@@ -2426,8 +2415,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2231,7 +2303,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -572,7 +572,6 @@
+@@ -570,7 +570,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -2241,7 +2313,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -476,7 +476,7 @@
+@@ -462,7 +462,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2250,7 +2322,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -808,10 +808,8 @@
+@@ -794,10 +794,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -2274,7 +2346,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -351,12 +351,6 @@
+@@ -348,12 +348,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -2320,7 +2392,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -641,12 +641,11 @@
+@@ -640,12 +640,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -3526,7 +3598,7 @@
  #include <unistd.h>
 --- old/src/java.base/unix/native/libjsig/jsig.c	2020-05-20 18:01:20.019610218 -0700
 +++ new/src/java.base/unix/native/libjsig/jsig.c	2020-05-20 18:01:19.603602231 -0700
-@@ -35,16 +35,6 @@
+@@ -33,16 +33,6 @@
  
  #include "jni.h"
  
@@ -3543,7 +3615,7 @@
  #include <dlfcn.h>
  #include <errno.h>
  #include <pthread.h>
-@@ -61,16 +51,9 @@
+@@ -59,16 +49,9 @@
    #define false 0
  #endif
  
@@ -3560,7 +3632,7 @@
  
  static sigset_t jvmsigs; /* Signals used by jvm. */
  
-@@ -95,20 +78,6 @@
+@@ -93,20 +76,6 @@
  static bool jvm_signal_installed = false;
  
  
@@ -3581,7 +3653,7 @@
  static void signal_lock() {
    pthread_mutex_lock(&mutex);
    /* When the jvm is installing its set of signal handlers, threads
-@@ -168,18 +137,7 @@
+@@ -162,18 +131,7 @@
    sact[sig].sa_handler = disp;
    sigemptyset(&set);
    sact[sig].sa_mask = set;
@@ -3601,7 +3673,7 @@
  }
  
  static sa_handler_t set_signal(int sig, sa_handler_t disp, bool is_sigset) {
-@@ -188,7 +146,6 @@
+@@ -182,7 +140,6 @@
    bool sigblocked;
  
    signal_lock();
@@ -3609,7 +3681,7 @@
  
    sigused = sigismember(&jvmsigs, sig);
    if (jvm_signal_installed && sigused) {
-@@ -200,13 +157,6 @@
+@@ -194,13 +151,6 @@
      oldhandler = sact[sig].sa_handler;
      save_signal_handler(sig, disp, is_sigset);
  
@@ -3623,7 +3695,7 @@
      signal_unlock();
      return oldhandler;
    } else if (jvm_signal_installing) {
-@@ -284,7 +234,6 @@
+@@ -278,7 +228,6 @@
  
    signal_lock();
  
@@ -3631,7 +3703,7 @@
    sigused = sigismember(&jvmsigs, sig);
    if (jvm_signal_installed && sigused) {
      /* jvm has installed its signal handler for this signal. */
-@@ -340,7 +289,6 @@
+@@ -334,7 +283,6 @@
  }
  
  JNIEXPORT struct sigaction *JVM_get_signal_action(int sig) {
@@ -10187,7 +10259,7 @@
 -}
 --- old/src/hotspot/os/solaris/globals_solaris.hpp	2020-05-20 18:09:31.185040905 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,52 +0,0 @@
+@@ -1,51 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10233,7 +10305,6 @@
 -// Defines Solaris-specific default values. The flags are available on all
 -// platforms, but they may have different default values on other platforms.
 -//
--define_pd_global(size_t, PreTouchParallelChunkSize, 1 * G);
 -define_pd_global(bool, UseLargePages, true);
 -define_pd_global(bool, UseLargePagesIndividualAllocation, false);
 -define_pd_global(bool, UseOSErrorReporting, false);
@@ -11244,7 +11315,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4347 +0,0 @@
+@@ -1,4392 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11370,7 +11441,6 @@
 -// for timer info max values which include all bits
 -#define ALL_64_BITS CONST64(0xFFFFFFFFFFFFFFFF)
 -
--int os::Solaris::_page_size = -1;
 -
 -// Here are some liblgrp types from sys/lgrp_user.h to be able to
 -// compile on older systems without this header file.
@@ -11388,11 +11458,6 @@
 -#ifndef LGRP_RSRC_MEM
 -  #define LGRP_RSRC_MEM      1       /* memory resources */
 -#endif
--
--// guarded in sys/mman.h
--extern "C" {
--extern int getpagesizes(size_t[], int);
--}
 -
 -// Values for ThreadPriorityPolicy == 1
 -int prio_policy1[CriticalPriority+1] = {
@@ -11417,8 +11482,11 @@
 -
 -// "default" initializers for missing libc APIs
 -extern "C" {
--  int memcntl(caddr_t, size_t, int, caddr_t, int, int);
--  int meminfo(const uint64_t *, int, const uint_t *, int, uint64_t *, uint_t *);
+-  static int lwp_mutex_init(mutex_t *mx, int scope, void *arg) { memset(mx, 0, sizeof(mutex_t)); return 0; }
+-  static int lwp_mutex_destroy(mutex_t *mx)                 { return 0; }
+-
+-  static int lwp_cond_init(cond_t *cv, int scope, void *arg){ memset(cv, 0, sizeof(cond_t)); return 0; }
+-  static int lwp_cond_destroy(cond_t *cv)                   { return 0; }
 -}
 -
 -// "default" initializers for pthread-based synchronization
@@ -12968,15 +13036,17 @@
 -////////////////////////////////////////////////////////////////////////////////
 -// Virtual Memory
 -
+-static int page_size = -1;
+-
 -int os::vm_page_size() {
--  assert(os::Solaris::page_size() != -1, "must call os::init");
--  return os::Solaris::page_size();
+-  assert(page_size != -1, "must call os::init");
+-  return page_size;
 -}
 -
 -// Solaris allocates memory by pages.
 -int os::vm_allocation_granularity() {
--  assert(os::Solaris::page_size() != -1, "must call os::init");
--  return os::Solaris::page_size();
+-  assert(page_size != -1, "must call os::init");
+-  return page_size;
 -}
 -
 -static bool recoverable_mmap_error(int err) {
@@ -13055,12 +13125,9 @@
 -         SIZE_FORMAT " is not aligned to " SIZE_FORMAT,
 -         alignment, (size_t) vm_page_size());
 -
--  int page_sizes_max = 9;
--  size_t _illumos_page_sizes[page_sizes_max];
--  int n = getpagesizes(_illumos_page_sizes, page_sizes_max);
--  for (int i = 0; _illumos_page_sizes[i] != 0; i++) {
--    if (is_aligned(alignment, _illumos_page_sizes[i])) {
--      return _illumos_page_sizes[i];
+-  for (int i = 0; _page_sizes[i] != 0; i++) {
+-    if (is_aligned(alignment, _page_sizes[i])) {
+-      return _page_sizes[i];
 -    }
 -  }
 -
@@ -13102,7 +13169,7 @@
 -
 -// Uncommit the pages in a specified region.
 -void os::pd_free_memory(char* addr, size_t bytes, size_t alignment_hint) {
--  if (posix_madvise(addr, bytes, MADV_FREE) < 0) {
+-  if (madvise(addr, bytes, MADV_FREE) < 0) {
 -    debug_only(warning("MADV_FREE failed."));
 -    return;
 -  }
@@ -13131,7 +13198,7 @@
 -// Tell the OS to make the range local to the first-touching LWP
 -void os::numa_make_local(char *addr, size_t bytes, int lgrp_hint) {
 -  assert((intptr_t)addr % os::vm_page_size() == 0, "Address should be page-aligned.");
--  if (posix_madvise(addr, bytes, MADV_ACCESS_LWP) < 0) {
+-  if (madvise(addr, bytes, MADV_ACCESS_LWP) < 0) {
 -    debug_only(warning("MADV_ACCESS_LWP failed."));
 -  }
 -}
@@ -13139,7 +13206,7 @@
 -// Tell the OS that this range would be accessed from different LWPs.
 -void os::numa_make_global(char *addr, size_t bytes) {
 -  assert((intptr_t)addr % os::vm_page_size() == 0, "Address should be page-aligned.");
--  if (posix_madvise(addr, bytes, MADV_ACCESS_MANY) < 0) {
+-  if (madvise(addr, bytes, MADV_ACCESS_MANY) < 0) {
 -    debug_only(warning("MADV_ACCESS_MANY failed."));
 -  }
 -}
@@ -13430,34 +13497,80 @@
 -// Large page support
 -static size_t _large_page_size = 0;
 -
+-// Insertion sort for small arrays (descending order).
+-static void insertion_sort_descending(size_t* array, int len) {
+-  for (int i = 0; i < len; i++) {
+-    size_t val = array[i];
+-    for (size_t key = i; key > 0 && array[key - 1] < val; --key) {
+-      size_t tmp = array[key];
+-      array[key] = array[key - 1];
+-      array[key - 1] = tmp;
+-    }
+-  }
+-}
+-
 -bool os::Solaris::mpss_sanity_check(bool warn, size_t* page_size) {
 -  const unsigned int usable_count = VM_Version::page_size_count();
 -  if (usable_count == 1) {
 -    return false;
 -  }
 -
--  // Find the page sizes supported by the system
--  int page_sizes_max = 9;
--  size_t _illumos_page_sizes[page_sizes_max];
--  int n = getpagesizes(_illumos_page_sizes, page_sizes_max);
--  assert(n > 0, "illumos bug?");
+-  // Find the right getpagesizes interface.  When solaris 11 is the minimum
+-  // build platform, getpagesizes() (without the '2') can be called directly.
+-  typedef int (*gps_t)(size_t[], int);
+-  gps_t gps_func = CAST_TO_FN_PTR(gps_t, dlsym(RTLD_DEFAULT, "getpagesizes2"));
+-  if (gps_func == NULL) {
+-    gps_func = CAST_TO_FN_PTR(gps_t, dlsym(RTLD_DEFAULT, "getpagesizes"));
+-    if (gps_func == NULL) {
+-      if (warn) {
+-        warning("MPSS is not supported by the operating system.");
+-      }
+-      return false;
+-    }
+-  }
+-
+-  // Fill the array of page sizes.
+-  int n = (*gps_func)(_page_sizes, page_sizes_max);
+-  assert(n > 0, "Solaris bug?");
+-
+-  if (n == page_sizes_max) {
+-    // Add a sentinel value (necessary only if the array was completely filled
+-    // since it is static (zeroed at initialization)).
+-    _page_sizes[--n] = 0;
+-    DEBUG_ONLY(warning("increase the size of the os::_page_sizes array.");)
+-  }
+-  assert(_page_sizes[n] == 0, "missing sentinel");
+-  trace_page_sizes("available page sizes", _page_sizes, n);
 -
 -  if (n == 1) return false;     // Only one page size available.
 -
--  // Skip sizes larger than 4M (or LargePageSizeInBytes if it was set)
+-  // Skip sizes larger than 4M (or LargePageSizeInBytes if it was set) and
+-  // select up to usable_count elements.  First sort the array, find the first
+-  // acceptable value, then copy the usable sizes to the top of the array and
+-  // trim the rest.  Make sure to include the default page size :-).
+-  //
+-  // A better policy could get rid of the 4M limit by taking the sizes of the
+-  // important VM memory regions (java heap and possibly the code cache) into
+-  // account.
+-  insertion_sort_descending(_page_sizes, n);
 -  const size_t size_limit =
 -    FLAG_IS_DEFAULT(LargePageSizeInBytes) ? 4 * M : LargePageSizeInBytes;
 -  int beg;
--  for (beg = 0; beg < n; ++beg) {
--    if (_illumos_page_sizes[beg] <= size_limit) {
--      _page_sizes.add(_illumos_page_sizes[beg]);
--      if (_illumos_page_sizes[beg] > *page_size) {
--	*page_size = _illumos_page_sizes[beg];
--      }
--    }
+-  for (beg = 0; beg < n && _page_sizes[beg] > size_limit; ++beg) /* empty */;
+-  const int end = MIN2((int)usable_count, n) - 1;
+-  for (int cur = 0; cur < end; ++cur, ++beg) {
+-    _page_sizes[cur] = _page_sizes[beg];
 -  }
--  // make sure we add the default
--  _page_sizes.add(vm_page_size());
+-  _page_sizes[end] = vm_page_size();
+-  _page_sizes[end + 1] = 0;
+-
+-  if (_page_sizes[end] > _page_sizes[end - 1]) {
+-    // Default page size is not the smallest; sort again.
+-    insertion_sort_descending(_page_sizes, end + 1);
+-  }
+-  *page_size = _page_sizes[0];
+-
+-  trace_page_sizes("usable page sizes", _page_sizes, end + 1);
 -  return true;
 -}
 -
@@ -13472,7 +13585,12 @@
 -}
 -
 -bool os::Solaris::is_valid_page_size(size_t bytes) {
--  return _page_sizes.contains(bytes);
+-  for (int i = 0; _page_sizes[i] != 0; i++) {
+-    if (_page_sizes[i] == bytes) {
+-      return true;
+-    }
+-  }
+-  return false;
 -}
 -
 -bool os::Solaris::setup_large_pages(caddr_t start, size_t bytes, size_t align) {
@@ -14219,11 +14337,11 @@
 -
 -  init_random(1234567);
 -
--  Solaris::set_page_size(sysconf(_SC_PAGESIZE));
--  if (Solaris::page_size() == -1) {
+-  page_size = sysconf(_SC_PAGESIZE);
+-  if (page_size == -1) {
 -    fatal("os_solaris.cpp: os::init: sysconf failed (%s)", os::strerror(errno));
 -  }
--  _page_sizes.add(Solaris::page_size());
+-  init_page_sizes((size_t) page_size);
 -
 -  Solaris::initialize_system_info();
 -
@@ -15590,11 +15708,9 @@
 -  }
 -  return yes;
 -}
--
--void os::print_memory_mappings(char* addr, size_t bytes, outputStream* st) {}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,330 +0,0 @@
+@@ -1,326 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15723,7 +15839,6 @@
 -  static void init_thread_fpu_state(void);
 -
 - protected:
--  static int _page_size;
 -  // Solaris-specific interface goes here
 -  static julong available_memory();
 -  static julong physical_memory() { return _physical_memory; }
@@ -15752,9 +15867,6 @@
 -  static void print_libversion_info(outputStream* st);
 -
 - public:
--  static int page_size(void)                                        { return _page_size; }
--  static void set_page_size(int val)                                { _page_size = val; }
--
 -  static void libthread_init();
 -  static void synchronization_init();
 -  static bool liblgrp_init();
