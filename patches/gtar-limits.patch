@@ -1,0 +1,19 @@
+From OmniOSce.
+
+_SYS_LIMITS_H is used by our /usr/include/sys/limits.h so we need to use
+a different guard for the sys-limits.h that ships with several gnu utilities.
+
+diff -wpruN '--exclude=*.orig' a~/gnu/sys-limits.h a/gnu/sys-limits.h
+--- a~/gnu/sys-limits.h	1970-01-01 00:00:00
++++ a/gnu/sys-limits.h	1970-01-01 00:00:00
+@@ -15,8 +15,8 @@
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, see <https://www.gnu.org/licenses/>.  */
+ 
+-#ifndef _SYS_LIMITS_H
+-#define _SYS_LIMITS_H
++#ifndef _GNU_UTILS_SYS_LIMITS_H
++#define _GNU_UTILS_SYS_LIMITS_H
+ 
+ #include <limits.h>
+ 
