@@ -7,6 +7,15 @@ Most patches -p0
 
 JDK17:
 
+17-2
+
+More memory stuff; pd_uncommit_memory pd_reserve_memory
+pd_attempt_reserve_memory_at have changed signatures, with an extra
+bool argument (that appears to be unused, at least linux and aix
+don't make any use of it; this appears to be a Mac thing)
+
+17-0/17-1
+
 Quite a lot of refactoring of the toolchain stuff.
 
 The page_size rework is really quite massive. The old _page_sizes was

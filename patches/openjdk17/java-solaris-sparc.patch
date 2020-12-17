@@ -2084,7 +2084,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.990246402 -0700
 +++ new/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.654239951 -0700
-@@ -57,12 +57,10 @@
+@@ -71,12 +71,10 @@
  void VM_GC_Operation::notify_gc_begin(bool full) {
    HOTSPOT_GC_BEGIN(
                     full);
@@ -2169,7 +2169,7 @@
    }
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -713,10 +713,6 @@
+@@ -720,10 +720,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2180,7 +2180,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -755,10 +751,6 @@
+@@ -762,10 +758,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2216,7 +2216,7 @@
                                                                              \
 --- old/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:32.322694403 -0700
 +++ new/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:31.930686876 -0700
-@@ -156,12 +156,6 @@
+@@ -157,12 +157,6 @@
    stubRoutines_init2(); // note: StubRoutines need 2-phase init
    MethodHandles::generate_adapters();
  
@@ -2274,7 +2274,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -351,12 +351,6 @@
+@@ -352,12 +352,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -2320,7 +2320,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -641,12 +641,11 @@
+@@ -664,12 +664,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -13311,7 +13311,7 @@
 -  return end;
 -}
 -
--bool os::pd_uncommit_memory(char* addr, size_t bytes) {
+-bool os::pd_uncommit_memory(char* addr, size_t bytes, bool exec) {
 -  size_t size = bytes;
 -  // Map uncommitted pages PROT_NONE so we fail early if we touch an
 -  // uncommitted page. Otherwise, the read/write might succeed if we
@@ -13341,7 +13341,7 @@
 -  return mmap_chunk(addr, bytes, flags, PROT_NONE);
 -}
 -
--char* os::pd_reserve_memory(size_t bytes) {
+-char* os::pd_reserve_memory(size_t bytes, bool exec) {
 -  char* addr = Solaris::anon_mmap(NULL, bytes);
 -
 -  return addr;
@@ -13349,7 +13349,7 @@
 -
 -char* os::pd_attempt_map_memory_to_file_at(char* requested_addr, size_t bytes, int file_desc) {
 -  assert(file_desc >= 0, "file_desc is not valid");
--  char* result = pd_attempt_reserve_memory_at(requested_addr, bytes);
+-  char* result = pd_attempt_reserve_memory_at(requested_addr, bytes, !ExecMem);
 -  if (result != NULL) {
 -    if (replace_existing_mapping_with_file_mapping(result, bytes, file_desc) == NULL) {
 -      vm_exit_during_initialization(err_msg("Error in mapping Java heap at the given filesystem directory"));
@@ -13361,7 +13361,7 @@
 -// Reserve memory at an arbitrary address, only if that area is
 -// available (and not reserved for something else).
 -
--char* os::pd_attempt_reserve_memory_at(char* requested_addr, size_t bytes) {
+-char* os::pd_attempt_reserve_memory_at(char* requested_addr, size_t bytes, bool exec) {
 -  // Assert only that the size is a multiple of the page size, since
 -  // that's all that mmap requires, and since that's all we really know
 -  // about at this low abstraction level.  If we need higher alignment,
