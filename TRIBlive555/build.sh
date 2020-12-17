@@ -2,7 +2,7 @@
 #
 #
 #
-${THOME}/build/unpack live.2018.02.28
+${THOME}/build/unpack live.2020.12.13
 cd live
 gsed -i 's:cc:gcc:' config.solaris-32bit 
 cat config.linux-with-shared-libraries | sed 's:-O2:-O2 -DSOLARIS -DXLOCALE_NOT_USED:' | sed 's:-DBSD=1 ::' > config.solaris-shared
