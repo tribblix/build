@@ -20,6 +20,8 @@ That's to do with freetype, I think.
 
 Changes:
 
+16+29 ramping down for release, so no real changes.
+
 In 16+28 (essentially identical to the changes that went into 17+1)
 
 Quite a lot of refactoring of the toolchain stuff.

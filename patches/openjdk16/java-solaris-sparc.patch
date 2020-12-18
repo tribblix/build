@@ -1989,7 +1989,7 @@
  #endif // OS_POSIX_OS_POSIX_INLINE_HPP
 --- old/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:46.085806620 -0700
 +++ new/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:45.745800092 -0700
-@@ -39,9 +39,6 @@
+@@ -38,9 +38,6 @@
  #include <sys/syscall.h>
  #include <unistd.h>
  #endif
@@ -2084,7 +2084,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.990246402 -0700
 +++ new/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.654239951 -0700
-@@ -57,12 +57,10 @@
+@@ -71,12 +71,10 @@
  void VM_GC_Operation::notify_gc_begin(bool full) {
    HOTSPOT_GC_BEGIN(
                     full);
@@ -2231,7 +2231,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -572,7 +572,6 @@
+@@ -571,7 +571,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
