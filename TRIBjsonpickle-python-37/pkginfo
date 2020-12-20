@@ -1,0 +1,4 @@
+PKG="TRIBjsonpickle-python-37"
+NAME="Python jsonpickle"
+VERSION="1.3.0"
+ZAP_URL="https://pypi.org/project/jsonpickle"
