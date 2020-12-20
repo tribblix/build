@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack SQLAlchemy-1.3.20
-cd SQLAlchemy-1.3.20
+${THOME}/build/unpack SQLAlchemy-1.3.22
+cd SQLAlchemy-1.3.22
 /usr/versions/python-3.8/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pil
