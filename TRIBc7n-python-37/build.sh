@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack cloud-custodian-0.9.3.0
-cd cloud-custodian-0.9.3.0
+${THOME}/build/unpack cloud-custodian-0.9.9.0
+cd cloud-custodian-0.9.9.0
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
