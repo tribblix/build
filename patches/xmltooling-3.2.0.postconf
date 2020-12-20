@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# deprecated in openssl 1.1.1 and a no-op
+#
+sed -i '/CRYPTO_set_id_callback/d' xmltooling/XMLToolingConfig.cpp

@@ -1,4 +1,4 @@
 PKG="TRIBshib-xmlsecurity-c"
 NAME="Copy of Apache XML Security for Shibboleth"
-VERSION="2.0.2.1"
+VERSION="2.0.2.2"
 ZAP_URL="http://santuario.apache.org/cindex.html"

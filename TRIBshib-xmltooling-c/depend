@@ -1,6 +1,9 @@
 P TRIBcurl
 P TRIBlib-security-openssl
 P TRIBlib-zlib
+P TRIBlibicu
+P TRIBlibnghttp2
+P TRIBlibssh2
 P TRIBshib-log4shib
 P TRIBshib-xerces-c
 P TRIBshib-xmlsecurity-c
