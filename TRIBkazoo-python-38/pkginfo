@@ -1,0 +1,4 @@
+PKG="TRIBkazoo-python-38"
+NAME="Python kazoo"
+VERSION="2.8.0.0"
+ZAP_URL="https://pypi.org/project/kazoo"
