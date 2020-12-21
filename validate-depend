@@ -4,7 +4,7 @@
 #
 
 #
-# some packages depend explictly on illumos
+# some packages depend explicitly on illumos
 # which isn't present here, so try and catch those
 # guess the version off the current host
 #
