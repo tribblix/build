@@ -1,4 +1,4 @@
 PKG="TRIBpctlife"
 NAME="Life implementation in Java"
-VERSION="1.4.0"
+VERSION="1.5.0"
 ZAP_URL="http://www.petertribble.co.uk/Fun/pctlife.html"
