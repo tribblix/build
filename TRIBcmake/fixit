@@ -2,7 +2,7 @@
 #
 # put in the regular path
 #
-VERSION=3.11
+VERSION=3.19
 mkdir usr/bin
 cd usr/bin
 ln -s ../versions/cmake-${VERSION}/bin/c* .
