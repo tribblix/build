@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK17:
 
+17-3
+
+make/common/Modules.gmk has been completely redone; remove our patch
+
 17-2
 
 More memory stuff; pd_uncommit_memory pd_reserve_memory

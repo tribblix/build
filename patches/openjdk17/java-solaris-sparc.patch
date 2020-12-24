@@ -743,19 +743,6 @@
    # On mac, extended attributes sometimes creep into the source files, which may later
    # cause the creation of ._* files which confuses testing. Clear these with xattr if
    # set. Some files get their write permissions removed after being copied to the
---- old/make/common/Modules.gmk	2020-05-20 17:58:46.776667842 -0700
-+++ new/make/common/Modules.gmk	2020-05-20 17:58:46.380660238 -0700
-@@ -123,10 +123,6 @@
-   PLATFORM_MODULES += jdk.crypto.mscapi
- endif
- 
--ifeq ($(call isTargetOs, solaris), true)
--  PLATFORM_MODULES += jdk.crypto.ucrypto
--endif
--
- JRE_TOOL_MODULES += \
-     jdk.jdwp.agent \
-     #
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
 @@ -469,7 +469,6 @@
@@ -1855,7 +1842,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -466,7 +466,7 @@
+@@ -452,7 +452,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1864,7 +1851,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -484,12 +484,6 @@
+@@ -470,12 +470,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1877,7 +1864,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -811,7 +805,7 @@
+@@ -797,7 +791,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1886,7 +1873,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1132,8 +1126,7 @@
+@@ -1118,8 +1112,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1896,7 +1883,7 @@
  }
  
  // Not all POSIX types and API's are available on all notionally "posix"
-@@ -1232,7 +1208,6 @@
+@@ -1218,7 +1194,6 @@
  
    pthread_init_common();
  
@@ -1904,7 +1891,7 @@
    int status;
    if (_pthread_condattr_setclock != NULL && _clock_gettime != NULL) {
      if ((status = _pthread_condattr_setclock(_condAttr, CLOCK_MONOTONIC)) != 0) {
-@@ -1257,12 +1222,9 @@
+@@ -1243,12 +1208,9 @@
        _use_clock_monotonic_condattr = true;
      }
    }
@@ -1917,7 +1904,7 @@
    log_info(os)("Use of CLOCK_MONOTONIC is%s supported",
                 (_clock_gettime != NULL ? "" : " not"));
    log_info(os)("Use of pthread_condattr_setclock is%s supported",
-@@ -1269,7 +1231,6 @@
+@@ -1255,7 +1217,6 @@
                 (_pthread_condattr_setclock != NULL ? "" : " not"));
    log_info(os)("Relative timed-wait using pthread_cond_timedwait is associated with %s",
                 _use_clock_monotonic_condattr ? "CLOCK_MONOTONIC" : "the default clock");
@@ -1925,7 +1912,7 @@
  }
  
  #else // !SUPPORTS_CLOCK_MONOTONIC
-@@ -1279,11 +1240,9 @@
+@@ -1265,11 +1226,9 @@
  }
  
  void os::Posix::init_2(void) {
@@ -1937,7 +1924,7 @@
  }
  
  #endif // SUPPORTS_CLOCK_MONOTONIC
-@@ -1424,7 +1383,6 @@
+@@ -1410,7 +1369,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1945,7 +1932,7 @@
  
  // PlatformEvent
  //
-@@ -1854,5 +1812,3 @@
+@@ -1840,5 +1798,3 @@
      return OS_OK;
    }
  }
@@ -1989,7 +1976,7 @@
  #endif // OS_POSIX_OS_POSIX_INLINE_HPP
 --- old/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:46.085806620 -0700
 +++ new/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:45.745800092 -0700
-@@ -39,9 +39,6 @@
+@@ -40,9 +40,6 @@
  #include <sys/syscall.h>
  #include <unistd.h>
  #endif
@@ -2169,7 +2156,7 @@
    }
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -720,10 +720,6 @@
+@@ -718,10 +718,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2180,7 +2167,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -762,10 +758,6 @@
+@@ -760,10 +756,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2191,7 +2178,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1855,10 +1847,8 @@
+@@ -1723,10 +1715,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2204,7 +2191,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2423,8 +2412,7 @@
+@@ -2047,8 +2036,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2241,7 +2228,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -476,7 +476,7 @@
+@@ -466,7 +466,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2250,7 +2237,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -808,10 +808,8 @@
+@@ -798,10 +798,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -2528,7 +2515,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -85,7 +85,7 @@
+@@ -90,7 +90,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -2537,7 +2524,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1600,8 +1600,6 @@
+@@ -1585,8 +1585,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -2546,7 +2533,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1663,8 +1661,6 @@
+@@ -1648,8 +1646,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
