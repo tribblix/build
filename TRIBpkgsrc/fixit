@@ -1,3 +1,0 @@
-#!/bin/sh
-#
-${BUILDROOT}/unpack bootstrap-2018Q4-i386
