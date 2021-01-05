@@ -99,11 +99,13 @@ rm -fr /tmp/gc7
 cd build
 gmake DESTDIR=/tmp/gc7 install-strip
 rm -fr /tmp/gc7/usr/versions/gcc-7/lib/gcc/i386-pc-solaris2.11/7.3.0/include-fixed
+rm -fr /tmp/gc7/usr/versions/gcc-7/lib/gcc/sparc-sun-solaris2.11/7.3.0/include-fixed
 cd ..
 rm -fr /tmp/gc7f
 cd fbuild
 gmake DESTDIR=/tmp/gc7f install-strip
 rm -fr /tmp/gc7f/usr/versions/gcc-7/lib/gcc/i386-pc-solaris2.11/7.3.0/include-fixed
+rm -fr /tmp/gc7f/usr/versions/gcc-7/lib/gcc/sparc-sun-solaris2.11/7.3.0/include-fixed
 cd ..
 
 #
@@ -145,6 +147,33 @@ cd amd64
 ln -s ../../../../lib/amd64/libgfortran.so* .
 
 #
+# or for sparc
+#
+cd /tmp/gc7
+mkdir -p usr/lib/sparcv9
+mv usr/versions/gcc-7/lib/libstdc++.so* usr/lib
+mv usr/versions/gcc-7/lib/sparcv9/libstdc++.so* usr/lib/sparcv9
+mv usr/versions/gcc-7/lib/libssp.so* usr/lib
+mv usr/versions/gcc-7/lib/sparcv9/libssp.so* usr/lib/sparcv9
+cd usr/versions/gcc-7/lib
+ln -s ../../../lib/libssp.so* .
+ln -s ../../../lib/libstdc++.so* .
+cd sparcv9
+ln -s ../../../../lib/sparcv9/libssp.so* .
+ln -s ../../../../lib/sparcv9/libstdc++.so* .
+
+cd /tmp/gc7f
+mkdir -p usr/lib/sparcv9
+mv usr/versions/gcc-7/lib/libgfortran.so* usr/lib
+mv usr/versions/gcc-7/lib/sparcv9/libgfortran.so* usr/lib/sparcv9
+cd usr/versions/gcc-7/lib
+ln -s ../../../lib/libgfortran.so* .
+cd sparcv9
+ln -s ../../../../lib/sparcv9/libgfortran.so* .
+
+
+
+#
 # we also have to fix any .la files that refer to the original unrelocated
 # paths for the files we moved
 #
@@ -156,10 +185,11 @@ sed -i s:/usr/versions/gcc-7/lib:/usr/lib: usr/versions/gcc-7/lib/*/libssp.la
 sed -i s:/usr/versions/gcc-7/lib:/usr/lib: usr/versions/gcc-7/lib/*/libquadmath.la
 sed -i s:/usr/versions/gcc-7/lib:/usr/lib: usr/versions/gcc-7/lib/*/libstdc++.la
 sed -i "s:'/usr/versions/gcc-7/lib'/libstdc++.la:-lstdc++:" usr/versions/gcc-7/lib/libcilkrts.la
-sed -i "s:'/usr/versions/gcc-7/lib/amd64'/libstdc++.la:-lstdc++:" usr/versions/gcc-7/lib/amd64/libcilkrts.la
+sed -i "s:'/usr/versions/gcc-7/lib/amd64'/libstdc++.la:-lstdc++:" usr/versions/gcc-7/lib/*/libcilkrts.la
+sed -i "s:'/usr/versions/gcc-7/lib/sparcv9'/libstdc++.la:-lstdc++:" usr/versions/gcc-7/lib/*/libcilkrts.la
 sed -i "s:'/usr/versions/gcc-7/lib'/libstdc++.la:-lstdc++:" usr/versions/gcc-7/lib/libcc1.la
-sed -i "s:'/usr/versions/gcc-7/lib'/libstdc++.la:-lstdc++:" usr/versions/gcc-7/lib/gcc/i386-pc-solaris2.11/7.3.0/plugin/libcc1plugin.la
-sed -i "s:'/usr/versions/gcc-7/lib'/libstdc++.la:-lstdc++:" usr/versions/gcc-7/lib/gcc/i386-pc-solaris2.11/7.3.0/plugin/libcp1plugin.la
+sed -i "s:'/usr/versions/gcc-7/lib'/libstdc++.la:-lstdc++:" usr/versions/gcc-7/lib/gcc/*-solaris2.11/7.3.0/plugin/libcc1plugin.la
+sed -i "s:'/usr/versions/gcc-7/lib'/libstdc++.la:-lstdc++:" usr/versions/gcc-7/lib/gcc/*-solaris2.11/7.3.0/plugin/libcp1plugin.la
 
 cd /tmp/gc7f
 sed -i "s:'/usr/versions/gcc-7/lib'/libquadmath.la:-lquadmath:" usr/versions/gcc-7/lib/libgfortran.la

@@ -30,5 +30,5 @@ ${THOME}/build/genpkg TRIBlib-security-openssl openssl-1.1.1i
 #
 # The sparc configure steps are:
 #
-# ./Configure solaris-sparcv9-gcc shared threads zlib --api=1.0.0 --prefix=/usr/versions/openssl11
-# env __CNF_CFLAGS=-m64 __CNF_LDFLAGS=-m64 ./Configure solaris64-sparcv9-gcc shared threads zlib --api=1.0.0 --prefix=/usr/versions/openssl11
+# ./Configure solaris-sparcv9-gcc shared threads zlib --api=1.0.0 --prefix=/usr
+# env __CNF_CFLAGS=-m64 __CNF_LDFLAGS=-m64 ./Configure solaris64-sparcv9-gcc shared threads zlib --api=1.0.0 --prefix=/usr
