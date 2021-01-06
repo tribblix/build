@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tzlocal-1.5.1
-cd tzlocal-1.5.1
+${THOME}/build/unpack tzlocal-2.1
+cd tzlocal-2.1
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
