@@ -7,6 +7,12 @@ Most patches -p0
 
 JDK17:
 
+17-4
+
+src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/asm/Disassembler.java
+has been refactored, but the new version appears to do the same thing
+as we need in a platform-independent manner, so drop our patch
+
 17-3
 
 make/common/Modules.gmk has been completely redone; remove our patch

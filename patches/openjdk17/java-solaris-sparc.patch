@@ -2071,7 +2071,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.990246402 -0700
 +++ new/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.654239951 -0700
-@@ -71,12 +71,10 @@
+@@ -72,12 +72,10 @@
  void VM_GC_Operation::notify_gc_begin(bool full) {
    HOTSPOT_GC_BEGIN(
                     full);
@@ -2156,7 +2156,7 @@
    }
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -718,10 +718,6 @@
+@@ -710,10 +710,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2167,7 +2167,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -760,10 +756,6 @@
+@@ -752,10 +748,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2178,7 +2178,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1723,10 +1715,8 @@
+@@ -1715,10 +1707,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2191,7 +2191,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2047,8 +2036,7 @@
+@@ -2039,8 +2028,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2261,7 +2261,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -352,12 +352,6 @@
+@@ -358,12 +358,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -6537,26 +6537,6 @@
      //
      // Win32
      //
---- old/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/asm/Disassembler.java	2020-05-20 18:03:10.273727177 -0700
-+++ new/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/asm/Disassembler.java	2020-05-20 18:03:09.889719804 -0700
-@@ -74,17 +74,6 @@
-             }
-             path.append(sep + "bin" + sep);
-             libname += ".dll";
--         } else if (os.lastIndexOf("SunOS", 0) != -1) {
--            if (arch.equals("x86") || arch.equals("i386")) {
--               path.append(sep + "lib" + sep + "i386" + sep);
--               libname +=  "-i386" + ".so";
--            } else if (arch.equals("amd64")) {
--               path.append(sep + "lib" + sep + "amd64" + sep);
--               libname +=  "-amd64" + ".so";
--            } else {
--               path.append(sep + "lib" + sep + arch + sep);
--               libname +=  "-" + arch + ".so";
--            }
-          } else if (os.lastIndexOf("Linux", 0) != -1) {
-             if (arch.equals("x86") || arch.equals("i386")) {
-                path.append(sep + "lib" + sep + "i386" + sep);
 --- old/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/runtime/Threads.java	2020-05-20 18:03:16.561847914 -0700
 +++ new/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/runtime/Threads.java	2020-05-20 18:03:16.225841462 -0700
 @@ -28,8 +28,6 @@
