@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# put a link in the regular path
+#
+mkdir -p usr/bin
+cat > usr/bin/prowler <<EOF
+#!/bin/sh
+exec /usr/versions/prowler/prowler "\$@"
+EOF
+chmod a+x usr/bin/prowler
