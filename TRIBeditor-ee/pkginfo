@@ -1,0 +1,4 @@
+PKG="TRIBeditor-ee"
+NAME="Easy editor ee"
+VERSION="1.5.2.0"
+ZAP_URL="https://github.com/herrbischoff/ee"
