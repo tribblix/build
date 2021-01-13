@@ -1,0 +1,4 @@
+PKG="TRIBec2-metadata"
+NAME="Retrieve EC2 instance metadata"
+VERSION="0.1.1.0"
+ZAP_URL="https://aws.amazon.com/code/ec2-instance-metadata-query-tool/"

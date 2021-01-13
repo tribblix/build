@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+#
+mkdir -p usr/bin
+cd usr/bin
+wget http://s3.amazonaws.com/ec2metadata/ec2-metadata
+chmod a+x ec2-metadata
