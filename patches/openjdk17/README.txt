@@ -7,6 +7,13 @@ Most patches -p0
 
 JDK17:
 
+17-5
+
+make/CompileJavaModules.gmk has mostly been gutted; ignore our patch
+as it seem to build fine without
+
+os.cpp needs to include alloca.h, see illumos-port-11.patch
+
 17-4
 
 src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/asm/Disassembler.java

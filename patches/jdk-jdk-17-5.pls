@@ -38,3 +38,4 @@
 -p1 openjdk17/illumos-port-9.patch
 -p1 openjdk17/illumos-signal-3.patch
 -p1 openjdk17/illumos-port-10.patch
+-p1 openjdk17/illumos-port-11.patch
