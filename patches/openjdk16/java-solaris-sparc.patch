@@ -493,8 +493,8 @@
 -    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lthread"
    fi
  
-   # Libatomic library
-@@ -146,12 +137,6 @@
+   # Atomic library
+@@ -152,12 +143,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -507,7 +507,7 @@
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib \
-@@ -169,7 +154,6 @@
+@@ -175,7 +160,6 @@
    AC_SUBST(JVM_LIBS)
    AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
    AC_SUBST(OPENJDK_BUILD_JVM_LIBS)
@@ -623,7 +623,7 @@
  #
  # Options for generating debug symbols
  COMPILE_WITH_DEBUG_SYMBOLS := @COMPILE_WITH_DEBUG_SYMBOLS@
-@@ -742,7 +735,6 @@
+@@ -744,7 +737,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -631,7 +631,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -760,7 +752,6 @@
+@@ -762,7 +754,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -639,7 +639,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -776,7 +767,6 @@
+@@ -778,7 +769,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -910,7 +910,7 @@
          "windows-x64": {
              platform: "windows-x64",
              jdk_suffix: "zip",
-@@ -1049,7 +1027,6 @@
+@@ -1052,7 +1030,6 @@
      var devkit_platform_revisions = {
          linux_x64: "gcc10.2.0-OL6.4+1.0",
          macosx_x64: "Xcode11.3.1-MacOSX10.15+1.1",
@@ -1492,7 +1492,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
    endif
-@@ -680,10 +645,7 @@
+@@ -685,10 +650,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1504,7 +1504,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -710,7 +672,6 @@
+@@ -715,7 +677,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
