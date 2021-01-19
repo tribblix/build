@@ -1,0 +1,45 @@
+# Clear this if not a 64bit build
+_BUILD_64=1
+
+# Clear this to build for Solaris
+_BUILD_ILLUMOS=1
+
+# Standard build options for Pale Moon
+ac_add_options --enable-application=palemoon
+ac_add_options --enable-optimize="-O2 -w"
+ac_add_options --enable-default-toolkit=cairo-gtk3
+ac_add_options --enable-jemalloc
+ac_add_options --enable-strip
+ac_add_options --enable-devtools
+ac_add_options --disable-eme
+ac_add_options --disable-webrtc
+ac_add_options --disable-gamepad
+ac_add_options --disable-tests
+ac_add_options --disable-debug
+ac_add_options --disable-necko-wifi
+ac_add_options --disable-updater
+ac_add_options --disable-gconf
+ac_add_options --disable-pulseaudio
+ac_add_options --with-pthreads
+
+# SunOS requires this because the GNU toolchain is not the default
+ac_add_options --with-toolchain-prefix=g
+
+# Please see https://www.palemoon.org/redist.shtml for restrictions when using the official branding.
+ac_add_options --enable-official-branding
+export MOZILLA_OFFICIAL=1
+
+# For versions after 28.12.0
+ac_add_options --enable-phoenix-extensions
+
+if [ -n "$_BUILD_ILLUMOS" ]; then
+  export MOZ_PKG_SPECIAL=illumos
+fi
+
+if [ -n "$_BUILD_64" ]; then
+  ac_add_options --libdir=/usr/lib/amd64
+  ac_add_options --x-libraries=/usr/lib/amd64
+  export PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig
+else
+  ac_add_options --x-libraries=/usr/lib
+fi
