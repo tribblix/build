@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK17:
 
+17-6
+
+we now have perfMemory_posix.cpp, so perfMemory_solaris.ccp should be
+removed or the build fails with multiply defined symbols
+
 17-5
 
 make/CompileJavaModules.gmk has mostly been gutted; ignore our patch
