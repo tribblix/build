@@ -29,6 +29,9 @@
 # 11.0.8 release
 # wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.8+10.tar.bz2
 #
+# 11.0.9 release
+# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.9+11.tar.bz2
+#
 # to get the build number, go to the jdk11u repo
 # http://hg.openjdk.java.net/jdk-updates/jdk11u/
 # there should be a -ga tag for each release
@@ -36,16 +39,16 @@
 # and it's that build tag you want to download
 #
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.9+11.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.10+9.tar.bz2
 #
 # fix the tarball name to match the directory it unpacks into
 # this needed to get the patches to apply correctly
 #
-ln jdk-11.0.9+11.tar.bz2 jdk11u-jdk-11.0.9+11.tar.bz2
+ln jdk-11.0.10+9.tar.bz2 jdk11u-jdk-11.0.10+9.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk11u-jdk-11.0.9+11
-cd jdk11u-jdk-11.0.9+11
+${THOME}/build/unpack jdk11u-jdk-11.0.10+9
+cd jdk11u-jdk-11.0.10+9
 
 #
 # as of 11.0.7, switch to a gcc build to replace Stuido
@@ -74,9 +77,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
-#openjdk version "11.0.9-internal" 2020-10-20
-#OpenJDK Runtime Environment (build 11.0.9-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.911)
-#OpenJDK 64-Bit Server VM (build 11.0.9-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.911, mixed mode)
+#openjdk version "11.0.10-internal" 2021-01-19
+#OpenJDK Runtime Environment (build 11.0.10-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.109)
+#OpenJDK 64-Bit Server VM (build 11.0.10-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.109, mixed mode)
 #
 
 rm -fr /tmp/jdk

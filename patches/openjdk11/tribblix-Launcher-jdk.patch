@@ -7,5 +7,5 @@
 -    CFLAGS_solaris := -KPIC, \
 +    CFLAGS_solaris := -fPIC, \
      CFLAGS_macosx := -fPIC, \
-     LDFLAGS := $(UNPACKEXE_ZIPOBJS) \
-         $(LDFLAGS_JDKEXE) $(LDFLAGS_CXX_JDK) \
+     LDFLAGS := $(LDFLAGS_JDKEXE) $(LDFLAGS_CXX_JDK) \
+         $(call SET_SHARED_LIBRARY_ORIGIN), \

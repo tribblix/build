@@ -24,10 +24,10 @@ Ensure support libraries can be found during build.
  JAVAC=@FIXPATH@ $(JAVAC_CMD)
  JAVADOC=@FIXPATH@ $(JAVADOC_CMD)
 -JAR=@FIXPATH@ $(JAR_CMD)
--JLINK = @FIXPATH@ $(JLINK_CMD) $(JAVA_TOOL_FLAGS_SMALL)
+-JLINK = @FIXPATH@ $(JLINK_CMD)
 -JMOD = @FIXPATH@ $(JMOD_CMD) $(JAVA_TOOL_FLAGS_SMALL)
 +JAR=LD_LIBRARY_PATH=$(BUILD_JDK)/lib:$(BUILD_JDK)/lib/jli:$(BUILD_JDK)/lib/server @FIXPATH@ $(JAR_CMD)
-+JLINK = LD_LIBRARY_PATH=$(BUILD_JDK)/lib:$(BUILD_JDK)/lib/jli:$(BUILD_JDK)/lib/server @FIXPATH@ $(JLINK_CMD) $(JAVA_TOOL_FLAGS_SMALL)
++JLINK = LD_LIBRARY_PATH=$(BUILD_JDK)/lib:$(BUILD_JDK)/lib/jli:$(BUILD_JDK)/lib/server @FIXPATH@ $(JLINK_CMD)
 +JMOD = LD_LIBRARY_PATH=$(BUILD_JDK)/lib:$(BUILD_JDK)/lib/jli:$(BUILD_JDK)/lib/server @FIXPATH@ $(JMOD_CMD) $(JAVA_TOOL_FLAGS_SMALL)
  JARSIGNER=@FIXPATH@ $(JARSIGNER_CMD)
  # A specific java binary with specific options can be used to run
