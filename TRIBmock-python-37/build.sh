@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack mock-3.0.5
-cd mock-3.0.5
+${THOME}/build/unpack mock-4.0.3
+cd mock-4.0.3
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil

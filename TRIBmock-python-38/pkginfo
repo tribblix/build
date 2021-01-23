@@ -1,4 +1,4 @@
-PKG="TRIBmock-python-37"
+PKG="TRIBmock-python-38"
 NAME="Python mock"
 VERSION="4.0.3.0"
 ZAP_URL="https://pypi.org/project/mock"
