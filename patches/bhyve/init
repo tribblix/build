@@ -1,0 +1,333 @@
+#!/usr/bin/python3
+
+# {{{ CDDL HEADER
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source. A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+# }}}
+
+# Copyright 2020 OmniOS Community Edition (OmniOSce) Association.
+
+import logging, os, subprocess, sys, time, re, getopt
+import xml.etree.ElementTree as etree
+from pprint import pprint, pformat
+
+zonexml = '/etc/zone.xml'
+uuidfile = '/etc/uuid'
+testmode = False
+
+try:
+    opts, args = getopt.getopt(sys.argv[1:], "tx:u:")
+except getopt.GetoptError:
+    print("init [-t] [-x <xml file>] [-u <uuid file>]")
+    sys.exit(2)
+for opt, arg in opts:
+    if opt == '-t':
+        testmode = True
+    elif opt == '-x':
+        zonexml = arg
+    elif opt == '-u':
+        uuidfile = arg
+
+if testmode:
+    logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+else:
+    logging.basicConfig(filename='/tmp/init.log', filemode='a',
+        level=logging.DEBUG)
+
+# Default values
+opts = {
+    'acpi':         'on',
+    'vcpus':        '1',
+    'ram':          '1G',
+    'bootrom':      'BHYVE_RELEASE_CSM',
+    'bootorder':    'cd',
+    'hostbridge':   'i440fx',
+    'diskif':       'virtio-blk',
+    'netif':        'virtio-net-viona',
+    'type':         'generic',
+    'vnc':          'off',
+    'xhci':         '',
+    'console':      '/dev/zconsole',
+    'extra':        '',
+}
+
+aliases = {
+    'diskif': {
+        'virtio':       'virtio-blk',
+        'ahci':         'ahci-hd',
+    },
+    'netif': {
+        'virtio':       'virtio-net-viona',
+    },
+    'hostbridge': {
+        # Was wrongly used in some older scripts.
+        'intel':        'netapp',
+    },
+    'vnc': {
+        'on':   'unix=/tmp/vm.vnc',
+        'wait': 'wait,unix=/tmp/vm.vnc',
+    },
+    'bootrom': {
+        # These old firmware files were present before r151035. Provide aliases
+        # for backwards compatibility.
+        'BHYVE_DEBUG-2.70':         'BHYVE_DEBUG',
+        'BHYVE_DEBUG_CSM-2.40':     'BHYVE_DEBUG_CSM',
+        'BHYVE_RELEASE-2.70':       'BHYVE_RELEASE',
+        'BHYVE_RELEASE_CSM-2.40':   'BHYVE_RELEASE_CSM',
+    }
+}
+
+HOSTBRIDGE_SLOT = 0
+LPC_SLOT        = 1
+CDROM_SLOT      = 3
+BOOTDISK_SLOT   = 4
+DISK_SLOT       = 5
+NET_SLOT        = 6
+CDROM_SLOT2     = 7
+DISK_SLOT2      = 8
+VNC_SLOT        = 30
+LPC_SLOT_WIN    = 31
+
+try:
+    with open(uuidfile) as file:
+        uuid = file.read().strip()
+        logging.info('Zone UUID: {0}'.format(uuid))
+except:
+    uuid = None
+
+try:
+    cfg = etree.parse(zonexml)
+except:
+    logging.error('Could not parse {0}'.format(zonexml))
+    sys.exit(1)
+root = cfg.getroot()
+logging.info('Parsed {0}'.format(zonexml))
+
+##############################################################################
+
+def opt(tag):
+    global opts, root
+    try:
+        el = root.find('./attr[@name="{0}"]'.format(tag))
+        opts[tag] = el.get('value').strip()
+        logging.debug('Found custom {0} attribute - "{1}"'
+            .format(tag, opts[tag]))
+        if tag in aliases:
+            try:
+                opts[tag] = aliases[tag][opts[tag]]
+                logging.debug('  Alias expanded to {0}'.format(opts[tag]))
+            except KeyError:
+                pass
+    except:
+        pass
+
+def diskpath(arg):
+    if arg.startswith('/dev'):
+        return arg
+    return '/dev/zvol/rdsk/{0}'.format(arg)
+
+# Look for attributes of the form <type> or <type>N and generate a list.
+def build_devlist(type, maxval):
+    devlist = {}
+    for dev in root.findall('./attr[@name]'):
+        m = re.search(rf'^{type}(\d+)$', dev.get('name').strip())
+        if not m: continue
+        k = int(m.group(1))
+        if k in devlist:
+            logging.error(
+                '{}{} appears more than once in configuration'.format(type, k))
+            sys.exit(1)
+        if (k > maxval):
+            logging.error('{}{} slot out of range'.format(type, k))
+            sys.exit(1)
+        devlist[k] = dev.get('value').strip()
+
+    # Now insert plain <type> tags into the list, using available slots in order
+    avail = sorted(set(range(0, maxval)).difference(sorted(devlist.keys())))
+    for dev in root.findall(f'./attr[@name="{type}"]'):
+        try:
+            k = avail.pop(0)
+        except IndexError:
+            logging.error('{}: no more available slots'.format(type))
+            sys.exit(1)
+        devlist[k] = dev.get('value').strip()
+
+    logging.debug('{} list: \n{}'.format(type, pformat(devlist)))
+
+    return devlist
+
+##############################################################################
+
+for tag in opts.keys():
+    opt(tag)
+
+if opts['type'] == 'windows':
+    # See https://wiki.freebsd.org/bhyve/Windows
+    # ... There are currently some slot limitations with UEFI:
+    # ... - AHCI devices must be in slots 3/4/5/6
+    # ... - The PCI-ISA bus aka lpc must be in slot 31
+    logging.info('Adjusting LPC PCI slot for windows')
+    LPC_SLOT        = LPC_SLOT_WIN
+
+# At present, moving the CDROM to after the hard disks is the only way we
+# have of changing the boot order. This will hopefully improve in the
+# future.
+if opts['bootorder'].startswith('c') and opts['type'] != 'windows':
+    CDROM_SLOT = CDROM_SLOT2
+
+args = ['/usr/sbin/bhyve']
+
+if opts['type'] == 'openbsd':
+    logging.info('Ignoring unknown MSRs for OpenBSD')
+    args.append('-w')
+
+if uuid:
+    args.extend(['-U', uuid])
+
+if opts['acpi'] == 'on':
+    args.append('-A')
+
+args.extend([
+    '-H',
+    '-B', '1,manufacturer={},product={},version={},serial={},sku={},family={}'
+        .format('OmniOS', 'OmniOS HVM', '1.0', uuid, '001', 'Virtual Machine'),
+    '-c', opts['vcpus'],
+    '-m', opts['ram'],
+])
+
+# Bootrom
+
+if opts['bootrom'].find('/') == -1:
+    opts['bootrom'] = '/usr/share/bhyve/firmware/{0}'.format(opts['bootrom'])
+if not opts['bootrom'].endswith('.fd'):
+    opts['bootrom'] += '.fd'
+args.extend(['-l', 'bootrom,{0}'.format(opts['bootrom'])])
+
+# Host bridge
+
+if opts['hostbridge'] == 'none':
+    pass
+elif opts['hostbridge'] == 'amd':
+    args.extend(['-s', '{0},amd_hostbridge'.format(HOSTBRIDGE_SLOT)])
+elif '=' in opts['hostbridge']:
+    args.extend(['-s', '{0},hostbridge,{1}'.format(
+        HOSTBRIDGE_SLOT, opts['hostbridge'])])
+else:
+    args.extend(['-s', '{0},hostbridge,model={1}'.format(
+        HOSTBRIDGE_SLOT, opts['hostbridge'])])
+
+# LPC
+
+args.extend(['-s', '{0},lpc'.format(LPC_SLOT)])
+
+# Console
+
+args.extend(['-l', 'com1,' + opts['console']])
+
+# CDROM
+
+for i, v in build_devlist('cdrom', 10).items():
+    args.extend([
+        '-s', '{0}:{1},{2},{3}'.format(CDROM_SLOT, i, 'ahci-cd', v)
+    ])
+
+# Bootdisk
+
+try:
+    bootdisk = root.find('./attr[@name="bootdisk"]')
+    args.extend([
+        '-s', '{0}:0,{1},{2}'.format(BOOTDISK_SLOT, opts['diskif'],
+            diskpath(bootdisk.get('value').strip()))
+    ])
+except:
+    pass
+
+# Additional Disks
+for i, v in build_devlist('disk', 20).items():
+    if i < 10:
+        args.extend([
+            '-s', '{0}:{1},{2},{3}'.format(DISK_SLOT, i, opts['diskif'],
+            diskpath(v))
+        ])
+    else:
+        args.extend([
+            '-s', '{0}:{1},{2},{3}'.format(DISK_SLOT2, i - 10, opts['diskif'],
+            diskpath(v))
+        ])
+
+# Network
+
+i = 0
+for f in root.findall('./network[@physical]'):
+    ifname = f.get('physical').strip()
+    mask = f.find("./net-attr[@name='feature_mask']")
+    netif = f.find("./net-attr[@name='netif']")
+
+    net_extra = ''
+    netif = netif.get('value') if netif is not None else opts['netif']
+
+    if mask is not None:
+        net_extra += ',feature_mask={}'.format(mask.get('value'))
+
+    args.extend([
+        '-s', '{0}:{1},{2},{3}{4}'
+        .format(NET_SLOT, i, netif, ifname, net_extra)
+    ])
+    i += 1
+
+# VNC
+
+if len(opts['vnc']) and opts['vnc'] != 'off':
+    args.extend(['-s', '{0}:0,fbuf,vga=off,{1}'.format(VNC_SLOT, opts['vnc'])])
+    if not len(opts['xhci']) or opts['xhci'] != 'off':
+        args.extend(['-s', '{0}:1,xhci,tablet'.format(VNC_SLOT)])
+
+# Pass-through devices not yet implemented
+
+# Extra options
+
+if len(opts['extra']):
+    args.extend(opts['extra'].split(' '))
+
+# VM name
+
+name = root.get('name')
+args.append(name)
+
+logging.info('Final arguments: {0}'.format(pformat(args)))
+logging.info('{0}'.format(' '.join(args)))
+
+if testmode:
+    sys.exit(0)
+
+if not os.path.exists('/dev/vmmctl'):
+    logging.info('No kernel support for bhyve')
+    sys.exit(0)
+
+if os.path.exists('/dev/vmm/{0}'.format(name)):
+    logging.info('Destroying old bhyve instance')
+    subprocess.run(['/usr/sbin/bhyvectl', '--vm={0}'.format(name), '--destroy'])
+
+while True:
+    logging.info('Starting bhyve')
+    ret = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    logging.info("Bhyve exited {0}".format(ret.returncode))
+    logging.error("Error {0}".format(ret.stderr))
+    logging.debug("Output {0}".format(ret.stdout))
+    # 0 - rebooted
+    # 1 - powered off
+    # 2 - halted
+    # 3 - triple fault
+    # 4 - other error
+    if ret.returncode != 0: break
+
+# Vim hints
+# vim:ts=4:sw=4:et:fdm=marker
