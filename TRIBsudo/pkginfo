@@ -1,4 +1,4 @@
 PKG="TRIBsudo"
 NAME="Sudo"
-VERSION="1.8.31.0"
+VERSION="1.9.5.2.0"
 ZAP_URL="https://www.sudo.ws/"
