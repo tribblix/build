@@ -26,7 +26,7 @@ env PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig \
 CFLAGS=-m64 \
 LDFLAGS=-m64 \
 CXXFLAGS=-m64
-gmake -j
+env LD_OPTIONS=-R/usr/lib/xorg/amd64 gmake -j
 cd ..
 
 ${THOME}/build/genpkg TRIBxorg-driver-video-intel xf86-video-intel-2.99.917
