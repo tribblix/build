@@ -9,8 +9,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk16-jdk-16-34
-cd jdk16-jdk-16-34
+${THOME}/build/unpack jdk16-jdk-16-35
+cd jdk16-jdk-16-35
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -35,13 +35,17 @@ zap install autoconf
 # we're recognized as solaris, JEP 362 deprecated the solaris and sparc
 # ports, so we need to explicitly re-enable it
 #
+# you may wish to use --with-jobs to push down the parallelism, which
+# will reduce memory pressure
+#
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk15 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
 --disable-warnings-as-errors \
---enable-deprecated-ports=yes
+--enable-deprecated-ports=yes \
+--with-jobs=4
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 
@@ -52,8 +56,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "16-internal" 2021-03-16
-# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk16-jdk-16-34)
-# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk16-jdk-16-34, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk16-jdk-16-35)
+# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk16-jdk-16-35, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
