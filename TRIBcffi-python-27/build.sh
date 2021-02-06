@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack cffi-1.14.0
-cd cffi-1.14.0
+${THOME}/build/unpack cffi-1.14.4
+cd cffi-1.14.4
 python setup.py build
 rm -fr /tmp/pil
 python setup.py install --root=/tmp/pil
