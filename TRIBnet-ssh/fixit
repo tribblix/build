@@ -5,11 +5,7 @@
 #
 
 # remove files from TRIBnet-ssh-ssh-key
-rm -f usr/bin/ssh-keygen
-rm -f usr/bin/ssh-keyscan
 rm -f usr/lib/ssh/ssh-keysign
-rm -f usr/share/man/man1/ssh-keygen.1
-rm -f usr/share/man/man1/ssh-keyscan.1
 rm -f usr/share/man/man8/ssh-keysign.8
 
 # remove files from TRIBsvc-net-ssh
@@ -26,10 +22,3 @@ chmod 555 usr/lib/ssh/ssh-askpass
 mkdir -p usr/share/pixmaps
 cp ${BUILDROOT}/patches/ssh-askpass-zenity.png usr/share/pixmaps
 chmod 444 usr/share/pixmaps/ssh-askpass-zenity.png
-
-#
-# temporary fix for compatibility with older clients that just have dsa keys
-#
-cat >> etc/ssh/ssh_config <<EOF
-PubkeyAcceptedKeyTypes +ssh-dss
-EOF

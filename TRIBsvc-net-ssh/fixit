@@ -31,8 +31,3 @@ cp ${BUILDROOT}/patches/openssh-ssh.xml lib/svc/manifest/network/ssh.xml
 cp ${BUILDROOT}/patches/openssh-method lib/svc/method/sshd
 chmod 444 lib/svc/manifest/network/ssh.xml
 chmod 555 lib/svc/method/sshd
-
-#
-# mitigation for CVE-2020-14871
-#
-sed -i 's:#ChallengeResponseAuthentication yes:ChallengeResponseAuthentication no:' etc/ssh/sshd_config
