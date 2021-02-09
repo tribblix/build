@@ -12,13 +12,18 @@
 #wget http://hg.openjdk.java.net/jdk/jdk15/archive/jdk-15+36.tar.bz2
 #ln jdk-15+36.tar.bz2 jdk15-jdk-15+36.tar.bz2
 #
+# 15.0.1
+# wget http://hg.openjdk.java.net/jdk-updates/jdk15u/archive/jdk-15.0.1+9.tar.bz2
+#
+# for 15.0.2 the ga tag doesn't match any other tag (latest is +7)
+#
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk15u/archive/jdk-15.0.1+9.tar.bz2
-ln jdk-15.0.1+9.tar.bz2 jdk15u-jdk-15.0.1+39.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk15u/archive/jdk-15.0.2-ga.tar.bz2
+ln jdk-15.0.2-ga.tar.bz2 jdk15u-jdk-15.0.2-ga.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk15u-jdk-15.0.1+9
-cd jdk15u-jdk-15.0.1+9
+${THOME}/build/unpack jdk15u-jdk-15.0.2-ga
+cd jdk15u-jdk-15.0.2-ga
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -43,13 +48,17 @@ zap install autoconf
 # we're recognized as solaris, JEP 362 deprecated the solaris and sparc
 # ports, so we need to explicitly re-enable it
 #
+# you may wish to use --with-jobs to push down the parallelism, which
+# will reduce memory pressure
+#
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk14 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
 --disable-warnings-as-errors \
---enable-deprecated-ports=yes
+--enable-deprecated-ports=yes \
+--with-jobs=4
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 
@@ -60,9 +69,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 # 
-# openjdk version "15.0.1-internal" 2020-10-20
-# OpenJDK Runtime Environment (build 15.0.1-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.19)
-# OpenJDK 64-Bit Server VM (build 15.0.1-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.19, mixed mode, sharing)
+# openjdk version "15.0.2-internal" 2020-01-19
+# OpenJDK Runtime Environment (build 15.0.2-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.2-ga)
+# OpenJDK 64-Bit Server VM (build 15.0.2-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.2-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

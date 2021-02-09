@@ -364,7 +364,7 @@
    AC_SUBST(SET_EXECUTABLE_ORIGIN)
    AC_SUBST(SET_SHARED_LIBRARY_ORIGIN)
    AC_SUBST(SET_SHARED_LIBRARY_NAME)
-@@ -431,9 +379,6 @@
+@@ -421,9 +369,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -374,7 +374,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
      CFLAGS_OS_DEF_JVM="-D_ALLBSD_SOURCE -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE"
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
-@@ -469,9 +414,6 @@
+@@ -459,9 +404,6 @@
    # Setup debug/release defines
    if test "x$DEBUG_LEVEL" = xrelease; then
      DEBUG_CFLAGS_JDK="-DNDEBUG"
@@ -384,7 +384,7 @@
    else
      DEBUG_CFLAGS_JDK="-DDEBUG"
  
-@@ -752,19 +652,14 @@
+@@ -742,19 +642,14 @@
      if test "x$FLAGS_OS" = xlinux || test "x$FLAGS_OS" = xmacosx; then
        $1_DEFINES_CPU_JDK="${$1_DEFINES_CPU_JDK} -D_LP64=1"
      fi
@@ -560,7 +560,7 @@
    fi
  
    # perfstat lib
-@@ -135,12 +126,6 @@
+@@ -136,12 +127,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -573,7 +573,7 @@
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib \
-@@ -158,7 +143,6 @@
+@@ -159,7 +144,6 @@
    AC_SUBST(JVM_LIBS)
    AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
    AC_SUBST(OPENJDK_BUILD_JVM_LIBS)
@@ -581,7 +581,7 @@
  ])
  
  ################################################################################
-@@ -189,28 +173,3 @@
+@@ -190,28 +174,3 @@
    LIBZIP_CAN_USE_MMAP=true
    AC_SUBST(LIBZIP_CAN_USE_MMAP)
  ])
@@ -1064,7 +1064,7 @@
  endif
  
  LAUNCHER_SRC := $(TOPDIR)/src/java.base/share/native/launcher
-@@ -143,7 +141,6 @@
+@@ -153,7 +151,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -1072,7 +1072,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -153,14 +150,11 @@
+@@ -163,14 +160,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -1303,7 +1303,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -134,29 +125,6 @@
+@@ -135,29 +126,6 @@
    JVM_EXCLUDE_PATTERNS += x86_32
  endif
  
@@ -1333,7 +1333,7 @@
  ifeq ($(call isTargetOs, windows), true)
    ifeq ($(call isTargetCpuBits, 64), true)
      RC_DESC := 64-Bit$(SPACE)
-@@ -185,13 +153,11 @@
+@@ -186,13 +154,11 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -1347,7 +1347,7 @@
      DISABLED_WARNINGS_xlc := $(DISABLED_WARNINGS_xlc), \
      DISABLED_WARNINGS_microsoft := $(DISABLED_WARNINGS_microsoft), \
      ASFLAGS := $(JVM_ASFLAGS), \
-@@ -275,30 +241,20 @@
+@@ -276,30 +242,20 @@
  # one) then the global definition will be used, triggering this check.
  
  ifneq ($(GENERATE_COMPILE_COMMANDS_ONLY), true)
@@ -1794,7 +1794,7 @@
      ifeq ($(call isTargetOs, linux), true)
        ifeq ($(DISABLE_XRENDER), true)
          LIBAWT_XAWT_CFLAGS += -DDISABLE_XRENDER_BY_DEFAULT=true
-@@ -397,13 +378,11 @@
+@@ -404,13 +385,11 @@
            $(LIBAWT_HEADLESS_CFLAGS), \
        EXTRA_HEADER_DIRS := $(LIBAWT_HEADLESS_EXTRA_HEADER_DIRS), \
        DISABLED_WARNINGS_gcc := unused-function, \
@@ -1808,7 +1808,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -464,9 +440,6 @@
+@@ -471,9 +447,6 @@
  ifeq ($(call isTargetOs, linux macosx), true)
    HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
  endif
@@ -1818,7 +1818,7 @@
  ifeq ($(call isTargetOs, macosx), true)
    HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
  endif
-@@ -626,10 +591,7 @@
+@@ -633,10 +598,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1830,7 +1830,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -656,7 +618,6 @@
+@@ -663,7 +625,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -2216,7 +2216,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -1278,13 +1257,7 @@
+@@ -1282,13 +1261,7 @@
  bool os::signal_thread(Thread* thread, int sig, const char* reason) {
    OSThread* osthread = thread->osthread();
    if (osthread) {
@@ -2230,7 +2230,7 @@
      if (status == 0) {
        Events::log(Thread::current(), "sent signal %d to Thread " INTPTR_FORMAT " because %s.",
                    sig, p2i(thread), reason);
-@@ -1305,8 +1278,6 @@
+@@ -1309,8 +1282,6 @@
     return Bsd::ucontext_get_pc(ctx);
  #elif defined(LINUX)
     return Linux::ucontext_get_pc(ctx);
@@ -2239,7 +2239,7 @@
  #else
     VMError::report_and_die("unimplemented ucontext_get_pc");
  #endif
-@@ -1319,8 +1290,6 @@
+@@ -1323,8 +1294,6 @@
     Bsd::ucontext_set_pc(ctx, pc);
  #elif defined(LINUX)
     Linux::ucontext_set_pc(ctx, pc);
@@ -2248,7 +2248,7 @@
  #else
     VMError::report_and_die("unimplemented ucontext_get_pc");
  #endif
-@@ -1425,7 +1394,7 @@
+@@ -1429,7 +1398,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -2257,7 +2257,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     JavaThread::stack_guard_zone_size() +
-@@ -1635,11 +1604,9 @@
+@@ -1639,11 +1608,9 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -2270,7 +2270,7 @@
  sigset_t sigs;
  struct sigaction sigact[NSIG];
  
-@@ -1655,7 +1622,6 @@
+@@ -1659,7 +1626,6 @@
    sigact[sig] = oldAct;
    sigaddset(&sigs, sig);
  }
@@ -2535,7 +2535,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1090,23 +1090,9 @@
+@@ -1089,23 +1089,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
@@ -2598,7 +2598,7 @@
                          "CodeEntryAlignment (" INTX_FORMAT ") must be "
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -409,7 +409,7 @@
+@@ -412,7 +412,7 @@
            "Trace external suspend wait failures")                           \
                                                                              \
    product(bool, MaxFDLimit, true,                                           \
@@ -2607,7 +2607,7 @@
                                                                              \
    diagnostic(bool, LogEvents, true,                                         \
            "Enable the various ring buffer event logs")                      \
-@@ -679,10 +679,6 @@
+@@ -682,10 +682,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2618,7 +2618,7 @@
    experimental(bool, DisablePrimordialThreadGuardPages, false,              \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -710,10 +706,6 @@
+@@ -713,10 +709,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2629,7 +2629,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1818,10 +1810,8 @@
+@@ -1821,10 +1813,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2642,7 +2642,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1846,7 +1836,6 @@
+@@ -1849,7 +1839,6 @@
            "The native priority at which compiler threads should run "       \
            "(-1 means no change)")                                           \
            range(min_jint, max_jint)                                         \
@@ -2650,7 +2650,7 @@
                                                                              \
    product(intx, VMThreadPriority, -1,                                       \
            "The native priority at which the VM thread should run "          \
-@@ -2384,8 +2373,7 @@
+@@ -2387,8 +2376,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -3043,7 +3043,7 @@
  
 --- old/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:50.351040561 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:49.963033111 -0700
-@@ -495,7 +495,7 @@
+@@ -497,7 +497,7 @@
      private static native boolean isReusePortAvailable0();
  
      /*
