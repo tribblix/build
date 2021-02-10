@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack google-api-core-1.25.1
-cd google-api-core-1.25.1
+${THOME}/build/unpack google-api-core-1.26.0
+cd google-api-core-1.26.0
 /usr/versions/python-3.8/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pil
