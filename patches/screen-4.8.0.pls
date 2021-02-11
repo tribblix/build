@@ -1,2 +1,3 @@
 -p1 screen-01.patch
 -p1 screen-02.patch
+-p1 CVE-2021-26937.patch
