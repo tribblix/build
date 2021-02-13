@@ -1,4 +1,4 @@
 PKG="TRIBgcc4runtime"
 NAME="Essential GCC runtime libraries"
-VERSION="7.3.0.4.0"
+VERSION="7.3.0.4.1"
 ZAP_URL="https://github.com/illumos/gcc"
