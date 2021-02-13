@@ -14,7 +14,8 @@ ${THOME}/build/unpack gcc-gcc-7.3.0-il-4
 mv gcc-gcc-7.3.0-il-4 gcc-7.3.0-il-4
 cd gcc-7.3.0-il-4
 #
-# patch to use the illumos ssp implementation to avoid pulling in libssp
+# use the illumos ssp implementation to avoid pulling in gcc's libssp
+# see https://github.com/illumos/gcc/pull/41
 #
 gpatch -p1 < ${THOME}/patches/27ff7246bedc81237e6bf5b5a188a7548d8bf68f.patch 
 
