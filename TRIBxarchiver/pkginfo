@@ -1,0 +1,4 @@
+PKG="TRIBxarchiver"
+NAME="Xarchiver"
+VERSION="0.5.4.0"
+ZAP_URL="https://sourceforge.net/projects/xarchiver/"
