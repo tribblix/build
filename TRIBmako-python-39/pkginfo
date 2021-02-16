@@ -1,0 +1,4 @@
+PKG="TRIBmako-python-39"
+NAME="Python Mako"
+VERSION="1.1.4.0"
+ZAP_URL="https://pypi.org/project/Mako"
