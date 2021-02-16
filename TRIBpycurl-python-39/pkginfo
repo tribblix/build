@@ -1,0 +1,4 @@
+PKG="TRIBpycurl-python-39"
+NAME="Python pycurl"
+VERSION="7.43.0.6.1"
+ZAP_URL="https://pypi.org/project/pycurl"
