@@ -53,8 +53,8 @@ rm -fr $TESTDIR
 #
 PTKDIR=/tmp/ptkidle.$$
 mkdir -p $PTKDIR
-tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter.so | ( cd $PTKDIR ; tar xf -)
-rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter.so
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter*.so | ( cd $PTKDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter*.so
 tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter | ( cd $PTKDIR ; tar xf -)
 tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib | ( cd $PTKDIR ; tar xf -)
 rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter
