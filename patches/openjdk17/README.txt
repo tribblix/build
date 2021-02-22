@@ -7,6 +7,19 @@ Most patches -p0
 
 JDK17:
 
+17-7
+
+CLOCK_MONOTONIC is now just on.
+Needed to remove os::supports_monotonic_clock() from os_solaris.inline.hpp
+Remove javaTimeMillis() and javaTimeSystemUTC() and javaTimeNanos()
+and javaTimeNanos_info() from os_solaris.cpp
+Parker::park and Parker::unpark no longer compile, park.hpp has been
+modified so we need to make sure _counter is present in
+os_solaris.hpp; that makes it compile but it then crashes the jvm in there
+The posix variant removed the guarantee in PlatformParker; we need to
+do the same, fix the signature, and provide an implementation.
+(The PlatformParker piece took a lot of effort.)
+
 17-6
 
 we now have perfMemory_posix.cpp, so perfMemory_solaris.ccp should be

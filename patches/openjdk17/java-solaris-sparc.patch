@@ -1105,7 +1105,7 @@
    # files without symbols. Hide this, even at the expense of hiding real errors.
 --- old/make/hotspot/lib/JvmOverrideFiles.gmk	2020-05-20 17:59:01.460949791 -0700
 +++ new/make/hotspot/lib/JvmOverrideFiles.gmk	2020-05-20 17:59:01.072942341 -0700
-@@ -84,52 +84,6 @@
+@@ -83,52 +83,6 @@
      $(foreach s, $(NONPIC_SRC), $(eval BUILD_LIBJVM_$(notdir $s)_CXXFLAGS := -fno-PIC))
    endif
  
@@ -1825,7 +1825,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -452,7 +452,7 @@
+@@ -454,7 +454,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1834,7 +1834,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -470,12 +470,6 @@
+@@ -472,12 +472,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1847,7 +1847,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -797,7 +791,7 @@
+@@ -799,7 +793,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1856,7 +1856,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1118,8 +1112,7 @@
+@@ -1120,8 +1114,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1865,49 +1865,8 @@
 +  os::PlatformMutex::init();
  }
  
- // Not all POSIX types and API's are available on all notionally "posix"
-@@ -1218,7 +1194,6 @@
- 
-   pthread_init_common();
- 
--#ifndef SOLARIS
-   int status;
-   if (_pthread_condattr_setclock != NULL && _clock_gettime != NULL) {
-     if ((status = _pthread_condattr_setclock(_condAttr, CLOCK_MONOTONIC)) != 0) {
-@@ -1243,12 +1208,9 @@
-       _use_clock_monotonic_condattr = true;
-     }
-   }
--#endif // !SOLARIS
--
- }
- 
- void os::Posix::init_2(void) {
--#ifndef SOLARIS
-   log_info(os)("Use of CLOCK_MONOTONIC is%s supported",
-                (_clock_gettime != NULL ? "" : " not"));
-   log_info(os)("Use of pthread_condattr_setclock is%s supported",
-@@ -1255,7 +1217,6 @@
-                (_pthread_condattr_setclock != NULL ? "" : " not"));
-   log_info(os)("Relative timed-wait using pthread_cond_timedwait is associated with %s",
-                _use_clock_monotonic_condattr ? "CLOCK_MONOTONIC" : "the default clock");
--#endif // !SOLARIS
- }
- 
- #else // !SUPPORTS_CLOCK_MONOTONIC
-@@ -1265,11 +1226,9 @@
- }
- 
- void os::Posix::init_2(void) {
--#ifndef SOLARIS
-   log_info(os)("Use of CLOCK_MONOTONIC is not supported");
-   log_info(os)("Use of pthread_condattr_setclock is not supported");
-   log_info(os)("Relative timed-wait using pthread_cond_timedwait is associated with the default clock");
--#endif // !SOLARIS
- }
- 
- #endif // SUPPORTS_CLOCK_MONOTONIC
-@@ -1410,7 +1369,6 @@
+ static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
+@@ -1370,7 +1329,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1915,7 +1874,7 @@
  
  // PlatformEvent
  //
-@@ -1840,5 +1798,3 @@
+@@ -1807,5 +1765,3 @@
      return OS_OK;
    }
  }
@@ -1923,7 +1882,7 @@
 -#endif // !SOLARIS
 --- old/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:44.033767220 -0700
 +++ new/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:43.649759847 -0700
-@@ -142,8 +142,6 @@
+@@ -125,8 +125,6 @@
    sigjmp_buf _jmpbuf;
  };
  
@@ -1932,7 +1891,7 @@
  /*
   * This is the platform-specific implementation underpinning
   * the ParkEvent class, which itself underpins Java-level monitor
-@@ -309,6 +307,4 @@
+@@ -292,6 +290,4 @@
    void notify_all();
  };
  
@@ -1941,16 +1900,16 @@
  #endif // OS_POSIX_OS_POSIX_HPP
 --- old/src/hotspot/os/posix/os_posix.inline.hpp	2020-05-20 17:59:45.073787189 -0700
 +++ new/src/hotspot/os/posix/os_posix.inline.hpp	2020-05-20 17:59:44.701780046 -0700
-@@ -68,8 +68,6 @@
- 
- #endif // SUPPORTS_CLOCK_MONOTONIC
+@@ -46,8 +46,6 @@
+   return ::close(fd);
+ }
  
 -#ifndef SOLARIS
 -
  // Platform Mutex/Monitor implementation
  
  inline void os::PlatformMutex::lock() {
-@@ -98,6 +96,4 @@
+@@ -76,6 +74,4 @@
    assert_status(status == 0, status, "cond_broadcast");
  }
  
@@ -2101,7 +2060,7 @@
      <origin>jvmpi</origin>
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -175,7 +175,6 @@
+@@ -176,7 +176,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \
@@ -2111,7 +2070,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1145,23 +1145,9 @@
+@@ -1146,23 +1146,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
@@ -2211,7 +2170,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -466,7 +466,7 @@
+@@ -465,7 +465,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2220,7 +2179,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -816,10 +816,8 @@
+@@ -815,10 +815,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -2487,7 +2446,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1034,7 +1034,7 @@
+@@ -1061,7 +1061,7 @@
  
  #ifndef PRODUCT
  
@@ -2498,7 +2457,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -90,7 +90,7 @@
+@@ -91,7 +91,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -2507,7 +2466,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1593,8 +1593,6 @@
+@@ -1594,8 +1594,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -2516,7 +2475,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1656,8 +1654,6 @@
+@@ -1657,8 +1655,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -11194,7 +11153,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4347 +0,0 @@
+@@ -1,4330 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12187,39 +12146,6 @@
 -
 -double os::elapsedVTime() {
 -  return (double)gethrvtime() / (double)hrtime_hz;
--}
--
--// Must return millis since Jan 1 1970 for JVM_CurrentTimeMillis
--jlong os::javaTimeMillis() {
--  timeval t;
--  if (gettimeofday(&t, NULL) == -1) {
--    fatal("os::javaTimeMillis: gettimeofday (%s)", os::strerror(errno));
--  }
--  return jlong(t.tv_sec) * 1000  +  jlong(t.tv_usec) / 1000;
--}
--
--// Must return seconds+nanos since Jan 1 1970. This must use the same
--// time source as javaTimeMillis and can't use get_nsec_fromepoch as
--// we need better than 1ms accuracy
--void os::javaTimeSystemUTC(jlong &seconds, jlong &nanos) {
--  timeval t;
--  if (gettimeofday(&t, NULL) == -1) {
--    fatal("os::javaTimeSystemUTC: gettimeofday (%s)", os::strerror(errno));
--  }
--  seconds = jlong(t.tv_sec);
--  nanos = jlong(t.tv_usec) * 1000;
--}
--
--
--jlong os::javaTimeNanos() {
--  return (jlong)getTimeNanos();
--}
--
--void os::javaTimeNanos_info(jvmtiTimerInfo *info_ptr) {
--  info_ptr->max_value = ALL_64_BITS;      // gethrtime() uses all 64 bits
--  info_ptr->may_skip_backward = false;    // not subject to resetting or drifting
--  info_ptr->may_skip_forward = false;     // not subject to resetting or drifting
--  info_ptr->kind = JVMTI_TIMER_ELAPSED;   // elapsed not CPU time
 -}
 -
 -char * os::local_time_string(char *buf, size_t buflen) {
@@ -15115,6 +15041,22 @@
 -// JSR166
 -// -------------------------------------------------------
 -
+-os::PlatformParker::PlatformParker() : _counter(0) {
+-  int status;
+-  status = os::Solaris::cond_init(_cond);
+-  assert_status(status == 0, status, "cond_init");
+-  status = os::Solaris::mutex_init(_mutex);
+-  assert_status(status == 0, status, "mutex_init");
+-}
+-
+-os::PlatformParker::~PlatformParker() {
+-  int status;
+-  status = os::Solaris::cond_destroy(_cond);
+-  assert_status(status == 0, status, "cond_destroy");
+-  status = os::Solaris::mutex_destroy(_mutex);
+-  assert_status(status == 0, status, "mutex_destroy");
+-}
+-
 -// The solaris and linux implementations of park/unpark are fairly
 -// conservative for now, but can be improved. They currently use a
 -// mutex/condvar pair, plus _counter.
@@ -15544,7 +15486,7 @@
 -void os::print_memory_mappings(char* addr, size_t bytes, outputStream* st) {}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,330 +0,0 @@
+@@ -1,324 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15826,22 +15768,16 @@
 -  void unpark();
 -};
 -
--class PlatformParker : public CHeapObj<mtSynchronizer> {
+-class PlatformParker {
+-  NONCOPYABLE(PlatformParker);
 - protected:
+-  volatile int _counter;
 -  mutex_t _mutex[1];
 -  cond_t  _cond[1];
 -
-- public:       // TODO-FIXME: make dtor private
--  ~PlatformParker() { guarantee(0, "invariant"); }
--
 - public:
--  PlatformParker() {
--    int status;
--    status = os::Solaris::cond_init(_cond);
--    assert_status(status == 0, status, "cond_init");
--    status = os::Solaris::mutex_init(_mutex);
--    assert_status(status == 0, status, "mutex_init");
--  }
+-  PlatformParker();
+-  ~PlatformParker();
 -};
 -
 -// Platform specific implementations that underpin VM Mutex/Monitor classes
@@ -15877,7 +15813,7 @@
 -#endif // OS_SOLARIS_OS_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.inline.hpp	2020-05-20 18:09:36.197137133 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,95 +0,0 @@
+@@ -1,90 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15961,11 +15897,6 @@
 -
 -inline struct hostent* os::get_host_by_name(char* name) {
 -  return ::gethostbyname(name);
--}
--
--inline bool os::supports_monotonic_clock() {
--  // javaTimeNanos() is monotonic on Solaris, see getTimeNanos() comments
--  return true;
 -}
 -
 -inline void os::exit(int num) {
