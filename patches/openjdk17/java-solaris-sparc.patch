@@ -140,7 +140,7 @@
  endif
  
  ifeq ($(OPENJDK_TARGET_OS), windows)
-@@ -223,11 +203,6 @@
+@@ -225,11 +205,6 @@
  else ifeq ($(OPENJDK_TARGET_OS), macosx)
    NUM_CORES := $(shell /usr/sbin/sysctl -n hw.ncpu)
    MEMORY_SIZE := $(shell $(EXPR) `/usr/sbin/sysctl -n hw.memsize` / 1024 / 1024)
@@ -152,7 +152,7 @@
  else ifeq ($(OPENJDK_TARGET_OS), windows)
    NUM_CORES := $(NUMBER_OF_PROCESSORS)
    MEMORY_SIZE := $(shell \
-@@ -259,11 +234,6 @@
+@@ -261,11 +236,6 @@
      LD_JAOTC := $(DEVKIT_HOME)/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
      LIBRARY_PREFIX := lib
      SHARED_LIBRARY_SUFFIX := .dylib
@@ -336,7 +336,7 @@
    AC_SUBST(SET_EXECUTABLE_ORIGIN)
    AC_SUBST(SET_SHARED_LIBRARY_ORIGIN)
    AC_SUBST(SET_SHARED_LIBRARY_NAME)
-@@ -432,9 +380,6 @@
+@@ -427,9 +375,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -346,7 +346,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
      CFLAGS_OS_DEF_JVM="-D_ALLBSD_SOURCE -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE"
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
-@@ -470,9 +415,6 @@
+@@ -465,9 +410,6 @@
    # Setup debug/release defines
    if test "x$DEBUG_LEVEL" = xrelease; then
      DEBUG_CFLAGS_JDK="-DNDEBUG"
@@ -1289,7 +1289,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation -framework CoreServices, \
-@@ -141,7 +137,6 @@
+@@ -138,7 +134,6 @@
          LDFLAGS := $(LDFLAGS_JDKLIB) \
              $(call SET_SHARED_LIBRARY_ORIGIN), \
          LIBS_linux := $(LIBDL), \
@@ -1432,7 +1432,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -220,10 +208,6 @@
+@@ -219,10 +207,6 @@
          $(FONTCONFIG_CFLAGS) \
          $(CUPS_CFLAGS)
  
@@ -1443,7 +1443,7 @@
      ifeq ($(call isTargetOs, linux), true)
        ifeq ($(DISABLE_XRENDER), true)
          LIBAWT_XAWT_CFLAGS += -DDISABLE_XRENDER_BY_DEFAULT=true
-@@ -406,7 +387,6 @@
+@@ -405,7 +386,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -1451,7 +1451,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -475,9 +451,6 @@
+@@ -474,9 +450,6 @@
    ifeq ($(call isTargetOs, linux macosx), true)
      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
    endif
@@ -1461,7 +1461,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
    endif
-@@ -685,10 +650,7 @@
+@@ -684,10 +649,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1473,7 +1473,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -715,7 +677,6 @@
+@@ -714,7 +676,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1548,7 +1548,7 @@
      LIBS_unix := -ljava, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -ldl -lstdc++ -lthread -lproc, \
-     LIBS_macosx := -framework Foundation -framework JavaNativeFoundation \
+     LIBS_macosx := -framework Foundation \
          -framework JavaRuntimeSupport -framework Security -framework CoreFoundation, \
      LIBS_windows := dbgeng.lib $(WIN_JAVA_LIB), \
 --- old/make/modules/jdk.jdwp.agent/Lib.gmk	2020-05-20 17:59:23.709376977 -0700
@@ -2025,7 +2025,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.990246402 -0700
 +++ new/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.654239951 -0700
-@@ -72,12 +72,10 @@
+@@ -73,12 +73,10 @@
  void VM_GC_Operation::notify_gc_begin(bool full) {
    HOTSPOT_GC_BEGIN(
                     full);
@@ -2082,7 +2082,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1147,23 +1147,9 @@
+@@ -1148,23 +1148,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
@@ -2110,7 +2110,7 @@
    }
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -707,10 +707,6 @@
+@@ -704,10 +704,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2121,7 +2121,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -752,10 +748,6 @@
+@@ -749,10 +745,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2132,7 +2132,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1700,10 +1692,8 @@
+@@ -1697,10 +1689,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2145,7 +2145,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2027,8 +2016,7 @@
+@@ -2024,8 +2013,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2172,7 +2172,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -561,7 +561,6 @@
+@@ -562,7 +562,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -2215,7 +2215,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -359,12 +359,6 @@
+@@ -357,12 +357,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -2458,7 +2458,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1061,7 +1061,7 @@
+@@ -1062,7 +1062,7 @@
  
  #ifndef PRODUCT
  

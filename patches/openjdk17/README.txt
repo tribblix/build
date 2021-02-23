@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK17:
 
+17-9
+
+No significant changes
+
 17-8
 
 Man os:: functions were centralized into os_posix.inline.hpp, so
