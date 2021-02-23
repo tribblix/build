@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK17:
 
+17-10
+
+No significant changes
+
 17-9
 
 No significant changes
