@@ -78,7 +78,7 @@
    }
    _synchronization_initialized = true;
  }
-@@ -3711,9 +3693,6 @@
+@@ -3699,9 +3681,6 @@
  // 3.   Tx resumes from park
  
  
@@ -88,7 +88,7 @@
  // utility to compute the abstime argument to timedwait.
  // TODO-FIXME: switch from compute_abstime() to unpackTime().
  
-@@ -3727,24 +3706,8 @@
+@@ -3715,24 +3694,8 @@
    jlong seconds = millis / 1000;
    jlong max_wait_period;
  

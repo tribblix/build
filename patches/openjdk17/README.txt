@@ -7,6 +7,13 @@ Most patches -p0
 
 JDK17:
 
+17-8
+
+Man os:: functions were centralized into os_posix.inline.hpp, so
+needed to remove our duplicates from os_solaris.inline.hpp and
+os_solaris.cpp. Mostly the central copy was identical, the only odd
+one was that the Solaris os::connect had some funky error handling
+
 17-7
 
 CLOCK_MONOTONIC is now just on.
@@ -83,6 +90,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-toolchain-type=gcc \
 --disable-dtrace \
 --disable-warnings-as-errors \
---enable-deprecated-ports=yes
+--enable-deprecated-ports=yes \
+--with-jobs=4
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
