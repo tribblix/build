@@ -2,5 +2,5 @@
 #
 # 64-bit only
 #
-env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v14.15.5 -P /usr/versions/node-v14 -C "--without-dtrace --dest-cpu=x64"
-${THOME}/build/genpkg TRIBv-node-v14 node-v14.15.5
+env CC=gcc CXX=g++ ${THOME}/build/dobuild node-v14.16.0 -P /usr/versions/node-v14 -C "--without-dtrace --dest-cpu=x64"
+${THOME}/build/genpkg TRIBv-node-v14 node-v14.16.0
