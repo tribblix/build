@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack detect_secrets-0.14.3
-cd detect_secrets-0.14.3
+${THOME}/build/unpack detect_secrets-1.0.0
+cd detect_secrets-1.0.0
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
