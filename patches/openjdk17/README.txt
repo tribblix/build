@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK17:
 
+17-11
+
+Fix memTracker.hpp; signature changed
+Don't patch deoptimization.cpp, it was SPARC-specific
+
 17-10
 
 No significant changes
@@ -99,6 +104,6 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --enable-deprecated-ports=yes \
---with-jobs=4
+--with-jobs=3
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
