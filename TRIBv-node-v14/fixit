@@ -12,11 +12,3 @@ VERSION=14
 # we don't have systemtap
 #
 rm -fr usr/versions/node-v${VERSION}/share/systemtap
-
-#
-# these are unpackageable files, rename
-# postinstall and preremove scripts will put them
-# into the right place
-#
-mv 'usr/versions/node-v14/lib/node_modules/npm/node_modules/ajv/lib/$data.js' usr/versions/node-v14/lib/node_modules/npm/node_modules/ajv/lib/XXXdata.js
-mv 'usr/versions/node-v14/lib/node_modules/npm/node_modules/ajv/lib/refs/$data.json' usr/versions/node-v14/lib/node_modules/npm/node_modules/ajv/lib/refs/XXXdata.json
