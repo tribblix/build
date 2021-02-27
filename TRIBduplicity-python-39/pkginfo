@@ -1,0 +1,4 @@
+PKG="TRIBduplicity-python-39"
+NAME="Python duplicity"
+VERSION="0.8.18.0"
+ZAP_URL="https://pypi.org/project/duplicity"
