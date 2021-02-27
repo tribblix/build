@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack mail-parser-3.14.0
-cd mail-parser-3.14.0
+${THOME}/build/unpack mail-parser-3.15.0
+cd mail-parser-3.15.0
 /usr/versions/python-3.8/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pil
