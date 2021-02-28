@@ -1,5 +1,5 @@
-P TRIBgtksourceview
-P TRIBlib-desktop-gtk
+P TRIBgtksourceview3
+P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
 P TRIBxfce
