@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# just clone the repo
+#
+mkdir -p usr/bin
+cp ${BUILDROOT}/patches/flamegraph.sh usr/bin/flamegraph
+chmod 0750 usr/bin/flamegraph
+mkdir -p usr/versions
+cd usr/versions
+git clone https://github.com/brendangregg/FlameGraph
+cd FlameGraph
+rm -fr .git dev demos test
+#
+# skip the scripts for other platforms
+#
+rm -f stackcollapse-vsprof.pl stackcollapse-stap.pl stackcollapse-perf.pl stackcollapse-pmc.pl stackcollapse-aix.pl stackcollapse-vtune.pl aix-perf.pl stackcollapse-bpftrace.pl stackcollapse-instruments.pl stackcollapse-perf-sched.awk pkgsplit-perf.pl range-perf.pl jmaps
+rm -f example*

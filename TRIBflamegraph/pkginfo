@@ -1,0 +1,4 @@
+PKG="TRIBflamegraph"
+NAME="FlameGraph Stack Trace Visualizer"
+VERSION="1.0"
+ZAP_URL="https://github.com/brendangregg/FlameGraph"
