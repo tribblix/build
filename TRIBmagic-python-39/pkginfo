@@ -1,4 +1,4 @@
 PKG="TRIBmagic-python-39"
 NAME="Python python-magic"
-VERSION="0.4.18.0"
+VERSION="0.4.22.0"
 ZAP_URL="https://pypi.org/project/python-magic"
