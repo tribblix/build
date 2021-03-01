@@ -1,4 +1,0 @@
-PKG="TRIBgtkglext"
-NAME="OpenGL extension to GTK+"
-VERSION="1.2.0.0"
-ZAP_URL="https://projects.gnome.org/gtkglext/"
