@@ -4,8 +4,8 @@
 # so package them together
 #
 rm -fr /tmp/pil
-${THOME}/build/unpack mkdocs-material-6.2.8
-cd mkdocs-material-6.2.8
+${THOME}/build/unpack mkdocs-material-7.0.3
+cd mkdocs-material-7.0.3
 /usr/versions/python-3.8/bin/python3 setup.py build
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pil
 cd ..
