@@ -7,6 +7,13 @@ Most patches -p0
 
 JDK17:
 
+17-12
+
+Remove saved_rbp_address_offset() from thread_solaris_x86.hpp
+
+There's also evidence of xattr support on some platforms having been
+added; it's not needed for the build so I've ignored it for now.
+
 17-11
 
 Fix memTracker.hpp; signature changed

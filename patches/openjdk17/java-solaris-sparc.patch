@@ -2144,7 +2144,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -561,7 +561,6 @@
+@@ -562,7 +562,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -2441,7 +2441,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -92,7 +92,7 @@
+@@ -93,7 +93,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -2450,7 +2450,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1595,8 +1595,6 @@
+@@ -1596,8 +1596,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -2459,7 +2459,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1658,8 +1656,6 @@
+@@ -1659,8 +1657,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -4812,9 +4812,9 @@
  #else
 --- old/src/java.base/unix/native/libnio/fs/UnixNativeDispatcher.c	2020-05-20 18:01:37.127938711 -0700
 +++ new/src/java.base/unix/native/libnio/fs/UnixNativeDispatcher.c	2020-05-20 18:01:36.787932182 -0700
-@@ -41,17 +41,10 @@
+@@ -45,17 +45,10 @@
+ #include <sys/xattr.h>
  #endif
- #include <sys/time.h>
  
 -/* For POSIX-compliant getpwuid_r, getgrgid_r on Solaris */
 -#if defined(__solaris__)
@@ -4831,7 +4831,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #endif
-@@ -263,8 +256,7 @@
+@@ -267,8 +260,7 @@
  
      /* system calls that might not be available at run time */
  
@@ -18180,7 +18180,7 @@
 -void JavaThread::cache_global_variables() { }
 --- old/src/hotspot/os_cpu/solaris_x86/thread_solaris_x86.hpp	2020-05-20 18:10:06.173712649 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,63 +0,0 @@
+@@ -1,59 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -18219,10 +18219,6 @@
 -
 -  static ByteSize last_Java_fp_offset()          {
 -    return byte_offset_of(JavaThread, _anchor) + JavaFrameAnchor::last_Java_fp_offset();
--  }
--
--  static ByteSize saved_rbp_address_offset() {
--    return byte_offset_of(JavaThread, _anchor) + JavaFrameAnchor::saved_rbp_address_offset();
 -  }
 -
 -  intptr_t* base_of_stack_pointer()                  { return NULL; }
