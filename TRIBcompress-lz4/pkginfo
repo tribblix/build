@@ -1,0 +1,4 @@
+PKG="TRIBcompress-lz4"
+NAME="LZ4 - Extremely fast compression"
+VERSION="1.9.3.0"
+ZAP_URL="https://github.com/lz4/lz4"

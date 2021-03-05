@@ -1,0 +1,4 @@
+PKG="TRIBcompress-zstd"
+NAME="Zstandard compression"
+VERSION="1.4.9.0"
+ZAP_URL="https://github.com/facebook/zstd"
