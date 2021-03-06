@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# CLI wrapper
+#
+VERSION=visualvm_206
+mkdir -p usr/bin
+ln -s /usr/versions/${VERSION}/bin/visualvm usr/bin
+#
+# clean up source
+#
+cd usr/versions/${VERSION}
+rm -f bin/*.exe
+rm -f platform/lib/*.exe
+rm -f platform/lib/*.dll
+rm -fr platform/modules/lib
+rm -fr visualvm/lib/deployed/jdk*/windows*
+rm -fr visualvm/lib/deployed/jdk*/hpux*
+rm -fr visualvm/lib/deployed/jdk*/mac
+rm -fr visualvm/lib/deployed/jdk*/linux*
