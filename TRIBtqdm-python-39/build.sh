@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tqdm-4.56.2
-cd tqdm-4.56.2
+${THOME}/build/unpack tqdm-4.59.0
+cd tqdm-4.59.0
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
