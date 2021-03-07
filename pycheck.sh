@@ -13,7 +13,6 @@
 THOME=${THOME:-/packages/localsrc/Tribblix}
 cd ${THOME}/build
 
-PY2VER=27
 PY3VER=37
 
 WGET=/usr/bin/wget
@@ -43,6 +42,7 @@ if [ $# -gt 0 ]; then
 	    fi
 	done
     done
+    exit 0
 fi
 
 for file in *-${PY3VER}
@@ -59,29 +59,4 @@ do
 	    echo "$file is good"
 	fi
     done
-done
-
-#
-# now check the alternate python
-# we're looking for modules that don't exist in the first python
-# that we checked above, and assuming that any module is the same
-# version for all pythons so we only need to check it once
-#
-for file in *-${PY2VER}
-do
-    ofile=${file/$PY2VER/$PY3VER}
-    if [ ! -d $ofile ]; then
-	for pkgstr in `grep build/unpack ${file}/build.sh | awk '{print $2}'`
-	do
-	    pkgver=${pkgstr##*-}
-	    pkgname=${pkgstr%-*}
-	    curver=`wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version`
-	    curver=`echo $curver | sed -e 's:"::g'`
-	    if [ "X$pkgver" != "X$curver" ]; then
-		echo "NEW VERSION $curver of $file, we have $pkgver"
-	    else
-		echo "$file is good"
-	    fi
-	done
-    fi
 done
