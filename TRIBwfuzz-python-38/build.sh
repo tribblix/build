@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack wfuzz-2.4.7
-cd wfuzz-2.4.7
+${THOME}/build/unpack wfuzz-3.1.0
+cd wfuzz-3.1.0
 /usr/versions/python-3.8/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.8/bin/python3 setup.py install --root=/tmp/pil
