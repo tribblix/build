@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack dnspython-1.16.0
-cd dnspython-1.16.0
+${THOME}/build/unpack dnspython-2.1.0
+cd dnspython-2.1.0
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
