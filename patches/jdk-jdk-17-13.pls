@@ -2,7 +2,6 @@
 -p0 openjdk17/patch-make_GenerateLinkOptData.gmk
 -p0 openjdk17/patch-make_autoconf_flags-cflags.m4
 -p0 openjdk17/patch-make_autoconf_jdk-options.m4
--p0 openjdk17/patch-make_autoconf_lib-x11.m4
 -p0 openjdk17/patch-make_hotspot_gensrc_GensrcAdlc.gmk
 -p0 openjdk17/patch-make_hotspot_gensrc_GensrcDtrace.gmk
 -p0 openjdk17/patch-make_hotspot_lib_JvmOverrideFiles.gmk

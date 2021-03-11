@@ -7,6 +7,16 @@ Most patches -p0
 
 JDK17:
 
+17-13
+
+Remove the patches for lib-X11.m4; they're actually for S10, so we
+don't want them anyway. And remove the patch to XRBackendNative.c
+related to it which is also an S10 fixup.
+
+os::fork_and_exec has been centralized
+
+MetaspaceShared::is_in_trampoline_frame() has been removed
+
 17-12
 
 Remove saved_rbp_address_offset() from thread_solaris_x86.hpp

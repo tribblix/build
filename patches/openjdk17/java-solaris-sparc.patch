@@ -424,39 +424,6 @@
                AC_MSG_CHECKING([for freetype])
                AC_MSG_RESULT([yes (using pkg-config)])
              fi
---- old/make/autoconf/lib-x11.m4	2020-05-20 17:58:40.076539195 -0700
-+++ new/make/autoconf/lib-x11.m4	2020-05-20 17:58:39.684531668 -0700
-@@ -88,13 +88,6 @@
-       AC_MSG_ERROR([Could not find X11 libraries. $HELP_MSG])
-     fi
- 
--    if test "x$OPENJDK_TARGET_OS" = xsolaris; then
--      OPENWIN_HOME="/usr/openwin"
--      X_CFLAGS="-I$SYSROOT$OPENWIN_HOME/include -I$SYSROOT$OPENWIN_HOME/include/X11/extensions"
--      X_LIBS="-L$SYSROOT$OPENWIN_HOME/lib$OPENJDK_TARGET_CPU_ISADIR \
--          -R$OPENWIN_HOME/lib$OPENJDK_TARGET_CPU_ISADIR"
--    fi
--
-     AC_LANG_PUSH(C)
-     OLD_CFLAGS="$CFLAGS"
-     CFLAGS="$CFLAGS $SYSROOT_CFLAGS $X_CFLAGS"
-@@ -122,16 +115,6 @@
-       AC_MSG_ERROR([Could not find all X11 headers (shape.h Xrender.h Xrandr.h XTest.h Intrinsic.h). $HELP_MSG])
-     fi
- 
--    # If XLinearGradient isn't available in Xrender.h, signal that it needs to be
--    # defined in libawt_xawt.
--    AC_MSG_CHECKING([if XlinearGradient is defined in Xrender.h])
--    AC_COMPILE_IFELSE(
--        [AC_LANG_PROGRAM([[#include <X11/extensions/Xrender.h>]],
--            [[XLinearGradient x;]])],
--        [AC_MSG_RESULT([yes])],
--        [AC_MSG_RESULT([no])
--         X_CFLAGS="$X_CFLAGS -DSOLARIS10_NO_XRENDER_STRUCTS"])
--
-     CFLAGS="$OLD_CFLAGS"
-     AC_LANG_POP(C)
-   fi # NEEDS_LIB_X11
 --- old/make/autoconf/libraries.m4	2020-05-20 17:58:41.188560546 -0700
 +++ new/make/autoconf/libraries.m4	2020-05-20 17:58:40.768552482 -0700
 @@ -122,15 +115,13 @@
@@ -510,7 +477,7 @@
      *darwin*)
        VAR_OS=macosx
        VAR_OS_TYPE=unix
-@@ -415,19 +423,6 @@
+@@ -452,19 +460,6 @@
    fi
    AC_SUBST(OPENJDK_$1_CPU_LEGACY_LIB)
  
@@ -530,7 +497,7 @@
    # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
    OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
    if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -553,9 +548,6 @@
+@@ -590,9 +585,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -540,7 +507,7 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -611,25 +603,9 @@
+@@ -648,25 +640,9 @@
    PLATFORM_SET_MODULE_TARGET_OS_VALUES
    PLATFORM_SET_RELEASE_FILE_OS_VALUES
    PLATFORM_SETUP_LEGACY_VARS
@@ -1825,7 +1792,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -454,7 +454,7 @@
+@@ -460,7 +460,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1834,7 +1801,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -472,12 +472,6 @@
+@@ -478,12 +478,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1847,7 +1814,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -799,7 +793,7 @@
+@@ -805,7 +799,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1856,7 +1823,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1120,8 +1114,7 @@
+@@ -1126,8 +1120,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1866,7 +1833,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1370,7 +1329,6 @@
+@@ -1376,7 +1335,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1874,12 +1841,15 @@
  
  // PlatformEvent
  //
-@@ -1807,5 +1765,3 @@
+@@ -1813,8 +1771,6 @@
      return OS_OK;
    }
  }
 -
 -#endif // !SOLARIS
+ 
+ // Darwin has no "environ" in a dynamic library.
+ #ifdef __APPLE__
 --- old/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:44.033767220 -0700
 +++ new/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:43.649759847 -0700
 @@ -125,8 +125,6 @@
@@ -2144,7 +2114,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -562,7 +562,6 @@
+@@ -579,7 +579,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -2154,7 +2124,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -465,7 +465,7 @@
+@@ -467,7 +467,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2163,7 +2133,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -815,10 +815,8 @@
+@@ -821,10 +821,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -5672,7 +5642,7 @@
                  cmd[2] = "env LC_ALL=C " + command;
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.605138318 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.221130945 -0700
-@@ -888,51 +888,25 @@
+@@ -879,51 +879,25 @@
                          isAttributeCategorySupported(JobSheets.class)) {
              ncomps+=1;
          }
@@ -6083,28 +6053,6 @@
   * It is used in setting the time in Java-level InputEvents
 --- old/src/java.desktop/unix/native/libawt_xawt/java2d/x11/XRBackendNative.c	2020-05-20 18:02:47.985299224 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/java2d/x11/XRBackendNative.c	2020-05-20 18:02:47.661293003 -0700
-@@ -39,21 +39,6 @@
-     #include <sys/utsname.h>
- #endif
- 
--/* On Solaris 10 updates 8, 9, the render.h file defines these
-- * protocol values but does not define the structs in Xrender.h.
-- * Thus in order to get these always defined on Solaris 10
-- * we will undefine the symbols if we have determined via the
-- * makefiles that Xrender.h is lacking the structs. This will
-- * trigger providing our own definitions as on earlier updates.
-- * We could assume that *all* Solaris 10 update versions will lack the updated
-- * Xrender.h and do this based solely on O/S being any 5.10 version, but this
-- * could still change and we'd be broken again as we'd be re-defining them.
-- */
--#ifdef SOLARIS10_NO_XRENDER_STRUCTS
--#undef X_RenderCreateLinearGradient
--#undef X_RenderCreateRadialGradient
--#endif
--
- #ifndef X_RenderCreateLinearGradient
- typedef struct _XLinearGradient {
-     XPointFixed p1;
 @@ -76,29 +61,6 @@
  
  #include <dlfcn.h>
@@ -11137,7 +11085,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4244 +0,0 @@
+@@ -1,4181 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15268,69 +15216,6 @@
 -  assert_status(status == 0, status, "cond_broadcast");
 -}
 -
--extern char** environ;
--
--// Run the specified command in a separate process. Return its exit value,
--// or -1 on failure (e.g. can't fork a new process).
--// Unlike system(), this function can be called from signal handler. It
--// doesn't block SIGINT et al.
--int os::fork_and_exec(char* cmd, bool use_vfork_if_available) {
--  char * argv[4];
--  argv[0] = (char *)"sh";
--  argv[1] = (char *)"-c";
--  argv[2] = cmd;
--  argv[3] = NULL;
--
--  pid_t pid;
--  pid = fork();
--
--  if (pid < 0) {
--    // fork failed
--    warning("fork failed: %s", os::strerror(errno));
--    return -1;
--
--  } else if (pid == 0) {
--    // child process
--
--    // try to be consistent with system(), which uses "/usr/bin/sh" on Solaris
--    execve("/usr/bin/sh", argv, environ);
--
--    // execve failed
--    _exit(-1);
--
--  } else  {
--    // copied from J2SE ..._waitForProcessExit() in UNIXProcess_md.c; we don't
--    // care about the actual exit code, for now.
--
--    int status;
--
--    // Wait for the child process to exit.  This returns immediately if
--    // the child has already exited. */
--    while (waitpid(pid, &status, 0) < 0) {
--      switch (errno) {
--      case ECHILD: return 0;
--      case EINTR: break;
--      default: return -1;
--      }
--    }
--
--    if (WIFEXITED(status)) {
--      // The child exited normally; get its exit code.
--      return WEXITSTATUS(status);
--    } else if (WIFSIGNALED(status)) {
--      // The child exited because of a signal
--      // The best value to return is 0x80 + signal number,
--      // because that is what all Unix shells do, and because
--      // it allows callers to distinguish between process exit and
--      // process death by signal.
--      return 0x80 + WTERMSIG(status);
--    } else {
--      // Unknown exit code; pass it through
--      return status;
--    }
--  }
--}
--
 -// Get the default path to the core file
 -// Returns the length of the string
 -int os::get_core_path(char* buffer, size_t bufferSize) {
@@ -18073,7 +17958,7 @@
 -        ret
 --- old/src/hotspot/os_cpu/solaris_x86/thread_solaris_x86.cpp	2020-05-20 18:10:05.425698288 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,104 +0,0 @@
+@@ -1,98 +0,0 @@
 -/*
 - * Copyright (c) 2003, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -18149,12 +18034,6 @@
 -
 -  if (addr == NULL) {
 -    // ucontext wasn't useful
--    return false;
--  }
--
--  if (MetaspaceShared::is_in_trampoline_frame(addr)) {
--    // In the middle of a trampoline call. Bail out for safety.
--    // This happens rarely so shouldn't affect profiling.
 -    return false;
 -  }
 -
