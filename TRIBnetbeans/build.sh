@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBnetbeans incubating-netbeans-11.0-bin
+${THOME}/build/pkg_tarball TRIBnetbeans netbeans-12.3-bin
