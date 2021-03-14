@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack parsedmarc-6.7.4
-cd parsedmarc-6.7.4
+${THOME}/build/unpack parsedmarc-6.12.0
+cd parsedmarc-6.12.0
 #
 # check that the dependencies aren't overconstrained
 #
