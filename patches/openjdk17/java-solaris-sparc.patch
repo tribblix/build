@@ -11676,7 +11676,7 @@
 -      if (ThreadPriorityVerbose) {
 -        tty->print_cr("Starting Thread " INTPTR_FORMAT ", LWP is "
 -                      INTPTR_FORMAT ", setting priority: %d\n",
--                      osthr->thread_id(), osthr->lwp_id(), prio);
+-                      (uintx)osthr->thread_id(), (uintx)osthr->lwp_id(), prio);
 -      }
 -      os::set_native_priority(thread, prio);
 -    }
@@ -11730,7 +11730,7 @@
 -
 -  if (ThreadPriorityVerbose) {
 -    tty->print_cr("In create_os_thread, Thread " INTPTR_FORMAT ", LWP is " INTPTR_FORMAT "\n",
--                  osthread->thread_id(), osthread->lwp_id());
+-                  (uintx)osthread->thread_id(), (uintx)osthread->lwp_id());
 -  }
 -
 -  // Initial thread state is INITIALIZED, not SUSPENDED
@@ -11965,7 +11965,7 @@
 -    size_t size = adjust_stack_size(base, (size_t)limits.rlim_cur);
 -    assert(size >= jt->stack_size(), "Stack size problem in main thread");
 -#endif
--    tty->print_cr("Stack size of %d Kb exceeds current limit of %d Kb.\n"
+-    tty->print_cr("Stack size of " SIZE_FORMAT " Kb exceeds current limit of " SIZE_FORMAT " Kb.\n"
 -                  "(Stack sizes are rounded up to a multiple of the system page size.)\n"
 -                  "See limit(1) to increase the stack size limit.",
 -                  stack_size / K, jt->stack_size() / K);
@@ -12300,7 +12300,7 @@
 -
 -int _print_dll_info_cb(const char * name, address base_address, address top_address, void * param) {
 -  outputStream * out = (outputStream *) param;
--  out->print_cr(PTR_FORMAT " \t%s", base_address, name);
+-  out->print_cr(INTPTR_FORMAT " \t%s", (intptr_t)base_address, name);
 -  return 0;
 -}
 -
@@ -13605,7 +13605,7 @@
 -    if (ThreadPriorityVerbose) {
 -      tty->print_cr("deferring the set_lwp_class_and_priority of thread "
 -                    INTPTR_FORMAT " to %d, lwpid not set",
--                    ThreadID, newPrio);
+-                    (uintx)ThreadID, newPrio);
 -    }
 -    return 0;
 -  }
@@ -13613,7 +13613,7 @@
 -  if (ThreadPriorityVerbose) {
 -    tty->print_cr ("set_lwp_class_and_priority("
 -                   INTPTR_FORMAT "@" INTPTR_FORMAT " %d) ",
--                   ThreadID, lwpid, newPrio);
+-                   (uintx)ThreadID, (uintx)lwpid, newPrio);
 -  }
 -
 -  memset(&ParmInfo, 0, sizeof(pcparms_t));

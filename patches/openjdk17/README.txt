@@ -7,6 +7,8 @@ Most patches -p0
 
 JDK17:
 
+Tidy up some of the format noise
+
 17-13
 
 Remove the patches for lib-X11.m4; they're actually for S10, so we
