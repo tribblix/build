@@ -12,4 +12,6 @@ i386)
 esac
 mkdir -p usr/bin/${ARCH64}
 ln -s ../gnu/bin/m4 usr/bin/gm4
-ln -s ../../gnu/bin/${ARCH64}/m4 usr/bin/${ARCH64}/gm4
+# some things (eg bison) might reference the 64-bit path explicitly
+# so make sure it resolves
+ln -s ../../gnu/bin/m4 usr/bin/${ARCH64}/gm4
