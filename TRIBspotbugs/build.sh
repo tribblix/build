@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBspotbugs spotbugs-4.1.2
+${THOME}/build/pkg_tarball TRIBspotbugs spotbugs-4.2.2
