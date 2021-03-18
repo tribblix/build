@@ -7,6 +7,15 @@ Most patches -p0
 
 JDK17:
 
+17-14
+
+Remove patch to c1_LIRAssembler.cpp as it's only for SPARC
+Maybe lir_pack/lir_unpack could go too?
+
+Tidied up Awt2dLibraries.gmk
+
+More centralization into os_posix: os::die() os::shutdown() os::abort()
+
 Tidy up some of the format noise
 
 17-13

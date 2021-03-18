@@ -545,7 +545,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -481,7 +480,6 @@
+@@ -483,7 +482,6 @@
  
  DISABLE_WARNING_PREFIX := @DISABLE_WARNING_PREFIX@
  CFLAGS_WARNINGS_ARE_ERRORS:=@CFLAGS_WARNINGS_ARE_ERRORS@
@@ -553,7 +553,7 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -532,7 +530,6 @@
+@@ -534,7 +532,6 @@
  # LDFLAGS used to link the jdk native libraries (C-code)
  LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
  JDKLIB_LIBS:=@JDKLIB_LIBS@
@@ -561,7 +561,7 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -584,10 +579,6 @@
+@@ -588,10 +583,6 @@
  # (Note absence of := assignment, because we do not want to evaluate the macro body here)
  SET_SHARED_LIBRARY_MAPFILE=@SET_SHARED_LIBRARY_MAPFILE@
  
@@ -572,7 +572,7 @@
  #
  # Options for generating debug symbols
  COMPILE_WITH_DEBUG_SYMBOLS := @COMPILE_WITH_DEBUG_SYMBOLS@
-@@ -747,7 +740,6 @@
+@@ -751,7 +744,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -580,7 +580,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -765,7 +757,6 @@
+@@ -769,7 +761,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -588,7 +588,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -781,7 +772,6 @@
+@@ -785,7 +776,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -812,7 +812,7 @@
          "windows-x64", "windows-x86", "windows-aarch64",
          "linux-aarch64", "linux-arm32", "linux-ppc64le", "linux-s390x"
      ];
-@@ -446,14 +446,6 @@
+@@ -447,14 +447,6 @@
                  "SETFILE=/usr/bin/SetFile"),
          },
  
@@ -827,7 +827,7 @@
          "windows-x64": {
              target_os: "windows",
              target_cpu: "x64",
-@@ -563,7 +547,7 @@
+@@ -565,7 +549,7 @@
              "ANT_HOME": input.get("ant", "home_path")
          }
      };
@@ -836,7 +836,7 @@
          .forEach(function (name) {
              var maketestName = name + "-testmake";
              profiles[maketestName] = concatObjects(profiles[name], testmakeBase);
-@@ -689,9 +673,6 @@
+@@ -691,9 +675,6 @@
              platform: "osx-x64",
              jdk_subdir: "jdk-" + data.version +  ".jdk/Contents/Home",
          },
@@ -846,7 +846,7 @@
          "windows-x64": {
              platform: "windows-x64",
              jdk_suffix: "zip",
-@@ -1051,7 +1029,6 @@
+@@ -1053,7 +1031,6 @@
      var devkit_platform_revisions = {
          linux_x64: "gcc10.2.0-OL6.4+1.0",
          macosx_x64: "Xcode11.3.1-MacOSX10.15+1.1",
@@ -1339,7 +1339,7 @@
  
 --- old/make/modules/java.desktop/Lib.gmk	2020-05-20 17:59:14.281195949 -0700
 +++ new/make/modules/java.desktop/Lib.gmk	2020-05-20 17:59:13.949189574 -0700
-@@ -46,15 +46,10 @@
+@@ -47,15 +47,10 @@
        -DX_PLATFORM=X_$(OPENJDK_TARGET_OS_UPPERCASE) \
        -DUSE_PORTS=TRUE \
        -DUSE_DAUDIO=TRUE \
@@ -1368,14 +1368,10 @@
    LIBAWT_EXFILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -112,13 +108,7 @@
+@@ -112,9 +108,7 @@
  
  LIBAWT_CFLAGS += -D__MEDIALIB_OLD_NAMES -D__USE_J2D_NAMES $(X_CFLAGS)
  
--ifeq ($(call And, $(call isTargetOs, solaris) $(call isTargetCpu, sparcv9)), true)
--  LIBAWT_ASFLAGS = -P -xarch=v9a
--endif
--
 -ifeq ($(call isTargetOs, solaris), false)
 -  LIBAWT_CFLAGS += -DMLIB_NO_LIBSUNMATH
 -endif
@@ -1383,14 +1379,6 @@
  
  ifeq ($(call isTargetOs, windows), true)
    LIBAWT_CFLAGS += -EHsc -DUNICODE -D_UNICODE
-@@ -157,7 +147,6 @@
-     DISABLED_WARNINGS_clang := logical-op-parentheses extern-initializer \
-         sign-compare format-nonliteral, \
-     DISABLED_WARNINGS_microsoft := 4244 4267 4996, \
--    ASFLAGS := $(LIBAWT_ASFLAGS), \
-     LDFLAGS := $(LDFLAGS_JDKLIB) $(call SET_SHARED_LIBRARY_ORIGIN), \
-     LDFLAGS_macosx := -L$(INSTALL_LIBRARIES_HERE), \
-     LDFLAGS_windows := -delayload:user32.dll -delayload:gdi32.dll \
 @@ -167,7 +156,6 @@
          -delayload:comctl32.dll -delayload:shlwapi.dll, \
      LIBS_unix := -ljvm -ljava $(LIBM), \
@@ -1399,18 +1387,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -219,10 +207,6 @@
-         $(FONTCONFIG_CFLAGS) \
-         $(CUPS_CFLAGS)
- 
--    ifeq ($(call isTargetOs, solaris), true)
--      LIBAWT_XAWT_CFLAGS += -DFUNCPROTO=15
--    endif
--
-     ifeq ($(call isTargetOs, linux), true)
-       ifeq ($(DISABLE_XRENDER), true)
-         LIBAWT_XAWT_CFLAGS += -DDISABLE_XRENDER_BY_DEFAULT=true
-@@ -405,7 +386,6 @@
+@@ -406,7 +387,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -1418,17 +1395,16 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -474,9 +450,6 @@
-   ifeq ($(call isTargetOs, linux macosx), true)
-     HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
-   endif
--  ifeq ($(call isTargetOs, solaris), true)
--    HARFBUZZ_CFLAGS += -DHAVE_SOLARIS_ATOMIC_OPS
--  endif
-   ifeq ($(call isTargetOs, macosx), true)
-     HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
-   endif
-@@ -684,10 +649,7 @@
+@@ -450,7 +444,7 @@
+                         -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
+                         -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
+    endif
++   ifeq ($(call isTargetOs, linux macosx), true)
+-   ifeq ($(call isTargetOs, solaris linux macosx), true)
+      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
+    endif
+    ifeq ($(call isTargetOs, macosx), true)
+@@ -645,10 +608,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1440,7 +1416,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -714,7 +676,6 @@
+@@ -673,7 +635,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1792,7 +1768,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -460,7 +460,7 @@
+@@ -466,7 +466,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1801,7 +1777,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -478,12 +478,6 @@
+@@ -484,12 +484,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1814,7 +1790,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -805,7 +799,7 @@
+@@ -811,7 +805,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1823,7 +1799,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1126,8 +1120,7 @@
+@@ -1132,8 +1126,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1833,7 +1809,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1376,7 +1335,6 @@
+@@ -1382,7 +1341,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1841,7 +1817,7 @@
  
  // PlatformEvent
  //
-@@ -1813,8 +1771,6 @@
+@@ -1819,8 +1777,6 @@
      return OS_OK;
    }
  }
@@ -1921,7 +1897,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1669,8 +1667,6 @@
+@@ -1668,8 +1666,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1941,7 +1917,7 @@
        , lir_unwind
    , end_op1
    , begin_op2
-@@ -2125,9 +2123,6 @@
+@@ -2115,9 +2113,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1951,37 +1927,6 @@
    void null_check(LIR_Opr opr, CodeEmitInfo* info, bool deoptimize_on_null = false);
    void throw_exception(LIR_Opr exceptionPC, LIR_Opr exceptionOop, CodeEmitInfo* info) {
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
---- old/src/hotspot/share/c1/c1_LIRAssembler.cpp	2020-05-20 18:00:01.402100705 -0700
-+++ new/src/hotspot/share/c1/c1_LIRAssembler.cpp	2020-05-20 18:00:01.066094253 -0700
-@@ -579,16 +579,6 @@
-       monitor_address(op->in_opr()->as_constant_ptr()->as_jint(), op->result_opr());
-       break;
- 
--#ifdef SPARC
--    case lir_pack64:
--      pack64(op->in_opr(), op->result_opr());
--      break;
--
--    case lir_unpack64:
--      unpack64(op->in_opr(), op->result_opr());
--      break;
--#endif
--
-     case lir_unwind:
-       unwind_op(op->in_opr());
-       break;
-@@ -842,11 +832,7 @@
-         if (!r->is_stack()) {
-           stringStream st;
-           st.print("bad oop %s at %d", r->as_Register()->name(), _masm->offset());
--#ifdef SPARC
--          _masm->_verify_oop(r->as_Register(), os::strdup(st.as_string(), mtCompiler), __FILE__, __LINE__);
--#else
-           _masm->verify_oop(r->as_Register());
--#endif
-         } else {
-           _masm->verify_stack_oop(r->reg2stack() * VMRegImpl::stack_slot_size);
-         }
 --- old/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
 @@ -381,7 +381,7 @@
@@ -2420,7 +2365,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1596,8 +1596,6 @@
+@@ -1609,8 +1609,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -2429,7 +2374,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1659,8 +1657,6 @@
+@@ -1672,8 +1670,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -11085,7 +11030,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4181 +0,0 @@
+@@ -1,4136 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12089,51 +12034,6 @@
 -               t.tm_year + 1900, t.tm_mon + 1, t.tm_mday,
 -               t.tm_hour, t.tm_min, t.tm_sec);
 -  return buf;
--}
--
--// Note: os::shutdown() might be called very early during initialization, or
--// called from signal handler. Before adding something to os::shutdown(), make
--// sure it is async-safe and can handle partially initialized VM.
--void os::shutdown() {
--
--  // allow PerfMemory to attempt cleanup of any persistent resources
--  perfMemory_exit();
--
--  // needs to remove object in file system
--  AttachListener::abort();
--
--  // flush buffered output, finish log files
--  ostream_abort();
--
--  // Check for abort hook
--  abort_hook_t abort_hook = Arguments::abort_hook();
--  if (abort_hook != NULL) {
--    abort_hook();
--  }
--}
--
--// Note: os::abort() might be called very early during initialization, or
--// called from signal handler. Before adding something to os::abort(), make
--// sure it is async-safe and can handle partially initialized VM.
--void os::abort(bool dump_core, void* siginfo, const void* context) {
--  os::shutdown();
--  if (dump_core) {
--    ::abort(); // dump core (for debugging)
--  }
--
--  ::exit(1);
--}
--
--// Die immediately, no exit hook, no abort hook, no cleanup.
--// Dump a core file, if possible, for debugging.
--void os::die() {
--  if (TestUnresponsiveErrorHandler && !CreateCoredumpOnCrash) {
--    // For TimeoutInErrorHandlingTest.java, we just kill the VM
--    // and don't take the time to generate a core file.
--    os::signal_raise(SIGKILL);
--  } else {
--    ::abort();
--  }
 -}
 -
 -// DLL functions

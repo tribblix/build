@@ -6,7 +6,6 @@
 -p0 openjdk17/patch-make_hotspot_gensrc_GensrcDtrace.gmk
 -p0 openjdk17/patch-make_hotspot_lib_JvmOverrideFiles.gmk
 -p0 openjdk17/patch-make_launcher_LauncherCommon.gmk 
--p0 openjdk17/patch-make_lib_Awt2dLibraries.gmk
 -p0 openjdk17/patch-make_lib_Lib-jdk.crypto.ucrypto.gmk
 -p0 openjdk17/patch-make_lib_LibCommon.gmk
 -p0 openjdk17/patch-src_hotspot_os__cpu_solaris__x86_atomic__solaris__x86.hpp
