@@ -23,6 +23,8 @@ fi
 
 for dir in $*
 do
+    # remove any trailing / added by tab-completion
+    dir=${dir%%/}
     if [ -d ${BDIR}/${dir} ]; then
 	if [ -z "$QUIET" ]; then
 	    if pkginfo -q $dir 2>/dev/null
