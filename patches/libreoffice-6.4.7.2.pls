@@ -5,3 +5,5 @@
 -p1 loo6/05-avoid-conflict-with-math-version.patch
 -p1 loo6/06-i18n_ic.cxx.patch
 -p1 loo6/07-os-solaris.patch
+-p1 loo6/openssl-gcc.patch 
+-p1 loo6/12-change-download.patch 

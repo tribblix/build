@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# the user command
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/libreoffice-6/bin/* .
+cd ../..
+
+#
+# we don't want to ship the SDK, at least not as part of this package
+#
+rm -fr usr/versions/libreoffice-6/lib/libreoffice/sdk
+
+#
+# we want the desktop integration to end up in the normal place
+#
+mkdir -p usr/share/applications
+cp usr/versions/libreoffice-6/lib/libreoffice/share/xdg/*.desktop usr/share/applications
+mv usr/versions/libreoffice-6/share/icons usr/share
+mkdir -p usr/share/pixmaps
+cp usr/share/icons/hicolor/32x32/apps/*png usr/share/pixmaps
+
+mv usr/versions/libreoffice-6/share/man usr/share
+gunzip usr/share/man/man1/*.gz
