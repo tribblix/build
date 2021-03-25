@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK17:
 
+17-15
+
+No changes this time
+
 17-14
 
 Remove patch to c1_LIRAssembler.cpp as it's only for SPARC

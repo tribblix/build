@@ -1404,7 +1404,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
     endif
     ifeq ($(call isTargetOs, macosx), true)
-@@ -645,10 +608,7 @@
+@@ -639,10 +602,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1416,7 +1416,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -673,7 +635,6 @@
+@@ -667,7 +629,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1929,7 +1929,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/classfile/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -381,7 +381,7 @@
+@@ -436,7 +436,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -3566,7 +3566,7 @@
  /******************* Java entry points *****************************/
  
  /*
-@@ -1669,372 +1653,6 @@
+@@ -1679,372 +1663,6 @@
  
  #endif /* _AIX */
  
@@ -4968,7 +4968,7 @@
                  initCompositeFonts(fontConfig, null);
  
                  return null;
-@@ -2072,33 +2054,6 @@
+@@ -2075,33 +2057,6 @@
              }
          }
  
