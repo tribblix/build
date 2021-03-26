@@ -1,0 +1,4 @@
+PKG="TRIBgtksourceviewmm3"
+NAME="GtkSourceView C++ library"
+VERSION="3.21.3.0"
+ZAP_URL="https://wiki.gnome.org/Projects/GtkSourceView"
