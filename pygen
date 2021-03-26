@@ -5,15 +5,21 @@
 # you may need to modify the depend file
 #
 
+#
+# by default, package for 3.7 and 3.9
+#
+
 PY2VER=27
 PY37VER=37
 PY37DVER=3.7
+PY39VER=39
+PY39DVER=3.9
 
-PY3ONLY=""
+PY3ONLY="yes"
 
 case $1 in
--3)
-	PY3ONLY="yes"
+-2)
+	PY3ONLY=""
 	shift
 	;;
 esac
@@ -24,13 +30,14 @@ case $# in
 	TBALL=$2
 	;;
 *)
-	echo "Usage: $0 [-3] pkg_name tarball_name"
+	echo "Usage: $0 [-2] pkg_name tarball_name"
 	exit 1
 	;;
 esac
 
 PY2NAME=TRIB${pkg_name}-python-${PY2VER}
 PY37NAME=TRIB${pkg_name}-python-${PY37VER}
+PY39NAME=TRIB${pkg_name}-python-${PY39VER}
 
 if [ -z "${PY3ONLY}" ]; then
    if [ -d "$PY2NAME" ]; then
@@ -40,6 +47,10 @@ if [ -z "${PY3ONLY}" ]; then
 fi
 if [ -d "$PY37NAME" ]; then
    echo "$PY37NAME already exists"
+   exit 1
+fi
+if [ -d "$PY39NAME" ]; then
+   echo "$PY39NAME already exists"
    exit 1
 fi
 
@@ -107,3 +118,28 @@ cd ..
 rm -fr /tmp/pil
 EOF
 chmod a+x $PY37NAME/build.sh
+
+#
+# python 3.9
+#
+mkdir $PY39NAME
+echo "P TRIBv-python-$PY39VER" > $PY39NAME/depend
+cat > $PY39NAME/pkginfo <<EOF
+PKG="${PY39NAME}"
+NAME="Python $PNAME"
+VERSION="${PVER}.0"
+ZAP_URL="https://pypi.org/project/${PNAME}"
+EOF
+cat > $PY39NAME/build.sh <<EOF
+#!/bin/sh
+#
+\${THOME}/build/unpack $TBALL
+cd $TBALL
+/usr/versions/python-${PY39DVER}/bin/python3 setup.py build
+rm -fr /tmp/pil
+/usr/versions/python-${PY39DVER}/bin/python3 setup.py install --root=/tmp/pil
+\${THOME}/build/create_pkg $PY39NAME /tmp/pil
+cd ..
+rm -fr /tmp/pil
+EOF
+chmod a+x $PY39NAME/build.sh
