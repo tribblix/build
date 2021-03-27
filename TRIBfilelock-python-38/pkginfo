@@ -1,4 +1,0 @@
-PKG="TRIBfilelock-python-38"
-NAME="Python filelock"
-VERSION="3.0.12.0"
-ZAP_URL="https://pypi.org/project/filelock"

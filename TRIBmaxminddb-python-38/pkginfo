@@ -1,4 +1,0 @@
-PKG="TRIBmaxminddb-python-38"
-NAME="Python maxminddb"
-VERSION="1.5.2.0"
-ZAP_URL="https://pypi.org/project/maxminddb"

@@ -1,4 +1,0 @@
-PKG="TRIBgapi-common-python-38"
-NAME="Python googleapis-common-protos"
-VERSION="1.53.0.0"
-ZAP_URL="https://pypi.org/project/googleapis-common-protos"

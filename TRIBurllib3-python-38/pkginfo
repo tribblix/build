@@ -1,4 +1,0 @@
-PKG="TRIBurllib3-python-38"
-NAME="Python urllib3"
-VERSION="1.26.3.0"
-ZAP_URL="https://pypi.org/project/urllib3"
