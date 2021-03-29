@@ -5,7 +5,7 @@ P TRIBimage-libtiff
 P TRIBlib-expat
 P TRIBlib-zlib
 P TRIBlibgd
-P TRIBlibtool
+P TRIBlibltdl
 P TRIBlibwebp
 P TRIBlibxml2
 P TRIBsys-lib-fontconfig

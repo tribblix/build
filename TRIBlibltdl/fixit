@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# this package only ships the libltdl runtime, remove the rest of libtool
+#
+# the removals here should be exactly complementary to those
+# in TRIBlibtool
+#
+rm -fr usr/bin
+rm -fr usr/include
+rm -fr usr/share
+rm usr/lib/lib*.la
+rm usr/lib/*/lib*.la

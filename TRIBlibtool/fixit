@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# the libltdl shared library runtime is delivered by the TRIBlibltdl
+# package, so remove that from here
+#
+rm -fr usr/lib
