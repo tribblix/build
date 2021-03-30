@@ -4,7 +4,7 @@ ${THOME}/build/unpack libpeas-1.26.0
 cd libpeas-1.26.0
 mkdir build
 cd build
-# would like -Dintrospection=false bu tthe build doesn't
+# would like -Dintrospection=false but the build doesn't
 # actually support that, despite it being listed
 meson --prefix=/usr -Ddemos=false ..
 env CC=gcc ninja

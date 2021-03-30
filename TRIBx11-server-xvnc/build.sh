@@ -30,7 +30,7 @@ autoreconf -fiv
 
 #
 # this is a combination of the current OI flags and some I had to make up
-# to satify the build
+# to satisfy the build
 #
 ./configure --prefix=/usr \
 --disable-builddocs \
