@@ -238,7 +238,7 @@
      UTIL_REQUIRE_PROGS(ULIMIT, ulimit)
 --- old/make/autoconf/build-aux/config.guess	2020-05-20 17:58:28.372314465 -0700
 +++ new/make/autoconf/build-aux/config.guess	2020-05-20 17:58:27.980306938 -0700
-@@ -41,22 +41,6 @@
+@@ -42,22 +42,6 @@
    fi
  fi
  
@@ -1404,7 +1404,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
     endif
     ifeq ($(call isTargetOs, macosx), true)
-@@ -639,10 +602,7 @@
+@@ -640,10 +603,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1416,7 +1416,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -667,7 +629,6 @@
+@@ -668,7 +630,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1790,7 +1790,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -811,7 +805,7 @@
+@@ -831,7 +825,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1799,7 +1799,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1132,8 +1126,7 @@
+@@ -1152,8 +1146,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1809,7 +1809,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1382,7 +1341,6 @@
+@@ -1402,7 +1361,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1817,7 +1817,7 @@
  
  // PlatformEvent
  //
-@@ -1819,8 +1777,6 @@
+@@ -1839,8 +1797,6 @@
      return OS_OK;
    }
  }
@@ -2044,7 +2044,7 @@
                                                                              \
 --- old/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:32.322694403 -0700
 +++ new/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:31.930686876 -0700
-@@ -157,12 +157,6 @@
+@@ -159,12 +159,6 @@
    stubRoutines_init2(); // note: StubRoutines need 2-phase init
    MethodHandles::generate_adapters();
  
@@ -2069,7 +2069,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -467,7 +467,7 @@
+@@ -472,7 +472,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2078,7 +2078,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -821,10 +821,8 @@
+@@ -826,10 +826,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -2102,7 +2102,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -357,12 +357,6 @@
+@@ -361,12 +361,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -6215,9 +6215,9 @@
 @@ -97,7 +97,7 @@
              (PrivilegedAction<String>) () -> System.getProperty("os.name"));
  
-         private final static String SJISName = getSJISName();
--        private final static String EUCJPName = getEUCJPName();
-+        private final static String EUCJPName = "EUC_JP";
+         private static final String SJISName = getSJISName();
+-        private static final String EUCJPName = getEUCJPName();
++        private static final String EUCJPName = "EUC_JP";
          private DelegatableDecoder detectedDecoder = null;
  
          public Decoder(Charset cs) {
@@ -6272,7 +6272,7 @@
  
 --- old/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:09.173706056 -0700
 +++ new/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:08.789698683 -0700
-@@ -39,7 +39,6 @@
+@@ -40,7 +40,6 @@
  import sun.jvm.hotspot.debugger.NoSuchSymbolException;
  import sun.jvm.hotspot.debugger.bsd.BsdDebuggerLocal;
  import sun.jvm.hotspot.debugger.linux.LinuxDebuggerLocal;
@@ -6280,7 +6280,7 @@
  import sun.jvm.hotspot.debugger.remote.RemoteDebugger;
  import sun.jvm.hotspot.debugger.remote.RemoteDebuggerClient;
  import sun.jvm.hotspot.debugger.remote.RemoteDebuggerServer;
-@@ -357,9 +354,7 @@
+@@ -358,9 +355,7 @@
                  } catch (UnsupportedPlatformException e) {
                     throw new DebuggerException(e);
                  }
@@ -6291,7 +6291,7 @@
                      setupDebuggerWin32();
                  } else if (os.equals("linux")) {
                      setupDebuggerLinux();
-@@ -411,11 +406,7 @@
+@@ -412,11 +407,7 @@
          // configure the VM.
  
          try {
@@ -6304,7 +6304,7 @@
                  db = new HotSpotTypeDataBase(machDesc,
                  new Win32VtblAccess(debugger, jvmLibNames),
                  debugger, jvmLibNames);
-@@ -504,29 +495,6 @@
+@@ -501,29 +492,6 @@
          System.err.println("Loaded alternate HotSpot SA Debugger: " + alternateName);
      }
  
@@ -6334,7 +6334,7 @@
      private void connectRemoteDebugger() throws DebuggerException {
          RemoteDebugger remote =
          (RemoteDebugger) RMIHelper.lookup(debugServerID);
-@@ -552,9 +506,7 @@
+@@ -549,9 +503,7 @@
      }
  
      private void setupJVMLibNames(String os) {
@@ -6345,7 +6345,7 @@
              setupJVMLibNamesWin32();
          } else if (os.equals("linux")) {
              setupJVMLibNamesLinux();
-@@ -567,10 +519,6 @@
+@@ -564,10 +516,6 @@
          }
      }
  
@@ -6367,7 +6367,7 @@
  import sun.jvm.hotspot.runtime.win32_x86.Win32X86JavaThreadPDAccess;
  import sun.jvm.hotspot.runtime.win32_amd64.Win32AMD64JavaThreadPDAccess;
  import sun.jvm.hotspot.runtime.win32_aarch64.Win32AARCH64JavaThreadPDAccess;
-@@ -99,13 +95,7 @@
+@@ -100,13 +96,7 @@
  
          access = null;
          // FIXME: find the platform specific PD class by reflection?
@@ -6799,7 +6799,7 @@
  modules=\
 --- old/src/utils/hsdis/Makefile	2020-05-20 18:03:45.954412273 -0700
 +++ new/src/utils/hsdis/Makefile	2020-05-20 18:03:45.618405821 -0700
-@@ -44,37 +44,13 @@
+@@ -45,33 +45,13 @@
  #
  #
  
@@ -6820,14 +6820,10 @@
 -CC 		= cc
 -CFLAGS		+= -KPIC
 -ifdef LP64
--ifeq ($(ARCH),sparc)
--ARCH            = sparcv9
--endif
 -ifeq ($(ARCH),i386)
 -ARCH            = amd64
 -endif
 -endif
--CFLAGS/sparcv9	+= -xarch=v9
 -CFLAGS/amd64	+= -m64
 -CFLAGS		+= $(CFLAGS/$(ARCH))
 -DLDFLAGS	+= -G
@@ -6838,43 +6834,7 @@
  ## OS = Linux ##
  ifeq		($(OS),Linux)
  ifneq           ($(MINGW),)
-@@ -92,20 +68,17 @@
- else   #linux
- CPU             = $(shell uname -m)
- ARCH1=$(CPU:x86_64=amd64)
--ARCH2=$(ARCH1:i686=i386)
--ARCH=$(ARCH2:sparc64=sparcv9)
-+ARCH=$(ARCH1:i686=i386)
- ifdef LP64
--CFLAGS/sparcv9	+= -m64
- CFLAGS/amd64	+= -m64
- CFLAGS/ppc64	+= -m64
- CFLAGS/ppc64le  += -m64 -DABI_ELFv2
- else
--ARCH=$(ARCH2:amd64=i386)
-+ARCH=$(ARCH1:amd64=i386)
- ifneq ($(findstring arm,$(ARCH)),)
- ARCH=arm
- endif
- CFLAGS/i386	+= -m32
--CFLAGS/sparc	+= -m32
- endif
- CFLAGS		+= $(CFLAGS/$(ARCH))
- CFLAGS		+= -fPIC
-@@ -136,12 +109,10 @@
- ARCH1=$(CPU:x86_64=amd64)
- ARCH=$(ARCH1:i686=i386)
- ifdef LP64
--CFLAGS/sparcv9  += -m64
- CFLAGS/amd64    += -m64
- else
- ARCH=$(ARCH1:amd64=i386)
- CFLAGS/i386     += -m32
--CFLAGS/sparc    += -m32
- endif # LP64
- CFLAGS          += $(CFLAGS/$(ARCH))
- CFLAGS          += -fPIC
-@@ -167,11 +138,9 @@
+@@ -174,7 +145,6 @@
  endif   # Darwin
  endif   # AIX
  endif	# Linux
@@ -6882,10 +6842,6 @@
  
  LIBARCH		= $(ARCH)
  ifdef		LP64
--LIBARCH64/sparc	= sparcv9
- LIBARCH64/i386	= amd64
- LIBARCH64	= $(LIBARCH64/$(ARCH))
- ifneq		($(LIBARCH64),)
 --- old/make/data/fontconfig/solaris.fontconfig.properties	2020-05-20 18:08:13.719553558 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,516 +0,0 @@

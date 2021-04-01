@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK17:
 
+17-16
+
+Some patch noise this time. Some of the SPARC-related noise simply
+removed.
+
 17-15
 
 No changes this time
