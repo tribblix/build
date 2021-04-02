@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/tcsh
 #
 # need to checkout precisely the version we're going to build
 #
@@ -12,13 +12,13 @@ mkdir -p src/github.com/hashicorp
 cd src/github.com/hashicorp
 git clone git@github.com:hashicorp/terraform.git
 cd terraform
-git checkout v0.12.18
+git checkout v0.12.30
 
 #
 # explicitly specify the target, and create a production build
 # rather than a development build
 #
-env PATH=PATH=/usr/versions/go-1.13/bin:${GOPATH}/bin:$PATH XC_OS=solaris XC_ARCH=amd64 gmake bin
+env PATH=/usr/versions/go-1.15/bin:${GOPATH}/bin:$PATH XC_OS=solaris XC_ARCH=amd64 gmake bin
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
