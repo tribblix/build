@@ -6,7 +6,7 @@
 # There have been issues with GOROOT_FINAL causing test failures
 # https://github.com/golang/go/issues/20284
 #
-# 1.14 release, now default
+# 1.14 release, no longer default
 #
 # the tarball has some test files with UTF-8 filenames
 #
