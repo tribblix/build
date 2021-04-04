@@ -1,0 +1,4 @@
+PKG="TRIBmetadata-agent"
+NAME="Cloud metadata agent"
+VERSION="1.0"
+ZAP_URL="https://github.com/illumos/metadata-agent"

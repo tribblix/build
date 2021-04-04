@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+if [ ! -f target/release/metadata ]; then
+    exit 1
+fi
+
+mkdir -p ${DESTDIR}/usr/lib
+cp target/release/metadata ${DESTDIR}/usr/lib
+chmod 755 ${DESTDIR}/usr/lib/metadata
+cp userscript.sh ${DESTDIR}/usr/lib
+chmod 755 ${DESTDIR}/usr/lib/userscript.sh
+
+mkdir -p ${DESTDIR}/lib/svc/manifest/system
+cp metadata.xml ${DESTDIR}/lib/svc/manifest/system
+cp userscript.xml ${DESTDIR}/lib/svc/manifest/system
+
+mkdir -p ${DESTDIR}/var/metadata
