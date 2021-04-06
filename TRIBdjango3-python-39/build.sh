@@ -1,7 +1,9 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Django-3.1.7
-cd Django-3.1.7
+# Switch to 3.2 LTS once it's got an update or two
+#
+${THOME}/build/unpack Django-3.1.8
+cd Django-3.1.8
 rm -fr /tmp/p3a
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/p3a
 ${THOME}/build/create_pkg TRIBdjango3-python-39 /tmp/p3a
