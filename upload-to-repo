@@ -14,7 +14,7 @@ REPODIR="/var/repo"
 QUICKMODE=""
 PKGSKIP=""
 
-REPO="tribblix-m24"
+REPO="tribblix-m25"
 LREPODIR="${THOME}/pkgs"
 
 ACREATE="create-aliases"
