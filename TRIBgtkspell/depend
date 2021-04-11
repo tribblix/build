@@ -1,8 +1,3 @@
 P TRIBenchant
-P TRIBgdk-pixbuf
-P TRIBimage-libpng
-P TRIBlib-desktop-atk
-P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk
-P TRIBlib-desktop-pango
 P TRIBlib-glib2
