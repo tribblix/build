@@ -7,6 +7,16 @@ Most patches -p0
 
 JDK17:
 
+17-18
+
+Don't patch jib-profiles.js. We don't use this, there aren't any AIX
+entries, so putting ours in is a waste of effort.
+
+Remove the nbproject patches; they're either wrong or irrelevant, or both.
+
+The boolAtPut flag stuff is no more. The whole JVMFlag machinery has
+been reworked. Renamed to set_bool.
+
 17-17
 
 No significant changes
