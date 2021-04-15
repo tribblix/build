@@ -2,7 +2,6 @@
 -p0 openjdk17/patch-make_GenerateLinkOptData.gmk
 -p0 openjdk17/patch-make_autoconf_flags-cflags.m4
 -p0 openjdk17/patch-make_autoconf_jdk-options.m4
--p0 openjdk17/patch-make_hotspot_lib_JvmOverrideFiles.gmk
 -p0 openjdk17/patch-make_launcher_LauncherCommon.gmk 
 -p0 openjdk17/patch-make_lib_Lib-jdk.crypto.ucrypto.gmk
 -p0 openjdk17/patch-make_lib_LibCommon.gmk
