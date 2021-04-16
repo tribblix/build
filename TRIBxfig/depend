@@ -1,5 +1,8 @@
+P TRIBgpl-ghostscript
 P TRIBimage-libjpeg
 P TRIBimage-libpng
+P TRIBimage-libtiff
+P TRIBlib-zlib
 P TRIBx11-lib-toolkit-libxaw7
 P TRIBx11-lib-toolkit-libxt
 P TRIBx11-libx11
