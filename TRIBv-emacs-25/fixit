@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-VERSION=25
-mkdir usr/bin
-ln -s ../versions/emacs-${VERSION}/bin/emacs usr/bin/emacs
