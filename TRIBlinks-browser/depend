@@ -1,6 +1,7 @@
 P TRIBcompress-bzip2
 P TRIBcompress-lzip
 P TRIBcompress-xz
+P TRIBcompress-zstd
 P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-librsvg
