@@ -1,4 +1,4 @@
 PKG="TRIBpekwm"
 NAME="Pekwm window manager"
-VERSION="0.1.17.1"
-ZAP_URL="https://www.pekwm.org/"
+VERSION="0.1.18.0"
+ZAP_URL="https://www.pekwm.se/"

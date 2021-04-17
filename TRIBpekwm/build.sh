@@ -1,3 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/newbuild.sh both TRIBpekwm
+${THOME}/build/cmbuild pekwm-0.1.18
+${THOME}/build/genpkg TRIBpekwm pekwm-0.1.18
