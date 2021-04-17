@@ -1,4 +1,4 @@
 PKG="TRIBlib-desktop-gsf"
 NAME="GNOME structured file library"
-VERSION="1.14.33.0"
+VERSION="1.14.47.0"
 ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/libgsf/"
