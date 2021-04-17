@@ -1,4 +1,4 @@
 PKG="TRIBrrdtool"
 NAME="RRDtool"
-VERSION="1.6.0.0"
+VERSION="1.7.2.0"
 ZAP_URL="http://oss.oetiker.ch/rrdtool/"
