@@ -1,4 +1,5 @@
 P TRIBcompress-xz
+P TRIBcurl
 P TRIBgdk-pixbuf
 P TRIBgstreamer1
 P TRIBgstreamer1-plugins-base
