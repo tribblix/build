@@ -1,4 +1,4 @@
 PKG="TRIBxfce-calculator-plugin"
 NAME="Xfce Calculator Panel Plugin"
-VERSION="0.6.0.0"
-ZAP_URL="http://goodies.xfce.org/projects/panel-plugins/xfce4-calculator-plugin"
+VERSION="0.7.1.0"
+ZAP_URL="https://docs.xfce.org/panel-plugins/xfce4-calculator-plugin/start"
