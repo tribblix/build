@@ -9,27 +9,30 @@
 #
 # it's then best to rebuild the whole lot in one pass
 #
-# at this stage, xfce still supports older plugins and applications,
-# so still depends on gtk2
+# build in a zone; eg
+# zap create-zone -z xfce -t whole -i 192.168.0.214 \
+# -o xfce -o develop -U ptribble -S /export/packages
+#
+# 4.16 is gtk3-only
 #
 
-$THOME/build/dobuild -gnu tumbler-0.2.9 -C "--disable-debug"
-$THOME/build/dobuild -gnu xfce4-dev-tools-4.14.0
-$THOME/build/dobuild -gnu libxfce4util-4.14.0 -C "--disable-debug --enable-introspection=no"
+$THOME/build/dobuild -gnu tumbler-4.16.0 -C "--disable-debug"
+$THOME/build/dobuild -gnu xfce4-dev-tools-4.16.0
+$THOME/build/dobuild -gnu libxfce4util-4.16.0 -C "--disable-debug --enable-introspection=no"
+# package step?
+$THOME/build/dobuild -gnu xfconf-4.16.0 -C "--disable-debug --enable-introspection=no"
 # package step
-$THOME/build/dobuild -gnu xfconf-4.14.3 -C "--disable-debug --enable-introspection=no"
+$THOME/build/dobuild -gnu libxfce4ui-4.16.0 -C "--disable-debug --with-vendor-info=Tribblix --enable-introspection=no"
 # package step
-$THOME/build/dobuild -gnu libxfce4ui-4.14.1 -C "--disable-debug --with-vendor-info=Tribblix --enable-introspection=no"
+$THOME/build/dobuild -gnu garcon-4.16.1 -C "--disable-debug"
+$THOME/build/dobuild -gnu xfwm4-4.16.1 -C "--disable-debug"
+$THOME/build/dobuild -gnu xfce4-session-4.16.0 -C "--disable-debug"
+$THOME/build/dobuild -gnu exo-4.16.2 -C "--disable-debug"
 # package step
-$THOME/build/dobuild -gnu garcon-0.6.4 -C "--disable-debug"
-$THOME/build/dobuild -gnu xfwm4-4.14.5 -C "--disable-debug"
-$THOME/build/dobuild -gnu xfce4-session-4.14.2 -C "--disable-debug"
-$THOME/build/dobuild -gnu exo-0.12.11 -C "--disable-debug"
-# package step
-$THOME/build/dobuild -gnu xfce4-settings-4.14.3 -C "--disable-debug"
-$THOME/build/dobuild -gnu xfce4-appfinder-4.14.0 -C "--disable-debug"
-$THOME/build/dobuild -gnu xfce4-panel-4.14.4 -C "--disable-debug --enable-introspection=no"
-$THOME/build/dobuild -gnu xfdesktop-4.14.2 -C "--disable-debug"
-$THOME/build/dobuild -gnu thunar-1.8.15 -C "--disable-debug --enable-introspection=no"
+$THOME/build/dobuild -gnu xfce4-settings-4.16.1 -C "--disable-debug"
+$THOME/build/dobuild -gnu xfce4-appfinder-4.16.1 -C "--disable-debug"
+$THOME/build/dobuild -gnu xfce4-panel-4.16.2 -C "--disable-debug --enable-introspection=no"
+$THOME/build/dobuild -gnu xfdesktop-4.16.0 -C "--disable-debug"
+$THOME/build/dobuild -gnu thunar-4.16.6 -C "--disable-debug --enable-introspection=no"
 
-$THOME/build/genpkg TRIBxfce tumbler-0.2.9 xfce4-dev-tools-4.14.0 libxfce4util-4.14.0 xfconf-4.14.3 libxfce4ui-4.14.1 garcon-0.6.4 xfwm4-4.14.5 xfce4-session-4.14.2 exo-0.12.11 xfce4-settings-4.14.3 xfce4-appfinder-4.14.0 xfce4-panel-4.14.4 xfdesktop-4.14.2 thunar-1.8.15
+$THOME/build/genpkg TRIBxfce tumbler-4.16.0 xfce4-dev-tools-4.16.0 libxfce4util-4.16.0 xfconf-4.16.0 libxfce4ui-4.16.0 garcon-4.16.1 xfwm4-4.16.1 xfce4-session-4.16.0 exo-4.16.2 xfce4-settings-4.16.1 xfce4-appfinder-4.16.1 xfce4-panel-4.16.2 xfdesktop-4.16.0 thunar-4.16.6
