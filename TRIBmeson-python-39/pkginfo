@@ -1,4 +1,4 @@
 PKG="TRIBmeson-python-39"
 NAME="The Meson Build System"
-VERSION="0.57.1.0"
+VERSION="0.57.2.0"
 ZAP_URL="http://mesonbuild.com/"
