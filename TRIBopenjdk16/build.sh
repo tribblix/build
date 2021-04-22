@@ -3,14 +3,18 @@
 # jdk mainline has been migrated to git
 # go to https://github.com/openjdk/jdk16/tags
 #
+# now split out to the jdk16u project
+# https://github.com/openjdk/jdk16u/releases
+#
 
 #
 # the tag is 16+xx, the filename is 16-xx
+# 16.0.1 GA is build 9 = jdk-16.0.1-9
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk16-jdk-16-36
-cd jdk16-jdk-16-36
+${THOME}/build/unpack jdk16u-jdk-16.0.1-9
+cd jdk16u-jdk-16.0.1-9
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -55,10 +59,10 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 # 
-# openjdk version "16-internal" 2021-03-16
-# OpenJDK Runtime Environment (build 16-internal+0-adhoc.ptribble.jdk16-jdk-16-36)
-# OpenJDK 64-Bit Server VM (build 16-internal+0-adhoc.ptribble.jdk16-jdk-16-36, mixed mode, sharing)
-#
+# openjdk version "16.0.1-internal" 2021-04-20
+# OpenJDK Runtime Environment (build 16.0.1-internal+0-adhoc.ptribble.jdk16u-jdk-16.0.1-9)
+# OpenJDK 64-Bit Server VM (build 16.0.1-internal+0-adhoc.ptribble.jdk16u-jdk-16.0.1-9, mixed mode, sharing)
+
 
 rm -fr /tmp/jdk
 mkdir -p /tmp/jdk/usr/versions/openjdk16
