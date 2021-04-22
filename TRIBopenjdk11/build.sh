@@ -31,7 +31,8 @@
 #
 # 11.0.9 release
 # wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.9+11.tar.bz2
-#
+# 11.0.10 release
+# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.10+9.tar.bz2
 # to get the build number, go to the jdk11u repo
 # http://hg.openjdk.java.net/jdk-updates/jdk11u/
 # there should be a -ga tag for each release
@@ -39,16 +40,16 @@
 # and it's that build tag you want to download
 #
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.10+9.tar.bz2
+wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.11+9.tar.bz2
 #
 # fix the tarball name to match the directory it unpacks into
 # this needed to get the patches to apply correctly
 #
-ln jdk-11.0.10+9.tar.bz2 jdk11u-jdk-11.0.10+9.tar.bz2
+ln jdk-11.0.11+9.tar.bz2 jdk11u-jdk-11.0.11+9.tar.bz2
 
 cd ~/ud
-${THOME}/build/unpack jdk11u-jdk-11.0.10+9
-cd jdk11u-jdk-11.0.10+9
+${THOME}/build/unpack jdk11u-jdk-11.0.11+9
+cd jdk11u-jdk-11.0.11+9
 
 #
 # as of 11.0.7, switch to a gcc build to replace Stuido
@@ -63,12 +64,16 @@ zap install autoconf
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
 #
+# you may wish to use --with-jobs to push down the parallelism, which
+# will reduce memory pressure
+#
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk10 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-hotspot-gtest --disable-dtrace \
---disable-warnings-as-errors
+--disable-warnings-as-errors \
+--with-jobs=4
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 
@@ -90,7 +95,7 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk11 jdk11
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk11 .
-#jdk11 isn't widely supported, so don't make it the default
+#don't make it the default yet, that's jdk8
 #ln -s openjdk11 latest
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin

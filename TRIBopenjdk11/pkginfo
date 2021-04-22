@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk11"
 NAME="OpenJDK 11"
-VERSION="11.0.10.9.0"
+VERSION="11.0.11.9.0"
 ZAP_URL="http://openjdk.java.net/"
