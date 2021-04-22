@@ -421,8 +421,8 @@
 -    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lthread"
    fi
  
-   # Atomic library
-@@ -152,12 +143,6 @@
+   # librt for legacy clock_gettime
+@@ -161,12 +152,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -435,7 +435,7 @@
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib \
-@@ -175,7 +160,6 @@
+@@ -184,7 +169,6 @@
    AC_SUBST(JVM_LIBS)
    AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
    AC_SUBST(OPENJDK_BUILD_JVM_LIBS)
@@ -1553,17 +1553,6 @@
    endif
    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeJliLaunchTest := -ljli
    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeCallerAccessTest := -ljvm
---- old/src/hotspot/.mx.jvmci/mx_jvmci.py	2020-05-20 17:59:35.529603934 -0700
-+++ new/src/hotspot/.mx.jvmci/mx_jvmci.py	2020-05-20 17:59:35.149596637 -0700
-@@ -579,8 +576,6 @@
-         os = 'macosx'
-     elif 'linux' in os:
-         os = 'linux'
--    elif 'solaris' in os:
--        os = 'solaris'
-     elif 'cygwin' in os or 'mingw' in os:
-         os = 'windows'
-     return os
 --- old/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.533642413 -0700
 +++ new/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.197635961 -0700
 @@ -65,7 +65,7 @@
@@ -1832,7 +1821,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -704,10 +704,6 @@
+@@ -698,10 +698,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -1843,7 +1832,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -749,10 +745,6 @@
+@@ -743,10 +739,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -1854,7 +1843,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1694,10 +1686,8 @@
+@@ -1688,10 +1680,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1867,7 +1856,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2021,8 +2010,7 @@
+@@ -2018,8 +2007,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1983,7 +1972,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -662,12 +662,11 @@
+@@ -661,12 +661,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");

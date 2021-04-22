@@ -7,6 +7,15 @@ Most patches -p0
 
 JDK17:
 
+17-19
+
+.mx.jvmci has gone, we don't need it anyway
+
+Boot jdk requirement bumped to 16.
+This triggers a lot of noisy
+"SIGSEGV happened inside stack but outside yellow and red zone."
+warnings during the build, but they appear harmless.
+
 17-18
 
 Don't patch jib-profiles.js. We don't use this, there aren't any AIX
@@ -18,7 +27,7 @@ The boolAtPut flag stuff is no more. The whole JVMFlag machinery has
 been reworked. Renamed to set_bool.
 
 Remove patching of JvmOverrideFiles.gmk when we then disable the
-patche later.
+patch later.
 
 17-17
 
@@ -152,7 +161,7 @@ _large_page_size) is initialized to the largest valid page size.
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk15 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk16 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
