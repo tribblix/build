@@ -1,0 +1,4 @@
+PKG="TRIBlibmypaint"
+NAME="MyPaint brush engine library"
+VERSION="1.6.1.0"
+ZAP_URL="https://github.com/mypaint/libmypaint"
