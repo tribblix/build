@@ -11,6 +11,11 @@
 # /bin/rm -f /usr/lib/libxcb.so /usr/lib/libxcb.so.1 /usr/lib/sparcv9/libxcb.so /usr/lib/sparcv9/libxcb.so.1
 # /usr/sbin/removef -f SUNWxwplt
 #
+# and
+#
+# /usr/sbin/removef SUNWxwinc /usr/lib/pkgconfig/pthread-stubs.pc
+# /usr/sbin/removef -f SUNWxwinc
+#
 # also, some parts need prior parts installed, so need to build a partial
 # package and install it before moving on
 #
