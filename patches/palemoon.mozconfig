@@ -29,9 +29,6 @@ ac_add_options --with-toolchain-prefix=g
 ac_add_options --enable-official-branding
 export MOZILLA_OFFICIAL=1
 
-# For versions after 28.12.0
-ac_add_options --enable-phoenix-extensions
-
 if [ -n "$_BUILD_ILLUMOS" ]; then
   export MOZ_PKG_SPECIAL=illumos
 fi
