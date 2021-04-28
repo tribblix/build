@@ -1,0 +1,26 @@
+--- babl-0.1.84/babl/meson.build.orig	2020-12-17 11:32:41.440923000 +0000
++++ babl-0.1.84/babl/meson.build	2020-12-30 10:18:57.483882525 +0000
+@@ -45,6 +45,13 @@
+     # Clang on msys/mingw
+     babl_link_args = []
+   endif
++elif cc.links('',
++      name: '-Wl,-M',
++      args: ['-shared', '-Wl,-M' + meson.current_source_dir() / 'test-gnu.map']
++  )
++  babl_link_args = [
++    '-Wl,-M', version_script[0].full_path()
++  ]
+ else
+   error(
+     'Linker doesn\'t support --version-script or -exported_symbols_list'
+--- babl-0.1.84/docs/meson.build.orig	2020-12-17 11:32:41.444923200 +0000
++++ babl-0.1.84/docs/meson.build	2020-12-30 10:19:53.021435766 +0000
+@@ -24,6 +24,7 @@
+ 
+ index_html_tmp_env = [
+   'BABL_PATH=' + babl_extensions_build_dir,
++  'LD_LIBRARY_PATH='+ join_paths(meson.build_root(), 'babl'),
+ ]
+ 
+ # Don't build babl ref if cannot run compiled objects in this env
