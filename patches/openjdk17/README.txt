@@ -7,6 +7,20 @@ Most patches -p0
 
 JDK17:
 
+17-20
+
+Quite a lot of changes this time around.
+
+No more aot, so remove patches for that.
+
+src/hotspot/share/cds/classListParser.cpp has moved to
+src/hotspot/share/cds/classListParser.cpp
+
+suspend/resume has been essentially gutted
+
+Assembler files are all .S not .s now; and the way it's called has
+changed, so we need to just forget about forcing the studio assembler
+
 17-19
 
 .mx.jvmci has gone, we don't need it anyway
