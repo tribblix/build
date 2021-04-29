@@ -4,7 +4,7 @@ Support for SunOS/gcc.
 
 --- make/autoconf/flags-cflags.m4.orig	2019-01-08 09:40:27.000000000 +0000
 +++ make/autoconf/flags-cflags.m4
-@@ -41,8 +41,13 @@ AC_DEFUN([FLAGS_SETUP_SHARED_LIBS],
+@@ -39,8 +39,13 @@ AC_DEFUN([FLAGS_SETUP_SHARED_LIBS],
      SHARED_LIBRARY_FLAGS='-shared'
      SET_EXECUTABLE_ORIGIN='-Wl,-rpath,\$$ORIGIN[$]1'
      SET_SHARED_LIBRARY_ORIGIN="-Wl,-z,origin $SET_EXECUTABLE_ORIGIN"
@@ -17,8 +17,8 @@ Support for SunOS/gcc.
 +   fi
  
    elif test "x$TOOLCHAIN_TYPE" = xclang; then
-     C_FLAG_REORDER=''
-@@ -451,6 +456,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
+     if test "x$OPENJDK_TARGET_OS" = xmacosx; then
+@@ -436,6 +441,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
  
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE -D_REENTRANT"

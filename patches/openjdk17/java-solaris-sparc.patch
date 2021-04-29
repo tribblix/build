@@ -252,57 +252,6 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -35,8 +35,6 @@
- AC_DEFUN([FLAGS_SETUP_SHARED_LIBS],
- [
-   if test "x$TOOLCHAIN_TYPE" = xgcc; then
--    C_FLAG_REORDER=''
--
-     # Default works for linux, might work on other platforms as well.
-     SHARED_LIBRARY_FLAGS='-shared'
-     SET_EXECUTABLE_ORIGIN='-Wl,-rpath,\$$ORIGIN[$]1'
-@@ -45,8 +43,6 @@
-     SET_SHARED_LIBRARY_MAPFILE='-Wl,-version-script=[$]1'
- 
-   elif test "x$TOOLCHAIN_TYPE" = xclang; then
--    C_FLAG_REORDER=''
--
-     if test "x$OPENJDK_TARGET_OS" = xmacosx; then
-       # Linking is different on MacOSX
-       SHARED_LIBRARY_FLAGS="-dynamiclib -compatibility_version 1.0.0 -current_version 1.0.0"
-@@ -71,16 +67,7 @@
-       fi
-     fi
- 
--  elif test "x$TOOLCHAIN_TYPE" = xsolstudio; then
--    C_FLAG_REORDER='-xF'
--    SHARED_LIBRARY_FLAGS="-G"
--    SET_EXECUTABLE_ORIGIN='-R\$$ORIGIN[$]1'
--    SET_SHARED_LIBRARY_ORIGIN="$SET_EXECUTABLE_ORIGIN"
--    SET_SHARED_LIBRARY_NAME='-h [$]1'
--    SET_SHARED_LIBRARY_MAPFILE='-M[$]1'
--
-   elif test "x$TOOLCHAIN_TYPE" = xxlc; then
--    C_FLAG_REORDER=''
-     SHARED_LIBRARY_FLAGS="-qmkshrobj -bM:SRE -bnoentry"
-     SET_EXECUTABLE_ORIGIN=""
-     SET_SHARED_LIBRARY_ORIGIN=''
-@@ -88,7 +75,6 @@
-     SET_SHARED_LIBRARY_MAPFILE=''
- 
-   elif test "x$TOOLCHAIN_TYPE" = xmicrosoft; then
--    C_FLAG_REORDER=''
-     SHARED_LIBRARY_FLAGS="-dll"
-     SET_EXECUTABLE_ORIGIN=''
-     SET_SHARED_LIBRARY_ORIGIN=''
-@@ -96,7 +82,6 @@
-     SET_SHARED_LIBRARY_MAPFILE='-def:[$]1'
-   fi
- 
--  AC_SUBST(C_FLAG_REORDER)
-   AC_SUBST(SET_EXECUTABLE_ORIGIN)
-   AC_SUBST(SET_SHARED_LIBRARY_ORIGIN)
-   AC_SUBST(SET_SHARED_LIBRARY_NAME)
 @@ -427,9 +375,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
@@ -325,12 +274,7 @@
  
 --- old/make/autoconf/flags-other.m4	2020-05-20 17:58:32.576395187 -0700
 +++ new/make/autoconf/flags-other.m4	2020-05-20 17:58:32.200387967 -0700
-@@ -47,12 +47,10 @@
- [
-   ## Setup strip.
-   # FIXME: should this really be per platform, or should it be per toolchain type?
--  # strip is not provided by clang or solstudio; so guessing platform makes most sense.
-+  # strip is not provided by clang; so guessing platform makes most sense.
+@@ -51,8 +51,6 @@
    # FIXME: we should really only export STRIPFLAGS from here, not POST_STRIP_CMD.
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      STRIPFLAGS="-g"
@@ -528,17 +472,6 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -585,10 +580,6 @@
- # (Note absence of := assignment, because we do not want to evaluate the macro body here)
- SET_SHARED_LIBRARY_MAPFILE=@SET_SHARED_LIBRARY_MAPFILE@
- 
--# Options for C/CXX compiler to be used if linking is performed
--#   using reorder file
--C_FLAG_REORDER:=@C_FLAG_REORDER@
--
- #
- # Options for generating debug symbols
- COMPILE_WITH_DEBUG_SYMBOLS := @COMPILE_WITH_DEBUG_SYMBOLS@
 @@ -748,7 +741,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
@@ -565,48 +498,14 @@
  
 --- old/make/autoconf/toolchain.m4	2020-05-20 17:58:44.612626291 -0700
 +++ new/make/autoconf/toolchain.m4	2020-05-20 17:58:44.216618687 -0700
-@@ -35,11 +35,10 @@
- m4_include([toolchain_microsoft.m4])
- 
- # All valid toolchains, regardless of platform (used by help.m4)
--VALID_TOOLCHAINS_all="gcc clang solstudio xlc microsoft"
-+VALID_TOOLCHAINS_all="gcc clang xlc microsoft"
+@@ -39,7 +39,6 @@
  
  # These toolchains are valid on different platforms
  VALID_TOOLCHAINS_linux="gcc clang"
--VALID_TOOLCHAINS_solaris="gcc solstudio"
+-VALID_TOOLCHAINS_solaris="gcc"
  VALID_TOOLCHAINS_macosx="gcc clang"
  VALID_TOOLCHAINS_aix="xlc"
  VALID_TOOLCHAINS_windows="microsoft"
-@@ -48,14 +47,12 @@
- TOOLCHAIN_DESCRIPTION_clang="clang/LLVM"
- TOOLCHAIN_DESCRIPTION_gcc="GNU Compiler Collection"
- TOOLCHAIN_DESCRIPTION_microsoft="Microsoft Visual Studio"
--TOOLCHAIN_DESCRIPTION_solstudio="Oracle Solaris Studio"
- TOOLCHAIN_DESCRIPTION_xlc="IBM XL C/C++"
- 
- # Minimum supported versions, empty means unspecified
- TOOLCHAIN_MINIMUM_VERSION_clang="3.5"
- TOOLCHAIN_MINIMUM_VERSION_gcc="5.0"
- TOOLCHAIN_MINIMUM_VERSION_microsoft="19.10.0.0" # VS2017
--TOOLCHAIN_MINIMUM_VERSION_solstudio="5.13"
- TOOLCHAIN_MINIMUM_VERSION_xlc=""
- 
- # Minimum supported linker versions, empty means unspecified
-@@ -299,13 +296,11 @@
-   TOOLCHAIN_CC_BINARY_clang="clang"
-   TOOLCHAIN_CC_BINARY_gcc="gcc"
-   TOOLCHAIN_CC_BINARY_microsoft="cl"
--  TOOLCHAIN_CC_BINARY_solstudio="cc"
-   TOOLCHAIN_CC_BINARY_xlc="xlclang"
- 
-   TOOLCHAIN_CXX_BINARY_clang="clang++"
-   TOOLCHAIN_CXX_BINARY_gcc="g++"
-   TOOLCHAIN_CXX_BINARY_microsoft="cl"
--  TOOLCHAIN_CXX_BINARY_solstudio="CC"
-   TOOLCHAIN_CXX_BINARY_xlc="xlclang++"
- 
-   # Use indirect variable referencing
 --- old/make/common/MakeBase.gmk	2020-05-20 17:58:45.708647335 -0700
 +++ new/make/common/MakeBase.gmk	2020-05-20 17:58:45.324639962 -0700
 @@ -264,33 +264,7 @@
@@ -646,26 +545,6 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -473,7 +473,6 @@
- #   RCFLAGS flags for RC.
- #   EMBED_MANIFEST if true, embed manifest on Windows.
- #   MAPFILE mapfile
--#   REORDER reorder file
- #   USE_MAPFILE_FOR_SYMBOLS if true and this is a STATIC_BUILD, just copy the
- #       mapfile for the output symbols file
- #   CC the compiler to use, default is $(CC)
-@@ -711,11 +710,6 @@
-     $1_EXTRA_ASFLAGS += $$(ASFLAGS_DEBUG_SYMBOLS)
-   endif
- 
--  ifneq ($$($1_REORDER), )
--    $1_EXTRA_CFLAGS += $$(C_FLAG_REORDER)
--    $1_EXTRA_CXXFLAGS += $$(C_FLAG_REORDER)
--  endif
--
-   # Pass the library name for static JNI library naming
-   ifeq ($$($1_TYPE), STATIC_LIBRARY)
-     $1_EXTRA_CFLAGS += -DLIBRARY_NAME=$$($1_NAME)
 @@ -749,7 +743,6 @@
    ifeq ($$($1_WARNINGS_AS_ERRORS_$(TOOLCHAIN_TYPE)), true)
      $1_EXTRA_CFLAGS += $(CFLAGS_WARNINGS_ARE_ERRORS)
@@ -674,24 +553,6 @@
    endif
  
    ifeq (NONE, $$($1_OPTIMIZATION))
-@@ -943,17 +936,6 @@
- 
-   ifneq ($(DISABLE_MAPFILES), true)
-     $1_REAL_MAPFILE := $$($1_MAPFILE)
--    ifeq ($(call isTargetOs, windows), false)
--      ifneq ($$($1_REORDER), )
--        $1_REAL_MAPFILE := $$($1_OBJECT_DIR)/mapfile
--
--        $$($1_REAL_MAPFILE) : $$($1_MAPFILE) $$($1_REORDER)
--		$$(call MakeDir, $$(@D))
--		$$(CP) $$($1_MAPFILE) $$@.tmp
--		$$(SED) -e 's=OUTPUTDIR=$$($1_OBJECT_DIR)=' $$($1_REORDER) >> $$@.tmp
--		$$(MV) $$@.tmp $$@
--      endif
--    endif
-   endif
- 
-   # Pickup extra OPENJDK_TARGET_OS_TYPE and/or OPENJDK_TARGET_OS dependent variables
 @@ -987,7 +969,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
@@ -788,7 +649,7 @@
      DTRACE_CPP_FLAGS := -D_LP64 -x c
    else ifeq ($(call isTargetOs, linux), true)
      DTRACE_CPP_FLAGS := -x c
-@@ -54,61 +51,4 @@
+@@ -54,59 +51,4 @@
    TARGETS += $(patsubst $(DTRACE_SOURCE_DIR)/%.d, \
        $(DTRACE_GENSRC_DIR)/%.h, $(wildcard $(DTRACE_SOURCE_DIR)/*.d))
  
@@ -813,8 +674,6 @@
 -        TOOLCHAIN := $(TOOLCHAIN_BUILD), \
 -        LDFLAGS := -m64, \
 -        CFLAGS := -m64 $(JVM_CFLAGS), \
--        DISABLED_WARNINGS_solstudio := hidef w_novirtualdescr unknownpragma \
--            doubunder nokeyworddefine wunreachable, \
 -        EXTRA_DEPS := $(JVMTI_H) $(JFR_FILES), \
 -        OBJECT_DIR := $(JVM_VARIANT_OUTPUTDIR)/tools/dtrace-gen-offsets/objs, \
 -        OUTPUT_DIR := $(JVM_VARIANT_OUTPUTDIR)/tools/dtrace-gen-offsets, \
@@ -862,7 +721,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -178,13 +146,11 @@
+@@ -178,7 +146,6 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -870,52 +729,6 @@
      CFLAGS := $(JVM_CFLAGS), \
      abstract_vm_version.cpp_CXXFLAGS := $(CFLAGS_VM_VERSION), \
      arguments.cpp_CXXFLAGS := $(CFLAGS_VM_VERSION), \
-     DISABLED_WARNINGS_gcc := $(DISABLED_WARNINGS_gcc), \
-     DISABLED_WARNINGS_clang := $(DISABLED_WARNINGS_clang), \
--    DISABLED_WARNINGS_solstudio := $(DISABLED_WARNINGS_solstudio), \
-     DISABLED_WARNINGS_xlc := $(DISABLED_WARNINGS_xlc), \
-     DISABLED_WARNINGS_microsoft := $(DISABLED_WARNINGS_microsoft), \
-     ASFLAGS := $(JVM_ASFLAGS), \
-@@ -267,30 +233,20 @@
- # one) then the global definition will be used, triggering this check.
- 
- ifneq ($(GENERATE_COMPILE_COMMANDS_ONLY), true)
--  ifneq ($(filter $(TOOLCHAIN_TYPE), gcc clang solstudio), )
-+  ifneq ($(filter $(TOOLCHAIN_TYPE), gcc clang), )
- 
-     DEMANGLED_REGEXP := [^:]operator (new|delete)
- 
-     # Running c++filt to find offending symbols in all files is too expensive,
--    # especially on Solaris, so use mangled names when looking for symbols.
-+    # so use mangled names when looking for symbols.
-     # Save the demangling for when something is actually found.
--    ifeq ($(TOOLCHAIN_TYPE), solstudio)
--      MANGLED_SYMS := \
--          __1c2n6FL_pv_ \
--          __1c2N6FL_pv_ \
--          __1c2k6Fpv_v_ \
--          __1c2K6Fpv_v_ \
--          #
--      UNDEF_PATTERN := UNDEF
--    else
--      MANGLED_SYMS := \
--          _ZdaPv \
--          _ZdlPv \
--          _Znam \
--          _Znwm \
--          #
--      UNDEF_PATTERN := ' U '
--    endif
-+    MANGLED_SYMS := \
-+        _ZdaPv \
-+        _ZdlPv \
-+        _Znam \
-+        _Znwm \
-+        #
-+    UNDEF_PATTERN := ' U '
- 
-     define SetupOperatorNewDeleteCheck
-         $1.op_check: $1
 --- old/make/hotspot/lib/CompileLibraries.gmk	2020-05-20 17:58:58.224887656 -0700
 +++ new/make/hotspot/lib/CompileLibraries.gmk	2020-05-20 17:58:57.836880206 -0700
 @@ -32,7 +32,6 @@
@@ -5538,24 +5351,6 @@
              return getAIXServiceAttributes();
          } else {
              return getBSDServiceAttributes();
---- old/src/java.desktop/unix/native/common/awt/CUPSfuncs.c	2020-05-20 18:02:41.757179639 -0700
-+++ new/src/java.desktop/unix/native/common/awt/CUPSfuncs.c	2020-05-20 18:02:41.369172189 -0700
-@@ -29,15 +29,6 @@
- #include <dlfcn.h>
- #include <cups/cups.h>
- #include <cups/ppd.h>
--/*
-- * CUPS #define's __attribute__(x) to be empty unless __GNUC__ is defined.
-- * However OpenJDK officially uses the SunStudio compiler on Solaris.
-- * We need to #undef this else it breaks use of this keyword used by JNIEXPORT.
-- * See: https://github.com/apple/cups/issues/5349
-- */
--#ifdef __SUNPRO_C
--#undef __attribute__
--#endif
- 
- 
- //#define CUPS_DEBUG
 --- old/src/java.desktop/unix/native/common/awt/X11Color.c	2020-05-20 18:02:42.777199224 -0700
 +++ new/src/java.desktop/unix/native/common/awt/X11Color.c	2020-05-20 18:02:42.441192773 -0700
 @@ -89,59 +89,7 @@
