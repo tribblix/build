@@ -23,6 +23,8 @@ changed, so we need to just forget about forcing the studio assembler
 
 Also removed solstudio, which also cleans up C_FLAG_REORDER
 
+Cleared out some of the sparc pieces
+
 17-19
 
 .mx.jvmci has gone, we don't need it anyway
