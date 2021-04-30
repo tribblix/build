@@ -1,6 +1,4 @@
 #!/bin/sh
 #
-# Make sure libmng and aalib are installed
-#
-${THOME}/build/dobuild -gnu gimp-2.8.22 -C "--disable-python --with-lcms=lcms2"
-${THOME}/build/genpkg TRIBgimp gimp-2.8.22
+${THOME}/build/dobuild -gnu gimp-2.10.24 -C "--disable-python --with-bug-report-url=http://www.tribblix.org/feedback.html"
+${THOME}/build/genpkg TRIBgimp gimp-2.10.24
