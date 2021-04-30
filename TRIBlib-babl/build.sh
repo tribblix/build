@@ -16,7 +16,7 @@ ninja
 cd ..
 cd ..
 cd babl-0.1.86-64bit
-meson --prefix=/usr -Denable-gir=false -Denable-mmx=false -Denable-sse=false --libdir=lib/amd64 build
+env PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig meson --prefix=/usr -Denable-gir=false -Denable-mmx=false -Denable-sse=false --libdir=lib/amd64 -Dc_args=-m64 build
 cd build
 ninja
 cd ..
@@ -36,3 +36,4 @@ cd ..
 
 ${THOME}/build/create_pkg TRIBlib-babl /tmp/bb
 
+rm -fr /tmp/bb
