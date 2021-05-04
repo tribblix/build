@@ -21,9 +21,13 @@ suspend/resume has been essentially gutted
 Assembler files are all .S not .s now; and the way it's called has
 changed, so we need to just forget about forcing the studio assembler
 
+Other changes made:
+
 Also removed solstudio, which also cleans up C_FLAG_REORDER
 
 Cleared out some of the sparc pieces
+
+Gutted ucrypto
 
 17-19
 
