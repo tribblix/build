@@ -1,4 +1,4 @@
 PKG="TRIBxfce-dict"
 NAME="Xfce Dictionary"
-VERSION="0.7.2.0"
-ZAP_URL="http://goodies.xfce.org/projects/applications/xfce4-dict"
+VERSION="0.8.4.0"
+ZAP_URL="https://docs.xfce.org/apps/xfce4-dict/start"
