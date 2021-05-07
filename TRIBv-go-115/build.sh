@@ -11,8 +11,9 @@
 # but if you build like that you end up shipping both a
 # solaris and illumos toolchain, which seems suboptimal
 #
+chmod -R u+w go
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.15.11.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.15.12.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.15 GOROOT_BOOTSTRAP=/usr/versions/go-1.14 ./all.bash
 cd ..
