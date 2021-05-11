@@ -12,3 +12,13 @@
 # if there are manpages, then it will have no effect
 #
 /usr/bin/rmdir usr/share
+
+#
+# legacy compat tweak for sparc
+#
+case `uname -p` in
+sparc)
+    mkdir -p usr/X11/lib/X11
+    ln -s /usr/share/fonts/X11 usr/X11/lib/X11/fonts
+    ;;
+esac
