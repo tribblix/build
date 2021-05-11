@@ -30,3 +30,19 @@ mv usr/lib/xorg/${ARCH64}/pkgconfig usr/lib/${ARCH64}
 # if there are manpages, then it will have no effect
 #
 /usr/bin/rmdir usr/share
+
+#
+# remove static archives
+#
+rm -f usr/lib/xorg/libXfont.a
+rm -f usr/lib/xorg/*/libXfont.a
+
+#
+# tweak for sparc Xsun
+#
+case `uname -p` in
+sparc)
+    mkdir -p usr/openwin/server/lib
+    ln -s ../../../../usr/lib/xorg/libXfont.so.1 usr/openwin/server/lib
+    ;;
+esac
