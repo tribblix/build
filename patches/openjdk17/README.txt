@@ -7,6 +7,12 @@ Most patches -p0
 
 JDK17:
 
+17-22
+
+Signature of reserve_memory_special and pd_reserve_memory_special has
+changed to pass the page size. All we do is change the signature as
+it's a no-op on solaris.
+
 17-21
 
 Line number noise.

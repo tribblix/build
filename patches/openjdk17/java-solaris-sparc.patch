@@ -1546,7 +1546,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1659,10 +1651,8 @@
+@@ -1656,10 +1648,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1559,7 +1559,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1989,8 +1978,7 @@
+@@ -1986,8 +1975,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1586,7 +1586,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -582,7 +582,6 @@
+@@ -574,7 +574,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -1596,7 +1596,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -472,7 +472,7 @@
+@@ -483,7 +483,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -1605,7 +1605,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -826,10 +826,8 @@
+@@ -837,10 +837,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -12075,7 +12075,7 @@
 -  return true;
 -}
 -
--char* os::pd_reserve_memory_special(size_t size, size_t alignment, char* addr, bool exec) {
+-char* os::pd_reserve_memory_special(size_t size, size_t alignment, size_t page_size, char* addr, bool exec) {
 -  fatal("os::reserve_memory_special should not be called on Solaris.");
 -  return NULL;
 -}
