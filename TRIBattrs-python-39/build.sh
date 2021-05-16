@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack attrs-20.3.0
-cd attrs-20.3.0
+${THOME}/build/unpack attrs-21.2.0
+cd attrs-21.2.0
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
