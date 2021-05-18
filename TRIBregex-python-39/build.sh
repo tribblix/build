@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack regex-2021.3.17
-cd regex-2021.3.17
+${THOME}/build/unpack regex-2021.4.4
+cd regex-2021.4.4
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
