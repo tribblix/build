@@ -7,6 +7,13 @@ Most patches -p0
 
 JDK17:
 
+17-23
+
+Line number noise.
+
+os::os_exception_wrapper signature; last argument is a JavaThread not
+a Thread. No impact as we don't actually use it.
+
 17-22
 
 Signature of reserve_memory_special and pd_reserve_memory_special has

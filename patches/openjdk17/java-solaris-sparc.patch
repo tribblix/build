@@ -1546,7 +1546,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1656,10 +1648,8 @@
+@@ -1659,10 +1651,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1559,7 +1559,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1986,8 +1975,7 @@
+@@ -2012,8 +2001,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1586,7 +1586,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -574,7 +574,6 @@
+@@ -588,7 +588,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -1675,7 +1675,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -638,12 +638,11 @@
+@@ -639,12 +639,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -12633,7 +12633,7 @@
 -// able to use structured exception handling (thread-local exception filters) on, e.g., Win32.
 -void os::os_exception_wrapper(java_call_t f, JavaValue* value,
 -                              const methodHandle& method, JavaCallArguments* args,
--                              Thread* thread) {
+-                              JavaThread* thread) {
 -  f(value, method, args, thread);
 -}
 -
