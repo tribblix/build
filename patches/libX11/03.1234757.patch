@@ -39,7 +39,7 @@ index 4431559..bc32bdf 100644
 --- a/include/X11/Xlibint.h
 +++ b/include/X11/Xlibint.h
 @@ -207,6 +207,10 @@ struct _XDisplay
- 	void *cookiejar;  /* cookie events returned but not claimed */
+ 	Bool req_seq_syncing; /* requests syncing is in-progress */
  };
  
 +#if defined(XTHREADS) && defined(SUNSOFT)
@@ -48,7 +48,7 @@ index 4431559..bc32bdf 100644
 +
  #define XAllocIDs(dpy,ids,n) (*(dpy)->idlist_alloc)(dpy,ids,n)
  
- #ifndef _XEVENT_
+ /*
 diff --git a/src/OpenDis.c b/src/OpenDis.c
 index 3793814..a14d13b 100644
 --- a/src/OpenDis.c

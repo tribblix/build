@@ -26,8 +26,8 @@ index ddad93c..677b0ee 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
 @@ -348,6 +348,9 @@ libX11_xcb_la_SOURCES = x11_xcb.c Xxcbint.h
+ libX11_xcb_la_SOURCES = x11_xcb.c Xxcbint.h
  libX11_xcb_la_LDFLAGS = -version-number 1:0:0 -no-undefined
- libX11_xcb_la_LIBADD = libX11.la
  
 +# SolarisIA extension
 +libX11_la_SOURCES += XInteractive.c

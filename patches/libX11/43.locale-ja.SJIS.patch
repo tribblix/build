@@ -78,7 +78,7 @@ index 671a985..38448db 100644
  END XLC_FONTSET
  
  XCOMM 
-@@ -143,8 +146,273 @@ cs1	{
+@@ -141,8 +144,273 @@ cs1	{
      [\xef40,\xef7e]->\x7d21,[\xef80,\xef9e]->\x7d60,[\xef9f,\xeffc]->\x7e21
  }
  

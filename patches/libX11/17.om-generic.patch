@@ -109,7 +109,7 @@ index 64ef7b7..7b40cb1 100644
  	    continue;
  	}
  
-@@ -2009,6 +2030,20 @@ init_om(
+@@ -2010,6 +2031,20 @@ init_om(
  	}
          read_vw(lcd,data,num);
  	length += strlen(data->font_data->name) + 1;

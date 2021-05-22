@@ -35,4 +35,4 @@ index d46b493..ddad93c 100644
 +	-Wl,-NlibXext.so.0
  
  libX11_la_LIBADD = \
- 	$(USE_I18N_LIBS) \
+ 	$(LTLIBOBJS) \
