@@ -1,0 +1,45 @@
+#!/bin/ksh
+#
+# catalog format is
+#  name|version|dependencies|size|md5|
+#
+
+builtin cat
+
+PKGDIR="../pkgs.sparc"
+
+ggrep '^VERSION=' */pkginfo | while read vstring
+do
+  PKG=${vstring%/*}
+  PKGVERS=${vstring##*=}
+  PKGVERS=${PKGVERS//\"/}
+  if [ -f ${PKG}/version.sparc ]; then
+      PKGVERS=`cat ${PKG}/version.sparc`
+  fi
+  DEPLIST=""
+  if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
+    if [ -x /usr/bin/stat ]; then
+	PKGSIZE=`/usr/bin/stat --printf="%s" ${PKGDIR}/${PKG}.${PKGVERS}.zap`
+    else
+	PKGSIZE=`/bin/ls -l ${PKGDIR}/${PKG}.${PKGVERS}.zap | /usr/bin/awk '{print $5}'`
+    fi
+    if [ ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5 -nt ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
+	PKGMD5=`cat ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5`
+    else
+	PKGMD5=`openssl md5 ${PKGDIR}/${PKG}.${PKGVERS}.zap| /usr/bin/awk '{print $NF}'`
+	/bin/rm -f ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
+	echo $PKGMD5 > ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
+    fi
+    if [ -f ${PKG}/depend ]; then
+	DEPLIST=""
+	cat ${PKG}/depend | while read d p
+	do
+	    if [ "X$d" = "XP" ]; then
+		DEPLIST="$DEPLIST$p "
+	    fi
+	done
+    fi
+    DEPLIST=${DEPLIST/% /}
+    echo "${PKG}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|"
+  fi
+done
