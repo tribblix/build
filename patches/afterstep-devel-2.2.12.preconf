@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# the sparc customization shouldn't be
+#
+sed -i 's:-Wl,-export-dynamic::' libAfterImage/configure
