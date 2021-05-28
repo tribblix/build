@@ -9816,7 +9816,7 @@
 -
 -    uint64_t bytes_in = UINT64_MAX;
 -    uint64_t bytes_out = UINT64_MAX;
--    for (int i = 0; i < k->ks_ndata; ++i) {
+-    for (unsigned int i = 0; i < k->ks_ndata; ++i) {
 -      kstat_named_t* data = &reinterpret_cast<kstat_named_t*>(k->ks_data)[i];
 -      if (strcmp(data->name, "rbytes64") == 0) {
 -        bytes_in = data->value.ui64;
@@ -10403,7 +10403,7 @@
 -      strcpy(library_path, common_path);
 -    } else {
 -      int inserted = 0;
--      int i;
+-      uint_t i;
 -      for (i = 0; i < info->dls_cnt; i++, path++) {
 -        uint_t flags = path->dls_flags & LA_SER_MASK;
 -        if (((flags & LA_SER_LIBPATH) == 0) && !inserted) {
@@ -11581,7 +11581,7 @@
 -static void warn_fail_commit_memory(char* addr, size_t bytes, bool exec,
 -                                    int err) {
 -  warning("INFO: os::commit_memory(" PTR_FORMAT ", " SIZE_FORMAT
--          ", %d) failed; error='%s' (errno=%d)", addr, bytes, exec,
+-          ", %d) failed; error='%s' (errno=%d)", p2i(addr), bytes, exec,
 -          os::strerror(err), err);
 -}
 -
@@ -11589,8 +11589,8 @@
 -                                    size_t alignment_hint, bool exec,
 -                                    int err) {
 -  warning("INFO: os::commit_memory(" PTR_FORMAT ", " SIZE_FORMAT
--          ", " SIZE_FORMAT ", %d) failed; error='%s' (errno=%d)", addr, bytes,
--          alignment_hint, exec, os::strerror(err), err);
+-          ", " SIZE_FORMAT ", %d) failed; error='%s' (errno=%d)", p2i(addr),
+-          bytes, alignment_hint, exec, os::strerror(err), err);
 -}
 -
 -int os::Solaris::commit_memory_impl(char* addr, size_t bytes, bool exec) {
@@ -11738,7 +11738,7 @@
 -    return 1;
 -  }
 -  int result_size = 0, top = 1, bottom = 0, cur = 0;
--  for (int k = 0; k < size; k++) {
+-  for (unsigned int k = 0; k < size; k++) {
 -    int r = Solaris::lgrp_children(Solaris::lgrp_cookie(), ids[cur],
 -                                   (Solaris::lgrp_id_t*)&ids[top], size - top);
 -    if (r == -1) {

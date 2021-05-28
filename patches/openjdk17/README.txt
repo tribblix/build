@@ -11,6 +11,8 @@ JDK17:
 
 Line number noise.
 
+Clean up some of the compiler warnings.
+
 17-23
 
 Line number noise.
