@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK17:
 
+17-25
+
+SecurityManager deprecation. Added suppression annotations (the way it
+was done for Windows), and cleaned up the line number noise.
+
 17-24
 
 Line number noise.

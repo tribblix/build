@@ -1386,7 +1386,7 @@
  #endif // OS_POSIX_OS_POSIX_HPP
 --- old/src/hotspot/os/posix/os_posix.inline.hpp	2020-05-20 17:59:45.073787189 -0700
 +++ new/src/hotspot/os/posix/os_posix.inline.hpp	2020-05-20 17:59:44.701780046 -0700
-@@ -43,7 +43,6 @@
+@@ -45,7 +45,6 @@
    return _result; \
  } while(false)
  
@@ -1394,7 +1394,7 @@
  // Aix does not have NUMA support but need these for compilation.
  inline bool os::numa_has_static_binding()   { AIX_ONLY(ShouldNotReachHere();) return true; }
  inline bool os::numa_has_group_homing()     { AIX_ONLY(ShouldNotReachHere();) return false;  }
-@@ -77,6 +75,4 @@
+@@ -79,6 +77,4 @@
    assert_status(status == 0, status, "cond_broadcast");
  }
  
@@ -1415,7 +1415,7 @@
  #endif
 --- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
-@@ -454,8 +454,6 @@
+@@ -452,8 +452,6 @@
      case lir_monaddr:        // input and result always valid, info always invalid
      case lir_null_check:     // input and info always valid, result always invalid
      case lir_move:           // input and result always valid, may have info
@@ -1424,7 +1424,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1668,8 +1666,6 @@
+@@ -1664,8 +1662,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1444,7 +1444,7 @@
        , lir_unwind
    , end_op1
    , begin_op2
-@@ -2115,9 +2113,6 @@
+@@ -2113,9 +2111,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1571,7 +1571,7 @@
                                                                              \
 --- old/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:32.322694403 -0700
 +++ new/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:31.930686876 -0700
-@@ -159,12 +159,6 @@
+@@ -161,12 +161,6 @@
    stubRoutines_init2(); // note: StubRoutines need 2-phase init
    MethodHandles::generate_adapters();
  
@@ -1596,7 +1596,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -483,7 +483,7 @@
+@@ -484,7 +484,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -1605,7 +1605,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -837,10 +837,8 @@
+@@ -838,10 +838,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -1629,7 +1629,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -346,12 +346,6 @@
+@@ -347,12 +347,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -1923,7 +1923,7 @@
  
 --- old/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:50.351040561 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:49.963033111 -0700
-@@ -499,7 +499,7 @@
+@@ -502,7 +502,7 @@
      private static native boolean isReusePortAvailable0();
  
      /*
@@ -2011,7 +2011,7 @@
  JNIEXPORT jboolean JNICALL
 --- old/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.739220820 -0700
 +++ new/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.399214291 -0700
-@@ -77,9 +77,6 @@
+@@ -76,9 +76,6 @@
      private /* final */ InputStream  stdout;
      private /* final */ InputStream  stderr;
  
@@ -2021,7 +2021,7 @@
      private static enum LaunchMechanism {
          // order IS important!
          FORK,
-@@ -93,8 +90,6 @@
+@@ -92,8 +89,6 @@
  
          BSD(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK),
  
@@ -2038,7 +2038,7 @@
              if (osName.equals("AIX")) { return AIX; }
  
              throw new Error(osName + " is not a supported OS platform.");
-@@ -385,41 +379,6 @@
+@@ -386,41 +380,6 @@
                  });
                  break;
  
@@ -2080,7 +2080,7 @@
              case AIX:
                  stdin = (fds[0] == -1) ?
                          ProcessBuilder.NullOutputStream.INSTANCE :
-@@ -522,29 +481,6 @@
+@@ -523,29 +482,6 @@
                  try { stderr.close(); } catch (IOException ignored) {}
                  break;
  
@@ -2124,7 +2124,7 @@
              defaultUpper = 65535;
 --- old/src/java.base/unix/classes/sun/net/dns/ResolverConfigurationImpl.java	2020-05-20 18:01:01.819260758 -0700
 +++ new/src/java.base/unix/classes/sun/net/dns/ResolverConfigurationImpl.java	2020-05-20 18:01:01.483254306 -0700
-@@ -177,16 +177,6 @@
+@@ -179,16 +179,6 @@
  
          // No search keyword so use local domain
  
@@ -2141,7 +2141,7 @@
          // try domain keyword in /etc/resolv.conf
  
          sl = java.security.AccessController.doPrivileged(
-@@ -254,8 +244,6 @@
+@@ -256,8 +246,6 @@
  
      // --- Native methods --
  
@@ -4264,7 +4264,7 @@
   * Since winsock doesn't have the equivalent of strerror(errno)
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
-@@ -1426,22 +1426,6 @@
+@@ -1429,22 +1429,6 @@
                  }
              }
          }
@@ -4397,8 +4397,8 @@
                   " use natives = " + useNatives +
 --- old/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:48.020147849 -0700
 +++ new/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:47.620140168 -0700
-@@ -40,8 +40,6 @@
-  */
+@@ -41,8 +41,6 @@
+ @SuppressWarnings("removal")
  public final class FontUtilities {
  
 -    public static boolean isSolaris;
@@ -4406,7 +4406,7 @@
      public static boolean isLinux;
  
      public static boolean isMacOSX;
-@@ -63,7 +61,6 @@
+@@ -64,7 +62,6 @@
              @Override
              public Object run() {
                  String osName = System.getProperty("os.name", "unknownOS");
@@ -4416,7 +4416,7 @@
  
 --- old/src/java.desktop/share/classes/sun/font/SunFontManager.java	2020-05-20 18:01:49.092168433 -0700
 +++ new/src/java.desktop/share/classes/sun/font/SunFontManager.java	2020-05-20 18:01:48.704160983 -0700
-@@ -442,24 +442,6 @@
+@@ -443,24 +443,6 @@
                      registerFontDirs(extraFontPath);
                  }
  
@@ -4441,7 +4441,7 @@
                  initCompositeFonts(fontConfig, null);
  
                  return null;
-@@ -2075,33 +2057,6 @@
+@@ -2076,33 +2058,6 @@
              }
          }
  
@@ -4563,7 +4563,7 @@
  
      /* This is intended to be called, and the returned value used,
       * from within a block synchronized on this font object.
-@@ -1043,14 +968,7 @@
+@@ -1045,14 +970,7 @@
              style = Font.ITALIC;
              break;
          case fsSelectionBoldBit:
@@ -4705,7 +4705,7 @@
                  continue;
 --- old/src/java.desktop/share/classes/sun/font/Type1Font.java	2020-05-20 18:01:52.356231105 -0700
 +++ new/src/java.desktop/share/classes/sun/font/Type1Font.java	2020-05-20 18:01:51.968223655 -0700
-@@ -167,7 +167,6 @@
+@@ -168,7 +168,6 @@
          throws FontFormatException {
          super(platname, nativeNames);
          fontRank = Font2D.TYPE1_RANK;
@@ -5011,7 +5011,7 @@
                  if ((f = new File("/etc/fedora-release")).canRead()) {
 --- old/src/java.desktop/unix/classes/sun/print/PrintServiceLookupProvider.java	2020-05-20 18:02:38.501117121 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/PrintServiceLookupProvider.java	2020-05-20 18:02:38.117109747 -0700
-@@ -151,10 +151,6 @@
+@@ -152,10 +152,6 @@
          return osname.startsWith("Mac");
      }
  
@@ -5022,7 +5022,7 @@
      static boolean isLinux() {
          return (osname.equals("Linux"));
      }
-@@ -301,7 +297,7 @@
+@@ -302,7 +298,7 @@
                  }
              }
          } else {
@@ -5031,7 +5031,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -485,7 +481,7 @@
+@@ -486,7 +482,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -5040,7 +5040,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -653,7 +649,7 @@
+@@ -654,7 +650,7 @@
                  psuri = printerInfo[1];
              }
          } else {
@@ -5049,7 +5049,7 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
-@@ -872,7 +868,7 @@
+@@ -873,7 +869,7 @@
          ArrayList<String> results = null;
          try {
              final String[] cmd = new String[3];
@@ -5060,7 +5060,7 @@
                  cmd[2] = "env LC_ALL=C " + command;
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.605138318 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.221130945 -0700
-@@ -879,51 +879,25 @@
+@@ -881,51 +881,25 @@
                          isAttributeCategorySupported(JobSheets.class)) {
              ncomps+=1;
          }
@@ -5133,7 +5133,7 @@
          if (IPPPrintService.debugPrint) {
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.629157980 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.293151529 -0700
-@@ -222,31 +222,6 @@
+@@ -223,31 +223,6 @@
          return name;
      }
  
@@ -5165,7 +5165,7 @@
      private PrinterIsAcceptingJobs getPrinterIsAcceptingJobsBSD() {
          if (PrintServiceLookupProvider.cmdIndex ==
              PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -324,9 +299,7 @@
+@@ -325,9 +300,7 @@
      }
  
      private PrinterIsAcceptingJobs getPrinterIsAcceptingJobs() {
@@ -5176,7 +5176,7 @@
              return getPrinterIsAcceptingJobsBSD();
          } else if (PrintServiceLookupProvider.isAIX()) {
              return getPrinterIsAcceptingJobsAIX();
-@@ -353,14 +326,6 @@
+@@ -354,14 +327,6 @@
          }
      }
  
@@ -5191,7 +5191,7 @@
      private QueuedJobCount getQueuedJobCountBSD() {
          if (PrintServiceLookupProvider.cmdIndex ==
              PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -417,9 +382,7 @@
+@@ -418,9 +383,7 @@
      }
  
      private QueuedJobCount getQueuedJobCount() {
@@ -5202,7 +5202,7 @@
              return getQueuedJobCountBSD();
          } else if (PrintServiceLookupProvider.isAIX()) {
              return getQueuedJobCountAIX();
-@@ -428,13 +391,6 @@
+@@ -429,13 +392,6 @@
          }
      }
  
@@ -5216,7 +5216,7 @@
      private PrintServiceAttributeSet getBSDServiceAttributes() {
          PrintServiceAttributeSet attrs = new HashPrintServiceAttributeSet();
          attrs.add(getQueuedJobCountBSD());
-@@ -472,9 +428,7 @@
+@@ -473,9 +429,7 @@
      }
  
      private PrintServiceAttributeSet getDynamicAttributes() {
@@ -5541,7 +5541,7 @@
  
 --- old/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:49.005318809 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:48.665312280 -0700
-@@ -86,9 +86,7 @@
+@@ -87,9 +87,7 @@
                                  = System.getProperty("sun.security.jgss.lib");
                          if (defaultLib == null || defaultLib.trim().equals("")) {
                              String osname = System.getProperty("os.name");
@@ -5554,7 +5554,7 @@
                                      "libgssapi_krb5.so",
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:50.089339623 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:49.705332249 -0700
-@@ -926,8 +926,6 @@
+@@ -927,8 +927,6 @@
              if (name == null) {
                  name = "c:\\winnt\\krb5.ini";
              }
@@ -5576,7 +5576,7 @@
  
 --- old/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2020-05-20 18:02:52.281381711 -0700
 +++ new/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2020-05-20 18:02:51.897374338 -0700
-@@ -84,12 +84,8 @@
+@@ -85,12 +85,8 @@
          String s2 = lib.substring(k + 7);
          String libDir;
          if ("64".equals(System.getProperty("sun.arch.data.model"))) {
@@ -5618,7 +5618,7 @@
          _writer = new BufferedWriter(writer, BUFFER_SIZE);
 --- old/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.681504598 -0700
 +++ new/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.345498147 -0700
-@@ -97,7 +97,7 @@
+@@ -98,7 +98,7 @@
              (PrivilegedAction<String>) () -> System.getProperty("os.name"));
  
          private static final String SJISName = getSJISName();
@@ -5627,7 +5627,7 @@
          private DelegatableDecoder detectedDecoder = null;
  
          public Decoder(Charset cs) {
-@@ -225,24 +225,11 @@
+@@ -226,24 +226,11 @@
           * Returned Shift_JIS Charset name is OS dependent
           */
          private static String getSJISName() {
@@ -5655,7 +5655,7 @@
  }
 --- old/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.697524107 -0700
 +++ new/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.357517578 -0700
-@@ -663,15 +663,10 @@
+@@ -664,15 +664,10 @@
          lib = expand(lib);
          int i = lib.indexOf("/$ISA/");
          if (i != -1) {
@@ -5683,7 +5683,7 @@
  import sun.jvm.hotspot.debugger.remote.RemoteDebugger;
  import sun.jvm.hotspot.debugger.remote.RemoteDebuggerClient;
  import sun.jvm.hotspot.debugger.remote.RemoteDebuggerServer;
-@@ -358,9 +355,7 @@
+@@ -364,9 +361,7 @@
                  } catch (UnsupportedPlatformException e) {
                     throw new DebuggerException(e);
                  }
@@ -5694,7 +5694,7 @@
                      setupDebuggerWin32();
                  } else if (os.equals("linux")) {
                      setupDebuggerLinux();
-@@ -412,11 +407,7 @@
+@@ -418,11 +413,7 @@
          // configure the VM.
  
          try {
@@ -5707,7 +5707,7 @@
                  db = new HotSpotTypeDataBase(machDesc,
                  new Win32VtblAccess(debugger, jvmLibNames),
                  debugger, jvmLibNames);
-@@ -501,29 +492,6 @@
+@@ -507,29 +498,6 @@
          System.err.println("Loaded alternate HotSpot SA Debugger: " + alternateName);
      }
  
@@ -5737,7 +5737,7 @@
      private void connectRemoteDebugger() throws DebuggerException {
          RemoteDebugger remote =
          (RemoteDebugger) RMIHelper.lookup(debugServerID);
-@@ -549,9 +503,7 @@
+@@ -545,9 +509,7 @@
      }
  
      private void setupJVMLibNames(String os) {
@@ -5748,7 +5748,7 @@
              setupJVMLibNamesWin32();
          } else if (os.equals("linux")) {
              setupJVMLibNamesLinux();
-@@ -564,10 +516,6 @@
+@@ -570,10 +522,6 @@
          }
      }
  
@@ -6053,7 +6053,7 @@
      clk_tck = 100;
 --- old/src/jdk.sctp/unix/classes/sun/nio/ch/sctp/SctpNet.java	2020-05-20 18:03:38.442268035 -0700
 +++ new/src/jdk.sctp/unix/classes/sun/nio/ch/sctp/SctpNet.java	2020-05-20 18:03:38.054260584 -0700
-@@ -47,11 +47,6 @@
+@@ -48,11 +48,6 @@
      /* -- Miscellaneous SCTP utilities -- */
  
      private static boolean IPv4MappedAddresses() {
@@ -6142,7 +6142,7 @@
  
 --- old/src/jdk.sctp/unix/native/libsctp/SctpNet.c	2020-05-20 18:03:41.630329248 -0700
 +++ new/src/jdk.sctp/unix/native/libsctp/SctpNet.c	2020-05-20 18:03:41.242321797 -0700
-@@ -358,11 +358,7 @@
+@@ -364,11 +364,7 @@
      int i, addrCount;
      jobjectArray isaa;
  
@@ -6154,7 +6154,7 @@
          handleSocketError(env, errno);
          return NULL;
      }
-@@ -407,11 +403,7 @@
+@@ -413,11 +409,7 @@
      int i, addrCount;
      jobjectArray isaa;
  
@@ -17144,7 +17144,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/ch/DefaultSelectorProvider.java	2020-05-20 18:10:11.945823468 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,53 +0,0 @@
+@@ -1,54 +0,0 @@
 -/*
 - * Copyright (c) 2015, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -17179,6 +17179,7 @@
 - * Creates this platform's default SelectorProvider
 - */
 -
+-@SuppressWarnings("removal")
 -public class DefaultSelectorProvider {
 -    private static final SelectorProviderImpl INSTANCE;
 -    static {
@@ -18420,7 +18421,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/fs/SolarisAclFileAttributeView.java	2020-05-20 18:10:18.445948263 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,413 +0,0 @@
+@@ -1,414 +0,0 @@
 -/*
 - * Copyright (c) 2008, 2015, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -18501,6 +18502,7 @@
 -                             boolean checkRead,
 -                             boolean checkWrite)
 -    {
+-        @SuppressWarnings("removal")
 -        SecurityManager sm = System.getSecurityManager();
 -        if (sm != null) {
 -            if (checkRead)
@@ -19327,7 +19329,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/fs/SolarisUserDefinedFileAttributeView.java	2020-05-20 18:10:22.750030897 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,305 +0,0 @@
+@@ -1,310 +0,0 @@
 -/*
 - * Copyright (c) 2008, 2015, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -19396,6 +19398,7 @@
 -        this.followLinks = followLinks;
 -    }
 -
+-    @SuppressWarnings("removal")
 -    @Override
 -    public List<String> list() throws IOException  {
 -        if (System.getSecurityManager() != null)
@@ -19439,6 +19442,7 @@
 -        }
 -    }
 -
+-    @SuppressWarnings("removal")
 -    @Override
 -    public int size(String name) throws IOException  {
 -        if (System.getSecurityManager() != null)
@@ -19471,6 +19475,7 @@
 -        }
 -    }
 -
+-    @SuppressWarnings("removal")
 -    @Override
 -    public int read(String name, ByteBuffer dst) throws IOException {
 -        if (System.getSecurityManager() != null)
@@ -19512,6 +19517,7 @@
 -        }
 -    }
 -
+-    @SuppressWarnings("removal")
 -    @Override
 -    public int write(String name, ByteBuffer src) throws IOException {
 -        if (System.getSecurityManager() != null)
@@ -19550,6 +19556,7 @@
 -        }
 -    }
 -
+-    @SuppressWarnings("removal")
 -    @Override
 -    public void delete(String name) throws IOException {
 -        if (System.getSecurityManager() != null)
