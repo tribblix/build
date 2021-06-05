@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=4.2.2
+VERSION=4.2.3
 mkdir -p usr/bin
 chmod a+x usr/versions/spotbugs-${VERSION}/bin/spotbugs
 ln -s ../../usr/versions/spotbugs-${VERSION}/bin/spotbugs usr/bin
