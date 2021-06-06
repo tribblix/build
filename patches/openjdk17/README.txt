@@ -7,6 +7,8 @@ Most patches -p0
 
 JDK17:
 
+Remove extended file io workaround, it's 32-bit only
+
 17-25
 
 SecurityManager deprecation. Added suppression annotations (the way it

@@ -8846,7 +8846,7 @@
 -}
 --- old/src/hotspot/os/solaris/globals_solaris.hpp	2020-05-20 18:09:31.185040905 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,52 +0,0 @@
+@@ -1,49 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8883,10 +8883,7 @@
 -                         product_pd, \
 -                         notproduct, \
 -                         range, \
--                         constraint) \
--                                                                               \
--  product(bool, UseExtendedFileIO, true,                                       \
--          "Enable workaround for limitations of stdio FILE structure")
+-                         constraint)
 -
 -//
 -// Defines Solaris-specific default values. The flags are available on all
@@ -9903,7 +9900,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4127 +0,0 @@
+@@ -1,4109 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10152,21 +10149,6 @@
 -
 -struct tm* os::localtime_pd(const time_t* clock, struct tm*  res) {
 -  return localtime_r(clock, res);
--}
--
--void os::Solaris::try_enable_extended_io() {
--  typedef int (*enable_extended_FILE_stdio_t)(int, int);
--
--  if (!UseExtendedFileIO) {
--    return;
--  }
--
--  enable_extended_FILE_stdio_t enabler =
--    (enable_extended_FILE_stdio_t) dlsym(RTLD_DEFAULT,
--                                         "enable_extended_FILE_stdio");
--  if (enabler) {
--    enabler(-1, -1);
--  }
 -}
 -
 -jint os::Solaris::_os_thread_limit = 0;
@@ -12851,9 +12833,6 @@
 -
 -// this is called _after_ the global arguments have been parsed
 -jint os::init_2(void) {
--  // try to enable extended file IO ASAP, see 6431278
--  os::Solaris::try_enable_extended_io();
--
 -  // Check and sets minimum stack sizes against command line options
 -  if (Posix::set_minimum_stack_sizes() == JNI_ERR) {
 -    return JNI_ERR;
@@ -14033,7 +14012,7 @@
 -void os::print_memory_mappings(char* addr, size_t bytes, outputStream* st) {}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,324 +0,0 @@
+@@ -1,322 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -14137,8 +14116,6 @@
 -  static bool is_valid_page_size(size_t bytes);
 -  static size_t page_size_for_alignment(size_t alignment);
 -  static bool setup_large_pages(caddr_t start, size_t bytes, size_t align);
--
--  static void try_enable_extended_io();
 -
 -  typedef int (*pthread_setname_np_func_t)(pthread_t, const char*);
 -  static pthread_setname_np_func_t _pthread_setname_np;
