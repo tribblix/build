@@ -4,7 +4,7 @@
 #
 ${THOME}/build/unpack xless-1.7
 cd xless-1.7
-xmkmf
+xmkmf -a
 gmake
 rm -fr /tmp/xl
 mkdir -p /tmp/xl/usr/bin /tmp/xl/usr/lib/X11/app-defaults /tmp/xl/usr/share/man/man1
