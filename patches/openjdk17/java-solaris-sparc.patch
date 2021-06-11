@@ -418,7 +418,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -481,7 +480,6 @@
+@@ -484,7 +483,6 @@
  
  DISABLE_WARNING_PREFIX := @DISABLE_WARNING_PREFIX@
  CFLAGS_WARNINGS_ARE_ERRORS:=@CFLAGS_WARNINGS_ARE_ERRORS@
@@ -426,7 +426,7 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -531,7 +529,6 @@
+@@ -534,7 +532,6 @@
  # LDFLAGS used to link the jdk native libraries (C-code)
  LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
  JDKLIB_LIBS:=@JDKLIB_LIBS@
@@ -434,7 +434,7 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -748,7 +741,6 @@
+@@ -751,7 +744,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -442,7 +442,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -766,7 +758,6 @@
+@@ -769,7 +761,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -450,7 +450,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -781,7 +772,6 @@
+@@ -784,7 +775,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -1480,38 +1480,6 @@
  }
  
  // Allocations may fail in several threads at about the same time,
---- old/src/hotspot/share/prims/jvmti.xml	2020-05-20 18:00:25.638566062 -0700
-+++ new/src/hotspot/share/prims/jvmti.xml	2020-05-20 18:00:25.266558920 -0700
-@@ -426,8 +426,8 @@
-     An agent is deployed in a platform specific manner but is typically the
-     platform equivalent of a dynamic library. On the <tm>Windows</tm> operating
-     system, for example, an agent library is a "Dynamic Linked Library" (DLL).
--    On the <tm>Solaris</tm> Operating Environment, an agent library is a shared
--    object (<code>.so</code> file).
-+    On <tm>Linux</tm> Operating Environment, an agent library is a shared object
-+    (<code>.so</code> file).
-     <p/>
- 
-     An agent may be started at VM startup by specifying the agent library
-@@ -497,8 +497,7 @@
-         <code>-agentlib:foo=opt1,opt2</code> is specified, the VM will attempt to
-         load the shared library <code>foo.dll</code> from the system <code>PATH</code>
-         under <tm>Windows</tm> or <code>libfoo.so</code> from the
--        <code>LD_LIBRARY_PATH</code> under the <tm>Solaris</tm> operating
--        environment.
-+        <code>LD_LIBRARY_PATH</code> under <tm>Linux</tm>.
-         If the agent library is statically linked into the executable
-         then no actual loading takes place.
-     <p/>
-@@ -13328,7 +13327,7 @@
-       Sent by the VM to request the agent to dump its data.  This
-       is just a hint and the agent need not react to this event.
-       This is useful for processing command-line signals from users.  For
--      example, in the Java 2 SDK a CTRL-Break on Win32 and a CTRL-\ on Solaris
-+      example, in the Java 2 SDK a CTRL-Break on Win32 and a CTRL-\ on Linux
-       causes the VM to send this event to the agent.
-     </description>
-     <origin>jvmpi</origin>
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
 @@ -166,7 +166,6 @@
@@ -1546,7 +1514,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1660,10 +1652,8 @@
+@@ -1664,10 +1656,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1559,7 +1527,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2013,8 +2002,7 @@
+@@ -2017,8 +2006,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -4416,7 +4384,7 @@
  
 --- old/src/java.desktop/share/classes/sun/font/SunFontManager.java	2020-05-20 18:01:49.092168433 -0700
 +++ new/src/java.desktop/share/classes/sun/font/SunFontManager.java	2020-05-20 18:01:48.704160983 -0700
-@@ -443,24 +443,6 @@
+@@ -448,24 +448,6 @@
                      registerFontDirs(extraFontPath);
                  }
  
@@ -4441,7 +4409,7 @@
                  initCompositeFonts(fontConfig, null);
  
                  return null;
-@@ -2076,33 +2058,6 @@
+@@ -2084,33 +2066,6 @@
              }
          }
  
@@ -5541,7 +5509,7 @@
  
 --- old/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:49.005318809 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:48.665312280 -0700
-@@ -87,9 +87,7 @@
+@@ -84,9 +84,7 @@
                                  = System.getProperty("sun.security.jgss.lib");
                          if (defaultLib == null || defaultLib.trim().equals("")) {
                              String osname = System.getProperty("os.name");
@@ -5576,7 +5544,7 @@
  
 --- old/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2020-05-20 18:02:52.281381711 -0700
 +++ new/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2020-05-20 18:02:51.897374338 -0700
-@@ -85,12 +85,8 @@
+@@ -82,12 +82,8 @@
          String s2 = lib.substring(k + 7);
          String libDir;
          if ("64".equals(System.getProperty("sun.arch.data.model"))) {
@@ -5655,7 +5623,7 @@
  }
 --- old/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.697524107 -0700
 +++ new/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.357517578 -0700
-@@ -664,15 +664,10 @@
+@@ -696,15 +696,10 @@
          lib = expand(lib);
          int i = lib.indexOf("/$ISA/");
          if (i != -1) {
@@ -14717,7 +14685,7 @@
 -}
 -
 -#endif // OS_CPU_SOLARIS_X86_ATOMIC_SOLARIS_X86_HPP
---- old/src/hotspot/os_cpu/solaris_x86/bytes_solaris_x86.inline.hpp	2020-05-20 18:09:57.609548227 -0700
+--- old/src/hotspot/os_cpu/solaris_x86/bytes_solaris_x86.hpp	2020-05-20 18:09:57.609548227 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,64 +0,0 @@
 -/*
@@ -14744,8 +14712,8 @@
 - *
 - */
 -
--#ifndef OS_CPU_SOLARIS_X86_BYTES_SOLARIS_X86_INLINE_HPP
--#define OS_CPU_SOLARIS_X86_BYTES_SOLARIS_X86_INLINE_HPP
+-#ifndef OS_CPU_SOLARIS_X86_BYTES_SOLARIS_X86_HPP
+-#define OS_CPU_SOLARIS_X86_BYTES_SOLARIS_X86_HPP
 -
 -// For Sun Studio - implementation is in solaris_i486.il.
 -// For gcc - implementation is just below.
@@ -14783,8 +14751,8 @@
 -}
 -#endif // !AMD64
 -
--#endif // OS_CPU_SOLARIS_X86_BYTES_SOLARIS_X86_INLINE_HPP
---- old/src/hotspot/os_cpu/solaris_x86/copy_solaris_x86.inline.hpp	2020-05-20 18:09:58.313561743 -0700
+-#endif // OS_CPU_SOLARIS_X86_BYTES_SOLARIS_X86_HPP
+--- old/src/hotspot/os_cpu/solaris_x86/copy_solaris_x86.hpp	2020-05-20 18:09:58.313561743 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,143 +0,0 @@
 -/*
@@ -14811,8 +14779,8 @@
 - *
 - */
 -
--#ifndef OS_CPU_SOLARIS_X86_COPY_SOLARIS_X86_INLINE_HPP
--#define OS_CPU_SOLARIS_X86_COPY_SOLARIS_X86_INLINE_HPP
+-#ifndef OS_CPU_SOLARIS_X86_COPY_SOLARIS_X86_HPP
+-#define OS_CPU_SOLARIS_X86_COPY_SOLARIS_X86_HPP
 -
 -static void pd_conjoint_words(const HeapWord* from, HeapWord* to, size_t count) {
 -  (void)memmove(to, from, count * HeapWordSize);
@@ -14929,7 +14897,7 @@
 -#endif // AMD64
 -}
 -
--#endif // OS_CPU_SOLARIS_X86_COPY_SOLARIS_X86_INLINE_HPP
+-#endif // OS_CPU_SOLARIS_X86_COPY_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/count_trailing_zeros_solaris_x86.hpp	2020-05-20 18:09:58.997574875 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,37 +0,0 @@

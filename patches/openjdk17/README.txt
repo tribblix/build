@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK17:
 
+17-26
+
+First from the jdk17 stabilisation repository. Same changes as in the
+first jdk18 tag.
+
 Remove extended file io workaround, it's 32-bit only
 
 17-25
