@@ -2,8 +2,8 @@ $NetBSD$
 
 Support SunOS/gcc.
 
---- src/hotspot/os_cpu/solaris_x86/bytes_solaris_x86.inline.hpp.orig	2019-01-08 12:44:55.000000000 +0000
-+++ src/hotspot/os_cpu/solaris_x86/bytes_solaris_x86.inline.hpp
+--- src/hotspot/os_cpu/solaris_x86/bytes_solaris_x86.hpp.orig	2019-01-08 12:44:55.000000000 +0000
++++ src/hotspot/os_cpu/solaris_x86/bytes_solaris_x86.hpp
 @@ -27,6 +27,25 @@
  
  // For Sun Studio - implementation is in solaris_i486.il.
