@@ -203,8 +203,8 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +
 +#endif // OS_CPU_SOLARIS_X86_ATOMIC_SOLARIS_X86_HPP
 diff -ur -N /tmp/g/bytes_solaris_zero.inline.hpp b/src/hotspot/os_cpu/solaris_zero/bytes_solaris_zero.inline.hpp
---- /tmp/g/bytes_solaris_zero.inline.hpp	1970-01-01 01:00:00.000000000 +0000
-+++ b/src/hotspot/os_cpu/solaris_zero/bytes_solaris_zero.inline.hpp	2020-08-31 18:20:25.351780484 +0000
+--- /tmp/g/bytes_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
++++ b/src/hotspot/os_cpu/solaris_zero/bytes_solaris_zero.hpp	2020-08-31 18:20:25.351780484 +0000
 @@ -0,0 +1,45 @@
 +/*
 + * Copyright (c) 2003, 2019, Oracle and/or its affiliates. All rights reserved.
@@ -230,8 +230,8 @@ diff -ur -N /tmp/g/bytes_solaris_zero.inline.hpp b/src/hotspot/os_cpu/solaris_ze
 + *
 + */
 +
-+#ifndef OS_CPU_SOLARIS_ZERO_BYTES_SOLARIS_ZERO_INLINE_HPP
-+#define OS_CPU_SOLARIS_ZERO_BYTES_SOLARIS_ZERO_INLINE_HPP
++#ifndef OS_CPU_SOLARIS_ZERO_BYTES_SOLARIS_ZERO_HPP
++#define OS_CPU_SOLARIS_ZERO_BYTES_SOLARIS_ZERO_HPP
 +
 +// Efficient swapping of data bytes from Java byte
 +// ordering to native byte ordering and vice versa.
@@ -250,7 +250,7 @@ diff -ur -N /tmp/g/bytes_solaris_zero.inline.hpp b/src/hotspot/os_cpu/solaris_ze
 +  return BSWAP_64(x);
 +}
 +
-+#endif // OS_CPU_SOLARIS_ZERO_BYTES_SOLARIS_ZERO_INLINE_HPP
++#endif // OS_CPU_SOLARIS_ZERO_BYTES_SOLARIS_ZERO_HPP
 diff -ur -N /tmp/g/globals_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/globals_solaris_zero.hpp
 --- /tmp/g/globals_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/globals_solaris_zero.hpp	2020-08-31 18:03:16.351225683 +0000

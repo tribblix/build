@@ -20,14 +20,14 @@ Fixes src/hotspot/cpu/zero/stubGenerator_zero.cpp
 illumos-zero-2.patch
 Adds the src/hotspot/os_cpu/solaris_zero directory and contents
 
-These are current and tested for jdk 17+17. They don't provide a
+These are current and tested for jdk 18+0. They don't provide a
 proper zero port, as they still have x86 assembler that needs to be
 removed.
 
 cd to the jdk source that has the other patches applied and
 
-gpatch -p1 < ${THOME}/build/patches/openjdk17/illumos-zero-1.patch
-gpatch -p1 < ${THOME}/build/patches/openjdk17/illumos-zero-2.patch
+gpatch -p1 < ${THOME}/build/patches/openjdk18/illumos-zero-1.patch
+gpatch -p1 < ${THOME}/build/patches/openjdk18/illumos-zero-2.patch
 
 Configure:
 
@@ -38,7 +38,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --enable-deprecated-ports=yes \
---enable-jvm-feature-zero --with-jvm-variants=zero
+--enable-jvm-feature-zero --with-jvm-variants=zero \
+--with-jobs=3
 
 build:
 
