@@ -213,7 +213,7 @@ cat > lib/svc/manifest/application/font/fc-cache.xml  <<EOF
                 <documentation>
                         <manpage
                                 title='fc-cache'
-                                section='1M'
+                                section='1'
                                 manpath='/usr/share/man' />
                 </documentation>
         </template>
