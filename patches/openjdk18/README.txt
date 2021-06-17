@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-2
+
+No changes
+
 18-1
 
 No changes
@@ -17,8 +21,6 @@ No changes
 
 rename bytes_solaris_x86.inline.hpp to bytes_solaris_x86.hpp
 rename copy_solaris_x86.inline.hpp to copy_solaris_x86.hpp
-
-It still reports itself as 17 though
 
 Build:
 
