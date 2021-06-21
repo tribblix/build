@@ -6,8 +6,8 @@
 # it was originally called elasticsearch-py, now it's got the
 # simple elasticsearchN name where N is the release
 #
-${THOME}/build/unpack elasticsearch7-7.12.0
-cd elasticsearch7-7.12.0
+${THOME}/build/unpack elasticsearch7-7.13.1
+cd elasticsearch7-7.13.1
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
