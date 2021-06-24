@@ -2,8 +2,8 @@
 #
 # simple makefile
 #
-${THOME}/build/dobuild tree-1.7.0
-cd tree-1.7.0
+${THOME}/build/dobuild tree-1.8.0
+cd tree-1.8.0
 rm -fr /tmp/trt
 mkdir -p /tmp/trt/usr/bin
 cp tree /tmp/trt/usr/bin
