@@ -1259,7 +1259,7 @@
      BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -70,9 +70,6 @@
+@@ -73,9 +73,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
