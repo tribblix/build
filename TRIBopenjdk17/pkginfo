@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk17"
 NAME="OpenJDK 17 pre-release"
-VERSION="17.pre.28.0"
+VERSION="17.pre.29.0"
 ZAP_URL="http://openjdk.java.net/"
