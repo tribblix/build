@@ -11,8 +11,8 @@
 # must have apache24 installed
 #
 zap uninstall TRIBlibtool
-${THOME}/build/unpack php-7.4.20
-cd php-7.4.20
+${THOME}/build/unpack php-7.4.21
+cd php-7.4.21
 #
 # CFLAGS because Zend.m4 hasn't a hope of correctness
 #
@@ -21,7 +21,7 @@ cd php-7.4.20
 # grav needs zip and openssl, but zip now means libzip
 # mbregex needs oniguruma, so disable it
 #
-env AWK=nawk CFLAGS="-std=gnu99" ./configure --prefix=/opt/tribblix/php --with-ldap=no --with-apxs2=/opt/tribblix/apache2/bin/apxs --enable-bcmath --enable-mbstring --enable-mysqlnd --with-pgsql=shared,/opt/tribblix/postgres11 --with-pdo-pgsql=shared,/opt/tribblix/postgres11 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --without-sqlite3 --without-pdo-sqlite --with-curl=/usr --enable-gd --with-jpeg --with-zlib-dir=/usr --with-freetype --enable-sockets --enable-fpm --with-zip --with-openssl --disable-mbregex
+env CFLAGS="-std=gnu99" ./configure --prefix=/opt/tribblix/php --with-ldap=no --with-apxs2=/opt/tribblix/apache2/bin/apxs --enable-bcmath --enable-mbstring --enable-mysqlnd --with-pgsql=shared,/opt/tribblix/postgres11 --with-pdo-pgsql=shared,/opt/tribblix/postgres11 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --without-sqlite3 --without-pdo-sqlite --with-curl=/usr --enable-gd --with-jpeg --with-zlib-dir=/usr --with-freetype --enable-sockets --enable-fpm --with-zip --with-openssl --disable-mbregex
 gsed -i 's:ext/sockets/ \$:ext/sockets/ -D_XPG4_2 \$:' Makefile
 gmake -j 6
 rm -fr /tmp/m2 /tmp/m2g /tmp/pear
