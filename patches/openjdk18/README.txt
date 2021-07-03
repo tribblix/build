@@ -9,6 +9,15 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-4
+
+A little patch noise.
+
+The linker check has been hardened. It was always done wrong (it's using
+gcc to get the linker version when it's actually looking for the as
+version), but it now needs working around. We have the right assembler
+in any case.
+
 18-2
 
 No changes

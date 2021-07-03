@@ -1259,7 +1259,7 @@
      BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -70,9 +70,6 @@
+@@ -73,9 +73,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1492,7 +1492,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -689,10 +689,6 @@
+@@ -684,10 +684,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -1503,7 +1503,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -734,10 +730,6 @@
+@@ -729,10 +725,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -1514,7 +1514,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1664,10 +1656,8 @@
+@@ -1628,10 +1620,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1527,7 +1527,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2017,8 +2006,7 @@
+@@ -1981,8 +1970,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1554,7 +1554,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -588,7 +588,6 @@
+@@ -580,7 +580,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -1597,7 +1597,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -347,12 +347,6 @@
+@@ -314,12 +314,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -1609,7 +1609,7 @@
 -
    // Set stack limits after thread is initialized.
    if (is_Java_thread()) {
-     as_Java_thread()->stack_overflow_state()->initialize(stack_base(), stack_end());
+     JavaThread::cast(this)->stack_overflow_state()->initialize(stack_base(), stack_end());
 --- old/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.698816829 -0700
 +++ new/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.318809532 -0700
 @@ -41,12 +41,6 @@
@@ -1851,7 +1851,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -94,7 +94,7 @@
+@@ -97,7 +97,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -1860,7 +1860,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1610,8 +1610,6 @@
+@@ -1620,8 +1620,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1869,7 +1869,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1673,8 +1671,6 @@
+@@ -1683,8 +1681,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
