@@ -14,7 +14,9 @@ esac
 # copy the existing libraries for compat
 # libgnutlsxx retains its old SONAME, so no need to copy that
 # libgnutls-openssl is no longer shipped, and I can find no
-# coonsumers, so no need to copy that either
+# consumers, so no need to copy that either
+#
+# these come from the 3.3.30 version of the package
 #
 cp -p /usr/lib/libgnutls.so.28.43.4 usr/lib/libgnutls.so.28.43.4
 cp -p /usr/lib/${ARCH64}/libgnutls.so.28.43.4 usr/lib/${ARCH64}/libgnutls.so.28.43.4
