@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-5
+
+Remove os::bind_to_processor
+
 18-4
 
 A little patch noise.
