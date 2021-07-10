@@ -1,4 +1,4 @@
 PKG="TRIBglib-networking"
 NAME="GLib networking"
-VERSION="2.30.2.2"
+VERSION="2.44.0.0"
 ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/glib-networking/"
