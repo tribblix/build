@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack zipp-3.4.1
-cd zipp-3.4.1
+${THOME}/build/unpack zipp-3.5.0
+cd zipp-3.5.0
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
