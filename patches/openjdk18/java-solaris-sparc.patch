@@ -1492,7 +1492,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -684,10 +684,6 @@
+@@ -685,10 +685,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -1503,7 +1503,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -729,10 +725,6 @@
+@@ -730,10 +726,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -1514,7 +1514,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1628,10 +1620,8 @@
+@@ -1629,10 +1621,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1527,7 +1527,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1981,8 +1970,7 @@
+@@ -1982,8 +1971,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1968,7 +1968,7 @@
  }
 --- old/src/java.base/share/native/libnet/net_util.h	2020-05-20 18:00:58.723201311 -0700
 +++ new/src/java.base/share/native/libnet/net_util.h	2020-05-20 18:00:58.339193938 -0700
-@@ -156,8 +156,6 @@
+@@ -148,8 +148,6 @@
  
  void platformInit();
  
@@ -3403,144 +3403,6 @@
  /** BSD **/
  #if defined(_ALLBSD_SOURCE)
  
---- old/src/java.base/unix/native/libnet/PlainDatagramSocketImpl.c	2020-05-20 18:01:24.043687483 -0700
-+++ new/src/java.base/unix/native/libnet/PlainDatagramSocketImpl.c	2020-05-20 18:01:23.659680110 -0700
-@@ -27,10 +27,6 @@
- #include <string.h>
- #include <sys/ioctl.h>
- 
--#if defined(__solaris__)
--#include <sys/filio.h>
--#endif
--
- #include "net_util.h"
- 
- #include "java_net_PlainDatagramSocketImpl.h"
-@@ -57,12 +53,6 @@
- #define IPV6_SNDBUF_LIMIT 65527
- #endif  // __APPLE__
- 
--#ifdef __solaris__
--#ifndef BSD_COMP
--#define BSD_COMP
--#endif
--#endif
--
- #ifndef IPTOS_TOS_MASK
- #define IPTOS_TOS_MASK 0x1e
- #endif
-@@ -503,14 +493,6 @@
-     n = NET_RecvFrom(fd, buf, 1, MSG_PEEK, &rmtaddr.sa, &slen);
- 
-     if (n == -1) {
--
--#ifdef __solaris__
--        if (errno == ECONNREFUSED) {
--            int orig_errno = errno;
--            recv(fd, buf, 1, 0);
--            errno = orig_errno;
--        }
--#endif
-         if (errno == ECONNREFUSED) {
-             JNU_ThrowByName(env, JNU_JAVANETPKG "PortUnreachableException",
-                             "ICMP Port Unreachable");
-@@ -637,14 +619,6 @@
-         n = packetBufferLen;
-     }
-     if (n == -1) {
--
--#ifdef __solaris__
--        if (errno == ECONNREFUSED) {
--            int orig_errno = errno;
--            (void) recv(fd, fullPacket, 1, 0);
--            errno = orig_errno;
--        }
--#endif
-         (*env)->SetIntField(env, packet, dp_offsetID, 0);
-         (*env)->SetIntField(env, packet, dp_lengthID, 0);
-         if (errno == ECONNREFUSED) {
-@@ -1851,10 +1825,9 @@
-  * we must use the IPv4 socket options. This is because the IPv6 socket options
-  * don't support IPv4-mapped addresses. This is true as per 2.2.19 and 2.4.7
-  * kernel releases. In the future it's possible that IP_ADD_MEMBERSHIP
-- * will be updated to return ENOPROTOOPT if uses with an IPv6 socket (Solaris
-- * already does this). Thus to cater for this we first try with the IPv4
-- * socket options and if they fail we use the IPv6 socket options. This
-- * seems a reasonable failsafe solution.
-+ * will be updated to return ENOPROTOOPT if uses with an IPv6 socket. Thus to
-+ * cater for this we first try with the IPv4 socket options and if they fail we
-+ * use the IPv6 socket options. This seems a reasonable failsafe solution.
-  */
- static void mcast_join_leave(JNIEnv *env, jobject this,
-                              jobject iaObj, jobject niObj,
---- old/src/java.base/unix/native/libnet/PlainSocketImpl.c	2020-05-20 18:01:25.151708759 -0700
-+++ new/src/java.base/unix/native/libnet/PlainSocketImpl.c	2020-05-20 18:01:24.763701309 -0700
-@@ -266,45 +266,6 @@
- 
-     if (timeout <= 0) {
-         connect_rv = NET_Connect(fd, &sa.sa, len);
--#ifdef __solaris__
--        if (connect_rv == -1 && errno == EINPROGRESS ) {
--
--            /* This can happen if a blocking connect is interrupted by a signal.
--             * See 6343810.
--             */
--            while (1) {
--                struct pollfd pfd;
--                pfd.fd = fd;
--                pfd.events = POLLOUT;
--
--                connect_rv = NET_Poll(&pfd, 1, -1);
--
--                if (connect_rv == -1) {
--                    if (errno == EINTR) {
--                        continue;
--                    } else {
--                        break;
--                    }
--                }
--                if (connect_rv > 0) {
--                    socklen_t optlen;
--                    /* has connection been established */
--                    optlen = sizeof(connect_rv);
--                    if (getsockopt(fd, SOL_SOCKET, SO_ERROR,
--                                   (void*)&connect_rv, &optlen) <0) {
--                        connect_rv = errno;
--                    }
--
--                    if (connect_rv != 0) {
--                        /* restore errno */
--                        errno = connect_rv;
--                        connect_rv = -1;
--                    }
--                    break;
--                }
--            }
--        }
--#endif
-     } else {
-         /*
-          * A timeout was specified. We put the socket into non-blocking
-@@ -893,16 +854,16 @@
-     }
- 
-     if (NET_SetSockOpt(fd, level, optname, (const void *)&optval, optlen) < 0) {
--#if defined(__solaris__) || defined(_AIX)
-+#if defined(_AIX)
-         if (errno == EINVAL) {
--            // On Solaris setsockopt will set errno to EINVAL if the socket
-+            // On AIX setsockopt will set errno to EINVAL if the socket
-             // is closed. The default error message is then confusing
-             char fullMsg[128];
-             jio_snprintf(fullMsg, sizeof(fullMsg), "Invalid option or socket reset by remote peer");
-             JNU_ThrowByName(env, JNU_JAVANETPKG "SocketException", fullMsg);
-             return;
-         }
--#endif /* __solaris__ */
-+#endif /* _AIX */
-         JNU_ThrowByNameWithMessageAndLastError
-             (env, JNU_JAVANETPKG "SocketException", "Error setting socket option");
-     }
 --- old/src/java.base/unix/native/libnet/ResolverConfigurationImpl.c	2020-05-20 18:01:26.251729880 -0700
 +++ new/src/java.base/unix/native/libnet/ResolverConfigurationImpl.c	2020-05-20 18:01:25.835721892 -0700
 @@ -28,10 +28,6 @@

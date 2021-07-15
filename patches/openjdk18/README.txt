@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-6
+
+A bunch of Socket stuff appears to have been removed.
+
 18-5
 
 Remove os::bind_to_processor
