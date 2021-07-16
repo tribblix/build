@@ -1,4 +1,5 @@
 P TRIBcompress-lz4
 P TRIBcompress-zstd
 P TRIBlib-security-openssl
+P TRIBpackaging-python-37
 P TRIBv-python-37
