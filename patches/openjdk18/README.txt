@@ -9,6 +9,9 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+Remove unused create_detachall_operation() that the build keeps
+complaining about.
+
 18-6
 
 A bunch of Socket stuff appears to have been removed.
