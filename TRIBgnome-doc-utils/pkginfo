@@ -1,4 +1,4 @@
 PKG="TRIBgnome-doc-utils"
 NAME="GNOME doc utils"
 VERSION="0.20.10.0"
-ZAP_URL="http://ftp.gnome.org/pub/GNOME/sources/gnome-doc-utils/"
+ZAP_URL="https://download.gnome.org/sources/gnome-doc-utils/"

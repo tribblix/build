@@ -1,4 +1,4 @@
 PKG="TRIBgdk-pixbuf"
 NAME="gdk-pixbuf"
 VERSION="2.36.12.1"
-ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/"
+ZAP_URL="https://download.gnome.org/sources/gdk-pixbuf/"

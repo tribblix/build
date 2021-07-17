@@ -1,4 +1,4 @@
 PKG="TRIBlibnotify"
 NAME="Desktop Notification Library"
 VERSION="0.7.7.0"
-ZAP_URL="http://ftp.gnome.org/pub/gnome/sources/libnotify/"
+ZAP_URL="https://download.gnome.org/sources/libnotify/"
