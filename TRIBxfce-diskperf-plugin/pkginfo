@@ -1,4 +1,4 @@
 PKG="TRIBxfce-diskperf-plugin"
 NAME="Xfce disk performance Plugin"
 VERSION="2.6.3.0"
-ZAP_URL="http://goodies.xfce.org/projects/panel-plugins/xfce4-diskperf-plugin"
+ZAP_URL="https://docs.xfce.org/panel-plugins/xfce4-diskperf-plugin/start"
