@@ -5,5 +5,8 @@
 # ensure that libtool isn't installed
 #  zap uninstall libtool
 #
-${THOME}/build/dobuild clamav-0.102.2 -P /opt/tribblix/clamav
-${THOME}/build/genpkg TRIBblix-clamav clamav-0.102.2
+# libjson enables clamsubmit which is optional and we've not shipped
+# in the past
+#
+${THOME}/build/dobuild clamav-0.103.3 -P /opt/tribblix/clamav -C --without-libjson
+${THOME}/build/genpkg TRIBblix-clamav clamav-0.103.3
