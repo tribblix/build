@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-${THOME}/build/unpack asgiref-3.4.1
-cd asgiref-3.4.1
+${THOME}/build/unpack typing_extensions-3.10.0.0
+cd typing_extensions-3.10.0.0
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBasgiref-python-37 /tmp/pil
+${THOME}/build/create_pkg TRIBtypingext-python-37 /tmp/pil
 cd ..
 rm -fr /tmp/pil
