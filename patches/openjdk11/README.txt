@@ -3,7 +3,10 @@ https://github.com/joyent/pkgsrc-joyent/tree/master/openjdk11
 
 All patches -p0
 
-This set of patches for jdk-11.0.8+10
+This set of patches for jdk11u
+
+11.0.12 - remove illumos-cpu_microcode_revision.patch, there's an
+equivalent stub fix applied upstream so we don't need to do it
 
 Removed:
 

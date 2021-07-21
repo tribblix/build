@@ -15,4 +15,4 @@
 +    fi
      # s390x : remove unused code+data in link step
      if test "x$OPENJDK_TARGET_CPU" = xs390x; then
-       BASIC_LDFLAGS="$BASIC_LDFLAGS -Wl,--gc-sections -Wl,--print-gc-sections"
+       BASIC_LDFLAGS="$BASIC_LDFLAGS -Wl,--gc-sections"

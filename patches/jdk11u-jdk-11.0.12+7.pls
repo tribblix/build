@@ -39,5 +39,4 @@
 -p0 openjdk11/tribblix-demangle2.patch
 -p0 openjdk11/tribblix-demangle3.patch
 -p0 openjdk11/tribblix-demangle4.patch
--p1 openjdk11/illumos-cpu_microcode_revision.patch
 -p1 openjdk11/illumos-port-6.patch
