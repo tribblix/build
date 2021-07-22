@@ -341,7 +341,7 @@
  ################################################################################
 --- old/make/autoconf/platform.m4	2020-05-20 17:58:42.328582435 -0700
 +++ new/make/autoconf/platform.m4	2020-05-20 17:58:41.904574294 -0700
-@@ -178,10 +190,6 @@
+@@ -184,10 +196,6 @@
        VAR_OS=linux
        VAR_OS_TYPE=unix
        ;;
@@ -352,7 +352,7 @@
      *darwin*)
        VAR_OS=macosx
        VAR_OS_TYPE=unix
-@@ -452,17 +460,6 @@
+@@ -458,17 +466,6 @@
    fi
    AC_SUBST(OPENJDK_$1_CPU_LEGACY_LIB)
  
@@ -370,7 +370,7 @@
    # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
    OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
    if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -592,9 +587,6 @@
+@@ -598,9 +593,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -380,7 +380,7 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -650,25 +642,9 @@
+@@ -656,25 +648,9 @@
    PLATFORM_SET_MODULE_TARGET_OS_VALUES
    PLATFORM_SET_RELEASE_FILE_OS_VALUES
    PLATFORM_SETUP_LEGACY_VARS
@@ -1504,8 +1504,8 @@
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
 @@ -730,10 +726,6 @@
-           "When true prevents OS-level spurious, or premature, wakeups "    \
-           "from Object.wait (Ignored for Windows)")                         \
+           "(Deprecated) When true prevents OS-level spurious, or premature,"\
+           " wakeups from Object.wait (Ignored for Windows)")                \
                                                                              \
 -  develop(bool, UsePthreads, false,                                         \
 -          "Use pthread-based instead of libthread-based synchronization "   \
