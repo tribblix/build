@@ -8,8 +8,8 @@
 # the tag is 17+xx, the filename is 17-xx
 #
 cd ~/ud
-${THOME}/build/unpack jdk17-jdk-17-31
-cd jdk17-jdk-17-31
+${THOME}/build/unpack jdk17-jdk-17-32
+cd jdk17-jdk-17-32
 
 #
 # jdk17 needs autoconf installed
@@ -44,8 +44,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 # 
 # openjdk version "17-internal" 2021-09-14
-# OpenJDK Runtime Environment (build 17-internal+0-adhoc.ptribble.jdk17-jdk-17-31)
-# OpenJDK 64-Bit Server VM (build 17-internal+0-adhoc.ptribble.jdk17-jdk-17-31, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 17-internal+0-adhoc.ptribble.jdk17-jdk-17-32)
+# OpenJDK 64-Bit Server VM (build 17-internal+0-adhoc.ptribble.jdk17-jdk-17-32, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
