@@ -10,11 +10,12 @@
 #
 # the tag is 16+xx, the filename is 16-xx
 # 16.0.1 GA is build 9 = jdk-16.0.1-9
+# 16.0.2 GA is build 7 = jdk-16.0.2-7
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk16u-jdk-16.0.1-9
-cd jdk16u-jdk-16.0.1-9
+${THOME}/build/unpack jdk16u-jdk-16.0.2-7
+cd jdk16u-jdk-16.0.2-7
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -49,7 +50,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --enable-deprecated-ports=yes \
---with-jobs=4
+--with-jobs=3
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 
@@ -58,10 +59,11 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# 
-# openjdk version "16.0.1-internal" 2021-04-20
-# OpenJDK Runtime Environment (build 16.0.1-internal+0-adhoc.ptribble.jdk16u-jdk-16.0.1-9)
-# OpenJDK 64-Bit Server VM (build 16.0.1-internal+0-adhoc.ptribble.jdk16u-jdk-16.0.1-9, mixed mode, sharing)
+#
+# openjdk version "16.0.2-internal" 2021-07-20
+# OpenJDK Runtime Environment (build 16.0.2-internal+0-adhoc.ptribble.jdk16u-jdk-16.0.2-7)
+# OpenJDK 64-Bit Server VM (build 16.0.2-internal+0-adhoc.ptribble.jdk16u-jdk-16.0.2-7, mixed mode, sharing)
+#
 
 
 rm -fr /tmp/jdk
