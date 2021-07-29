@@ -4227,8 +4227,8 @@
                   " use natives = " + useNatives +
 --- old/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:48.020147849 -0700
 +++ new/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:47.620140168 -0700
-@@ -41,8 +41,6 @@
- @SuppressWarnings("removal")
+@@ -40,8 +40,6 @@
+  */
  public final class FontUtilities {
  
 -    public static boolean isSolaris;
@@ -4236,7 +4236,7 @@
      public static boolean isLinux;
  
      public static boolean isMacOSX;
-@@ -64,7 +62,6 @@
+@@ -67,7 +65,6 @@
              @Override
              public Object run() {
                  String osName = System.getProperty("os.name", "unknownOS");
@@ -4393,7 +4393,7 @@
  
      /* This is intended to be called, and the returned value used,
       * from within a block synchronized on this font object.
-@@ -1045,14 +970,7 @@
+@@ -1049,14 +974,7 @@
              style = Font.ITALIC;
              break;
          case fsSelectionBoldBit:
@@ -4852,7 +4852,7 @@
      static boolean isLinux() {
          return (osname.equals("Linux"));
      }
-@@ -302,7 +298,7 @@
+@@ -303,7 +299,7 @@
                  }
              }
          } else {
@@ -4861,7 +4861,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -486,7 +482,7 @@
+@@ -487,7 +483,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -4870,7 +4870,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -654,7 +650,7 @@
+@@ -658,7 +654,7 @@
                  psuri = printerInfo[1];
              }
          } else {
@@ -4879,7 +4879,7 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
-@@ -873,7 +869,7 @@
+@@ -878,7 +874,7 @@
          ArrayList<String> results = null;
          try {
              final String[] cmd = new String[3];
@@ -4890,7 +4890,7 @@
                  cmd[2] = "env LC_ALL=C " + command;
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.605138318 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.221130945 -0700
-@@ -881,51 +881,25 @@
+@@ -882,51 +882,25 @@
                          isAttributeCategorySupported(JobSheets.class)) {
              ncomps+=1;
          }
@@ -4963,7 +4963,7 @@
          if (IPPPrintService.debugPrint) {
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.629157980 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.293151529 -0700
-@@ -223,31 +223,6 @@
+@@ -220,31 +220,6 @@
          return name;
      }
  
@@ -4995,7 +4995,7 @@
      private PrinterIsAcceptingJobs getPrinterIsAcceptingJobsBSD() {
          if (PrintServiceLookupProvider.cmdIndex ==
              PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -325,9 +300,7 @@
+@@ -322,9 +297,7 @@
      }
  
      private PrinterIsAcceptingJobs getPrinterIsAcceptingJobs() {
@@ -5006,7 +5006,7 @@
              return getPrinterIsAcceptingJobsBSD();
          } else if (PrintServiceLookupProvider.isAIX()) {
              return getPrinterIsAcceptingJobsAIX();
-@@ -354,14 +327,6 @@
+@@ -351,14 +324,6 @@
          }
      }
  
@@ -5021,7 +5021,7 @@
      private QueuedJobCount getQueuedJobCountBSD() {
          if (PrintServiceLookupProvider.cmdIndex ==
              PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -418,9 +383,7 @@
+@@ -415,9 +380,7 @@
      }
  
      private QueuedJobCount getQueuedJobCount() {
@@ -5032,7 +5032,7 @@
              return getQueuedJobCountBSD();
          } else if (PrintServiceLookupProvider.isAIX()) {
              return getQueuedJobCountAIX();
-@@ -429,13 +392,6 @@
+@@ -426,13 +389,6 @@
          }
      }
  
@@ -5046,7 +5046,7 @@
      private PrintServiceAttributeSet getBSDServiceAttributes() {
          PrintServiceAttributeSet attrs = new HashPrintServiceAttributeSet();
          attrs.add(getQueuedJobCountBSD());
-@@ -473,9 +429,7 @@
+@@ -471,9 +427,7 @@
      }
  
      private PrintServiceAttributeSet getDynamicAttributes() {
