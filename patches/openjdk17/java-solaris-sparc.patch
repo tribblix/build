@@ -4531,7 +4531,7 @@
  
      /* This is intended to be called, and the returned value used,
       * from within a block synchronized on this font object.
-@@ -1045,14 +970,7 @@
+@@ -1049,14 +974,7 @@
              style = Font.ITALIC;
              break;
          case fsSelectionBoldBit:
