@@ -9,14 +9,6 @@ ${THOME}/build/genpkg TRIBlibxml2 libxml2-2.9.9
 
 rm -fr /tmp/lxp
 cd libxml2-2.9.9/python
-python setup.py build
-python setup.py install --root=/tmp/lxp
-${THOME}/build/create_pkg TRIBlibxml2-python-27 /tmp/lxp
-python setup.py clean
-cd ../..
-
-rm -fr /tmp/lxp
-cd libxml2-2.9.9/python
 /usr/versions/python-3.7/bin/python3 setup.py build
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/lxp
 ${THOME}/build/create_pkg TRIBlibxml2-python-37 /tmp/lxp
