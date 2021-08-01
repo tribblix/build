@@ -1,2 +1,0 @@
--p1 sudo-bsm_audit.c.patch
--p1 sudo-no-root-mailer.patch
