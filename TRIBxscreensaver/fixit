@@ -1,8 +1,8 @@
 #!/bin/sh
 #
-# has to be setuid root to read the shadow file
+# as of v6, the main prog doesn't need to be setuid, but the auth helper does
 #
-chmod 4511 usr/bin/xscreensaver
+chmod 4511 usr/libexec/xscreensaver/xscreensaver-auth
 
 #
 # fireworkx keeps on dumping core
