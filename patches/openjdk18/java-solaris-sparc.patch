@@ -1256,7 +1256,7 @@
 -
  ifeq ($(call isTargetOs, windows), true)
      BUILD_HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
-     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c
+     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
 @@ -73,9 +73,6 @@
@@ -1597,7 +1597,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -314,12 +314,6 @@
+@@ -313,12 +313,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -1612,7 +1612,7 @@
      JavaThread::cast(this)->stack_overflow_state()->initialize(stack_base(), stack_end());
 --- old/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.698816829 -0700
 +++ new/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.318809532 -0700
-@@ -41,12 +41,6 @@
+@@ -46,12 +46,6 @@
  #include <windows.h>
  #endif
  
@@ -1946,10 +1946,10 @@
  # A list of preferred providers for specific algorithms. These providers will
 --- old/src/java.base/share/native/libjli/jli_util.h	2020-05-20 18:00:56.651161527 -0700
 +++ new/src/java.base/share/native/libjli/jli_util.h	2020-05-20 18:00:56.263154077 -0700
-@@ -104,9 +104,6 @@
+@@ -100,9 +100,6 @@
+ #define JLI_StrNCaseCmp(p1, p2, p3)     strncasecmp((p1), (p2), (p3))
+ #define JLI_Snprintf                    snprintf
  #define JLI_Open                        open
- #define JLI_PutEnv                      putenv
- #define JLI_GetPid                      getpid
 -#ifdef __solaris__
 -#define JLI_Lseek                       llseek
 -#endif
@@ -2101,7 +2101,7 @@
 -
 -        String localDomain = localDomain0();
 -        if (localDomain != null && !localDomain.isEmpty()) {
--            sl = new LinkedList<>();
+-            sl = new ArrayList<>();
 -            sl.add(localDomain);
 -            return sl;
 -        }
