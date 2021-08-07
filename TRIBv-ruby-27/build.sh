@@ -4,5 +4,5 @@
 # disable -fstack-protector otherwise miniruby fails to link with
 # multiply defined symbols
 #
-${THOME}/build/dobuild ruby-2.7.3 -P /usr/versions/ruby-2.7 -C "ac_cv_func_dl_iterate_phdr=no stack_protector=no" -L
-${THOME}/build/genpkg TRIBv-ruby-27 ruby-2.7.3
+${THOME}/build/dobuild ruby-2.7.4 -P /usr/versions/ruby-2.7 -C "ac_cv_func_dl_iterate_phdr=no stack_protector=no" -L
+${THOME}/build/genpkg TRIBv-ruby-27 ruby-2.7.4
