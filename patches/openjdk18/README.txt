@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-10
+
+No changes
+
 18-9
 
 ResolverConfigurationImpl.java uses ArrayList, not LinkedList
