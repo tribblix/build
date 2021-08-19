@@ -9,7 +9,7 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
-18-10
+18-10, 18-11
 
 No changes
 
@@ -43,11 +43,7 @@ gcc to get the linker version when it's actually looking for the as
 version), but it now needs working around. We have the right assembler
 in any case.
 
-18-2
-
-No changes
-
-18-1
+18-1, 18-2
 
 No changes
 
