@@ -1,4 +1,0 @@
-PKG="TRIBcurio-python-37"
-NAME="Python curio"
-VERSION="1.5.0"
-ZAP_URL="https://pypi.org/project/curio"
