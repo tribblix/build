@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# the fixes for Solaris broke gssapi detection on illumos
+# temporarily restore the old configure file
+#
+cp ${PATCHDIR}/configure.bind9 configure
