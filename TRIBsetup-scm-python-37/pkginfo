@@ -1,0 +1,4 @@
+PKG="TRIBsetup-scm-python-37"
+NAME="Python setuptools_scm"
+VERSION="6.0.1.0"
+ZAP_URL="https://pypi.org/project/setuptools_scm"
