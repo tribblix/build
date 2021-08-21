@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack importlib_metadata-2.0.0
-cd importlib_metadata-2.0.0
+${THOME}/build/unpack importlib_metadata-3.10.1
+cd importlib_metadata-3.10.1
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
