@@ -6,8 +6,8 @@
 # other optional packages it can leverage that aren't listed as dependencies
 # rsync rclone ncftp
 #
-${THOME}/build/unpack duplicity-0.8.19
-cd duplicity-0.8.19
+${THOME}/build/unpack duplicity-0.8.20
+cd duplicity-0.8.20
 env PATH=/usr/gnu/bin:$PATH /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 env PATH=/usr/gnu/bin:$PATH /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
