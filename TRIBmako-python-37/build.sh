@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Mako-1.1.4
-cd Mako-1.1.4
+${THOME}/build/unpack Mako-1.1.5
+cd Mako-1.1.5
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
