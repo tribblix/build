@@ -5759,13 +5759,21 @@
 --- old/src/jdk.jlink/share/classes/jdk/tools/jlink/internal/Platform.java	2020-05-20 18:03:35.234206438 -0700
 +++ new/src/jdk.jlink/share/classes/jdk/tools/jlink/internal/Platform.java	2020-05-20 18:03:34.898199985 -0700
 @@ -34,7 +34,6 @@
- public enum Platform {
-     WINDOWS,
-     LINUX,
--    SOLARIS,
-     MACOS,
-     AIX,
-     UNKNOWN;
+     public enum OperatingSystem {
+         WINDOWS,
+         LINUX,
+-        SOLARIS,
+         MACOS,
+         AIX,
+         UNKNOWN;
+@@ -105,7 +104,6 @@
+         OperatingSystem os = switch (osName) {
+             case "win" -> OperatingSystem.WINDOWS;
+             case "lin" -> OperatingSystem.LINUX;
+-            case "sun" -> OperatingSystem.SOLARIS;
+             case "mac" -> OperatingSystem.MACOS;
+             case "aix" -> OperatingSystem.AIX;
+             default    -> OperatingSystem.UNKNOWN;
 --- old/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:36.322227327 -0700
 +++ new/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:35.934219877 -0700
 @@ -85,63 +85,7 @@

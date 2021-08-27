@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-12
+
+Fix src/jdk.jlink/share/classes/jdk/tools/jlink/internal/Platform.java
+
 18-10, 18-11
 
 No changes
