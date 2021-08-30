@@ -5,6 +5,8 @@ cd graudit
 sed -i s:grep:ggrep: graudit
 sed -i s:grep:ggrep: t/t-signaturebugs.sh
 sed -i s:grep:ggrep: t/t-000.sh
+sed -i s:grep:ggrep: t/git-test.sh
+sed -i s:grep:ggrep:g misc/.sh
 sed -i s:nroff:mandoc: Makefile
 sed -i '/git-test/d' Makefile
 sed -i '/configure/d' Makefile
