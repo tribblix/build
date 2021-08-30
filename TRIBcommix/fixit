@@ -4,4 +4,4 @@
 #
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/versions/python-3.7/bin/commix .
+ln -s ../../usr/versions/python-3.9/bin/commix .
