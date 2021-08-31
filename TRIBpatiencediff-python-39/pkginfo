@@ -1,0 +1,4 @@
+PKG="TRIBpatiencediff-python-39"
+NAME="Python patiencediff"
+VERSION="0.2.2.0"
+ZAP_URL="https://pypi.org/project/patiencediff"
