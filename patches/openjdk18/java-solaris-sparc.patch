@@ -301,7 +301,7 @@
              fi
 --- old/make/autoconf/libraries.m4	2020-05-20 17:58:41.188560546 -0700
 +++ new/make/autoconf/libraries.m4	2020-05-20 17:58:40.768552482 -0700
-@@ -121,15 +114,13 @@
+@@ -112,15 +112,13 @@
    BASIC_JVM_LIBS="$LIBM"
  
    # Dynamic loading library
@@ -318,7 +318,7 @@
    fi
  
    # librt for legacy clock_gettime
-@@ -160,12 +151,6 @@
+@@ -151,12 +149,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -331,7 +331,7 @@
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib \
-@@ -183,7 +168,6 @@
+@@ -174,7 +166,6 @@
    AC_SUBST(JVM_LIBS)
    AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
    AC_SUBST(OPENJDK_BUILD_JVM_LIBS)
@@ -410,7 +410,7 @@
  AC_DEFUN_ONCE([PLATFORM_SETUP_OPENJDK_BUILD_OS_VERSION],
 --- old/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.488604709 -0700
 +++ new/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.064596567 -0700
-@@ -85,7 +85,6 @@
+@@ -88,7 +88,6 @@
  COMPILE_TYPE:=@COMPILE_TYPE@
  
  # Legacy support
@@ -418,7 +418,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -484,7 +483,6 @@
+@@ -487,7 +486,6 @@
  
  DISABLE_WARNING_PREFIX := @DISABLE_WARNING_PREFIX@
  CFLAGS_WARNINGS_ARE_ERRORS:=@CFLAGS_WARNINGS_ARE_ERRORS@
@@ -426,7 +426,7 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -534,7 +532,6 @@
+@@ -537,7 +535,6 @@
  # LDFLAGS used to link the jdk native libraries (C-code)
  LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
  JDKLIB_LIBS:=@JDKLIB_LIBS@
@@ -434,7 +434,7 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -751,7 +744,6 @@
+@@ -751,7 +747,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -442,7 +442,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -769,7 +761,6 @@
+@@ -768,7 +764,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -450,7 +450,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -784,7 +775,6 @@
+@@ -783,7 +778,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -1143,7 +1143,7 @@
    if [ "$OPENJDK_TARGET_CPU" = "x86" ]; then
      DIS_DIFF_FILTER="$SED -r \
          -e 's/^  [0-9A-F]{16}: //' \
-@@ -452,14 +445,7 @@
+@@ -446,14 +439,7 @@
      fi
  
      CONTENTS_DIFF_FILE=$WORK_DIR/$ZIP_FILE.diff
@@ -1159,7 +1159,7 @@
  
      ONLY_OTHER=$($GREP "^Only in $OTHER_UNZIPDIR" $CONTENTS_DIFF_FILE)
      ONLY_THIS=$($GREP "^Only in $THIS_UNZIPDIR" $CONTENTS_DIFF_FILE)
-@@ -479,14 +465,8 @@
+@@ -473,14 +459,8 @@
      fi
  
      if [ "$CMP_ZIPS_CONTENTS" = "true" ]; then
@@ -1176,7 +1176,7 @@
  
          # Separate executable/library files from other files in zip.
          DIFFING_TEXT_FILES=
-@@ -823,10 +803,6 @@
+@@ -817,10 +797,6 @@
          # to filter out that extra information.
          $DUMPBIN -exports $OTHER_FILE | $GREP  -E '^ +[0-9A-F]+ +[0-9A-F]+ [0-9A-F]+' | sed 's/ = .*//g' | cut -c27- | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.other
          $DUMPBIN -exports $THIS_FILE  | $GREP  -E '^ +[0-9A-F]+ +[0-9A-F]+ [0-9A-F]+' | sed 's/ = .*//g' | cut -c27- | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.this
@@ -1368,7 +1368,7 @@
  #ifdef __APPLE__
 --- old/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:44.033767220 -0700
 +++ new/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:43.649759847 -0700
-@@ -123,8 +123,6 @@
+@@ -132,8 +132,6 @@
    sigjmp_buf _jmpbuf;
  };
  
@@ -1377,7 +1377,7 @@
  /*
   * This is the platform-specific implementation underpinning
   * the ParkEvent class, which itself underpins Java-level monitor
-@@ -290,6 +288,4 @@
+@@ -299,6 +297,4 @@
    void notify_all();
  };
  
@@ -1514,7 +1514,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1629,10 +1621,8 @@
+@@ -1623,10 +1615,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1527,7 +1527,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1982,8 +1971,7 @@
+@@ -1975,8 +1965,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1573,7 +1573,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -834,10 +834,8 @@
+@@ -835,10 +835,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
