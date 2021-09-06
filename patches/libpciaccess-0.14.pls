@@ -1,1 +1,2 @@
 -p1 scanpci.man.patch
+-p1 libpciaccess-DINFOCPYALL.patch

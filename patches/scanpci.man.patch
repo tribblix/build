@@ -5,7 +5,7 @@ diff -urp -x '*~' -x '*.orig' man/scanpci.man man/scanpci.man
  On most platforms,
  .I scanpci
  can only be run by the root user.
-+On Tribblix it may also be run using the 
++On Tribblix it may also be run using the
 +.I "Desktop Configuration"
 +rights profile.  See \fBrbac\fR(5) and \fBuser_attr\fR(4).
  .SH OPTIONS
