@@ -4409,130 +4409,6 @@
              break;
          case fsSelectionBoldBit|fsSelectionItalicBit:
              style = Font.BOLD|Font.ITALIC;
---- old/src/java.desktop/share/classes/sun/font/TrueTypeGlyphMapper.java	2020-05-20 18:01:51.288210598 -0700
-+++ new/src/java.desktop/share/classes/sun/font/TrueTypeGlyphMapper.java	2020-05-20 18:01:50.952204146 -0700
-@@ -38,7 +38,6 @@
-      * apparently expected there.
-      */
-     static final boolean isJAlocale = Locale.JAPAN.equals(Locale.getDefault());
--    private final boolean needsJAremapping;
- 
-     TrueTypeFont font;
-     CMap cmap;
-@@ -61,11 +60,6 @@
-         } else {
-             handleBadCMAP();
-         }
--        if (FontUtilities.isSolaris && isJAlocale && font.supportsJA()) {
--            needsJAremapping = true;
--        } else {
--            needsJAremapping = false;
--        }
-     }
- 
-     public int getNumGlyphs() {
-@@ -140,62 +134,31 @@
-     }
- 
-     public int charToGlyph(char unicode) {
--        if (needsJAremapping) {
--            unicode = remapJAChar(unicode);
--        }
-         int glyph = getGlyphFromCMAP(unicode);
--        if (font.checkUseNatives() && glyph < font.glyphToCharMap.length) {
--            font.glyphToCharMap[glyph] = unicode;
--        }
-         return glyph;
-     }
- 
-     public int charToGlyph(int unicode) {
--        if (needsJAremapping) {
--            unicode = remapJAIntChar(unicode);
--        }
-         int glyph = getGlyphFromCMAP(unicode);
--        if (font.checkUseNatives() && glyph < font.glyphToCharMap.length) {
--            font.glyphToCharMap[glyph] = (char)unicode;
--        }
-         return glyph;
-     }
- 
-     @Override
-     public int charToVariationGlyph(int unicode, int variationSelector) {
--        if (needsJAremapping) {
--            unicode = remapJAIntChar(unicode);
--        }
-         int glyph = getGlyphFromCMAP(unicode, variationSelector);
--        if (font.checkUseNatives() && glyph < font.glyphToCharMap.length) {
--            font.glyphToCharMap[glyph] = (char)unicode;
--        }
-         return glyph;
-     }
- 
-     public void charsToGlyphs(int count, int[] unicodes, int[] glyphs) {
-         for (int i=0;i<count;i++) {
--            if (needsJAremapping) {
--                glyphs[i] = getGlyphFromCMAP(remapJAIntChar(unicodes[i]));
--            } else {
--                glyphs[i] = getGlyphFromCMAP(unicodes[i]);
--            }
--            if (font.checkUseNatives() &&
--                glyphs[i] < font.glyphToCharMap.length) {
--                font.glyphToCharMap[glyphs[i]] = (char)unicodes[i];
--            }
-+            glyphs[i] = getGlyphFromCMAP(unicodes[i]);
-         }
-     }
- 
-     public void charsToGlyphs(int count, char[] unicodes, int[] glyphs) {
- 
-         for (int i=0; i<count; i++) {
--            int code;
--            if (needsJAremapping) {
--                code = remapJAChar(unicodes[i]);
--            } else {
--                code = unicodes[i]; // char is unsigned.
--            }
-+            int code = unicodes[i]; // char is unsigned.
- 
-             if (code >= HI_SURROGATE_START &&
-                 code <= HI_SURROGATE_END && i < count - 1) {
-@@ -214,11 +177,6 @@
-             }
-             glyphs[i] = getGlyphFromCMAP(code);
- 
--            if (font.checkUseNatives() &&
--                glyphs[i] < font.glyphToCharMap.length) {
--                font.glyphToCharMap[glyphs[i]] = (char)code;
--            }
--
-         }
-     }
- 
-@@ -230,12 +188,7 @@
-     public boolean charsToGlyphsNS(int count, char[] unicodes, int[] glyphs) {
- 
-         for (int i=0; i<count; i++) {
--            int code;
--            if (needsJAremapping) {
--                code = remapJAChar(unicodes[i]);
--            } else {
--                code = unicodes[i]; // char is unsigned.
--            }
-+            int code = unicodes[i]; // char is unsigned.
- 
-             if (code >= HI_SURROGATE_START &&
-                 code <= HI_SURROGATE_END && i < count - 1) {
-@@ -250,10 +203,6 @@
-             }
- 
-             glyphs[i] = getGlyphFromCMAP(code);
--            if (font.checkUseNatives() &&
--                glyphs[i] < font.glyphToCharMap.length) {
--                font.glyphToCharMap[glyphs[i]] = (char)code;
--            }
- 
-             if (code < FontUtilities.MIN_LAYOUT_CHARCODE) {
-                 continue;
 --- old/src/java.desktop/share/classes/sun/font/Type1Font.java	2020-05-20 18:01:52.356231105 -0700
 +++ new/src/java.desktop/share/classes/sun/font/Type1Font.java	2020-05-20 18:01:51.968223655 -0700
 @@ -168,7 +168,6 @@
@@ -4753,7 +4629,7 @@
          return imInfo;
 --- old/src/java.desktop/unix/classes/sun/font/MFontConfiguration.java	2020-05-20 18:02:37.405096076 -0700
 +++ new/src/java.desktop/unix/classes/sun/font/MFontConfiguration.java	2020-05-20 18:02:37.021088702 -0700
-@@ -68,59 +68,7 @@
+@@ -70,59 +70,7 @@
       */
      protected void initReorderMap() {
          reorderMap = new HashMap<>();
@@ -4813,7 +4689,7 @@
          reorderMap.put("UTF-8.ja.JP", "japanese-iso10646");
          reorderMap.put("UTF-8.ko.KR", "korean-iso10646");
          reorderMap.put("UTF-8.zh.TW", "chinese-tw-iso10646");
-@@ -131,12 +79,7 @@
+@@ -133,12 +81,7 @@
          reorderMap.put("GB2312", "chinese-gb18030");
          reorderMap.put("Big5", "chinese-big5");
          reorderMap.put("EUC-KR", "korean");
@@ -4827,7 +4703,7 @@
      }
  
      /**
-@@ -145,10 +88,7 @@
+@@ -147,10 +90,7 @@
      protected void setOsNameAndVersion(){
          super.setOsNameAndVersion();
  
@@ -23514,7 +23390,7 @@
 -}
 --- old/src/java.desktop/solaris/native/libjsound/PLATFORM_API_SolarisOS_PCM.c	2020-05-20 18:10:35.046266971 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,626 +0,0 @@
+@@ -1,627 +0,0 @@
 -/*
 - * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -23593,7 +23469,8 @@
 -    int channelsCount = 2;
 -    /* for querying sample rates */
 -    int err;
--    int ch, b, s;
+-    int ch, b
+-    uint_t s;
 -
 -    TRACE2("DAUDIO_GetFormats, mixer %d, isSource=%d\n", mixerIndex, isSource);
 -    if (getAudioDeviceDescriptionByIndex(mixerIndex, &desc, FALSE)) {

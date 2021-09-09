@@ -9,6 +9,14 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-14
+
+src/java.desktop/share/classes/sun/font/TrueTypeGlyphMapper.java patch
+wouldn't apply; I can't see why Solaris would need to be egregiously
+different here so removed the patch.
+
+Cleaned up a warning in PLATFORM_API_SolarisOS_PCM.c
+
 18-13
 
 A little patch noise.
