@@ -1,7 +1,9 @@
 #!/bin/sh
 #
-# put a link in the regular path
+# clean up and put a link in the regular path
 #
+rm -fr usr/versions/prowler/.git*
+rm -f usr/versions/prowler/.dockerignore
 mkdir -p usr/bin
 cat > usr/bin/prowler <<EOF
 #!/bin/sh
