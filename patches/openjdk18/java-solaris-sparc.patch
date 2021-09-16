@@ -1339,7 +1339,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1221,8 +1215,7 @@
+@@ -1220,8 +1214,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1349,7 +1349,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1471,7 +1430,6 @@
+@@ -1470,7 +1429,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1357,7 +1357,7 @@
  
  // PlatformEvent
  //
-@@ -1901,8 +1859,6 @@
+@@ -1900,8 +1858,6 @@
      return OS_OK;
    }
  }
@@ -1564,7 +1564,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -480,7 +480,7 @@
+@@ -479,7 +479,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -1573,7 +1573,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -835,10 +835,8 @@
+@@ -834,10 +834,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -1643,7 +1643,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -639,12 +639,11 @@
+@@ -638,12 +638,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -9609,7 +9609,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4097 +0,0 @@
+@@ -1,4094 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10321,11 +10321,8 @@
 -    case vm_thread:
 -      thrtyp = (char *)"vm";
 -      break;
--    case cgc_thread:
--      thrtyp = (char *)"cgc";
--      break;
--    case pgc_thread:
--      thrtyp = (char *)"pgc";
+-    case gc_thread:
+-      thrtyp = (char *)"gc";
 -      break;
 -    case java_thread:
 -      thrtyp = (char *)"java";
@@ -23469,7 +23466,7 @@
 -    int channelsCount = 2;
 -    /* for querying sample rates */
 -    int err;
--    int ch, b
+-    int ch, b;
 -    uint_t s;
 -
 -    TRACE2("DAUDIO_GetFormats, mixer %d, isSource=%d\n", mixerIndex, isSource);

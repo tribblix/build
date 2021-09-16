@@ -9,6 +9,11 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-15
+
+cgc_thread and pgc_thread merged into a single gc_thread.
+Fixed a typo in the PLATFORM_API_SolarisOS_PCM.c fix.
+
 18-14
 
 src/java.desktop/share/classes/sun/font/TrueTypeGlyphMapper.java patch
