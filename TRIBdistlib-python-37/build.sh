@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack distlib-0.3.2
-cd distlib-0.3.2
+${THOME}/build/unpack distlib-0.3.3
+cd distlib-0.3.3
 /usr/versions/python-3.7/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.7/bin/python3 setup.py install --root=/tmp/pil
