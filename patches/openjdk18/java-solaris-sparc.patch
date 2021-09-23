@@ -783,7 +783,7 @@
          <os family="unix"/>
 --- old/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.941074214 -0700
 +++ new/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.553066764 -0700
-@@ -196,7 +196,7 @@
+@@ -190,7 +190,7 @@
  
  TARGETS += $(NET_PROPERTIES_DST)
  
@@ -1456,7 +1456,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -438,7 +438,7 @@
+@@ -446,7 +446,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -1564,7 +1564,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -479,7 +479,7 @@
+@@ -477,7 +477,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -1573,7 +1573,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -834,10 +834,8 @@
+@@ -832,10 +832,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -5066,7 +5066,7 @@
  /* All the known interesting locations we have discovered on
   * various flavors of Linux
   */
-@@ -364,14 +311,6 @@
+@@ -230,14 +177,6 @@
          if (strstr(x11Path[i], ".gnome") != NULL) {
              continue;
          }
@@ -5081,7 +5081,7 @@
          fontdirs[pos] = strdup(x11Path[i]);
          slen = strlen(fontdirs[pos]);
          if (slen > 0 && fontdirs[pos][slen-1] == '/') {
-@@ -521,8 +460,6 @@
+@@ -387,8 +326,6 @@
  
  #if defined(__linux__)
      knowndirs = fullLinuxFontPath;
@@ -5090,7 +5090,7 @@
  #elif defined(_AIX)
      knowndirs = fullAixFontPath;
  #endif
-@@ -592,10 +529,6 @@
+@@ -458,10 +395,6 @@
      char *homeEnv;
      static char *homeEnvStr = "HOME="; /* must be static */
      void* libfontconfig = NULL;
@@ -5101,7 +5101,7 @@
  
      /* Private workaround to not use fontconfig library.
       * May be useful during testing/debugging
-@@ -605,21 +538,6 @@
+@@ -473,21 +404,6 @@
          return NULL;
      }
  
@@ -9609,7 +9609,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4094 +0,0 @@
+@@ -1,4081 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -9930,19 +9930,6 @@
 -    Solaris::_pthread_setname_np(pthread_self(), buf);
 -  }
 -}
--
--// Return true if user is running as root.
--
--bool os::have_special_privileges() {
--  static bool init = false;
--  static bool privileges = false;
--  if (!init) {
--    privileges = (getuid() != geteuid()) || (getgid() != getegid());
--    init = true;
--  }
--  return privileges;
--}
--
 -
 -void os::init_system_properties_values() {
 -  // The next steps are taken in the product version:

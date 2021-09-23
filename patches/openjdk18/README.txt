@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-16
+
+os::have_special_privileges has been moved to posix
+
 18-15
 
 cgc_thread and pgc_thread merged into a single gc_thread.
