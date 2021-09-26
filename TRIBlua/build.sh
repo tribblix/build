@@ -2,8 +2,8 @@
 #
 # (chicanery as it doesn't build a shared library by default)
 #
-${THOME}/build/unpack lua-5.3.2
-cd lua-5.3.2
+${THOME}/build/unpack lua-5.3.6
+cd lua-5.3.6
 gmake solaris INSTALL_TOP=/usr INSTALL=/usr/bin/ginstall CC="gcc -fPIC -DPIC -std=gnu99"
 rm -fr /tmp/ll
 gmake install INSTALL_TOP=/tmp/ll/usr INSTALL=/usr/bin/ginstall DESTDIR=/tmp/ll
