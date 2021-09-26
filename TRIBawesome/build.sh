@@ -3,8 +3,8 @@
 # Needs gobject-introspection, fixed for pango
 # Needs TRIBlibxdg-basedir, lua, lgi
 #
-${THOME}/build/unpack awesome-3.5.9
-cd awesome-3.5.9
+${THOME}/build/unpack awesome-4.3
+cd awesome-4.3
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..

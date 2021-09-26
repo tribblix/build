@@ -3,7 +3,9 @@ P TRIBgobject-introspection
 P TRIBlib-desktop-cairo
 P TRIBlib-glib2
 P TRIBlibxcb
+P TRIBlibxcb-xrm
 P TRIBlibxdg-basedir
+P TRIBlibxkbcommon
 P TRIBlua
 P TRIBlua-lgi
 P TRIBstartup-notification
