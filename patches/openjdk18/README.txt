@@ -9,6 +9,17 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-17
+
+There's a Mac-specific change around vfork in
+src/java.base/unix/native/libjava/ProcessImpl_md.c
+I've temporarily simply switched the new __APPLE__ guard for the
+__solaris__ one we had previously; this probably needs closer inspection.
+
+The boot jdk needs to be 17 now.
+
+A number of time related functions have been centralized into os_posix
+
 18-16
 
 os::have_special_privileges has been moved to posix
@@ -80,7 +91,7 @@ rename copy_solaris_x86.inline.hpp to copy_solaris_x86.hpp
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk16 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk17 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \

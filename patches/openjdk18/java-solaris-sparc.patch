@@ -1308,7 +1308,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -469,7 +469,7 @@
+@@ -475,7 +475,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1317,7 +1317,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -487,12 +487,6 @@
+@@ -493,12 +493,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1330,7 +1330,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -900,7 +894,7 @@
+@@ -910,7 +904,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1339,7 +1339,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1220,8 +1214,7 @@
+@@ -1230,8 +1224,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1349,7 +1349,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1470,7 +1429,6 @@
+@@ -1536,7 +1495,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1357,7 +1357,7 @@
  
  // PlatformEvent
  //
-@@ -1900,8 +1858,6 @@
+@@ -1966,8 +1924,6 @@
      return OS_OK;
    }
  }
@@ -1573,7 +1573,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -832,10 +832,8 @@
+@@ -836,10 +836,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -2299,33 +2299,24 @@
  }
  
  static const char*
-@@ -452,7 +445,6 @@
+@@ -452,7 +445,7 @@
  #endif
  
- /* vfork(2) is deprecated on Solaris */
+ /* vfork(2) is deprecated on Darwin */
 -#ifndef __solaris__
++#ifndef __APPLE__
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -471,7 +463,6 @@
-     assert(resultPid != 0);  /* childProcess never returns */
-     return resultPid;
- }
--#endif
- 
- static pid_t
- forkChild(ChildStuff *c) {
-@@ -583,10 +574,8 @@
+@@ -585,7 +576,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
- /* vfork(2) is deprecated on Solaris */
--#ifndef __solaris__
+ /* vfork(2) is deprecated on Darwin*/
+-      #ifndef __solaris__
++      #ifndef __APPLE__
        case MODE_VFORK:
          return vforkChild(c);
--#endif
-       case MODE_FORK:
-         return forkChild(c);
-       case MODE_POSIX_SPAWN:
+       #endif
 --- old/src/java.base/unix/native/libjava/TimeZone_md.c	2020-05-20 18:01:10.467426810 -0700
 +++ new/src/java.base/unix/native/libjava/TimeZone_md.c	2020-05-20 18:01:10.059418975 -0700
 @@ -35,9 +35,6 @@
@@ -9609,7 +9600,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4081 +0,0 @@
+@@ -1,4028 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -9854,10 +9845,6 @@
 -  address base = current_stack_base();
 -  address bottom = align_up(base - size, os::vm_page_size());;
 -  return (size_t)(base - bottom);
--}
--
--struct tm* os::localtime_pd(const time_t* clock, struct tm*  res) {
--  return localtime_r(clock, res);
 -}
 -
 -jint os::Solaris::_os_thread_limit = 0;
@@ -10518,57 +10505,8 @@
 -  return (prev == obsv) ? now : obsv;
 -}
 -
--// Time since start-up in seconds to a fine granularity.
--// Used by VMSelfDestructTimer and the MemProfiler.
--double os::elapsedTime() {
--  return (double)(getTimeNanos() - first_hrtime) / (double)hrtime_hz;
--}
--
--jlong os::elapsed_counter() {
--  return (jlong)(getTimeNanos() - first_hrtime);
--}
--
--jlong os::elapsed_frequency() {
--  return hrtime_hz;
--}
--
--// Return the real, user, and system times in seconds from an
--// arbitrary fixed point in the past.
--bool os::getTimesSecs(double* process_real_time,
--                      double* process_user_time,
--                      double* process_system_time) {
--  struct tms ticks;
--  clock_t real_ticks = times(&ticks);
--
--  if (real_ticks == (clock_t) (-1)) {
--    return false;
--  } else {
--    double ticks_per_second = (double) clock_tics_per_sec;
--    *process_user_time = ((double) ticks.tms_utime) / ticks_per_second;
--    *process_system_time = ((double) ticks.tms_stime) / ticks_per_second;
--    // For consistency return the real time from getTimeNanos()
--    // converted to seconds.
--    *process_real_time = ((double) getTimeNanos()) / ((double) NANOUNITS);
--
--    return true;
--  }
--}
--
--bool os::supports_vtime() { return true; }
--
 -double os::elapsedVTime() {
 -  return (double)gethrvtime() / (double)hrtime_hz;
--}
--
--char * os::local_time_string(char *buf, size_t buflen) {
--  struct tm t;
--  time_t long_time;
--  time(&long_time);
--  localtime_r(&long_time, &t);
--  jio_snprintf(buf, buflen, "%d-%02d-%02d %02d:%02d:%02d",
--               t.tm_year + 1900, t.tm_mon + 1, t.tm_mday,
--               t.tm_hour, t.tm_min, t.tm_sec);
--  return buf;
 -}
 -
 -// DLL functions
