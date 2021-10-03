@@ -1,4 +1,4 @@
 PKG="TRIBasciinema-python-39"
 NAME="Python asciinema"
-VERSION="2.0.2.0"
+VERSION="2.1.0.0"
 ZAP_URL="https://pypi.org/project/asciinema"
