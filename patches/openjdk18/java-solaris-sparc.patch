@@ -1330,7 +1330,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -910,7 +904,7 @@
+@@ -925,7 +919,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1339,7 +1339,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1230,8 +1224,7 @@
+@@ -1245,8 +1239,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1349,7 +1349,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1536,7 +1495,6 @@
+@@ -1551,7 +1510,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1357,7 +1357,7 @@
  
  // PlatformEvent
  //
-@@ -1966,8 +1924,6 @@
+@@ -1981,8 +1939,6 @@
      return OS_OK;
    }
  }
@@ -5251,7 +5251,7 @@
                                      "libgssapi_krb5.so",
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:50.089339623 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:49.705332249 -0700
-@@ -927,8 +927,6 @@
+@@ -926,8 +926,6 @@
              if (name == null) {
                  name = "c:\\winnt\\krb5.ini";
              }
@@ -9600,7 +9600,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4028 +0,0 @@
+@@ -1,4020 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10854,14 +10854,6 @@
 -  }
 -
 -  return NULL;
--}
--
--void* os::dll_lookup(void* handle, const char* name) {
--  return dlsym(handle, name);
--}
--
--void* os::get_default_process_handle() {
--  return (void*)::dlopen(NULL, RTLD_LAZY);
 -}
 -
 -static inline time_t get_mtime(const char* filename) {

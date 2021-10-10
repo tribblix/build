@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-18
+
+os::get_default_process_handle() and os::dll_lookup() moved to posix
+
 18-17
 
 There's a Mac-specific change around vfork in
