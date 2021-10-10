@@ -13,7 +13,7 @@
 #
 chmod -R u+w go
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.17.1.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.17.2.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.17 GOROOT_BOOTSTRAP=/usr/versions/go-1.16 ./all.bash
 cd ..
@@ -23,6 +23,7 @@ tar cf - . | (cd /tmp/gg/usr/versions/go-1.17 ; tar xf -)
 # [need to package godoc and gox]
 # need to not be at a valid GOROOT
 # deprecation warning about go get
+# https://golang.org/doc/go-get-install-deprecation
 mkdir t
 cd t
 env GOROOT=/tmp/gg/usr/versions/go-1.17 GOPATH=`pwd` ../bin/go get golang.org/x/tools/cmd/godoc
