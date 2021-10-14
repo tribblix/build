@@ -418,7 +418,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -487,7 +486,6 @@
+@@ -491,7 +490,6 @@
  
  DISABLE_WARNING_PREFIX := @DISABLE_WARNING_PREFIX@
  CFLAGS_WARNINGS_ARE_ERRORS:=@CFLAGS_WARNINGS_ARE_ERRORS@
@@ -426,7 +426,7 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -537,7 +535,6 @@
+@@ -541,7 +539,6 @@
  # LDFLAGS used to link the jdk native libraries (C-code)
  LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
  JDKLIB_LIBS:=@JDKLIB_LIBS@
@@ -434,7 +434,7 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -751,7 +747,6 @@
+@@ -755,7 +751,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -442,7 +442,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -768,7 +764,6 @@
+@@ -772,7 +768,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -450,7 +450,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -783,7 +778,6 @@
+@@ -787,7 +782,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -1514,7 +1514,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1623,10 +1615,8 @@
+@@ -1627,10 +1619,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1527,7 +1527,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1975,8 +1965,7 @@
+@@ -1979,8 +1969,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1851,7 +1851,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -97,7 +97,7 @@
+@@ -98,7 +98,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -1860,7 +1860,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1620,8 +1620,6 @@
+@@ -1724,8 +1724,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1869,7 +1869,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1683,8 +1681,6 @@
+@@ -1787,8 +1785,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -27860,20 +27860,20 @@
 -  }
 -
 -  // check file magic
--  if (pheader->_magic != CDS_ARCHIVE_MAGIC) {
+-  if (pheader->_generic_header._magic != CDS_ARCHIVE_MAGIC) {
 -    char errMsg[ERR_MSG_SIZE];
 -    sprintf(errMsg, "%s has bad shared archive magic 0x%x, expecting 0x%x",
--            classes_jsa, pheader->_magic, CDS_ARCHIVE_MAGIC);
+-            classes_jsa, pheader->_generic_header._magic, CDS_ARCHIVE_MAGIC);
 -    close(fd);
 -    free(pheader);
 -    THROW_NEW_DEBUGGER_EXCEPTION_(errMsg, 1);
 -  }
 -
 -  // check version
--  if (pheader->_version != CURRENT_CDS_ARCHIVE_VERSION) {
+-  if (pheader->_generic_header._version != CURRENT_CDS_ARCHIVE_VERSION) {
 -    char errMsg[ERR_MSG_SIZE];
 -    sprintf(errMsg, "%s has wrong shared archive version %d, expecting %d",
--                   classes_jsa, pheader->_version, CURRENT_CDS_ARCHIVE_VERSION);
+-                   classes_jsa, pheader->_generic_header._version, CURRENT_CDS_ARCHIVE_VERSION);
 -    close(fd);
 -    free(pheader);
 -    THROW_NEW_DEBUGGER_EXCEPTION_(errMsg, 1);
