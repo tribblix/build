@@ -1,15 +1,16 @@
 #!/bin/tcsh
 #
 # jdk mainline has been migrated to git
-# go to https://github.com/openjdk/jdk17/tags
+# go to https://github.com/openjdk/jdk17u/tags
 #
 
 #
-# the tag is 17+xx, the filename is 17-xx
+# the tag is 17.0.1+xx, the filename is 17-xx
+# for 17.0.1, ga is +12
 #
 cd ~/ud
-${THOME}/build/unpack jdk17-jdk-17-35
-cd jdk17-jdk-17-35
+${THOME}/build/unpack jdk17u-jdk-17.0.1-ga
+cd jdk17u-jdk-17.0.1-ga
 
 #
 # jdk17 needs autoconf installed
