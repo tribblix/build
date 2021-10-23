@@ -1514,7 +1514,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1627,10 +1619,8 @@
+@@ -1624,10 +1616,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1527,7 +1527,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1979,8 +1969,7 @@
+@@ -1976,8 +1966,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1554,7 +1554,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -580,7 +580,6 @@
+@@ -576,7 +576,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -1823,7 +1823,7 @@
  inline int g_isnan(float  f) { return isnan(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700
-@@ -405,14 +405,6 @@
+@@ -407,14 +407,6 @@
  #define NOT_AIX(code) code
  #endif
  

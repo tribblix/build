@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-20
+
+Tiny amount of patch noise
+
 18-19
 
 CDS header, moved one level down under _generic_header
