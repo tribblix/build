@@ -19,13 +19,16 @@
 # wget http://hg.openjdk.java.net/jdk-updates/jdk15u/archive/jdk-15.0.2-ga.tar.bz2
 # ln jdk-15.0.2-ga.tar.bz2 jdk15u-jdk-15.0.2-ga.tar.bz2
 #
-cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk15u/archive/jdk-15.0.3+3.tar.bz2
-ln jdk-15.0.3+3.tar.bz2 jdk15u-jdk-15.0.3+3.tar.bz2
+#cd ${THOME}/tarballs
+#wget http://hg.openjdk.java.net/jdk-updates/jdk15u/archive/jdk-15.0.3+3.tar.bz2
+#ln jdk-15.0.3+3.tar.bz2 jdk15u-jdk-15.0.3+3.tar.bz2
 
+#
+# now on github; 15.0.5 ga is +3
+#
 cd ~/ud
-${THOME}/build/unpack jdk15u-jdk-15.0.3+3
-cd jdk15u-jdk-15.0.3+3
+${THOME}/build/unpack jdk15u-jdk-15.0.5-ga
+cd jdk15u-jdk-15.0.5-ga
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -60,7 +63,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --enable-deprecated-ports=yes \
---with-jobs=4
+--with-jobs=3
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 
@@ -70,9 +73,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 # 
-# openjdk version "15.0.3-internal" 2021-04-20
-# OpenJDK Runtime Environment (build 15.0.3-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.33)
-# OpenJDK 64-Bit Server VM (build 15.0.3-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.33, mixed mode, sharing)
+# openjdk version "15.0.5-internal" 2021-10-19
+# OpenJDK Runtime Environment (build 15.0.5-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.5-ga)
+# OpenJDK 64-Bit Server VM (build 15.0.5-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.5-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

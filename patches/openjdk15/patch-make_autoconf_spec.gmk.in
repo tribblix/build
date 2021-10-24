@@ -30,10 +30,10 @@ Ensure support libraries can be found during build.
 +JLINK = LD_LIBRARY_PATH=$(BUILD_JDK)/lib:$(BUILD_JDK)/lib/jli:$(BUILD_JDK)/lib/server @FIXPATH@ $(JLINK_CMD)
 +JMOD = LD_LIBRARY_PATH=$(BUILD_JDK)/lib:$(BUILD_JDK)/lib/jli:$(BUILD_JDK)/lib/server @FIXPATH@ $(JMOD_CMD) $(JAVA_TOOL_FLAGS_SMALL)
  JARSIGNER=@FIXPATH@ $(JARSIGNER_CMD)
- # A specific java binary with specific options can be used to run
- # the long running background sjavac servers and other long running tasks.
-@@ -645,8 +645,8 @@ JAVAC_FLAGS?=@JAVAC_FLAGS@
  
+ BUILD_JAVA_FLAGS := @BOOTCYCLE_JVM_ARGS_BIG@
+@@ -645,8 +645,8 @@ JAVAC_FLAGS?=@JAVAC_FLAGS@
+ JARSIGNER=@FIXPATH@ $(JARSIGNER_CMD)
  
  BUILD_JAVA_FLAGS := @BOOTCYCLE_JVM_ARGS_BIG@
 -BUILD_JAVA=@FIXPATH@ $(BUILD_JDK)/bin/java $(BUILD_JAVA_FLAGS)
@@ -41,5 +41,5 @@ Ensure support libraries can be found during build.
 +BUILD_JAVA=LD_LIBRARY_PATH=$(BUILD_JDK)/lib:$(BUILD_JDK)/lib/jli:$(BUILD_JDK)/lib/server @FIXPATH@ $(BUILD_JDK)/bin/java $(BUILD_JAVA_FLAGS)
 +BUILD_JAR=LD_LIBRARY_PATH=$(BUILD_JDK)/lib:$(BUILD_JDK)/lib/jli:$(BUILD_JDK)/lib/server @FIXPATH@ $(BUILD_JDK)/bin/jar
  
- # Interim langtools and rmic modules and arguments
+ # Interim langtools modules and arguments
  INTERIM_LANGTOOLS_BASE_MODULES := java.compiler jdk.compiler jdk.javadoc

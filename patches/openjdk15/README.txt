@@ -20,6 +20,12 @@ This set currently based on jdk-15+33
 
 openjdk15 fixes (besides fixing line number noise)
 
+15.0.5
+
+Quite a lot of patch noise and failures here.
+If patch noise was studio, just delete the patch entirely; some
+rationalisation was beneficial.
+
 NOTE:
 
 make/hotspot/lib/CompileDtraceLibraries.gmk
@@ -86,6 +92,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-toolchain-type=gcc \
 --disable-dtrace \
 --disable-warnings-as-errors \
---enable-deprecated-ports=yes
+--enable-deprecated-ports=yes \
+--with-jobs=3
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all

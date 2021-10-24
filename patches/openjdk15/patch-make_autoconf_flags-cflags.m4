@@ -18,11 +18,11 @@ Support for SunOS/gcc.
  
    elif test "x$TOOLCHAIN_TYPE" = xclang; then
      C_FLAG_REORDER=''
-@@ -445,6 +450,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
+@@ -440,6 +445,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
  
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE -D_REENTRANT"
 +    ALWAYS_DEFINES_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
    elif test "x$TOOLCHAIN_TYPE" = xclang; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE"
-   elif test "x$TOOLCHAIN_TYPE" = xsolstudio; then
+   elif test "x$TOOLCHAIN_TYPE" = xxlc; then
