@@ -7,5 +7,5 @@
 -    CFLAGS_solaris := -KPIC, \
 +    CFLAGS_solaris := -fPIC, \
      CFLAGS_macosx := -fPIC, \
-     LDFLAGS := $(UNPACKEXE_ZIPOBJS) \
-         $(LDFLAGS_JDKEXE) $(LDFLAGS_CXX_JDK) \
+     DISABLED_WARNINGS_clang := format-nonliteral, \
+     LDFLAGS := $(LDFLAGS_JDKEXE) $(LDFLAGS_CXX_JDK) \

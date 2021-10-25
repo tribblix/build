@@ -3,7 +3,10 @@ my openjdk12 set.
 
 All patches -p0
 
-This current set for 13.0.3+3
+13.0.9
+A reasonable amount of patch noise.
+
+Need to add illumos-port-6.patch
 
 JDK13:
 openjdk13 fixes (besides fixing line number noise)

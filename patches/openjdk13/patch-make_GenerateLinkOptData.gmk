@@ -11,4 +11,4 @@ Ensure java libraries can be found during build.
 +	LD_LIBRARY_PATH=$(INTERIM_IMAGE_DIR)/lib:$(INTERIM_IMAGE_DIR)/lib/jli \
  	$(FIXPATH) $(INTERIM_IMAGE_DIR)/bin/java -XX:DumpLoadedClassList=$@.raw \
  	    -Djava.lang.invoke.MethodHandle.TRACE_RESOLVE=true \
- 	    -cp $(SUPPORT_OUTPUTDIR)/classlist.jar \
+ 	    -Duser.language=en -Duser.country=US \

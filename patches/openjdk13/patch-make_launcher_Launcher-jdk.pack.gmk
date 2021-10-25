@@ -12,5 +12,5 @@ Support for SunOS/gcc.
    LDFLAGS_JDKEXE += -Wl,--exclude-libs,ALL
 + endif
  else ifeq ($(TOOLCHAIN_TYPE), clang)
-   ifneq ($(OPENJDK_TARGET_OS), macosx)
+   ifeq ($(call isTargetOs, macosx), false)
      CXXFLAGS_JDKEXE += -fvisibility=hidden

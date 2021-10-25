@@ -6,6 +6,6 @@
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -ldl -ldemangle -lthread -lproc, \
 +    LIBS_solaris := -ldl -lstdc++ -lthread -lproc, \
-     LIBS_macosx := -framework Foundation -framework JavaNativeFoundation \
+     LIBS_macosx := -framework Foundation \
          -framework JavaRuntimeSupport -framework Security -framework CoreFoundation, \
      LIBS_windows := dbgeng.lib, \
