@@ -12,7 +12,7 @@ Support SunOS/gcc.  XXX: retain solstudio support.
      CFLAGS_windows := -DCMS_IS_WINDOWS_, \
      EXTRA_HEADER_DIRS := \
          common/awt/debug \
-@@ -565,7 +564,11 @@ ifneq (, $(findstring $(OPENJDK_TARGET_O
+@@ -552,7 +551,11 @@ ifneq (, $(findstring $(OPENJDK_TARGET_O
      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
    endif
    ifeq ($(OPENJDK_TARGET_OS), solaris)
