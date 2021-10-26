@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack principalmapper-1.1.3
-cd principalmapper-1.1.3
+${THOME}/build/unpack principalmapper-1.1.4
+cd principalmapper-1.1.4
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
