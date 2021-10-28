@@ -1514,7 +1514,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1624,10 +1616,8 @@
+@@ -1628,10 +1620,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1527,7 +1527,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1976,8 +1966,7 @@
+@@ -1980,8 +1970,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2329,7 +2329,7 @@
  
  #include "jvm.h"
  #include "TimeZone_md.h"
-@@ -52,11 +49,9 @@
+@@ -53,11 +50,9 @@
    } while((_result == -1) && (errno == EINTR)); \
  } while(0)
  
@@ -2341,7 +2341,7 @@
  
  #if defined(_ALLBSD_SOURCE)
  #define stat64 stat
-@@ -80,7 +75,7 @@
+@@ -81,7 +76,7 @@
  static const char *ETC_ENVIRONMENT_FILE = "/etc/environment";
  #endif
  
@@ -2349,8 +2349,8 @@
 +#if defined(__linux__) || defined(MACOSX)
  
  /*
-  * Returns a pointer to the zone ID portion of the given zoneinfo file
-@@ -164,13 +159,6 @@
+  * remove repeated path separators ('/') in the given 'path'.
+@@ -192,13 +187,6 @@
           */
          if ((strcmp(dp->d_name, "ROC") == 0)
              || (strcmp(dp->d_name, "posixrules") == 0)
@@ -2364,7 +2364,7 @@
              || (strcmp(dp->d_name, "localtime") == 0)) {
              continue;
          }
-@@ -242,8 +230,6 @@
+@@ -270,8 +258,6 @@
      return possibleMatch;
  }
  
@@ -2373,7 +2373,7 @@
  /*
   * Performs Linux specific mapping and returns a zone ID
   * if found. Otherwise, NULL is returned.
-@@ -353,311 +339,6 @@
+@@ -383,311 +369,6 @@
      return tz;
  }
  
@@ -2685,7 +2685,7 @@
  #elif defined(_AIX)
  
  static char *
-@@ -824,15 +505,6 @@
+@@ -854,15 +535,6 @@
              free((void *) freetz);
          }
  #else
@@ -2701,7 +2701,7 @@
          if (freetz == NULL) {
              /* strdup if we are still working on getenv result. */
              javatz = strdup(tz);
-@@ -890,19 +562,7 @@
+@@ -920,19 +592,7 @@
  {
      time_t offset;
      char sign, buf[32];
@@ -4237,7 +4237,7 @@
  
 --- old/src/java.desktop/share/classes/sun/font/SunFontManager.java	2020-05-20 18:01:49.092168433 -0700
 +++ new/src/java.desktop/share/classes/sun/font/SunFontManager.java	2020-05-20 18:01:48.704160983 -0700
-@@ -448,24 +448,6 @@
+@@ -442,24 +442,6 @@
                      registerFontDirs(extraFontPath);
                  }
  
@@ -4262,7 +4262,7 @@
                  initCompositeFonts(fontConfig, null);
  
                  return null;
-@@ -2084,33 +2066,6 @@
+@@ -2062,33 +2044,6 @@
              }
          }
  
@@ -15728,7 +15728,7 @@
 -#endif // OS_CPU_SOLARIS_X86_OS_SOLARIS_X86_INLINE_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/prefetch_solaris_x86.inline.hpp	2020-05-20 18:10:03.249656511 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,48 +0,0 @@
+@@ -1,42 +0,0 @@
 -/*
 - * Copyright (c) 2003, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15758,28 +15758,22 @@
 -
 -#include "runtime/prefetch.hpp"
 -
--extern "C" {
--  void _Prefetch_read (void *loc, intx interval);
--  void _Prefetch_write(void *loc, intx interval);
--}
--
--inline void Prefetch::read (void *loc, intx interval) {
+-inline void Prefetch::read (const void *loc, intx interval) {
 -#ifdef AMD64
--  _Prefetch_read(loc, interval);
+-  __asm__ ("prefetcht0 (%0,%1,1)" : : "r" (loc), "r" (interval));
 -#endif // AMD64
 -}
 -
--// Use of this method should be gated by VM_Version::has_prefetchw.
 -inline void Prefetch::write(void *loc, intx interval) {
 -#ifdef AMD64
--  _Prefetch_write(loc, interval);
+-  __asm__ ("prefetcht0 (%0,%1,1)" : : "r" (loc), "r" (interval));
 -#endif // AMD64
 -}
 -
 -#endif // OS_CPU_SOLARIS_X86_PREFETCH_SOLARIS_X86_INLINE_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/solaris_x86_64.il	2020-05-20 18:10:03.997670872 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,139 +0,0 @@
+@@ -1,127 +0,0 @@
 -//
 -// Copyright (c) 2004, 2015, Oracle and/or its affiliates. All rights reserved.
 -// DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15906,18 +15900,6 @@
 -      .inline _raw_swap_u8,1
 -      movq     %rdi, %rax
 -      bswapq   %rax
--      .end
--
--  // Support for void Prefetch::read
--      .inline _Prefetch_read,2
--      prefetcht0 (%rdi, %rsi, 1)
--      .end
--
--  // Support for void Prefetch::write
--  // We use prefetcht0 because em64t doesn't support prefetchw.
--  // prefetchw is a 3dnow instruction.
--      .inline _Prefetch_write,2
--      prefetcht0 (%rdi, %rsi, 1)
 -      .end
 --- old/src/hotspot/os_cpu/solaris_x86/solaris_x86_64.S	2020-05-20 18:10:04.733685002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700

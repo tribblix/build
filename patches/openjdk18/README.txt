@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-21
+
+Tidy up prefetch_solaris_x86.inline.hpp
+
 18-20
 
 Tiny amount of patch noise
