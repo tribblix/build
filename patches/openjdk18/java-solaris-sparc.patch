@@ -1308,7 +1308,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -475,7 +475,7 @@
+@@ -476,7 +476,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1317,7 +1317,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -493,12 +493,6 @@
+@@ -494,12 +494,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1330,7 +1330,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -925,7 +919,7 @@
+@@ -926,7 +920,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1339,7 +1339,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1245,8 +1239,7 @@
+@@ -1246,8 +1240,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1349,7 +1349,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1551,7 +1510,6 @@
+@@ -1552,7 +1511,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1357,7 +1357,7 @@
  
  // PlatformEvent
  //
-@@ -1981,8 +1939,6 @@
+@@ -1982,8 +1940,6 @@
      return OS_OK;
    }
  }
@@ -1514,7 +1514,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1628,10 +1620,8 @@
+@@ -1625,10 +1617,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1527,7 +1527,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1980,8 +1970,7 @@
+@@ -1977,8 +1967,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1554,7 +1554,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -576,7 +576,6 @@
+@@ -583,7 +583,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -1573,7 +1573,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -836,10 +836,8 @@
+@@ -833,10 +833,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -4719,7 +4719,7 @@
      static boolean isLinux() {
          return (osname.equals("Linux"));
      }
-@@ -303,7 +299,7 @@
+@@ -307,7 +303,7 @@
                  }
              }
          } else {
@@ -4728,7 +4728,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -487,7 +483,7 @@
+@@ -491,7 +487,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -4737,7 +4737,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -658,7 +654,7 @@
+@@ -662,7 +658,7 @@
                  psuri = printerInfo[1];
              }
          } else {
@@ -4746,7 +4746,7 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
-@@ -878,7 +874,7 @@
+@@ -882,7 +878,7 @@
          ArrayList<String> results = null;
          try {
              final String[] cmd = new String[3];
