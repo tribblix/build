@@ -15,7 +15,8 @@
 # https://forum.palemoon.org/viewtopic.php?f=5&t=27369
 # mkdir palemoon-source
 # cd palemoon-source
-# $THOME/build/unpack palemoon-29.4.1-source
+# $THOME/build/unpack palemoon-29.4.2-source
+# cp $THOME/build/patches/palemoon.mozconfig .mozconfig
 #
 # ./mach build
 # ./mach package
@@ -27,9 +28,9 @@
 # but I've found that doesn't work
 #
 # This will create a tarball
-#   palemoon-29.4.1.solaris2.11-x86_64-illumos.tar.xz
+#   palemoon-29.4.2.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-29.4.1.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-29.4.2.solaris2.11-x86_64-illumos
