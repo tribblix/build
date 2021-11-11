@@ -9,6 +9,10 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-23
+
+Fix src/hotspot/share/cds/classListParser.cpp
+
 18-22
 
 Tiny amount of patch noise
