@@ -9,6 +9,8 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+Tidy up, remove SPARC_WORKS
+
 18-23
 
 Fix src/hotspot/share/cds/classListParser.cpp

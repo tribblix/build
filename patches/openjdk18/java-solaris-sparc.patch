@@ -14701,7 +14701,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ORDERACCESS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2020-05-20 18:10:01.145616115 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,927 +0,0 @@
+@@ -1,919 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -14970,27 +14970,19 @@
 -  return frame(fr->sender_sp(), fr->link(), fr->sender_pc());
 -}
 -
--#ifdef SPARC_WORKS
--extern "C" intptr_t *_get_current_sp();  // in .il file
--#else
 -extern "C" intptr_t *_get_current_sp() {
 -  register intptr_t *rsp __asm__ ("rsp");
 -  return rsp;
 -}
--#endif
 -
 -address os::current_stack_pointer() {
 -  return (address)_get_current_sp();
 -}
 -
--#ifdef SPARC_WORKS
--extern "C" intptr_t *_get_current_fp();  // in .il file
--#else
 -extern "C" intptr_t *_get_current_fp() {
 -  register intptr_t **rbp __asm__ ("rbp");
 -  return (intptr_t*) *rbp;
 -}
--#endif
 -
 -frame os::current_frame() {
 -  intptr_t* fp = _get_current_fp();  // it's inlined so want current fp
@@ -15773,7 +15765,7 @@
 -#endif // OS_CPU_SOLARIS_X86_PREFETCH_SOLARIS_X86_INLINE_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/solaris_x86_64.il	2020-05-20 18:10:03.997670872 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,127 +0,0 @@
+@@ -1,115 +0,0 @@
 -//
 -// Copyright (c) 2004, 2015, Oracle and/or its affiliates. All rights reserved.
 -// DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15804,18 +15796,6 @@
 -  // Get the raw thread ID from %gs:0
 -      .inline _raw_thread_id,0
 -      movq     %fs:0, %rax
--      .end
--
--  // Get current sp
--      .inline _get_current_sp,0
--      .volatile
--      movq     %rsp, %rax
--      .end
--
--  // Get current fp
--      .inline _get_current_fp,0
--      .volatile
--      movq     %rbp, %rax
 -      .end
 -
 -  // Support for os::rdtsc()
