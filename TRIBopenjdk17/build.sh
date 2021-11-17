@@ -27,8 +27,11 @@ zap install autoconf
 # we're recognized as solaris, JEP 362 deprecated the solaris and sparc
 # ports, so we need to explicitly re-enable it
 #
+# use jdk17 as the boot jdk, it's LTS so we don't depend on the
+# unsupported jdk16
+#
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk16 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk17 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
