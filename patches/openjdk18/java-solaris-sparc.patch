@@ -1415,7 +1415,7 @@
  #endif
 --- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
-@@ -451,8 +451,6 @@
+@@ -452,8 +452,6 @@
      case lir_monaddr:        // input and result always valid, info always invalid
      case lir_null_check:     // input and info always valid, result always invalid
      case lir_move:           // input and result always valid, may have info
@@ -1424,7 +1424,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1662,8 +1660,6 @@
+@@ -1663,8 +1661,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1435,7 +1435,7 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -919,8 +919,6 @@
+@@ -947,8 +947,6 @@
        , lir_monaddr
        , lir_roundfp
        , lir_safepoint
@@ -1444,7 +1444,7 @@
        , lir_unwind
    , end_op1
    , begin_op2
-@@ -2108,9 +2106,6 @@
+@@ -2136,9 +2134,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1492,7 +1492,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -685,10 +685,6 @@
+@@ -682,10 +682,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -1503,7 +1503,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -730,10 +726,6 @@
+@@ -727,10 +723,6 @@
            "(Deprecated) When true prevents OS-level spurious, or premature,"\
            " wakeups from Object.wait (Ignored for Windows)")                \
                                                                              \
@@ -1514,7 +1514,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1625,10 +1617,8 @@
+@@ -1622,10 +1614,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1527,7 +1527,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1977,8 +1967,7 @@
+@@ -1974,8 +1964,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1554,7 +1554,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -583,7 +583,6 @@
+@@ -584,7 +584,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -1597,7 +1597,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -313,12 +313,6 @@
+@@ -311,12 +311,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -1958,7 +1958,7 @@
  #define JLI_Lseek                       lseek64
 --- old/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.667181035 -0700
 +++ new/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.335174660 -0700
-@@ -81,7 +81,6 @@
+@@ -82,7 +82,6 @@
      /* check if SO_REUSEPORT is supported on this platform */
      REUSEPORT_available = reuseport_supported();
      platformInit();
@@ -1968,7 +1968,7 @@
  }
 --- old/src/java.base/share/native/libnet/net_util.h	2020-05-20 18:00:58.723201311 -0700
 +++ new/src/java.base/share/native/libnet/net_util.h	2020-05-20 18:00:58.339193938 -0700
-@@ -148,8 +148,6 @@
+@@ -147,8 +147,6 @@
  
  void platformInit();
  
@@ -2924,7 +2924,7 @@
      return &sact[sig];
 --- old/src/java.base/unix/native/libnet/Inet4AddressImpl.c	2020-05-20 18:01:21.071630418 -0700
 +++ new/src/java.base/unix/native/libnet/Inet4AddressImpl.c	2020-05-20 18:01:20.691623121 -0700
-@@ -64,27 +64,8 @@
+@@ -66,27 +66,8 @@
      if (gethostname(hostname, sizeof(hostname)) != 0) {
          strcpy(hostname, "localhost");
      } else {
@@ -2954,7 +2954,7 @@
  }
 --- old/src/java.base/unix/native/libnet/Inet6AddressImpl.c	2020-05-20 18:01:22.055649312 -0700
 +++ new/src/java.base/unix/native/libnet/Inet6AddressImpl.c	2020-05-20 18:01:21.719642860 -0700
-@@ -65,27 +65,8 @@
+@@ -67,27 +67,8 @@
      if (gethostname(hostname, sizeof(hostname)) != 0) {
          strcpy(hostname, "localhost");
      } else {
