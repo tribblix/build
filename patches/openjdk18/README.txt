@@ -9,6 +9,11 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
+18-25
+
+Minor patch noise. The Foreign Function & Memory incubator doesn't
+seem to have broken anything.
+
 18-24
 
 Add the 3 extra patches from omnios that fix up the signal handling

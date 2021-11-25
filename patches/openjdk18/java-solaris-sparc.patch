@@ -166,7 +166,7 @@
    AC_SUBST(TAR_INCLUDE_PARAM)
    AC_SUBST(TAR_SUPPORTS_TRANSFORM)
  ])
-@@ -408,8 +399,6 @@
+@@ -416,8 +407,6 @@
        fi
      fi
      UTIL_REQUIRE_PROGS(SETFILE, SetFile)
@@ -249,7 +249,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xaix; then
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -265,7 +265,7 @@
+@@ -271,7 +271,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -258,7 +258,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -278,7 +278,7 @@
+@@ -284,7 +284,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -1435,7 +1435,7 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -947,8 +947,6 @@
+@@ -938,8 +938,6 @@
        , lir_monaddr
        , lir_roundfp
        , lir_safepoint
@@ -1444,7 +1444,7 @@
        , lir_unwind
    , end_op1
    , begin_op2
-@@ -2136,9 +2134,6 @@
+@@ -2127,9 +2125,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
