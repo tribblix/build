@@ -3,8 +3,8 @@
 # depends on python
 # needs the gnureadline module
 #
-${THOME}/build/unpack commix-3.2
-cd commix-3.2
+${THOME}/build/unpack commix-3.3
+cd commix-3.3
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/ckx
