@@ -3,8 +3,8 @@
 # entertainingly, the python module has a filename clash
 # with the regular protobuf download
 #
-${THOME}/build/unpack protobuf-3.13.0
-cd protobuf-3.13.0
+${THOME}/build/unpack protobuf-3.19.1
+cd protobuf-3.19.1
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
