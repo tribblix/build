@@ -1259,7 +1259,7 @@
      BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -73,9 +73,6 @@
+@@ -75,9 +75,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1424,7 +1424,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1663,8 +1661,6 @@
+@@ -1680,8 +1678,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1435,16 +1435,16 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -938,8 +938,6 @@
+@@ -939,8 +939,6 @@
        , lir_monaddr
        , lir_roundfp
        , lir_safepoint
 -      , lir_pack64
 -      , lir_unpack64
        , lir_unwind
+       , lir_load_klass
    , end_op1
-   , begin_op2
-@@ -2127,9 +2125,6 @@
+@@ -2149,9 +2147,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1627,7 +1627,7 @@
  
 --- old/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -86,11 +86,9 @@
+@@ -87,11 +87,9 @@
  #include "services/threadStackTracker.hpp"
  #include "services/virtualMemoryTracker.hpp"
  
@@ -1643,7 +1643,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -638,12 +638,11 @@
+@@ -636,12 +636,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
