@@ -331,14 +331,6 @@
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib \
-@@ -174,7 +166,6 @@
-   AC_SUBST(JVM_LIBS)
-   AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
-   AC_SUBST(OPENJDK_BUILD_JVM_LIBS)
--  AC_SUBST(GLOBAL_LIBS)
- ])
- 
- ################################################################################
 --- old/make/autoconf/platform.m4	2020-05-20 17:58:42.328582435 -0700
 +++ new/make/autoconf/platform.m4	2020-05-20 17:58:41.904574294 -0700
 @@ -184,10 +196,6 @@
@@ -426,14 +418,6 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -543,7 +541,6 @@
- # LDFLAGS used to link the jdk native libraries (C-code)
- LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
- JDKLIB_LIBS:=@JDKLIB_LIBS@
--GLOBAL_LIBS:=@GLOBAL_LIBS@
- 
- # LDFLAGS used to link the jdk native launchers (C-code)
- LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
 @@ -757,7 +753,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
@@ -449,14 +433,6 @@
 -TAR_CREATE_EXTRA_PARAM:=@TAR_CREATE_EXTRA_PARAM@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
- 
-@@ -789,7 +784,6 @@
- VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
- MSVCP_DLL:=@MSVCP_DLL@
- UCRT_DLL_DIR:=@UCRT_DLL_DIR@
--STLPORT_LIB:=@STLPORT_LIB@
- ENABLE_PANDOC:=@ENABLE_PANDOC@
- PANDOC_MARKDOWN_FLAG:=@PANDOC_MARKDOWN_FLAG@
  
 --- old/make/autoconf/toolchain.m4	2020-05-20 17:58:44.612626291 -0700
 +++ new/make/autoconf/toolchain.m4	2020-05-20 17:58:44.216618687 -0700
@@ -524,33 +500,6 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).debuginfo
            # Setup the command line creating debuginfo files, to be run after linking.
            # It cannot be run separately since it updates the original target file
-@@ -1121,7 +1103,7 @@
-     endif
- 
-     $1_VARDEPS := $$($1_LD) $$($1_SYSROOT_LDFLAGS) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) \
--        $$(GLOBAL_LIBS) $$($1_LIBS) $$($1_EXTRA_LIBS) $$($1_MT) \
-+        $$($1_LIBS) $$($1_EXTRA_LIBS) $$($1_MT) \
-         $$($1_CREATE_DEBUGINFO_CMDS) $$($1_MANIFEST_VERSION) \
-         $$($1_STRIP_CMD)
-     $1_VARDEPS_FILE := $$(call DependOnVariable, $1_VARDEPS, \
-@@ -1180,7 +1162,7 @@
- 
- 		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
- 		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
--		          $(LD_OUT_OPTION)$$($1_TARGET) $$($1_LD_OBJ_ARG) $$($1_RES) $$(GLOBAL_LIBS) \
-+		          $(LD_OUT_OPTION)$$($1_TARGET) $$($1_LD_OBJ_ARG) $$($1_RES) \
- 		          $$($1_LIBS) $$($1_EXTRA_LIBS)) \
- 		      | $(GREP) -v "^   Creating library .*\.lib and object .*\.exp" || \
- 		          test "$$$$?" = "1" ; \
-@@ -1193,7 +1175,7 @@
- 		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
- 		      $$(if $$($1_LINK_OBJS_RELATIVE), $$(CD) $$(OUTPUTDIR) ; ) \
- 		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
--		          $(LD_OUT_OPTION)$$($1_TARGET) $$($1_LD_OBJ_ARG) $$($1_RES) $$(GLOBAL_LIBS) \
-+		          $(LD_OUT_OPTION)$$($1_TARGET) $$($1_LD_OBJ_ARG) $$($1_RES) \
- 		          $$($1_LIBS) $$($1_EXTRA_LIBS)) ; \
- 		  $$($1_CREATE_DEBUGINFO_CMDS)
- 		  $$($1_STRIP_CMD)
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
 @@ -152,7 +150,6 @@
@@ -743,23 +692,6 @@
  else ifeq ($(call isTargetOs, macosx), true)
    # nm on macosx prints out "warning: nm: no name list" to stderr for
    # files without symbols. Hide this, even at the expense of hiding real errors.
---- old/make/hotspot/test/GtestImage.gmk	2020-05-20 17:59:02.544970605 -0700
-+++ new/make/hotspot/test/GtestImage.gmk	2020-05-20 17:59:02.160963232 -0700
-@@ -56,14 +56,4 @@
-   )
- endif
- 
--ifeq ($(call isTargetOs, solaris), true)
--  $(foreach v, $(JVM_VARIANTS), \
--    $(eval $(call SetupCopyFiles, COPY_GTEST_STLPORT_$v, \
--        DEST := $(TEST_IMAGE_DIR)/hotspot/gtest/$v, \
--        FILES := $(STLPORT_LIB), \
--    )) \
--    $(eval TARGETS += $$(COPY_GTEST_STLPORT_$v)) \
--  )
--endif
--
- all: $(TARGETS)
 --- old/make/ide/visualstudio/hotspot/CreateVSProject.gmk	2020-05-20 17:59:05.797033047 -0700
 +++ new/make/ide/visualstudio/hotspot/CreateVSProject.gmk	2020-05-20 17:59:05.409025597 -0700
 @@ -76,7 +76,6 @@
