@@ -9,7 +9,7 @@ Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
 
 JDK18:
 
-18-26
+18-26, 18-27
 
 Tiny amount of patch noise
 
