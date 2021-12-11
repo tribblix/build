@@ -1,0 +1,4 @@
+PKG="TRIBcharset-norm-python-37"
+NAME="Python charset-normalizer"
+VERSION="2.0.9.0"
+ZAP_URL="https://pypi.org/project/charset-normalizer"
