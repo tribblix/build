@@ -1,0 +1,4 @@
+PKG="TRIBleftwm"
+NAME="LeftWM - A tiling window manager for Adventurers"
+VERSION="0.3.0.0"
+ZAP_URL="http://leftwm.org/"
