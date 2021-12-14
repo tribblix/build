@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-VERSION=9.2.20.0
+VERSION=9.2.20.1
 #
 # make default
 #
@@ -27,12 +27,6 @@ rm -fr lib/jni/*Linux
 rm -fr lib/jni/*BSD
 rm -fr lib/jni/*AIX
 rm -fr lib/jni/Darwin
-#
-# We need to fix the jruby script as the Solaris/illumos
-# basename in /usr/bin is utter bilge. Either the xpg4 or
-# the gnu version is fine, both are in the base overlay.
-#
-gsed -i 's:basename:/usr/xpg4/bin/basename:g' bin/jruby
 #
 # build nailgun
 #
