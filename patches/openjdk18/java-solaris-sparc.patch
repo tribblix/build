@@ -5284,7 +5284,7 @@
  }
 --- old/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.697524107 -0700
 +++ new/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.357517578 -0700
-@@ -696,15 +696,10 @@
+@@ -711,15 +711,10 @@
          lib = expand(lib);
          int i = lib.indexOf("/$ISA/");
          if (i != -1) {

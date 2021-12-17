@@ -5,9 +5,14 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Most patches -p0
 
-Version bump at jdk17+25 when jdk17 was forked into rampdown phase 1.
+Forked off into the jdk18 repo; mainline is now jdk19.
 
 JDK18:
+
+18-28
+
+Now from jdk18 repo, should be in stabilisation phase.
+Package it also now we've got this far.
 
 Tidy ups:
 Remove STLPORT, GLOBAL_LIBS (Studio remnants)
