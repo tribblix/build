@@ -787,10 +787,10 @@ diff -ur -N /tmp/g/prefetch_solaris_zero.inline.hpp b/src/hotspot/os_cpu/solaris
 +
 +#include "runtime/prefetch.hpp"
 +
-+inline void Prefetch::read(void* loc, intx interval) {
++inline void Prefetch::read(const void *loc, intx interval) {
 +}
 +
-+inline void Prefetch::write(void* loc, intx interval) {
++inline void Prefetch::write(void *loc, intx interval) {
 +}
 +
 +#endif // OS_CPU_SOLARIS_ZERO_PREFETCH_SOLARIS_ZERO_INLINE_HPP
