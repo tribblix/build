@@ -8,7 +8,7 @@
 ## and a cast of probably two or three people
 ##
 
-CKVERS=27ck9
+CKVERS=27ck13
 
 all: dev_$(DEV_ARCH)
 
@@ -18,10 +18,11 @@ dev_::
 	@echo "You must specify one of the following or set the environment variable"
 	@echo "[DEV_ARCH] to one of the following:"
 	@echo "-- CURRENTLY SUPPORTED --"
-	@echo "  ppcmt -- PowerPC running Power MachTen 4.1.4 or higher"
-	@echo "  osx -- Mac OS X 10.4+ PPC OR x86 (earlier possible but unsupported)"
-	@echo "  linux -- Current Linux 2.x"
+	@echo "  linux -- Linux 4.x or 5.x, shared libraries"
 	@echo "  illumos -- Modern Solaris/OpenSolaris/illumos"
+	@echo "  macos -- 64-bit macOS x86_64 with homebrew"
+	@echo "  ppcmt -- PowerPC running Power MachTen 4.1.4 or higher"
+	@echo "  osx -- 32-bit Mac OS X 10.4+ PPC OR x86 (earlier possible but unsupported)"
 	@echo "-- USE SOMETHING ELSE UNLESS YOU KNOW WHAT YOU'RE DOING --"
 	@echo "  uosx -- Universal Binary Mac OS X 10.4+"
 	@echo "-- ARCHIVAL (AT YOUR OWN RISK) --"
@@ -30,10 +31,11 @@ dev_::
 	@echo "  dec -- DEC 2100 running Ultrix 4.3"
 	@echo "  hp -- HP 9000/735 running HP-UX A.09.01"
 	@echo "  ibm -- IBM RS6000 running AIX 4.4 BSD"
-	@echo "  indy -- SGI Indy running IRIX 5.3"
+	@echo "  indy -- SGI running IRIX 5.3 and up with MIPSPro 7.x"
 	@echo "  linux1 -- x86 running Linux 1.2.13 DYNAMIC"
 	@echo "  linux1-static -- x86 running Linux 1.2.13 ALL STATIC"
 	@echo "  linux1-static-motif -- x86 running Linux 1.2.13 STATIC MOTIF"
+	@echo "  linux2 -- Linux 2.x+"
 	@echo "  sco -- x86 running SCO System V 3.2"
 	@echo "  sgi -- SGI Iris running IRIS 4.0.2"
 	@echo "  solaris-23 -- SPARCstation 20 running Solaris 2.3"
@@ -77,6 +79,14 @@ p_osx: rm_and_touch
 q_osx: rm_and_touch
 	$(MAKE) -f makefiles/Makefile.osx quantifyd DEV_ARCH=osx
 
+dev_macos: rm_and_touch macos
+macos: rm_and_touch
+	$(MAKE) -f makefiles/Makefile.macos DEV_ARCH=macos
+p_macos: rm_and_touch
+	$(MAKE) -f makefiles/Makefile.macos purifyd DEV_ARCH=macos
+q_macos: rm_and_touch
+	$(MAKE) -f makefiles/Makefile.osx quantifyd DEV_ARCH=macos
+
 dev_ppcmt: rm_and_touch ppcmt
 ppcmt: rm_and_touch
 	$(MAKE) -f makefiles/Makefile.ppcmt DEV_ARCH=ppcmt
@@ -84,6 +94,14 @@ p_ppcmt: rm_and_touch
 	$(MAKE) -f makefiles/Makefile.ppcmt purifyd DEV_ARCH=ppcmt
 q_ppcmt: rm_and_touch
 	$(MAKE) -f makefiles/Makefile.ppcmt quantifyd DEV_ARCH=ppcmt
+
+dev_linux: rm_and_touch linux
+linux: rm_and_touch
+	$(MAKE) -f makefiles/Makefile.linux DEV_ARCH=linux
+p_linux: rm_and_touch
+	$(MAKE) -f makefiles/Makefile.linux purifyd DEV_ARCH=linux
+q_linux: rm_and_touch
+	$(MAKE) -f makefiles/Makefile.linux quantifyd DEV_ARCH=linux
 
 ####### THESE ARE NOT! #######
 
@@ -135,13 +153,13 @@ p_indy: rm_and_touch
 q_indy: rm_and_touch
 	$(MAKE) -f makefiles/Makefile.indy quantifyd DEV_ARCH=indy
 
-dev_linux: rm_and_touch linux
-linux: rm_and_touch
-	$(MAKE) -f makefiles/Makefile.linux DEV_ARCH=linux
-p_linux: rm_and_touch
-	$(MAKE) -f makefiles/Makefile.linux purifyd DEV_ARCH=linux
-q_linux: rm_and_touch
-	$(MAKE) -f makefiles/Makefile.linux quantifyd DEV_ARCH=linux
+dev_linux2: rm_and_touch linux
+linux2: rm_and_touch
+	$(MAKE) -f makefiles/Makefile.linux2 DEV_ARCH=linux
+p_linux2: rm_and_touch
+	$(MAKE) -f makefiles/Makefile.linux2 purifyd DEV_ARCH=linux
+q_linux2: rm_and_touch
+	$(MAKE) -f makefiles/Makefile.linux2 quantifyd DEV_ARCH=linux
 
 dev_linux1: rm_and_touch linux1
 linux1: rm_and_touch
@@ -232,12 +250,12 @@ q_sun-lresolv: rm_and_touch
 	$(MAKE) -f makefiles/Makefile.sun-lresolv quantifyd DEV_ARCH=sun-lresolv
 
 clean:
-	cd libXmx; $(MAKE) clean
-	cd libdtm; $(MAKE) clean
-	cd libhtmlw; $(MAKE) clean
-	cd libnet; $(MAKE) clean
-	cd libnut; $(MAKE) clean
-	cd libwww2; $(MAKE) clean
+	cd libXmx; $(MAKE) clean || echo 'never mind'
+	cd libdtm; $(MAKE) clean || echo 'never mind'
+	cd libhtmlw; $(MAKE) clean || echo 'never mind'
+	cd libnet; $(MAKE) clean || echo 'never mind'
+	cd libnut; $(MAKE) clean || echo 'never mind'
+	cd libwww2; $(MAKE) clean || echo 'never mind'
 	cd src; $(MAKE) clean MOSAIC="Mosaic"
 	rm -f motifmaclauncher/mosaic-mml motifmaclauncher/mosaic-mml-wtf
 	rm -rf motifmaclauncher/build
@@ -245,6 +263,7 @@ clean:
 
 dist: clean targz
 
+# don't use mv, it doesn't preserve the selinux bits
 targz:
-	cd .. ; rm -f mosaic$(CKVERS).tar* ; tar cvf mosaic$(CKVERS).tar mosaic$(CKVERS) ; gzip mosaic$(CKVERS).tar
+	cd .. ; rm -f mosaic$(CKVERS).tar* ; tar cvf mosaic$(CKVERS).tar mosaic-ck ; gzip mosaic$(CKVERS).tar ; cp mosaic$(CKVERS).tar.gz ~/public_html/arc
 
