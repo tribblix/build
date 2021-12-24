@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-3
+
+Minor patch noise
+FilterSpuriousWakeups removed
+
 19-2
 
 vm_version rework

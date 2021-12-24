@@ -1289,7 +1289,7 @@
  
  // PlatformEvent
  //
-@@ -1982,8 +1940,6 @@
+@@ -1980,8 +1938,6 @@
      return OS_OK;
    }
  }
@@ -1435,9 +1435,9 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -727,10 +723,6 @@
-           "(Deprecated) When true prevents OS-level spurious, or premature,"\
-           " wakeups from Object.wait (Ignored for Windows)")                \
+@@ -723,10 +719,6 @@
+   product(intx, hashCode, 5, EXPERIMENTAL,                                  \
+                "(Unstable) select hashCode generation algorithm")           \
                                                                              \
 -  develop(bool, UsePthreads, false,                                         \
 -          "Use pthread-based instead of libthread-based synchronization "   \
@@ -1446,7 +1446,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1627,10 +1619,8 @@
+@@ -1623,10 +1615,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1459,7 +1459,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1965,8 +1955,7 @@
+@@ -1961,8 +1951,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -9532,7 +9532,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4020 +0,0 @@
+@@ -1,4019 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -13198,7 +13198,6 @@
 -    assert_status(status == 0 || status == EINTR ||
 -                  status == ETIME || status == ETIMEDOUT,
 -                  status, "cond_timedwait");
--    if (!FilterSpuriousWakeups) break;                // previous semantics
 -    if (status == ETIME || status == ETIMEDOUT) break;
 -    // We consume and ignore EINTR and spurious wakeups.
 -  }
