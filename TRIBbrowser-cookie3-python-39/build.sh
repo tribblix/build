@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack browser-cookie3-0.12.1
-cd browser-cookie3-0.12.1
+${THOME}/build/unpack browser-cookie3-0.13.0
+cd browser-cookie3-0.13.0
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
