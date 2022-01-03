@@ -1,0 +1,13 @@
+--- libreoffice-7.2.4.1/formula/source/core/api/FormulaCompiler.cxx~	Fri Dec  3 00:10:29 2021
++++ libreoffice-7.2.4.1/formula/source/core/api/FormulaCompiler.cxx	Sun Jan  2 22:20:25 2022
+@@ -37,6 +37,10 @@
+ #include <com/sun/star/sheet/FormulaMapGroupSpecialOffset.hpp>
+ #include <algorithm>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ namespace formula
+ {
+     using namespace ::com::sun::star;

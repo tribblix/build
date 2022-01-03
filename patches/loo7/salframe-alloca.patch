@@ -1,0 +1,13 @@
+--- libreoffice-6.4.2.2/vcl/unx/generic/window/salframe.cxx.1	2020-04-06 17:34:22.433987425 +0000
++++ libreoffice-6.4.2.2/vcl/unx/generic/window/salframe.cxx	2020-04-06 17:34:49.177033362 +0000
+@@ -22,6 +22,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #include <tools/debug.hxx>
+ 
+ #include <vcl/event.hxx>

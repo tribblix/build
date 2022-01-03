@@ -1,0 +1,13 @@
+--- a/external/openssl/ExternalProject_openssl.mk~	Wed Oct  7 13:23:42 2020
++++ b/external/openssl/ExternalProject_openssl.mk	Sat Mar 20 12:33:53 2021
+@@ -34,8 +34,8 @@
+     )\
+   ,\
+     $(if $(filter SOLARIS,$(OS)),\
+-      $(if $(filter INTEL,$(CPUNAME)),solaris-x86-cc,\
+-        $(if $(filter X86_64,$(CPUNAME)),solaris64-x86_64-cc,solaris-sparcv9-cc)\
++      $(if $(filter INTEL,$(CPUNAME)),solaris-x86-gcc,\
++        $(if $(filter X86_64,$(CPUNAME)),solaris64-x86_64-gcc,solaris-sparcv9-gcc)\
+       )\
+     ,\
+       $(if $(filter iOS,$(OS)),\

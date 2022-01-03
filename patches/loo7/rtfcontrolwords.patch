@@ -1,0 +1,14 @@
+Something is including time.h before this, and that defines SEC to be 1
+which throws a big spanner in the works.
+
+--- libreoffice-7.2.4.1/writerfilter/source/rtftok/rtfcontrolwords.hxx~	Fri Dec  3 00:10:29 2021
++++ libreoffice-7.2.4.1/writerfilter/source/rtftok/rtfcontrolwords.hxx	Mon Jan  3 17:37:08 2022
+@@ -9,6 +9,8 @@
+ 
+ #pragma once
+ 
++#undef SEC
++
+ namespace writerfilter::rtftok
+ {
+ /**

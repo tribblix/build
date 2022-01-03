@@ -1,0 +1,13 @@
+--- libreoffice-6.4.2.2/vcl/unx/generic/app/wmadaptor.cxx.1	2020-04-06 15:08:28.061370256 +0000
++++ libreoffice-6.4.2.2/vcl/unx/generic/app/wmadaptor.cxx	2020-04-06 15:08:58.972919890 +0000
+@@ -39,6 +39,10 @@
+ #include <X11/Xutil.h>
+ #include <X11/Xatom.h>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ namespace vcl_sal {
+ 
+ class NetWMAdaptor : public WMAdaptor

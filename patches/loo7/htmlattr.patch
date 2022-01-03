@@ -1,0 +1,83 @@
+The error message I get, very explicitly, is that unique_ptr is forbidden.
+I'm not sure why we see it on illumos but not elsewhere, nor whether the fix
+is correct. But at least we compile successfully.
+
+--- libreoffice-7.2.4.1/sw/source/filter/html/htmltab.cxx~	Fri Dec  3 00:10:29 2021
++++ libreoffice-7.2.4.1/sw/source/filter/html/htmltab.cxx	Mon Jan  3 17:28:25 2022
+@@ -3358,7 +3358,7 @@
+                                                m_nContextStAttrMin ) );
+ 
+             // end all open attributes and open them again behind the table
+-            std::optional<std::deque<std::unique_ptr<HTMLAttr>>> pPostIts;
++            std::optional<std::deque<std::shared_ptr<HTMLAttr>>> pPostIts;
+             if( !bForceFrame && (bTopTable || pCurTable->HasParentSection()) )
+             {
+                 SplitAttrTab(pTCntxt->xAttrTab, bTopTable);
+--- libreoffice-7.2.4.1/sw/source/filter/html/htmlsect.cxx~	Fri Dec  3 00:10:29 2021
++++ libreoffice-7.2.4.1/sw/source/filter/html/htmlsect.cxx	Mon Jan  3 18:46:03 2022
+@@ -270,7 +270,7 @@
+                 bAppended = true;
+             }
+         }
+-        std::unique_ptr<std::deque<std::unique_ptr<HTMLAttr>>> pPostIts(bAppended ? nullptr : new std::deque<std::unique_ptr<HTMLAttr>>);
++        std::unique_ptr<std::deque<std::shared_ptr<HTMLAttr>>> pPostIts(bAppended ? nullptr : new std::deque<std::shared_ptr<HTMLAttr>>);
+         SetAttr( true, true, pPostIts.get() );
+ 
+         // make name of section unique
+@@ -693,7 +693,7 @@
+                 bAppended = true;
+             }
+         }
+-        std::unique_ptr<std::deque<std::unique_ptr<HTMLAttr>>> pPostIts(bAppended ? nullptr : new std::deque<std::unique_ptr<HTMLAttr>>);
++        std::unique_ptr<std::deque<std::shared_ptr<HTMLAttr>>> pPostIts(bAppended ? nullptr : new std::deque<std::shared_ptr<HTMLAttr>>);
+         SetAttr( true, true, pPostIts.get() );
+ 
+         // Make section name unique.
+--- libreoffice-7.2.4.1/sw/source/filter/html/swhtml.cxx~	Fri Dec  3 00:10:29 2021
++++ libreoffice-7.2.4.1/sw/source/filter/html/swhtml.cxx	Mon Jan  3 18:47:17 2022
+@@ -2708,7 +2708,7 @@
+ }
+ 
+ void SwHTMLParser::SetAttr_( bool bChkEnd, bool bBeforeTable,
+-                             std::deque<std::unique_ptr<HTMLAttr>> *pPostIts )
++                             std::deque<std::shared_ptr<HTMLAttr>> *pPostIts )
+ {
+     SwPaM aAttrPam( *m_pPam->GetPoint() );
+     const SwNodeIndex& rEndIdx = m_pPam->GetPoint()->nNode;
+@@ -3449,11 +3449,11 @@
+         m_aSetAttrTab.push_back( pTmp );
+ }
+ 
+-void SwHTMLParser::InsertAttrs( std::deque<std::unique_ptr<HTMLAttr>> rAttrs )
++void SwHTMLParser::InsertAttrs( std::deque<std::shared_ptr<HTMLAttr>> rAttrs )
+ {
+     while( !rAttrs.empty() )
+     {
+-        std::unique_ptr<HTMLAttr> pAttr = std::move(rAttrs.front());
++        std::shared_ptr<HTMLAttr> pAttr = std::move(rAttrs.front());
+         InsertAttr( pAttr->GetItem(), false );
+         rAttrs.pop_front();
+     }
+--- libreoffice-7.2.4.1/sw/source/filter/html/swhtml.hxx~	Fri Dec  3 00:10:29 2021
++++ libreoffice-7.2.4.1/sw/source/filter/html/swhtml.hxx	Mon Jan  3 18:13:24 2022
+@@ -501,9 +501,9 @@
+     DECL_LINK( AsyncCallback, void*, void );
+ 
+     // set attribute on document
+-    void SetAttr_( bool bChkEnd, bool bBeforeTable, std::deque<std::unique_ptr<HTMLAttr>> *pPostIts );
++    void SetAttr_( bool bChkEnd, bool bBeforeTable, std::deque<std::shared_ptr<HTMLAttr>> *pPostIts );
+     void SetAttr( bool bChkEnd = true, bool bBeforeTable = false,
+-                         std::deque<std::unique_ptr<HTMLAttr>> *pPostIts = nullptr )
++                         std::deque<std::shared_ptr<HTMLAttr>> *pPostIts = nullptr )
+     {
+         if( !m_aSetAttrTab.empty() || !m_aMoveFlyFrames.empty() )
+             SetAttr_( bChkEnd, bBeforeTable, pPostIts );
+@@ -528,7 +528,7 @@
+     void SplitAttrTab(std::shared_ptr<HTMLAttrTable> const & rNewAttrTab, bool bMoveEndBack);
+     void RestoreAttrTab(std::shared_ptr<HTMLAttrTable> const & rNewAttrTab);
+     void InsertAttr( const SfxPoolItem& rItem, bool bInsAtStart );
+-    void InsertAttrs( std::deque<std::unique_ptr<HTMLAttr>> rAttrs );
++    void InsertAttrs( std::deque<std::shared_ptr<HTMLAttr>> rAttrs );
+ 
+     bool DoPositioning( SfxItemSet &rItemSet,
+                         SvxCSS1PropertyInfo &rPropInfo,

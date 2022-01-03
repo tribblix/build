@@ -1,0 +1,11 @@
+--- libreoffice-7.2.4.1/external/skia/Library_skia.mk~	Fri Dec  3 00:10:29 2021
++++ libreoffice-7.2.4.1/external/skia/Library_skia.mk	Sun Jan  2 20:35:49 2022
+@@ -84,7 +84,7 @@
+     libpng \
+ ))
+ 
+-ifeq ($(OS),LINUX)
++ifeq ($(OS), $(filter LINUX %BSD SOLARIS, $(OS)))
+ $(eval $(call gb_Library_add_libs,skia,\
+     -lm \
+     -ldl \

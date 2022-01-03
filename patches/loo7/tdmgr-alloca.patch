@@ -1,0 +1,12 @@
+--- libreoffice-6.4.2.2/cppuhelper/source/tdmgr.cxx.1	2020-03-15 10:03:42.203329269 +0000
++++ libreoffice-6.4.2.2/cppuhelper/source/tdmgr.cxx	2020-03-15 10:04:42.704913414 +0000
+@@ -20,6 +20,9 @@
+ 
+ #include <sal/config.h>
+ #include <sal/log.hxx>
++#ifdef __sun__
++#include <alloca.h>
++#endif
+ 
+ #include <vector>
+ 

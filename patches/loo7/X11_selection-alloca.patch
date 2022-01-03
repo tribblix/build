@@ -1,0 +1,13 @@
+--- libreoffice-6.4.2.2/vcl/unx/generic/dtrans/X11_selection.cxx.1	2020-04-06 15:36:31.847536995 +0000
++++ libreoffice-6.4.2.2/vcl/unx/generic/dtrans/X11_selection.cxx	2020-04-06 15:37:04.488360772 +0000
+@@ -34,6 +34,10 @@
+ #include <X11/Xatom.h>
+ #include <X11/keysym.h>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #if defined(NETBSD) || defined (FREEBSD) || defined(OPENBSD)
+ #include <sys/poll.h>
+ #else

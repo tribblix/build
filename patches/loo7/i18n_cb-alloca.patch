@@ -1,0 +1,12 @@
+--- libreoffice-6.4.2.2/vcl/unx/generic/app/i18n_cb.cxx.1	2020-03-18 07:29:10.139990266 +0000
++++ libreoffice-6.4.2.2/vcl/unx/generic/app/i18n_cb.cxx	2020-03-18 07:29:53.640901720 +0000
+@@ -19,6 +19,9 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#ifdef __sun__
++#include <alloca.h>
++#endif
+ 
+ #include <o3tl/safeint.hxx>
+ #include <osl/thread.h>

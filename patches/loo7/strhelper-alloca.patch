@@ -1,0 +1,13 @@
+--- libreoffice-6.4.2.2/vcl/source/helper/strhelper.cxx.1	2020-03-16 12:22:08.219082534 +0000
++++ libreoffice-6.4.2.2/vcl/source/helper/strhelper.cxx	2020-03-16 12:22:46.051613810 +0000
+@@ -17,6 +17,10 @@
+  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+  */
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #include <strhelper.hxx>
+ 
+ namespace  {
