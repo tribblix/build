@@ -166,7 +166,7 @@
    AC_SUBST(TAR_INCLUDE_PARAM)
    AC_SUBST(TAR_SUPPORTS_TRANSFORM)
  ])
-@@ -416,8 +407,6 @@
+@@ -420,8 +411,6 @@
        fi
      fi
      UTIL_REQUIRE_PROGS(SETFILE, SetFile)
@@ -410,7 +410,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -493,7 +492,6 @@
+@@ -496,7 +495,6 @@
  
  DISABLE_WARNING_PREFIX := @DISABLE_WARNING_PREFIX@
  CFLAGS_WARNINGS_ARE_ERRORS:=@CFLAGS_WARNINGS_ARE_ERRORS@
@@ -418,7 +418,7 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -757,7 +753,6 @@
+@@ -761,7 +757,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -426,7 +426,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -774,7 +770,6 @@
+@@ -778,7 +774,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -4017,7 +4017,7 @@
   * Since winsock doesn't have the equivalent of strerror(errno)
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
-@@ -1429,22 +1429,6 @@
+@@ -1426,22 +1426,6 @@
                  }
              }
          }
@@ -4552,7 +4552,7 @@
          return imInfo;
 --- old/src/java.desktop/unix/classes/sun/font/MFontConfiguration.java	2020-05-20 18:02:37.405096076 -0700
 +++ new/src/java.desktop/unix/classes/sun/font/MFontConfiguration.java	2020-05-20 18:02:37.021088702 -0700
-@@ -70,59 +70,7 @@
+@@ -68,59 +68,7 @@
       */
      protected void initReorderMap() {
          reorderMap = new HashMap<>();
@@ -4612,7 +4612,7 @@
          reorderMap.put("UTF-8.ja.JP", "japanese-iso10646");
          reorderMap.put("UTF-8.ko.KR", "korean-iso10646");
          reorderMap.put("UTF-8.zh.TW", "chinese-tw-iso10646");
-@@ -133,12 +81,7 @@
+@@ -131,12 +79,7 @@
          reorderMap.put("GB2312", "chinese-gb18030");
          reorderMap.put("Big5", "chinese-big5");
          reorderMap.put("EUC-KR", "korean");
@@ -4626,7 +4626,7 @@
      }
  
      /**
-@@ -147,10 +90,7 @@
+@@ -145,10 +88,7 @@
      protected void setOsNameAndVersion(){
          super.setOsNameAndVersion();
  
