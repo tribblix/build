@@ -9,6 +9,10 @@ Forked off into the jdk18 repo; mainline is now jdk19.
 
 JDK18:
 
+18-29,18-30
+
+No changes necessary
+
 18-28
 
 Now from jdk18 repo, should be in stabilisation phase.
