@@ -1,0 +1,10 @@
+#!/bin/sh
+mkdir -p usr/bin
+cat > usr/bin/xdg-open <<EOF
+#!/bin/sh
+#
+# we don't have xdg-open; exo provides the same thing under a different name
+#
+exec /usr/bin/exo-open "\$@"
+EOF
+chmod 555 usr/bin/xdg-open
