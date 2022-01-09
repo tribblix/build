@@ -2,8 +2,8 @@
 #
 # 
 #
-$THOME/build/unpack libreoffice-6.4.7.2
-cd libreoffice-6.4.7.2/
+$THOME/build/unpack libreoffice-7.2.5.2
+cd libreoffice-7.2.5.2
 
 #
 # if you have a previous build, copy the contents of external/tarballs
@@ -33,12 +33,10 @@ sed -i '/stack-protector-strong/d' ./solenv/gbuild/platform/com_GCC_defs.mk
 #
 
 #
-# there are also a number of external libraries where we cannot use the
-# system version:
-#   openssl because the build isn't compatible with 1.1
+# we can now use our openssl again
 #
 
-env PATH=/usr/gnu/bin:$PATH ./configure --prefix=/usr/versions/libreoffice-6 \
+env PATH=/usr/gnu/bin:$PATH ./configure --prefix=/usr/versions/libreoffice-7 \
 --without-java \
 --without-doxygen \
 --with-tls="openssl" \
@@ -51,13 +49,12 @@ env PATH=/usr/gnu/bin:$PATH ./configure --prefix=/usr/versions/libreoffice-6 \
 --with-system-zlib \
 --with-system-libpng \
 --with-system-libvisio \
---with-system-icu \
 --with-system-curl \
 --with-system-lcms2 \
 --with-system-epoxy \
+--with-system-openssl \
 --disable-odk \
---with-vendor="Tribblix" \
---enable-release-build=yes
+--with-vendor="Tribblix" --enable-release-build=yes
 
 #
 # despite needing to build against its own harfbuzz, the build tries
@@ -70,17 +67,27 @@ env PATH=/usr/gnu/bin:$PATH ./configure --prefix=/usr/versions/libreoffice-6 \
 #
 
 #
+# the same is true of icu
+#
+# as root
+#
+# cd /usr/lib ; rm libicui18n.so libicuuc.so
+#
+
+#
 # a regular make will run the checks; these will almost always fail,
 # regardless of platform, so build without checks
 #
 /usr/gnu/bin/make -j 4 build-nocheck
 
 #
-# undo the harfbuzz tweak
+# undo the harfbuzz and icu tweaks
 #
 # as root
 #
 # cd /usr/lib ; ln -s libharfbuzz.so.0.10900.0 libharfbuzz.so
+# cd /usr/lib ; ln -s libicui18n.so.50.1 libicui18n.so
+# cd /usr/lib ; ln -s libicuuc.so.50.1 libicuuc.so
 #
 
 #

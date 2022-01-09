@@ -3,32 +3,39 @@
 # the user command
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/versions/libreoffice-6/bin/* .
+ln -s ../../usr/versions/libreoffice-7/bin/* .
 cd ../..
 
 #
 # we don't want to ship the SDK, at least not as part of this package
 #
-rm -fr usr/versions/libreoffice-6/lib/libreoffice/sdk
+rm -fr usr/versions/libreoffice-7/lib/libreoffice/sdk
 
 #
 # we want the desktop integration to end up in the normal place
 #
 mkdir -p usr/share/applications
-cp usr/versions/libreoffice-6/lib/libreoffice/share/xdg/*.desktop usr/share/applications
-mv usr/versions/libreoffice-6/share/icons usr/share
+cp usr/versions/libreoffice-7/lib/libreoffice/share/xdg/*.desktop usr/share/applications
+mv usr/versions/libreoffice-7/share/icons usr/share
 mkdir -p usr/share/pixmaps
 cp usr/share/icons/hicolor/32x32/apps/*png usr/share/pixmaps
 
-mv usr/versions/libreoffice-6/share/man usr/share
+mv usr/versions/libreoffice-7/share/man usr/share
 gunzip usr/share/man/man1/*.gz
 
 #
 # some files are shipped with a broken RPATH
 #
-cd usr/versions/libreoffice-6/lib/libreoffice/program
-for file in librdf-lo.so.0 librasqal-lo.so.3 libwpd-0.10-lo.so.10 libwpg-0.3-lo.so.3 liborcus-0.15.so.0 libodfgen-0.1-lo.so.1 libCbc.so.3 libCbcSolver.so.3 libCgl.so.1 libClp.so.1 libCoinMP.so.1 libOsi.so.1 libOsiClp.so.1 libmwaw-0.3-lo.so.3 libetonyek-0.1-lo.so.1 libstaroffice-0.0-lo.so.0
+cd usr/versions/libreoffice-7/lib/libreoffice/program
+for file in librdf-lo.so.0 librasqal-lo.so.3 libwpd-0.10-lo.so.10 libwpg-0.3-lo.so.3 liborcus-0.16.so.0 libodfgen-0.1-lo.so.1 libCbc.so.3 libCbcSolver.so.3 libCgl.so.1 libClp.so.1 libCoinMP.so.1 libOsi.so.1 libOsiClp.so.1 libmwaw-0.3-lo.so.3 libetonyek-0.1-lo.so.1 libstaroffice-0.0-lo.so.0
 do
     /usr/bin/elfedit -e 'dyn:runpath $ORIGIN' $file
     /usr/bin/elfedit -e 'dyn:rpath $ORIGIN' $file
 done
+#
+# these need help to find libicudata.so.69
+#
+/usr/bin/elfedit -e 'dyn:runpath $ORIGIN' libicui18n.so.69
+/usr/bin/elfedit -e 'dyn:runpath $ORIGIN' libicuuc.so.69 
+/usr/bin/elfedit -e 'dyn:rpath $ORIGIN' libicui18n.so.69
+/usr/bin/elfedit -e 'dyn:rpath $ORIGIN' libicuuc.so.69 
