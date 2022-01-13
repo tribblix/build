@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-5
+
+The copy_x86 implementation has been centralised, so
+copy_solaris_x86.hpp is now essentially empty
+
 19-4
 
 Minor patch noise
