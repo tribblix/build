@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# gpgme erronesously uses gpgrt-config to try and find libassuan, and
+# wrongly passes --libdir so it will give the wrong answer
+#
+# we need to force it to use libassuan-config, which has 2 parts:
+# first run configure with --with-libassuan-prefix=/usr
+# and then fix configure so it looks in the right place under /usr
+# and finds the 64-bit version of libassuan-config
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+sed -i s:bin/libassuan-config:bin/${ARCH64}/libassuan-config: configure
