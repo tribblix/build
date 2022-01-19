@@ -24,11 +24,11 @@
 #ln jdk-15.0.3+3.tar.bz2 jdk15u-jdk-15.0.3+3.tar.bz2
 
 #
-# now on github; 15.0.5 ga is +3
+# now on github; 15.0.6 ga is +5
 #
 cd ~/ud
-${THOME}/build/unpack jdk15u-jdk-15.0.5-ga
-cd jdk15u-jdk-15.0.5-ga
+${THOME}/build/unpack jdk15u-jdk-15.0.6-ga
+cd jdk15u-jdk-15.0.6-ga
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -73,9 +73,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 # 
-# openjdk version "15.0.5-internal" 2021-10-19
-# OpenJDK Runtime Environment (build 15.0.5-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.5-ga)
-# OpenJDK 64-Bit Server VM (build 15.0.5-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.5-ga, mixed mode, sharing)
+# openjdk version "15.0.6-internal" 2022-01-18
+# OpenJDK Runtime Environment (build 15.0.6-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.6-ga)
+# OpenJDK 64-Bit Server VM (build 15.0.6-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.6-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

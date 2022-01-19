@@ -20,6 +20,10 @@ This set currently based on jdk-15+33
 
 openjdk15 fixes (besides fixing line number noise)
 
+15.0.6
+
+Again much patch noise.
+
 15.0.5
 
 Quite a lot of patch noise and failures here.

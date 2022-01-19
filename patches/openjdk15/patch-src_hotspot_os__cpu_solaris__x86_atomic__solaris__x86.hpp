@@ -77,13 +77,4 @@ Support SunOS/gcc.
 +#endif
  
  template<size_t byte_size>
- struct Atomic::PlatformAdd
-@@ -83,8 +138,6 @@ inline T Atomic::PlatformXchg<4>::operat
-                  reinterpret_cast<int32_t volatile*>(dest)));
- }
- 
--extern "C" int64_t _Atomic_xchg_long(int64_t exchange_value, volatile int64_t* dest);
--
- template<>
- template<typename T>
- inline T Atomic::PlatformXchg<8>::operator()(T exchange_value,
+ struct Atomic::PlatformAdd {

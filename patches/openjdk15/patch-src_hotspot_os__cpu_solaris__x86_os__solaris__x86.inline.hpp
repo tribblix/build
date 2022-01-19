@@ -20,4 +20,4 @@ Support SunOS/gcc.
  inline jlong os::rdtsc() { return _raw_rdtsc(); }
 +#endif
  
- #endif // OS_CPU_SOLARIS_X86_VM_OS_SOLARIS_X86_INLINE_HPP
+ #endif // OS_CPU_SOLARIS_X86_OS_SOLARIS_X86_INLINE_HPP

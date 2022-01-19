@@ -1771,17 +1771,17 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -470,9 +446,6 @@
- ifeq ($(call isTargetOs, linux macosx), true)
-   HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
- endif
--ifeq ($(call isTargetOs, solaris), true)
--  HARFBUZZ_CFLAGS += -DHAVE_SOLARIS_ATOMIC_OPS
--endif
- ifeq ($(call isTargetOs, macosx), true)
-   HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
- endif
-@@ -632,10 +597,7 @@
+@@ -475,9 +451,6 @@
+    ifeq ($(call isTargetOs, linux macosx), true)
+      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
+    endif
+-   ifeq ($(call isTargetOs, solaris), true)
+-     HARFBUZZ_CFLAGS += -DHAVE_SOLARIS_ATOMIC_OPS
+-   endif
+    ifeq ($(call isTargetOs, macosx), true)
+      HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
+    endif
+@@ -642,10 +607,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1793,7 +1793,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -662,7 +624,6 @@
+@@ -672,7 +634,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -3421,33 +3421,24 @@
  }
  
  static const char*
-@@ -452,7 +445,6 @@
+@@ -452,7 +445,7 @@
  #endif
  
- /* vfork(2) is deprecated on Solaris */
+ /* vfork(2) is deprecated on Darwin */
 -#ifndef __solaris__
++#ifndef __APPLE__
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -471,7 +463,6 @@
-     assert(resultPid != 0);  /* childProcess never returns */
-     return resultPid;
- }
--#endif
- 
- static pid_t
- forkChild(ChildStuff *c) {
-@@ -583,10 +574,8 @@
+@@ -585,7 +576,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
- /* vfork(2) is deprecated on Solaris */
--#ifndef __solaris__
+ /* vfork(2) is deprecated on Darwin*/
+-      #ifndef __solaris__
++      #ifndef __APPLE__
        case MODE_VFORK:
          return vforkChild(c);
--#endif
-       case MODE_FORK:
-         return forkChild(c);
-       case MODE_POSIX_SPAWN:
+       #endif
 --- old/src/java.base/unix/native/libjava/TimeZone_md.c	2020-05-20 18:01:10.467426810 -0700
 +++ new/src/java.base/unix/native/libjava/TimeZone_md.c	2020-05-20 18:01:10.059418975 -0700
 @@ -35,9 +35,6 @@
@@ -5714,7 +5705,7 @@
  
      /* This is intended to be called, and the returned value used,
       * from within a block synchronized on this font object.
-@@ -1050,14 +975,7 @@
+@@ -1058,14 +983,7 @@
              style = Font.ITALIC;
              break;
          case fsSelectionBoldBit:
@@ -19047,7 +19038,7 @@
 -}
 --- old/src/hotspot/os_cpu/solaris_x86/atomic_solaris_x86.hpp	2020-05-20 18:09:56.917534941 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,147 +0,0 @@
+@@ -1,145 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -19135,8 +19126,6 @@
 -    _Atomic_xchg(PrimitiveConversions::cast<int32_t>(exchange_value),
 -                 reinterpret_cast<int32_t volatile*>(dest)));
 -}
--
--extern "C" int64_t _Atomic_xchg_long(int64_t exchange_value, volatile int64_t* dest);
 -
 -template<>
 -template<typename T>
