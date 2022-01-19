@@ -3,6 +3,10 @@ my openjdk12 set.
 
 All patches -p0
 
+13.0.10
+
+fixed up patch-make_lib_Awt2dLibraries.gmk
+
 13.0.9
 A reasonable amount of patch noise.
 
