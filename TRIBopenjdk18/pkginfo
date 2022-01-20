@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk18"
 NAME="OpenJDK 18"
-VERSION="18.31.0"
+VERSION="18.32.0"
 ZAP_URL="http://openjdk.java.net/"
