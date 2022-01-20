@@ -1459,7 +1459,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1956,8 +1946,7 @@
+@@ -1959,8 +1949,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -5323,7 +5323,7 @@
                      setupDebuggerWin32();
                  } else if (os.equals("linux")) {
                      setupDebuggerLinux();
-@@ -418,11 +413,7 @@
+@@ -407,11 +402,7 @@
          // configure the VM.
  
          try {
@@ -5336,7 +5336,7 @@
                  db = new HotSpotTypeDataBase(machDesc,
                  new Win32VtblAccess(debugger, jvmLibNames),
                  debugger, jvmLibNames);
-@@ -507,29 +498,6 @@
+@@ -496,29 +487,6 @@
          System.err.println("Loaded alternate HotSpot SA Debugger: " + alternateName);
      }
  
@@ -5366,7 +5366,7 @@
      private void connectRemoteDebugger() throws DebuggerException {
          RemoteDebugger remote =
          (RemoteDebugger) RMIHelper.lookup(debugServerID);
-@@ -545,9 +509,7 @@
+@@ -534,9 +498,7 @@
      }
  
      private void setupJVMLibNames(String os) {
@@ -5377,7 +5377,7 @@
              setupJVMLibNamesWin32();
          } else if (os.equals("linux")) {
              setupJVMLibNamesLinux();
-@@ -570,10 +522,6 @@
+@@ -559,10 +511,6 @@
          }
      }
  

@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-6
+
+Minor patch noise.
+
 19-5
 
 The copy_x86 implementation has been centralised, so
