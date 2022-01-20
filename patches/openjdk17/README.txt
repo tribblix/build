@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK17:
 
+17.0.2
+
+illumos-port-15.patch to fix the broken ld check
+
 17-35
 
 RC1, no changes

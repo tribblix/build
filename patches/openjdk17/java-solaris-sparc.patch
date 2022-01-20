@@ -341,7 +341,7 @@
  ################################################################################
 --- old/make/autoconf/platform.m4	2020-05-20 17:58:42.328582435 -0700
 +++ new/make/autoconf/platform.m4	2020-05-20 17:58:41.904574294 -0700
-@@ -178,10 +190,6 @@
+@@ -184,10 +196,6 @@
        VAR_OS=linux
        VAR_OS_TYPE=unix
        ;;
@@ -352,7 +352,7 @@
      *darwin*)
        VAR_OS=macosx
        VAR_OS_TYPE=unix
-@@ -452,17 +460,6 @@
+@@ -458,17 +466,6 @@
    fi
    AC_SUBST(OPENJDK_$1_CPU_LEGACY_LIB)
  
@@ -370,7 +370,7 @@
    # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
    OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
    if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -592,9 +587,6 @@
+@@ -598,9 +593,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -380,7 +380,7 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -650,25 +642,9 @@
+@@ -656,25 +648,9 @@
    PLATFORM_SET_MODULE_TARGET_OS_VALUES
    PLATFORM_SET_RELEASE_FILE_OS_VALUES
    PLATFORM_SETUP_LEGACY_VARS
@@ -2299,33 +2299,24 @@
  }
  
  static const char*
-@@ -452,7 +445,6 @@
+@@ -452,7 +445,7 @@
  #endif
  
- /* vfork(2) is deprecated on Solaris */
+ /* vfork(2) is deprecated on Darwin */
 -#ifndef __solaris__
++#ifndef __APPLE__
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -471,7 +463,6 @@
-     assert(resultPid != 0);  /* childProcess never returns */
-     return resultPid;
- }
--#endif
- 
- static pid_t
- forkChild(ChildStuff *c) {
-@@ -583,10 +574,8 @@
+@@ -585,7 +576,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
- /* vfork(2) is deprecated on Solaris */
--#ifndef __solaris__
+ /* vfork(2) is deprecated on Darwin*/
+-      #ifndef __solaris__
++      #ifndef __APPLE__
        case MODE_VFORK:
          return vforkChild(c);
--#endif
-       case MODE_FORK:
-         return forkChild(c);
-       case MODE_POSIX_SPAWN:
+       #endif
 --- old/src/java.base/unix/native/libjava/TimeZone_md.c	2020-05-20 18:01:10.467426810 -0700
 +++ new/src/java.base/unix/native/libjava/TimeZone_md.c	2020-05-20 18:01:10.059418975 -0700
 @@ -35,9 +35,6 @@
@@ -4531,7 +4522,7 @@
  
      /* This is intended to be called, and the returned value used,
       * from within a block synchronized on this font object.
-@@ -1049,14 +974,7 @@
+@@ -1057,14 +982,7 @@
              style = Font.ITALIC;
              break;
          case fsSelectionBoldBit:
@@ -5328,7 +5319,7 @@
  /* All the known interesting locations we have discovered on
   * various flavors of Linux
   */
-@@ -364,14 +311,6 @@
+@@ -230,14 +177,6 @@
          if (strstr(x11Path[i], ".gnome") != NULL) {
              continue;
          }
@@ -5343,7 +5334,7 @@
          fontdirs[pos] = strdup(x11Path[i]);
          slen = strlen(fontdirs[pos]);
          if (slen > 0 && fontdirs[pos][slen-1] == '/') {
-@@ -521,8 +460,6 @@
+@@ -387,8 +326,6 @@
  
  #if defined(__linux__)
      knowndirs = fullLinuxFontPath;
@@ -5352,7 +5343,7 @@
  #elif defined(_AIX)
      knowndirs = fullAixFontPath;
  #endif
-@@ -592,10 +529,6 @@
+@@ -458,10 +395,6 @@
      char *homeEnv;
      static char *homeEnvStr = "HOME="; /* must be static */
      void* libfontconfig = NULL;
@@ -5363,7 +5354,7 @@
  
      /* Private workaround to not use fontconfig library.
       * May be useful during testing/debugging
-@@ -605,21 +538,6 @@
+@@ -471,21 +404,6 @@
          return NULL;
      }
  
