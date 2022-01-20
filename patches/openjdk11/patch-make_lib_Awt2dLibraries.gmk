@@ -22,5 +22,5 @@ Support SunOS/gcc.  XXX: retain solstudio support.
      HARFBUZZ_CFLAGS += -DHAVE_SOLARIS_ATOMIC_OPS
 +   endif
    endif
-   ifeq ($(OPENJDK_TARGET_OS), macosx)
-     HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
+   # hb-ft.cc is not presently needed, and requires freetype 2.4.2 or later.
+   LIBFONTMANAGER_EXCLUDE_FILES += libharfbuzz/hb-ft.cc

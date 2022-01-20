@@ -57,8 +57,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk11u-jdk-11.0.13-ga
-cd jdk11u-jdk-11.0.13-ga
+${THOME}/build/unpack jdk11u-jdk-11.0.14-ga
+cd jdk11u-jdk-11.0.14-ga
 
 #
 # as of 11.0.7, switch to a gcc build to replace Stuido
@@ -76,8 +76,11 @@ zap install autoconf
 # you may wish to use --with-jobs to push down the parallelism, which
 # will reduce memory pressure
 #
+# use an existing jdk11 as the boot jdk to avoid depending on the
+# non-LTS jdk10
+#
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk10 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk11 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-hotspot-gtest --disable-dtrace \
@@ -91,9 +94,10 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "11.0.13-internal" 2021-10-19
-# OpenJDK Runtime Environment (build 11.0.13-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.13-ga)
-# OpenJDK 64-Bit Server VM (build 11.0.13-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.13-ga, mixed mode)
+#
+# openjdk version "11.0.14-internal" 2022-01-18
+# OpenJDK Runtime Environment (build 11.0.14-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.14-ga)
+# OpenJDK 64-Bit Server VM (build 11.0.14-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.14-ga, mixed mode)
 #
 
 rm -fr /tmp/jdk
