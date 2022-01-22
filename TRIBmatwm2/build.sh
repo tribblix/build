@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# This version requires pyxdg (TRIBxdg-python-37)
-#
 git clone https://github.com/segin/matwm2
 cd matwm2
 sed -i 's:install :ginstall :' Makefile.in
