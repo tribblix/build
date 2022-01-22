@@ -7,7 +7,7 @@ cd build
 # would like -Dintrospection=false but the build doesn't
 # actually support that, despite it being listed
 meson --prefix=/usr -Ddemos=false ..
-env CC=gcc ninja
+env PATH=/usr/gnu/bin:$PATH CC=gcc ninja
 
 rm -fr /tmp/lps
 env PATH=/usr/gnu/bin:$PATH CC=gcc DESTDIR=/tmp/lps ninja install
