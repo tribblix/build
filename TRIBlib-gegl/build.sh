@@ -14,7 +14,7 @@ ninja
 cd ..
 cd ..
 cd gegl-0.4.30-64bit
-env PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig meson --prefix=/usr -Dintrospection=false --libdir=lib/amd64 --bindir=bin/amd64 -Dc_args=-m64 -Dcpp_args=-m64 build
+env PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig meson --prefix=/usr -Dintrospection=false --libdir=lib/amd64 --bindir=bin/amd64 -Dc_args=-m64 -Dcpp_args=-m64 -Dc_link_args=-m64 -Dcpp_link_args=-m64 build
 cd build
 ninja
 cd ..
