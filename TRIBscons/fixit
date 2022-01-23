@@ -2,6 +2,6 @@
 #
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/versions/python-3.7/bin/scons .
-ln -s ../../usr/versions/python-3.7/bin/sconsign .
-ln -s ../../usr/versions/python-3.7/bin/scons-configure-cache .
+ln -s ../../usr/versions/python-3.9/bin/scons .
+ln -s ../../usr/versions/python-3.9/bin/sconsign .
+ln -s ../../usr/versions/python-3.9/bin/scons-configure-cache .
