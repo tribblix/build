@@ -1,4 +1,4 @@
 PKG="TRIBx11-xcowsay"
 NAME="xcowsay"
-VERSION="1.4.0"
+VERSION="1.6.0"
 ZAP_URL="https://www.doof.me.uk/xcowsay/"
