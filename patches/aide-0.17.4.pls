@@ -1,0 +1,2 @@
+-p1 aide-include.patch 
+-p1 aide-configure.patch
