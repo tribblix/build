@@ -3,24 +3,25 @@
 git clone https://github.com/vlang/v
 cd v
 #
-# we can't run the make directly as we need to patch the vc source that
-# it downloads as part of the process but the make is pretty simple...
+# the make downloads the source, so we have to run make, let it fail
+# and then fix the source
 #
-#gmake CC=gcc
-rm -rf vc/
-git clone --depth 1 --quiet https://github.com/vlang/vc
+gmake CC=gcc
 sed -i 's:"cc":"gcc":' vc/v.c
-gcc -std=gnu11 -w -o v vc/v.c -lm
-rm -fr vc/
+sed -i "s:return 'cc':return 'gcc':" vlib/v/pref/default.v
+gmake CC=gcc
 
 #
 # there's no install, so just copy what we have
 #
 rm -fr .git
+rm -fr vc/.git
+rm -fr thirdparty/tcc/.git
 rm -fr .github
 rm -f .git*
-rm -f .travis.yml
-rm -f Dockerfile
+rm -f .cirrus.yml
+rm -f .editorconfig
+rm -f Dockerfile*
 rm -f make.bat
 
 mkdir -p /tmp/ppv/usr/versions/v
