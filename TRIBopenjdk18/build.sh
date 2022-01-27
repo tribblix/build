@@ -8,8 +8,8 @@
 # the tag is 18+xx, the filename is 18-xx
 #
 cd ~/ud
-${THOME}/build/unpack jdk18-jdk-18-32
-cd jdk18-jdk-18-32
+${THOME}/build/unpack jdk18-jdk-18-33
+cd jdk18-jdk-18-33
 
 #
 # jdk18 needs autoconf installed
@@ -26,7 +26,7 @@ zap install autoconf
 # we're recognized as solaris, JEP 362 deprecated the solaris and sparc
 # ports, so we need to explicitly re-enable it
 #
-# use jdk17 as the boot jdk
+# use jdk17 (lts) as the boot jdk
 #
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk17 \
@@ -46,8 +46,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 #
 # openjdk version "18-internal" 2022-03-22
-# OpenJDK Runtime Environment (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-32)
-# OpenJDK 64-Bit Server VM (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-32, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-33)
+# OpenJDK 64-Bit Server VM (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-33, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
