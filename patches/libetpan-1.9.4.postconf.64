@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# there isn't a configure, so the configure step will fail
+# and we rerun it here
+#
+# this is postconf as it creates configure and we don't need to
+# efectively run it twice
+#
+# use gnutls as libetpan isn't compatible with current openssl
+#
+case `uname -p` in
+sparc)
+    ARCH64="sparcv9"
+    ;;
+i386)
+    ARCH64="amd64"
+    ;;
+esac
+env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$PATH LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" ./autogen.sh --prefix=/usr --without-openssl --with-gnutls --libdir=/usr/lib/${ARCH64}

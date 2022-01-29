@@ -6,4 +6,6 @@
 # this is postconf as it creates configure and we don't need to
 # efectively run it twice
 #
-env CFLAGS=-O ./autogen.sh --prefix=/usr
+# use gnutls as libetpan isn't compatible with current openssl
+#
+env CFLAGS=-O CXXFLAGS=-O ./autogen.sh --prefix=/usr --without-openssl --with-gnutls
