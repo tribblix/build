@@ -8,6 +8,9 @@ cd teler
 # Getpid and Getpgid are unix not syscall
 #
 gmake build
+#
+# and do what it says when it asks for a go get
+#
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/teler/bin
