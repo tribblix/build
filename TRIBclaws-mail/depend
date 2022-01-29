@@ -3,8 +3,9 @@ P TRIBenchant
 P TRIBgdk-pixbuf
 P TRIBgnutls
 P TRIBgpgme
+P TRIBimage-librsvg
 P TRIBlib-desktop-cairo
-P TRIBlib-desktop-gtk
+P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
 P TRIBlib-expat
 P TRIBlib-glib2
