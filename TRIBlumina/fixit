@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# we build the system off in /usr/version, but some of it must live
+# in normal paths
+#
+mkdir -p usr/share
+mv usr/versions/lumina/share/applications usr/share
+mv usr/versions/lumina/share/icons usr/share
+mv usr/versions/lumina/share/xsessions usr/share
