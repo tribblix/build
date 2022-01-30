@@ -1,0 +1,7 @@
+-p1 qt5/gsttools-missing-link-to-opengl.patch
+-p1 qt5/libc-private-interface.patch
+-p1 qt5/no-32-bit-qdoc-for-OI.patch
+-p1 qt5/no-gstreamer-photography.patch
+-p1 qt5/qtbase-0001-Rework-mkspecs.patch
+-p1 qt5/qtbase-0002-Configure-shoud-use-bash.patch
+-p1 qt5/qtserialbus-001-Missing-link-to-serialport.patch
