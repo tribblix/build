@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-VERSION=6.38.0
+VERSION=6.42.0
 mkdir -p usr/bin
 cat > usr/bin/pmd <<EOF
 #!/bin/sh
-/usr/versions/pmd-bin-6.38.0/bin/run.sh pmd \$*
+/usr/versions/pmd-bin-6.42.0/bin/run.sh pmd \$*
 EOF
 chmod a+x usr/bin/pmd
