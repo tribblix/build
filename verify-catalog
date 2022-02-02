@@ -9,7 +9,7 @@ case $# in
 	CFILE=$1
 	;;
     *)
-	echo "Usage: $1 catalog"
+	echo "Usage: $0 catalog"
 	exit 1
 	;;
 esac
