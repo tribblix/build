@@ -7,6 +7,17 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-7
+
+Don't patch update_copyright_year.sh, our awk is now nawk anyway
+Fair amount of patch noise.
+
+java.lang.ProcessImpl.java has some SunOS-specific code, and there's
+other code we rely on that got removed; I've reverted that in
+illumos-port-16.patch so we can get the build to complete, but need to
+go back and look at it to see if we actually need the
+platform-specific wreckage here.
+
 19-6
 
 Minor patch noise.

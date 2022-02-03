@@ -1161,21 +1161,6 @@
  #
  EXP="Note: Some input files use or override a deprecated API."
  EXP="${EXP}|Note: Recompile with -Xlint:deprecation for details."
---- old/make/scripts/update_copyright_year.sh	2020-05-20 17:59:31.197520755 -0700
-+++ new/make/scripts/update_copyright_year.sh	2020-05-20 17:59:30.809513305 -0700
-@@ -26,11 +26,7 @@
- # Script to update the Copyright YEAR range in Mercurial sources.
- #  (Originally from xdono, Thanks!)
- 
--if [ "`uname -s`" = "SunOS" ] ; then
--  awk=nawk
--else
--  awk=awk
--fi
-+awk=awk
- 
- # Stop on any error
- set -e
 --- old/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:33.301561154 -0700
 +++ new/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:32.909553627 -0700
 @@ -873,10 +869,6 @@
@@ -1262,7 +1247,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -926,7 +920,7 @@
+@@ -918,7 +912,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1271,7 +1256,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1246,8 +1240,7 @@
+@@ -1238,8 +1232,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1281,7 +1266,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1552,7 +1511,6 @@
+@@ -1544,7 +1503,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1289,7 +1274,7 @@
  
  // PlatformEvent
  //
-@@ -1980,8 +1938,6 @@
+@@ -1972,8 +1930,6 @@
      return OS_OK;
    }
  }
@@ -1446,7 +1431,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1618,10 +1610,8 @@
+@@ -1614,10 +1606,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1459,7 +1444,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1959,8 +1949,7 @@
+@@ -1955,8 +1945,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1505,7 +1490,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -833,10 +833,8 @@
+@@ -823,10 +823,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -1575,7 +1560,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -636,12 +636,11 @@
+@@ -674,12 +674,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1911,7 +1896,7 @@
  JNIEXPORT jboolean JNICALL
 --- old/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.739220820 -0700
 +++ new/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.399214291 -0700
-@@ -76,9 +76,6 @@
+@@ -75,9 +75,6 @@
      private /* final */ InputStream  stdout;
      private /* final */ InputStream  stderr;
  
@@ -1921,7 +1906,7 @@
      private static enum LaunchMechanism {
          // order IS important!
          FORK,
-@@ -92,8 +89,6 @@
+@@ -91,8 +88,6 @@
  
          BSD(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK),
  
@@ -1930,7 +1915,7 @@
          AIX(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK);
  
          final LaunchMechanism defaultLaunchMechanism;
-@@ -139,7 +134,6 @@
+@@ -138,7 +133,6 @@
  
              if (osName.equals("Linux")) { return LINUX; }
              if (osName.contains("OS X")) { return BSD; }
@@ -1938,7 +1923,7 @@
              if (osName.equals("AIX")) { return AIX; }
  
              throw new Error(osName + " is not a supported OS platform.");
-@@ -386,41 +380,6 @@
+@@ -385,41 +379,6 @@
                  });
                  break;
  
@@ -1980,7 +1965,7 @@
              case AIX:
                  stdin = (fds[0] == -1) ?
                          ProcessBuilder.NullOutputStream.INSTANCE :
-@@ -523,29 +482,6 @@
+@@ -522,29 +481,6 @@
                  try { stderr.close(); } catch (IOException ignored) {}
                  break;
  
@@ -4316,7 +4301,7 @@
  
      /* This is intended to be called, and the returned value used,
       * from within a block synchronized on this font object.
-@@ -1049,14 +974,7 @@
+@@ -1057,14 +982,7 @@
              style = Font.ITALIC;
              break;
          case fsSelectionBoldBit:
