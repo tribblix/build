@@ -1544,9 +1544,9 @@
  
 --- old/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -87,11 +87,9 @@
- #include "services/threadStackTracker.hpp"
+@@ -33,11 +33,9 @@
  #include "services/virtualMemoryTracker.hpp"
+ #include "utilities/nativeCallStack.hpp"
  
 -extern volatile bool NMT_stack_walkable;
 -
@@ -1560,7 +1560,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -674,12 +674,11 @@
+@@ -671,12 +671,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1740,7 +1740,7 @@
  inline int g_isnan(float  f) { return isnan(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700
-@@ -407,14 +407,6 @@
+@@ -391,14 +391,6 @@
  #define NOT_AIX(code) code
  #endif
  

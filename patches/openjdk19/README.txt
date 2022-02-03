@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-8
+
+Minor patch noise.
+
 19-7
 
 Don't patch update_copyright_year.sh, our awk is now nawk anyway
