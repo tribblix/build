@@ -1,2 +1,12 @@
 #!/bin/sh
-mkdir -p usr/lib/mousepad/plugins
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+mkdir -p usr/lib/${ARCH64}/mousepad/plugins
+rm -f usr/lib/${ARCH64}/libmousepad.la
