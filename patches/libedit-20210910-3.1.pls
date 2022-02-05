@@ -1,1 +1,2 @@
 -p1 libedit-01-termcap.patch
+-p1 libedit-sysmacros.patch
