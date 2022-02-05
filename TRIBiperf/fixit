@@ -2,8 +2,18 @@
 #
 # add unversioned symlinks
 #
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
 cd usr/share/man
 ln -s iperf3.1 iperf.1
 cd ../../..
 cd usr/bin
 ln -s iperf3 iperf
+
+rm -f rm usr/lib/${ARCH64}/libiperf.la
