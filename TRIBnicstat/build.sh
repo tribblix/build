@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild nicstat-master -M CC=gcc
+env CC="gcc -m64" ${THOME}/build/dobuild nicstat-master
 rm -fr /tmp/nii
 mkdir -p /tmp/nii/usr/bin
 mkdir -p /tmp/nii/usr/share/man/man1
