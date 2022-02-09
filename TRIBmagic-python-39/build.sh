@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack python-magic-0.4.24
-cd python-magic-0.4.24
+${THOME}/build/unpack python-magic-0.4.25
+cd python-magic-0.4.25
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
