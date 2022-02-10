@@ -9,7 +9,7 @@ Forked off into the jdk18 repo; mainline is now jdk19.
 
 JDK18:
 
-18-29,18-30,18-31,18-32,18-33,18-34
+18-29,18-30,18-31,18-32,18-33,18-34,18-35
 
 No changes necessary
 

@@ -8,8 +8,8 @@
 # the tag is 18+xx, the filename is 18-xx
 #
 cd ~/ud
-${THOME}/build/unpack jdk18-jdk-18-34
-cd jdk18-jdk-18-34
+${THOME}/build/unpack jdk18-jdk-18-35
+cd jdk18-jdk-18-35
 
 #
 # jdk18 needs autoconf installed
@@ -46,8 +46,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 #
 # openjdk version "18-internal" 2022-03-22
-# OpenJDK Runtime Environment (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-34)
-# OpenJDK 64-Bit Server VM (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-34, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-35)
+# OpenJDK 64-Bit Server VM (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-35, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
