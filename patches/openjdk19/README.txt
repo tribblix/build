@@ -7,7 +7,7 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
-19-8,19-9
+19-8,19-9,19-10
 
 Minor patch noise.
 
