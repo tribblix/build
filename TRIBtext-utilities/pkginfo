@@ -1,0 +1,4 @@
+PKG="TRIBtext-utilities"
+NAME="Text utilities"
+VERSION="2.37.4.0"
+ZAP_URL="https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/"
