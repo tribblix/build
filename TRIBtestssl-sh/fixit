@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+VERSION=3.0.7
+mv usr/versions/testssl.sh-3.0.7 usr/versions/testssl.sh
+#
+# cleanup
+#
+rm -f usr/versions/testssl.sh/bin/openssl.*
+rm -f usr/versions/testssl.sh/Docker*
+rm -fr usr/versions/testssl.sh/.git*
+#
+# manual
+#
+mkdir -p usr/share/man/man1
+mv usr/versions/testssl.sh/doc/testssl.1 usr/share/man/man1
+rm -f usr/versions/testssl.sh/doc/testssl.1.*
+rmdir usr/versions/testssl.sh/doc
+#
+# wrapper
+#
+mkdir -p usr/bin
+cp ${BUILDROOT}/patches/testssl.sh usr/bin/testssl.sh
+chmod a+x usr/bin/testssl.sh
