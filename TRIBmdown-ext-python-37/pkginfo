@@ -1,4 +1,0 @@
-PKG="TRIBmdown-ext-python-37"
-NAME="Python pymdown-extensions"
-VERSION="8.1.1.0"
-ZAP_URL="https://pypi.org/project/pymdown-extensions"
