@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# just in case the man page doesn't get installed
+#
+case $# in
+1)
+        DESTDIR=$1
+        ;;
+*)
+        exit 0
+        ;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+if [ ! -f ${DESTDIR}/usr/share/man/man1/fvwm.1 ]; then
+   cp doc/fvwm/fvwm.1 ${DESTDIR}/usr/share/man/man1/fvwm.1
+fi

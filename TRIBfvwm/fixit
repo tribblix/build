@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# the xdg location is hardwired into the script, but ours is different
+#
+sed -i s:etc/xdg:usr/etc/xdg:g usr/bin/fvwm-menu-desktop
