@@ -7,6 +7,16 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-11
+
+Needed to restore src/hotspot/share/services/dtraceAttacher.hpp
+See illumos-port-17.patch.
+This file should have been removed in the original solaris
+deprecation along with the corresponding cpp file, but was forgoteen
+about, and has recently been cleaned up. As we still #include it, we
+need to put it back. As we disable DTrace in any case, it would be
+cleaner to simply remove all of it.
+
 19-8,19-9,19-10
 
 Minor patch noise.

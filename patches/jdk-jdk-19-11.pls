@@ -37,3 +37,4 @@
 -p1 openjdk19/illumos-port-14.patch
 -p1 openjdk19/illumos-port-15.patch
 -p1 openjdk19/illumos-port-16.patch
+-p1 openjdk19/illumos-port-17.patch
