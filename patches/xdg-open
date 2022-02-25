@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# we don't have the real xdg-open
+# exo provides the same thing under a different name
+#
+# try alternatives so we don't have to have a dependency on xfce
+# alternatives assume it's a URL
+#
+if [ -f /usr/bin/exo-open ]; then
+    exec /usr/bin/exo-open "$@"
+fi
+if [ -f /usr/bin/palemoon ]; then
+    exec /usr/bin/palemoon "$@"
+fi
+if [ -f /usr/bin/firefox ]; then
+    exec /usr/bin/firefox "$@"
+fi
+if [ -f /usr/bin/netsurf-gtk ]; then
+    exec /usr/bin/netsurf-gtk "$@"
+fi
+if [ -f /usr/bin/zenity ]; then
+    exec /usr/bin/zenity --error --text="Unable to open requested content"
+fi
+
+#
+# exit cleanly so consumers don't get upset
+#
+exit 0
