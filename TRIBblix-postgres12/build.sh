@@ -2,5 +2,5 @@
 #
 # postgres 12
 #
-${THOME}/build/dobuild -P /opt/tribblix/postgres12 postgresql-12.9 -C "--without-readline --with-perl --with-openssl" -M world
-${THOME}/build/genpkg -I install-world TRIBblix-postgres12 postgresql-12.9
+${THOME}/build/dobuild -P /opt/tribblix/postgres12 postgresql-12.10 -C "--without-readline --with-perl --with-openssl" -M world
+${THOME}/build/genpkg -I install-world TRIBblix-postgres12 postgresql-12.10
