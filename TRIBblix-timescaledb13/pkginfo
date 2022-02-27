@@ -1,0 +1,4 @@
+PKG="TRIBblix-timescaledb13"
+NAME="Open-source relational database for time-series"
+VERSION="2.6.0.0"
+ZAP_URL="https://www.timescale.com/"
