@@ -6,15 +6,21 @@
 
 builtin cat
 
+ARCH="sparc"
 PKGDIR="../pkgs.sparc"
+case $# in
+1)
+	PKGDIR=$1
+	;;
+esac
 
 ggrep '^VERSION=' */pkginfo | while read vstring
 do
   PKG=${vstring%/*}
   PKGVERS=${vstring##*=}
   PKGVERS=${PKGVERS//\"/}
-  if [ -f ${PKG}/version.sparc ]; then
-      PKGVERS=`cat ${PKG}/version.sparc`
+  if [ -f ${PKG}/version.${ARCH} ]; then
+      PKGVERS=`cat ${PKG}/version.${ARCH}`
   fi
   DEPLIST=""
   if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
