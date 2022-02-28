@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# a little helper to return the arch string
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+echo $ARCH64
+exit 0
