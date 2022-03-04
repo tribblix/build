@@ -7,6 +7,16 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-12
+
+ThreadCritical has been merged into Posix. I've simply deleted
+the Solaris one. I'm not 100% sure this is correct as the Solaris
+implementation uses Solaris threads as opposed to Posix threads, and
+has a bunch of caveats around it, but testing hasn't shown any problem
+yet.
+
+Removed the INCLUDE_NMT patch for init.cpp
+
 19-11
 
 Needed to restore src/hotspot/share/services/dtraceAttacher.hpp

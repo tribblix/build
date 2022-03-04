@@ -410,7 +410,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -497,7 +496,6 @@
+@@ -498,7 +497,6 @@
  
  DISABLE_WARNING_PREFIX := @DISABLE_WARNING_PREFIX@
  CFLAGS_WARNINGS_ARE_ERRORS:=@CFLAGS_WARNINGS_ARE_ERRORS@
@@ -418,7 +418,7 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -761,7 +757,6 @@
+@@ -762,7 +758,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -426,7 +426,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -778,7 +774,6 @@
+@@ -779,7 +775,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -1454,21 +1454,6 @@
            "Allocation less than this value will be allocated "              \
            "using malloc. Larger allocations will use mmap.")                \
                                                                              \
---- old/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:32.322694403 -0700
-+++ new/src/hotspot/share/runtime/init.cpp	2020-05-20 18:00:31.930686876 -0700
-@@ -159,12 +159,6 @@
-   stubRoutines_init2(); // note: StubRoutines need 2-phase init
-   MethodHandles::generate_adapters();
- 
--#if INCLUDE_NMT
--  // Solaris stack is walkable only after stubRoutines are set up.
--  // On Other platforms, the stack is always walkable.
--  NMT_stack_walkable = true;
--#endif // INCLUDE_NMT
--
-   // All the flags that get adjusted by VM_Version_init and os::init_2
-   // have been set so dump the flags now.
-   if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
 @@ -584,7 +584,6 @@
@@ -1544,8 +1529,8 @@
  
 --- old/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -33,11 +33,9 @@
- #include "services/virtualMemoryTracker.hpp"
+@@ -34,11 +34,9 @@
+ #include "utilities/debug.hpp"
  #include "utilities/nativeCallStack.hpp"
  
 -extern volatile bool NMT_stack_walkable;
@@ -1560,7 +1545,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -654,12 +654,11 @@
+@@ -658,12 +658,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -13928,85 +13913,6 @@
 -inline bool os::numa_has_group_homing()     { return true;  }
 -
 -#endif // OS_SOLARIS_OS_SOLARIS_INLINE_HPP
---- old/src/hotspot/os/solaris/threadCritical_solaris.cpp	2020-05-20 18:09:37.645164933 -0700
-+++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,76 +0,0 @@
--/*
-- * Copyright (c) 2001, 2016, Oracle and/or its affiliates. All rights reserved.
-- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-- *
-- * This code is free software; you can redistribute it and/or modify it
-- * under the terms of the GNU General Public License version 2 only, as
-- * published by the Free Software Foundation.
-- *
-- * This code is distributed in the hope that it will be useful, but WITHOUT
-- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-- * version 2 for more details (a copy is included in the LICENSE file that
-- * accompanied this code).
-- *
-- * You should have received a copy of the GNU General Public License version
-- * 2 along with this work; if not, write to the Free Software Foundation,
-- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
-- *
-- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
-- * or visit www.oracle.com if you need additional information or have any
-- * questions.
-- *
-- */
--
--#include "precompiled.hpp"
--#include "runtime/os.hpp"
--#include "runtime/thread.inline.hpp"
--#include "runtime/threadCritical.hpp"
--
--// OS-includes here
--#include <thread.h>
--#include <synch.h>
--
--//
--// See threadCritical.hpp for details of this class.
--//
--// For some reason, we don't do locking until the
--// os::init() call completes. I'm not sure why this
--// is, and have left it that way for now. This should
--// be reviewed later.
--
--static  mutex_t  global_mut;
--static  thread_t global_mut_owner = -1;
--static  int      global_mut_count = 0;
--
--ThreadCritical::ThreadCritical() {
--  if (os::Solaris::synchronization_initialized()) {
--    thread_t owner = thr_self();
--    if (global_mut_owner != owner) {
--      if (os::Solaris::mutex_lock(&global_mut))
--        fatal("ThreadCritical::ThreadCritical: mutex_lock failed (%s)",
--              os::strerror(errno));
--      assert(global_mut_count == 0, "must have clean count");
--      assert(global_mut_owner == -1, "must have clean owner");
--    }
--    global_mut_owner = owner;
--    ++global_mut_count;
--  } else {
--    assert (Threads::number_of_threads() == 0, "valid only during initialization");
--  }
--}
--
--ThreadCritical::~ThreadCritical() {
--  if (os::Solaris::synchronization_initialized()) {
--    assert(global_mut_owner == thr_self(), "must have correct owner");
--    assert(global_mut_count > 0, "must have correct count");
--    --global_mut_count;
--    if (global_mut_count == 0) {
--      global_mut_owner = -1;
--      if (os::Solaris::mutex_unlock(&global_mut))
--        fatal("ThreadCritical::~ThreadCritical: mutex_unlock failed (%s)", os::strerror(errno));
--    }
--  } else {
--    assert (Threads::number_of_threads() == 0, "valid only during initialization");
--  }
--}
 --- old/src/hotspot/os/solaris/vmStructs_solaris.hpp	2020-05-20 18:09:38.337178219 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,44 +0,0 @@
