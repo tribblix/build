@@ -17,7 +17,7 @@ echo "pkgs.tribblix.org" > var/sslcerts/pkgs.tribblix.org/domains.txt
 cp ${BUILDROOT}/patches/repo-dehydrated.config var/sslcerts/pkgs.tribblix.org/config
 
 #
-# this is the starting apache configuration
+# this is the starting nginx configuration
 #
 mkdir -p opt/tribblix/nginx/sites-enabled
 cp ${BUILDROOT}/patches/pkgs.tribblix.org.conf opt/tribblix/nginx/sites-enabled/pkgs.tribblix.org.conf
