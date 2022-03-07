@@ -1,4 +1,0 @@
-PKG="TRIBblix-hetty"
-NAME="Hetty HTTP toolkit for security research."
-VERSION="1.0.0"
-ZAP_URL="https://github.com/dstotijn/hetty"
