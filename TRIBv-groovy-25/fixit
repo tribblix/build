@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-VERSION=2.5.15
+VERSION=2.5.16
 rm usr/versions/groovy-${VERSION}/bin/*.bat
