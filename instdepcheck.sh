@@ -26,7 +26,7 @@ if [ ! -d ${THOME}/build/${THISPKG} ]; then
 fi
 
 #
-# find the files assocated with this package
+# find the files associated with this package
 #
 cd $DESTDIR
 FLIST=/tmp/dep.fl.$$
