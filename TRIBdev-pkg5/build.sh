@@ -8,7 +8,7 @@
 #
 
 #
-# the build needs six and cffi and libzonecfg.h - see build_requires
+# the build needs six and cffi and libzonecfg.h - see build_require
 #
 git clone https://github.com/omniosorg/pkg5
 cd pkg5

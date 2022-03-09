@@ -31,9 +31,9 @@ if [ ! -f ${BUILD_DIR}/${PKGTOBUILD}/build_opts ]; then
     exit 2
 fi
 
-if [ -f ${BUILD_DIR}/${PKGTOBUILD}/build_requires ]; then
+if [ -f ${BUILD_DIR}/${PKGTOBUILD}/build_require ]; then
     echo "Checking for required packages"
-    for xpkg in `cat ${BUILD_DIR}/${PKGTOBUILD}/build_requires`
+    for xpkg in `cat ${BUILD_DIR}/${PKGTOBUILD}/build_require`
     do
 	/usr/bin/pkginfo -q ${xpkg}
 	FOUNDPKG=$?
