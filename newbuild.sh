@@ -52,9 +52,9 @@ if [ "X${HASREQUIRED}" = "XN" ]; then
     echo "zap install $REQUIRED"
 fi
 
-if [ -f ${BUILD_DIR}/${PKGTOBUILD}/build_forbids ]; then
+if [ -f ${BUILD_DIR}/${PKGTOBUILD}/build_incompatible ]; then
     echo "Checking for incompatible packages"
-    for xpkg in `cat ${BUILD_DIR}/${PKGTOBUILD}/build_forbidden`
+    for xpkg in `cat ${BUILD_DIR}/${PKGTOBUILD}/build_incompatible`
     do
 	/usr/bin/pkginfo -q ${xpkg}
 	FOUNDPKG=$?
