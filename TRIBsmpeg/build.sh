@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # so the current version wants SDL2 (see TRIBsmpeg2),
-# force something older for this package whic is built
+# force something older for this package which is built
 # against SDL1
 #
 svn co svn://svn.icculus.org/smpeg/trunk -r 399 smpeg

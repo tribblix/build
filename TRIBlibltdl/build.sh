@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# this package supplies the runtime llibltdl libraries
+# this package supplies the runtime libltdl libraries
 # to avoid having to install the whole of libtool
 #
 # to build against libltdl requires TRIBlibtool be installed, as

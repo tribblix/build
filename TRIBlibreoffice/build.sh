@@ -12,7 +12,7 @@ cd libreoffice-7.2.5.2
 
 #
 # despite us now having a native SSP, the build falls over in that area
-# with an unresolved sysmbol, even if I pass the library along
+# with an unresolved symbol, even if I pass the library along
 #
 sed -i '/stack-protector-strong/d' ./solenv/gbuild/platform/com_GCC_defs.mk
 
