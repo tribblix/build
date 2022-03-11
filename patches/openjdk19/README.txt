@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-13
+
+Minor patch noise.
+
 19-12
 
 ThreadCritical has been merged into Posix. I've simply deleted
