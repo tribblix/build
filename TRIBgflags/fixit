@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# this doesn't belong here
+#
+rm -f usr/bin/gflags_completions.sh
+rmdir usr/bin

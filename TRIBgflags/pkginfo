@@ -1,0 +1,4 @@
+PKG="TRIBgflags"
+NAME="A C++ library that implements commandline flags processing."
+VERSION="2.2.2.0"
+ZAP_URL="https://github.com/gflags/gflags"
