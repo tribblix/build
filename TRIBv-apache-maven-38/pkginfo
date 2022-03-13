@@ -1,0 +1,4 @@
+PKG="TRIBv-apache-maven-38"
+NAME="Apache Maven 3.8"
+VERSION="3.8.4.0"
+ZAP_URL="http://maven.apache.org/"
