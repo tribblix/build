@@ -2,7 +2,7 @@
 #
 # links into normal PATH
 #
-VERSION=4.0.0
+VERSION=4.0.1
 rm usr/versions/groovy-${VERSION}/bin/*.bat
 exit 0
 mkdir -p usr/bin
