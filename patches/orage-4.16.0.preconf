@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# the minimum version of gtk is declared to be too high
+#
+sed -i s:3.24.0:3.22.0: configure
