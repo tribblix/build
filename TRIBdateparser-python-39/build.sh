@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack dateparser-1.1.0
-cd dateparser-1.1.0
+${THOME}/build/unpack dateparser-1.1.1
+cd dateparser-1.1.1
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil

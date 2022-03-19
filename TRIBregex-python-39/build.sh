@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# NOTE: dateparser pins the vregex version to < 2022.3.15
+#
 ${THOME}/build/unpack regex-2022.3.2
 cd regex-2022.3.2
 /usr/versions/python-3.9/bin/python3 setup.py build
