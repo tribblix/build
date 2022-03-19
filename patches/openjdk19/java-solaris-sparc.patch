@@ -18017,7 +18017,7 @@
 -                unsafe.freeMemory(address);
 -            }
 -        } finally {
--            close(fd);
+-            close(fd, e -> null);
 -        }
 -    }
 -
@@ -18054,7 +18054,7 @@
 -                unsafe.freeMemory(address);
 -            }
 -        } finally {
--            close(fd);
+-            close(fd, e -> null);
 -        }
 -    }
 -
@@ -18697,7 +18697,7 @@
 -                    x.getMessage());
 -            }
 -        } finally {
--            close(fd);
+-            close(fd, e -> null);
 -        }
 -    }
 -
@@ -18730,7 +18730,7 @@
 -                    "': " + x.getMessage());
 -            }
 -        } finally {
--            close(fd);
+-            close(fd, e -> null);
 -        }
 -    }
 -
@@ -18772,7 +18772,7 @@
 -                    "': " + x.getMessage());
 -            }
 -        } finally {
--            close(fd);
+-            close(fd, e -> null);
 -        }
 -    }
 -
@@ -18811,7 +18811,7 @@
 -                    "': " + x.getMessage());
 -            }
 -        } finally {
--            close(fd);
+-            close(fd, e -> null);
 -        }
 -    }
 -
@@ -18836,7 +18836,7 @@
 -                null, "Unable to delete extended attribute '" + name +
 -                "': " + x.getMessage());
 -        } finally {
--            close(fd);
+-            close(fd, e -> null);
 -        }
 -    }
 -
@@ -19282,7 +19282,7 @@
 -
 -            // free global resources
 -            unsafe.freeMemory(bufferAddress);
--            UnixNativeDispatcher.close(port);
+-            UnixNativeDispatcher.close(port, e -> null);
 -        }
 -
 -        /**

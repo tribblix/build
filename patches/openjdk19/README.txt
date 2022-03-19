@@ -7,6 +7,13 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-14
+
+In src/java.base/solaris/classes/sun/nio/fs, needed to catch
+UnixException in close() in SolarisAclFileAttributeView.java,
+SolarisUserDefinedFileAttributeView.java and SolarisWatchService.java,
+using new close(fd, e -> null) rather than just close().
+
 19-13
 
 Minor patch noise.

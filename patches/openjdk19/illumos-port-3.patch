@@ -1,7 +1,7 @@
 --- a/src/java.base/unix/classes/sun/nio/fs/UnixNativeDispatcher.java	Thu May 28 00:44:10 2020
 +++ b/src/java.base/unix/classes/sun/nio/fs/UnixNativeDispatcher.java	Wed May 20 19:29:11 2020
-@@ -98,6 +98,27 @@
-     private static native void close0(int fd);
+@@ -118,6 +118,27 @@
+     }
  
      /**
 +     * FILE* fopen(const char *filename, const char* mode);
@@ -28,7 +28,7 @@
       * void rewind(FILE* stream);
       */
      static native void rewind(long stream) throws UnixException;
-@@ -559,6 +580,25 @@
+@@ -579,6 +600,25 @@
          throws UnixException;
  
      /**
