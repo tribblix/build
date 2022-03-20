@@ -1,4 +1,4 @@
 PKG="TRIBmercurial"
 NAME="Mercurial distributed version control system"
-VERSION="5.6.0"
+VERSION="6.1.0"
 ZAP_URL="https://www.mercurial-scm.org/"

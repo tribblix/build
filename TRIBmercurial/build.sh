@@ -2,9 +2,9 @@
 #
 #
 #
-zap install TRIBdocutils-python-37
-${THOME}/build/unpack mercurial-5.6
-cd mercurial-5.6
+zap install TRIBdocutils-python-39
+${THOME}/build/unpack mercurial-6.1
+cd mercurial-6.1
 sed -i 's:install -d:ginstall -d:' Makefile
 sed -i 's:install -m:ginstall -m:' Makefile
 sed -i 's:install -m:ginstall -m:' doc/Makefile
