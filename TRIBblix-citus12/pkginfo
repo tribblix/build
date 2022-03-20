@@ -1,4 +1,0 @@
-PKG="TRIBblix-citus12"
-NAME="Scalable PostgreSQL for multi-tenant and real-time analytics workloads"
-VERSION="9.5.1.0"
-ZAP_URL="https://github.com/citusdata/citus"

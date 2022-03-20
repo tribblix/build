@@ -1,4 +1,0 @@
-PKG="TRIBblix-postgres12"
-NAME="PostgreSQL database"
-VERSION="12.10.0"
-ZAP_URL="https://www.postgresql.org/"
