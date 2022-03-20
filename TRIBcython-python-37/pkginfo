@@ -1,4 +1,0 @@
-PKG="TRIBcython-python-37"
-NAME="Python Cython"
-VERSION="0.29.23.0"
-ZAP_URL="https://pypi.org/project/Cython"
