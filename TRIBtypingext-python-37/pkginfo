@@ -1,4 +1,0 @@
-PKG="TRIBtypingext-python-37"
-NAME="Python typing_extensions"
-VERSION="3.10.0.0.0"
-ZAP_URL="https://pypi.org/project/typing_extensions"
