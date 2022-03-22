@@ -119,21 +119,23 @@ case $# in
 		fi
 		cd ..
 	    fi
-	    cd ${SOFTDIR}
-	    if [ -f .tribblix_ldopts ]; then
-		. ./.tribblix_ldopts
-	    fi
-	    if [ -f .tribblix_cmake_build ]; then
-		cd build
-	    fi
-	    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
-	    if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
-		${BUILD}/${PKGNAME}/fixinstall $BDIR
-	    fi
-	    if [ -f ../.tribblix_cmake_build ]; then
+	    if [ -d ${SOFTDIR} ]; then
+		cd ${SOFTDIR}
+		if [ -f .tribblix_ldopts ]; then
+		    . ./.tribblix_ldopts
+		fi
+		if [ -f .tribblix_cmake_build ]; then
+		    cd build
+		fi
+		$GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
+		if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
+		    ${BUILD}/${PKGNAME}/fixinstall $BDIR
+		fi
+		if [ -f ../.tribblix_cmake_build ]; then
+		    cd ..
+		fi
 		cd ..
 	    fi
-	    cd ..
 	done
 	;;
 esac
