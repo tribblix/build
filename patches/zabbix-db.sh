@@ -13,7 +13,7 @@ ZDIR="/opt/tribblix/zabbix"
 ZDBSCRIPT="${ZDIR}/scripts/zabbix-db.sh"
 ZDBDIR="${ZDIR}/db"
 DBUSER="zabbixdb"
-PGDIR="/opt/tribblix/postgres11"
+PGDIR="/opt/tribblix/postgres13"
 
 #
 # if the script doesn't exist, just exit
