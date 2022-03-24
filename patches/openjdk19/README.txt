@@ -7,6 +7,15 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-15
+
+FontConfiguration was broken. The build doesn't generate the fontconfig
+files in ${JAVA_HOME}/lib; the file
+make/modules/java.desktop/gendata/GendataFontConfig.gmk
+is rather different, as the fontconfig.properties files have moved from
+make/data/fontconfig to src/java.desktop/`platform`/data/fontconfig
+
+
 19-14
 
 In src/java.base/solaris/classes/sun/nio/fs, needed to catch

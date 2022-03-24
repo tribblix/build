@@ -441,7 +441,7 @@
  # These toolchains are valid on different platforms
  VALID_TOOLCHAINS_linux="gcc clang"
 -VALID_TOOLCHAINS_solaris="gcc"
- VALID_TOOLCHAINS_macosx="gcc clang"
+ VALID_TOOLCHAINS_macosx="clang"
  VALID_TOOLCHAINS_aix="xlc"
  VALID_TOOLCHAINS_windows="microsoft"
 --- old/make/common/MakeBase.gmk	2020-05-20 17:58:45.708647335 -0700
@@ -502,7 +502,7 @@
            # It cannot be run separately since it updates the original target file
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -152,7 +150,6 @@
+@@ -153,7 +151,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -510,7 +510,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -162,14 +159,11 @@
+@@ -163,14 +160,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -1762,7 +1762,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1724,8 +1724,6 @@
+@@ -1725,8 +1725,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1771,7 +1771,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1787,8 +1785,6 @@
+@@ -1788,8 +1786,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -3987,7 +3987,7 @@
   * Since winsock doesn't have the equivalent of strerror(errno)
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
-@@ -1426,22 +1426,6 @@
+@@ -1428,22 +1428,6 @@
                  }
              }
          }
@@ -5842,7 +5842,7 @@
  
  LIBARCH		= $(ARCH)
  ifdef		LP64
---- old/make/data/fontconfig/solaris.fontconfig.properties	2020-05-20 18:08:13.719553558 -0700
+--- old/src/java.desktop/solaris/data/fontconfig/fontconfig.properties	2020-05-20 18:08:13.719553558 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,516 +0,0 @@
 -#
