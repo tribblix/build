@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild parallel-20220222 -P /usr/gnu
-${THOME}/build/genpkg TRIBgnu-parallel parallel-20220222
+${THOME}/build/dobuild parallel-20220322 -P /usr/gnu
+${THOME}/build/genpkg TRIBgnu-parallel parallel-20220322
