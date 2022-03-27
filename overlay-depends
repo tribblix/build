@@ -3,6 +3,21 @@
 # generate a merged list of dependencies for the given overlay(s)
 #
 
+THOME=${THOME:-/packages/localsrc/Tribblix}
+#
+# xref against this illumos catalog
+#
+ILVER=m26
+case `pwd` in
+    *lx)
+	ILVER=m26lx
+	;;
+    *sparc)
+	ILVER=m20.6.sparc
+	;;
+esac
+CATALOG=${THOME}/illumos-pkgs-${ILVER}/pkgs/catalog
+
 #
 VERBOSE=""
 case $1 in
@@ -58,16 +73,16 @@ do
      grep '^P' ../build/${PKGI}/depend >> $TMPF
   fi
   if [ ! -d ../build/${PKGI} ]; then
-      if [ -f /var/sadm/pkg/${PKGI}/install/depend ] ; then
-	  grep '^P' /var/sadm/pkg/${PKGI}/install/depend >> $TMPF
-      fi
+      for npkgi in $(awk -v p=$PKGI -F'|' '{if ($1 == p) print $3}' $CATALOG)
+      do
+	  echo "P $npkgi" >> $TMPF
+      done
   fi
 done
 #
 # fix up errant legacy dependencies
 #
 sed -i '/TRIBsys-lib-gcc-3-runtime/d' $TMPF
-sed -i '/TRIBperl-510/d' $TMPF
 sed -i 's:TRIBsys-lib-c++-sunpro:TRIBsys-lib-cpp-sunpro:' $TMPF
 ##
 ## This is only useful for debug
@@ -113,9 +128,7 @@ do
      grep -w $ndep ../build/${PKGI}/depend /dev/null
   fi
   if [ ! -d ../build/${PKGI} ]; then
-      if [ -f /var/sadm/pkg/${PKGI}/install/depend ] ; then
-	  grep -w $ndep /var/sadm/pkg/${PKGI}/install/depend /dev/null
-      fi
+      egrep "( |\|)${ndep}( |\|)" $CATALOG | awk -v p=$PKGI -F'|' '{if ($1 == p) print $1" : " $3}'
   fi
 done
 done
