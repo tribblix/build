@@ -3,4 +3,6 @@
 rm -f usr/lib/lib*.la
 rm -f usr/lib/*/lib*.la
 rm -f usr/lib/*/lib*.a
+rm -f usr/lib/*/*/lib*.la
+rm -f usr/lib/*/*/lib*.a
 chmod a+x usr/bin/mlterm

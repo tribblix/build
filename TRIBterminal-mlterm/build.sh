@@ -1,5 +1,5 @@
 #!/bin/sh
 #
 #
-$THOME/build/dobuild mlterm-3.8.9
-${THOME}/build/genpkg TRIBterminal-mlterm mlterm-3.8.9
+$THOME/build/dobuild -gnu -64only mlterm-3.9.2
+${THOME}/build/genpkg TRIBterminal-mlterm mlterm-3.9.2
