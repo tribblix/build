@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# libuv is built by the bind preconf, but it needs its own preconf
+# and we need libtool installed for the autogen step
+#
+./autogen.sh

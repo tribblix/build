@@ -2,5 +2,7 @@
 #
 # must not have TRIBlibedit or TRIBjson-c installed
 #
-${THOME}/build/dobuild bind-9.11.37 -C "--sysconfdir=/etc --localstatedir=/var --without-python"
-${THOME}/build/genpkg TRIBbind9 bind-9.11.37
+# the preconf file builds a private static libuv
+#
+env LIBUV_CFLAGS=-I`pwd`/bind-9.16.27-64bit/libuv-v1.40.0-64bit/include LIBUV_LIBS="`pwd`/bind-9.16.27-64bit/libuv-v1.40.0-64bit/.libs/libuv.a -lkstat -lsendfile" TRIBBLIX_CFLAGS=-D_XPG4_2 ${THOME}/build/dobuild -64only bind-9.16.27 -C "--sysconfdir=/etc --localstatedir=/var --without-python --disable-geoip"
+${THOME}/build/genpkg TRIBbind9 bind-9.16.27
