@@ -1,0 +1,19 @@
+--- a/ogg123/status.c	Sat Jan  2 19:54:35 2021
++++ b/ogg123/status.c	Tue Mar 29 19:35:05 2022
+@@ -24,7 +24,6 @@
+ #include <pthread.h>
+ 
+ #ifdef HAVE_UNISTD_H
+-#include <sys/ioctl.h>
+ #include <unistd.h>
+ #endif
+ 
+@@ -168,7 +167,7 @@
+     stats++;
+   }
+   
+-#ifdef HAVE_UNISTD_H
++#ifdef NOT_HAVE_UNISTD_H
+   /* If the line would break in the console, truncate it to avoid the break,
+      and indicate the truncation by adding points of ellipsis */
+   struct winsize max;
