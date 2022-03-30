@@ -1,0 +1,13 @@
+Name conflict with our system headers
+
+--- a/cmdgen.c	Sat Jul 10 10:47:51 2021
++++ b/cmdgen.c	Wed Mar 30 08:29:58 2022
+@@ -16,6 +16,8 @@
+ #include "sshkeygen.h"
+ #include "mpint.h"
+ 
++#undef PRIVATE
++
+ static FILE *progress_fp = NULL;
+ static bool linear_progress_phase;
+ static unsigned last_progress_col;
