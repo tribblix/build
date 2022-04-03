@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-16
+
+Minor patch noise.
+
 19-15
 
 FontConfiguration was broken. The build doesn't generate the fontconfig

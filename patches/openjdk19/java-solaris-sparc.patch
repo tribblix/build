@@ -318,7 +318,7 @@
    fi
  
    # librt for legacy clock_gettime
-@@ -156,12 +154,6 @@
+@@ -162,12 +160,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -910,7 +910,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
     endif
  
-@@ -634,10 +597,7 @@
+@@ -641,10 +604,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -922,7 +922,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -662,7 +624,6 @@
+@@ -669,7 +631,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1332,7 +1332,7 @@
  #endif
 --- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
-@@ -450,8 +450,6 @@
+@@ -446,8 +446,6 @@
      case lir_monaddr:        // input and result always valid, info always invalid
      case lir_null_check:     // input and info always valid, result always invalid
      case lir_move:           // input and result always valid, may have info
@@ -1341,7 +1341,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1674,8 +1672,6 @@
+@@ -1719,8 +1717,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1352,7 +1352,7 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -939,8 +939,6 @@
+@@ -938,8 +938,6 @@
        , lir_monaddr
        , lir_roundfp
        , lir_safepoint
@@ -1361,7 +1361,7 @@
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2147,9 +2145,6 @@
+@@ -2233,9 +2231,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -5274,7 +5274,7 @@
  
 --- old/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:09.173706056 -0700
 +++ new/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:08.789698683 -0700
-@@ -40,7 +40,6 @@
+@@ -41,7 +41,6 @@
  import sun.jvm.hotspot.debugger.NoSuchSymbolException;
  import sun.jvm.hotspot.debugger.bsd.BsdDebuggerLocal;
  import sun.jvm.hotspot.debugger.linux.LinuxDebuggerLocal;
@@ -5282,7 +5282,7 @@
  import sun.jvm.hotspot.debugger.remote.RemoteDebugger;
  import sun.jvm.hotspot.debugger.remote.RemoteDebuggerClient;
  import sun.jvm.hotspot.debugger.remote.RemoteDebuggerServer;
-@@ -364,9 +361,7 @@
+@@ -365,9 +362,7 @@
                  } catch (UnsupportedPlatformException e) {
                     throw new DebuggerException(e);
                  }
@@ -5293,7 +5293,7 @@
                      setupDebuggerWin32();
                  } else if (os.equals("linux")) {
                      setupDebuggerLinux();
-@@ -407,11 +402,7 @@
+@@ -408,11 +403,7 @@
          // configure the VM.
  
          try {
@@ -5306,7 +5306,7 @@
                  db = new HotSpotTypeDataBase(machDesc,
                  new Win32VtblAccess(debugger, jvmLibNames),
                  debugger, jvmLibNames);
-@@ -496,29 +487,6 @@
+@@ -497,29 +488,6 @@
          System.err.println("Loaded alternate HotSpot SA Debugger: " + alternateName);
      }
  
@@ -5336,7 +5336,7 @@
      private void connectRemoteDebugger() throws DebuggerException {
          RemoteDebugger remote =
          (RemoteDebugger) RMIHelper.lookup(debugServerID);
-@@ -534,9 +498,7 @@
+@@ -535,9 +499,7 @@
      }
  
      private void setupJVMLibNames(String os) {
@@ -5347,7 +5347,7 @@
              setupJVMLibNamesWin32();
          } else if (os.equals("linux")) {
              setupJVMLibNamesLinux();
-@@ -559,10 +511,6 @@
+@@ -560,10 +512,6 @@
          }
      }
  
@@ -5369,7 +5369,7 @@
  import sun.jvm.hotspot.runtime.win32_x86.Win32X86JavaThreadPDAccess;
  import sun.jvm.hotspot.runtime.win32_amd64.Win32AMD64JavaThreadPDAccess;
  import sun.jvm.hotspot.runtime.win32_aarch64.Win32AARCH64JavaThreadPDAccess;
-@@ -100,13 +96,7 @@
+@@ -101,13 +97,7 @@
  
          access = null;
          // FIXME: find the platform specific PD class by reflection?
