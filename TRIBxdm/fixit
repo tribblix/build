@@ -1,2 +1,5 @@
 #!/bin/sh
 rm -f usr/lib/X11/xdm/libXdmGreet.la
+mkdir -p usr/sbin
+cd usr/sbin
+ln -s ../bin/xdm .
