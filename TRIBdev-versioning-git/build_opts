@@ -1,2 +1,3 @@
-tribblix_srcs=git-2.34.1
-tribblix_C_opt="--with-perl=/usr/perl5/5.22.0/bin/perl"
+tribblix_srcs=git-2.35.1
+tribblix_64_opt=-64only
+tribblix_C_opt="--with-perl=/usr/perl5/5.34/bin/perl"

@@ -4,20 +4,12 @@
 #
 mkdir -p usr/share/man
 cd usr/share/man
-${BUILDROOT}/unpack git-manpages-2.34.1
+${BUILDROOT}/unpack git-manpages-2.35.1
 chmod a+rx .
 cd ../../..
 #
-# and it has no clue where perl is, really
+# it doesn't know where perl is
 #
-rm usr/lib/i86pc-solaris-thread-multi-64int/perllocal.pod      
-rmdir usr/lib/i86pc-solaris-thread-multi-64int
-mkdir -p usr/perl5
-mv usr/lib/site_perl usr/perl5
-rmdir usr/lib
-#
-# or it might put things here
-#
-mkdir -p usr/perl5/site_perl/5.22.0
-mv usr/share/perl5/* usr/perl5/site_perl/5.22.0
+mkdir -p usr/perl5/site_perl/5.34
+mv usr/share/perl5/* usr/perl5/site_perl/5.34
 rmdir usr/share/perl5
