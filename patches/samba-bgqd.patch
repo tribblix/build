@@ -1,0 +1,10 @@
+--- a/source3/printing/samba-bgqd.c	Tue Mar 15 13:19:34 2022
++++ b/source3/printing/samba-bgqd.c	Wed Apr  6 17:21:00 2022
+@@ -41,6 +41,7 @@
+ #include "source3/auth/proto.h"
+ #include "source3/printing/queue_process.h"
+ #include "source3/lib/substitute.h"
++#include <signal.h>
+ 
+ static void watch_handler(struct tevent_req *req)
+ {

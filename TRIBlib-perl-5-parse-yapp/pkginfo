@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-parse-yapp"
+NAME="Perl Parse::Yapp module"
+VERSION="1.21.0"
+ZAP_URL="https://metacpan.org/dist/Parse-Yapp"

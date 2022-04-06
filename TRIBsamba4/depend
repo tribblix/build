@@ -1,8 +1,9 @@
 P TRIBcups
 P TRIBgnutls
 P TRIBjansson
+P TRIBlib-glib2
 P TRIBlib-zlib
 P TRIBlibarchive
+P TRIBlibicu
 P TRIBlibpopt
 P TRIBncurses
-P TRIBsys-libdbus

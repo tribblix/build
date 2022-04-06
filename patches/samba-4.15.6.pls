@@ -1,0 +1,3 @@
+-p1 samba-vfs-solarisacl.patch
+-p1 samba-mutex.patch
+-p1 samba-bgqd.patch
