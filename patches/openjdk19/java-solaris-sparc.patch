@@ -5306,7 +5306,7 @@
                  db = new HotSpotTypeDataBase(machDesc,
                  new Win32VtblAccess(debugger, jvmLibNames),
                  debugger, jvmLibNames);
-@@ -497,29 +488,6 @@
+@@ -493,29 +484,6 @@
          System.err.println("Loaded alternate HotSpot SA Debugger: " + alternateName);
      }
  
@@ -5336,7 +5336,7 @@
      private void connectRemoteDebugger() throws DebuggerException {
          RemoteDebugger remote =
          (RemoteDebugger) RMIHelper.lookup(debugServerID);
-@@ -535,9 +499,7 @@
+@@ -531,9 +495,7 @@
      }
  
      private void setupJVMLibNames(String os) {
@@ -5347,7 +5347,7 @@
              setupJVMLibNamesWin32();
          } else if (os.equals("linux")) {
              setupJVMLibNamesLinux();
-@@ -560,10 +512,6 @@
+@@ -556,10 +508,6 @@
          }
      }
  

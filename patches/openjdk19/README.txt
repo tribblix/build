@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-17
+
+Now needs jdk18 as the boot jdk.
+
 19-16
 
 Minor patch noise.
@@ -92,7 +96,7 @@ new OSThread() signature change
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk17 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk18 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
