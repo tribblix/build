@@ -8,19 +8,19 @@ cd /tmp/sp-en/usr/share/hunspell
 #
 # download
 #
-wget https://sourceforge.net/projects/wordlist/files/speller/2018.04.16/hunspell-en_CA-2018.04.16.zip
-wget https://sourceforge.net/projects/wordlist/files/speller/2018.04.16/hunspell-en_AU-2018.04.16.zip
-wget https://sourceforge.net/projects/wordlist/files/speller/2018.04.16/hunspell-en_US-2018.04.16.zip
-wget https://sourceforge.net/projects/wordlist/files/speller/2018.04.16/hunspell-en_GB-ise-2018.04.16.zip
-wget https://sourceforge.net/projects/wordlist/files/speller/2018.04.16/hunspell-en_GB-ize-2018.04.16.zip
+wget https://sourceforge.net/projects/wordlist/files/speller/2020.12.07/hunspell-en_CA-2020.12.07.zip
+wget https://sourceforge.net/projects/wordlist/files/speller/2020.12.07/hunspell-en_AU-2020.12.07.zip
+wget https://sourceforge.net/projects/wordlist/files/speller/2020.12.07/hunspell-en_US-2020.12.07.zip
+wget https://sourceforge.net/projects/wordlist/files/speller/2020.12.07/hunspell-en_GB-ise-2020.12.07.zip
+wget https://sourceforge.net/projects/wordlist/files/speller/2020.12.07/hunspell-en_GB-ize-2020.12.07.zip
 #
 # unpack
 #
-unzip -q hunspell-en_AU-2018.04.16.zip
-unzip -q hunspell-en_CA-2018.04.16.zip
-unzip -q hunspell-en_GB-ise-2018.04.16.zip
-unzip -q hunspell-en_GB-ize-2018.04.16.zip
-unzip -q hunspell-en_US-2018.04.16.zip
+unzip -q hunspell-en_AU-2020.12.07.zip
+unzip -q hunspell-en_CA-2020.12.07.zip
+unzip -q hunspell-en_GB-ise-2020.12.07.zip
+unzip -q hunspell-en_GB-ize-2020.12.07.zip
+unzip -q hunspell-en_US-2020.12.07.zip
 rm -f *.zip
 #
 # symlinks
