@@ -232,8 +232,12 @@ menu "apps"
 {
 	"  Applications  "	f.title
 	"xterm"			f.exec "xterm &"
-	"firefox"		f.exec "firefox &"
-	"xchat"			f.exec "xchat &"
+	"Pale Moon"		f.exec "palemoon &"
+	"HexChat"		f.exec "hexchat &"
+	"Geany"			f.exec "geany &"
+	"Bluefish"		f.exec "bluefish &"
+	"Claws Mail"		f.exec "claws-mail &"
+	"Calculator"		f.exec "xcalc &"
 	"xclock"		f.exec "xclock &"
 }
 
