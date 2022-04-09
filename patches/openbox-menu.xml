@@ -45,6 +45,22 @@
       </startupnotify>
     </action>
   </item>
+  <item label="Geany">
+    <action name="Execute">
+      <command>geany</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="Bluefish">
+    <action name="Execute">
+      <command>bluefush</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
   <item label="Mousepad">
     <action name="Execute">
       <command>mousepad</command>
@@ -72,6 +88,11 @@
       </startupnotify>
     </action>
   </item>
+  <item label="Sakura">
+    <action name="Execute">
+      <command>sakura</command>
+    </action>
+  </item>
   <item label="mrxvt">
     <action name="Execute">
       <command>mrxvt</command>
@@ -85,12 +106,11 @@
 </menu>
 
 <menu id="apps-net-menu" label="Internet">
-  <item label="Firefox">
+  <item label="Pale Moon Browser">
     <action name="Execute">
-      <command>firefox</command>
+      <command>palemoon</command>
       <startupnotify>
         <enabled>yes</enabled>
-        <wmclass>Firefox</wmclass>
       </startupnotify>
     </action>
   </item>
@@ -102,9 +122,9 @@
       </startupnotify>
     </action>
   </item>
-  <item label="XChat">
+  <item label="HexChat">
     <action name="Execute">
-      <command>xchat</command>
+      <command>hexchat</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
