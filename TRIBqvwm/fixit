@@ -8,3 +8,10 @@ cp ${BUILDROOT}/patches/system.qvwmrc usr/share/qvwm/system.qvwmrc
 # these copied from other apps, sometimes converted from png to xpm
 #
 cp ${BUILDROOT}/patches/qvwm-pixmaps/* usr/share/qvwm/images
+#
+# fix manpage section
+# yes, it's in /usr/man at this point, the default fixit
+# will correct that for us
+#
+sed -i 's: 1x : 1 :' usr/man/man1/qvwm.1x
+mv usr/man/man1/qvwm.1x usr/man/man1/qvwm.1

@@ -252,8 +252,8 @@ include		/etc/X11/qvwm/menu.hook
 [Shortcuts]
 "Emacs"			"emacs-32x32.xpm"	"PAGE[1, 0, Emacs] emacs"
 "Xterm"			"xterm_32x32.xpm"	"xterm"
-"Xchat"			"xchat.xpm"	"xchat"
-"Mozilla Firefox"	"web-browser.xpm"	"PAGECUR[Firefox] firefox"
+"HexChat"		"xchat.xpm"	"hexchat"
+"Pale Moon"		"web-browser.xpm"	"PAGECUR[Pale Moon] palemoon"
 "Exit"			"debian-swirl-32x32.xpm"	QVWM_EXIT
 "Xcalc"			"calculator-32x32.xpm"	"xcalc"		!1, 0
 
