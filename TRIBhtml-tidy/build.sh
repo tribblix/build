@@ -1,9 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tidy-html5-5.6.0
-cd tidy-html5-5.6.0
-mkdir build
-cd build
-cmake .. -DCMAKE_INSTALL_PREFIX:PATH=/usr
-gmake -j
-${THOME}/build/genpkg TRIBhtml-tidy
+# seems to ignore bindir, so +64 actually puts the binary in
+# /usr/bin where we want it, even though it shouldn't
+#
+${THOME}/build/cmbuild +64 tidy-html5-5.8.0
+${THOME}/build/genpkg TRIBhtml-tidy tidy-html5-5.8.0
