@@ -1,0 +1,4 @@
+PKG="TRIBdiff-so-fancy"
+NAME="Human readable diffs"
+VERSION="1.4.2.0"
+ZAP_URL="https://github.com/so-fancy/diff-so-fancy"

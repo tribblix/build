@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# put a link in the regular path
+#
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/diff-so-fancy/diff-so-fancy
