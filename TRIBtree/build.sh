@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # simple makefile
+# 64-bitness imposed by the Makefile patch
 #
 ${THOME}/build/dobuild tree-1.8.0
 cd tree-1.8.0

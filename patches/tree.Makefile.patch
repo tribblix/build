@@ -9,12 +9,14 @@
 
 --- tree-1.8.0/Makefile.orig	2021-06-23 14:48:55.584463635 +0000
 +++ tree-1.8.0/Makefile	2021-06-23 14:49:21.953391079 +0000
-@@ -43,7 +43,7 @@
+@@ -43,7 +43,9 @@
  #CC=cc
  #CFLAGS=-xO0 -v
  #LDFLAGS=
 -#OBJS+=strverscmp.o
 +OBJS+=strverscmp.o
++CFLAGS+=-m64
++LDFLAGS+=-m64
  #MANDIR=${prefix}/share/man/man1
  
  # Uncomment for Cygwin:
