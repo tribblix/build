@@ -20,7 +20,7 @@ Fixes src/hotspot/cpu/zero/stubGenerator_zero.cpp
 illumos-zero-2.patch
 Adds the src/hotspot/os_cpu/solaris_zero directory and contents
 
-These are current and tested for jdk 19+2. They don't provide a
+These are current and tested for jdk 19+17. They don't provide a
 proper zero port, as they still have x86 assembler that needs to be
 removed.
 
@@ -32,7 +32,7 @@ gpatch -p1 < ${THOME}/build/patches/openjdk19/illumos-zero-2.patch
 Configure:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk17 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk18 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
