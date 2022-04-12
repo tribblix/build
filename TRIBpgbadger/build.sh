@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pgbadger-11.7
-cd pgbadger-11.7
+${THOME}/build/unpack pgbadger-11.8
+cd pgbadger-11.8
 # you need to run a make to create the manpage
 perl Makefile.PL
 sed -i 's:sed -i.bak:gsed -i.bak:' Makefile
