@@ -11,6 +11,7 @@ P TRIBlib-glib2
 P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBlibev
+P TRIBlibwebp
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBx11-libx11
