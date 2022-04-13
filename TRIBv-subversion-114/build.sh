@@ -21,7 +21,7 @@ sed -i s:/usr/versions/subversion-1.14/lib:`pwd`: serf-1.pc
 sed -i s:/usr/versions/subversion-1.14:`pwd`: serf-1.pc
 sed -i s:/include/serf-1:: serf-1.pc
 cd ..
-${THOME}/build/dobuild subversion-1.14.1 -P /usr/versions/subversion-1.14 -C "--with-apr=../apr-1.5.2 --with-apr-util=../apr-util-1.5.4 --with-serf=../serf-1.3.9 CPPFLAGS=-D__EXTENSIONS__ --with-lz4=internal --with-utf8proc=internal" -L
+${THOME}/build/dobuild subversion-1.14.2 -P /usr/versions/subversion-1.14 -C "--with-apr=../apr-1.5.2 --with-apr-util=../apr-util-1.5.4 --with-serf=../serf-1.3.9 CPPFLAGS=-D__EXTENSIONS__ --with-lz4=internal --with-utf8proc=internal" -L
 # symlinks so libtool stupid relinking works
 cd apr-1.5.2
 ln -s .libs/* .
@@ -30,5 +30,5 @@ cd apr-util-1.5.4
 ln -s .libs/* .
 cd ..
 # serf installed by fixinstall
-${THOME}/build/genpkg TRIBv-subversion-114 subversion-1.14.1 apr-1.5.2 apr-util-1.5.4
+${THOME}/build/genpkg TRIBv-subversion-114 subversion-1.14.2 apr-1.5.2 apr-util-1.5.4
 # [phew]
