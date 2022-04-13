@@ -2,8 +2,8 @@
 #
 # 3.2 is an LTS release
 #
-${THOME}/build/unpack Django-3.2.12
-cd Django-3.2.12
+${THOME}/build/unpack Django-3.2.13
+cd Django-3.2.13
 rm -fr /tmp/p3a
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/p3a
 ${THOME}/build/create_pkg TRIBdjango3-python-39 /tmp/p3a
