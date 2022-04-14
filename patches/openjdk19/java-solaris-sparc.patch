@@ -216,7 +216,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -427,9 +375,6 @@
+@@ -448,9 +396,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -226,7 +226,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
      CFLAGS_OS_DEF_JVM="-D_ALLBSD_SOURCE -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE"
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
-@@ -465,9 +410,6 @@
+@@ -486,9 +431,6 @@
    # Setup debug/release defines
    if test "x$DEBUG_LEVEL" = xrelease; then
      DEBUG_CFLAGS_JDK="-DNDEBUG"
@@ -483,7 +483,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -749,7 +743,6 @@
+@@ -755,7 +749,6 @@
    ifeq ($$($1_WARNINGS_AS_ERRORS_$(TOOLCHAIN_TYPE)), true)
      $1_EXTRA_CFLAGS += $(CFLAGS_WARNINGS_ARE_ERRORS)
      $1_EXTRA_CXXFLAGS += $(CFLAGS_WARNINGS_ARE_ERRORS)
@@ -491,7 +491,7 @@
    endif
  
    ifeq (NONE, $$($1_OPTIMIZATION))
-@@ -987,7 +969,7 @@
+@@ -993,7 +975,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -537,7 +537,7 @@
    else ifeq ($(call isBuildOs, aix), true)
      ADLC_LDFLAGS += -q64
      ADLC_CFLAGS := -qnortti -qeh -q64 -DAIX
-@@ -88,8 +84,6 @@
+@@ -91,8 +87,6 @@
    # ADLC flags depending on target OS
    ifeq ($(call isTargetOs, linux), true)
      ADLCFLAGS += -DLINUX=1 -D_GNU_SOURCE=1
@@ -1725,7 +1725,7 @@
  inline int g_isnan(float  f) { return isnan(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700
-@@ -391,14 +391,6 @@
+@@ -397,14 +397,6 @@
  #define NOT_AIX(code) code
  #endif
  
@@ -1761,8 +1761,8 @@
 +  // Env variables that are defined on Linux/BSD
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
-   "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1725,8 +1725,6 @@
+   "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
+@@ -1736,8 +1736,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1771,7 +1771,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1788,8 +1786,6 @@
+@@ -1799,8 +1797,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");

@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-18
+
+Minor patch noise.
+
 19-17
 
 Now needs jdk18 as the boot jdk.
