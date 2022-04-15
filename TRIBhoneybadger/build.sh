@@ -4,7 +4,7 @@
 #
 mkdir h
 cd h
-go get -v github.com/david415/HoneyBadger/cmd/honeyBadger
+env GOPATH=`pwd` go get -v github.com/david415/HoneyBadger/cmd/honeyBadger
 rm -fr /tmp/hh
 mkdir -p /tmp/hh/usr/bin /tmp/hh/usr/share/HoneyBadger
 cp bin/honeyBadger /tmp/hh/usr/bin
