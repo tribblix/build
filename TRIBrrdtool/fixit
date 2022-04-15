@@ -5,18 +5,19 @@ rmdir usr/man/man3 usr/man
 #
 rm -fr usr/share/doc
 rm -fr usr/share/rrdtool
-rm -f usr/lib/*.la
+rm -f usr/lib/librrd.la
+rm -f usr/lib/*/librrd.la
 #
 # this is where our python really lives
 #
-mkdir -p usr/versions/python-2.7/lib/python2.7/site-packages
-mv usr/lib/python2.7/site-packages/* usr/versions/python-2.7/lib/python2.7/site-packages
-rmdir usr/lib/python2.7/site-packages
-rmdir usr/lib/python2.7
+mkdir -p usr/versions/python-3.9/lib/python3.9/site-packages
+mv usr/lib/python3.9/site-packages/* usr/versions/python-3.9/lib/python3.9/site-packages
+rmdir usr/lib/python3.9/site-packages
+rmdir usr/lib/python3.9
 #
 # ditto perl
 #
 mkdir -p usr/perl5/site_perl
-rm usr/lib/perl/5.22.0/i86pc-solaris-thread-multi-64int/perllocal.pod
-mv usr/lib/perl/5.22.0 usr/perl5/site_perl
+rm usr/lib/perl/5.34.0/i86pc-solaris-thread-multi-64/perllocal.pod
+mv usr/lib/perl/5.34.0 usr/perl5/site_perl
 rmdir usr/lib/perl
