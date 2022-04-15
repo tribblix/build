@@ -1,4 +1,5 @@
 P TRIBgnutls
+P TRIBlib-expat
+P TRIBlibxml2
 P TRIBnettle
-P TRIBsvc-security-kerberos-5
 P TRIBsys-lib-security-libsasl
