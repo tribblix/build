@@ -36,8 +36,10 @@ fi
 # for simple cases like this, gnu grep is several times quicker
 #
 EGREP=/usr/bin/egrep
+MEGREP=/usr/bin/egrep
 if [ -x /usr/gnu/bin/egrep ]; then
    EGREP=/usr/gnu/bin/egrep
+   MEGREP="/usr/gnu/bin/egrep -m 1"
 fi
 
 #
@@ -49,7 +51,7 @@ getdeps()
 {
 for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort | uniq | sed 's:\+:\\\\+:g'`
 do
-  $EGREP "lib/$dep( |=)" /var/sadm/install/contents
+  $MEGREP "lib/$dep( |=)" /var/sadm/install/contents
 done
 }
 
@@ -62,15 +64,15 @@ getlongdeps()
 {
 for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort | uniq | sed 's:\+:\\\\+:g'`
 do
-  $EGREP "lib/$dep( |=)" /var/sadm/install/contents
+  $MEGREP "lib/$dep( |=)" /var/sadm/install/contents
 done
 }
 
 case $STYLE in
     'recurse')
-	getlongdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc-483|SUNWcs|TRIBpkgsrc|TRIBpkgsrc64|TRIBv-thunderbird-45|TRIBv-thunderbird-52|TRIBv-firefox-52|TRIBv-browser-45|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7)$'
+	getlongdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7)$'
 	exit 0
 	;;
 esac
 
-getdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc-483|SUNWcs|TRIBpkgsrc|TRIBpkgsrc64|TRIBv-thunderbird-45|TRIBv-thunderbird-52|TRIBv-firefox-52|TRIBv-browser-45|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7)$'
+getdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7)$'
