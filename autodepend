@@ -32,6 +32,15 @@ if [ ! -e $1 ]; then
    exit 1
 fi
 
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 #
 # for simple cases like this, gnu grep is several times quicker
 #
@@ -52,6 +61,7 @@ getdeps()
 for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort | uniq | sed 's:\+:\\\\+:g'`
 do
   $MEGREP "lib/$dep( |=)" /var/sadm/install/contents
+  $MEGREP "lib/${ARCH64}/$dep( |=)" /var/sadm/install/contents
 done
 }
 
@@ -65,6 +75,7 @@ getlongdeps()
 for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort | uniq | sed 's:\+:\\\\+:g'`
 do
   $MEGREP "lib/$dep( |=)" /var/sadm/install/contents
+  $MEGREP "lib/${ARCH64}/$dep( |=)" /var/sadm/install/contents
 done
 }
 
