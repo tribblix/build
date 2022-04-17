@@ -2,5 +2,5 @@
 #
 # zenmap requires pygtk, which we don't have
 #
-${THOME}/build/dobuild nmap-7.80 -C "--without-zenmap --with-libpcre=included"
-${THOME}/build/genpkg TRIBnmap nmap-7.80
+${THOME}/build/dobuild -64only nmap-7.92 -C "--without-zenmap --with-liblua=included --with-libpcre=included PYTHON=python3.9"
+${THOME}/build/genpkg TRIBnmap nmap-7.92
