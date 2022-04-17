@@ -1,10 +1,8 @@
 P TRIBcurl
+P TRIBjansson
 P TRIBlib-glib2
 P TRIBlibgcrypt
 P TRIBlibnotify
 P TRIBlibpcap
 P TRIBlibxml2
 P TRIBrrdtool
-P TRIBsvc-hal
-P TRIBsys-libdbus
-P TRIByajl
