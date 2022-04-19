@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# far and away the easiest way to disable bindings is to delete them from the
+# list in the configure script
+#
+sed -i 's:cl cpp python qt:cl cpp:' configure
