@@ -1,4 +1,4 @@
-P TRIBcompress-xz
+P TRIBcompress-lz4
 P TRIBfile-magic
 P TRIBjansson
 P TRIBlib-pcre

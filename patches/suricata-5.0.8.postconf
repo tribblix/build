@@ -1,11 +1,5 @@
 #!/bin/sh
 #
-# Incorrectly enables stack protector
-#
-sed -i s:-fstack-protector:: libhtp/Makefile
-sed -i s:-fstack-protector:: libhtp/htp/Makefile
-sed -i s:-fstack-protector:: libhtp/htp/lzma/Makefile
-#
 # *regex is a global defined by libgen and shouldn't be used in applications
 #
 sed -i 's:regex :suregex :' src/detect-classtype.c
@@ -25,3 +19,13 @@ sed -i '/tm_zone/d' src/util-time.c
 # doesn't honour INSTALL
 #
 sed -i 's: install -m: ginstall -m:g' Makefile
+#
+# The rust part is completely confused by LD_OPTIONS
+# rather than turning that off globally, we build this piece
+# separately
+#
+echo "Building rust component"
+cd rust
+env LD_OPTIONS="" gmake
+cd ..
+echo "Done building rust component"
