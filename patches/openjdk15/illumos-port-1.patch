@@ -1,6 +1,6 @@
 --- a/src/hotspot/os/solaris/os_solaris.cpp	Thu May 28 11:43:31 2020
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	Thu May 28 13:53:16 2020
-@@ -3753,52 +3753,35 @@
+@@ -3742,52 +3742,35 @@
  bool os::Solaris::_synchronization_initialized;
  
  void os::Solaris::synchronization_init() {
@@ -78,7 +78,7 @@
    }
    _synchronization_initialized = true;
  }
-@@ -3937,8 +3920,7 @@
+@@ -3926,8 +3909,7 @@
      jdk_misc_signal_init();
    }
  
@@ -88,7 +88,7 @@
    Solaris::synchronization_init();
    DEBUG_ONLY(os::set_mutex_init_done();)
  
-@@ -4621,9 +4603,6 @@
+@@ -4610,9 +4592,6 @@
  // 3.   Tx resumes from park
  
  
@@ -98,7 +98,7 @@
  // utility to compute the abstime argument to timedwait.
  // TODO-FIXME: switch from compute_abstime() to unpackTime().
  
-@@ -4637,24 +4616,8 @@
+@@ -4626,24 +4605,8 @@
    jlong seconds = millis / 1000;
    jlong max_wait_period;
  

@@ -2547,7 +2547,7 @@
                          "CodeEntryAlignment (" INTX_FORMAT ") must be "
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -412,7 +412,7 @@
+@@ -415,7 +415,7 @@
            "Trace external suspend wait failures")                           \
                                                                              \
    product(bool, MaxFDLimit, true,                                           \
@@ -2556,7 +2556,7 @@
                                                                              \
    diagnostic(bool, LogEvents, true,                                         \
            "Enable the various ring buffer event logs")                      \
-@@ -682,10 +682,6 @@
+@@ -685,10 +685,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -2567,7 +2567,7 @@
    experimental(bool, DisablePrimordialThreadGuardPages, false,              \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -713,10 +709,6 @@
+@@ -716,10 +712,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -2578,7 +2578,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1821,10 +1813,8 @@
+@@ -1824,10 +1816,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -2591,7 +2591,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1849,7 +1839,6 @@
+@@ -1852,7 +1842,6 @@
            "The native priority at which compiler threads should run "       \
            "(-1 means no change)")                                           \
            range(min_jint, max_jint)                                         \
@@ -2599,7 +2599,7 @@
                                                                              \
    product(intx, VMThreadPriority, -1,                                       \
            "The native priority at which the VM thread should run "          \
-@@ -2387,8 +2376,7 @@
+@@ -2390,8 +2379,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2636,7 +2636,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -452,7 +452,7 @@
+@@ -461,7 +461,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -2645,7 +2645,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -779,10 +779,8 @@
+@@ -788,10 +788,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -11882,7 +11882,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,5226 +0,0 @@
+@@ -1,5215 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -14249,16 +14249,11 @@
 -}
 -
 -char* os::Solaris::anon_mmap(char* requested_addr, size_t bytes,
--                             size_t alignment_hint, bool fixed) {
+-                             size_t alignment_hint) {
 -  char* addr = requested_addr;
 -  int flags = MAP_PRIVATE | MAP_NORESERVE;
 -
--  assert(!(fixed && (alignment_hint > 0)),
--         "alignment hint meaningless with fixed mmap");
--
--  if (fixed) {
--    flags |= MAP_FIXED;
--  } else if (alignment_hint > (size_t) vm_page_size()) {
+-  if (alignment_hint > (size_t) vm_page_size()) {
 -    flags |= MAP_ALIGN;
 -    addr = (char*) alignment_hint;
 -  }
@@ -14269,19 +14264,13 @@
 -  return mmap_chunk(addr, bytes, flags, PROT_NONE);
 -}
 -
--char* os::pd_reserve_memory(size_t bytes, char* requested_addr,
--                            size_t alignment_hint) {
--  char* addr = Solaris::anon_mmap(requested_addr, bytes, alignment_hint,
--                                  (requested_addr != NULL));
--
--  guarantee(requested_addr == NULL || requested_addr == addr,
--            "OS failed to return requested mmap address.");
--  return addr;
+-char* os::pd_reserve_memory(size_t bytes, size_t alignment_hint) {
+-  return Solaris::anon_mmap(NULL, bytes, alignment_hint);
 -}
 -
--char* os::pd_attempt_reserve_memory_at(size_t bytes, char* requested_addr, int file_desc) {
+-char* os::pd_attempt_reserve_memory_at(char* requested_addr, size_t bytes, int file_desc) {
 -  assert(file_desc >= 0, "file_desc is not valid");
--  char* result = pd_attempt_reserve_memory_at(bytes, requested_addr);
+-  char* result = pd_attempt_reserve_memory_at(requested_addr, bytes);
 -  if (result != NULL) {
 -    if (replace_existing_mapping_with_file_mapping(result, bytes, file_desc) == NULL) {
 -      vm_exit_during_initialization(err_msg("Error in mapping Java heap at the given filesystem directory"));
@@ -14293,7 +14282,7 @@
 -// Reserve memory at an arbitrary address, only if that area is
 -// available (and not reserved for something else).
 -
--char* os::pd_attempt_reserve_memory_at(size_t bytes, char* requested_addr) {
+-char* os::pd_attempt_reserve_memory_at(char* requested_addr, size_t bytes) {
 -  // Assert only that the size is a multiple of the page size, since
 -  // that's all that mmap requires, and since that's all we really know
 -  // about at this low abstraction level.  If we need higher alignment,
@@ -14302,7 +14291,7 @@
 -  assert(bytes % os::vm_page_size() == 0, "reserving unexpected size block");
 -
 -  // Since snv_84, Solaris attempts to honor the address hint - see 5003415.
--  char* addr = Solaris::anon_mmap(requested_addr, bytes, 0, false);
+-  char* addr = Solaris::anon_mmap(requested_addr, bytes, 0);
 -
 -  volatile int err = errno;
 -  if (addr == requested_addr) {
@@ -17275,7 +17264,7 @@
 -  static int commit_memory_impl(char* addr, size_t bytes,
 -                                size_t alignment_hint, bool exec);
 -  static char* mmap_chunk(char *addr, size_t size, int flags, int prot);
--  static char* anon_mmap(char* requested_addr, size_t bytes, size_t alignment_hint, bool fixed);
+-  static char* anon_mmap(char* requested_addr, size_t bytes, size_t alignment_hint);
 -  static bool mpss_sanity_check(bool warn, size_t * page_size);
 -
 -  // Workaround for 4352906. thr_stksegment sometimes returns

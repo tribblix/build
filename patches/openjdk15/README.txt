@@ -20,6 +20,11 @@ This set currently based on jdk-15+33
 
 openjdk15 fixes (besides fixing line number noise)
 
+15.0.7
+
+Changes to signature of pd_reserve_memory,
+pd_attempt_reserve_memory_at, and Solaris::anon_mmap
+
 15.0.6
 
 Again much patch noise.
