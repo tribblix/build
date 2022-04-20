@@ -5,11 +5,11 @@
 #
 
 #
-# the tag is 18+xx, the filename is 18-xx
+# now in the jdk18u phase, use the ga tag
 #
 cd ~/ud
-${THOME}/build/unpack jdk18-jdk-18-37
-cd jdk18-jdk-18-37
+${THOME}/build/unpack jdk18u-jdk-18.0.1-ga
+cd jdk18u-jdk-18.0.1-ga
 
 #
 # jdk18 needs autoconf installed
@@ -45,9 +45,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "18-internal" 2022-03-22
-# OpenJDK Runtime Environment (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-37)
-# OpenJDK 64-Bit Server VM (build 18-internal+0-adhoc.ptribble.jdk18-jdk-18-37, mixed mode, sharing)
+# openjdk version "18.0.1-internal" 2022-04-19
+# OpenJDK Runtime Environment (build 18.0.1-internal+0-adhoc.ptribble.jdk18u-jdk-18.0.1-ga)
+# OpenJDK 64-Bit Server VM (build 18.0.1-internal+0-adhoc.ptribble.jdk18u-jdk-18.0.1-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
