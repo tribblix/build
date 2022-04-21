@@ -8,5 +8,5 @@
 -  SA_LDFLAGS := -mt
 -
  else ifeq ($(OPENJDK_TARGET_OS), macosx)
-   SA_CFLAGS := -Damd64 -D_GNU_SOURCE -mno-omit-leaf-frame-pointer \
+   SA_CFLAGS := -D_GNU_SOURCE -mno-omit-leaf-frame-pointer \
        -mstack-alignment=16 -fPIC
