@@ -1,0 +1,11 @@
+--- a/xcbgen/align.py	Sat Feb 22 20:16:54 2020
++++ b/xcbgen/align.py	Thu Apr 21 21:44:17 2022
+@@ -2,7 +2,7 @@
+ This module contains helper classes for alignment arithmetic and checks
+ '''
+ 
+-from fractions import gcd
++from math import gcd
+ 
+ class Alignment(object):
+ 
