@@ -79,6 +79,7 @@ mkdir -p usr/share/man/man1
 cd usr/share/man/man1
 ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python${VERSION}.1 .
 ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 .
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 python.1
 cd ../../../..
 cd usr/bin
 #
