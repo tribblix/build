@@ -82,14 +82,6 @@ ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION}-config .
 ln -s ../../usr/versions/python-${VERSION}/bin/pydoc${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv-${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
-#
-# symlinks for general version
-#
-##ln -s ../../usr/versions/python-${VERSION}/bin/python3 .
-##ln -s ../../usr/versions/python-${VERSION}/bin/python3-config .
-##ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
-##ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv .
-##ln -s ../../usr/versions/python-${VERSION}/bin/pip3 .
 cd ../lib
 ln -s ../versions/python-${VERSION}/lib/libpython3* .
 cd pkgconfig
