@@ -77,10 +77,13 @@ mkdir -p usr/share/man/man1
 cd usr/share/man/man1
 ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python${VERSION}.1 .
 ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python2.1 .
-ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python.1 .
 cd ../../../..
 cd usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/py* .
+# remove the bare versions
+rm -f python
+rm -f python-config
+#
 cd ../lib
 ln -s ../../usr/versions/python-${VERSION}/lib/libpython2.7.so* .
 cd pkgconfig
