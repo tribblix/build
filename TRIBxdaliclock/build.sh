@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild xdaliclock-2.44 -S X11
-cd xdaliclock-2.44/X11
+${THOME}/build/dobuild -64only xdaliclock-2.44 -S X11
+cd xdaliclock-2.44-64bit/X11
 rm -fr /tmp/xd
 mkdir -p /tmp/xd/usr/bin /tmp/xd/usr/share/man/man1
 gmake install install_prefix=/tmp/xd
