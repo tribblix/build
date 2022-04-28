@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-20
+
+Remove os::available() as it's unused
+Remove local os::pause() is it's centralized
+
 19-19
 
 SafeFetch handling completely reworked. Remove it from
