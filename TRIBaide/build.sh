@@ -2,5 +2,5 @@
 #
 # it wants to link everything statically, which will never work for us
 #
-env TRIBBLIX_CFLAGS=-I/usr/include/pcre ${THOME}/build/dobuild aide-0.17.4 -C --disable-static
+env TRIBBLIX_CFLAGS=-I/usr/include/pcre ${THOME}/build/dobuild -64only aide-0.17.4 -C --disable-static
 ${THOME}/build/genpkg TRIBaide aide-0.17.4
