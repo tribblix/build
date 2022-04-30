@@ -1,3 +1,10 @@
 #!/bin/sh
-gsed -i 's:\$(bindir):\$(DESTDIR)\$(bindir):' Makefile
-gsed -i 's:\$(mandir):\$(DESTDIR)\$(mandir):' Makefile
+#
+# the makefiles don't really get built by configure in the normal way
+#
+sed -i 's:\$(bindir):\$(DESTDIR)\$(bindir):' Makefile
+sed -i 's:\$(mandir):\$(DESTDIR)\$(mandir):' Makefile
+#
+# -m64 isn't propagated properly
+#
+sed -i 's:-Wall:-Wall -m64:' makeinclude
