@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -gnu xscreensaver-6.01 -C "--with-gtk"
-cd xscreensaver-6.01
+${THOME}/build/dobuild -64only -gnu xscreensaver-6.03 -C "--with-gtk"
+cd xscreensaver-6.03-64bit
 rm -fr /tmp/xs
 gmake install install_prefix=/tmp/xs
 ${THOME}/build/create_pkg TRIBxscreensaver /tmp/xs
