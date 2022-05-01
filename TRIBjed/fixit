@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# not sure why this gets installed here
+#
+rm -f usr/share/man/man1/rgrep.1
+#
+# and this isn't generally useful to end users as TeX isn't shipped
+# yet
+#
+rm -f usr/jed/doc/manual/jed.tex
