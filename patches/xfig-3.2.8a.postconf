@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# these are incorrectly guarded for Xaw3d
-#
-sed -i s:Xaw3d:Xaw: src/w_canvas.c
