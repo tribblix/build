@@ -1,1 +1,0 @@
--p1 vte-deshift.patch

@@ -1,0 +1,46 @@
+--- a/src/vte.cc	Mon May  2 17:53:04 2022
++++ b/src/vte.cc	Mon May  2 18:19:55 2022
+@@ -4994,8 +4994,8 @@
+ 			break;
+ 		case GDK_KEY_KP_Page_Up:
+ 		case GDK_KEY_Page_Up:
+-			if (m_screen == &m_normal_screen &&
+-			    m_modifiers & GDK_SHIFT_MASK) {
++			if (m_screen == &m_normal_screen/* &&
++			    m_modifiers & GDK_SHIFT_MASK*/) {
+ 				scroll_pages(-1);
+ 				scrolled = TRUE;
+ 				handled = TRUE;
+@@ -5004,8 +5004,8 @@
+ 			break;
+ 		case GDK_KEY_KP_Page_Down:
+ 		case GDK_KEY_Page_Down:
+-			if (m_screen == &m_normal_screen &&
+-			    m_modifiers & GDK_SHIFT_MASK) {
++			if (m_screen == &m_normal_screen/*  &&
++			    m_modifiers & GDK_SHIFT_MASK*/) {
+ 				scroll_pages(1);
+ 				scrolled = TRUE;
+ 				handled = TRUE;
+@@ -5014,8 +5014,8 @@
+ 			break;
+ 		case GDK_KEY_KP_Home:
+ 		case GDK_KEY_Home:
+-			if (m_screen == &m_normal_screen &&
+-			    m_modifiers & GDK_SHIFT_MASK) {
++			if (m_screen == &m_normal_screen/* &&
++			    m_modifiers & GDK_SHIFT_MASK*/) {
+ 				maybe_scroll_to_top();
+ 				scrolled = TRUE;
+ 				handled = TRUE;
+@@ -5023,8 +5023,8 @@
+ 			break;
+ 		case GDK_KEY_KP_End:
+ 		case GDK_KEY_End:
+-			if (m_screen == &m_normal_screen &&
+-			    m_modifiers & GDK_SHIFT_MASK) {
++			if (m_screen == &m_normal_screen/* &&
++			    m_modifiers & GDK_SHIFT_MASK*/) {
+ 				maybe_scroll_to_bottom();
+ 				scrolled = TRUE;
+ 				handled = TRUE;
