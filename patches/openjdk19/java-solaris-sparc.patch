@@ -134,10 +134,10 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -269,23 +269,15 @@
+@@ -271,23 +271,15 @@
      TAR_TYPE="bsd"
-   elif test "x$($TAR -v | $GREP "bsdtar")" != "x"; then
-     TAR_TYPE="bsd"
+   elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
+     TAR_TYPE="busybox"
 -  elif test "x$OPENJDK_BUILD_OS" = "xsolaris"; then
 -    TAR_TYPE="solaris"
    elif test "x$OPENJDK_BUILD_OS" = "xaix"; then
@@ -157,8 +157,8 @@
 -    fi
    elif test "x$TAR_TYPE" = "aix"; then
      # -L InputList of aix tar: name of file listing the files and directories
-     # that need to be   archived or extracted
-@@ -296,7 +288,6 @@
+     # that need to be archived or extracted
+@@ -301,7 +293,6 @@
      TAR_SUPPORTS_TRANSFORM="false"
    fi
    AC_SUBST(TAR_TYPE)
@@ -166,7 +166,7 @@
    AC_SUBST(TAR_INCLUDE_PARAM)
    AC_SUBST(TAR_SUPPORTS_TRANSFORM)
  ])
-@@ -416,8 +407,6 @@
+@@ -421,8 +412,6 @@
        fi
      fi
      UTIL_REQUIRE_PROGS(SETFILE, SetFile)
@@ -1225,7 +1225,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -476,7 +476,7 @@
+@@ -480,7 +480,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1234,7 +1234,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -494,12 +494,6 @@
+@@ -498,12 +498,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1247,16 +1247,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -914,7 +908,7 @@
- // page size which again depends on the concrete system the VM is running
- // on. Space for libc guard pages is not included in this size.
- jint os::Posix::set_minimum_stack_sizes() {
--  size_t os_min_stack_allowed = SOLARIS_ONLY(thr_min_stack()) NOT_SOLARIS(PTHREAD_STACK_MIN);
-+  size_t os_min_stack_allowed = PTHREAD_STACK_MIN;
- 
-   _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
-                                    StackOverflow::stack_guard_zone_size() +
-@@ -1234,8 +1228,7 @@
+@@ -1198,8 +1192,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1266,7 +1257,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1540,7 +1499,6 @@
+@@ -1504,7 +1463,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1274,7 +1265,7 @@
  
  // PlatformEvent
  //
-@@ -1968,8 +1926,6 @@
+@@ -1924,8 +1890,6 @@
      return OS_OK;
    }
  }
@@ -1285,7 +1276,7 @@
  #ifdef __APPLE__
 --- old/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:44.033767220 -0700
 +++ new/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:43.649759847 -0700
-@@ -132,8 +132,6 @@
+@@ -122,8 +122,6 @@
    sigjmp_buf _jmpbuf;
  };
  
@@ -1294,7 +1285,7 @@
  /*
   * This is the platform-specific implementation underpinning
   * the ParkEvent class, which itself underpins Java-level monitor
-@@ -299,6 +297,4 @@
+@@ -289,6 +287,4 @@
    void notify_all();
  };
  
@@ -1466,7 +1457,7 @@
  void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -476,7 +476,7 @@
+@@ -492,7 +492,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -1475,7 +1466,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -820,10 +820,8 @@
+@@ -836,10 +836,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -1762,7 +1753,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1732,8 +1732,6 @@
+@@ -1747,8 +1747,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1771,7 +1762,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1795,8 +1793,6 @@
+@@ -1810,8 +1808,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -3818,10 +3809,10 @@
 -#if defined(__solaris__)
 -    rv = connect(fd, 0, 0);
 -#else
-     SOCKETADDRESS sa;
-     socklen_t len = isIPv6 ? sizeof(struct sockaddr_in6) :
-                              sizeof(struct sockaddr_in);
-@@ -78,8 +75,6 @@
+ #if defined(__APPLE__)
+     // On macOS systems we use disconnectx
+     rv = disconnectx(fd, SAE_ASSOCID_ANY, SAE_CONNID_ANY);
+@@ -86,8 +83,6 @@
          rv = errno = 0;
  #endif // defined(_ALLBSD_SOURCE) || defined(_AIX)
  
@@ -5018,7 +5009,7 @@
       * instead it has to be installed from the "AIX Toolbox for Linux Applications"
 --- old/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:46.009261282 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:45.625253909 -0700
-@@ -399,12 +399,7 @@
+@@ -401,12 +401,7 @@
              xrenderLibHandle = dlopen("libXrender.so", RTLD_LAZY | RTLD_GLOBAL);
          }
  
@@ -9502,7 +9493,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3968 +0,0 @@
+@@ -1,3963 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12346,11 +12337,6 @@
 -
 -// this is called _after_ the global arguments have been parsed
 -jint os::init_2(void) {
--  // Check and sets minimum stack sizes against command line options
--  if (Posix::set_minimum_stack_sizes() == JNI_ERR) {
--    return JNI_ERR;
--  }
--
 -  Solaris::libthread_init();
 -
 -  if (UseNUMA) {
@@ -14455,13 +14441,13 @@
 -// The adlc generated method 'State::MachNodeGenerator(int)' used by the C2 compiler
 -// threads requires a large stack with the Solaris Studio C++ compiler version 5.13
 -// and product VM builds (debug builds require significantly less stack space).
--size_t os::Posix::_compiler_thread_min_stack_allowed = 325 * K;
--size_t os::Posix::_java_thread_min_stack_allowed = 48 * K;
--size_t os::Posix::_vm_internal_thread_min_stack_allowed = 224 * K;
+-size_t os::_compiler_thread_min_stack_allowed = 325 * K;
+-size_t os::_java_thread_min_stack_allowed = 48 * K;
+-size_t os::_vm_internal_thread_min_stack_allowed = 224 * K;
 -#else
--size_t os::Posix::_compiler_thread_min_stack_allowed = 32 * K;
--size_t os::Posix::_java_thread_min_stack_allowed = 32 * K;
--size_t os::Posix::_vm_internal_thread_min_stack_allowed = 64 * K;
+-size_t os::_compiler_thread_min_stack_allowed = 32 * K;
+-size_t os::_java_thread_min_stack_allowed = 32 * K;
+-size_t os::_vm_internal_thread_min_stack_allowed = 64 * K;
 -#endif // _LP64
 -
 -#ifdef AMD64

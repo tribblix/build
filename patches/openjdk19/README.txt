@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-21
+
+Quite a bit of noise; stack management rework.
+
 19-20
 
 Remove os::available() as it's unused
