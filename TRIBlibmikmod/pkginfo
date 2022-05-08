@@ -1,0 +1,4 @@
+PKG="TRIBlibmikmod"
+NAME="MikMod module player library"
+VERSION="3.3.11.1.0"
+ZAP_URL="http://mikmod.sourceforge.net/"

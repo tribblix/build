@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# use autotools rather than cmake as it handles the dual 32/64 install
+# properly
+#
+${THOME}/build/dobuild -64 libmikmod-3.3.11.1
+${THOME}/build/genpkg TRIBlibmikmod libmikmod-3.3.11.1
