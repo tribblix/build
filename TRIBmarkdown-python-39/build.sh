@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Markdown-3.3.6
-cd Markdown-3.3.6
+${THOME}/build/unpack Markdown-3.3.7
+cd Markdown-3.3.7
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
