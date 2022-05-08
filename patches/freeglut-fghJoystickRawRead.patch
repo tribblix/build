@@ -1,0 +1,11 @@
+--- a/src/fg_joystick.c	Mon Jul 31 21:49:26 2017
++++ b/src/fg_joystick.c	Sun May  8 14:27:58 2022
+@@ -76,7 +76,7 @@
+ /*
+  * Read the raw joystick data
+  */
+-static void fghJoystickRawRead( SFG_Joystick* joy, int* buttons, float* axes )
++void fghJoystickRawRead( SFG_Joystick* joy, int* buttons, float* axes )
+ {
+     int i;
+ 
