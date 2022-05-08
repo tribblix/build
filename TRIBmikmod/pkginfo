@@ -1,0 +1,4 @@
+PKG="TRIBmikmod"
+NAME="MikMod module player"
+VERSION="3.2.8.0"
+ZAP_URL="http://mikmod.sourceforge.net/"
