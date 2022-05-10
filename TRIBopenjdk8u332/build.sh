@@ -71,13 +71,14 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk1.8.0_332 jdk1.8.0
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk1.8.0_332 .
-ln -s openjdk1.8.0_332 latest
-mkdir -p /tmp/jdk/usr/bin
-cd /tmp/jdk/usr/bin
-ln -s ../jdk/latest/bin/* .
-rm -f amd64 sparcv9
-cd /tmp/jdk/usr/versions
-rm `find . -name '*.diz'`
+# latest is now jdk11
+#ln -s openjdk1.8.0_332 latest
+#mkdir -p /tmp/jdk/usr/bin
+#cd /tmp/jdk/usr/bin
+#ln -s ../jdk/latest/bin/* .
+#rm -f amd64 sparcv9
+#cd /tmp/jdk/usr/versions
+#rm `find . -name '*.diz'`
 cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk1.8.0_332/jre/lib/security
 
 #
