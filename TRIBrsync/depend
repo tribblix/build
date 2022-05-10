@@ -1,3 +1,5 @@
+P TRIBcompress-lz4
+P TRIBcompress-zstd
 P TRIBlib-security-openssl
 P TRIBlibpopt
 P TRIBnet-ssh
