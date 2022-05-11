@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # clean up the junk
-# add convenience links
 #
 VERSION=1.15
 rm -fr usr/versions/go-${VERSION}/pkg/bootstrap
@@ -10,7 +9,7 @@ rmdir usr/versions/go-${VERSION}/pkg/obj
 rm -fr usr/versions/go-${VERSION}/test
 rm -f usr/versions/go-${VERSION}/favicon.ico
 rm -f usr/versions/go-${VERSION}/robots.txt
-#exit 0
+exit 0
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../versions/go-${VERSION}/bin/* .
