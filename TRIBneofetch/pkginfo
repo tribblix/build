@@ -1,0 +1,4 @@
+PKG="TRIBneofetch"
+NAME="A command-line system information tool"
+VERSION="7.1.0.0"
+ZAP_URL="https://github.com/dylanaraps/neofetch"
