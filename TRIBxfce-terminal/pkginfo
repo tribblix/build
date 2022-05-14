@@ -1,4 +1,4 @@
 PKG="TRIBxfce-terminal"
 NAME="Xfce terminal"
-VERSION="0.8.9.2.0"
+VERSION="1.0.3.0"
 ZAP_URL="https://docs.xfce.org/apps/terminal/start"
