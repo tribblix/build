@@ -1,4 +1,0 @@
-PKG="TRIBlxadm"
-NAME="Manage illumos LX zones."
-VERSION="0.1.6.1"
-ZAP_URL="https://github.com/hadfl/lxadm"
