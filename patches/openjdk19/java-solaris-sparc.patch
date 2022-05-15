@@ -1163,7 +1163,7 @@
  EXP="${EXP}|Note: Recompile with -Xlint:deprecation for details."
 --- old/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:33.301561154 -0700
 +++ new/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:32.909553627 -0700
-@@ -869,10 +869,6 @@
+@@ -872,10 +872,6 @@
  
  BUILD_HOTSPOT_JTREG_EXECUTABLES_LIBS_exesigtest := -ljvm
  
@@ -1247,7 +1247,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -1198,8 +1192,7 @@
+@@ -1199,8 +1193,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1257,7 +1257,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1504,7 +1463,6 @@
+@@ -1505,7 +1464,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1265,7 +1265,7 @@
  
  // PlatformEvent
  //
-@@ -1924,8 +1890,6 @@
+@@ -1925,8 +1891,6 @@
      return OS_OK;
    }
  }
@@ -1411,7 +1411,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -723,10 +719,6 @@
+@@ -731,10 +727,6 @@
    product(intx, hashCode, 5, EXPERIMENTAL,                                  \
                 "(Unstable) select hashCode generation algorithm")           \
                                                                              \
@@ -1422,7 +1422,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1614,10 +1606,8 @@
+@@ -1619,10 +1611,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1435,7 +1435,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1958,8 +1948,7 @@
+@@ -1966,8 +1956,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1447,7 +1447,7 @@
                                                                              \
 --- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
 +++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -584,7 +584,6 @@
+@@ -585,7 +585,6 @@
  void notify_vm_shutdown() {
    // For now, just a dtrace probe.
    HOTSPOT_VM_SHUTDOWN();
@@ -1490,7 +1490,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -311,12 +311,6 @@
+@@ -315,12 +315,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -1536,7 +1536,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -658,12 +658,11 @@
+@@ -659,12 +659,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1716,7 +1716,7 @@
  inline int g_isnan(float  f) { return isnan(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700
-@@ -397,14 +397,6 @@
+@@ -401,14 +401,6 @@
  #define NOT_AIX(code) code
  #endif
  
@@ -1872,7 +1872,7 @@
  JNIEXPORT jboolean JNICALL
 --- old/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.739220820 -0700
 +++ new/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.399214291 -0700
-@@ -75,9 +75,6 @@
+@@ -80,9 +80,6 @@
      private /* final */ InputStream  stdout;
      private /* final */ InputStream  stderr;
  
@@ -1882,7 +1882,7 @@
      private static enum LaunchMechanism {
          // order IS important!
          FORK,
-@@ -91,8 +88,6 @@
+@@ -96,8 +93,6 @@
  
          BSD(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK),
  
@@ -1891,7 +1891,7 @@
          AIX(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK);
  
          final LaunchMechanism defaultLaunchMechanism;
-@@ -138,7 +133,6 @@
+@@ -143,7 +138,6 @@
  
              if (osName.equals("Linux")) { return LINUX; }
              if (osName.contains("OS X")) { return BSD; }
@@ -1899,7 +1899,7 @@
              if (osName.equals("AIX")) { return AIX; }
  
              throw new Error(osName + " is not a supported OS platform.");
-@@ -385,41 +379,6 @@
+@@ -393,41 +387,6 @@
                  });
                  break;
  
@@ -1941,7 +1941,7 @@
              case AIX:
                  stdin = (fds[0] == -1) ?
                          ProcessBuilder.NullOutputStream.INSTANCE :
-@@ -522,29 +481,6 @@
+@@ -542,29 +501,6 @@
                  try { stderr.close(); } catch (IOException ignored) {}
                  break;
  
@@ -3883,7 +3883,7 @@
    #define INTERRUPT_SIGNAL SIGIO
 @@ -77,22 +74,14 @@
  JNIEXPORT jlong JNICALL
- Java_sun_nio_ch_NativeThread_current(JNIEnv *env, jclass cl)
+ Java_sun_nio_ch_NativeThread_current0(JNIEnv *env, jclass cl)
  {
 -#ifdef __solaris__
 -    return (jlong)thr_self();
@@ -3893,7 +3893,7 @@
  }
  
  JNIEXPORT void JNICALL
- Java_sun_nio_ch_NativeThread_signal(JNIEnv *env, jclass cl, jlong thread)
+ Java_sun_nio_ch_NativeThread_signal0(JNIEnv *env, jclass cl, jlong thread)
  {
      int ret;
 -#ifdef __solaris__

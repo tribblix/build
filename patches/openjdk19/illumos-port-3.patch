@@ -1,6 +1,6 @@
 --- a/src/java.base/unix/classes/sun/nio/fs/UnixNativeDispatcher.java	Thu May 28 00:44:10 2020
 +++ b/src/java.base/unix/classes/sun/nio/fs/UnixNativeDispatcher.java	Wed May 20 19:29:11 2020
-@@ -118,6 +118,27 @@
+@@ -123,6 +123,27 @@
      }
  
      /**
@@ -28,7 +28,7 @@
       * void rewind(FILE* stream);
       */
      static native void rewind(long stream) throws UnixException;
-@@ -579,6 +600,25 @@
+@@ -698,6 +719,25 @@
          throws UnixException;
  
      /**

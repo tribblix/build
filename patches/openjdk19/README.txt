@@ -7,6 +7,17 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-22
+
+This includes Project Loom aka virtual threads.
+
+New DefaultPollerProvider; create a DevPollPoller stub that throws 
+UnsupportedOperationException similar to the way that the AIX
+implementation does. This is enought to make the code compile, and
+things like jkstat work, but jshell doesn't present a prompt (it was
+fine in 19+21). So this will need a working implementation to fix
+jshell and Loom.
+
 19-21
 
 Quite a bit of noise; stack management rework.

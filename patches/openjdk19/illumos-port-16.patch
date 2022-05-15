@@ -3,14 +3,7 @@ Should investigate if it actually needs to.
 
 --- jdk-jdk-19-7/src/java.base/unix/classes/java/lang/ProcessImpl.java	Thu Jan 27 08:31:11 2022
 +++ jdk-jdk-19-6/src/java.base/unix/classes/java/lang/ProcessImpl.java	Thu Jan 20 08:53:40 2022
-@@ -1,5 +1,5 @@
- /*
-- * Copyright (c) 2003, 2022, Oracle and/or its affiliates. All rights reserved.
-+ * Copyright (c) 2003, 2021, Oracle and/or its affiliates. All rights reserved.
-  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-  *
-  * This code is free software; you can redistribute it and/or modify it
-@@ -45,6 +45,7 @@
+@@ -47,6 +47,7 @@
  import java.security.PrivilegedAction;
  import java.security.PrivilegedActionException;
  import java.security.PrivilegedExceptionAction;
@@ -18,7 +11,7 @@ Should investigate if it actually needs to.
  import jdk.internal.access.JavaIOFileDescriptorAccess;
  import jdk.internal.access.SharedSecrets;
  import jdk.internal.util.StaticProperty;
-@@ -704,6 +705,109 @@
+@@ -729,6 +730,109 @@
          }
      }
  
@@ -128,7 +121,7 @@ Should investigate if it actually needs to.
      /**
       * A buffered input stream for a subprocess pipe file descriptor
       * that allows the underlying file descriptor to be reclaimed when
-@@ -717,7 +821,7 @@
+@@ -742,7 +846,7 @@
       * will block if another thread is at the same time blocked in a file
       * operation (e.g. 'read()') on the same file descriptor. We therefore
       * combine 'ProcessPipeInputStream' approach used on Linux and Bsd
