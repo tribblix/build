@@ -216,7 +216,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -448,9 +396,6 @@
+@@ -397,9 +397,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -226,7 +226,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
      CFLAGS_OS_DEF_JVM="-D_ALLBSD_SOURCE -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE"
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
-@@ -486,9 +431,6 @@
+@@ -435,9 +432,6 @@
    # Setup debug/release defines
    if test "x$DEBUG_LEVEL" = xrelease; then
      DEBUG_CFLAGS_JDK="-DNDEBUG"
@@ -824,7 +824,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -214,7 +208,6 @@
+@@ -215,7 +209,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -1176,7 +1176,7 @@
      BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -81,9 +81,6 @@
+@@ -90,9 +90,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -3832,7 +3832,7 @@
  #include <sys/sendfile.h>
  #elif defined(_AIX)
  #include <string.h>
-@@ -182,36 +182,6 @@
+@@ -189,36 +189,6 @@
          return IOS_THROWN;
      }
      return n;

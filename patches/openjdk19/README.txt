@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-23
+
+Minor patch noise.
+
 19-22
 
 This includes Project Loom aka virtual threads.
