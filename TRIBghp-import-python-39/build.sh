@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack ghp-import-2.0.2
-cd ghp-import-2.0.2
+${THOME}/build/unpack ghp-import-2.1.0
+cd ghp-import-2.1.0
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
