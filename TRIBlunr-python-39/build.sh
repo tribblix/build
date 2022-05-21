@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack lunr-0.5.9
-cd lunr-0.5.9
+${THOME}/build/unpack lunr-0.6.2
+cd lunr-0.6.2
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
