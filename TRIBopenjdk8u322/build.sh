@@ -28,7 +28,7 @@ rm gobjcopy
 #
 # The fcs is magic to hide the milestone from the version string:
 #
-env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin bash ./configure --with-milestone=fcs --with-update-version=322 --with-build-number=b06 --enable-unlimited-crypto --with-jobs=3
+env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin bash ./configure --with-milestone=fcs --with-update-version=322 --with-build-number=b06 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk1.8.0 --with-jobs=3
 # SPARC requires env HOTSPOT_DISABLE_DTRACE_PROBES=true ...
 env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin gmake all
 
