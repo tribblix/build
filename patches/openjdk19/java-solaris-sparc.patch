@@ -249,7 +249,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xaix; then
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -288,7 +288,7 @@
+@@ -274,7 +274,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -258,7 +258,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -301,7 +301,7 @@
+@@ -287,7 +287,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -372,12 +372,12 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -676,25 +656,9 @@
+@@ -676,27 +656,8 @@
    PLATFORM_SET_MODULE_TARGET_OS_VALUES
    PLATFORM_SET_RELEASE_FILE_OS_VALUES
    PLATFORM_SETUP_LEGACY_VARS
 -  PLATFORM_CHECK_DEPRECATION
--])
+ ])
  
 -AC_DEFUN([PLATFORM_CHECK_DEPRECATION],
 -[
@@ -395,11 +395,11 @@
 -        future release. Use --enable-deprecated-ports=yes to suppress this error.]))
 -    fi
 -  fi
-+  # Deprecated in JDK 15
-+  UTIL_DEPRECATED_ARG_ENABLE(deprecated-ports)
- ])
- 
+-])
+-
  AC_DEFUN_ONCE([PLATFORM_SETUP_OPENJDK_BUILD_OS_VERSION],
+ [
+   ###############################################################################
 --- old/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.488604709 -0700
 +++ new/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.064596567 -0700
 @@ -88,7 +88,6 @@
@@ -418,7 +418,7 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -770,7 +766,6 @@
+@@ -769,7 +765,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -426,7 +426,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -785,7 +783,6 @@
+@@ -783,7 +781,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -537,7 +537,7 @@
    else ifeq ($(call isBuildOs, aix), true)
      ADLC_LDFLAGS += -q64
      ADLC_CFLAGS := -qnortti -qeh -q64 -DAIX
-@@ -91,8 +87,6 @@
+@@ -89,8 +85,6 @@
    # ADLC flags depending on target OS
    ifeq ($(call isTargetOs, linux), true)
      ADLCFLAGS += -DLINUX=1 -D_GNU_SOURCE=1
@@ -1225,7 +1225,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -480,7 +480,7 @@
+@@ -499,7 +499,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1234,7 +1234,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -498,12 +498,6 @@
+@@ -517,12 +517,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1247,7 +1247,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -1199,8 +1193,7 @@
+@@ -1216,8 +1212,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1257,7 +1257,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1505,7 +1464,6 @@
+@@ -1524,7 +1483,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1265,7 +1265,7 @@
  
  // PlatformEvent
  //
-@@ -1925,8 +1891,6 @@
+@@ -1944,8 +1910,6 @@
      return OS_OK;
    }
  }
@@ -1422,7 +1422,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1619,10 +1611,8 @@
+@@ -1620,10 +1612,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1435,7 +1435,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1966,8 +1956,7 @@
+@@ -1967,8 +1957,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1466,7 +1466,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -836,10 +836,8 @@
+@@ -837,10 +837,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -1753,7 +1753,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1747,8 +1747,6 @@
+@@ -1755,8 +1755,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1762,7 +1762,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1810,8 +1808,6 @@
+@@ -1818,8 +1816,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1872,7 +1872,7 @@
  JNIEXPORT jboolean JNICALL
 --- old/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.739220820 -0700
 +++ new/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.399214291 -0700
-@@ -80,9 +80,6 @@
+@@ -81,9 +81,6 @@
      private /* final */ InputStream  stdout;
      private /* final */ InputStream  stderr;
  
@@ -1882,7 +1882,7 @@
      private static enum LaunchMechanism {
          // order IS important!
          FORK,
-@@ -96,8 +93,6 @@
+@@ -97,8 +94,6 @@
  
          BSD(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK),
  
@@ -1891,7 +1891,7 @@
          AIX(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK);
  
          final LaunchMechanism defaultLaunchMechanism;
-@@ -143,7 +138,6 @@
+@@ -144,7 +139,6 @@
  
              if (osName.equals("Linux")) { return LINUX; }
              if (osName.contains("OS X")) { return BSD; }
@@ -1899,7 +1899,7 @@
              if (osName.equals("AIX")) { return AIX; }
  
              throw new Error(osName + " is not a supported OS platform.");
-@@ -393,41 +387,6 @@
+@@ -394,41 +388,6 @@
                  });
                  break;
  
@@ -1941,7 +1941,7 @@
              case AIX:
                  stdin = (fds[0] == -1) ?
                          ProcessBuilder.NullOutputStream.INSTANCE :
-@@ -542,29 +501,6 @@
+@@ -543,29 +502,6 @@
                  try { stderr.close(); } catch (IOException ignored) {}
                  break;
  
@@ -3830,8 +3830,8 @@
 -#if defined(__linux__) || defined(__solaris__)
 +#if defined(__linux__)
  #include <sys/sendfile.h>
+ #include <dlfcn.h>
  #elif defined(_AIX)
- #include <string.h>
 @@ -189,36 +189,6 @@
          return IOS_THROWN;
      }
@@ -5131,7 +5131,7 @@
  
 --- old/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:49.005318809 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:48.665312280 -0700
-@@ -85,9 +85,7 @@
+@@ -87,9 +87,7 @@
                                  = System.getProperty("sun.security.jgss.lib");
                          if (defaultLib == null || defaultLib.trim().equals("")) {
                              String osname = System.getProperty("os.name");
@@ -9493,7 +9493,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3963 +0,0 @@
+@@ -1,3944 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12428,25 +12428,6 @@
 -  return JNI_OK;
 -}
 -
--// Is a (classpath) directory empty?
--bool os::dir_is_empty(const char* path) {
--  DIR *dir = NULL;
--  struct dirent *ptr;
--
--  dir = opendir(path);
--  if (dir == NULL) return true;
--
--  // Scan the directory
--  bool result = true;
--  while (result && (ptr = readdir(dir)) != NULL) {
--    if (strcmp(ptr->d_name, ".") != 0 && strcmp(ptr->d_name, "..") != 0) {
--      result = false;
--    }
--  }
--  closedir(dir);
--  return result;
--}
--
 -// This code originates from JDK's sysOpen and open64_w
 -// from src/solaris/hpi/src/system_md.c
 -
@@ -14345,7 +14326,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ORDERACCESS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2020-05-20 18:10:01.145616115 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,914 +0,0 @@
+@@ -1,920 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15093,6 +15074,12 @@
 -#endif // AMD64
 -  st->cr();
 -  st->cr();
+-}
+-
+-void os::print_tos_pc(outputStream *st, const void *context) {
+-  if (context == NULL) return;
+-
+-  const ucontext_t* uc = (const ucontext_t*)context;
 -
 -  intptr_t *sp = (intptr_t *)os::Solaris::ucontext_get_sp(uc);
 -  st->print_cr("Top of Stack: (sp=" INTPTR_FORMAT ")", (intptr_t)sp);

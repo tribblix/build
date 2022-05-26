@@ -4,7 +4,7 @@ Shell portability.
 
 --- make/autoconf/jdk-options.m4.orig	2019-01-08 09:40:28.000000000 +0000
 +++ make/autoconf/jdk-options.m4
-@@ -157,7 +157,7 @@ AC_DEFUN_ONCE([JDKOPT_SETUP_JDK_OPTIONS]
+@@ -143,7 +143,7 @@ AC_DEFUN_ONCE([JDKOPT_SETUP_JDK_OPTIONS]
    AC_ARG_WITH(cacerts-file, [AS_HELP_STRING([--with-cacerts-file],
        [specify alternative cacerts file])])
    AC_MSG_CHECKING([for cacerts file])

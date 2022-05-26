@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-24
+
+More patch noise. os::dir_is_empty() has been centralized. Little
+split in os::print_context() that added os::print_tos_pc().
+
 19-23
 
 Minor patch noise.
