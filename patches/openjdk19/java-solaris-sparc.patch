@@ -2689,17 +2689,6 @@
  
 -#endif /* !_SOLARIS_JLONG_MD_H_ */
 +#endif /* !_UNIX_JLONG_MD_H_ */
---- old/src/java.base/unix/native/libjli/java_md.h	2020-05-20 18:01:16.943551155 -0700
-+++ new/src/java.base/unix/native/libjli/java_md.h	2020-05-20 18:01:16.611544781 -0700
-@@ -27,7 +27,7 @@
- #define JAVA_MD_H
- 
- /*
-- * This file contains common defines and includes for Solaris, Linux and MacOSX.
-+ * This file contains common defines and includes for unix.
-  */
- #include <limits.h>
- #include <unistd.h>
 --- old/src/java.base/unix/native/libjsig/jsig.c	2020-05-20 18:01:20.019610218 -0700
 +++ new/src/java.base/unix/native/libjsig/jsig.c	2020-05-20 18:01:19.603602231 -0700
 @@ -35,16 +35,6 @@
