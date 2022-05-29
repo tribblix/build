@@ -874,17 +874,6 @@
    LIBAWT_EXFILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -112,9 +108,7 @@
- 
- LIBAWT_CFLAGS += -D__MEDIALIB_OLD_NAMES -D__USE_J2D_NAMES $(X_CFLAGS)
- 
--ifeq ($(call isTargetOs, solaris), false)
--  LIBAWT_CFLAGS += -DMLIB_NO_LIBSUNMATH
--endif
-+LIBAWT_CFLAGS += -DMLIB_NO_LIBSUNMATH
- 
- ifeq ($(call isTargetOs, windows), true)
-   LIBAWT_CFLAGS += -EHsc -DUNICODE -D_UNICODE
 @@ -167,7 +156,6 @@
          -delayload:comctl32.dll -delayload:shlwapi.dll, \
      LIBS_unix := -ljvm -ljava $(LIBM), \
@@ -4270,97 +4259,6 @@
          try {
              verify();
          } catch (Throwable t) {
---- old/src/java.desktop/share/native/common/awt/medialib/mlib_ImageCopy_Bit.c	2020-05-20 18:01:53.368250536 -0700
-+++ new/src/java.desktop/share/native/common/awt/medialib/mlib_ImageCopy_Bit.c	2020-05-20 18:01:53.036244162 -0700
-@@ -256,9 +256,6 @@
-   }
- 
-   if (j < size) lsrc1 = sp[0];
--#ifdef __SUNPRO_C
--#pragma pipeloop(0)
--#endif /* __SUNPRO_C */
-   for (; j <= size - 64; j += 64) {
-     lsrc0 = lsrc1;
-     lsrc1 = sp[1];
-@@ -387,9 +384,6 @@
- #ifdef _LITTLE_ENDIAN
-   src1 = (src1 << 24) | ((src1 & 0xFF00) << 8) | ((src1 >> 8) & 0xFF00) | (src1 >> 24);
- #endif /* _LITTLE_ENDIAN */
--#ifdef __SUNPRO_C
--#pragma pipeloop(0)
--#endif /* __SUNPRO_C */
-   for (; j <= size - 32; j += 32) {
-     src0 = src1;
-     src1 = sp[-1];
-@@ -478,9 +472,6 @@
-   }
- 
-   if (j < size) lsrc1 = sp[0];
--#ifdef __SUNPRO_C
--#pragma pipeloop(0)
--#endif /* __SUNPRO_C */
-   for (; j <= size - 64; j += 64) {
-     lsrc0 = lsrc1;
-     lsrc1 = sp[-1];
---- old/src/java.desktop/share/native/common/awt/medialib/mlib_sys.c	2020-05-20 18:01:54.384270045 -0700
-+++ new/src/java.desktop/share/native/common/awt/medialib/mlib_sys.c	2020-05-20 18:01:54.048263593 -0700
-@@ -39,20 +39,7 @@
- /***************************************************************/
- 
- #if ! defined ( __MEDIALIB_OLD_NAMES )
--#if defined ( __SUNPRO_C )
--
--#pragma weak mlib_memmove = __mlib_memmove
--#pragma weak mlib_malloc = __mlib_malloc
--#pragma weak mlib_realloc = __mlib_realloc
--#pragma weak mlib_free = __mlib_free
--#pragma weak mlib_memset = __mlib_memset
--#pragma weak mlib_memcpy = __mlib_memcpy
--
--#ifdef MLIB_NO_LIBSUNMATH
--#pragma weak mlib_sincosf = __mlib_sincosf
--#endif /* MLIB_NO_LIBSUNMATH */
--
--#elif defined ( __GNUC__ ) /* defined ( __SUNPRO_C ) */
-+#if defined ( __GNUC__ )
- 
-   __typeof__ ( __mlib_memmove) mlib_memmove
-     __attribute__ ((weak,alias("__mlib_memmove")));
-@@ -67,19 +54,16 @@
-   __typeof__ ( __mlib_memcpy) mlib_memcpy
-     __attribute__ ((weak,alias("__mlib_memcpy")));
- 
--#ifdef MLIB_NO_LIBSUNMATH
--
- void __mlib_sincosf (float x, float *s, float *c);
- 
- __typeof__ ( __mlib_sincosf) mlib_sincosf
-     __attribute__ ((weak,alias("__mlib_sincosf")));
--#endif /* MLIB_NO_LIBSUNMATH */
- 
--#else /* defined ( __SUNPRO_C ) */
-+#else /* defined ( __GNUC__ ) */
- 
- #error  "unknown platform"
- 
--#endif /* defined ( __SUNPRO_C ) */
-+#endif /* defined ( __GNUC__ ) */
- #endif /* ! defined ( __MEDIALIB_OLD_NAMES ) */
- 
- /***************************************************************/
-@@ -127,12 +111,8 @@
-   return memmove(s1, s2, n);
- }
- 
--#ifdef MLIB_NO_LIBSUNMATH
--
- void __mlib_sincosf (mlib_f32 x, mlib_f32 *s, mlib_f32 *c)
- {
-   *s = (mlib_f32)sin(x);
-   *c = (mlib_f32)cos(x);
- }
--
--#endif /* MLIB_NO_LIBSUNMATH */
 --- old/src/java.desktop/share/native/libjsound/SoundDefs.h	2020-05-20 18:01:56.500310674 -0700
 +++ new/src/java.desktop/share/native/libjsound/SoundDefs.h	2020-05-20 18:01:56.112303224 -0700
 @@ -29,10 +29,9 @@
@@ -4398,35 +4296,6 @@
  #if X_PLATFORM == X_LINUX
  #define INLINE          inline
  #endif
---- old/src/java.desktop/share/native/libmlib_image/mlib_SysMath.h	2020-05-20 18:02:19.928760518 -0700
-+++ new/src/java.desktop/share/native/libmlib_image/mlib_SysMath.h	2020-05-20 18:02:19.548753221 -0700
-@@ -57,26 +57,12 @@
- 
- #define mlib_sqrt       sqrt
- 
--#ifdef MLIB_NO_LIBSUNMATH
--
- #define mlib_sinf       (float) sin
- #define mlib_cosf       (float) cos
- void mlib_sincosf (float x, float *s, float *c);
- #define mlib_sqrtf      (float) sqrt
- #define mlib_fabsf      (float) fabs
- 
--#else
--
--#include <sunmath.h>
--
--#define mlib_sinf       sinf
--#define mlib_cosf       cosf
--#define mlib_sincosf    sincosf
--#define mlib_sqrtf       sqrtf
--#define mlib_fabsf       fabsf
--
--#endif  /* MLIB_NO_LIBSUNMATH */
--
- #endif  /* MLIB_LIBCAFEMATH */
- 
- 
 --- old/src/java.desktop/unix/classes/sun/awt/X11FontManager.java	2020-05-20 18:02:35.237054448 -0700
 +++ new/src/java.desktop/unix/classes/sun/awt/X11FontManager.java	2020-05-20 18:02:34.897047919 -0700
 @@ -696,8 +696,7 @@
