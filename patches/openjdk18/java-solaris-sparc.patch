@@ -4909,16 +4909,6 @@
  uns_ordered_dither_array img_oda_alpha;
 --- old/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.805218963 -0700
 +++ new/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.465212435 -0700
-@@ -34,9 +34,6 @@
- #include <sys/mman.h>
- #include <fcntl.h>
- #include <unistd.h>
--#ifdef __solaris__
--#include <sys/systeminfo.h>
--#endif
- 
- #include <jni.h>
- #include <jni_util.h>
 @@ -64,57 +61,7 @@
  
  #define MAXFDIRS 512    /* Max number of directories that contain fonts */
@@ -5002,39 +4992,6 @@
  #elif defined(_AIX)
      knowndirs = fullAixFontPath;
  #endif
-@@ -458,10 +395,6 @@
-     char *homeEnv;
-     static char *homeEnvStr = "HOME="; /* must be static */
-     void* libfontconfig = NULL;
--#ifdef __solaris__
--#define SYSINFOBUFSZ 8
--    char sysinfobuf[SYSINFOBUFSZ];
--#endif
- 
-     /* Private workaround to not use fontconfig library.
-      * May be useful during testing/debugging
-@@ -473,21 +404,6 @@
-         return NULL;
-     }
- 
--#ifdef __solaris__
--    /* fontconfig is likely not properly configured on S8/S9 - skip it,
--     * although allow user to override this behaviour with an env. variable
--     * ie if USE_J2D_FONTCONFIG=yes then we skip this test.
--     * NB "4" is the length of a string which matches our patterns.
--     */
--    if (useFC == NULL || strcmp(useFC, "yes")) {
--        if (sysinfo(SI_RELEASE, sysinfobuf, SYSINFOBUFSZ) == 4) {
--            if ((!strcmp(sysinfobuf, "5.8") || !strcmp(sysinfobuf, "5.9"))) {
--                return NULL;
--            }
--        }
--    }
--#endif
--
- #if defined(_AIX)
-     /* On AIX, fontconfig is not a standard package supported by IBM.
-      * instead it has to be installed from the "AIX Toolbox for Linux Applications"
 --- old/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:46.009261282 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:45.625253909 -0700
 @@ -399,12 +399,7 @@
