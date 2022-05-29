@@ -1397,21 +1397,6 @@
    // The only supported platforms are: (1) Linux/64-bit and (2) Solaris/64-bit and
    // (3) MacOSX/64-bit and (4) Windowss/64-bit
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
---- old/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.990246402 -0700
-+++ new/src/hotspot/share/gc/shared/gcVMOperations.cpp	2020-05-20 18:00:08.654239951 -0700
-@@ -73,12 +73,10 @@
- void VM_GC_Operation::notify_gc_begin(bool full) {
-   HOTSPOT_GC_BEGIN(
-                    full);
--  HS_DTRACE_WORKAROUND_TAIL_CALL_BUG();
- }
- 
- void VM_GC_Operation::notify_gc_end() {
-   HOTSPOT_GC_END();
--  HS_DTRACE_WORKAROUND_TAIL_CALL_BUG();
- }
- 
- // Allocations may fail in several threads at about the same time,
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
 @@ -166,7 +166,6 @@
@@ -1484,16 +1469,6 @@
    // All the flags that get adjusted by VM_Version_init and os::init_2
    // have been set so dump the flags now.
    if (PrintFlagsFinal || PrintFlagsRanges) {
---- old/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:33.342713988 -0700
-+++ new/src/hotspot/share/runtime/java.cpp	2020-05-20 18:00:32.958706615 -0700
-@@ -584,7 +584,6 @@
- void notify_vm_shutdown() {
-   // For now, just a dtrace probe.
-   HOTSPOT_VM_SHUTDOWN();
--  HS_DTRACE_WORKAROUND_TAIL_CALL_BUG();
- }
- 
- void vm_direct_exit(int code) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
 @@ -477,7 +477,7 @@
@@ -1589,42 +1564,6 @@
    tty->print_cr("                 - in gdb do 'set overload-resolution off' before calling pns()");
    tty->print_cr("                 - in dbx do 'frame 1' before calling pns()");
  
---- old/src/hotspot/share/utilities/dtrace.hpp	2020-05-20 18:00:42.798895553 -0700
-+++ new/src/hotspot/share/utilities/dtrace.hpp	2020-05-20 18:00:42.462889102 -0700
-@@ -29,23 +29,11 @@
- #if defined(DTRACE_ENABLED)
- 
- #include <sys/sdt.h>
-+#include <sys/types.h>
- 
- #define DTRACE_ONLY(x) x
- #define NOT_DTRACE(x)
- 
--#if defined(SOLARIS)
--// Work around dtrace tail call bug 6672627 until it is fixed in solaris 10.
--#define HS_DTRACE_WORKAROUND_TAIL_CALL_BUG() \
--  do { volatile size_t dtrace_workaround_tail_call_bug = 1; } while (0)
--#elif defined(LINUX)
--#define HS_DTRACE_WORKAROUND_TAIL_CALL_BUG()
--#elif defined(__APPLE__)
--#define HS_DTRACE_WORKAROUND_TAIL_CALL_BUG()
--#include <sys/types.h>
--#else
--#error "dtrace enabled for unknown os"
--#endif /* defined(SOLARIS) */
--
- #include "dtracefiles/hotspot.h"
- #include "dtracefiles/hotspot_jni.h"
- #include "dtracefiles/hs_private.h"
-@@ -55,8 +43,6 @@
- #define DTRACE_ONLY(x)
- #define NOT_DTRACE(x) x
- 
--#define HS_DTRACE_WORKAROUND_TAIL_CALL_BUG()
--
- #include "dtrace_disabled.hpp"
- 
- #endif /* defined(DTRACE_ENABLED) */
 --- old/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.978937412 -0700
 +++ new/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.586929885 -0700
 @@ -39,36 +39,15 @@
