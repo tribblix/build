@@ -5074,24 +5074,6 @@
          if (xrenderLibHandle == NULL) {
              xrenderLibHandle = dlopen("libXrender.a(libXrender.so.0)",
                                        RTLD_MEMBER | RTLD_LAZY | RTLD_GLOBAL);
---- old/src/java.desktop/unix/native/libawt_xawt/awt/awt_InputMethod.c	2020-05-20 18:02:47.085281942 -0700
-+++ new/src/java.desktop/unix/native/libawt_xawt/awt/awt_InputMethod.c	2020-05-20 18:02:46.697274492 -0700
-@@ -179,15 +179,6 @@
- static Window getParentWindow(Window);
- #endif
- 
--#ifdef __solaris__
--/* Prototype for this function is missing in Solaris X11R6 Xlib.h */
--extern char *XSetIMValues(
--#if NeedVarargsPrototypes
--    XIM /* im */, ...
--#endif
--);
--#endif
--
- /*
-  * This function is stolen from /src/solaris/hpi/src/system_md.c
-  * It is used in setting the time in Java-level InputEvents
 --- old/src/java.desktop/unix/native/libawt_xawt/java2d/x11/XRBackendNative.c	2020-05-20 18:02:47.985299224 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/java2d/x11/XRBackendNative.c	2020-05-20 18:02:47.661293003 -0700
 @@ -76,29 +61,6 @@
