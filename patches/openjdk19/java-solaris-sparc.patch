@@ -226,16 +226,6 @@
    elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
      CFLAGS_OS_DEF_JVM="-D_ALLBSD_SOURCE -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE"
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
-@@ -435,9 +432,6 @@
-   # Setup debug/release defines
-   if test "x$DEBUG_LEVEL" = xrelease; then
-     DEBUG_CFLAGS_JDK="-DNDEBUG"
--    if test "x$OPENJDK_TARGET_OS" = xsolaris; then
--      DEBUG_CFLAGS_JDK="$DEBUG_CFLAGS_JDK -DTRIMMED"
--    fi
-   else
-     DEBUG_CFLAGS_JDK="-DDEBUG"
- 
 --- old/make/autoconf/flags-other.m4	2020-05-20 17:58:32.576395187 -0700
 +++ new/make/autoconf/flags-other.m4	2020-05-20 17:58:32.200387967 -0700
 @@ -51,8 +51,6 @@
