@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack googleapis-common-protos-1.55.0
-cd googleapis-common-protos-1.55.0
+${THOME}/build/unpack googleapis-common-protos-1.56.2
+cd googleapis-common-protos-1.56.2
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil

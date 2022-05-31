@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack google-api-core-2.7.1
-cd google-api-core-2.7.1
+${THOME}/build/unpack google-api-core-2.8.1
+cd google-api-core-2.8.1
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil

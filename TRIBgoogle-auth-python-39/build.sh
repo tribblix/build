@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack google-auth-2.6.0
-cd google-auth-2.6.0
+${THOME}/build/unpack google-auth-2.6.6
+cd google-auth-2.6.6
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
