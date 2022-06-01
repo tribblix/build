@@ -15703,7 +15703,7 @@
 -#endif // OS_CPU_SOLARIS_X86_OS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.inline.hpp	2020-05-20 18:10:02.505642227 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,34 +0,0 @@
+@@ -1,39 +0,0 @@
 -/*
 - * Copyright (c) 2011, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -15733,9 +15733,14 @@
 -
 -#include "runtime/os.hpp"
 -
--extern "C" jlong _raw_rdtsc(); // In .il file
--
--inline jlong os::rdtsc() { return _raw_rdtsc(); }
+-// See http://www.technovelty.org/code/c/reading-rdtsc.htl for details
+-inline jlong os::rdtsc() {
+-  uint64_t res;
+-  uint32_t ts1, ts2;
+-  __asm__ __volatile__ ("rdtsc" : "=a" (ts1), "=d" (ts2));
+-  res = ((uint64_t)ts1 | (uint64_t)ts2 << 32);
+-  return (jlong)res;
+-}
 -
 -#endif // OS_CPU_SOLARIS_X86_OS_SOLARIS_X86_INLINE_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/prefetch_solaris_x86.inline.hpp	2020-05-20 18:10:03.249656511 -0700
