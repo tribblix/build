@@ -7,6 +7,22 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+Remove some unnecessary patches
+src/java.base/unix/native/libjli/java_md.h
+ - new comment is good
+src/java.desktop/unix/native/common/awt/fontpath.c
+ - shouldn't need to check for SunOS 5.8/5.9
+Remove HS_DTRACE_WORKAROUND_TAIL_CALL_BUG, the bug it works around
+  was fixed in 2008
+Remove remaining SUNPRO and related MLIB_NO_LIBSUNMATH checks
+src/java.desktop/unix/native/common/awt/X11Color.c
+ - the complexity is over 20 years old and no longer relevant
+make/autoconf/flags-cflags.m4
+ - adding -DTRIMMED is useless
+src/java.desktop/unix/native/libawt_xawt/awt/awt_InputMethod.c
+ - unnecessary on illumos and current Solaris (and my S10 system too)
+use the 64-bit rdtsc variant
+
 19-24
 
 More patch noise. os::dir_is_empty() has been centralized. Little
