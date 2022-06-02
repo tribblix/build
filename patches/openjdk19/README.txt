@@ -7,6 +7,9 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+Remove some unnecessary patches
+Remove legacy Solaris non-standard resolver behaviour
+
 19-25
 
 Trivial patch noise.
