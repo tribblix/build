@@ -7,6 +7,11 @@ Most patches -p0
 
 JDK 19 now that jdk18 has been forked off.
 
+19-25
+
+Trivial patch noise.
+Don't use a fixed 32-bit path to dlopen libXrender
+
 Remove some unnecessary patches
 src/java.base/unix/native/libjli/java_md.h
  - new comment is good
