@@ -1,0 +1,4 @@
+PKG="TRIBosmo"
+NAME="Osmo personal organizer"
+VERSION="0.4.4.0"
+ZAP_URL="https://sourceforge.net/projects/osmo-pim/"
