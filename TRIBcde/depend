@@ -1,5 +1,6 @@
 P TRIBimage-libjpeg
 P TRIBmotif
+P TRIBsys-lib-fontconfig
 P TRIBtcl
 P TRIBx11-lib-toolkit-libxt
 P TRIBx11-libice
