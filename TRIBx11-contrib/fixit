@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# not the old naming convention
+#
+# the man pages haven't been moved at this point
+#
+cd usr/man/man1
+for file in *.1x
+do
+  mv $file `echo $file | sed s:.1x:.1:`
+done

@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+#
+# we may have multiple applications that need fixing up
+#
+if [ -f AGS ]; then
+    mkdir -p ${DESTDIR}/usr/lib/X11/app-defaults
+    sed -i -e s:ics.uci.edu:example.org: -e s:ackerman=:example=: -e s:ChicagoCubs:TribblixSample: AGS
+    sed -i -e 's=editMode: True=editMode: False=' -e 's=useMail: True=useMail: False=' -e 's=useLocalExpert: True=useLocalExpert: False=' AGS
+    sed -i s:\./xinfo/:/usr/share/AnswerGarden/xinfo/: AGS
+    cp AGS ${DESTDIR}/usr/lib/X11/app-defaults
+    mkdir -p ${DESTDIR}/usr/share/AnswerGarden
+    tar cf - xinfo | (cd ${DESTDIR}/usr/share/AnswerGarden ; tar xf -)
+fi
+if [ -f XCalendar.ad ]; then
+    cp *.xbm ${DESTDIR}/usr/lib/X11/xcalendar
+    sed -i s:local/X11R5/:: ${DESTDIR}/usr/lib/X11/app-defaults/XCalendar
+fi
