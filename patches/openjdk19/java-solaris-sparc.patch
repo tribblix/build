@@ -166,15 +166,6 @@
    AC_SUBST(TAR_INCLUDE_PARAM)
    AC_SUBST(TAR_SUPPORTS_TRANSFORM)
  ])
-@@ -421,8 +412,6 @@
-       fi
-     fi
-     UTIL_REQUIRE_PROGS(SETFILE, SetFile)
--  elif test "x$OPENJDK_TARGET_OS" = "xsolaris"; then
--    UTIL_REQUIRE_PROGS(ELFEDIT, elfedit)
-   fi
-   if ! test "x$OPENJDK_TARGET_OS" = "xwindows"; then
-     UTIL_REQUIRE_PROGS(ULIMIT, ulimit)
 --- old/make/autoconf/build-aux/config.guess	2020-05-20 17:58:28.372314465 -0700
 +++ new/make/autoconf/build-aux/config.guess	2020-05-20 17:58:27.980306938 -0700
 @@ -42,14 +42,6 @@
@@ -408,14 +399,6 @@
  DISABLED_WARNINGS := @DISABLED_WARNINGS@
  DISABLED_WARNINGS_C := @DISABLED_WARNINGS_C@
  DISABLED_WARNINGS_CXX := @DISABLED_WARNINGS_CXX@
-@@ -769,7 +765,6 @@
- LDD:=@LDD@
- OTOOL:=@OTOOL@
- READELF:=@READELF@
--ELFEDIT:=@ELFEDIT@
- EXPR:=@EXPR@
- FILE:=@FILE@
- DOT:=@DOT@
 @@ -783,7 +781,6 @@
  ULIMIT:=@ULIMIT@
  
@@ -5973,7 +5956,7 @@
 -endif
 --- old/make/hotspot/lib/JvmDtraceObjects.gmk	2020-05-20 18:08:17.355623374 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,132 +0,0 @@
+@@ -1,122 +0,0 @@
 -#
 -# Copyright (c) 2013, 2019, Oracle and/or its affiliates. All rights reserved.
 -# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -6082,16 +6065,6 @@
 -    # jhelper.d includes JvmOffsetsIndex.h which was created by the gensrc step.
 -    DTRACE_GENSRC_DIR := $(JVM_VARIANT_OUTPUTDIR)/gensrc/dtracefiles
 -    JVM_OFFSETS_INDEX_H := $(DTRACE_GENSRC_DIR)/JvmOffsetsIndex.h
--
--    # Unfortunately dtrace generates incorrect types for some symbols in
--    # dtrace_jhelper.o, resulting in "warning: symbol X has differing types"
--    # See JDK-6890703 for details.
--    # We work around this by fixing the types for these symbols using elfedit,
--    # after dtrace has generated the .o file.
--    GetElfeditCommands = \
--      $(foreach symbol, \
--          $(shell $(GREP) ^extern $(JHELPER_DTRACE_SRC) | $(AWK) '{ gsub(";","") ; print $$3 }'), \
--          -e 'sym:st_type $(symbol) 1')
 -
 -    # Make sure we run our selected compiler for preprocessing instead of letting
 -    # the dtrace tool pick it on it's own.
