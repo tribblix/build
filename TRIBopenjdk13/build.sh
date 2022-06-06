@@ -28,7 +28,7 @@ ${THOME}/build/unpack jdk13u-jdk-13.0.11-ga
 cd jdk13u-jdk-13.0.11-ga
 
 #
-# as of 13.0.3, switch to a gcc build to replace Stuido
+# as of 13.0.3, switch to a gcc build to replace Studio
 #
 
 #

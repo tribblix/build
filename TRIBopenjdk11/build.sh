@@ -61,7 +61,7 @@ ${THOME}/build/unpack jdk11u-jdk-11.0.15-ga
 cd jdk11u-jdk-11.0.15-ga
 
 #
-# as of 11.0.7, switch to a gcc build to replace Stuido
+# as of 11.0.7, switch to a gcc build to replace Studio
 #
 
 #
