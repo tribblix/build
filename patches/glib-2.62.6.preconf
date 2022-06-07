@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# autoconf correctly detected whether libelf would work; meson doesn't
+#
+# construct a fake check that's guaranteed to fail
+#
+case `pwd` in
+    *64-bit*)
+	:
+	;;
+    *)
+	sed -i s:elf_getshdrstrndx:wizzlefoobury: gio/meson.build
+	;;
+esac
