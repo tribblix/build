@@ -148,15 +148,28 @@ else
     TRIBBLIX_PATH=$PATH
 fi
 
+#
+# if we want to add something to PKG_CONFIG_PATH
+# then tack a : on the end so the command we construct
+# looks like a : separated list
+#
+if [ -n "${TRIBBLIX_PKG_CONFIG_PATH}" ]; then
+    TRIBBLIX_PKG_CONFIG_PATH="${TRIBBLIX_PKG_CONFIG_PATH}:"
+fi
+
 UNPACKER=${BUILD}/unpack
 export UNPACKER
 PATCHDIR=${BUILD}/patches
 export PATCHDIR
 for pkg in ${THISPKG}
 do
-	${UNPACKER}  ${UNPACK_FLAGS} ${pkg}
+	${UNPACKER} ${UNPACK_FLAGS} ${pkg}
 	if [ "x$DO64" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
+	    if [ ! -d ${pkg}-64bit ]; then
+		echo "Cannot find source directory ${pkg}-64bit"
+		exit 1
+	    fi
 	    if [[ -n $DO_LD ]]; then
 		cd ${pkg}-64bit
 		touch .tribblix_ldopts
@@ -177,7 +190,7 @@ EOF
 		mkdir build
 		cd build
 	    fi
-	    env PKG_CONFIG_PATH=/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m64 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/lib/${ARCH64} -DBIN_INSTALL_DIR=${IPREFIX}/bin/${ARCH64} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/lib/${ARCH64} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/bin/${ARCH64} ${CONFARGS} $BDIR
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m64 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/lib/${ARCH64} -DBIN_INSTALL_DIR=${IPREFIX}/bin/${ARCH64} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/lib/${ARCH64} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/bin/${ARCH64} ${CONFARGS} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
@@ -190,6 +203,10 @@ EOF
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
+	    if [ ! -d ${pkg} ]; then
+		echo "Cannot find source directory ${pkg}"
+		exit 1
+	    fi
 	    if [[ -n $DO_LD ]]; then
 		cd ${pkg}
 		touch .tribblix_ldopts
@@ -208,8 +225,7 @@ EOF
 		mkdir build
 		cd build
 	    fi
-	    echo env PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} $BDIR
-	    env PATH=$TRIBBLIX_PATH cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} $BDIR
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
