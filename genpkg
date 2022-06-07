@@ -110,7 +110,11 @@ case $# in
 		if [ -f .tribblix_cmake_build ]; then
 		    cd build
 		fi
-		$GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
+		if [ -f .tribblix_meson_build ]; then
+		    env DESTDIR=$BDIR ninja -C build install
+		else
+		    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
+		fi
 		if [ -x ${BUILD}/${PKGNAME}/fixinstall.64 ]; then
 		    ${BUILD}/${PKGNAME}/fixinstall.64 $BDIR
 		fi
@@ -127,7 +131,11 @@ case $# in
 		if [ -f .tribblix_cmake_build ]; then
 		    cd build
 		fi
-		$GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
+		if [ -f .tribblix_meson_build ]; then
+		    env DESTDIR=$BDIR ninja -C build install
+		else
+		    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
+		fi
 		if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 		    ${BUILD}/${PKGNAME}/fixinstall $BDIR
 		fi

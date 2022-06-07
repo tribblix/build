@@ -1,0 +1,198 @@
+#!/bin/ksh
+#
+# build some software
+#
+# assumes meson, currently somewhat limited compared to the autoconf
+# style of build
+#
+
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BUILD="${THOME}/build"
+WORKING_ROOT=`pwd`
+
+case $# in
+    0)
+	echo "Usage: $0 [-64|+64] [-gnu] src_name \\"
+        echo "  [-P alt_prefix] [-C configure_args] \\"
+	echo "  [-L]"
+	exit 1
+	;;
+esac
+
+#
+# if a dual 32- and 64-bit build is desired, specify -64 *first*
+# +64 means just do the 64-bit (useful for testing it in isolation)
+# note that +64 will wipe the 32-bit directory
+#
+DO32="true"
+DO64="false"
+UNPACK_FLAGS=""
+
+#
+# if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
+# then specify -gnu
+#
+DOGNU="false"
+
+#
+# Other arguments are
+# package name
+# -P alternate_prefix
+# -C configure_args
+# -L disable LD_OPTIONS
+#
+IPREFIX="/usr"
+CONFARGS=""
+DO_LD="yes"
+
+while [[ $# > 0 ]]; do
+case $1 in
+-64)
+	DO64="true"
+	UNPACK_FLAGS="-64"
+	shift
+	;;
++64)
+	DO64="true"
+	DO32="false"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
+-gnu)
+	DOGNU="true"
+	shift
+	;;
+-P)
+	shift
+	IPREFIX="$1"
+	shift
+	;;
+-C)
+	shift
+	CONFARGS="$1"
+	shift
+	;;
+-L)
+	shift
+	DO_LD=""
+	;;
+-*)
+	echo "Invalid argument $1"
+	exit 1
+	;;
+*)
+	THISPKG="$THISPKG $1"
+	shift
+	;;
+esac
+done
+
+#
+# 64-bit files go in these subdirectories
+#
+case `uname -p` in
+sparc)
+    ARCH64="sparcv9"
+    ;;
+i386)
+    ARCH64="amd64"
+    ;;
+esac
+
+#
+# default linker options
+#
+if [[ -n $DO_LD ]]; then
+case `uname -p` in
+sparc)
+    LD_OPTIONS="-M /usr/lib/ld/map.noexbss -M /usr/lib/ld/map.noexstk -M /usr/lib/ld/map.pagealign -Bdirect -z ignore"
+    ;;
+i386)
+    LD_OPTIONS="-M /usr/lib/ld/map.noexdata -M /usr/lib/ld/map.noexstk -M /usr/lib/ld/map.pagealign -Bdirect -z ignore"
+    ;;
+esac
+export LD_OPTIONS
+fi
+
+#
+# with -gnu, add /usr/gnu/bin at the head of PATH
+#
+if [ "x$DOGNU" != "xfalse" ]; then
+    TRIBBLIX_PATH=/usr/gnu/bin:$PATH
+else
+    TRIBBLIX_PATH=$PATH
+fi
+
+#
+# if we want to add something to PKG_CONFIG_PATH
+# then tack a : on the end so the command we construct
+# looks like a : separated list
+#
+if [ -n "${TRIBBLIX_PKG_CONFIG_PATH}" ]; then
+    TRIBBLIX_PKG_CONFIG_PATH="${TRIBBLIX_PKG_CONFIG_PATH}:"
+fi
+
+UNPACKER=${BUILD}/unpack
+export UNPACKER
+PATCHDIR=${BUILD}/patches
+export PATCHDIR
+for pkg in ${THISPKG}
+do
+	${UNPACKER} ${UNPACK_FLAGS} ${pkg}
+	if [ "x$DO64" != "xfalse" ]; then
+	    cd ${WORKING_ROOT}
+	    if [ ! -d ${pkg}-64bit ]; then
+		echo "Cannot find source directory ${pkg}-64bit"
+		exit 1
+	    fi
+	    if [[ -n $DO_LD ]]; then
+		cd ${pkg}-64bit
+		touch .tribblix_ldopts
+		cat >> .tribblix_ldopts <<EOF
+LD_OPTIONS="${LD_OPTIONS}"
+export LD_OPTIONS
+EOF
+		cd ${WORKING_ROOT}
+	    fi
+	    cd ${pkg}-64bit
+	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
+		${BUILD}/patches/${pkg}.preconf.64
+	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
+		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    touch .tribblix_meson_build
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" meson --prefix=${IPREFIX} ${CONFARGS} --libdir=lib/${ARCH64} --bindir=bin/${ARCH64} build
+	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
+		${BUILD}/patches/${pkg}.postconf.64
+	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
+		${BUILD}/patches/${pkg}.postconf
+	    fi
+	    ninja -C build
+	fi
+	if [ "x$DO32" != "xfalse" ]; then
+	    cd ${WORKING_ROOT}
+	    if [ ! -d ${pkg} ]; then
+		echo "Cannot find source directory ${pkg}"
+		exit 1
+	    fi
+	    if [[ -n $DO_LD ]]; then
+		cd ${pkg}
+		touch .tribblix_ldopts
+		cat >> .tribblix_ldopts <<EOF
+LD_OPTIONS="${LD_OPTIONS}"
+export LD_OPTIONS
+EOF
+		cd ${WORKING_ROOT}
+	    fi
+	    cd ${pkg}
+	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
+		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    touch .tribblix_meson_build
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" meson --prefix=${IPREFIX} ${CONFARGS} build
+	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
+		${BUILD}/patches/${pkg}.postconf
+	    fi
+	    ninja -C build
+	fi
+done
