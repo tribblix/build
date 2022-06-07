@@ -3,3 +3,6 @@
 # clean up a bit
 #
 rm -fr usr/share/doc/xapian-core/apidoc
+#
+rm -f usr/lib/lib*.la
+rm -f usr/lib/*/lib*.la
