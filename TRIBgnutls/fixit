@@ -10,6 +10,9 @@ i386)
   ;;
 esac
 
+rm -f usr/lib/lib*.la
+rm -f usr/lib/*/lib*.la
+
 #
 # copy the existing libraries for compat
 # libgnutlsxx retains its old SONAME, so no need to copy that
