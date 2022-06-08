@@ -29,6 +29,11 @@ if [ -d usr/share/gtk-doc ]; then
     rm -fr usr/share/gtk-doc
 fi
 #
+# libtool archives are toxic
+#
+rm -f usr/lib/lib*.la
+rm -f usr/lib/*/lib*.la
+#
 # don't embed compiler location in .la files
 #
 for file in `find . -name '*.la'`
