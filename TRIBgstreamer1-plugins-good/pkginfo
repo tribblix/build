@@ -1,4 +1,4 @@
 PKG="TRIBgstreamer1-plugins-good"
 NAME="GStreamer (stable) good plugins"
-VERSION="1.16.3.0"
+VERSION="1.16.3.1"
 ZAP_URL="http://gstreamer.freedesktop.org/"
