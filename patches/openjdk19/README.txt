@@ -10,6 +10,7 @@ JDK 19 now that jdk18 has been forked off.
 Remove some unnecessary patches
 Remove legacy Solaris non-standard resolver behaviour
 Remove elfedit, it was only used on SPARC
+Stop nosing around in .dtprofile
 
 19-25
 
