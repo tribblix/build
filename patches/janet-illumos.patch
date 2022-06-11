@@ -1,0 +1,37 @@
+--- a/src/mainclient/shell.c	Sat Jun 11 16:30:16 2022
++++ b/src/mainclient/shell.c	Sat Jun 11 16:37:46 2022
+@@ -26,6 +26,10 @@
+ 
+ #include <janet.h>
+ #include <errno.h>
++#include <unistd.h>
++#include <stropts.h>
++#include <sys/types.h>
++#include <termios.h>
+ 
+ #ifdef _WIN32
+ #include <windows.h>
+--- a/src/include/janet.h	Mon May  9 16:28:09 2022
++++ b/src/include/janet.h	Sat Jun 11 16:55:51 2022
+@@ -139,10 +139,6 @@
+ #define JANET_NO_PROCESSES
+ #endif
+ 
+-/* Check sun */
+-#ifdef __sun
+-#define JANET_NO_UTC_MKTIME
+-#endif
+ 
+ /* Define how global janet state is declared */
+ /* Also enable the thread library only if not single-threaded */
+--- a/src/core/util.c	Mon May  9 16:28:09 2022
++++ b/src/core/util.c	Sat Jun 11 17:00:19 2022
+@@ -867,7 +867,7 @@
+     }
+     RETRY_EINTR(rc, close(randfd));
+     return 0;
+-#elif defined(JANET_BSD) || defined(MAC_OS_X_VERSION_10_7)
++#elif defined(JANET_BSD) || defined(MAC_OS_X_VERSION_10_7) || defined(__sun)
+     arc4random_buf(out, n);
+     return 0;
+ #else

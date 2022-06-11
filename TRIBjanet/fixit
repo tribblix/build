@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# the install puts DESTDIR into the link
+#
+rm usr/include/janet.h
+ln -s janet/janet.h usr/include
