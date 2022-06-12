@@ -475,7 +475,7 @@
            # It cannot be run separately since it updates the original target file
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -153,7 +151,6 @@
+@@ -154,7 +154,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -483,7 +483,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -163,14 +160,11 @@
+@@ -164,14 +163,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -1138,7 +1138,7 @@
      BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -90,9 +90,6 @@
+@@ -88,9 +88,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1305,7 +1305,7 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -938,8 +938,6 @@
+@@ -939,8 +939,6 @@
        , lir_monaddr
        , lir_roundfp
        , lir_safepoint
@@ -1314,7 +1314,7 @@
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2233,9 +2231,6 @@
+@@ -2234,9 +2232,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  

@@ -5,7 +5,11 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Most patches -p0
 
-JDK 19 now that jdk18 has been forked off.
+JDK19 now foked off for rampdown phase 1
+
+19-26
+
+Trivial patch noise
 
 Remove some unnecessary patches
 Remove legacy Solaris non-standard resolver behaviour
