@@ -12,7 +12,7 @@ WORKING_ROOT=`pwd`
 
 case $# in
     0)
-	echo "Usage: $0 [-64|+64|+64only] [-gnu] src_name \\"
+	echo "Usage: $0 [-64|+64|-64only|+64only] [-gnu] src_name \\"
         echo "  [-S subdir] [-P alt_prefix] [-C configure_args] \\"
 	echo "  [-M make_args] [-J parallelism] [-L]"
 	exit 1
