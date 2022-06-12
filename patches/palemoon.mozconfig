@@ -12,6 +12,9 @@ ac_add_options --enable-jemalloc
 ac_add_options --enable-strip
 ac_add_options --enable-devtools
 ac_add_options --enable-av1
+ac_add_options --enable-phoenix-extensions
+ac_add_options --disable-eme
+ac_add_options --disable-webrtc
 ac_add_options --disable-gamepad
 ac_add_options --disable-tests
 ac_add_options --disable-debug
@@ -27,6 +30,7 @@ ac_add_options --with-toolchain-prefix=g
 # Please see https://www.palemoon.org/redist.shtml for restrictions when using the official branding.
 ac_add_options --enable-official-branding
 export MOZILLA_OFFICIAL=1
+export CONFIG_SHELL=/bin/bash
 
 if [ -n "$_BUILD_ILLUMOS" ]; then
   export MOZ_PKG_SPECIAL=illumos
