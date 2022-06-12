@@ -13,7 +13,7 @@ WORKING_ROOT=`pwd`
 
 case $# in
     0)
-	echo "Usage: $0 [-64|+64] [-gnu] src_name \\"
+	echo "Usage: $0 [-64|+64|-64only|+64only] [-gnu] src_name \\"
         echo "  [-P alt_prefix] [-C configure_args] \\"
 	echo "  [-M make_args] [-J parallelism] [-L]"
 	exit 1
@@ -24,9 +24,14 @@ esac
 # if a dual 32- and 64-bit build is desired, specify -64 *first*
 # +64 means just do the 64-bit (useful for testing it in isolation)
 # note that +64 will wipe the 32-bit directory
+# -64only means put the 64-bit binaries in the default path
+# +64only means put all 64-bit objects in the
+# default path, rather than in a subdirectory
 #
 DO32="true"
 DO64="false"
+ONLY64="false"
+ONLY64BIN="false"
 UNPACK_FLAGS=""
 
 #
@@ -49,6 +54,7 @@ DOGNU="false"
 #
 IPREFIX="/usr"
 CONFARGS=""
+LIBDIR64=""
 MAKEARGS=""
 GMAKEFLAGS="-j 4"
 DO_LD="yes"
@@ -65,6 +71,21 @@ case $1 in
 +64)
 	DO64="true"
 	DO32="false"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
+-64only)
+	DO64="true"
+	DO32="false"
+	ONLY64BIN="true"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
++64only)
+	DO64="true"
+	DO32="false"
+	ONLY64="true"
+	ONLY64BIN="true"
 	UNPACK_FLAGS="+64"
 	shift
 	;;
@@ -123,6 +144,16 @@ i386)
     ARCH64="amd64"
     ;;
 esac
+BINDIR64="bin/${ARCH64}"
+if [ "x${ONLY64BIN}" != "xfalse" ]; then
+    BINDIR64="bin"
+fi
+
+if [ "x${ONLY64}" != "xfalse" ]; then
+    LIBDIR64="lib"
+else
+    LIBDIR64="lib/${ARCH64}"
+fi
 
 #
 # default linker options
@@ -190,7 +221,7 @@ EOF
 		mkdir build
 		cd build
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m64 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/lib/${ARCH64} -DBIN_INSTALL_DIR=${IPREFIX}/bin/${ARCH64} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/lib/${ARCH64} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/bin/${ARCH64} ${CONFARGS} $BDIR
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m64 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/${LIBDIR64} -DBIN_INSTALL_DIR=${IPREFIX}/${BINDIR64} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/${LIBDIR64} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/${BINDIR64} ${CONFARGS} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
