@@ -1,5 +1,18 @@
 #!/bin/sh
 #
+#
+rm -f usr/lib/xfce4/panel/plugins/lib*.la
+rm -f usr/lib/tumbler-1/plugins/tumbler*.la
+rm -f usr/lib/tumbler-1/plugins/cache/tumbler-xdg-cache.la
+rm -f usr/lib/thunarx-3/thunar*.la
+rm -f usr/lib/gio/modules/libxfconfgsettingsbackend.la
+rm -f usr/lib/*/xfce4/panel/plugins/lib*.la
+rm -f usr/lib/*/tumbler-1/plugins/tumbler*.la
+rm -f usr/lib/*/tumbler-1/plugins/cache/tumbler-xdg-cache.la
+rm -f usr/lib/*/thunarx-3/thunar*.la
+rm -f usr/lib/*/gio/modules/libxfconfgsettingsbackend.la
+
+#
 # get all the icons in place
 # assumes the gnome icon theme is installed
 #
