@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # used by gimp
-# 0.12 migrated to meson and the build fails
 #
-${THOME}/build/dobuild -64 gexiv2-0.10.10 -C "--disable-dependency-tracking --enable-introspection=no"
-${THOME}/build/genpkg TRIBgexiv2 gexiv2-0.10.10
+$THOME/build/mesonbuild -64 gexiv2-0.12.3 -C "--buildtype=release -Dvapi=false -Dintrospection=false"
+${THOME}/build/genpkg TRIBgexiv2 gexiv2-0.12.3
