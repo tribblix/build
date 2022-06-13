@@ -4,6 +4,7 @@ P TRIBimage-libpng
 P TRIBimage-librsvg
 P TRIBimage-libtiff
 P TRIBjson-glib
+P TRIBlensfun
 P TRIBlib-babl
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-pango
