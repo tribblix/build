@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+rm -f usr/lib/enchant/*.la
+rm -f usr/lib/*/enchant/*.la
+rm -f usr/lib/enchant/*.a
+rm -f usr/lib/*/enchant/*.a
