@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+rm -f usr/lib/gstreamer-1.0/*.la
+rm -f usr/lib/*/gstreamer-1.0/*.la
+rm -f usr/lib/farstream-0.2/*.la
+rm -f usr/lib/*/farstream-0.2/*.la

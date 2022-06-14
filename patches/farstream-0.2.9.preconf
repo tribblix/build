@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# gmake 4.3 changed the way that \# was handled, it's no longer
+# treated as an escape but a literal
+#
+# see also https://bugs.gentoo.org/706080
+#
+sed -i 's:\\n\\#include:\\n#include:' farstream/Makefile.in
+sed -i 's:\\n\\#include:\\n#include:' gst/fsrtpconference/Makefile.in
+sed -i 's:\\n\\#include:\\n#include:' transmitters/rawudp/Makefile.in
