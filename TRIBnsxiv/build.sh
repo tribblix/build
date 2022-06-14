@@ -2,8 +2,8 @@
 #
 # there's a preconf script to change the PREFIX
 #
-${THOME}/build/dobuild nsxiv-28 -M "CC=gcc HAVE_INOTIFY=0 HAVE_LIBWEBP=0"
-cd nsxiv-28
+${THOME}/build/dobuild nsxiv-29 -M "CC=gcc HAVE_INOTIFY=0 HAVE_LIBWEBP=0"
+cd nsxiv-29
 rm -fr /tmp/nlr
 gmake install-all DESTDIR=/tmp/nlr CC=gcc HAVE_INOTIFY=0 HAVE_LIBWEBP=0
 cd ..
