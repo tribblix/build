@@ -189,18 +189,18 @@ fi
 # if libraries are moved, repath to LIBPREFIX
 #
 if [ "x${LIBPREFIX}" != "x" ]; then
-    LIBARGS32="--libdir ${LIBPREFIX}"
+    LIBARGS32="--libdir=${LIBPREFIX}"
     if [ "x${ONLY64}" != "xfalse" ]; then
-	LIBARGS64="--libdir ${LIBPREFIX}"
+	LIBARGS64="--libdir=${LIBPREFIX}"
     else
-	LIBARGS64="--libdir ${LIBPREFIX}/${ARCH64}"
+	LIBARGS64="--libdir=${LIBPREFIX}/${ARCH64}"
     fi
 else
     LIBARGS32=""
     if [ "x${ONLY64}" != "xfalse" ]; then
-	LIBARGS64="--libdir ${IPREFIX}/lib"
+	LIBARGS64="--libdir=${IPREFIX}/lib"
     else
-	LIBARGS64="--libdir ${IPREFIX}/lib/${ARCH64}"
+	LIBARGS64="--libdir=${IPREFIX}/lib/${ARCH64}"
     fi
 fi
 
