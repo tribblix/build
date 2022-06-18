@@ -1,0 +1,11 @@
+--- a/src/od-fs/sysconfig.h	Sun Dec 19 12:24:39 2021
++++ b/src/od-fs/sysconfig.h	Sat Jun 18 15:04:46 2022
+@@ -106,7 +106,7 @@
+ /* #undef HAVE_SYS_DIR_H */
+ 
+ /* Define to 1 if you have the <sys/filio.h> header file. */
+-/* #undef HAVE_SYS_FILIO_H */
++#define HAVE_SYS_FILIO_H
+ 
+ /* Define to 1 if you have the <sys/filsys.h> header file. */
+ /* #undef HAVE_SYS_FILSYS_H */

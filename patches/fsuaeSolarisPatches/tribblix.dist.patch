@@ -1,0 +1,353 @@
+diff -urN /export/home/ptribble/ud/fs-uae-3.1.66/dist/solaris/Makefile dist/solaris/Makefile
+--- /export/home/ptribble/ud/fs-uae-3.1.66/dist/solaris/Makefile	1970-01-01 01:00:00.000000000 +0000
++++ a/dist/solaris/Makefile	2022-06-18 15:11:38.969558013 +0000
+@@ -0,0 +1,9 @@
++version = 3.1.66
++
++all:
++	./build.py $(version)
++
++clean:
++	rm -Rf *-linux-* *-steamos-*
++	rm -Rf *_linux_* *_steamos_*
++	make -C ../.. clean
+diff -urN /export/home/ptribble/ud/fs-uae-3.1.66/dist/solaris/Makefile.in dist/solaris/Makefile.in
+--- /export/home/ptribble/ud/fs-uae-3.1.66/dist/solaris/Makefile.in	1970-01-01 01:00:00.000000000 +0000
++++ a/dist/solaris/Makefile.in	2022-06-18 14:58:15.291977024 +0000
+@@ -0,0 +1,9 @@
++version = @PACKAGE_VERSION@
++
++all:
++	./build.py $(version)
++
++clean:
++	rm -Rf *-linux-* *-steamos-*
++	rm -Rf *_linux_* *_steamos_*
++	make -C ../.. clean
+diff -urN /export/home/ptribble/ud/fs-uae-3.1.66/dist/solaris/build.py dist/solaris/build.py
+--- /export/home/ptribble/ud/fs-uae-3.1.66/dist/solaris/build.py	1970-01-01 01:00:00.000000000 +0000
++++ a/dist/solaris/build.py	2022-06-18 14:58:15.291950635 +0000
+@@ -0,0 +1,122 @@
++#!/usr/bin/env python3
++import os
++import sys
++import platform
++import subprocess
++
++p = subprocess.Popen(["file", "-L", "/bin/sh"], stdout=subprocess.PIPE)
++exe_info = p.stdout.read().decode("UTF-8")
++if "386" in exe_info:
++    arch = "x86-64"
++elif "x86-64" in exe_info:
++    arch = "x86-64"
++else:
++    raise Exception("unrecognized arch " + repr(exe_info))
++
++if os.environ.get("STEAMOS", ""):
++    os_name = "steamos"
++else:
++    os_name = "solaris"
++    os_name_pretty = "Solaris"
++
++version = sys.argv[1]
++package_name = "fs-uae_{0}_{1}_{2}".format(version, os_name, arch)
++package_name_2 = "FS-UAE_{0}_{1}_{2}".format(version, os_name_pretty, arch)
++package_dir = "../{}/FS-UAE/{}/{}".format(os_name, os_name_pretty, arch)
++
++
++def s(command):
++    c = command.format(**globals())
++    print(c)
++    assert os.system(c) == 0
++
++
++def wrap(name, target=None, args=None):
++    if target is None:
++        target = name + ".bin"
++        os.rename(os.path.join(package_dir, name),
++                  os.path.join(package_dir, target))
++    if args is None:
++        args = ["$@"]
++    path = os.path.join(package_dir, name)
++    with open(path, "w") as f:
++        f.write("#!/bin/sh\n")
++        f.write("MYDIR=$(dirname \"$0\")\n")
++        # f.write("export LD_LIBRARY_PATH=\"$MYDIR:$LD_LIBRARY_PATH\"\n")
++        command = "\"$MYDIR/{0}\"".format(target)
++        for arg in args:
++            command += " \"{0}\"".format(arg)
++        if os_name == "steamos":
++            # if arch == "i686":
++            if arch == "x86":
++                bin_dir = "bin32"
++            # elif arch == "amd64":
++            elif arch == "x86-64":
++                bin_dir = "bin32"
++            else:
++                raise Exception("unsupported steamos arch?")
++            f.write("if [ -e \"$HOME/.steam/{0}/steam-runtime/"
++                    "run.sh\" ]; then\n".format(bin_dir))
++            f.write("RUN_SH=\"$HOME/.steam/{0}/steam-runtime/"
++                    "run.sh\"\n".format(bin_dir))
++            f.write("else\n")
++            f.write("RUN_SH=\"/home/steam/.steam/{0}/steam-runtime/"
++                    "run.sh\"\n".format(bin_dir))
++            f.write("fi\n")
++            f.write("exec $RUN_SH {0}\n".format(command))
++        else:
++            f.write("exec {0}\n".format(command))
++    os.chmod(path, 0o755)
++
++
++s("rm -Rf FS-UAE")
++s("mkdir -p {package_dir}")
++if os.environ.get("BUILD") == "0":
++    pass
++else:
++    s("cd ../.. && ./configure")
++    s("make -C ../..")
++
++s("cp -a ../../fs-uae {package_dir}/fs-uae")
++# s("PYTHONPATH=../../../fs-uae-launcher:../../../../fs-uae-launcher "
++#   "python3 -m fspy.zipfile deterministic {package_dir}/fs-uae.dat")
++s("cp -a ../../fs-uae-device-helper {package_dir}/fs-uae-device-helper")
++
++# s("mkdir FS-UAE/Data")
++# s("cp -a ../../fs-uae.dat FS-UAE/Data/fs-uae.dat")
++s("cp -a ../../fs-uae.dat {package_dir}/fs-uae.dat")
++
++# FIXME: Disabled for now since it references another project
++# s("PYTHONPATH=../../../fs-uae-launcher:../../../../fs-uae-launcher "
++#   "python3 -m fspy.zipfile deterministic FS-UAE/Data/fs-uae.dat")
++# s("mkdir -p {package_dir}/share")
++# s("cp -a ../../share/locale {package_dir}/share/locale")
++s("mkdir FS-UAE/Locale")
++s("cp -a ../../share/locale/* FS-UAE/Locale")
++# s("mkdir -p {package_dir}/share/fs-uae")
++# s("touch {package_dir}/share/fs-uae/share-dir")
++
++s("cp -a ../../licenses FS-UAE/Licenses")
++s("cp -a ../../README FS-UAE/ReadMe.txt")
++s("./standalone-linux.py --strip --rpath='$ORIGIN' {package_dir}")
++s("find {package_dir} -name '*.standalone' -delete")
++s("echo {version} > FS-UAE/Version.txt")
++s("echo {version} > {package_dir}/Version.txt")
++
++if os_name == "steamos":
++    wrap("fs-uae")
++    wrap("fs-uae-device-helper")
++
++if os.environ.get("PACKAGE", "") != "0":
++    # s("cd {package_dir} && tar Jcfv ../../../{package_name}.tar.xz *")
++    s("tar Jcfv ../../{package_name}.tar.xz FS-UAE")
++    print(package_name)
++    s("cp ../../{package_name}.tar.xz ../../{package_name_2}.tar.xz")
++    print(package_name_2)
++print("OK")
++
++#s("rm -Rf {dbg_package_dir}")
++#s("mkdir {dbg_package_dir}")
++#s("cp -a ../../fs-uae.dbg {dbg_package_dir}/")
++#s("cp -a ../../fs-uae-device-helper.dbg {dbg_package_dir}/")
++#s("cd {dbg_package_dir} && tar Jcfv ../../../{dbg_package_dir}.tar.xz *")
+diff -urN /export/home/ptribble/ud/fs-uae-3.1.66/dist/solaris/standalone-linux.py dist/solaris/standalone-linux.py
+--- /export/home/ptribble/ud/fs-uae-3.1.66/dist/solaris/standalone-linux.py	1970-01-01 01:00:00.000000000 +0000
++++ a/dist/solaris/standalone-linux.py	2022-06-18 14:58:15.291915533 +0000
+@@ -0,0 +1,197 @@
++#!/usr/bin/env python3
++import os
++import sys
++import shutil
++import subprocess
++
++strip = False
++rpath = False
++no_copy = False
++# steam_runtime = os.getenv("STEAM_RUNTIME", "")
++steam_runtime = os.getenv("SOLARIS", "")
++
++
++def fix_binary(path):
++    changes = 0
++    if os.path.exists(path + ".standalone"):
++        return changes
++    if not os.path.exists(path):
++        raise Exception("could not find " + repr(path))
++
++    # find library locations
++    args = ["ldd", path]
++    p = subprocess.Popen(args, stdout=subprocess.PIPE)
++    # noinspection PyUnresolvedReferences
++    data = p.stdout.read().decode("UTF-8")
++    if p.wait() != 0:
++        return 0
++    print("fixing", path, "no_copy =", no_copy)
++    library_locations = {}
++    for line in data.split("\n"):
++        line = line.strip()
++        if "=>" not in line:
++            continue
++        library_locations[line.split(" ")[0]] = line.split(" ")[2]
++
++    # find direct dependencies
++    args = ["objdump", "-p", path]
++    p = subprocess.Popen(args, stdout=subprocess.PIPE)
++    # noinspection PyUnresolvedReferences
++    data = p.stdout.read().decode("UTF-8")
++    if p.wait() != 0:
++        return 0
++    for line in data.split("\n"):
++        line = line.strip()
++        # print(line)
++        if not line.startswith("NEEDED"):
++            continue
++        print(line)
++        library = line.split(" ")[-1]
++        print(library)
++        if ignore_library(library):
++            continue
++        library_source = library_locations[library]
++        library_source = os.path.normpath(library_source)
++        print(library, library_source)
++        # if steam_runtime and library_source.startswith(steam_runtime):
++        # if steam_runtime and not library_source.startswith("/usr/local"):
++        if steam_runtime and not library_source.startswith("/home"):
++            print("skipping steam runtime library")
++            continue
++        if no_copy:
++            print("no_copy is set")
++            continue
++        dst = os.path.join(os.path.dirname(path), library)
++        if not os.path.exists(dst):
++            print("copying", library)
++            shutil.copy(library_source, dst)
++            os.chmod(dst, 0o644)
++            changes += 1
++    if strip:
++        # strip does not work after patchelf has been run
++        command = "strip '{}'".format(path)
++        print(command)
++        os.system(command)
++    if rpath:
++        command = "patchelf --set-rpath '{}' '{}'".format(rpath, path)
++        print(command)
++        assert os.system(command) == 0
++    # to make sure strip is not run again
++    os.system("touch '{}.standalone'".format(path))
++    return changes
++
++
++def ignore_library(name):
++    if name.startswith("libgpg-error.so"):
++        raise Exception(
++            "Bundling libgpg-error (libgcrypt?) breaks Intel GL driver")
++
++    if name.startswith("linux-gate.so"):
++        return True
++    if name.startswith("linux-vdso.so"):
++        return True
++    if name.startswith("ld-linux.so.2"):
++        return True
++    if name.startswith("ld-linux-x86-64.so"):
++        return True
++
++    if name.startswith("libc.so"):
++        return True
++    if name.startswith("libstdc++.so"):
++        # Including libstdc++.sp breaks libGL loading with Intel on Ubuntu 16.10
++        # libGL error: unable to load driver: i965_dri.so
++        return True
++    if name.startswith("libgcc_s.so"):
++        # Might as well skip this one also, to avoid potential similar problems.
++        return True
++    if name.startswith("libpthread.so"):
++        return True
++    if name.startswith("libm.so"):
++        return True
++    if name.startswith("libsocket.so"):
++        return True
++    if name.startswith("libnsl.so"):
++        return True
++    if name.startswith("libdl.so"):
++        return True
++    if name.startswith("libresolv.so"):
++        return True
++    if name.startswith("librt.so"):
++        return True
++    if name.startswith("libutil.so"):
++        return True
++    # if name.startswith("libpcre.so"):
++    #     # Problem with OpenAL on Ubuntu 16.04 if this is included.
++    #     return True
++
++    if name.startswith("libGL.so"):
++        return True
++    if name.startswith("libGLU.so"):
++        return True
++    if name.startswith("libEGL.so"):
++        return True
++
++    if name.startswith("libasound.so"):
++        # Alsa library is in LSB, looks like only "old" interfaces are used
++        # by SDL2.
++        return True
++
++    if name.startswith("libX11.so"):
++        return True
++    if name.startswith("libXext.so"):
++        return True
++    if name.startswith("libXcursor.so"):
++        return True
++    if name.startswith("libXinerama.so"):
++        return True
++    if name.startswith("libXi.so"):
++        return True
++    if name.startswith("libXrandr.so"):
++        return True
++    if name.startswith("libXss.so"):
++        return True
++    if name.startswith("libXxf86vm.so"):
++        return True
++    # if name.startswith("libxkbcommon.so"):
++    #     return True
++    if name.startswith("libxcb.so"):
++        return True
++
++    return False
++
++
++def fix_iteration(app):
++    binaries = []
++    binaries_dir = app
++    for name in os.listdir(binaries_dir):
++        binaries.append(os.path.join(binaries_dir, name))
++    changes = 0
++    for binary in binaries:
++        changes += fix_binary(binary)
++    return changes
++
++
++def main():
++    global no_copy, strip, rpath
++    for arg in list(sys.argv):
++        if arg.startswith("--rpath="):
++            sys.argv.remove(arg)
++            rpath = arg[8:]
++        elif arg == "--no-copy":
++            sys.argv.remove("--no-copy")
++            no_copy = True
++        elif arg == "--strip":
++            sys.argv.remove("--strip")
++            strip = True
++    app = sys.argv[1]
++    while True:
++        changes = fix_iteration(app)
++        if changes == 0:
++            break
++    for name in os.listdir(app):
++        if name.endswith(".standalone"):
++            os.remove(os.path.join(app, name))
++
++
++if __name__ == "__main__":
++    main()

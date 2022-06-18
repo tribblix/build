@@ -1,0 +1,15 @@
+-p1+-R fsuaeSolarisPatches/Makefile.am.patch.txt
+-p1 fsuaeSolarisPatches/Makefile.in.patch.txt
+-p1 fsuaeSolarisPatches/configure.ac.patch.txt
+-p1 fsuaeSolarisPatches/debug.h.patch.txt
+-p1 fsuaeSolarisPatches/ip_icmp.h.patch.txt
+-p1 fsuaeSolarisPatches/mbuf.h.patch.txt
+-p1 fsuaeSolarisPatches/misc.h.patch.txt
+-p1 fsuaeSolarisPatches/sbuf.h.patch.txt
+-p1 fsuaeSolarisPatches/slirp.h.patch.txt
+-p1 fsuaeSolarisPatches/socket.h.patch.txt
+-p1 fsuaeSolarisPatches/sysdeps.h.patch.txt
+-p1 fsuaeSolarisPatches/tcp_timer.h.patch.txt
+-p1 fsuaeSolarisPatches/udp.h.patch.txt
+-p1 fsuaeSolarisPatches/tribblix.filio.patch
+-p1 fsuaeSolarisPatches/tribblix.dist.patch
