@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# don't disable sse just because old solaris can't cope with it
+#
+sed -i 's:!= "solaris":!= "othersolaris":' configure
