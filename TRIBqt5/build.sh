@@ -3,6 +3,10 @@
 # need to make sure the qt filename matches the unpacked directory name,
 # sometimes an extra "opensource" appears in the tarball
 #
+# gnu PATH so we use gnu ar, which will create empty .a archives even
+# with no files, when the build needs them to exist to resolve make's
+# dependencies
+#
 ${THOME}/build/unpack -64 qt-everywhere-src-5.15.5
 cd qt-everywhere-src-5.15.5
 env PATH=/usr/gnu/bin:$PATH ./configure --prefix=/usr/versions/Qt-5 -opensource --disable-reduce-exports -no-sql-sqlite -xcb -xcb-xlib -bundled-xcb-xinput -confirm-license -nomake examples -nomake tests -c++std c++11 -platform solaris-g++
