@@ -5,3 +5,6 @@
 -p1 qt5/qtbase-0001-Rework-mkspecs.patch
 -p1 qt5/qtbase-0002-Configure-shoud-use-bash.patch
 -p1 qt5/qtserialbus-001-Missing-link-to-serialport.patch
+-p1 qt5/forkfd_atomic.h.patch
+-p1 qt5/qstandardpaths_unix.cpp.patch
+-p1 qt5/qv4assemblercommon_p.h.patch
