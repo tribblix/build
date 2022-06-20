@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack borgbackup-1.2.0
-cd borgbackup-1.2.0
+${THOME}/build/unpack borgbackup-1.2.1
+cd borgbackup-1.2.1
 env PKG_CONFIG_PATH=/usr/lib/`${THOME}/build/getarch`/pkgconfig /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
