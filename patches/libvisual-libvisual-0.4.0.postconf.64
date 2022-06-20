@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# the 64-bit port isn't x86
+#
+sed -i 's:#define VISUAL_ARCH_X86:#undef VISUAL_ARCH_X86:' libvisual/lvconfig.h
