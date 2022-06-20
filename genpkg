@@ -110,6 +110,9 @@ case $# in
 		if [ -f .tribblix_cmake_build ]; then
 		    cd build
 		fi
+		if [ -f .tribblix_build_subdir ]; then
+		    cd $(cat .tribblix_build_subdir)
+		fi
 		if [ -f .tribblix_meson_build ]; then
 		    env DESTDIR=$BDIR ninja -C build install
 		else
@@ -119,6 +122,9 @@ case $# in
 		    ${BUILD}/${PKGNAME}/fixinstall.64 $BDIR
 		fi
 		if [ -f ../.tribblix_cmake_build ]; then
+		    cd ..
+		fi
+		if [ -f ../.tribblix_build_subdir ]; then
 		    cd ..
 		fi
 		cd ..
@@ -131,6 +137,9 @@ case $# in
 		if [ -f .tribblix_cmake_build ]; then
 		    cd build
 		fi
+		if [ -f .tribblix_build_subdir ]; then
+		    cd $(cat .tribblix_build_subdir)
+		fi
 		if [ -f .tribblix_meson_build ]; then
 		    env DESTDIR=$BDIR ninja -C build install
 		else
@@ -140,6 +149,9 @@ case $# in
 		    ${BUILD}/${PKGNAME}/fixinstall $BDIR
 		fi
 		if [ -f ../.tribblix_cmake_build ]; then
+		    cd ..
+		fi
+		if [ -f ../.tribblix_build_subdir ]; then
 		    cd ..
 		fi
 		cd ..

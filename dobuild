@@ -102,6 +102,7 @@ case $1 in
 	;;
 -S)
 	shift
+	TSUBDIR="$1"
 	SUBDIR="/$1"
 	shift
 	;;
@@ -269,6 +270,11 @@ export LD_OPTIONS
 EOF
 		cd ${WORKING_ROOT}
 	    fi
+	    if [[ -n $SUBDIR ]]; then
+		cd ${pkg}-64bit
+		echo "${TSUBDIR}" > .tribblix_build_subdir
+		cd ${WORKING_ROOT}
+	    fi
 	    cd ${pkg}-64bit${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
 		${BUILD}/patches/${pkg}.preconf.64
@@ -296,6 +302,11 @@ EOF
 LD_OPTIONS="${LD_OPTIONS}"
 export LD_OPTIONS
 EOF
+		cd ${WORKING_ROOT}
+	    fi
+	    if [[ -n $SUBDIR ]]; then
+		cd ${pkg}
+		echo "${TSUBDIR}" > .tribblix_build_subdir
 		cd ${WORKING_ROOT}
 	    fi
 	    cd ${pkg}${SUBDIR}
