@@ -1,1 +1,0 @@
--p1 gftp-fsplib.patch
