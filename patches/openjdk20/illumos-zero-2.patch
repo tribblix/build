@@ -794,9 +794,9 @@ diff -ur -N /tmp/g/prefetch_solaris_zero.inline.hpp b/src/hotspot/os_cpu/solaris
 +}
 +
 +#endif // OS_CPU_SOLARIS_ZERO_PREFETCH_SOLARIS_ZERO_INLINE_HPP
-diff -ur -N /tmp/g/thread_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/thread_solaris_zero.cpp
---- /tmp/g/thread_solaris_zero.cpp	1970-01-01 01:00:00.000000000 +0000
-+++ b/src/hotspot/os_cpu/solaris_zero/thread_solaris_zero.cpp	2020-09-01 21:40:25.604734766 +0000
+diff -ur -N /tmp/g/javaThread_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/javaThread_solaris_zero.cpp
+--- /tmp/g/javaThread_solaris_zero.cpp	1970-01-01 01:00:00.000000000 +0000
++++ b/src/hotspot/os_cpu/solaris_zero/javaThread_solaris_zero.cpp	2020-09-01 21:40:25.604734766 +0000
 @@ -0,0 +1,37 @@
 +/*
 + * Copyright (c) 1997, 2018, Oracle and/or its affiliates. All rights reserved.
@@ -825,7 +825,7 @@ diff -ur -N /tmp/g/thread_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/thr
 +
 +#include "precompiled.hpp"
 +#include "runtime/frame.inline.hpp"
-+#include "runtime/thread.inline.hpp"
++#include "runtime/javaThread.hpp"
 +
 +frame JavaThread::pd_last_frame() {
 +  assert(has_last_Java_frame(), "must have last_Java_sp() when suspended");
@@ -835,9 +835,9 @@ diff -ur -N /tmp/g/thread_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/thr
 +void JavaThread::cache_global_variables() {
 +  // nothing to do
 +}
-diff -ur -N /tmp/g/thread_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/thread_solaris_zero.hpp
---- /tmp/g/thread_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
-+++ b/src/hotspot/os_cpu/solaris_zero/thread_solaris_zero.hpp	2020-09-01 21:39:59.895910869 +0000
+diff -ur -N /tmp/g/javaThread_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/javaThread_solaris_zero.hpp
+--- /tmp/g/javaThread_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
++++ b/src/hotspot/os_cpu/solaris_zero/javaThread_solaris_zero.hpp	2020-09-01 21:39:59.895910869 +0000
 @@ -0,0 +1,104 @@
 +/*
 + * Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
@@ -864,8 +864,8 @@ diff -ur -N /tmp/g/thread_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/thr
 + *
 + */
 +
-+#ifndef OS_CPU_BSD_ZERO_THREAD_BSD_ZERO_HPP
-+#define OS_CPU_BSD_ZERO_THREAD_BSD_ZERO_HPP
++#ifndef OS_CPU_SOLARIS_ZERO_JAVATHREAD_SOLARIS_ZERO_HPP
++#define OS_CPU_SOLARIS_ZERO_JAVATHREAD_SOLARIS_ZERO_HPP
 +
 + private:
 +  ZeroStack  _zero_stack;
@@ -942,7 +942,7 @@ diff -ur -N /tmp/g/thread_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/thr
 +    return false;
 +  }
 +
-+#endif // OS_CPU_BSD_ZERO_THREAD_BSD_ZERO_HPP
++#endif // OS_CPU_SOLARIS_ZERO_JAVATHREAD_SOLARIS_ZERO_HPP
 diff -ur -N /tmp/g/vmStructs_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/vmStructs_solaris_zero.hpp
 --- /tmp/g/vmStructs_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/vmStructs_solaris_zero.hpp	2020-09-01 21:48:37.312847065 +0000

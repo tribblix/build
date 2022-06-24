@@ -207,7 +207,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -397,9 +397,6 @@
+@@ -409,9 +409,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -456,7 +456,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -763,7 +763,6 @@
+@@ -764,7 +764,6 @@
    ifeq ($$($1_WARNINGS_AS_ERRORS_$(TOOLCHAIN_TYPE)), true)
      $1_EXTRA_CFLAGS += $(CFLAGS_WARNINGS_ARE_ERRORS)
      $1_EXTRA_CXXFLAGS += $(CFLAGS_WARNINGS_ARE_ERRORS)
@@ -464,7 +464,7 @@
    endif
  
    ifeq (NONE, $$($1_OPTIMIZATION))
-@@ -990,7 +989,7 @@
+@@ -991,7 +990,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -1427,7 +1427,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -315,12 +315,6 @@
+@@ -179,12 +179,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -1473,7 +1473,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -659,12 +659,11 @@
+@@ -660,12 +660,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1645,7 +1645,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -98,7 +98,7 @@
+@@ -99,7 +99,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -1654,7 +1654,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1755,8 +1755,6 @@
+@@ -1756,8 +1756,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1663,7 +1663,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1818,8 +1816,6 @@
+@@ -1819,8 +1817,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -3833,62 +3833,6 @@
              }
              else if (three5 != 0) {
                  cmap = createCMap(cmapBuffer, three5,
---- old/src/java.desktop/share/classes/sun/font/FileFont.java	2020-05-20 18:01:45.820105606 -0700
-+++ new/src/java.desktop/share/classes/sun/font/FileFont.java	2020-05-20 18:01:45.432098156 -0700
-@@ -76,8 +76,6 @@
-      * the native path, since fonts have contiguous zero-based glyph indexes,
-      * and these obviously do all exist in the font.
-      */
--    protected boolean checkedNatives;
--    protected boolean useNatives;
-     protected NativeFont[] nativeFonts;
-     protected char[] glyphToCharMap;
-     /*
-@@ -90,17 +88,9 @@
-     }
- 
-     FontStrike createStrike(FontStrikeDesc desc) {
--        if (!checkedNatives) {
--           checkUseNatives();
--        }
-         return new FileFontStrike(this, desc);
-     }
- 
--    protected boolean checkUseNatives() {
--        checkedNatives = true;
--        return useNatives;
--    }
--
-     /* This method needs to be accessible to FontManager if there is
-      * file pool management. It may be a no-op.
-      */
---- old/src/java.desktop/share/classes/sun/font/FileFontStrike.java	2020-05-20 18:01:46.908126498 -0700
-+++ new/src/java.desktop/share/classes/sun/font/FileFontStrike.java	2020-05-20 18:01:46.528119201 -0700
-@@ -222,24 +222,6 @@
-             !((TrueTypeFont)fileFont).useEmbeddedBitmapsForSize(intPtSize)) {
-             useNatives = true;
-         }
--        else if (fileFont.checkUseNatives() && desc.aaHint==0 && !algoStyle) {
--            /* Check its a simple scale of a pt size in the range
--             * where native bitmaps typically exist (6-36 pts) */
--            if (matrix[1] == 0.0 && matrix[2] == 0.0 &&
--                matrix[0] >= 6.0 && matrix[0] <= 36.0 &&
--                matrix[0] == matrix[3]) {
--                useNatives = true;
--                int numNatives = fileFont.nativeFonts.length;
--                nativeStrikes = new NativeStrike[numNatives];
--                /* Maybe initialise these strikes lazily?. But we
--                 * know we need at least one
--                 */
--                for (int i=0; i<numNatives; i++) {
--                    nativeStrikes[i] =
--                        new NativeStrike(fileFont.nativeFonts[i], desc, false);
--                }
--            }
--        }
-         if (FontUtilities.isLogging() && FontUtilities.isWindows) {
-             FontUtilities.logInfo("Strike for " + fileFont + " at size = " + intPtSize +
-                  " use natives = " + useNatives +
 --- old/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:48.020147849 -0700
 +++ new/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:47.620140168 -0700
 @@ -40,8 +40,6 @@
@@ -3969,120 +3913,6 @@
          /* We check for application registered fonts before
           * explicitly loading all fonts as if necessary the registration
           * code will have done so anyway. And we don't want to needlessly
---- old/src/java.desktop/share/classes/sun/font/TrueTypeFont.java	2020-05-20 18:01:50.252190706 -0700
-+++ new/src/java.desktop/share/classes/sun/font/TrueTypeFont.java	2020-05-20 18:01:49.860183179 -0700
-@@ -229,84 +229,9 @@
-         Disposer.addObjectRecord(this, disposerRecord);
-     }
- 
--    /* Enable natives just for fonts picked up from the platform that
--     * may have external bitmaps on Solaris. Could do this just for
--     * the fonts that are specified in font configuration files which
--     * would lighten the burden (think about that).
--     * The EBLCTag is used to skip natives for fonts that contain embedded
--     * bitmaps as there's no need to use X11 for those fonts.
--     * Skip all the latin fonts as they don't need this treatment.
--     * Further refine this to fonts that are natively accessible (ie
--     * as PCF bitmap fonts on the X11 font path).
--     * This method is called when creating the first strike for this font.
--     */
--    @Override
--    protected boolean checkUseNatives() {
--        if (checkedNatives) {
--            return useNatives;
--        }
--        if (!FontUtilities.isSolaris || useJavaRasterizer ||
--            FontUtilities.useJDKScaler || nativeNames == null ||
--            getDirectoryEntry(EBLCTag) != null ||
--            GraphicsEnvironment.isHeadless()) {
--            checkedNatives = true;
--            return false; /* useNatives is false */
--        } else if (nativeNames instanceof String) {
--            String name = (String)nativeNames;
--            /* Don't do this for Latin fonts */
--            if (name.indexOf("8859") > 0) {
--                checkedNatives = true;
--                return false;
--            } else if (NativeFont.hasExternalBitmaps(name)) {
--                nativeFonts = new NativeFont[1];
--                try {
--                    nativeFonts[0] = new NativeFont(name, true);
--                    /* If reach here we have an non-latin font that has
--                     * external bitmaps and we successfully created it.
--                     */
--                    useNatives = true;
--                } catch (FontFormatException e) {
--                    nativeFonts = null;
--                }
--            }
--        } else if (nativeNames instanceof String[]) {
--            String[] natNames = (String[])nativeNames;
--            int numNames = natNames.length;
--            boolean externalBitmaps = false;
--            for (int nn = 0; nn < numNames; nn++) {
--                if (natNames[nn].indexOf("8859") > 0) {
--                    checkedNatives = true;
--                    return false;
--                } else if (NativeFont.hasExternalBitmaps(natNames[nn])) {
--                    externalBitmaps = true;
--                }
--            }
--            if (!externalBitmaps) {
--                checkedNatives = true;
--                return false;
--            }
--            useNatives = true;
--            nativeFonts = new NativeFont[numNames];
--            for (int nn = 0; nn < numNames; nn++) {
--                try {
--                    nativeFonts[nn] = new NativeFont(natNames[nn], true);
--                } catch (FontFormatException e) {
--                    useNatives = false;
--                    nativeFonts = null;
--                }
--            }
--        }
--        if (useNatives) {
--            glyphToCharMap = new char[getMapper().getNumGlyphs()];
--        }
--        checkedNatives = true;
--        return useNatives;
--    }
--
--
-     private synchronized FileChannel open() throws FontFormatException {
-         return open(true);
--     }
-+    }
- 
-     /* This is intended to be called, and the returned value used,
-      * from within a block synchronized on this font object.
-@@ -1057,14 +982,7 @@
-             style = Font.ITALIC;
-             break;
-         case fsSelectionBoldBit:
--            if (FontUtilities.isSolaris && platName.endsWith("HG-GothicB.ttf")) {
--                /* Workaround for Solaris's use of a JA font that's marked as
--                 * being designed bold, but is used as a PLAIN font.
--                 */
--                style = Font.PLAIN;
--            } else {
--                style = Font.BOLD;
--            }
-+            style = Font.BOLD;
-             break;
-         case fsSelectionBoldBit|fsSelectionItalicBit:
-             style = Font.BOLD|Font.ITALIC;
---- old/src/java.desktop/share/classes/sun/font/Type1Font.java	2020-05-20 18:01:52.356231105 -0700
-+++ new/src/java.desktop/share/classes/sun/font/Type1Font.java	2020-05-20 18:01:51.968223655 -0700
-@@ -168,7 +168,6 @@
-         throws FontFormatException {
-         super(platname, nativeNames);
-         fontRank = Font2D.TYPE1_RANK;
--        checkedNatives = true;
-         try {
-             verify();
-         } catch (Throwable t) {
 --- old/src/java.desktop/share/native/libjsound/SoundDefs.h	2020-05-20 18:01:56.500310674 -0700
 +++ new/src/java.desktop/share/native/libjsound/SoundDefs.h	2020-05-20 18:01:56.112303224 -0700
 @@ -29,10 +29,9 @@
@@ -4271,7 +4101,7 @@
                  cmd[2] = "env LC_ALL=C " + command;
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.605138318 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.221130945 -0700
-@@ -881,51 +881,25 @@
+@@ -872,51 +872,25 @@
                          isAttributeCategorySupported(JobSheets.class)) {
              ncomps+=1;
          }
@@ -8981,7 +8811,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3944 +0,0 @@
+@@ -1,3945 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -9033,6 +8863,7 @@
 -#include "runtime/interfaceSupport.inline.hpp"
 -#include "runtime/java.hpp"
 -#include "runtime/javaCalls.hpp"
+-#include "runtime/javaThread.hpp"
 -#include "runtime/mutexLocker.hpp"
 -#include "runtime/objectMonitor.hpp"
 -#include "runtime/orderAccess.hpp"
@@ -9041,8 +8872,8 @@
 -#include "runtime/sharedRuntime.hpp"
 -#include "runtime/statSampler.hpp"
 -#include "runtime/stubRoutines.hpp"
--#include "runtime/thread.inline.hpp"
 -#include "runtime/threadCritical.hpp"
+-#include "runtime/threads.hpp"
 -#include "runtime/timer.hpp"
 -#include "runtime/vm_version.hpp"
 -#include "semaphore_posix.hpp"
@@ -9153,7 +8984,7 @@
 -
 -// "default" initializers for missing libc APIs
 -extern "C" {
--  int memcntl(caddr_t, size_t, int, caddr_t, int, int);
+-  int memcntl(void *, size_t, int, void *, int, int);
 -  int meminfo(const uint64_t *, int, const uint_t *, int, uint64_t *, uint_t *);
 -}
 -
@@ -15389,7 +15220,7 @@
 -        addq     $4,%rdx
 -        jg       4b
 -        ret
---- old/src/hotspot/os_cpu/solaris_x86/thread_solaris_x86.cpp	2020-05-20 18:10:05.425698288 -0700
+--- old/src/hotspot/os_cpu/solaris_x86/javaThread_solaris_x86.cpp	2020-05-20 18:10:05.425698288 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,97 +0,0 @@
 -/*
@@ -15418,7 +15249,7 @@
 -
 -#include "precompiled.hpp"
 -#include "runtime/frame.inline.hpp"
--#include "runtime/thread.inline.hpp"
+-#include "runtime/javaThread.hpp"
 -
 -frame JavaThread::pd_last_frame() {
 -  assert(has_last_Java_frame(), "must have last_Java_sp() when suspended");
@@ -15489,7 +15320,7 @@
 -}
 -
 -void JavaThread::cache_global_variables() { }
---- old/src/hotspot/os_cpu/solaris_x86/thread_solaris_x86.hpp	2020-05-20 18:10:06.173712649 -0700
+--- old/src/hotspot/os_cpu/solaris_x86/javaThread_solaris_x86.hpp	2020-05-20 18:10:06.173712649 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,59 +0,0 @@
 -/*
@@ -15516,8 +15347,8 @@
 - *
 - */
 -
--#ifndef OS_CPU_SOLARIS_X86_THREAD_SOLARIS_X86_HPP
--#define OS_CPU_SOLARIS_X86_THREAD_SOLARIS_X86_HPP
+-#ifndef OS_CPU_SOLARIS_X86_JAVATHREAD_SOLARIS_X86_HPP
+-#define OS_CPU_SOLARIS_X86_JAVATHREAD_SOLARIS_X86_HPP
 -
 - private:
 -  void pd_initialize()                           { _anchor.clear(); }
@@ -15550,7 +15381,7 @@
 -  static void enable_register_stack_guard() {}
 -  static void disable_register_stack_guard() {}
 -
--#endif // OS_CPU_SOLARIS_X86_THREAD_SOLARIS_X86_HPP
+-#endif // OS_CPU_SOLARIS_X86_JAVATHREAD_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/vmStructs_solaris_x86.hpp	2020-05-20 18:10:06.865725935 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,40 +0,0 @@

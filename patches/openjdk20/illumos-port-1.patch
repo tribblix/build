@@ -1,6 +1,6 @@
 --- a/src/hotspot/os/solaris/os_solaris.cpp	Thu May 28 11:43:31 2020
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	Thu May 28 13:53:16 2020
-@@ -2696,52 +2696,35 @@
+@@ -2697,52 +2697,35 @@
  bool os::Solaris::_synchronization_initialized;
  
  void os::Solaris::synchronization_init() {
@@ -78,7 +78,7 @@
    }
    _synchronization_initialized = true;
  }
-@@ -3470,9 +3452,6 @@
+@@ -3471,9 +3453,6 @@
  // 3.   Tx resumes from park
  
  
@@ -88,7 +88,7 @@
  // utility to compute the abstime argument to timedwait.
  // TODO-FIXME: switch from compute_abstime() to unpackTime().
  
-@@ -3486,24 +3465,8 @@
+@@ -3487,24 +3466,8 @@
    jlong seconds = millis / 1000;
    jlong max_wait_period;
  

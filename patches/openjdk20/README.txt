@@ -7,6 +7,27 @@ Most patches -p0
 
 JDK 20 now that jdk19 has been forked off.
 
+20+3
+
+Build broken by https://www.illumos.org/issues/14418. That did 2
+things -  (1) exposed memcntl and meminfo by default, and (2) changed
+the signature for memcntl from caddr_t to void so there's a
+mismatch. The fix adopted is to modify the internal java signature for
+memcntl to the new version, which still allows builds on older
+releases as the old definition in sys/mman.h was effectively invisible
+there.
+
+Rename thread_solaris_x86.{c,h}pp -> javaThread_solaris_x86.{c,h}pp
+mv thread_solaris_x86.cpp javaThread_solaris_x86.cpp
+mv thread_solaris_x86.hpp javaThread_solaris_x86.hpp
+sed -i s:_THREAD_:_JAVATHREAD_: javaThread_solaris_x86.hpp
+sed -i s:runtime/thread.inline.hpp:runtime/javaThread.hpp:
+javaThread_solaris_x86.cpp
+and fix up includes in os_solaris.cpp
+
+The checkedNatives stuff now causes compilation failures, so remove it
+wholesale.
+
 20+2
 
 Trivial patch noise
