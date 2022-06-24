@@ -7,6 +7,8 @@ Most patches -p0
 
 JDK19 now forked off for rampdown phase 1
 
+Removed checkedNatives code, as it breaks in jdk20.
+
 19-28
 
 Trivial patch noise.
