@@ -12,7 +12,7 @@ WORKING_ROOT=`pwd`
 
 case $# in
     0)
-	echo "Usage: $0 [-64|+64] [-gnu] src_name \\"
+	echo "Usage: $0 [-64|+64|-64only|+64only] [-gnu] src_name \\"
         echo "  [-P alt_prefix] [-C configure_args] \\"
 	echo "  [-L]"
 	exit 1
@@ -23,9 +23,14 @@ esac
 # if a dual 32- and 64-bit build is desired, specify -64 *first*
 # +64 means just do the 64-bit (useful for testing it in isolation)
 # note that +64 will wipe the 32-bit directory
+# -64only means put the 64-bit binaries in the default path
+# +64only means put all 64-bit objects in the
+# default path, rather than in a subdirectory
 #
 DO32="true"
 DO64="false"
+ONLY64="false"
+ONLY64BIN="false"
 UNPACK_FLAGS=""
 
 #
@@ -43,6 +48,7 @@ DOGNU="false"
 #
 IPREFIX="/usr"
 CONFARGS=""
+LIBDIR64=""
 DO_LD="yes"
 
 while [[ $# > 0 ]]; do
@@ -55,6 +61,21 @@ case $1 in
 +64)
 	DO64="true"
 	DO32="false"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
+-64only)
+	DO64="true"
+	DO32="false"
+	ONLY64BIN="true"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
++64only)
+	DO64="true"
+	DO32="false"
+	ONLY64="true"
+	ONLY64BIN="true"
 	UNPACK_FLAGS="+64"
 	shift
 	;;
@@ -98,6 +119,16 @@ i386)
     ARCH64="amd64"
     ;;
 esac
+BINDIR64="bin/${ARCH64}"
+if [ "x${ONLY64BIN}" != "xfalse" ]; then
+    BINDIR64="bin"
+fi
+
+if [ "x${ONLY64}" != "xfalse" ]; then
+    LIBDIR64="lib"
+else
+    LIBDIR64="lib/${ARCH64}"
+fi
 
 #
 # default linker options
@@ -161,7 +192,7 @@ EOF
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    touch .tribblix_meson_build
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" meson --prefix=${IPREFIX} --buildtype=release ${CONFARGS} --libdir=lib/${ARCH64} --bindir=bin/${ARCH64} build
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" meson --prefix=${IPREFIX} --buildtype=release ${CONFARGS} --libdir=${LIBDIR64} --bindir=${BINDIR64} build
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
