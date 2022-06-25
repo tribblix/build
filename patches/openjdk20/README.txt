@@ -7,6 +7,9 @@ Most patches -p0
 
 JDK 20 now that jdk19 has been forked off.
 
+No need to have a Solaris switch to force fork1(), as of S10 that's
+the default behaviour.
+
 20+3
 
 Build broken by https://www.illumos.org/issues/14418. That did 2

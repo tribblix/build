@@ -7,6 +7,9 @@ Most patches -p0
 
 JDK19 now forked off for rampdown phase 1
 
+No need to have a Solaris switch to force fork1(), as of S10 that's
+the default behaviour.
+
 Removed checkedNatives code, as it breaks in jdk20.
 
 19-28
