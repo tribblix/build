@@ -1,0 +1,4 @@
+PKG="TRIBzathura"
+NAME="Minimalist document viewer"
+VERSION="0.4.9.0"
+ZAP_URL="https://pwmt.org/projects/zathura"
