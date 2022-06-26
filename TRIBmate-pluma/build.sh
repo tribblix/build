@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild -gnu pluma-1.22.2 -C --disable-introspection
-${THOME}/build/genpkg TRIBmate-pluma pluma-1.22.2
+env PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild -gnu pluma-1.24.2 -C "--disable-introspection LIBS=-lsocket"
+${THOME}/build/genpkg TRIBmate-pluma pluma-1.24.2
