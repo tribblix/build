@@ -1,5 +1,5 @@
 #!/bin/sh
 #
 #
-${THOME}/build/dobuild -gnu marco-1.22.4 -C "CPPFLAGS=-D__EXTENSIONS__ CFLAGS=-std=gnu99"
-${THOME}/build/genpkg TRIBmate-marco marco-1.22.4
+${THOME}/build/dobuild -64 -gnu marco-1.24.2
+${THOME}/build/genpkg TRIBmate-marco marco-1.24.2
