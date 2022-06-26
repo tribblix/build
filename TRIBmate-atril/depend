@@ -6,8 +6,8 @@ P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
-P TRIBlib-zlib
 P TRIBlibspectre
+P TRIBlibsynctex
 P TRIBlibxml2
 P TRIBmate-caja
 P TRIBpoppler
