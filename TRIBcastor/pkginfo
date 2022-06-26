@@ -1,0 +1,4 @@
+PKG="TRIBcastor"
+NAME="Castor gemini client"
+VERSION="0.9.0.0"
+ZAP_URL="https://git.sr.ht/~julienxx/castor"
