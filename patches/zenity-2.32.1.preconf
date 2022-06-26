@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# this removes gnome-doc-utils as a hard dependency
+# the omf files aren't built or installed in this case
+# but we don't actually need or use them
+#
+sed -i 's+as_fn_error "gnome-doc-utils.*+:+' configure
