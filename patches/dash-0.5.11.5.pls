@@ -1,0 +1,1 @@
+-p1 dash-configure-stat64.patch
