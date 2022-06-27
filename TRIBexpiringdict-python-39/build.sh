@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack expiringdict-1.2.1
-cd expiringdict-1.2.1
+${THOME}/build/unpack expiringdict-1.2.2
+cd expiringdict-1.2.2
 #
 # dependencies are wrong for python3
 #
