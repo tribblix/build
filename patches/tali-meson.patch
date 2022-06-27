@@ -1,0 +1,20 @@
+--- a/data/meson.build	Sat Jan  9 21:41:00 2021
++++ b/data/meson.build	Mon Jun 27 21:04:26 2022
+@@ -22,7 +22,7 @@
+ install_data (project_id + '.gschema.xml',
+               install_dir: join_paths (datadir, 'glib-2.0', 'schemas'))
+ 
+-desktop_file = i18n.merge_file ('desktop-file',
++desktop_file = i18n.merge_file (
+                  input: project_id + '.desktop.in',
+                  output: project_id + '.desktop',
+                  install: true,
+@@ -41,7 +41,7 @@
+   )
+ endif
+ 
+-appdata_file = i18n.merge_file ('appdata-file',
++appdata_file = i18n.merge_file (
+                  input: project_id + '.appdata.xml.in',
+                  output: project_id + '.appdata.xml',
+                  install: true,

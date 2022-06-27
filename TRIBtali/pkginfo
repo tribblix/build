@@ -1,0 +1,4 @@
+PKG="TRIBtali"
+NAME="Gnome tali"
+VERSION="3.38.3.0"
+ZAP_URL="https://download.gnome.org/sources/tali/"
