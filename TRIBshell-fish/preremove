@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# themes has files whose names contain spaces, so we unpack them
+# rather than package them
+#
+cd ${BASEDIR}/usr/share/fish/tools/web_config
+if [ -d themes ]; then
+  /usr/bin/rm -fr themes
+fi

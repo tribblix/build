@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# themes has files whose names contain spaces, so we unpack them
+# rather than package them
+#
+cd ${BASEDIR}/usr/share/fish/tools/web_config
+if [ -f themes.tar ]; then
+  /usr/bin/tar xf themes.tar
+  /usr/bin/chown -hR root:root themes
+  /usr/bin/chmod -R a+rX themes
+fi
