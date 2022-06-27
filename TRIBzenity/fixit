@@ -3,7 +3,6 @@
 # minimize the help docs
 # should just leave C in place
 #
-if [ -d usr/share/gnome/help/zenity ]; then
-  rm -fr usr/share/gnome/help/zenity/??
-  rm -fr usr/share/gnome/help/zenity/*_*
-fi
+rm -fr usr/share/help/??/zenity
+rm -fr usr/share/help/*_*/zenity
+
