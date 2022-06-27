@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild vala-0.32.1
-${THOME}/build/genpkg TRIBvala vala-0.32.1
+${THOME}/build/dobuild -64 vala-0.56.1 -C --disable-valadoc
+${THOME}/build/genpkg TRIBvala vala-0.56.1
