@@ -380,7 +380,7 @@ diff -ur -N /tmp/g/orderAccess_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zer
 diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.cpp
 --- /tmp/g/os_solaris_zero.cpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.cpp	2020-09-02 13:28:22.493092922 +0000
-@@ -0,0 +1,305 @@
+@@ -0,0 +1,309 @@
 +/*
 + * Copyright (c) 2003, 2020, Oracle and/or its affiliates. All rights reserved.
 + * Copyright 2007, 2008, 2009, 2010 Red Hat, Inc.
@@ -568,19 +568,23 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +// The adlc generated method 'State::MachNodeGenerator(int)' used by the C2 compiler
 +// threads requires a large stack with the Solaris Studio C++ compiler version 5.13
 +// and product VM builds (debug builds require significantly less stack space).
-+size_t os::Posix::_compiler_thread_min_stack_allowed = 325 * K;
-+size_t os::Posix::_java_thread_min_stack_allowed = 48 * K;
-+size_t os::Posix::_vm_internal_thread_min_stack_allowed = 224 * K;
++size_t os::_compiler_thread_min_stack_allowed = 325 * K;
++size_t os::_java_thread_min_stack_allowed = 48 * K;
++size_t os::_vm_internal_thread_min_stack_allowed = 224 * K;
 +#else
-+size_t os::Posix::_compiler_thread_min_stack_allowed = 32 * K;
-+size_t os::Posix::_java_thread_min_stack_allowed = 32 * K;
-+size_t os::Posix::_vm_internal_thread_min_stack_allowed = 64 * K;
++size_t os::_compiler_thread_min_stack_allowed = 32 * K;
++size_t os::_java_thread_min_stack_allowed = 32 * K;
++size_t os::_vm_internal_thread_min_stack_allowed = 64 * K;
 +#endif // _LP64
 +
 +/////////////////////////////////////////////////////////////////////////////
 +// helper functions for fatal error handler
 +
 +void os::print_context(outputStream* st, const void* context) {
++  ShouldNotCallThis();
++}
++
++void os::print_tos_pc(outputStream* st, const void* context) {
 +  ShouldNotCallThis();
 +}
 +
