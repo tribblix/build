@@ -56,7 +56,7 @@ index 894958e7c..5273ea961 100644
  ////////////////////////////////////////////////////////////////////////////////
  // Virtual Memory
  
-@@ -2847,7 +2816,6 @@ jint os::init_2(void) {
+@@ -2840,7 +2809,6 @@ jint os::init_2(void) {
      FLAG_SET_ERGO_IF_DEFAULT(UseNUMAInterleaving, true);
    }
  
