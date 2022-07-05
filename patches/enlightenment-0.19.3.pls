@@ -1,2 +1,0 @@
--p1 enlightenment-0.19.patch1
--p1 enlightenment-0.19.patch2
