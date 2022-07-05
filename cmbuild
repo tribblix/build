@@ -46,6 +46,7 @@ DOGNU="false"
 # -S subdir [not supported for cmake]
 # -P alternate_prefix
 # -C configure_args
+# +C configure_args [64-bit]
 # -M make_args
 # -I install_args [unused]
 # -J parallelism
@@ -53,7 +54,8 @@ DOGNU="false"
 # -B run cmake directly in the source tree, not in a build subdir
 #
 IPREFIX="/usr"
-CONFARGS=""
+CONFARGS32=""
+CONFARGS64=""
 LIBDIR64=""
 MAKEARGS=""
 GMAKEFLAGS="-j 4"
@@ -100,7 +102,12 @@ case $1 in
 	;;
 -C)
 	shift
-	CONFARGS="$1"
+	CONFARGS32="$1"
+	shift
+	;;
++C)
+	shift
+	CONFARGS64="$1"
 	shift
 	;;
 -M)
@@ -132,6 +139,14 @@ case $1 in
 	;;
 esac
 done
+
+#
+# if we don't have specific 64-bit configure args,
+# then use the 32-bit ones
+#
+if [[ -z $CONFARGS64 ]]; then
+    CONFARGS64="$CONFARGS32"
+fi
 
 #
 # 64-bit files go in these subdirectories
@@ -221,7 +236,7 @@ EOF
 		mkdir build
 		cd build
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m64 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/${LIBDIR64} -DBIN_INSTALL_DIR=${IPREFIX}/${BINDIR64} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/${LIBDIR64} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/${BINDIR64} ${CONFARGS} $BDIR
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m64 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/${LIBDIR64} -DBIN_INSTALL_DIR=${IPREFIX}/${BINDIR64} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/${LIBDIR64} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/${BINDIR64} ${CONFARGS64} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
@@ -256,7 +271,7 @@ EOF
 		mkdir build
 		cd build
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS} $BDIR
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH cmake -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} ${CONFARGS32} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
