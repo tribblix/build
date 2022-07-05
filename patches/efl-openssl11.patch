@@ -1,0 +1,145 @@
+--- a/src/lib/eet/eet_cipher.c	Tue Nov 22 09:34:33 2016
++++ b/src/lib/eet/eet_cipher.c	Mon Jul  4 21:19:59 2022
+@@ -475,7 +475,7 @@
+    gnutls_datum_t signum = { NULL, 0 };
+    gnutls_privkey_t privkey;
+ # else /* ifdef HAVE_GNUTLS */
+-   EVP_MD_CTX md_ctx;
++   EVP_MD_CTX *md_ctx;
+    unsigned int sign_len = 0;
+    int cert_len = 0;
+ # endif /* ifdef HAVE_GNUTLS */
+@@ -561,9 +561,9 @@
+      }
+ 
+    /* Do the signature. */
+-   EVP_SignInit(&md_ctx, EVP_sha1());
+-   EVP_SignUpdate(&md_ctx, data, st_buf.st_size);
+-   err = EVP_SignFinal(&md_ctx,
++   EVP_SignInit(md_ctx, EVP_sha1());
++   EVP_SignUpdate(md_ctx, data, st_buf.st_size);
++   err = EVP_SignFinal(md_ctx,
+                        sign,
+                        (unsigned int *)&sign_len,
+                        key->private_key);
+@@ -738,7 +738,7 @@
+    const unsigned char *tmp;
+    EVP_PKEY *pkey;
+    X509 *x509;
+-   EVP_MD_CTX md_ctx;
++   EVP_MD_CTX *md_ctx;
+    int err;
+ 
+    /* Strange but d2i_X509 seems to put 0 all over the place. */
+@@ -757,9 +757,9 @@
+      }
+ 
+    /* Verify the signature */
+-   EVP_VerifyInit(&md_ctx, EVP_sha1());
+-   EVP_VerifyUpdate(&md_ctx, data_base, data_length);
+-   err = EVP_VerifyFinal(&md_ctx, sign, sign_len, pkey);
++   EVP_VerifyInit(md_ctx, EVP_sha1());
++   EVP_VerifyUpdate(md_ctx, data_base, data_length);
++   err = EVP_VerifyFinal(md_ctx, sign, sign_len, pkey);
+ 
+    X509_free(x509);
+    EVP_PKEY_free(pkey);
+--- a/src/lib/emile/emile_cipher_openssl.c	Wed Oct 19 10:54:36 2016
++++ b/src/lib/emile/emile_cipher_openssl.c	Mon Jul  4 21:14:59 2022
+@@ -87,7 +87,7 @@
+    unsigned int crypted_length;
+    int opened = 0;
+    /* Openssl declarations*/
+-   EVP_CIPHER_CTX ctx;
++   EVP_CIPHER_CTX *ctx;
+    unsigned int *buffer = NULL;
+    int tmp_len;
+ 
+@@ -134,8 +134,8 @@
+ 
+    /* Openssl create the corresponding cipher
+       AES with a 256 bit key, Cipher Block Chaining mode */
+-   EVP_CIPHER_CTX_init(&ctx);
+-   if (!EVP_EncryptInit_ex(&ctx, EVP_aes_256_cbc(), NULL, ik, iv))
++   EVP_CIPHER_CTX_init(ctx);
++   if (!EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, ik, iv))
+      goto on_error;
+ 
+    opened = 1;
+@@ -146,17 +146,17 @@
+    pointer = (unsigned char*) eina_binbuf_string_get(result);
+ 
+    /* Openssl encrypt */
+-   if (!EVP_EncryptUpdate(&ctx, pointer + sizeof (int), &tmp_len,
++   if (!EVP_EncryptUpdate(ctx, pointer + sizeof (int), &tmp_len,
+                           (unsigned char *)buffer,
+                           eina_binbuf_length_get(data) + sizeof(unsigned int)))
+      goto on_error;
+ 
+    /* Openssl close the cipher */
+-   if (!EVP_EncryptFinal_ex(&ctx, pointer + sizeof (int) + tmp_len,
++   if (!EVP_EncryptFinal_ex(ctx, pointer + sizeof (int) + tmp_len,
+                             &tmp_len))
+      goto on_error;
+ 
+-   EVP_CIPHER_CTX_cleanup(&ctx);
++   EVP_CIPHER_CTX_cleanup(ctx);
+    free(buffer);
+ 
+    return result;
+@@ -167,7 +167,7 @@
+ 
+    /* Openssl error */
+    if (opened)
+-     EVP_CIPHER_CTX_cleanup(&ctx);
++     EVP_CIPHER_CTX_cleanup(ctx);
+ 
+    free(buffer);
+ 
+@@ -186,7 +186,7 @@
+ {
+    Eina_Binbuf *result = NULL;
+    unsigned int *over;
+-   EVP_CIPHER_CTX ctx;
++   EVP_CIPHER_CTX *ctx;
+    unsigned char ik[MAX_KEY_LEN];
+    unsigned char iv[MAX_IV_LEN];
+    unsigned char key_material[MAX_KEY_LEN + MAX_IV_LEN];
+@@ -230,10 +230,10 @@
+    eina_binbuf_append_length(result, (unsigned char*) (over + 1), tmp_len);
+ 
+    /* Openssl create the corresponding cipher */
+-   EVP_CIPHER_CTX_init(&ctx);
++   EVP_CIPHER_CTX_init(ctx);
+    opened = 1;
+ 
+-   if (!EVP_DecryptInit_ex(&ctx, EVP_aes_256_cbc(), NULL, ik, iv))
++   if (!EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, ik, iv))
+      goto on_error;
+ 
+    memset(iv, 0, sizeof (iv));
+@@ -240,13 +240,13 @@
+    memset(ik, 0, sizeof (ik));
+ 
+    /* Openssl decrypt */
+-   if (!EVP_DecryptUpdate(&ctx,
++   if (!EVP_DecryptUpdate(ctx,
+                           (void*) eina_binbuf_string_get(result), &tmp,
+                           (void*) (over + 1), tmp_len))
+      goto on_error;
+ 
+    /* Openssl close the cipher*/
+-   EVP_CIPHER_CTX_cleanup(&ctx);
++   EVP_CIPHER_CTX_cleanup(ctx);
+ 
+    /* Get the decrypted data size */
+    tmp = *(unsigned int*)(eina_binbuf_string_get(result));
+@@ -265,7 +265,7 @@
+    memset(ik, 0, sizeof (ik));
+ 
+    if (opened)
+-     EVP_CIPHER_CTX_cleanup(&ctx);
++     EVP_CIPHER_CTX_cleanup(ctx);
+ 
+    eina_binbuf_free(result);
+ 
