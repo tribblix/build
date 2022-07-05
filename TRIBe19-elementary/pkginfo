@@ -1,4 +1,4 @@
 PKG="TRIBe19-elementary"
-NAME="Enlightenment Elementary Widget set"
-VERSION="1.12.4.2"
+NAME="Enlightenment Elementary Widget set (empty for compat)"
+VERSION="1.12.4.3"
 ZAP_URL="https://www.enlightenment.org/"

@@ -1,4 +1,4 @@
 PKG="TRIBe19-evas-loaders"
-NAME="Enlightenment Evas Generic Loaders"
-VERSION="1.12.0.1"
+NAME="Enlightenment Evas Generic Loaders (empty for compat)"
+VERSION="1.12.0.2"
 ZAP_URL="https://www.enlightenment.org/"
