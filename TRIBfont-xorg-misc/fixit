@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# symlink so the X server can find the fonts
+#
+mkdir -p etc/X11/fontpath.d
+cd etc/X11/fontpath.d
+ln -s ../../../usr/share/fonts/X11/extra-misc extra-misc:pri
