@@ -1,4 +1,4 @@
 PKG="TRIBpkgsrc64"
 NAME="pkgsrc 64-bit bootstrap kit"
-VERSION="20200124.0"
-ZAP_URL="http://pkgsrc.joyent.com/install-on-illumos/"
+VERSION="20220706.0"
+ZAP_URL="https://pkgsrc.smartos.org/install-on-illumos/"
