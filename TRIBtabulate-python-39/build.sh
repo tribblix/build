@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tabulate-0.8.9
-cd tabulate-0.8.9
+${THOME}/build/unpack tabulate-0.8.10
+cd tabulate-0.8.10
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
