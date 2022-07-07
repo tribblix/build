@@ -6,12 +6,19 @@
 #
 # handle arguments
 # -I what to install (normally "install")
+# -M extra make arguments (normally blank)
 #
 INSTALLWHAT="install"
+MAKEARGS=""
 while [[ $# > 0 ]]; do
 case $1 in
 -I)
 	INSTALLWHAT=$2
+	shift
+	shift
+	;;
+-M)
+	MAKEARGS=$2
 	shift
 	shift
 	;;
@@ -93,7 +100,7 @@ case $# in
 	if [ -f .tribblix_ldopts ]; then
 	    . ./.tribblix_ldopts
 	fi
-	$GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
+	$GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL $MAKEARGS
 	if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 	    ${BUILD}/${PKGNAME}/fixinstall $BDIR
 	fi
@@ -116,7 +123,7 @@ case $# in
 		if [ -f .tribblix_meson_build ]; then
 		    env DESTDIR=$BDIR ninja -C build install
 		else
-		    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
+		    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL $MAKEARGS
 		fi
 		if [ -x ${BUILD}/${PKGNAME}/fixinstall.64 ]; then
 		    ${BUILD}/${PKGNAME}/fixinstall.64 $BDIR
@@ -143,7 +150,7 @@ case $# in
 		if [ -f .tribblix_meson_build ]; then
 		    env DESTDIR=$BDIR ninja -C build install
 		else
-		    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL
+		    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL $MAKEARGS
 		fi
 		if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 		    ${BUILD}/${PKGNAME}/fixinstall $BDIR
