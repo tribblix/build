@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack fastbencode-0.0.7
-cd fastbencode-0.0.7
+${THOME}/build/unpack fastbencode-0.0.9
+cd fastbencode-0.0.9
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
