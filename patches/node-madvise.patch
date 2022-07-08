@@ -1,0 +1,19 @@
+Symbol visibility in <sys/mman.h> has changed.
+
+--- a/deps/v8/src/base/platform/platform-posix.cc	Thu Jul  7 05:01:45 2022
++++ b/deps/v8/src/base/platform/platform-posix.cc	Fri Jul  8 13:44:31 2022
+@@ -69,14 +69,6 @@
+ #define MAP_ANONYMOUS MAP_ANON
+ #endif
+ 
+-#if defined(V8_OS_SOLARIS)
+-#if (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE > 2) || defined(__EXTENSIONS__)
+-extern "C" int madvise(caddr_t, size_t, int);
+-#else
+-extern int madvise(caddr_t, size_t, int);
+-#endif
+-#endif
+-
+ #ifndef MADV_FREE
+ #define MADV_FREE MADV_DONTNEED
+ #endif
