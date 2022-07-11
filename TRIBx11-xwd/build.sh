@@ -1,5 +1,5 @@
 #!/bin/sh
 #
 ${THOME}/build/dobuild -64only xwd-1.0.8
-${THOME}/build/dobuild -64only xwud-1.0.5
-${THOME}/build/genpkg TRIBx11-xwd xwd-1.0.8 xwud-1.0.5
+${THOME}/build/dobuild -64only xwud-1.0.6
+${THOME}/build/genpkg TRIBx11-xwd xwd-1.0.8 xwud-1.0.6
