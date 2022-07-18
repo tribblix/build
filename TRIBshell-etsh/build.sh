@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack etsh-5.2.0
-cd etsh-5.2.0
+${THOME}/build/unpack etsh-5.4.0
+cd etsh-5.4.0
 env PREFIX=/usr SYSCONFDIR=/etc ./configure
 gmake PREFIX=/usr SYSCONFDIR=/etc MANDIR=/usr/share/man/man1 CC=gcc CFLAGS="-std=gnu99 -D__EXTENSIONS__" etshall
 rm -fr /tmp/tsh
