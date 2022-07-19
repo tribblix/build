@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Radicale-3.1.7
-cd Radicale-3.1.7
+${THOME}/build/unpack Radicale-3.1.8
+cd Radicale-3.1.8
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
