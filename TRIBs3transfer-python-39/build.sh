@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack s3transfer-0.5.2
-cd s3transfer-0.5.2
+${THOME}/build/unpack s3transfer-0.6.0
+cd s3transfer-0.6.0
 /usr/versions/python-3.9/bin/python3 setup.py build
 rm -fr /tmp/pdu
 /usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pdu
