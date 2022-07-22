@@ -6,25 +6,22 @@
 # except for dispswitch, which has been split out
 #
  
-#
-# rgb needs pkgconfig from the X server, which is 64-bit
-#
-env PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig ${THOME}/build/dobuild rgb-1.0.6 -C "--with-rgb-db-dir=/usr/lib/X11/rgb --with-rgb-db-type=ndbm"
-${THOME}/build/dobuild xcmsdb-1.0.5
-${THOME}/build/dobuild xgamma-1.0.6
-${THOME}/build/dobuild xhost-1.0.8
+${THOME}/build/dobuild -64only rgb-1.0.6 -C "--with-rgb-db-dir=/usr/lib/X11/rgb --with-rgb-db-type=ndbm"
+${THOME}/build/dobuild -64only xcmsdb-1.0.6
+${THOME}/build/dobuild -64only xgamma-1.0.6
+${THOME}/build/dobuild -64only xhost-1.0.8
 # xinput is downrev
-${THOME}/build/dobuild xinput-1.5.4
-${THOME}/build/dobuild xmodmap-1.0.10
-${THOME}/build/dobuild xprop-1.2.5
-${THOME}/build/dobuild xrandr-1.5.1
-${THOME}/build/dobuild xrdb-1.2.0
-${THOME}/build/dobuild xrefresh-1.0.6
-${THOME}/build/dobuild xset-1.2.4
-${THOME}/build/dobuild xsetroot-1.1.2
+${THOME}/build/dobuild -64only xinput-1.5.4
+${THOME}/build/dobuild -64only xmodmap-1.0.11
+${THOME}/build/dobuild -64only xprop-1.2.5
+${THOME}/build/dobuild -64only xrandr-1.5.1
+${THOME}/build/dobuild -64only xrdb-1.2.0
+${THOME}/build/dobuild -64only xrefresh-1.0.7
+${THOME}/build/dobuild -64only xset-1.2.4
+${THOME}/build/dobuild -64only xsetroot-1.1.2
 
 #
 # xmakemap installed by the fixit script
 #
 
-${THOME}/build/genpkg TRIBx11-x11-server-utilities rgb-1.0.6 xcmsdb-1.0.5 xgamma-1.0.6 xhost-1.0.8 xinput-1.5.4 xmodmap-1.0.10 xprop-1.2.5 xrandr-1.5.1 xrdb-1.2.0 xrefresh-1.0.6 xset-1.2.4 xsetroot-1.1.2
+${THOME}/build/genpkg TRIBx11-x11-server-utilities rgb-1.0.6 xcmsdb-1.0.6 xgamma-1.0.6 xhost-1.0.8 xinput-1.5.4 xmodmap-1.0.11 xprop-1.2.5 xrandr-1.5.1 xrdb-1.2.0 xrefresh-1.0.7 xset-1.2.4 xsetroot-1.1.2
