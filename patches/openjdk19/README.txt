@@ -5,7 +5,11 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Most patches -p0
 
-JDK19 now forked off for rampdown phase 1
+JDK19 now in rampdown phase 2
+
+19-31, 19-32
+
+No changes
 
 19-30
 
