@@ -5,6 +5,21 @@
 ${THOME}/build/unpack cde-2.3.2
 cd cde-2.3.2
 
+#
+# with recent Tribblix there are likely a couple more changes
+#
+# programs/dtinfo/mmdb/Imakefile config/cf/DtInfo.rules
+# A quick hack is to look for ptclean in those files and then look
+# up a few lines to where it says
+#
+# #if defined(SunArchitecture) && CplusplusCompilerMajorVersion > 5
+#
+# and change the 5 to 55 or something equally unlikely to match.
+#
+# and a compilation symlink for -lcmd to work
+# cd /usr/lib; ln -s libcmd.so.1 libcmd.so
+#
+
 # ** edit config/imake/Makefile.ini cc->gcc
 sed -i 's:CC = cc:CC = gcc:' config/imake/Makefile.ini
 # ** edit programs/dtdocbook/instant/Imakefile -ltcl -> -ltcl8.6
