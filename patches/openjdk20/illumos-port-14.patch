@@ -11,14 +11,14 @@ index 3d099dfb7..3e2c88324 100644
  
 -  static void init_signal_mem();
 -
-   // Allows us to switch between lwp and thread -based synchronization
-   static int mutex_lock(mutex_t *mx)    { return _mutex_lock(mx); }
-   static int mutex_trylock(mutex_t *mx) { return _mutex_trylock(mx); }
+   // alignment with os_posix means we use pthreads
+   static int mutex_lock(pthread_mutex_t *mx)    { return pthread_mutex_lock(mx); }
+   static int mutex_trylock(pthread_mutex_t *mx) { return pthread_mutex_trylock(mx); }
 diff --git a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 index 894958e7c..5273ea961 100644
 --- a/src/hotspot/os/solaris/os_solaris.cpp
 +++ b/src/hotspot/os/solaris/os_solaris.cpp
-@@ -1504,37 +1504,6 @@ void os::print_jni_name_suffix_on(outputStream* st, int args_size) {
+@@ -1505,37 +1505,6 @@ void os::print_jni_name_suffix_on(outputStream* st, int args_size) {
    // no suffix required
  }
  
@@ -56,7 +56,7 @@ index 894958e7c..5273ea961 100644
  ////////////////////////////////////////////////////////////////////////////////
  // Virtual Memory
  
-@@ -2840,7 +2809,6 @@ jint os::init_2(void) {
+@@ -2827,7 +2796,6 @@ jint os::init_2(void) {
      FLAG_SET_ERGO_IF_DEFAULT(UseNUMAInterleaving, true);
    }
  

@@ -16,7 +16,6 @@
 -p0 openjdk20/tribblix-wait.patch
 -p0 openjdk20/tribblix-demangle1.patch
 -p0 openjdk20/tribblix-demangle4.patch
--p1 openjdk20/illumos-port-1.patch
 -p1 openjdk20/illumos-port-2.patch
 -p1 openjdk20/illumos-port-3.patch
 -p1 openjdk20/illumos-port-4.patch
@@ -38,3 +37,4 @@
 -p1 openjdk20/illumos-port-17.patch
 -p1 openjdk20/illumos-safefetch.patch
 -p1 openjdk20/illumos-pollerprovider.patch
+-p1 openjdk20/illumos-port-18.patch

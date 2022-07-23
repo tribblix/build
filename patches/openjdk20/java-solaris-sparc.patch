@@ -1171,7 +1171,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -499,7 +499,7 @@
+@@ -500,7 +500,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1180,7 +1180,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -517,12 +517,6 @@
+@@ -518,12 +518,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1193,54 +1193,19 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -1243,8 +1237,7 @@
+@@ -1188,8 +1182,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
 -  // Solaris has it's own PlatformMutex, distinct from the one for POSIX.
--  NOT_SOLARIS(os::PlatformMutex::init();)
-+  os::PlatformMutex::init();
+-  NOT_SOLARIS(PlatformMutex::init();)
++  PlatformMutex::init();
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1515,7 +1508,6 @@
- // Shared pthread_mutex/cond based PlatformEvent implementation.
- // Not currently usable by Solaris.
- 
--#ifndef SOLARIS
- 
- // PlatformEvent
- //
-@@ -1943,8 +1935,6 @@
-     return OS_OK;
-   }
- }
--
--#endif // !SOLARIS
- 
- // Darwin has no "environ" in a dynamic library.
- #ifdef __APPLE__
---- old/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:44.033767220 -0700
-+++ new/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:43.649759847 -0700
-@@ -122,8 +122,6 @@
-   sigjmp_buf _jmpbuf;
- };
- 
--#ifndef SOLARIS
--
- /*
-  * This is the platform-specific implementation underpinning
-  * the ParkEvent class, which itself underpins Java-level monitor
-@@ -289,6 +287,4 @@
-   void notify_all();
- };
- 
--#endif // !SOLARIS
--
- #endif // OS_POSIX_OS_POSIX_HPP
 --- old/src/hotspot/os/posix/os_posix.inline.hpp	2020-05-20 17:59:45.073787189 -0700
 +++ new/src/hotspot/os/posix/os_posix.inline.hpp	2020-05-20 17:59:44.701780046 -0700
-@@ -45,7 +45,6 @@
+@@ -46,7 +46,6 @@
    return _result; \
  } while(false)
  
@@ -1248,7 +1213,7 @@
  // Aix does not have NUMA support but need these for compilation.
  inline bool os::numa_has_static_binding()   { AIX_ONLY(ShouldNotReachHere();) return true; }
  inline bool os::numa_has_group_homing()     { AIX_ONLY(ShouldNotReachHere();) return false;  }
-@@ -79,6 +77,4 @@
+@@ -79,6 +78,4 @@
    assert_status(status == 0, status, "cond_broadcast");
  }
  
@@ -1354,7 +1319,7 @@
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
 @@ -1620,10 +1612,8 @@
-   product(intx, ThreadPriorityPolicy, 0,                                    \
+   product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
 -          "    applications. On Solaris NORM_PRIORITY and above are mapped "\
@@ -1378,7 +1343,7 @@
                                                                              \
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -492,7 +492,7 @@
+@@ -489,7 +489,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -1387,7 +1352,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -837,10 +837,8 @@
+@@ -834,10 +834,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -1407,8 +1372,8 @@
 -#if defined(LINUX) || defined(SOLARIS) || defined(AIX)
 +#if defined(LINUX) || defined(AIX)
  # include "semaphore_posix.hpp"
- #elif defined(BSD)
- # include "semaphore_bsd.hpp"
+ #else
+ # include OS_HEADER(semaphore)
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
 @@ -179,12 +179,6 @@
@@ -1618,7 +1583,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1065,7 +1065,7 @@
+@@ -1069,7 +1069,7 @@
  
  #ifndef PRODUCT
  
@@ -6382,12 +6347,12 @@
 -  static bool _atexit_registered;
 -
 -  // mutex to protect operation list
--  static mutex_t _mutex;
+-  static pthread_mutex_t _mutex;
 -
 -  // semaphore to wakeup listener thread
 -  static sema_t _wakeup;
 -
--  static mutex_t* mutex()                               { return &_mutex; }
+-  static pthread_mutex_t* mutex()                               { return &_mutex; }
 -  static sema_t* wakeup()                               { return &_wakeup; }
 -
 -  // enqueued operation list
@@ -6477,7 +6442,7 @@
 -volatile bool SolarisAttachListener::_has_door_path;
 -int SolarisAttachListener::_door_descriptor = -1;
 -bool SolarisAttachListener::_atexit_registered = false;
--mutex_t SolarisAttachListener::_mutex;
+-pthread_mutex_t SolarisAttachListener::_mutex;
 -sema_t SolarisAttachListener::_wakeup;
 -SolarisAttachOperation* SolarisAttachListener::_head = NULL;
 -SolarisAttachOperation* SolarisAttachListener::_tail = NULL;
@@ -8769,7 +8734,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3938 +0,0 @@
+@@ -1,3474 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8826,6 +8791,7 @@
 -#include "runtime/objectMonitor.hpp"
 -#include "runtime/orderAccess.hpp"
 -#include "runtime/osThread.hpp"
+-#include "runtime/park.hpp"
 -#include "runtime/perfMemory.hpp"
 -#include "runtime/sharedRuntime.hpp"
 -#include "runtime/statSampler.hpp"
@@ -11462,53 +11428,22 @@
 -bool os::Solaris::_synchronization_initialized;
 -
 -void os::Solaris::synchronization_init() {
--  if (UseLWPSynchronization) {
--    os::Solaris::set_mutex_lock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("_lwp_mutex_lock")));
--    os::Solaris::set_mutex_trylock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("_lwp_mutex_trylock")));
--    os::Solaris::set_mutex_unlock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("_lwp_mutex_unlock")));
--    os::Solaris::set_mutex_init(lwp_mutex_init);
--    os::Solaris::set_mutex_destroy(lwp_mutex_destroy);
--    os::Solaris::set_mutex_scope(USYNC_THREAD);
+-  os::Solaris::set_mutex_scope(USYNC_THREAD);
+-  os::Solaris::set_cond_scope(USYNC_THREAD);
 -
--    os::Solaris::set_cond_timedwait(CAST_TO_FN_PTR(int_fnP_cond_tP_mutex_tP_timestruc_tP, resolve_symbol("_lwp_cond_timedwait")));
--    os::Solaris::set_cond_wait(CAST_TO_FN_PTR(int_fnP_cond_tP_mutex_tP, resolve_symbol("_lwp_cond_wait")));
--    os::Solaris::set_cond_signal(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("_lwp_cond_signal")));
--    os::Solaris::set_cond_broadcast(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("_lwp_cond_broadcast")));
--    os::Solaris::set_cond_init(lwp_cond_init);
--    os::Solaris::set_cond_destroy(lwp_cond_destroy);
--    os::Solaris::set_cond_scope(USYNC_THREAD);
--  } else {
--    os::Solaris::set_mutex_scope(USYNC_THREAD);
--    os::Solaris::set_cond_scope(USYNC_THREAD);
+-    os::Solaris::set_mutex_lock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("pthread_mutex_lock")));
+-    os::Solaris::set_mutex_trylock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("pthread_mutex_trylock")));
+-    os::Solaris::set_mutex_unlock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("pthread_mutex_unlock")));
+-    os::Solaris::set_mutex_init(pthread_mutex_default_init);
+-    os::Solaris::set_mutex_destroy(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("pthread_mutex_destroy")));
 -
--    if (UsePthreads) {
--      os::Solaris::set_mutex_lock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("pthread_mutex_lock")));
--      os::Solaris::set_mutex_trylock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("pthread_mutex_trylock")));
--      os::Solaris::set_mutex_unlock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("pthread_mutex_unlock")));
--      os::Solaris::set_mutex_init(pthread_mutex_default_init);
--      os::Solaris::set_mutex_destroy(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("pthread_mutex_destroy")));
+-    os::Solaris::set_cond_timedwait(CAST_TO_FN_PTR(int_fnP_cond_tP_mutex_tP_timestruc_tP, resolve_symbol("pthread_cond_timedwait")));
+-    os::Solaris::set_cond_wait(CAST_TO_FN_PTR(int_fnP_cond_tP_mutex_tP, resolve_symbol("pthread_cond_wait")));
+-    os::Solaris::set_cond_signal(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("pthread_cond_signal")));
+-    os::Solaris::set_cond_broadcast(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("pthread_cond_broadcast")));
+-    os::Solaris::set_cond_init(pthread_cond_default_init);
+-    os::Solaris::set_cond_destroy(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("pthread_cond_destroy")));
 -
--      os::Solaris::set_cond_timedwait(CAST_TO_FN_PTR(int_fnP_cond_tP_mutex_tP_timestruc_tP, resolve_symbol("pthread_cond_timedwait")));
--      os::Solaris::set_cond_wait(CAST_TO_FN_PTR(int_fnP_cond_tP_mutex_tP, resolve_symbol("pthread_cond_wait")));
--      os::Solaris::set_cond_signal(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("pthread_cond_signal")));
--      os::Solaris::set_cond_broadcast(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("pthread_cond_broadcast")));
--      os::Solaris::set_cond_init(pthread_cond_default_init);
--      os::Solaris::set_cond_destroy(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("pthread_cond_destroy")));
--    } else {
--      os::Solaris::set_mutex_lock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("mutex_lock")));
--      os::Solaris::set_mutex_trylock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("mutex_trylock")));
--      os::Solaris::set_mutex_unlock(CAST_TO_FN_PTR(int_fnP_mutex_tP, resolve_symbol("mutex_unlock")));
--      os::Solaris::set_mutex_init(::mutex_init);
--      os::Solaris::set_mutex_destroy(::mutex_destroy);
--
--      os::Solaris::set_cond_timedwait(CAST_TO_FN_PTR(int_fnP_cond_tP_mutex_tP_timestruc_tP, resolve_symbol("cond_timedwait")));
--      os::Solaris::set_cond_wait(CAST_TO_FN_PTR(int_fnP_cond_tP_mutex_tP, resolve_symbol("cond_wait")));
--      os::Solaris::set_cond_signal(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("cond_signal")));
--      os::Solaris::set_cond_broadcast(CAST_TO_FN_PTR(int_fnP_cond_tP, resolve_symbol("cond_broadcast")));
--      os::Solaris::set_cond_init(::cond_init);
--      os::Solaris::set_cond_destroy(::cond_destroy);
--    }
--  }
 -  _synchronization_initialized = true;
 -}
 -
@@ -11871,144 +11806,6 @@
 -  return munmap(addr, bytes) == 0;
 -}
 -
--#ifndef PRODUCT
--#ifdef INTERPOSE_ON_SYSTEM_SYNCH_FUNCTIONS
--// Turn this on if you need to trace synch operations.
--// Set RECORD_SYNCH_LIMIT to a large-enough value,
--// and call record_synch_enable and record_synch_disable
--// around the computation of interest.
--
--void record_synch(char* name, bool returning);  // defined below
--
--class RecordSynch {
--  char* _name;
-- public:
--  RecordSynch(char* name) :_name(name) { record_synch(_name, false); }
--  ~RecordSynch()                       { record_synch(_name, true); }
--};
--
--#define CHECK_SYNCH_OP(ret, name, params, args, inner)          \
--extern "C" ret name params {                                    \
--  typedef ret name##_t params;                                  \
--  static name##_t* implem = NULL;                               \
--  static int callcount = 0;                                     \
--  if (implem == NULL) {                                         \
--    implem = (name##_t*) dlsym(RTLD_NEXT, #name);               \
--    if (implem == NULL)  fatal(dlerror());                      \
--  }                                                             \
--  ++callcount;                                                  \
--  RecordSynch _rs(#name);                                       \
--  inner;                                                        \
--  return implem args;                                           \
--}
--// in dbx, examine callcounts this way:
--// for n in $(eval whereis callcount | awk '{print $2}'); do print $n; done
--
--#define CHECK_POINTER_OK(p) \
--  (!Universe::is_fully_initialized() || !Universe::is_reserved_heap((oop)(p)))
--#define CHECK_MU \
--  if (!CHECK_POINTER_OK(mu)) fatal("Mutex must be in C heap only.");
--#define CHECK_CV \
--  if (!CHECK_POINTER_OK(cv)) fatal("Condvar must be in C heap only.");
--#define CHECK_P(p) \
--  if (!CHECK_POINTER_OK(p))  fatal(false,  "Pointer must be in C heap only.");
--
--#define CHECK_MUTEX(mutex_op) \
--  CHECK_SYNCH_OP(int, mutex_op, (mutex_t *mu), (mu), CHECK_MU);
--
--CHECK_MUTEX(   mutex_lock)
--CHECK_MUTEX(  _mutex_lock)
--CHECK_MUTEX( mutex_unlock)
--CHECK_MUTEX(_mutex_unlock)
--CHECK_MUTEX( mutex_trylock)
--CHECK_MUTEX(_mutex_trylock)
--
--#define CHECK_COND(cond_op) \
--  CHECK_SYNCH_OP(int, cond_op, (cond_t *cv, mutex_t *mu), (cv, mu), CHECK_MU; CHECK_CV);
--
--CHECK_COND( cond_wait);
--CHECK_COND(_cond_wait);
--CHECK_COND(_cond_wait_cancel);
--
--#define CHECK_COND2(cond_op) \
--  CHECK_SYNCH_OP(int, cond_op, (cond_t *cv, mutex_t *mu, timestruc_t* ts), (cv, mu, ts), CHECK_MU; CHECK_CV);
--
--CHECK_COND2( cond_timedwait);
--CHECK_COND2(_cond_timedwait);
--CHECK_COND2(_cond_timedwait_cancel);
--
--// do the _lwp_* versions too
--#define mutex_t lwp_mutex_t
--#define cond_t  lwp_cond_t
--CHECK_MUTEX(  _lwp_mutex_lock)
--CHECK_MUTEX(  _lwp_mutex_unlock)
--CHECK_MUTEX(  _lwp_mutex_trylock)
--CHECK_MUTEX( __lwp_mutex_lock)
--CHECK_MUTEX( __lwp_mutex_unlock)
--CHECK_MUTEX( __lwp_mutex_trylock)
--CHECK_MUTEX(___lwp_mutex_lock)
--CHECK_MUTEX(___lwp_mutex_unlock)
--
--CHECK_COND(  _lwp_cond_wait);
--CHECK_COND( __lwp_cond_wait);
--CHECK_COND(___lwp_cond_wait);
--
--CHECK_COND2(  _lwp_cond_timedwait);
--CHECK_COND2( __lwp_cond_timedwait);
--#undef mutex_t
--#undef cond_t
--
--CHECK_SYNCH_OP(int, _lwp_suspend2,       (int lwp, int *n), (lwp, n), 0);
--CHECK_SYNCH_OP(int,__lwp_suspend2,       (int lwp, int *n), (lwp, n), 0);
--CHECK_SYNCH_OP(int, _lwp_kill,           (int lwp, int n),  (lwp, n), 0);
--CHECK_SYNCH_OP(int,__lwp_kill,           (int lwp, int n),  (lwp, n), 0);
--CHECK_SYNCH_OP(int, _lwp_sema_wait,      (lwp_sema_t* p),   (p),  CHECK_P(p));
--CHECK_SYNCH_OP(int,__lwp_sema_wait,      (lwp_sema_t* p),   (p),  CHECK_P(p));
--CHECK_SYNCH_OP(int, _lwp_cond_broadcast, (lwp_cond_t* cv),  (cv), CHECK_CV);
--CHECK_SYNCH_OP(int,__lwp_cond_broadcast, (lwp_cond_t* cv),  (cv), CHECK_CV);
--
--
--// recording machinery:
--
--enum { RECORD_SYNCH_LIMIT = 200 };
--char* record_synch_name[RECORD_SYNCH_LIMIT];
--void* record_synch_arg0ptr[RECORD_SYNCH_LIMIT];
--bool record_synch_returning[RECORD_SYNCH_LIMIT];
--thread_t record_synch_thread[RECORD_SYNCH_LIMIT];
--int record_synch_count = 0;
--bool record_synch_enabled = false;
--
--// in dbx, examine recorded data this way:
--// for n in name arg0ptr returning thread; do print record_synch_$n[0..record_synch_count-1]; done
--
--void record_synch(char* name, bool returning) {
--  if (record_synch_enabled) {
--    if (record_synch_count < RECORD_SYNCH_LIMIT) {
--      record_synch_name[record_synch_count] = name;
--      record_synch_returning[record_synch_count] = returning;
--      record_synch_thread[record_synch_count] = thr_self();
--      record_synch_arg0ptr[record_synch_count] = &name;
--      record_synch_count++;
--    }
--    // put more checking code here:
--    // ...
--  }
--}
--
--void record_synch_enable() {
--  // start collecting trace data, if not already doing so
--  if (!record_synch_enabled)  record_synch_count = 0;
--  record_synch_enabled = true;
--}
--
--void record_synch_disable() {
--  // stop collecting trace data
--  record_synch_enabled = false;
--}
--
--#endif // INTERPOSE_ON_SYSTEM_SYNCH_FUNCTIONS
--#endif // PRODUCT
--
 -const intptr_t thr_time_off  = (intptr_t)(&((prusage_t *)(NULL))->pr_utime);
 -const intptr_t thr_time_size = (intptr_t)(&((prusage_t *)(NULL))->pr_ttime) -
 -                               (intptr_t)(&((prusage_t *)(NULL))->pr_utime);
@@ -12209,25 +12006,25 @@
 -//    Only one parker can exist on an event, which is why we allocate
 -//    them per-thread. Multiple unparkers can coexist.
 -//
--// _Event transitions in park()
+-// _event transitions in park()
 -//   -1 => -1 : illegal
 -//    1 =>  0 : pass - return immediately
--//    0 => -1 : block; then set _Event to 0 before returning
+-//    0 => -1 : block; then set _event to 0 before returning
 -//
--// _Event transitions in unpark()
+-// _event transitions in unpark()
 -//    0 => 1 : just return
 -//    1 => 1 : just return
 -//   -1 => either 0 or 1; must signal target thread
--//         That is, we can safely transition _Event from -1 to either
+-//         That is, we can safely transition _event from -1 to either
 -//         0 or 1.
 -//
--// _Event serves as a restricted-range semaphore.
+-// _event serves as a restricted-range semaphore.
 -//   -1 : thread is blocked, i.e. there is a waiter
 -//    0 : neutral: thread is running or ready,
 -//        could have been signaled after a wait started
 -//    1 : signaled - thread is running or ready
 -//
--// Another possible encoding of _Event would be with
+-// Another possible encoding of _event would be with
 -// explicit "PARKED" == 01b and "SIGNALED" == 10b bits.
 -//
 -// TODO-FIXME: add DTRACE probes for:
@@ -12235,9 +12032,6 @@
 -// 2.   Ty unparks Tx
 -// 3.   Tx resumes from park
 -
--
--// value determined through experimentation
--#define ROUNDINGFIX 11
 -
 -// utility to compute the abstime argument to timedwait.
 -// TODO-FIXME: switch from compute_abstime() to unpackTime().
@@ -12252,24 +12046,8 @@
 -  jlong seconds = millis / 1000;
 -  jlong max_wait_period;
 -
--  if (UseLWPSynchronization) {
--    // forward port of fix for 4275818 (not sleeping long enough)
--    // There was a bug in Solaris 6, 7 and pre-patch 5 of 8 where
--    // _lwp_cond_timedwait() used a round_down algorithm rather
--    // than a round_up. For millis less than our roundfactor
--    // it rounded down to 0 which doesn't meet the spec.
--    // For millis > roundfactor we may return a bit sooner, but
--    // since we can not accurately identify the patch level and
--    // this has already been fixed in Solaris 9 and 8 we will
--    // leave it alone rather than always rounding down.
+-  max_wait_period = 50000000;
 -
--    if (millis > 0 && millis < ROUNDINGFIX) millis = ROUNDINGFIX;
--    // It appears that when we go directly through Solaris _lwp_cond_timedwait()
--    // the acceptable max time threshold is smaller than for libthread on 2.5.1 and 2.6
--    max_wait_period = 21000000;
--  } else {
--    max_wait_period = 50000000;
--  }
 -  millis %= 1000;
 -  if (seconds > max_wait_period) {      // see man cond_timedwait(3T)
 -    seconds = max_wait_period;
@@ -12284,146 +12062,8 @@
 -  return abstime;
 -}
 -
--void os::PlatformEvent::park() {           // AKA: down()
--  // Transitions for _Event:
--  //   -1 => -1 : illegal
--  //    1 =>  0 : pass - return immediately
--  //    0 => -1 : block; then set _Event to 0 before returning
--
--  // Invariant: Only the thread associated with the Event/PlatformEvent
--  // may call park().
--  assert(_nParked == 0, "invariant");
--
--  int v;
--  for (;;) {
--    v = _Event;
--    if (Atomic::cmpxchg(&_Event, v, v-1) == v) break;
--  }
--  guarantee(v >= 0, "invariant");
--  if (v == 0) {
--    // Do this the hard way by blocking ...
--    // See http://monaco.sfbay/detail.jsf?cr=5094058.
--    int status = os::Solaris::mutex_lock(_mutex);
--    assert_status(status == 0, status, "mutex_lock");
--    guarantee(_nParked == 0, "invariant");
--    ++_nParked;
--    while (_Event < 0) {
--      // for some reason, under 2.7 lwp_cond_wait() may return ETIME ...
--      // Treat this the same as if the wait was interrupted
--      // With usr/lib/lwp going to kernel, always handle ETIME
--      status = os::Solaris::cond_wait(_cond, _mutex);
--      if (status == ETIME) status = EINTR;
--      assert_status(status == 0 || status == EINTR, status, "cond_wait");
--    }
--    --_nParked;
--    _Event = 0;
--    status = os::Solaris::mutex_unlock(_mutex);
--    assert_status(status == 0, status, "mutex_unlock");
--    // Paranoia to ensure our locked and lock-free paths interact
--    // correctly with each other.
--    OrderAccess::fence();
--  }
--}
--
--int os::PlatformEvent::park(jlong millis) {
--  // Transitions for _Event:
--  //   -1 => -1 : illegal
--  //    1 =>  0 : pass - return immediately
--  //    0 => -1 : block; then set _Event to 0 before returning
--
--  guarantee(_nParked == 0, "invariant");
--  int v;
--  for (;;) {
--    v = _Event;
--    if (Atomic::cmpxchg(&_Event, v, v-1) == v) break;
--  }
--  guarantee(v >= 0, "invariant");
--  if (v != 0) return OS_OK;
--
--  int ret = OS_TIMEOUT;
--  timestruc_t abst;
--  compute_abstime(&abst, millis);
--
--  // See http://monaco.sfbay/detail.jsf?cr=5094058.
--  int status = os::Solaris::mutex_lock(_mutex);
--  assert_status(status == 0, status, "mutex_lock");
--  guarantee(_nParked == 0, "invariant");
--  ++_nParked;
--  while (_Event < 0) {
--    int status = os::Solaris::cond_timedwait(_cond, _mutex, &abst);
--    assert_status(status == 0 || status == EINTR ||
--                  status == ETIME || status == ETIMEDOUT,
--                  status, "cond_timedwait");
--    if (status == ETIME || status == ETIMEDOUT) break;
--    // We consume and ignore EINTR and spurious wakeups.
--  }
--  --_nParked;
--  if (_Event >= 0) ret = OS_OK;
--  _Event = 0;
--  status = os::Solaris::mutex_unlock(_mutex);
--  assert_status(status == 0, status, "mutex_unlock");
--  // Paranoia to ensure our locked and lock-free paths interact
--  // correctly with each other.
--  OrderAccess::fence();
--  return ret;
--}
--
--void os::PlatformEvent::unpark() {
--  // Transitions for _Event:
--  //    0 => 1 : just return
--  //    1 => 1 : just return
--  //   -1 => either 0 or 1; must signal target thread
--  //         That is, we can safely transition _Event from -1 to either
--  //         0 or 1.
--  // See also: "Semaphores in Plan 9" by Mullender & Cox
--  //
--  // Note: Forcing a transition from "-1" to "1" on an unpark() means
--  // that it will take two back-to-back park() calls for the owning
--  // thread to block. This has the benefit of forcing a spurious return
--  // from the first park() call after an unpark() call which will help
--  // shake out uses of park() and unpark() without condition variables.
--
--  if (Atomic::xchg(&_Event, 1) >= 0) return;
--
--  // If the thread associated with the event was parked, wake it.
--  // Wait for the thread assoc with the PlatformEvent to vacate.
--  int status = os::Solaris::mutex_lock(_mutex);
--  assert_status(status == 0, status, "mutex_lock");
--  int AnyWaiters = _nParked;
--  status = os::Solaris::mutex_unlock(_mutex);
--  assert_status(status == 0, status, "mutex_unlock");
--  guarantee(AnyWaiters == 0 || AnyWaiters == 1, "invariant");
--  if (AnyWaiters != 0) {
--    // Note that we signal() *after* dropping the lock for "immortal" Events.
--    // This is safe and avoids a common class of  futile wakeups.  In rare
--    // circumstances this can cause a thread to return prematurely from
--    // cond_{timed}wait() but the spurious wakeup is benign and the victim
--    // will simply re-test the condition and re-park itself.
--    // This provides particular benefit if the underlying platform does not
--    // provide wait morphing.
--    status = os::Solaris::cond_signal(_cond);
--    assert_status(status == 0, status, "cond_signal");
--  }
--}
--
 -// JSR166
 -// -------------------------------------------------------
--
--os::PlatformParker::PlatformParker() : _counter(0) {
--  int status;
--  status = os::Solaris::cond_init(_cond);
--  assert_status(status == 0, status, "cond_init");
--  status = os::Solaris::mutex_init(_mutex);
--  assert_status(status == 0, status, "mutex_init");
--}
--
--os::PlatformParker::~PlatformParker() {
--  int status;
--  status = os::Solaris::cond_destroy(_cond);
--  assert_status(status == 0, status, "cond_destroy");
--  status = os::Solaris::mutex_destroy(_mutex);
--  assert_status(status == 0, status, "mutex_destroy");
--}
 -
 -// The solaris and linux implementations of park/unpark are fairly
 -// conservative for now, but can be improved. They currently use a
@@ -12490,169 +12130,30 @@
 -  assert(absTime->tv_nsec < NANOSECS_PER_SEC, "tv_nsec >= nanos_per_sec");
 -}
 -
--void Parker::park(bool isAbsolute, jlong time) {
--  // Ideally we'd do something useful while spinning, such
--  // as calling unpackTime().
--
--  // Optional fast-path check:
--  // Return immediately if a permit is available.
--  // We depend on Atomic::xchg() having full barrier semantics
--  // since we are doing a lock-free update to _counter.
--  if (Atomic::xchg(&_counter, 0) > 0) return;
--
--  // Optional fast-exit: Check interrupt before trying to wait
--  Thread* thread = Thread::current();
--  assert(thread->is_Java_thread(), "Must be JavaThread");
--  JavaThread *jt = (JavaThread *)thread;
--  if (jt->is_interrupted(false)) {
--    return;
--  }
--
--  // First, demultiplex/decode time arguments
--  timespec absTime;
--  if (time < 0 || (isAbsolute && time == 0)) { // don't wait at all
--    return;
--  }
--  if (time > 0) {
--    // Warning: this code might be exposed to the old Solaris time
--    // round-down bugs.  Grep "roundingFix" for details.
--    unpackTime(&absTime, isAbsolute, time);
--  }
--
--  // Enter safepoint region
--  // Beware of deadlocks such as 6317397.
--  // The per-thread Parker:: _mutex is a classic leaf-lock.
--  // In particular a thread must never block on the Threads_lock while
--  // holding the Parker:: mutex.  If safepoints are pending both the
--  // the ThreadBlockInVM() CTOR and DTOR may grab Threads_lock.
--  ThreadBlockInVM tbivm(jt);
--
--  // Can't access interrupt state now that we are _thread_blocked. If we've
--  // been interrupted since we checked above then _counter will be > 0.
--
--  // Don't wait if cannot get lock since interference arises from
--  // unblocking.
--  if (os::Solaris::mutex_trylock(_mutex) != 0) {
--    return;
--  }
--
--  int status;
--
--  if (_counter > 0)  { // no wait needed
--    _counter = 0;
--    status = os::Solaris::mutex_unlock(_mutex);
--    assert(status == 0, "invariant");
--    // Paranoia to ensure our locked and lock-free paths interact
--    // correctly with each other and Java-level accesses.
--    OrderAccess::fence();
--    return;
--  }
--
--  OSThreadWaitState osts(thread->osthread(), false /* not Object.wait() */);
--
--  // Do this the hard way by blocking ...
--  // See http://monaco.sfbay/detail.jsf?cr=5094058.
--  if (time == 0) {
--    status = os::Solaris::cond_wait(_cond, _mutex);
--  } else {
--    status = os::Solaris::cond_timedwait (_cond, _mutex, &absTime);
--  }
--  // Note that an untimed cond_wait() can sometimes return ETIME on older
--  // versions of the Solaris.
--  assert_status(status == 0 || status == EINTR ||
--                status == ETIME || status == ETIMEDOUT,
--                status, "cond_timedwait");
--
--  _counter = 0;
--  status = os::Solaris::mutex_unlock(_mutex);
--  assert_status(status == 0, status, "mutex_unlock");
--  // Paranoia to ensure our locked and lock-free paths interact
--  // correctly with each other and Java-level accesses.
--  OrderAccess::fence();
--}
--
--void Parker::unpark() {
--  int status = os::Solaris::mutex_lock(_mutex);
--  assert(status == 0, "invariant");
--  const int s = _counter;
--  _counter = 1;
--  status = os::Solaris::mutex_unlock(_mutex);
--  assert(status == 0, "invariant");
--
--  if (s < 1) {
--    status = os::Solaris::cond_signal(_cond);
--    assert(status == 0, "invariant");
--  }
--}
--
 -// Platform Mutex/Monitor implementations
 -
--os::PlatformMutex::PlatformMutex() {
--  int status = os::Solaris::mutex_init(&_mutex);
--  assert_status(status == 0, status, "mutex_init");
--}
--
--os::PlatformMutex::~PlatformMutex() {
--  int status = os::Solaris::mutex_destroy(&_mutex);
--  assert_status(status == 0, status, "mutex_destroy");
--}
--
--void os::PlatformMutex::lock() {
+-void PlatformMutex::lock() {
 -  int status = os::Solaris::mutex_lock(&_mutex);
 -  assert_status(status == 0, status, "mutex_lock");
 -}
 -
--void os::PlatformMutex::unlock() {
+-void PlatformMutex::unlock() {
 -  int status = os::Solaris::mutex_unlock(&_mutex);
 -  assert_status(status == 0, status, "mutex_unlock");
 -}
 -
--bool os::PlatformMutex::try_lock() {
+-bool PlatformMutex::try_lock() {
 -  int status = os::Solaris::mutex_trylock(&_mutex);
 -  assert_status(status == 0 || status == EBUSY, status, "mutex_trylock");
 -  return status == 0;
 -}
 -
--os::PlatformMonitor::PlatformMonitor() {
--  int status = os::Solaris::cond_init(&_cond);
--  assert_status(status == 0, status, "cond_init");
--}
--
--os::PlatformMonitor::~PlatformMonitor() {
--  int status = os::Solaris::cond_destroy(&_cond);
--  assert_status(status == 0, status, "cond_destroy");
--}
--
--// Must already be locked
--int os::PlatformMonitor::wait(jlong millis) {
--  assert(millis >= 0, "negative timeout");
--  if (millis > 0) {
--    timestruc_t abst;
--    int ret = OS_TIMEOUT;
--    compute_abstime(&abst, millis);
--    int status = os::Solaris::cond_timedwait(&_cond, &_mutex, &abst);
--    assert_status(status == 0 || status == EINTR ||
--                  status == ETIME || status == ETIMEDOUT,
--                  status, "cond_timedwait");
--    // EINTR acts as spurious wakeup - which is permitted anyway
--    if (status == 0 || status == EINTR) {
--      ret = OS_OK;
--    }
--    return ret;
--  } else {
--    int status = os::Solaris::cond_wait(&_cond, &_mutex);
--    assert_status(status == 0 || status == EINTR,
--                  status, "cond_wait");
--    return OS_OK;
--  }
--}
--
--void os::PlatformMonitor::notify() {
+-void PlatformMonitor::notify() {
 -  int status = os::Solaris::cond_signal(&_cond);
 -  assert_status(status == 0, status, "cond_signal");
 -}
 -
--void os::PlatformMonitor::notify_all() {
+-void PlatformMonitor::notify_all() {
 -  int status = os::Solaris::cond_broadcast(&_cond);
 -  assert_status(status == 0, status, "cond_broadcast");
 -}
@@ -12710,7 +12211,7 @@
 -void os::print_memory_mappings(char* addr, size_t bytes, outputStream* st) {}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,322 +0,0 @@
+@@ -1,243 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12875,12 +12376,12 @@
 -
 -  static void init_signal_mem();
 -
--  // Allows us to switch between lwp and thread -based synchronization
--  static int mutex_lock(mutex_t *mx)    { return _mutex_lock(mx); }
--  static int mutex_trylock(mutex_t *mx) { return _mutex_trylock(mx); }
--  static int mutex_unlock(mutex_t *mx)  { return _mutex_unlock(mx); }
--  static int mutex_init(mutex_t *mx)    { return _mutex_init(mx, os::Solaris::mutex_scope(), NULL); }
--  static int mutex_destroy(mutex_t *mx) { return _mutex_destroy(mx); }
+-  // alignment with os_posix means we use pthreads
+-  static int mutex_lock(pthread_mutex_t *mx)    { return pthread_mutex_lock(mx); }
+-  static int mutex_trylock(pthread_mutex_t *mx) { return pthread_mutex_trylock(mx); }
+-  static int mutex_unlock(pthread_mutex_t *mx)  { return pthread_mutex_unlock(mx); }
+-  static int mutex_init(pthread_mutex_t *mx)    { return pthread_mutex_init(mx, NULL); }
+-  static int mutex_destroy(pthread_mutex_t *mx) { return pthread_mutex_destroy(mx); }
 -  static int mutex_scope()              { return _mutex_scope; }
 -
 -  static void set_mutex_lock(int_fnP_mutex_tP func)      { _mutex_lock = func; }
@@ -12890,12 +12391,12 @@
 -  static void set_mutex_destroy(int_fnP_mutex_tP func)   { _mutex_destroy = func; }
 -  static void set_mutex_scope(int scope)                 { _mutex_scope = scope; }
 -
--  static int cond_timedwait(cond_t *cv, mutex_t *mx, timestruc_t *abst) { return _cond_timedwait(cv, mx, abst); }
--  static int cond_wait(cond_t *cv, mutex_t *mx) { return _cond_wait(cv, mx); }
--  static int cond_signal(cond_t *cv)            { return _cond_signal(cv); }
--  static int cond_broadcast(cond_t *cv)         { return _cond_broadcast(cv); }
--  static int cond_init(cond_t *cv)              { return _cond_init(cv, os::Solaris::cond_scope(), NULL); }
--  static int cond_destroy(cond_t *cv)           { return _cond_destroy(cv); }
+-  static int cond_timedwait(pthread_cond_t *cv, pthread_mutex_t *mx, timestruc_t *abst) { return pthread_cond_timedwait(cv, mx, abst); }
+-  static int cond_wait(pthread_cond_t *cv, pthread_mutex_t *mx) { return pthread_cond_wait(cv, mx); }
+-  static int cond_signal(pthread_cond_t *cv)            { return pthread_cond_signal(cv); }
+-  static int cond_broadcast(pthread_cond_t *cv)         { return pthread_cond_broadcast(cv); }
+-  static int cond_init(pthread_cond_t *cv)              { return pthread_cond_init(cv, NULL); }
+-  static int cond_destroy(pthread_cond_t *cv)           { return pthread_cond_destroy(cv); }
 -  static int cond_scope()                       { return _cond_scope; }
 -
 -  static void set_cond_timedwait(int_fnP_cond_tP_mutex_tP_timestruc_tP func) { _cond_timedwait = func; }
@@ -12953,85 +12454,6 @@
 -  // none present
 -
 -};
--
--class PlatformEvent : public CHeapObj<mtSynchronizer> {
-- private:
--  double CachePad[4];   // increase odds that _mutex is sole occupant of cache line
--  volatile int _Event;
--  int _nParked;
--  int _pipev[2];
--  mutex_t _mutex[1];
--  cond_t  _cond[1];
--  double PostPad[2];
--
-- protected:
--  // Defining a protected ctor effectively gives us an abstract base class.
--  // That is, a PlatformEvent can never be instantiated "naked" but only
--  // as a part of a ParkEvent (recall that ParkEvent extends PlatformEvent).
--  // TODO-FIXME: make dtor private
--  ~PlatformEvent() { guarantee(0, "invariant"); }
--  PlatformEvent() {
--    int status;
--    status = os::Solaris::cond_init(_cond);
--    assert_status(status == 0, status, "cond_init");
--    status = os::Solaris::mutex_init(_mutex);
--    assert_status(status == 0, status, "mutex_init");
--    _Event   = 0;
--    _nParked = 0;
--    _pipev[0] = _pipev[1] = -1;
--  }
--
-- public:
--  // Exercise caution using reset() and fired() -- they may require MEMBARs
--  void reset() { _Event = 0; }
--  int  fired() { return _Event; }
--  void park();
--  int  park(jlong millis);
--  void unpark();
--};
--
--class PlatformParker {
--  NONCOPYABLE(PlatformParker);
-- protected:
--  volatile int _counter;
--  mutex_t _mutex[1];
--  cond_t  _cond[1];
--
-- public:
--  PlatformParker();
--  ~PlatformParker();
--};
--
--// Platform specific implementations that underpin VM Mutex/Monitor classes
--
--class PlatformMutex : public CHeapObj<mtSynchronizer> {
--  NONCOPYABLE(PlatformMutex);
--
-- protected:
--  mutex_t _mutex; // Native mutex for locking
--
-- public:
--  PlatformMutex();
--  ~PlatformMutex();
--  void lock();
--  void unlock();
--  bool try_lock();
--};
--
--class PlatformMonitor : public PlatformMutex {
-- private:
--  cond_t  _cond;  // Native condition variable for blocking
--
--  NONCOPYABLE(PlatformMonitor);
--
-- public:
--  PlatformMonitor();
--  ~PlatformMonitor();
--  int wait(jlong millis);
--  void notify();
--  void notify_all();
--};
--
 -#endif // OS_SOLARIS_OS_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.inline.hpp	2020-05-20 18:09:36.197137133 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700

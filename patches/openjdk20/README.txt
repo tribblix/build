@@ -7,6 +7,42 @@ Most patches -p0
 
 JDK 20 now that jdk19 has been forked off.
 
+TODO cleanup from the 20+5 changes:
+PlatformMutex::init() - should we use the os_posix one?
+Can we get rid of mutex_scope and cond_scope?
+Can we get rid of the set_mutex* and set_cond* stuff?
+unpackTime() and compute_Abstime() are now unused
+
+20+5
+
+Some big breaking changes here.
+
+In os_posix.cpp, some things like PlatformMutex, PlatformEvent,
+PlatformMonitor have dropped the os:: namespace. The definitions have
+been centralized, posix uses _event whereas solaris used _Event (like
+windows does). And the posix variants all use pthreads, whereas
+solaris used native threads, which leads to signature mismatches.
+
+So there are a couple of changes. First, replace mutex_t with
+pthread_mutex_t. Second, assign directly rather than setting the
+symbols dynamically, which used to be done as a way of switching
+between thread-based and lwp-based synchronization.
+
+And with that, in fact, we could use the central posix verions of the
+Platform pieces.
+
+And do the same for the cond_ functions as well as the mutex_ functions.
+
+Remove illumos-port-1.patch and roll the pthreads versions in by default
+
+ThreadCrashProtection has moved out of os_posix.{c,h}pp which means we
+have to move stuff around.
+
+mutex.hpp, park.hpp, threadCrashProtection.hpp headers reworked
+-> illumos-port-18.patch
+
+Remove RecordSynch
+
 20+4
 
 os::infinite_sleep() has been centralised
