@@ -24,8 +24,8 @@
 # current releases are tagged on github
 #
 cd ~/ud
-${THOME}/build/unpack jdk13u-jdk-13.0.11-ga
-cd jdk13u-jdk-13.0.11-ga
+${THOME}/build/unpack jdk13u-jdk-13.0.12-ga
+cd jdk13u-jdk-13.0.12-ga
 
 #
 # as of 13.0.3, switch to a gcc build to replace Studio
@@ -69,9 +69,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "13.0.11-internal" 2022-04-19
-# OpenJDK Runtime Environment (build 13.0.11-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.11-ga)
-# OpenJDK 64-Bit Server VM (build 13.0.11-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.11-ga, mixed mode, sharing)
+# openjdk version "13.0.12-internal" 2022-07-19
+# OpenJDK Runtime Environment (build 13.0.12-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.12-ga)
+# OpenJDK 64-Bit Server VM (build 13.0.12-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.12-ga, mixed mode, sharing)
 # 
 
 rm -fr /tmp/jdk
@@ -82,7 +82,7 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk13 jdk13
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk13 .
-#jdk13 isn't widely supported, so don't make it the default
+#jdk13 isn't an LTS release, so don't make it the default
 #ln -s openjdk13 latest
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin

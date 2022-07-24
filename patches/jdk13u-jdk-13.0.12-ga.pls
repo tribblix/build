@@ -38,3 +38,4 @@
 -p0 openjdk13/tribblix-demangle3.patch
 -p0 openjdk13/tribblix-demangle4.patch
 -p1 openjdk13/illumos-port-6.patch
+-p1 openjdk13/illumos-port-7.patch

@@ -1,7 +1,15 @@
 This is derived from the pkgsrc-joyent set for openjdk11, building on
 my openjdk12 set.
 
-All patches -p0
+13.0.12
+
+Build broken by https://www.illumos.org/issues/14418. That did 2
+things -  (1) exposed memcntl and meminfo by default, and (2) changed
+the signature for memcntl from caddr_t to void so there's a
+mismatch. The fix adopted is to modify the internal java signature for
+memcntl to the new version, which still allows builds on older
+releases as the old definition in sys/mman.h was effectively invisible
+there. See illumos-port-7.patch.
 
 13.0.10
 
