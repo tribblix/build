@@ -27,8 +27,8 @@
 # now on github; use the ga tag
 #
 cd ~/ud
-${THOME}/build/unpack jdk15u-jdk-15.0.7-ga
-cd jdk15u-jdk-15.0.7-ga
+${THOME}/build/unpack jdk15u-jdk-15.0.8-ga
+cd jdk15u-jdk-15.0.8-ga
 
 #
 # looks like dtrace is busted, illumos and Solaris have diverged
@@ -73,9 +73,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 # 
-# openjdk version "15.0.7-internal" 2022-04-19
-# OpenJDK Runtime Environment (build 15.0.7-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.7-ga)
-# OpenJDK 64-Bit Server VM (build 15.0.7-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.7-ga, mixed mode, sharing)
+# openjdk version "15.0.8-internal" 2022-07-19
+# OpenJDK Runtime Environment (build 15.0.8-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.8-ga)
+# OpenJDK 64-Bit Server VM (build 15.0.8-internal+0-adhoc.ptribble.jdk15u-jdk-15.0.8-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -86,7 +86,7 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk15 jdk15
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk15 .
-#jdk15 isn't widely supported, so don't make it the default
+#jdk15 isn't an LTS release, so don't make it the default
 #ln -s openjdk15 latest
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin
