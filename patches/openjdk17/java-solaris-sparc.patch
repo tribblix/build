@@ -134,12 +134,14 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -270,23 +270,15 @@
+@@ -270,25 +270,17 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR -v | $GREP "bsdtar")" != "x"; then
      TAR_TYPE="bsd"
 -  elif test "x$OPENJDK_BUILD_OS" = "xsolaris"; then
 -    TAR_TYPE="solaris"
+   elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
+     TAR_TYPE="busybox"
    elif test "x$OPENJDK_BUILD_OS" = "xaix"; then
      TAR_TYPE="aix"
    fi
@@ -157,8 +159,8 @@
 -    fi
    elif test "x$TAR_TYPE" = "aix"; then
      # -L InputList of aix tar: name of file listing the files and directories
-     # that need to be   archived or extracted
-@@ -297,7 +289,6 @@
+     # that need to be archived or extracted
+@@ -302,7 +294,6 @@
      TAR_SUPPORTS_TRANSFORM="false"
    fi
    AC_SUBST(TAR_TYPE)
@@ -166,7 +168,7 @@
    AC_SUBST(TAR_INCLUDE_PARAM)
    AC_SUBST(TAR_SUPPORTS_TRANSFORM)
  ])
-@@ -408,8 +399,6 @@
+@@ -425,8 +416,6 @@
        fi
      fi
      UTIL_REQUIRE_PROGS(SETFILE, SetFile)
@@ -216,7 +218,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -427,9 +375,6 @@
+@@ -397,9 +397,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -239,7 +241,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xaix; then
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -282,7 +282,7 @@
+@@ -288,7 +288,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -248,7 +250,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -295,7 +295,7 @@
+@@ -301,7 +301,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -408,7 +410,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -535,7 +534,6 @@
+@@ -538,7 +537,6 @@
  # LDFLAGS used to link the jdk native libraries (C-code)
  LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
  JDKLIB_LIBS:=@JDKLIB_LIBS@
@@ -416,7 +418,7 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -751,7 +746,6 @@
+@@ -752,7 +750,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -424,7 +426,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -770,7 +763,6 @@
+@@ -770,7 +767,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -432,7 +434,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -785,7 +777,6 @@
+@@ -785,7 +781,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -489,7 +491,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -986,7 +969,7 @@
+@@ -989,7 +989,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -498,7 +500,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).debuginfo
            # Setup the command line creating debuginfo files, to be run after linking.
            # It cannot be run separately since it updates the original target file
-@@ -1121,7 +1103,7 @@
+@@ -1123,7 +1123,7 @@
      endif
  
      $1_VARDEPS := $$($1_LD) $$($1_SYSROOT_LDFLAGS) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) \
@@ -507,7 +509,7 @@
          $$($1_CREATE_DEBUGINFO_CMDS) $$($1_MANIFEST_VERSION) \
          $$($1_STRIP_CMD)
      $1_VARDEPS_FILE := $$(call DependOnVariable, $1_VARDEPS, \
-@@ -1180,7 +1162,7 @@
+@@ -1182,7 +1182,7 @@
  
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -516,7 +518,7 @@
  		          $$($1_LIBS) $$($1_EXTRA_LIBS)) \
  		      | $(GREP) -v "^   Creating library .*\.lib and object .*\.exp" || \
  		          test "$$$$?" = "1" ; \
-@@ -1193,7 +1175,7 @@
+@@ -1195,7 +1195,7 @@
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$(if $$($1_LINK_OBJS_RELATIVE), $$(CD) $$(OUTPUTDIR) ; ) \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -562,7 +564,7 @@
    else ifeq ($(call isBuildOs, aix), true)
      ADLC_LDFLAGS += -q64
      ADLC_CFLAGS := -qnortti -qeh -q64 -DAIX
-@@ -88,8 +84,6 @@
+@@ -90,8 +87,6 @@
    # ADLC flags depending on target OS
    ifeq ($(call isTargetOs, linux), true)
      ADLCFLAGS += -DLINUX=1 -D_GNU_SOURCE=1
@@ -941,7 +943,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
     endif
  
-@@ -634,10 +597,7 @@
+@@ -641,10 +604,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -953,7 +955,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -662,7 +624,6 @@
+@@ -669,7 +631,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1761,8 +1763,8 @@
 +  // Env variables that are defined on Linux/BSD
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
-   "LANG", "LC_ALL", "LC_CTYPE", "TZ",
-@@ -1610,8 +1610,6 @@
+   "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
+@@ -1611,8 +1611,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1771,7 +1773,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1673,8 +1671,6 @@
+@@ -1674,8 +1672,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -3945,10 +3947,10 @@
 -#if defined(__solaris__)
 -    rv = connect(fd, 0, 0);
 -#else
-     SOCKETADDRESS sa;
-     socklen_t len = isIPv6 ? sizeof(struct sockaddr_in6) :
-                              sizeof(struct sockaddr_in);
-@@ -78,8 +75,6 @@
+ #if defined(__APPLE__)
+     // On macOS systems we use disconnectx
+     rv = disconnectx(fd, SAE_ASSOCID_ANY, SAE_CONNID_ANY);
+@@ -86,8 +83,6 @@
          rv = errno = 0;
  #endif // defined(_ALLBSD_SOURCE) || defined(_AIX)
  
@@ -4114,7 +4116,7 @@
   * Since winsock doesn't have the equivalent of strerror(errno)
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
-@@ -1429,22 +1429,6 @@
+@@ -1431,22 +1431,6 @@
                  }
              }
          }
@@ -9679,7 +9681,7 @@
 -
 -// "default" initializers for missing libc APIs
 -extern "C" {
--  int memcntl(caddr_t, size_t, int, caddr_t, int, int);
+-  int memcntl(void *, size_t, int, void *, int, int);
 -  int meminfo(const uint64_t *, int, const uint_t *, int, uint64_t *, uint_t *);
 -}
 -
