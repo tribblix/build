@@ -38,3 +38,4 @@
 -p1 openjdk20/illumos-safefetch.patch
 -p1 openjdk20/illumos-pollerprovider.patch
 -p1 openjdk20/illumos-port-18.patch
+-p1 openjdk20/illumos-port-19.patch

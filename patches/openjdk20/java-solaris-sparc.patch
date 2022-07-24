@@ -1119,10 +1119,10 @@
 -
  ifeq ($(call isTargetOs, windows), true)
      BUILD_HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
-     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c
+     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -93,9 +93,6 @@
+@@ -95,9 +95,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1134,7 +1134,7 @@
    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeCallerAccessTest := -ljvm
 --- old/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.533642413 -0700
 +++ new/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.197635961 -0700
-@@ -65,7 +65,7 @@
+@@ -67,7 +67,7 @@
  #define INCLUDE_RTM_OPT 1
  #endif
  
@@ -1171,7 +1171,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -500,7 +500,7 @@
+@@ -501,7 +501,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1180,7 +1180,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -518,12 +518,6 @@
+@@ -519,12 +519,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1193,7 +1193,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -1188,8 +1182,7 @@
+@@ -1189,8 +1183,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -2014,7 +2014,7 @@
  }
  
  static const char*
-@@ -452,7 +445,7 @@
+@@ -450,7 +443,7 @@
  #endif
  
  /* vfork(2) is deprecated on Darwin */
@@ -2023,7 +2023,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -585,7 +576,7 @@
+@@ -582,7 +573,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -2065,7 +2065,7 @@
  
  /*
   * remove repeated path separators ('/') in the given 'path'.
-@@ -192,13 +187,6 @@
+@@ -191,13 +186,6 @@
           */
          if ((strcmp(dp->d_name, "ROC") == 0)
              || (strcmp(dp->d_name, "posixrules") == 0)
@@ -2079,7 +2079,7 @@
              || (strcmp(dp->d_name, "localtime") == 0)) {
              continue;
          }
-@@ -270,8 +258,6 @@
+@@ -269,8 +257,6 @@
      return possibleMatch;
  }
  
@@ -2088,7 +2088,7 @@
  /*
   * Performs Linux specific mapping and returns a zone ID
   * if found. Otherwise, NULL is returned.
-@@ -383,311 +369,6 @@
+@@ -382,311 +368,6 @@
      return tz;
  }
  
@@ -2400,7 +2400,7 @@
  #elif defined(_AIX)
  
  static char *
-@@ -854,15 +535,6 @@
+@@ -853,15 +534,6 @@
              free((void *) freetz);
          }
  #else
@@ -2416,7 +2416,7 @@
          if (freetz == NULL) {
              /* strdup if we are still working on getenv result. */
              javatz = strdup(tz);
-@@ -920,19 +592,7 @@
+@@ -919,19 +591,7 @@
  {
      time_t offset;
      char sign, buf[32];
@@ -2725,7 +2725,7 @@
  /******************* Java entry points *****************************/
  
  /*
-@@ -1679,372 +1663,6 @@
+@@ -1677,372 +1661,6 @@
  
  #endif /* _AIX */
  
@@ -3411,7 +3411,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -908,19 +675,10 @@
+@@ -908,20 +675,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -3427,11 +3427,12 @@
 -#if defined(__solaris__)
 -    int level = -1;
 -    int exclbind = -1;
+-    int arg, alen;
 -#endif
      int rv;
-     int arg, alen;
  
-@@ -938,61 +696,8 @@
+ #ifdef __linux__
+@@ -937,61 +695,8 @@
      }
  #endif
  
@@ -3610,7 +3611,7 @@
  #elif defined(_ALLBSD_SOURCE)
    /* Also defined in net/bsd_close.c */
    #define INTERRUPT_SIGNAL SIGIO
-@@ -77,22 +74,14 @@
+@@ -76,22 +73,14 @@
  JNIEXPORT jlong JNICALL
  Java_sun_nio_ch_NativeThread_current0(JNIEnv *env, jclass cl)
  {
@@ -4850,9 +4851,9 @@
 -#elif defined(__linux__)
 +#if defined(__linux__)
      int ret;
-     FILE *fp;
      jlong total = 0, avail = 0;
-@@ -183,37 +127,7 @@
+ 
+@@ -181,37 +126,7 @@
  Java_com_sun_management_internal_OperatingSystemImpl_getCommittedVirtualMemorySize0
    (JNIEnv *env, jobject mbean)
  {
@@ -4891,7 +4892,7 @@
      FILE *fp;
      unsigned long vsize = 0;
  
-@@ -286,7 +200,7 @@
+@@ -285,7 +199,7 @@
       * BSDNOTE: FreeBSD implements _SC_CLK_TCK since FreeBSD 5, so
       *          add a magic to handle it
       */
@@ -7855,7 +7856,7 @@
 -    // Here: same as OSThread::thread_id()
 -    return _thread_id;
 -  }
--  os::SuspendResume sr;
+-  SuspendResume sr;
 -
 - private:
 -  void* _siginfo;
@@ -8734,7 +8735,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3474 +0,0 @@
+@@ -1,3367 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8917,8 +8918,6 @@
 -  static int pthread_mutex_default_init(mutex_t *mx, int scope, void *arg) { memset(mx, 0, sizeof(mutex_t)); return 0; }
 -  static int pthread_cond_default_init(cond_t *cv, int scope, void *arg){ memset(cv, 0, sizeof(cond_t)); return 0; }
 -}
--
--static void unpackTime(timespec* absTime, bool isAbsolute, jlong time);
 -
 -static inline size_t adjust_stack_size(address base, size_t size) {
 -  if ((ssize_t)size < 0) {
@@ -11332,25 +11331,6 @@
 -void os::print_statistics() {
 -}
 -
--bool os::message_box(const char* title, const char* message) {
--  int i;
--  fdStream err(defaultStream::error_fd());
--  for (i = 0; i < 78; i++) err.print_raw("=");
--  err.cr();
--  err.print_raw_cr(title);
--  for (i = 0; i < 78; i++) err.print_raw("-");
--  err.cr();
--  err.print_raw_cr(message);
--  for (i = 0; i < 78; i++) err.print_raw("=");
--  err.cr();
--
--  char buf[16];
--  // Prevent process from exiting upon "read error" without consuming all CPU
--  while (::read(0, buf, sizeof(buf)) <= 0) { ::sleep(100); }
--
--  return buf[0] == 'y' || buf[0] == 'Y';
--}
--
 -// This does not do anything on Solaris. This is basically a hook for being
 -// able to use structured exception handling (thread-local exception filters) on, e.g., Win32.
 -void os::os_exception_wrapper(java_call_t f, JavaValue* value,
@@ -12032,36 +12012,6 @@
 -// 2.   Ty unparks Tx
 -// 3.   Tx resumes from park
 -
--
--// utility to compute the abstime argument to timedwait.
--// TODO-FIXME: switch from compute_abstime() to unpackTime().
--
--static timestruc_t* compute_abstime(timestruc_t* abstime, jlong millis) {
--  // millis is the relative timeout time
--  // abstime will be the absolute timeout time
--  if (millis < 0)  millis = 0;
--  struct timeval now;
--  int status = gettimeofday(&now, NULL);
--  assert(status == 0, "gettimeofday");
--  jlong seconds = millis / 1000;
--  jlong max_wait_period;
--
--  max_wait_period = 50000000;
--
--  millis %= 1000;
--  if (seconds > max_wait_period) {      // see man cond_timedwait(3T)
--    seconds = max_wait_period;
--  }
--  abstime->tv_sec = now.tv_sec  + seconds;
--  long       usec = now.tv_usec + millis * 1000;
--  if (usec >= 1000000) {
--    abstime->tv_sec += 1;
--    usec -= 1000000;
--  }
--  abstime->tv_nsec = usec * 1000;
--  return abstime;
--}
--
 -// JSR166
 -// -------------------------------------------------------
 -
@@ -12073,62 +12023,6 @@
 -// on the condvar. Contention seen when trying to park implies that someone
 -// is unparking you, so don't wait. And spurious returns are fine, so there
 -// is no need to track notifications.
--
--#define MAX_SECS 100000000
--
--// This code is common to linux and solaris and will be moved to a
--// common place in dolphin.
--//
--// The passed in time value is either a relative time in nanoseconds
--// or an absolute time in milliseconds. Either way it has to be unpacked
--// into suitable seconds and nanoseconds components and stored in the
--// given timespec structure.
--// Given time is a 64-bit value and the time_t used in the timespec is only
--// a signed-32-bit value (except on 64-bit Linux) we have to watch for
--// overflow if times way in the future are given. Further on Solaris versions
--// prior to 10 there is a restriction (see cond_timedwait) that the specified
--// number of seconds, in abstime, is less than current_time  + 100,000,000.
--// As it will be 28 years before "now + 100000000" will overflow we can
--// ignore overflow and just impose a hard-limit on seconds using the value
--// of "now + 100,000,000". This places a limit on the timeout of about 3.17
--// years from "now".
--//
--static void unpackTime(timespec* absTime, bool isAbsolute, jlong time) {
--  assert(time > 0, "convertTime");
--
--  struct timeval now;
--  int status = gettimeofday(&now, NULL);
--  assert(status == 0, "gettimeofday");
--
--  time_t max_secs = now.tv_sec + MAX_SECS;
--
--  if (isAbsolute) {
--    jlong secs = time / 1000;
--    if (secs > max_secs) {
--      absTime->tv_sec = max_secs;
--    } else {
--      absTime->tv_sec = secs;
--    }
--    absTime->tv_nsec = (time % 1000) * NANOSECS_PER_MILLISEC;
--  } else {
--    jlong secs = time / NANOSECS_PER_SEC;
--    if (secs >= MAX_SECS) {
--      absTime->tv_sec = max_secs;
--      absTime->tv_nsec = 0;
--    } else {
--      absTime->tv_sec = now.tv_sec + secs;
--      absTime->tv_nsec = (time % NANOSECS_PER_SEC) + now.tv_usec*1000;
--      if (absTime->tv_nsec >= NANOSECS_PER_SEC) {
--        absTime->tv_nsec -= NANOSECS_PER_SEC;
--        ++absTime->tv_sec; // note: this must be <= max_secs
--      }
--    }
--  }
--  assert(absTime->tv_sec >= 0, "tv_sec < 0");
--  assert(absTime->tv_sec <= max_secs, "tv_sec > max_secs");
--  assert(absTime->tv_nsec >= 0, "tv_nsec < 0");
--  assert(absTime->tv_nsec < NANOSECS_PER_SEC, "tv_nsec >= nanos_per_sec");
--}
 -
 -// Platform Mutex/Monitor implementations
 -

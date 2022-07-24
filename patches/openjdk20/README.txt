@@ -3,15 +3,23 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
-Most patches -p0
-
 JDK 20 now that jdk19 has been forked off.
 
 TODO cleanup from the 20+5 changes:
 PlatformMutex::init() - should we use the os_posix one?
 Can we get rid of mutex_scope and cond_scope?
 Can we get rid of the set_mutex* and set_cond* stuff?
-unpackTime() and compute_Abstime() are now unused
+
+The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
+appears to only be relevant to 32-bit solaris
+
+20+6
+
+SuspendResume is no longer in os::, needs illumos-port-19.patch
+
+os::message_box has been centralized
+
+Removed now unused unpackTime() and compute_Abstime().
 
 20+5
 
