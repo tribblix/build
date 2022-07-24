@@ -13,6 +13,12 @@ Can we get rid of the set_mutex* and set_cond* stuff?
 The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
 appears to only be relevant to 32-bit solaris
 
+20+7
+
+Remove os::print_statistics()
+
+Remove os_share_solaris.hpp
+
 20+6
 
 SuspendResume is no longer in os::, needs illumos-port-19.patch
