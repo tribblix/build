@@ -5,6 +5,10 @@ All patches -p0
 
 This set of patches for jdk11u
 
+11.0.16
+
+Fix the memcntl signature for recent illumos changes.
+
 11.0.13
 
 Just a little patch noise to tidy up

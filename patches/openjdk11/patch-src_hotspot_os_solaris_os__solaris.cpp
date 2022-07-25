@@ -8,7 +8,7 @@ Fix building on SunOS in C99 mode.
  
    static int lwp_cond_init(cond_t *cv, int scope, void *arg){ memset(cv, 0, sizeof(cond_t)); return 0; }
    static int lwp_cond_destroy(cond_t *cv)                   { return 0; }
-+  int memcntl(caddr_t, size_t, int, caddr_t, int, int);
++  int memcntl(void *, size_t, int, void *, int, int);
 +  int meminfo(const uint64_t *, int, const uint_t *, int, uint64_t *, uint_t *);
  }
  
