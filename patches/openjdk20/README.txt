@@ -13,6 +13,7 @@ The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
 appears to only be relevant to 32-bit solaris
 
 Tidying up.
+Remove UsePthreads, as it's now the only option.
 Clean up set_mutex* and set_cond* now we're exclusively pthreads.
 
 20+7

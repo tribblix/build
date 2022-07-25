@@ -1307,18 +1307,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -731,10 +727,6 @@
-   product(intx, hashCode, 5, EXPERIMENTAL,                                  \
-                "(Unstable) select hashCode generation algorithm")           \
-                                                                             \
--  develop(bool, UsePthreads, false,                                         \
--          "Use pthread-based instead of libthread-based synchronization "   \
--          "(SPARC only)")                                                   \
--                                                                            \
-   product(bool, ReduceSignalUsage, false,                                   \
-           "Reduce the use of OS signals in Java and/or the VM")             \
-                                                                             \
-@@ -1620,10 +1612,8 @@
+@@ -1616,10 +1612,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1331,7 +1320,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1967,8 +1957,7 @@
+@@ -1963,8 +1957,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
