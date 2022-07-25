@@ -8,10 +8,12 @@ JDK 20 now that jdk19 has been forked off.
 TODO cleanup from the 20+5 changes:
 PlatformMutex::init() - should we use the os_posix one?
 Can we get rid of mutex_scope and cond_scope?
-Can we get rid of the set_mutex* and set_cond* stuff?
 
 The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
 appears to only be relevant to 32-bit solaris
+
+Tidying up.
+Clean up set_mutex* and set_cond* now we're exclusively pthreads.
 
 20+7
 
