@@ -8679,7 +8679,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3331 +0,0 @@
+@@ -1,3327 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11325,13 +11325,9 @@
 -}
 -
 -
--int os::Solaris::_mutex_scope = USYNC_THREAD;
--int os::Solaris::_cond_scope = USYNC_THREAD;
 -bool os::Solaris::_synchronization_initialized;
 -
 -void os::Solaris::synchronization_init() {
--  os::Solaris::set_mutex_scope(USYNC_THREAD);
--  os::Solaris::set_cond_scope(USYNC_THREAD);
 -  _synchronization_initialized = true;
 -}
 -
@@ -12013,7 +12009,7 @@
 -void os::print_memory_mappings(char* addr, size_t bytes, outputStream* st) {}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,221 +0,0 @@
+@@ -1,204 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12058,17 +12054,6 @@
 -  friend class os;
 -
 - private:
--
--  // Support for "new" libthread APIs for getting & setting thread context (2.8)
--#define TRS_VALID       0
--#define TRS_NONVOLATILE 1
--#define TRS_LWPID       2
--#define TRS_INVALID     3
--
--  // initialized to libthread or lwp synchronization primitives depending on UseLWPSychronization
--  static int _mutex_scope;
--
--  static int _cond_scope;
 -
 -  static bool _synchronization_initialized;
 -
@@ -12173,9 +12158,6 @@
 -  static int mutex_unlock(pthread_mutex_t *mx)  { return pthread_mutex_unlock(mx); }
 -  static int mutex_init(pthread_mutex_t *mx)    { return pthread_mutex_init(mx, NULL); }
 -  static int mutex_destroy(pthread_mutex_t *mx) { return pthread_mutex_destroy(mx); }
--  static int mutex_scope()              { return _mutex_scope; }
--
--  static void set_mutex_scope(int scope)                 { _mutex_scope = scope; }
 -
 -  static int cond_timedwait(pthread_cond_t *cv, pthread_mutex_t *mx, timestruc_t *abst) { return pthread_cond_timedwait(cv, mx, abst); }
 -  static int cond_wait(pthread_cond_t *cv, pthread_mutex_t *mx) { return pthread_cond_wait(cv, mx); }
@@ -12183,9 +12165,6 @@
 -  static int cond_broadcast(pthread_cond_t *cv)         { return pthread_cond_broadcast(cv); }
 -  static int cond_init(pthread_cond_t *cv)              { return pthread_cond_init(cv, NULL); }
 -  static int cond_destroy(pthread_cond_t *cv)           { return pthread_cond_destroy(cv); }
--  static int cond_scope()                       { return _cond_scope; }
--
--  static void set_cond_scope(int scope)                    { _cond_scope = scope; }
 -
 -  static bool synchronization_initialized()                { return _synchronization_initialized; }
 -
