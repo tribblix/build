@@ -8,5 +8,5 @@
 # libjson enables clamsubmit which is optional and we've not shipped
 # in the past
 #
-${THOME}/build/dobuild clamav-0.103.6 -P /opt/tribblix/clamav -C --without-libjson
-${THOME}/build/genpkg TRIBblix-clamav clamav-0.103.6
+${THOME}/build/dobuild -64only clamav-0.103.7 -P /opt/tribblix/clamav -C --without-libjson
+${THOME}/build/genpkg TRIBblix-clamav clamav-0.103.7
