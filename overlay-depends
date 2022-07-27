@@ -7,10 +7,10 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 # xref against this illumos catalog
 #
-ILVER=m26
+ILVER=m27
 case `pwd` in
     *lx)
-	ILVER=m26lx
+	ILVER=m27lx
 	;;
     *sparc)
 	ILVER=m20.6.sparc
@@ -80,17 +80,6 @@ do
   fi
 done
 #
-# fix up errant legacy dependencies
-#
-sed -i '/TRIBsys-lib-gcc-3-runtime/d' $TMPF
-sed -i 's:TRIBsys-lib-c++-sunpro:TRIBsys-lib-cpp-sunpro:' $TMPF
-##
-## This is only useful for debug
-##
-##echo "Overlay ${OVL} depends on:"
-##echo "============================================="
-##cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs
-#
 # find any dependencies that aren't handled by prerequisite overlays
 #
 touch ${TMPF}.p
@@ -110,17 +99,17 @@ do
     done
   done
 done
-cat ${TMPF}.p |sort|uniq >${TMPF}.t
-OUTMISS=`cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t`
+cat ${TMPF}.p |sort -u >${TMPF}.t
+OUTMISS=`cat $TMPF|awk '{print $2}' |sort -u | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t`
 if [ -n "${OUTMISS}" ]; then
     echo ""
     echo "Missing dependencies in overlay ${OVL}:"
     echo "============================================="
-    cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t
+    cat $TMPF|awk '{print $2}' |sort -u | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t
 fi
 
 if [ "X$VERBOSE" = "X-v" ]; then
-for ndep in `cat $TMPF|awk '{print $2}' |sort|uniq | /usr/bin/fgrep -v -f ${OVL}.pkgs| /usr/bin/fgrep -v -f ${TMPF}.t`
+for ndep in `cat $TMPF|awk '{print $2}' |sort -u | /usr/bin/fgrep -v -f ${OVL}.pkgs| /usr/bin/fgrep -v -f ${TMPF}.t`
 do
 for PKGI in `cat ${OVL}.pkgs`
 do
