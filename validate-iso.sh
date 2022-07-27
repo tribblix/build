@@ -29,9 +29,8 @@ TFILE=/tmp/ival.$$
 
 get_deps() {
     echo $1
-    for dep in `grep '^REQUIRES=' ${1}.ovl | awk -F= '{print $2}'`
+    for dep in `awk -F= '{if ($1 == "REQUIRES") print $2}' ${1}.ovl`
     do
-	#echo $dep
 	get_deps $dep
     done
 }
@@ -41,7 +40,7 @@ get_all_deps (){
     # the idea is that the iso should have the kitchen sink on it
     # but nothing else for applications
     #
-    get_deps kitchen-sink | sort | uniq
+    get_deps kitchen-sink
     #
     # also add the "all" driver overlays, and wifi
     #
@@ -58,7 +57,7 @@ get_all_deps (){
 rm -f ${TFILE}.iso ${TFILE}.sorted
 
 cat overlays.iso | sort > ${TFILE}.iso
-get_all_deps | sort | uniq > ${TFILE}.sorted
+get_all_deps | sort -u > ${TFILE}.sorted
 
 ISDIFF=`diff ${TFILE}.iso ${TFILE}.sorted`
 if [ -n "${ISDIFF}" ]; then
