@@ -10,6 +10,9 @@ PlatformMutex::init() - should we use the os_posix one?
 
 The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
 appears to only be relevant to 32-bit solaris
+20+8
+
+Minimal patch noise.
 
 Tidying up.
 Remove now unused mutex_scope and cond_scope.
