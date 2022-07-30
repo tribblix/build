@@ -3,3 +3,5 @@
 # clean up trash
 #
 rm -fr etc/rc5.d
+mkdir -p var/cache/cups
+chmod 770 var/cache/cups

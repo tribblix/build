@@ -1,0 +1,11 @@
+--- a/configure	Thu May 26 07:17:21 2022
++++ b/configure	Fri Jul 29 19:42:00 2022
+@@ -8237,7 +8237,7 @@
+   return 0;
+ }
+ _ACEOF
+-if ac_fn_c_try_compile "$LINENO"
++if ac_fn_c_try_link "$LINENO"
+ then :
+ 
+ 		PIEFLAGS="-fPIE -pie"

@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+nawk '
+{if ($3 ~ /^var\/cache\/cups/) { $5 = "lp" ; $6 = "lp" }}
+{print}
+'

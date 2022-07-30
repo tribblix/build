@@ -1,4 +1,4 @@
 P TRIBgnutls
 P TRIBlib-zlib
-P TRIBsys-lib-security-gss
+P TRIBsvc-net-dns-mdns
 P TRIBsys-libdbus
