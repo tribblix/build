@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild librevenge-0.0.2 -C --disable-werror 
-${THOME}/build/genpkg TRIBlibrevenge librevenge-0.0.2
+env TRIBBLIX_CFLAGS=-pthreads TRIBBLIX_CXXFLAGS=-pthreads ${THOME}/build/dobuild -64 librevenge-0.0.4 -C --disable-werror 
+${THOME}/build/genpkg TRIBlibrevenge librevenge-0.0.4
