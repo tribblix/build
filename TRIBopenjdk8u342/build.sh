@@ -10,10 +10,12 @@
 # check the build number corresponding to GA here
 # https://github.com/openjdk/jdk8u/tags
 # ga for 8u342 was b07
+# respun but keep the package name
+# ga for 8u345 was b01
 #
 cd ~/ud
-${THOME}/build/unpack openjdk8u342-b07
-cd jdk8u342-b07
+${THOME}/build/unpack openjdk8u345-b01
+cd jdk8u345-b01
 
 #
 # the build fails if it finds gobjcopy
@@ -26,9 +28,10 @@ cd /usr/sfw/bin
 rm gobjcopy
 
 #
-# The fcs is magic to hide the milestone from the version string:
+# The fcs is magic to hide the milestone from the version string.
+# Studio chokes on newer CUPS headers, so point it an an older version
 #
-env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin bash ./configure --with-milestone=fcs --with-update-version=342 --with-build-number=b07 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk1.8.0 --with-jobs=3
+env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin bash ./configure --with-milestone=fcs --with-update-version=345 --with-build-number=b01 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk1.8.0 --with-cups=${THOME}/build/patches/jdk-headers --with-jobs=3
 # SPARC requires env HOTSPOT_DISABLE_DTRACE_PROBES=true ...
 env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin gmake all
 
@@ -43,9 +46,9 @@ ln -s ../../gnu/bin/objcopy gobjcopy
 #
 # cd build/solaris-x86_64-normal-server-release/images/j2sdk-image
 # ./bin/java -version
-# openjdk version "1.8.0_342"
-# OpenJDK Runtime Environment (build 1.8.0_342-b07)
-# OpenJDK 64-Bit Server VM (build 25.342-b07, mixed mode)
+# openjdk version "1.8.0_345"
+# OpenJDK Runtime Environment (build 1.8.0_345-b01)
+# OpenJDK 64-Bit Server VM (build 25.345-b01, mixed mode)
 #
 
 #
@@ -60,22 +63,22 @@ ${THOME}/build/patches/mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /
 
 
 rm -fr /tmp/jdk
-mkdir -p /tmp/jdk/usr/versions/openjdk1.8.0_342
+mkdir -p /tmp/jdk/usr/versions/openjdk1.8.0_345
 mkdir -p /tmp/jdk/usr/jdk/instances
-(cd build/solaris-x86_64-normal-server-release/images/j2sdk-image; tar cf - *) | ( cd /tmp/jdk/usr/versions/openjdk1.8.0_342 ; tar xf -)
+(cd build/solaris-x86_64-normal-server-release/images/j2sdk-image; tar cf - *) | ( cd /tmp/jdk/usr/versions/openjdk1.8.0_345 ; tar xf -)
 cd /tmp/jdk/usr/jdk/instances
-ln -s ../../versions/openjdk1.8.0_342 jdk1.8.0
+ln -s ../../versions/openjdk1.8.0_345 jdk1.8.0
 cd /tmp/jdk/usr/jdk
-ln -s ../versions/openjdk1.8.0_342 .
+ln -s ../versions/openjdk1.8.0_345 .
 # latest is now jdk11
-#ln -s openjdk1.8.0_342 latest
+#ln -s openjdk1.8.0_345 latest
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin
 #ln -s ../jdk/latest/bin/* .
 #rm -f amd64 sparcv9
 #cd /tmp/jdk/usr/versions
 #rm `find . -name '*.diz'`
-cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk1.8.0_342/jre/lib/security
+cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk1.8.0_345/jre/lib/security
 
 #
 # edit .../jre/lib/security/sunpkcs11-solaris.cfg and add the following to disabledMechanisms
