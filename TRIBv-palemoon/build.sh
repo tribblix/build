@@ -1,5 +1,8 @@
 #!/bin/sh
 #
+# Note that we're approved for official branding"
+#  https://forum.palemoon.org/viewtopic.php?f=5&t=26412
+#
 # this is a two-stage build
 # first, build palemoon according to the instructions
 #   http://developer.palemoon.org/build/sunos/
@@ -31,9 +34,9 @@
 # but I've found that doesn't work
 #
 # This will create a tarball
-#   palemoon-31.1.1.solaris2.11-x86_64-illumos.tar.xz
+#   palemoon-31.2.0.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-31.1.1.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-31.2.0.solaris2.11-x86_64-illumos
