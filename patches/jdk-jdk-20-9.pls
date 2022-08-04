@@ -31,7 +31,6 @@
 -p1 openjdk20/illumos-port-10.patch
 -p1 openjdk20/illumos-port-11.patch
 -p1 openjdk20/illumos-port-12.patch
--p1 openjdk20/illumos-port-14.patch
 -p1 openjdk20/illumos-port-15.patch
 -p1 openjdk20/illumos-port-16.patch
 -p1 openjdk20/illumos-port-17.patch

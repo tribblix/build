@@ -1122,7 +1122,7 @@
      BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libTestPsig.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -95,9 +95,6 @@
+@@ -103,9 +103,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1193,7 +1193,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -1189,8 +1183,7 @@
+@@ -1197,8 +1191,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -8679,7 +8679,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3327 +0,0 @@
+@@ -1,3285 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10168,47 +10168,6 @@
 -  saved_jvm_path[MAXPATHLEN - 1] = '\0';
 -}
 -
--
--void os::print_jni_name_prefix_on(outputStream* st, int args_size) {
--  // no prefix required, not even "_"
--}
--
--
--void os::print_jni_name_suffix_on(outputStream* st, int args_size) {
--  // no suffix required
--}
--
--// The following code is moved from os.cpp for making this
--// code platform specific, which it is by its very nature.
--
--// a counter for each possible signal value
--static int Sigexit = 0;
--static jint *pending_signals = NULL;
--static int *preinstalled_sigs = NULL;
--static struct sigaction *chainedsigactions = NULL;
--static Semaphore* sig_sem = NULL;
--
--void os::Solaris::init_signal_mem() {
--  // Initialize signal structures
--  Maxsignum = SIGRTMAX;
--  Sigexit = Maxsignum+1;
--  assert(Maxsignum >0, "Unable to obtain max signal number");
--
--  // Initialize signal structures
--  // pending_signals has one int per signal
--  // The additional signal is for SIGEXIT - exit signal to signal_thread
--  pending_signals = (jint *)os::malloc(sizeof(jint) * (Sigexit+1), mtInternal);
--  memset(pending_signals, 0, (sizeof(jint) * (Sigexit+1)));
--
--  if (UseSignalChaining) {
--    chainedsigactions = (struct sigaction *)malloc(sizeof(struct sigaction)
--                                                   * (Maxsignum + 1), mtInternal);
--    memset(chainedsigactions, 0, (sizeof(struct sigaction) * (Maxsignum + 1)));
--    preinstalled_sigs = (int *)os::malloc(sizeof(int) * (Maxsignum + 1), mtInternal);
--    memset(preinstalled_sigs, 0, (sizeof(int) * (Maxsignum + 1)));
--  }
--}
--
 -////////////////////////////////////////////////////////////////////////////////
 -// Virtual Memory
 -
@@ -11448,7 +11407,6 @@
 -    FLAG_SET_ERGO_IF_DEFAULT(UseNUMAInterleaving, true);
 -  }
 -
--  Solaris::init_signal_mem();
 -  if (PosixSignals::init() == JNI_ERR) {
 -    return JNI_ERR;
 -  }
@@ -12009,7 +11967,7 @@
 -void os::print_memory_mappings(char* addr, size_t bytes, outputStream* st) {}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,204 +0,0 @@
+@@ -1,202 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12149,8 +12107,6 @@
 -  static void libthread_init();
 -  static void synchronization_init();
 -  static bool liblgrp_init();
--
--  static void init_signal_mem();
 -
 -  // alignment with os_posix means we use pthreads
 -  static int mutex_lock(pthread_mutex_t *mx)    { return pthread_mutex_lock(mx); }

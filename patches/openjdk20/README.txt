@@ -10,6 +10,15 @@ PlatformMutex::init() - should we use the os_posix one?
 
 The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
 appears to only be relevant to 32-bit solaris
+
+20+9
+
+Remove print_jni_name_prefix_on, centralized in os_posix.cpp
+Merge illumos-port-14.patch into the main patch to simplify the patch
+set.
+
+Tribblix updates mean I'm now using gcc10 rather than gcc7
+
 20+8
 
 Minimal patch noise.
