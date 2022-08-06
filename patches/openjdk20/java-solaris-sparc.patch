@@ -12325,7 +12325,7 @@
 -}
 --- old/src/hotspot/os_cpu/solaris_x86/atomic_solaris_x86.hpp	2020-05-20 18:09:56.917534941 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,200 +0,0 @@
+@@ -1,182 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12353,9 +12353,6 @@
 -#ifndef OS_CPU_SOLARIS_X86_ATOMIC_SOLARIS_X86_HPP
 -#define OS_CPU_SOLARIS_X86_ATOMIC_SOLARIS_X86_HPP
 -
--// For Sun Studio - implementation is in solaris_x86_64.il.
--
--#ifdef __GNUC__
 -inline int32_t _Atomic_add(int32_t add_value, volatile int32_t* dest) {
 -  int32_t rv = add_value;
 -  __asm__ volatile ("lock xaddl %0,(%2)"
@@ -12407,21 +12404,6 @@
 -                    : "cc", "memory");
 -  return exchange_value;
 -}
--#else
--extern "C" {
--  int32_t _Atomic_add(int32_t add_value, volatile int32_t* dest);
--  int64_t _Atomic_add_long(int64_t add_value, volatile int64_t* dest);
--
--  int32_t _Atomic_xchg(int32_t exchange_value, volatile int32_t* dest);
--  int64_t _Atomic_xchg_long(int64_t exchange_value, volatile int64_t* dest);
--  int8_t  _Atomic_cmpxchg_byte(int8_t exchange_value, volatile int8_t* dest,
--                               int8_t compare_value);
--  int32_t _Atomic_cmpxchg(int32_t exchange_value, volatile int32_t* dest,
--                          int32_t compare_value);
--  int64_t _Atomic_cmpxchg_long(int64_t exchange_value, volatile int64_t* dest,
--                               int64_t compare_value);
--}
--#endif
 -
 -template<size_t byte_size>
 -struct Atomic::PlatformAdd {
