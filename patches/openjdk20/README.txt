@@ -11,6 +11,11 @@ PlatformMutex::init() - should we use the os_posix one?
 The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
 appears to only be relevant to 32-bit solaris
 
+Remove src/hotspot/os_cpu/solaris_x86/count_trailing_zeros_solaris_x86.hpp
+
+Tidy up atomic_solaris_x86.hpp, remove Studio support;
+solaris_x86_64.il can also be removed.
+
 Tidy up bytes_solaris_x86.hpp, remove 32-bit and Studio support.
 
 20+9
