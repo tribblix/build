@@ -1,9 +1,13 @@
 # this is the IceWM programs menu
-prog Firefox web-browser firefox
+prog PaleMoon web-browser palemoon
+prog Abiword abiword abiword
 prog Bluefish bluefish bluefish
-prog LibreOffice soffice soffice
+prog LibreOffice libreoffice-main soffice
 prog Geany geany geany
+prog Gnumeric gnumeric gnumeric
+prog Grisbi grisbi grisbi
 prog gFtp gftp gftp
+prog Imagination imagination imagination
 prog Pidgin pidgin pidgin
 prog XFig xfig xfig
 prog Claws claws-mail claws-mail
