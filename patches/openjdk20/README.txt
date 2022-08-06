@@ -11,6 +11,8 @@ PlatformMutex::init() - should we use the os_posix one?
 The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
 appears to only be relevant to 32-bit solaris
 
+Tidy up bytes_solaris_x86.hpp, remove 32-bit and Studio support.
+
 20+9
 
 Remove print_jni_name_prefix_on, centralized in os_posix.cpp

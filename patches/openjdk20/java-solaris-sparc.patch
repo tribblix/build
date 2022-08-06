@@ -12475,7 +12475,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ATOMIC_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/bytes_solaris_x86.hpp	2020-05-20 18:09:57.609548227 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,84 +0,0 @@
+@@ -1,60 +0,0 @@
 -/*
 - * Copyright (c) 1998, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12503,9 +12503,6 @@
 -#ifndef OS_CPU_SOLARIS_X86_BYTES_SOLARIS_X86_HPP
 -#define OS_CPU_SOLARIS_X86_BYTES_SOLARIS_X86_HPP
 -
--// For Sun Studio - implementation is in solaris_i486.il.
--// For gcc - implementation is just below.
--#ifdef _GNU_SOURCE
 -extern "C" {
 -  inline u2 _raw_swap_u2(u2 x) {
 -    register unsigned short int __dest;
@@ -12523,15 +12520,6 @@
 -    return __dest;
 -  }
 -}
--#else
--extern "C" u2 _raw_swap_u2(u2 x);
--extern "C" u4 _raw_swap_u4(u4 x);
--#ifdef AMD64
--extern "C" u8 _raw_swap_u8(u8 x);
--#else
--extern "C" u8 _raw_swap_u8(u4 x, u4 y);
--#endif // AMD64
--#endif // _GNU_SOURCE
 -
 -// Efficient swapping of data bytes from Java byte
 -// ordering to native byte ordering and vice versa.
@@ -12544,20 +12532,8 @@
 -}
 -
 -inline u8   Bytes::swap_u8(u8 x) {
--#ifdef AMD64
 -  return _raw_swap_u8(x);
--#else
--  return swap_u8_base(*(u4*)&x, *(((u4*)&x)+1));
--#endif // AMD64
--
 -}
--
--#ifndef AMD64
--// Helper function for swap_u8
--inline u8   Bytes::swap_u8_base(u4 x, u4 y) {
--  return _raw_swap_u8(x, y);
--}
--#endif // !AMD64
 -
 -#endif // OS_CPU_SOLARIS_X86_BYTES_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/copy_solaris_x86.hpp	2020-05-20 18:09:58.313561743 -0700
