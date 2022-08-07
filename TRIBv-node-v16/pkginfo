@@ -1,4 +1,4 @@
 PKG="TRIBv-node-v16"
 NAME="Node v16"
-VERSION="16.16.0.0"
+VERSION="16.16.0.1"
 ZAP_URL="https://nodejs.org/"
