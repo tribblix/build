@@ -11,6 +11,10 @@ PlatformMutex::init() - should we use the os_posix one?
 The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
 appears to only be relevant to 32-bit solaris
 
+Test builds with different C standards. With -std=gnu11, everything is
+fine; with -std=c11 or c99, build fails with our own headers (around
+signals, eg sigaction and friends, and presumably more).
+
 Remove src/hotspot/os_cpu/solaris_x86/count_trailing_zeros_solaris_x86.hpp
 
 Tidy up atomic_solaris_x86.hpp, remove Studio support;
