@@ -1,0 +1,89 @@
+This is based on a patch taken from Dilos.
+
+# Copyright (c) 2012-2013, Igor Kozhukhov <ikozhukhov@gmail.com>.
+# All rights reserved.
+
+diff -wpruN '--exclude=*.orig' a~/src/tddl/tddl.c a/src/tddl/tddl.c
+--- a~/src/tddl/tddl.c	1970-01-01 00:00:00
++++ a/src/tddl/tddl.c	1970-01-01 00:00:00
+@@ -18,13 +18,17 @@
+ 
+ #include "trousers/tss.h"
+ #include "trousers_types.h"
++#ifndef SOLARIS
+ #include "linux/tpm.h"
++#endif
+ #include "tcslog.h"
+ #include "tddl.h"
+ 
+ struct tpm_device_node tpm_device_nodes[] = {
++#ifndef SOLARIS
+ 	{"/dev/tpm0", TDDL_UNDEF, TDDL_UNDEF},
+ 	{"/udev/tpm0", TDDL_UNDEF, TDDL_UNDEF},
++#endif
+ 	{"/dev/tpm", TDDL_UNDEF, TDDL_UNDEF},
+ 	{NULL, 0, 0}
+ };
+@@ -42,6 +46,13 @@ struct tcsd_config *_tcsd_options = NULL
+ #include <netdb.h>
+ #include <fcntl.h>
+ 
++#ifdef SOLARIS
++int
++get_device_fd()
++{
++       return (opened_device->fd);
++}
++#endif
+ 
+ int
+ open_device()
+@@ -63,7 +74,7 @@ open_device()
+ 	 
+ 		
+ 		fd = socket(AF_INET, SOCK_STREAM, 0);
+-		if (fd > 0) {
++		if (fd >= 0) {
+ 			struct hostent *host = gethostbyname(tcp_device_hostname);
+ 			if (host != NULL) {   
+ 				struct sockaddr_in addr;
+@@ -107,6 +118,9 @@ open_device()
+ 			errno = 0;
+ 			if ((fd = open(tpm_device_nodes[i].path, O_RDWR)) >= 0)
+ 				break;
++			else
++				fprintf(stderr, "Error opening %s: %s\n",
++				    tpm_device_nodes[i].path, strerror(errno));
+ 		}
+ 	}
+ 	
+@@ -181,11 +195,13 @@ Tddli_TransmitData(BYTE * pTransmitBuf,
+ 			/* fall through */
+ 		case TDDL_TRANSMIT_IOCTL:
+ 			errno = 0;
++#ifndef SOLARIS
+ 			if ((sizeResult = ioctl(opened_device->fd, TPMIOC_TRANSMIT, txBuffer)) != -1) {
+ 				opened_device->transmit = TDDL_TRANSMIT_IOCTL;
+ 				break;
+ 			}
+ 			LogWarn("ioctl: (%d) %s", errno, strerror(errno));
++#endif
+ 			LogInfo("Falling back to Read/Write device support.");
+ 			/* fall through */
+ 		case TDDL_TRANSMIT_RW:
+@@ -255,6 +271,7 @@ Tddli_GetCapability(UINT32 CapArea, UINT
+ 
+ TSS_RESULT Tddli_Cancel(void)
+ {
++#ifndef SOLARIS
+ 	int rc;
+ 
+ 	if (opened_device->transmit == TDDL_TRANSMIT_IOCTL) {
+@@ -270,4 +287,7 @@ TSS_RESULT Tddli_Cancel(void)
+ 	} else {
+ 		return TDDLERR(TSS_E_NOTIMPL);
+ 	}
++#else
++	return TDDLERR(TSS_E_NOTIMPL);
++#endif
+ }

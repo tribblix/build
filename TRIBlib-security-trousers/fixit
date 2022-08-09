@@ -1,21 +1,8 @@
 #!/bin/sh
 #
-# clean up and move
-#
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
 
-#
-# remove la files, safe as OI never shipped them either
-#
-/bin/rm usr/lib/libtspi.la
-/bin/rm usr/lib/${ARCH64}/libtspi.la
+/bin/rm -f usr/lib/libtspi.la
+/bin/rm -f usr/lib/*/libtspi.la
 
 #
 # solaris auths
@@ -23,7 +10,7 @@ esac
 mkdir -p etc/security/auth_attr.d
 mkdir -p etc/security/prof_attr.d
 cat > etc/security/auth_attr.d/trousers <<EOF
-solaris.smf.value.tcsd:::Change TPM Administation value properties::
+solaris.smf.value.tcsd:::Change TPM Administration value properties::
 solaris.smf.manage.tcsd:::Manage TPM Administration service states::
 EOF
 cat > etc/security/prof_attr.d/trousers <<EOF
@@ -31,15 +18,12 @@ TPM Administration::::auths=solaris.smf.manage.tcsd,solaris.smf.value.tcsd
 EOF
 
 #
-# this is a horrid assumption, that we have an old version of trousers
-# installed and copy its manifest and method
+# install service manifest and method
 #
-if [ -f /lib/svc/method/tcsd.sh ]; then
-  mkdir -p lib/svc/method
-  cat /lib/svc/method/tcsd.sh | sed s:/usr/lib/tcsd:/usr/sbin/tcsd: > lib/svc/method/tcsd.sh
-  chmod 555 lib/svc/method/tcsd.sh
-fi
-if [ -f /lib/svc/manifest/application/security/tcsd.xml ]; then
-  mkdir -p lib/svc/manifest/application/security
-  cp -p /lib/svc/manifest/application/security/tcsd.xml lib/svc/manifest/application/security
-fi
+mkdir -p lib/svc/method
+cp ${BUILDROOT}/patches/trousers/tcsd.sh lib/svc/method/tcsd.sh
+chmod 555 lib/svc/method/tcsd.sh
+
+mkdir -p lib/svc/manifest/application/security
+cp ${BUILDROOT}/patches/trousers/tcsd.xml lib/svc/manifest/application/security/tcsd.xml
+chmod 444 lib/svc/manifest/application/security/tcsd.xml

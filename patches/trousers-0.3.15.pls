@@ -1,0 +1,8 @@
+-p1 trousers/HOST_NAME_MAX.patch
+-p1 trousers/init_fini.patch
+-p1 trousers/tddl.patch
+-p1 trousers/paths.patch
+-p1 trousers/dropprivs.patch
+-p1 trousers/mlock.patch
+-p1 trousers/tspi_ps_tspps.c.patch
+-p1 trousers/pthread.patch
