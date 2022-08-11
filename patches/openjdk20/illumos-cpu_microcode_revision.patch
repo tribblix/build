@@ -10,8 +10,8 @@
  
 --- a/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	Tue Jul 28 18:40:12 2020
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	Tue Jul 28 19:50:48 2020
-@@ -351,6 +351,12 @@
- #endif // AMD64
+@@ -298,6 +298,12 @@
+   return true;
  }
  
 +juint os::cpu_microcode_revision() {

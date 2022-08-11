@@ -8481,7 +8481,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3261 +0,0 @@
+@@ -1,3256 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8599,8 +8599,7 @@
 -# include <string.h>
 -# include <stdio.h>
 -
--# define _STRUCTURED_PROC 1  //  this gets us the new structured proc interfaces of 5.6 & later
--# include <sys/procfs.h>     //  see comment in <sys/procfs.h>
+-# include <procfs.h>
 -
 -#define MAX_PATH (2 * K)
 -
@@ -9868,11 +9867,7 @@
 -  if (processor_info(id, &stats) != -1) {
 -    clock = stats.pi_clock;  // pi_processor_type isn't more informative than below
 -  }
--#ifdef AMD64
--  snprintf(buf, buflen, "x86 64 bit %d MHz", clock);
--#else
--  snprintf(buf, buflen, "Unknown 64 bit %d MHz", clock);
--#endif
+-  snprintf(buf, buflen, "64 bit %d MHz", clock);
 -}
 -
 -void os::pd_print_cpu_info(outputStream* st, char* buf, size_t buflen) {
@@ -12389,7 +12384,7 @@
 -#endif // OS_CPU_SOLARIS_X86_COPY_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/globals_solaris_x86.hpp	2020-05-20 18:09:59.705588468 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,50 +0,0 @@
+@@ -1,40 +0,0 @@
 -/*
 - * Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12421,20 +12416,10 @@
 -// (see globals.hpp)
 -
 -define_pd_global(bool, DontYieldALot,            true); // Determined in the design center
--#ifdef AMD64
 -define_pd_global(intx, CompilerThreadStackSize,  1024);
 -define_pd_global(intx, ThreadStackSize,          1024); // 0 => use system default
 -define_pd_global(intx, VMThreadStackSize,        1024);
 -define_pd_global(size_t, JVMInvokeMethodSlack,   8*K);
--#else
--define_pd_global(intx, CompilerThreadStackSize,  512);
--// ThreadStackSize 320 allows a couple of test cases to run while
--// keeping the number of threads that can be created high.
--define_pd_global(intx, ThreadStackSize,          320);
--define_pd_global(intx, VMThreadStackSize,        512);
--define_pd_global(size_t, JVMInvokeMethodSlack,   10*K);
--#endif // AMD64
--
 -
 -// Used on 64 bit platforms for UseCompressedOops base address
 -define_pd_global(size_t, HeapBaseMinAddress,     2*G);
@@ -12442,7 +12427,7 @@
 -#endif // OS_CPU_SOLARIS_X86_GLOBALS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/orderAccess_solaris_x86.hpp	2020-05-20 18:10:00.453602829 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,62 +0,0 @@
+@@ -1,58 +0,0 @@
 -/*
 - * Copyright (c) 2003, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12491,11 +12476,7 @@
 -inline void OrderAccess::release()    { compiler_barrier(); }
 -
 -inline void OrderAccess::fence() {
--#ifdef AMD64
 -  __asm__ volatile ("lock; addl $0,0(%%rsp)" : : : "cc", "memory");
--#else
--  __asm__ volatile ("lock; addl $0,0(%%esp)" : : : "cc", "memory");
--#endif
 -  compiler_barrier();
 -}
 -
@@ -12507,7 +12488,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ORDERACCESS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2020-05-20 18:10:01.145616115 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,809 +0,0 @@
+@@ -1,756 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12587,13 +12568,7 @@
 -# include <sys/lwp.h>
 -# include <poll.h>
 -# include <sys/lwp.h>
--# include <procfs.h>     //  see comment in <sys/procfs.h>
--
--#ifndef AMD64
--// QQQ seems useless at this point
--# define _STRUCTURED_PROC 1  //  this gets us the new structured proc interfaces of 5.6 & later
--#endif // AMD64
--# include <sys/procfs.h>     //  see comment in <sys/procfs.h>
+-# include <procfs.h>
 -
 -
 -#define MAX_PATH (2 * K)
@@ -12809,56 +12784,9 @@
 -  }
 -}
 -
--#ifndef AMD64
--
--// Detecting SSE support by OS
--// From solaris_i486.s
--extern "C" bool sse_check();
--extern "C" bool sse_unavailable();
--
--enum { SSE_UNKNOWN, SSE_NOT_SUPPORTED, SSE_SUPPORTED};
--static int sse_status = SSE_UNKNOWN;
--
--
--static void  check_for_sse_support() {
--  if (!VM_Version::supports_sse()) {
--    sse_status = SSE_NOT_SUPPORTED;
--    return;
--  }
--  // looking for _sse_hw in libc.so, if it does not exist or
--  // the value (int) is 0, OS has no support for SSE
--  int *sse_hwp;
--  void *h;
--
--  if ((h=dlopen("/usr/lib/libc.so", RTLD_LAZY)) == NULL) {
--    //open failed, presume no support for SSE
--    sse_status = SSE_NOT_SUPPORTED;
--    return;
--  }
--  if ((sse_hwp = (int *)dlsym(h, "_sse_hw")) == NULL) {
--    sse_status = SSE_NOT_SUPPORTED;
--  } else if (*sse_hwp == 0) {
--    sse_status = SSE_NOT_SUPPORTED;
--  }
--  dlclose(h);
--
--  if (sse_status == SSE_UNKNOWN) {
--    bool (*try_sse)() = (bool (*)())sse_check;
--    sse_status = (*try_sse)() ? SSE_SUPPORTED : SSE_NOT_SUPPORTED;
--  }
--
--}
--
--#endif // AMD64
 -
 -bool os::supports_sse() {
--#ifdef AMD64
 -  return true;
--#else
--  if (sse_status == SSE_UNKNOWN)
--    check_for_sse_support();
--  return sse_status == SSE_SUPPORTED;
--#endif // AMD64
 -}
 -
 -extern "C" JNIEXPORT int

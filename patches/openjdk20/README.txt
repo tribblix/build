@@ -9,8 +9,7 @@ TODO cleanup from the 20+5 changes:
 
 Remove more 32-bit code from os_solaris_x86.cpp
 
-The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
-appears to only be relevant to 32-bit solaris
+Tidying up old 32-bit code
 
 20+10
 
