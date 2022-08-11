@@ -781,7 +781,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -215,7 +209,6 @@
+@@ -217,7 +211,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -1171,7 +1171,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -501,7 +501,7 @@
+@@ -502,7 +502,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1180,7 +1180,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -519,12 +519,6 @@
+@@ -520,12 +520,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1193,36 +1193,23 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -1197,8 +1191,7 @@
-   if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
-     fatal("pthread_mutexattr_settype: %s", os::strerror(status));
-   }
--  // Solaris has it's own PlatformMutex, distinct from the one for POSIX.
--  NOT_SOLARIS(PlatformMutex::init();)
-+  PlatformMutex::init();
- }
- 
- static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
 --- old/src/hotspot/os/posix/os_posix.inline.hpp	2020-05-20 17:59:45.073787189 -0700
 +++ new/src/hotspot/os/posix/os_posix.inline.hpp	2020-05-20 17:59:44.701780046 -0700
-@@ -46,7 +46,6 @@
-   return _result; \
- } while(false)
+@@ -34,11 +34,9 @@
+ #include <sys/socket.h>
+ #include <netdb.h>
  
 -#ifndef SOLARIS
  // Aix does not have NUMA support but need these for compilation.
  inline bool os::numa_has_static_binding()   { AIX_ONLY(ShouldNotReachHere();) return true; }
  inline bool os::numa_has_group_homing()     { AIX_ONLY(ShouldNotReachHere();) return false;  }
-@@ -79,6 +78,4 @@
-   assert_status(status == 0, status, "cond_broadcast");
- }
- 
 -#endif // !SOLARIS
--
- #endif // OS_POSIX_OS_POSIX_INLINE_HPP
+ 
+ // Platform Mutex/Monitor implementation
+ 
 --- old/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:46.085806620 -0700
 +++ new/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:45.745800092 -0700
-@@ -39,9 +39,6 @@
+@@ -40,9 +40,6 @@
  #include <sys/syscall.h>
  #include <unistd.h>
  #endif
@@ -1330,28 +1317,6 @@
            "Allocation less than this value will be allocated "              \
            "using malloc. Larger allocations will use mmap.")                \
                                                                              \
---- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
-+++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -489,7 +489,7 @@
- 
-   static void free_thread(OSThread* osthread);
- 
--  // thread id on Linux/64bit is 64bit, on Windows and Solaris, it's 32bit
-+  // thread id on Linux/64bit is 64bit, on Windows it's 32bit
-   static intx current_thread_id();
-   static int current_process_id();
- 
-@@ -834,10 +834,8 @@
-   // JVMTI & JVM monitoring and management support
-   // The thread_cpu_time() and current_thread_cpu_time() are only
-   // supported if is_thread_cpu_time_supported() returns true.
--  // They are not supported on Solaris T1.
- 
-   // Thread CPU Time - return the fast estimate on a platform
--  // On Solaris - call gethrvtime (fast) - user time only
-   // On Linux   - fast clock_gettime where available - user+sys
-   //            - otherwise: very slow /proc fs - user+sys
-   // On Windows - GetThreadTimes - user+sys
 --- old/src/hotspot/share/runtime/semaphore.hpp	2020-05-20 18:00:35.454754540 -0700
 +++ new/src/hotspot/share/runtime/semaphore.hpp	2020-05-20 18:00:35.066747091 -0700
 @@ -28,7 +28,7 @@
@@ -1363,21 +1328,6 @@
  # include "semaphore_posix.hpp"
  #else
  # include OS_HEADER(semaphore)
---- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
-+++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -179,12 +179,6 @@
-   set_stack_base(os::current_stack_base());
-   set_stack_size(os::current_stack_size());
- 
--#ifdef SOLARIS
--  if (os::is_primordial_thread()) {
--    os::Solaris::correct_stack_boundaries_for_primordial_thread(this);
--  }
--#endif
--
-   // Set stack limits after thread is initialized.
-   if (is_Java_thread()) {
-     JavaThread::cast(this)->stack_overflow_state()->initialize(stack_base(), stack_end());
 --- old/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.698816829 -0700
 +++ new/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.318809532 -0700
 @@ -46,12 +46,6 @@
@@ -1592,7 +1542,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1759,8 +1759,6 @@
+@@ -1755,8 +1755,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1601,7 +1551,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1822,8 +1820,6 @@
+@@ -1818,8 +1816,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1623,7 +1573,7 @@
  
 --- old/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:50.351040561 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:49.963033111 -0700
-@@ -502,7 +502,7 @@
+@@ -503,7 +503,7 @@
      private static native boolean isReusePortAvailable0();
  
      /*
@@ -1824,9 +1774,9 @@
              defaultUpper = 65535;
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixConstants.java.template	2020-05-20 18:01:02.831280190 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixConstants.java.template	2020-05-20 18:01:02.495273738 -0700
-@@ -31,10 +31,6 @@
- #include <fcntl.h>
- #include <sys/stat.h>
+@@ -34,10 +34,6 @@
+ #include <sys/attr.h>
+ #endif
  
 -/* On Solaris, "sun" is defined as a macro. Undefine to make package
 -   declaration valid */
@@ -2405,26 +2355,6 @@
          if (freetz == NULL) {
              /* strdup if we are still working on getenv result. */
              javatz = strdup(tz);
-@@ -919,19 +591,7 @@
- {
-     time_t offset;
-     char sign, buf[32];
--#if defined(__solaris__)
--    struct tm localtm;
--    time_t currenttime;
--
--    currenttime = time(NULL);
--    if (localtime_r(&currenttime, &localtm) == NULL) {
--        return strdup("GMT");
--    }
--
--    offset = localtm.tm_isdst ? altzone : timezone;
--#else
-     offset = timezone;
--#endif
- 
-     if (offset == 0) {
-         return strdup("GMT");
 --- old/src/java.base/unix/native/libjava/UnixFileSystem_md.c	2020-05-20 18:01:11.571448007 -0700
 +++ new/src/java.base/unix/native/libjava/UnixFileSystem_md.c	2020-05-20 18:01:11.171440327 -0700
 @@ -63,10 +63,6 @@
@@ -6709,7 +6639,7 @@
 -    return -1;
 -  }
 -
--  int status = os::Solaris::mutex_init(&_mutex);
+-  int status = pthread_mutex_init(&_mutex, NULL);
 -  assert_status(status==0, status, "mutex_init");
 -
 -  status = ::sema_init(&_wakeup, 0, NULL, NULL);
@@ -6735,7 +6665,7 @@
 -    }
 -
 -    // lock the list
--    res = os::Solaris::mutex_lock(mutex());
+-    res = pthread_mutex_lock(mutex());
 -    assert(res == 0, "mutex_lock failed");
 -
 -    // remove the head of the list
@@ -6748,7 +6678,7 @@
 -    }
 -
 -    // unlock
--    os::Solaris::mutex_unlock(mutex());
+-    pthread_mutex_unlock(mutex());
 -
 -    // if we got an operation when return it.
 -    if (op != NULL) {
@@ -6760,7 +6690,7 @@
 -// Enqueue an operation
 -void SolarisAttachListener::enqueue(SolarisAttachOperation* op) {
 -  // lock list
--  int res = os::Solaris::mutex_lock(mutex());
+-  int res = pthread_mutex_lock(mutex());
 -  assert(res == 0, "mutex_lock failed");
 -
 -  // enqueue at tail
@@ -6777,7 +6707,7 @@
 -  assert(res == 0, "sema_post failed");
 -
 -  // unlock
--  os::Solaris::mutex_unlock(mutex());
+-  pthread_mutex_unlock(mutex());
 -}
 -
 -
@@ -8679,7 +8609,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3285 +0,0 @@
+@@ -1,3261 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -9293,6 +9223,10 @@
 -  // Initial thread state is RUNNABLE
 -  osthread->set_state(RUNNABLE);
 -  thread->set_osthread(osthread);
+-
+-  if (os::is_primordial_thread()) {
+-    os::Solaris::correct_stack_boundaries_for_primordial_thread(thread);
+-  }
 -
 -  // initialize signal mask for this thread
 -  // and save the caller's signal mask
@@ -11886,34 +11820,6 @@
 -// is unparking you, so don't wait. And spurious returns are fine, so there
 -// is no need to track notifications.
 -
--// Platform Mutex/Monitor implementations
--
--void PlatformMutex::lock() {
--  int status = os::Solaris::mutex_lock(&_mutex);
--  assert_status(status == 0, status, "mutex_lock");
--}
--
--void PlatformMutex::unlock() {
--  int status = os::Solaris::mutex_unlock(&_mutex);
--  assert_status(status == 0, status, "mutex_unlock");
--}
--
--bool PlatformMutex::try_lock() {
--  int status = os::Solaris::mutex_trylock(&_mutex);
--  assert_status(status == 0 || status == EBUSY, status, "mutex_trylock");
--  return status == 0;
--}
--
--void PlatformMonitor::notify() {
--  int status = os::Solaris::cond_signal(&_cond);
--  assert_status(status == 0, status, "cond_signal");
--}
--
--void PlatformMonitor::notify_all() {
--  int status = os::Solaris::cond_broadcast(&_cond);
--  assert_status(status == 0, status, "cond_broadcast");
--}
--
 -// Get the default path to the core file
 -// Returns the length of the string
 -int os::get_core_path(char* buffer, size_t bufferSize) {
@@ -11967,7 +11873,7 @@
 -void os::print_memory_mappings(char* addr, size_t bytes, outputStream* st) {}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,202 +0,0 @@
+@@ -1,201 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11995,6 +11901,8 @@
 -#ifndef OS_SOLARIS_OS_SOLARIS_HPP
 -#define OS_SOLARIS_OS_SOLARIS_HPP
 -
+-#include "runtime/os.hpp"
+-
 -// Solaris_OS defines the interface to Solaris operating systems
 -
 -// see thr_setprio(3T) for the basis of these numbers
@@ -12005,10 +11913,7 @@
 -// FX/60 is critical thread class/priority on T4
 -#define FXCriticalPriority 60
 -
--// Information about the protection of the page at address '0' on this os.
--static bool zero_page_read_protected() { return true; }
--
--class Solaris {
+-class os::Solaris {
 -  friend class os;
 -
 - private:
@@ -12172,7 +12077,7 @@
 -#endif // OS_SOLARIS_OS_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.inline.hpp	2020-05-20 18:09:36.197137133 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,63 +0,0 @@
+@@ -1,69 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12200,6 +12105,8 @@
 -#ifndef OS_SOLARIS_OS_SOLARIS_INLINE_HPP
 -#define OS_SOLARIS_OS_SOLARIS_INLINE_HPP
 -
+-#include "os_solaris.hpp"
+-
 -#include "runtime/os.hpp"
 -#include "os_posix.inline.hpp"
 -
@@ -12212,6 +12119,10 @@
 -#include <unistd.h>
 -#include <netdb.h>
 -#include <setjmp.h>
+-
+-inline bool os::zero_page_read_protected() {
+-  return true;
+-}
 -
 -inline bool os::uses_stack_guard_pages() {
 -  return true;
@@ -12724,7 +12635,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ORDERACCESS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2020-05-20 18:10:01.145616115 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,919 +0,0 @@
+@@ -1,809 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12761,6 +12672,8 @@
 -#include "interpreter/interpreter.hpp"
 -#include "logging/log.hpp"
 -#include "memory/allocation.inline.hpp"
+-#include "os_solaris.hpp"
+-#include "os_posix.hpp"
 -#include "prims/jniFastGetField.hpp"
 -#include "prims/jvm_misc.hpp"
 -#include "runtime/arguments.hpp"
@@ -13074,26 +12987,6 @@
 -    check_for_sse_support();
 -  return sse_status == SSE_SUPPORTED;
 -#endif // AMD64
--}
--
--bool os::is_allocatable(size_t bytes) {
--#ifdef AMD64
--  return true;
--#else
--
--  if (bytes < 2 * G) {
--    return true;
--  }
--
--  char* addr = reserve_memory(bytes, NULL);
--
--  if (addr != NULL) {
--    release_memory(addr, bytes);
--  }
--
--  return addr != NULL;
--#endif // AMD64
--
 -}
 -
 -extern "C" JNIEXPORT int
@@ -13537,106 +13430,14 @@
 -}
 -
 -
--#ifdef AMD64
 -void os::Solaris::init_thread_fpu_state(void) {
 -  // Nothing to do
 -}
--#else
--// From solaris_i486.s
--extern "C" void fixcw();
--
--void os::Solaris::init_thread_fpu_state(void) {
--  // Set fpu to 53 bit precision. This happens too early to use a stub.
--  fixcw();
--}
--
--// These routines are the initial value of atomic_xchg_entry(),
--// atomic_cmpxchg_entry(), atomic_inc_entry() and fence_entry()
--// until initialization is complete.
--// TODO - replace with .il implementation when compiler supports it.
--
--typedef int32_t  xchg_func_t        (int32_t,  volatile int32_t*);
--typedef int32_t  cmpxchg_func_t     (int32_t,  volatile int32_t*,  int32_t);
--typedef int64_t  cmpxchg_long_func_t(int64_t,  volatile int64_t*,  int64_t);
--typedef int32_t  add_func_t         (int32_t,  volatile int32_t*);
--
--int32_t os::atomic_xchg_bootstrap(int32_t exchange_value, volatile int32_t* dest) {
--  // try to use the stub:
--  xchg_func_t* func = CAST_TO_FN_PTR(xchg_func_t*, StubRoutines::atomic_xchg_entry());
--
--  if (func != NULL) {
--    os::atomic_xchg_func = func;
--    return (*func)(exchange_value, dest);
--  }
--  assert(Threads::number_of_threads() == 0, "for bootstrap only");
--
--  int32_t old_value = *dest;
--  *dest = exchange_value;
--  return old_value;
--}
--
--int32_t os::atomic_cmpxchg_bootstrap(int32_t exchange_value, volatile int32_t* dest, int32_t compare_value) {
--  // try to use the stub:
--  cmpxchg_func_t* func = CAST_TO_FN_PTR(cmpxchg_func_t*, StubRoutines::atomic_cmpxchg_entry());
--
--  if (func != NULL) {
--    os::atomic_cmpxchg_func = func;
--    return (*func)(exchange_value, dest, compare_value);
--  }
--  assert(Threads::number_of_threads() == 0, "for bootstrap only");
--
--  int32_t old_value = *dest;
--  if (old_value == compare_value)
--    *dest = exchange_value;
--  return old_value;
--}
--
--int64_t os::atomic_cmpxchg_long_bootstrap(int64_t exchange_value, volatile int64_t* dest, int64_t compare_value) {
--  // try to use the stub:
--  cmpxchg_long_func_t* func = CAST_TO_FN_PTR(cmpxchg_long_func_t*, StubRoutines::atomic_cmpxchg_long_entry());
--
--  if (func != NULL) {
--    os::atomic_cmpxchg_long_func = func;
--    return (*func)(exchange_value, dest, compare_value);
--  }
--  assert(Threads::number_of_threads() == 0, "for bootstrap only");
--
--  int64_t old_value = *dest;
--  if (old_value == compare_value)
--    *dest = exchange_value;
--  return old_value;
--}
--
--int32_t os::atomic_add_bootstrap(int32_t add_value, volatile int32_t* dest) {
--  // try to use the stub:
--  add_func_t* func = CAST_TO_FN_PTR(add_func_t*, StubRoutines::atomic_add_entry());
--
--  if (func != NULL) {
--    os::atomic_add_func = func;
--    return (*func)(add_value, dest);
--  }
--  assert(Threads::number_of_threads() == 0, "for bootstrap only");
--
--  return (*dest) += add_value;
--}
--
--xchg_func_t*         os::atomic_xchg_func         = os::atomic_xchg_bootstrap;
--cmpxchg_func_t*      os::atomic_cmpxchg_func      = os::atomic_cmpxchg_bootstrap;
--cmpxchg_long_func_t* os::atomic_cmpxchg_long_func = os::atomic_cmpxchg_long_bootstrap;
--add_func_t*          os::atomic_add_func          = os::atomic_add_bootstrap;
--
--extern "C" void _solaris_raw_setup_fpu(address ptr);
--void os::setup_fpu() {
--  address fpu_cntrl = StubRoutines::addr_fpu_cntrl_wrd_std();
--  _solaris_raw_setup_fpu(fpu_cntrl);
--}
--#endif // AMD64
+-void os::setup_fpu() {}
 -
 -#ifndef PRODUCT
 -void os::verify_stack_alignment() {
--#ifdef AMD64
 -  assert(((intptr_t)os::current_stack_pointer() & (StackAlignmentInBytes-1)) == 0, "incorrect stack alignment");
--#endif
 -}
 -#endif
 -

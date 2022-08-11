@@ -6,10 +6,33 @@ See also README-zero.txt for patches to build a project zero variant.
 JDK 20 now that jdk19 has been forked off.
 
 TODO cleanup from the 20+5 changes:
-PlatformMutex::init() - should we use the os_posix one?
+
+Remove more 32-bit code from os_solaris_x86.cpp
 
 The big diff in src/java.base/unix/native/libjava/TimeZone_md.c
 appears to only be relevant to 32-bit solaris
+
+20+10
+
+Quite a lot of changes here.
+
+The layout of the os class has changed a bit
+Needed to patch to os.hpp, see illumos-port-20.patch
+but lots of other changes needed.
+
+Remove some 32-bit code from os_solaris_x86.cpp
+
+Move correct_stack_boundaries_for_primordial_thread() which is in
+os::Solaris from the shared thread.cpp into our own os_solaris.cpp
+
+Use pthread variants directly in attachListener_solaris.cpp
+
+More use of the posix PlatformMutex
+
+Remove comment-only patch to os.hpp to simplify maintenance
+
+Remove illumos-port-8.patch, as the platform guard was reworked to be
+correct by default
 
 Test builds with different C standards. With -std=gnu11, everything is
 fine; with -std=c11 or c99, build fails with our own headers (around

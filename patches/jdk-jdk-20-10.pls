@@ -23,7 +23,6 @@
 -p1 openjdk20/illumos-port-7.patch
 -p1 openjdk20/illumos-signal-1.patch
 -p1 openjdk20/illumos-signal-2.patch
--p1 openjdk20/illumos-port-8.patch
 -p1 openjdk20/illumos-port-9.patch
 -p1 openjdk20/illumos-signal-3.patch
 -p1 openjdk20/illumos-port-10.patch
@@ -36,3 +35,4 @@
 -p1 openjdk20/illumos-pollerprovider.patch
 -p1 openjdk20/illumos-port-18.patch
 -p1 openjdk20/illumos-port-19.patch
+-p1 openjdk20/illumos-port-20.patch
