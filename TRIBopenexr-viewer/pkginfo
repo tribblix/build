@@ -1,4 +1,4 @@
 PKG="TRIBopenexr-viewer"
-NAME="OpenEXR Viewer"
-VERSION="1.0.2.1"
+NAME="OpenEXR Viewer (empty legacy)"
+VERSION="1.0.2.2"
 ZAP_URL="http://www.openexr.com/"
