@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-VERSION=9.2.21.0
+VERSION=9.3.6.0
 #
 # make default
 #
@@ -11,34 +11,22 @@ ln -s ../../usr/versions/jruby-${VERSION}/bin/jgem usr/bin/
 ln -s ../../usr/versions/jruby-${VERSION}/bin/jirb usr/bin/
 
 cd usr/versions/jruby-${VERSION}
-rm bin/*.bat
-rm bin/jruby.sh bin/jruby.bash bin/jruby200.sh
-rm bin/*.exe
-rm bin/*.dll
+rm -f bin/*.bat
+rm -f bin/jruby.sh bin/jruby.bash bin/jruby200.sh
+rm -f bin/*.exe
+rm -f bin/*.dll
 rm -fr lib/ruby/stdlib/ffi/platform/*linux
 rm -fr lib/ruby/stdlib/ffi/platform/*darwin
 rm -fr lib/ruby/stdlib/ffi/platform/*cygwin
 rm -fr lib/ruby/stdlib/ffi/platform/*windows
 rm -fr lib/ruby/stdlib/ffi/platform/*bsd
+rm -fr lib/ruby/stdlib/ffi/platform/*bsd12
 rm -fr lib/ruby/stdlib/ffi/platform/*aix
 rm -fr lib/ruby/stdlib/ffi/platform/*gnu
+rm -fr lib/ruby/stdlib/ffi/platform/*haiku
+rm -fr lib/ruby/stdlib/ffi/platform/*msys
 rm -fr lib/jni/*Windows
 rm -fr lib/jni/*Linux
 rm -fr lib/jni/*BSD
 rm -fr lib/jni/*AIX
 rm -fr lib/jni/Darwin
-#
-# build nailgun
-#
-if [ -f tool/nailgun/configure ]; then
-    cd tool/nailgun
-    ./configure
-    make
-    if [ -f ng ]; then
-	mv ng ../../bin
-    fi
-    rm -f config.log
-    rm -f config.status
-    rm -f ng.exe
-    rm -f Makefile
-fi
