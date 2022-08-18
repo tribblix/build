@@ -5,8 +5,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk19-jdk-19-35
-cd jdk19-jdk-19-35
+${THOME}/build/unpack jdk19-jdk-19-36
+cd jdk19-jdk-19-36
 
 #
 # jdk19 needs autoconf installed
@@ -43,8 +43,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 #
 # openjdk version "19-internal" 2022-09-20
-# OpenJDK Runtime Environment (build 19-internal-adhoc.ptribble.jdk19-jdk-19-35)
-# OpenJDK 64-Bit Server VM (build 19-internal-adhoc.ptribble.jdk19-jdk-19-35, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 19-internal-adhoc.ptribble.jdk19-jdk-19-36)
+# OpenJDK 64-Bit Server VM (build 19-internal-adhoc.ptribble.jdk19-jdk-19-36, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -55,7 +55,7 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk19 jdk19
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk19 .
-#jdk19 isn't widely supported, so don't make it the default
+#jdk19 isn't LTS, so don't make it the default
 #ln -s openjdk19 latest
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin
