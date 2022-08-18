@@ -5,7 +5,9 @@ See also README-zero.txt for patches to build a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
-TODO cleanup from the 20+5 changes:
+20+11
+
+page_size() has been centralised
 
 Remove more 32-bit code from os_solaris_x86.cpp
 
