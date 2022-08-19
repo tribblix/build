@@ -18,7 +18,8 @@ git clone https://github.com/haplo-org/haplo-plugin-tool
 #
 git clone https://github.com/haplo-org/haplo-safe-view-templates
 cd haplo-safe-view-templates
-mvn package
+# needs jdk8, java11 doesn't work
+env PATH=/usr/jdk/instances/jdk1.8.0/bin:$PATH mvn package
 cd ..
 
 cd haplo-plugin-tool
