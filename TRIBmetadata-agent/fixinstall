@@ -22,12 +22,12 @@ fi
 # local package tweaks below
 #
 if [ ! -f target/release/metadata ]; then
+    echo "ERROR: unable to find metadata binary"
     exit 1
 fi
 
 mkdir -p ${DESTDIR}/usr/lib
-cp target/release/metadata ${DESTDIR}/usr/lib
-chmod 755 ${DESTDIR}/usr/lib/metadata
+ginstall -s -Dm755 target/release/metadata -t ${DESTDIR}/usr/lib
 cp userscript.sh ${DESTDIR}/usr/lib
 chmod 755 ${DESTDIR}/usr/lib/userscript.sh
 
