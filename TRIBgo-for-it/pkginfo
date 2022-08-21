@@ -1,0 +1,4 @@
+PKG="TRIBgo-for-it"
+NAME="Go-For-It TODO list app"
+VERSION="1.9.6.0"
+ZAP_URL="https://github.com/JMoerman/Go-For-It"
