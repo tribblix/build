@@ -2,8 +2,8 @@
 #
 # 
 #
-$THOME/build/unpack libreoffice-7.2.5.2
-cd libreoffice-7.2.5.2
+$THOME/build/unpack libreoffice-7.2.7.2
+cd libreoffice-7.2.7.2
 
 #
 # if you have a previous build, copy the contents of external/tarballs
@@ -36,7 +36,12 @@ sed -i '/stack-protector-strong/d' ./solenv/gbuild/platform/com_GCC_defs.mk
 # we can now use our openssl again
 #
 
-env PATH=/usr/gnu/bin:$PATH ./configure --prefix=/usr/versions/libreoffice-7 \
+#
+# need to ensure we find python3.7, which is 32-bit
+#
+
+env PATH=/usr/gnu/bin:/usr/versions/python-3.7/bin:$PATH ./configure \
+--prefix=/usr/versions/libreoffice-7 \
 --without-java \
 --without-doxygen \
 --with-tls="openssl" \
@@ -48,6 +53,7 @@ env PATH=/usr/gnu/bin:$PATH ./configure --prefix=/usr/versions/libreoffice-7 \
 --with-system-libzmf \
 --with-system-zlib \
 --with-system-libpng \
+--with-system-jpeg \
 --with-system-libvisio \
 --with-system-curl \
 --with-system-lcms2 \
@@ -78,14 +84,14 @@ env PATH=/usr/gnu/bin:$PATH ./configure --prefix=/usr/versions/libreoffice-7 \
 # a regular make will run the checks; these will almost always fail,
 # regardless of platform, so build without checks
 #
-/usr/gnu/bin/make -j 4 build-nocheck
+env PATH=/usr/gnu/bin:/usr/versions/python-3.7/bin:$PATH /usr/gnu/bin/make -j 4 build-nocheck
 
 #
 # undo the harfbuzz and icu tweaks
 #
 # as root
 #
-# cd /usr/lib ; ln -s libharfbuzz.so.0.10900.0 libharfbuzz.so
+# cd /usr/lib ; ln -s libharfbuzz.so.0.40300.0 libharfbuzz.so
 # cd /usr/lib ; ln -s libicui18n.so.50.1 libicui18n.so
 # cd /usr/lib ; ln -s libicuuc.so.50.1 libicuuc.so
 #
@@ -93,5 +99,5 @@ env PATH=/usr/gnu/bin:$PATH ./configure --prefix=/usr/versions/libreoffice-7 \
 #
 # need distro-pack-install to get things assembled the right way
 #
-/usr/gnu/bin/make distro-pack-install DESTDIR=/tmp/loo
+env PATH=/usr/gnu/bin:/usr/versions/python-3.7/bin:$PATH /usr/gnu/bin/make distro-pack-install DESTDIR=/tmp/loo
 ${THOME}/build/create_pkg TRIBlibreoffice /tmp/loo
