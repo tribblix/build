@@ -5,25 +5,41 @@
 THOME=${THOME:-/packages/localsrc/Tribblix}
 export THOME
 
-case $# in
-    0)
-	ODIR="${THOME}/overlays"
+ODIR=${THOME}/overlays
+ITYPE=""
+INAME="regular "
+
+#
+# flags
+# -d directory
+# -t type (eg minimal)
+#
+while getopts "d:t:" opt; do
+    case $opt in
+    d)
+	ODIR="$OPTARG"
 	;;
-    1)
-	ODIR=$1
+    t)
+	INAME="$OPTARG "
+	ITYPE=".${OPTARG}"
 	;;
-    *)
-	echo "Usage: $0 [overlay_dir]"
-	exit 1
-	;;
-esac
+    esac
+done
+shift $((OPTIND-1))
 
 if [ ! -d $ODIR ]; then
     echo "ERROR: Unable to find $ODIR"
     exit 1
 fi
 
+OFILE="overlays${ITYPE}.iso"
+
 cd ${ODIR}
+
+if [ ! -f $OFILE ]; then
+    echo "ERROR: Unable to find $OFILE"
+    exit 1
+fi
 
 TFILE=/tmp/ival.$$
 
@@ -35,7 +51,7 @@ get_deps() {
     done
 }
 
-get_all_deps (){
+get_normal_deps (){
     #
     # the idea is that the iso should have the kitchen sink on it
     # but nothing else for applications
@@ -54,10 +70,45 @@ get_all_deps (){
     get_deps server-manage
 }
 
+get_minimal_deps (){
+    #
+    # the idea is that the minimal iso should have ec2 and pkgsrc on it
+    # but nothing else for applications
+    #
+    get_deps ec2-baseline
+    get_deps pkgsrc
+    get_deps dbus-glib
+    #
+    # also add the "all" driver overlays
+    #
+    for ovl in $(ls -1d all-*.ovl | egrep -v '(xorg|1394)')
+    do
+	get_deps ${ovl%.ovl}
+    done
+}
+
+get_ec2_deps (){
+    #
+    # the idea is that the ec2 iso should have ec2 on it
+    # but nothing else for applications
+    #
+    get_deps ec2-baseline
+}
+
 rm -f ${TFILE}.iso ${TFILE}.sorted
 
-cat overlays.iso | sort > ${TFILE}.iso
-get_all_deps | sort -u > ${TFILE}.sorted
+cat ${OFILE} | sort > ${TFILE}.iso
+case $INAME in
+    "minimal ")
+	get_minimal_deps | sort -u > ${TFILE}.sorted
+	;;
+    "ec2 ")
+	get_ec2_deps | sort -u > ${TFILE}.sorted
+	;;
+    *)
+	get_normal_deps | sort -u > ${TFILE}.sorted
+	;;
+esac
 
 ISDIFF=`diff ${TFILE}.iso ${TFILE}.sorted`
 if [ -n "${ISDIFF}" ]; then
@@ -68,7 +119,7 @@ if [ -n "${ISDIFF}" ]; then
 	diff ${TFILE}.iso ${TFILE}.sorted
     fi
 else
-    echo "DEBUG: iso overlays are good"
+    echo "DEBUG: ${INAME}iso overlays are good"
 fi
 
 rm -f ${TFILE}.iso ${TFILE}.sorted
