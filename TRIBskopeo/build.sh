@@ -7,8 +7,11 @@ git clone https://github.com/containers/skopeo $GOPATH/src/github.com/containers
 cd $GOPATH/src/github.com/containers/skopeo
 #
 # fix vendor/github.com/containers/storage/pkg/homedir/homedir_others.go
-# build !solaris
+# add build !solaris
 #
+cp vendor/github.com/containers/storage/types/options_linux.go vendor/github.com/containers/storage/types/options_solaris.go
+sed -i s:/run/:/var/run/: vendor/github.com/containers/storage/types/options_solaris.go
+
 gmake bin/skopeo
 
 rm -fr /tmp/ee

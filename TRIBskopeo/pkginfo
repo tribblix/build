@@ -1,4 +1,4 @@
 PKG="TRIBskopeo"
 NAME="Skopeo tool to work with remote image registries"
-VERSION="1.7.1-dev.0"
+VERSION="1.9.3-dev.0"
 ZAP_URL="https://github.com/containers/skopeo"
