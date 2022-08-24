@@ -4,6 +4,7 @@
 # assumes you're in the directory containing the built software
 # the argument is DESTDIR
 #
+VERSION=0.13.0
 
 case $# in
 1)
@@ -26,4 +27,4 @@ fi
 # there is no make install, simply copy the file
 #
 mkdir -p ${DESTDIR}/opt/tribblix/prometheus/sbin
-cp haproxy_exporter/haproxy_exporter ${DESTDIR}/opt/tribblix/prometheus/sbin
+cp haproxy_exporter-${VERSION}/haproxy_exporter-${VERSION} ${DESTDIR}/opt/tribblix/prometheus/sbin/haproxy_exporter
