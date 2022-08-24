@@ -1,19 +1,19 @@
 #!/bin/tcsh
 #
 
-mkdir pb1
-cd pb1
-setenv GOPATH `pwd`
-env PATH=/usr/versions/go-1.15/bin:$PATH go get github.com/prometheus-community/bind_exporter
-cd $GOPATH/src/github.com/prometheus-community/bind_exporter
+$THOME/build/unpack bind_exporter-0.5.0
+cd bind_exporter-0.5.0
 
 #
-# need promu first
+# we need to build the promu tool first, as otherwise the main build
+# tries to download it which fails as there isn't a prebuilt one
+# for solaris
 #
-env PATH=/usr/versions/go-1.15/bin:$PATH go get -u github.com/prometheus/promu
-#
-# a plain make does a bunch of other things that just fail
-#
-env PATH=/usr/versions/go-1.15/bin:$PATH gmake common-build
+git clone https://github.com/prometheus/promu.git
+cd promu
+gmake build
+cd ..
+
+gmake build
 
 ${THOME}/build/genpkg TRIBblix-prombind
