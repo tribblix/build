@@ -5,6 +5,10 @@ See also README-zero.txt for patches to build a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+12
+
+Trivial patch noise.
+
 20+11
 
 page_size() has been centralised
