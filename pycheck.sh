@@ -29,7 +29,7 @@ fi
 if [ $# -gt 0 ]; then
     for file in $*
     do
-	for pkgstr in `grep build/unpack ${file}/build.sh | awk '{print $2}'`
+	for pkgstr in `grep build/unpack ${file}/build.sh | awk '{print $2}'` `grep build/pkg_pep518 ${file}/build.sh | awk '{print $3}'`
 	do
 	    pkgver=${pkgstr##*-}
 	    pkgname=${pkgstr%-*}
@@ -47,7 +47,7 @@ fi
 
 for file in *-${PY3VER}
 do
-    for pkgstr in `grep build/unpack ${file}/build.sh | awk '{print $2}'`
+    for pkgstr in `grep build/unpack ${file}/build.sh | awk '{print $2}'` `grep build/pkg_pep518 ${file}/build.sh | awk '{print $3}'`
     do
 	pkgver=${pkgstr##*-}
 	pkgname=${pkgstr%-*}
