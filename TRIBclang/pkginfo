@@ -1,4 +1,4 @@
 PKG="TRIBclang"
 NAME="Clang Compiler"
-VERSION="14.0.1.0"
+VERSION="14.0.1.1"
 ZAP_URL="http://llvm.org/"
