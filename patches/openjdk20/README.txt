@@ -5,6 +5,9 @@ See also README-zero.txt for patches to build a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+Fixes from build attempt with clang - comments in .S use # not /;
+register specifier is deprecated; use the right linker flags.
+
 20+12
 
 Trivial patch noise.
@@ -22,7 +25,7 @@ Tidying up old 32-bit code
 Quite a lot of changes here.
 
 The layout of the os class has changed a bit
-Needed to patch to os.hpp, see illumos-port-20.patch
+Needed to patch os.hpp, see illumos-port-20.patch
 but lots of other changes needed.
 
 Remove some 32-bit code from os_solaris_x86.cpp
