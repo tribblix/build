@@ -1,0 +1,4 @@
+PKG="TRIBsmplayer"
+NAME="SMPlayer - Free Media Player"
+VERSION="22.2.0.0"
+ZAP_URL="https://smplayer.info/"
