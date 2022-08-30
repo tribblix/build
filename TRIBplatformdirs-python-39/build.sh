@@ -1,10 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/unpack platformdirs-2.5.1
-cd platformdirs-2.5.1
-/usr/versions/python-3.9/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBplatformdirs-python-39 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+${THOME}/build/pkg_pep518 TRIBplatformdirs-python-39 platformdirs-2.5.2
