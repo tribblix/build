@@ -29,7 +29,7 @@ index 56fd0db..ccc2a83 100644
 +++ b/src/Makefile.am
 @@ -40,7 +40,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/include/X11/fonts
  
- libFS_la_LIBADD = $(FS_LIBS)
+ libFS_la_LIBADD = $(LTLIBOBJS) $(FS_LIBS)
  
 -libFS_la_LDFLAGS = -export-symbols-regex '^FS.*' -version-number 6:0:0 -no-undefined
 +libFS_la_LDFLAGS = -Wl,-M$(top_srcdir)/mapfile-vers -version-number 5 -no-undefined
