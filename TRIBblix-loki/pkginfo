@@ -1,4 +1,4 @@
 PKG="TRIBblix-loki"
 NAME="Like Prometheus, but for logs"
-VERSION="2.5.0"
+VERSION="2.6.1p.0"
 ZAP_URL="https://github.com/grafana/loki"

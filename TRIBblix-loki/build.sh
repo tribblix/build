@@ -12,10 +12,13 @@ cd $GOPATH/src/github.com/grafana/loki
 #
 # need at least 1.17 for the net module
 #
-/usr/versions/go-1.17/bin/go build ./cmd/loki
+# fix vendor/go.etcd.io/etcd/client/pkg/v3/transport/sockopt_unix.go
+# just error for the REUSEPORT case
+#
+go build ./cmd/loki
 ls -l ./loki
 # edit vendor/github.com/hpcloud/tail/tail_posix.go - build solaris
-/usr/versions/go-1.17/bin/go build ./clients/cmd/promtail
+go build ./clients/cmd/promtail
 ls -l ./promtail
 
 rm -fr /tmp/ee
