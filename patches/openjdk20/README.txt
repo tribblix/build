@@ -5,6 +5,15 @@ See also README-zero.txt for patches to build a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+13
+
+Remove ProcDebuggerLocal.java, the whole ProcDebugger has gone. So
+remove all solaris support from HotSpotAgent.java as a
+consequence. This also means that libsaproc is no more, and
+tribblix-demangle4.patch isn't needed either
+
+CodeCache::find_blob_unsafe() is now just CodeCache::find_blob()
+
 Fixes from build attempt with clang - comments in .S use # not /;
 register specifier is deprecated; use the right linker flags.
 
