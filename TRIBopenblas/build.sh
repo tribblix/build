@@ -1,18 +1,13 @@
 #!/bin/sh
 #
-${THOME}/build/unpack -64 OpenBLAS-0.2.20
-cd OpenBLAS-0.2.20
-gmake -j PREFIX=/usr TARGET=PRESCOTT
-cd ..
-cd OpenBLAS-0.2.20-64bit
-gmake -j PREFIX=/usr BINARY=64 TARGET=PRESCOTT
-cd ..
+# we only build 64-bit as the only consumers are scipy/numpy which are
+# in a 64-bit python
+#
+${THOME}/build/unpack -64 OpenBLAS-0.3.21
+cd OpenBLAS-0.3.21
+gmake -j PREFIX=/usr TARGET=PRESCOTT NO_STATIC=1 EXTRALIB+="-lm -lgfortran"
 rm -fr /tmp/mm
-cd OpenBLAS-0.2.20-64bit
-env PATH=/usr/gnu/bin:$PATH gmake install PREFIX=/tmp/mm/usr MACHDIR=`isainfo -k`
-cd ..
-cd OpenBLAS-0.2.20
-env PATH=/usr/gnu/bin:$PATH gmake install PREFIX=/tmp/mm/usr
+env PATH=/usr/gnu/bin:$PATH gmake install PREFIX=/tmp/mm/usr BINARY=64 TARGET=PRESCOTT NO_STATIC=1 EXTRALIB+="-lm -lgfortran"
 cd ..
 ${THOME}/build/create_pkg TRIBopenblas /tmp/mm
 rm -fr /tmp/mm

@@ -1,0 +1,11 @@
+--- a/c_check	Sun Aug  7 21:36:26 2022
++++ b/c_check	Fri Sep  2 13:20:49 2022
+@@ -327,7 +327,7 @@
+     esac
+ 
+     case "$flag" in -Y*)
+-        linker_L="$linker_L -Wl,$flag" ;;
++        #linker_L="$linker_L -Wl,$flag" ;;
+     esac
+ 
+     case "$flag" in --exclude-libs*)

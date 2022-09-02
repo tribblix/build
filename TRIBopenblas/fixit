@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# we only build the 64-bit version
+# rather than messing around patching the install locations we simply
+# fix it up here
+#
+mv usr/lib usr/savelib
+mkdir -p usr/lib/`$THOME/build/getarch`
+mv usr/savelib/* usr/lib/`$THOME/build/getarch`
+rmdir usr/savelib
+
+#
+# fix up the pc file
+#
+sed -i s:`pwd`:: usr/lib/`$THOME/build/getarch`/pkgconfig/openblas.pc 
+sed -i s:/usr/lib:/usr/lib/`$THOME/build/getarch`: usr/lib/`$THOME/build/getarch`/pkgconfig/openblas.pc
+#
+# and cmake
+#
+sed -i s:`pwd`:: usr/lib/`$THOME/build/getarch`/cmake/openblas/OpenBLASConfig.cmake

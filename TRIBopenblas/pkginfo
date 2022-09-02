@@ -1,4 +1,4 @@
 PKG="TRIBopenblas"
 NAME="Optimized BLAS library"
-VERSION="0.2.20.1"
+VERSION="0.3.21.0"
 ZAP_URL="http://www.openblas.net/"
