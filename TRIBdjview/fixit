@@ -4,3 +4,8 @@
 # so install the binary under that name
 #
 ln usr/bin/djview usr/bin/djview4
+#
+# there is no prospect of the firefox plugin working
+#
+rm -fr usr/lib/mozilla
+rmdir usr/lib
