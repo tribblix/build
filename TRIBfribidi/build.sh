@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64 fribidi-0.19.7
-${THOME}/build/genpkg TRIBfribidi fribidi-0.19.7
+${THOME}/build/dobuild -64 fribidi-1.0.12 -C --disable-dependency-tracking
+${THOME}/build/genpkg TRIBfribidi fribidi-1.0.12
