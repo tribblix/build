@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+#
+#
+sed -i 's:restrict$::' crengine/src/xxhash.h
+env PATH=/usr/gnu/bin:$PATH ./thirdparty-deploy.sh
