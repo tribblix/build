@@ -1,0 +1,2 @@
+-p1 python/disable_epoll.37.patch
+-p1 python/enable-ossaudiodev.37.patch
