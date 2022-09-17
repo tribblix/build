@@ -207,7 +207,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -409,9 +409,6 @@
+@@ -405,9 +405,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -1306,9 +1306,9 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1948,8 +1942,7 @@
-            "do not map the archive")                                        \
-            range(0, 2)                                                      \
+@@ -1891,8 +1885,7 @@
+   product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
+           "Enable internal testing APIs")                                   \
                                                                              \
 -  product(size_t, ArrayAllocatorMallocLimit,                                \
 -          SOLARIS_ONLY(64*K) NOT_SOLARIS((size_t)-1), EXPERIMENTAL,         \
@@ -1786,7 +1786,7 @@
     identifiers matching a C constant. The PREFIX_ is filtered out in the
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.927301234 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.535293707 -0700
-@@ -92,10 +92,6 @@
+@@ -123,10 +123,6 @@
          return rootDirectory;
      }
  
@@ -2210,7 +2210,7 @@
  #elif defined(_AIX)
  
  static char *
-@@ -853,15 +534,6 @@
+@@ -852,15 +533,6 @@
              free((void *) freetz);
          }
  #else
@@ -3692,7 +3692,7 @@
  #endif
 --- old/src/java.desktop/unix/classes/sun/awt/X11FontManager.java	2020-05-20 18:02:35.237054448 -0700
 +++ new/src/java.desktop/unix/classes/sun/awt/X11FontManager.java	2020-05-20 18:02:34.897047919 -0700
-@@ -696,8 +696,7 @@
+@@ -686,8 +686,7 @@
           * and do the best we can.
           */
          FontConfiguration mFontConfig = new MFontConfiguration(this);

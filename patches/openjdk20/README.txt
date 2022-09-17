@@ -5,6 +5,11 @@ See also README-zero.txt for patches to build a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+14
+
+Bit of patch noise, update cflags from c99 (in our case, gnu99) to c11
+(in our case, gnu11)
+
 20+13
 
 Remove ProcDebuggerLocal.java, the whole ProcDebugger has gone. So
