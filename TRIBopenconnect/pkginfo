@@ -1,4 +1,4 @@
 PKG="TRIBopenconnect"
 NAME="OpenConnect VPN client"
-VERSION="6.00.0"
+VERSION="8.20.0"
 ZAP_URL="http://www.infradead.org/openconnect/"

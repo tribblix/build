@@ -1,0 +1,4 @@
+#!/bin/sh
+mkdir -p etc/vpnc
+cp ${BUILDROOT}/patches/vpnc-script etc/vpnc
+chmod 755 etc/vpnc/vpnc-script
