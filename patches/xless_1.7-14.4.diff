@@ -1,0 +1,619 @@
+--- xless-1.7.orig/Makefile
++++ xless-1.7/Makefile
+@@ -0,0 +1,30 @@
++DESTDIR = 
++CC = gcc
++DEFINES = -DDEBIAN
++INCLUDES = -I/usr/include/X11
++CFLAGS = -O2 -Wall -fno-strength-reduce -m64 $(INCLUDES) $(DEFINES)
++
++OBJS = help.o init.o popup.o util.o callbacks.o window.o main.o actions.o \
++	functions.o
++
++LIBS = -lX11 -lXaw -lXmu -lXt
++
++%.o: %.c
++	$(CC) $(CFLAGS) -c $<
++
++xless: $(OBJS)
++	$(CC) $(CFLAGS) -o xless $(OBJS) $(LIBS)
++
++install: xless
++	mkdir -p $(DESTDIR)/usr/bin
++	mkdir -p $(DESTDIR)/usr/lib/X11/app-defaults
++	mkdir -p $(DESTDIR)/usr/share/man/man1
++	mkdir -p $(DESTDIR)/usr/share/xless
++	ginstall -m 0755 xless $(DESTDIR)/usr/bin
++	ginstall -c -m 0644 XLess.ad $(DESTDIR)/usr/lib/X11/app-defaults/XLess
++	ginstall -c -m 0644 XLess-co.ad $(DESTDIR)/usr/lib/X11/app-defaults/XLess-color
++	ginstall -c -m 0644 xless.man $(DESTDIR)/usr/share/man/man1/xless.1
++	ginstall -c -m 0644 xless.help $(DESTDIR)/usr/share/xless/xless.help
++
++clean:
++	rm -f *.o xless core
+--- xless-1.7.orig/XLess-co.ad
++++ xless-1.7/XLess-co.ad
+@@ -1,10 +1,10 @@
+ #include "XLess"
+ 
+-XLess*Background:		ivory
++*Background:		ivory
+ 
+-XLess*Command.background:	cornsilk
++*Command.background:	cornsilk
+ 
+-XLess*confirm.background:	sea green
++*confirm.background:	sea green
+ 
+-XLess*Cancel.background:	orange red
+-XLess*Ok !.background:		spring green
++*Cancel.background:	orange red
++*Ok !.background:		spring green
+--- xless-1.7.orig/XLess.ad
++++ xless-1.7/XLess.ad
+@@ -1,13 +1,13 @@
+ !$Header: /usr/sww/share/src/X11R6/local/applications/xless-1.5/RCS/XLess.ad,v 1.8 1994/06/01 00:46:29 dglo Exp $
+ 
+-XLess*standardFont:	fixed
+-XLess*textFont:		-misc-fixed-medium-r-normal--13-120-75-75-c-70-iso8859-1
+-XLess*labelFont:	-adobe-times-medium-r-normal--12-120-75-75-p-*-iso8859-1
+-XLess*buttonFont:	-adobe-new century schoolbook-medium-r-normal--12-120-75-75-p-*-iso8859-1
+-XLess*standardCur:	left_ptr
+-XLess*dialogCur:	center_ptr
++*standardFont:	fixed
++*textFont:		-misc-fixed-medium-r-normal--13-120-75-75-c-70-iso8859-1
++*labelFont:	-adobe-times-medium-r-normal--12-120-75-75-p-*-iso8859-1
++*buttonFont:	-adobe-new century schoolbook-medium-r-normal--12-120-75-75-p-*-iso8859-1
++*standardCur:	left_ptr
++*dialogCur:	center_ptr
+ 
+-XLess.Paned.Text.Translations: #override\n\
++.Paned.Text.Translations: #override\n\
+ 	Ctrl<Key>S:	no-op(RingBell)\n\
+ 	Ctrl<Key>R:	no-op(RingBell)\n\
+ 	<Key>space:	next-page()\n\
+@@ -20,7 +20,7 @@
+ 	<Key>J:		scroll-one-line-up()\n\
+ 	<Key>E:		scroll-one-line-up()\n\
+ 	<Key>q:		quit()\n
+-XLess.Paned.Text.baseTranslations: #override\n\
++.Paned.Text.baseTranslations: #override\n\
+ 	<Key>space:	next-page()\n\
+ 	<Key>F:		next-page()\n\
+ 	Ctrl<Key>B:	previous-page()\n\
+--- xless-1.7.orig/callbacks.c
++++ xless-1.7/callbacks.c
+@@ -22,6 +22,7 @@
+  */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <ctype.h>
+ #include <fcntl.h>
+ 
+@@ -33,7 +34,12 @@
+ 
+ #include <X11/Xaw/AsciiText.h>
+ 
++#ifdef DEBIAN
++#define __DO_NOT_DEFINE_COMPILE
++#include <regex.h>
++#else
+ #include "regexp/regexp.h"
++#endif
+ #include "xless.h"
+ 
+ extern char *getenv __P((const char *));
+@@ -144,6 +150,38 @@
+   }
+ }
+ 
++#ifdef DEBIAN
++static int
++find(text, wi, offset)
++const char *text;
++WindowInfo *wi;
++XawTextPosition offset;
++{
++  static Widget badPattern = NULL;
++  char *str = wi->searchBuf;
++  XawTextPosition beg, end;
++  regex_t pat;
++  regmatch_t pmatch;
++  int rtnval;
++
++  /* try to match the pattern */
++  rtnval = 0;
++  if (regcomp(&pat, str, REG_EXTENDED) != 0) {
++    if (!badPattern)
++      badPattern = MessageBox(wi->base, "Bad pattern ...", "OK", 0, 0);
++    if (badPattern)
++      SetPopup(wi->base, badPattern);
++  } else if ((regexec(&pat, text, 1, &pmatch, 0) == 0) && (pmatch.rm_so != -1)) {
++    beg = offset + pmatch.rm_so;
++    end = offset + pmatch.rm_eo;
++    XawTextSetInsertionPoint(wi->text, end);
++    XawTextSetSelection(wi->text, beg, end);
++  } else
++    rtnval = -1;
++
++  return(rtnval);
++}
++#else
+ static int
+ find(text, wi, offset)
+ const char *text;
+@@ -243,6 +281,7 @@
+ 
+   return(rtnval);
+ }
++#endif
+ 
+ static void
+ doSearch(wi)
+--- xless-1.7.orig/debian/README.Debian
++++ xless-1.7/debian/README.Debian
+@@ -0,0 +1,13 @@
++As of 1.7-10, the following changes have been made to the Debian version of
++xless:
++
++* We no longer use the IMakefile based Makefile, mostly just because it's
++  really complex and I don't want to deal with it
++* We no longer use the included regexp library, but instead rely on the 
++  regexp functions built into glibc. This makes it easier to maintain.
++* The only search type that is recognized now is regular expression search.
++  The ExactMatch and CaseInsesitiveMatch in the original xless is not
++  currently supported. If any of you really wants this back, please email
++  me.
++  
++Randolph Chung <tausq@debian.org> Apr 11 1999
+--- xless-1.7.orig/debian/changelog
++++ xless-1.7/debian/changelog
+@@ -0,0 +1,150 @@
++xless (1.7-14.4) unstable; urgency=medium
++
++  * Non-maintainer upload.
++  * debian/rules: Add missing targets (Closes: #999105)
++  * debian/control: Depends on debhelper-compat (= 13) (Closes: #965907)
++  * debian/compat: removed
++
++ -- Bill Allombert <ballombe@debian.org>  Tue, 14 Dec 2021 22:13:04 +0100
++
++xless (1.7-14.3) unstable; urgency=medium
++
++  * Non-maintainer upload.
++  * Apply patch from Navin to fix FTBFS with new libc (Closes: #818830)
++  * debian/rules: 
++    - use dh_prep instead of dh_clean -k
++    - call dh_strip with --no-automatic-dbgsym
++
++ -- Bill Allombert <ballombe@debian.org>  Sun, 24 Jul 2016 11:40:24 +0200
++
++xless (1.7-14.2) unstable; urgency=low
++
++  * Non-maintainer upload.
++  * Makefile.debian: 
++    - Add -lXt to LIBS, remove -lXext -lICE. (Closes: #713445)
++  * debian/rules: fix clean target
++  * Add #include <stdlib.h> to C files using exit()
++  * Remove postinst (/usr/doc transition is completed)
++
++ -- Bill Allombert <ballombe@debian.org>  Mon, 07 Oct 2013 23:52:09 +0200
++
++xless (1.7-14.1) unstable; urgency=low
++
++  * Non-maintainer upload.
++  * Apply patch from Angel Abad <angelabad@gmail.com> to build with
++    the --no-add-needed option. (Closes: #556711)
++  * debian/control: Add ${misc:Depends}.
++  * debian/control: Remove leading article from short description.
++
++ -- Ansgar Burchardt <ansgar@debian.org>  Fri, 29 Jul 2011 18:16:36 +0200
++
++xless (1.7-14) unstable; urgency=low
++
++  * Change maintainer e-mail address.
++  * Fix lintian warnings
++    - debian-rules-ignores-make-clean-error
++    - debian-rules-sets-DH_COMPAT
++  * Bump Standards-Version to 3.7.3 (without modification).
++  * Added Vcs-* fields (debian/control).
++  * Added debian/watch.
++  * Update debhelper compat to 5.
++    - Update Build-Deps accordingly.
++  * Updating information in debian/copyright.
++  * Improving package description in debian/control, thanks to the suggestion
++    of Richard Braakman. (Closes: #19009).
++  * Added a menu entry for xless. (Closes: #47571).
++
++ -- Felipe Augusto van de Wiel (faw) <faw@debian.org>  Sun, 27 Jan 2008 16:30:39 -0600
++
++xless (1.7-13) unstable; urgency=low
++
++  * New Maintainer. (Closes: #352549).
++  * Acknowledge NMUs.
++    - Thanks Daniel (Closes: #127257).
++    - Thanks Amaya (Closes: #166813, #359606).
++  * Fixing changelog typo.
++  * Update copyright info about package maintainer.
++  * Removing debian/xless.1, upstream souce code already contains a manpage.
++    - Changing debian/rules to dh_installman xless.man
++  * Changing Makefile.debian to not use /usr/X11R6
++    - Following the new X.Org structure and also Debian Policy
++  * Removing debian/conffiles
++    - DH_COMPAT=3 (or higher) already add any files in /etc as conffiles,
++      considering this, there is no need to add them manually (and lintian
++      will complain that they are duplicated).
++
++ -- Felipe Augusto van de Wiel (faw) <felipe@cathedrallabs.org>  Sun, 30 Jul 2006 00:55:48 -0300
++
++xless (1.7-12.2) unstable; urgency=low
++
++  * Non-maintainer upload.
++  * Get rid of the /usr/doc link in postinst (Closes: #359606).
++  * Applied patch from Peter De Wachter <pdewacht@vub.ac.be>, so that the
++    scrollbars work again (Closes: #166813).
++  * Revamped packaging a bit, DH_COMPAT is now 4
++  * Updated Standards-Version
++  * Changed dh_installmanpages to dh_installman
++
++ -- Amaya Rodrigo Sastre <amaya@debian.org>  Sun, 16 Jul 2006 16:57:02 +0200
++
++xless (1.7-12.1) unstable; urgency=low
++
++  * NMU to remove depends on xaw-wrappers (Closes: #127257)
++  * add build-depends on libxaw7-dev
++  * bump standards to 3.5.6.0
++
++ -- Daniel Glassey <wdg@debian.org>  Fri,  1 Feb 2002 20:19:03 +0000
++
++xless (1.7-12) unstable; urgency=low
++
++  * moved app-defaults to the new location (closes: #86312)
++  * app-defaults fixes (closes: #71181)
++  * man page (closes: #86987)
++
++ -- Randolph Chung <tausq@debian.org>  Sat, 24 Feb 2001 14:01:43 -0700
++
++xless (1.7-10) unstable; urgency=low
++
++  * new maintainer
++  * New non-xmkmf Makefile in Makefile.debian
++  * Uses regexp library in glibc, instead of its own
++
++ -- Randolph Chung <tausq@debian.org>  Sun, 1 May 1999 23:12:20 -0400
++
++xless (1.7-9) unstable; urgency=low 
++ 
++   * Depends on xaw-wrappers  
++   * Compiled against glibc2.1    
++   * closes: #35908      
++   * Removed strncpy prototype from regexp/regsub.c, things play nice with glibc2.1 on m68k now. (Thanks haggie)
++
++ -- Erick Kinnee <cerb@debian.org>  Sat, 19 Dec 1998 14:09:49 -0500
++ 
++xless (1.7-7) unstable; urgency=low
++
++  * Fixed non-removal of 'debian/files' and 'debian/substvars' from source package.
++
++ -- Erick Kinnee <cerb@debian.org>  Sat, 04 Dec 1998 20:49:00 -0600
++   
++xless (1.7-6) unstable; urgency=low
++
++  * new maintainer
++  
++ -- Erick Kinnee <ekinnee1@airmail.net>  Sun, 15 Nov 1998 15:31:10 -0600
++
++xless (1.7-5) unstable; urgency=low
++
++  * fixed xless.h to point to a correct default editor and correct print
++    command
++  * applied offix patch (allows drag and drop) 
++  * compiled with libc6
++  
++ -- Igor Grobman <igor@debian.org>  Thu, 1 Aug 1997 14:30:06 -0500
++
++xless (1.7-4) unstable; urgency=low
++
++ 	* converted to new debian format
++ 	* new maintainer
++
++ -- Igor Grobman <igor@vaca.net>  Mon, 17 Feb 1997 11:30:30 -0500
++
+--- xless-1.7.orig/debian/control
++++ xless-1.7/debian/control
+@@ -0,0 +1,16 @@
++Source: xless
++Section: text
++Priority: optional
++Maintainer: Felipe Augusto van de Wiel (faw) <faw@debian.org>
++Build-Depends: libxaw7-dev, debhelper-compat (= 13)
++Standards-Version: 3.7.3
++Vcs-Svn: svn://svn.debian.org/svn/collab-maint/deb-maint/xless/trunk/
++Vcs-Browser: http://svn.debian.org/viewsvn/collab-maint/deb-maint/xless/trunk/
++
++Package: xless
++Architecture: any
++Depends: ${shlibs:Depends}, ${misc:Depends}
++Description: file browsing tool for the X Window System
++ xless allows you to view information in an X window. It allows
++ filename (or multiple filenames) arguments, or input via STDIN.
++ It can print the current buffer and do regular expression searches.
+--- xless-1.7.orig/debian/copyright
++++ xless-1.7/debian/copyright
+@@ -0,0 +1,71 @@
++This is the Debian prepackaged version of the xless program.
++xless is Copyright (C) 1994 by Dave Glowacki.
++
++This package was put together by Jim Robinson <jimr@simons-rock.edu>,
++from source obtained from:
++
++	ftp://ftp.x.org/contrib/applications/xless-1.7.tar.gz
++
++For some time, it was maintained by:
++	Randolph Chung <tausq@debian.org>.
++
++Now it is maintained by:
++	Felipe Augusto van de Wiel (faw) <faw@debian.org>.
++
++offix Drag and Drop patch obtained from 
++
++http://www.inf.ufrgs.br/~ahentz/OffiX/tools/xless-1.7.patch.gz
++
++* Note: The Debian version does not use the included regexp library anymore, 
++  instead, we rely on the regexp stuff in glibc
++
++From the xless README:
++
++The regular expression library in the 'regexp' subdirectory was written
++by Henry Spencer and is Copyright (c) 1986 by University of Toronto
++
++LEGAL STUFF:
++   Copyright (C) 1994 by Dave Glowacki
++  
++   Permission is hereby granted, free of charge, to any person obtaining a
++   copy of this software and associated documentation files (the "Software"),
++   to deal in the Software without restriction, including without limitation
++   to rights to use, copy, modify, merge, publish, distribute, sublicense,
++   and/or sell copies of the Software, and to permit persons to whom the
++   Software is furnished to do so, subject to the following conditions:
++  
++   The above copyright notice and this permission notice shall be included in
++   all copies or substantial portions of the Software.
++  
++   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++   DAVE GLOWACKI BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
++   IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
++   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++
++
++From the regexp/COPYRIGHT:
++
++This entire subtree is copyright the University of Toronto.
++The following copyright notice applies to all files found here.  None of
++these files contain AT&T proprietary source code.
++_____________________________________________________________________________
++
++	Copyright (c) 1986 by University of Toronto.
++	Written by Henry Spencer.  Not derived from licensed software.
++
++	Permission is granted to anyone to use this software for any
++	purpose on any computer system, and to redistribute it freely,
++	subject to the following restrictions:
++
++	1. The author is not responsible for the consequences of use of
++		this software, no matter how awful, even if they arise
++		from defects in it.
++
++	2. The origin of this software must not be misrepresented, either
++		by explicit claim or by omission.
++
++	3. Altered versions must be plainly marked as such, and must not
++		be misrepresented as being the original software.
++
+--- xless-1.7.orig/debian/rules
++++ xless-1.7/debian/rules
+@@ -0,0 +1,64 @@
++#!/usr/bin/make -f
++# Made with the aid of dh_make, by Craig Small
++# Sample debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
++# Some lines taken from debmake, by Cristoph Lameter.
++
++# Uncomment this to turn on verbose mode.
++#export DH_VERBOSE=1
++
++build-indep:
++build-arch: build-stamp
++build: build-arch build-indep
++build-stamp:
++	dh_testdir
++
++	# Add here commands to compile the package.
++	$(MAKE) -f Makefile.debian
++
++	touch build-stamp
++
++clean:
++	dh_testdir
++	dh_testroot
++	rm -f build-stamp install-stamp	
++	# Add here commands to clean up after the build process.
++	$(MAKE) -f Makefile.debian clean
++
++	dh_clean
++
++install: install-stamp
++install-stamp: build-stamp
++	dh_testdir
++	dh_testroot
++	dh_prep
++	dh_installdirs
++
++	# Add here commands to install the package into debian/tmp.
++	$(MAKE) -f Makefile.debian install DESTDIR=$(CURDIR)/debian/xless
++
++	touch install-stamp
++
++# Build architecture-independent files here.
++binary-indep: build-indep install
++# We have nothing to do by default.
++
++# Build architecture-dependent files here.
++binary-arch: build-arch install
++	dh_testdir
++	dh_testroot
++	dh_installdocs xless.help
++	dh_installmenu
++	dh_installman xless.man
++	dh_installchangelogs
++	dh_link
++	dh_strip --no-automatic-dbgsym
++	dh_compress
++	dh_fixperms
++	dh_installdeb
++	dh_shlibdeps
++	dh_gencontrol
++	dh_md5sums
++	dh_builddeb
++
++binary: binary-indep binary-arch
++.PHONY: build build-indep build-arch clean binary-indep binary-arch binary
+--- xless-1.7.orig/debian/watch
++++ xless-1.7/debian/watch
+@@ -0,0 +1,2 @@
++version=3
++ftp://ftp.x.org/contrib/applications/xless-(.*).tar.gz
+--- xless-1.7.orig/debian/xless.menu
++++ xless-1.7/debian/xless.menu
+@@ -0,0 +1,2 @@
++?package(xless):needs="X11" section="Applications/Viewers" \
++  title="XLess" command="xless /usr/share/doc/xless/xless.help"
+--- xless-1.7.orig/functions.c
++++ xless-1.7/functions.c
+@@ -22,6 +22,7 @@
+  */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #include <X11/X.h>
+ 
+--- xless-1.7.orig/init.c
++++ xless-1.7/init.c
+@@ -22,6 +22,7 @@
+  */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <unistd.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+@@ -566,6 +567,8 @@
+ 				XtNskipAdjust, False,
+ 				XtNscrollVertical, XawtextScrollWhenNeeded,
+ 				XtNscrollHorizontal, XawtextScrollWhenNeeded,
++				XtNscrollVertical, XawtextScrollAlways,
++				XtNscrollHorizontal, XawtextScrollAlways,
+ 				XtNshowGrip, False,
+ 				XtNstring, data,
+ 				XtNtop, XtChainTop,
+--- xless-1.7.orig/main.c
++++ xless-1.7/main.c
+@@ -22,6 +22,7 @@
+  */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #include <X11/X.h>
+ #include <X11/Xos.h>
+@@ -199,7 +200,7 @@
+   }
+ }
+ 
+-void
++int
+ main(argc, argv)
+ int argc;
+ char *argv[];
+@@ -319,4 +320,5 @@
+   }
+ 
+   XtAppMainLoop(context);
++  return 0;
+ }
+--- xless-1.7.orig/util.c
++++ xless-1.7/util.c
+@@ -23,6 +23,7 @@
+ 
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #include <X11/X.h>
+ #include <X11/Xos.h>
+--- xless-1.7.orig/window.c
++++ xless-1.7/window.c
+@@ -22,6 +22,7 @@
+  */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <fcntl.h>
+ 
+ #include <X11/X.h>
+--- xless-1.7.orig/xless.h
++++ xless-1.7/xless.h
+@@ -39,12 +39,14 @@
+ #define XLESS_MAX_INPUT		256
+ 
+ /* handle differences between K&R and ANSI C */
++#ifndef __P
+ #if __STDC__
+ #define __P(a)	a
+ #else
+ #define __P(a)	()
+ #define const
+ #endif
++#endif
+ 
+ /*
+  * The default editor; make sure the file exists.
+@@ -52,7 +54,7 @@
+  */
+ 
+ #ifndef DEFEDITOR
+-#define DEFEDITOR "/usr/ucb/vi"
++#define DEFEDITOR "/usr/bin/vi"
+ #endif
+ 
+ /*
+@@ -61,7 +63,7 @@
+  */
+ 
+ #ifndef HELPFILE
+-#define HELPFILE "/usr/lib/X11/xless.help"
++#define HELPFILE "/usr/share/xless/xless.help"
+ #endif
+ 
+ /*
+@@ -70,7 +72,7 @@
+  */
+ 
+ #ifndef PRINTCMD
+-#define PRINTCMD "/usr/ucb/lpr"
++#define PRINTCMD "/usr/bin/lpr"
+ #endif
+ 
+ /*
+@@ -234,7 +236,7 @@
+ void QuitFunction __P((void));
+ 
+ /* prototypes from main.c */
+-void main __P((int, char *[]));
++int main __P((int, char *[]));
+ extern XtAppContext context;
+ extern Widget toplevel;
+ extern Display *disp;
