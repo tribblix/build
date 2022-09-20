@@ -1,0 +1,20 @@
+--- a/src/tools/abstracttwopointtool.cpp	Sun Jul  3 14:42:21 2022
++++ b/src/tools/abstracttwopointtool.cpp	Tue Sep 20 18:24:18 2022
+@@ -134,7 +134,7 @@
+ QPoint AbstractTwoPointTool::adjustedVector(QPoint v) const
+ {
+     if (m_supportsOrthogonalAdj && m_supportsDiagonalAdj) {
+-        int dir = (static_cast<int>(round(atan2(-v.y(), v.x()) / ADJ_UNIT)) +
++      int dir = (static_cast<int>(round((double)atan2(-(double)v.y(), (double)v.x()) / ADJ_UNIT)) +
+                    DIRS_NUMBER) %
+                   DIRS_NUMBER;
+         if (dir == UNIT::HORIZ_DIR) {
+@@ -154,7 +154,7 @@
+         }
+     } else if (m_supportsDiagonalAdj) {
+         int dir =
+-          (static_cast<int>(round((atan2(-v.y(), v.x()) - ADJ_DIAG_UNIT / 2) /
++          (static_cast<int>(round(((double)atan2(-(double)v.y(), (double)v.x()) - ADJ_DIAG_UNIT / 2) /
+                                   ADJ_DIAG_UNIT)) +
+            DIAG_DIRS_NUMBER) %
+           DIAG_DIRS_NUMBER;
