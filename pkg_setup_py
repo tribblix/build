@@ -1,0 +1,102 @@
+#!/bin/sh
+#
+# package a python project that uses the old setup.py mechanism
+#
+
+case $# in
+2)
+        PFILE="$2"
+        PKGNAME="$1"
+	;;
+*)
+	echo "Usage: $0 pkg_name tar_file"
+	exit 1
+	;;
+esac
+
+#
+# Default locations
+#
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BUILD="${THOME}/build"
+BROOT="/tmp/pct"
+
+#
+# verify that our arguments refer to a package and to a file
+#
+if [ ! -d $BUILD ]; then
+   echo "ERROR: unable to find build directory $BUILD"
+   exit 1
+fi
+if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+   echo "ERROR: missing package data"
+   echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
+   exit 1
+fi
+     
+if [ ! -d $BROOT ]; then
+    mkdir -p $BROOT
+fi
+if [ ! -d $BROOT ]; then
+   echo "ERROR: unable to find temporary directory $BROOT"
+   exit 1
+fi
+
+#
+# derive the python version from the package name
+#
+SPYVER=${PKGNAME##*-}
+#
+# we assume it has to be 3.X
+#
+case $SPYVER in
+    37)
+	PYVER=3.7
+	;;
+    39)
+	PYVER=3.9
+	;;
+    310)
+	PYVER=3.10
+	;;
+    311)
+	PYVER=3.11
+	;;
+    *)
+	echo "Unrecognised python version $SPYVER"
+	exit 1
+	;;
+esac
+
+echo $PYVER
+
+#
+# define and create working location
+#
+BDIR="${BROOT}/pkg.$$"
+rm -fr ${BDIR}
+
+#
+# unpack
+#
+${BUILD}/unpack $PFILE
+if [ ! -d "${PFILE}" ]; then
+    echo "Missing source directory $PFILE"
+    exit 1
+fi
+cd $PFILE
+if [ ! -f setup.py ]; then
+    echo "No setup.py, is this really a python project?"
+    exit 1
+fi
+#
+# build and install using setup.py
+#
+python${PYVER} setup.py build
+python${PYVER} setup.py install --root=${BDIR}
+
+${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+cd /
+
+# remove our temporary files
+rm -fr ${BDIR}
