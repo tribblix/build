@@ -1,10 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/unpack certifi-2022.6.15
-cd certifi-2022.6.15
-/usr/versions/python-3.10/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-3.10/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBcertifi-python-310 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+${THOME}/build/pkg_setup_py TRIBcertifi-python-310 certifi-2022.9.14
