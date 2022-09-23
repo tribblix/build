@@ -1,11 +1,11 @@
 This is originally derived from the pkgsrc-joyent set for openjdk11,
 considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
-See also README-zero.txt for patches to build a project zero variant.
+See also README-zero.txt for note on a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
-20+15
+20+15, 20+16
 
 Trivial patch noise
 

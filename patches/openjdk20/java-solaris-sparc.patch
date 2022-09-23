@@ -391,7 +391,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -781,7 +780,6 @@
+@@ -782,7 +781,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -448,7 +448,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -988,7 +988,7 @@
+@@ -993,7 +993,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -1521,7 +1521,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1083,7 +1083,7 @@
+@@ -1085,7 +1085,7 @@
  
  #ifndef PRODUCT
  
@@ -1641,7 +1641,7 @@
 +++ new/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.335174660 -0700
 @@ -82,7 +82,6 @@
      /* check if SO_REUSEPORT is supported on this platform */
-     REUSEPORT_available = reuseport_supported();
+     REUSEPORT_available = reuseport_supported(IPv6_available);
      platformInit();
 -    parseExclusiveBindProperty(env);
  
@@ -1773,8 +1773,8 @@
              defaultUpper = 65535;
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixConstants.java.template	2020-05-20 18:01:02.831280190 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixConstants.java.template	2020-05-20 18:01:02.495273738 -0700
-@@ -34,10 +34,6 @@
- #include <sys/attr.h>
+@@ -35,10 +35,6 @@
+ #include <sys/clonefile.h>
  #endif
  
 -/* On Solaris, "sun" is defined as a macro. Undefine to make package
@@ -2408,7 +2408,7 @@
    sigused = sigismember(&jvmsigs, sig);
    if (jvm_signal_installed && sigused) {
      /* jvm has installed its signal handler for this signal. */
-@@ -340,7 +289,6 @@
+@@ -351,7 +300,6 @@
  }
  
  JNIEXPORT struct sigaction *JVM_get_signal_action(int sig) {
@@ -3099,7 +3099,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -403,26 +249,6 @@
+@@ -407,26 +253,6 @@
  
  #endif
  
@@ -3126,7 +3126,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -588,7 +414,7 @@
+@@ -592,7 +418,7 @@
                  *level = IPPROTO_IPV6;
                  *optname = IPV6_MULTICAST_LOOP;
                  return 0;
@@ -3135,7 +3135,7 @@
              // Map IP_TOS request to IPV6_TCLASS
              case java_net_SocketOptions_IP_TOS:
                  *level = IPPROTO_IPV6;
-@@ -737,65 +563,6 @@
+@@ -741,65 +567,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -3201,7 +3201,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -908,20 +675,10 @@
+@@ -912,20 +679,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -3222,7 +3222,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -937,61 +695,8 @@
+@@ -941,61 +699,8 @@
      }
  #endif
  
