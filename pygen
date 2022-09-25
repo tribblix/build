@@ -6,18 +6,27 @@
 #
 
 #
-# by default, package for 3.7 and 3.9
+# by default, package for 3.9, other versions optional
 #
 
 PY37VER=37
 PY37DVER=3.7
 PY39VER=39
 PY39DVER=3.9
+PY310VER=310
+PY310DVER=3.10
 
 DO37=""
+DO310=""
 case $1 in
     +37)
 	DO37="yes"
+	shift
+	;;
+esac
+case $1 in
+    +310)
+	DO310="yes"
 	shift
 	;;
 esac
@@ -50,6 +59,7 @@ esac
 
 PY37NAME=TRIB${pkg_name}-python-${PY37VER}
 PY39NAME=TRIB${pkg_name}-python-${PY39VER}
+PY310NAME=TRIB${pkg_name}-python-${PY310VER}
 
 if [ -d "$PY37NAME" ]; then
    echo "$PY37NAME already exists"
@@ -57,6 +67,10 @@ if [ -d "$PY37NAME" ]; then
 fi
 if [ -d "$PY39NAME" ]; then
    echo "$PY39NAME already exists"
+   exit 1
+fi
+if [ -d "$PY310NAME" ]; then
+   echo "$PY310NAME already exists"
    exit 1
 fi
 
@@ -108,3 +122,23 @@ cat > $PY39NAME/build.sh <<EOF
 \${THOME}/build/$BUILDER $PY39NAME $TBALL
 EOF
 chmod a+x $PY39NAME/build.sh
+
+if [ -n "$DO310" ]; then
+#
+# python 3.10
+#
+mkdir $PY310NAME
+echo "P TRIBv-python-$PY310VER" > $PY310NAME/depend
+cat > $PY310NAME/pkginfo <<EOF
+PKG="${PY310NAME}"
+NAME="Python $PNAME"
+VERSION="${PVER}.0"
+ZAP_URL="https://pypi.org/project/${PNAME}"
+EOF
+cat > $PY310NAME/build.sh <<EOF
+#!/bin/sh
+#
+\${THOME}/build/unpack$BUILDER $PY310NAME $TBALL
+EOF
+chmod a+x $PY310NAME/build.sh
+fi
