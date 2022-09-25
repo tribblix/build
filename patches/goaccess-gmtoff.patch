@@ -1,0 +1,13 @@
+gmtoff is a BSD extension we don't have, so simply ignore it.
+
+--- a/src/util.c	Wed Aug 31 23:45:07 2022
++++ b/src/util.c	Sun Sep 25 10:38:42 2022
+@@ -517,7 +517,7 @@
+   struct tm tmp;
+ 
+   tmp = *src;
+-  return timegm (&tmp) - src->tm_gmtoff;
++  return timegm (&tmp);
+ }
+ 
+ void
