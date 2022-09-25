@@ -38,7 +38,7 @@ cd build
 ###x86
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
 ../configure --prefix=/opt/gcc/7.3.0 --enable-languages=c,c++,objc \
-  --with-pkgversion="Illumos/Tribblix 7.3.0" \
+  --with-pkgversion="illumos/Tribblix 7.3.0" \
   --with-bugurl="http://www.tribblix.org/feedback.html" \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/gnu/bin/as --with-gnu-as
@@ -46,7 +46,7 @@ env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu
 ###sparc
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
 ../configure --prefix=/opt/gcc/7.3.0 --enable-languages=c,c++,objc \
-  --with-pkgversion="Illumos/Tribblix 7.3.0" \
+  --with-pkgversion="illumos/Tribblix 7.3.0" \
   --with-bugurl="http://www.tribblix.org/feedback.html" \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/ccs/bin/as --without-gnu-as

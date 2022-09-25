@@ -27,7 +27,7 @@ cd build
 #
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
 ../configure --prefix=/opt/gcc/4.4.4 --enable-languages=c,c++,objc \
-  --with-pkgversion="Illumos/Tribblix" \
+  --with-pkgversion="illumos/Tribblix" \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/gnu/bin/as --with-gnu-as
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \

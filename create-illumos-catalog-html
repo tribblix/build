@@ -41,7 +41,7 @@ cat <<EOF
 <html>
 <Head><title>Tribblix package catalog</title></head>
 <body>
-<h1>Illumos packages for Tribblix</h1>
+<h1>illumos packages for Tribblix</h1>
 <dl>
 EOF
 
