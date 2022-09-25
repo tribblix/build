@@ -22,13 +22,28 @@ case $1 in
 	;;
 esac
 
+case $1 in
+    -p)
+	BUILDER=pkg_pep518
+	shift
+	;;
+    -s)
+	BUILDER=pkg_setup_py
+	shift
+	;;
+    *)
+	echo "Usage: $0 -s|-p pkg_name tarball_name"
+	exit 1
+	;;
+esac
+
 case $# in
 2)
 	pkg_name=$1
 	TBALL=$2
 	;;
 *)
-	echo "Usage: $0 pkg_name tarball_name"
+	echo "Usage: $0 -s|-p pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -71,14 +86,7 @@ EOF
 cat > $PY37NAME/build.sh <<EOF
 #!/bin/sh
 #
-\${THOME}/build/unpack $TBALL
-cd $TBALL
-/usr/versions/python-${PY37DVER}/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-${PY37DVER}/bin/python3 setup.py install --root=/tmp/pil
-\${THOME}/build/create_pkg $PY37NAME /tmp/pil
-cd ..
-rm -fr /tmp/pil
+\${THOME}/build/unpack$BUILDER $PY37NAME $TBALL
 EOF
 chmod a+x $PY37NAME/build.sh
 fi
@@ -97,13 +105,6 @@ EOF
 cat > $PY39NAME/build.sh <<EOF
 #!/bin/sh
 #
-\${THOME}/build/unpack $TBALL
-cd $TBALL
-/usr/versions/python-${PY39DVER}/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-${PY39DVER}/bin/python3 setup.py install --root=/tmp/pil
-\${THOME}/build/create_pkg $PY39NAME /tmp/pil
-cd ..
-rm -fr /tmp/pil
+\${THOME}/build/$BUILDER $PY39NAME $TBALL
 EOF
 chmod a+x $PY39NAME/build.sh
