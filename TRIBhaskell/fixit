@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-VERSION="8.0.2"
 
 #
 # we don't yet ship a 64-bit haskell, but some of the code here is what
