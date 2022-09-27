@@ -3,16 +3,5 @@
 # mkdocs-material and mkdocs-material-extensions have a circular dependency,
 # so package them together
 #
-rm -fr /tmp/pil
-${THOME}/build/unpack mkdocs-material-7.2.5
-cd mkdocs-material-7.2.5
-/usr/versions/python-3.9/bin/python3 setup.py build
-/usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
-cd ..
-${THOME}/build/unpack mkdocs-material-extensions-1.0.1
-cd mkdocs-material-extensions-1.0.1
-/usr/versions/python-3.9/bin/python3 setup.py build
-/usr/versions/python-3.9/bin/python3 setup.py install --root=/tmp/pil
-cd ..
-${THOME}/build/create_pkg TRIBmkdocs-material-python-39 /tmp/pil
-rm -fr /tmp/pil
+
+${THOME}/build/pkg_pep518 TRIBmkdocs-material-python-39 mkdocs_material-8.5.3 mkdocs-material-extensions-1.0.3
