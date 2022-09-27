@@ -1,16 +1,16 @@
 #!/bin/sh
 #
-# package a python project that uses the old setup.py mechanism
+# package one or more python project(s) that use the old setup.py mechanism
 #
 
 case $# in
-2)
-        PFILE="$2"
-        PKGNAME="$1"
-	;;
-*)
+0|1)
 	echo "Usage: $0 pkg_name tar_file"
 	exit 1
+	;;
+*)
+	PKGNAME="$1"
+	shift
 	;;
 esac
 
@@ -77,6 +77,11 @@ BDIR="${BROOT}/pkg.$$"
 rm -fr ${BDIR}
 
 #
+# loop over arguments
+#
+for PFILE in $*
+do
+#
 # unpack
 #
 ${BUILD}/unpack $PFILE
@@ -94,6 +99,11 @@ fi
 #
 python${PYVER} setup.py build
 python${PYVER} setup.py install --root=${BDIR}
+cd ..
+#
+# end loop
+#
+done
 
 ${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
 cd /
