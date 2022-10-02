@@ -1,5 +1,6 @@
 P TRIBcdiff-python-39
 P TRIBclick-python-39
+P TRIBconsul-python-39
 P TRIBdateutil-python-39
 P TRIBetcd-python-39
 P TRIBlibyaml
@@ -8,7 +9,6 @@ P TRIBpsutil-python-39
 P TRIBpsycopg2-39
 P TRIBrequests-python-39
 P TRIBsix-python-39
-P TRIBtzlocal-python-39
 P TRIBurllib3-python-39
 P TRIBv-python-39
 P TRIByaml-python-39
