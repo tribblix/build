@@ -4,11 +4,9 @@
 #
 # Needs to match the corresponding llvm package
 #
-# Currently experimental
-#
 
-${THOME}/build/unpack clang-14.0.1.src
-cd clang-14.0.1.src
+${THOME}/build/unpack clang-14.0.6.src
+cd clang-14.0.6.src
 
 mkdir build
 cd build

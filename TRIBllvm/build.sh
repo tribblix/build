@@ -4,11 +4,9 @@
 #
 # Now has clang in a separate package
 #
-# Currently experimental
-#
 
-${THOME}/build/unpack llvm-14.0.1.src
-cd llvm-14.0.1.src
+${THOME}/build/unpack llvm-14.0.6.src
+cd llvm-14.0.6.src
 
 mkdir build
 cd build
