@@ -1,15 +1,17 @@
 #!/bin/sh
 #
-# we cheat a bit here, and use the prebuilt omnios files
+# we cheated a bit here, and uses the prebuilt omnios files
 #
 # on an omnios box (or omnios alien zone):
 # pkg install bhyve/brand
-# cd /usr/lib/brand
-# tar cf bhyve-brand.tar bhyve
+# cd /usr/lib/brand/bhyve
 #
-# and then check in that file for the fixit script to unpack
+# and then check in the files from there for the fixit script to put
+# in the package
 #
-# the only change I've made is the path to common.ksh
+# this has been modified since the initial copy
+# createzone has a modified path to common.ksh
+# init has been heaviliy modified to add cloud-init
 #
 mkdir tmp1
 cd tmp1

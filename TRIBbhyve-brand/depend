@@ -1,5 +1,7 @@
+P TRIBcdrtools
 P TRIBdev-acpi
 P TRIBsys-bhyve
 P TRIBsys-bhyve-firmware
 P TRIBsys-zones
 P TRIBv-python-39
+P TRIByaml-python-39
