@@ -7,22 +7,14 @@
 
 mkdir tf
 cd tf
-setenv GOPATH `pwd`
-mkdir -p src/github.com/hashicorp
-cd src/github.com/hashicorp
-git clone git@github.com:hashicorp/terraform.git
-cd terraform
-git checkout v0.12.30
-
-#
-# explicitly specify the target, and create a production build
-# rather than a development build
-#
-env PATH=/usr/versions/go-1.15/bin:${GOPATH}/bin:$PATH XC_OS=solaris XC_ARCH=amd64 gmake bin
+git clone https://github.com/hashicorp/terraform
+cd terraform/
+git checkout v1.3.1
+go install .
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
-cp bin/terraform /tmp/ee/usr/bin
+cp `go env GOPATH`/bin/terraform /tmp/ee/usr/bin
 mkdir -p /tmp/ee/usr/share/doc/terraform
 cp LICENSE README.md /tmp/ee/usr/share/doc/terraform
 ${THOME}/build/create_pkg TRIBterraform /tmp/ee
