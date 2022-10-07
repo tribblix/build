@@ -61,6 +61,16 @@ PY37NAME=TRIB${pkg_name}-python-${PY37VER}
 PY39NAME=TRIB${pkg_name}-python-${PY39VER}
 PY310NAME=TRIB${pkg_name}-python-${PY310VER}
 
+#
+# check we're within the SVR4 package name length limit
+# use the 3.10 name, as it's the longest, even if we don't use it
+#
+NAMELEN=$(echo $PY310NAME|wc -c)
+if [ $NAMELEN -gt 31 ]; then
+    echo "Chosen name exceeds the SVR4 package name length limit (length $NAMELEN)"
+    exit 1
+fi
+
 if [ -d "$PY37NAME" ]; then
    echo "$PY37NAME already exists"
    exit 1
