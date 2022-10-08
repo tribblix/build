@@ -1,6 +1,9 @@
 #!/bin/sh
 #
-env GOPATH=`pwd` go get github.com/digitalocean/doctl/cmd/doctl
+# specify version explicitly, rather than @latest
+# later versions fail to build
+#
+env GOPATH=`pwd` go install github.com/digitalocean/doctl/cmd/doctl@v1.79
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
 mkdir -p /tmp/cs/usr/share/doctl
