@@ -2,7 +2,7 @@
 #
 mkdir ~/ud/c
 cd ~/ud/c
-env GO111MODULE=on GOPATH=`pwd` /usr/versions/go-1.15/bin/go get github.com/minio/mc
+env GOPATH=`pwd` go install github.com/minio/mc@latest
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
