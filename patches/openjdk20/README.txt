@@ -5,6 +5,22 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+17
+
+src/java.base/unix/native/libnio/ch/FileChannelImpl.c
+has been removed, do don't patch it. However:
+
+FileDispatcherImpl has been split out into a shared
+UnixFileDispatcherImpl plus platform-specific FileDispatcherImpl, so
+we need our own implementation, and that includes parts of what would
+have been FileChannelImpl.c, the new files are
+src/java.base/solaris/classes/sun/nio/ch/FileDispatcherImpl.java and 
+src/java.base/solaris/native/libnio/ch/FileDispatcherImpl.c, and all
+we need to do is implement our copy of transferTo0 from the old
+FileChannelImpl.c, see illumos-port-21.patch
+
+Remove tribblix-wait.patch, the patched file is no more.
+
 20+15, 20+16
 
 Trivial patch noise

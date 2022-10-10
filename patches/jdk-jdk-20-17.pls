@@ -11,7 +11,6 @@
 -p0 openjdk20/tribblix-flags-ldflags.patch
 -p0 openjdk20/tribblix-flags-ldflags2.patch
 -p0 openjdk20/tribblix-flags-ldflags3.patch
--p0 openjdk20/tribblix-wait.patch
 -p0 openjdk20/tribblix-demangle1.patch
 -p1 openjdk20/illumos-port-2.patch
 -p1 openjdk20/illumos-port-3.patch
@@ -35,5 +34,6 @@
 -p1 openjdk20/illumos-port-18.patch
 -p1 openjdk20/illumos-port-19.patch
 -p1 openjdk20/illumos-port-20.patch
+-p1 openjdk20/illumos-port-21.patch
 -p1 openjdk20/illumos-zero-1.patch
 -p1 openjdk20/illumos-zero-2.patch
