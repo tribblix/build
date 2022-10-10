@@ -115,8 +115,8 @@
    MEMORY_SIZE := $(shell \
 --- old/make/RunTestsPrebuiltSpec.gmk	2020-05-20 17:58:25.304255556 -0700
 +++ new/make/RunTestsPrebuiltSpec.gmk	2020-05-20 17:58:24.916248106 -0700
-@@ -172,16 +172,6 @@
- HG := hg
+@@ -171,16 +171,6 @@
+ FILE := file
  ULIMIT := ulimit
  
 -# On Solaris gnu versions of some tools are required.
@@ -391,7 +391,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -783,7 +782,6 @@
+@@ -782,7 +781,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -411,7 +411,7 @@
  VALID_TOOLCHAINS_windows="microsoft"
 --- old/make/common/MakeBase.gmk	2020-05-20 17:58:45.708647335 -0700
 +++ new/make/common/MakeBase.gmk	2020-05-20 17:58:45.324639962 -0700
-@@ -264,33 +264,7 @@
+@@ -263,33 +263,7 @@
  ################################################################################
  # All install-file and related macros automatically call DecodeSpace when needed.
  
@@ -702,7 +702,7 @@
        SRC := $(TOPDIR)/src/$(MODULE)/unix/native/jspawnhelper, \
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
-@@ -52,7 +52,6 @@
+@@ -55,7 +55,6 @@
      LDFLAGS_windows := -delayload:secur32.dll -delayload:iphlpapi.dll, \
      LIBS_unix := -ljvm -ljava, \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -710,7 +710,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_windows := ws2_32.lib jvm.lib secur32.lib iphlpapi.lib winhttp.lib \
          delayimp.lib $(WIN_JAVA_LIB) advapi32.lib, \
-@@ -82,8 +80,6 @@
+@@ -82,8 +81,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := -ljava -lnet, \
      LIBS_linux := -lpthread $(LIBDL), \
@@ -719,7 +719,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation -framework CoreServices, \
-@@ -138,7 +134,6 @@
+@@ -136,7 +133,6 @@
          LDFLAGS := $(LDFLAGS_JDKLIB) \
              $(call SET_SHARED_LIBRARY_ORIGIN), \
          LIBS_linux := $(LIBDL), \
@@ -764,7 +764,7 @@
  # If FDLIBM_CFLAGS is non-empty we know that we can optimize
  # fdlibm when adding those extra C flags. Currently GCC,
  # and clang only.
-@@ -63,7 +59,7 @@
+@@ -68,7 +64,7 @@
  ##########################################################################################
  
  LIBVERIFY_OPTIMIZATION := HIGH
@@ -773,7 +773,7 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBVERIFY_OPTIMIZATION := LOW
    endif
-@@ -106,7 +102,6 @@
+@@ -111,7 +107,6 @@
      LIBS := $(BUILD_LIBFDLIBM_TARGET), \
      LIBS_unix := -ljvm, \
      LIBS_linux := $(LIBDL), \
@@ -781,7 +781,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -217,7 +212,6 @@
+@@ -222,7 +217,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -1005,7 +1005,7 @@
      TARGETS += $(BUILD_LIBSCTP)
 --- old/make/scripts/compare.sh	2020-05-20 17:59:27.985459081 -0700
 +++ new/make/scripts/compare.sh	2020-05-20 17:59:27.597451631 -0700
-@@ -72,14 +72,7 @@
+@@ -73,14 +73,7 @@
  # Disassembly diff filters. These filters try to filter out ephemeral parts of the
  # disassembly, such as hard-coded addresses, to be able to catch "actual" differences.
  
@@ -1021,7 +1021,7 @@
    if [ "$OPENJDK_TARGET_CPU" = "x86" ]; then
      DIS_DIFF_FILTER="$SED -r \
          -e 's/^  [0-9A-F]{16}: //' \
-@@ -446,14 +439,7 @@
+@@ -447,14 +440,7 @@
      fi
  
      CONTENTS_DIFF_FILE=$WORK_DIR/$ZIP_FILE.diff
@@ -1037,7 +1037,7 @@
  
      ONLY_OTHER=$($GREP "^Only in $OTHER_UNZIPDIR" $CONTENTS_DIFF_FILE)
      ONLY_THIS=$($GREP "^Only in $THIS_UNZIPDIR" $CONTENTS_DIFF_FILE)
-@@ -473,14 +459,8 @@
+@@ -474,14 +460,8 @@
      fi
  
      if [ "$CMP_ZIPS_CONTENTS" = "true" ]; then
@@ -1054,7 +1054,7 @@
  
          # Separate executable/library files from other files in zip.
          DIFFING_TEXT_FILES=
-@@ -817,10 +797,6 @@
+@@ -826,10 +806,6 @@
          # to filter out that extra information.
          $DUMPBIN -exports $OTHER_FILE | $GREP  -E '^ +[0-9A-F]+ +[0-9A-F]+ [0-9A-F]+' | sed 's/ = .*//g' | cut -c27- | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.other
          $DUMPBIN -exports $THIS_FILE  | $GREP  -E '^ +[0-9A-F]+ +[0-9A-F]+ [0-9A-F]+' | sed 's/ = .*//g' | cut -c27- | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.this
@@ -1521,7 +1521,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1085,7 +1085,7 @@
+@@ -1082,7 +1082,7 @@
  
  #ifndef PRODUCT
  
@@ -2503,7 +2503,7 @@
  #endif
  
  #ifdef LIFNAMSIZ
-@@ -147,11 +136,6 @@
+@@ -146,11 +135,6 @@
                               const struct in_addr *addr, unsigned char *buf);
  static int     getMTU(JNIEnv *env, int sock, const char *ifname);
  
@@ -2515,7 +2515,7 @@
  /******************* Java entry points *****************************/
  
  /*
-@@ -1677,372 +1661,6 @@
+@@ -1674,372 +1658,6 @@
  
  #endif /* _AIX */
  

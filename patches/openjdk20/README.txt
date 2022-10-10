@@ -5,10 +5,14 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+18
+
+Trivial patch noise
+
 20+17
 
 src/java.base/unix/native/libnio/ch/FileChannelImpl.c
-has been removed, do don't patch it. However:
+has been removed, so don't patch it. However:
 
 FileDispatcherImpl has been split out into a shared
 UnixFileDispatcherImpl plus platform-specific FileDispatcherImpl, so
