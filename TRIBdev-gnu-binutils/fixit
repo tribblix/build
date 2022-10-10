@@ -3,6 +3,7 @@
 # gcc444 for illumos build thinks it knows where gas lives
 #
 mkdir -p usr/sfw/bin
+mkdir -p usr/bin
 cd usr/sfw/bin
 ln -s ../../gnu/bin/as gas
 #
@@ -11,3 +12,9 @@ ln -s ../../gnu/bin/as gas
 ln -s ../../gnu/bin/ld gld
 ln -s ../../gnu/bin/objcopy gobjcopy
 ln -s ../../gnu/bin/strip gstrip
+#
+# and Pale Moon wants these links
+#
+cd ../../bin
+ln -s ../../usr/gnu/bin/readelf greadelf
+ln -s ../../usr/gnu/bin/nm gnm

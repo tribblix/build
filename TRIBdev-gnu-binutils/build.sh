@@ -2,9 +2,12 @@
 #
 # we use the same version and patches as OI
 #
-${THOME}/build/unpack binutils-2.25.1
-cd binutils-2.25.1
-env PATH=/usr/gnu/bin:$PATH CFLAGS="-O" bash ./configure --prefix=/usr/gnu --enable-64-bit-bfd --enable-gold=no --enable-plugins=no --enable-nls --enable-largefile=yes
+# need --enable-warn-rwx-segments=no otherwise the gate build fails as
+# program header data segments are RWX on illumos for at least 32-bit
+#
+${THOME}/build/unpack binutils-2.39
+cd binutils-2.39
+env PATH=/usr/gnu/bin:$PATH CFLAGS="-O" bash ./configure --prefix=/usr/gnu --enable-64-bit-bfd --enable-gold=no --enable-plugins=no --enable-nls --enable-largefile=yes --with-system-zlib --enable-warn-rwx-segments=no
 env PATH=/usr/gnu/bin:$PATH gmake -j
 cd ..
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/genpkg TRIBdev-gnu-binutils binutils-2.25.1
+env PATH=/usr/gnu/bin:$PATH ${THOME}/build/genpkg TRIBdev-gnu-binutils binutils-2.39

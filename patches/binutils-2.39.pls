@@ -1,0 +1,3 @@
+-p1 binutils/02-gas.write.c.patch
+-p1 binutils/03-stdio-limit.patch
+-p1 binutils/04-x86ld64so.patch
