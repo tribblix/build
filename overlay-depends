@@ -99,7 +99,7 @@ do
     done
   done
 done
-cat ${TMPF}.p | sort -u >${TMPF}.t
+sort -u ${TMPF}.p > ${TMPF}.t
 OUTMISS=`awk '{print $2}' $TMPF | sort -u | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t`
 if [ -n "${OUTMISS}" ]; then
     echo ""
