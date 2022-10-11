@@ -471,6 +471,21 @@ if len(opts['vnc']) and opts['vnc'] != 'off':
 
 # Pass-through devices not yet implemented
 
+# virtio-9p devices
+
+for i, v in build_devlist('virtfs', 8).items():
+    # Expect <sharename>,<path>[,ro]
+    arr = v.split(',')
+    vfsopts = ''
+    if len(arr) == 3:
+        if arr[2] != 'ro':
+            fatal(f'Unknown virtfs attribute {arr[2]}')
+        vfsopts = ',ro'
+    elif len(arr) != 2:
+        fatal(f'Bad virtfs specification: {v}')
+    args.extend(['-s', '{0}:{1},virtio-9p,{2}={3}{4}'.format(
+        VIRTFS_SLOT, i, arr[0], arr[1], vfsopts)])
+
 # Extra options
 
 if len(opts['extra']):
