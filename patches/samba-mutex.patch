@@ -5,7 +5,7 @@
 diff -Naur samba-4.10.2.orig/lib/tdb/common/mutex.c samba-4.10.2/lib/tdb/common/mutex.c
 --- samba-4.10.2.orig/lib/tdb/common/mutex.c	2019-04-20 07:46:16.548548581 +0000
 +++ samba-4.10.2/lib/tdb/common/mutex.c	2019-04-21 11:12:25.665046799 +0000
-@@ -587,6 +587,7 @@
+@@ -588,6 +588,7 @@
  	for (i=0; i<tdb->hash_size+1; i++) {
  		pthread_mutex_t *chain = &m->hashchains[i];
  
@@ -13,7 +13,7 @@ diff -Naur samba-4.10.2.orig/lib/tdb/common/mutex.c samba-4.10.2/lib/tdb/common/
  		ret = pthread_mutex_init(chain, &ma);
  		if (ret != 0) {
  			goto fail;
-@@ -595,6 +596,7 @@
+@@ -596,6 +597,7 @@
  
  	m->allrecord_lock = F_UNLCK;
  
@@ -21,7 +21,7 @@ diff -Naur samba-4.10.2.orig/lib/tdb/common/mutex.c samba-4.10.2/lib/tdb/common/
  	ret = pthread_mutex_init(&m->allrecord_mutex, &ma);
  	if (ret != 0) {
  		goto fail;
-@@ -885,6 +887,7 @@
+@@ -886,6 +888,7 @@
  	if (ret != 0) {
  		goto cleanup;
  	}
