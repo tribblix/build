@@ -1,11 +1,6 @@
 #!/bin/ksh
 #
 # catalog format is
-#  name|version|other data
+#  name|version|other data|
 #
-for PKGI in *.ovl
-do
-  PKG=${PKGI%.*}
-  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI`
-  echo "${PKG}|${PKGVERS}||"
-done
+/usr/bin/grep ^VERSION *.ovl | /usr/bin/sed -e 's,.ovl:VERSION=,|,' -e 's:$:||:'
