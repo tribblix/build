@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# NOTE: dateparser pins the vregex version to < 2022.3.15
+# NOTE: dateparser pins the regex version to < 2022.3.15
 #
 ${THOME}/build/unpack regex-2022.3.2
 cd regex-2022.3.2

@@ -2,7 +2,7 @@
 #
 # mediainfo
 #
-# build zenlib libmedianfo and mediainfo together
+# build zenlib libmediainfo and mediainfo together
 # needs libtool installed so autogen.sh works
 #
 rm -fr ZenLib MediaInfoLib MediaInfo
