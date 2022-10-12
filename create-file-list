@@ -33,7 +33,7 @@ cd $WDIR
 #
 rm -f filelist.new
 touch filelist.new
-cat catalog | awk -F'|' '{print $1,$2}' | while read pkgname pkgver
+awk -F'|' '{print $1,$2}' catalog | while read pkgname pkgver
 do
     if [ -f ${pkgname}.${pkgver}.zap ]; then
 	#
@@ -42,13 +42,18 @@ do
 	# field 2 in the result is the file type
 	# field 4 in the result is the file name
 	# ignore directories
-	# strip any leading / off the names
+	# strip any leading / off the names just once afterwards
 	#
-	/usr/bin/zipgrep / ${pkgname}.${pkgver}.zap ${pkgname}/pkgmap | nawk -v PKG=$pkgname '{if ($2 != "d") print $4,$2,PKG}' | sed 's:^/::' >> filelist.new
+	/usr/bin/zipgrep / ${pkgname}.${pkgver}.zap ${pkgname}/pkgmap | nawk -v PKG=$pkgname '{if ($2 != "d") print $4,$2,PKG}' >> filelist.new
     else
 	echo "Missing file ${pkgname}.${pkgver}.zap"
     fi
 done
+
+#
+# strip off the leading /
+#
+sed -i 's:^/::' filelist.new
 
 #
 # the resulting file has 3 fields
