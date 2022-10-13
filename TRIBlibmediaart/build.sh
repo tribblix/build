@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64 libmediaart-1.9.1 -C --disable-introspection
-${THOME}/build/genpkg TRIBlibmediaart libmediaart-1.9.1
+${THOME}/build/mesonbuild -64 libmediaart-1.9.6 -C -Dintrospection=false
+${THOME}/build/genpkg TRIBlibmediaart libmediaart-1.9.6
