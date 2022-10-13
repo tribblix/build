@@ -5,6 +5,12 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+19
+
+Boot jdk updated to jdk19.
+
+Remove patch for hsdis Makefile, as it's been removed.
+
 20+18
 
 Trivial patch noise
@@ -210,7 +216,7 @@ Starting fairly clean
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk18 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk19 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \

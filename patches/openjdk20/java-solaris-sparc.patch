@@ -764,7 +764,7 @@
  # If FDLIBM_CFLAGS is non-empty we know that we can optimize
  # fdlibm when adding those extra C flags. Currently GCC,
  # and clang only.
-@@ -68,7 +64,7 @@
+@@ -67,7 +63,7 @@
  ##########################################################################################
  
  LIBVERIFY_OPTIMIZATION := HIGH
@@ -773,7 +773,7 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBVERIFY_OPTIMIZATION := LOW
    endif
-@@ -111,7 +107,6 @@
+@@ -110,7 +106,6 @@
      LIBS := $(BUILD_LIBFDLIBM_TARGET), \
      LIBS_unix := -ljvm, \
      LIBS_linux := $(LIBDL), \
@@ -781,7 +781,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -222,7 +217,6 @@
+@@ -221,7 +216,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -4685,51 +4685,6 @@
  #include <pwd.h>
  
  /*
---- old/src/utils/hsdis/Makefile	2020-05-20 18:03:45.954412273 -0700
-+++ new/src/utils/hsdis/Makefile	2020-05-20 18:03:45.618405821 -0700
-@@ -45,33 +45,13 @@
- #
- #
- 
--# Single gnu makefile for solaris, linux and windows (windows requires cygwin and mingw)
-+# Single gnu makefile for linux and windows (windows requires cygwin and mingw)
- 
- # Default arch; it is changed below as needed.
- ARCH		= i386
- OS		= $(shell uname)
- AR		= ar
- 
--## OS = SunOS ##
--ifeq		($(OS),SunOS)
--CPU             = $(shell uname -p)
--ARCH1=$(CPU:i586=i386)
--ARCH=$(ARCH1:i686=i386)
--OS		= solaris
--CC 		= cc
--CFLAGS		+= -KPIC
--ifdef LP64
--ifeq ($(ARCH),i386)
--ARCH            = amd64
--endif
--endif
--CFLAGS/amd64	+= -m64
--CFLAGS		+= $(CFLAGS/$(ARCH))
--DLDFLAGS	+= -G
--LDFLAGS         += -ldl
--OUTFLAGS	+= -o $@
--LIB_EXT		= .so
--else
- ## OS = Linux ##
- ifeq		($(OS),Linux)
- ifneq           ($(MINGW),)
-@@ -174,7 +145,6 @@
- endif   # Darwin
- endif   # AIX
- endif	# Linux
--endif	# SunOS
- 
- LIBARCH		= $(ARCH)
- ifdef		LP64
 --- old/src/java.desktop/solaris/data/fontconfig/fontconfig.properties	2020-05-20 18:08:13.719553558 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,516 +0,0 @@
