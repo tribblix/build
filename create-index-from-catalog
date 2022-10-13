@@ -34,10 +34,21 @@ EOF
 
 cat $CATALOG | while read line
 do
-  PKG=`echo $line | awk -F'|' '{print $1}'`
-  PKGVERS=`echo $line | awk -F'|' '{print $2}'`
-  DEPLIST=`echo $line | awk -F'|' '{print $3}'`
-  PKGCKSUM=`echo $line | awk -F'|' '{print $5}'`
+  #pick first field
+  PKG=${line%%\|*}
+  #strip off a field
+  rline=${line#*\|}
+  #pick the second field
+  PKGVERS=${rline%%\|*}
+  #strip off another field
+  rline=${rline#*\|}
+  #pick the third field
+  DEPLIST=${rline%%\|*}
+  #strip off two fields
+  rline=${rline#*\|}
+  rline=${rline#*\|}
+  #pick the 5th field
+  PKGCKSUM=${rline%%\|*}
   PKGI=${PKG}/pkginfo
   if [ -f ${PKGI} ]; then
     PKGNAME=`awk -F= '{if ($1 == "NAME") print $2}' $PKGI`
