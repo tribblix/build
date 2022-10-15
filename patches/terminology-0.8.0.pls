@@ -1,1 +1,0 @@
--p1 terminology-01-min-max.patch

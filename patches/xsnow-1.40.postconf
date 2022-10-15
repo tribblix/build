@@ -1,3 +1,0 @@
-#!/bin/sh
-xmkmf -a
-gsed -i s:/usr/ucb/install:/usr/bin/ginstall: Makefile

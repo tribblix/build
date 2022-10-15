@@ -1,3 +1,0 @@
-#!/bin/sh
-#
-gsed -i 's:#! /bin/sh:#!/bin/bash:' configure
