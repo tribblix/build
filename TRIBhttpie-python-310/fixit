@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# add a convenience link
+#
+PYVERS=3.10
+exit 0
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/python-${PYVERS}/bin/http .
