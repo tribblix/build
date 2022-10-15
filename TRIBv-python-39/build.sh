@@ -5,6 +5,6 @@
 #
 # 3.9 is 64-bit
 #
-${THOME}/build/dobuild +64only Python-3.9.14 -P /usr/versions/python-3.9 -L -C --enable-shared
+${THOME}/build/dobuild +64only Python-3.9.15 -P /usr/versions/python-3.9 -L -C --enable-shared
 # Horrid hack to work around deficiencies in setuptools
-${THOME}/build/genpkg TRIBv-python-39 Python-3.9.14
+${THOME}/build/genpkg TRIBv-python-39 Python-3.9.15
