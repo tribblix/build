@@ -42,7 +42,7 @@ exit 0
 #
 # then we use that to do the build
 #
-$THOME/build/unpack ghc-8.4.4
+$THOME/build/unpack ghc-8.4.4-src
 cd ghc-8.4.4
 ./configure --prefix=/usr/versions/haskell
 gmake -j 8
