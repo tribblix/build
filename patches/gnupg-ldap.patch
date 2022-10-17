@@ -1,0 +1,16 @@
+See https://dev.gnupg.org/T6239 for bug report and patch in
+https://dev.gnupg.org/rG7011286ce6e1fb56c2989fdafbd11b931c489faa
+
+--- a/dirmngr/server.c	Fri Oct  7 12:51:30 2022
++++ b/dirmngr/server.c	Mon Oct 17 18:25:44 2022
+@@ -3135,8 +3135,10 @@
+                ctrl->refcount);
+   else
+     {
++#if USE_LDAP
+       ks_ldap_free_state (ctrl->ks_get_state);
+       ctrl->ks_get_state = NULL;
++#endif
+       release_ctrl_ocsp_certs (ctrl);
+       xfree (ctrl->server_local);
+       dirmngr_deinit_default_ctrl (ctrl);
