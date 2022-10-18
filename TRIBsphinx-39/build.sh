@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBsphinx-39 Sphinx-5.1.1
+${THOME}/build/pkg_pep518 TRIBsphinx-39 Sphinx-5.3.0
