@@ -1,0 +1,4 @@
+PKG="TRIBmock-python-310"
+NAME="Python mock"
+VERSION="4.0.3.0"
+ZAP_URL="https://pypi.org/project/mock"
