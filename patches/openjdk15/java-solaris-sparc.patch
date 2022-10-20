@@ -1027,7 +1027,7 @@
  endif
  
  LAUNCHER_SRC := $(TOPDIR)/src/java.base/share/native/launcher
-@@ -153,7 +151,6 @@
+@@ -154,7 +152,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -1035,7 +1035,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -163,14 +160,11 @@
+@@ -164,14 +161,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -1757,7 +1757,7 @@
      ifeq ($(call isTargetOs, linux), true)
        ifeq ($(DISABLE_XRENDER), true)
          LIBAWT_XAWT_CFLAGS += -DDISABLE_XRENDER_BY_DEFAULT=true
-@@ -403,13 +384,11 @@
+@@ -397,13 +385,11 @@
            $(LIBAWT_HEADLESS_CFLAGS), \
        EXTRA_HEADER_DIRS := $(LIBAWT_HEADLESS_EXTRA_HEADER_DIRS), \
        DISABLED_WARNINGS_gcc := unused-function, \
@@ -1771,17 +1771,17 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -475,9 +451,6 @@
+@@ -466,9 +452,6 @@
     ifeq ($(call isTargetOs, linux macosx), true)
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
     endif
 -   ifeq ($(call isTargetOs, solaris), true)
 -     HARFBUZZ_CFLAGS += -DHAVE_SOLARIS_ATOMIC_OPS
 -   endif
-    ifeq ($(call isTargetOs, macosx), true)
-      HARFBUZZ_CFLAGS += -DHAVE_CORETEXT
-    endif
-@@ -642,10 +607,7 @@
+ 
+    # hb-ft.cc is not presently needed, and requires freetype 2.4.2 or later.
+    LIBFONTMANAGER_EXCLUDE_FILES += libharfbuzz/hb-ft.cc
+@@ -620,10 +603,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -1793,7 +1793,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -672,7 +634,6 @@
+@@ -650,7 +630,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -2374,7 +2374,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/c1/c1_LIRAssembler.cpp	2020-05-20 18:00:01.402100705 -0700
 +++ new/src/hotspot/share/c1/c1_LIRAssembler.cpp	2020-05-20 18:00:01.066094253 -0700
-@@ -572,16 +572,6 @@
+@@ -573,16 +573,6 @@
        monitor_address(op->in_opr()->as_constant_ptr()->as_jint(), op->result_opr());
        break;
  
@@ -2391,7 +2391,7 @@
      case lir_unwind:
        unwind_op(op->in_opr());
        break;
-@@ -835,11 +825,7 @@
+@@ -836,11 +826,7 @@
          if (!r->is_stack()) {
            stringStream st;
            st.print("bad oop %s at %d", r->as_Register()->name(), _masm->offset());
@@ -2484,7 +2484,7 @@
  
 --- old/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.974610917 -0700
 +++ new/src/hotspot/share/runtime/deoptimization.cpp	2020-05-20 18:00:27.582603389 -0700
-@@ -1089,23 +1089,9 @@
+@@ -1094,23 +1094,9 @@
      case 4:
        *((jint *) check_alignment_get_addr(obj, index, 4)) = (jint) *((jint *) &val);
        break;
