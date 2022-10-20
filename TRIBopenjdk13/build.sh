@@ -1,31 +1,12 @@
 #!/bin/tcsh
 #
-# You first need to download the tarballs
-#
-# now a single tarball, 80M
-#
-# original release
-# wget http://hg.openjdk.java.net/jdk/jdk13/archive/jdk-13+33.tar.bz2
-#
-# 13.0.2 update
-# wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.2+8.tar.bz2
-#
-# 13.0.3 update
-# wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.3+3.tar.bz2
-#
-# 13.0.4 update
-# wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.4+8.tar.bz2
-#
-# 13.0.5
-# wget http://hg.openjdk.java.net/jdk-updates/jdk13u/archive/jdk-13.0.5+3.tar.bz2
-#
 
 #
 # current releases are tagged on github
 #
 cd ~/ud
-${THOME}/build/unpack jdk13u-jdk-13.0.12-ga
-cd jdk13u-jdk-13.0.12-ga
+${THOME}/build/unpack jdk13u-jdk-13.0.13-ga
+cd jdk13u-jdk-13.0.13-ga
 
 #
 # as of 13.0.3, switch to a gcc build to replace Studio
@@ -69,9 +50,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "13.0.12-internal" 2022-07-19
-# OpenJDK Runtime Environment (build 13.0.12-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.12-ga)
-# OpenJDK 64-Bit Server VM (build 13.0.12-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.12-ga, mixed mode, sharing)
+# openjdk version "13.0.13-internal" 2022-07-19
+# OpenJDK Runtime Environment (build 13.0.13-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.13-ga)
+# OpenJDK 64-Bit Server VM (build 13.0.13-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.13-ga, mixed mode, sharing)
 # 
 
 rm -fr /tmp/jdk
