@@ -5,8 +5,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk19-jdk-19-36
-cd jdk19-jdk-19-36
+${THOME}/build/unpack jdk19u-jdk-19.0.1-ga
+cd jdk19u-jdk-19.0.1-ga
 
 #
 # jdk19 needs autoconf installed

@@ -5,6 +5,10 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Most patches -p0
 
+19.0.1
+
+Trivial patch noise
+
 JDK19 now in rampdown phase 2
 
 19-31, 19-32, 19-33, 19-34, 19-35, 19-36
