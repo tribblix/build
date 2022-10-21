@@ -218,7 +218,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -397,9 +397,6 @@
+@@ -409,9 +409,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -491,7 +491,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -989,7 +989,7 @@
+@@ -990,7 +990,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -500,7 +500,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).debuginfo
            # Setup the command line creating debuginfo files, to be run after linking.
            # It cannot be run separately since it updates the original target file
-@@ -1123,7 +1123,7 @@
+@@ -1124,7 +1124,7 @@
      endif
  
      $1_VARDEPS := $$($1_LD) $$($1_SYSROOT_LDFLAGS) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) \
@@ -509,7 +509,7 @@
          $$($1_CREATE_DEBUGINFO_CMDS) $$($1_MANIFEST_VERSION) \
          $$($1_STRIP_CMD)
      $1_VARDEPS_FILE := $$(call DependOnVariable, $1_VARDEPS, \
-@@ -1182,7 +1182,7 @@
+@@ -1183,7 +1183,7 @@
  
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -518,7 +518,7 @@
  		          $$($1_LIBS) $$($1_EXTRA_LIBS)) \
  		      | $(GREP) -v "^   Creating library .*\.lib and object .*\.exp" || \
  		          test "$$$$?" = "1" ; \
-@@ -1195,7 +1195,7 @@
+@@ -1196,7 +1196,7 @@
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$(if $$($1_LINK_OBJS_RELATIVE), $$(CD) $$(OUTPUTDIR) ; ) \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -529,7 +529,7 @@
  		  $$($1_STRIP_CMD)
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -152,7 +150,6 @@
+@@ -151,7 +151,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -537,7 +537,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -162,14 +159,11 @@
+@@ -161,14 +160,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -868,7 +868,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -214,7 +208,6 @@
+@@ -214,7 +209,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -909,7 +909,7 @@
    endif
 --- old/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
 +++ new/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
-@@ -80,7 +76,7 @@
+@@ -76,7 +76,7 @@
        #
  endif
  
@@ -918,7 +918,7 @@
    LIBAWT_EXFILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -167,7 +156,6 @@
+@@ -156,7 +156,6 @@
          -delayload:comctl32.dll -delayload:shlwapi.dll, \
      LIBS_unix := -ljvm -ljava $(LIBM), \
      LIBS_linux :=  $(LIBDL), \
@@ -926,7 +926,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -406,7 +387,6 @@
+@@ -389,7 +388,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -934,7 +934,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -450,7 +444,7 @@
+@@ -447,7 +445,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -943,7 +943,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
     endif
  
-@@ -641,10 +604,7 @@
+@@ -608,10 +606,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -955,7 +955,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -669,7 +631,6 @@
+@@ -638,7 +633,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1273,7 +1273,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -469,7 +469,7 @@
+@@ -489,7 +489,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1282,7 +1282,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -487,12 +487,6 @@
+@@ -507,12 +507,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1295,7 +1295,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -900,7 +894,7 @@
+@@ -960,7 +954,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1304,7 +1304,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1221,8 +1215,7 @@
+@@ -1281,8 +1275,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1314,7 +1314,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1471,7 +1430,6 @@
+@@ -1497,7 +1490,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1322,7 +1322,7 @@
  
  // PlatformEvent
  //
-@@ -1901,8 +1859,6 @@
+@@ -1927,8 +1919,6 @@
      return OS_OK;
    }
  }
@@ -1400,7 +1400,7 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -920,8 +920,6 @@
+@@ -921,8 +921,6 @@
        , lir_monaddr
        , lir_roundfp
        , lir_safepoint
@@ -1409,7 +1409,7 @@
        , lir_unwind
    , end_op1
    , begin_op2
-@@ -2113,9 +2111,6 @@
+@@ -2114,9 +2112,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1552,7 +1552,7 @@
      as_Java_thread()->stack_overflow_state()->initialize(stack_base(), stack_end());
 --- old/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.698816829 -0700
 +++ new/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.318809532 -0700
-@@ -41,12 +41,6 @@
+@@ -46,12 +46,6 @@
  #include <windows.h>
  #endif
  
@@ -1850,10 +1850,10 @@
  # A list of preferred providers for specific algorithms. These providers will
 --- old/src/java.base/share/native/libjli/jli_util.h	2020-05-20 18:00:56.651161527 -0700
 +++ new/src/java.base/share/native/libjli/jli_util.h	2020-05-20 18:00:56.263154077 -0700
-@@ -104,9 +104,6 @@
+@@ -100,9 +100,6 @@
+ #define JLI_StrNCaseCmp(p1, p2, p3)     strncasecmp((p1), (p2), (p3))
+ #define JLI_Snprintf                    snprintf
  #define JLI_Open                        open
- #define JLI_PutEnv                      putenv
- #define JLI_GetPid                      getpid
 -#ifdef __solaris__
 -#define JLI_Lseek                       llseek
 -#endif
@@ -9509,7 +9509,7 @@
 -#endif // OS_SOLARIS_OS_SHARE_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,4109 +0,0 @@
+@@ -1,4056 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10846,14 +10846,6 @@
 -  return NULL;
 -}
 -
--void* os::dll_lookup(void* handle, const char* name) {
--  return dlsym(handle, name);
--}
--
--void* os::get_default_process_handle() {
--  return (void*)::dlopen(NULL, RTLD_LAZY);
--}
--
 -static inline time_t get_mtime(const char* filename) {
 -  struct stat st;
 -  int ret = os::stat(filename, &st);
@@ -11690,13 +11682,6 @@
 -  return true;
 -}
 -
--// Sleep forever; naked call to OS-specific sleep; use with CAUTION
--void os::infinite_sleep() {
--  while (true) {    // sleep forever ...
--    ::sleep(100);   // ... 100 seconds at a time
--  }
--}
--
 -// Used to convert frequent JVM_Yield() to nops
 -bool os::dont_yield() {
 -  if (DontYieldALot) {
@@ -12201,25 +12186,6 @@
 -void os::print_statistics() {
 -}
 -
--bool os::message_box(const char* title, const char* message) {
--  int i;
--  fdStream err(defaultStream::error_fd());
--  for (i = 0; i < 78; i++) err.print_raw("=");
--  err.cr();
--  err.print_raw_cr(title);
--  for (i = 0; i < 78; i++) err.print_raw("-");
--  err.cr();
--  err.print_raw_cr(message);
--  for (i = 0; i < 78; i++) err.print_raw("=");
--  err.cr();
--
--  char buf[16];
--  // Prevent process from exiting upon "read error" without consuming all CPU
--  while (::read(0, buf, sizeof(buf)) <= 0) { ::sleep(100); }
--
--  return buf[0] == 'y' || buf[0] == 'Y';
--}
--
 -// This does not do anything on Solaris. This is basically a hook for being
 -// able to use structured exception handling (thread-local exception filters) on, e.g., Win32.
 -void os::os_exception_wrapper(java_call_t f, JavaValue* value,
@@ -12536,25 +12502,6 @@
 -  os::Posix::init_2();
 -
 -  return JNI_OK;
--}
--
--// Is a (classpath) directory empty?
--bool os::dir_is_empty(const char* path) {
--  DIR *dir = NULL;
--  struct dirent *ptr;
--
--  dir = opendir(path);
--  if (dir == NULL) return true;
--
--  // Scan the directory
--  bool result = true;
--  while (result && (ptr = readdir(dir)) != NULL) {
--    if (strcmp(ptr->d_name, ".") != 0 && strcmp(ptr->d_name, "..") != 0) {
--      result = false;
--    }
--  }
--  closedir(dir);
--  return result;
 -}
 -
 -// This code originates from JDK's sysOpen and open64_w

@@ -11,8 +11,8 @@
 # for 17.0.2, ga is +7
 #
 cd ~/ud
-${THOME}/build/unpack jdk17u-jdk-17.0.4-ga
-cd jdk17u-jdk-17.0.4-ga
+${THOME}/build/unpack jdk17u-jdk-17.0.5-ga
+cd jdk17u-jdk-17.0.5-ga
 
 #
 # jdk17 needs autoconf installed
@@ -49,9 +49,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 # 
-# openjdk version "17.0.4-internal" 2022-07-19
-# OpenJDK Runtime Environment (build 17.0.4-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.4-ga)
-# OpenJDK 64-Bit Server VM (build 17.0.4-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.4-ga, mixed mode, sharing)
+# openjdk version "17.0.5-internal" 2022-07-19
+# OpenJDK Runtime Environment (build 17.0.5-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.5-ga)
+# OpenJDK 64-Bit Server VM (build 17.0.5-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.5-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

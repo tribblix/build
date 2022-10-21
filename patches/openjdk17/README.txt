@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK17:
 
+17.0.5
+
+A number of functions centralised into os_posix
+
 17.0.4
 
 Build broken by https://www.illumos.org/issues/14418. That did 2
