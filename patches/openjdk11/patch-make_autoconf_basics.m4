@@ -13,7 +13,7 @@ Shell portability, and remove annoying warning.
            # This is not a symbolic link! We are done!
            break
          fi
-@@ -455,7 +455,7 @@ AC_DEFUN([BASIC_SETUP_TOOL],
+@@ -457,7 +457,7 @@ AC_DEFUN([BASIC_SETUP_TOOL],
        # If it failed, the variable was not from the command line. Ignore it,
        # but warn the user (except for BASH, which is always set by the calling BASH).
        if test "x$1" != xBASH; then
@@ -22,7 +22,7 @@ Shell portability, and remove annoying warning.
        fi
        # Try to locate tool using the code snippet
        $2
-@@ -1166,7 +1166,7 @@ AC_DEFUN([BASIC_CHECK_GREP],
+@@ -1195,7 +1195,7 @@ AC_DEFUN([BASIC_CHECK_GREP],
    NEEDLE_SPACES='ccc bbb aaa'
    NEEDLE_LIST=${NEEDLE_SPACES// /$'\n'}
    RESULT="$($GREP -Fvx "$STACK_LIST" <<< "$NEEDLE_LIST")"
