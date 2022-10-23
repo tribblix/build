@@ -29,10 +29,14 @@ fi
 if [ $# -gt 0 ]; then
     for file in $*
     do
-	for pkgstr in `grep build/unpack ${file}/build.sh | awk '{print $2}'` `grep build/pkg_pep518 ${file}/build.sh | awk '{print $3}'` `grep build/pkg_setup_py ${file}/build.sh | awk '{print $3}'`
+	for pkgstr in `egrep 'build/(unpack|pkg_pep518|pkg_setup_py)' ${file}/build.sh | awk '{print $NF}'`
 	do
 	    pkgver=${pkgstr##*-}
 	    pkgname=${pkgstr%-*}
+	    if [ "${pkgname}" == "cloud-custodian" ]; then
+		pkgname=c7n
+		pkgver=${pkgver%.0}
+	    fi
 	    curver=`wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version`
 	    curver=`echo $curver | sed -e 's:"::g'`
 	    if [ "X$pkgver" != "X$curver" ]; then
@@ -47,10 +51,14 @@ fi
 
 for file in *-${PY3VER}
 do
-    for pkgstr in `grep build/unpack ${file}/build.sh | awk '{print $2}'` `grep build/pkg_pep518 ${file}/build.sh | awk '{print $3}'` `grep build/pkg_setup_py ${file}/build.sh | awk '{print $3}'`
+    for pkgstr in `egrep 'build/(unpack|pkg_pep518|pkg_setup_py)' ${file}/build.sh | awk '{print $NF}'`
     do
 	pkgver=${pkgstr##*-}
 	pkgname=${pkgstr%-*}
+	if [ "${pkgname}" == "cloud-custodian" ]; then
+	    pkgname=c7n
+	    pkgver=${pkgver%.0}
+	fi
 	curver=`wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version`
 	curver=`echo $curver | sed -e 's:"::g'`
 	if [ "X$pkgver" != "X$curver" ]; then
