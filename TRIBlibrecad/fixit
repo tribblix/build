@@ -1,0 +1,15 @@
+#!/bin/sh
+
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/LibreCAD/librecad .
+ln -s ../../usr/versions/LibreCAD/ttf2lff .
+cd ../..
+
+mkdir -p usr/share/appdata
+mv usr/versions/LibreCAD/appdata/*xml usr/share/appdata
+
+mkdir -p usr/share/applications
+mv usr/versions/LibreCAD/appdata/*.desktop usr/share/applications
+
+rmdir usr/versions/LibreCAD/appdata
