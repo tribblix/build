@@ -1,11 +1,4 @@
-P TRIBgdk-pixbuf
-P TRIBgnutls
-P TRIBlib-desktop-atk
-P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
-P TRIBlib-pcre2
-P TRIBlib-zlib
 P TRIBvte
-P TRIBx11-libx11
