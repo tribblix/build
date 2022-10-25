@@ -2,8 +2,6 @@
 #
 # some files have "odd" names incompatible with SVR4 packaging
 #
-#mv usr/share/samba/setup/cn=replicator.ldif usr/share/samba/setup/cn-replicator.ldif
-#mv usr/share/samba/setup/cn=samba-admin.ldif usr/share/samba/setup/cn-samba-admin.ldif
 mv usr/share/samba/setup/cn=samba.ldif usr/share/samba/setup/cn-samba.ldif
 #
 # this is a Solaris base command
@@ -11,15 +9,10 @@ mv usr/share/samba/setup/cn=samba.ldif usr/share/samba/setup/cn-samba.ldif
 mv usr/bin/profiles usr/bin/smbprofiles
 mv usr/share/man/man1/profiles.1 usr/share/man/man1/smbprofiles.1
 #
-# this is where our python really lives
-#
-mkdir -p usr/versions/python-2.7/lib/python2.7/site-packages
-mv usr/lib/python2.7/site-packages/* usr/versions/python-2.7/lib/python2.7/site-packages
-rmdir usr/lib/python2.7/site-packages
-rmdir usr/lib/python2.7
-#
 # this is where our perl really lives
 #
-mkdir -p usr/perl5/5.22.0/lib
-mv usr/share/perl5/* usr/perl5/5.22.0/lib
-rmdir usr/share/perl5
+if [ -d usr/share/perl5 ]; then
+    mkdir -p usr/perl5/5.34/lib
+    mv usr/share/perl5/* usr/perl5/5.34/lib
+    rmdir usr/share/perl5
+fi
