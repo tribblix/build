@@ -5,6 +5,12 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+21
+
+Remove os::dll_file_extension()
+
+Modest amount of patch noise
+
 20+20
 
 Trivial patch noise.

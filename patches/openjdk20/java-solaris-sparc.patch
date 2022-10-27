@@ -459,7 +459,7 @@
            # It cannot be run separately since it updates the original target file
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -155,7 +155,6 @@
+@@ -154,7 +154,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -467,7 +467,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -165,14 +164,11 @@
+@@ -164,14 +163,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -705,7 +705,7 @@
 @@ -55,7 +55,6 @@
      LDFLAGS_windows := -delayload:secur32.dll -delayload:iphlpapi.dll, \
      LIBS_unix := -ljvm -ljava, \
-     LIBS_linux := $(LIBDL) -lpthread, \
+     LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -lnsl -lsocket $(LIBDL), \
      LIBS_aix := $(LIBDL),\
      LIBS_windows := ws2_32.lib jvm.lib secur32.lib iphlpapi.lib winhttp.lib \
@@ -822,7 +822,7 @@
    endif
 --- old/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
 +++ new/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
-@@ -80,7 +76,7 @@
+@@ -77,7 +77,7 @@
        #
  endif
  
@@ -831,7 +831,7 @@
    LIBAWT_EXFILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -155,7 +155,6 @@
+@@ -170,7 +170,6 @@
          -delayload:comctl32.dll -delayload:shlwapi.dll, \
      LIBS_unix := -ljvm -ljava $(LIBM), \
      LIBS_linux :=  $(LIBDL), \
@@ -839,7 +839,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -388,7 +387,6 @@
+@@ -399,7 +398,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -847,7 +847,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -446,7 +444,7 @@
+@@ -456,7 +454,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -856,7 +856,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
     endif
  
-@@ -606,10 +604,7 @@
+@@ -614,10 +612,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -868,7 +868,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -636,7 +631,6 @@
+@@ -644,7 +639,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -878,7 +878,7 @@
  
 --- old/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.469237961 -0700
 +++ new/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.081230511 -0700
-@@ -45,13 +45,11 @@
+@@ -44,13 +44,11 @@
          $(call SET_SHARED_LIBRARY_ORIGIN) \
          $(LIBINSTRUMENT_LDFLAGS), \
      LDFLAGS_linux := -L$(call FindLibDirForModule, java.base), \
@@ -933,7 +933,7 @@
  
 --- old/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.653337499 -0700
 +++ new/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.257329896 -0700
-@@ -65,11 +65,10 @@
+@@ -67,11 +67,10 @@
      CFLAGS := $(CFLAGS_JDKLIB) $(SA_CFLAGS), \
      CXXFLAGS := $(CXXFLAGS_JDKLIB) $(SA_CFLAGS) $(SA_CXXFLAGS), \
      EXTRA_SRC := $(LIBSA_EXTRA_SRC), \
@@ -956,7 +956,7 @@
      LIBS_windows := $(JDKLIB_LIBS) ws2_32.lib iphlpapi.lib, \
  ))
  
-@@ -63,7 +62,6 @@
+@@ -65,7 +64,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS := $(JDKLIB_LIBS), \
      LIBS_linux := $(LIBDL), \
@@ -975,7 +975,7 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBMANAGEMENT_EXT_OPTIMIZATION := LOW
    endif
-@@ -49,7 +49,6 @@
+@@ -48,7 +48,6 @@
      LDFLAGS := $(LDFLAGS_JDKLIB) \
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS := $(JDKLIB_LIBS), \
@@ -995,7 +995,7 @@
    ))
 --- old/make/modules/jdk.sctp/Lib.gmk	2020-05-20 17:59:26.921438651 -0700
 +++ new/make/modules/jdk.sctp/Lib.gmk	2020-05-20 17:59:26.541431354 -0700
-@@ -44,7 +44,6 @@
+@@ -42,7 +42,6 @@
              $(call SET_SHARED_LIBRARY_ORIGIN), \
          LIBS_unix := -lnio -lnet -ljava -ljvm, \
          LIBS_linux := -lpthread $(LIBDL), \
@@ -1229,7 +1229,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1719,8 +1717,6 @@
+@@ -1720,8 +1718,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1360,7 +1360,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -695,12 +695,11 @@
+@@ -717,12 +717,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1373,7 +1373,7 @@
 -  tty->print_cr("                   pns($sp + 0x7ff, 0, $pc) on Solaris/SPARC");
    tty->print_cr("                 - in gdb do 'set overload-resolution off' before calling pns()");
    tty->print_cr("                 - in dbx do 'frame 1' before calling pns()");
- 
+   tty->print_cr("class metadata.");
 --- old/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.978937412 -0700
 +++ new/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.586929885 -0700
 @@ -39,36 +39,15 @@
@@ -1639,19 +1639,19 @@
  #define JLI_Lseek                       lseek64
 --- old/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.667181035 -0700
 +++ new/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.335174660 -0700
-@@ -82,7 +82,6 @@
+@@ -81,7 +81,6 @@
+ 
      /* check if SO_REUSEPORT is supported on this platform */
      REUSEPORT_available = reuseport_supported(IPv6_available);
-     platformInit();
 -    parseExclusiveBindProperty(env);
  
      return JNI_VERSION_1_2;
  }
 --- old/src/java.base/share/native/libnet/net_util.h	2020-05-20 18:00:58.723201311 -0700
 +++ new/src/java.base/share/native/libnet/net_util.h	2020-05-20 18:00:58.339193938 -0700
-@@ -144,8 +144,6 @@
- 
- void platformInit();
+@@ -142,8 +142,6 @@
+ JNIEXPORT jobject JNICALL
+ NET_SockaddrToInetAddress(JNIEnv *env, SOCKETADDRESS *sa, int *port);
  
 -void parseExclusiveBindProperty(JNIEnv *env);
 -
@@ -3099,9 +3099,9 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -393,26 +239,6 @@
- 
- #endif
+@@ -378,26 +224,6 @@
+     }
+ }
  
 -void parseExclusiveBindProperty(JNIEnv *env) {
 -#ifdef __solaris__
@@ -3126,7 +3126,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -571,7 +397,7 @@
+@@ -556,7 +382,7 @@
                  *level = IPPROTO_IPV6;
                  *optname = IPV6_MULTICAST_LOOP;
                  return 0;
@@ -3135,7 +3135,7 @@
              // Map IP_TOS request to IPV6_TCLASS
              case java_net_SocketOptions_IP_TOS:
                  *level = IPPROTO_IPV6;
-@@ -720,65 +546,6 @@
+@@ -705,65 +531,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -3201,7 +3201,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -891,20 +658,10 @@
+@@ -876,20 +643,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -3222,7 +3222,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -920,61 +678,8 @@
+@@ -906,61 +663,8 @@
      }
  #endif
  
@@ -3295,7 +3295,7 @@
  #elif defined(AIX) || defined(MACOSX)
  #define SO_REUSEPORT 0x0200
  #else
-@@ -86,8 +84,4 @@
+@@ -82,8 +80,4 @@
  void NET_ThrowByNameWithLastError(JNIEnv *env, const char *name,
                                    const char *defaultDetail);
  
@@ -3440,10 +3440,11 @@
  #else
 --- old/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:38.255960369 -0700
 +++ new/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:37.863952843 -0700
-@@ -127,7 +127,6 @@
+@@ -125,8 +125,6 @@
+     }
+     return TRUE;
  }
- 
- void platformInit() {}
+- 
 -void parseExclusiveBindProperty(JNIEnv *env) {}
  
  /*
@@ -8290,7 +8291,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3246 +0,0 @@
+@@ -1,3244 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -9195,8 +9196,6 @@
 -}
 -
 -// DLL functions
--
--const char* os::dll_file_extension() { return ".so"; }
 -
 -// This must be hard coded because it's the system's temporary
 -// directory not the java application's temp directory, ala java.io.tmpdir.
