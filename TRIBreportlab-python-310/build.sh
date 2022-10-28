@@ -1,10 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/unpack reportlab-3.6.11
-cd reportlab-3.6.11
-/usr/versions/python-3.10/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-3.10/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBreportlab-python-310 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+${THOME}/build/pkg_setup_py TRIBreportlab-python-310 reportlab-3.6.12
