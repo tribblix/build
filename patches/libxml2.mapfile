@@ -38,6 +38,12 @@
 #
 $mapfile_version 2
 
+SYMBOL_VERSION ILLUMOS_0.3 {    
+    global:
+		# LIBXML2_2.9.11
+        	xmlPopOutputCallbacks;
+} ILLUMOS_0.2;
+ 
 SYMBOL_VERSION ILLUMOS_0.2 {    
     global:
 		# LIBXML2_2.9.9
@@ -115,8 +121,6 @@ SYMBOL_VERSION SUNW_1.6 {
 		__xmlOutputBufferCreateFilenameValue;
 		__xmlParserInputBufferCreateFilenameValue;
 		__xmlStructuredError;
-		emptyExp;
-		forbiddenExp;
 		htmlDocDumpMemoryFormat;
 		xmlAutomataNewCountTrans2;
 		xmlAutomataNewNegTrans;
@@ -132,25 +136,6 @@ SYMBOL_VERSION SUNW_1.6 {
 		xmlDictCleanup;
 		xmlDictExists;
 		xmlDocCopyNodeList;
-		xmlExpCtxtNbCons;
-		xmlExpCtxtNbNodes;
-		xmlExpDump;
-		xmlExpExpDerive;
-		xmlExpFree;
-		xmlExpFreeCtxt;
-		xmlExpGetLanguage;
-		xmlExpGetStart;
-		xmlExpIsNillable;
-		xmlExpMaxToken;
-		xmlExpNewAtom;
-		xmlExpNewCtxt;
-		xmlExpNewOr;
-		xmlExpNewRange;
-		xmlExpNewSeq;
-		xmlExpParse;
-		xmlExpRef;
-		xmlExpStringDerive;
-		xmlExpSubsume;
 		xmlFreeDocElementContent;
 		xmlFreeStreamCtxt;
 		xmlHasFeature;
