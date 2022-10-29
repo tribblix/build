@@ -6,4 +6,4 @@
 # note also that the version on PyPi may differ from that here
 # as it may ommit the last .0
 #
-${THOME}/build/pkg_setup_py TRIBc7n-python-39 cloud-custodian-0.9.19.0
+${THOME}/build/pkg_setup_py TRIBc7n-python-39 cloud-custodian-0.9.20.0
