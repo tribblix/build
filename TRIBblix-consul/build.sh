@@ -6,11 +6,10 @@ mkdir -p src/github.com/hashicorp/
 cd src/github.com/hashicorp/
 git clone https://github.com/hashicorp/consul
 cd consul
-# this is the commit for 1.11.2
-git checkout 37c7d06b4e5511915814f3f59bc040951f9128b0
 #
-# CONSUL_DEV to avoid cross-compiling for all platforms
-env CONSUL_DEV=1 GOPATH=${HOME}/ud/c GOROOT=/usr/versions/go-1.16 PATH=/usr/versions/go-1.16/bin:$PATH gmake
+git checkout v1.13.3
+#
+env GOPATH=${HOME}/ud/c PATH=/usr/versions/go-1.18/bin:$PATH gmake
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/consul/bin
 cp bin/consul /tmp/ee/opt/tribblix/consul/bin
