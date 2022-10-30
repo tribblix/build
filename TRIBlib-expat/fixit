@@ -13,10 +13,13 @@ esac
 rm usr/lib/libexpat.la
 rm usr/lib/${ARCH64}/libexpat.la
 #
-# we don't need a 64-bit xmlwf
+# default to 64-bit xmlwf
 #
-rm usr/bin/${ARCH64}/xmlwf
-rmdir usr/bin/${ARCH64}
+if [ -f usr/bin/${ARCH64}/xmlwf ]; then
+    rm -f usr/bin/xmlwf
+    mv usr/bin/${ARCH64}/xmlwf usr/bin/xmlwf
+    rmdir usr/bin/${ARCH64}
+fi
 #
 # the changelog isn't necessary
 #
