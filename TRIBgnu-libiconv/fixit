@@ -1,3 +1,12 @@
 #!/bin/sh
 #
 rm -f usr/gnu/lib/charset.alias
+#
+# don't want the html docs
+#
+rm -fr usr/gnu/share/doc
+#
+# don't want la files
+#
+rm -f usr/gnu/lib/lib*.la
+rm -f usr/gnu/lib/*/lib*.la
