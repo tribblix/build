@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+22
+
+Now need to force gnu strip via setting STRIP
+
 20+21
 
 Remove os::dll_file_extension()
@@ -234,6 +238,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-deprecated-ports=yes \
 --with-source-date=current \
 --with-jobs=3 \
-DATE=/usr/gnu/bin/date
+DATE=/usr/gnu/bin/date \
+STRIP=/usr/gnu/bin/strip
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all

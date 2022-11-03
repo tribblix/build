@@ -217,20 +217,9 @@
    elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
      CFLAGS_OS_DEF_JVM="-D_ALLBSD_SOURCE -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE"
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
---- old/make/autoconf/flags-other.m4	2020-05-20 17:58:32.576395187 -0700
-+++ new/make/autoconf/flags-other.m4	2020-05-20 17:58:32.200387967 -0700
-@@ -51,8 +51,6 @@
-   # FIXME: we should really only export STRIPFLAGS from here, not POST_STRIP_CMD.
-   if test "x$OPENJDK_TARGET_OS" = xlinux; then
-     STRIPFLAGS="-g"
--  elif test "x$OPENJDK_TARGET_OS" = xsolaris; then
--    STRIPFLAGS="-x"
-   elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
-     STRIPFLAGS="-S"
-   elif test "x$OPENJDK_TARGET_OS" = xaix; then
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -274,7 +274,7 @@
+@@ -282,7 +282,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -239,7 +228,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -287,7 +287,7 @@
+@@ -295,7 +295,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -4266,7 +4255,7 @@
  }
 --- old/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.697524107 -0700
 +++ new/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.357517578 -0700
-@@ -713,15 +713,10 @@
+@@ -717,15 +717,10 @@
          lib = expand(lib);
          int i = lib.indexOf("/$ISA/");
          if (i != -1) {
