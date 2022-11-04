@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-# requires at least go1.17
+# requires at least go1.18
 #
-$THOME/build/unpack coredns-1.8.7
-cd coredns-1.8.7
-env PATH=/usr/versions/go-1.17/bin:$PATH gmake
+$THOME/build/unpack coredns-1.10.0
+cd coredns-1.10.0
+env PATH=/usr/versions/go-1.18/bin:$PATH gmake
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/coredns/bin
