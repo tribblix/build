@@ -4,9 +4,7 @@ mkdir ~/ud/c
 cd ~/ud/c
 
 #
-# it really does need Go 1.16
-#
-env GOPATH=`pwd` PATH=/usr/versions/go-1.16/bin:$PATH GO111MODULE=on go get github.com/minio/minio
+env GOPATH=`pwd` go install github.com/minio/minio@latest
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
