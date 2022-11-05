@@ -27,6 +27,11 @@
 # ./mach build
 # ./mach package
 #
+# if keeping the same git clone do the following
+# git pull
+# git checkout release && git submodule update
+# ./mach clobber
+#
 # the build takes a while, especially as there are link steps that involve
 # a 15GB ld process
 #
@@ -34,9 +39,9 @@
 # but I've found that doesn't work
 #
 # This will create a tarball
-#   palemoon-31.3.0.1.solaris2.11-x86_64-illumos.tar.xz
+#   palemoon-31.3.1.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-31.3.0.1.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-31.3.1.solaris2.11-x86_64-illumos
