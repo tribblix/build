@@ -7,3 +7,4 @@
 # so we delete it from the package and copy it in postinstall
 #
 rm -f etc/sudoers
+rm -f usr/libexec/sudo/*.la
