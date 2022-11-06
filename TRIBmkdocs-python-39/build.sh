@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBmkdocs-python-39 mkdocs-1.4.1
+${THOME}/build/pkg_pep518 TRIBmkdocs-python-39 mkdocs-1.4.2
