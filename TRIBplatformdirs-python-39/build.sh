@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBplatformdirs-python-39 platformdirs-2.5.2
+${THOME}/build/pkg_pep518 TRIBplatformdirs-python-39 platformdirs-2.5.3
