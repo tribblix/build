@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# needs go 1.17 or later
-#
 mkdir s2
 cd s2
 #
@@ -9,7 +7,7 @@ cd s2
 #
 git clone https://github.com/sorintlab/stolon
 cd stolon
-env PATH=/usr/versions/go-1.17/bin:$PATH gmake
+env PATH=/usr/versions/go-1.18/bin:$PATH gmake
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/stolon/bin
