@@ -1271,7 +1271,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -683,10 +683,6 @@
+@@ -687,10 +687,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -1282,7 +1282,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -1601,10 +1597,8 @@
+@@ -1605,10 +1601,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1295,7 +1295,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1891,8 +1885,7 @@
+@@ -1890,8 +1884,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1329,8 +1329,8 @@
 -#endif
 -
  volatile NMT_TrackingLevel MemTracker::_tracking_level = NMT_unknown;
- NMT_TrackingLevel MemTracker::_cmdline_tracking_level = NMT_unknown;
  
+ MemBaseline MemTracker::_baseline;
 --- old/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
 @@ -34,11 +34,9 @@
@@ -1775,7 +1775,7 @@
     identifiers matching a C constant. The PREFIX_ is filtered out in the
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.927301234 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.535293707 -0700
-@@ -123,10 +123,6 @@
+@@ -127,10 +127,6 @@
          return rootDirectory;
      }
  
@@ -1788,7 +1788,7 @@
      }
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.971321280 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.583313830 -0700
-@@ -770,15 +770,7 @@
+@@ -778,15 +778,7 @@
                      ("NOFOLLOW_LINKS is not supported on this platform");
              flags |= O_NOFOLLOW;
          }
@@ -3734,7 +3734,7 @@
                  if ((f = new File("/etc/fedora-release")).canRead()) {
 --- old/src/java.desktop/unix/classes/sun/print/PrintServiceLookupProvider.java	2020-05-20 18:02:38.501117121 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/PrintServiceLookupProvider.java	2020-05-20 18:02:38.117109747 -0700
-@@ -152,10 +152,6 @@
+@@ -153,10 +153,6 @@
          return osname.startsWith("Mac");
      }
  
@@ -3745,7 +3745,7 @@
      static boolean isLinux() {
          return (osname.equals("Linux"));
      }
-@@ -307,7 +303,7 @@
+@@ -308,7 +304,7 @@
                  }
              }
          } else {
@@ -3754,7 +3754,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -491,7 +487,7 @@
+@@ -492,7 +488,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -3763,7 +3763,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -662,7 +658,7 @@
+@@ -663,7 +659,7 @@
                  psuri = printerInfo[1];
              }
          } else {
@@ -3772,7 +3772,7 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
-@@ -882,7 +878,7 @@
+@@ -883,7 +879,7 @@
          ArrayList<String> results = null;
          try {
              final String[] cmd = new String[3];
@@ -5857,7 +5857,7 @@
 -################################################################################
 --- old/src/hotspot/os/solaris/attachListener_solaris.cpp	2020-05-20 18:09:27.484969868 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,755 +0,0 @@
+@@ -1,749 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -6580,8 +6580,7 @@
 -  return NULL;
 -}
 -
--// Solaris specific global flag set. Currently, we support only
--// changing ExtendedDTraceProbes flag.
+-// Solaris specific global flag set.
 -jint AttachListener::pd_set_flag(AttachOperation* op, outputStream* out) {
 -  const char* name = op->arg(0);
 -  assert(name != NULL, "flag name should not be null");
@@ -6594,11 +6593,6 @@
 -      out->print_cr("flag value has to be an integer");
 -      return JNI_ERR;
 -    }
--  }
--
--  if (strcmp(name, "ExtendedDTraceProbes") == 0) {
--    DTrace::set_extended_dprobes(flag);
--    return JNI_OK;
 -  }
 -
 -  if (strcmp(name, "DTraceMonitorProbes") == 0) {
@@ -13802,7 +13796,7 @@
 -
 --- old/src/hotspot/share/services/dtraceAttacher.cpp	2020-05-20 18:10:08.361754658 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,133 +0,0 @@
+@@ -1,97 +0,0 @@
 -/*
 - * Copyright (c) 2006, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -13844,8 +13838,7 @@
 -  JVMFlagAccess::set_bool(flag, &value, JVMFlagOrigin::ATTACH_ON_DEMAND);
 -}
 -
--// Enable only the "fine grained" flags. Do *not* touch
--// the overall "ExtendedDTraceProbes" flag.
+-// Enable the "fine grained" flags.
 -void DTrace::enable_dprobes(int probes) {
 -  bool changed = false;
 -  if (!DTraceAllocProbes && (probes & DTRACE_ALLOC_PROBES)) {
@@ -13868,8 +13861,7 @@
 -  }
 -}
 -
--// Disable only the "fine grained" flags. Do *not* touch
--// the overall "ExtendedDTraceProbes" flag.
+-// Disable the "fine grained" flags.
 -void DTrace::disable_dprobes(int probes) {
 -  bool changed = false;
 -  if (DTraceAllocProbes && (probes & DTRACE_ALLOC_PROBES)) {
@@ -13893,41 +13885,7 @@
 -
 -// Do clean-up on "all door clients detached" event.
 -void DTrace::detach_all_clients() {
--  /*
--   * We restore the state of the fine grained flags
--   * to be consistent with overall ExtendedDTraceProbes.
--   * This way, we will honour command line setting or the
--   * last explicit modification of ExtendedDTraceProbes by
--   * a call to set_extended_dprobes.
--   */
--  if (ExtendedDTraceProbes) {
--    enable_dprobes(DTRACE_ALL_PROBES);
--  } else {
--    disable_dprobes(DTRACE_ALL_PROBES);
--  }
--}
--
--void DTrace::set_extended_dprobes(bool flag) {
--  // explicit setting of ExtendedDTraceProbes flag
--  set_bool_flag("ExtendedDTraceProbes", flag);
--
--  // make sure that the fine grained flags reflect the change.
--  if (flag) {
--    enable_dprobes(DTRACE_ALL_PROBES);
--  } else {
--    /*
--     * FIXME: Revisit this: currently all-client-detach detection
--     * does not work and hence disabled. The following scheme does
--     * not work. So, we have to disable fine-grained flags here.
--     *
--     * disable_dprobes call has to be delayed till next "detach all "event.
--     * This is to be  done so that concurrent DTrace clients that may
--     * have enabled one or more fine grained dprobes and may be running
--     * still. On "detach all" clients event, we would sync ExtendedDTraceProbes
--     * with  fine grained flags which would take care of disabling fine grained flags.
--     */
--    disable_dprobes(DTRACE_ALL_PROBES);
--  }
+-  disable_dprobes(DTRACE_ALL_PROBES);
 -}
 -
 -void DTrace::set_monitor_dprobes(bool flag) {

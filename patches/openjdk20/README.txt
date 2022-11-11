@@ -5,6 +5,11 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+23
+
+ExtendedDTraceProbes has been removed. Which removes 
+DTrace::set_extended_dprobes() as well.
+
 20+22
 
 Now need to force gnu strip via setting STRIP

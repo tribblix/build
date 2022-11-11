@@ -5,7 +5,7 @@ longer term.
 diff -urN a/src/hotspot/share/services/dtraceAttacher.hpp b/src/hotspot/share/services/dtraceAttacher.hpp
 --- a/src/hotspot/share/services/dtraceAttacher.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/share/services/dtraceAttacher.hpp	2022-02-16 13:46:43.000000000 +0000
-@@ -0,0 +1,51 @@
+@@ -0,0 +1,49 @@
 +/*
 + * Copyright (c) 2006, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -50,8 +50,6 @@ diff -urN a/src/hotspot/share/services/dtraceAttacher.hpp b/src/hotspot/share/se
 +  static void enable_dprobes(int probe_types);
 +  // all clients detached, do any clean-up
 +  static void detach_all_clients();
-+  // set ExtendedDTraceProbes flag
-+  static void set_extended_dprobes(bool value);
 +  // set DTraceMonitorProbes flag
 +  static void set_monitor_dprobes(bool value);
 +};
