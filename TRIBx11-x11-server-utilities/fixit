@@ -1,19 +1,7 @@
 #!/bin/sh
 #
-# this package is quite different between intel and sparc
-# this should not be true in the long run, but on sparc we
-# are currently working around the existing packages rather
-# than replacing them properly
+# this package is now common to x86 and sparc
 #
-case `uname -p` in
-sparc)
-    #
-    # there's already a showrgb binary delivered by SUNWxwplt
-    #
-    rm -fr usr/bin/showrgb
-    ;;
-
-*)
 
 #
 # xmakemap is just a script, so install it here
@@ -24,7 +12,3 @@ cp ${BUILDROOT}/patches/xmakemap/xmakemap usr/bin
 chmod 0555 usr/bin/xmakemap
 cp ${BUILDROOT}/patches/xmakemap/xmakemap.man usr/share/man/man1/xmakemap.1
 chmod 0444 usr/share/man/man1/xmakemap.1
-
-;;
-
-esac

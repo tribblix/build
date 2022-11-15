@@ -1,9 +1,32 @@
 #!/bin/sh
 #
+# the is the x86 version of the package, which supplies what OI
+# used to in prehistoric times
 #
-# this is a stub package that is currently only for sparc
-# it supplies the various core bits of X that opensxce missed
-# out, and the flags and fixes are specific to the sparc build
+# except for dispswitch, which has been split out
 #
-env XORG_LIBS=-L/usr/lib XORG_CFLAGS=-I/usr/openwin/server/include ${THOME}/build/dobuild rgb-1.0.6 -C "--with-rgb-db-type=ndbm --with-rgb-db-dir=/usr/lib/X11/rgb"
-${THOME}/build/genpkg TRIBx11-x11-server-utilities rgb-1.0.6
+
+#
+# SPARC needs
+#  env XORG_LIBS=-L/usr/lib XORG_CFLAGS=-I/usr/openwin/server/include
+# for rgb
+#
+
+${THOME}/build/dobuild -64only rgb-1.1.0 -C "--with-rgb-db-dir=/usr/lib/X11/rgb --with-rgb-db-type=ndbm"
+${THOME}/build/dobuild -64only xcmsdb-1.0.6
+${THOME}/build/dobuild -64only xgamma-1.0.6
+${THOME}/build/dobuild -64only xhost-1.0.8
+${THOME}/build/dobuild -64only xinput-1.6.3
+${THOME}/build/dobuild -64only xmodmap-1.0.11
+${THOME}/build/dobuild -64only xprop-1.2.5
+${THOME}/build/dobuild -64only xrandr-1.5.1
+${THOME}/build/dobuild -64only xrdb-1.2.0
+${THOME}/build/dobuild -64only xrefresh-1.0.7
+${THOME}/build/dobuild -64only xset-1.2.4
+${THOME}/build/dobuild -64only xsetroot-1.1.3
+
+#
+# xmakemap installed by the fixit script
+#
+
+${THOME}/build/genpkg TRIBx11-x11-server-utilities rgb-1.1.0 xcmsdb-1.0.6 xgamma-1.0.6 xhost-1.0.8 xinput-1.6.3 xmodmap-1.0.11 xprop-1.2.5 xrandr-1.5.1 xrdb-1.2.0 xrefresh-1.0.7 xset-1.2.4 xsetroot-1.1.3
