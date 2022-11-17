@@ -219,7 +219,7 @@
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -282,7 +282,7 @@
+@@ -274,7 +274,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -228,7 +228,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -295,7 +295,7 @@
+@@ -287,7 +287,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -437,7 +437,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -1001,7 +1001,7 @@
+@@ -1038,7 +1038,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -595,7 +595,7 @@
 -include lib/CompileDtraceLibraries.gmk
  
  ifneq ($(GTEST_FRAMEWORK_SRC), )
-   include lib/CompileGtest.gmk
+   ifneq ($(CREATING_BUILDJDK), true)
 --- old/make/hotspot/lib/JvmMapfile.gmk	2020-05-20 17:59:00.372928900 -0700
 +++ new/make/hotspot/lib/JvmMapfile.gmk	2020-05-20 17:58:59.980921373 -0700
 @@ -48,18 +48,6 @@
@@ -1159,7 +1159,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -502,7 +502,7 @@
+@@ -501,7 +501,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1168,7 +1168,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -520,12 +520,6 @@
+@@ -519,12 +519,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -12265,7 +12265,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ORDERACCESS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2020-05-20 18:10:01.145616115 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,756 +0,0 @@
+@@ -1,752 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12561,10 +12561,6 @@
 -  }
 -}
 -
--
--bool os::supports_sse() {
--  return true;
--}
 -
 -extern "C" JNIEXPORT int
 -JVM_handle_solaris_signal(int sig, siginfo_t* info, void* ucVoid,
@@ -13024,7 +13020,7 @@
 -}
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.hpp	2020-05-20 18:10:01.837629401 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,57 +0,0 @@
+@@ -1,55 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -13070,8 +13066,6 @@
 -
 -  static void setup_fpu();
 -#endif // AMD64
--
--  static bool supports_sse();
 -
 -  static jlong rdtsc();
 -

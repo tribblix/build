@@ -1,6 +1,6 @@
 --- a/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	Thu Nov 12 10:50:44 2020
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	Thu Nov 12 10:57:39 2020
-@@ -274,61 +274,9 @@
+@@ -270,61 +270,9 @@
    return result;
  }
  
@@ -64,7 +64,7 @@
    if (info == NULL || info->si_code <= 0 || info->si_code == SI_NOINFO) {
      // can't decode this kind of signal
      info = NULL;
-@@ -531,52 +479,6 @@
+@@ -527,52 +475,6 @@
      return true;
    }
  

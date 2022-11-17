@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
+20+24
+
+os::supports_sse() has been removed
+
 20+23
 
 ExtendedDTraceProbes has been removed. Which removes 
