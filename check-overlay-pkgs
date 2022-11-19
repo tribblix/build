@@ -3,12 +3,32 @@
 # check validity of the package names for the given overlay(s)
 #
 
+THOME=${THOME:-/packages/localsrc/Tribblix}
+#
+# xref against this illumos version
+#
+ILVER=m28
+PILVER=28
+PKGDIR=${THOME}/pkgs
+case `pwd` in
+    *lx)
+	ILVER=m28lx
+	PILVER=28lx
+	;;
+    *sparc)
+	ILVER=m25.1.sparc
+	PILVER=25.1
+	PKGDIR=${THOME}/pkgs.sparc
+	;;
+esac
+IPKGDIR=${THOME}/illumos-pkgs-${ILVER}/pkgs
+
 case $1 in
 -a)
     # look for all overlays
-    for pkg in `ls -1 *.pkgs | sed s:.pkgs::`
+    for pkg in *.pkgs
     do
-	$0 $pkg
+	$0 ${pkg%%.pkgs}
     done
     exit 0
     ;;
@@ -39,11 +59,10 @@ if [ ! -f "${OVL}.pkgs" ]; then
     echo "ERROR: unable to find overlay $OVL"
     exit 1
 fi
-for PKGI in `cat ${OVL}.pkgs`
+for PKGI in `egrep -v '^(TRIBrelease-name|TRIBzap|TRIBzap-upgrade)$' ${OVL}.pkgs`
 do
-  if [ ! -d ../build/${PKGI} ]; then
-      NVER=`/usr/lib/zap/get-version $PKGI`
-      if [ "X${NVER}" = "X${PKGI}" ]; then
+  if [ ! -d ${THOME}/build/${PKGI} ]; then
+      if [ ! -f "${IPKGDIR}/${PKGI}.0.${PILVER}.zap" ]; then
 	  echo "ERROR: invalid package $PKGI"
       fi
   fi
