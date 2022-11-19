@@ -13,7 +13,7 @@ case `pwd` in
 	ILVER=m28lx
 	;;
     *sparc)
-	ILVER=m20.6.sparc
+	ILVER=m25.1.sparc
 	;;
 esac
 CATALOG=${THOME}/illumos-pkgs-${ILVER}/pkgs/catalog
