@@ -1,4 +1,4 @@
 PKG="TRIBxfce-screenshooter"
 NAME="Xfce screenshooter"
-VERSION="1.9.7.0"
+VERSION="1.10.0.0"
 ZAP_URL="https://docs.xfce.org/apps/screenshooter/start"
