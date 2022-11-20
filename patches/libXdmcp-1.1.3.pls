@@ -1,1 +1,0 @@
--p1 libXdmcp.header.patch
