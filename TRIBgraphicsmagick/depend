@@ -1,4 +1,5 @@
 P TRIBcompress-bzip2
+P TRIBcompress-zstd
 P TRIBgraphics-jasper
 P TRIBimage-libjpeg
 P TRIBimage-libpng
