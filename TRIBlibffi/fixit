@@ -13,6 +13,12 @@ esac
 rm usr/lib/lib*.la
 rm usr/lib/${ARCH64}/lib*.la
 #
+# fixinstall.64 saved the 64-bit ffi.h for us, now
+# we wrap it
+#
+mv usr/include/ffi.h usr/include/ffi-32.h
+cp ${BUILDROOT}/patches/ffi.h usr/include/ffi.h
+#
 # symlink previous library version for app compatibility
 #
 cd usr/lib

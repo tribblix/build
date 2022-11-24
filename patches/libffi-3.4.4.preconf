@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# we follow omnios here
+#
+gsed -i s:-fexceptions:-funwind-tables: configure
