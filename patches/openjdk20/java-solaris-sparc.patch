@@ -134,7 +134,7 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -271,23 +271,15 @@
+@@ -276,23 +276,15 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
      TAR_TYPE="busybox"
@@ -158,7 +158,7 @@
    elif test "x$TAR_TYPE" = "aix"; then
      # -L InputList of aix tar: name of file listing the files and directories
      # that need to be archived or extracted
-@@ -301,7 +293,6 @@
+@@ -306,7 +298,6 @@
      TAR_SUPPORTS_TRANSFORM="false"
    fi
    AC_SUBST(TAR_TYPE)
@@ -207,7 +207,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -405,9 +405,6 @@
+@@ -410,9 +410,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -1271,7 +1271,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -687,10 +687,6 @@
+@@ -690,10 +690,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -1282,7 +1282,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -1605,10 +1601,8 @@
+@@ -1608,10 +1604,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1295,7 +1295,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1890,8 +1884,7 @@
+@@ -1893,8 +1887,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1328,7 +1328,7 @@
 -  volatile bool NMT_stack_walkable = true;
 -#endif
 -
- volatile NMT_TrackingLevel MemTracker::_tracking_level = NMT_unknown;
+ NMT_TrackingLevel MemTracker::_tracking_level = NMT_unknown;
  
  MemBaseline MemTracker::_baseline;
 --- old/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
@@ -1341,10 +1341,10 @@
 -
 -#define CURRENT_PC ((MemTracker::tracking_level() == NMT_detail && NMT_stack_walkable) ? \
 +#define CURRENT_PC ((MemTracker::tracking_level() == NMT_detail) ? \
-                     NativeCallStack(0) : NativeCallStack::empty_stack())
+                     NativeCallStack(0) : FAKE_CALLSTACK)
 -#define CALLER_PC  ((MemTracker::tracking_level() == NMT_detail && NMT_stack_walkable) ?  \
 +#define CALLER_PC  ((MemTracker::tracking_level() == NMT_detail) ?  \
-                     NativeCallStack(1) : NativeCallStack::empty_stack())
+                     NativeCallStack(1) : FAKE_CALLSTACK)
  
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
@@ -1594,7 +1594,7 @@
     identifiers matching a C constant. The PREFIX_ is filtered out in the
 --- old/src/java.base/share/conf/security/java.security	2020-05-20 18:00:54.519120590 -0700
 +++ new/src/java.base/share/conf/security/java.security	2020-05-20 18:00:54.183114138 -0700
-@@ -63,9 +63,6 @@
+@@ -66,9 +66,6 @@
  #
  # List of providers and their preference orders (see above):
  #
@@ -1604,7 +1604,7 @@
  security.provider.tbd=SUN
  security.provider.tbd=SunRsaSign
  security.provider.tbd=SunEC
-@@ -83,9 +80,7 @@
+@@ -86,9 +83,7 @@
  #ifdef macosx
  security.provider.tbd=Apple
  #endif
