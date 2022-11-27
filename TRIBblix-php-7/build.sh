@@ -11,8 +11,8 @@
 # must have apache24 installed
 #
 zap uninstall TRIBlibtool
-${THOME}/build/unpack php-7.4.32
-cd php-7.4.32
+${THOME}/build/unpack php-7.4.33
+cd php-7.4.33
 #
 # CFLAGS because Zend.m4 hasn't a hope of correctness
 #
