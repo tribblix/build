@@ -4,6 +4,6 @@
 # avoid tying it to the normal preconf as it's only relevant for the server
 #
 ${THOME}/build/patches/zabbix-server.preconf
-${THOME}/build/dobuild -64only zabbix-4.0.43 -P /opt/tribblix/zabbix -C "--enable-server --with-libcurl --with-postgresql=/opt/tribblix/postgres13/bin/pg_config --with-libpcre-include=/usr/include/pcre --with-libevent=/tmp/mc"
-${THOME}/build/genpkg TRIBblix-zabbix zabbix-4.0.43
+${THOME}/build/dobuild -64only zabbix-4.0.44 -P /opt/tribblix/zabbix -C "--enable-server --with-libcurl --with-postgresql=/opt/tribblix/postgres13/bin/pg_config --with-libpcre-include=/usr/include/pcre --with-libevent=/tmp/mc"
+${THOME}/build/genpkg TRIBblix-zabbix zabbix-4.0.44
 rm -fr /tmp/mc
