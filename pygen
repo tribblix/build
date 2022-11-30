@@ -17,7 +17,7 @@ PY310VER=310
 PY310DVER=3.10
 
 DO37=""
-DO310=""
+DO310="yes"
 case $1 in
     +37)
 	DO37="yes"
@@ -25,8 +25,8 @@ case $1 in
 	;;
 esac
 case $1 in
-    +310)
-	DO310="yes"
+    -310)
+	DO310=""
 	shift
 	;;
 esac
@@ -41,7 +41,7 @@ case $1 in
 	shift
 	;;
     *)
-	echo "Usage: $0 -s|-p pkg_name tarball_name"
+	echo "Usage: $0 [+37|-310] -s|-p pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -148,7 +148,7 @@ EOF
 cat > $PY310NAME/build.sh <<EOF
 #!/bin/sh
 #
-\${THOME}/build/unpack$BUILDER $PY310NAME $TBALL
+\${THOME}/build/$BUILDER $PY310NAME $TBALL
 EOF
 chmod a+x $PY310NAME/build.sh
 fi
