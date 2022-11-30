@@ -1,4 +1,4 @@
 PKG="TRIBpatiencediff-python-310"
 NAME="Python patiencediff"
-VERSION="0.2.8.0"
+VERSION="0.2.9.0"
 ZAP_URL="https://pypi.org/project/patiencediff"
