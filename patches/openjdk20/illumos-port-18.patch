@@ -22,10 +22,10 @@
  # include OS_HEADER(park)
 --- a/src/hotspot/share/runtime/threadCrashProtection.hpp	Wed Jul  6 08:12:32 2022
 +++ b/src/hotspot/share/runtime/threadCrashProtection.hpp	Thu Jul  7 14:11:04 2022
-@@ -33,7 +33,7 @@
-   virtual void call() = 0;
- };
+@@ -27,7 +27,7 @@
+ #define SHARE_RUNTIME_THREADCRASHPROTECTION_HPP
  
+ #include "memory/allocation.hpp"
 -#if defined(LINUX) || defined(AIX) || defined(BSD)
 +#if defined(LINUX) || defined(AIX) || defined(BSD) || defined(SOLARIS)
  # include "threadCrashProtection_posix.hpp"

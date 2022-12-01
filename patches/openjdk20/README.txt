@@ -5,7 +5,7 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 20 now that jdk19 has been forked off.
 
-20+25
+20+25, 20+26
 
 Minor patch noise
 
