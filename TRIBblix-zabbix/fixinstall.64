@@ -31,10 +31,11 @@ ln -s ../../../apache2/conf/magic ${DESTDIR}/opt/tribblix/zabbix/apache2/conf
 ln -s ../../../apache2/conf/mime.types ${DESTDIR}/opt/tribblix/zabbix/apache2/conf
 #
 # and copy the web frontend into place
+# was in a folder named frontends/php, it's now moved
 #
-cd frontends/php
+cd ui
 cp -a . ${DESTDIR}/opt/tribblix/zabbix/apache2/htdocs
-cd ../..
+cd ..
 #
 # the database scripts go here
 #
