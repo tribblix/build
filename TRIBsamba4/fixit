@@ -9,6 +9,10 @@ mv usr/share/samba/setup/cn=samba.ldif usr/share/samba/setup/cn-samba.ldif
 mv usr/bin/profiles usr/bin/smbprofiles
 mv usr/share/man/man1/profiles.1 usr/share/man/man1/smbprofiles.1
 #
+# and this conflicts with our smbd manual
+#
+mv usr/share/man/man8/smbd.8 usr/share/man/man8/samba-smbd.8
+#
 # this is where our perl really lives
 #
 if [ -d usr/share/perl5 ]; then
