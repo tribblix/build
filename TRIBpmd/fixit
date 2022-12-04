@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-VERSION=6.51.0
+VERSION=6.52.0
 mkdir -p usr/bin
 cat > usr/bin/pmd <<EOF
 #!/bin/sh
