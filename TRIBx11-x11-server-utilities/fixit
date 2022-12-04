@@ -4,6 +4,11 @@
 #
 
 #
+# xkeystone needs things we don't have
+#
+rm -f usr/bin/xkeystone
+
+#
 # xmakemap is just a script, so install it here
 #
 mkdir -p usr/bin
