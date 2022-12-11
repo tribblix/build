@@ -1,4 +1,4 @@
 PKG="TRIBprotobuf-python-310"
 NAME="Python protobuf"
-VERSION="4.21.9.0"
+VERSION="4.21.11.0"
 ZAP_URL="https://pypi.org/project/protobuf"
