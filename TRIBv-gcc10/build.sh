@@ -7,7 +7,7 @@
 #
 
 #
-# this build patches the gase gcc download rather than using the
+# this build patches the base gcc download rather than using the
 # pre-patched illumos tarball
 #
 ${THOME}/build/unpack gcc-10.3.0

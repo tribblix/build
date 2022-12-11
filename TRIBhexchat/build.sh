@@ -4,7 +4,7 @@ ${THOME}/build/unpack hexchat-2.16.1
 cd hexchat-2.16.1
 
 #
-# this is a 64-bit build, so diable perl for now as that's
+# this is a 64-bit build, so disable perl for now as that's
 # 32-bit (and never worked)
 #
 # we ought to pick up the 64-bit python3.9, but while the module builds
