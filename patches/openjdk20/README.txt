@@ -3,7 +3,12 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
-JDK 20 now that jdk19 has been forked off.
+20+27
+
+Forked off, now in rampdown phase 1.
+
+VM_Version::page_size_count() has been removed, but it's only returning
+a constant so we can easily handle that.
 
 20+25, 20+26
 
