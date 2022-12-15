@@ -168,7 +168,7 @@
  ])
 --- old/make/autoconf/build-aux/config.guess	2020-05-20 17:58:28.372314465 -0700
 +++ new/make/autoconf/build-aux/config.guess	2020-05-20 17:58:27.980306938 -0700
-@@ -42,14 +42,6 @@
+@@ -75,14 +75,6 @@
    fi
  fi
  

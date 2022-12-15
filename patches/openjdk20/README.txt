@@ -3,6 +3,10 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+20+28
+
+Trivial patch noise
+
 20+27
 
 Forked off, now in rampdown phase 1.
