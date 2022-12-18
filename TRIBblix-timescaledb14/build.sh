@@ -4,8 +4,9 @@
 #
 git clone https://github.com/timescale/timescaledb.git
 cd timescaledb
-git checkout 2.6.1
+git checkout 2.8.1
 env PATH=/opt/tribblix/postgres14/bin:$PATH PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig ./bootstrap
 cd build
 gmake
 ${THOME}/build/genpkg TRIBblix-timescaledb14
+cd ../..
