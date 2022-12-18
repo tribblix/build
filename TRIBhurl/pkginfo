@@ -1,0 +1,4 @@
+PKG="TRIBhurl"
+NAME="Hurl - http test utility"
+VERSION="2.0.0.0"
+ZAP_URL="https://github.com/Orange-OpenSource/hurl/"
