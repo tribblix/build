@@ -1,4 +1,4 @@
 PKG="TRIBxorg-driver-video-r128"
 NAME="Xorg r128 driver"
-VERSION="6.10.2.0"
+VERSION="6.12.1.0"
 ZAP_URL="https://www.x.org/releases/individual/driver/"
