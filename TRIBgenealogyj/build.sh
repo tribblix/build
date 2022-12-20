@@ -2,9 +2,9 @@
 #
 # this isn't really a script but a recipe
 #
-# run the installer
+# old way - run the installer
 #
-java -jar ${THOME}/tarballs/genj_install-3.0.jar
+# java -jar ${THOME}/tarballs/genj_install-3.0.jar
 #
 # accept the defaults, but set the installation path to
 # /tmp/gg/usr/versions/GenealogyJ
@@ -24,28 +24,41 @@ java -jar ${THOME}/tarballs/genj_install-3.0.jar
 # just in case someone tries to run this as a script and ignores the
 # instructions
 #
-if [ ! -d /tmp/gg/usr/versions/GenealogyJ ]; then
-    exit 1
-fi
+# if [ ! -d /tmp/gg/usr/versions/GenealogyJ ]; then
+#    exit 1
+# fi
+
+#
+# new build, just a zip download
+# need this version for jdk11 compatibility
+#
+mkdir -p /tmp/gg/usr/versions/GenealogyJ
+cd /tmp/gg/usr/versions/GenealogyJ
+$THOME/build/unpack genj_app-6865
 
 #
 # clean up the install tree
 #
-cd /tmp/gg/usr/versions/GenealogyJ
 rm -fr Uninstaller
 rm -f run.bat run.cmd
 chmod a+x run.sh
 
 mkdir -p /tmp/gg/usr/share/applications
 mkdir -p /tmp/gg/usr/share/pixmaps
-convert genj.ico /tmp/gg/usr/share/pixmaps/genealogyj.png
+
+# convert genj.ico /tmp/gg/usr/share/pixmaps/genealogyj.png
+# cat $HOME/.local/share/applications/Genealogy*desktop | sed -e s:/tmp/gg/:/: -e 's:Exec=/.*/java :Exec=java :' -e s:/usr/versions/GenealogyJ/genj.ico:genealogyj: -e 's:Categories=:Categories=Utility;:' > /tmp/gg/usr/share/applications/Genealogy.desktop
+
+#
+# temporary hack, copy the prior versions
+#
+cp /usr/share/applications/Genealogy.desktop /tmp/gg/usr/share/applications/Genealogy.desktop
+cp /usr/share/pixmaps/genealogyj.png /tmp/gg/usr/share/pixmaps/genealogyj.png
+
 mkdir -p /tmp/gg/usr/bin
-
-cat $HOME/.local/share/applications/Genealogy*desktop | sed -e s:/tmp/gg/:/: -e 's:Exec=/.*/java :Exec=java :' -e s:/usr/versions/GenealogyJ/genj.ico:genealogyj: -e 's:Categories=:Categories=Utility;:' > /tmp/gg/usr/share/applications/Genealogy.desktop
-
 cd /tmp/gg/usr/bin
 ln -s ../../usr/versions/GenealogyJ/run.sh genealogyj
-gsed -i s:grep:/usr/gnu/bin/grep: /tmp/gg/usr/versions/GenealogyJ/run.sh
+sed -i s:grep:/usr/gnu/bin/grep: /tmp/gg/usr/versions/GenealogyJ/run.sh
 
 # and package it
 cd
