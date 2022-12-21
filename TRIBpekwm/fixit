@@ -1,6 +1,13 @@
 #!/bin/sh
 #
-# add a couple of themes
+# fix default applications
+#
+sed -i s:firefox:palemoon: etc/pekwm/vars
+sed -i s:worker:Thunar: etc/pekwm/vars
+sed -i s:xedit:emacs: etc/pekwm/vars
+sed -i s:+sb:-sb: etc/pekwm/vars
+#
+# add some themes
 #
 cd usr/share/pekwm/themes
 #
@@ -15,3 +22,8 @@ ${BUILDROOT}/unpack Menda-Pekwm-Theme-master
 mv Menda-Pekwm-Theme-master/Menda Menda
 rm -fr Menda-Pekwm-Theme-master
 chmod -R a+r Menda
+#
+# https://www.box-look.org/p/1172379
+#
+${BUILDROOT}/unpack Curvy
+chmod -R a+r Curvy
