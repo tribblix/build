@@ -3,8 +3,8 @@
 # simple makefile
 # 64-bitness imposed by the Makefile patch
 #
-${THOME}/build/dobuild tree-1.8.0
-cd tree-1.8.0
+${THOME}/build/dobuild tree-2.0.4
+cd tree-2.0.4
 rm -fr /tmp/trt
 mkdir -p /tmp/trt/usr/bin
 cp tree /tmp/trt/usr/bin

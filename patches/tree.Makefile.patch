@@ -1,22 +1,41 @@
-# Patch origin internal.
-# Not to be sent upstream, because changes to this native Makefile were intended
-# to be part of the build process.
-#
-# Of the suggested Solaris lines, only XOBJS (specific to this compoent) should
-# be set here.
-# The rest (CC, CFLAGS, LDFLAGS, MANDIR) need to be set by the Userland build
-# environment to get the correct values.
-
---- tree-1.8.0/Makefile.orig	2021-06-23 14:48:55.584463635 +0000
-+++ tree-1.8.0/Makefile	2021-06-23 14:49:21.953391079 +0000
-@@ -43,7 +43,9 @@
- #CC=cc
- #CFLAGS=-xO0 -v
- #LDFLAGS=
--#OBJS+=strverscmp.o
-+OBJS+=strverscmp.o
+--- a/Makefile	Wed Dec 21 19:21:55 2022
++++ b/Makefile	Wed Dec 21 19:28:44 2022
+@@ -16,10 +16,10 @@
+ # along with this program; if not, write to the Free Software
+ # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ 
+-PREFIX=/usr/local
++PREFIX=/usr
+ 
+ CC=gcc
+-INSTALL=install
++INSTALL=ginstall
+ 
+ VERSION=2.0.4
+ TREE_DEST=tree
+@@ -26,9 +26,12 @@
+ DESTDIR=${PREFIX}/bin
+ MAN=tree.1
+ # Probably needs to be ${PREFIX}/share/man for most systems now
+-MANDIR=${PREFIX}/man
++MANDIR=${PREFIX}/share/man
+ OBJS=tree.o list.o hash.o color.o file.o filter.o info.o unix.o xml.o json.o html.o strverscmp.o
+ 
 +CFLAGS+=-m64
 +LDFLAGS+=-m64
- #MANDIR=${prefix}/share/man/man1
++
+ # Uncomment options below for your particular OS:
  
- # Uncomment for Cygwin:
+ # Linux defaults:
+--- a/tree.h	Thu Jun 16 14:38:36 2022
++++ b/tree.h	Wed Dec 21 19:31:35 2022
+@@ -30,7 +30,9 @@
+ #include <ctype.h>
+ #include <unistd.h>
+ #include <limits.h>
++#define __XOPEN_OR_POSIX 1
+ #include <pwd.h>
++#undef __XOPEN_OR_POSIX
+ #include <grp.h>
+ #ifdef __EMX__  /* for OS/2 systems */
+ #  define INCL_DOSFILEMGR

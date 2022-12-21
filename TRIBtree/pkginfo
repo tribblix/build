@@ -1,4 +1,4 @@
 PKG="TRIBtree"
 NAME="Recursive directory lister"
-VERSION="1.8.0.1"
+VERSION="2.0.4.0"
 ZAP_URL="http://mama.indstate.edu/users/ice/tree/"
