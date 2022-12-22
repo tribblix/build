@@ -11,13 +11,6 @@ i386)
   ;;
 esac
 #
-# the TRIBlibpng-compat package ships older versions
-#
-# this package briefly shipped libpng16, with 1.4 as
-# compatibility libraries, which didn't work out so well
-# so ship plain 1.4 only for now
-#
-#
 # we never shipped .la files before, don't do so now
 #
 rm -f usr/lib/lib*.la
