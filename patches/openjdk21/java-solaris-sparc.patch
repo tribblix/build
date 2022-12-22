@@ -168,7 +168,7 @@
  ])
 --- old/make/autoconf/build-aux/config.guess	2020-05-20 17:58:28.372314465 -0700
 +++ new/make/autoconf/build-aux/config.guess	2020-05-20 17:58:27.980306938 -0700
-@@ -42,14 +42,6 @@
+@@ -75,14 +75,6 @@
    fi
  fi
  
@@ -1349,7 +1349,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -717,12 +717,11 @@
+@@ -719,12 +719,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
