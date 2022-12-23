@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-# appears to use an incompatible giflib api
+# need to build from trunk, create a tarball like so:
+# svn checkout https://svn.code.sf.net/p/xplanet/code/trunk xplanet-code
+# tar czf ${THOME}/tarballs/xplanet-code.tar.gz xplanet-code
 #
-env TRIBBLIX_CXXFLAGS=-fpermissive ${THOME}/build/dobuild xplanet-1.3.0 -C --with-gif=no
-${THOME}/build/genpkg TRIBxplanet xplanet-1.3.0
+env TRIBBLIX_CXXFLAGS=-fpermissive ${THOME}/build/dobuild -64only xplanet-code
+${THOME}/build/genpkg TRIBxplanet xplanet-code
