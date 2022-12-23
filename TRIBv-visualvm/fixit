@@ -2,7 +2,7 @@
 #
 # CLI wrapper
 #
-VERSION=visualvm_206
+VERSION=visualvm_215
 mkdir -p usr/bin
 ln -s /usr/versions/${VERSION}/bin/visualvm usr/bin
 #
