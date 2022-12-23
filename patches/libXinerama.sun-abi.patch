@@ -30,7 +30,7 @@ diff --git a/src/Xinerama.c b/src/Xinerama.c
 index 67a35b5..e0e5c5d 100644
 --- a/src/Xinerama.c
 +++ b/src/Xinerama.c
-@@ -89,6 +89,9 @@ static XEXT_GENERATE_CLOSE_DISPLAY (close_display, panoramiX_ext_info)
+@@ -75,6 +75,9 @@ static XEXT_GENERATE_CLOSE_DISPLAY (close_display, panoramiX_ext_info)
   *                                                                          *
   ****************************************************************************/
  
@@ -40,7 +40,7 @@ index 67a35b5..e0e5c5d 100644
  Bool XPanoramiXQueryExtension (
      Display *dpy,
      int *event_base_return,
-@@ -107,6 +110,9 @@ Bool XPanoramiXQueryExtension (
+@@ -93,6 +96,9 @@ Bool XPanoramiXQueryExtension (
  }
  
  
@@ -50,7 +50,7 @@ index 67a35b5..e0e5c5d 100644
  Status XPanoramiXQueryVersion(
      Display *dpy,
      int     *major_version_return,
-@@ -137,6 +143,7 @@ Status XPanoramiXQueryVersion(
+@@ -123,6 +129,7 @@ Status XPanoramiXQueryVersion(
      return 1;
  }
  
@@ -58,7 +58,7 @@ index 67a35b5..e0e5c5d 100644
  XPanoramiXInfo *XPanoramiXAllocInfo(void)
  {
  	return (XPanoramiXInfo *) Xmalloc (sizeof (XPanoramiXInfo));
-@@ -232,6 +239,7 @@ Status XPanoramiXGetScreenSize (
+@@ -218,6 +225,7 @@ Status XPanoramiXGetScreenSize (
      panoramiX_info->height = rep.height;
      return 1;
  }
