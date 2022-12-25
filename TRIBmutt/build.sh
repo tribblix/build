@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild mutt-2.2.6 -64only -C "--enable-imap --with-ssl  --with-slang --enable-smtp --enable-sidebar --enable-gpgme"
-${THOME}/build/genpkg TRIBmutt mutt-2.2.6
+${THOME}/build/dobuild mutt-2.2.9 -64only -C "--enable-imap --with-ssl  --with-slang --enable-smtp --enable-sidebar --enable-gpgme"
+${THOME}/build/genpkg TRIBmutt mutt-2.2.9
