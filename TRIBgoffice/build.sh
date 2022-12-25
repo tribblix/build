@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-env CPPFLAGS=-I/usr/include/pcre ${THOME}/build/dobuild -64 -gnu goffice-0.10.52
-${THOME}/build/genpkg TRIBgoffice goffice-0.10.52
+env CPPFLAGS=-I/usr/include/pcre ${THOME}/build/dobuild -64 -gnu goffice-0.10.53
+${THOME}/build/genpkg TRIBgoffice goffice-0.10.53
