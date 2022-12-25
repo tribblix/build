@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64only links-2.27 -C "--enable-graphics --without-openmp"
-${THOME}/build/genpkg TRIBlinks-browser links-2.27
+${THOME}/build/dobuild -64only links-2.28 -C "--enable-graphics --without-openmp"
+${THOME}/build/genpkg TRIBlinks-browser links-2.28
