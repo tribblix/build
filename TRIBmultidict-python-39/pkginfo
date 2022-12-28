@@ -1,4 +1,4 @@
 PKG="TRIBmultidict-python-39"
 NAME="Python multidict"
-VERSION="6.0.3.0"
+VERSION="6.0.4.0"
 ZAP_URL="https://pypi.org/project/multidict"
