@@ -11,7 +11,7 @@
  libxkbfileinclude_HEADERS = \
 --- ./src/Makefile.in.orig	2016-05-19 02:19:55.056133965 +0200
 +++ ./src/Makefile.in	2016-05-19 02:20:18.776397570 +0200
-@@ -361,7 +361,7 @@
+@@ -373,7 +373,7 @@
  AM_CPPFLAGS = -I$(top_srcdir)/include/ -I$(top_srcdir)/include/X11/extensions/
  AM_CFLAGS = $(CWARNFLAGS) @XKBFILE_CFLAGS@
  libxkbfile_la_LIBADD = @XKBFILE_LIBS@
