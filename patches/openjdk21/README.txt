@@ -5,6 +5,16 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+21+4
+
+The reorderMap in MFontConfiguration.java now needs to construct
+String[] by hand rather than using FontConfiguration.split()
+
+Something odd has changed that's broken my build; I needed to add
+JAVA_WARNINGS_ARE_ERRORS=""
+to the gmake command. Otherwise -Werror turns all java warnings into
+errors and fails the build. The thing is that there's nothing new here.
+
 21+2, 21+3
 
 Trivial patch noise

@@ -820,7 +820,7 @@
    LIBAWT_EXFILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -170,7 +170,6 @@
+@@ -165,7 +165,6 @@
          -delayload:comctl32.dll -delayload:shlwapi.dll, \
      LIBS_unix := -ljvm -ljava $(LIBM), \
      LIBS_linux :=  $(LIBDL), \
@@ -828,7 +828,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -399,7 +398,6 @@
+@@ -394,7 +393,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -836,7 +836,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -456,7 +454,7 @@
+@@ -451,7 +449,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -845,7 +845,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
     endif
  
-@@ -614,10 +612,7 @@
+@@ -609,10 +607,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -857,7 +857,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -644,7 +639,6 @@
+@@ -639,7 +634,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1107,7 +1107,7 @@
 -
  ifeq ($(call isTargetOs, windows), true)
    BUILD_HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
-   BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libTestPsig.c
+   BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libTestPsig.c libnativeStack.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
 @@ -103,9 +103,6 @@
@@ -3440,7 +3440,7 @@
   * Since winsock doesn't have the equivalent of strerror(errno)
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
-@@ -1428,22 +1428,6 @@
+@@ -1423,22 +1423,6 @@
                  }
              }
          }
@@ -3665,28 +3665,28 @@
 -//      reorderMap.put("UTF-8", "latin-1");
 -        reorderMap.put("UTF-8.hi", "devanagari"); // NB is in Lucida.
 -        reorderMap.put("UTF-8.ja",
--                       split("japanese-x0201,japanese-x0208,japanese-x0212"));
+-                       new String[] {"japanese-x0201", "japanese-x0208", "japanese-x0212"});
 -        reorderMap.put("UTF-8.ko", "korean-johab");
 -        reorderMap.put("UTF-8.th", "thai");
 -        reorderMap.put("UTF-8.zh.TW", "chinese-big5");
--        reorderMap.put("UTF-8.zh.HK", split("chinese-big5,chinese-hkscs"));
+-        reorderMap.put("UTF-8.zh.HK", new String[] {"chinese-big5", "chinese-hkscs"});
 -        reorderMap.put("UTF-8.zh.CN",
--                       split("chinese-gb18030-0,chinese-gb18030-1"));
+-                       new String[] {"chinese-gb18030-0", "chinese-gb18030-1"});
 -        reorderMap.put("UTF-8.zh",
--                       split("chinese-big5,chinese-hkscs,chinese-gb18030-0,chinese-gb18030-1"));
+-                       new String[] {"chinese-big5", "chinese-hkscs", "chinese-gb18030-0,chinese-gb18030-1"});
 -        reorderMap.put("Big5", "chinese-big5");
--        reorderMap.put("Big5-HKSCS", split("chinese-big5,chinese-hkscs"));
--        reorderMap.put("GB2312", split("chinese-gbk,chinese-gb2312"));
+-        reorderMap.put("Big5-HKSCS", new String[] {"chinese-big5", "chinese-hkscs"});
+-        reorderMap.put("GB2312", new String[] {"chinese-gbk", "chinese-gb2312"});
 -        reorderMap.put("x-EUC-TW",
--            split("chinese-cns11643-1,chinese-cns11643-2,chinese-cns11643-3"));
+-            new String[] {"chinese-cns11643-1", "chinese-cns11643-2", "chinese-cns11643-3"});
 -        reorderMap.put("GBK", "chinese-gbk");
--        reorderMap.put("GB18030",split("chinese-gb18030-0,chinese-gb18030-1"));
+-        reorderMap.put("GB18030",new String[] {"chinese-gb18030-0", "chinese-gb18030-1"});
 -
 -        reorderMap.put("TIS-620", "thai");
 -        reorderMap.put("x-PCK",
--                       split("japanese-x0201,japanese-x0208,japanese-x0212"));
+-                       new String[] {"japanese-x0201", "japanese-x0208", "japanese-x0212"});
 -        reorderMap.put("x-eucJP-Open",
--                       split("japanese-x0201,japanese-x0208,japanese-x0212"));
+-                       new String[] {"japanese-x0201", "japanese-x0208", "japanese-x0212"});
 -        reorderMap.put("EUC-KR", "korean");
 -        /* Don't create a no-op entry, so we can optimize this case */
 -//      reorderMap.put("ISO-8859-1", "latin-1");
@@ -3706,7 +3706,7 @@
          reorderMap.put("UTF-8.ja.JP", "japanese-iso10646");
          reorderMap.put("UTF-8.ko.KR", "korean-iso10646");
          reorderMap.put("UTF-8.zh.TW", "chinese-tw-iso10646");
-@@ -131,12 +79,7 @@
+@@ -130,12 +78,7 @@
          reorderMap.put("GB2312", "chinese-gb18030");
          reorderMap.put("Big5", "chinese-big5");
          reorderMap.put("EUC-KR", "korean");
@@ -3720,7 +3720,7 @@
      }
  
      /**
-@@ -145,10 +88,7 @@
+@@ -144,10 +87,7 @@
      protected void setOsNameAndVersion(){
          super.setOsNameAndVersion();
  
