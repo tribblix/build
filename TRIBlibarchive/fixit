@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# replace the 32-bit binaries with the 64-bit ones
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+if [ -x usr/bin/${ARCH64}/bsdcat ]; then
+  mv usr/bin/${ARCH64}/bsdcat usr/bin/bsdcat
+fi
+if [ -x usr/bin/${ARCH64}/bsdcpio ]; then
+  mv usr/bin/${ARCH64}/bsdcpio usr/bin/bsdcpio
+fi
+if [ -x usr/bin/${ARCH64}/bsdtar ]; then
+  mv usr/bin/${ARCH64}/bsdtar usr/bin/bsdtar
+fi
+rmdir usr/bin/${ARCH64}
