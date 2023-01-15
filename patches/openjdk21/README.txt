@@ -5,6 +5,13 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+21+5
+
+Minor patch noise.
+
+The JAVA_WARNINGS_ARE_ERRORS note appears to only occur on some build
+machines, which is very odd.
+
 21+4
 
 The reorderMap in MFontConfiguration.java now needs to construct

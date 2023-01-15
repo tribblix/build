@@ -3037,7 +3037,7 @@
  void
  NET_ThrowByNameWithLastError(JNIEnv *env, const char *name,
                     const char *defaultDetail) {
-@@ -269,50 +159,6 @@
+@@ -256,50 +146,6 @@
      }
  #endif
  
@@ -3088,7 +3088,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -378,26 +224,6 @@
+@@ -364,26 +210,6 @@
      }
  }
  
@@ -3115,7 +3115,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -556,7 +382,7 @@
+@@ -542,7 +368,7 @@
                  *level = IPPROTO_IPV6;
                  *optname = IPV6_MULTICAST_LOOP;
                  return 0;
@@ -3124,7 +3124,7 @@
              // Map IP_TOS request to IPV6_TCLASS
              case java_net_SocketOptions_IP_TOS:
                  *level = IPPROTO_IPV6;
-@@ -705,65 +531,6 @@
+@@ -691,65 +517,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -3190,7 +3190,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -876,20 +643,10 @@
+@@ -862,20 +629,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -3211,7 +3211,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -906,61 +663,8 @@
+@@ -892,61 +649,8 @@
      }
  #endif
  
@@ -4358,7 +4358,7 @@
  
  #include "socket_md.h"
  #include "sysSocket.h"
-@@ -277,35 +273,6 @@
+@@ -275,35 +271,6 @@
      return 0;
  }
  
@@ -4394,7 +4394,7 @@
  int
  dbgsysTlsAlloc() {
      pthread_key_t key;
-@@ -331,8 +298,6 @@
+@@ -329,8 +296,6 @@
      return pthread_getspecific((pthread_key_t)index);
  }
  
