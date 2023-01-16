@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/unpack tkdiff-5.6
+${THOME}/build/unpack tkdiff-5-6
 cd tkdiff-5-6
 mkdir -p /tmp/tk1/usr/bin
 mkdir -p /tmp/tk1/usr/share/tkdiff
