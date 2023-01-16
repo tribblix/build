@@ -1,0 +1,4 @@
+PKG="TRIBpotrace"
+NAME="Potrace bitmap tracer"
+VERSION="1.16.0.0"
+ZAP_URL="https://potrace.sourceforge.net/"
