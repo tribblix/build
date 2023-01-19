@@ -5,8 +5,8 @@
 # current releases are tagged on github
 #
 cd ~/ud
-${THOME}/build/unpack jdk13u-jdk-13.0.13-ga
-cd jdk13u-jdk-13.0.13-ga
+${THOME}/build/unpack jdk13u-jdk-13.0.14-ga
+cd jdk13u-jdk-13.0.14-ga
 
 #
 # as of 13.0.3, switch to a gcc build to replace Studio
@@ -50,9 +50,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# openjdk version "13.0.13-internal" 2022-07-19
-# OpenJDK Runtime Environment (build 13.0.13-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.13-ga)
-# OpenJDK 64-Bit Server VM (build 13.0.13-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.13-ga, mixed mode, sharing)
+# openjdk version "13.0.14-internal" 2023-01-17
+# OpenJDK Runtime Environment (build 13.0.14-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.14-ga)
+# OpenJDK 64-Bit Server VM (build 13.0.14-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.14-ga, mixed mode, sharing)
 # 
 
 rm -fr /tmp/jdk
