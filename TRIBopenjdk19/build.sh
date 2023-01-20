@@ -5,8 +5,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk19u-jdk-19.0.1-ga
-cd jdk19u-jdk-19.0.1-ga
+${THOME}/build/unpack jdk19u-jdk-19.0.2-ga
+cd jdk19u-jdk-19.0.2-ga
 
 #
 # jdk19 needs autoconf installed
@@ -42,9 +42,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "19-internal" 2022-09-20
-# OpenJDK Runtime Environment (build 19-internal-adhoc.ptribble.jdk19-jdk-19-36)
-# OpenJDK 64-Bit Server VM (build 19-internal-adhoc.ptribble.jdk19-jdk-19-36, mixed mode, sharing)
+# openjdk version "19.0.2-internal" 2023-01-17
+# OpenJDK Runtime Environment (build 19.0.2-internal-adhoc.ptribble.jdk19u-jdk-19.0.2-ga)
+# OpenJDK 64-Bit Server VM (build 19.0.2-internal-adhoc.ptribble.jdk19u-jdk-19.0.2-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

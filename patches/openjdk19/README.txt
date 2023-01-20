@@ -5,6 +5,11 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Most patches -p0
 
+19.0.2
+
+Minor patch noise, needed to remove a hunk for
+src/java.base/unix/native/libjava/TimeZone_md.c
+
 19.0.1
 
 Trivial patch noise
