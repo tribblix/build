@@ -1,5 +1,4 @@
 -p0 openjdk11/patch-make_GenerateLinkOptData.gmk
--p0 openjdk11/patch-make_autoconf_basics.m4
 -p0 openjdk11/patch-make_autoconf_flags-cflags.m4
 -p0 openjdk11/patch-make_autoconf_jdk-options.m4
 -p0 openjdk11/patch-make_autoconf_lib-x11.m4
