@@ -7,6 +7,10 @@ Most patches -p0
 
 JDK17:
 
+17.0.6
+
+Minor patch noise.
+
 17.0.5
 
 A number of functions centralised into os_posix

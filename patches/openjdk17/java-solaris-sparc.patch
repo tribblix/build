@@ -134,7 +134,7 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -270,25 +270,17 @@
+@@ -268,25 +268,17 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR -v | $GREP "bsdtar")" != "x"; then
      TAR_TYPE="bsd"
@@ -160,7 +160,7 @@
    elif test "x$TAR_TYPE" = "aix"; then
      # -L InputList of aix tar: name of file listing the files and directories
      # that need to be archived or extracted
-@@ -302,7 +294,6 @@
+@@ -300,7 +292,6 @@
      TAR_SUPPORTS_TRANSFORM="false"
    fi
    AC_SUBST(TAR_TYPE)
@@ -168,9 +168,9 @@
    AC_SUBST(TAR_INCLUDE_PARAM)
    AC_SUBST(TAR_SUPPORTS_TRANSFORM)
  ])
-@@ -425,8 +416,6 @@
-       fi
-     fi
+@@ -386,8 +377,6 @@
+     UTIL_REQUIRE_PROGS(XATTR, xattr)
+     UTIL_LOOKUP_PROGS(CODESIGN, codesign)
      UTIL_REQUIRE_PROGS(SETFILE, SetFile)
 -  elif test "x$OPENJDK_TARGET_OS" = "xsolaris"; then
 -    UTIL_REQUIRE_PROGS(ELFEDIT, elfedit)
@@ -410,7 +410,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -538,7 +537,6 @@
+@@ -539,7 +538,6 @@
  # LDFLAGS used to link the jdk native libraries (C-code)
  LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
  JDKLIB_LIBS:=@JDKLIB_LIBS@
@@ -418,7 +418,7 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -752,7 +750,6 @@
+@@ -753,7 +751,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -426,7 +426,7 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -770,7 +767,6 @@
+@@ -771,7 +768,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -434,7 +434,7 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -785,7 +781,6 @@
+@@ -786,7 +782,6 @@
  VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
  MSVCP_DLL:=@MSVCP_DLL@
  UCRT_DLL_DIR:=@UCRT_DLL_DIR@
@@ -491,7 +491,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -990,7 +990,7 @@
+@@ -995,7 +995,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -500,7 +500,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).debuginfo
            # Setup the command line creating debuginfo files, to be run after linking.
            # It cannot be run separately since it updates the original target file
-@@ -1124,7 +1124,7 @@
+@@ -1129,7 +1129,7 @@
      endif
  
      $1_VARDEPS := $$($1_LD) $$($1_SYSROOT_LDFLAGS) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) \
@@ -509,7 +509,7 @@
          $$($1_CREATE_DEBUGINFO_CMDS) $$($1_MANIFEST_VERSION) \
          $$($1_STRIP_CMD)
      $1_VARDEPS_FILE := $$(call DependOnVariable, $1_VARDEPS, \
-@@ -1183,7 +1183,7 @@
+@@ -1188,7 +1188,7 @@
  
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -518,7 +518,7 @@
  		          $$($1_LIBS) $$($1_EXTRA_LIBS)) \
  		      | $(GREP) -v "^   Creating library .*\.lib and object .*\.exp" || \
  		          test "$$$$?" = "1" ; \
-@@ -1196,7 +1196,7 @@
+@@ -1201,7 +1201,7 @@
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$(if $$($1_LINK_OBJS_RELATIVE), $$(CD) $$(OUTPUTDIR) ; ) \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -529,7 +529,7 @@
  		  $$($1_STRIP_CMD)
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -151,7 +151,6 @@
+@@ -150,7 +150,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -537,7 +537,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -161,14 +160,11 @@
+@@ -160,14 +159,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -909,7 +909,7 @@
    endif
 --- old/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
 +++ new/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
-@@ -76,7 +76,7 @@
+@@ -77,7 +77,7 @@
        #
  endif
  
@@ -918,7 +918,7 @@
    LIBAWT_EXFILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -156,7 +156,6 @@
+@@ -157,7 +157,6 @@
          -delayload:comctl32.dll -delayload:shlwapi.dll, \
      LIBS_unix := -ljvm -ljava $(LIBM), \
      LIBS_linux :=  $(LIBDL), \
@@ -943,7 +943,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
     endif
  
-@@ -608,10 +606,7 @@
+@@ -609,10 +607,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -955,7 +955,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -638,7 +633,6 @@
+@@ -639,7 +634,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1092,7 +1092,7 @@
      TARGETS += $(BUILD_LIBSCTP)
 --- old/make/scripts/compare.sh	2020-05-20 17:59:27.985459081 -0700
 +++ new/make/scripts/compare.sh	2020-05-20 17:59:27.597451631 -0700
-@@ -72,14 +72,7 @@
+@@ -73,14 +73,7 @@
  # Disassembly diff filters. These filters try to filter out ephemeral parts of the
  # disassembly, such as hard-coded addresses, to be able to catch "actual" differences.
  
@@ -1108,7 +1108,7 @@
    if [ "$OPENJDK_TARGET_CPU" = "x86" ]; then
      DIS_DIFF_FILTER="$SED -r \
          -e 's/^  [0-9A-F]{16}: //' \
-@@ -458,14 +439,7 @@
+@@ -447,14 +440,7 @@
      fi
  
      CONTENTS_DIFF_FILE=$WORK_DIR/$ZIP_FILE.diff
@@ -1124,7 +1124,7 @@
  
      ONLY_OTHER=$($GREP "^Only in $OTHER_UNZIPDIR" $CONTENTS_DIFF_FILE)
      ONLY_THIS=$($GREP "^Only in $THIS_UNZIPDIR" $CONTENTS_DIFF_FILE)
-@@ -485,14 +459,8 @@
+@@ -474,14 +460,8 @@
      fi
  
      if [ "$CMP_ZIPS_CONTENTS" = "true" ]; then
@@ -1141,7 +1141,7 @@
  
          # Separate executable/library files from other files in zip.
          DIFFING_TEXT_FILES=
-@@ -829,10 +797,6 @@
+@@ -826,10 +806,6 @@
          # to filter out that extra information.
          $DUMPBIN -exports $OTHER_FILE | $GREP  -E '^ +[0-9A-F]+ +[0-9A-F]+ [0-9A-F]+' | sed 's/ = .*//g' | cut -c27- | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.other
          $DUMPBIN -exports $THIS_FILE  | $GREP  -E '^ +[0-9A-F]+ +[0-9A-F]+ [0-9A-F]+' | sed 's/ = .*//g' | cut -c27- | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.this
@@ -2589,7 +2589,7 @@
  #elif defined(_AIX)
  
  static char *
-@@ -824,15 +505,6 @@
+@@ -823,15 +504,6 @@
              free((void *) freetz);
          }
  #else
@@ -2605,26 +2605,6 @@
          if (freetz == NULL) {
              /* strdup if we are still working on getenv result. */
              javatz = strdup(tz);
-@@ -890,19 +562,7 @@
- {
-     time_t offset;
-     char sign, buf[32];
--#if defined(__solaris__)
--    struct tm localtm;
--    time_t currenttime;
--
--    currenttime = time(NULL);
--    if (localtime_r(&currenttime, &localtm) == NULL) {
--        return strdup("GMT");
--    }
--
--    offset = localtm.tm_isdst ? altzone : timezone;
--#else
-     offset = timezone;
--#endif
- 
-     if (offset == 0) {
-         return strdup("GMT");
 --- old/src/java.base/unix/native/libjava/UnixFileSystem_md.c	2020-05-20 18:01:11.571448007 -0700
 +++ new/src/java.base/unix/native/libjava/UnixFileSystem_md.c	2020-05-20 18:01:11.171440327 -0700
 @@ -63,10 +63,6 @@
@@ -5264,7 +5244,7 @@
  }
 --- old/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.697524107 -0700
 +++ new/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.357517578 -0700
-@@ -696,15 +696,10 @@
+@@ -700,15 +700,10 @@
          lib = expand(lib);
          int i = lib.indexOf("/$ISA/");
          if (i != -1) {
