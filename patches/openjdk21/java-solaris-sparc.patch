@@ -134,7 +134,7 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -276,23 +276,15 @@
+@@ -277,23 +277,15 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
      TAR_TYPE="busybox"
@@ -158,7 +158,7 @@
    elif test "x$TAR_TYPE" = "aix"; then
      # -L InputList of aix tar: name of file listing the files and directories
      # that need to be archived or extracted
-@@ -306,7 +298,6 @@
+@@ -307,7 +299,6 @@
      TAR_SUPPORTS_TRANSFORM="false"
    fi
    AC_SUBST(TAR_TYPE)
@@ -271,7 +271,7 @@
              fi
 --- old/make/autoconf/libraries.m4	2020-05-20 17:58:41.188560546 -0700
 +++ new/make/autoconf/libraries.m4	2020-05-20 17:58:40.768552482 -0700
-@@ -117,15 +117,13 @@
+@@ -145,15 +145,13 @@
    BASIC_JVM_LIBS="$LIBM"
  
    # Dynamic loading library
@@ -288,7 +288,7 @@
    fi
  
    # librt for legacy clock_gettime
-@@ -163,12 +161,6 @@
+@@ -170,12 +168,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -380,7 +380,7 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -787,7 +786,6 @@
+@@ -785,7 +784,6 @@
  ULIMIT:=@ULIMIT@
  
  TAR_TYPE:=@TAR_TYPE@
@@ -437,7 +437,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -1038,7 +1038,7 @@
+@@ -1051,7 +1051,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -448,7 +448,7 @@
            # It cannot be run separately since it updates the original target file
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -154,7 +154,6 @@
+@@ -160,7 +160,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -456,7 +456,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -164,14 +163,11 @@
+@@ -170,14 +169,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -483,7 +483,7 @@
    else ifeq ($(call isBuildOs, aix), true)
      ADLC_LDFLAGS += -q64
      ADLC_CFLAGS := -qnortti -qeh -q64 -DAIX
-@@ -89,8 +85,6 @@
+@@ -93,8 +90,6 @@
    # ADLC flags depending on target OS
    ifeq ($(call isTargetOs, linux), true)
      ADLCFLAGS += -DLINUX=1 -D_GNU_SOURCE=1
@@ -770,7 +770,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -221,7 +216,6 @@
+@@ -222,7 +217,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -1271,7 +1271,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -692,10 +692,6 @@
+@@ -695,10 +695,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -1561,7 +1561,7 @@
  
 --- old/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:50.351040561 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:49.963033111 -0700
-@@ -503,7 +503,7 @@
+@@ -496,7 +496,7 @@
      private static native boolean isReusePortAvailable0();
  
      /*
@@ -8274,7 +8274,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3239 +0,0 @@
+@@ -1,3217 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10005,29 +10005,7 @@
 -  return 0;
 -}
 -
--// Request information about the page.
--bool os::get_page_info(char *start, page_info* info) {
--  const uint_t info_types[] = { MEMINFO_VLGRP, MEMINFO_VPAGESIZE };
--  uint64_t addr = (uintptr_t)start;
--  uint64_t outdata[2];
--  uint_t validity = 0;
--
--  if (meminfo(&addr, 1, info_types, 2, outdata, &validity) < 0) {
--    return false;
--  }
--
--  info->size = 0;
--  info->lgrp_id = -1;
--
--  if ((validity & 1) != 0) {
--    if ((validity & 2) != 0) {
--      info->lgrp_id = outdata[0];
--    }
--    if ((validity & 4) != 0) {
--      info->size = outdata[1];
--    }
--    return true;
--  }
+-bool os::numa_get_group_ids_for_range(const void** addresses, int* lgrp_ids, size_t count) {
 -  return false;
 -}
 -
