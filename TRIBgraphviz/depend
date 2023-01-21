@@ -1,7 +1,7 @@
-P TRIBharfbuzz
-P TRIBimage-libpng
 P TRIBgdk-pixbuf
 P TRIBgpl-ghostscript
+P TRIBharfbuzz
+P TRIBimage-libpng
 P TRIBimage-librsvg
 P TRIBlib-desktop-atk
 P TRIBlib-desktop-cairo

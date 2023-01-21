@@ -1,8 +1,8 @@
 P TRIBcompress-p7zip
 P TRIBfile-gnu-coreutils
 P TRIBfile-gnu-findutils
-P TRIBshell-bash
 P TRIBperl-534
+P TRIBshell-bash
 P TRIBtext-gawk
 P TRIBtext-gnu-diffutils
 P TRIBtext-gnu-grep
