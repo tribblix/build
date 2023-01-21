@@ -12,6 +12,25 @@ ILVER=$(uname -v)
 ILVER=${ILVER##tribblix-}
 ILREL=${ILVER/m/}
 
+if [ $# -gt 1 ]; then
+    echo "Usage: $0 [illumos_version]"
+    exit 2
+fi
+
+#
+# if given an argument, use that as the illumos to check against
+#
+if [ $# -gt 0 ]; then
+    ILVER=$1
+    ILVER=${ILVER##tribblix-}
+    ILREL=${ILVER/m/}
+    ILREL=${ILREL/.sparc/}
+fi
+if [ ! -d ../illumos-pkgs-${ILVER}/pkgs ]; then
+    echo "ERROR: no illumos packages for $ILVER"
+    exit 2
+fi
+
 #
 # just walk through all the depend files
 #
