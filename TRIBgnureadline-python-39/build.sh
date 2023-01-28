@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack gnureadline-6.3.3
-cd gnureadline-6.3.3
+${THOME}/build/unpack gnureadline-8.1.2
+cd gnureadline-8.1.2
 #
 # we need -m64 in CFLAGS here because it's passed through to the
 # build of the private copy of readline
