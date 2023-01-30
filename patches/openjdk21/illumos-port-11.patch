@@ -6,5 +6,5 @@
  # include <errno.h>
 +# include <alloca.h>
  
- OSThread*         os::_starting_thread    = NULL;
- address           os::_polling_page       = NULL;
+ OSThread*         os::_starting_thread    = nullptr;
+ address           os::_polling_page       = nullptr;

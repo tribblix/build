@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+21+7
+
+Trivial patch noise
+
 21+6
 
 Remove unused os::get_page_info().
