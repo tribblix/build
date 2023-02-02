@@ -1,0 +1,145 @@
+We don't have polkit-gobject, so disable the time-admin capplet in a
+postconf file, and remove the check here.
+
+While it might seem simpler to fix this in configure.ac, the dependency
+chain to rebuild configure from that is excessively long.
+
+--- a/configure	Wed Mar 24 09:23:08 2021
++++ b/configure	Thu Feb  2 21:02:22 2023
+@@ -692,8 +692,6 @@
+ DEFAULT_APPLICATIONS_CAPPLET_CFLAGS
+ MATE_DESKTOP_LIBS
+ MATE_DESKTOP_CFLAGS
+-POLKIT_LIBS
+-POLKIT_CFLAGS
+ DBUS_LIBS
+ DBUS_CFLAGS
+ MATECC_SHELL_LIBS
+@@ -927,8 +925,6 @@
+ MATECC_SHELL_LIBS
+ DBUS_CFLAGS
+ DBUS_LIBS
+-POLKIT_CFLAGS
+-POLKIT_LIBS
+ MATE_DESKTOP_CFLAGS
+ MATE_DESKTOP_LIBS
+ DEFAULT_APPLICATIONS_CAPPLET_CFLAGS
+@@ -1682,9 +1678,6 @@
+               linker flags for MATECC_SHELL, overriding pkg-config
+   DBUS_CFLAGS C compiler flags for DBUS, overriding pkg-config
+   DBUS_LIBS   linker flags for DBUS, overriding pkg-config
+-  POLKIT_CFLAGS
+-              C compiler flags for POLKIT, overriding pkg-config
+-  POLKIT_LIBS linker flags for POLKIT, overriding pkg-config
+   MATE_DESKTOP_CFLAGS
+               C compiler flags for MATE_DESKTOP, overriding pkg-config
+   MATE_DESKTOP_LIBS
+@@ -17650,97 +17643,6 @@
+ fi
+ 
+ pkg_failed=no
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for POLKIT" >&5
+-$as_echo_n "checking for POLKIT... " >&6; }
+-
+-if test -n "$POLKIT_CFLAGS"; then
+-    pkg_cv_POLKIT_CFLAGS="$POLKIT_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"polkit-gobject-1\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "polkit-gobject-1") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+-  test $ac_status = 0; }; then
+-  pkg_cv_POLKIT_CFLAGS=`$PKG_CONFIG --cflags "polkit-gobject-1" 2>/dev/null`
+-		      test "x$?" != "x0" && pkg_failed=yes
+-else
+-  pkg_failed=yes
+-fi
+- else
+-    pkg_failed=untried
+-fi
+-if test -n "$POLKIT_LIBS"; then
+-    pkg_cv_POLKIT_LIBS="$POLKIT_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"polkit-gobject-1\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "polkit-gobject-1") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+-  test $ac_status = 0; }; then
+-  pkg_cv_POLKIT_LIBS=`$PKG_CONFIG --libs "polkit-gobject-1" 2>/dev/null`
+-		      test "x$?" != "x0" && pkg_failed=yes
+-else
+-  pkg_failed=yes
+-fi
+- else
+-    pkg_failed=untried
+-fi
+-
+-
+-
+-if test $pkg_failed = yes; then
+-   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+-
+-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+-        _pkg_short_errors_supported=yes
+-else
+-        _pkg_short_errors_supported=no
+-fi
+-        if test $_pkg_short_errors_supported = yes; then
+-	        POLKIT_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "polkit-gobject-1" 2>&1`
+-        else
+-	        POLKIT_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "polkit-gobject-1" 2>&1`
+-        fi
+-	# Put the nasty error message in config.log where it belongs
+-	echo "$POLKIT_PKG_ERRORS" >&5
+-
+-	as_fn_error $? "Package requirements (polkit-gobject-1) were not met:
+-
+-$POLKIT_PKG_ERRORS
+-
+-Consider adjusting the PKG_CONFIG_PATH environment variable if you
+-installed software in a non-standard prefix.
+-
+-Alternatively, you may set the environment variables POLKIT_CFLAGS
+-and POLKIT_LIBS to avoid the need to call pkg-config.
+-See the pkg-config man page for more details." "$LINENO" 5
+-elif test $pkg_failed = untried; then
+-     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+-	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+-$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+-is in your PATH or set the PKG_CONFIG environment variable to the full
+-path to pkg-config.
+-
+-Alternatively, you may set the environment variables POLKIT_CFLAGS
+-and POLKIT_LIBS to avoid the need to call pkg-config.
+-See the pkg-config man page for more details.
+-
+-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+-See \`config.log' for more details" "$LINENO" 5; }
+-else
+-	POLKIT_CFLAGS=$pkg_cv_POLKIT_CFLAGS
+-	POLKIT_LIBS=$pkg_cv_POLKIT_LIBS
+-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+-$as_echo "yes" >&6; }
+-
+-fi
+-
+-pkg_failed=no
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for MATE_DESKTOP" >&5
+ $as_echo_n "checking for MATE_DESKTOP... " >&6; }
+ 
+@@ -19743,8 +19645,8 @@
+ 
+ EXTRA_CFLAGS="-I\$(top_srcdir)/ -DG_LOG_DOMAIN=\"\\\"\$(cappletname)-properties\\\"\""
+ 
+-MATECC_CAPPLETS_CFLAGS="${COMMON_CFLAGS} ${CAPPLET_CFLAGS} ${EXTRA_CFLAGS} ${DBUS_CFLAGS} ${POLKIT_CFLAGS}"
+-MATECC_CAPPLETS_LIBS="${COMMON_LIBS} ${CAPPLET_LIBS} ${DBUS_LIBS} ${POLKIT_LIBS}"
++MATECC_CAPPLETS_CFLAGS="${COMMON_CFLAGS} ${CAPPLET_CFLAGS} ${EXTRA_CFLAGS} ${DBUS_CFLAGS}"
++MATECC_CAPPLETS_LIBS="${COMMON_LIBS} ${CAPPLET_LIBS} ${DBUS_LIBS}"
+ 
+ MATECC_CAPPLETS_CLEANFILES="\$(desktop) \$(desktop).in"
+ MATECC_CAPPLETS_EXTRA_DIST="ChangeLog \$(desktop).in.in \$(cappletname)-capplet.png \$(pixmaps_DATA)"

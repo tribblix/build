@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# time-admin is the one polkit consumer
+#
+sed -i '/time-admin/d' capplets/Makefile*
