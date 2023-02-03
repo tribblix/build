@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk20"
 NAME="OpenJDK 20"
-VERSION="20.33.0"
+VERSION="20.34.0"
 ZAP_URL="http://openjdk.java.net/"
