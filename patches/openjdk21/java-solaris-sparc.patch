@@ -155,7 +155,7 @@
 -      # When using gnu tar for Solaris targets, need to use compatibility mode
 -      TAR_CREATE_EXTRA_PARAM="--format=ustar"
 -    fi
-   elif test "x$TAR_TYPE" = "aix"; then
+   elif test "x$TAR_TYPE" = "xaix"; then
      # -L InputList of aix tar: name of file listing the files and directories
      # that need to be archived or extracted
 @@ -307,7 +299,6 @@
@@ -185,18 +185,17 @@
  if test $? != 0; then
 --- old/make/autoconf/build-performance.m4	2020-05-20 17:58:29.436334895 -0700
 +++ new/make/autoconf/build-performance.m4	2020-05-20 17:58:29.052327522 -0700
-@@ -38,10 +38,6 @@
-     if test "$NUM_CORES" -ne "0"; then
-       FOUND_CORES=yes
+@@ -34,9 +34,6 @@
+     if test "$NUM_CORES" -eq "0"; then
+       NUM_CORES=`cat /proc/cpuinfo  | grep -c ^CPU`
      fi
 -  elif test -x /usr/sbin/psrinfo; then
 -    # Looks like a Solaris system
 -    NUM_CORES=`/usr/sbin/psrinfo -v | grep -c on-line`
--    FOUND_CORES=yes
    elif test -x /usr/sbin/sysctl; then
      # Looks like a MacOSX system
      NUM_CORES=`/usr/sbin/sysctl -n hw.ncpu`
-@@ -79,7 +75,7 @@
+@@ -73,7 +69,7 @@
      MEMORY_SIZE=`expr $MEMORY_SIZE / 1024`
      FOUND_MEM=yes
    elif test -x /usr/sbin/prtconf; then
@@ -1159,7 +1158,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -501,7 +501,7 @@
+@@ -504,7 +504,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1168,7 +1167,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -519,12 +519,6 @@
+@@ -522,12 +522,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1649,7 +1648,7 @@
  JNIEXPORT jboolean JNICALL
 --- old/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.739220820 -0700
 +++ new/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.399214291 -0700
-@@ -81,9 +81,6 @@
+@@ -85,9 +85,6 @@
      private /* final */ InputStream  stdout;
      private /* final */ InputStream  stderr;
  
@@ -1659,7 +1658,7 @@
      private static enum LaunchMechanism {
          // order IS important!
          FORK,
-@@ -97,8 +94,6 @@
+@@ -101,8 +98,6 @@
  
          BSD(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK),
  
@@ -1668,7 +1667,7 @@
          AIX(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK);
  
          final LaunchMechanism defaultLaunchMechanism;
-@@ -144,7 +139,6 @@
+@@ -148,7 +143,6 @@
  
              if (osName.equals("Linux")) { return LINUX; }
              if (osName.contains("OS X")) { return BSD; }
@@ -1676,7 +1675,7 @@
              if (osName.equals("AIX")) { return AIX; }
  
              throw new Error(osName + " is not a supported OS platform.");
-@@ -394,41 +388,6 @@
+@@ -398,41 +392,6 @@
                  });
                  break;
  
@@ -1718,7 +1717,7 @@
              case AIX:
                  stdin = (fds[0] == -1) ?
                          ProcessBuilder.NullOutputStream.INSTANCE :
-@@ -543,29 +502,6 @@
+@@ -547,29 +506,6 @@
                  try { stderr.close(); } catch (IOException ignored) {}
                  break;
  
