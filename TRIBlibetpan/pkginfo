@@ -1,4 +1,4 @@
 PKG="TRIBlibetpan"
 NAME="Mail access framework"
-VERSION="1.9.4.1"
+VERSION="1.9.4.2"
 ZAP_URL="http://www.etpan.org/libetpan.html"

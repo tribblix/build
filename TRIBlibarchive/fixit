@@ -21,3 +21,9 @@ if [ -x usr/bin/${ARCH64}/bsdtar ]; then
   mv usr/bin/${ARCH64}/bsdtar usr/bin/bsdtar
 fi
 rmdir usr/bin/${ARCH64}
+
+#
+# remove errant requirement on iconv
+#
+sed -i 's:iconv ::' usr/lib/pkgconfig/libarchive.pc
+sed -i 's:iconv ::' usr/lib/${ARCH64}/pkgconfig/libarchive.pc
