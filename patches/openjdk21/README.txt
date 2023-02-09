@@ -5,6 +5,12 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+21+9
+
+Trivial patch noise. This was also an update where NULL was being
+replaced with nullptr on a large scale. The initial build did not make
+those changes for the solaris port.
+
 21+7, 21+8
 
 Trivial patch noise
