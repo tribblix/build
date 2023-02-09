@@ -5,8 +5,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk20-jdk-20-34
-cd jdk20-jdk-20-34
+${THOME}/build/unpack jdk20-jdk-20-35
+cd jdk20-jdk-20-35
 
 #
 # jdk20 needs autoconf installed
@@ -46,8 +46,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 #
 # openjdk version "20-internal" 2023-03-21
-# OpenJDK Runtime Environment (build 20-internal-adhoc.ptribble.jdk20-jdk-20-34)
-# OpenJDK 64-Bit Server VM (build 20-internal-adhoc.ptribble.jdk20-jdk-20-34, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 20-internal-adhoc.ptribble.jdk20-jdk-20-35)
+# OpenJDK 64-Bit Server VM (build 20-internal-adhoc.ptribble.jdk20-jdk-20-35, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
