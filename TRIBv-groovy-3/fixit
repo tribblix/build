@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# links into normal PATH
+# clean up other platforms
 #
-VERSION=3.0.14
+VERSION=3.0.15
 rm usr/versions/groovy-${VERSION}/bin/*.bat
