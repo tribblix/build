@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# something is confused, it tries to create the final binary src/tilde
+# but that's a symlink needed by the build
+#
+sed -i s:src/tilde:bin/tilde: Makefile
+mkdir bin

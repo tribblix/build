@@ -1,0 +1,39 @@
+--- a/src.util/t3keyc/t3keyc.c	Sat Nov 30 13:08:47 2019
++++ b/src.util/t3keyc/t3keyc.c	Fri Feb 10 21:29:09 2023
+@@ -20,6 +20,10 @@
+ #include <curses.h>
+ #include <term.h>
+ 
++#include <stdarg.h>
++#define	true	1
++#define	false	0
++
+ #include <t3config/config.h>
+ 
+ #include "optionMacros.h"
+--- a/src.util/t3learnkeys/t3learnkeys.c	Sat Nov 30 13:08:47 2019
++++ b/src.util/t3learnkeys/t3learnkeys.c	Fri Feb 10 21:29:27 2023
+@@ -26,6 +26,10 @@
+ #include <search.h>
+ #include <unistd.h>
+ 
++#include <stdarg.h>
++#define	true	1
++#define	false	0
++
+ #ifndef NO_AUTOLEARN
+ #include "x11.h"
+ #else
+--- a/config.pkg	Sat Nov 30 13:08:47 2019
++++ b/config.pkg	Sat Feb 11 20:44:50 2023
+@@ -165,8 +165,8 @@
+ 	elif test_compile "curses header file" ; then
+ 		if test_link "terminfo access functions in -ltinfo" "TESTLIBS=-ltinfo" ; then
+ 			CURSES_LIBS="-ltinfo"
+-		elif test_link "curses library in -lcurses" "TESTLIBS=-lcurses" ; then
+-			CURSES_LIBS="-lcurses"
++		elif test_link "ncurses library in -lncurses" "TESTLIBS=-lncurses" ; then
++			CURSES_LIBS="-lncurses"
+ 		else
+ 			if test_link "ncurses library in -lncurses" "TESTLIBS=-lncurses" ; then
+ 				CURSES_LIBS="-lncurses"

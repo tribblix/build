@@ -1,0 +1,15 @@
+Force ncurses.
+
+--- a/config.pkg	Sat Jan 29 16:44:23 2022
++++ b/config.pkg	Sat Feb 11 20:39:11 2023
+@@ -142,8 +142,8 @@
+ 	elif test_compile "curses header file" ; then
+ 		if test_link "terminfo access functions in -ltinfo" "TESTLIBS=-ltinfo" ; then
+ 			CURSES_LIBS="-ltinfo"
+-		elif test_link "curses library in -lcurses" "TESTLIBS=-lcurses" ; then
+-			CURSES_LIBS="-lcurses"
++		elif test_link "ncurses library in -lncurses" "TESTLIBS=-lncurses" ; then
++			CURSES_LIBS="-lncurses"
+ 		else
+ 			if test_link "ncurses library in -lncurses" "TESTLIBS=-lncurses" ; then
+ 				CURSES_LIBS="-lncurses"

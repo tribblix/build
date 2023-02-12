@@ -1,0 +1,4 @@
+PKG="TRIBtilde"
+NAME="The Tilde text editor"
+VERSION="1.1.3.0"
+ZAP_URL="https://os.ghalkes.nl/tilde/index.html"

@@ -1,0 +1,11 @@
+--- a/config.pkg	Mon Jan 31 12:36:30 2022
++++ b/config.pkg	Fri Feb 10 21:46:40 2023
+@@ -194,7 +194,7 @@
+ 	if test_select "select in <sys/select.h>" "sys/select.h" ; then
+ 		CONFIGFLAGS="${CONFIGFLAGS} -DHAS_SELECT_H"
+ 	else
+-		test_select "select in <unistd.h>" "sys/time.h" "sys/types.h" "unistd.h" || error "!! Can not find required select function."
++		test_select "select in <string.h>" "sys/time.h" "sys/types.h" "string.h" || error "!! Can not find required select function."
+ 	fi
+ 
+ 	unset PTHREADFLAGS PTHREADLIBS
