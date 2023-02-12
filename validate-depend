@@ -39,6 +39,20 @@ do
     if [ ! -d $dep ]; then
 	if [ ! -f ../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap ]; then
 	    echo "Missing dependency $dep"
+	    grep "^${dep}$" */depend
+	fi
+    fi
+done
+
+#
+# and build_require
+#
+for dep in `cat */build_require`
+do
+    if [ ! -d $dep ]; then
+	if [ ! -f ../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap ]; then
+	    echo "Missing build_require $dep"
+	    grep "^${dep}$" */build_require
 	fi
     fi
 done
