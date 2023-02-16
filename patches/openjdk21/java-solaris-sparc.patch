@@ -185,7 +185,7 @@
  if test $? != 0; then
 --- old/make/autoconf/build-performance.m4	2020-05-20 17:58:29.436334895 -0700
 +++ new/make/autoconf/build-performance.m4	2020-05-20 17:58:29.052327522 -0700
-@@ -34,9 +34,6 @@
+@@ -33,9 +33,6 @@
      if test "$NUM_CORES" -eq "0"; then
        NUM_CORES=`cat /proc/cpuinfo  | grep -c ^CPU`
      fi
@@ -195,7 +195,7 @@
    elif test -x /usr/sbin/sysctl; then
      # Looks like a MacOSX system
      NUM_CORES=`/usr/sbin/sysctl -n hw.ncpu`
-@@ -73,7 +69,7 @@
+@@ -68,7 +65,7 @@
      MEMORY_SIZE=`expr $MEMORY_SIZE / 1024`
      FOUND_MEM=yes
    elif test -x /usr/sbin/prtconf; then
@@ -1281,7 +1281,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -1610,10 +1606,8 @@
+@@ -1607,10 +1603,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1294,7 +1294,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1895,8 +1889,7 @@
+@@ -1892,8 +1886,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1348,7 +1348,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -719,12 +719,11 @@
+@@ -614,12 +614,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
