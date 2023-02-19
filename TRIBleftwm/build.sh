@@ -11,10 +11,15 @@
 #
 
 #
-git clone https://github.com/leftwm/leftwm.git
-cd leftwm
-cargo build --release
+$THOME/build/unpack leftwm-0.4.1
+cd leftwm-0.4.1
+# cargo build --release
+# need to be specific, defaults to journald == systemd
+cargo build --profile optimized --no-default-features --features=lefthk,file-log
 cd ..
+#
+# note leftwm-theme is the theme manager, it doesn't actually contain any
+# themes
 #
 # leftwm-theme needs gnu ar as gar in your path
 #
@@ -26,11 +31,21 @@ cd leftwm-theme
 cargo build --release
 cd ..
 
+#
+# utility for the new ron-based config
+#
+#git clone https://github.com/leftwm/leftwm-config.git
+#cd leftwm-config
+#cargo build --release
+#cd ..
+
 rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/bin
+mkdir -p /tmp/ll/usr/share/man/man1
 
-cd leftwm
-ginstall -s -Dm755 ./target/release/leftwm ./target/release/leftwm-worker ./target/release/leftwm-state ./target/release/leftwm-check ./target/release/leftwm-command -t /tmp/ll/usr/bin
+cd leftwm-0.4.1
+ginstall -s -Dm755 ./target/optimized/leftwm ./target/optimized/leftwm-worker ./target/optimized/leftwm-state ./target/optimized/leftwm-check ./target/optimized/leftwm-command ./target/optimized/lefthk-worker -t /tmp/ll/usr/bin
+ginstall -m644 ./leftwm/doc/leftwm.1 -t /tmp/ll/usr/share/man/man1
 cd ..
 cd leftwm-theme
 ginstall -s -Dm755 ./target/release/leftwm-theme -t /tmp/ll/usr/bin
