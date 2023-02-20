@@ -1,6 +1,11 @@
 #!/bin/sh
 #
+# it's not a standard configure, so a 64-bit dobuild doesn't work as
+# it sets --bindir which isn't recognized
 #
+# while the build would pick up -m64 for CFLAGS, it doesn't pick
+# it up for LDFLAGS so the link fails; hence we tell it directly
+# via $CC (and don't use --with-cc any more)
 #
-${THOME}/build/dobuild tengine-2.3.2 -P /opt/tribblix/tengine -C "--user=tengine --group=tengine --with-cc=gcc --with-http_ssl_module --with-http_v2_module --with-http_stub_status_module --with-http_realip_module"
-${THOME}/build/genpkg TRIBblix-tengine tengine-2.3.2
+env CC="gcc -m64" ${THOME}/build/dobuild tengine-2.3.3 -P /opt/tribblix/tengine -C "--user=tengine --group=tengine --with-http_ssl_module --with-http_v2_module --with-http_stub_status_module --with-http_realip_module"
+${THOME}/build/genpkg TRIBblix-tengine tengine-2.3.3
