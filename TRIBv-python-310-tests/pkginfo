@@ -1,4 +1,4 @@
 PKG="TRIBv-python-310-tests"
 NAME="Python 3.10 test files"
-VERSION="3.10.9.0"
+VERSION="3.10.10.0"
 ZAP_URL="https://www.python.org/"
