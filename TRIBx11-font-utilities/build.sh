@@ -7,5 +7,5 @@
 #
 ${THOME}/build/dobuild -64only bdftopcf-1.1
 ${THOME}/build/dobuild -64only mkfontscale-1.2.2
-${THOME}/build/dobuild -64only font-util-1.3.3
-${THOME}/build/genpkg TRIBx11-font-utilities bdftopcf-1.1 mkfontscale-1.2.2 font-util-1.3.3
+${THOME}/build/dobuild -64only font-util-1.4.0
+${THOME}/build/genpkg TRIBx11-font-utilities bdftopcf-1.1 mkfontscale-1.2.2 font-util-1.4.0
