@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# this is a package that sets up apache+php for a flat-file php
+# this is a package that sets up apache+php8 for a flat-file php
 # application hosted under /var/phpweb. Think grav, for example.
 #
 # everything is done by the fixit script
