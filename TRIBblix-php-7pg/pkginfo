@@ -1,4 +1,0 @@
-PKG="TRIBblix-php-7pg"
-NAME="PHP7 postgres module"
-VERSION="7.4.33.0"
-ZAP_URL="https://www.php.net/"
