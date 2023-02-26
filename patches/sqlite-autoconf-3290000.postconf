@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-#
-#
-cp ${PATCHDIR}/sqlite329.mapfile mapfile
-sed -i 's=version-info 8:6:8=version-info 8:6:8  -Wl,-M,mapfile=' Makefile

@@ -1,4 +1,4 @@
 PKG="TRIBdatabase-sqlite-3"
 NAME="SQLite database engine"
-VERSION="3.29.0.2"
+VERSION="3.29.0.3"
 ZAP_URL="http://www.sqlite.org/"
