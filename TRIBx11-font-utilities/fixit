@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# we have to build font-util both 32 and 64 so we ship both
+# versions of the pc file, but don't need 32 and 64-bit binaries
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+if [ -x usr/bin/${ARCH64}/bdftruncate ]; then
+   mv usr/bin/${ARCH64}/bdftruncate usr/bin/bdftruncate
+fi
+if [ -x usr/bin/${ARCH64}/ucs2any ]; then
+   mv usr/bin/${ARCH64}/ucs2any usr/bin/ucs2any
+fi
