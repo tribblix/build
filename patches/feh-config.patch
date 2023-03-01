@@ -1,8 +1,8 @@
 --- feh-3.8/config.mk~	Mon Jan  3 10:34:57 2022
 +++ feh-3.8/config.mk	Fri Jan 14 18:14:12 2022
-@@ -1,17 +1,19 @@
+@@ -1,18 +1,20 @@
  PACKAGE ?= feh
- VERSION ?= 3.8
+ VERSION ?= 3.9.1
  
 +CC=gcc
 +
@@ -12,6 +12,7 @@
 -exif ?= 0
 +exif ?= 1
  help ?= 0
+ magic ?= 0
  mkstemps ?= 1
 -verscmp ?= 1
 +verscmp ?= 0
@@ -23,12 +24,12 @@
  ICON_PREFIX ?= ${DESTDIR}${PREFIX}/share/icons
  
  # icons in /usr/share/local/icons (and other prefixes != /usr) are not
-@@ -39,7 +41,7 @@
+@@ -40,7 +42,7 @@
  CFLAGS += -Wall -Wextra -pedantic
  
  # Settings for glibc >= 2.19 - may need to be adjusted for other systems
--CFLAGS += -std=c11 -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700
-+CFLAGS += -std=c11 -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -D__EXTENSIONS__
+-CFLAGS += -std=c11 -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -D_DARWIN_C_SOURCE
++CFLAGS += -std=c11 -m64 -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -D__EXTENSIONS__
  
  ifeq (${curl},1)
  	CFLAGS += -DHAVE_LIBCURL
