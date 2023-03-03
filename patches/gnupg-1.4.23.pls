@@ -1,0 +1,1 @@
+-p1 gnupg1-fix-for-gcc10.patch
