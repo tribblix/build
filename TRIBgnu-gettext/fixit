@@ -3,3 +3,5 @@
 /bin/rm -fr usr/gnu/share/doc
 mkdir -p usr/share
 mv usr/gnu/share/aclocal usr/share
+rm -f usr/gnu/lib/lib*.la
+rm -f usr/gnu/lib/*/lib*.la
