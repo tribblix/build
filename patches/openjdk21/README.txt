@@ -5,6 +5,12 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+21+12
+
+Reinstate make/data/charsetmapping/stdcs-solaris, removal broke the build
+
+NULL -> nullptr changes still to do.
+
 21+11
 
 Trivial patch noise. NULL -> nullptr changes still to do.
