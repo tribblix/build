@@ -341,34 +341,6 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -676,27 +656,8 @@
-   PLATFORM_SET_MODULE_TARGET_OS_VALUES
-   PLATFORM_SET_RELEASE_FILE_OS_VALUES
-   PLATFORM_SETUP_LEGACY_VARS
--  PLATFORM_CHECK_DEPRECATION
- ])
- 
--AC_DEFUN([PLATFORM_CHECK_DEPRECATION],
--[
--  UTIL_ARG_ENABLE(NAME: deprecated-ports, DEFAULT: false,
--      RESULT: ENABLE_DEPRECATED_PORTS,
--      DESC: [suppress the error when configuring for a deprecated port])
--
--  if test "x$OPENJDK_TARGET_OS" = xsolaris || \
--      (test "x$OPENJDK_TARGET_CPU_ARCH" = xsparc && \
--      test "x$with_jvm_variants" != xzero); then
--    if test "x$ENABLE_DEPRECATED_PORTS" = "xtrue"; then
--      AC_MSG_WARN([The Solaris and SPARC ports are deprecated and may be removed in a future release.])
--    else
--      AC_MSG_ERROR(m4_normalize([The Solaris and SPARC ports are deprecated and may be removed in a
--        future release. Use --enable-deprecated-ports=yes to suppress this error.]))
--    fi
--  fi
--])
--
- AC_DEFUN_ONCE([PLATFORM_SETUP_OPENJDK_BUILD_OS_VERSION],
- [
-   ###############################################################################
 --- old/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.488604709 -0700
 +++ new/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.064596567 -0700
 @@ -93,7 +93,6 @@

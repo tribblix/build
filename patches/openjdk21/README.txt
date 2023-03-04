@@ -5,6 +5,9 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+Remove the deprecated platform configure option, as we'll run into
+trouble if the 32-bit windows deprecation reuses it.
+
 21+12
 
 Reinstate make/data/charsetmapping/stdcs-solaris, removal broke the build
@@ -72,7 +75,6 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-toolchain-type=gcc \
 --disable-dtrace \
 --disable-warnings-as-errors \
---enable-deprecated-ports=yes \
 --with-source-date=current \
 --with-jobs=3 \
 DATE=/usr/gnu/bin/date \
