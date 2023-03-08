@@ -1,0 +1,4 @@
+PKG="TRIBqt6"
+NAME="Qt a cross-platform application and UI framework"
+VERSION="6.2.4.0"
+ZAP_URL="https://www.qt.io/"
