@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+mkdir -p var/svc/method
+cp ${BUILDROOT}/patches/minidlna/minidlna.xml var/svc/manifest/network
+cp ${BUILDROOT}/patches/minidlna/minidlna var/svc/method
