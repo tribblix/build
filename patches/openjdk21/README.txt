@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+21+13
+
+Trivial patch noise. NULL -> nullptr changes still to do.
+
 Remove the deprecated platform configure option, as we'll run into
 trouble if the 32-bit windows deprecation reuses it.
 
