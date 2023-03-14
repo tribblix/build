@@ -22,6 +22,9 @@
 # when updating, build all the components at the old level, and then just
 # increment the new components one at a time until done
 #
+# if you update the python version, you need to build the whole cycle
+# from scratch, as xcb-proto is tied to a given python version
+#
 ${THOME}/build/dobuild xcb-proto-1.14
 ${THOME}/build/dobuild libpthread-stubs-0.4
 # [install]
