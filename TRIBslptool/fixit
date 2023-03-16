@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# remove anything that conflicts with the illumos supplied pieces
+#
+rm -fr etc var usr/sbin usr/lib usr/include

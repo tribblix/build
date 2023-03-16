@@ -1,0 +1,3 @@
+#!/bin/sh
+sed -i s:DARWIN:SOLARIS: common/slp_socket.h
+sed -i 's:\$(localstatedir):\$(DESTDIR)\$(localstatedir):' etc/Makefile
