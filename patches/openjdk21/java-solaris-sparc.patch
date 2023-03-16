@@ -206,7 +206,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -410,9 +410,6 @@
+@@ -414,9 +414,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -662,7 +662,7 @@
        SRC := $(TOPDIR)/src/$(MODULE)/unix/native/jspawnhelper, \
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
-@@ -55,7 +55,6 @@
+@@ -53,7 +53,6 @@
      LDFLAGS_windows := -delayload:secur32.dll -delayload:iphlpapi.dll, \
      LIBS_unix := -ljvm -ljava, \
      LIBS_linux := $(LIBDL), \
@@ -670,7 +670,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_windows := ws2_32.lib jvm.lib secur32.lib iphlpapi.lib winhttp.lib \
          delayimp.lib $(WIN_JAVA_LIB) advapi32.lib, \
-@@ -82,8 +81,6 @@
+@@ -80,8 +79,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := -ljava -lnet, \
      LIBS_linux := -lpthread $(LIBDL), \
@@ -679,7 +679,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation -framework CoreServices, \
-@@ -136,7 +133,6 @@
+@@ -134,7 +131,6 @@
          LDFLAGS := $(LDFLAGS_JDKLIB) \
              $(call SET_SHARED_LIBRARY_ORIGIN), \
          LIBS_linux := $(LIBDL), \
@@ -813,7 +813,7 @@
     endif
 +   ifeq ($(call isTargetOs, linux macosx), true)
 -   ifeq ($(call isTargetOs, solaris linux macosx), true)
-      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
+      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
 @@ -610,10 +608,7 @@
@@ -1188,7 +1188,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1720,8 +1718,6 @@
+@@ -1722,8 +1720,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1208,7 +1208,7 @@
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2234,9 +2232,6 @@
+@@ -2236,9 +2234,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1270,8 +1270,8 @@
            "Enable internal testing APIs")                                   \
                                                                              \
 -  product(size_t, ArrayAllocatorMallocLimit,                                \
--          SOLARIS_ONLY(64*K) NOT_SOLARIS((size_t)-1), EXPERIMENTAL,         \
-+  product(size_t, ArrayAllocatorMallocLimit, (size_t)-1, EXPERIMENTAL,      \
+-          SOLARIS_ONLY(64*K) NOT_SOLARIS(SIZE_MAX), EXPERIMENTAL,           \
++  product(size_t, ArrayAllocatorMallocLimit, SIZE_MAX, EXPERIMENTAL,        \
            "Allocation less than this value will be allocated "              \
            "using malloc. Larger allocations will use mmap.")                \
                                                                              \
@@ -1491,7 +1491,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -99,7 +99,7 @@
+@@ -100,7 +100,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -1500,7 +1500,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1654,8 +1654,6 @@
+@@ -1655,8 +1655,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1509,7 +1509,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1720,8 +1718,6 @@
+@@ -1721,8 +1719,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1531,7 +1531,7 @@
  
 --- old/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:50.351040561 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:49.963033111 -0700
-@@ -496,7 +496,7 @@
+@@ -512,7 +512,7 @@
      private static native boolean isReusePortAvailable0();
  
      /*
@@ -4111,7 +4111,7 @@
  
 --- old/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:49.005318809 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:48.665312280 -0700
-@@ -87,9 +87,7 @@
+@@ -88,9 +88,7 @@
                                  = System.getProperty("sun.security.jgss.lib");
                          if (defaultLib == null || defaultLib.trim().equals("")) {
                              String osname = System.getProperty("os.name");
@@ -13732,7 +13732,7 @@
 -
 --- old/src/hotspot/share/services/dtraceAttacher.cpp	2020-05-20 18:10:08.361754658 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,97 +0,0 @@
+@@ -1,99 +0,0 @@
 -/*
 - * Copyright (c) 2006, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -13792,8 +13792,9 @@
 -
 -  if (changed) {
 -    // one or more flags changed, need to deoptimize
--    CodeCache::mark_all_nmethods_for_deoptimization();
--    Deoptimization::deoptimize_all_marked();
+-    DeoptimizationScope deopt_scope;
+-    CodeCache::mark_all_nmethods_for_deoptimization(&deopt_scope);
+-    deopt_scope.deoptimize_marked();
 -  }
 -}
 -
@@ -13814,8 +13815,9 @@
 -  }
 -  if (changed) {
 -    // one or more flags changed, need to deoptimize
--    CodeCache::mark_all_nmethods_for_deoptimization();
--    Deoptimization::deoptimize_all_marked();
+-    DeoptimizationScope deopt_scope;
+-    CodeCache::mark_all_nmethods_for_deoptimization(&deopt_scope);
+-    deopt_scope.deoptimize_marked();
 -  }
 -}
 -

@@ -5,6 +5,12 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+21+14
+
+Minor patch noise. NULL -> nullptr changes still to do.
+
+CodeCache::mark_all_nmethods_for_deoptimization() changed.
+
 21+13
 
 Trivial patch noise. NULL -> nullptr changes still to do.
