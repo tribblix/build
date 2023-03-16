@@ -1,0 +1,13 @@
+Disable the builtin on SPARC; otherwise get undefined symbol __clzdi2
+
+--- a/timsort.h	   :: 
++++ b/timsort.h	   :: 
+@@ -74,7 +74,7 @@
+ static int compute_minrun(const uint64_t);
+ 
+ #ifndef CLZ
+-#if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ > 3))
++#if defined(XX__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ > 3))
+ #define CLZ __builtin_clzll
+ #else
+ 
