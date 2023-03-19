@@ -1,0 +1,4 @@
+PKG="TRIBlibsmooth"
+NAME="Smooth Class Library"
+VERSION="0.9.10.0"
+ZAP_URL="https://www.smooth-project.org/"
