@@ -1,0 +1,4 @@
+PKG="TRIBfreac"
+NAME="fre:ac free audio converter"
+VERSION="1.1.7.0"
+ZAP_URL="https://www.freac.org/"
