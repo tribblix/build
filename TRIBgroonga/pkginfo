@@ -1,4 +1,0 @@
-PKG="TRIBgroonga"
-NAME="An open-source fulltext search engine"
-VERSION="11.1.3.0"
-ZAP_URL="https://groonga.org/"
