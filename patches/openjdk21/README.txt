@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+21+15
+
+Trivial patch noise. NULL -> nullptr changes still to do.
+
 21+14
 
 Minor patch noise. NULL -> nullptr changes still to do.
