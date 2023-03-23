@@ -3,20 +3,33 @@
 # alias catalog format is
 #  alias|pkgname
 #
-# really for a manually maintained catalog, like sparc,
+# this script is useful for a manually maintained catalog, like sparc,
+# or a previous release
 #
 
 builtin cat
 
-case $# in
-    1)
-	CFILE=$1
+PKGDIR="../pkgs"
+CATNAME="catalog"
+#
+# flags
+# -p platform (ie sparc)
+# -c catalog_filename
+#
+while getopts "p:c:" opt; do
+    case $opt in
+    p)
+	PLAT="$OPTARG"
+	PKGDIR="${PKGDIR}.${PLAT}"
 	;;
-    *)
-	echo "Usage: $1 catalog"
-	exit 1
+    c)
+	CATNAME="$OPTARG"
 	;;
-esac
+    esac
+done
+shift $((OPTIND-1))
+
+CFILE="${PKGDIR}/${CATNAME}"
 
 if [ ! -f $CFILE ]; then
     echo "ERROR: $CFILE not found"
@@ -29,7 +42,12 @@ fi
 for PKG in `awk -F'|' '{print $1}' $CFILE`
 do
     PKGI=${PKG}/alias
-    if [ -f $PKGI ]; then	    
+    if [ -f ${PKGI}.${PLAT} ]; then	    
+	for PALIAS in `cat ${PKGI}.${PLAT}`
+	do
+	    echo "${PALIAS}|${PKG}"
+	done
+    elif [ -f $PKGI ]; then	    
 	for PALIAS in `cat $PKGI`
 	do
 	    echo "${PALIAS}|${PKG}"
