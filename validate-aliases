@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+# verify there are no duplicate aliases
+#
+DUPS=$(cat */alias|sort|uniq -d)
+if [[ -n $DUPS ]]; then
+    echo "ERROR: duplicates found for x86"
+    cat */alias|sort|uniq -d
+fi
+
+#
+# now the platform variants
+#
+# what we have to do is remove the vanilla alias file from the list if
+# there's a platform-specific one
+#
+PLATFORMS=$(ls -1d */alias.* | awk -F. '{print $NF}' | sort | uniq)
+for PLAT in $PLATFORMS
+do
+    # exclude alias files for which there's a platform-specific one
+    SRCH=$(echo */alias.$PLAT | sed -e s:\.${PLAT}::g -e 's: :|:g')
+    # exclude alias files that don't apply to this platform
+    LS2=$(grep -vl $PLAT */arch.txt)
+    SRCH2=$(echo $LS2 | sed -e s:/arch.txt:/alias:g -e 's: :|:g')
+    # simple grep is fine, the string is intrisically anchored by the
+    # leading TRIB prefix and the /alias on the end
+    CFILES=$(ls -1d */alias | egrep -v "(${SRCH})" | egrep -v "(${SRCH2})")
+    DUPS=$(cat $CFILES */alias.${PLAT}|sort|uniq -d)
+    if [[ -n $DUPS ]]; then
+	echo "ERROR: duplicates found for ${PLAT}"
+	cat $CFILES */alias.${PLAT}|sort|uniq -d
+    fi
+done
+
+#
+# now check there aren't any platform alias files if the platform is
+# excluded by arch.txt
+#
+for PLAT in $PLATFORMS
+do
+    LS2=$(grep -vl $PLAT */arch.txt)
+    for file in $LS2
+    do
+	if [ -f ${file/arch.txt/alias}.${PLAT} ]; then
+	    echo "ERROR: ${file/arch.txt/alias}.${PLAT} conflicts with arch.txt"
+	fi
+    done
+done
