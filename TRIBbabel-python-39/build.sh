@@ -2,4 +2,4 @@
 #
 # needs pytz
 #
-${THOME}/build/pkg_setup_py TRIBbabel-python-39 Babel-2.11.0
+${THOME}/build/pkg_setup_py TRIBbabel-python-39 Babel-2.12.1
