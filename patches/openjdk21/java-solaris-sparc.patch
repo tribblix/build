@@ -1241,17 +1241,6 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -691,10 +691,6 @@
-   product_pd(bool, DontYieldALot,                                           \
-           "Throw away obvious excess yield calls")                          \
-                                                                             \
--  develop(bool, UseDetachedThreads, true,                                   \
--          "Use detached threads that are recycled upon termination "        \
--          "(for Solaris only)")                                             \
--                                                                            \
-   product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
-                "Disable the use of stack guard pages if the JVM is loaded " \
-                "on the primordial process thread")                          \
 @@ -1599,10 +1595,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
@@ -8244,7 +8233,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3217 +0,0 @@
+@@ -1,3216 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8810,10 +8799,9 @@
 -
 -  log_info(os, thread)("Thread finished (tid: " UINTX_FORMAT ").", os::current_thread_id());
 -
--  if (UseDetachedThreads) {
--    thr_exit(NULL);
--    ShouldNotReachHere();
--  }
+-  thr_exit(NULL);
+-  ShouldNotReachHere();
+-
 -  return NULL;
 -}
 -
@@ -8979,7 +8967,7 @@
 -
 -  // Create the Solaris thread
 -  thread_t tid = 0;
--  long     flags = (UseDetachedThreads ? THR_DETACHED : 0) | THR_SUSPENDED;
+-  long     flags = THR_DETACHED | THR_SUSPENDED;
 -  int      status;
 -
 -  // Mark that we don't have an lwp or thread id yet.
