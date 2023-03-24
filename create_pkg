@@ -251,8 +251,10 @@ if [ -f ${BUILD}/${PKGNAME}/user_attr ]; then
     do_user_attr
 fi
 close_preinstall
-# FIXME verify both scripts and restart_fmri_list
-(cd ${BDIR} ; pkgproto usr | ${BUILD}/fixproto) >> pp.$$
+#
+if [ -d ${BDIR}/usr ]; then
+   (cd ${BDIR} ; pkgproto usr | ${BUILD}/fixproto) >> pp.$$
+fi
 if [ -d ${BDIR}/etc ]; then
    (cd ${BDIR} ; pkgproto etc | ${BUILD}/fixproto) >> pp.$$
 fi
