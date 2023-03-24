@@ -24,35 +24,6 @@
  src/hotspot/os_cpu/windows_x86 : hotspot/src/os_cpu/windows_x86/vm
  src/hotspot : hotspot/src
  src/utils/IdealGraphVisualizer : hotspot/src/share/tools/IdealGraphVisualizer
---- old/make/Bundles.gmk	2020-05-20 17:58:19.940152562 -0700
-+++ new/make/Bundles.gmk	2020-05-20 17:58:19.604146110 -0700
-@@ -101,7 +101,7 @@
-           # If no subdir is specified and only one BASE_DIR, tar.gz can be done
-           # directly from BASE_DIR.
- 	  $(CD) $$($1_BASE_DIRS) \
--	      && ( $(TAR) cf - $(TAR_CREATE_EXTRA_PARAM) \
-+	      && ( $(TAR) cf - \
- 	          -$(TAR_INCLUDE_PARAM) $$($1_$$($1_BASE_DIRS)_LIST_FILE) \
- 	          $(TAR_IGNORE_EXIT_VALUE) ) \
- 	      | $(GZIP) > $$@
-@@ -110,7 +110,7 @@
-           # If only one BASE_DIR, but with a SUBDIR set, tar.gz can use the
-           # transform option to create bundle directly from the BASE_DIR.
- 	  $(CD) $$($1_BASE_DIRS) \
--	      && ( $(TAR) cf - $(TAR_CREATE_EXTRA_PARAM) \
-+	      && ( $(TAR) cf - \
- 	          -$(TAR_INCLUDE_PARAM) $$($1_$$($1_BASE_DIRS)_LIST_FILE) \
- 	          $$(if $$($1_SUBDIR), --transform 's|^|$$($1_SUBDIR)/|S') \
- 	          $(TAR_IGNORE_EXIT_VALUE) ) \
-@@ -140,7 +140,7 @@
-           endif
-           ifeq ($$($1_TYPE), tar.gz)
- 	    $(CD) $(SUPPORT_OUTPUTDIR)/bundles/$1 && \
--	    ( $(TAR) cf - $(TAR_CREATE_EXTRA_PARAM) \
-+	    ( $(TAR) cf - \
- 	        $$(if $$($1_SUBDIR), $$($1_SUBDIR), .) $(TAR_IGNORE_EXIT_VALUE) ) \
- 	    | $(GZIP) > $$@
-           else ifeq ($$($1_TYPE), zip)
 --- old/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:24.212234589 -0700
 +++ new/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:23.828227215 -0700
 @@ -163,8 +163,6 @@
@@ -134,7 +105,7 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -277,23 +277,15 @@
+@@ -277,8 +277,6 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
      TAR_TYPE="busybox"
@@ -143,29 +114,6 @@
    elif test "x$OPENJDK_BUILD_OS" = "xaix"; then
      TAR_TYPE="aix"
    fi
-   AC_MSG_CHECKING([what type of tar was found])
-   AC_MSG_RESULT([$TAR_TYPE])
- 
--  TAR_CREATE_FILE_PARAM=""
--
-   if test "x$TAR_TYPE" = "xgnu"; then
-     TAR_INCLUDE_PARAM="T"
-     TAR_SUPPORTS_TRANSFORM="true"
--    if test "x$OPENJDK_TARGET_OS" = "xsolaris"; then
--      # When using gnu tar for Solaris targets, need to use compatibility mode
--      TAR_CREATE_EXTRA_PARAM="--format=ustar"
--    fi
-   elif test "x$TAR_TYPE" = "xaix"; then
-     # -L InputList of aix tar: name of file listing the files and directories
-     # that need to be archived or extracted
-@@ -307,7 +299,6 @@
-     TAR_SUPPORTS_TRANSFORM="false"
-   fi
-   AC_SUBST(TAR_TYPE)
--  AC_SUBST(TAR_CREATE_EXTRA_PARAM)
-   AC_SUBST(TAR_INCLUDE_PARAM)
-   AC_SUBST(TAR_SUPPORTS_TRANSFORM)
- ])
 --- old/make/autoconf/build-aux/config.guess	2020-05-20 17:58:28.372314465 -0700
 +++ new/make/autoconf/build-aux/config.guess	2020-05-20 17:58:27.980306938 -0700
 @@ -53,14 +53,6 @@
@@ -351,14 +299,6 @@
  OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
  OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
  OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
-@@ -788,7 +787,6 @@
- ULIMIT:=@ULIMIT@
- 
- TAR_TYPE:=@TAR_TYPE@
--TAR_CREATE_EXTRA_PARAM:=@TAR_CREATE_EXTRA_PARAM@
- TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
- TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
- 
 --- old/make/autoconf/toolchain.m4	2020-05-20 17:58:44.612626291 -0700
 +++ new/make/autoconf/toolchain.m4	2020-05-20 17:58:44.216618687 -0700
 @@ -39,7 +39,6 @@
