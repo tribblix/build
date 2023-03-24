@@ -5,6 +5,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+Cleanup: remove ThreadPriorityVerbose (was Solaris-only)
+
 Cleanup: remove UseDetachedThreads (always true)
 
 21+15
