@@ -20,6 +20,6 @@
 +  return result;
 +}
 +
- extern "C" JNIEXPORT int
- JVM_handle_solaris_signal(int sig, siginfo_t* info, void* ucVoid,
-                           int abort_if_unrecognized) {
+ bool PosixSignals::pd_hotspot_signal_handler(int sig, siginfo_t* info,
+                                              ucontext_t* uc, JavaThread* thread) {
+ 

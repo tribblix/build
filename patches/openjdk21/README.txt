@@ -5,6 +5,9 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+Cleanup: merge and remove illumos-signal-2.patch and
+illumos-signal-3.patch
+
 Cleanup: remove TAR_CREATE_FILE_PARAM TAR_CREATE_EXTRA_PARAM
 
 Cleanup: remove ThreadPriorityVerbose (was Solaris-only)

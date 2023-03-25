@@ -20,9 +20,7 @@
 -p1 openjdk21/illumos-port-6.patch
 -p1 openjdk21/illumos-port-7.patch
 -p1 openjdk21/illumos-signal-1.patch
--p1 openjdk21/illumos-signal-2.patch
 -p1 openjdk21/illumos-port-9.patch
--p1 openjdk21/illumos-signal-3.patch
 -p1 openjdk21/illumos-port-10.patch
 -p1 openjdk21/illumos-port-11.patch
 -p1 openjdk21/illumos-port-12.patch
