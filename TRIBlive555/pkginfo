@@ -1,4 +1,4 @@
 PKG="TRIBlive555"
 NAME="LIVE555 Media Server"
-VERSION="2020.12.13.0"
+VERSION="2023.01.19.0"
 ZAP_URL="http://www.live555.com/"
