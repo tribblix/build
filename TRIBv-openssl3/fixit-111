@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+# clean up and move
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+rmdir usr/ssl/certs
+ln -s /etc/ssl/certs usr/ssl
+#
+# we don't want the html docs
+#
+rm -fr usr/share/doc
+#
+# put manpages somewhere sane
+#
+mkdir usr/share
+mv usr/ssl/man usr/share
+#
+# there are almost 3500 symlinks here, cut the clutter
+#
+rm -fr usr/share/man/man3
+#
+# we no longer fiddle the manpage suffix, but some man pages conflict
+#
+mv usr/share/man/man1/errstr.1 usr/share/man/man1/openssl-errstr.1
+mv usr/share/man/man1/passwd.1 usr/share/man/man1/openssl-passwd.1
+mv usr/share/man/man1/rehash.1 usr/share/man/man1/openssl-rehash.1
+rm usr/share/man/man1/openssl-c_rehash.1
+ln -s openssl-rehash.1 usr/share/man/man1/openssl-c_rehash.1
+#
+# we should have a 64-bit opensslconf.h saved, now fix it to be dual-arch
+#
+mv usr/include/openssl/opensslconf.h usr/include/openssl/opensslconf-32.h
+cp ${BUILDROOT}/patches/opensslconf.h usr/include/openssl/opensslconf.h
+#
+# libraries expect to live in /lib
+#
+mv usr/lib/64 usr/lib/${ARCH64}
+mkdir -p lib/${ARCH64}
+mv usr/lib/lib*so* lib
+mv usr/lib/${ARCH64}/lib*so* lib/${ARCH64}
+#
+# save copies of the openssl 1.0.2 libraries
+# which most applications are initially linked against
+# so they continue to work
+#
+cp -p /lib/libssl.so.1.0.0 lib/libssl.so.1.0.0
+cp -p /lib/libcrypto.so.1.0.0 lib/libcrypto.so.1.0.0
+cp -p /lib/${ARCH64}/libssl.so.1.0.0 lib/${ARCH64}/libssl.so.1.0.0
+cp -p /lib/${ARCH64}/libcrypto.so.1.0.0 lib/${ARCH64}/libcrypto.so.1.0.0
+#
+# and we need to keep the 1.0 engines
+#
+mkdir -p usr/lib/engines
+mkdir -p usr/lib/${ARCH64}/engines
+cp -p /usr/lib/engines/* usr/lib/engines
+cp -p /usr/lib/${ARCH64}/engines/* usr/lib/${ARCH64}/engines
+#
+# the files live under /lib, symlinks under /usr/lib
+# this will also generate the compat symlinks in /usr/lib
+#
+cd usr/lib
+ln -s ../../lib/libssl.so* .
+ln -s ../../lib/libcrypto.so* .
+cd ${ARCH64}
+ln -s ../../../lib/${ARCH64}/libssl.so* .
+ln -s ../../../lib/${ARCH64}/libcrypto.so* .
