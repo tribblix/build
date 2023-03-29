@@ -1,0 +1,15 @@
+--- a/libheif/heif_hevc.cc	Tue Nov 15 13:24:59 2022
++++ b/libheif/heif_hevc.cc	Wed Mar 29 18:28:00 2023
+@@ -45,10 +45,10 @@
+   //printf("sign:%d exponent:%d mantissa_len:%d mantissa:%d\n",sign_flag,exponent,mantissa_len,mantissa);
+ 
+   if (exponent > 0) {
+-    value = pow(2, exponent - 31) * (1.0 + mantissa / pow(2, mantissa_len));
++    value = pow((double)2, exponent - 31) * (1.0 + mantissa / pow((double)2, mantissa_len));
+   }
+   else {
+-    value = pow(2, -(30 + mantissa_len)) * mantissa;
++    value = pow((double)2, -(30 + mantissa_len)) * mantissa;
+   }
+ 
+   if (sign_flag) {
