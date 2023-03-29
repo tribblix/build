@@ -82,13 +82,24 @@ cp ${THOME}/build/patches/jdk-libsoftcrypto.h jdk/src/jdk.crypto.ucrypto/solaris
 # cp libmmheap.so.1 ~/solarisstudio12.4/lib/compilers/sys/
 # cp amd64/libmmheap.so.1 ~/solarisstudio12.4/lib/compilers/sys/amd64/
 #
+# or for sparc
+# ~/SolarisStudio12.4-solaris-sparc-bin/patches/system/120753-14
+# SUNWlibmsr/reloc/lib/{,sparcv9/}libmmheap.so.1
+#
+# cp libmmheap.so.1 ~/solarisstudio12.4/lib/compilers/sys/
+# cp sparcv9/libmmheap.so.1 ~/solarisstudio12.4/lib/compilers/sys/sparcv9/
+#
 # it wants objcopy, hence /usr/sfw/bin in the path
 # fix the d_fd error -> dd_fd
 #
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
 #
-env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin bash ./configure --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk1.8.0 --with-native-debug-symbols=none
+# add --enable-dtrace=no --disable-hotspot-gtest like later versions,
+# especially as we're only ever going to use this as part of a build
+# chain to support later versions
+#
+env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin bash ./configure --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk1.8.0 --with-native-debug-symbols=none --enable-dtrace=no --disable-hotspot-gtest
 env PATH=${HOME}/solarisstudio12.4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin gmake -k all
 
 
