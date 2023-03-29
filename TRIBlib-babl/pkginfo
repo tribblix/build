@@ -1,4 +1,4 @@
 PKG="TRIBlib-babl"
 NAME="Babl pixel format translation library"
-VERSION="0.1.92.0"
+VERSION="0.1.98.0"
 ZAP_URL="http://gegl.org/babl/"
