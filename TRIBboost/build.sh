@@ -9,7 +9,7 @@ cd boost_1_64_0
 ./bootstrap.sh --prefix=/var/tmp/fubar/usr
 ./b2
 ./b2 install
-./b2 address-model=64 --libdir=/var/tmp/fubar/usr/lib/amd64
-./b2 address-model=64 --libdir=/var/tmp/fubar/usr/lib/amd64 install
+./b2 address-model=64 --libdir=/var/tmp/fubar/usr/lib/`$THOME/build/getarch`
+./b2 address-model=64 --libdir=/var/tmp/fubar/usr/lib/`$THOME/build/getarch` install
 
 ${THOME}/build/create_pkg TRIBboost /var/tmp/fubar
