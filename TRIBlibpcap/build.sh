@@ -1,3 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/newbuild.sh both TRIBlibpcap
+${THOME}/build/dobuild -64 libpcap-1.10.3
+${THOME}/build/genpkg TRIBlibpcap libpcap-1.10.3
