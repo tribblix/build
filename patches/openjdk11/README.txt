@@ -58,6 +58,9 @@ tribblix-demangle3.patch
 tribblix-demangle4.patch
   use the gcc demangle rather than the Studio demangle
 
+tribblix-sparc1.patch
+  some basic fixes necessary (but not sufficient) for a SPARC build
+
 Build:
 
 

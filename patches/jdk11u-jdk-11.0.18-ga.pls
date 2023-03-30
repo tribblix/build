@@ -39,3 +39,4 @@
 -p0 openjdk11/tribblix-demangle3.patch
 -p0 openjdk11/tribblix-demangle4.patch
 -p1 openjdk11/illumos-port-6.patch
+-p1 openjdk11/tribblix-sparc1.patch
