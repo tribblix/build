@@ -1,2 +1,2 @@
 #!/bin/sh
-/bin/rm -f usr/sbin/tcpdump.4.*
+/bin/rm -f usr/bin/tcpdump.4.*
