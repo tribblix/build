@@ -1,0 +1,44 @@
+--- a/src/java.base/share/classes/jdk/internal/util/OperatingSystem.java	Wed Mar 29 20:12:02 2023
++++ b/src/java.base/share/classes/jdk/internal/util/OperatingSystem.java	Thu Mar 30 13:44:42 2023
+@@ -78,6 +78,10 @@
+      * The AIX Operating system.
+      */
+     AIX,
++    /**
++     * Operating systems based on Solaris or illumos.
++     */
++    SOLARIS,
+     ;
+ 
+     // Cache a copy of the array for lightweight indexing
+@@ -115,6 +119,14 @@
+         return OperatingSystemProps.TARGET_OS_IS_AIX;
+     }
+ 
++    /**
++     * {@return {@code true} if built for Solaris or illumos operating systems}
++     */
++    @ForceInline
++    public static boolean isSolaris() {
++        return OperatingSystemProps.TARGET_OS_IS_SOLARIS;
++    }
++
+     /**
+      * {@return the current operating system}
+      */
+--- a/src/java.base/share/classes/jdk/internal/util/OperatingSystemProps.java.template	Wed Mar 29 20:12:02 2023
++++ b/src/java.base/share/classes/jdk/internal/util/OperatingSystemProps.java.template	Thu Mar 30 13:43:29 2023
+@@ -34,6 +34,7 @@
+     private static final int TARGET_OS_macosx  = 1;
+     private static final int TARGET_OS_windows = 2;
+     private static final int TARGET_OS_aix     = 3;
++    private static final int TARGET_OS_solaris = 4;
+ 
+     // Index/ordinal of the current OperatingSystem enum as substituted by the build
+     static final int CURRENT_OS_ORDINAL = TARGET_OS_@@OPENJDK_TARGET_OS@@;
+@@ -43,4 +44,5 @@
+     static final boolean TARGET_OS_IS_MACOSX  = TARGET_OS_@@OPENJDK_TARGET_OS@@ == TARGET_OS_macosx;
+     static final boolean TARGET_OS_IS_WINDOWS = TARGET_OS_@@OPENJDK_TARGET_OS@@ == TARGET_OS_windows;
+     static final boolean TARGET_OS_IS_AIX     = TARGET_OS_@@OPENJDK_TARGET_OS@@ == TARGET_OS_aix;
++    static final boolean TARGET_OS_IS_SOLARIS = TARGET_OS_@@OPENJDK_TARGET_OS@@ == TARGET_OS_solaris;
+ }

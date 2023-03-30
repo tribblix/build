@@ -629,7 +629,7 @@
  
 --- old/make/modules/java.base/gensrc/GensrcMisc.gmk	2020-05-20 17:59:11.161136042 -0700
 +++ new/make/modules/java.base/gensrc/GensrcMisc.gmk	2020-05-20 17:59:10.769128515 -0700
-@@ -110,21 +110,6 @@
+@@ -116,21 +116,6 @@
  
  endif
  
@@ -1181,7 +1181,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1599,10 +1595,8 @@
+@@ -1598,10 +1598,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1194,7 +1194,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1884,8 +1878,7 @@
+@@ -1883,8 +1881,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1449,12 +1449,12 @@
  
 --- old/src/java.base/share/classes/sun/net/sdp/SdpSupport.java	2020-05-20 18:00:49.295020283 -0700
 +++ new/src/java.base/share/classes/sun/net/sdp/SdpSupport.java	2020-05-20 18:00:48.903012757 -0700
-@@ -40,7 +40,7 @@
+@@ -39,7 +39,7 @@
+  */
  
  public final class SdpSupport {
-     private static final String os = GetPropertyAction.privilegedGetProperty("os.name");
--    private static final boolean isSupported = (os.equals("SunOS") || (os.equals("Linux")));
-+    private static final boolean isSupported = os.equals("Linux");
+-    private static final boolean isSupported = (OperatingSystem.isSolaris() || OperatingSystem.isLinux());
++    private static final boolean isSupported = OperatingSystem.isLinux();
      private static final JavaIOFileDescriptorAccess fdAccess =
          SharedSecrets.getJavaIOFileDescriptorAccess();
  
@@ -1548,7 +1548,7 @@
  JNIEXPORT jboolean JNICALL
 --- old/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.739220820 -0700
 +++ new/src/java.base/unix/classes/java/lang/ProcessImpl.java	2020-05-20 18:00:59.399214291 -0700
-@@ -85,9 +85,6 @@
+@@ -83,9 +83,6 @@
      private /* final */ InputStream  stdout;
      private /* final */ InputStream  stderr;
  
@@ -1558,24 +1558,15 @@
      private static enum LaunchMechanism {
          // order IS important!
          FORK,
-@@ -101,8 +98,6 @@
- 
-         BSD(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK),
- 
--        SOLARIS(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK),
--
-         AIX(LaunchMechanism.POSIX_SPAWN, LaunchMechanism.FORK);
- 
-         final LaunchMechanism defaultLaunchMechanism;
-@@ -148,7 +143,6 @@
- 
-             if (osName.equals("Linux")) { return LINUX; }
-             if (osName.contains("OS X")) { return BSD; }
--            if (osName.equals("SunOS")) { return SOLARIS; }
-             if (osName.equals("AIX")) { return AIX; }
- 
-             throw new Error(osName + " is not a supported OS platform.");
-@@ -398,41 +392,6 @@
+@@ -111,7 +108,6 @@
+                     return lm;      // All options are valid for Linux
+                 case AIX:
+                 case MACOS:
+-                case SOLARIS:
+                     if (lm != LaunchMechanism.VFORK) {
+                         return lm; // All but VFORK are valid
+                     }
+@@ -368,41 +364,6 @@
                  });
                  break;
  
@@ -1617,7 +1608,7 @@
              case AIX:
                  stdin = (fds[0] == -1) ?
                          ProcessBuilder.NullOutputStream.INSTANCE :
-@@ -547,29 +506,6 @@
+@@ -519,29 +480,6 @@
                  try { stderr.close(); } catch (IOException ignored) {}
                  break;
  
@@ -1644,21 +1635,22 @@
 -                }
 -                break;
 -
-             default: throw new AssertionError("Unsupported platform: " + platform);
+             default: throw new AssertionError("Unsupported platform: " + OperatingSystem.current());
          }
      }
 --- old/src/java.base/unix/classes/sun/net/PortConfig.java	2020-05-20 18:01:00.803241250 -0700
 +++ new/src/java.base/unix/classes/sun/net/PortConfig.java	2020-05-20 18:01:00.419233877 -0700
-@@ -46,9 +46,6 @@
-         if (os.startsWith("Linux")) {
-             defaultLower = 32768;
-             defaultUpper = 61000;
--        } else if (os.startsWith("SunOS")) {
--            defaultLower = 32768;
--            defaultUpper = 65535;
-         } else if (os.contains("OS X")) {
-             defaultLower = 49152;
-             defaultUpper = 65535;
+@@ -47,10 +47,6 @@
+                 defaultLower = 32768;
+                 defaultUpper = 61000;
+                 break;
+-            case SOLARIS:
+-                defaultLower = 32768;
+-                defaultUpper = 65535;
+-                break;
+             case MACOS:
+                 defaultLower = 49152;
+                 defaultUpper = 65535;
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixConstants.java.template	2020-05-20 18:01:02.831280190 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixConstants.java.template	2020-05-20 18:01:02.495273738 -0700
 @@ -35,10 +35,6 @@
@@ -1687,7 +1679,7 @@
      }
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.971321280 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.583313830 -0700
-@@ -778,15 +778,7 @@
+@@ -779,15 +779,7 @@
                      ("NOFOLLOW_LINKS is not supported on this platform");
              flags |= O_NOFOLLOW;
          }

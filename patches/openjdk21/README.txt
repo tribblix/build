@@ -5,6 +5,24 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now that jdk20 has been forked off.
 
+Issues known that indicate serious bugs, likely due to not integrating
+loom correctly as they date back to that change:
+* jshell doesn't work
+* illuminate doesn't work
+
+21+16
+
+Triggered by changes in SdpSupport.java, add SunOS support to
+src/java.base/share/classes/jdk/internal/util/OperatingSystem.java
+src/java.base/share/classes/jdk/internal/util/OperatingSystemProps.java.template
+See illumos-port-23.patch
+
+The new OperatingSystem support has also been used in
+src/java.base/unix/classes/java/lang/ProcessImpl.java
+which needs a completely different patch
+
+And src/java.base/unix/classes/sun/net/PortConfig.java needs fixing.
+
 Cleanup: merge and remove illumos-signal-2.patch and
 illumos-signal-3.patch
 
