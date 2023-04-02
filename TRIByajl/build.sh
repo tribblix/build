@@ -1,9 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/unpack yajl-2.1.0
-cd yajl-2.1.0
-cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr
-gmake -j 4
-gmake install DESTDIR=/tmp/y
-${THOME}/build/create_pkg TRIByajl /tmp/y
-rm -fr /tmp/y
+$THOME/build/cmbuild -64 yajl-2.1.0 +C "-D LIB_SUFFIX=/`$THOME/build/getarch`"
+${THOME}/build/genpkg TRIByajl yajl-2.1.0
