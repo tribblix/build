@@ -1,1 +1,0 @@
--p1 graphviz-2.38.0-gs-2.18-fix.patch 

@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild graphviz-2.38.0
-${THOME}/build/genpkg TRIBgraphviz graphviz-2.38.0
+env LIBS="-lsocket -lnsl" ${THOME}/build/dobuild -64only graphviz-8.0.1
+${THOME}/build/genpkg TRIBgraphviz graphviz-8.0.1

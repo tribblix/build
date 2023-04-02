@@ -2,4 +2,5 @@
 #
 # dot, for example, can't find its plugins without this
 #
-env LD_LIBRARY_PATH=`pwd`/usr/lib GVBINDIR=`pwd`/usr/lib/graphviz `pwd`/usr/bin/dot -c
+ARCH64=`${BUILDROOT}/getarch`
+env LD_LIBRARY_PATH=`pwd`/usr/lib/${ARCH64} GVBINDIR=`pwd`/usr/lib/${ARCH64}/graphviz `pwd`/usr/bin/dot -c
