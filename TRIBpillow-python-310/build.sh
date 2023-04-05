@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBpillow-python-310 Pillow-9.4.0
+${THOME}/build/pkg_setup_py TRIBpillow-python-310 Pillow-9.5.0
