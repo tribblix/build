@@ -1,0 +1,8 @@
+-p1 python/mod-socket-xpg6-311.patch
+-p1 python/setup.311.patch
+-p1 python/mod-shutil-sendfile.311.patch
+-p1 python/mod-posix-sched_priority.311.patch
+-p1 python/test-freeze.311.patch
+-p1 python/test-zipfile.311.patch
+-p1 python/test-processgroup.311.patch
+-p1 python/curses.311.patch
