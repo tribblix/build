@@ -1,2 +1,20 @@
 #!/bin/sh
-rm -f usr/lib/libaa.la
+#
+# replace the 32-bit binaries with the 64-bit ones
+# but not aalib-config
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+for mfile in aafire aainfo aasavefont aatest
+do
+    if [ -x usr/bin/${ARCH64}/${mfile} ]; then
+	mv usr/bin/${ARCH64}/${mfile} usr/bin/${mfile}
+    fi
+done
