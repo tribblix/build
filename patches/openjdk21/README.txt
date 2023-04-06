@@ -10,6 +10,18 @@ loom correctly as they date back to that change:
 * jshell doesn't work
 * illuminate doesn't work
 
+21+17
+
+Remove anything related to libfdlibm, as that's gone entirely
+
+Remove tribblix-flags-ldflags2.patch; the patched solaris behaviour is
+now the default.
+
+src/hotspot/share/runtime/javaThread.cpp uses alloca() so needs the header
+
+test/jdk/java/io/File/libGetXSpace.c uses statfs() which ought to be
+statvfs() for us, see illumos-port-24.patch
+
 21+16
 
 Triggered by changes in SdpSupport.java, add SunOS support to

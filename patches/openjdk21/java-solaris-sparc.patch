@@ -359,7 +359,7 @@
            # It cannot be run separately since it updates the original target file
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -164,7 +164,6 @@
+@@ -163,7 +163,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -367,7 +367,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -174,14 +173,11 @@
+@@ -173,14 +172,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -653,18 +653,7 @@
  ifeq ($(UNLIMITED_CRYPTO), true)
 --- old/make/modules/java.base/lib/CoreLibraries.gmk	2020-05-20 17:59:12.217156318 -0700
 +++ new/make/modules/java.base/lib/CoreLibraries.gmk	2020-05-20 17:59:11.829148868 -0700
-@@ -29,10 +29,6 @@
- 
- BUILD_LIBFDLIBM_OPTIMIZATION := NONE
- 
--ifeq ($(call isTargetOs, solaris), true)
--  BUILD_LIBFDLIBM_OPTIMIZATION := HIGH
--endif
--
- # If FDLIBM_CFLAGS is non-empty we know that we can optimize
- # fdlibm when adding those extra C flags. Currently GCC,
- # and clang only.
-@@ -67,7 +63,7 @@
+@@ -26,7 +26,7 @@
  ##########################################################################################
  
  LIBVERIFY_OPTIMIZATION := HIGH
@@ -673,15 +662,15 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBVERIFY_OPTIMIZATION := LOW
    endif
-@@ -110,7 +106,6 @@
-     LIBS := $(BUILD_LIBFDLIBM_TARGET), \
+@@ -67,7 +67,6 @@
+     LDFLAGS_windows := -delayload:shell32.dll, \
      LIBS_unix := -ljvm, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -lsocket -lnsl -lscf $(LIBDL), \
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -222,7 +217,6 @@
+@@ -178,7 +177,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -756,7 +745,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -610,10 +608,7 @@
+@@ -611,10 +609,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -768,7 +757,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -640,7 +635,6 @@
+@@ -641,7 +636,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1021,7 +1010,7 @@
    BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libTestPsig.c libnativeStack.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -105,9 +105,6 @@
+@@ -107,9 +107,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1248,7 +1237,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -614,12 +614,11 @@
+@@ -612,12 +612,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1420,7 +1409,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -100,7 +100,7 @@
+@@ -101,7 +101,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -1429,7 +1418,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1655,8 +1655,6 @@
+@@ -1656,8 +1656,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1438,7 +1427,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1721,8 +1719,6 @@
+@@ -1722,8 +1720,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
