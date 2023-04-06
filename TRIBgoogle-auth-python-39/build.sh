@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBgoogle-auth-python-39 google-auth-2.16.3
+${THOME}/build/pkg_setup_py TRIBgoogle-auth-python-39 google-auth-2.17.2
