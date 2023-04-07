@@ -18,6 +18,15 @@ if [ ! -d "${DESTDIR}" ]; then
    exit 0
 fi
 
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 #
 # local package tweaks below
 #

@@ -1,0 +1,15 @@
+--- a/meson.build	Mon Apr  3 18:29:12 2023
++++ b/meson.build	Mon Apr  3 18:30:36 2023
+@@ -232,12 +232,6 @@
+ endif
+ subdir('docs')
+ 
+-# The tests will also run, which is not possible if they
+-# were built for a different architecture.
+-if not meson.is_cross_build()
+-  subdir('tests')
+-endif
+-
+ install_data('Makefile.introspection', install_dir: join_paths(get_option('datadir'), 'gobject-introspection-1.0'))
+ install_data('m4/introspection.m4', install_dir: join_paths(get_option('datadir'), 'aclocal'))
+ 

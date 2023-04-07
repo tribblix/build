@@ -20,11 +20,12 @@
 ${THOME}/build/dobuild gdk-pixbuf-2.36.12 -C --with-x11
 ${THOME}/build/dobuild atk-2.20.0
 ${THOME}/build/dobuild -gnu gtk+-3.22.30 -C --disable-cups
-${THOME}/build/mesonbuild pango-1.44.7 -C "--buildtype=release"
+env CC=gcc ${THOME}/build/mesonbuild pango-1.44.7
 
 #
-# this old version is only compatible with python2, so this makes sure
+# the old version is only compatible with python2, so this makes sure
 # we not only link against python2 but put it in the shebang too
 #
 env PYTHON=/usr/bin/python2 ${THOME}/build/dobuild gobject-introspection-1.44.0
-${THOME}/build/genpkg TRIBgobject-introspection gobject-introspection-1.44.0
+$THOME/build/mesonbuild +64 gobject-introspection-1.72.0
+${THOME}/build/genpkg TRIBgobject-introspection gobject-introspection-1.44.0 gobject-introspection-1.72.0
