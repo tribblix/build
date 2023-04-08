@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# specify the right place to look for openblas
+#
+ARCH64=`${THOME}/build/getarch`
+cat > site.cfg <<_EOF
+[openblas]
+libraries = openblas
+library_dirs = /usr/lib/${ARCH64}
+include_dirs = /usr/include
+runtime_library_dirs = /usr/lib/${ARCH64}
+_EOF

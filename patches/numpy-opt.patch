@@ -1,0 +1,12 @@
+Setting __STDC_VERSION__ to a nonsense value won't lead to a successful outcome.
+
+--- a/numpy/distutils/ccompiler_opt.py	Sun Feb  5 17:13:47 2023
++++ b/numpy/distutils/ccompiler_opt.py	Sat Apr  8 11:41:31 2023
+@@ -20,7 +20,6 @@
+ # They are chosen to have very few runtime dependencies.
+ NPY_CXX_FLAGS = [
+     '-std=c++11',  # Minimal standard version
+-    '-D__STDC_VERSION__=0',  # for compatibility with C headers
+     '-fno-exceptions',  # no exception support
+     '-fno-rtti']  # no runtime type information
+ 
