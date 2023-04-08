@@ -17,10 +17,17 @@ PY311VER=311
 PY311DVER=3.11
 
 DO37=""
+DO39="yes"
 DO311="yes"
 case $1 in
     +37)
 	DO37="yes"
+	shift
+	;;
+esac
+case $1 in
+    -39)
+	DO39=""
 	shift
 	;;
 esac
@@ -41,7 +48,7 @@ case $1 in
 	shift
 	;;
     *)
-	echo "Usage: $0 [+37|-311] -s|-p pkg_name tarball_name"
+	echo "Usage: $0 [+37|-39|-311] -s|-p pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -115,6 +122,7 @@ EOF
 chmod a+x $PY37NAME/build.sh
 fi
 
+if [ -n "$DO39" ]; then
 #
 # python 3.9
 #
@@ -132,6 +140,7 @@ cat > $PY39NAME/build.sh <<EOF
 \${THOME}/build/$BUILDER $PY39NAME $TBALL
 EOF
 chmod a+x $PY39NAME/build.sh
+fi
 
 if [ -n "$DO311" ]; then
 #
