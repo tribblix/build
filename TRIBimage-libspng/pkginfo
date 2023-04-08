@@ -1,0 +1,4 @@
+PKG="TRIBimage-libspng"
+NAME="Simple PNG library"
+VERSION="0.7.3.0"
+ZAP_URL="https://libspng.org/"
