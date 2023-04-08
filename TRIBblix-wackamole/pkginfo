@@ -1,4 +1,0 @@
-PKG="TRIBblix-wackamole"
-NAME="Virtual IP availability manager"
-VERSION="2.1.5.0"
-ZAP_URL="https://bsdforge.com/projects/net/wackamole/"
