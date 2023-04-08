@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+
+#
+# fix up the 64-bit pc file, necessary because the 64-bit build doesn't
+# honour the 64-bit libdir
+#
+sed -i s:{prefix}/lib:{prefix}/lib/`$THOME/build/getarch`: usr/lib/`$THOME/build/getarch`/pkgconfig/libopenjp2.pc
