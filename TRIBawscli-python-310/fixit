@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# add a convenience link
-#
-rm -f usr/versions/python-3.10/bin/aws.cmd
-mkdir -p usr/bin
-cd usr/bin
-ln -s ../../usr/versions/python-3.10/bin/aws .

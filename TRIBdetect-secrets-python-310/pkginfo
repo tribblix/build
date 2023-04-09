@@ -1,4 +1,0 @@
-PKG="TRIBdetect-secrets-python-310"
-NAME="Python detect_secrets"
-VERSION="1.4.0.0"
-ZAP_URL="https://pypi.org/project/detect_secrets"

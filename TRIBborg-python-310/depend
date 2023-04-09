@@ -1,6 +1,0 @@
-P TRIBcompress-lz4
-P TRIBcompress-zstd
-P TRIBlib-security-openssl
-P TRIBmsgpack-python-310
-P TRIBpackaging-python-310
-P TRIBv-python-310

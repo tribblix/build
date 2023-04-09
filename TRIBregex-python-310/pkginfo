@@ -1,4 +1,0 @@
-PKG="TRIBregex-python-310"
-NAME="Python regex"
-VERSION="2022.3.2.0"
-ZAP_URL="https://pypi.org/project/regex"

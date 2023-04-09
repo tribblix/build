@@ -1,2 +1,0 @@
--p1 python/disable_epoll.310.patch
--p1 python/enable-ossaudiodev.310.patch

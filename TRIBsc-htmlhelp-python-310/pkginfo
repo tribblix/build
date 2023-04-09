@@ -1,4 +1,0 @@
-PKG="TRIBsc-htmlhelp-python-310"
-NAME="Python sphinxcontrib-htmlhelp"
-VERSION="2.0.1.0"
-ZAP_URL="https://pypi.org/project/sphinxcontrib-htmlhelp"

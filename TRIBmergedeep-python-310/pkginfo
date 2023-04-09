@@ -1,4 +1,0 @@
-PKG="TRIBmergedeep-python-310"
-NAME="Python mergedeep"
-VERSION="1.3.4.0"
-ZAP_URL="https://pypi.org/project/mergedeep"

@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# put in the regular path
-#
-PYVERS=3.10
-mkdir -p usr/bin
-cd usr/bin
-chmod a+x ../../usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/checkdmarc.py
-ln -s ../../usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/checkdmarc.py checkdmarc

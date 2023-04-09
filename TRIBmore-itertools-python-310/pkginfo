@@ -1,4 +1,0 @@
-PKG="TRIBmore-itertools-python-310"
-NAME="Python more-itertools"
-VERSION="8.14.0.0"
-ZAP_URL="https://pypi.org/project/more-itertools"

@@ -1,4 +1,0 @@
-PKG="TRIBgnureadline-python-310"
-NAME="Python gnureadline"
-VERSION="8.1.2.0"
-ZAP_URL="https://pypi.org/project/gnureadline"

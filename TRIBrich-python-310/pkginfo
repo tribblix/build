@@ -1,4 +1,0 @@
-PKG="TRIBrich-python-310"
-NAME="Python rich"
-VERSION="13.3.3.0"
-ZAP_URL="https://pypi.org/project/rich"
