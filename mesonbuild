@@ -20,6 +20,18 @@ case $# in
 esac
 
 #
+# sanity check
+#
+if [ ! -x /usr/bin/ninja ]; then
+    echo "ERROR: ninja not installed"
+    exit 1
+fi
+if [ ! -x /usr/bin/meson ]; then
+    echo "ERROR: meson not installed"
+    exit 1
+fi
+
+#
 # if a dual 32- and 64-bit build is desired, specify -64 *first*
 # +64 means just do the 64-bit (useful for testing it in isolation)
 # note that +64 will wipe the 32-bit directory

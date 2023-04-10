@@ -20,6 +20,14 @@ case $# in
 esac
 
 #
+# sanity check
+#
+if [ ! -x ${GMAKE} ]; then
+    echo "ERROR: gmake not installed"
+    exit 1
+fi
+
+#
 # if a dual 32- and 64-bit build is desired, specify -64 *first*
 # +64 means just do the 64-bit (useful for testing it in isolation,
 # or for building 64-bit and 32-bit with different flags)
