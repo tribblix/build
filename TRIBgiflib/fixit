@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# only ship the 64-bit binaries
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+if [ -d usr/bin/${ARCH64} ]; then
+    cd usr/bin/${ARCH64}
+    rm -f gifecho gifinto giffilter gifsponge
+    mv * ..
+    cd ..
+    rmdir ${ARCH64}
+    cd ../..
+fi
+
+cd usr/bin
+rm -f gifecho gifinto giffilter gifsponge
+cd ../..
+cd usr/share/man/man1
+rm -f gifecho.1 gifinto.1 giffilter.1 gifsponge.1
