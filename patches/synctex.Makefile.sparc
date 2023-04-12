@@ -1,11 +1,11 @@
 #
-# copied fromm OI
+# copied from OI
 #
-# Poormans Makefile
+# Poor mans Makefile
 #
 CFLAGS= -I. -fPIC -O -m64
 LDFLAGS=-m64
-MACH64=amd64
+MACH64=sparcv9
 HDRS=synctex_parser.h synctex_parser_utils.h synctex_version.h
 SRCS=synctex_parser_utils.c synctex_parser.c
 OBJS=$(SRCS:.c=.o)
