@@ -61,11 +61,18 @@ tribblix-demangle4.patch
 tribblix-sparc1.patch
   some basic fixes necessary (but not sufficient) for a SPARC build
 
+tribblix-sparc2.patch
+  fixes to enable a sparc build with gcc; it's possible that using the
+  atomic_linux_sparc.hpp from linux_sparc rather than
+  atomic_solaris_sparc.hpp from solaris_sparc may also be required 
+
 Build:
 
+Use a jdk11 build as a bootstrap (from Liberica or Azul should also
+work if your distro doesn't have one yet).
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk10 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk11 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-hotspot-gtest --disable-dtrace \
