@@ -4,5 +4,5 @@
 # and patches snort to compensate. We install the static libs and leave
 # snort alone
 #
-${THOME}/build/dobuild -64 daq-2.0.6 -J 1
-${THOME}/build/genpkg TRIBdaq daq-2.0.6
+${THOME}/build/dobuild -64 daq-2.0.7 -J 1
+${THOME}/build/genpkg TRIBdaq daq-2.0.7
