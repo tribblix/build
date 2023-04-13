@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBv-scala-3 scala3-3.2.1
+${THOME}/build/pkg_tarball TRIBv-scala-3 scala3-3.2.2
