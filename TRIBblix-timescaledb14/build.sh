@@ -2,9 +2,8 @@
 #
 # this is a postgres extension, so it's specific to the postgres version
 #
-git clone https://github.com/timescale/timescaledb.git
-cd timescaledb
-git checkout 2.8.1
+$THOME/build/unpack timescaledb-2.10.1
+cd timescaledb-2.10.1
 env PATH=/opt/tribblix/postgres14/bin:$PATH PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig ./bootstrap
 cd build
 gmake
