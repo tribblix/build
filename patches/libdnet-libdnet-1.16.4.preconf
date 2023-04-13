@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# don't use standard compiler macros as names
+#
+sed -i s:sun:sockun:g src/intf.c

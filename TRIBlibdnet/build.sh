@@ -1,9 +1,6 @@
 #!/bin/sh
 #
-# rename the github download
-# mv libdnet-1.12.tar.gz libdnet-libdnet-1.12.tar.gz
+# there's a preconf file to patch out use of 'sun' as a variable name
 #
-# needs libtool and the autotools to regenerate things
-#
-${THOME}/build/dobuild -64 libdnet-libdnet-1.12 -C "ac_cv_dnet_linux_pf_packet=no"
-${THOME}/build/genpkg TRIBlibdnet libdnet-libdnet-1.12
+${THOME}/build/dobuild -64 libdnet-libdnet-1.16.4 -C "ac_cv_dnet_linux_pf_packet=no"
+${THOME}/build/genpkg TRIBlibdnet libdnet-libdnet-1.16.4
