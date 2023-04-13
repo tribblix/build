@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# aside from being large, these are filenames with spaces
+#
+rm -fr usr/versions/python-3.9/lib/python3.9/site-packages/ansible_collections/cisco/intersight/misc
+rm -fr usr/versions/python-3.9/lib/python3.9/site-packages/ansible_collections/cisco/ucs/misc
