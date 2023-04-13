@@ -13,5 +13,5 @@ Support SunOS/gcc.
    EXPORT_ALL_SYMBOLS := -fvisibility=default
 + endif
  else ifeq ($(TOOLCHAIN_TYPE), clang)
-   ifneq ($(OPENJDK_TARGET_OS), macosx)
-     CFLAGS_JDKLIB += -fvisibility=hidden
+   CFLAGS_JDKLIB += -fvisibility=hidden
+   CXXFLAGS_JDKLIB += -fvisibility=hidden

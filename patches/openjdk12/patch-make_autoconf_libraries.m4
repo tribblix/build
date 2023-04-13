@@ -12,11 +12,11 @@ Support SunOS/gcc.
      # Find the root of the Solaris Studio installation from the compiler path
      SOLARIS_STUDIO_DIR="$(dirname $CC)/.."
      STLPORT_LIB="$SOLARIS_STUDIO_DIR/lib/stlport4$OPENJDK_TARGET_CPU_ISADIR/libstlport.so.1"
-@@ -208,6 +209,7 @@ AC_DEFUN_ONCE([LIB_SETUP_SOLARIS_STLPORT
+@@ -208,5 +209,6 @@ AC_DEFUN_ONCE([LIB_SETUP_SOLARIS_STLPORT
        AC_MSG_ERROR([Failed to find libstlport.so.1, cannot build Hotspot gtests])
      fi
      AC_SUBST(STLPORT_LIB)
 +   fi
    fi
  ])
- 
+

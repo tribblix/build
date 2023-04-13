@@ -12,5 +12,5 @@ Support for SunOS/gcc.
    LDFLAGS_JDKEXE += -Wl,--exclude-libs,ALL
 + endif
  else ifeq ($(TOOLCHAIN_TYPE), clang)
-   ifneq ($(OPENJDK_TARGET_OS), macosx)
-     LAUNCHER_CFLAGS += -fvisibility=hidden
+   LAUNCHER_CFLAGS += -fvisibility=hidden
+ else ifeq ($(TOOLCHAIN_TYPE), solstudio)
