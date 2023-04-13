@@ -11,12 +11,12 @@
 #
 # download the tarball like so
 #
-# wget https://github.com/illumos/gcc/archive/gcc-7.3.0-il-4.tar.gz
+# wget https://github.com/illumos/gcc/archive/gcc-7.5.0-il-5.tar.gz
 #
 
-${THOME}/build/unpack gcc-gcc-7.3.0-il-4
-mv gcc-gcc-7.3.0-il-4 gcc-7.3.0-il-4
-cd gcc-7.3.0-il-4
+${THOME}/build/unpack gcc-7.5.0-il-2
+mv gcc-gcc-7.5.0-il-2 gcc-7.5.0-il-2
+cd gcc-7.5.0-il-2
 
 #
 # these are the recommended versions
@@ -36,17 +36,22 @@ cd build
 #
 
 ###x86
+# last few flags to match OmniOS
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
-../configure --prefix=/opt/gcc/7.3.0 --enable-languages=c,c++,objc \
-  --with-pkgversion="illumos/Tribblix 7.3.0" \
+../configure --prefix=/opt/gcc/7.5.0 --enable-languages=c,c++,objc \
+  --with-pkgversion="illumos/Tribblix 7.5.0" \
   --with-bugurl="http://www.tribblix.org/feedback.html" \
   --without-gnu-ld --with-ld=/usr/bin/ld \
-  --with-as=/usr/gnu/bin/as --with-gnu-as
+  --with-as=/usr/gnu/bin/as --with-gnu-as \
+  --enable-__cxa_atexit \
+  --enable-initfini-array \
+  --disable-libitm \
+  enable_frame_pointer=yes
 
 ###sparc
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
-../configure --prefix=/opt/gcc/7.3.0 --enable-languages=c,c++,objc \
-  --with-pkgversion="illumos/Tribblix 7.3.0" \
+../configure --prefix=/opt/gcc/7.5.0 --enable-languages=c,c++,objc \
+  --with-pkgversion="illumos/Tribblix 7.5.0" \
   --with-bugurl="http://www.tribblix.org/feedback.html" \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/ccs/bin/as --without-gnu-as
@@ -67,6 +72,6 @@ gmake -j 8
 #
 rm -fr /tmp/gc7
 gmake DESTDIR=/tmp/gc7 install-strip
-rm -fr /tmp/gc7/opt/gcc/7.3.0/lib/gcc/i386-pc-solaris2.11/7.3.0/include-fixed
+rm -fr /tmp/gc7/opt/gcc/7.5.0/lib/gcc/i386-pc-solaris2.11/7.5.0/include-fixed
 ${THOME}/build/create_pkg TRIBdev-illumos-gcc7 /tmp/gc7
 rm -fr /tmp/gc7
