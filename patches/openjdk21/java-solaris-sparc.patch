@@ -4021,26 +4021,25 @@
  
 --- old/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:49.005318809 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:48.665312280 -0700
-@@ -88,9 +88,7 @@
+@@ -91,9 +91,6 @@
                                  = System.getProperty("sun.security.jgss.lib");
                          if (defaultLib == null || defaultLib.trim().equals("")) {
-                             String osname = System.getProperty("os.name");
--                            if (osname.startsWith("SunOS")) {
--                                gssLibs = new String[]{ "libgss.so" };
--                            } else if (osname.startsWith("Linux")) {
-+                            if (osname.startsWith("Linux")) {
-                                 gssLibs = new String[]{
-                                     "libgssapi.so",
-                                     "libgssapi_krb5.so",
+                             gssLibs = switch (OperatingSystem.current()) {
+-                                case SOLARIS -> new String[]{
+-                                        "libgss.so",
+-                                };
+                                 case LINUX -> new String[]{
+                                         "libgssapi.so",
+                                         "libgssapi_krb5.so",
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:50.089339623 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:49.705332249 -0700
-@@ -926,8 +926,6 @@
+@@ -925,8 +925,6 @@
              if (name == null) {
                  name = "c:\\winnt\\krb5.ini";
              }
--        } else if (osname.startsWith("SunOS")) {
+-        } else if (OperatingSystem.isSolaris()) {
 -            name =  "/etc/krb5/krb5.conf";
-         } else if (osname.contains("OS X")) {
+         } else if (OperatingSystem.isMacOS()) {
              name = findMacosConfigFile();
          } else {
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/internal/rcache/DflCache.java	2020-05-20 18:02:51.185360667 -0700
@@ -4098,8 +4097,8 @@
          _writer = new BufferedWriter(writer, BUFFER_SIZE);
 --- old/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.681504598 -0700
 +++ new/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.345498147 -0700
-@@ -98,7 +98,7 @@
-             (PrivilegedAction<String>) () -> System.getProperty("os.name"));
+@@ -94,7 +94,7 @@
+     private static class Decoder extends CharsetDecoder {
  
          private static final String SJISName = getSJISName();
 -        private static final String EUCJPName = getEUCJPName();
@@ -4107,14 +4106,14 @@
          private DelegatableDecoder detectedDecoder = null;
  
          public Decoder(Charset cs) {
-@@ -226,24 +226,11 @@
+@@ -222,24 +222,11 @@
           * Returned Shift_JIS Charset name is OS dependent
           */
          private static String getSJISName() {
--            if (osName.equals("Solaris") || osName.equals("SunOS"))
+-            if (OperatingSystem.isSolaris())
 -                return("PCK");
--            else if (osName.startsWith("Windows"))
-+            if (osName.startsWith("Windows"))
+-            else if (OperatingSystem.isWindows())
++            if (OperatingSystem.isWindows())
                  return("windows-31J");
              else
                  return("Shift_JIS");
@@ -4125,7 +4124,7 @@
 -         */
 -
 -        private static String getEUCJPName() {
--            if (osName.equals("Solaris") || osName.equals("SunOS"))
+-            if (OperatingSystem.isSolaris())
 -                return("x-eucjp-open");
 -            else
 -                return("EUC_JP");
@@ -4418,11 +4417,12 @@
      clk_tck = 100;
 --- old/src/jdk.sctp/unix/classes/sun/nio/ch/sctp/SctpNet.java	2020-05-20 18:03:38.442268035 -0700
 +++ new/src/jdk.sctp/unix/classes/sun/nio/ch/sctp/SctpNet.java	2020-05-20 18:03:38.054260584 -0700
-@@ -48,11 +48,6 @@
+@@ -44,12 +44,6 @@
      /* -- Miscellaneous SCTP utilities -- */
  
      private static boolean IPv4MappedAddresses() {
--        if ("SunOS".equals(osName)) {
+-        if (true) {
+-            /* FIXME - nonportable hack */
 -            /* Solaris supports IPv4Mapped Addresses with bindx */
 -            return true;
 -        } /* else {  //other OS/implementations  */

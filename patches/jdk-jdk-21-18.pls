@@ -35,5 +35,6 @@
 -p1 openjdk21/illumos-port-22.patch
 -p1 openjdk21/illumos-port-23.patch
 -p1 openjdk21/illumos-port-24.patch
+-p1 openjdk21/illumos-port-25.patch
 -p1 openjdk21/illumos-zero-1.patch
 -p1 openjdk21/illumos-zero-2.patch

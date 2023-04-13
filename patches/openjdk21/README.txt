@@ -6,9 +6,34 @@ See also README-zero.txt for note on a project zero variant.
 JDK 21 now that jdk20 has been forked off.
 
 Issues known that indicate serious bugs, likely due to not integrating
-loom correctly as they date back to that change:
+loom correctly as they date back to that change. Sepcifically, I
+suspect we need to provide a working DefaultPoller implementation
+rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
+
+21+18
+
+More OperatingSystem changes. Fixed patches to:
+src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java
+src/java.security.jgss/share/classes/sun/security/krb5/Config.java
+src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java
+The JISAutoDetect.java needed an extra fi as there's a whole extra method.
+
+Also fix
+src/jdk.sctp/unix/classes/sun/nio/ch/sctp/SctpNet.java
+where Solaris was actually the only consumer.
+FIXME: the SctpNet fix is a non-portable hack, the code won't work on
+any other platform, as I've unconditionally patched it. This ought to
+use the OperatingSystem, but that would involve messing around with
+src/java.base/share/classes/module-info.java and
+src/java.base/share/lib/security/default.policy
+which seems excessively fussy and security-dependent
+
+(Looking at our patches, there are many more opportunities to use the
+central OperatingSystem machinery.)
+
+Missed the patch from 22+17 for javaThread.cpp; added illumos-port-25.patch
 
 21+17
 
