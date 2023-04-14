@@ -11,7 +11,7 @@ cd hexchat-2.16.1
 # that gets symbol errors at runtime we ought to look at
 #
 # buildtype=plain avoids SSP failures
-env PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig LDFLAGS="-lsocket -lnsl" meson build -Dwith-lua=false -Dwith-sysinfo=false -Dprefix=/usr -Dbuildtype=plain -Dc_args=-m64 -Dcpp_args=-m64 -Dc_link_args="-m64 -lsocket -lnsl" -Dcpp_link_args=-m64 -Dwith-perl=false
+env AR=/usr/bin/ar PATH=/usr/gnu/bin:$PATH PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig LDFLAGS="-lsocket -lnsl" meson build -Dwith-lua=false -Dwith-sysinfo=false -Dprefix=/usr -Dbuildtype=plain -Dc_args=-m64 -Dcpp_args=-m64 -Dc_link_args="-m64 -lsocket -lnsl" -Dcpp_link_args=-m64 -Dwith-perl=false
 env PATH=/usr/gnu/bin:$PATH ninja -C build
 rm -fr /tmp/hh
 env DESTDIR=/tmp/hh PATH=/usr/gnu/bin:$PATH ninja -C build install
