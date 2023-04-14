@@ -2,6 +2,7 @@
 #
 ${THOME}/build/unpack ptvtwm-1.0b1
 ${THOME}/build/unpack xli_1.17.0+20061110.orig
+xmkmf -a
 cd xli-2006-11-10
 gmake CC=gcc CCOPTIONS= CDEBUGFLAGS=-O MAPFILES_FOR_ALL= MAPFILES_FOR_PROGS= 
 cd ..
