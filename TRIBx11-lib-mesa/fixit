@@ -25,6 +25,16 @@ rmdir etc
 # we now have to shuffle a bunch of stuff around
 # this is all tied up with TRIBsvc-opengl-ogl-select
 #
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
 # headers
 #
 mv usr/include/GL usr/include/mesa
@@ -40,25 +50,25 @@ cd ../../..
 #
 # libraries really end up in /usr/lib/mesa
 #
-mkdir -p usr/lib/mesa/amd64
-mv usr/lib/amd64/lib* usr/lib/mesa/amd64
+mkdir -p usr/lib/mesa/${ARCH64}
+mv usr/lib/${ARCH64}/lib* usr/lib/mesa/${ARCH64}
 mv usr/lib/lib* usr/lib/mesa
 rm -f usr/lib/64
-ln -s amd64 usr/lib/mesa/64
+ln -s ${ARCH64} usr/lib/mesa/64
 #
 # but there's a population in /usr/lib/GL
 #
-mkdir -p usr/lib/GL/amd64
+mkdir -p usr/lib/GL/${ARCH64}
 cd usr/lib/GL
 ln -s ../mesa/libglapi.so* .
 ln -s ../mesa/libgbm.so* .
 ln -s ../mesa/libGLU.so* .
 ln -s ../mesa/libGLw.so* .
-cd amd64
-ln -s ../../mesa/amd64/libglapi.so* .
-ln -s ../../mesa/amd64/libgbm.so* .
-ln -s ../../mesa/amd64/libGLU.so* .
-ln -s ../../mesa/amd64/libGLw.so* .
+cd ${ARCH64}
+ln -s ../../mesa/${ARCH64}/libglapi.so* .
+ln -s ../../mesa/${ARCH64}/libgbm.so* .
+ln -s ../../mesa/${ARCH64}/libGLU.so* .
+ln -s ../../mesa/${ARCH64}/libGLw.so* .
 cd ../../../..
 #
 # and some symlinks in the default places
@@ -67,8 +77,8 @@ cd usr/lib
 ln -s GL/libGLU* .
 ln -s GL/libGLw* .
 ln -s GL/libglapi.* .
-cd amd64
-ln -s ../GL/amd64/libGLU* .
-ln -s ../GL/amd64/libGLw* .
-ln -s ../GL/amd64/libglapi.* .
+cd ${ARCH64}
+ln -s ../GL/${ARCH64}/libGLU* .
+ln -s ../GL/${ARCH64}/libGLw* .
+ln -s ../GL/${ARCH64}/libglapi.* .
 cd ../../..

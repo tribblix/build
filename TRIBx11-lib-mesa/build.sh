@@ -53,11 +53,11 @@ cd ..
 
 cd mesa-13.0.6-64bit
 autoreconf -fi
-env PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig PATH=/usr/bin/amd64:$PATH \
+env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig PATH=/usr/bin/`$THOME/build/getarch`:$PATH \
 ./configure --prefix=/usr \
---libdir=/usr/lib/amd64 \
+--libdir=/usr/lib/`$THOME/build/getarch` \
 --disable-dri3 \
---with-dri-driverdir=/usr/lib/xorg/modules/dri/amd64 \
+--with-dri-driverdir=/usr/lib/xorg/modules/dri/`$THOME/build/getarch` \
 --with-dri-drivers='i915 i965 swrast' \
 --disable-gallium-llvm \
 --enable-egl \
