@@ -13,7 +13,7 @@
 THOME=${THOME:-/packages/localsrc/Tribblix}
 cd ${THOME}/build
 
-PY3VER=39
+PY3VER=311
 
 WGET=/usr/bin/wget
 JQ=/usr/bin/jq
