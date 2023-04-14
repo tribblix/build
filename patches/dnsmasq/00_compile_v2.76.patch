@@ -5,7 +5,7 @@ suitable for upstream.
 
 --- dnsmasq-2.76/src/dnsmasq.h.orig	2016-07-20 15:15:52.633336049 -0700
 +++ dnsmasq-2.76/src/dnsmasq.h	2016-07-20 15:17:28.118001495 -0700
-@@ -1265,7 +1265,7 @@
+@@ -1397,7 +1397,7 @@
  #ifdef HAVE_DHCP6
  void join_multicast(int dienow);
  #endif
@@ -13,24 +13,22 @@ suitable for upstream.
 +#if defined(HAVE_LINUX_NETWORK) || defined(HAVE_BSD_NETWORK) || defined(HAVE_SOLARIS_NETWORK)
  void newaddress(time_t now);
  #endif
- 
---- dnsmasq-2.76/src/bpf.c.orig	2016-07-20 15:23:12.206647353 -0700
-+++ dnsmasq-2.76/src/bpf.c	2016-07-20 15:24:42.627316757 -0700
-@@ -30,8 +32,10 @@
+
+--- dnsmasq-2.82/src/bpf.c.orig	2020-07-19 22:54:44.000000000 +0000
++++ dnsmasq-2.82/src/bpf.c	2020-12-18 22:33:48.319966559 +0000
+@@ -31,7 +31,9 @@
+ #  include <net/if_var.h> 
  #endif
  #include <netinet/in_var.h>
- #ifdef HAVE_IPV6
 +#ifndef HAVE_SOLARIS_NETWORK
- #  include <netinet6/in6_var.h>
- #endif
+ #include <netinet6/in6_var.h>
 +#endif
  
  #ifndef SA_SIZE
  #define SA_SIZE(sa)                                             \
-
 --- dnsmasq-2.76/src/config.h.orig	2016-07-22 16:41:00.629870757 -0700
 +++ dnsmasq-2.76/src/config.h	2016-07-22 16:41:37.890924646 -0700
-@@ -293,7 +293,8 @@
+@@ -301,7 +301,8 @@
  #define HAVE_GETOPT_LONG
  #undef HAVE_SOCKADDR_SA_LEN
  #define ETHER_ADDR_LEN 6 
@@ -39,7 +37,7 @@ suitable for upstream.
 +
  #endif
  
- /* Decide if we're going to support IPv6 */
+ /* rules to implement compile-time option dependencies and
 --- dnsmasq-2.76/src/ip6addr.h.orig	2016-07-27 18:32:53.817400897 -0700
 +++ dnsmasq-2.76/src/ip6addr.h	2016-07-27 18:40:54.445231062 -0700
 @@ -14,8 +14,41 @@

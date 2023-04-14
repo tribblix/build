@@ -10,7 +10,7 @@ suitable for upstream.
 
 --- dnsmasq-2.68/src/dhcp.c	2013-12-08 07:58:29.000000000 -0800
 +++ ORIGINAL/src/dhcp.c	2014-03-07 10:14:16.639192664 -0800
-@@ -418,17 +418,24 @@
+@@ -440,17 +440,24 @@
    else
      {
        /* unicast to unconfigured client. Inject mac address direct into ARP cache. 

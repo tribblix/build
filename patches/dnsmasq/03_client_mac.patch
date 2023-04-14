@@ -5,7 +5,7 @@ retrieve the client MAC address from the client's EUI64 link-local address.
 
 --- dnsmasq-2.78/src/dhcp6.c	2017-10-02 15:13:51.000000000 +0000
 +++ NEW/src/dhcp6.c	2017-10-07 18:38:07.338649066 +0000
-@@ -252,6 +252,23 @@
+@@ -261,6 +261,23 @@
  
  void get_client_mac(struct in6_addr *client, int iface, unsigned char *mac, unsigned int *maclenp, unsigned int *mactypep, time_t now)
  {
@@ -29,7 +29,7 @@ retrieve the client MAC address from the client's EUI64 link-local address.
    /* Receiving a packet from a host does not populate the neighbour
       cache, so we send a neighbour discovery request if we can't 
       find the sender. Repeat a few times in case of packet loss. */
-@@ -292,6 +309,7 @@
+@@ -301,6 +318,7 @@
  
    *maclenp = maclen;
    *mactypep = ARPHRD_ETHER;

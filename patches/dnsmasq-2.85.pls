@@ -3,3 +3,4 @@
 -p1 dnsmasq/02_compile_dhcp_release.patch
 -p1 dnsmasq/03_client_mac.patch
 -p1 dnsmasq/04_dhcp_bind_fix.patch
+-p1 dnsmasq/05_dump_fix.patch
