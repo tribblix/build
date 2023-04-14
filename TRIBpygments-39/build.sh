@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBpygments-39 Pygments-2.14.0
+${THOME}/build/pkg_pep518 TRIBpygments-39 Pygments-2.15.0
