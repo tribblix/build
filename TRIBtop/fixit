@@ -2,7 +2,7 @@
 #
 # we only want the 64-bit variant, without isaexec
 #
-rm -fr usr/bin/i386 
+rm -fr usr/bin/`uname -p`
 rm -f usr/bin/top
-mv usr/bin/amd64/top usr/bin
+mv usr/bin/`$THOME/build/getarch`/top usr/bin
 strip usr/bin/top
