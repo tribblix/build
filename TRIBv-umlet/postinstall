@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# palettes has files whose names contain spaces, so we unpack them
+# rather than package them
+#
+cd ${BASEDIR}/usr/versions/Umlet
+if [ -f palettes.tar ]; then
+  /usr/bin/tar xf palettes.tar
+  /usr/bin/chown -hR root:root palettes
+  /usr/bin/chmod -R a+rX palettes
+fi

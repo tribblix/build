@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# the directory isn't versioned
+#
+mkdir -p usr/bin
+rm -f usr/versions/Umlet/umlet.exe
+cat > usr/bin/umlet <<EOF
+#!/bin/sh
+exec /usr/versions/Umlet/umlet.sh "\$@"
+EOF
+chmod a+x usr/bin/umlet
+
+#
+# permissions in the zip file are slightly odd
+#
+chmod 755 usr/versions/Umlet/umlet.sh
+chmod 755 usr/versions/Umlet/custom_elements
+chmod 755 usr/versions/Umlet/img
+chmod 755 usr/versions/Umlet/lib
+chmod 644 usr/versions/Umlet/lib/*.jar
+chmod 755 usr/versions/Umlet/palettes
+chmod 644 usr/versions/Umlet/umlet.jar
+chmod 644 usr/versions/Umlet/umlet.desktop
+chmod 644 usr/versions/Umlet/LICENCE.txt
+
+#
+# package files with spaces in the names
+#
+cd usr/versions/Umlet
+tar cf palettes.tar palettes
+rm -fr palettes
+
+#
+# desktop integration
+#
+cd ../../..
+mkdir -p usr/share/icons/hicolor/48x48/apps
+convert usr/versions/Umlet/img/umlet_logo.png -resize 48x48 usr/share/icons/hicolor/48x48/apps/umlet-icon.png
+mkdir -p usr/share/applications
+cat usr/versions/Umlet/umlet.desktop | sed -e 's:Exec=.*:Exec=/usr/bin/umlet:' -e s:img/umlet_logo.png:umlet-icon.png: > usr/share/applications/umlet.desktop

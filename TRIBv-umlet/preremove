@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# palettes has files whose names contain spaces, so we unpack them
+# rather than package them
+#
+cd ${BASEDIR}/usr/versions/Umlet
+if [ -d palettes ]; then
+  /usr/bin/rm -fr palettes
+fi
