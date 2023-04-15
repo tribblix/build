@@ -26,10 +26,6 @@ zap install autoconf
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
 #
-# shenandoah doesn't build on SPARC so disable it with
-# --with-jvm-features=-shenandoahgc
-# (Bellsoft fixed shenandoah for Solaris x86 in 12.0.2)
-#
 # the hotspot unit test don't build, hence --disable-hotspot-gtest
 #
 # 13.0.3 seemed to be happy with an older boot jdk, 13.0.4 requires

@@ -32,11 +32,6 @@ cd jdk14u-jdk-14.0.2+12
 #
 zap install autoconf
 
-
-#
-# shenandoah doesn't build on SPARC so disable it with
-# --with-jvm-features=-shenandoahgc
-# (Bellsoft fixed shenandoah for Solaris x86 in 12.0.2)
 #
 # the hotspot unit test don't build, hence --disable-hotspot-gtest
 #
