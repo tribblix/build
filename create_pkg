@@ -59,14 +59,17 @@ cat > ${BDIR}/install/postinstall <<EOF
 # Automatically generated service restart script
 #
 EOF
+chmod a+x ${BDIR}/install/postinstall
+echo "i postinstall=./install/postinstall" >> ${BDIR}/pp.$$
+fi
+if [ ! -f ${BDIR}/install/postremove ]; then
 cat > ${BDIR}/install/postremove <<EOF
 #!/sbin/sh
 #
 # Automatically generated service restart script
 #
 EOF
-chmod a+x ${BDIR}/install/postremove ${BDIR}/install/postinstall
-echo "i postinstall=./install/postinstall" >> ${BDIR}/pp.$$
+chmod a+x ${BDIR}/install/postremove
 echo "i postremove=./install/postremove" >> ${BDIR}/pp.$$
 fi
 #
