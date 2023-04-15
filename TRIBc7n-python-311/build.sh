@@ -6,4 +6,4 @@
 # note also that the version on PyPi may differ from that here
 # as it may omit the last .0
 #
-${THOME}/build/pkg_pep518 TRIBc7n-python-311 cloud-custodian-0.9.24.0
+${THOME}/build/pkg_pep518 TRIBc7n-python-311 cloud-custodian-0.9.26.0
