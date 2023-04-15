@@ -34,3 +34,4 @@
 -p0 openjdk12/tribblix-flags-cflags.patch
 -p1 openjdk12/tribblix-sparc1.patch
 -p1 openjdk12/tribblix-sparc2.patch
+-p1 openjdk12/tribblix-sparc3.patch
