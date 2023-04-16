@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# an update is an SONAME bump, so save the previous version for compatibiliy
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# just in case
+#
+mkdir -p usr/lib/${ARCH64}
+cp -a /usr/lib/libicu*.50* usr/lib
+cp -a /usr/lib/${ARCH64}/libicu*.50* usr/lib/${ARCH64}
