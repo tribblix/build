@@ -183,7 +183,7 @@ pthread_mutex_t. Second, assign directly rather than setting the
 symbols dynamically, which used to be done as a way of switching
 between thread-based and lwp-based synchronization.
 
-And with that, in fact, we could use the central posix verions of the
+And with that, in fact, we could use the central posix versions of the
 Platform pieces.
 
 And do the same for the cond_ functions as well as the mutex_ functions.

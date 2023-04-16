@@ -34,7 +34,7 @@ We don't want demos.
 
 We don't want the help, that's legacy.
 
-We don't want the man pages - Xserevr is shipped by the server anyway,
+We don't want the man pages - Xserver is shipped by the server anyway,
 and Xnest no longer exists.
 
 We probably don't want the mdb files.

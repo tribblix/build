@@ -7,7 +7,7 @@ Most patches -p0
 
 JDK16:
 
-One of the reasons for removing SPARC/Solaris suport was to allow more
+One of the reasons for removing SPARC/Solaris support was to allow more
 radical changes to the codebase. That means it's likely to be more
 difficult to track changes.
 
@@ -110,11 +110,11 @@ interfaces
 In os_solaris.cpp, change the 3-argument form of:
 pd_attempt_reserve_memory_at -> pd_attempt_map_memory_to_file_at
 
-One of the spec.gmk,in hunks failed, just delete it
+One of the spec.gmk.in hunks failed, just delete it
 
 In 16+20
 
-Mostly the stack overflow handlingg rorg
+Mostly the stack overflow handling reorg
 8254158: Consolidate per-platform stack overflow handling code
 https://github.com/openjdk/jdk/commit/ba5dc67a
 covered by illumos-port-9.patch, although ideally we would merge
