@@ -2,16 +2,16 @@
 #
 # haproxy - add smf wrapper
 #
-${THOME}/build/unpack haproxy-1.7.12
-cd haproxy-1.7.12
+${THOME}/build/unpack haproxy-1.7.14
+cd haproxy-1.7.14
 #fix only necessary for lua
 # gsed -i s:-Wl,--export-dynamic:: Makefile
-gmake TARGET=solaris USE_PCRE=1 PCRE_INC=/usr/include/pcre USE_OPENSSL=1
+gmake -j 4 TARGET=solaris USE_PCRE=1 PCRE_INC=/usr/include/pcre USE_OPENSSL=1 ARCH=64
 # or with lua support
 # gmake TARGET=solaris USE_PCRE=1 PCRE_INC=/usr/include/pcre USE_OPENSSL=1 USE_LUA=1
 git clone https://github.com/mmalecki/haproxy-smf-wrapper.git
 cd haproxy-smf-wrapper
-gmake
+gmake CC="gcc -m64"
 cd ..
 rm -fr /tmp/h1
 mkdir -p /tmp/h1/opt/tribblix/haproxy/bin /tmp/h1/opt/tribblix/haproxy/doc /tmp/h1/opt/tribblix/haproxy/man/man1
