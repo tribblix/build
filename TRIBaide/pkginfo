@@ -1,4 +1,4 @@
 PKG="TRIBaide"
 NAME="AIDE - Advanced Intrusion Detection Environment"
-VERSION="0.17.4.1"
+VERSION="0.18.2.0"
 ZAP_URL="https://aide.github.io/"
