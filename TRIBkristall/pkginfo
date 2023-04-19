@@ -1,0 +1,4 @@
+PKG="TRIBkristall"
+NAME="Kristall gemini client"
+VERSION="0.4.0"
+ZAP_URL="https://github.com/MasterQ32/kristall"
