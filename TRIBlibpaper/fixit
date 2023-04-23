@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# the paperconf utility is marked as deprecated for removal
+# so don't bother shipping it now
+#
+rm -f usr/bin/paperconf      
