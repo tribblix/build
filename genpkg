@@ -87,7 +87,7 @@ MYINSTALL="INSTALL=ginstall"
 # violate conventional norms
 #
 case $2 in
-httpd*|doxygen*)
+httpd*|doxygen*|cups*)
 	MYINSTALL=""
 	;;
 esac
