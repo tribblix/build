@@ -179,7 +179,7 @@
      UTIL_REQUIRE_PROGS(ULIMIT, ulimit)
 --- old/make/autoconf/build-aux/config.guess	2020-05-20 17:58:28.372314465 -0700
 +++ new/make/autoconf/build-aux/config.guess	2020-05-20 17:58:27.980306938 -0700
-@@ -42,14 +42,6 @@
+@@ -75,14 +75,6 @@
    fi
  fi
  
@@ -719,23 +719,6 @@
  else ifeq ($(call isTargetOs, macosx), true)
    # nm on macosx prints out "warning: nm: no name list" to stderr for
    # files without symbols. Hide this, even at the expense of hiding real errors.
---- old/make/hotspot/test/GtestImage.gmk	2020-05-20 17:59:02.544970605 -0700
-+++ new/make/hotspot/test/GtestImage.gmk	2020-05-20 17:59:02.160963232 -0700
-@@ -56,14 +56,4 @@
-   )
- endif
- 
--ifeq ($(call isTargetOs, solaris), true)
--  $(foreach v, $(JVM_VARIANTS), \
--    $(eval $(call SetupCopyFiles, COPY_GTEST_STLPORT_$v, \
--        DEST := $(TEST_IMAGE_DIR)/hotspot/gtest/$v, \
--        FILES := $(STLPORT_LIB), \
--    )) \
--    $(eval TARGETS += $$(COPY_GTEST_STLPORT_$v)) \
--  )
--endif
--
- all: $(TARGETS)
 --- old/make/ide/visualstudio/hotspot/CreateVSProject.gmk	2020-05-20 17:59:05.797033047 -0700
 +++ new/make/ide/visualstudio/hotspot/CreateVSProject.gmk	2020-05-20 17:59:05.409025597 -0700
 @@ -76,7 +76,6 @@
@@ -1273,7 +1256,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -489,7 +489,7 @@
+@@ -490,7 +490,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1282,7 +1265,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -507,12 +507,6 @@
+@@ -508,12 +508,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1295,7 +1278,7 @@
    // MacOS; The maximum size (in bytes) to which a process's resident set size may grow.
  #if defined(__APPLE__)
    print_rlimit(st, ", RSS", RLIMIT_RSS, true);
-@@ -960,7 +954,7 @@
+@@ -988,7 +982,7 @@
  // page size which again depends on the concrete system the VM is running
  // on. Space for libc guard pages is not included in this size.
  jint os::Posix::set_minimum_stack_sizes() {
@@ -1304,7 +1287,7 @@
  
    _java_thread_min_stack_allowed = _java_thread_min_stack_allowed +
                                     StackOverflow::stack_guard_zone_size() +
-@@ -1281,8 +1275,7 @@
+@@ -1309,8 +1303,7 @@
    if ((status = pthread_mutexattr_settype(_mutexAttr, PTHREAD_MUTEX_NORMAL)) != 0) {
      fatal("pthread_mutexattr_settype: %s", os::strerror(status));
    }
@@ -1314,7 +1297,7 @@
  }
  
  static int (*_pthread_condattr_setclock)(pthread_condattr_t *, clockid_t) = NULL;
-@@ -1497,7 +1490,6 @@
+@@ -1525,7 +1518,6 @@
  // Shared pthread_mutex/cond based PlatformEvent implementation.
  // Not currently usable by Solaris.
  
@@ -1322,7 +1305,7 @@
  
  // PlatformEvent
  //
-@@ -1927,8 +1919,6 @@
+@@ -1955,8 +1947,6 @@
      return OS_OK;
    }
  }
@@ -1333,7 +1316,7 @@
  #ifdef __APPLE__
 --- old/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:44.033767220 -0700
 +++ new/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:43.649759847 -0700
-@@ -123,8 +123,6 @@
+@@ -125,8 +125,6 @@
    sigjmp_buf _jmpbuf;
  };
  
@@ -1342,7 +1325,7 @@
  /*
   * This is the platform-specific implementation underpinning
   * the ParkEvent class, which itself underpins Java-level monitor
-@@ -290,6 +288,4 @@
+@@ -292,6 +290,4 @@
    void notify_all();
  };
  
@@ -1513,7 +1496,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -838,10 +838,8 @@
+@@ -831,10 +831,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -1567,7 +1550,7 @@
  
 --- old/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -86,11 +86,9 @@
+@@ -87,11 +87,9 @@
  #include "services/threadStackTracker.hpp"
  #include "services/virtualMemoryTracker.hpp"
  
@@ -1583,7 +1566,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -639,12 +639,11 @@
+@@ -637,12 +637,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1764,7 +1747,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1611,8 +1611,6 @@
+@@ -1626,8 +1626,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1773,7 +1756,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1674,8 +1672,6 @@
+@@ -1689,8 +1687,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1828,7 +1811,7 @@
     identifiers matching a C constant. The PREFIX_ is filtered out in the
 --- old/src/java.base/share/conf/security/java.security	2020-05-20 18:00:54.519120590 -0700
 +++ new/src/java.base/share/conf/security/java.security	2020-05-20 18:00:54.183114138 -0700
-@@ -60,9 +60,6 @@
+@@ -63,9 +63,6 @@
  #
  # List of providers and their preference orders (see above):
  #
@@ -1838,7 +1821,7 @@
  security.provider.tbd=SUN
  security.provider.tbd=SunRsaSign
  security.provider.tbd=SunEC
-@@ -83,9 +77,7 @@
+@@ -83,9 +80,7 @@
  #ifdef macosx
  security.provider.tbd=Apple
  #endif
@@ -2787,7 +2770,7 @@
    sigused = sigismember(&jvmsigs, sig);
    if (jvm_signal_installed && sigused) {
      /* jvm has installed its signal handler for this signal. */
-@@ -340,7 +289,6 @@
+@@ -351,7 +300,6 @@
  }
  
  JNIEXPORT struct sigaction *JVM_get_signal_action(int sig) {
