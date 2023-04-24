@@ -6,8 +6,8 @@ This is very much a hack that ought to only mask out a gcc build.
  
  ################################################################################
  
--ifeq ($(OPENJDK_TARGET_OS)-$(OPENJDK_TARGET_CPU_ARCH), solaris-sparc)
-+ifeq ($(OPENJDK_TARGET_OS)-$(OPENJDK_TARGET_CPU_ARCH), not-really-solaris-sparc)
+-ifeq ($(call And, $(call isTargetOs, solaris) $(call isTargetCpuArch, sparc)), true)
++ifeq ($(call And, $(call isTargetOs, not-solaris) $(call isTargetCpuArch, sparc)), true)
  
    # libmlib_image_v is basically built from mlib_image sources, with some additions
    # and some exclusions.
@@ -15,8 +15,8 @@ This is very much a hack that ought to only mask out a gcc build.
      $(TOPDIR)/src/$(MODULE)/$(OPENJDK_TARGET_OS_TYPE)/native/common/awt \
      #
  
--ifeq ($(OPENJDK_TARGET_OS)-$(OPENJDK_TARGET_CPU_ARCH), solaris-sparc)
-+ifeq ($(OPENJDK_TARGET_OS)-$(OPENJDK_TARGET_CPU_ARCH), not-really-solaris-sparc)
+-ifeq ($(call And, $(call isTargetOs, solaris) $(call isTargetCpuArch, sparc)), true)
++ifeq ($(call And, $(call isTargetOs, not-really-solaris) $(call isTargetCpuArch, sparc)), true)
    LIBAWT_EXTRA_SRC += $(TOPDIR)/src/$(MODULE)/share/native/common/awt/medialib
  endif
  
@@ -24,8 +24,8 @@ This is very much a hack that ought to only mask out a gcc build.
        #
  endif
  
--ifeq ($(OPENJDK_TARGET_OS)-$(OPENJDK_TARGET_CPU), solaris-sparcv9)
-+ifeq ($(OPENJDK_TARGET_OS)-$(OPENJDK_TARGET_CPU), not-really-solaris-sparcv9)
+-ifeq ($(call And, $(call isTargetOs, solaris) $(call isTargetCpu, sparcv9)), true)
++ifeq ($(call And, $(call isTargetOs, not-really-solaris) $(call isTargetCpu, sparcv9)), true)
    LIBAWT_EXFILES += java2d/loops/MapAccelFunc.c
  else
    LIBAWT_EXCLUDES += \
@@ -33,8 +33,8 @@ This is very much a hack that ought to only mask out a gcc build.
  
  LIBAWT_CFLAGS += -D__MEDIALIB_OLD_NAMES -D__USE_J2D_NAMES $(X_CFLAGS)
  
--ifeq ($(OPENJDK_TARGET_OS)-$(OPENJDK_TARGET_CPU), solaris-sparcv9)
-+ifeq ($(OPENJDK_TARGET_OS)-$(OPENJDK_TARGET_CPU), not-really-solaris-sparcv9)
+-ifeq ($(call And, $(call isTargetOs, solaris) $(call isTargetCpu, sparcv9)), true)
++ifeq ($(call And, $(call isTargetOs, not-really-solaris) $(call isTargetCpu, sparcv9)), true)
    LIBAWT_CFLAGS += -xarch=sparcvis -DMLIB_ADD_SUFF \
        $(TOPDIR)/src/$(MODULE)/unix/native/libmlib_image/vis_$(OPENJDK_TARGET_CPU_BITS).il
  
@@ -42,8 +42,8 @@ This is very much a hack that ought to only mask out a gcc build.
    LIBAWT_ASFLAGS = -P -xarch=v9a
  endif
  
--ifneq ($(OPENJDK_TARGET_OS), solaris)
-+ifneq ($(OPENJDK_TARGET_OS), not-really-solaris)
+-ifeq ($(call isTargetOs, solaris), false)
++ifeq ($(call isTargetOs, not-really-solaris), false)
    LIBAWT_CFLAGS += -DMLIB_NO_LIBSUNMATH
  endif
  

@@ -4,61 +4,13 @@
 #
 # now a single tarball - it's 85M or so, bzipped
 #
-# initial 11 release:
-# wget http://hg.openjdk.java.net/jdk/jdk11/archive/jdk-11+28.tar.bz2
-#
-# 11.0.1 release
-#wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.1+13.tar.bz2
-# 11.0.2 release
-#wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.2+9.tar.bz2
-#
-# 11.0.3 release
-#wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.3+7.tar.bz2
-#
-# 11.0.4 release
-# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.4+11.tar.bz2
-#
-# 11.0.5 release
-# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.5+10.tar.bz2
-#
-# 11.0.6 release
-# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.6+10.tar.bz2
-# 11.0.7 release
-# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.7+10.tar.bz2
-#
-# 11.0.8 release
-# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.8+10.tar.bz2
-#
-# 11.0.9 release
-# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.9+11.tar.bz2
-# 11.0.10 release
-# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.10+9.tar.bz2
-#
-# 11.0.11 release
-# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.11+9.tar.bz2
-#
-# to get the build number, go to the jdk11u repo
-# http://hg.openjdk.java.net/jdk-updates/jdk11u/
-# there should be a -ga tag for each release
-# and there should be a build-numbered tag with the same commit
-# and it's that build tag you want to download
-#
-# cd ${THOME}/tarballs
-# wget http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/jdk-11.0.12+7.tar.bz2
-#
-# fix the tarball name to match the directory it unpacks into
-# this needed to get the patches to apply correctly
-#
-#ln jdk-11.0.12+7.tar.bz2 jdk11u-jdk-11.0.12+7.tar.bz2
-
-#
-# now just pull frome the releases page on the jdk11u github repo
+# just pull frome the releases page on the jdk11u github repo
 # https://github.com/openjdk/jdk11u/tags
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk11u-jdk-11.0.18-ga
-cd jdk11u-jdk-11.0.18-ga
+${THOME}/build/unpack jdk11u-jdk-11.0.19-ga
+cd jdk11u-jdk-11.0.19-ga
 
 #
 # as of 11.0.7, switch to a gcc build to replace Studio
@@ -95,9 +47,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "11.0.18-internal" 2023-01-17
-# OpenJDK Runtime Environment (build 11.0.18-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.18-ga)
-# OpenJDK 64-Bit Server VM (build 11.0.18-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.18-ga, mixed mode)
+# openjdk version "11.0.19-internal" 2023-04-18
+# OpenJDK Runtime Environment (build 11.0.19-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.19-ga)
+# OpenJDK 64-Bit Server VM (build 11.0.19-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.19-ga, mixed mode)
 #
 
 rm -fr /tmp/jdk
