@@ -1,3 +1,4 @@
 P TRIBcompress-xz
+P TRIBcompress-zstd
 P TRIBimage-libjpeg
 P TRIBlib-zlib

@@ -1,10 +1,13 @@
 #!/bin/sh
 #
-# this replaces the OI package
-#
 # see TRIBlibtiff-compat for the 3.x legacy files
 #
-# we disable webp and zstd as they are nonstandard extensions
+# stick at 4.4.0; 4.5.0 revs the SONAME
 #
-${THOME}/build/dobuild -64 tiff-4.0.10 -C "--disable-webp --disable-zstd --disable-cxx --disable-static"
-${THOME}/build/genpkg TRIBimage-libtiff tiff-4.0.10
+# we disable webp as a nonstandard extensions
+#
+# freeglut must not be installed, there's no option
+# to disable it in the build
+#
+${THOME}/build/dobuild -64 tiff-4.4.0 -C "--disable-webp --disable-cxx --disable-static"
+${THOME}/build/genpkg TRIBimage-libtiff tiff-4.4.0

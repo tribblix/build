@@ -1,4 +1,4 @@
 PKG="TRIBimage-libtiff"
 NAME="TIFF Library and Utilities"
-VERSION="4.0.10.0"
+VERSION="4.4.0.0"
 ZAP_URL="http://www.simplesystems.org/libtiff/"
