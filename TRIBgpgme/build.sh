@@ -4,5 +4,5 @@
 #
 # needs a preconf.64 script to go with --with-libassuan-prefix=/usr
 #
-${THOME}/build/dobuild -64 gpgme-1.18.0 -C "--with-libassuan-prefix=/usr --disable-gpg-test"
-${THOME}/build/genpkg TRIBgpgme gpgme-1.18.0
+${THOME}/build/dobuild -64 gpgme-1.20.0 -C "--with-libassuan-prefix=/usr --disable-gpg-test"
+${THOME}/build/genpkg TRIBgpgme gpgme-1.20.0
