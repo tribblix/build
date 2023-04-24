@@ -12,6 +12,22 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+21+19
+
+More OperatingSystem changes
+src/java.desktop/share/classes/sun/awt/FontConfiguration.java
+src/java.desktop/share/classes/sun/awt/OSInfo.java
+src/java.desktop/share/classes/sun/font/FontUtilities.java
+src/java.desktop/unix/classes/sun/print/PrintServiceLookupProvider.java
+src/java.desktop/unix/classes/sun/print/UnixPrintJob.java
+
+Delete the patch for src/java.desktop/share/classes/sun/font/CMap.java,
+it's very specific to openwin. Ditto
+src/java.desktop/share/classes/sun/font/SunFontManager.java
+
+Copy illumos-port-22.patch from openjdk20 to illumos-port-26.patch
+here to ensure INT_MAX is defined.
+
 21+18
 
 More OperatingSystem changes. Fixed patches to:
@@ -33,7 +49,7 @@ which seems excessively fussy and security-dependent
 (Looking at our patches, there are many more opportunities to use the
 central OperatingSystem machinery.)
 
-Missed the patch from 22+17 for javaThread.cpp; added illumos-port-25.patch
+Missed the patch from 21+17 for javaThread.cpp; added illumos-port-25.patch
 
 21+17
 
