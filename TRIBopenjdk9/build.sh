@@ -131,7 +131,7 @@ ln -s ../versions/openjdk9 .
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin
 #ln -s ../jdk/latest/bin/* .
-#rm amd64
+#rm -f amd64 sparcv9
 cd /tmp/jdk/usr/versions
 rm `find . -name '*.diz'`
 

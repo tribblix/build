@@ -60,7 +60,7 @@ ln -s ../versions/openjdk19 .
 #mkdir -p /tmp/jdk/usr/bin
 #cd /tmp/jdk/usr/bin
 #ln -s ../jdk/latest/bin/* .
-#rm -f amd64
+#rm -f amd64 sparcv9
 
 #
 # need to create a certificate bundle
