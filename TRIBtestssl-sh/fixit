@@ -1,13 +1,16 @@
 #!/bin/sh
 #
-VERSION=3.0.7
-mv usr/versions/testssl.sh-3.0.7 usr/versions/testssl.sh
+VERSION=3.0.8
+mv usr/versions/testssl.sh-3.0.8 usr/versions/testssl.sh
 #
 # cleanup
 #
+rm -f usr/versions/testssl.sh/etc/DST*
 rm -f usr/versions/testssl.sh/bin/openssl.*
 rm -f usr/versions/testssl.sh/Docker*
 rm -fr usr/versions/testssl.sh/.git*
+rm -fr usr/versions/testssl.sh/t
+chmod -R a+rX usr/versions/testssl.sh
 #
 # manual
 #
