@@ -1,0 +1,3 @@
+#!/bin/sh
+#
+sed -i s:-Werror=format-security:: configure
