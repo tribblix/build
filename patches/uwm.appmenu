@@ -1,0 +1,88 @@
+% -*-Mode: Shell-Script;-*-
+% Anybody volunteering to write a dedicated Emacs mode?
+%
+% /etc/X11/ude/appmenu-post.hook
+%
+% Additional entries in the main menu. The entries are added at the
+% end of the menu.
+%
+% Please read /usr/doc/ude/uwm_manual.ascii.gz and/or
+% /usr/doc/ude/manual.dvi for more information.
+
+% A menu definition file is a hierarchical file made up of the
+% following commands:
+%
+% SUBMENU "<name>" {'commands to build submenu'}
+%	Will create a submenu named <name> with the items created by
+%	the commands inside the braces.
+%
+% ITEM "<name>":"<command>";
+%	Will create an item on the corresponding position named <name>
+%	which will lead to the execution of <command> if selected. The
+%	item is not created in case there already exists an item with
+%	the same <name> in the same submenu.
+%
+% LINE;
+%	Will add a seperation line to the corresponding
+%	position. Several "LINE"s with nothing else in between will be 
+%	truncatd to a single seperator.
+%
+% FILE "<filename>";
+%	Will process the named file as if its contents were in the
+%	position of the "FILE" command. The file is searched for in
+%	the way described above and passed through the preprocessor.
+%
+% PIPE "<command>";
+%	Will call <command> and process its standard output as if it
+%	was in the position of the "PIPE" command. The commands output
+%	is not passed through the preprocessor. 
+
+
+SUBMENU "Terminal" {
+  ITEM "sakura":"sakura -l";
+  ITEM "login shell":"xterm -sb -sl 2000 -bg black -fg lightblue -fn 7x14 -ls";
+  ITEM "bash":"xterm -sb -sl 2000 -bg black -fg lightblue -fn 7x14 -e bash";
+  ITEM "root shell":"xterm -sb -sl 2000 -bg \\#ff8c6d -fn 7x14 -e su";
+}
+
+LINE;
+
+SUBMENU "Editors" {
+  ITEM "gvim":"gvim";
+  ITEM "Nedit":"nedit";
+  ITEM "Xcoral":"xcoral";
+  ITEM "Emacs":"emacs";
+}
+
+LINE;
+
+SUBMENU "Web" {
+  ITEM "Pale Moon":"palemoon";
+  ITEM "NetSurf":"netsurf-gtk";
+  ITEM "HexChat":"hexchat";
+}
+
+LINE;
+
+SUBMENU "Office" {
+  ITEM "LibreOffice":"soffice";
+  ITEM "Abiword":"abiword";
+  ITEM "Gnumeric":"gnumeric";
+  ITEM "Grisbi":"grisbi";
+  ITEM "Calendar":"osmo";
+}
+
+LINE;
+
+SUBMENU "Graphics" {
+  ITEM "GQview":"gqview";
+  ITEM "xfig":"xfig";
+  ITEM "The GIMP":"gimp";
+}
+
+LINE;
+
+SUBMENU "Fun" {
+  ITEM "Tali":"tali";
+}
+
