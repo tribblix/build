@@ -2,7 +2,7 @@
 #
 # look at src/version.cc to check the version string
 #
-git clone git://github.com/ninja-build/ninja.git
+git clone https://github.com/ninja-build/ninja.git
 cd ninja
 git checkout release
 ./configure.py --bootstrap
