@@ -222,6 +222,12 @@ export PATCHDIR
 for pkg in ${THISPKG}
 do
 	${UNPACKER} ${UNPACK_FLAGS} ${pkg}
+	case $pkg in
+	    https://*)
+		pkg=${pkg##*/}
+		pkg=${pkg%.git}
+		;;
+	esac
 	if [ "x$DO64" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
 	    if [ ! -d ${pkg}-64bit ]; then
