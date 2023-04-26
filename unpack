@@ -93,4 +93,19 @@ do
 	      fi
 	   fi
 	fi
+
+	case $pkg in
+	    https://*)
+		spkg=${pkg##*/}
+		spkg=${spkg%.git}
+		/usr/bin/rm -fr ${spkg} ${spkg}-64bit
+		git clone $pkg
+		if [ "x$DO64" != "xfalse" ]; then
+		    mv ${spkg} ${spkg}-64bit
+		    if [ "x$DO32" != "xfalse" ]; then
+			git clone $pkg
+		    fi
+		fi
+		;;
+	esac
 done
