@@ -35,3 +35,5 @@
 -p1 openjdk18/illumos-port-13.patch
 -p1 openjdk18/illumos-port-14.patch
 -p1 openjdk18/illumos-port-15.patch
+-p1 openjdk18/illumos-zero-1.patch
+-p1 openjdk18/illumos-zero-2.patch
