@@ -18,6 +18,10 @@ NOTE:
 cc1plus: warning: unrecognized command line option '-Wno-cast-function-type'
 That's to do with freetype, I think.
 
+More recently:
+
+Fixed the memcntl signature change that broke builds on recent illumos.
+
 Changes:
 
 16+29 ramping down for release, so no real changes.

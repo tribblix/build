@@ -1945,8 +1945,8 @@
  
  // PlatformEvent
  //
-@@ -1854,5 +1812,3 @@
-     return OS_OK;
+@@ -1887,5 +1872,3 @@
+     ::abort();
    }
  }
 -
@@ -11417,7 +11417,7 @@
 -
 -// "default" initializers for missing libc APIs
 -extern "C" {
--  int memcntl(caddr_t, size_t, int, caddr_t, int, int);
+-  int memcntl(void *, size_t, int, void *, int, int);
 -  int meminfo(const uint64_t *, int, const uint_t *, int, uint64_t *, uint_t *);
 -}
 -

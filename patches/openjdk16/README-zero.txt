@@ -20,12 +20,10 @@ Fixes src/hotspot/cpu/zero/stubGenerator_zero.cpp
 illumos-zero-2.patch
 Adds the src/hotspot/os_cpu/solaris_zero directory and contents
 
-These are current and tested for jkd 16+20.
+These are current and tested for jdk16u 16.0.2.
 
-cd to the jdk source that has the other patches applied and
-
-gpatch -p1 < ${THOME}/build/patches/openjdk16/illumos-zero-1.patch
-gpatch -p1 < ${THOME}/build/patches/openjdk16/illumos-zero-2.patch
+The two patches above are now applied by default, so we at least catch
+any source incompatibilities early.
 
 Configure:
 
