@@ -105,7 +105,7 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -277,8 +277,6 @@
+@@ -289,8 +289,6 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
      TAR_TYPE="busybox"
@@ -1170,7 +1170,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1598,10 +1598,8 @@
+@@ -1605,10 +1605,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1183,7 +1183,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1883,8 +1881,7 @@
+@@ -1890,8 +1888,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -4208,7 +4208,7 @@
              default    -> OperatingSystem.UNKNOWN;
 --- old/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:36.322227327 -0700
 +++ new/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:35.934219877 -0700
-@@ -85,63 +85,7 @@
+@@ -92,63 +92,7 @@
  // true = get available swap in bytes
  // false = get total swap in bytes
  static jlong get_total_or_available_swap_space_size(JNIEnv* env, jboolean available) {
@@ -4273,7 +4273,7 @@
      int ret;
      jlong total = 0, avail = 0;
  
-@@ -181,37 +126,7 @@
+@@ -189,37 +133,7 @@
  Java_com_sun_management_internal_OperatingSystemImpl_getCommittedVirtualMemorySize0
    (JNIEnv *env, jobject mbean)
  {
@@ -4312,7 +4312,7 @@
      FILE *fp;
      unsigned long vsize = 0;
  
-@@ -285,7 +199,7 @@
+@@ -292,7 +206,7 @@
       * BSDNOTE: FreeBSD implements _SC_CLK_TCK since FreeBSD 5, so
       *          add a magic to handle it
       */

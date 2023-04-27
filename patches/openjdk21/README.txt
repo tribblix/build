@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+21+20
+
+Boot jdk bumped to 20.
+
 21+19
 
 More OperatingSystem changes
@@ -164,7 +168,7 @@ a constant so we can easily handle that.
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk19 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk20 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
