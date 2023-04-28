@@ -6,6 +6,8 @@ P TRIBimage-libpng
 P TRIBimage-libtiff
 P TRIBlib-lcms2
 P TRIBlib-zlib
+P TRIBlibheif
+P TRIBlibwebp
 P TRIBlibxml2
 P TRIBsys-lib-freetype-2
 P TRIBx11-libx11
