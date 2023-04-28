@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-${THOME}/build/unpack awm2pl9-pct
-cd awm2pl9-pct
+${THOME}/build/unpack awm2pl9-pct2
+cd awm2pl9-pct2
 make nox11copy
-make CC=gcc DESTDIR=/usr
+make
 mkdir -p /tmp/awm/usr/bin
 mkdir -p /tmp/awm/usr/lib/X11/awm
 mkdir -p /tmp/awm/usr/share/man/man1
