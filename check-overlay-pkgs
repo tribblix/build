@@ -16,8 +16,8 @@ case `pwd` in
 	PILVER=29lx
 	;;
     *sparc)
-	ILVER=m25.1.sparc
-	PILVER=25.1
+	ILVER=m26.sparc
+	PILVER=26
 	PKGDIR=${THOME}/pkgs.sparc
 	;;
 esac
