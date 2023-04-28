@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBsqlparse-python-311 sqlparse-0.4.3
+${THOME}/build/pkg_pep518 TRIBsqlparse-python-311 sqlparse-0.4.4
