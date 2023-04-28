@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBattrs-python-39 attrs-22.2.0
+${THOME}/build/pkg_pep518 TRIBattrs-python-39 attrs-23.1.0
