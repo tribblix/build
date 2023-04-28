@@ -7,15 +7,19 @@
 #
 # the tarball has some test files with UTF-8 filenames
 #
-# As of 1.13, Go understands illumos with GOOS=illumos
-# but if you build like that you end up shipping both a
-# solaris and illumos toolchain, which seems suboptimal
+# As of 1.20 we MUST use GOOS=illumos with an illumos bootstrap
+# which means that this release must be illumos too
+#
+# to switch that, build a temporary bootstrap in ~/ud/g19 with
+# env GOOS=illumos GOARCH=amd64 GOROOT_BOOTSTRAP=/usr/versions/go-1.18 ./bootstrap.bash
+# and use *that* to bootstrap this build
 #
 chmod -R u+w go
 rm -fr go
 env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.19.8.src
 cd go/src
-env GOROOT_FINAL=/usr/versions/go-1.19 GOROOT_BOOTSTRAP=/usr/versions/go-1.18 ./all.bash
+#env GOROOT_FINAL=/usr/versions/go-1.19 GOROOT_BOOTSTRAP=/usr/versions/go-1.18 ./all.bash
+env GOROOT_FINAL=/usr/versions/go-1.19 GOROOT_BOOTSTRAP=${HOME}/ud/g19/go-illumos-amd64-bootstrap ./all.bash
 cd ..
 rm -fr /tmp/gg
 mkdir -p /tmp/gg/usr/versions/go-1.19
