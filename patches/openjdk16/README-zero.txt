@@ -20,6 +20,9 @@ Fixes src/hotspot/cpu/zero/stubGenerator_zero.cpp
 illumos-zero-2.patch
 Adds the src/hotspot/os_cpu/solaris_zero directory and contents
 
+On SPARC, copy atomic_solaris_sparc.hpp from the last prior version
+containing it to src/hotspot/os_cpu/solaris_zero/atomic_solaris_zero.hpp
+
 These are current and tested for jdk16u 16.0.2.
 
 The two patches above are now applied by default, so we at least catch
@@ -39,3 +42,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all CONF=solaris-x86_64-zero-release
+
+or for SPARC
+
+env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all CONF=solaris-sparcv9-zero-release
