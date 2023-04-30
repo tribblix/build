@@ -1,0 +1,13 @@
+P TRIBcompress-bzip2
+P TRIBcompress-xz
+P TRIBcurl
+P TRIBgdk-pixbuf
+P TRIBimagemagick
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-gtk3
+P TRIBlib-desktop-pango
+P TRIBlib-glib2
+P TRIBlib-zlib
+P TRIBlibicu
+P TRIBlibsdl2
+P TRIBlibsdl2-mixer
