@@ -1,0 +1,3 @@
+-p1 tetravex/Puzzle-Use-temporary-variables-when-dereferencing-initial.patch
+-p1 tetravex/Puzzle-Clarify-why-we-can-assume-that-saved-tile-referenc.patch
+-p1 tetravex/meson-drop-unused-argument-for-i18n.merge_file.patch

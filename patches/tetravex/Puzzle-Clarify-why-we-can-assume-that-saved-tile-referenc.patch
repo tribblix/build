@@ -1,0 +1,32 @@
+From: Simon McVittie <smcv@debian.org>
+Date: Sun, 11 Apr 2021 14:00:52 +0100
+Subject: Puzzle: Clarify why we can assume that saved tile references are
+ non-null
+
+Signed-off-by: Simon McVittie <smcv@debian.org>
+Forwarded: https://gitlab.gnome.org/GNOME/gnome-tetravex/-/merge_requests/18
+---
+ src/puzzle.vala | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/src/puzzle.vala b/src/puzzle.vala
+index aa0cfa8..408fa6d 100644
+--- a/src/puzzle.vala
++++ b/src/puzzle.vala
+@@ -916,6 +916,16 @@ private class Puzzle : Object
+                 SavedTile? y_x = initial_board [y, x];
+                 SavedTile? yplus1_x = initial_board [y + 1, x];
+ 
++                // We checked that there are enough saved tiles to fill
++                // the initial board, and we checked that each saved
++                // tile is in a unique position on the original board,
++                // so by the pigeonhole principle, all positions on the
++                // original board must have been filled by now
++                assert (x_y != null);
++                assert (x_yplus1 != null);
++                assert (y_x != null);
++                assert (yplus1_x != null);
++
+                 if (((!) x_y).color_south != ((!) x_yplus1).color_north)
+                     return false;
+                 if (((!) y_x).color_east != ((!) yplus1_x).color_west)
