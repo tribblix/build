@@ -7,10 +7,10 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 # xref against this illumos catalog
 #
-ILVER=m29
+ILVER=m30
 case `pwd` in
     *lx)
-	ILVER=m29lx
+	ILVER=m30lx
 	;;
     *sparc)
 	ILVER=m26.sparc
