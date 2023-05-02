@@ -23,9 +23,11 @@ P TRIBlibnotify
 P TRIBlibogg
 P TRIBlibsdl
 P TRIBlibsdl-image
+P TRIBlibsecret
 P TRIBlibspeex
 P TRIBlibssh2
 P TRIBlibtheora
+P TRIBlibupnp
 P TRIBlibvncserver
 P TRIBlibvorbis
 P TRIBlibxcb
