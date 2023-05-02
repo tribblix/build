@@ -1,4 +1,4 @@
 P TRIBfile-magic
-P TRIBlib-pcre
+P TRIBlib-pcre2
 P TRIBlib-zlib
 P TRIBxapian-core
