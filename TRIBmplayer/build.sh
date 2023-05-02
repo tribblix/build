@@ -5,5 +5,7 @@
 # versioning is interesting, it has 2 parts and we used the wrong
 # part of the version number in the past
 #
-env TRIBBLIX_CFLAGS=-m64 TRIBBLIX_CXXFLAGS=-m64 TRIBBLIX_LDFLAGS=-m64 $THOME/build/dobuild MPlayer-1.5 -C --enable-gui
+# Disable SDL as it's SDL1
+#
+env TRIBBLIX_CFLAGS=-m64 TRIBBLIX_CXXFLAGS=-m64 TRIBBLIX_LDFLAGS=-m64 $THOME/build/dobuild -64only MPlayer-1.5 -C "--enable-gui --disable-sdl"
 ${THOME}/build/genpkg TRIBmplayer MPlayer-1.5
