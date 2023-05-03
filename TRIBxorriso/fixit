@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# extract out xorriso-tcltk into a separate package
+#
+XDIR=/tmp/xor-gui.$$
+rm -fr $XDIR
+mkdir -p $XDIR
+
+mkdir -p $XDIR/usr/bin
+mkdir -p $XDIR/usr/share/man/man1
+mv usr/bin/xorriso-tcltk $XDIR/usr/bin
+mv usr/share/man/man1/xorriso-tcltk.1 $XDIR/usr/share/man/man1
+$THOME/build/create_pkg TRIBxorriso-gui $XDIR
+rm -fr $XDIR
