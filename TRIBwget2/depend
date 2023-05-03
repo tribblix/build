@@ -1,0 +1,10 @@
+P TRIBca-bundle
+P TRIBbrotli
+P TRIBcompress-lzip
+P TRIBcompress-zstd
+P TRIBgnutls
+P TRIBgpgme
+P TRIBlib-pcre2
+P TRIBlib-zlib
+P TRIBlibidn
+P TRIBlibnghttp2
