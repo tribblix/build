@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-env LIBS="-lsocket -lnsl" ${THOME}/build/dobuild -64 smpeg2-2.0.0
-${THOME}/build/genpkg TRIBsmpeg2 smpeg2-2.0.0
+# this used to overlap with TRIBsmpeg, but that is no more
+#
+env LIBS="-lsocket -lnsl" ${THOME}/build/dobuild -64 smpeg-main
+${THOME}/build/genpkg TRIBsmpeg2 smpeg-main
