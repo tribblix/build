@@ -1,0 +1,2 @@
+#!/bin/sh
+sed -i 's:-Wl,--as-needed::' Makefile client/help/Makefile

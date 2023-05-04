@@ -1,0 +1,4 @@
+PKG="TRIBpioneers"
+NAME="Pioneers - The Settlers of Catan"
+VERSION="15.6.0"
+ZAP_URL="https://pio.sourceforge.net/"
