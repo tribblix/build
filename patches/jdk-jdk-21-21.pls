@@ -39,3 +39,4 @@
 -p1 openjdk21/illumos-port-26.patch
 -p1 openjdk21/illumos-zero-1.patch
 -p1 openjdk21/illumos-zero-2.patch
+-p1 openjdk21/sparc-bitness.patch

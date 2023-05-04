@@ -40,3 +40,4 @@
 -p1 openjdk19/illumos-pollerprovider.patch
 -p1 openjdk19/illumos-zero-1.patch
 -p1 openjdk19/illumos-zero-2.patch
+-p1 openjdk19/sparc-bitness.patch
