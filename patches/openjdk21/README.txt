@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+21+21
+
+OperatingSystemProps has become PlatformProps, and restructured a bit.
+
 21+20
 
 Boot jdk bumped to 20.

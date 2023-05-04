@@ -10,9 +10,9 @@
 +    SOLARIS,
      ;
  
-     // Cache a copy of the array for lightweight indexing
-@@ -115,6 +119,14 @@
-         return OperatingSystemProps.TARGET_OS_IS_AIX;
+     private static final OperatingSystem CURRENT_OS = initOS(PlatformProps.CURRENT_OS_STRING);
+@@ -114,6 +118,14 @@
+         return PlatformProps.TARGET_OS_IS_AIX;
      }
  
 +    /**
@@ -20,25 +20,19 @@
 +     */
 +    @ForceInline
 +    public static boolean isSolaris() {
-+        return OperatingSystemProps.TARGET_OS_IS_SOLARIS;
++        return PlatformProps.TARGET_OS_IS_SOLARIS;
 +    }
 +
      /**
       * {@return the current operating system}
       */
---- a/src/java.base/share/classes/jdk/internal/util/OperatingSystemProps.java.template	Wed Mar 29 20:12:02 2023
-+++ b/src/java.base/share/classes/jdk/internal/util/OperatingSystemProps.java.template	Thu Mar 30 13:43:29 2023
-@@ -34,6 +34,7 @@
-     private static final int TARGET_OS_macosx  = 1;
-     private static final int TARGET_OS_windows = 2;
-     private static final int TARGET_OS_aix     = 3;
-+    private static final int TARGET_OS_solaris = 4;
+--- a/src/java.base/share/classes/jdk/internal/util/PlatformProps.java.template	Wed Mar 29 20:12:02 2023
++++ b/src/java.base/share/classes/jdk/internal/util/PlatformProps.java.template	Thu Mar 30 13:43:29 2023
+@@ -37,6 +37,7 @@
+     static final boolean TARGET_OS_IS_MACOS   = "@@OPENJDK_TARGET_OS@@" == "macos";
+     static final boolean TARGET_OS_IS_WINDOWS = "@@OPENJDK_TARGET_OS@@" == "windows";
+     static final boolean TARGET_OS_IS_AIX     = "@@OPENJDK_TARGET_OS@@" == "aix";
++    static final boolean TARGET_OS_IS_SOLARIS = "@@OPENJDK_TARGET_OS@@" == "solaris";
  
-     // Index/ordinal of the current OperatingSystem enum as substituted by the build
-     static final int CURRENT_OS_ORDINAL = TARGET_OS_@@OPENJDK_TARGET_OS@@;
-@@ -43,4 +44,5 @@
-     static final boolean TARGET_OS_IS_MACOSX  = TARGET_OS_@@OPENJDK_TARGET_OS@@ == TARGET_OS_macosx;
-     static final boolean TARGET_OS_IS_WINDOWS = TARGET_OS_@@OPENJDK_TARGET_OS@@ == TARGET_OS_windows;
-     static final boolean TARGET_OS_IS_AIX     = TARGET_OS_@@OPENJDK_TARGET_OS@@ == TARGET_OS_aix;
-+    static final boolean TARGET_OS_IS_SOLARIS = TARGET_OS_@@OPENJDK_TARGET_OS@@ == TARGET_OS_solaris;
- }
+     // The Architecture value for the current architecture
+     static final String CURRENT_ARCH_STRING = "@@OPENJDK_TARGET_CPU@@";
