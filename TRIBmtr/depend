@@ -1,3 +1,4 @@
 P TRIBgdk-pixbuf
-P TRIBlib-desktop-gtk
+P TRIBjansson
+P TRIBlib-desktop-gtk3
 P TRIBlib-glib2
