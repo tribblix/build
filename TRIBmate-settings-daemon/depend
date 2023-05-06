@@ -1,5 +1,6 @@
 P TRIBdconf
 P TRIBgdk-pixbuf
+P TRIBlib-desktop-at-spi2
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
 P TRIBlib-glib2
