@@ -21,4 +21,3 @@ P TRIBstartup-notification
 P TRIBsys-libdbus-glib
 P TRIBx11-libice
 P TRIBx11-libsm
-P TRIBx11-libx11
