@@ -1,6 +1,7 @@
 #!/bin/sh
 #
-# make -k because pt.mo fails
+# needs a patch mate-control-center-bookmark.patch because we don't
+# have GLib 2.66 yet
 #
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild -gnu mate-control-center-1.24.2
-${THOME}/build/genpkg TRIBmate-control-center mate-control-center-1.24.2
+env PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild -gnu -64 mate-control-center-1.26.0
+${THOME}/build/genpkg TRIBmate-control-center mate-control-center-1.26.0

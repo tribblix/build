@@ -14,7 +14,6 @@ P TRIBmate-marco
 P TRIBmate-menus
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
-P TRIBsys-libdbus-glib
 P TRIBx11-libx11
 P TRIBx11-libxcursor
 P TRIBx11-libxi

@@ -15,3 +15,10 @@
 /usr/bin/rm -f usr/share/mime/treemagic
 /usr/bin/rm -f usr/share/mime/types
 /usr/bin/rm -f usr/share/mime/version
+#
+# clean up
+#
+rm -f usr/lib/*/window-manager-settings/libmarco.a
+rm -f usr/lib/window-manager-settings/libmarco.a
+rm -f usr/lib/*/window-manager-settings/libmarco.la
+rm -f usr/lib/window-manager-settings/libmarco.la
