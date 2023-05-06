@@ -1,2 +1,0 @@
--p1 6824625.patch
--p1 luit-man.patch
