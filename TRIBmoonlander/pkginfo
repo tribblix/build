@@ -1,0 +1,4 @@
+PKG="TRIBmoonlander"
+NAME="moonlander gemini client"
+VERSION="1.0"
+ZAP_URL="https://sr.ht/~admicos/moonlander/"
