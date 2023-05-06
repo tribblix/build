@@ -2,7 +2,7 @@ P TRIBdatabase-sqlite-3
 P TRIBdjvulibre
 P TRIBfile-magic
 P TRIBgdk-pixbuf
-P TRIBjson-c
+P TRIBjson-glib
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
