@@ -29,6 +29,6 @@ rm -fr /tmp/c
 ## png_read_init ---> png_create_read_struct
 ## png_write_init ---> png_create_write_struct
 ## png_info_init --> png_create_info_struct
-## png_read_destroy --> png_destroy_read_struct
+## png_read_destroy --> png_destroy_read_struct, and &() or NULL for args
 ## png_write_destroy --> png_destroy_write_struct
 #

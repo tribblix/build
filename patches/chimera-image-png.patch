@@ -23,7 +23,7 @@
  
      if (png->state) {
 -        png_read_destroy(png->state, png->info, (png_info *) 0);
-+        png_destroy_read_struct(png->state, png->info, (png_info *) 0);
++        png_destroy_read_struct(&(png->state), &(png->info), NULL);
          free_mem(png->state);
          png->state = 0;
      }
@@ -32,7 +32,7 @@
  
      if (setjmp(png->state->jmpbuf)) {
 -        png_read_destroy(png->state, png->info, (png_info *) 0);
-+        png_destroy_read_struct(png->state, png->info, (png_info *) 0);
++        png_destroy_read_struct(&(png->state), &(png->info), NULL);
          free_mem(png->state);
          free_mem(png->info);
          png->state = 0;

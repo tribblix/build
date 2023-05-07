@@ -34,11 +34,13 @@
  #define Use_PNG
 -PNGDIR = /usr/local
 +PNGDIR = /usr
- PNGINCLUDE = -I$(PNGDIR)/include
- PNGLIB = -L$(PNGDIR)/lib -lpng$(IMGLEXT) -lz$(IMGLEXT)
+-PNGINCLUDE = -I$(PNGDIR)/include
++PNGINCLUDE = -I$(PNGDIR)/include/libpng14
+-PNGLIB = -L$(PNGDIR)/lib -lpng$(IMGLEXT) -lz$(IMGLEXT)
++PNGLIB = -L$(PNGDIR)/lib -lpng14$(IMGLEXT) -lz$(IMGLEXT)
 -PNGDEPLIB = $(PNGDIR)/lib/libpng$(IMGLEXT).a $(PNGDIR)/lib/libz$(IMGLEXT).a
 -*/
-+PNGDEPLIB = $(PNGDIR)/lib/libpng$(IMGLEXT).so $(PNGDIR)/lib/libz$(IMGLEXT).so
++PNGDEPLIB = $(PNGDIR)/lib/libpng14$(IMGLEXT).so $(PNGDIR)/lib/libz$(IMGLEXT).so
  
  /* Tells Imakefile to set the flags for debugging.  Comment for -O. */
  #define CDebugging 1
