@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-# https://github.com/joyent/mdata-client/archive/release-20190228.tar.gz
+# https://github.com/TritonDataCenter/mdata-client/archive/release-20230504.tar.gz
 #
-${THOME}/build/unpack release-20190228
-cd mdata-client-release-20190228
+${THOME}/build/unpack mdata-client-release-20230504
+cd mdata-client-release-20230504
 gmake
 cd ..
-${THOME}/build/genpkg TRIBmdata-client mdata-client-release-20190228
+${THOME}/build/genpkg TRIBmdata-client mdata-client-release-20230504
