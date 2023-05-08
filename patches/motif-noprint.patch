@@ -1,0 +1,30 @@
+If you build with printing disabled, then it doesn't pull in the libXp
+header, which means Xauth.h isn't pulled in, which doesn't pull in a
+bunch of other headers, and eventually you get hit by
+
+In file included from ./../../lib/Xm/XmosP.h:27,
+                 from UilLexAna.c:59:
+./../../lib/Xm/Xmfuncs.h:47:40: error: expected declaration specifiers or '...' before '(' token
+   47 | #define bcmp(b1,b2,len) memcmp(b1, b2, (size_t)(len))
+      |                                        ^
+./../../lib/Xm/Xmfuncs.h:45:42: error: expected declaration specifiers or '...' before '(' token
+   45 | #define bcopy(b1,b2,len) memmove(b2, b1, (size_t)(len))
+      |                                          ^
+./../../lib/Xm/Xmfuncs.h:74:31: error: expected declaration specifiers or '...' before numeric constant
+   74 | #define bzero(b,len) memset(b,0,len)
+      |                               ^
+
+So manually include Xauth.h to make the build happy.
+
+--- a/clients/uil/UilLexAna.c	Thu Aug 17 01:38:43 2017
++++ b/clients/uil/UilLexAna.c	Mon May  8 12:09:06 2023
+@@ -55,6 +55,9 @@
+ #include <Xm/Xm.h>
+ /* I think this one should be public too, it's not the case right now,
+    and I don't want to include XmP.h here - dd */
++#ifndef PRINTING_SUPPORTED
++#include <X11/Xauth.h>
++#endif
+ extern char *_XmStringGetCurrentCharset ();
+ #include <Xm/XmosP.h>	/* Need this for MB_CUR_MAX */
+ 
