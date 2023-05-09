@@ -6,3 +6,20 @@
 rm -fr usr/share/xul-ext
 rm -fr usr/lib/thunderbird*
 rm -fr usr/lib/firefox*
+#
+# these are desktop sample tools; we don't want to pull in desktop
+# dependencies and they are deprecated upstream
+#
+rm -f usr/bin/tracker-needle
+rm -f usr/bin/tracker-preferences
+rm -f usr/bin/*/tracker-needle
+rm -f usr/bin/*/tracker-preferences
+rm -f usr/share/man/man1/tracker-needle.1
+rm -f usr/share/appdata/tracker-needle.appdata.xml
+rm -f usr/share/applications/tracker-needle.desktop
+rm -f usr/share/tracker/tracker-needle.ui
+rm -f usr/share/man/man1/tracker-preferences.1
+rm -f usr/share/appdata/tracker-preferences.appdata.xml
+rm -f usr/share/applications/tracker-preferences.desktop
+rm -f usr/share/tracker/tracker-preferences.ui
+rm -f usr/share/glib-2.0/schemas/org.freedesktop.Tracker.Needle.gschema.xml
