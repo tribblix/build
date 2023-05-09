@@ -1,0 +1,22 @@
+diff -ur a/video/mmxflags_asm.S b/video/mmxflags_asm.S
+--- a/video/mmxflags_asm.S	Sat Jan 21 07:15:02 2023
++++ b/video/mmxflags_asm.S	Tue May  9 09:26:44 2023
+@@ -50,6 +50,6 @@
+ 
+ #endif /* __i386__ && USE_MMX */
+ 
+-#ifdef __ELF__
++#ifdef __XXELF__
+ .section .note.GNU-stack,"",%progbits
+ #endif
+diff -ur a/video/mmxidct_asm.S b/video/mmxidct_asm.S
+--- a/video/mmxidct_asm.S	Sat Jan 21 07:15:02 2023
++++ b/video/mmxidct_asm.S	Tue May  9 09:26:38 2023
+@@ -690,6 +690,6 @@
+ 
+ #endif /* __i386__ && USE_MMX */
+ 
+-#ifdef __ELF__
++#ifdef __XXELF__
+ .section .note.GNU-stack,"",%progbits
+ #endif
