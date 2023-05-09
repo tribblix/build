@@ -1,4 +1,4 @@
 PKG="TRIBcertifi-python-39"
 NAME="Python certifi"
-VERSION="2022.12.7.0"
+VERSION="2023.5.7.0"
 ZAP_URL="https://pypi.org/project/certifi"
