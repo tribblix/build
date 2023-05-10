@@ -1,10 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/unpack s3transfer-0.6.0
-cd s3transfer-0.6.0
-/usr/versions/python-3.11/bin/python3 setup.py build
-rm -fr /tmp/pdu
-/usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/pdu
-${THOME}/build/create_pkg TRIBs3transfer-python-311 /tmp/pdu
-cd ..
-rm -fr /tmp/pdu
+${THOME}/build/pkg_setup_py TRIBs3transfer-python-311 s3transfer-0.6.1
