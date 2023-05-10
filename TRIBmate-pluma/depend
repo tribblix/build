@@ -1,7 +1,7 @@
 P TRIBenchant
 P TRIBgdk-pixbuf
 P TRIBgobject-introspection
-P TRIBgtksourceview3
+P TRIBgtksourceview4
 P TRIBlib-desktop-atk
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
