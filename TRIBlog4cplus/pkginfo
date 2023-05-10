@@ -1,0 +1,4 @@
+PKG="TRIBlog4cplus"
+NAME="Logging Framework for C++ "
+VERSION="1.2.0.0"
+ZAP_URL="http://log4cplus.sourceforge.net/"
