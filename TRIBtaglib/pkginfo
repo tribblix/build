@@ -1,0 +1,4 @@
+PKG="TRIBtaglib"
+NAME="TagLib Audio Meta-Data Library"
+VERSION="1.13.0"
+ZAP_URL="https://taglib.org/"
