@@ -6,7 +6,7 @@ See also README-zero.txt for note on a project zero variant.
 JDK 21 now that jdk20 has been forked off.
 
 Issues known that indicate serious bugs, likely due to not integrating
-loom correctly as they date back to that change. Sepcifically, I
+loom correctly as they date back to that change. Specifically, I
 suspect we need to provide a working DefaultPoller implementation
 rather than the current stub.
 * jshell doesn't work
