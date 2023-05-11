@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+
+SDIR="${BUILDROOT}/patches/openXsun"
+
+#
+# these files were originally in SUNWxwplt
+#
+mkdir -p usr/openwin/server/lib
+cp ${SDIR}/libowconfig.so.0 usr/openwin/server/lib
+cp ${SDIR}/liblbxutil.so.1 usr/openwin/server/lib
+chmod 755 usr/openwin/server/lib/lib*
+
+#
+# this wrapper is like the one in /usr/openwin/bin, but with the correct
+# paths to where we now install things
+#
+mkdir -p usr/bin
+cp ${SDIR}/Xsun usr/bin
+chmod 755 usr/bin/Xsun
+cd usr/bin
+ln -s Xsun X
+cd ../..
+
+#
+# it wants to manipulate stuff in /var/dt/sdtlogin
+#
+mkdir -p var/dt
+
+#
+# this is where the server looks
+#
+mkdir -p usr/openwin/lib/X11
+cd usr/openwin/lib/X11
+ln -s ../../../../usr/lib/X11/rgb.txt .
+ln -s ../../../../usr/lib/X11/rgb.dir .
+ln -s ../../../../usr/lib/X11/rgb.pag .
