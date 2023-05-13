@@ -8,6 +8,7 @@ git clone --depth 1 https://github.com/gogs/gogs.git gogs
 cd gogs
 go build -tags "cert" -o gogs
 
+# sanity check, run './gogs web'
 
 rm -fr /tmp/ee
 
