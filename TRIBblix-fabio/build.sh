@@ -1,8 +1,10 @@
 #!/bin/sh
 #
+# v1.6.3 fails to build
+#
 mkdir ~/ud/ff
 cd ~/ud/ff
-env GOPATH=`pwd` go install github.com/fabiolb/fabio@v1.6.1
+env GOPATH=`pwd` go install github.com/fabiolb/fabio@v1.6.2
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/fabio/bin
