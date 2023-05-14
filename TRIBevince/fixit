@@ -4,3 +4,7 @@
 #
 rm -f usr/lib/evince/3/backends/lib*.a
 rm -f usr/lib/evince/3/backends/lib*.la
+rm -f usr/lib/evince/4/backends/lib*.a
+rm -f usr/lib/evince/4/backends/lib*.la
+rm -f usr/lib/*/evince/4/backends/lib*.a
+rm -f usr/lib/*/evince/4/backends/lib*.la
