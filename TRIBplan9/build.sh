@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # no versioned releases, built from master which had its latest
-# commit on Oct 5 2018, hence the version number
+# commit on Mar 31 2023, hence the version number
 #
 ${THOME}/build/unpack plan9port-master
 cd plan9port-master

@@ -1,4 +1,4 @@
 PKG="TRIBplan9"
 NAME="Plan 9 from User Space"
-VERSION="20181005.0"
+VERSION="20230331.0"
 ZAP_URL="https://9fans.github.io/plan9port/"
