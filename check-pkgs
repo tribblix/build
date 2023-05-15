@@ -3,10 +3,39 @@
 # check to see if all the packages from the build directory
 # are present
 #
-PKGDIR="../pkgs"
-case $# in
-1)
-	PKGDIR=$1
+# -p arch - specify architecture to check
+# -q - quiet, don't show good packages
+# -Q - really quiet, only show summary total
+#
+DOFOUND=echo
+DOMISSING=echo
+ARCH=`uname -p`
+while getopts "p:qQ" opt; do
+    case $opt in
+    p)
+        ARCH="$OPTARG"
+        ;;
+    q)
+        DOFOUND="true"
+        ;;
+    Q)
+        DOFOUND="true"
+        DOMISSING="true"
+        ;;
+    esac
+done
+shift $((OPTIND-1))
+
+case $ARCH in
+    i386)
+	PKGDIR="../pkgs"
+	;;
+    sparc)
+	PKGDIR="../pkgs.sparc"
+	;;
+    *)
+	echo "Unknown platform"
+	exit 1
 	;;
 esac
 
@@ -16,13 +45,25 @@ NMISSING=0
 for PKGI in */pkginfo
 do
   PKG=${PKGI%/*}
-  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI | sed 's="==g'`
-  DEPLIST=""
+  # if marked for a different arch, ignore
+  if [ -f ${PKG}/arch.txt ]; then
+      NARCH=`cat ${PKG}/arch.txt`
+      if [ "$NARCH" != "$ARCH" ]; then
+	  continue
+      fi
+  fi
+  # use a per-arch version if present
+  if [ -f ${PKG}/version.$ARCH ]; then
+      PKGVERS=`cat ${PKG}/version.$ARCH`
+  else
+      PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI`
+      PKGVERS=${PKGVERS//\"/}
+  fi
   if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
-      echo "FOUND ${PKG} at version ${PKGVERS}"
+      $DOFOUND "FOUND ${PKG} at version ${PKGVERS}"
       NFOUND=$(($NFOUND+1))
   else
-      echo "MISSING ${PKG} at version ${PKGVERS}"
+      $DOMISSING "MISSING ${PKG} at version ${PKGVERS}"
       NMISSING=$(($NMISSING+1))
   fi
 done
