@@ -1,4 +1,4 @@
 PKG="TRIBffmpeg"
 NAME="FFmpeg multimedia framework"
-VERSION="4.4.2.0"
+VERSION="4.4.2.1"
 ZAP_URL="https://www.ffmpeg.org/"
