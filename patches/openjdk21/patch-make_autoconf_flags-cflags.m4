@@ -18,7 +18,7 @@ Support for SunOS/gcc.
  
    elif test "x$TOOLCHAIN_TYPE" = xclang; then
      if test "x$OPENJDK_TARGET_OS" = xmacosx; then
-@@ -55,8 +60,13 @@
+@@ -63,8 +68,13 @@
        # Default works for linux, might work on other platforms as well.
        SHARED_LIBRARY_FLAGS='-shared'
        SET_EXECUTABLE_ORIGIN='-Wl,-rpath,\$$ORIGIN[$]1'
@@ -34,7 +34,7 @@ Support for SunOS/gcc.
  
        # arm specific settings
        if test "x$OPENJDK_TARGET_CPU" = "xarm"; then
-@@ -472,6 +482,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
+@@ -488,6 +498,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
  
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE -D_REENTRANT"

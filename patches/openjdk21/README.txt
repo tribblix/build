@@ -12,6 +12,20 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+21+23
+
+Extensive rework of
+src/jdk.jlink/share/classes/jdk/tools/jlink/internal/Platform.java
+dropped the existing patch, which no longer applies
+
+Atomic, fetch_and_add has been renamed to fetch_then_add
+
+os_solaris_x86.cpp, print_register_info has been reworked; copy the
+linux_x86 changes (the function was the same as linux was before).
+
+Need to add static julong free_memory(); use available_memory() as I
+can't see why they would be different.
+
 21+21
 
 OperatingSystemProps has become PlatformProps, and restructured a bit.

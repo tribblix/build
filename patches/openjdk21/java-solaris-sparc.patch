@@ -154,7 +154,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -414,9 +414,6 @@
+@@ -427,9 +427,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -307,7 +307,7 @@
  VALID_TOOLCHAINS_linux="gcc clang"
 -VALID_TOOLCHAINS_solaris="gcc"
  VALID_TOOLCHAINS_macosx="clang"
- VALID_TOOLCHAINS_aix="xlc"
+ VALID_TOOLCHAINS_aix="xlc clang"
  VALID_TOOLCHAINS_windows="microsoft"
 --- old/make/common/MakeBase.gmk	2020-05-20 17:58:45.708647335 -0700
 +++ new/make/common/MakeBase.gmk	2020-05-20 17:58:45.324639962 -0700
@@ -392,9 +392,9 @@
 -    ADLC_LDFLAGS := -m64
 -    ADLC_CFLAGS := -m64 -fpermissive
    else ifeq ($(call isBuildOs, aix), true)
-     ADLC_LDFLAGS += -q64
-     ADLC_CFLAGS := -qnortti -qeh -q64 -DAIX
-@@ -93,8 +90,6 @@
+     ifeq ($(TOOLCHAIN_TYPE), clang)
+       ADLC_LDFLAGS += -m64
+@@ -98,8 +95,6 @@
    # ADLC flags depending on target OS
    ifeq ($(call isTargetOs, linux), true)
      ADLCFLAGS += -DLINUX=1 -D_GNU_SOURCE=1
@@ -1117,7 +1117,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1722,8 +1720,6 @@
+@@ -1728,8 +1726,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1170,7 +1170,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1599,10 +1599,8 @@
+@@ -1596,10 +1596,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1183,7 +1183,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1884,8 +1882,7 @@
+@@ -1881,8 +1879,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1409,7 +1409,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -101,7 +101,7 @@
+@@ -106,7 +106,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -1418,7 +1418,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1664,8 +1664,6 @@
+@@ -1823,8 +1823,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1427,7 +1427,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1730,8 +1728,6 @@
+@@ -1889,8 +1887,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -4188,24 +4188,6 @@
  long
  dbgsysCurrentTimeMillis() {
      struct timeval t;
---- old/src/jdk.jlink/share/classes/jdk/tools/jlink/internal/Platform.java	2020-05-20 18:03:35.234206438 -0700
-+++ new/src/jdk.jlink/share/classes/jdk/tools/jlink/internal/Platform.java	2020-05-20 18:03:34.898199985 -0700
-@@ -34,7 +34,6 @@
-     public enum OperatingSystem {
-         WINDOWS,
-         LINUX,
--        SOLARIS,
-         MACOS,
-         AIX,
-         UNKNOWN;
-@@ -105,7 +104,6 @@
-         OperatingSystem os = switch (osName) {
-             case "win" -> OperatingSystem.WINDOWS;
-             case "lin" -> OperatingSystem.LINUX;
--            case "sun" -> OperatingSystem.SOLARIS;
-             case "mac" -> OperatingSystem.MACOS;
-             case "aix" -> OperatingSystem.AIX;
-             default    -> OperatingSystem.UNKNOWN;
 --- old/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:36.322227327 -0700
 +++ new/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:35.934219877 -0700
 @@ -92,63 +92,7 @@
@@ -8060,7 +8042,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3119 +0,0 @@
+@@ -1,3123 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8302,6 +8284,10 @@
 -volatile jint os::Solaris::_os_thread_count = 0;
 -
 -julong os::available_memory() {
+-  return Solaris::available_memory();
+-}
+-
+-julong os::free_memory() {
 -  return Solaris::available_memory();
 -}
 -
@@ -11182,7 +11168,7 @@
 -void os::print_memory_mappings(char* addr, size_t bytes, outputStream* st) {}
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,197 +0,0 @@
+@@ -1,198 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11288,6 +11274,7 @@
 - protected:
 -  // Solaris-specific interface goes here
 -  static julong available_memory();
+-  static julong free_memory();
 -  static julong physical_memory() { return _physical_memory; }
 -  static julong _physical_memory;
 -  static void initialize_system_info();
@@ -11623,18 +11610,18 @@
 -template<size_t byte_size>
 -struct Atomic::PlatformAdd {
 -  template<typename D, typename I>
--  D add_and_fetch(D volatile* dest, I add_value, atomic_memory_order order) const;
+-  D add_then_fetch(D volatile* dest, I add_value, atomic_memory_order order) const;
 -
 -  template<typename D, typename I>
--  D fetch_and_add(D volatile* dest, I add_value, atomic_memory_order order) const {
--    return add_and_fetch(dest, add_value, order) - add_value;
+-  D fetch_then_add(D volatile* dest, I add_value, atomic_memory_order order) const {
+-    return add_then_fetch(dest, add_value, order) - add_value;
 -  }
 -};
 -
 -// Not using add_using_helper; see comment for cmpxchg.
 -template<>
 -template<typename D, typename I>
--inline D Atomic::PlatformAdd<4>::add_and_fetch(D volatile* dest, I add_value,
+-inline D Atomic::PlatformAdd<4>::add_then_fetch(D volatile* dest, I add_value,
 -                                               atomic_memory_order order) const {
 -  STATIC_ASSERT(4 == sizeof(I));
 -  STATIC_ASSERT(4 == sizeof(D));
@@ -11646,7 +11633,7 @@
 -// Not using add_using_helper; see comment for cmpxchg.
 -template<>
 -template<typename D, typename I>
--inline D Atomic::PlatformAdd<8>::add_and_fetch(D volatile* dest, I add_value,
+-inline D Atomic::PlatformAdd<8>::add_then_fetch(D volatile* dest, I add_value,
 -                                               atomic_memory_order order) const {
 -  STATIC_ASSERT(8 == sizeof(I));
 -  STATIC_ASSERT(8 == sizeof(D));
@@ -11925,7 +11912,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ORDERACCESS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2020-05-20 18:10:01.145616115 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,660 +0,0 @@
+@@ -1,662 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12525,49 +12512,51 @@
 -  st->cr();
 -}
 -
--void os::print_register_info(outputStream *st, const void *context) {
--  if (context == NULL) return;
+-void os::print_register_info(outputStream *st, const void *context, int& continuation) {
+-  const int register_count = AMD64_ONLY(16) NOT_AMD64(8);
+-  int n = continuation;
+-  assert(n >= 0 && n <= register_count, "Invalid continuation value");
+-  if (context == nullptr || n == register_count) {
+-    return;
+-  }
 -
 -  const ucontext_t *uc = (const ucontext_t*)context;
--
--  st->print_cr("Register to memory mapping:");
--  st->cr();
--
--  // this is horrendously verbose but the layout of the registers in the
--  // context does not match how we defined our abstract Register set, so
--  // we can't just iterate through the gregs area
--
--  // this is only for the "general purpose" registers
--
+-  while (n < register_count) {
+-    // Update continuation with next index before printing location
+-    continuation = n + 1;
+-# define CASE_PRINT_REG(n, str, id) case n: st->print(str); print_location(st, uc->uc_mcontext.gregs[REG_##id]);
+-    switch (n) {
 -#ifdef AMD64
--  st->print("RAX="); print_location(st, uc->uc_mcontext.gregs[REG_RAX]);
--  st->print("RBX="); print_location(st, uc->uc_mcontext.gregs[REG_RBX]);
--  st->print("RCX="); print_location(st, uc->uc_mcontext.gregs[REG_RCX]);
--  st->print("RDX="); print_location(st, uc->uc_mcontext.gregs[REG_RDX]);
--  st->print("RSP="); print_location(st, uc->uc_mcontext.gregs[REG_RSP]);
--  st->print("RBP="); print_location(st, uc->uc_mcontext.gregs[REG_RBP]);
--  st->print("RSI="); print_location(st, uc->uc_mcontext.gregs[REG_RSI]);
--  st->print("RDI="); print_location(st, uc->uc_mcontext.gregs[REG_RDI]);
--  st->print("R8 ="); print_location(st, uc->uc_mcontext.gregs[REG_R8]);
--  st->print("R9 ="); print_location(st, uc->uc_mcontext.gregs[REG_R9]);
--  st->print("R10="); print_location(st, uc->uc_mcontext.gregs[REG_R10]);
--  st->print("R11="); print_location(st, uc->uc_mcontext.gregs[REG_R11]);
--  st->print("R12="); print_location(st, uc->uc_mcontext.gregs[REG_R12]);
--  st->print("R13="); print_location(st, uc->uc_mcontext.gregs[REG_R13]);
--  st->print("R14="); print_location(st, uc->uc_mcontext.gregs[REG_R14]);
--  st->print("R15="); print_location(st, uc->uc_mcontext.gregs[REG_R15]);
+-    CASE_PRINT_REG( 0, "RAX=", RAX); break;
+-    CASE_PRINT_REG( 1, "RBX=", RBX); break;
+-    CASE_PRINT_REG( 2, "RCX=", RCX); break;
+-    CASE_PRINT_REG( 3, "RDX=", RDX); break;
+-    CASE_PRINT_REG( 4, "RSP=", RSP); break;
+-    CASE_PRINT_REG( 5, "RBP=", RBP); break;
+-    CASE_PRINT_REG( 6, "RSI=", RSI); break;
+-    CASE_PRINT_REG( 7, "RDI=", RDI); break;
+-    CASE_PRINT_REG( 8, "R8 =", R8); break;
+-    CASE_PRINT_REG( 9, "R9 =", R9); break;
+-    CASE_PRINT_REG(10, "R10=", R10); break;
+-    CASE_PRINT_REG(11, "R11=", R11); break;
+-    CASE_PRINT_REG(12, "R12=", R12); break;
+-    CASE_PRINT_REG(13, "R13=", R13); break;
+-    CASE_PRINT_REG(14, "R14=", R14); break;
+-    CASE_PRINT_REG(15, "R15=", R15); break;
 -#else
--  st->print("EAX="); print_location(st, uc->uc_mcontext.gregs[EAX]);
--  st->print("EBX="); print_location(st, uc->uc_mcontext.gregs[EBX]);
--  st->print("ECX="); print_location(st, uc->uc_mcontext.gregs[ECX]);
--  st->print("EDX="); print_location(st, uc->uc_mcontext.gregs[EDX]);
--  st->print("ESP="); print_location(st, uc->uc_mcontext.gregs[UESP]);
--  st->print("EBP="); print_location(st, uc->uc_mcontext.gregs[EBP]);
--  st->print("ESI="); print_location(st, uc->uc_mcontext.gregs[ESI]);
--  st->print("EDI="); print_location(st, uc->uc_mcontext.gregs[EDI]);
--#endif
--
--  st->cr();
+-    CASE_PRINT_REG(0, "EAX=", EAX); break;
+-    CASE_PRINT_REG(1, "EBX=", EBX); break;
+-    CASE_PRINT_REG(2, "ECX=", ECX); break;
+-    CASE_PRINT_REG(3, "EDX=", EDX); break;
+-    CASE_PRINT_REG(4, "ESP=", ESP); break;
+-    CASE_PRINT_REG(5, "EBP=", EBP); break;
+-    CASE_PRINT_REG(6, "ESI=", ESI); break;
+-    CASE_PRINT_REG(7, "EDI=", EDI); break;
+-#endif // AMD64
+-    }
+-# undef CASE_PRINT_REG
+-    ++n;
+-  }
 -}
 -
 -
