@@ -24,7 +24,7 @@ $THOME/build/dobuild -64 -gnu xfconf-4.16.0 -C "--disable-debug --enable-introsp
 # package step
 $THOME/build/dobuild -64 -gnu libxfce4ui-4.16.1 -C "--disable-debug --with-vendor-info=Tribblix --enable-introspection=no"
 # package step
-$THOME/build/dobuild -64 -gnu garcon-4.16.1 -C "--disable-debug"
+$THOME/build/dobuild -64 -gnu garcon-4.16.1 -C "--disable-debug --enable-introspection=no"
 $THOME/build/dobuild -64 -gnu xfwm4-4.16.1 -C "--disable-debug"
 $THOME/build/dobuild -64 -gnu xfce4-session-4.16.0 -C "--disable-debug"
 $THOME/build/dobuild -64 -gnu exo-4.16.4 -C "--disable-debug"
