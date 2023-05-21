@@ -4,6 +4,14 @@
 # than the old setup.py mechanism
 #
 
+case $1 in
+    -v)
+	SPYVER=$2
+	shift
+	shift
+	;;
+esac
+
 case $# in
 0|1)
 	echo "Usage: $0 pkg_name tar_file"
@@ -44,9 +52,11 @@ if [ ! -d $BROOT ]; then
 fi
 
 #
-# derive the python version from the package name
+# derive the python version from the package name, if we weren't given it
 #
-SPYVER=${PKGNAME##*-}
+if [ -z "$SPYVER" ]; then
+    SPYVER=${PKGNAME##*-}
+fi
 #
 # we assume it has to be 3.X
 #
