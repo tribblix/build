@@ -118,5 +118,13 @@ done
 ${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
 cd /
 
+#
+# some setup.py packages need to be handled differently
+#
+badfiles=$(find ${BDIR} -name '*UNKNOWN*')
+if [ -n "${badfiles}" ]; then
+   echo "ERROR: some files match \"UNKNOWN\", consider using pkg_pep518"
+fi
+
 # remove our temporary files
 rm -fr ${BDIR}
