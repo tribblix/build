@@ -56,11 +56,11 @@ case $SPYVER in
     39)
 	PYVER=3.9
 	;;
-    310)
-	PYVER=3.10
-	;;
     311)
 	PYVER=3.11
+	;;
+    312)
+	PYVER=3.12
 	;;
     *)
 	echo "Unrecognised python version $SPYVER"
