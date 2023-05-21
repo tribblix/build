@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBxarray-python-311 xarray-2023.4.2
+${THOME}/build/pkg_pep518 TRIBxarray-python-311 xarray-2023.5.0
