@@ -2,6 +2,7 @@
 #
 # put a wrapper in the regular path
 #
+PYVERS=3.9
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/versions/python-3.9/bin/commix .
+ln -s ../../usr/versions/python-${PYVERS}/bin/commix .
