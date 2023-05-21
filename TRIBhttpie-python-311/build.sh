@@ -1,10 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/unpack httpie-3.2.1
-cd httpie-3.2.1
-/usr/versions/python-3.11/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBhttpie-python-311 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+${THOME}/build/pkg_setup_py TRIBhttpie-python-311 httpie-3.2.2
