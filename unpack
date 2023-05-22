@@ -32,6 +32,14 @@ case $1 in
 	;;
 esac
 
+case $1 in
+    -b)
+	BRANCHARGS="-b $2"
+	shift
+	shift
+	;;
+esac
+
 dopatch() {
   if [ -f ${PATCHDIR}/${1}.pls ]; then
       cd ${1}
@@ -99,11 +107,13 @@ do
 		spkg=${pkg##*/}
 		spkg=${spkg%.git}
 		/usr/bin/rm -fr ${spkg} ${spkg}-64bit
-		git clone $pkg
+		git clone $BRANCHARGS $pkg
+		dopatch ${spkg}
 		if [ "x$DO64" != "xfalse" ]; then
 		    mv ${spkg} ${spkg}-64bit
 		    if [ "x$DO32" != "xfalse" ]; then
-			git clone $pkg
+			git clone $BRANCHARGS $pkg
+			dopatch ${spkg}
 		    fi
 		fi
 		;;
