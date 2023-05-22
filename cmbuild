@@ -45,6 +45,7 @@ DO64="false"
 ONLY64="false"
 ONLY64BIN="false"
 UNPACK_FLAGS=""
+BRANCHARGS=""
 
 #
 # if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
@@ -64,6 +65,7 @@ DOGNU="false"
 # -J parallelism
 # -L disable LD_OPTIONS
 # -B run cmake directly in the source tree, not in a build subdir
+# -b branch for git checkout
 #
 IPREFIX="/usr"
 CONFARGS32=""
@@ -140,6 +142,11 @@ case $1 in
 	shift
 	BFLAG=""
 	BDIR="."
+	;;
+-b)
+	shift
+	BRANCHARGS="-b $1"
+	shift
 	;;
 -*)
 	echo "Invalid argument $1"
@@ -221,7 +228,7 @@ PATCHDIR=${BUILD}/patches
 export PATCHDIR
 for pkg in ${THISPKG}
 do
-	${UNPACKER} ${UNPACK_FLAGS} ${pkg}
+	${UNPACKER} ${UNPACK_FLAGS} ${BRANCHARGS} ${pkg}
 	case $pkg in
 	    https://*)
 		pkg=${pkg##*/}
