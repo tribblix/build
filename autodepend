@@ -81,9 +81,9 @@ done
 
 case $STYLE in
     'recurse')
-	getlongdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7)$'
+	getlongdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
 	exit 0
 	;;
 esac
 
-getdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7)$'
+getdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
