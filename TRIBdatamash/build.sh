@@ -1,5 +1,5 @@
 #!/bin/sh
 #
 #
-${THOME}/build/dobuild datamash-1.7
-${THOME}/build/genpkg TRIBdatamash datamash-1.7
+${THOME}/build/dobuild -64only datamash-1.8
+${THOME}/build/genpkg TRIBdatamash datamash-1.8
