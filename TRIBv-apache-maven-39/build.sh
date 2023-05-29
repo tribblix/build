@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBv-apache-maven-39 apache-maven-3.9.1-bin
+${THOME}/build/pkg_tarball TRIBv-apache-maven-39 apache-maven-3.9.2-bin
