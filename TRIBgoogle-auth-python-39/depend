@@ -1,6 +1,7 @@
 P TRIBcachetools-python-39
 P TRIBpyasn1-modules-python-39
-P TRIBpyopenssl-39
+P TRIBrequests-python-39
 P TRIBrsa-python-39
 P TRIBsix-python-39
+P TRIBurllib3-python-39
 P TRIBv-python-39
