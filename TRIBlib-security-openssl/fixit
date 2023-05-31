@@ -39,6 +39,12 @@ ln -s openssl-rehash.1 usr/share/man/man1/openssl-c_rehash.1
 mv usr/include/openssl/opensslconf.h usr/include/openssl/opensslconf-32.h
 cp ${BUILDROOT}/patches/opensslconf.h usr/include/openssl/opensslconf.h
 #
+# replace 32-bit binary with 64-bit
+#
+if [ -f usr/bin/${ARCH64}/openssl ]; then
+    mv usr/bin/${ARCH64}/openssl usr/bin/openssl
+fi
+#
 # libraries expect to live in /lib
 #
 mv usr/lib/64 usr/lib/${ARCH64}
