@@ -1,0 +1,17 @@
+P TRIBfribidi
+P TRIBgdk-pixbuf
+P TRIBharfbuzz
+P TRIBimage-libpng
+P TRIBimage-librsvg
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-pango
+P TRIBlib-glib2
+P TRIBlib-zlib
+P TRIBlibimagequant
+P TRIBlibpaper
+P TRIBlibsdl2
+P TRIBlibsdl2-gfx
+P TRIBlibsdl2-image
+P TRIBlibsdl2-mixer
+P TRIBlibsdl2-pango
+P TRIBlibsdl2-ttf

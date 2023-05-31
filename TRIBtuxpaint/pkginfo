@@ -1,0 +1,4 @@
+PKG="TRIBtuxpaint"
+NAME="Tux Paint"
+VERSION="0.9.30.0"
+ZAP_URL="https://tuxpaint.org/"

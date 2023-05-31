@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+mkdir -p ${DESTDIR}/usr/share/applications
+cp src/tuxpaint.desktop ${DESTDIR}/usr/share/applications/
+cp src/tuxpaint-fullscreen.desktop ${DESTDIR}/usr/share/applications/
+
+mkdir -p ${DESTDIR}/usr/share/icons/hicolor/16x16/apps
+cp data/images/icon16x16.png ${DESTDIR}/usr/share/icons/hicolor/16x16/apps/tuxpaint.png
+mkdir -p ${DESTDIR}/usr/share/icons/hicolor/32x32/apps
+cp data/images/icon32x32.png ${DESTDIR}/usr/share/icons/hicolor/32x32/apps/tuxpaint.png
+mkdir -p ${DESTDIR}/usr/share/icons/hicolor/64x64/apps
+cp data/images/icon64x64.png ${DESTDIR}/usr/share/icons/hicolor/64x64/apps/tuxpaint.png
+mkdir -p ${DESTDIR}/usr/share/icons/hicolor/128x128/apps
+cp data/images/icon128x128.png ${DESTDIR}/usr/share/icons/hicolor/128x128/apps/tuxpaint.png
+
+#
+# undo any installation oddities
+#
+gunzip ${DESTDIR}/usr/share/man/man1/*.gz
+rm -fr ${DESTDIR}/usr/share/man/*.UTF-8
