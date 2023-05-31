@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# don't have files with spaces
+#
+mv 'usr/versions/freecol/data/mods/19thCenturyNations/resources/images/coat-of-arms/REF Crown.png' usr/versions/freecol/data/mods/19thCenturyNations/resources/images/coat-of-arms/REF_Crown.png
+mkdir -p usr/bin usr/share/applications
+
+cp usr/versions/freecol/freecol.desktop usr/share/applications
+sed -i s:data/freecol.png:/usr/versions/freecol/data/freecol.png: usr/share/applications/freecol.desktop
+
+cp usr/versions/freecol/freecol usr/bin
+sed -i 's:^BINDIR.*:BINDIR=/usr/versions/freecol:' usr/bin/freecol
+chmod 755 usr/bin/freecol
