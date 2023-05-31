@@ -1,0 +1,4 @@
+PKG="TRIBtuxpaint-stamps"
+NAME="Tux Paint extra stamps"
+VERSION="2023.05.19.0"
+ZAP_URL="https://tuxpaint.org/"
