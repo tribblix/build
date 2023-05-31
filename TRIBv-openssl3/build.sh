@@ -9,8 +9,8 @@
 #
 # production build won't need LDFLAGS to set the RPATH
 #
-${THOME}/build/unpack -64 openssl-3.0.8
-cd openssl-3.0.8
+${THOME}/build/unpack -64 openssl-3.0.9
+cd openssl-3.0.9
 sed -i s:pod2man:/usr/perl5/bin/pod2man: Configurations/unix-Makefile.tmpl
 env LDFLAGS=-R/usr/versions/openssl-3/lib __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=1.1.1 --prefix=/usr/versions/openssl-3
 gmake -j 6
@@ -19,7 +19,7 @@ cd ..
 # you might have thought that asking for a solaris64-x86_64 build
 # would actually do the right thing, but no ...
 #
-cd openssl-3.0.8-64bit
+cd openssl-3.0.9-64bit
 sed -i s:pod2man:/usr/perl5/bin/pod2man: Configurations/unix-Makefile.tmpl
 env LDFLAGS=-R/usr/versions/openssl-3/lib/amd64 __CNF_CFLAGS=-m64 __CNF_LDFLAGS="-m64 -z aslr -z ignore" ./Configure solaris64-x86_64-gcc shared threads zlib --api=1.1.1 --prefix=/usr/versions/openssl-3 --libdir=lib/amd64 enable-ec_nistp_64_gcc_128
 gmake -j 6
@@ -28,7 +28,7 @@ cd ..
 #
 # much easier now install understands DESTDIR
 #
-${THOME}/build/genpkg TRIBv-openssl3 openssl-3.0.8
+${THOME}/build/genpkg TRIBv-openssl3 openssl-3.0.9
 
 #
 # The sparc configure steps are:
