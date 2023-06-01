@@ -32,4 +32,4 @@ ${THOME}/build/genpkg TRIBlib-security-openssl openssl-1.1.1u
 # The sparc configure steps are:
 #
 # env __CNF_LDFLAGS="-z ignore" ./Configure solaris-sparcv9-gcc shared threads zlib --api=1.0.0 --prefix=/usr
-# env __CNF_CFLAGS=-m64 __CNF_LDFLAGS="-m64 -z ignore" ./Configure solaris64-sparcv9-gcc shared threads zlib --api=1.0.0 --prefix=/usr
+# env __CNF_CFLAGS=-m64 __CNF_LDFLAGS="-m64 -z ignore" ./Configure solaris64-sparcv9-gcc shared threads zlib --api=1.0.0 --prefix=/usr --libdir=lib/sparcv9
