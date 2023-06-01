@@ -33,5 +33,5 @@ ${THOME}/build/genpkg TRIBv-openssl3 openssl-3.0.9
 #
 # The sparc configure steps are:
 #
-# env LDFLAGS=-R/usr/versions/openssl-3/lib __CNF_LDFLAGS="-z ignore" ./Configure solaris-sparcv9-gcc shared threads zlib --api=1.1.1 --prefix=/usr
-# env LDFLAGS=-R/usr/versions/openssl-3/lib/sparcv9 __CNF_CFLAGS=-m64 __CNF_LDFLAGS="-m64 -z ignore" ./Configure solaris64-sparcv9-gcc shared threads zlib --api=1.1.1 --prefix=/usr
+# env LDFLAGS=-R/usr/versions/openssl-3/lib __CNF_LDFLAGS="-z ignore" ./Configure solaris-sparcv9-gcc shared threads zlib --api=1.1.1 --prefix=/usr/versions/openssl-3
+# env LDFLAGS=-R/usr/versions/openssl-3/lib/sparcv9 __CNF_CFLAGS=-m64 __CNF_LDFLAGS="-m64 -z ignore" ./Configure solaris64-sparcv9-gcc shared threads zlib --api=1.1.1 --prefix=/usr/versions/openssl-3 --libdir=lib/sparcv9
