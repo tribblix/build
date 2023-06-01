@@ -26,6 +26,8 @@ $THOME/build/dobuild -64 glw-8.0.0
 # supplied by the ati driver, so I remove r200 and radeon for now
 # to avoid install conflicts
 #
+# sparc just needs --with-dri-drivers='swrast'
+#
 
 $THOME/build/unpack -64 mesa-13.0.6
 
