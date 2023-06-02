@@ -77,8 +77,10 @@ cd usr/lib
 ln -s GL/libGLU* .
 ln -s GL/libGLw* .
 ln -s GL/libglapi.* .
+ln -s GL/libgbm.* .
 cd ${ARCH64}
 ln -s ../GL/${ARCH64}/libGLU* .
 ln -s ../GL/${ARCH64}/libGLw* .
 ln -s ../GL/${ARCH64}/libglapi.* .
+ln -s ../GL/${ARCH64}/libgbm.* .
 cd ../../..
