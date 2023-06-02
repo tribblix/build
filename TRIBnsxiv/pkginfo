@@ -1,4 +1,4 @@
 PKG="TRIBnsxiv"
 NAME="Neo Simple X Image Viewer"
-VERSION="29.0"
+VERSION="31.0"
 ZAP_URL="https://nsxiv.github.io/nsxiv/"
