@@ -1,6 +1,6 @@
 --- a/src/java.base/share/classes/jdk/internal/util/OperatingSystem.java	Wed Mar 29 20:12:02 2023
 +++ b/src/java.base/share/classes/jdk/internal/util/OperatingSystem.java	Thu Mar 30 13:44:42 2023
-@@ -78,6 +78,10 @@
+@@ -79,6 +79,10 @@
       * The AIX Operating system.
       */
      AIX,
@@ -10,8 +10,8 @@
 +    SOLARIS,
      ;
  
-     private static final OperatingSystem CURRENT_OS = initOS(PlatformProps.CURRENT_OS_STRING);
-@@ -114,6 +118,14 @@
+     // The current OperatingSystem
+@@ -116,6 +120,14 @@
          return PlatformProps.TARGET_OS_IS_AIX;
      }
  

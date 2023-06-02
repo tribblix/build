@@ -997,7 +997,7 @@
  EXP="${EXP}|Note: Recompile with -Xlint:deprecation for details."
 --- old/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:33.301561154 -0700
 +++ new/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:32.909553627 -0700
-@@ -872,10 +872,6 @@
+@@ -865,10 +865,6 @@
  
  BUILD_HOTSPOT_JTREG_EXECUTABLES_LIBS_exesigtest := -ljvm
  
@@ -1007,7 +1007,7 @@
 -
  ifeq ($(call isTargetOs, windows), true)
    BUILD_HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
-   BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libTestPsig.c libnativeStack.c
+   BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libTestPsig.c libnativeStack.c exeGetCreatedJavaVMs.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
 @@ -107,9 +107,6 @@
@@ -1170,7 +1170,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1596,10 +1596,8 @@
+@@ -1592,10 +1592,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1183,7 +1183,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1881,8 +1879,7 @@
+@@ -1877,8 +1875,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -3939,7 +3939,7 @@
                                          "libgssapi_krb5.so",
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:50.089339623 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:49.705332249 -0700
-@@ -925,8 +925,6 @@
+@@ -931,8 +931,6 @@
              if (name == null) {
                  name = "c:\\winnt\\krb5.ini";
              }
@@ -4190,7 +4190,7 @@
      struct timeval t;
 --- old/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:36.322227327 -0700
 +++ new/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:35.934219877 -0700
-@@ -92,63 +92,7 @@
+@@ -85,63 +85,7 @@
  // true = get available swap in bytes
  // false = get total swap in bytes
  static jlong get_total_or_available_swap_space_size(JNIEnv* env, jboolean available) {
@@ -4255,7 +4255,7 @@
      int ret;
      jlong total = 0, avail = 0;
  
-@@ -189,37 +133,7 @@
+@@ -184,37 +128,7 @@
  Java_com_sun_management_internal_OperatingSystemImpl_getCommittedVirtualMemorySize0
    (JNIEnv *env, jobject mbean)
  {
@@ -4289,12 +4289,12 @@
 -
 -    close(fd);
 -    return (jlong) psinfo.pr_size * 1024;
--#elif defined(__linux__)
-+#if defined(__linux__)
-     FILE *fp;
-     unsigned long vsize = 0;
+-#elif defined(__APPLE__)
++#if defined(__APPLE__)
+     struct task_basic_info t_info;
+     mach_msg_type_number_t t_info_count = TASK_BASIC_INFO_COUNT;
  
-@@ -292,7 +206,7 @@
+@@ -240,7 +184,7 @@
       * BSDNOTE: FreeBSD implements _SC_CLK_TCK since FreeBSD 5, so
       *          add a magic to handle it
       */

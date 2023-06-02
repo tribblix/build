@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+21+25
+
+Bit of patch noise
+
 21+24
 
 It appears that jline https://github.com/jline/jline3 has been
