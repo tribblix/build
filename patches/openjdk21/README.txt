@@ -12,6 +12,12 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+21+24
+
+It appears that jline https://github.com/jline/jline3 has been
+imported
+See illumos-jline.patch for implementation
+
 21+23
 
 Extensive rework of
