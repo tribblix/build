@@ -4,3 +4,5 @@
 #
 rm -f usr/lib/pdsh/*.a
 rm -f usr/lib/pdsh/*.la
+rm -f usr/lib/*/pdsh/*.a
+rm -f usr/lib/*/pdsh/*.la
