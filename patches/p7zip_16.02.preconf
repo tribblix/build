@@ -1,0 +1,2 @@
+#!/bin/sh
+cat makefile.solaris_x86 | sed 's:ALLFLAGS=:ALLFLAGS=-m64 :' > makefile.machine
