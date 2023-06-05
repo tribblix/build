@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# x11vnc - needs libtool installed to build
+# last release early 2019, build from a git checkout
 #
-${THOME}/build/dobuild x11vnc-0.9.14
-${THOME}/build/genpkg TRIBx11vnc x11vnc-0.9.14
+${THOME}/build/dobuild -64only https://github.com/LibVNC/x11vnc
+${THOME}/build/genpkg TRIBx11vnc x11vnc

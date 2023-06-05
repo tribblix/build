@@ -1,0 +1,47 @@
+diff --git a/src/enc.h b/src/enc.h
+index 3abf8b0..7b0bd48 100644
+--- a/src/enc.h
++++ b/src/enc.h
+@@ -1494,11 +1494,6 @@ static void securevnc_setup(int conn1, int conn2) {
+ 		unsigned char digest[EVP_MAX_MD_SIZE], *signature;
+ 		unsigned int ndig = 0, nsig = 0;
+ 
+-		if (0) {
+-			/* for testing only, use the wrong RSA key: */
+-			client_rsa = RSA_generate_key(2048, 0x10001, NULL, NULL);
+-		}
+-		
+ 		if (client_rsa == NULL) {
+ 			fprintf(stderr, "securevnc_setup: problem reading rsa key from '%s'\n", client_auth);
+ 			exit(1);
+diff --git a/src/sslhelper.c b/src/sslhelper.c
+index 35c7ad5..8278888 100644
+--- a/src/sslhelper.c
++++ b/src/sslhelper.c
+@@ -1064,18 +1064,22 @@ void openssl_init(int isclient) {
+ 	}
+ 
+ 	ds = dnow();
+-	rsa_512 = RSA_generate_key(512, RSA_F4, NULL, NULL);
++	rsa_512 = RSA_new();
++	BIGNUM *bne = BN_new();
++	BN_set_word(bne, RSA_F4);
++	RSA_generate_key_ex(rsa_512, 512, bne, NULL);
+ 	if (rsa_512 == NULL) {
+-		rfbLog("openssl_init: RSA_generate_key(512) failed.\n");	
++		rfbLog("openssl_init: RSA_generate_key_ex(512) failed.\n");	
+ 		sslerrexit();
+ 	}
+ 
+ 	rfbLog("created  512 bit temporary RSA key: %.3fs\n", dnow() - ds);
+ 
+ 	ds = dnow();
+-	rsa_1024 = RSA_generate_key(1024, RSA_F4, NULL, NULL);
++	rsa_1024 = RSA_new();
++	RSA_generate_key_ex(rsa_1024, 1024, bne, NULL);
+ 	if (rsa_1024 == NULL) {
+-		rfbLog("openssl_init: RSA_generate_key(1024) failed.\n");	
++		rfbLog("openssl_init: RSA_generate_key_ex(1024) failed.\n");	
+ 		sslerrexit();
+ 	}
+ 
