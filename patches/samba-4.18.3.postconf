@@ -1,0 +1,2 @@
+#!/bin/sh
+rm -f third_party/heimdal/lib/gssapi/gssapi.h
