@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+rm -f usr/lib/*/gnumeric/*/plugins/*/*.la
+rm -f usr/lib/*/goffice/0.10/plugins/gnumeric/gnumeric.la
