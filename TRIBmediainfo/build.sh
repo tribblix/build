@@ -6,30 +6,29 @@
 # needs libtool installed so autogen.sh works
 #
 rm -fr ZenLib MediaInfoLib MediaInfo
-${THOME}/build/unpack libzen_0.4.37
-${THOME}/build/unpack libmediainfo_18.03.1
-${THOME}/build/unpack mediainfo_18.03.1
+${THOME}/build/unpack libzen_0.4.41
+${THOME}/build/unpack libmediainfo_23.04
+${THOME}/build/unpack mediainfo_23.04
 
 zap install libtool
 
 cd ZenLib/Project/GNU/Library
 sh autogen.sh
-./configure --prefix=/usr
-gmake -j
+env LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64 -fpermissive" ./configure --prefix=/usr --libdir=/usr/lib/`$THOME/build/getarch`
+gmake -j 4
 cd ../../../..
-
-sed -i s=/pow=/std::pow= MediaInfoLib/Source/MediaInfo/Multiple/File_Mk.cpp
 
 cd MediaInfoLib/Project/GNU/Library
 sh autogen.sh
-./configure --prefix=/usr
-gmake -j
+env LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" ./configure --prefix=/usr --libdir=/usr/lib/`$THOME/build/getarch`
+# limit the parallel make as it can explode
+gmake -j 2
 cd ../../../..
 
 cd MediaInfo/Project/GNU/CLI
 sh autogen.sh
-./configure --prefix=/usr
-gmake -j
+env LDFLAGS="-m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" ./configure --prefix=/usr
+gmake -j 4
 cd ../../../..
 
 rm -fr /tmp/zmi
