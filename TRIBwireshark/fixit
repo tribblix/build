@@ -5,11 +5,12 @@
 #
 
 #
-# in 2.0 /usr/bin/wireshark is the qt version by default
-# but we should restore it to the original defaults
+# cannot package files with spaces in the name
+#
+mv "usr/share/wireshark/profiles/No Reassembly" "usr/share/wireshark/profiles/No_Reassembly"
+
+#
+# keep the gui separately to slim the dependency tree
 #
 rm -f usr/bin/wireshark
 rm -f usr/share/applications/wireshark.desktop
-mv usr/share/applications/wireshark-gtk.desktop usr/share/applications/wireshark.desktop
-cd usr/bin
-ln -s wireshark-gtk wireshark
