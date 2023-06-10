@@ -1,8 +1,16 @@
 #!/bin/sh
 #
 
-$THOME/build/unpack haproxy_exporter-0.13.0
-cd haproxy_exporter-0.13.0
+#
+# current versions of haproxy have a built-in exporter, but this is still
+# relevant for older versions
+#
+
+mkdir p1
+cd p1
+setenv GOPATH `pwd`
+mkdir -p $GOPATH/src/github.com/prometheus
+cd $GOPATH/src/github.com/prometheus
 
 #
 # we need to build the promu tool first, as otherwise the main build
@@ -11,10 +19,12 @@ cd haproxy_exporter-0.13.0
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-gmake build
+env PATH=/usr/versions/go-1.20/bin:$PATH gmake build
 cd ..
 
-gmake build
+$THOME/build/unpack haproxy_exporter-0.15.0
+cd haproxy_exporter-0.15.0
+env PATH=/usr/versions/go-1.20/bin:$PATH gmake build
 cd ..
 
 ${THOME}/build/genpkg TRIBblix-promhaproxy
