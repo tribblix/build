@@ -14,17 +14,18 @@ cd $GOPATH/src/github.com/prometheus
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env PATH=/usr/versions/go-1.18/bin:$PATH gmake build
+env PATH=/usr/versions/go-1.20/bin:$PATH gmake build
 cd ..
 
 #
 git clone https://github.com/prometheus/node_exporter.git
 cd node_exporter
 #
-# copy collector/uname_bsd.go to uname_solaris.go and change to build on solaris
+# cp collector/uname_bsd.go collector/uname_solaris.go
+# and change to build on solaris
 # and add solaris to the build of collector/uname.go
 #
-env PATH=/usr/versions/go-1.18/bin:$PATH gmake build
+env PATH=/usr/versions/go-1.20/bin:$PATH gmake build
 cd ..
 
 ${THOME}/build/genpkg TRIBblix-promnode
