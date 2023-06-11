@@ -15,9 +15,10 @@ cd $GOPATH/src/github.com/grafana/loki
 # fix vendor/go.etcd.io/etcd/client/pkg/v3/transport/sockopt_unix.go
 # just error for the REUSEPORT case
 #
-go build ./cmd/loki
+env PATH=/usr/versions/go-1.20/bin:$PATH go build ./cmd/loki
 ls -l ./loki
-# edit vendor/github.com/hpcloud/tail/tail_posix.go - build solaris
+# vendor/github.com/grafana/tail/watch/file_posix.go - build solaris
+# vendor/github.com/grafana/tail/tail_posix.go - build solaris
 go build ./clients/cmd/promtail
 ls -l ./promtail
 
