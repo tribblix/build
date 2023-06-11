@@ -2,7 +2,7 @@
 #
 mkdir ~/ud/c
 cd ~/ud/c
-env GOPATH=`pwd` go install github.com/minio/mc@latest
+env GOPATH=`pwd` PATH=/usr/versions/go-1.20/bin:$PATH go install github.com/minio/mc@latest
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
