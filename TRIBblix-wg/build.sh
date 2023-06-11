@@ -12,7 +12,7 @@ mkdir -p /tmp/wg123/opt/tribblix/wireguard/man/man8
 #
 git clone https://git.zx2c4.com/WireGuard
 cd WireGuard/src/tools
-gmake LDLIBS='-lnsl -lsocket' CC=gcc
+gmake LDLIBS='-lnsl -lsocket' CC="gcc -m64"
 cp wg /tmp/wg123/opt/tribblix/wireguard/bin
 cp man/wg.8 /tmp/wg123/opt/tribblix/wireguard/man/man8
 cd ../../..
@@ -22,7 +22,7 @@ cd ../../..
 #
 git clone https://github.com/jclulow/wireguard-go-illumos-wip
 cd wireguard-go-illumos-wip/
-env GOOS=illumos PATH=/usr/versions/go-1.18/bin:$PATH gmake
+env PATH=/usr/versions/go-1.20/bin:$PATH gmake
 cp wireguard-go /tmp/wg123/opt/tribblix/wireguard/bin
 cp README.md /tmp/wg123/opt/tribblix/wireguard/doc
 cd ../..
