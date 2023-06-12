@@ -20,6 +20,9 @@ That's to do with freetype, I think.
 
 More recently:
 
+Fix 'SIGSEGV happened inside stack but outside yellow and red zone.' -
+see illumos-port-14.patch
+
 Fixed the memcntl signature change that broke builds on recent illumos.
 
 Changes:
