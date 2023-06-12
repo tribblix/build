@@ -602,7 +602,7 @@
        SRC := $(TOPDIR)/src/$(MODULE)/unix/native/jspawnhelper, \
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
-@@ -53,7 +53,6 @@
+@@ -55,7 +55,6 @@
      LDFLAGS_windows := -delayload:secur32.dll -delayload:iphlpapi.dll, \
      LIBS_unix := -ljvm -ljava, \
      LIBS_linux := $(LIBDL), \
@@ -610,7 +610,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_windows := ws2_32.lib jvm.lib secur32.lib iphlpapi.lib winhttp.lib \
          delayimp.lib $(WIN_JAVA_LIB) advapi32.lib, \
-@@ -80,8 +79,6 @@
+@@ -82,8 +81,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := -ljava -lnet, \
      LIBS_linux := -lpthread $(LIBDL), \
@@ -619,7 +619,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation -framework CoreServices, \
-@@ -134,7 +131,6 @@
+@@ -136,7 +133,6 @@
          LDFLAGS := $(LDFLAGS_JDKLIB) \
              $(call SET_SHARED_LIBRARY_ORIGIN), \
          LIBS_linux := $(LIBDL), \
@@ -728,7 +728,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -383,7 +382,6 @@
+@@ -394,7 +393,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -736,7 +736,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -441,7 +439,7 @@
+@@ -452,7 +450,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -745,7 +745,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -601,10 +599,7 @@
+@@ -614,10 +612,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -757,7 +757,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -631,7 +626,6 @@
+@@ -644,7 +639,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -837,7 +837,7 @@
      LIBS_windows := dbgeng.lib $(WIN_JAVA_LIB), \
 --- old/make/modules/jdk.jdwp.agent/Lib.gmk	2020-05-20 17:59:23.709376977 -0700
 +++ new/make/modules/jdk.jdwp.agent/Lib.gmk	2020-05-20 17:59:23.321369527 -0700
-@@ -37,7 +37,6 @@
+@@ -38,7 +38,6 @@
      LDFLAGS := $(LDFLAGS_JDKLIB) \
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_linux := -lpthread, \
@@ -845,7 +845,7 @@
      LIBS_windows := $(JDKLIB_LIBS) ws2_32.lib iphlpapi.lib, \
  ))
  
-@@ -65,7 +64,6 @@
+@@ -66,7 +65,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS := $(JDKLIB_LIBS), \
      LIBS_linux := $(LIBDL), \
@@ -1830,7 +1830,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -582,7 +573,7 @@
+@@ -597,7 +590,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -4395,7 +4395,7 @@
  
 --- old/src/jdk.sctp/unix/native/libsctp/SctpNet.c	2020-05-20 18:03:41.630329248 -0700
 +++ new/src/jdk.sctp/unix/native/libsctp/SctpNet.c	2020-05-20 18:03:41.242321797 -0700
-@@ -363,11 +363,7 @@
+@@ -371,11 +371,7 @@
      int i, addrCount;
      jobjectArray isaa;
  
@@ -4407,7 +4407,7 @@
          sctpHandleSocketError(env, errno);
          return NULL;
      }
-@@ -412,11 +408,7 @@
+@@ -420,11 +416,7 @@
      int i, addrCount;
      jobjectArray isaa;
  
@@ -8042,7 +8042,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3123 +0,0 @@
+@@ -1,3129 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11166,6 +11166,12 @@
 -}
 -
 -void os::print_memory_mappings(char* addr, size_t bytes, outputStream* st) {}
+-
+-#if INCLUDE_JFR
+-
+-void os::jfr_report_memory_info() {}
+-
+-#endif // INCLUDE_JFR
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,198 +0,0 @@

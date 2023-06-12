@@ -12,6 +12,17 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+21+26
+
+Forked to the jdk21 stabilisation repo.
+
+Some patch noise.
+
+Add null implementation of jfr_report_memory_info()
+
+It appears that pipewire has been imported; see illumos-port-27.patch
+for a minor tweak to make it compile
+
 21+25
 
 Bit of patch noise
