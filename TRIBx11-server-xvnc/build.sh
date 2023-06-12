@@ -15,17 +15,16 @@ gmake -j
 
 #
 # now the server
-# 1.16 requires newer bits than we have
 #
 mkdir build
 cd build
 rm -fr unix
 mkdir unix
 cp -R ../unix/xserver unix/
-${THOME}/build/unpack xorg-server-1.15.2
-cp -R xorg-server-1.15.2/* unix/xserver/
+${THOME}/build/unpack xorg-server-1.16.4
+cp -R xorg-server-1.16.4/* unix/xserver/
 cd unix/xserver/
-gpatch -p1 < ../../../unix/xserver115.patch
+gpatch -p1 < ../../../unix/xserver116.patch
 autoreconf -fiv
 
 #
@@ -50,7 +49,7 @@ autoreconf -fiv
 --disable-xvfb \
 --disable-xwin \
 --disable-dri3 --disable-dri2 --disable-dri \
---disable-glx \
+--enable-glx \
 --enable-shared \
 --enable-xcsecurity \
 --enable-xdm-auth-1 \
