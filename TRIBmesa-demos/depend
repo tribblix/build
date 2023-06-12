@@ -1,0 +1,5 @@
+P TRIBfreeglut
+P TRIBsvc-opengl-ogl-select
+P TRIBx11-lib-mesa
+P TRIBx11-libx11
+P TRIBx11-libxext
