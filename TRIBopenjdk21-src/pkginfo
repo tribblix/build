@@ -1,0 +1,4 @@
+PKG="TRIBopenjdk21-src"
+NAME="OpenJDK21 src.zip"
+VERSION="21.26.0"
+ZAP_URL="http://openjdk.java.net/"
