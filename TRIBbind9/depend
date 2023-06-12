@@ -1,5 +1,6 @@
 P TRIBlib-security-openssl
 P TRIBlib-zlib
+P TRIBlibnghttp2
 P TRIBlibxml2
 P TRIBsvc-security-kerberos-5
 P TRIBsys-lib-security-gss
