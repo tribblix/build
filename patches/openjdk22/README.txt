@@ -1,0 +1,32 @@
+This is originally derived from the pkgsrc-joyent set for openjdk11,
+considerably modified. Cut from the jdk15 patches as of jdk15+32.
+
+See also README-zero.txt for note on a project zero variant.
+
+JDK 22 now that jdk21 has been forked off.
+
+Issues known that indicate serious bugs, likely due to not integrating
+loom correctly as they date back to that change. Specifically, I
+suspect we need to provide a working DefaultPoller implementation
+rather than the current stub.
+* jshell doesn't work
+* illuminate doesn't work
+
+22+1
+
+No changes needed, identical to 21+26.
+
+Build:
+
+env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk20 \
+--with-native-debug-symbols=none \
+--with-toolchain-type=gcc \
+--disable-dtrace \
+--disable-warnings-as-errors \
+--with-source-date=current \
+--with-jobs=3 \
+DATE=/usr/gnu/bin/date \
+STRIP=/usr/gnu/bin/strip
+
+env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
