@@ -1,0 +1,4 @@
+PKG="TRIBfontforge"
+NAME="FontForge"
+VERSION="20230101.0"
+ZAP_URL="https://github.com/fontforge/fontforge"
