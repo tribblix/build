@@ -5,8 +5,8 @@
 # performance: numexpr,bottleneck,numba
 # plot: matplotlib
 # output_formatting[*]: jinja2[*],tabulate[*]
-# computation: scipy[*],xarray
-# excel: xlrd,xlsxwriter,openpyxl,pyxlsb
+# computation[*]: scipy[*],xarray[*]
+# excel[*]: odfpy[*],xlrd[*],xlsxwriter[*],openpyxl[*],pyxlsb[*]
 # html: BeautifulSoup4,html5lib,lxml
 # xml: lxml
 # databases: SQLAlchemy,psycopg2[*],pymysql
@@ -15,8 +15,8 @@
 # to build its own numpy, which would fail as it doesn't have the
 # modifications we need to make it build successfully
 #
-${THOME}/build/unpack pandas-2.0.0
-cd pandas-2.0.0
+${THOME}/build/unpack pandas-2.0.2
+cd pandas-2.0.2
 /usr/versions/python-3.11/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/pil
