@@ -1,8 +1,5 @@
 #!/bin/sh
 #
-# NB. TRIBv-python-311 must not be installed, or the make
-# install step will get confused
-#
 # 3.11 is 64-bit
 #
 # There's a preconf patch to disable epoll
@@ -19,6 +16,12 @@
 # there's a curses patch to make curses work and avoid ncurses
 #
 
-${THOME}/build/dobuild +64only Python-3.11.3 -P /usr/versions/python-3.11 -L -C --enable-shared
+${THOME}/build/dobuild +64only Python-3.11.4 -P /usr/versions/python-3.11 -L -C --enable-shared
+#
+# NB. TRIBv-python-311 must not be installed, or the make
+# install step will get confused
+#
+# zap d TRIBv-python-311-tests TRIBv-python-311-tkinter TRIBv-python-311
+#
 # Horrid hack to work around deficiencies in setuptools
-${THOME}/build/genpkg TRIBv-python-311 Python-3.11.3
+${THOME}/build/genpkg TRIBv-python-311 Python-3.11.4

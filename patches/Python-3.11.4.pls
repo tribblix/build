@@ -6,3 +6,4 @@
 -p1 python/test-zipfile.311.patch
 -p1 python/test-processgroup.311.patch
 -p1 python/curses.311.patch
+-p1 python/disable_epoll.311.patch
