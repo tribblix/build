@@ -1,12 +1,15 @@
 #!/bin/sh
 #
-# NB. TRIBv-python-37 must not be installed, or the make
-# install step will get confused
-#
 # NOTE: update the versions of the tests and tkinter packages as well
 # as those components are split out, the packages are automatically
 # created by the fixit script
 #
-${THOME}/build/dobuild Python-3.7.16 -P /usr/versions/python-3.7 -L -C --enable-shared
+${THOME}/build/dobuild Python-3.7.17 -P /usr/versions/python-3.7 -L -C --enable-shared
+#
+# NB. TRIBv-python-37 must not be installed, or the make
+# install step will get confused
+#
+# zap d TRIBv-python-37-tests TRIBv-python-37-tkinter TRIBv-python-37
+#
 # Horrid hack to work around deficiencies in setuptools
-${THOME}/build/genpkg TRIBv-python-37 Python-3.7.16
+${THOME}/build/genpkg TRIBv-python-37 Python-3.7.17
