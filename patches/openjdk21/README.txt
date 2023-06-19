@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+21+27
+
+No changes.
+
 21+26
 
 Forked to the jdk21 stabilisation repo.

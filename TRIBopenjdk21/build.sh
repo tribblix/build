@@ -5,8 +5,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk21-jdk-21-26
-cd jdk21-jdk-21-26
+${THOME}/build/unpack jdk21-jdk-21-27
+cd jdk21-jdk-21-27
 
 #
 # jdk21 needs autoconf installed
@@ -46,8 +46,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 #
 # openjdk version "21-internal" 2023-09-19
-# OpenJDK Runtime Environment (build 21-internal-adhoc.ptribble.jdk21-jdk-21-26)
-# OpenJDK 64-Bit Server VM (build 21-internal-adhoc.ptribble.jdk21-jdk-21-26, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 21-internal-adhoc.ptribble.jdk21-jdk-21-27)
+# OpenJDK 64-Bit Server VM (build 21-internal-adhoc.ptribble.jdk21-jdk-21-27, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
