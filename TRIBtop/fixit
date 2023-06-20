@@ -3,6 +3,7 @@
 # we only want the 64-bit variant, without isaexec
 #
 rm -fr usr/bin/`uname -p`
+rm -fr usr/bin/sparcv7
 rm -f usr/bin/top
 mv usr/bin/`$THOME/build/getarch`/top usr/bin
 strip usr/bin/top
