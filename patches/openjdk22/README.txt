@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+3
+
+Minor patch noise.
+
 22+2
 
 Some patch noise, especially Awt2dLibraries.gmk and static linking.

@@ -348,7 +348,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -1065,7 +1065,7 @@
+@@ -1064,7 +1064,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -1170,7 +1170,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1592,10 +1592,8 @@
+@@ -1593,10 +1593,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1183,7 +1183,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1877,8 +1875,7 @@
+@@ -1878,8 +1876,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1830,7 +1830,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -597,7 +590,7 @@
+@@ -601,7 +594,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -3247,7 +3247,7 @@
  #else
 --- old/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.943896775 -0700
 +++ new/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.515888557 -0700
-@@ -215,7 +215,7 @@
+@@ -219,7 +219,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canIPv6SocketJoinIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -3256,7 +3256,7 @@
      /* IPv6 sockets can join IPv4 multicast groups */
      return JNI_TRUE;
  #else
-@@ -227,7 +227,7 @@
+@@ -231,7 +231,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canJoin6WithIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -4003,7 +4003,7 @@
          _writer = new BufferedWriter(writer, BUFFER_SIZE);
 --- old/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.681504598 -0700
 +++ new/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.345498147 -0700
-@@ -94,7 +94,7 @@
+@@ -95,7 +95,7 @@
      private static class Decoder extends CharsetDecoder {
  
          private static final String SJISName = getSJISName();
@@ -4012,7 +4012,7 @@
          private DelegatableDecoder detectedDecoder = null;
  
          public Decoder(Charset cs) {
-@@ -222,24 +222,11 @@
+@@ -223,24 +223,11 @@
           * Returned Shift_JIS Charset name is OS dependent
           */
          private static String getSJISName() {
