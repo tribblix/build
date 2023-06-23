@@ -1170,7 +1170,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1592,10 +1592,8 @@
+@@ -1593,10 +1593,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1183,7 +1183,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1877,8 +1875,7 @@
+@@ -1878,8 +1876,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1418,7 +1418,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1826,8 +1826,6 @@
+@@ -1865,8 +1865,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1427,7 +1427,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1892,8 +1890,6 @@
+@@ -1931,8 +1929,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
