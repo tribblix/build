@@ -3,5 +3,8 @@
 # this is the CLI, delete Qt files
 #
 rm -f usr/lib/libQZint.so*
+rm -f usr/lib/*/libQZint.so*
+rm -f usr/lib/libQZint.a
+rm -f usr/lib/*/libQZint.a
 rm -f usr/include/qzint.h
 rm -f usr/bin/zint-qt
