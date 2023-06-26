@@ -1,0 +1,17 @@
+Hardcoding 32-bit paths will never work. It ought to use libdir and
+includedir here.
+
+--- a/configure	Sat Feb 27 03:02:26 2021
++++ a/configure	Mon Jun 26 12:28:47 2023
+@@ -12867,11 +12867,7 @@
+ # Check whether --with-local-prefix was given.
+ if test "${with_local_prefix+set}" = set; then :
+   withval=$with_local_prefix; CPPFLAGS="$CPPFLAGS -I$withval/include"; LDFLAGS="$LDFLAGS -L$withval/lib"
+-else
+-  if test "$prefix" != "NONE"; then
+-  CPPFLAGS="$CPPFLAGS -I$prefix/include"; LDFLAGS="$LDFLAGS -L$prefix/lib"
+ fi
+-fi
+ 
+ 
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to use zlib" >&5
