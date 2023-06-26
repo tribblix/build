@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# it converts some paths to absolute rather than prefixed
+# which breaks make install
+#
+sed -i 's:"/usr/bin/amd64":"$(prefix)/bin/amd64":' Jamconfig
+sed -i 's:"/usr/lib/amd64":"$(prefix)/lib/amd64":' Jamconfig
+sed -i 's:"/usr/bin/sparcv9":"$(prefix)/bin/sparc9":' Jamconfig
+sed -i 's:"/usr/lib/sparcv9":"$(prefix)/lib/sparcv9":' Jamconfig

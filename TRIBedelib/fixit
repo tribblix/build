@@ -7,3 +7,17 @@ rm *.la
 ln -s libedelib.so.2.1.0 libedelib.so
 ln -s libedelib_dbus.so.2.1.0 libedelib_dbus.so
 ln -s libedelib_gui.so.2.1.0 libedelib_gui.so
+if [ -d amd64 ]; then
+    cd amd64
+    rm *.la
+    ln -s libedelib.so.2.1.0 libedelib.so
+    ln -s libedelib_dbus.so.2.1.0 libedelib_dbus.so
+    ln -s libedelib_gui.so.2.1.0 libedelib_gui.so
+fi
+if [ -d sparcv9 ]; then
+    cd sparcv9
+    rm *.la
+    ln -s libedelib.so.2.1.0 libedelib.so
+    ln -s libedelib_dbus.so.2.1.0 libedelib_dbus.so
+    ln -s libedelib_gui.so.2.1.0 libedelib_gui.so
+fi
