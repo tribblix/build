@@ -20,6 +20,10 @@ sed -i '/tm_zone/d' src/util-time.c
 #
 sed -i 's: install -m: ginstall -m:g' Makefile
 #
+# if it finds sphinx, need to disable warnings as errors
+#
+sed -i 's:-W -b:-b:' doc/userguide/Makefile*
+#
 # The rust part is completely confused by LD_OPTIONS
 # rather than turning that off globally, we build this piece
 # separately
