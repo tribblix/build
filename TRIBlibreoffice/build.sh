@@ -4,10 +4,14 @@
 #
 $THOME/build/unpack libreoffice-7.2.7.2
 cd libreoffice-7.2.7.2
+$THOME/build/patches/libreoffice-7.2.7.2.preconf
 
 #
 # if you have a previous build, copy the contents of external/tarballs
 # to reduce the amount of stuff that needs to be downloaded
+#
+# mkdir external/tarballs
+# cp ../../libreoffice-7.2.7.2/external/tarballs/* external/tarballs/
 #
 
 #
@@ -37,10 +41,17 @@ sed -i '/stack-protector-strong/d' ./solenv/gbuild/platform/com_GCC_defs.mk
 #
 
 #
-# need to ensure we find python3.7, which is 32-bit
+# need to ensure we find python3.9, which is 64-bit
+#
+# note that we specify 64-bit in multiple ways, as there are multiple
+# components which pick up on different things
 #
 
-env PATH=/usr/gnu/bin:/usr/versions/python-3.7/bin:$PATH ./configure \
+env CFLAGS="-m64" LDFLAGS="-m64" CXXFLAGS="-m64" \
+CC="gcc -m64" CXX="g++ -m64" AFLAGS="-m64" \
+PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig \
+PATH=/usr/gnu/bin:/usr/versions/python-3.9/bin:/usr/bin/amd64:$PATH \
+bash ./configure \
 --prefix=/usr/versions/libreoffice-7 \
 --without-java \
 --without-doxygen \
@@ -59,8 +70,12 @@ env PATH=/usr/gnu/bin:/usr/versions/python-3.7/bin:$PATH ./configure \
 --with-system-lcms2 \
 --with-system-epoxy \
 --with-system-openssl \
+--disable-ldap \
 --disable-odk \
---with-vendor="Tribblix" --enable-release-build=yes
+--with-vendor="Tribblix" \
+--enable-release-build=yes \
+--build=amd64-pc-solaris2.11 \
+--with-system-icu
 
 #
 # despite needing to build against its own harfbuzz, the build tries
@@ -69,35 +84,29 @@ env PATH=/usr/gnu/bin:/usr/versions/python-3.7/bin:$PATH ./configure \
 #
 # as root
 # 
-# rm /usr/lib/libharfbuzz.so
-#
-
-#
-# the same is true of icu
-#
-# as root
-#
-# cd /usr/lib ; rm libicui18n.so libicuuc.so
+# rm /usr/lib/amd64/libharfbuzz.so
 #
 
 #
 # a regular make will run the checks; these will almost always fail,
 # regardless of platform, so build without checks
 #
-env PATH=/usr/gnu/bin:/usr/versions/python-3.7/bin:$PATH /usr/gnu/bin/make -j 4 build-nocheck
+env CFLAGS="-m64" LDFLAGS="-m64" CXXFLAGS="-m64" \
+CC="gcc -m64" CXX="g++ -m64" AFLAGS="-m64" \
+PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig \
+PATH=/usr/gnu/bin:/usr/versions/python-3.9/bin:/usr/bin/amd64:$PATH \
+/usr/gnu/bin/make -j 6 build-nocheck
 
 #
-# undo the harfbuzz and icu tweaks
+# undo the harfbuzz tweak
 #
 # as root
 #
-# cd /usr/lib ; ln -s libharfbuzz.so.0.40300.0 libharfbuzz.so
-# cd /usr/lib ; ln -s libicui18n.so.50.1 libicui18n.so
-# cd /usr/lib ; ln -s libicuuc.so.50.1 libicuuc.so
+# cd /usr/lib/amd64 ; ln -s libharfbuzz.so.0 libharfbuzz.so
 #
 
 #
 # need distro-pack-install to get things assembled the right way
 #
-env PATH=/usr/gnu/bin:/usr/versions/python-3.7/bin:$PATH /usr/gnu/bin/make distro-pack-install DESTDIR=/tmp/loo
+env PATH=/usr/gnu/bin:/usr/versions/python-3.9/bin:$PATH /usr/gnu/bin/make distro-pack-install DESTDIR=/tmp/loo
 ${THOME}/build/create_pkg TRIBlibreoffice /tmp/loo

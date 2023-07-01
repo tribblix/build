@@ -1,0 +1,30 @@
+--- libreoffice-7.5.1.1/external/coinmp/ExternalProject_coinmp.mk.~1~	2023-02-09 06:58:55.000000000 -0500
++++ libreoffice-7.5.1.1/external/coinmp/ExternalProject_coinmp.mk	2023-02-20 21:10:35.868449115 -0500
+@@ -12,7 +12,6 @@
+ $(eval $(call gb_ExternalProject_register_targets,coinmp,\
+ 	build \
+ ))
+-
+ ifeq ($(COM),MSC)
+ $(call gb_ExternalProject_get_state_target,coinmp,build) :
+ 	$(call gb_Trace_StartRange,coinmp,EXTERNAL)
+@@ -28,8 +27,8 @@
+ else
+ $(call gb_ExternalProject_get_state_target,coinmp,build) :
+ 	$(call gb_Trace_StartRange,coinmp,EXTERNAL)
+-	+$(call gb_ExternalProject_run,build,\
+-		$(gb_RUN_CONFIGURE) ./configure COIN_SKIP_PROJECTS="Data/Sample" \
++	$(call gb_ExternalProject_run,build,\
++		$(gb_RUN_CONFIGURE) CFLAGS="$(COINMP_CFLAGS)" CXXFLAGS="$(COINMP_CXXFLAGS)" ./configure COIN_SKIP_PROJECTS="Data/Sample" \
+ 			$(if $(verbose),--disable-silent-rules,--enable-silent-rules) \
+ 			$(gb_CONFIGURE_PLATFORMS) \
+ 			$(if $(DISABLE_DYNLOADING),--disable-shared) \
+@@ -40,7 +39,7 @@
+ 			$(if $(filter LINUX,$(OS)), \
+ 				'LDFLAGS=-Wl$(COMMA)-z$(COMMA)origin \
+ 					-Wl$(COMMA)-rpath$(COMMA)\$$$$ORIGIN') \
+-		&& $(MAKE) \
++		&& $(MAKE) -j1 \
+ 		$(if $(filter MACOSX,$(OS)),&& $(PERL) \
+ 			$(SRCDIR)/solenv/bin/macosx-change-install-names.pl shl OOO \
+ 			$(EXTERNAL_WORKDIR)/Cbc/src/.libs/libCbc.3.8.8.dylib \

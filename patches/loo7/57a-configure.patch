@@ -1,0 +1,27 @@
+57-configure.ca-enable-64bit-solaris.patch patches configure.ac; this one
+applies the same changes directly to configure to avoid having to
+regenerate it, but is far more fragile as a consequence.
+
+--- a/configure	Fri May  6 17:51:34 2022
++++ b/configure	Wed Jun 28 13:56:21 2023
+@@ -6704,7 +6704,7 @@
+ 
+         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking the processor type" >&5
+ printf %s "checking the processor type... " >&6; }
+-    if test "$host_cpu" = "sparc" -o "$host_cpu" = "i386"; then
++    if test "$host_cpu" = "sparc" -o "$host_cpu" = "i386" -o "$host_cpu" = "x86_64"; then
+         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: ok ($host_cpu)" >&5
+ printf "%s\n" "ok ($host_cpu)" >&6; }
+     else
+@@ -14394,6 +14394,11 @@
+         RTL_ARCH=x86
+         PLATFORMID=solaris_x86
+         ;;
++    x86_64)
++        CPUNAME=X86_64
++        RTL_ARCH=X86_64
++        PLATFORMID=solaris_x86_64
++        ;;
+     sparc)
+         CPUNAME=SPARC
+         RTL_ARCH=SPARC

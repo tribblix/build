@@ -4,6 +4,7 @@ P TRIBdconf
 P TRIBgdk-pixbuf
 P TRIBgstreamer1
 P TRIBgstreamer1-plugins-base
+P TRIBharfbuzz
 P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBlib-desktop-atk
@@ -14,6 +15,7 @@ P TRIBlib-glib2
 P TRIBlib-lcms2
 P TRIBlib-security-openssl
 P TRIBlib-zlib
+P TRIBlibicu
 P TRIBlibrevenge
 P TRIBlibvisio
 P TRIBlibwpd
@@ -25,7 +27,7 @@ P TRIBneon
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBsys-libdbus
-P TRIBv-python-37
+P TRIBv-python-39
 P TRIBx11-libepoxy
 P TRIBx11-libice
 P TRIBx11-libsm

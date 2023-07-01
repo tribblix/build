@@ -17,3 +17,9 @@
 -p1 loo7/xmleohlp.patch
 -p1 loo7/rtfcontrolwords.patch
 -p1 loo7/htmlattr.patch
+-p1 loo7/56-add-platform-mk.patch 
+-p1 loo7/57-configure.ca-enable-64bit-solaris.patch 
+-p1 loo7/57a-configure.patch 
+-p1 loo7/58-backtrace-c.patch 
+-p1 loo7/59-bridge-library.patch 
+-p1 loo7/61-fix-coinmp-makefile.patch 
