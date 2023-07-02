@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBjoblib-python-311 joblib-1.2.0
+${THOME}/build/pkg_pep518 TRIBjoblib-python-311 joblib-1.3.1
