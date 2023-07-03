@@ -629,7 +629,7 @@
  
 --- old/make/modules/java.base/gensrc/GensrcMisc.gmk	2020-05-20 17:59:11.161136042 -0700
 +++ new/make/modules/java.base/gensrc/GensrcMisc.gmk	2020-05-20 17:59:10.769128515 -0700
-@@ -138,21 +138,6 @@
+@@ -136,21 +136,6 @@
  
  endif
  
@@ -1170,7 +1170,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1593,10 +1593,8 @@
+@@ -1596,10 +1596,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1183,7 +1183,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1878,8 +1876,7 @@
+@@ -1881,8 +1879,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
