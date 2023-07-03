@@ -9,22 +9,13 @@
 # by default, package for 3.9, other versions optional
 #
 
-PY37VER=37
-PY37DVER=3.7
 PY39VER=39
 PY39DVER=3.9
 PY311VER=311
 PY311DVER=3.11
 
-DO37=""
 DO39="yes"
 DO311="yes"
-case $1 in
-    +37)
-	DO37="yes"
-	shift
-	;;
-esac
 case $1 in
     -39)
 	DO39=""
@@ -48,7 +39,7 @@ case $1 in
 	shift
 	;;
     *)
-	echo "Usage: $0 [+37|-39|-311] -s|-p pkg_name tarball_name"
+	echo "Usage: $0 [-39|-311] -s|-p pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -64,7 +55,6 @@ case $# in
 	;;
 esac
 
-PY37NAME=TRIB${pkg_name}-python-${PY37VER}
 PY39NAME=TRIB${pkg_name}-python-${PY39VER}
 PY311NAME=TRIB${pkg_name}-python-${PY311VER}
 
@@ -78,10 +68,6 @@ if [ $NAMELEN -gt 31 ]; then
     exit 1
 fi
 
-if [ -d "$PY37NAME" ]; then
-   echo "$PY37NAME already exists"
-   exit 1
-fi
 if [ -d "$PY39NAME" ]; then
    echo "$PY39NAME already exists"
    exit 1
@@ -101,26 +87,6 @@ PVER=${TBALL##*-}
 #
 # OK, now we can create the package metadata
 #
-
-if [ -n "$DO37" ]; then
-#
-# python 3.7
-#
-mkdir $PY37NAME
-echo "P TRIBv-python-$PY37VER" > $PY37NAME/depend
-cat > $PY37NAME/pkginfo <<EOF
-PKG="${PY37NAME}"
-NAME="Python $PNAME"
-VERSION="${PVER}.0"
-ZAP_URL="https://pypi.org/project/${PNAME}"
-EOF
-cat > $PY37NAME/build.sh <<EOF
-#!/bin/sh
-#
-\${THOME}/build/unpack$BUILDER $PY37NAME $TBALL
-EOF
-chmod a+x $PY37NAME/build.sh
-fi
 
 if [ -n "$DO39" ]; then
 #
