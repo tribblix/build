@@ -3,7 +3,7 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
-JDK 21 now that jdk20 has been forked off.
+JDK 21 now we're in rampdown.
 
 Issues known that indicate serious bugs, likely due to not integrating
 loom correctly as they date back to that change. Specifically, I
@@ -12,7 +12,7 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
-21+27, 21+28
+21+27, 21+28, 21+29
 
 No changes.
 
