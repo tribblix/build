@@ -123,4 +123,15 @@ done
 done
 fi
 
+#
+# check syntax of the ovl file
+#
+OUTMISS=`egrep -v '^(VERSION|NAME|REQUIRES|SERVICE)=' ${OVL}.ovl`
+if [ -n "${OUTMISS}" ]; then
+    echo ""
+    echo "Invalid syntax in ${OVL}.ovl:"
+    echo "============================================="
+    egrep -v '^(VERSION|NAME|REQUIRES|SERVICE)=' ${OVL}.ovl
+fi
+
 rm -f $TMPF ${TMPF}.t ${TMPF}.p
