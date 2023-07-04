@@ -1,4 +1,6 @@
 #!/bin/sh
+#
+VERSION="3.11"
 
 case `uname -p` in
 sparc)
@@ -8,8 +10,6 @@ i386)
   ARCH64="amd64"
   ;;
 esac
-
-VERSION="3.11"
 
 #
 # first strip out the tests
@@ -63,6 +63,7 @@ tar cf - usr/versions/python-${VERSION}/bin/idle* | ( cd $PTKDIR ; tar xf -)
 rm -f usr/versions/python-${VERSION}/bin/idle*
 mkdir -p $PTKDIR/usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} $PTKDIR/usr/bin
+ln -s ../../usr/versions/python-${VERSION}/bin/idle3 $PTKDIR/usr/bin
 #
 # having copied them off, package them
 #
@@ -70,7 +71,7 @@ $THOME/build/create_pkg TRIBv-python-311-tkinter $PTKDIR
 rm -fr $PTKDIR
 
 #
-# not yet the primary version, so only the version-specific
+# if not yet the primary version, only the version-specific
 # symlinks are created
 #
 mkdir -p usr/bin
@@ -81,38 +82,35 @@ cd ../../../..
 mkdir -p usr/share/man/man1
 cd usr/share/man/man1
 ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python${VERSION}.1 .
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 .
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 python.1
 cd ../../../..
 cd usr/bin
 #
-# symlinks for specific version
+# symlinks for this specific version
 #
 ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION}-config .
 ln -s ../../usr/versions/python-${VERSION}/bin/pydoc${VERSION} .
-#ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv-${VERSION} .
-#ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
 #
 # symlinks for general version
 #
-##ln -s ../../usr/versions/python-${VERSION}/bin/python3 .
-##ln -s ../../usr/versions/python-${VERSION}/bin/python3-config .
-##ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
-##ln -s ../../usr/versions/python-${VERSION}/bin/pyvenv .
-##ln -s ../../usr/versions/python-${VERSION}/bin/idle3 .
-##ln -s ../../usr/versions/python-${VERSION}/bin/pip3 .
+ln -s ../../usr/versions/python-${VERSION}/bin/python3 .
+ln -s ../../usr/versions/python-${VERSION}/bin/python3-config .
+ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
+ln -s ../../usr/versions/python-${VERSION}/bin/pip3 .
 #
-# python has its objects in paths without the 64-bit names
-# otherwise "Could not find platform dependent libraries <exec_prefix>"
-# but the system paths should be 64-bit
+# symlinks for bare unversioned names
+#
+ln -s ../../usr/versions/python-${VERSION}/bin/python3 python
+ln -s ../../usr/versions/python-${VERSION}/bin/pip3 pip
 #
 cd ../lib
-##cd $ARCH64
-##ln -s ../../versions/python-${VERSION}/lib/libpython3* .
-##cd ..
 cd $ARCH64
 cd pkgconfig
 ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}.pc .
+ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python3.pc .
 ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}-embed.pc .
 cd ..
 
