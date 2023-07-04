@@ -1,6 +1,6 @@
 --- a/nping/NpingOps.cc	Wed Jul 21 23:42:46 2021
 +++ b/nping/NpingOps.cc	Sun Apr 17 19:13:01 2022
-@@ -72,8 +72,8 @@
+@@ -70,8 +70,8 @@
  #include "ArgParser.h"
  #include "output.h"
  #include "common.h"

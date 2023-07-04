@@ -1,0 +1,10 @@
+--- a/charpool.cc	Fri Apr 14 18:11:46 2023
++++ b/charpool.cc	Tue Jul  4 16:57:11 2023
+@@ -69,6 +69,7 @@
+ /* Character pool memory allocation */
+ #include "charpool.h"
+ #include "nmap_error.h"
++#include <climits>
+ 
+ static CharPool g_charpool (16384);
+ 

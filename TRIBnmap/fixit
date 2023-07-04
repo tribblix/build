@@ -10,3 +10,11 @@ cd ../..
 #
 rm -fr usr/share/man/??
 rm -fr usr/share/man/??_??
+#
+# clean up ndiff
+#
+rm -f usr/bin/uninstall_ndiff
+mkdir -p usr/versions/python-3.11/lib/python3.11
+mv usr/lib/python3.11/site-packages usr/versions/python-3.11/lib/python3.11
+rmdir usr/lib/python3.11
+rmdir usr/lib
