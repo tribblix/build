@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild nano-4.3
-${THOME}/build/genpkg TRIBeditor-nano nano-4.3
+${THOME}/build/dobuild -64only nano-6.4
+${THOME}/build/genpkg TRIBeditor-nano nano-6.4
