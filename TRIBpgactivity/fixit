@@ -1,5 +1,5 @@
 #!/bin/sh
-PYVERS=3.9
+PYVERS=3.11
 
 mkdir -p usr/bin
 
