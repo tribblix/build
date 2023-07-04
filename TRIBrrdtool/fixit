@@ -8,14 +8,7 @@ rm -fr usr/share/rrdtool
 rm -f usr/lib/librrd.la
 rm -f usr/lib/*/librrd.la
 #
-# this is where our python really lives
-#
-mkdir -p usr/versions/python-3.9/lib/python3.9/site-packages
-mv usr/lib/python3.9/site-packages/* usr/versions/python-3.9/lib/python3.9/site-packages
-rmdir usr/lib/python3.9/site-packages
-rmdir usr/lib/python3.9
-#
-# ditto perl
+# fix perl location
 #
 mkdir -p usr/perl5/site_perl
 rm usr/lib/perl/5.34.0/i86pc-solaris-thread-multi-64/perllocal.pod
