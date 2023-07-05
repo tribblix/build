@@ -25,20 +25,21 @@
 # if you update the python version, you need to build the whole cycle
 # from scratch, as xcb-proto is tied to a given python version
 #
-${THOME}/build/dobuild xcb-proto-1.14
+${THOME}/build/dobuild xcb-proto-1.15.2
 ${THOME}/build/dobuild libpthread-stubs-0.4
 # [install]
-# we had xevie and xprint before, so enable them in this version too
-${THOME}/build/dobuild -64 libxcb-1.14 -C "--enable-xprint --enable-xevie"
+# we had xevie and xprint before, but no consumers
+# if switching python, can add -C "PYTHON=python3.9" to select
+${THOME}/build/dobuild -64 libxcb-1.15
 # [install]
-${THOME}/build/dobuild -64 xcb-util-0.4.0
+${THOME}/build/dobuild -64 xcb-util-0.4.1
 # [install]
-${THOME}/build/dobuild -64 xcb-util-wm-0.4.1
-${THOME}/build/dobuild -64 xcb-util-image-0.4.0
-${THOME}/build/dobuild -64 xcb-util-keysyms-0.4.0
-${THOME}/build/dobuild -64 xcb-util-renderutil-0.3.9
+${THOME}/build/dobuild -64 xcb-util-wm-0.4.2
+${THOME}/build/dobuild -64 xcb-util-image-0.4.1
+${THOME}/build/dobuild -64 xcb-util-keysyms-0.4.1
+${THOME}/build/dobuild -64 xcb-util-renderutil-0.3.10
 # [install]
-${THOME}/build/dobuild -64 xcb-util-cursor-0.1.3
-${THOME}/build/dobuild -64 xcb-util-errors-1.0
+${THOME}/build/dobuild -64 xcb-util-cursor-0.1.4
+${THOME}/build/dobuild -64 xcb-util-errors-1.0.1
 
-${THOME}/build/genpkg TRIBlibxcb xcb-proto-1.14 libpthread-stubs-0.4 libxcb-1.14 xcb-util-0.4.0 xcb-util-wm-0.4.1 xcb-util-image-0.4.0 xcb-util-keysyms-0.4.0 xcb-util-renderutil-0.3.9 xcb-util-cursor-0.1.3 xcb-util-errors-1.0
+${THOME}/build/genpkg TRIBlibxcb xcb-proto-1.15.2 libpthread-stubs-0.4 libxcb-1.15 xcb-util-0.4.1 xcb-util-wm-0.4.2 xcb-util-image-0.4.1 xcb-util-keysyms-0.4.1 xcb-util-renderutil-0.3.10 xcb-util-cursor-0.1.4 xcb-util-errors-1.0.1
