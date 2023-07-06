@@ -15,3 +15,6 @@ esac
 #
 rm -f usr/lib/lib*.la
 rm -f usr/lib/${ARCH64}/lib*.la
+
+rm -f usr/bin/pngfix usr/bin/png-fix-itxt
+rm -f usr/bin/${ARCH64}/pngfix usr/bin/${ARCH64}/png-fix-itxt
