@@ -12,7 +12,7 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
-21+27, 21+28, 21+29
+21+27, 21+28, 21+29, 21+30
 
 No changes.
 
