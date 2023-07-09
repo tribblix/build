@@ -18,7 +18,7 @@ diff --git a/Makefile.in b/Makefile.in
 index d401787..c124ef6 100644
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -291,7 +291,16 @@ install-nokeys: $(CONFIGFILES) $(MANPAGES) $(TARGETS) install-files install-sysc
+@@ -387,7 +387,16 @@ install-nokeys: $(CONFIGFILES) $(MANPAGES) $(TARGETS) install-files install-sysc
  install-nosysconf: $(CONFIGFILES) $(MANPAGES) $(TARGETS) install-files
  
  check-config:
@@ -35,7 +35,7 @@ index d401787..c124ef6 100644
 +	@echo 'Oracle Solaris: skipping check-config'
  
  install-files:
- 	$(srcdir)/mkinstalldirs $(DESTDIR)$(bindir)
+ 	$(MKDIR_P) $(DESTDIR)$(bindir)
 -- 
 2.5.4 (Apple Git-61)
 

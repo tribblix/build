@@ -11,26 +11,26 @@ diff --git a/configure.ac b/configure.ac
 index 1846eb2..580fa5c 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -4081,6 +4081,11 @@ AC_ARG_WITH([kerberos5],
- 		AC_PATH_PROG([KRB5CONF], [krb5-config],
- 			     [$KRB5ROOT/bin/krb5-config],
- 			     [$KRB5ROOT/bin:$PATH])
-+		# Illumos has GSS but krb5-config doesn't talk about it
-+		# Fall back to regular probing for libs
-+		if uname -rs | grep 'SunOS 5.11' ; then
-+			KRB5CONF=nonexistent
-+		fi
- 		if test -x $KRB5CONF ; then
- 			K5CFLAGS="`$KRB5CONF --cflags`"
- 			K5LIBS="`$KRB5CONF --libs`"
-@@ -4122,6 +4127,6 @@ AC_ARG_WITH([kerberos5],
- 					 AC_CHECK_LIB([des], [des_cbc_encrypt],
- 					   [K5LIBS="$K5LIBS -ldes"])
- 				       ], [ AC_MSG_RESULT([no])
--					 K5LIBS="-lkrb5 -lk5crypto -lcom_err"
-+					 K5LIBS="-lkrb5"
- 			])
- 			AC_SEARCH_LIBS([dn_expand], [resolv])
+@@ -4690,6 +4690,11 @@ AC_ARG_WITH([kerberos5],
+ 			AC_PATH_PROG([KRB5CONF], [krb5-config],
+ 				     [$KRB5ROOT/bin/krb5-config],
+ 				     [$KRB5ROOT/bin:$PATH])
++			# Illumos has GSS but krb5-config doesn't talk about it
++			# Fall back to regular probing for libs
++			if uname -rs | grep 'SunOS 5.11' ; then
++				KRB5CONF=nonexistent
++			fi
+ 			if test -x $KRB5CONF ; then
+ 				K5CFLAGS="`$KRB5CONF --cflags`"
+ 				K5LIBS="`$KRB5CONF --libs`"
+@@ -4731,6 +4736,6 @@ AC_ARG_WITH([kerberos5],
+ 						 AC_CHECK_LIB([des], [des_cbc_encrypt],
+ 						   [K5LIBS="$K5LIBS -ldes"])
+ 					       ], [ AC_MSG_RESULT([no])
+-						 K5LIBS="-lkrb5 -lk5crypto -lcom_err"
++						 K5LIBS="-lkrb5"
+ 				])
+ 				AC_SEARCH_LIBS([dn_expand], [resolv])
 -- 
 2.5.4 (Apple Git-61)
 

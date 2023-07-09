@@ -1,7 +1,8 @@
 #!/bin/sh
 #
 # The original solaris had ssh split into 3 packages
-# We replicate the split here
+# We replicate the split here, although TRIBnet-ssh-ssh-key and
+# ssh-keysign are now deprecated
 #
 
 mv usr .usr

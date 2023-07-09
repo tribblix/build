@@ -1,7 +1,7 @@
 diff -ru openssh-7.1p1.orig/sshd_config openssh-7.1p1/sshd_config
 --- openssh-7.1p1.orig/sshd_config	Fri Aug 21 00:49:03 2015
 +++ openssh-7.1p1/sshd_config	Wed Sep  2 08:52:58 2015
-@@ -41,7 +41,7 @@
+@@ -29,7 +29,7 @@
  # Authentication:
  
  #LoginGraceTime 2m
@@ -10,7 +10,7 @@ diff -ru openssh-7.1p1.orig/sshd_config openssh-7.1p1/sshd_config
  #StrictModes yes
  #MaxAuthTries 6
  #MaxSessions 10
-@@ -103,7 +103,7 @@
+@@ -88,7 +88,7 @@
  #X11DisplayOffset 10
  #X11UseLocalhost yes
  #PermitTTY yes
@@ -18,4 +18,4 @@ diff -ru openssh-7.1p1.orig/sshd_config openssh-7.1p1/sshd_config
 +PrintMotd no
  #PrintLastLog yes
  #TCPKeepAlive yes
- #UseLogin no
+ #PermitUserEnvironment no

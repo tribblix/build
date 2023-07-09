@@ -18,7 +18,7 @@ diff --git a/servconf.c b/servconf.c
 index b19d30e..c6f4bdd 100644
 --- a/servconf.c
 +++ b/servconf.c
-@@ -199,7 +199,12 @@ fill_default_server_options(ServerOptions *options)
+@@ -277,7 +277,12 @@ fill_default_server_options(ServerOptions *options)
  
  	/* Portable-specific options */
  	if (options->use_pam == -1)
@@ -30,8 +30,8 @@ index b19d30e..c6f4bdd 100644
 +#endif
  
  	/* Standard Options */
- 	if (options->protocol == SSH_PROTO_UNKNOWN)
-@@ -1008,8 +1013,17 @@ process_server_config_line(ServerOptions *options, char *line,
+ 	if (options->num_host_key_files == 0) {
+@@ -1328,8 +1333,17 @@ process_server_config_line_depth(ServerOptions *options, char *line,
  	switch (opcode) {
  	/* Portable-specific options */
  	case sUsePAM:

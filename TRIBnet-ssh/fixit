@@ -1,10 +1,11 @@
 #!/bin/sh
 #
 # The original solaris had ssh split into 3 packages
-# We replicate the split here
+# We replicate the split here, although TRIBnet-ssh-ssh-key and
+# ssh-keysign are now deprecated
 #
 
-# remove files from TRIBnet-ssh-ssh-key
+# remove files that used to be shipped in TRIBnet-ssh-ssh-key
 rm -f usr/lib/ssh/ssh-keysign
 rm -f usr/share/man/man8/ssh-keysign.8
 

@@ -23,7 +23,7 @@ diff --git a/auth-pam.c b/auth-pam.c
 index d049779..8bad498 100644
 --- a/auth-pam.c
 +++ b/auth-pam.c
-@@ -1084,12 +1084,19 @@ do_pam_setcred(int init)
+@@ -1106,12 +1106,19 @@ do_pam_setcred(int init)
  		sshpam_cred_established = 1;
  		return;
  	}
@@ -43,7 +43,7 @@ index d049779..8bad498 100644
  }
  
  static int
-@@ -1182,10 +1189,16 @@ do_pam_session(void)
+@@ -1207,10 +1215,16 @@ do_pam_session(void)
  	if (sshpam_err == PAM_SUCCESS)
  		sshpam_session_open = 1;
  	else {
