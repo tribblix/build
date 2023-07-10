@@ -1,4 +1,0 @@
-PKG="TRIBcommonmark-python-39"
-NAME="Python commonmark"
-VERSION="0.9.1.0"
-ZAP_URL="https://pypi.org/project/commonmark"

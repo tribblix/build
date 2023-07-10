@@ -1,4 +1,0 @@
-PKG="TRIBdefusedxml-python-39"
-NAME="Python defusedxml"
-VERSION="0.7.1.0"
-ZAP_URL="https://pypi.org/project/defusedxml"
