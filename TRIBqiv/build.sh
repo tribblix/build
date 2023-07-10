@@ -2,10 +2,9 @@
 #
 # qiv (needs imlib2)
 #
-${THOME}/build/dobuild qiv-2.3.2
-cd qiv-2.3.2
+${THOME}/build/dobuild qiv-2.3.3
+cd qiv-2.3.3
 rm -fr /tmp/iq
-mkdir -p /tmp/iq/usr/share/man/man1
-gmake install PREFIX=/tmp/iq/usr
+gmake install PREFIX=/tmp/iq/usr INSTALL=ginstall
 ${THOME}/build/create_pkg TRIBqiv /tmp/iq
 rm -fr /tmp/iq

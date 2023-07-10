@@ -1,0 +1,4 @@
+#!/bin/sh
+sed -i -e s:/usr/local:/usr: -e 's:install -: ginstall -:' Makefile
+#
+sed -i s:u_int32_t:uint32_t: qiv.h
