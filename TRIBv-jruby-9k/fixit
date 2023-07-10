@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-VERSION=9.3.10.0
+VERSION=9.4.3.0
 #
 # make default
 #
@@ -25,8 +25,10 @@ rm -fr lib/ruby/stdlib/ffi/platform/*aix
 rm -fr lib/ruby/stdlib/ffi/platform/*gnu
 rm -fr lib/ruby/stdlib/ffi/platform/*haiku
 rm -fr lib/ruby/stdlib/ffi/platform/*msys
+rm -fr lib/ruby/stdlib/ffi/platform/i386-solaris
 rm -fr lib/jni/*Windows
 rm -fr lib/jni/*Linux
 rm -fr lib/jni/*BSD
 rm -fr lib/jni/*AIX
 rm -fr lib/jni/Darwin
+rm -fr lib/jni/i386-SunOS
