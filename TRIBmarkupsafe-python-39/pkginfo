@@ -1,4 +1,0 @@
-PKG="TRIBmarkupsafe-python-39"
-NAME="Python MarkupSafe"
-VERSION="2.1.3.0"
-ZAP_URL="https://pypi.org/project/MarkupSafe"
