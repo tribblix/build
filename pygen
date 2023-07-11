@@ -6,7 +6,7 @@
 #
 
 #
-# by default, package for 3.9, other versions optional
+# by default, package for 3.11, other versions optional
 #
 
 PY39VER=39
@@ -14,11 +14,11 @@ PY39DVER=3.9
 PY311VER=311
 PY311DVER=3.11
 
-DO39="yes"
+DO39=""
 DO311="yes"
 case $1 in
-    -39)
-	DO39=""
+    +39)
+	DO39="yes"
 	shift
 	;;
 esac
