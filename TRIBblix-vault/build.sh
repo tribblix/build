@@ -6,11 +6,12 @@ mkdir ~/ud/v
 cd ~/ud/v
 git clone https://github.com/hashicorp/vault.git
 cd vault
-git checkout v1.12.0
+git checkout v1.12.5
 
+# newer versions fail to make bootstrap
 gmake bootstrap
 # needs gnu grep for the version check to work
-env PATH=/usr/versions/go-1.19/bin:/usr/gnu/bin:$PATH gmake
+env PATH=/usr/versions/go-1.20/bin:/usr/gnu/bin:$PATH gmake
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/vault/bin
