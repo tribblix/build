@@ -5,8 +5,6 @@ cd rr
 git clone https://github.com/restic/restic
 cd restic
 #
-# at least go 1.14
-#
 go run build.go
 
 rm -fr /tmp/rr
