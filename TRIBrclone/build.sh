@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-$THOME/build/unpack rclone-v1.62.2
-cd rclone-v1.62.2
+$THOME/build/unpack rclone-v1.63.0
+cd rclone-v1.63.0
 env PATH=/usr/gnu/bin:$PATH gmake
 
 rm -fr /tmp/cs
