@@ -2,8 +2,6 @@
 #
 
 #
-# go get doesn't work with newer versions of go
-#
 env GOPATH=`pwd` go install github.com/barnybug/cli53/cmd/cli53@latest
 
 rm -fr /tmp/cs
