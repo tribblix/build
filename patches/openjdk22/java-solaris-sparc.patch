@@ -184,38 +184,6 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
---- old/make/autoconf/lib-freetype.m4	2020-05-20 17:58:37.892497260 -0700
-+++ new/make/autoconf/lib-freetype.m4	2020-05-20 17:58:37.512489963 -0700
-@@ -53,13 +53,6 @@
-     if ! test -s "$POTENTIAL_FREETYPE_LIB_PATH/$FREETYPE_LIB_NAME"; then
-       AC_MSG_NOTICE([Could not find $POTENTIAL_FREETYPE_LIB_PATH/$FREETYPE_LIB_NAME. Ignoring location.])
-       FOUND_FREETYPE=no
--    else
--      if test "x$OPENJDK_TARGET_OS" = "xsolaris" \
--          && test -s "$POTENTIAL_FREETYPE_LIB_PATH$OPENJDK_TARGET_CPU_ISADIR/$FREETYPE_LIB_NAME"; then
--        # Found lib in isa dir, use that instead.
--        POTENTIAL_FREETYPE_LIB_PATH="$POTENTIAL_FREETYPE_LIB_PATH$OPENJDK_TARGET_CPU_ISADIR"
--        AC_MSG_NOTICE([Rewriting to use $POTENTIAL_FREETYPE_LIB_PATH instead])
--      fi
-     fi
-   fi
- 
-@@ -167,15 +160,6 @@
-           if test "x$PKG_CONFIG" != "x" ; then
-             PKG_CHECK_MODULES(FREETYPE, freetype2, [FOUND_FREETYPE=yes], [FOUND_FREETYPE=no])
-             if test "x$FOUND_FREETYPE" = "xyes" ; then
--              # On solaris, pkg_check adds -lz to freetype libs, which isn't
--              # necessary for us.
--              FREETYPE_LIBS=`$ECHO $FREETYPE_LIBS | $SED 's/-lz//g'`
--              # 64-bit libs for Solaris x86 are installed in the amd64
--              # subdirectory, change lib to lib/amd64
--              if test "x$OPENJDK_TARGET_OS" = "xsolaris" && \
--                  test "x$OPENJDK_TARGET_CPU" = "xx86_64" ; then
--                FREETYPE_LIBS=`$ECHO $FREETYPE_LIBS | $SED 's?/lib?/lib/amd64?g'`
--              fi
-               AC_MSG_CHECKING([for freetype])
-               AC_MSG_RESULT([yes (using pkg-config)])
-             fi
 --- old/make/autoconf/libraries.m4	2020-05-20 17:58:41.188560546 -0700
 +++ new/make/autoconf/libraries.m4	2020-05-20 17:58:40.768552482 -0700
 @@ -145,15 +145,13 @@
@@ -1170,7 +1138,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1596,10 +1596,8 @@
+@@ -1601,10 +1601,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1183,7 +1151,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1881,8 +1879,7 @@
+@@ -1886,8 +1884,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1398,7 +1366,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1082,7 +1082,7 @@
+@@ -1073,7 +1073,7 @@
  
  #ifndef PRODUCT
  
@@ -1409,16 +1377,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -106,7 +106,7 @@
-   "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
-   "PATH", "USERNAME",
- 
--  // Env variables that are defined on Solaris/Linux/BSD
-+  // Env variables that are defined on Linux/BSD
-   "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
-   "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
-   "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1865,8 +1865,6 @@
+@@ -1867,8 +1867,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1427,7 +1386,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1931,8 +1929,6 @@
+@@ -1933,8 +1931,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1830,7 +1789,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -601,7 +594,7 @@
+@@ -603,7 +596,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -9400,7 +9359,7 @@
 -
 -void os::print_memory_info(outputStream* st) {
 -  st->print("Memory:");
--  st->print(" %dk page", os::vm_page_size()>>10);
+-  st->print(" " SIZE_FORMAT "k page", os::vm_page_size()>>10);
 -  st->print(", physical " UINT64_FORMAT "k", os::physical_memory()>>10);
 -  st->print("(" UINT64_FORMAT "k free)", os::available_memory() >> 10);
 -  st->cr();
