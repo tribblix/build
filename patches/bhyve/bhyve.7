@@ -11,9 +11,9 @@
 .\" Copyright 2016, Joyent, Inc.
 .\" Copyright 2016, OmniTI Computer Consulting, Inc. All Rights Reserved.
 .\" Copyright 2021 OmniOS Community Edition (OmniOSce) Association.
-.\" Copyright 2022 Peter Tribble
+.\" Copyright 2023 Peter Tribble
 .\"
-.Dd September 28, 2022
+.Dd July 13, 2023
 .Dt BHYVE 7
 .Os Tribblix
 .Sh NAME
@@ -252,7 +252,7 @@ option is enabled, the provided
 .Ar password
 will be passed to the guest which can use it to set the password for the
 default user.
-Depending on the guest, this may be the root user or a distribution-dependant
+Depending on the guest, this may be the root user or a distribution-dependent
 initial user.
 .Ar password
 can be provided as a fixed string, a pre-computed hash or a path to a file
@@ -448,7 +448,7 @@ result in I/O port queries and fail to boot if I/O decode is disabled.
 .Xc
 .Sm on
 .Pp
-This parameter controls whether a virtual frambuffer is attached to the
+This parameter controls whether a virtual framebuffer is attached to the
 guest and made available via VNC.
 Available options are:
 .Bl -tag -width Ds
@@ -488,21 +488,13 @@ See also
 .Sy xhci
 below.
 .Pp
-The
-.Nm
-brand also ships a mini socat utility that can be used to connect the socket to
-a TCP port.
-The utility can be invoked like so:
-.Bd -literal -offset indent
-/usr/lib/brand/bhyve/socat \e
-        /zones/bhyve/root/tmp/vm.vnc 5905
-.Ed
-.Pp
-If you prefer, you can also use the real socat utility that's shipped in core:
+To enable a VNC viewer to connect, use the socat utility to expose the
+UNIX socket on a TCP port (there is a 5900 offset, so port 5905
+represents VNC display :5)
 .Bd -literal -offset indent
 /usr/bin/socat \e
         TCP-LISTEN:5905,bind=127.0.0.1,reuseaddr,fork \e
-        UNIX-CONNECT:/zones/bhyve/root/tmp/vm.vnc
+        UNIX-CONNECT:/export/zones/bhyve/root/tmp/vm.vnc
 .Ed
 .It Xo Sy xhci
 .Sm off
