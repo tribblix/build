@@ -1,0 +1,4 @@
+-p1 gs/CVE-2022-2085.patch
+-p1 gs/CVE-2023-28879.patch
+-p1 gs/CVE-2023-36664-1.patch
+-p1 gs/CVE-2023-36664-2.patch
