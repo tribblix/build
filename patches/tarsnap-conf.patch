@@ -1,0 +1,11 @@
+--- tarsnap-autoconf-1.0.40-64bit/configure~	Fri Feb 11 06:47:32 2022
++++ tarsnap-autoconf-1.0.40-64bit/configure	Sat Jul 15 15:49:13 2023
+@@ -6244,8 +6244,6 @@
+ 
+ case $target_os in
+ *solaris* | *sunos*)
+-	CPPFLAGS="${CPPFLAGS} -I/usr/sfw/include"
+-	LDFLAGS="${LDFLAGS} -L/usr/sfw/lib -R/usr/sfw/lib"
+ 	LIBS="${LIBS} -lsocket -lnsl"
+ 	;;
+ esac
