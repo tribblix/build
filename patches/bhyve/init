@@ -54,20 +54,21 @@ else:
 
 # Default values
 opts = {
-    'acpi':         'on',
-    'bootorder':    'cd',
-    'bootrom':      'BHYVE_RELEASE_CSM',
-    'cloud-init':   'off',
-    'console':      '/dev/zconsole',
-    'diskif':       'virtio-blk',
-    'extra':        '',
-    'hostbridge':   'i440fx',
-    'netif':        'virtio-net-viona',
-    'ram':          '1G',
-    'type':         'generic',
-    'vcpus':        '1',
-    'vnc':          'off',
-    'xhci':         '',
+    'acpi':             'on',       # No effect on illumos bhyve
+    'bootorder':        'cd',
+    'bootrom':          'BHYVE_RELEASE_CSM',
+    'cloud-init':       'off',
+    'console':          '/dev/zconsole',
+    'diskif':           'virtio-blk',
+    'extra':            '',
+    'hostbridge':       'i440fx',
+    'netif':            'virtio-net-viona',
+    'ram':              '1G',
+    'rng':              'off',
+    'type':             'generic',
+    'vcpus':            '1',
+    'vnc':              'off',
+    'xhci':             '',
 }
 
 aliases = {
@@ -370,10 +371,6 @@ if opts['type'] == 'openbsd':
 if uuid:
     args.extend(['-U', uuid])
 
-# The ACPI option has no effect with illumos bhyve
-#if boolv(opts['acpi'], 'acpi'):
-#    args.append('-A')
-
 args.extend([
     '-H',
     '-B', '1,manufacturer={},product={},version={},serial={},sku={},family={}'
@@ -485,6 +482,11 @@ for i, v in build_devlist('virtfs', 8).items():
         fatal(f'Bad virtfs specification: {v}')
     args.extend(['-s', '{0}:{1},virtio-9p,{2}={3}{4}'.format(
         VIRTFS_SLOT, i, arr[0], arr[1], vfsopts)])
+
+# RNG
+
+if boolv(opts['rng'], 'rng'):
+    args.extend(['-s', '{0}:0,virtio-rnd'.format(RNG_SLOT)])
 
 # Extra options
 
