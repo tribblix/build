@@ -1,4 +1,9 @@
-P TRIBlib-security-openssl
+P TRIBgnutls
+P TRIBlib-gmp
 P TRIBlibao
+P TRIBlibsamplerate
+P TRIBlibtasn1
+P TRIBnettle
 P TRIBx11-libx11
+P TRIBx11-libxcursor
 P TRIBx11-libxrandr
