@@ -3,7 +3,8 @@
 #
 git clone https://github.com/LibreCAD/LibreCAD
 cd LibreCAD
-gmake
+env PATH=/usr/versions/Qt-5/bin:$PATH qmake -r
+env PATH=/usr/versions/Qt-5/bin:$PATH gmake -j 4
 
 rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/versions/LibreCAD
