@@ -2,8 +2,7 @@
 #
 # clamav-rest
 #
-# original versions were patched, now fixed at origin
-# also openjdk8 is now fixed so work for mvn
+# seems to not bump the jarfile version
 #
 git clone https://github.com/solita/clamav-rest.git
 cd clamav-rest
