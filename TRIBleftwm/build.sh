@@ -11,11 +11,11 @@
 #
 
 #
-$THOME/build/unpack leftwm-0.4.1
-cd leftwm-0.4.1
+$THOME/build/unpack leftwm-0.4.2
+cd leftwm-0.4.2
 # cargo build --release
 # need to be specific, defaults to journald == systemd
-cargo build --profile optimized --no-default-features --features=lefthk,file-log
+env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --profile optimized --no-default-features --features=lefthk,file-log
 cd ..
 #
 # note leftwm-theme is the theme manager, it doesn't actually contain any
@@ -28,27 +28,30 @@ cd ..
 #
 git clone https://github.com/leftwm/leftwm-theme.git
 cd leftwm-theme
-cargo build --release
+env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --release
 cd ..
 
 #
 # utility for the new ron-based config
 #
-#git clone https://github.com/leftwm/leftwm-config.git
-#cd leftwm-config
-#cargo build --release
-#cd ..
+git clone https://github.com/leftwm/leftwm-config.git
+cd leftwm-config
+env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --release
+cd ..
 
 rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/bin
 mkdir -p /tmp/ll/usr/share/man/man1
 
-cd leftwm-0.4.1
+cd leftwm-0.4.2
 ginstall -s -Dm755 ./target/optimized/leftwm ./target/optimized/leftwm-worker ./target/optimized/leftwm-state ./target/optimized/leftwm-check ./target/optimized/leftwm-command ./target/optimized/lefthk-worker -t /tmp/ll/usr/bin
 ginstall -m644 ./leftwm/doc/leftwm.1 -t /tmp/ll/usr/share/man/man1
 cd ..
 cd leftwm-theme
 ginstall -s -Dm755 ./target/release/leftwm-theme -t /tmp/ll/usr/bin
+cd ..
+cd leftwm-config
+ginstall -s -Dm755 ./target/release/leftwm-config -t /tmp/ll/usr/bin
 cd ..
 ${THOME}/build/create_pkg TRIBleftwm /tmp/ll
 rm -fr /tmp/ll
