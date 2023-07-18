@@ -21,13 +21,12 @@ cd ..
 
 #
 # the new build with the react app requires yarn and node
-# 2.31 requires node v16
 #
 git clone https://github.com/prometheus/prometheus.git
 cd prometheus
 # be specific, 2.37 is LTS
 git checkout v2.37.8
-env PATH=/usr/gnu/bin:/usr/versions/yarn-v1.22.19/bin:/usr/versions/node-v16/bin:/usr/versions/go-1.20/bin:$PATH gmake build
+env PATH=/usr/gnu/bin:/usr/versions/yarn-v1.22.19/bin:/usr/versions/node-v20/bin:/usr/versions/go-1.20/bin:$PATH gmake build
 cd ..
 
 rm -fr /tmp/ppr1
