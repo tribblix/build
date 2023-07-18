@@ -4,9 +4,9 @@
 #
 
 mv usr/bin/wireshark .
-mv usr/share/applications/wireshark.desktop .
+mv usr/share/applications/org.wireshark.Wireshark.desktop .
 rm -fr usr
 mkdir -p usr/bin
 mv wireshark usr/bin/wireshark
 mkdir -p usr/share/applications
-mv wireshark.desktop usr/share/applications/wireshark.desktop
+mv org.wireshark.Wireshark.desktop usr/share/applications/org.wireshark.Wireshark.desktop

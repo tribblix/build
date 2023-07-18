@@ -10,7 +10,8 @@
 mv "usr/share/wireshark/profiles/No Reassembly" "usr/share/wireshark/profiles/No_Reassembly"
 
 #
-# keep the gui separately to slim the dependency tree
+# ship the gui separately to slim the dependency tree
 #
 rm -f usr/bin/wireshark
 rm -f usr/share/applications/wireshark.desktop
+rm -f usr/share/applications/org.wireshark.Wireshark.desktop
