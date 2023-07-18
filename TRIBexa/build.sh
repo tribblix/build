@@ -6,10 +6,10 @@ git clone https://github.com/ogham/exa
 cd exa
 # we need a libc crate that knows we have getgrouplist()
 cargo update -p libc --precise 0.2.125
-cargo build --release
+env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --release
 # and now we've downloaded users we need to fix that
 sed -i s:solaris:illumos: ${HOME}/.cargo/registry/src/github.com-1ecc6299db9ec823/users-0.11.0/src/*.rs
-cargo build --release
+env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --release
 
 # the man page requires pandoc or similar
 
