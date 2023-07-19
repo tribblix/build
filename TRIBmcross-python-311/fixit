@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# don't put in the regular path yet
-#
-exit 0
-PYVERS=3.11
-mkdir -p usr/bin
-cd usr/bin
-ln -s ../../usr/versions/python-${PYVERS}/bin/* .
