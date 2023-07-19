@@ -63,6 +63,7 @@ opts = {
     'extra':            '',
     'hostbridge':       'i440fx',
     'netif':            'virtio-net-viona',
+    'priv.debug':       'off',
     'ram':              '1G',
     'rng':              'off',
     'type':             'generic',
@@ -487,6 +488,10 @@ for i, v in build_devlist('virtfs', 8).items():
 
 if boolv(opts['rng'], 'rng'):
     args.extend(['-s', '{0}:0,virtio-rnd'.format(RNG_SLOT)])
+
+# priv.debug
+if boolv(opts['priv.debug'], 'priv.debug'):
+    args.extend(['-o', 'privileges.debug=true'])
 
 # Extra options
 

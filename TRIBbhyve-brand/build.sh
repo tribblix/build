@@ -12,6 +12,7 @@
 # this has been modified since the initial copy
 # createzone has a modified path to common.ksh
 # init has been heavily modified to add cloud-init and virtfs and rng
+# and priv.debug
 #
 mkdir tmp1
 cd tmp1
