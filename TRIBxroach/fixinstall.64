@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+mkdir -p ${DESTDIR}/usr/bin
+cp xroach ${DESTDIR}/usr/bin/xroach
+# we're in the build directory, the manpage is one level up
+mkdir -p ${DESTDIR}/usr/share/man/man1
+cp ../xroach.man ${DESTDIR}/usr/share/man/man1/xroach.1

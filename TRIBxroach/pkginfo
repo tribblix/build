@@ -1,0 +1,4 @@
+PKG="TRIBxroach"
+NAME="Classic xroach game for X11"
+VERSION="1.0"
+ZAP_URL="https://github.com/interkosmos/xroach"
