@@ -975,7 +975,7 @@
 -
  ifeq ($(call isTargetOs, windows), true)
    BUILD_HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
-   BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libTestPsig.c libnativeStack.c exeGetCreatedJavaVMs.c
+   BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libTestPsig.c exeGetCreatedJavaVMs.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
 @@ -107,9 +107,6 @@
@@ -990,7 +990,7 @@
    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeCallerAccessTest := -ljvm
 --- old/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.533642413 -0700
 +++ new/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.197635961 -0700
-@@ -67,7 +67,7 @@
+@@ -68,7 +68,7 @@
  #define INCLUDE_RTM_OPT 1
  #endif
  
@@ -1377,7 +1377,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1867,8 +1867,6 @@
+@@ -1870,8 +1870,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1386,7 +1386,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1933,8 +1931,6 @@
+@@ -1936,8 +1934,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1627,7 +1627,7 @@
      }
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.971321280 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.583313830 -0700
-@@ -779,15 +779,7 @@
+@@ -754,15 +754,7 @@
                      ("NOFOLLOW_LINKS is not supported on this platform");
              flags |= O_NOFOLLOW;
          }
@@ -3697,7 +3697,7 @@
              return getBSDServiceAttributes();
 --- old/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.805218963 -0700
 +++ new/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.465212435 -0700
-@@ -64,57 +61,7 @@
+@@ -57,57 +57,7 @@
  
  #define MAXFDIRS 512    /* Max number of directories that contain fonts */
  
@@ -3756,7 +3756,7 @@
  /* All the known interesting locations we have discovered on
   * various flavors of Linux
   */
-@@ -230,14 +177,6 @@
+@@ -223,14 +173,6 @@
          if (strstr(x11Path[i], ".gnome") != NULL) {
              continue;
          }
@@ -3771,7 +3771,7 @@
          fontdirs[pos] = strdup(x11Path[i]);
          slen = strlen(fontdirs[pos]);
          if (slen > 0 && fontdirs[pos][slen-1] == '/') {
-@@ -387,8 +326,6 @@
+@@ -380,8 +322,6 @@
  
  #if defined(__linux__)
      knowndirs = fullLinuxFontPath;

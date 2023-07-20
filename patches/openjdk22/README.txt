@@ -15,6 +15,10 @@ rather than the current stub.
 22+6
 
 Trivial patch noise.
+
+22+6
+
+Trivial patch noise.
 Dropped the old make/autoconf/lib-freetype.m4 patch, as it's
 not relevant to us.
 Fix format warning in print_memory_info()
