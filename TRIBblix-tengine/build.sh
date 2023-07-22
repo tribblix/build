@@ -7,5 +7,5 @@
 # it up for LDFLAGS so the link fails; hence we tell it directly
 # via $CC (and don't use --with-cc any more)
 #
-env CC="gcc -m64" ${THOME}/build/dobuild tengine-2.3.3 -P /opt/tribblix/tengine -C "--user=tengine --group=tengine --with-http_ssl_module --with-http_v2_module --with-http_stub_status_module --with-http_realip_module"
-${THOME}/build/genpkg TRIBblix-tengine tengine-2.3.3
+env CC="gcc -m64" ${THOME}/build/dobuild tengine-3.0.0 -P /opt/tribblix/tengine -C "--user=tengine --group=tengine --with-http_ssl_module --with-http_v2_module --with-http_stub_status_module --with-http_realip_module"
+${THOME}/build/genpkg TRIBblix-tengine tengine-3.0.0
