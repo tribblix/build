@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBpmd pmd-bin-6.55.0
+${THOME}/build/pkg_tarball TRIBpmd pmd-dist-7.0.0-rc3-bin
