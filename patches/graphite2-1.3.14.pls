@@ -1,0 +1,1 @@
+-p1 graphite2-01-install-paths.patch
