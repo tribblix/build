@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBcertifi-python-311 certifi-2023.5.7
+${THOME}/build/pkg_setup_py TRIBcertifi-python-311 certifi-2023.7.22
