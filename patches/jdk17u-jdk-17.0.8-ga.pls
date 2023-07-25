@@ -36,6 +36,7 @@
 -p1 openjdk17/illumos-port-13.patch
 -p1 openjdk17/illumos-port-14.patch
 -p1 openjdk17/illumos-port-15.patch
+-p1 openjdk17/illumos-port-16.patch
 -p1 openjdk17/illumos-zero-1.patch
 -p1 openjdk17/illumos-zero-2.patch
 -p1 openjdk17/sparc-bitness.patch

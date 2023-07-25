@@ -24,35 +24,6 @@
  src/hotspot/os_cpu/windows_x86 : hotspot/src/os_cpu/windows_x86/vm
  src/hotspot : hotspot/src
  src/utils/IdealGraphVisualizer : hotspot/src/share/tools/IdealGraphVisualizer
---- old/make/Bundles.gmk	2020-05-20 17:58:19.940152562 -0700
-+++ new/make/Bundles.gmk	2020-05-20 17:58:19.604146110 -0700
-@@ -101,7 +101,7 @@
-           # If no subdir is specified and only one BASE_DIR, tar.gz can be done
-           # directly from BASE_DIR.
- 	  $(CD) $$($1_BASE_DIRS) \
--	      && ( $(TAR) cf - $(TAR_CREATE_EXTRA_PARAM) \
-+	      && ( $(TAR) cf - \
- 	          -$(TAR_INCLUDE_PARAM) $$($1_$$($1_BASE_DIRS)_LIST_FILE) \
- 	          $(TAR_IGNORE_EXIT_VALUE) ) \
- 	      | $(GZIP) > $$@
-@@ -110,7 +110,7 @@
-           # If only one BASE_DIR, but with a SUBDIR set, tar.gz can use the
-           # transform option to create bundle directly from the BASE_DIR.
- 	  $(CD) $$($1_BASE_DIRS) \
--	      && ( $(TAR) cf - $(TAR_CREATE_EXTRA_PARAM) \
-+	      && ( $(TAR) cf - \
- 	          -$(TAR_INCLUDE_PARAM) $$($1_$$($1_BASE_DIRS)_LIST_FILE) \
- 	          $$(if $$($1_SUBDIR), --transform 's|^|$$($1_SUBDIR)/|S') \
- 	          $(TAR_IGNORE_EXIT_VALUE) ) \
-@@ -140,7 +140,7 @@
-           endif
-           ifeq ($$($1_TYPE), tar.gz)
- 	    $(CD) $(SUPPORT_OUTPUTDIR)/bundles/$1 && \
--	    ( $(TAR) cf - $(TAR_CREATE_EXTRA_PARAM) \
-+	    ( $(TAR) cf - \
- 	        $$(if $$($1_SUBDIR), $$($1_SUBDIR), .) $(TAR_IGNORE_EXIT_VALUE) ) \
- 	    | $(GZIP) > $$@
-           else ifeq ($$($1_TYPE), zip)
 --- old/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:24.212234589 -0700
 +++ new/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:23.828227215 -0700
 @@ -163,8 +163,6 @@
@@ -134,7 +105,7 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -268,25 +268,17 @@
+@@ -280,8 +280,6 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR -v | $GREP "bsdtar")" != "x"; then
      TAR_TYPE="bsd"
@@ -143,32 +114,7 @@
    elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
      TAR_TYPE="busybox"
    elif test "x$OPENJDK_BUILD_OS" = "xaix"; then
-     TAR_TYPE="aix"
-   fi
-   AC_MSG_CHECKING([what type of tar was found])
-   AC_MSG_RESULT([$TAR_TYPE])
- 
--  TAR_CREATE_FILE_PARAM=""
--
-   if test "x$TAR_TYPE" = "xgnu"; then
-     TAR_INCLUDE_PARAM="T"
-     TAR_SUPPORTS_TRANSFORM="true"
--    if test "x$OPENJDK_TARGET_OS" = "xsolaris"; then
--      # When using gnu tar for Solaris targets, need to use compatibility mode
--      TAR_CREATE_EXTRA_PARAM="--format=ustar"
--    fi
-   elif test "x$TAR_TYPE" = "aix"; then
-     # -L InputList of aix tar: name of file listing the files and directories
-     # that need to be archived or extracted
-@@ -300,7 +292,6 @@
-     TAR_SUPPORTS_TRANSFORM="false"
-   fi
-   AC_SUBST(TAR_TYPE)
--  AC_SUBST(TAR_CREATE_EXTRA_PARAM)
-   AC_SUBST(TAR_INCLUDE_PARAM)
-   AC_SUBST(TAR_SUPPORTS_TRANSFORM)
- ])
-@@ -386,8 +377,6 @@
+@@ -391,8 +389,6 @@
      UTIL_REQUIRE_PROGS(XATTR, xattr)
      UTIL_LOOKUP_PROGS(CODESIGN, codesign)
      UTIL_REQUIRE_PROGS(SETFILE, SetFile)
@@ -218,7 +164,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -409,9 +409,6 @@
+@@ -413,9 +413,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -322,7 +268,7 @@
 -
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
-         comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib \
+         comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib powrprof.lib uuid.lib \
 @@ -183,7 +168,6 @@
    AC_SUBST(JVM_LIBS)
    AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
@@ -333,7 +279,7 @@
  ################################################################################
 --- old/make/autoconf/platform.m4	2020-05-20 17:58:42.328582435 -0700
 +++ new/make/autoconf/platform.m4	2020-05-20 17:58:41.904574294 -0700
-@@ -184,10 +196,6 @@
+@@ -196,10 +196,6 @@
        VAR_OS=linux
        VAR_OS_TYPE=unix
        ;;
@@ -344,7 +290,7 @@
      *darwin*)
        VAR_OS=macosx
        VAR_OS_TYPE=unix
-@@ -458,17 +466,6 @@
+@@ -470,17 +466,6 @@
    fi
    AC_SUBST(OPENJDK_$1_CPU_LEGACY_LIB)
  
@@ -362,7 +308,7 @@
    # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
    OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
    if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -598,9 +593,6 @@
+@@ -608,9 +593,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -372,7 +318,7 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -656,25 +648,9 @@
+@@ -667,25 +649,9 @@
    PLATFORM_SET_MODULE_TARGET_OS_VALUES
    PLATFORM_SET_RELEASE_FILE_OS_VALUES
    PLATFORM_SETUP_LEGACY_VARS
@@ -426,22 +372,6 @@
  EXPR:=@EXPR@
  FILE:=@FILE@
  DOT:=@DOT@
-@@ -771,7 +768,6 @@
- ULIMIT:=@ULIMIT@
- 
- TAR_TYPE:=@TAR_TYPE@
--TAR_CREATE_EXTRA_PARAM:=@TAR_CREATE_EXTRA_PARAM@
- TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
- TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
- 
-@@ -786,7 +782,6 @@
- VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
- MSVCP_DLL:=@MSVCP_DLL@
- UCRT_DLL_DIR:=@UCRT_DLL_DIR@
--STLPORT_LIB:=@STLPORT_LIB@
- ENABLE_PANDOC:=@ENABLE_PANDOC@
- PANDOC_MARKDOWN_FLAG:=@PANDOC_MARKDOWN_FLAG@
- 
 --- old/make/autoconf/toolchain.m4	2020-05-20 17:58:44.612626291 -0700
 +++ new/make/autoconf/toolchain.m4	2020-05-20 17:58:44.216618687 -0700
 @@ -39,7 +39,6 @@
@@ -491,7 +421,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -995,7 +995,7 @@
+@@ -1000,7 +1000,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -500,7 +430,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).debuginfo
            # Setup the command line creating debuginfo files, to be run after linking.
            # It cannot be run separately since it updates the original target file
-@@ -1129,7 +1129,7 @@
+@@ -1134,7 +1134,7 @@
      endif
  
      $1_VARDEPS := $$($1_LD) $$($1_SYSROOT_LDFLAGS) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) \
@@ -509,7 +439,7 @@
          $$($1_CREATE_DEBUGINFO_CMDS) $$($1_MANIFEST_VERSION) \
          $$($1_STRIP_CMD)
      $1_VARDEPS_FILE := $$(call DependOnVariable, $1_VARDEPS, \
-@@ -1188,7 +1188,7 @@
+@@ -1193,7 +1193,7 @@
  
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -518,7 +448,7 @@
  		          $$($1_LIBS) $$($1_EXTRA_LIBS)) \
  		      | $(GREP) -v "^   Creating library .*\.lib and object .*\.exp" || \
  		          test "$$$$?" = "1" ; \
-@@ -1201,7 +1201,7 @@
+@@ -1206,7 +1206,7 @@
  		  $$(call ExecuteWithLog, $$($1_OBJECT_DIR)/$$($1_SAFE_NAME)_link, \
  		      $$(if $$($1_LINK_OBJS_RELATIVE), $$(CD) $$(OUTPUTDIR) ; ) \
  		      $$($1_LD) $$($1_LDFLAGS) $$($1_EXTRA_LDFLAGS) $$($1_SYSROOT_LDFLAGS) \
@@ -834,7 +764,7 @@
  # If FDLIBM_CFLAGS is non-empty we know that we can optimize
  # fdlibm when adding those extra C flags. Currently GCC,
  # and clang only.
-@@ -62,7 +58,7 @@
+@@ -63,7 +59,7 @@
  ##########################################################################################
  
  LIBVERIFY_OPTIMIZATION := HIGH
@@ -843,7 +773,7 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBVERIFY_OPTIMIZATION := LOW
    endif
-@@ -106,7 +101,6 @@
+@@ -106,7 +102,6 @@
      LIBS := $(BUILD_LIBFDLIBM_TARGET), \
      LIBS_unix := -ljvm, \
      LIBS_linux := $(LIBDL), \
@@ -851,7 +781,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -214,7 +209,6 @@
+@@ -215,7 +210,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -923,10 +853,10 @@
     endif
 +   ifeq ($(call isTargetOs, linux macosx), true)
 -   ifeq ($(call isTargetOs, solaris linux macosx), true)
-      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
+      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -609,10 +607,7 @@
+@@ -610,10 +608,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -938,7 +868,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -639,7 +634,6 @@
+@@ -640,7 +635,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1204,7 +1134,7 @@
 -
  ifeq ($(call isTargetOs, windows), true)
      BUILD_HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
-     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c
+     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libnativeStack.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
 @@ -73,9 +73,6 @@
@@ -1436,7 +1366,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -734,10 +730,6 @@
+@@ -742,10 +738,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -1447,7 +1377,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1664,10 +1656,8 @@
+@@ -1672,10 +1664,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1460,7 +1390,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2017,8 +2006,7 @@
+@@ -2024,8 +2014,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1738,7 +1668,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -94,7 +94,7 @@
+@@ -95,7 +95,7 @@
    "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
    "PATH", "USERNAME",
  
@@ -1747,7 +1677,7 @@
    "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
    "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
    "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1626,8 +1626,6 @@
+@@ -1627,8 +1627,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1756,7 +1686,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1689,8 +1687,6 @@
+@@ -1690,8 +1688,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -4007,7 +3937,7 @@
  #else
 --- old/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.943896775 -0700
 +++ new/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.515888557 -0700
-@@ -170,7 +170,7 @@
+@@ -215,7 +215,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canIPv6SocketJoinIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -4016,7 +3946,7 @@
      /* IPv6 sockets can join IPv4 multicast groups */
      return JNI_TRUE;
  #else
-@@ -182,7 +182,7 @@
+@@ -227,7 +227,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canJoin6WithIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -4079,7 +4009,7 @@
   * Since winsock doesn't have the equivalent of strerror(errno)
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
-@@ -1431,22 +1431,6 @@
+@@ -1440,22 +1440,6 @@
                  }
              }
          }
@@ -4212,8 +4142,8 @@
                   " use natives = " + useNatives +
 --- old/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:48.020147849 -0700
 +++ new/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:47.620140168 -0700
-@@ -41,8 +41,6 @@
- @SuppressWarnings("removal")
+@@ -40,8 +40,6 @@
+  */
  public final class FontUtilities {
  
 -    public static boolean isSolaris;
@@ -4221,7 +4151,7 @@
      public static boolean isLinux;
  
      public static boolean isMacOSX;
-@@ -64,7 +62,6 @@
+@@ -67,7 +65,6 @@
              @Override
              public Object run() {
                  String osName = System.getProperty("os.name", "unknownOS");
@@ -4717,7 +4647,7 @@
      static boolean isLinux() {
          return (osname.equals("Linux"));
      }
-@@ -302,7 +298,7 @@
+@@ -303,7 +299,7 @@
                  }
              }
          } else {
@@ -4726,7 +4656,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -486,7 +482,7 @@
+@@ -487,7 +483,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -4735,7 +4665,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -654,7 +650,7 @@
+@@ -658,7 +654,7 @@
                  psuri = printerInfo[1];
              }
          } else {
@@ -4744,7 +4674,7 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
-@@ -873,7 +869,7 @@
+@@ -878,7 +874,7 @@
          ArrayList<String> results = null;
          try {
              final String[] cmd = new String[3];
@@ -4755,7 +4685,7 @@
                  cmd[2] = "env LC_ALL=C " + command;
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.605138318 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.221130945 -0700
-@@ -881,51 +881,25 @@
+@@ -882,51 +882,25 @@
                          isAttributeCategorySupported(JobSheets.class)) {
              ncomps+=1;
          }
@@ -4828,7 +4758,7 @@
          if (IPPPrintService.debugPrint) {
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.629157980 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.293151529 -0700
-@@ -223,31 +223,6 @@
+@@ -220,31 +220,6 @@
          return name;
      }
  
@@ -4860,7 +4790,7 @@
      private PrinterIsAcceptingJobs getPrinterIsAcceptingJobsBSD() {
          if (PrintServiceLookupProvider.cmdIndex ==
              PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -325,9 +300,7 @@
+@@ -322,9 +297,7 @@
      }
  
      private PrinterIsAcceptingJobs getPrinterIsAcceptingJobs() {
@@ -4871,7 +4801,7 @@
              return getPrinterIsAcceptingJobsBSD();
          } else if (PrintServiceLookupProvider.isAIX()) {
              return getPrinterIsAcceptingJobsAIX();
-@@ -354,14 +327,6 @@
+@@ -351,14 +324,6 @@
          }
      }
  
@@ -4886,7 +4816,7 @@
      private QueuedJobCount getQueuedJobCountBSD() {
          if (PrintServiceLookupProvider.cmdIndex ==
              PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -418,9 +383,7 @@
+@@ -415,9 +380,7 @@
      }
  
      private QueuedJobCount getQueuedJobCount() {
@@ -4897,7 +4827,7 @@
              return getQueuedJobCountBSD();
          } else if (PrintServiceLookupProvider.isAIX()) {
              return getQueuedJobCountAIX();
-@@ -429,13 +392,6 @@
+@@ -426,13 +389,6 @@
          }
      }
  
@@ -4911,7 +4841,7 @@
      private PrintServiceAttributeSet getBSDServiceAttributes() {
          PrintServiceAttributeSet attrs = new HashPrintServiceAttributeSet();
          attrs.add(getQueuedJobCountBSD());
-@@ -473,9 +429,7 @@
+@@ -471,9 +427,7 @@
      }
  
      private PrintServiceAttributeSet getDynamicAttributes() {
