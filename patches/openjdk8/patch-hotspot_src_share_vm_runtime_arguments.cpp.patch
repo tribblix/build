@@ -9,7 +9,7 @@ from starting with ulimit -v 2G.
 diff -wpruN '--exclude=*.orig' a~/hotspot/src/share/vm/runtime/arguments.cpp a/hotspot/src/share/vm/runtime/arguments.cpp
 --- a~/hotspot/src/share/vm/runtime/arguments.cpp	1970-01-01 00:00:00
 +++ a/hotspot/src/share/vm/runtime/arguments.cpp	1970-01-01 00:00:00
-@@ -1864,6 +1864,12 @@ void Arguments::set_heap_size() {
+@@ -1887,6 +1887,12 @@ void Arguments::set_heap_size() {
      FLAG_SET_ERGO(uintx, MaxHeapSize, (uintx)reasonable_max);
    }
  

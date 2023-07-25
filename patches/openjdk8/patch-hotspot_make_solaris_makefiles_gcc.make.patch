@@ -58,7 +58,7 @@ diff -wpruN '--exclude=*.orig' a~/hotspot/make/solaris/makefiles/gcc.make a/hots
  # Compiler warnings are treated as errors 
  WARNINGS_ARE_ERRORS = -Werror 
 -# Enable these warnings. See 'info gcc' about details on these options
--WARNING_FLAGS = -Wpointer-arith -Wconversion -Wsign-compare -Wundef
+-WARNING_FLAGS = -Wpointer-arith -Wconversion -Wsign-compare -Wundef -Wformat=2
 -CFLAGS_WARN/DEFAULT = $(WARNINGS_ARE_ERRORS) $(WARNING_FLAGS)
 +
 +# Except for a few acceptable ones
@@ -66,9 +66,9 @@ diff -wpruN '--exclude=*.orig' a~/hotspot/make/solaris/makefiles/gcc.make a/hots
 +# conversions which might affect the values. To avoid that, we need to turn
 +# it off explicitly.
 +ifneq "$(shell expr \( $(CC_VER_MAJOR) \> 4 \) \| \( \( $(CC_VER_MAJOR) = 4 \) \& \( $(CC_VER_MINOR) \>= 3 \) \))" "0"
-+  ACCEPTABLE_WARNINGS = -Wpointer-arith -Wsign-compare
++  ACCEPTABLE_WARNINGS = -Wpointer-arith -Wsign-compare -Wformat=2
 +else
-+  ACCEPTABLE_WARNINGS = -Wpointer-arith -Wconversion -Wsign-compare -Wundef
++  ACCEPTABLE_WARNINGS = -Wpointer-arith -Wconversion -Wsign-compare -Wundef -Wformat=2
 +endif
 +
 +CFLAGS_WARN/DEFAULT = $(WARNINGS_ARE_ERRORS) $(ACCEPTABLE_WARNINGS)

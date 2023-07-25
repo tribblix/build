@@ -1,30 +1,33 @@
 
-Use illumos libdemangle-sys
+Don't use Studio demangle
 
 diff -wpruN '--exclude=*.orig' a~/hotspot/src/os/solaris/vm/decoder_solaris.cpp a/hotspot/src/os/solaris/vm/decoder_solaris.cpp
 --- a~/hotspot/src/os/solaris/vm/decoder_solaris.cpp	1970-01-01 00:00:00
 +++ a/hotspot/src/os/solaris/vm/decoder_solaris.cpp	1970-01-01 00:00:00
-@@ -24,9 +24,21 @@
+@@ -22,11 +22,24 @@
+  *
+  */
  
++#include "jvm.h"
  #include "utilities/decoder_elf.hpp"
  
 -#include <demangle.h>
-+#include <strings.h>
-+#include <demangle-sys.h>
++#include <cxxabi.h>
  
  bool ElfDecoder::demangle(const char* symbol, char *buf, int buflen) {
 -  return !cplus_demangle(symbol, buf, (size_t)buflen);
-+  char *demangled_symbol;
-+
-+  if ((demangled_symbol = sysdemangle(symbol, SYSDEM_LANG_CPP, NULL)) != NULL) {
-+    if (strlcpy(buf, demangled_symbol, (size_t)buflen) < (size_t)buflen) {
-+      free(demangled_symbol);
-+      return 1;
-+    }
-+    free(demangled_symbol);
++  int   status;
++  char* result;
++  size_t size = (size_t)buflen;
++  // Don't pass buf to __cxa_demangle. In case of the 'buf' is too small,
++  // __cxa_demangle will call system "realloc" for additional memory, which
++  // may use different malloc/realloc mechanism that allocates 'buf'.
++  if ((result = abi::__cxa_demangle(symbol, NULL, NULL, &status)) != NULL) {
++    jio_snprintf(buf, buflen, "%s", result);
++      // call c library's free
++      ::free(result);
++      return true;
 +  }
-+
-+  strlcpy(buf, symbol, (size_t)buflen);
-+  return 0;
++  return false;
  }
  

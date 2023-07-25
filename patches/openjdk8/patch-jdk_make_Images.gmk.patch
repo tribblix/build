@@ -5,7 +5,7 @@ Building ja_JP.UTF-8 manpages crashes the bootstrap JVM.
 diff -wpruN '--exclude=*.orig' a~/jdk/make/Images.gmk a/jdk/make/Images.gmk
 --- a~/jdk/make/Images.gmk	1970-01-01 00:00:00
 +++ a/jdk/make/Images.gmk	1970-01-01 00:00:00
-@@ -194,7 +194,7 @@ $(foreach f,$(filter $(OVERLAY_FILTER),$
+@@ -198,7 +198,7 @@ $(foreach f,$(filter $(OVERLAY_FILTER),$
  $(foreach f,$(filter $(OVERLAY_FILTER),$(JDKJRE_BIN_LIST)), \
      $(eval $(call AddFileToCopy,$(JDK_OUTPUTDIR),$(JDK_OVERLAY_IMAGE_DIR)/jre,$f,JDKJRE_BIN_TARGETS)))
  
@@ -14,7 +14,7 @@ diff -wpruN '--exclude=*.orig' a~/jdk/make/Images.gmk a/jdk/make/Images.gmk
    define AddIsadirLink
      # Param 1 - src file
      # Param 2 - variable to add targets to
-@@ -480,15 +480,9 @@ ifneq ($(OPENJDK_TARGET_OS), windows)
+@@ -484,15 +484,9 @@ ifneq ($(OPENJDK_TARGET_OS), windows)
    endif
  
    ifeq ($(OPENJDK_TARGET_OS), solaris)
@@ -22,13 +22,12 @@ diff -wpruN '--exclude=*.orig' a~/jdk/make/Images.gmk a/jdk/make/Images.gmk
 -        $(addprefix $(JRE_IMAGE_DIR)/man/ja/man1/, $(JRE_MAN_PAGES)) \
 -        $(addprefix $(JRE_IMAGE_DIR)/man/ja_JP.UTF-8/man1/, $(JRE_MAN_PAGES)) \
 -        $(addprefix $(JRE_IMAGE_DIR)/man/ja_JP.PCK/man1/, $(JRE_MAN_PAGES))
--
++    JRE_MAN_PAGE_LIST = $(addprefix $(JRE_IMAGE_DIR)/man/man1/, $(JRE_MAN_PAGES))
+ 
 -    JDK_MAN_PAGE_LIST = $(addprefix $(JDK_IMAGE_DIR)/man/man1/, $(JDK_MAN_PAGES)) \
 -        $(addprefix $(JDK_IMAGE_DIR)/man/ja/man1/, $(JDK_MAN_PAGES)) \
 -        $(addprefix $(JDK_IMAGE_DIR)/man/ja_JP.UTF-8/man1/, $(JDK_MAN_PAGES)) \
 -        $(addprefix $(JDK_IMAGE_DIR)/man/ja_JP.PCK/man1/, $(JDK_MAN_PAGES))
-+    JRE_MAN_PAGE_LIST = $(addprefix $(JRE_IMAGE_DIR)/man/man1/, $(JRE_MAN_PAGES))
-+
 +    JDK_MAN_PAGE_LIST = $(addprefix $(JDK_IMAGE_DIR)/man/man1/, $(JDK_MAN_PAGES))
    endif
  

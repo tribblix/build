@@ -5,7 +5,7 @@ Left shift of negative values is UB.
 diff -wpruN '--exclude=*.orig' a~/hotspot/src/share/vm/opto/library_call.cpp a/hotspot/src/share/vm/opto/library_call.cpp
 --- a~/hotspot/src/share/vm/opto/library_call.cpp	1970-01-01 00:00:00
 +++ a/hotspot/src/share/vm/opto/library_call.cpp	1970-01-01 00:00:00
-@@ -3811,7 +3811,7 @@ Node* LibraryCallKit::generate_array_gua
+@@ -3845,7 +3845,7 @@ Node* LibraryCallKit::generate_array_gua
    }
    // Now test the correct condition.
    jint  nval = (obj_array

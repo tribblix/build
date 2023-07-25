@@ -1,0 +1,27 @@
+diff -wpruN '--exclude=*.orig' a~/hotspot/src/os_cpu/solaris_x86/vm/os_solaris_x86.inline.hpp a/hotspot/src/os_cpu/solaris_x86/vm/os_solaris_x86.inline.hpp
+--- a~/hotspot/src/os_cpu/solaris_x86/vm/os_solaris_x86.inline.hpp	1970-01-01 00:00:00
++++ a/hotspot/src/os_cpu/solaris_x86/vm/os_solaris_x86.inline.hpp	1970-01-01 00:00:00
+@@ -27,8 +27,20 @@
+ 
+ #include "runtime/os.hpp"
+ 
+-extern "C" jlong _raw_rdtsc(); // In .il file
+-
+-inline jlong os::rdtsc() { return _raw_rdtsc(); }
++// See http://www.technovelty.org/code/c/reading-rdtsc.htl for details
++inline jlong os::rdtsc() {
++#ifndef AMD64
++  // 64 bit result in edx:eax
++  uint64_t res;
++  __asm__ __volatile__ ("rdtsc" : "=A" (res));
++  return (jlong)res;
++#else
++  uint64_t res;
++  uint32_t ts1, ts2;
++  __asm__ __volatile__ ("rdtsc" : "=a" (ts1), "=d" (ts2));
++  res = ((uint64_t)ts1 | (uint64_t)ts2 << 32);
++  return (jlong)res;
++#endif // AMD64
++}
+ 
+ #endif // OS_CPU_SOLARIS_X86_VM_OS_SOLARIS_X86_INLINE_HPP

@@ -9,7 +9,7 @@ diff -wpruN '--exclude=*.orig' a~/hotspot/agent/src/os/solaris/proc/Makefile a/h
  	CC $(CFLAGS/$@) -c -g -Kpic ${SAPROC_INCLUDES} -I$@ saproc.cpp -o $@/saproc.o
  	cc $(CFLAGS/$@) -c -g -Kpic ${SAPROC_INCLUDES} -I$@ $(SADIS) -o $@/sadis.o
 -	CC $(CFLAGS/$@) -g -G -Kpic $@/saproc.o $@/sadis.o -M mapfile -o $@/libsaproc.so -ldemangle
-+	CC $(CFLAGS/$@) -g -G -Kpic $@/saproc.o $@/sadis.o -M mapfile -o $@/libsaproc.so -ldemangle-sys
++	CC $(CFLAGS/$@) -g -G -Kpic $@/saproc.o $@/sadis.o -M mapfile -o $@/libsaproc.so
  	CC $(CFLAGS/$@) -o $@/libsaproc_audit.so -G -Kpic -z defs saproc_audit.cpp -lmapmalloc -ldl -lc 
  
  clean::

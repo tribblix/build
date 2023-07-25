@@ -1,7 +1,7 @@
 diff -wpruN '--exclude=*.orig' a~/jdk/make/lib/Awt2dLibraries.gmk a/jdk/make/lib/Awt2dLibraries.gmk
 --- a~/jdk/make/lib/Awt2dLibraries.gmk	1970-01-01 00:00:00
 +++ a/jdk/make/lib/Awt2dLibraries.gmk	1970-01-01 00:00:00
-@@ -670,7 +670,6 @@ $(eval $(call SetupNativeCompilation,BUI
+@@ -677,7 +677,6 @@ $(eval $(call SetupNativeCompilation,BUI
          $(SHARED_LIBRARY_FLAGS) \
          -I$(JDK_TOPDIR)/src/share/native/sun/java2d \
          -I$(JDK_TOPDIR)/src/share/native/sun/awt/debug, \
@@ -9,7 +9,7 @@ diff -wpruN '--exclude=*.orig' a~/jdk/make/lib/Awt2dLibraries.gmk a/jdk/make/lib
      CFLAGS_windows := -DCMS_IS_WINDOWS_, \
      MAPFILE := $(JDK_TOPDIR)/make/mapfiles/liblcms/mapfile-vers, \
      LDFLAGS := $(LDFLAGS_JDKLIB) \
-@@ -1046,7 +1045,7 @@ else # OPENJDK_TARGET_OS not windows
+@@ -1053,7 +1052,7 @@ else # OPENJDK_TARGET_OS not windows
        JAWT_LIBS += -lawt
      endif
      ifndef BUILD_HEADLESS_ONLY
@@ -18,7 +18,7 @@ diff -wpruN '--exclude=*.orig' a~/jdk/make/lib/Awt2dLibraries.gmk a/jdk/make/lib
      else
        JAWT_LIBS += -lawt_headless
        HEADLESS_CFLAG += -DHEADLESS
-@@ -1070,7 +1069,7 @@ else # OPENJDK_TARGET_OS not windows
+@@ -1077,7 +1076,7 @@ else # OPENJDK_TARGET_OS not windows
        LDFLAGS_solaris := $(X_LIBS), \
        LDFLAGS_SUFFIX_linux := $(JAWT_LIBS) $(LDFLAGS_JDKLIB_SUFFIX), \
        LDFLAGS_SUFFIX_aix := $(JAWT_LIBS) $(LDFLAGS_JDKLIB_SUFFIX),\

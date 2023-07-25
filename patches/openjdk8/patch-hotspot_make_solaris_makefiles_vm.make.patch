@@ -17,16 +17,16 @@ diff -wpruN '--exclude=*.orig' a~/hotspot/make/solaris/makefiles/vm.make a/hotsp
  else
    ifeq (${VERSION}, debug)
      SYMFLAG = -g
-@@ -139,7 +143,7 @@ LIBS += -ldl -lthread -lsocket $(LIBM) -
+@@ -140,7 +144,7 @@ LIBS += -ldl -lthread -lsocket $(LIBM) -
  endif # 502
  endif # 505
  else
 -LIBS += -lsocket -lsched -ldl $(LIBM) -lthread -lc -ldemangle
-+LIBS += -lsocket -lsched -ldl $(LIBM) -lthread -lc -ldemangle-sys
++LIBS += -lsocket -lsched -ldl $(LIBM) -lthread -lc
  endif # sparcWorks
  
  LIBS += -lkstat
-@@ -272,16 +276,19 @@ ifeq ($(LINK_INTO),AOUT)
+@@ -271,16 +275,19 @@ ifeq ($(LINK_INTO),AOUT)
    LIBS_VM                  = $(LIBS)
  else
    LIBJVM.o                 = $(JVM_OBJ_FILES)
