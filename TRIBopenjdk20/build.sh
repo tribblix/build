@@ -5,8 +5,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk20u-jdk-20.0.1-ga
-cd jdk20u-jdk-20.0.1-ga
+${THOME}/build/unpack jdk20u-jdk-20.0.2-ga
+cd jdk20u-jdk-20.0.2-ga
 
 #
 # jdk20 needs autoconf installed
@@ -45,9 +45,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "20.0.1-internal" 2023-04-18
-# OpenJDK Runtime Environment (build 20.0.1-internal-adhoc.ptribble.jdk20u-jdk-20.0.1-ga)
-# OpenJDK 64-Bit Server VM (build 20.0.1-internal-adhoc.ptribble.jdk20u-jdk-20.0.1-ga, mixed mode, sharing)
+# openjdk version "20.0.2-internal" 2023-07-18
+# OpenJDK Runtime Environment (build 20.0.2-internal-adhoc.ptribble.jdk20u-jdk-20.0.2-ga)
+# OpenJDK 64-Bit Server VM (build 20.0.2-internal-adhoc.ptribble.jdk20u-jdk-20.0.2-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

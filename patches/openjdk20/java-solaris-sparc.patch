@@ -134,7 +134,7 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -276,23 +276,15 @@
+@@ -288,23 +288,15 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
      TAR_TYPE="busybox"
@@ -158,7 +158,7 @@
    elif test "x$TAR_TYPE" = "aix"; then
      # -L InputList of aix tar: name of file listing the files and directories
      # that need to be archived or extracted
-@@ -306,7 +298,6 @@
+@@ -318,7 +310,6 @@
      TAR_SUPPORTS_TRANSFORM="false"
    fi
    AC_SUBST(TAR_TYPE)
@@ -342,7 +342,7 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -676,27 +656,8 @@
+@@ -675,27 +657,8 @@
    PLATFORM_SET_MODULE_TARGET_OS_VALUES
    PLATFORM_SET_RELEASE_FILE_OS_VALUES
    PLATFORM_SETUP_LEGACY_VARS
@@ -836,16 +836,16 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -456,7 +454,7 @@
+@@ -457,7 +455,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
 +   ifeq ($(call isTargetOs, linux macosx), true)
 -   ifeq ($(call isTargetOs, solaris linux macosx), true)
-      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
+      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -614,10 +612,7 @@
+@@ -616,10 +614,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -857,7 +857,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -644,7 +639,6 @@
+@@ -646,7 +641,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1218,7 +1218,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1720,8 +1718,6 @@
+@@ -1722,8 +1720,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1238,7 +1238,7 @@
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2234,9 +2232,6 @@
+@@ -2236,9 +2234,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1282,7 +1282,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -1610,10 +1606,8 @@
+@@ -1618,10 +1614,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1295,7 +1295,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1895,8 +1889,7 @@
+@@ -1903,8 +1897,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
