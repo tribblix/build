@@ -61,3 +61,6 @@
 -p1 openjdk8/patch-jdk_test_sun_security_ec_TestEC.java.patch
 -p1 openjdk8/patch-pkcs11.patch
 -p1 openjdk8/illumos-port-6.patch
+-p1 openjdk11/tribblix-sparc1.patch
+-p1 openjdk11/tribblix-sparc2.patch
+-p1 openjdk11/tribblix-sparc3.patch

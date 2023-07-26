@@ -55,6 +55,7 @@ env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin  bash ./configure \
 # the current patches aren't quite enough to enforce all the necessary
 # changes to remove the Studio/sparcWorks usage, so we give a bit of
 # extra help
+# SPARC needs to set ASFLAGS=-m64 but not AS
 env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin gmake all USE_GCC=1 AS=/usr/gnu/bin/as
 
 #
