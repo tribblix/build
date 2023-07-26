@@ -1,4 +1,4 @@
 PKG="TRIBlibsigcpp"
 NAME="GNOME libsigc++"
-VERSION="2.10.0.0"
-ZAP_URL="http://libsigc.sourceforge.net/"
+VERSION="2.10.8.0"
+ZAP_URL="https://libsigcplusplus.github.io/libsigcplusplus/"
