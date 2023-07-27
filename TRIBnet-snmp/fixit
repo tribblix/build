@@ -3,3 +3,16 @@
 rm -f usr/lib/lib*.la
 rm -f usr/lib/*/lib*.la
 mkdir -p var/net-snmp
+#
+# this is really a WIP app, undocumented, and remvoing it
+# removes the libpcap dependency
+#
+rm -f usr/bin/snmppcap
+#
+# smf
+#
+mkdir -p lib/svc/manifest/application/management
+cp ${BUILDROOT}/patches/net-snmp.xml lib/svc/manifest/application/management
+mkdir -p lib/svc/method
+cp ${BUILDROOT}/patches/svc-net-snmp lib/svc/method/svc-net-snmp
+chmod a+x lib/svc/method/svc-net-snmp
