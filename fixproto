@@ -34,6 +34,7 @@ nawk '
 {if ($3 == "sbin")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/application")  $6 = "sys"}
+{if ($3 == "lib/svc/manifest/application/management")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/application/security")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/application/x11")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/network")  $6 = "sys"}
