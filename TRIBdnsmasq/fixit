@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# create this up front
+#
+mkdir -p etc/dnsmasq.d

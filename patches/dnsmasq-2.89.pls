@@ -1,6 +1,7 @@
--p1 dnsmasq/00_compile_v2.76.patch
+-p1 dnsmasq/00_compile_solaris.patch
 -p1 dnsmasq/01_use_siocsxarp.patch
 -p1 dnsmasq/02_compile_dhcp_release.patch
 -p1 dnsmasq/03_client_mac.patch
 -p1 dnsmasq/04_dhcp_bind_fix.patch
 -p1 dnsmasq/05_dump_fix.patch
+-p1 dnsmasq/06_maximum_udp_size.patch
