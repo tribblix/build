@@ -12,7 +12,12 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
-22+6
+22+8
+
+Needed to add stubs for can_trim_native_heap() and trim_native_heap()
+to os_solaris.inline.hpp
+
+22+7
 
 Trivial patch noise.
 
