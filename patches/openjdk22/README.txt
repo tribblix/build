@@ -14,6 +14,8 @@ rather than the current stub.
 
 22+8
 
+Fix zero port; see Atomic and print_register_info change in jdk 21+23
+
 Needed to add stubs for can_trim_native_heap() and trim_native_heap()
 to os_solaris.inline.hpp
 

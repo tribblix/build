@@ -12,7 +12,13 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
-21+27, 21+28, 21+29, 21+30, 21+31
+21+33
+
+No changes in regular port.
+
+Fix zero port; see Atomic and print_register_info change in jdk 21+23
+
+21+27, 21+28, 21+29, 21+30, 21+31, 21+32
 
 No changes.
 
