@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# get pkgconfig in the right place
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+mkdir -p usr/lib/${ARCH64}
+mv usr/share/pkgconfig usr/lib/${ARCH64}
+rmdir usr/share
