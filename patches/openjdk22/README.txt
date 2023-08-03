@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+9
+
+Trivial patch noise.
+
 22+8
 
 Fix zero port; see Atomic and print_register_info change in jdk 21+23
