@@ -1,4 +1,0 @@
-PKG="TRIBdaq"
-NAME="Snort Data Acquisition library"
-VERSION="2.0.7.0"
-ZAP_URL="https://www.snort.org/"
