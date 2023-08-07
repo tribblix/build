@@ -1,5 +1,5 @@
-P TRIBca-bundle
 P TRIBbrotli
+P TRIBca-bundle
 P TRIBcompress-lzip
 P TRIBcompress-zstd
 P TRIBgnutls

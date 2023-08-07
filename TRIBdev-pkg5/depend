@@ -1,6 +1,6 @@
 P TRIBcffi-python-311
-P TRIBcurl
 P TRIBcryptography-python-311
+P TRIBcurl
 P TRIBidna-python-311
 P TRIBimportlib-python-311
 P TRIBjsonrpclib-python-311
