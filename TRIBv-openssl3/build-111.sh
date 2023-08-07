@@ -4,11 +4,8 @@
 # so we can ignore any of the illumos-specific tweaks
 # inherited from Solaris and just do a vanilla build
 #
-# the fixit script copies in the 1.0 libraries for binary
-# compatibility
-#
-${THOME}/build/unpack -64 openssl-1.1.1u
-cd openssl-1.1.1u
+${THOME}/build/unpack -64 openssl-1.1.1v
+cd openssl-1.1.1v
 env __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=1.0.0 --prefix=/usr
 sed -i s:pod2man:/usr/perl5/bin/pod2man: util/process_docs.pl
 gmake -j 4
@@ -17,7 +14,7 @@ cd ..
 # you might have thought that asking for a solaris64-x86_64 build
 # would actually do the right thing, but no ...
 #
-cd openssl-1.1.1u-64bit
+cd openssl-1.1.1v-64bit
 env __CNF_CFLAGS=-m64 __CNF_LDFLAGS="-m64 -z aslr -z ignore" ./Configure solaris64-x86_64-gcc shared threads zlib --api=1.0.0 --prefix=/usr --libdir=lib/amd64
 sed -i s:pod2man:/usr/perl5/bin/pod2man: util/process_docs.pl
 gmake -j 4
@@ -26,7 +23,7 @@ cd ..
 #
 # much easier now install understands DESTDIR
 #
-${THOME}/build/genpkg TRIBv-openssl3 openssl-1.1.1u
+${THOME}/build/genpkg TRIBv-openssl3 openssl-1.1.1v
 
 #
 # The sparc configure steps are:
