@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# put a symlink to basilisk in /usr/bin
+#
+mkdir -p usr/bin
+ln -s /usr/versions/basilisk/basilisk usr/bin
+#
+# create a desktop file so we populate the menus
+#
+mkdir -p usr/share/applications
+cp ${BUILDROOT}/patches/basilisk.desktop usr/share/applications
