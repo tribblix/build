@@ -52,22 +52,6 @@ mkdir -p lib/${ARCH64}
 mv usr/lib/lib*so* lib
 mv usr/lib/${ARCH64}/lib*so* lib/${ARCH64}
 #
-# save copies of the openssl 1.0.2 libraries
-# which most applications are initially linked against
-# so they continue to work
-#
-cp -p /lib/libssl.so.1.0.0 lib/libssl.so.1.0.0
-cp -p /lib/libcrypto.so.1.0.0 lib/libcrypto.so.1.0.0
-cp -p /lib/${ARCH64}/libssl.so.1.0.0 lib/${ARCH64}/libssl.so.1.0.0
-cp -p /lib/${ARCH64}/libcrypto.so.1.0.0 lib/${ARCH64}/libcrypto.so.1.0.0
-#
-# and we need to keep the 1.0 engines
-#
-mkdir -p usr/lib/engines
-mkdir -p usr/lib/${ARCH64}/engines
-cp -p /usr/lib/engines/* usr/lib/engines
-cp -p /usr/lib/${ARCH64}/engines/* usr/lib/${ARCH64}/engines
-#
 # the files live under /lib, symlinks under /usr/lib
 # this will also generate the compat symlinks in /usr/lib
 #
