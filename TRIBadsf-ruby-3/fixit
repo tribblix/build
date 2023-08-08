@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# we already have webrick
+#
+rm -fr `find usr/versions | grep webrick-1`
