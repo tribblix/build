@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+# package a gem into the current ruby
+#
+# note that it will install dependencies as well, which is what we want
+# initially, but will break if it sees wider use
+#
+STD_DESTINATION="usr/versions"
+RUBYVER="3"
+# the full version ends up in the path, so you'll need to repackage if
+# you change the minor version
+RUBYFULLVER="3.2.0"
+
+case $# in
+2)
+        SOFTDIR="$2"
+        PKGNAME="$1"
+	;;
+*)
+	echo "Usage: $0 pkg_name file_root"
+	exit 1
+	;;
+esac
+
+#
+# Default locations
+#
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BUILD="${THOME}/build"
+BROOT="/tmp/pct"
+
+if [ ! -d $BUILD ]; then
+   echo "ERROR: unable to find build directory $BUILD"
+   exit 1
+fi
+if [ ! -d $BROOT ]; then
+    mkdir -p $BROOT
+fi
+if [ ! -d $BROOT ]; then
+   echo "ERROR: unable to find temporary directory $BROOT"
+   exit 1
+fi
+if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+   echo "ERROR: missing package data"
+   echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
+   exit 1
+fi
+
+# this is the path we install to
+INSTDIRG=${STD_DESTINATION}/ruby-${RUBYVER}/lib/ruby/vendor_ruby/gems/${RUBYFULLVER}
+INSTDIRB=${STD_DESTINATION}/ruby-${RUBYVER}/bin
+GEMBIN="/${STD_DESTINATION}/ruby-${RUBYVER}/bin/gem"
+
+if [ ! -x "${GEMBIN}" ]; then
+   echo "ERROR: no gem binary"
+   exit 1
+fi
+
+#
+# define and create working location
+#
+BDIR="${BROOT}/pkg.$$"
+rm -fr ${BDIR}
+mkdir -p ${BDIR}/${STD_DESTINATION}
+
+$GEMBIN install -V --force --install-dir ${BDIR}/${INSTDIRG} --bindir ${BDIR}/${INSTDIRB} $SOFTDIR
+
+${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+cd /
+
+# remove our temporary files
+rm -fr ${BDIR}
+rm -fr ${BROOT}/${PKGNAME}

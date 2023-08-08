@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+# simple wrapper to create ruby module metadata
+#
+# you may need to modify the depend file
+#
+
+#
+# by default, package for 3
+#
+
+RUBYVER=3
+BUILDER=pkg_gem
+
+#
+# if just one argument, use it as both the package and gem name
+#
+case $# in
+1)
+	pkg_name=$1
+	TBALL=$1
+	;;
+2)
+	pkg_name=$1
+	TBALL=$2
+	;;
+*)
+	echo "Usage: $0 [pkg_name] gem_name"
+	exit 1
+	;;
+esac
+
+RUBYNAME=TRIB${pkg_name}-ruby-${RUBYVER}
+
+#
+# check we're within the SVR4 package name length limit
+# use the 3.11 name, as it's the longest, even if we don't use it
+#
+NAMELEN=$(echo $RUBYNAME|wc -c)
+if [ $NAMELEN -gt 31 ]; then
+    echo "Chosen name exceeds the SVR4 package name length limit (length $NAMELEN)"
+    exit 1
+fi
+
+if [ -d "$RUBYNAME" ]; then
+   echo "$RUBYNAME already exists"
+   exit 1
+fi
+
+#
+# OK, now we can create the package metadata
+#
+
+#
+mkdir $RUBYNAME
+echo "P TRIBv-ruby-$RUBYVER" > $RUBYNAME/depend
+cat > $RUBYNAME/pkginfo <<EOF
+PKG="${RUBYNAME}"
+NAME="Ruby $TBALL"
+VERSION="1.0"
+EOF
+cat > $RUBYNAME/build.sh <<EOF
+#!/bin/sh
+#
+\${THOME}/build/$BUILDER $RUBYNAME $TBALL
+EOF
+chmod a+x $RUBYNAME/build.sh
+
+echo "Now check $RUBYNAME/pkginfo and $RUBYNAME/depend"
