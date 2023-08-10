@@ -7,18 +7,18 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 # xref against this illumos version
 #
-ILVER=m30
-PILVER=30
+ILVER=m31
+PILVER=31
 PKGDIR=${THOME}/pkgs
 ARCH="i386"
 case `pwd` in
     *lx)
-	ILVER=m30lx
-	PILVER=30lx
+	ILVER=m31lx
+	PILVER=31lx
 	;;
     *sparc)
-	ILVER=m26.sparc
-	PILVER=26
+	ILVER=m27.sparc
+	PILVER=27
 	PKGDIR=${THOME}/pkgs.sparc
 	ARCH="sparc"
 	;;
@@ -30,7 +30,7 @@ case $1 in
     # look for all overlays
     for pkg in *.pkgs
     do
-	$0 ${pkg%%.pkgs}
+	$0 ${pkg%.pkgs}
     done
     exit 0
     ;;

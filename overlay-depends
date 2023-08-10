@@ -7,13 +7,13 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 # xref against this illumos catalog
 #
-ILVER=m30
+ILVER=m31
 case `pwd` in
     *lx)
-	ILVER=m30lx
+	ILVER=m31lx
 	;;
     *sparc)
-	ILVER=m26.sparc
+	ILVER=m27.sparc
 	;;
 esac
 CATALOG=${THOME}/illumos-pkgs-${ILVER}/pkgs/catalog
@@ -31,9 +31,9 @@ esac
 case $1 in
 -a)
     # look for all overlays
-    for pkg in `ls -1 *.pkgs | sed s:.pkgs::`
+    for pkg in *.pkgs
     do
-	$0 $VERBOSE $pkg
+	$0 $VERBOSE ${pkg%.pkgs}
     done
     exit 0
     ;;
@@ -100,16 +100,17 @@ do
   done
 done
 sort -u ${TMPF}.p > ${TMPF}.t
-OUTMISS=`awk '{print $2}' $TMPF | sort -u | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t`
+awk '{print $2}' $TMPF | sort -u > ${TMPF}.u
+OUTMISS=`/usr/bin/fgrep -v -x -f ${OVL}.pkgs ${TMPF}.u | /usr/bin/fgrep -v -x -f ${TMPF}.t`
 if [ -n "${OUTMISS}" ]; then
     echo ""
     echo "Missing dependencies in overlay ${OVL}:"
     echo "============================================="
-    awk '{print $2}' $TMPF | sort -u | /usr/bin/fgrep -v -x -f ${OVL}.pkgs| /usr/bin/fgrep -v -x -f ${TMPF}.t
+    /usr/bin/fgrep -v -x -f ${OVL}.pkgs ${TMPF}.u | /usr/bin/fgrep -v -x -f ${TMPF}.t
 fi
 
 if [ "X$VERBOSE" = "X-v" ]; then
-for ndep in `awk '{print $2}' $TMPF | sort -u | /usr/bin/fgrep -v -f ${OVL}.pkgs| /usr/bin/fgrep -v -f ${TMPF}.t`
+for ndep in `/usr/bin/fgrep -v -f ${OVL}.pkgs ${TMPF}.u | /usr/bin/fgrep -v -f ${TMPF}.t`
 do
 for PKGI in `cat ${OVL}.pkgs`
 do
