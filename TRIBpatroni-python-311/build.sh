@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBpatroni-python-311 patroni-2.1.7
+${THOME}/build/pkg_setup_py TRIBpatroni-python-311 patroni-3.1.0
