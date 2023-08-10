@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBdnspython-python-311 dnspython-2.4.1
+${THOME}/build/pkg_pep518 TRIBdnspython-python-311 dnspython-2.4.2
