@@ -1,0 +1,4 @@
+PKG="TRIBri-li"
+NAME="Ri-li train game"
+VERSION="2.0.1.0"
+ZAP_URL="https://ri-li.sourceforge.net/"

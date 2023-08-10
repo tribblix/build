@@ -1,0 +1,157 @@
+diff --git a/src/audio.cc b/src/audio.cc
+index bd3af3a..bb8efe6 100644
+--- a/src/audio.cc
++++ b/src/audio.cc
+@@ -21,8 +21,9 @@
+ //    with this program; if not, write to the Free Software Foundation, Inc.,
+ //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
++#include <iostream>
++using namespace std;
+ #include <stdlib.h>
+-#include <iostream.h>
+ #include <string.h>
+ 
+ #include "audio.h"
+diff --git a/src/ecran.cc b/src/ecran.cc
+index 9e21e95..859f5d8 100644
+--- a/src/ecran.cc
++++ b/src/ecran.cc
+@@ -21,7 +21,8 @@
+ //    with this program; if not, write to the Free Software Foundation, Inc.,
+ //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
+-#include <iostream.h>
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <math.h>
+diff --git a/src/editeur.cc b/src/editeur.cc
+index 3c246fd..4360875 100644
+--- a/src/editeur.cc
++++ b/src/editeur.cc
+@@ -25,7 +25,8 @@
+ #include <windows.h>
+ #endif
+ 
+-#include <iostream.h>
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/jeux.cc b/src/jeux.cc
+index 139cfb5..9856e04 100644
+--- a/src/jeux.cc
++++ b/src/jeux.cc
+@@ -25,7 +25,8 @@
+ #include <windows.h>
+ #endif
+ 
+-#include <iostream.h>
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/loco.cc b/src/loco.cc
+index b49b2f7..1ac28e3 100644
+--- a/src/loco.cc
++++ b/src/loco.cc
+@@ -21,7 +21,8 @@
+ //    with this program; if not, write to the Free Software Foundation, Inc.,
+ //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
+-#include <iostream.h>
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/main.cc b/src/main.cc
+index 282d3b0..c370efb 100644
+--- a/src/main.cc
++++ b/src/main.cc
+@@ -21,9 +21,10 @@
+ //    with this program; if not, write to the Free Software Foundation, Inc.,
+ //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include <stdlib.h>
+-#include <iostream.h>
+ #include <string.h>
+ #include <SDL/SDL.h>
+ #include <SDL/SDL_mixer.h>
+diff --git a/src/menu.cc b/src/menu.cc
+index e1c455c..940124f 100644
+--- a/src/menu.cc
++++ b/src/menu.cc
+@@ -21,7 +21,8 @@
+ //    with this program; if not, write to the Free Software Foundation, Inc.,
+ //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
+-#include <iostream.h>
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/mouse.cc b/src/mouse.cc
+index 6b899d4..6e84cec 100644
+--- a/src/mouse.cc
++++ b/src/mouse.cc
+@@ -21,7 +21,8 @@
+ //    with this program; if not, write to the Free Software Foundation, Inc.,
+ //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
+-#include <iostream.h>
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include "mouse.h"
+ #include "preference.h"
+diff --git a/src/sprite.cc b/src/sprite.cc
+index 251bfde..b00d31a 100644
+--- a/src/sprite.cc
++++ b/src/sprite.cc
+@@ -21,7 +21,8 @@
+ //    with this program; if not, write to the Free Software Foundation, Inc.,
+ //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
+-#include <iostream.h>
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/tableau.cc b/src/tableau.cc
+index a849126..b125a88 100644
+--- a/src/tableau.cc
++++ b/src/tableau.cc
+@@ -21,7 +21,8 @@
+ //    with this program; if not, write to the Free Software Foundation, Inc.,
+ //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
+-#include <iostream.h>
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include "preference.h"
+diff --git a/src/utils.cc b/src/utils.cc
+index ef41f67..22e6540 100644
+--- a/src/utils.cc
++++ b/src/utils.cc
+@@ -21,7 +21,8 @@
+ //    with this program; if not, write to the Free Software Foundation, Inc.,
+ //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ 
+-#include <iostream.h>
++#include <iostream>
++using namespace std;
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
