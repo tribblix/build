@@ -1,0 +1,4 @@
+PKG="TRIBjpegoptim"
+NAME="Jpegoptim"
+VERSION="1.5.5.0"
+ZAP_URL="https://github.com/tjko/jpegoptim"
