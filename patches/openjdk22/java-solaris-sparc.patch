@@ -688,7 +688,7 @@
    LIBAWT_EXFILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -154,7 +154,6 @@
+@@ -155,7 +155,6 @@
          -delayload:comctl32.dll -delayload:shlwapi.dll, \
      LIBS_unix := -ljvm -ljava $(LIBM), \
      LIBS_linux :=  $(LIBDL), \
@@ -696,7 +696,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -420,7 +419,6 @@
+@@ -421,7 +420,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -704,7 +704,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -479,7 +477,7 @@
+@@ -482,7 +480,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -713,7 +713,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -641,10 +639,7 @@
+@@ -646,10 +644,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -725,7 +725,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -671,7 +666,6 @@
+@@ -676,7 +671,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1377,7 +1377,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1879,8 +1879,6 @@
+@@ -1880,8 +1880,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1386,7 +1386,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1945,8 +1943,6 @@
+@@ -1946,8 +1944,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");

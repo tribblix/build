@@ -12,7 +12,7 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
-22+9
+22+9, 22+10
 
 Trivial patch noise.
 
