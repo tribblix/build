@@ -1,0 +1,4 @@
+PKG="TRIBlibsqlitejdbc"
+NAME="Native library for sqlite-jdbc"
+VERSION="3.42.0.0"
+ZAP_URL="https://github.com/xerial/sqlite-jdbc"
