@@ -12,7 +12,7 @@
 #
 # this is the version of the datafiles, not of the application
 #
-VERSION=3.04.00
+VERSION=4.1.0
 URLBASE=https://github.com/tesseract-ocr/tessdata/raw/${VERSION}
 
 mkdir -p usr/share/tessdata

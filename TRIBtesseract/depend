@@ -1,1 +1,9 @@
+P TRIBcurl
+P TRIBharfbuzz
 P TRIBleptonica
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-pango
+P TRIBlib-glib2
+P TRIBlibarchive
+P TRIBlibicu
+P TRIBsys-lib-fontconfig
