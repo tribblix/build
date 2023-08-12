@@ -2,5 +2,5 @@
 #
 # leptonica is needed by tesseract
 #
-${THOME}/build/dobuild -64 leptonica-1.74.4
-${THOME}/build/genpkg TRIBleptonica leptonica-1.74.4
+${THOME}/build/dobuild -64only leptonica-1.82.0
+${THOME}/build/genpkg TRIBleptonica leptonica-1.82.0
