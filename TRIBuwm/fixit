@@ -3,3 +3,11 @@
 # have a slightly more relevant config
 #
 cp ${BUILDROOT}/patches/uwm.appmenu usr/share/uwm/config/appmenu
+#
+# clean up /usr/doc and put in in /usr/share/doc
+#
+rm -f usr/doc/uwm-*/l2h.conf
+rm -f usr/doc/uwm-*/manual.tex
+mkdir -p usr/share
+mv usr/doc usr/share/doc
+sed -i s:/usr/doc:/usr/share/doc: usr/share/uwm/config/StartScript
