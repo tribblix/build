@@ -1,5 +1,5 @@
 #!/bin/sh
 #
-# make the Makefle understand DESTDIR
+# make the Makefile understand DESTDIR
 #
 sed -i 's:$(prefix)/:$(DESTDIR)$(prefix)/:' Makefile

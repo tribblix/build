@@ -4,7 +4,7 @@
 # and we rerun it here
 #
 # this is postconf as it creates configure and we don't need to
-# efectively run it twice
+# effectively run it twice
 #
 # use gnutls as libetpan isn't compatible with current openssl
 #

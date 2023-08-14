@@ -25,7 +25,7 @@ rm -f usr/lib/xorg/modules/extensions/libvnc.la
 rm -fr usr/lib
 
 #
-# we are reponsible for this, apparently
+# we are responsible for this, apparently
 #
 cd usr/lib/mdb/proc
 ln -s Xserver.so Xvnc.so

@@ -3,7 +3,7 @@
 #
 # need to put the manifest under var for sparse-root zone support
 #
-# TODO: create a new SMF manifest fo the new reload mechanism
+# TODO: create a new SMF manifest for the new reload mechanism
 #
 # mkdir -p var/svc/manifest/network
 # cp ${BUILDROOT}/patches/haproxy.xml var/svc/manifest/network

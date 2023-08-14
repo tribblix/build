@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# an update is an SONAME bump, so save the previous version for compatibiliy
+# an update is an SONAME bump, so save the previous version for compatibility
 #
 case `uname -p` in
 sparc)

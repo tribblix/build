@@ -4,7 +4,7 @@
 #
 # now a single tarball - it's 85M or so, bzipped
 #
-# just pull frome the releases page on the jdk11u github repo
+# just pull from the releases page on the jdk11u github repo
 # https://github.com/openjdk/jdk11u/tags
 #
 

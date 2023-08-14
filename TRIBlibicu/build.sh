@@ -3,7 +3,7 @@
 # [in tarballs, rename the tarball to icu.tar.gz]
 # mv icu4c-68_2-src.tgz icu.tar.gz
 #
-# the old 50.1 shared libaries are copied in by the fixit step
+# the old 50.1 shared libraries are copied in by the fixit step
 # for compatibility
 #
 ${THOME}/build/dobuild -64 icu -S source

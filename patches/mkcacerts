@@ -1,7 +1,7 @@
 #!/bin/bash
 # Simple script to extract x509 certificates and create a JRE cacerts file.
 #
-# This comes straight from Linux from Scratch instructiosn for openjdk
+# This comes straight from Linux from Scratch instructions for openjdk
 #
 # invoke as
 #
@@ -99,7 +99,7 @@ function showhelp()
         echo "`basename ${0}` creates a valid cacerts file for use with IcedTea."
         echo ""
         echo "        -f  --cafile     The path to a file containing PEM"
-        echo "                         formated CA certificates. May not be"
+        echo "                         formatted CA certificates. May not be"
         echo "                         used with -d/--cadir."
         echo ""
         echo "        -d  --cadir      The path to a directory of PEM formatted"
