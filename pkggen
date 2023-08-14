@@ -11,6 +11,18 @@ case $1 in
 	XFLAGS="-64 "
 	shift
 	;;
++64)
+	XFLAGS="+64 "
+	shift
+	;;
+-64only)
+	XFLAGS="-64only "
+	shift
+	;;
++64only)
+	XFLAGS="+64only "
+	shift
+	;;
 esac
 
 case $# in
@@ -19,15 +31,15 @@ case $# in
 	TBALL=$2
 	;;
 *)
-	echo "Usage: $0 [-64] pkg_name tarball_name"
+	echo "Usage: $0 [-64|+64|-64only|+64only] pkg_name tarball_name"
 	exit 1
 	;;
 esac
 
-PY2NAME=TRIB${pkg_name}
+PNAME=TRIB${pkg_name}
 
-if [ -d "$PY2NAME" ]; then
-   echo "$PY2NAME already exists"
+if [ -d "$PNAME" ]; then
+   echo "$PNAME already exists"
    exit 1
 fi
 
@@ -40,19 +52,19 @@ PVER=${TBALL##*-}
 # OK, now we can create the package metadata
 #
 
-mkdir $PY2NAME
-cat > $PY2NAME/pkginfo <<EOF
-PKG="${PY2NAME}"
+mkdir $PNAME
+cat > $PNAME/pkginfo <<EOF
+PKG="${PNAME}"
 NAME="$pkg_name"
 VERSION="${PVER}.0"
 EOF
-cat > $PY2NAME/build.sh <<EOF
+cat > $PNAME/build.sh <<EOF
 #!/bin/sh
 #
 \${THOME}/build/dobuild ${XFLAGS}$TBALL
-\${THOME}/build/genpkg $PY2NAME $TBALL
+\${THOME}/build/genpkg $PNAME $TBALL
 EOF
-chmod a+x $PY2NAME/build.sh
+chmod a+x $PNAME/build.sh
 
-echo "Now check $PY2NAME/pkginfo"
-echo "After building, check $PY2NAME/depend"
+echo "Now check $PNAME/pkginfo"
+echo "After building, check $PNAME/depend"
