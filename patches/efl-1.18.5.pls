@@ -1,1 +1,0 @@
--p1 efl-openssl11.patch
