@@ -79,7 +79,14 @@ do
       if [ -f ${THOME}/build/${PKGI}/version.$ARCH ]; then
 	  PKGVERS=`cat ${THOME}/build/${PKGI}/version.$ARCH`
       else
-	  PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' ${THOME}/build/${PKGI}/pkginfo`
+	  while read line
+	  do
+	      case $line in
+		  VERSION=*)
+		      PKGVERS=${line#*=}
+		      ;;
+	      esac
+	  done < ${THOME}/build/${PKGI}/pkginfo
 	  PKGVERS=${PKGVERS//\"/}
       fi
       if [ ! -f ${PKGDIR}/${PKGI}.${PKGVERS}.zap ]; then
