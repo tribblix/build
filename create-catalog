@@ -38,12 +38,12 @@ do
     fi
     if [ -f ${PKG}/depend ]; then
 	DEPLIST=""
-	cat ${PKG}/depend | while read d p
+	while read d p
 	do
 	    if [ "X$d" = "XP" ]; then
 		DEPLIST="$DEPLIST$p "
 	    fi
-	done
+	done < ${PKG}/depend
     fi
     DEPLIST=${DEPLIST/% /}
     echo "${PKG}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|"
