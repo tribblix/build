@@ -51,9 +51,20 @@ do
   PKGCKSUM=${rline%%\|*}
   PKGI=${PKG}/pkginfo
   if [ -f ${PKGI} ]; then
-    PKGNAME=`awk -F= '{if ($1 == "NAME") print $2}' $PKGI`
+    PKGNAME=""
+    PKGHOME=""
+    while read line
+    do
+	case $line in
+	    NAME=*)
+		PKGNAME=${line#*=}
+		;;
+	    ZAP_URL=*)
+		PKGHOME=${line#*=}
+		;;
+	esac
+    done < ${PKGI}
     PKGNAME=${PKGNAME//\"/}
-    PKGHOME=`awk -F= '{if ($1 == "ZAP_URL") print $2}' $PKGI`
     PKGHOME=${PKGHOME//\"/}
     echo "<dt><a name=\"${PKG}\"></a><b>${PKG}</b></dt>"
     echo "<dd>"
