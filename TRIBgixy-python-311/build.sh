@@ -9,4 +9,5 @@ rm -fr /tmp/sut
 /usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/sut
 ${THOME}/build/create_pkg TRIBgixy-python-311 /tmp/sut
 cd ..
-rm -fr /tmp/sut
+rm -fr /tmp/sut gixy
+
