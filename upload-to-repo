@@ -21,7 +21,7 @@ ACREATE="create-aliases"
 AFILE="aliases"
 CCREATE="create-catalog"
 CFILE="catalog"
-HCREATE="create-catalog-html"
+HCREATE="create-index-from-catalog"
 HFILE="index.html"
 FCREATE="create-file-list"
 FFILE="filelist.bz2"
@@ -131,7 +131,7 @@ fi
 echo "Creating catalog"
 ./${CCREATE} > ${LREPODIR}/${CFILE}
 echo "Creating html index"
-./${HCREATE} > ${LREPODIR}/${HFILE}
+./${HCREATE} ${LREPODIR}/${CFILE} > ${LREPODIR}/${HFILE}
 if [ -z "$QUICKMODE" ]; then
     echo "Creating file list"
     ./${FCREATE} ${LREPODIR}
