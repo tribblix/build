@@ -1,0 +1,10 @@
+--- a/lib/ltrcc.c	Wed May 25 13:00:29 2022
++++ b/lib/ltrcc.c	Tue Aug 15 11:50:26 2023
+@@ -46,6 +46,7 @@
+ #include <stdio.h>
+ #include <stdarg.h>
+ #include <string.h>
++#include <limits.h>
+ 
+ #include "leaps.h"
+ #include "date-core.h"
