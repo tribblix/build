@@ -9,11 +9,18 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 ILVER=m31
 case `pwd` in
-    *lx)
+    */overlays.lx)
 	ILVER=m31lx
 	;;
-    *sparc)
+    */overlays.sparc)
 	ILVER=m27.sparc
+	;;
+    */overlays)
+	ILVER=m31
+	;;
+    *)
+	echo "HELP! Where am I?"
+	exit 1
 	;;
 esac
 CATALOG=${THOME}/illumos-pkgs-${ILVER}/pkgs/catalog
