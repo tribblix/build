@@ -74,10 +74,12 @@ fi
 TMPF=/tmp/ovtmp.$$
 rm -f $TMPF
 touch $TMPF
+PKGL=""
 for PKGI in `cat ${OVL}.pkgs`
 do
   if [ -f ../build/${PKGI}/depend ]; then
-     grep '^P' ../build/${PKGI}/depend >> $TMPF
+     # accumulate the depend files and invoke grep once later
+     PKGL="${PKGL} ../build/${PKGI}/depend"
   fi
   if [ ! -d ../build/${PKGI} ]; then
       for npkgi in $(awk -v p=$PKGI -F'|' '{if ($1 == p) print $3}' $CATALOG)
@@ -86,6 +88,9 @@ do
       done
   fi
 done
+if [ -n "${PKGL}" ]; then
+  grep -h '^P' $PKGL >> $TMPF
+fi
 #
 # find any dependencies that aren't handled by prerequisite overlays
 #
