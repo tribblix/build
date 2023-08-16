@@ -24,12 +24,11 @@
 .SH NAME
 XSolarisGetVisualGamma \- obtain gamma information for a visual
 .SH SYNOPSIS
-.LP
 #include <X11/Xmu/XmuSolaris.h>
 .LP
 Status
 .br
-XSolarisGetVisualGamma\^(\^Display *\fIdisplay\f1, int \fIscreen_number\f1, 
+XSolarisGetVisualGamma\^(\^Display *\fIdisplay\f1, int \fIscreen_number\f1,
 .br
 .in +1.75i
 Visual *\fIvisual\f1, double *\fIgamma\f1\^);
@@ -70,11 +69,11 @@ graphical entities which depend on accurate color, such as images,
 anti-aliased lines and transparent polygons.
 .LP
 Gamma correction results in a linear mapping between color values and
-percieved intensity.  Gamma corrected visuals are also called linear
+perceived intensity.  Gamma corrected visuals are also called linear
 visuals for this reason.  Linear visuals have a gamma value of 1.0.
 .LP
 Note: the term "gamma" used here refers the mapping applied along the entire
-path (that is, the value percieved by the end user), not merely the exponent
+path (that is, the value perceived by the end user), not merely the exponent
 of the gamma correction function.
 .LP
 The gamma value returned defines the color-to-intensity mapping for all
@@ -82,10 +81,10 @@ three channels: red, green, and blue.
 .LP
 A status of \f3Success\f1
 is returned if the function was able to determine the gamma successfully.
-If a request failure occured while calling the function, a \f3BadAccess \f1
-error code is returned.  If there is an internal inconsistency (e.g. the gamma 
-value for one of the color channels is different from the others) a 
-\f3BadMatch\f1 error code is returned.  Whenever an error code is returned, 
+If a request failure occurred while calling the function, a \f3BadAccess \f1
+error code is returned.  If there is an internal inconsistency (e.g. the gamma
+value for one of the color channels is different from the others) a
+\f3BadMatch\f1 error code is returned.  Whenever an error code is returned,
 the argument \fIgamma\f1 is left untouched.
 .LP
 The gamma value returned represents the best information available on the
@@ -94,7 +93,7 @@ not include the actual monitor characteristics (some devices have no way
 of determining the type of monitor so they may assume a default monitor
 gamma).  As such, it represents the system's "best guess" about the intensity
 response.  Since this function gets its information from the same property
-used by Solaris color managment systems, if more accurate information on the 
+used by Solaris color management systems, if more accurate information on the
 monitor response is configured or calibrated through these systems,
 this function will return a more accurate value for gamma.
 .LP
@@ -103,7 +102,3 @@ may only be approximate.  This should usually happen only when the device
 gamma correction has been incorrectly configured.
 .LP
 To use this function, an application should link with \f3libXmu\f1.
-.SH SEE ALSO
-.TZ OWPG
-.br
-(Visuals and Display Devices chapter)
