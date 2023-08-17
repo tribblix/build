@@ -1027,7 +1027,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -495,7 +495,7 @@
+@@ -499,7 +499,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1036,7 +1036,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -513,12 +513,6 @@
+@@ -517,12 +517,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1588,7 +1588,7 @@
      }
 --- old/src/java.base/unix/classes/sun/net/PortConfig.java	2020-05-20 18:01:00.803241250 -0700
 +++ new/src/java.base/unix/classes/sun/net/PortConfig.java	2020-05-20 18:01:00.419233877 -0700
-@@ -47,10 +47,6 @@
+@@ -48,10 +48,6 @@
                  defaultLower = 32768;
                  defaultUpper = 61000;
                  break;
@@ -1614,7 +1614,7 @@
     identifiers matching a C constant. The PREFIX_ is filtered out in the
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.927301234 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.535293707 -0700
-@@ -127,10 +127,6 @@
+@@ -128,10 +128,6 @@
          return rootDirectory;
      }
  
@@ -5584,7 +5584,7 @@
 -################################################################################
 --- old/src/hotspot/os/solaris/attachListener_solaris.cpp	2020-05-20 18:09:27.484969868 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,749 +0,0 @@
+@@ -1,739 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -6014,7 +6014,7 @@
 -    if (::rename(initial_path, door_path) == -1) {
 -        ::close(dd);
 -        ::fdetach(initial_path);
--        log_debug(attach)("unable to create door - rename %s to %s failed (%d)", errno);
+-        log_debug(attach)("unable to create door - rename %s to %s failed (%d)", initial_path, door_path, errno);
 -        dd = -1;
 -    }
 -  }
@@ -6296,16 +6296,6 @@
 -  { "enabledprobes", enable_dprobes },
 -  { NULL, NULL }
 -};
--
--AttachOperationFunctionInfo* AttachListener::pd_find_operation(const char* name) {
--  int i;
--  for (i = 0; funcs[i].name != NULL; i++) {
--    if (strcmp(funcs[i].name, name) == 0) {
--      return &funcs[i];
--    }
--  }
--  return NULL;
--}
 -
 -// Solaris specific global flag set.
 -jint AttachListener::pd_set_flag(AttachOperation* op, outputStream* out) {

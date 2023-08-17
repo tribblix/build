@@ -12,6 +12,11 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+11
+
+Remove AttachListener::pd_find_operation()
+Merge and delete tribblix-attachListener_solaris.patch
+
 22+9, 22+10
 
 Trivial patch noise.
