@@ -1,12 +1,3 @@
 #!/bin/sh
 #
-# NOTE: dateparser pins the regex version to < 2022.3.15
-#
-${THOME}/build/unpack regex-2022.3.2
-cd regex-2022.3.2
-/usr/versions/python-3.11/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBregex-python-311 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+${THOME}/build/pkg_setup_py TRIBregex-python-311 regex-2023.8.8
