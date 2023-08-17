@@ -24,6 +24,7 @@
 # and then the build
 #
 # cp $THOME/build/patches/palemoon.mozconfig .mozconfig
+# gpatch -p1 < $THOME/build/patches/palemoon.manifest.patch
 # ./mach build
 # ./mach package
 #
