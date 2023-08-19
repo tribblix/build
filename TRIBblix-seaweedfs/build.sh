@@ -4,9 +4,6 @@
 # git checkout, but use the latest release as the pkg version as that's
 # what weed reports itself
 #
-# this doesn't work, produces binaries that panic
-# setenv GOPATH=`pwd` go get github.com/seaweedfs/seaweedfs/weed
-#
 mkdir w
 cd w
 git clone https://github.com/seaweedfs/seaweedfs
