@@ -1,12 +1,16 @@
 #!/bin/sh
 #
-#
 # need to put the manifest under var for sparse-root zone support
 #
-# TODO: create a new SMF manifest for the new reload mechanism
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/haproxy2.xml var/svc/manifest/network
+cp ${BUILDROOT}/patches/svc-haproxy opt/tribblix/haproxy/sbin
+chmod 755 opt/tribblix/haproxy/sbin/svc-haproxy
 #
-# mkdir -p var/svc/manifest/network
-# cp ${BUILDROOT}/patches/haproxy.xml var/svc/manifest/network
+mkdir -p etc/security/auth_attr.d
+cp ${BUILDROOT}/patches/haproxy-auth_attr etc/security/auth_attr.d/haproxy2
+mkdir -p etc/security/prof_attr.d
+cp ${BUILDROOT}/patches/haproxy-prof_attr etc/security/prof_attr.d/haproxy2
 #
 # we don't ship a configuration (which would go in /etc/haproxy.cfg)
 # but this is where the pid file is expected to end up
