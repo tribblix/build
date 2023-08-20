@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# needs a postconf patch
+# needs a patch and postconf
 #
-env PATH=/opt/tribblix/postgres15/bin:$PATH ${THOME}/build/dobuild -64only pgpool-II-4.2.13 -C "--sysconfdir=/etc --with-openssl"
-${THOME}/build/genpkg TRIBpgpool pgpool-II-4.2.13
+env PATH=/opt/tribblix/postgres15/bin:$PATH ${THOME}/build/dobuild -64only pgpool-II-4.2.14 -C "--sysconfdir=/etc --with-openssl"
+${THOME}/build/genpkg TRIBpgpool pgpool-II-4.2.14
