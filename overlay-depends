@@ -75,7 +75,7 @@ TMPF=/tmp/ovtmp.$$
 rm -f $TMPF
 touch $TMPF
 PKGL=""
-for PKGI in `cat ${OVL}.pkgs`
+for PKGI in $(<${OVL}.pkgs)
 do
   if [ -f ../build/${PKGI}/depend ]; then
      # accumulate the depend files and invoke grep once later
@@ -121,19 +121,25 @@ if [ -n "${OUTMISS}" ]; then
     /usr/bin/fgrep -v -x -f ${OVL}.pkgs ${TMPF}.u | /usr/bin/fgrep -v -x -f ${TMPF}.t
 fi
 
-if [ "X$VERBOSE" = "X-v" ]; then
-for ndep in `/usr/bin/fgrep -v -f ${OVL}.pkgs ${TMPF}.u | /usr/bin/fgrep -v -f ${TMPF}.t`
+if [ -n "${OUTMISS}" -a "X$VERBOSE" = "X-v" ]; then
+echo "Finding source of missing dependencies:"
+echo "======================================="
+for ndep in $OUTMISS
 do
-for PKGI in `cat ${OVL}.pkgs`
+for PKGI in $(<${OVL}.pkgs)
 do
   if [ -f ../build/${PKGI}/depend ]; then
-     grep -w $ndep ../build/${PKGI}/depend /dev/null
+      if grep -q -w $ndep ../build/${PKGI}/depend
+      then
+	  echo "${PKGI} requires: ${ndep}"
+      fi
   fi
   if [ ! -d ../build/${PKGI} ]; then
-      egrep "( |\|)${ndep}( |\|)" $CATALOG | awk -v p=$PKGI -F'|' '{if ($1 == p) print $1" : " $3}'
+      egrep "( |\|)${ndep}( |\|)" $CATALOG | awk -v p=$PKGI -F'|' '{if ($1 == p) print $1" requires: " $3}'
   fi
 done
 done
+echo "======================================="
 fi
 
 #
