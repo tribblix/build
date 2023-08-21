@@ -2,5 +2,5 @@
 #
 # look at fixinstall
 #
-${THOME}/build/unpack wtf-20190903
-${THOME}/build/genpkg TRIBwtf wtf-20190903
+${THOME}/build/unpack wtf-20230804
+${THOME}/build/genpkg TRIBwtf wtf-20230804
