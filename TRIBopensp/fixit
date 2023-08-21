@@ -1,3 +1,0 @@
-#!/bin/sh
-rm -f usr/lib/lib*.la
-rm -fr usr/share/doc/OpenSP/doc
