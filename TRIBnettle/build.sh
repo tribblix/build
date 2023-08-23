@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# there's a 64-bit preconf script
-#
 # we ship the previous versions of the library for binary
 # compatibility with gnutls + squid + vnc
 # once all rebuilt the compat copy can be removed
