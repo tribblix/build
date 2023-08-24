@@ -58,15 +58,14 @@ fi
 #
 getdeps()
 {
-rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort | uniq`
-for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort | uniq | sed 's:\+:\\\\+:g'`
+rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u`
+for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort -u | sed 's:\+:\\\\+:g'`
 do
   for rpath in $rpathlist
   do
-      $MEGREP "${rpath}/$dep( |=)" /var/sadm/install/contents
+      $MEGREP "^${rpath}/$dep( |=)" /var/sadm/install/contents
   done
-  $MEGREP "^/(lib|usr/lib)/$dep( |=)" /var/sadm/install/contents
-  $MEGREP "^/(lib|usr/lib)/${ARCH64}/$dep( |=)" /var/sadm/install/contents
+  $MEGREP -e "^/(lib|usr/lib)/$dep( |=)" -e "^/(lib|usr/lib)/${ARCH64}/$dep( |=)" /var/sadm/install/contents
 done
 }
 
@@ -77,23 +76,22 @@ done
 #
 getlongdeps()
 {
-rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}'`
-for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort | uniq | sed 's:\+:\\\\+:g'`
+rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u`
+for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort -u | sed 's:\+:\\\\+:g'`
 do
   for rpath in $rpathlist
   do
-      $MEGREP "${rpath}/$dep( |=)" /var/sadm/install/contents
+      $MEGREP "^${rpath}/$dep( |=)" /var/sadm/install/contents
   done
-  $MEGREP "^/(lib|usr/lib)/$dep( |=)" /var/sadm/install/contents
-  $MEGREP "^/(lib|usr/lib)/${ARCH64}/$dep( |=)" /var/sadm/install/contents
+  $MEGREP -e "^/(lib|usr/lib)/$dep( |=)" -e "^/(lib|usr/lib)/${ARCH64}/$dep( |=)" /var/sadm/install/contents
 done
 }
 
 case $STYLE in
     'recurse')
-	getlongdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
+	getlongdeps $* | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
 	exit 0
 	;;
 esac
 
-getdeps $* | awk '{print "P "$NF}'|sort|uniq| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
+getdeps $* | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
