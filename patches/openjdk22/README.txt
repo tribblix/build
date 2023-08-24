@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+12
+
+Remove AttachListener::pd_set_flag()
+
 22+11
 
 Remove AttachListener::pd_find_operation()

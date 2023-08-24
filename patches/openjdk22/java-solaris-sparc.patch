@@ -316,7 +316,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -1064,7 +1064,7 @@
+@@ -1078,7 +1078,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -1117,7 +1117,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -452,7 +452,7 @@
+@@ -453,7 +453,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -5584,7 +5584,7 @@
 -################################################################################
 --- old/src/hotspot/os/solaris/attachListener_solaris.cpp	2020-05-20 18:09:27.484969868 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,739 +0,0 @@
+@@ -1,715 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -6296,30 +6296,6 @@
 -  { "enabledprobes", enable_dprobes },
 -  { NULL, NULL }
 -};
--
--// Solaris specific global flag set.
--jint AttachListener::pd_set_flag(AttachOperation* op, outputStream* out) {
--  const char* name = op->arg(0);
--  assert(name != NULL, "flag name should not be null");
--  bool flag = true;
--  const char* arg1;
--  if ((arg1 = op->arg(1)) != NULL) {
--    char *end;
--    flag = (strtol(arg1, &end, 10) != 0);
--    if (arg1 == end) {
--      out->print_cr("flag value has to be an integer");
--      return JNI_ERR;
--    }
--  }
--
--  if (strcmp(name, "DTraceMonitorProbes") == 0) {
--    DTrace::set_monitor_dprobes(flag);
--    return JNI_OK;
--  }
--
--  out->print_cr("flag '%s' cannot be changed", name);
--  return JNI_ERR;
--}
 -
 -void AttachListener::pd_detachall() {
 -  DTrace::detach_all_clients();
