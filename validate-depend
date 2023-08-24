@@ -34,12 +34,12 @@ fi
 #
 # just walk through all the depend files
 #
-for dep in `cat */depend | sort | uniq | awk '{print $2}'`
+for dep in `sort -u */depend | awk '{print $2}'`
 do
     if [ ! -d $dep ]; then
 	if [ ! -f ../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap ]; then
 	    echo "Missing dependency $dep"
-	    grep "^${dep}$" */depend
+	    grep -x "P ${dep}" */depend
 	fi
     fi
 done
@@ -47,12 +47,12 @@ done
 #
 # and build_require
 #
-for dep in `cat */build_require`
+for dep in `sort -u */build_require`
 do
     if [ ! -d $dep ]; then
 	if [ ! -f ../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap ]; then
 	    echo "Missing build_require $dep"
-	    grep "^${dep}$" */build_require
+	    grep -x "${dep}" */build_require
 	fi
     fi
 done
@@ -64,4 +64,3 @@ for dep in `grep '^[ ]*$' */depend */build_require`
 do
     echo "Blank line in $dep"
 done
-
