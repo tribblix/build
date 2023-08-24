@@ -12,6 +12,7 @@
 
 THOME=${THOME:-/packages/localsrc/Tribblix}
 BDIR=${THOME}/build
+PDIR="/var/sadm/pkg"
 
 QUIET=""
 STATUS=0
@@ -27,7 +28,7 @@ do
     dir=${dir%%/}
     if [ -d ${BDIR}/${dir} ]; then
 	if [ -z "$QUIET" ]; then
-	    if pkginfo -q $dir 2>/dev/null
+	    if [ -f ${PDIR}/${dir}/pkginfo ]
 	    then
 		echo "Checking $dir (installed)"
 	    else
@@ -35,9 +36,9 @@ do
 	    fi
 	fi
 	if [ -f ${BDIR}/${dir}/depend ]; then
-	    for pkg in `awk '{print $2}' ${BDIR}/${dir}/depend`
+	    while read tmp pkg
 	    do
-		if pkginfo -q $pkg 2>/dev/null
+		if [ -f ${PDIR}/${pkg}/pkginfo ]
 		then
 		    if [ -z "$QUIET" ]; then
 			echo "  runtime $pkg .. ok"
@@ -48,16 +49,16 @@ do
 		    fi
 		    STATUS=1
 		fi
-	    done
+	    done <  ${BDIR}/${dir}/depend
 	else
 	    if [ -z "$QUIET" ]; then
 		echo "  ... no dependencies to check"
 	    fi
 	fi
 	if [ -f ${BDIR}/${dir}/build_require ]; then
-	    for pkg in `cat ${BDIR}/${dir}/build_require`
+	    for pkg in $(<${BDIR}/${dir}/build_require)
 	    do
-		if pkginfo -q $pkg 2>/dev/null
+		if [ -f ${PDIR}/${pkg}/pkginfo ]
 		then
 		    if [ -z "$QUIET" ]; then
 			echo "  build $pkg .. ok"
@@ -71,9 +72,9 @@ do
 	    done
 	fi
 	if [ -f ${BDIR}/${dir}/build_incompatible ]; then
-	    for pkg in `cat ${BDIR}/${dir}/build_incompatible`
+	    for pkg in $(<${BDIR}/${dir}/build_incompatible)
 	    do
-		if pkginfo -q $pkg 2>/dev/null
+		if [ -f ${PDIR}/${pkg}/pkginfo ]
 		then
 		    if [ -z "$QUIET" ]; then
 			echo "  **ERROR** incompatible build $pkg is installed"
