@@ -2,10 +2,10 @@
 #
 # verify there are no duplicate aliases
 #
-DUPS=$(cat */alias|sort|uniq -d)
+DUPS=$(sort */alias|uniq -d)
 if [[ -n $DUPS ]]; then
     echo "ERROR: duplicates found for x86"
-    cat */alias|sort|uniq -d
+    sort */alias|uniq -d
 fi
 
 #
@@ -14,7 +14,7 @@ fi
 # what we have to do is remove the vanilla alias file from the list if
 # there's a platform-specific one
 #
-PLATFORMS=$(ls -1d */alias.* | awk -F. '{print $NF}' | sort | uniq)
+PLATFORMS=$(ls -1d */alias.* | awk -F. '{print $NF}' | sort -u)
 for PLAT in $PLATFORMS
 do
     # exclude alias files for which there's a platform-specific one
@@ -24,11 +24,11 @@ do
     SRCH2=$(echo $LS2 | sed -e s:/arch.txt:/alias:g -e 's: :|:g')
     # simple grep is fine, the string is intrisically anchored by the
     # leading TRIB prefix and the /alias on the end
-    CFILES=$(ls -1d */alias | egrep -v "(${SRCH})" | egrep -v "(${SRCH2})")
-    DUPS=$(cat $CFILES */alias.${PLAT}|sort|uniq -d)
+    CFILES=$(ls -1d */alias | egrep -v -e "(${SRCH})" -e "(${SRCH2})")
+    DUPS=$(sort $CFILES */alias.${PLAT}|uniq -d)
     if [[ -n $DUPS ]]; then
 	echo "ERROR: duplicates found for ${PLAT}"
-	cat $CFILES */alias.${PLAT}|sort|uniq -d
+	sort $CFILES */alias.${PLAT}|uniq -d
     fi
 done
 
