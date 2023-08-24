@@ -65,8 +65,8 @@ do
   do
       $MEGREP "${rpath}/$dep( |=)" /var/sadm/install/contents
   done
-  $MEGREP "^/(|usr/)lib/$dep( |=)" /var/sadm/install/contents
-  $MEGREP "^/(|usr/)lib/${ARCH64}/$dep( |=)" /var/sadm/install/contents
+  $MEGREP "^/(lib|usr/lib)/$dep( |=)" /var/sadm/install/contents
+  $MEGREP "^/(lib|usr/lib)/${ARCH64}/$dep( |=)" /var/sadm/install/contents
 done
 }
 
@@ -84,8 +84,8 @@ do
   do
       $MEGREP "${rpath}/$dep( |=)" /var/sadm/install/contents
   done
-  $MEGREP "^/(|usr/)lib/$dep( |=)" /var/sadm/install/contents
-  $MEGREP "^/(|usr/)lib/${ARCH64}/$dep( |=)" /var/sadm/install/contents
+  $MEGREP "^/(lib|usr/lib)/$dep( |=)" /var/sadm/install/contents
+  $MEGREP "^/(lib|usr/lib)/${ARCH64}/$dep( |=)" /var/sadm/install/contents
 done
 }
 
