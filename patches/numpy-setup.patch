@@ -1,0 +1,12 @@
+Setting __STDC_VERSION__ to a nonsense value won't lead to a successful outcome.
+
+--- a/setup.py	Mon Jul 31 02:19:35 2023
++++ b/setup.py	Sat Aug 26 13:29:10 2023
+@@ -257,7 +257,6 @@
+             # from STL since extensions are build by C linker and
+             # without C++ runtime dependencies.
+             '-fno-threadsafe-statics',
+-            '-D__STDC_VERSION__=0',  # for compatibility with C headers
+             '-fno-exceptions',  # no exception support
+             '-fno-rtti'  # no runtime type information
+         ])
