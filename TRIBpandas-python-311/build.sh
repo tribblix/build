@@ -15,8 +15,8 @@
 # to build its own numpy, which would fail as it doesn't have the
 # modifications we need to make it build successfully
 #
-${THOME}/build/unpack pandas-2.0.2
-cd pandas-2.0.2
+${THOME}/build/unpack pandas-2.0.3
+cd pandas-2.0.3
 /usr/versions/python-3.11/bin/python3 setup.py build
 rm -fr /tmp/pil
 /usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/pil
