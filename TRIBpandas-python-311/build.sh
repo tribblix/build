@@ -3,7 +3,7 @@
 # optional dependencies - [*] means we already have it
 #
 # performance: numexpr,bottleneck,numba
-# plot: matplotlib
+# plot[*]: matplotlib[*]
 # output_formatting[*]: jinja2[*],tabulate[*]
 # computation[*]: scipy[*],xarray[*]
 # excel[*]: odfpy[*],xlrd[*],xlsxwriter[*],openpyxl[*],pyxlsb[*]
