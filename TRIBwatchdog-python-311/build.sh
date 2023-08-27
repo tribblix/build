@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBwatchdog-python-311 watchdog-2.2.1
+${THOME}/build/pkg_setup_py TRIBwatchdog-python-311 watchdog-3.0.0
