@@ -1,4 +1,4 @@
 PKG="TRIBaspell"
 NAME="GNU Aspell spell checker"
-VERSION="0.60.8.0"
+VERSION="0.60.8.1"
 ZAP_URL="http://aspell.net/"
