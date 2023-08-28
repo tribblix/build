@@ -1,0 +1,4 @@
+PKG="TRIBcabal"
+NAME="The Haskell Cabal"
+VERSION="2.2.0.0.0"
+ZAP_URL="https://www.haskell.org/cabal/"
