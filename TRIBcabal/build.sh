@@ -1,5 +1,9 @@
 #!/bin/sh
 #
+# NOTE: if calling cabal, you need to use the absolute path
+# /usr/bin/cabal
+# if you just use 'cabal' from the PATH it will get easily confused and fail
+#
 # this isn't the current version, but it is (almost) the version that matches
 # our Haskell 8.4.4
 #
