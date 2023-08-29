@@ -22,6 +22,16 @@ if [ "X$1" = "X-q" ]; then
     shift
 fi
 
+#
+# if no arguments, shortcut for the package I'm looking at right now
+#
+case $# in
+    0)
+	DIR=$(pwd)
+	set -- ${DIR##*/}
+	;;
+esac
+
 for dir in $*
 do
     # remove any trailing / added by tab-completion
