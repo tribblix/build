@@ -1,8 +1,8 @@
 #!/bin/sh
 #
-${THOME}/build/unpack unrarsrc-5.6.4
+${THOME}/build/unpack unrarsrc-6.2.10
 cd unrar
-gmake
+gmake -j 4
 rm -fr /tmp/uu
 mkdir -p /tmp/uu/usr/bin
 cp unrar /tmp/uu/usr/bin
