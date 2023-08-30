@@ -7,10 +7,10 @@
 # -q - quiet, don't show good packages
 # -Q - really quiet, only show summary total
 #
-DOFOUND=echo
-DOMISSING=echo
-ARCH=`uname -p`
-while getopts "p:qQ" opt; do
+DOFOUND="echo"
+DOMISSING="echo"
+ARCH=$(uname -p)
+while getopts ":p:qQ" opt; do
     case $opt in
     p)
         ARCH="$OPTARG"
@@ -21,6 +21,10 @@ while getopts "p:qQ" opt; do
     Q)
         DOFOUND="true"
         DOMISSING="true"
+        ;;
+    *)
+        echo "ERROR: invalid option $OPTARG"
+        exit 1
         ;;
     esac
 done
@@ -34,7 +38,7 @@ case $ARCH in
 	PKGDIR="../pkgs.sparc"
 	;;
     *)
-	echo "Unknown platform"
+	echo "ERROR: Unknown platform"
 	exit 1
 	;;
 esac
@@ -46,25 +50,34 @@ for PKGI in */pkginfo
 do
   PKG=${PKGI%/*}
   # if marked for a different arch, ignore
-  if [ -f ${PKG}/arch.txt ]; then
-      NARCH=`cat ${PKG}/arch.txt`
+  if [ -f "${PKG}/arch.txt" ]; then
+      NARCH=$(<${PKG}/arch.txt)
       if [ "$NARCH" != "$ARCH" ]; then
 	  continue
       fi
   fi
   # use a per-arch version if present
-  if [ -f ${PKG}/version.$ARCH ]; then
-      PKGVERS=`cat ${PKG}/version.$ARCH`
+  if [ -f "${PKG}/version.$ARCH" ]; then
+      PKGVERS=$(<${PKG}/version.$ARCH)
   else
-      PKGVERS=`awk -F= '{if ($1 == "VERSION") print $2}' $PKGI`
+      PKGVERS=""
+      while read -r line
+      do
+	  case $line in
+	      VERSION=*)
+		  PKGVERS=${line#*=}
+		  break
+		  ;;
+	  esac
+      done<${PKGI}
       PKGVERS=${PKGVERS//\"/}
   fi
-  if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
+  if [ -f "${PKGDIR}/${PKG}.${PKGVERS}.zap" ]; then
       $DOFOUND "FOUND ${PKG} at version ${PKGVERS}"
-      NFOUND=$(($NFOUND+1))
+      NFOUND=$((NFOUND+1))
   else
       $DOMISSING "MISSING ${PKG} at version ${PKGVERS}"
-      NMISSING=$(($NMISSING+1))
+      NMISSING=$((NMISSING+1))
   fi
 done
 
