@@ -34,9 +34,8 @@ RUBYNAME=TRIB${pkg_name}-ruby-${RUBYVER}
 
 #
 # check we're within the SVR4 package name length limit
-# use the 3.11 name, as it's the longest, even if we don't use it
 #
-NAMELEN=$(echo $RUBYNAME|wc -c)
+NAMELEN=${#RUBYNAME}
 if [ $NAMELEN -gt 31 ]; then
     echo "Chosen name exceeds the SVR4 package name length limit (length $NAMELEN)"
     exit 1

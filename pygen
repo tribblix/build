@@ -60,7 +60,7 @@ PY311NAME=TRIB${pkg_name}-python-${PY311VER}
 # check we're within the SVR4 package name length limit
 # use the 3.11 name, as it's the longest, even if we don't use it
 #
-NAMELEN=$(echo $PY311NAME|wc -c)
+NAMELEN=${#PY311NAME}
 if [ $NAMELEN -gt 31 ]; then
     echo "Chosen name exceeds the SVR4 package name length limit (length $NAMELEN)"
     exit 1
