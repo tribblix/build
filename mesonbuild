@@ -65,7 +65,7 @@ CONFARGS=""
 LIBDIR64=""
 DO_LD="yes"
 
-while [[ $# > 0 ]]; do
+while [[ $# -gt 0 ]]; do
 case $1 in
 -64)
 	DO64="true"
