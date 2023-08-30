@@ -6,8 +6,6 @@
 # -v to verify there are no duplicates
 #
 
-builtin cat
-
 PKGDIR="../pkgs"
 case $# in
 1)

@@ -6,8 +6,6 @@
 # aren't up to date with the build tree
 #
 
-builtin cat
-
 case $# in
 1)
     CATALOG=$1
@@ -31,7 +29,7 @@ cat <<EOF
 <dl>
 EOF
 
-cat $CATALOG | while read line
+while read line
 do
   #pick first field
   PKG=${line%%\|*}
@@ -85,7 +83,7 @@ do
     echo "</ul>"
     echo "</dd>"
   fi
-done
+done < $CATALOG
 
 cat <<EOF
 </dl>

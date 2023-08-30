@@ -4,8 +4,6 @@
 #  name|version|dependencies|size|md5|
 #
 
-builtin cat
-
 ARCH="sparc"
 PKGDIR="../pkgs.sparc"
 case $# in
@@ -20,19 +18,19 @@ do
   PKGVERS=${vstring##*=}
   PKGVERS=${PKGVERS//\"/}
   if [ -f ${PKG}/version.${ARCH} ]; then
-      PKGVERS=`cat ${PKG}/version.${ARCH}`
+      PKGVERS=$(<${PKG}/version.${ARCH})
   fi
   DEPLIST=""
   if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
     if [ -x /usr/bin/stat ]; then
-	PKGSIZE=`/usr/bin/stat --printf="%s" ${PKGDIR}/${PKG}.${PKGVERS}.zap`
+	PKGSIZE=$(/usr/bin/stat --printf="%s" ${PKGDIR}/${PKG}.${PKGVERS}.zap)
     else
-	PKGSIZE=`/bin/ls -l ${PKGDIR}/${PKG}.${PKGVERS}.zap | /usr/bin/awk '{print $5}'`
+	PKGSIZE=$(/bin/ls -l ${PKGDIR}/${PKG}.${PKGVERS}.zap | /usr/bin/awk '{print $5}')
     fi
     if [ ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5 -nt ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
-	PKGMD5=`cat ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5`
+	PKGMD5=$(<${PKGDIR}/${PKG}.${PKGVERS}.zap.md5)
     else
-	PKGMD5=`openssl md5 ${PKGDIR}/${PKG}.${PKGVERS}.zap| /usr/bin/awk '{print $NF}'`
+	PKGMD5=$(openssl md5 ${PKGDIR}/${PKG}.${PKGVERS}.zap| /usr/bin/awk '{print $NF}')
 	/bin/rm -f ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
 	echo $PKGMD5 > ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
     fi

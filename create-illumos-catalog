@@ -4,7 +4,7 @@
 #  name|version|dependencies|size|md5|
 #
 THOME=${THOME:-/packages/localsrc/Tribblix}
-PKGDIR=${THOME}/illumos-pkgs-m18/pkgs
+PKGDIR=${THOME}/illumos-pkgs-m31/pkgs
 
 case $# in
 1)
@@ -22,14 +22,18 @@ do
   PNAME=${ZPKG%%.*}
   PF=${ZPKG%.zap}
   PKGVERS=${PF#*.}
-  PKGSIZE=`/bin/ls -l ${ZPKG} | /usr/bin/awk '{print $5}'`
-  if [ ${ZPKG}.md5 -nt ${ZPKG} ]; then
-    PKGMD5=`/bin/cat ${ZPKG}.md5`
+  if [ -x /usr/bin/stat ]; then
+    PKGSIZE=$(/usr/bin/stat --printf="%s" ${ZPKG})
   else
-    PKGMD5=`openssl md5 ${ZPKG} | /usr/bin/awk '{print $NF}'`
+    PKGSIZE=$(/bin/ls -l ${ZPKG} | /usr/bin/awk '{print $5}')
+  fi
+  if [ ${ZPKG}.md5 -nt ${ZPKG} ]; then
+    PKGMD5=$(<${ZPKG}.md5)
+  else
+    PKGMD5=$(openssl md5 ${ZPKG} | /usr/bin/awk '{print $NF}')
     /bin/rm -f ${ZPKG}.md5
     echo $PKGMD5 > ${ZPKG}.md5
   fi
-  DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
+  DEPLIST=$(bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}')
   echo "${PNAME}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|" | sed 's: |:|:'
 done

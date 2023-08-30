@@ -7,8 +7,6 @@
 # or a previous release
 #
 
-builtin cat
-
 PKGDIR="../pkgs"
 CATNAME="catalog"
 #
@@ -39,16 +37,16 @@ fi
 #
 # assume we're in the build directory
 #
-for PKG in `awk -F'|' '{print $1}' $CFILE`
+for PKG in $(awk -F'|' '{print $1}' $CFILE)
 do
     PKGI=${PKG}/alias
     if [ -f ${PKGI}.${PLAT} ]; then	    
-	for PALIAS in `cat ${PKGI}.${PLAT}`
+	for PALIAS in $(<${PKGI}.${PLAT})
 	do
 	    echo "${PALIAS}|${PKG}"
 	done
     elif [ -f $PKGI ]; then	    
-	for PALIAS in `cat $PKGI`
+	for PALIAS in $(<${PKGI})
 	do
 	    echo "${PALIAS}|${PKG}"
 	done
