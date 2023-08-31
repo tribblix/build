@@ -2,5 +2,5 @@
 #
 # postgres 16
 #
-${THOME}/build/dobuild +64only -P /opt/tribblix/postgres16 postgresql-16beta3 -C "--without-readline --with-perl --with-openssl" -M world
-${THOME}/build/genpkg -I install-world TRIBblix-postgres16 postgresql-16beta3
+${THOME}/build/dobuild +64only -P /opt/tribblix/postgres16 postgresql-16rc1 -C "--without-readline --with-perl --with-openssl" -M world
+${THOME}/build/genpkg -I install-world TRIBblix-postgres16 postgresql-16rc1
