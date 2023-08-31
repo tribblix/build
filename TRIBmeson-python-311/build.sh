@@ -2,4 +2,4 @@
 #
 #
 #
-${THOME}/build/pkg_setup_py TRIBmeson-python-311 meson-0.63.3
+${THOME}/build/pkg_setup_py TRIBmeson-python-311 meson-1.2.1
