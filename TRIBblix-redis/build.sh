@@ -1,9 +1,12 @@
 #!/bin/sh
 #
+# if you go to https://github.com/redis/redis-hashes then you get both
+# sha256 hashes and direct links to the version downloads
+#
 # the redis build is implicitly 64-bit already
 #
-env CC=gcc BUILD_TLS=yes ${THOME}/build/dobuild redis-6.2.11 -P /opt/tribblix/redis
-cd redis-6.2.11
+env CC=gcc BUILD_TLS=yes ${THOME}/build/dobuild redis-6.2.13 -P /opt/tribblix/redis
+cd redis-6.2.13
 # some of the tests might fail in tcl
 gmake test CC=gcc BUILD_TLS=yes
 rm -fr /tmp/rr
