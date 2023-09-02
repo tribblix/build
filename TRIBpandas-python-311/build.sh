@@ -7,8 +7,8 @@
 # output_formatting[*]: jinja2[*],tabulate[*]
 # computation[*]: scipy[*],xarray[*]
 # excel[*]: odfpy[*],xlrd[*],xlsxwriter[*],openpyxl[*],pyxlsb[*]
-# html: BeautifulSoup4,html5lib,lxml
-# xml: lxml
+# html[*]: BeautifulSoup4[*],html5lib[*],lxml[*]
+# xml[*]: lxml[*]
 # databases: SQLAlchemy,psycopg2[*],pymysql
 #
 # a pep518 build requires --no-build-isolation otherwise it tries
