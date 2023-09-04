@@ -153,4 +153,4 @@ if [ -n "${OUTMISS}" ]; then
     egrep -v '^(VERSION|NAME|REQUIRES|SERVICE)=' ${OVL}.ovl
 fi
 
-rm -f $TMPF ${TMPF}.t ${TMPF}.p
+rm -f $TMPF ${TMPF}.t ${TMPF}.p ${TMPF}.u
