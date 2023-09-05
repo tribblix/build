@@ -1,2 +1,0 @@
--p1 socat-proc.patch
--p1 socat-getproto.patch
