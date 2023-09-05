@@ -2,6 +2,11 @@
 #
 # requires rust
 #
+
+#
+# in ~/.cargo/registry/src/github.com-1ecc6299db9ec823/open-2.0.3/src/lib.rs
+# you need to add "illumos" to the lists in addition to "solaris" (3 places)
+#
 git clone https://git.sr.ht/~julienxx/castor
 cd castor
 gmake
