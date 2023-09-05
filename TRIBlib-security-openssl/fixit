@@ -26,18 +26,10 @@ mv usr/ssl/man usr/share
 #
 rm -fr usr/share/man/man3
 #
-# we no longer fiddle the manpage suffix, but some man pages conflict
+# we should have a 64-bit configuration.h saved, now fix it to be dual-arch
 #
-mv usr/share/man/man1/errstr.1 usr/share/man/man1/openssl-errstr.1
-mv usr/share/man/man1/passwd.1 usr/share/man/man1/openssl-passwd.1
-mv usr/share/man/man1/rehash.1 usr/share/man/man1/openssl-rehash.1
-rm usr/share/man/man1/openssl-c_rehash.1
-ln -s openssl-rehash.1 usr/share/man/man1/openssl-c_rehash.1
-#
-# we should have a 64-bit opensslconf.h saved, now fix it to be dual-arch
-#
-mv usr/include/openssl/opensslconf.h usr/include/openssl/opensslconf-32.h
-cp ${BUILDROOT}/patches/opensslconf.h usr/include/openssl/opensslconf.h
+mv usr/include/openssl/configuration.h usr/include/openssl/configuration-32.h
+cp ${BUILDROOT}/patches/openssl-configuration.h usr/include/openssl/configuration.h
 #
 # replace 32-bit binary with 64-bit
 #

@@ -18,15 +18,6 @@ if [ ! -d "${DESTDIR}" ]; then
    exit 0
 fi
 
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
-
 #
 # local package tweaks below
 #
@@ -39,15 +30,3 @@ if [ ! -f ${DESTDIR}/usr/include/openssl/sslerr_legacy.h ]; then
     rm -fr ${DESTDIR}/usr/include
     rm -fr ${DESTDIR}/usr/share/man
 fi
-
-#
-# save the 64-bit configuration.h; the fixit script will sort it out
-#
-
-mv ${DESTDIR}/usr/include/openssl/configuration.h ${DESTDIR}/usr/include/openssl/configuration-64.h
-
-#
-# save a 64-bit openssl binary
-#
-mkdir -p  ${DESTDIR}/usr/bin/${ARCH64}
-mv ${DESTDIR}/usr/bin/openssl ${DESTDIR}/usr/bin/${ARCH64}/openssl
