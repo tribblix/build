@@ -8,3 +8,9 @@
 #
 rm -f etc/sudoers
 rm -f usr/libexec/sudo/*.la
+#
+# but we do drop in a custom config to work around the pty issue
+#
+mkdir -p etc/sudoers.d
+cp ${BUILDROOT}/patches/sudo.config etc/sudoers.d/_illumos_nopty
+chmod 0444 etc/sudoers.d/_illumos_nopty
