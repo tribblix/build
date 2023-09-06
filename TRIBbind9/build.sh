@@ -4,5 +4,5 @@
 #
 # the preconf file builds a private static libuv
 #
-env LIBUV_CFLAGS=-I`pwd`/bind-9.18.16-64bit/libuv-v1.40.0-64bit/include LIBUV_LIBS="`pwd`/bind-9.18.16-64bit/libuv-v1.40.0-64bit/.libs/libuv.a -lkstat -lsendfile" TRIBBLIX_CFLAGS=-D_XPG4_2 TRIBBLIX_LDFLAGS=-lsocket ${THOME}/build/dobuild -64only bind-9.18.16 -C "--sysconfdir=/etc --localstatedir=/var --without-python --disable-geoip --disable-dependency-tracking"
-${THOME}/build/genpkg TRIBbind9 bind-9.18.16
+env LIBUV_CFLAGS=-I`pwd`/bind-9.18.18-64bit/libuv-v1.40.0-64bit/include LIBUV_LIBS="`pwd`/bind-9.18.18-64bit/libuv-v1.40.0-64bit/.libs/libuv.a -lkstat -lsendfile" TRIBBLIX_CFLAGS=-D_XPG4_2 TRIBBLIX_LDFLAGS=-lsocket ${THOME}/build/dobuild -64only bind-9.18.18 -C "--sysconfdir=/etc --localstatedir=/var --without-python --disable-geoip --disable-dependency-tracking"
+${THOME}/build/genpkg TRIBbind9 bind-9.18.18
