@@ -22,6 +22,7 @@ cd ..
 # themes
 #
 # leftwm-theme needs gnu ar as gar in your path
+# and gnu ranlib as granlib in your path
 #
 # many of the themes have extra dependencies, see
 # https://github.com/leftwm/leftwm
