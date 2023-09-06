@@ -3,6 +3,8 @@ P TRIBimage-libpng
 P TRIBlib-zlib
 P TRIBlibao
 P TRIBlibflac
+P TRIBlibid3tag
+P TRIBlibmad
 P TRIBlibogg
 P TRIBlibsndfile
 P TRIBlibvorbis
