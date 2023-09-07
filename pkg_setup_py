@@ -60,12 +60,6 @@ fi
 # we assume it has to be 3.X
 #
 case $SPYVER in
-    37)
-	PYVER=3.7
-	;;
-    39)
-	PYVER=3.9
-	;;
     311)
 	PYVER=3.11
 	;;

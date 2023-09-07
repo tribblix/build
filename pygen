@@ -6,26 +6,12 @@
 #
 
 #
-# by default, package for 3.11, other versions optional
+# by default, package for 3.11
 #
 
-PY39VER=39
 PY311VER=311
 
-DO39=""
 DO311="yes"
-case $1 in
-    +39)
-	DO39="yes"
-	shift
-	;;
-esac
-case $1 in
-    -311)
-	DO311=""
-	shift
-	;;
-esac
 
 case $1 in
     -p)
@@ -37,7 +23,7 @@ case $1 in
 	shift
 	;;
     *)
-	echo "Usage: $0 [-39|-311] -s|-p pkg_name tarball_name"
+	echo "Usage: $0 -s|-p pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -53,12 +39,10 @@ case $# in
 	;;
 esac
 
-PY39NAME=TRIB${pkg_name}-python-${PY39VER}
 PY311NAME=TRIB${pkg_name}-python-${PY311VER}
 
 #
 # check we're within the SVR4 package name length limit
-# use the 3.11 name, as it's the longest, even if we don't use it
 #
 NAMELEN=${#PY311NAME}
 if [ $NAMELEN -gt 31 ]; then
@@ -66,10 +50,6 @@ if [ $NAMELEN -gt 31 ]; then
     exit 1
 fi
 
-if [ -d "$PY39NAME" ]; then
-   echo "$PY39NAME already exists"
-   exit 1
-fi
 if [ -d "$PY311NAME" ]; then
    echo "$PY311NAME already exists"
    exit 1
@@ -85,26 +65,6 @@ PVER=${TBALL##*-}
 #
 # OK, now we can create the package metadata
 #
-
-if [ -n "$DO39" ]; then
-#
-# python 3.9
-#
-mkdir $PY39NAME
-echo "P TRIBv-python-$PY39VER" > $PY39NAME/depend
-cat > $PY39NAME/pkginfo <<EOF
-PKG="${PY39NAME}"
-NAME="Python $PNAME"
-VERSION="${PVER}.0"
-ZAP_URL="https://pypi.org/project/${PNAME}"
-EOF
-cat > $PY39NAME/build.sh <<EOF
-#!/bin/sh
-#
-\${THOME}/build/$BUILDER $PY39NAME $TBALL
-EOF
-chmod a+x $PY39NAME/build.sh
-fi
 
 if [ -n "$DO311" ]; then
 #
