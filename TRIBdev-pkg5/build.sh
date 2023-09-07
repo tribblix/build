@@ -8,10 +8,20 @@
 #
 
 #
+# if rebuilding against a newer openssl, you need to make sure that
+# any wheels from a previous build that might reference the older
+# ssl are removed - eg
+# find ~/.cache/pip/ | grep -i curl
+#
+
+#
 # the build needs six and cffi and libzonecfg.h - see build_require
 #
 git clone https://github.com/omniosorg/pkg5
 cd pkg5
+# this one works, newer ones seen to fail building pydantic
+# with rust errors
+git checkout b73cf9dac236c95dcf1b62b9966606183c2ad2ca
 cd src
 
 #
