@@ -4,7 +4,7 @@ rm -f usr/lib/lib*.la
 rm -f usr/lib/*/lib*.la
 mkdir -p var/net-snmp
 #
-# this is really a WIP app, undocumented, and remvoing it
+# this is really a WIP app, undocumented, and removing it
 # removes the libpcap dependency
 #
 rm -f usr/bin/snmppcap
