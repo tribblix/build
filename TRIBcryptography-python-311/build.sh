@@ -1,5 +1,10 @@
 #!/bin/sh
 #
+# later versions require a rust toolchain to build
+#
+# therefore, 3.3.2 is the newest version we can use on sparc
+# which also limits the pyOpenSSL on sparc to v21 or below
+#
 ${THOME}/build/unpack cryptography-3.3.2
 cd cryptography-3.3.2
 /usr/versions/python-3.11/bin/python3 setup.py build
