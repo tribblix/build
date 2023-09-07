@@ -4,7 +4,7 @@
 # mac and windows packaged up in the jar file. This package ships one
 # for Tribblix so that it will work here too.
 #
-# this is completeky independent of any other piece of sqlite
+# this is completely independent of any other piece of sqlite
 #
 git clone https://github.com/xerial/sqlite-jdbc
 cd sqlite-jdbc
