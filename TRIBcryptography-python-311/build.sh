@@ -1,15 +1,5 @@
 #!/bin/sh
 #
-# later versions require a rust toolchain to build
+# current versions require a rust toolchain to build
 #
-# therefore, 3.3.2 is the newest version we can use on sparc
-# which also limits the pyOpenSSL on sparc to v21 or below
-#
-${THOME}/build/unpack cryptography-3.3.2
-cd cryptography-3.3.2
-/usr/versions/python-3.11/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBcryptography-python-311 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+${THOME}/build/pkg_setup_py TRIBcryptography-python-311 cryptography-41.0.3
