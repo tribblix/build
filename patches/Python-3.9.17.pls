@@ -1,2 +1,0 @@
--p1 python/disable_epoll.39.patch
--p1 python/enable-ossaudiodev.39.patch
