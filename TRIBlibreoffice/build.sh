@@ -41,7 +41,7 @@ sed -i '/stack-protector-strong/d' ./solenv/gbuild/platform/com_GCC_defs.mk
 #
 
 #
-# need to ensure we find python3.9, which is 64-bit
+# need to ensure we find python3.11, which is 64-bit
 #
 # note that we specify 64-bit in multiple ways, as there are multiple
 # components which pick up on different things
@@ -50,7 +50,7 @@ sed -i '/stack-protector-strong/d' ./solenv/gbuild/platform/com_GCC_defs.mk
 env CFLAGS="-m64" LDFLAGS="-m64" CXXFLAGS="-m64" \
 CC="gcc -m64" CXX="g++ -m64" AFLAGS="-m64" \
 PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig \
-PATH=/usr/gnu/bin:/usr/versions/python-3.9/bin:/usr/bin/amd64:$PATH \
+PATH=/usr/gnu/bin:/usr/versions/python-3.11/bin:/usr/bin/amd64:$PATH \
 bash ./configure \
 --prefix=/usr/versions/libreoffice-7 \
 --without-java \
@@ -70,6 +70,7 @@ bash ./configure \
 --with-system-lcms2 \
 --with-system-epoxy \
 --with-system-openssl \
+--with-system-harfbuzz \
 --disable-ldap \
 --disable-odk \
 --with-vendor="Tribblix" \
@@ -78,35 +79,17 @@ bash ./configure \
 --with-system-icu
 
 #
-# despite needing to build against its own harfbuzz, the build tries
-# to accidentally link against the system one which isn't compatible
-# so make sure it's moved out of the way
-#
-# as root
-# 
-# rm /usr/lib/amd64/libharfbuzz.so
-#
-
-#
 # a regular make will run the checks; these will almost always fail,
 # regardless of platform, so build without checks
 #
 env CFLAGS="-m64" LDFLAGS="-m64" CXXFLAGS="-m64" \
 CC="gcc -m64" CXX="g++ -m64" AFLAGS="-m64" \
 PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig \
-PATH=/usr/gnu/bin:/usr/versions/python-3.9/bin:/usr/bin/amd64:$PATH \
+PATH=/usr/gnu/bin:/usr/versions/python-3.11/bin:/usr/bin/amd64:$PATH \
 /usr/gnu/bin/make -j 6 build-nocheck
-
-#
-# undo the harfbuzz tweak
-#
-# as root
-#
-# cd /usr/lib/amd64 ; ln -s libharfbuzz.so.0 libharfbuzz.so
-#
 
 #
 # need distro-pack-install to get things assembled the right way
 #
-env PATH=/usr/gnu/bin:/usr/versions/python-3.9/bin:$PATH /usr/gnu/bin/make distro-pack-install DESTDIR=/tmp/loo
+env PATH=/usr/gnu/bin:/usr/versions/python-3.11/bin:$PATH /usr/gnu/bin/make distro-pack-install DESTDIR=/tmp/loo
 ${THOME}/build/create_pkg TRIBlibreoffice /tmp/loo
