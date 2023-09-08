@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBsoupsieve-python-311 soupsieve-2.4.1
+${THOME}/build/pkg_pep518 TRIBsoupsieve-python-311 soupsieve-2.5
