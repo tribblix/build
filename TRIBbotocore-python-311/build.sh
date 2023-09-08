@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBbotocore-python-311 botocore-1.29.165
+${THOME}/build/pkg_setup_py TRIBbotocore-python-311 botocore-1.31.43
