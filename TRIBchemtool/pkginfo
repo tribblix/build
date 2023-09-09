@@ -1,0 +1,4 @@
+PKG="TRIBchemtool"
+NAME="Chemtool"
+VERSION="1.6.14.0"
+ZAP_URL="http://ruby.chemie.uni-freiburg.de/~martin/chemtool/"
