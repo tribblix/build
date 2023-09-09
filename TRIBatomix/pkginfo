@@ -1,0 +1,4 @@
+PKG="TRIBatomix"
+NAME="Gnome atomix"
+VERSION="3.34.0.0"
+ZAP_URL="https://download.gnome.org/sources/atomix/"
