@@ -1,0 +1,4 @@
+PKG="TRIBxpt"
+NAME="X periodic table"
+VERSION="1.0"
+ZAP_URL="https://github.com/tvrusso/xpt"
