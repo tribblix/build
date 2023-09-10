@@ -8,6 +8,12 @@
 # contrib/programs directory
 #
 
+$THOME/build/unpack contrib-1
+$THOME/build/unpack contrib-2
+$THOME/build/unpack contrib-3
+$THOME/build/unpack contrib-4
+cd contrib/programs
+
 cd xcalendar
 xmkmf -a -DHasGcc3=YES
 make
@@ -25,6 +31,14 @@ cd xdiary
 xmkmf -a -DHasGcc3=YES
 make
 cd ..
+cd xearth-0.92
+xmkmf -a -DHasGcc3=YES
+make
+cd ..
+cd xgas
+xmkmf -a -DHasGcc3=YES
+make
+cd ..
 cd AnswerGarden
 rm makefile
 xmkmf -a -DHasGcc3=YES
@@ -37,4 +51,4 @@ sed -i s:sun/audioio:sys/audioio: Dclock.c
 make
 cd ..
 
-${THOME}/build/genpkg -I "install install.man" TRIBx11-contrib xcalendar xcolors xrubik xdiary AnswerGarden Dclock
+${THOME}/build/genpkg -I "install install.man" TRIBx11-contrib xcalendar xcolors xrubik xdiary xearth-0.92 xgas AnswerGarden Dclock
