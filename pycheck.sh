@@ -11,25 +11,23 @@
 #
 
 THOME=${THOME:-/packages/localsrc/Tribblix}
-cd ${THOME}/build
+cd ${THOME}/build || exit 1
 
 PY3VER=311
 
-WGET=/usr/bin/wget
-JQ=/usr/bin/jq
-if [ ! -x $WGET ]; then
-    echo "ERROR: unable to find $WGET"
+if [ ! -x /usr/bin/wget ]; then
+    echo "ERROR: unable to find wget"
     exit 1
 fi
-if [ ! -x $JQ ]; then
-    echo "ERROR: unable to find $JQ"
+if [ ! -x /usr/bin/jq ]; then
+    echo "ERROR: unable to find jq"
     exit 1
 fi
 
 if [ $# -gt 0 ]; then
-    for file in $*
+    for file in "$@"
     do
-	for pkgstr in `egrep 'build/(unpack|pkg_pep518|pkg_setup_py)' ${file}/build.sh | awk '{print $NF}'`
+	for pkgstr in $(egrep 'build/(unpack|pkg_pep518|pkg_setup_py)' ${file}/build.sh | awk '{print $NF}')
 	do
 	    pkgver=${pkgstr##*-}
 	    pkgname=${pkgstr%-*}
@@ -37,8 +35,8 @@ if [ $# -gt 0 ]; then
 		pkgname=c7n
 		pkgver=${pkgver%.0}
 	    fi
-	    curver=`wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version`
-	    curver=`echo $curver | sed -e 's:"::g'`
+	    curver=$(wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version)
+	    curver=${curver//\"/}
 	    if [ "X$pkgver" != "X$curver" ]; then
 		echo "NEW VERSION $curver of $file, we have $pkgver"
 	    else
@@ -49,22 +47,21 @@ if [ $# -gt 0 ]; then
     exit 0
 fi
 
-for file in *-${PY3VER}
+egrep -H 'build/(unpack|pkg_pep518|pkg_setup_py)' *-${PY3VER}/build.sh | while read -r ffile fpkgstr
 do
-    for pkgstr in `egrep 'build/(unpack|pkg_pep518|pkg_setup_py)' ${file}/build.sh | awk '{print $NF}'`
-    do
-	pkgver=${pkgstr##*-}
-	pkgname=${pkgstr%-*}
-	if [ "${pkgname}" == "cloud-custodian" ]; then
-	    pkgname=c7n
-	    pkgver=${pkgver%.0}
-	fi
-	curver=`wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version`
-	curver=`echo $curver | sed -e 's:"::g'`
-	if [ "X$pkgver" != "X$curver" ]; then
-	    echo "NEW VERSION $curver of $file, we have $pkgver"
-	else
-	    echo "$file is good"
-	fi
-    done
+    file=${ffile%%/*}
+    pkgstr=${fpkgstr##* }
+    pkgver=${pkgstr##*-}
+    pkgname=${pkgstr%-*}
+    if [ "${pkgname}" == "cloud-custodian" ]; then
+	pkgname=c7n
+	pkgver=${pkgver%.0}
+    fi
+    curver=$(wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version)
+    curver=${curver//\"/}
+    if [ "X$pkgver" != "X$curver" ]; then
+	echo "NEW VERSION $curver of $file, we have $pkgver"
+    else
+	echo "$file is good"
+    fi
 done
