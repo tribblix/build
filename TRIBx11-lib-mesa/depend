@@ -2,6 +2,7 @@ P TRIBlib-expat
 P TRIBlib-security-openssl
 P TRIBlibxcb
 P TRIBx11-lib-toolkit-libxt
+P TRIBx11-libdrm
 P TRIBx11-libx11
 P TRIBx11-libxdamage
 P TRIBx11-libxext
