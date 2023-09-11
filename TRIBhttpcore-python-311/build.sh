@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBhttpcore-python-311 httpcore-0.17.3
+${THOME}/build/pkg_pep518 TRIBhttpcore-python-311 httpcore-0.18.0
