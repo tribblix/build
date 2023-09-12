@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 zap uninstall TRIBgraphviz
-zap install openjpeg
 #
-${THOME}/build/dobuild -64only GraphicsMagick-1.3.40 -C "--enable-shared --disable-static --disable-openmp"
-${THOME}/build/genpkg TRIBgraphicsmagick GraphicsMagick-1.3.40
+${THOME}/build/dobuild -64only GraphicsMagick-1.3.41 -C "--enable-shared --disable-static --disable-openmp"
+${THOME}/build/genpkg TRIBgraphicsmagick GraphicsMagick-1.3.41
