@@ -1,0 +1,17 @@
+P TRIBcompress-bzip2
+P TRIBcurl
+P TRIBfftw3
+P TRIBfltk
+P TRIBgfortran4runtime
+P TRIBgnuplot
+P TRIBgraphicsmagick
+P TRIBlib-pcre2
+P TRIBlib-zlib
+P TRIBlibsndfile
+P TRIBopenblas
+P TRIBsvc-opengl-ogl-select
+P TRIBsys-lib-fontconfig
+P TRIBsys-lib-freetype-2
+P TRIBv-gfortran10
+P TRIBx11-lib-mesa
+P TRIBx11-libx11

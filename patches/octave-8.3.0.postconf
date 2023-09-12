@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# configure doesn't know about us
+#
+sed -i s:/include/linux:/include/solaris: Makefile

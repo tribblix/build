@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+
+#
+# fix up the pc file - none of the directories it adds with -L make sense
+#
+sed -i 's:-L.* -lg: -lg:' usr/lib/`$THOME/build/getarch`/pkgconfig/octave.pc 
