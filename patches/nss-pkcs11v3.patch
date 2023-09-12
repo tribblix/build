@@ -1,0 +1,24 @@
+
+NSS has begun to introduce PKCS11 version 3 definitions into their header
+files (and code into the library).
+
+Unfortunately, during an illumos-gate build, the libkmf PKCS11 softtoken picks
+up a combination of header files from illumos-gate and from the build hosts's
+NSS installation and the gate header files do not have the v3.0
+CK_GENERATOR_FUNCTION type.
+
+CK_GENERATOR_FUNCTION is just CK_ULONG, so replace it in the header file.
+
+
+diff -wpruN --no-dereference '--exclude=*.orig' a~/lib/pk11wrap/pk11pub.h a/lib/pk11wrap/pk11pub.h
+--- a/nss/lib/pk11wrap/pk11pub.h	1970-01-01 00:00:00
++++ b/nss/lib/pk11wrap/pk11pub.h	1970-01-01 00:00:00
+@@ -847,7 +847,7 @@ SECStatus PK11_AEADRawOp(PK11Context *co
+                          unsigned char *out, int *outlen,
+                          int maxout, const unsigned char *in, int inlen);
+ /* NSS builds the mechanism specific params */
+-SECStatus PK11_AEADOp(PK11Context *context, CK_GENERATOR_FUNCTION ivGen,
++SECStatus PK11_AEADOp(PK11Context *context, CK_ULONG ivGen,
+                       int fixedbits, unsigned char *iv, int ivlen,
+                       const unsigned char *aad, int aadlen,
+                       unsigned char *out, int *outlen,

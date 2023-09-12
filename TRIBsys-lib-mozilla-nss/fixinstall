@@ -97,8 +97,8 @@ includedir=/usr/include/mps
 
 Name: NSS
 Description: Network Security Services
-Version: 3.40
-Requires: nspr >= 4.20
+Version: 3.93
+Requires: nspr >= 4.35
 Libs: -L/usr/lib/mps -R/usr/lib/mps -lnss3 -lsmime3 -lssl3 -lnssutil3
 Cflags: -I/usr/include/mps
 EOF
@@ -111,8 +111,8 @@ includedir=/usr/include/mps
 
 Name: NSS
 Description: Network Security Services
-Version: 3.40
-Requires: nspr >= 4.20
+Version: 3.93
+Requires: nspr >= 4.35
 Libs: -L/usr/lib/mps/${ARCH64} -R/usr/lib/mps/${ARCH64} -lnss3 -lsmime3 -lssl3 -lnssutil3
 Cflags: -I/usr/include/mps
 EOF
