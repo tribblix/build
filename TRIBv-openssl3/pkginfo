@@ -1,4 +1,0 @@
-PKG="TRIBv-openssl3"
-NAME="OpenSSL toolkit"
-VERSION="3.0.10.0"
-ZAP_URL="https://www.openssl.org/"
