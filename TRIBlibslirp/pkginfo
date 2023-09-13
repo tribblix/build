@@ -1,0 +1,4 @@
+PKG="TRIBlibslirp"
+NAME="Virtual network emulator"
+VERSION="4.7.0.0"
+ZAP_URL="https://gitlab.freedesktop.org/slirp/libslirp"
