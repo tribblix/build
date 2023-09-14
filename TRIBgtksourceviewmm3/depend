@@ -1,9 +1,0 @@
-P TRIBgtksourceview3
-P TRIBlib-desktop-atkmm
-P TRIBlib-desktop-cairomm
-P TRIBlib-desktop-gtk3
-P TRIBlib-desktop-gtkmm3
-P TRIBlib-desktop-pangomm
-P TRIBlib-glib2
-P TRIBlib-glibmm
-P TRIBlibsigcpp
