@@ -1,4 +1,4 @@
 PKG="TRIBqemu"
 NAME="Generic machine emulator"
-VERSION="2.6.2.0"
-ZAP_URL="https://wiki.qemu.org/Main_Page"
+VERSION="8.1.0.0"
+ZAP_URL="https://www.qemu.org/"

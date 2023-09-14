@@ -1,18 +1,15 @@
 #!/bin/sh
 #
-# 2.4 works, 2.5 doesn't, 2.6 seems OK, 2.7 doesn't
+# big jump from 2.6 to 8
 #
-${THOME}/build/unpack qemu-2.6.2
-cd qemu-2.6.2
-env PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig bash ./configure --prefix=/usr/versions/qemu-2.6 \
- --target-list="i386-softmmu x86_64-softmmu sparc-softmmu sparc64-softmmu arm-softmmu" \
- --cc=gcc --cxx=g++ --objcc=gcc --smbd=/usr/sbin/smbd --disable-gtk \
---disable-gcrypt --disable-nettle --enable-sdl --with-coroutine=gthread
-gsed -i '/LIBS += -lutil/d' tests/Makefile
-gsed -i '/CONFIG_EVENTFD/d' config-host.mak
-# remove ivshmem for the list of tools in config-host.mak
-gsed -i 's:#define defreg:#undef SEC\n#define defreg:' hw/net/e1000.c
-gsed -i s:queue:qqueue:g memory.c
-gmake -j 8
 
-${THOME}/build/genpkg TRIBqemu
+#
+# note that we build all targets, but ship the common targets (arm, sparc, x86)
+# in the main package, and all the others in the -extra package
+#
+
+env TRIBBLIX_CFLAGS="-D_POSIX_C_SOURCE=200112L -D_POSIX_PTHREAD_SEMANTICS -D__EXTENSIONS__=1 -O2" \
+$THOME/build/dobuild -64only qemu-8.1.0 -P /usr/versions/qemu8 \
+-C "--cc=gcc --localstatedir=/var/qemu --enable-slirp -Ddebug=false"
+
+${THOME}/build/genpkg TRIBqemu qemu-8.1.0

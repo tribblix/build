@@ -1,9 +1,0 @@
--p1 qemu/0002-illumos-OFD-locking-must-span-the-entire-file.patch
--p1 qemu/0003-Do-not-pass-dynamic-list-to-linker.patch
--p1 qemu/0004-illumos-defines-FSCALE-in-sys-param.h.patch
--p1 qemu/0005-configure-uses-bash-extensions.patch
--p1 qemu/0006-configure-uses-break-outside-loop.patch
--p1 qemu/0007-cpu-exec.c-fails-to-compile-code-path-is-reachable.patch
--p1 qemu/0008-Temporary-coroutine-patch-pending-illumos-15206.patch
--p1 qemu/0009-Add-support-for-VNICs.patch
--p1 qemu/0010-Drop-unnecessary-privileges.patch

@@ -15,6 +15,7 @@ P TRIBlibsdl2-image
 P TRIBlibslirp
 P TRIBlibssh
 P TRIBlibxkbcommon
+P TRIBqemu
 P TRIBsnappy
 P TRIBvte
 P TRIBx11-libx11

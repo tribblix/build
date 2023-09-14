@@ -1,6 +1,32 @@
 #!/bin/sh
 #
-VERSION=2.6
+VERSION=8
+
+#
+# squirrel away the secondary targets into a separate package
+#
+
+EXTRADIR=/tmp/qextra.$$
+rm -fr $EXTRADIR
+
+# move targets
+mkdir -p $EXTRADIR/usr/versions/qemu${VERSION}/bin
+for target in xtensa xtensaeb tricore sh4eb sh4 s390x rx riscv32 riscv64 ppc ppc64 or1k nios2 mips mipsel mips64 mips64el microblaze microblazeel m68k loongarch64 hppa cris avr alpha
+do
+    mv usr/versions/qemu${VERSION}/bin/qemu-system-$target $EXTRADIR/usr/versions/qemu${VERSION}/bin
+done
+
+# move extra files
+mkdir -p $EXTRADIR/usr/versions/qemu${VERSION}/share/qemu
+mv usr/versions/qemu${VERSION}/share/qemu/hppa-firmware.img $EXTRADIR/usr/versions/qemu${VERSION}/share/qemu
+mv usr/versions/qemu${VERSION}/share/qemu/openbios-ppc $EXTRADIR/usr/versions/qemu${VERSION}/share/qemu
+mv usr/versions/qemu${VERSION}/share/qemu/s390* $EXTRADIR/usr/versions/qemu${VERSION}/share/qemu
+
+# create the extra package
+$THOME/build/create_pkg TRIBqemu-extra $EXTRADIR
+rm -fr $EXTRADIR
+
+
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/versions/qemu-${VERSION}/bin/qemu-* .
+ln -s ../../usr/versions/qemu${VERSION}/bin/qemu-* .
