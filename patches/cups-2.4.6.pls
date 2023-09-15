@@ -1,1 +1,2 @@
 -p1 cups/configure-pie.patch
+-p1 cups/02-smf.patch

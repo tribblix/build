@@ -1,0 +1,14 @@
+Tribblix doesn't have the Solaris identity:cert service, or
+anything equivalent. Make a minimal fix
+
+--- cups-2.4.6/scheduler/cups.xml.in.orig	2022-05-26 08:17:21.000000000 +0000
++++ cups-2.4.6/scheduler/cups.xml.in	2022-10-23 15:00:19.116296979 +0000
+@@ -54,7 +54,7 @@
+         grouping='require_all'
+         restart_on='refresh'
+         type='service'>
+-        <service_fmri value='svc:/system/identity:cert'/>
++        <service_fmri value='svc:/system/identity:node'/>
+     </dependency>
+ 
+     <exec_method
