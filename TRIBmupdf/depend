@@ -1,0 +1,9 @@
+P TRIBcurl
+P TRIBharfbuzz
+P TRIBimage-libjpeg
+P TRIBlib-openjpeg
+P TRIBlib-security-openssl
+P TRIBlib-zlib
+P TRIBsys-lib-freetype-2
+P TRIBx11-libx11
+P TRIBx11-libxext

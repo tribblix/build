@@ -1,0 +1,4 @@
+PKG="TRIBmupdf"
+NAME="MuPDF lightweight PDF viewer"
+VERSION="1.23.3.0"
+ZAP_URL="https://mupdf.com/"
