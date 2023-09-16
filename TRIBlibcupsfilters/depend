@@ -1,0 +1,9 @@
+P TRIBcups
+P TRIBimage-libexif
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBimage-libtiff
+P TRIBlib-lcms2
+P TRIBpoppler
+P TRIBqpdf
+P TRIBsys-lib-fontconfig

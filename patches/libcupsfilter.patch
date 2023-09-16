@@ -1,0 +1,12 @@
+For S_IRUSR
+
+--- a/cupsfilters/filter.c	Tue Jun 20 13:36:35 2023
++++ b/cupsfilters/filter.c	Fri Sep 15 20:20:26 2023
+@@ -19,6 +19,7 @@
+ #include <errno.h>
+ #include <signal.h>
+ #include <sys/wait.h>
++#include <sys/stat.h>
+ #include <cups/file.h>
+ #include <cups/array.h>
+ 

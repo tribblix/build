@@ -1,0 +1,4 @@
+PKG="TRIBlibcupsfilters"
+NAME="libcupsfilters"
+VERSION="2.0rc2.0"
+ZAP_URL="https://github.com/openprinting/libcupsfilters"
