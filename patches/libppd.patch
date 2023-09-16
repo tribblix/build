@@ -1,0 +1,11 @@
+--- a/ppd/ppd-collection.cxx	Tue Jun 20 19:26:59 2023
++++ b/ppd/ppd-collection.cxx	Sat Sep 16 14:16:55 2023
+@@ -24,6 +24,8 @@
+ #include "array-private.h"
+ #include <regex.h>
+ #include <sys/wait.h>
++#include <sys/types.h>
++#include <signal.h>
+ 
+ 
+ //

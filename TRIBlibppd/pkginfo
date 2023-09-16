@@ -1,0 +1,4 @@
+PKG="TRIBlibppd"
+NAME="libppd"
+VERSION="2.0rc2.0"
+ZAP_URL="https://github.com/openprinting/libppd"
