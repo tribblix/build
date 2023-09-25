@@ -1,8 +1,8 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pigz-2.3.4
-cd pigz-2.3.4
-gmake CC=gcc CFLAGS="-std=gnu99 -O3 -Wall -Wextra"
+${THOME}/build/unpack pigz-2.8
+cd pigz-2.8
+gmake CC="gcc -m64" CFLAGS="-O3 -Wall -Wextra" LIBS="-lm -lz"
 rm -fr /tmp/pp
 mkdir -p /tmp/pp/usr/bin /tmp/pp/usr/share/man/man1
 cp pigz /tmp/pp/usr/bin
