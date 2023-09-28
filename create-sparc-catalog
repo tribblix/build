@@ -34,7 +34,15 @@ do
 	/bin/rm -f ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
 	echo $PKGMD5 > ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
     fi
-    if [ -f ${PKG}/depend ]; then
+    if [ -f ${PKG}/depend.${ARCH} ]; then
+	DEPLIST=""
+	while read d p
+	do
+	    if [ "X$d" = "XP" ]; then
+		DEPLIST="$DEPLIST$p "
+	    fi
+	done < ${PKG}/depend.${ARCH}
+    elif [ -f ${PKG}/depend ]; then
 	DEPLIST=""
 	while read d p
 	do

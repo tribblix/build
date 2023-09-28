@@ -22,6 +22,8 @@ if [ "X$1" = "X-q" ]; then
     shift
 fi
 
+ARCH=$(uname -p)
+
 #
 # if no arguments, shortcut for the package I'm looking at right now
 #
@@ -45,7 +47,22 @@ do
 		echo "Checking $dir (not installed)"
 	    fi
 	fi
-	if [ -f ${BDIR}/${dir}/depend ]; then
+	if [ -f ${BDIR}/${dir}/depend.${ARCH} ]; then
+	    while read tmp pkg
+	    do
+		if [ -f ${PDIR}/${pkg}/pkginfo ]
+		then
+		    if [ -z "$QUIET" ]; then
+			echo "  runtime $pkg .. ok"
+		    fi
+		else
+		    if [ -z "$QUIET" ]; then
+			echo " **ERROR** runtime $pkg .. missing"
+		    fi
+		    STATUS=1
+		fi
+	    done <  ${BDIR}/${dir}/depend.${ARCH}
+	elif [ -f ${BDIR}/${dir}/depend ]; then
 	    while read tmp pkg
 	    do
 		if [ -f ${PDIR}/${pkg}/pkginfo ]

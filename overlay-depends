@@ -8,15 +8,19 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 # xref against this illumos catalog
 #
 ILVER=m31
+ARCH=i386
 case `pwd` in
     */overlays.lx)
 	ILVER=m31lx
+	ARCH=i386
 	;;
     */overlays.sparc)
 	ILVER=m27.sparc
+	ARCH=sparc
 	;;
     */overlays)
 	ILVER=m31
+	ARCH=i386
 	;;
     *)
 	echo "HELP! Where am I?"
@@ -77,7 +81,10 @@ touch $TMPF
 PKGL=""
 for PKGI in $(<${OVL}.pkgs)
 do
-  if [ -f ../build/${PKGI}/depend ]; then
+  if [ -f ../build/${PKGI}/depend.${ARCH} ]; then
+     # accumulate the depend files and invoke grep once later
+     PKGL="${PKGL} ../build/${PKGI}/depend.${ARCH}"
+  elif [ -f ../build/${PKGI}/depend ]; then
      # accumulate the depend files and invoke grep once later
      PKGL="${PKGL} ../build/${PKGI}/depend"
   fi
@@ -128,7 +135,12 @@ for ndep in $OUTMISS
 do
 for PKGI in $(<${OVL}.pkgs)
 do
-  if [ -f ../build/${PKGI}/depend ]; then
+  if [ -f ../build/${PKGI}/depend.${ARCH} ]; then
+      if grep -q -w $ndep ../build/${PKGI}/depend.${ARCH}
+      then
+	  echo "${PKGI} requires: ${ndep}"
+      fi
+  elif [ -f ../build/${PKGI}/depend ]; then
       if grep -q -w $ndep ../build/${PKGI}/depend
       then
 	  echo "${PKGI} requires: ${ndep}"

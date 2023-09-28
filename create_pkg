@@ -24,6 +24,7 @@ esac
 #
 THOME=${THOME:-/packages/localsrc/Tribblix}
 BUILD="${THOME}/build"
+MYARCH=$(uname -p)
 
 #
 # sanity check
@@ -165,7 +166,6 @@ cp ${BUILD}/${PKGNAME}/pkginfo .
 if [ -f ${BUILD}/${PKGNAME}/pkginfo.arch ]; then
     cat ${BUILD}/${PKGNAME}/pkginfo.arch >> pkginfo
 else
-    MYARCH=`/usr/bin/uname -p`
     echo "ARCH=\"$MYARCH\"" >> pkginfo
 fi
 cat ${BUILD}/pkginfo.base >> pkginfo
@@ -191,7 +191,11 @@ if [ ! -f ${BUILD}/${PKGNAME}/allowstatic ]; then
    fi
 fi
 # add dependencies
-if [ -f ${BUILD}/${PKGNAME}/depend ]; then
+if [ -f ${BUILD}/${PKGNAME}/depend.${MYARCH} ]; then
+   mkdir -p install
+   cp ${BUILD}/${PKGNAME}/depend.${MYARCH} install/depend
+   echo "i depend=./install/depend" >> pp.$$
+elif [ -f ${BUILD}/${PKGNAME}/depend ]; then
    mkdir -p install
    cp ${BUILD}/${PKGNAME}/depend install
    echo "i depend=./install/depend" >> pp.$$
