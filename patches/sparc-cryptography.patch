@@ -1,0 +1,29 @@
+On sparc, we're downrev as the newer cryptography module versions
+require a rust toolchain whcih we don't have.
+
+This means we have to patch out FIPS_mode_set FIPS_mode ERR_GET_FUNC
+which don't exist in openssl3.
+
+The condition is weird, but it's the shortest way to force the right path.
+
+--- a/src/_cffi_src/openssl/err.py	   :: 
++++ b/src/_cffi_src/openssl/err.py	   :: 
+@@ -46,4 +46,7 @@
+ """
+ 
+ CUSTOMIZATIONS = """
++#if !CRYPTOGRAPHY_IS_LIBRESSL
++int (*ERR_GET_FUNC)(unsigned long) = -1;
++#endif
+ """
+--- a/src/_cffi_src/openssl/fips.py	   :: 
++++ b/src/_cffi_src/openssl/fips.py	   :: 
+@@ -18,7 +18,7 @@
+ """
+ 
+ CUSTOMIZATIONS = """
+-#if CRYPTOGRAPHY_IS_LIBRESSL
++#if !CRYPTOGRAPHY_IS_LIBRESSL
+ static const long Cryptography_HAS_FIPS = 0;
+ int (*FIPS_mode_set)(int) = NULL;
+ int (*FIPS_mode)(void) = NULL;
