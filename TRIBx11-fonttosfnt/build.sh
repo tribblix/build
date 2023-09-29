@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild fonttosfnt-1.2.2
-${THOME}/build/genpkg TRIBx11-fonttosfnt fonttosfnt-1.2.2
+${THOME}/build/dobuild -64only fonttosfnt-1.2.3
+${THOME}/build/genpkg TRIBx11-fonttosfnt fonttosfnt-1.2.3
