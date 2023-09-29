@@ -3,7 +3,7 @@
 # catalog format is
 #  name|version|dependencies|size|md5|
 #
-RELVER=m20
+RELVER=m32
 THOME=${THOME:-/packages/localsrc/Tribblix}
 PKGDIR=${THOME}/illumos-pkgs-${RELVER}/pkgs
 

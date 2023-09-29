@@ -7,11 +7,11 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 # xref against this illumos catalog
 #
-ILVER=m31
+ILVER=m32
 ARCH=i386
 case `pwd` in
     */overlays.lx)
-	ILVER=m31lx
+	ILVER=m32lx
 	ARCH=i386
 	;;
     */overlays.sparc)
@@ -19,7 +19,7 @@ case `pwd` in
 	ARCH=sparc
 	;;
     */overlays)
-	ILVER=m31
+	ILVER=m32
 	ARCH=i386
 	;;
     *)

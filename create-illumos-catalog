@@ -4,7 +4,7 @@
 #  name|version|dependencies|size|md5|
 #
 THOME=${THOME:-/packages/localsrc/Tribblix}
-PKGDIR=${THOME}/illumos-pkgs-m31/pkgs
+PKGDIR=${THOME}/illumos-pkgs-m32/pkgs
 
 case $# in
 1)
