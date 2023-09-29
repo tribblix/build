@@ -13,8 +13,8 @@
 # needs a tsrm patch to avoid crashes
 #
 zap uninstall TRIBlibtool
-${THOME}/build/unpack php-8.1.23
-cd php-8.1.23
+${THOME}/build/unpack php-8.1.24
+cd php-8.1.24
 #
 # CFLAGS because Zend.m4 hasn't a hope of correctness
 #
