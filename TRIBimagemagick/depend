@@ -10,9 +10,11 @@ P TRIBlib-glib2
 P TRIBlib-lcms2
 P TRIBlib-openjpeg
 P TRIBlib-zlib
+P TRIBlibheif
 P TRIBlibraw
 P TRIBlibwebp
 P TRIBlibxml2
+P TRIBopenexr
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBx11-libx11
