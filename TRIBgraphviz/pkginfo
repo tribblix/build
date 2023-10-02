@@ -1,4 +1,4 @@
 PKG="TRIBgraphviz"
 NAME="Graphviz - Graph Visualization Software"
-VERSION="8.0.1.0"
+VERSION="9.0.0.0"
 ZAP_URL="http://www.graphviz.org/"
