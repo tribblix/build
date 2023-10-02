@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBtyping-ext-python-311 typing_extensions-4.7.1
+${THOME}/build/pkg_pep518 TRIBtyping-ext-python-311 typing_extensions-4.8.0
