@@ -22,8 +22,15 @@ case $1 in
 	BUILDER=pkg_setup_py
 	shift
 	;;
+    -w)
+	BUILDER=pkg_wheel
+	PKGVERS=$2
+	shift
+	shift
+	;;
     *)
 	echo "Usage: $0 -s|-p pkg_name tarball_name"
+	echo "       $0 -w pkg_version pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -35,6 +42,7 @@ case $# in
 	;;
 *)
 	echo "Usage: $0 -s|-p pkg_name tarball_name"
+	echo "       $0 -w pkg_version pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -61,6 +69,15 @@ fi
 #
 PNAME=${TBALL%-*}
 PVER=${TBALL##*-}
+
+#
+# for wheels it's a bit more complicated to guess the version from the file
+# so we're passed the version explicitly
+#
+if [ -n "${PKGVERS}" ]; then
+    PVER=${PKGVERS}
+    PNAME=${TBALL%-${PVER}*}
+fi
 
 #
 # OK, now we can create the package metadata

@@ -1,0 +1,107 @@
+#!/bin/sh
+#
+# package one or more python project(s) directly from a downloaded
+# wheel (see pkg_pep518 for one that creates the wheel from source)
+#
+
+case $1 in
+    -v)
+	SPYVER=$2
+	shift
+	shift
+	;;
+esac
+
+case $# in
+0|1)
+	echo "Usage: $0 pkg_name tar_file"
+	exit 1
+	;;
+*)
+	PKGNAME="$1"
+	shift
+	;;
+esac
+
+#
+# Default locations
+#
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BUILD="${THOME}/build"
+BROOT="/tmp/pct"
+
+#
+# verify that our arguments refer to a package and to a wheel
+#
+if [ ! -d $BUILD ]; then
+   echo "ERROR: unable to find build directory $BUILD"
+   exit 1
+fi
+if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+   echo "ERROR: missing package data"
+   echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
+   exit 1
+fi
+     
+if [ ! -d $BROOT ]; then
+    mkdir -p $BROOT
+fi
+if [ ! -d $BROOT ]; then
+   echo "ERROR: unable to find temporary directory $BROOT"
+   exit 1
+fi
+
+#
+# derive the python version from the package name, if we weren't given it
+#
+if [ -z "$SPYVER" ]; then
+    SPYVER=${PKGNAME##*-}
+fi
+#
+# we assume it has to be 3.X
+#
+case $SPYVER in
+    311)
+	PYVER=3.11
+	;;
+    312)
+	PYVER=3.12
+	;;
+    *)
+	echo "Unrecognised python version $SPYVER"
+	exit 1
+	;;
+esac
+
+echo $PYVER
+
+#
+# define and create working location
+#
+BDIR="${BROOT}/pkg.$$"
+rm -fr ${BDIR}
+
+#
+# loop over arguments
+#
+for PFILE in $*
+do
+
+if [ ! -f "${THOME}/tarballs/${PFILE}" ]; then
+    echo "Missing source wheel $PFILE"
+    exit 1
+fi
+#
+# use pip to install
+#
+python${PYVER} -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-warn-script-location --root=${BDIR} -I ${THOME}/tarballs/${PFILE}
+#
+# end loop
+#
+done
+
+${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+cd /
+
+# remove our temporary files
+rm -fr ${BDIR}
