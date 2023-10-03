@@ -1,4 +1,4 @@
 PKG="TRIBmkdocs-material-python-311"
 NAME="Python mkdocs-material"
-VERSION="8.5.7.1"
+VERSION="9.4.3.0"
 ZAP_URL="https://pypi.org/project/mkdocs-material"
