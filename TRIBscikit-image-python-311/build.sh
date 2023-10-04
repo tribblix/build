@@ -10,8 +10,8 @@
 # PATH so it can find the cython executable
 # Need to pass -m64 down to meson
 #
-${THOME}/build/unpack scikit-image-0.21.0
-cd scikit-image-0.21.0
+${THOME}/build/unpack scikit_image-0.22.0
+cd scikit_image-0.22.0
 
 env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH /usr/versions/python-3.11/bin/python3 -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-warn-script-location --compile --no-build-isolation --root=/tmp/pil -I .
 
