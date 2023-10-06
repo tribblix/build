@@ -12,6 +12,13 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+17
+
+With the removal of ArrayAllocatorMallocLimit, don't patch
+globals.hpp, and remove the comment-only hunk too.
+
+os::numa_get_leaf groups signature change
+
 22+15, 22+16
 
 Trivial patch noise.

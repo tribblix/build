@@ -570,15 +570,15 @@
        SRC := $(TOPDIR)/src/$(MODULE)/unix/native/jspawnhelper, \
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
-@@ -55,7 +55,6 @@
-     LDFLAGS_windows := -delayload:secur32.dll -delayload:iphlpapi.dll, \
+@@ -56,7 +56,6 @@
+         -delayload:winhttp.dll, \
      LIBS_unix := -ljvm -ljava, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -lnsl -lsocket $(LIBDL), \
      LIBS_aix := $(LIBDL),\
      LIBS_windows := ws2_32.lib jvm.lib secur32.lib iphlpapi.lib winhttp.lib \
          delayimp.lib $(WIN_JAVA_LIB) advapi32.lib, \
-@@ -82,8 +81,6 @@
+@@ -83,8 +82,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := -ljava -lnet, \
      LIBS_linux := -lpthread $(LIBDL), \
@@ -587,7 +587,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation -framework CoreServices, \
-@@ -136,7 +133,6 @@
+@@ -137,7 +134,6 @@
          LDFLAGS := $(LDFLAGS_JDKLIB) \
              $(call SET_SHARED_LIBRARY_ORIGIN), \
          LIBS_linux := $(LIBDL), \
@@ -630,15 +630,15 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBVERIFY_OPTIMIZATION := LOW
    endif
-@@ -67,7 +67,6 @@
-     LDFLAGS_windows := -delayload:shell32.dll, \
+@@ -66,7 +66,6 @@
+     LDFLAGS_macosx := -L$(SUPPORT_OUTPUTDIR)/native/$(MODULE)/, \
      LIBS_unix := -ljvm, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -lsocket -lnsl -lscf $(LIBDL), \
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -182,7 +181,6 @@
+@@ -181,7 +180,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -1136,31 +1136,6 @@
                   AIX_ONLY("aix")                 \
                   BSD_ONLY("bsd")
  
---- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
-+++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1605,10 +1605,8 @@
-   product(int, ThreadPriorityPolicy, 0,                                     \
-           "0 : Normal.                                                     "\
-           "    VM chooses priorities that are appropriate for normal       "\
--          "    applications. On Solaris NORM_PRIORITY and above are mapped "\
--          "    to normal native priority. Java priorities below "           \
--          "    NORM_PRIORITY map to lower native priority values. On       "\
--          "    Windows applications are allowed to use higher native       "\
-+          "    applications.                                               "\
-+          "    On Windows applications are allowed to use higher native    "\
-           "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
-           "    not use the highest possible native priority,               "\
-           "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1890,8 +1888,7 @@
-   product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
-           "Enable internal testing APIs")                                   \
-                                                                             \
--  product(size_t, ArrayAllocatorMallocLimit,                                \
--          SOLARIS_ONLY(64*K) NOT_SOLARIS(SIZE_MAX), EXPERIMENTAL,           \
-+  product(size_t, ArrayAllocatorMallocLimit, SIZE_MAX, EXPERIMENTAL,        \
-           "Allocation less than this value will be allocated "              \
-           "using malloc. Larger allocations will use mmap.")                \
-                                                                             \
 --- old/src/hotspot/share/runtime/semaphore.hpp	2020-05-20 18:00:35.454754540 -0700
 +++ new/src/hotspot/share/runtime/semaphore.hpp	2020-05-20 18:00:35.066747091 -0700
 @@ -28,7 +28,7 @@
@@ -1377,7 +1352,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1883,8 +1883,6 @@
+@@ -1888,8 +1888,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1386,7 +1361,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1949,8 +1947,6 @@
+@@ -1954,8 +1952,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -9601,7 +9576,7 @@
 -// Get a list of leaf locality groups. A leaf lgroup is group that
 -// doesn't have any children. Typical leaf group is a CPU or a CPU/memory
 -// board. An LWP is assigned to one of these groups upon creation.
--size_t os::numa_get_leaf_groups(int *ids, size_t size) {
+-size_t os::numa_get_leaf_groups(uint *ids, size_t size) {
 -  if ((ids[0] = Solaris::lgrp_root(Solaris::lgrp_cookie())) == -1) {
 -    ids[0] = 0;
 -    return 1;
@@ -10556,9 +10531,9 @@
 -      FLAG_SET_ERGO(UseNUMA, false);
 -    } else {
 -      size_t lgrp_limit = os::numa_get_groups_num();
--      int *lgrp_ids = NEW_C_HEAP_ARRAY(int, lgrp_limit, mtInternal);
+-      uint *lgrp_ids = NEW_C_HEAP_ARRAY(uint, lgrp_limit, mtInternal);
 -      size_t lgrp_num = os::numa_get_leaf_groups(lgrp_ids, lgrp_limit);
--      FREE_C_HEAP_ARRAY(int, lgrp_ids);
+-      FREE_C_HEAP_ARRAY(uint, lgrp_ids);
 -      if (lgrp_num < 2) {
 -        // There's only one locality group, disable NUMA
 -        UseNUMA = false;
