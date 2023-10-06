@@ -12,6 +12,18 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+13
+
+Minor patch noise.
+
+#include "utilities/checkedCast.hpp" in os_solaris.cpp
+
+current_stack_base() and current_stack_size() have been merged into a
+single current_stack_base_and_size()
+
+As we make some use of the old functions, move them into os::Solaris,
+and implement the new merged function by calling them.
+
 22+12
 
 Remove AttachListener::pd_set_flag()

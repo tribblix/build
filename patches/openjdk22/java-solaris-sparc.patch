@@ -247,7 +247,7 @@
    # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
    OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
    if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -618,9 +601,6 @@
+@@ -618,9 +603,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -316,7 +316,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -1078,7 +1078,7 @@
+@@ -1081,7 +1081,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
  
@@ -1027,7 +1027,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -499,7 +499,7 @@
+@@ -500,7 +500,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1036,7 +1036,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -517,12 +517,6 @@
+@@ -518,12 +518,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1377,7 +1377,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1880,8 +1880,6 @@
+@@ -1883,8 +1883,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1386,7 +1386,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1946,8 +1944,6 @@
+@@ -1949,8 +1947,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -7967,7 +7967,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3129 +0,0 @@
+@@ -1,3135 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8039,6 +8039,7 @@
 -#include "services/runtimeService.hpp"
 -#include "signals_posix.hpp"
 -#include "utilities/align.hpp"
+-#include "utilities/checkedCast.hpp"
 -#include "utilities/decoder.hpp"
 -#include "utilities/defaultStream.hpp"
 -#include "utilities/events.hpp"
@@ -8170,8 +8171,8 @@
 -  return r == 1;
 -}
 -
--address os::current_stack_base() {
--  bool _is_primordial_thread = is_primordial_thread();
+-address os::Solaris::current_stack_base() {
+-  bool _is_primordial_thread = os::is_primordial_thread();
 -
 -  // Workaround 4352906, avoid calls to thr_stksegment by
 -  // thr_main after the first one (it looks like we trash
@@ -8189,10 +8190,10 @@
 -  }
 -}
 -
--size_t os::current_stack_size() {
+-size_t os::Solaris::current_stack_size() {
 -  size_t size;
 -
--  if (!is_primordial_thread()) {
+-  if (!os::is_primordial_thread()) {
 -    size = get_stack_info().ss_size;
 -  } else {
 -    struct rlimit limits;
@@ -8203,6 +8204,11 @@
 -  address base = current_stack_base();
 -  address bottom = align_up(base - size, os::vm_page_size());;
 -  return (size_t)(base - bottom);
+-}
+-
+-void os::current_stack_base_and_size(address* stack_base, size_t* stack_size) {
+-  *stack_base = os::Solaris::current_stack_base();
+-  *stack_size = os::Solaris::current_stack_size();
 -}
 -
 -jint os::Solaris::_os_thread_limit = 0;
@@ -8743,7 +8749,7 @@
 -    // as much like a native attached thread as possible.  This means using
 -    // the current stack size from thr_stksegment(), unless it is too large
 -    // to reliably setup guard pages.  A reasonable max size is 8MB.
--    size_t current_size = os::current_stack_size();
+-    size_t current_size = current_stack_size();
 -    // This should never happen, but just in case....
 -    if (current_size == 0) current_size = 2 * K * K;
 -    stack_size = current_size > (8 * K * K) ? (8 * K * K) : current_size;
@@ -11099,7 +11105,7 @@
 -#endif // INCLUDE_JFR
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,198 +0,0 @@
+@@ -1,201 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11218,6 +11224,9 @@
 -  static char* mmap_chunk(char *addr, size_t size, int flags, int prot);
 -  static char* anon_mmap(char* requested_addr, size_t bytes);
 -  static bool mpss_sanity_check(bool warn, size_t * page_size);
+-
+-  static address current_stack_base();
+-  static size_t current_stack_size();
 -
 -  // Workaround for 4352906. thr_stksegment sometimes returns
 -  // a bad value for the primordial thread's stack base when
