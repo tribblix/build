@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+15
+
+Trivial patch noise.
+
 22+14
 
 New function os::vm_min_address() needs an implementation. Provide a
