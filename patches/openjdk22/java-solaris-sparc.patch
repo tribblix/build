@@ -186,7 +186,7 @@
          # this is an error
 --- old/make/autoconf/libraries.m4	2020-05-20 17:58:41.188560546 -0700
 +++ new/make/autoconf/libraries.m4	2020-05-20 17:58:40.768552482 -0700
-@@ -145,15 +145,13 @@
+@@ -139,15 +139,13 @@
    BASIC_JVM_LIBS="$LIBM"
  
    # Dynamic loading library
@@ -203,7 +203,7 @@
    fi
  
    # librt for legacy clock_gettime
-@@ -170,12 +168,6 @@
+@@ -164,12 +162,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -3873,7 +3873,7 @@
                                          "libgssapi_krb5.so",
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:50.089339623 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:49.705332249 -0700
-@@ -931,8 +931,6 @@
+@@ -930,8 +930,6 @@
              if (name == null) {
                  name = "c:\\winnt\\krb5.ini";
              }

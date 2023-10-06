@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+18
+
+Boot jdk bumped to 21
+
 22+17
 
 With the removal of ArrayAllocatorMallocLimit, don't patch
@@ -90,7 +94,7 @@ No changes needed, identical to 21+26.
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk20 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk21 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
