@@ -1,5 +1,5 @@
 -p1 loo7/01-sal-osol-unx-socket.cxx.patch
--p1 loo7/12-change-download.patch 
+-p1 loo7/12-illumos-raptor.patch 
 -p1 loo7/openssl-gcc.patch
 -p1 loo7/skia-libs.patch
 -p1 loo7/purpenv-alloca.patch
@@ -8,13 +8,11 @@
 -p1 loo7/FormulaCompiler-alloca.patch
 -p1 loo7/i18n_cb-alloca.patch
 -p1 loo7/wmadaptor-alloca.patch
--p1 loo7/X11_selection-alloca.patch
+-p1 loo7/03-alloca.patch
 -p1 loo7/salframe-alloca.patch
 -p1 loo7/ttime.patch
 -p1 loo7/04-printerinfomanager.cxx.patch
--p1 loo7/05-avoid-conflict-with-math-version.patch
 -p1 loo7/06-i18n_ic.cxx.patch
--p1 loo7/xmleohlp.patch
 -p1 loo7/rtfcontrolwords.patch
 -p1 loo7/htmlattr.patch
 -p1 loo7/56-add-platform-mk.patch 

@@ -7,6 +7,7 @@ P TRIBgstreamer1-plugins-base
 P TRIBharfbuzz
 P TRIBimage-libjpeg
 P TRIBimage-libpng
+P TRIBimage-libtiff
 P TRIBlib-desktop-atk
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
@@ -15,15 +16,16 @@ P TRIBlib-glib2
 P TRIBlib-lcms2
 P TRIBlib-security-openssl
 P TRIBlib-zlib
+P TRIBlibgraphite2
 P TRIBlibicu
 P TRIBlibrevenge
 P TRIBlibvisio
+P TRIBlibwebp
 P TRIBlibwpd
 P TRIBlibwpg
 P TRIBlibxml2
 P TRIBlibxslt
 P TRIBlibzmf
-P TRIBneon
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBsys-libdbus

@@ -2,16 +2,16 @@
 #
 # 
 #
-$THOME/build/unpack libreoffice-7.2.7.2
-cd libreoffice-7.2.7.2
-$THOME/build/patches/libreoffice-7.2.7.2.preconf
+$THOME/build/unpack libreoffice-7.4.7.2
+cd libreoffice-7.4.7.2
+$THOME/build/patches/libreoffice-7.4.7.2.preconf
 
 #
 # if you have a previous build, copy the contents of external/tarballs
 # to reduce the amount of stuff that needs to be downloaded
 #
 # mkdir external/tarballs
-# cp ../../libreoffice-7.2.7.2/external/tarballs/* external/tarballs/
+# cp ../libreoffice-7.2.7.2/external/tarballs/* external/tarballs/
 #
 
 #
@@ -71,6 +71,7 @@ bash ./configure \
 --with-system-epoxy \
 --with-system-openssl \
 --with-system-harfbuzz \
+--with-system-graphite \
 --disable-ldap \
 --disable-odk \
 --with-vendor="Tribblix" \
@@ -86,7 +87,7 @@ env CFLAGS="-m64" LDFLAGS="-m64" CXXFLAGS="-m64" \
 CC="gcc -m64" CXX="g++ -m64" AFLAGS="-m64" \
 PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig \
 PATH=/usr/gnu/bin:/usr/versions/python-3.11/bin:/usr/bin/amd64:$PATH \
-/usr/gnu/bin/make -j 6 build-nocheck
+/usr/gnu/bin/make -j 6 VERBOSE=1 gb_SUPPRESS_TESTS=x
 
 #
 # need distro-pack-install to get things assembled the right way

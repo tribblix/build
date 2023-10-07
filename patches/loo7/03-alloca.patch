@@ -1,0 +1,52 @@
+--- libreoffice-6.4.2.2/vcl/unx/generic/dtrans/X11_selection.cxx.1	2020-04-06 15:36:31.847536995 +0000
++++ libreoffice-6.4.2.2/vcl/unx/generic/dtrans/X11_selection.cxx	2020-04-06 15:37:04.488360772 +0000
+@@ -34,6 +34,10 @@
+ #include <X11/Xatom.h>
+ #include <X11/keysym.h>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #include <poll.h>
+ 
+ #include <sal/macros.h>
+--- libreoffice-7.3.2.1/i18npool/source/transliteration/transliteration_body.cxx.old	2022-03-15 00:37:36.121606584 +0000
++++ libreoffice-7.3.2.1/i18npool/source/transliteration/transliteration_body.cxx	2022-03-15 00:37:53.289037132 +0000
+@@ -36,6 +36,10 @@
+ #include <memory>
+ #include <numeric>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ using namespace ::com::sun::star::uno;
+ using namespace ::com::sun::star::i18n;
+ using namespace ::com::sun::star::lang;
+--- libreoffice-7.4.2.3/sal/rtl/strtmpl.hxx.old	2022-11-06 23:45:11.068322984 +0000
++++ libreoffice-7.4.2.3/sal/rtl/strtmpl.hxx	2022-11-06 23:46:13.110249540 +0000
+@@ -40,6 +40,10 @@
+ #include <rtl/string.h>
+ #include <rtl/ustring.h>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #include <dragonbox/dragonbox.h>
+ 
+ void internRelease(rtl_uString*);
+--- libreoffice-7.5.1.1/basegfx/source/matrix/b2dhommatrix.cxx.old	2023-02-20 22:13:42.558423559 -0500
++++ libreoffice-7.5.1.1/basegfx/source/matrix/b2dhommatrix.cxx	2023-02-20 22:12:58.335447142 -0500
+@@ -24,6 +24,10 @@
+ #include <basegfx/matrix/b2dhommatrixtools.hxx>
+ #include <memory>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ namespace basegfx
+ {
+     typedef ::basegfx::internal::ImplHomMatrixTemplate< 3 > Impl2DHomMatrix_Base;
