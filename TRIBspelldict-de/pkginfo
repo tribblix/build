@@ -1,0 +1,4 @@
+PKG="TRIBspelldict-de"
+NAME="Spell checking dictionaries - german"
+VERSION="20161207.0"
+ZAP_URL="https://www.j3e.de/ispell/igerman98/index_en.html"
