@@ -1,7 +1,5 @@
 #!/bin/tcsh
 #
-# we use the "normal" (not "large") SCOWL lists
-#
 $THOME/build/unpack igerman98-20161207
 cd igerman98-20161207
 sed -i 's:-i latin1:-i ISO8859-1:' Makefile
