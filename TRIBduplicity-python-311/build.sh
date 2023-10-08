@@ -1,9 +1,11 @@
 #!/bin/sh
 #
+# note that it declares setup-scm as a runtime dependency, so we do too
+#
 # the backends are soft requirements, I add those we actually need (AWS)
 # and those we already have packages for.
 # paramiko (enables ssh) boto3 (enables S3)
 # other optional packages it can leverage that aren't listed as dependencies
 # rsync rclone ncftp
 #
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/pkg_setup_py TRIBduplicity-python-311 duplicity-2.1.1
+env PATH=/usr/gnu/bin:$PATH ${THOME}/build/pkg_setup_py TRIBduplicity-python-311 duplicity-2.1.3

@@ -4,5 +4,6 @@ P TRIBgnupg
 P TRIBlibrsync
 P TRIBparamiko-python-311
 P TRIBrequests-python-311
+P TRIBsetup-scm-python-311
 P TRIBurllib3-python-311
 P TRIBv-python-311
