@@ -1,1 +1,0 @@
--p1 ncurses6.patch1
