@@ -1,48 +1,20 @@
---- mate-control-center-1.26.0/configure~	Sat Aug  7 13:03:35 2021
-+++ mate-control-center-1.26.0/configure	Sat May  6 11:44:17 2023
-@@ -690,8 +690,6 @@
- DEFAULT_APPLICATIONS_CAPPLET_CFLAGS
- MATE_DESKTOP_LIBS
- MATE_DESKTOP_CFLAGS
--POLKIT_LIBS
--POLKIT_CFLAGS
- MATECC_SHELL_LIBS
- MATECC_SHELL_CFLAGS
- MATECC_LIBS
-@@ -924,8 +922,6 @@
- MATECC_LIBS
- MATECC_SHELL_CFLAGS
- MATECC_SHELL_LIBS
--POLKIT_CFLAGS
--POLKIT_LIBS
- MATE_DESKTOP_CFLAGS
- MATE_DESKTOP_LIBS
- DEFAULT_APPLICATIONS_CAPPLET_CFLAGS
-@@ -1686,9 +1682,6 @@
-               C compiler flags for MATECC_SHELL, overriding pkg-config
-   MATECC_SHELL_LIBS
-               linker flags for MATECC_SHELL, overriding pkg-config
--  POLKIT_CFLAGS
--              C compiler flags for POLKIT, overriding pkg-config
--  POLKIT_LIBS linker flags for POLKIT, overriding pkg-config
-   MATE_DESKTOP_CFLAGS
-               C compiler flags for MATE_DESKTOP, overriding pkg-config
-   MATE_DESKTOP_LIBS
-@@ -17566,97 +17559,6 @@
+--- mate-control-center-1.26.1/configure~	Sun May  7 16:50:33 2023
++++ mate-control-center-1.26.1/configure	Mon Oct  9 14:08:57 2023
+@@ -18701,97 +18701,6 @@
  
  
  pkg_failed=no
--{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for POLKIT" >&5
--$as_echo_n "checking for POLKIT... " >&6; }
+-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for POLKIT" >&5
+-printf %s "checking for POLKIT... " >&6; }
 -
 -if test -n "$POLKIT_CFLAGS"; then
 -    pkg_cv_POLKIT_CFLAGS="$POLKIT_CFLAGS"
 - elif test -n "$PKG_CONFIG"; then
 -    if test -n "$PKG_CONFIG" && \
--    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"polkit-gobject-1\""; } >&5
+-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"polkit-gobject-1\""; } >&5
 -  ($PKG_CONFIG --exists --print-errors "polkit-gobject-1") 2>&5
 -  ac_status=$?
--  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+-  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
 -  test $ac_status = 0; }; then
 -  pkg_cv_POLKIT_CFLAGS=`$PKG_CONFIG --cflags "polkit-gobject-1" 2>/dev/null`
 -		      test "x$?" != "x0" && pkg_failed=yes
@@ -56,10 +28,10 @@
 -    pkg_cv_POLKIT_LIBS="$POLKIT_LIBS"
 - elif test -n "$PKG_CONFIG"; then
 -    if test -n "$PKG_CONFIG" && \
--    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"polkit-gobject-1\""; } >&5
+-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"polkit-gobject-1\""; } >&5
 -  ($PKG_CONFIG --exists --print-errors "polkit-gobject-1") 2>&5
 -  ac_status=$?
--  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+-  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
 -  test $ac_status = 0; }; then
 -  pkg_cv_POLKIT_LIBS=`$PKG_CONFIG --libs "polkit-gobject-1" 2>/dev/null`
 -		      test "x$?" != "x0" && pkg_failed=yes
@@ -73,8 +45,8 @@
 -
 -
 -if test $pkg_failed = yes; then
--   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
+-   	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-printf "%s\n" "no" >&6; }
 -
 -if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
 -        _pkg_short_errors_supported=yes
@@ -100,10 +72,10 @@
 -and POLKIT_LIBS to avoid the need to call pkg-config.
 -See the pkg-config man page for more details." "$LINENO" 5
 -elif test $pkg_failed = untried; then
--     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
--	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
--$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-     	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-printf "%s\n" "no" >&6; }
+-	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+-printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
 -as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
 -is in your PATH or set the PKG_CONFIG environment variable to the full
 -path to pkg-config.
@@ -117,16 +89,16 @@
 -else
 -	POLKIT_CFLAGS=$pkg_cv_POLKIT_CFLAGS
 -	POLKIT_LIBS=$pkg_cv_POLKIT_LIBS
--        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
--$as_echo "yes" >&6; }
+-        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+-printf "%s\n" "yes" >&6; }
 -
 -fi
 -
 -pkg_failed=no
- { $as_echo "$as_me:${as_lineno-$LINENO}: checking for MATE_DESKTOP" >&5
- $as_echo_n "checking for MATE_DESKTOP... " >&6; }
+ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for MATE_DESKTOP" >&5
+ printf %s "checking for MATE_DESKTOP... " >&6; }
  
-@@ -19568,8 +19470,8 @@
+@@ -20725,8 +20634,8 @@
  
  EXTRA_CFLAGS="-I\$(top_srcdir)/ -DG_LOG_DOMAIN=\"\\\"\$(cappletname)-properties\\\"\""
  
