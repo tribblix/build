@@ -6,5 +6,5 @@ mkdir build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 gmake -j 8
-${THOME}/build/genpkg TRIBtslim tslim
+${THOME}/build/genpkg TRIBtslim
 cd ../..
