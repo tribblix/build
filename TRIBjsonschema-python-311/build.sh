@@ -1,10 +1,11 @@
 #!/bin/sh
 #
-${THOME}/build/unpack jsonschema-2.6.0
-cd jsonschema-2.6.0
-/usr/versions/python-3.11/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBjsonschema-python-311 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+# this is an *old* build of jsonschema
+#
+# the *new* build is TRIBjsonschema4-python-311, but that has a lot
+# more dependencies not all of which exist on sparc
+#
+# so this jsonschema is left for sparc and pkg5 to use, while the new one
+# is what current application stacks should use
+#
+${THOME}/build/pkg_setup_py TRIBjsonschema-python-311 jsonschema-2.6.0
