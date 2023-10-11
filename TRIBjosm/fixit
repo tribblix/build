@@ -17,7 +17,7 @@ mkdir -p usr/bin
 cd usr/bin
 cat > josm <<_EOF
 #!/bin/sh
-exec java -jar /usr/share/josm/josm-tested.jar
+exec /usr/jdk/instances/jdk17/bin/java -jar /usr/share/josm/josm-tested.jar
 _EOF
 chmod a+x josm
 cd ../..
