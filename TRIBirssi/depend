@@ -1,3 +1,4 @@
 P TRIBlib-glib2
 P TRIBlib-security-openssl
 P TRIBncurses
+P TRIBperl-534

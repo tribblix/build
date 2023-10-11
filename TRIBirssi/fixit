@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# fix perl
+#
+rm -f usr/perl5/site_perl/5.34/i86pc-solaris-thread-multi-64/perllocal.pod
