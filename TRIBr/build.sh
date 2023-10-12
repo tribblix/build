@@ -5,10 +5,10 @@
 #
 zap install-overlay fortran
 zap install TRIBgnu-libiconv TRIBreadline
-env TRIBBLIX_CFLAGS=-I/usr/gnu/include TRIBBLIX_LDFLAGS="-L/usr/gnu/lib -R/usr/gnu/lib" $THOME/build/dobuild -gnu R-4.2.1 -C --disable-openmp
+env TRIBBLIX_CFLAGS=-I/usr/gnu/include TRIBBLIX_LDFLAGS="-L/usr/gnu/lib/`$THOME/build/getarch` -R/usr/gnu/lib/`$THOME/build/getarch`" FFLAGS=-m64 $THOME/build/dobuild -gnu -64only R-4.3.1 -C --disable-openmp
 
-cd R-4.2.1
+cd R-4.3.1-64bit
 gmake check
 cd ..
 
-$THOME/build/genpkg TRIBr R-4.2.1 
+$THOME/build/genpkg TRIBr R-4.3.1 
