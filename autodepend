@@ -61,7 +61,8 @@ getdeps()
 rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u`
 for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort -u | sed 's:\+:\\\\+:g'`
 do
-  for rpath in $rpathlist
+  # split multiple directories in the RPATH here
+  for rpath in ${rpathlist/:/ }
   do
       $MEGREP "^${rpath}/$dep( |=)" /var/sadm/install/contents
   done
