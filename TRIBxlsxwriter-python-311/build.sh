@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBxlsxwriter-python-311 XlsxWriter-3.1.7
+${THOME}/build/pkg_setup_py TRIBxlsxwriter-python-311 XlsxWriter-3.1.8
