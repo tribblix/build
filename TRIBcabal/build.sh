@@ -1,8 +1,28 @@
 #!/bin/sh
 #
-# NOTE: if calling cabal, you need to use the absolute path
+# NOTE: if calling cabal, you may need to use the absolute path
 # /usr/bin/cabal
-# if you just use 'cabal' from the PATH it will get easily confused and fail
+# if you just use 'cabal' from the PATH it may get easily confused and fail
+#
+
+#
+# if you already have cabal, you can use it to rebuild itself
+#
+# this is correct if the installed cabal is 2.2.0
+# if current, use --installdir rather than --bindir
+#
+/usr/bin/cabal install --bindir=/tmp/cbls/usr/bin cabal-install
+${THOME}/build/create_pkg TRIBcabal /tmp/cbls
+rm -fr /tmp/cbls
+
+
+
+exit 0
+
+#
+# below is the initial bootsrap of cabal
+#
+
 #
 # this isn't the current version, but it is (almost) the version that matches
 # our Haskell 8.4.4
