@@ -15,8 +15,8 @@
 # if it doesn't, you may need to edit openmp_helpers.py and make
 # check_openmp_support() unconditionally return False
 #
-${THOME}/build/unpack scikit-learn-1.3.0
-cd scikit-learn-1.3.0
+${THOME}/build/unpack scikit-learn-1.3.1
+cd scikit-learn-1.3.1
 
 env CC="gcc -m64" LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH /usr/versions/python-3.11/bin/python3 -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-warn-script-location --compile --no-build-isolation --root=/tmp/pil -I .
 
