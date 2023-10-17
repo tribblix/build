@@ -1,0 +1,4 @@
+PKG="TRIBpandoc"
+NAME="Pandoc - a universal document converter"
+VERSION="0.1.1.1.0"
+ZAP_URL="https://pandoc.org/"
