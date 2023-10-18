@@ -1,0 +1,4 @@
+PKG="TRIBblix-mariadb"
+NAME="Mariadb server"
+VERSION="10.11.5.0"
+ZAP_URL="https://mariadb.org/"

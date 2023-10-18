@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# cleanup to save space
+#
+INSTDIR="opt/tribblix/mariadb"
+rm -fr ${INSTDIR}/mysql-test
+rm -fr ${INSTDIR}/sql-bench
+rm ${INSTDIR}/lib/*.a
+#
+# this is a real hack
+#
+sed -i 's/-lnsl -lsocket/-lnsl -lsocket -lstdc++/' ${INSTDIR}/bin/mysql_config
