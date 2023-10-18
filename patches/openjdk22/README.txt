@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+19
+
+Trivial patch noise.
+
 22+18
 
 Boot jdk bumped to 21
