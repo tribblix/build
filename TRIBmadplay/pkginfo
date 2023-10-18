@@ -1,4 +1,4 @@
 PKG="TRIBmadplay"
 NAME="MAD: command line player"
-VERSION="0.15.2.2.0"
+VERSION="0.15.2.2.1"
 ZAP_URL="http://www.underbit.com/products/mad/"
