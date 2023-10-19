@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# full path, or it can't load the file at runtime
+#
+sed -i s:share/gupnp-tools:/usr/share/gupnp-tools: build/config.h
