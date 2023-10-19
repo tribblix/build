@@ -1678,17 +1678,17 @@
   * The following functions are common on Solaris, Linux and AIX.
   */
  
--#if defined(__solaris__) || defined (__linux__) || defined(_AIX)
-+#if defined (__linux__) || defined(_AIX)
+-#if defined(__solaris__) || defined (__linux__)
++#if defined (__linux__)
  
  /*
-  * Returns the children of the requested pid and optionally each parent and
-@@ -622,13 +607,13 @@
+  * Return pids of active processes, and optionally parent pids and
+@@ -632,13 +617,13 @@
      return count;
  }
  
--#endif // defined(__solaris__) || defined (__linux__) || defined(_AIX)
-+#endif // defined (__linux__) || defined(_AIX)
+-#endif // defined(__solaris__) || defined (__linux__)
++#endif // defined (__linux__)
  
  /*
 - * The following functions are common on Solaris and AIX.
@@ -1700,7 +1700,7 @@
  
  /**
   * Helper function to get the 'psinfo_t' data from "/proc/%d/psinfo".
-@@ -692,19 +677,6 @@
+@@ -702,19 +687,6 @@
      int ret;
  
      /*
@@ -1720,7 +1720,7 @@
       * Now try to open /proc/%d/psinfo
       */
      if (getPsinfo(pid, &psinfo) < 0) {
-@@ -733,4 +705,4 @@
+@@ -743,4 +715,4 @@
                        prargs[0] == '\0' ? NULL : prargs);
  }
  
@@ -2057,7 +2057,7 @@
  #endif
 --- old/src/java.base/unix/native/libjava/java_props_md.c	2020-05-20 18:01:13.743489712 -0700
 +++ new/src/java.base/unix/native/libjava/java_props_md.c	2020-05-20 18:01:13.351482185 -0700
-@@ -313,27 +313,6 @@
+@@ -323,27 +323,6 @@
          }
  #endif
  
@@ -2720,7 +2720,7 @@
       */
 --- old/src/java.base/unix/native/libnet/net_util_md.c	2020-05-20 18:01:28.435771815 -0700
 +++ new/src/java.base/unix/native/libnet/net_util_md.c	2020-05-20 18:01:28.059764595 -0700
-@@ -37,14 +37,6 @@
+@@ -36,14 +36,6 @@
  #include <sys/utsname.h>
  #endif
  
@@ -2735,7 +2735,7 @@
  #if defined(MACOSX)
  #include <sys/sysctl.h>
  #endif
-@@ -59,20 +51,6 @@
+@@ -58,20 +50,6 @@
  #define IPV6_FLOWINFO_SEND      33
  #endif
  
@@ -2753,11 +2753,11 @@
 -#define UDP_EXCLBIND            0x0101
 -#endif
 -
- #define RESTARTABLE(_cmd, _result) do { \
-     do { \
-         _result = _cmd; \
-@@ -85,94 +63,6 @@
-     return result;
+ void
+ NET_ThrowByNameWithLastError(JNIEnv *env, const char *name,
+                    const char *defaultDetail) {
+@@ -78,94 +56,6 @@
+     JNU_ThrowByNameWithMessageAndLastError(env, name, defaultDetail);
  }
  
 -#ifdef __solaris__
@@ -2849,9 +2849,9 @@
 -#endif
 -
  void
- NET_ThrowByNameWithLastError(JNIEnv *env, const char *name,
-                    const char *defaultDetail) {
-@@ -256,50 +146,6 @@
+ NET_ThrowNew(JNIEnv *env, int errorNumber, char *msg) {
+     char fullMsg[512];
+@@ -243,50 +133,6 @@
      }
  #endif
  
@@ -2902,7 +2902,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -364,26 +210,6 @@
+@@ -351,26 +197,6 @@
      }
  }
  
@@ -2929,16 +2929,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -542,7 +368,7 @@
-                 *level = IPPROTO_IPV6;
-                 *optname = IPV6_MULTICAST_LOOP;
-                 return 0;
--#if (defined(__solaris__) || defined(MACOSX))
-+#if defined(MACOSX)
-             // Map IP_TOS request to IPV6_TCLASS
-             case java_net_SocketOptions_IP_TOS:
-                 *level = IPPROTO_IPV6;
-@@ -691,65 +517,6 @@
+@@ -612,65 +438,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -3004,7 +2995,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -862,20 +629,10 @@
+@@ -783,20 +550,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -3025,7 +3016,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -892,61 +649,8 @@
+@@ -813,61 +570,8 @@
      }
  #endif
  
@@ -3181,7 +3172,15 @@
  #else
 --- old/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.943896775 -0700
 +++ new/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.515888557 -0700
-@@ -219,7 +219,7 @@
+@@ -25,7 +25,6 @@
+ 
+ #include <poll.h>
+ #include <sys/ioctl.h>
+-#include <sys/filio.h>
+ #include <sys/types.h>
+ #include <sys/socket.h>
+ #include <string.h>
+@@ -220,7 +220,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canIPv6SocketJoinIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -3190,7 +3189,7 @@
      /* IPv6 sockets can join IPv4 multicast groups */
      return JNI_TRUE;
  #else
-@@ -231,7 +231,7 @@
+@@ -232,7 +232,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canJoin6WithIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -3230,8 +3229,8 @@
 -
  #ifdef __linux__
  #include <sys/syscall.h>
- #endif
-@@ -267,8 +260,7 @@
+ #include <sys/sysmacros.h> // makedev macros
+@@ -381,8 +374,7 @@
  
      /* system calls that might not be available at run time */
  
