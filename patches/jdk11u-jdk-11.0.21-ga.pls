@@ -42,3 +42,4 @@
 -p1 openjdk11/tribblix-sparc1.patch
 -p1 openjdk11/tribblix-sparc2.patch
 -p1 openjdk11/tribblix-sparc3.patch
+-p1 openjdk11/tribblix-thrstat001.patch
