@@ -1,12 +1,12 @@
 #!/bin/tcsh
 #
 # jdk mainline has been migrated to git
-# go to https://github.com/openjdk/jdk21/tags
+# go to https://github.com/openjdk/jdk21u/tags
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk21-jdk-21-35
-cd jdk21-jdk-21-35
+${THOME}/build/unpack jdk21u-jdk-21.0.1-ga
+cd jdk21u-jdk-21.0.1-ga
 
 #
 # jdk21 needs autoconf installed
@@ -31,7 +31,6 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-toolchain-type=gcc \
 --disable-dtrace \
 --disable-warnings-as-errors \
---enable-deprecated-ports=yes \
 --with-source-date=current \
 --with-jobs=3 \
 DATE=/usr/gnu/bin/date \
@@ -45,9 +44,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "21-internal" 2023-09-19
-# OpenJDK Runtime Environment (build 21-internal-adhoc.ptribble.jdk21-jdk-21-35)
-# OpenJDK 64-Bit Server VM (build 21-internal-adhoc.ptribble.jdk21-jdk-21-35, mixed mode, sharing)
+# openjdk version "21.0.1-internal" 2023-10-17
+# OpenJDK Runtime Environment (build 21.0.1-internal-adhoc.ptribble.jdk21u-jdk-21.0.1-ga)
+# OpenJDK 64-Bit Server VM (build 21.0.1-internal-adhoc.ptribble.jdk21u-jdk-21.0.1-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

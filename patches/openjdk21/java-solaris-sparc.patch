@@ -279,7 +279,7 @@
    # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
    OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
    if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -618,9 +601,6 @@
+@@ -618,9 +603,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -728,7 +728,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -394,7 +393,6 @@
+@@ -396,7 +395,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -736,7 +736,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -452,7 +450,7 @@
+@@ -456,7 +454,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -745,7 +745,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -614,10 +612,7 @@
+@@ -618,10 +616,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -757,7 +757,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -644,7 +639,6 @@
+@@ -648,7 +643,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1409,16 +1409,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -106,7 +106,7 @@
-   "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
-   "PATH", "USERNAME",
- 
--  // Env variables that are defined on Solaris/Linux/BSD
-+  // Env variables that are defined on Linux/BSD
-   "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
-   "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
-   "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1865,8 +1865,6 @@
+@@ -1877,8 +1877,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1427,7 +1418,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1931,8 +1929,6 @@
+@@ -1943,8 +1941,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -3738,7 +3729,7 @@
              return getBSDServiceAttributes();
 --- old/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.805218963 -0700
 +++ new/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.465212435 -0700
-@@ -64,57 +61,7 @@
+@@ -57,57 +57,7 @@
  
  #define MAXFDIRS 512    /* Max number of directories that contain fonts */
  
@@ -3797,7 +3788,7 @@
  /* All the known interesting locations we have discovered on
   * various flavors of Linux
   */
-@@ -230,14 +177,6 @@
+@@ -223,14 +173,6 @@
          if (strstr(x11Path[i], ".gnome") != NULL) {
              continue;
          }
@@ -3812,7 +3803,7 @@
          fontdirs[pos] = strdup(x11Path[i]);
          slen = strlen(fontdirs[pos]);
          if (slen > 0 && fontdirs[pos][slen-1] == '/') {
-@@ -387,8 +326,6 @@
+@@ -380,8 +322,6 @@
  
  #if defined(__linux__)
      knowndirs = fullLinuxFontPath;
@@ -11375,7 +11366,7 @@
 -#endif // OS_SOLARIS_OS_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.inline.hpp	2020-05-20 18:09:36.197137133 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,68 +0,0 @@
+@@ -1,72 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11437,6 +11428,10 @@
 -// Bang the shadow pages if they need to be touched to be mapped.
 -inline void os::map_stack_shadow_pages(address sp) {
 -}
+-
+-// Trim-native support, stubbed out for now, may be enabled later
+-inline bool os::can_trim_native_heap() { return false; }
+-inline bool os::trim_native_heap(os::size_change_t* rss_change) { return false; }
 -
 -//////////////////////////////////////////////////////////////////////////////
 -////////////////////////////////////////////////////////////////////////////////
