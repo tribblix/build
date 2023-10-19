@@ -239,7 +239,7 @@
              fi
 --- old/make/autoconf/libraries.m4	2020-05-20 17:58:41.188560546 -0700
 +++ new/make/autoconf/libraries.m4	2020-05-20 17:58:40.768552482 -0700
-@@ -121,15 +114,13 @@
+@@ -114,15 +114,13 @@
    BASIC_JVM_LIBS="$LIBM"
  
    # Dynamic loading library
@@ -256,7 +256,7 @@
    fi
  
    # librt for legacy clock_gettime
-@@ -160,12 +151,6 @@
+@@ -159,12 +157,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -269,7 +269,7 @@
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib powrprof.lib uuid.lib \
-@@ -183,7 +168,6 @@
+@@ -182,7 +174,6 @@
    AC_SUBST(JVM_LIBS)
    AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
    AC_SUBST(OPENJDK_BUILD_JVM_LIBS)
@@ -847,7 +847,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -447,7 +445,7 @@
+@@ -449,7 +447,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -856,7 +856,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -610,10 +608,7 @@
+@@ -615,10 +613,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -868,7 +868,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -640,7 +635,6 @@
+@@ -645,7 +640,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1293,7 +1293,7 @@
  #endif
 --- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
-@@ -452,8 +452,6 @@
+@@ -467,8 +467,6 @@
      case lir_monaddr:        // input and result always valid, info always invalid
      case lir_null_check:     // input and info always valid, result always invalid
      case lir_move:           // input and result always valid, may have info
@@ -1302,7 +1302,7 @@
      {
        assert(op->as_Op1() != NULL, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1664,8 +1662,6 @@
+@@ -1763,8 +1761,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1313,16 +1313,16 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -921,8 +921,6 @@
+@@ -927,8 +927,6 @@
        , lir_monaddr
        , lir_roundfp
        , lir_safepoint
 -      , lir_pack64
 -      , lir_unpack64
        , lir_unwind
+       , lir_load_klass
    , end_op1
-   , begin_op2
-@@ -2114,9 +2112,6 @@
+@@ -2254,9 +2252,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1355,7 +1355,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -689,10 +689,6 @@
+@@ -690,10 +690,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -1366,7 +1366,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -742,10 +738,6 @@
+@@ -743,10 +739,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -1377,7 +1377,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1672,10 +1664,8 @@
+@@ -1670,10 +1662,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1390,7 +1390,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2024,8 +2014,7 @@
+@@ -2022,8 +2012,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -1417,7 +1417,7 @@
    if (PrintFlagsFinal || PrintFlagsRanges) {
 --- old/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.390734111 -0700
 +++ new/src/hotspot/share/runtime/os.hpp	2020-05-20 18:00:34.014726891 -0700
-@@ -484,7 +484,7 @@
+@@ -493,7 +493,7 @@
  
    static void free_thread(OSThread* osthread);
  
@@ -1426,7 +1426,7 @@
    static intx current_thread_id();
    static int current_process_id();
  
-@@ -831,10 +831,8 @@
+@@ -842,10 +842,8 @@
    // JVMTI & JVM monitoring and management support
    // The thread_cpu_time() and current_thread_cpu_time() are only
    // supported if is_thread_cpu_time_supported() returns true.
@@ -1450,7 +1450,7 @@
  # include "semaphore_bsd.hpp"
 --- old/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.538794556 -0700
 +++ new/src/hotspot/share/runtime/thread.cpp	2020-05-20 18:00:37.202788104 -0700
-@@ -347,12 +347,6 @@
+@@ -348,12 +348,6 @@
    set_stack_base(os::current_stack_base());
    set_stack_size(os::current_stack_size());
  
@@ -1668,16 +1668,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -95,7 +95,7 @@
-   "JAVA_HOME", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "CLASSPATH",
-   "PATH", "USERNAME",
- 
--  // Env variables that are defined on Solaris/Linux/BSD
-+  // Env variables that are defined on Linux/BSD
-   "LD_LIBRARY_PATH", "LD_PRELOAD", "SHELL", "DISPLAY",
-   "HOSTTYPE", "OSTYPE", "ARCH", "MACHTYPE",
-   "LANG", "LC_ALL", "LC_CTYPE", "LC_NUMERIC", "LC_TIME",
-@@ -1627,8 +1627,6 @@
+@@ -1790,8 +1790,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1686,7 +1677,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1690,8 +1688,6 @@
+@@ -1853,8 +1851,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -5056,7 +5047,7 @@
                                      "libgssapi_krb5.so",
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:50.089339623 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:49.705332249 -0700
-@@ -927,8 +927,6 @@
+@@ -933,8 +933,6 @@
              if (name == null) {
                  name = "c:\\winnt\\krb5.ini";
              }
@@ -5177,7 +5168,7 @@
  
 --- old/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:09.173706056 -0700
 +++ new/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/HotSpotAgent.java	2020-05-20 18:03:08.789698683 -0700
-@@ -40,7 +40,6 @@
+@@ -41,7 +41,6 @@
  import sun.jvm.hotspot.debugger.NoSuchSymbolException;
  import sun.jvm.hotspot.debugger.bsd.BsdDebuggerLocal;
  import sun.jvm.hotspot.debugger.linux.LinuxDebuggerLocal;
@@ -5185,7 +5176,7 @@
  import sun.jvm.hotspot.debugger.remote.RemoteDebugger;
  import sun.jvm.hotspot.debugger.remote.RemoteDebuggerClient;
  import sun.jvm.hotspot.debugger.remote.RemoteDebuggerServer;
-@@ -364,9 +361,7 @@
+@@ -363,9 +362,7 @@
                  } catch (UnsupportedPlatformException e) {
                     throw new DebuggerException(e);
                  }
@@ -5196,7 +5187,7 @@
                      setupDebuggerWin32();
                  } else if (os.equals("linux")) {
                      setupDebuggerLinux();
-@@ -418,11 +413,7 @@
+@@ -417,11 +414,7 @@
          // configure the VM.
  
          try {
@@ -5209,7 +5200,7 @@
                  db = new HotSpotTypeDataBase(machDesc,
                  new Win32VtblAccess(debugger, jvmLibNames),
                  debugger, jvmLibNames);
-@@ -507,29 +498,6 @@
+@@ -506,29 +499,6 @@
          System.err.println("Loaded alternate HotSpot SA Debugger: " + alternateName);
      }
  
@@ -5239,7 +5230,7 @@
      private void connectRemoteDebugger() throws DebuggerException {
          RemoteDebugger remote =
          (RemoteDebugger) RMIHelper.lookup(debugServerID);
-@@ -545,9 +509,7 @@
+@@ -540,9 +510,7 @@
      }
  
      private void setupJVMLibNames(String os) {
@@ -5250,7 +5241,7 @@
              setupJVMLibNamesWin32();
          } else if (os.equals("linux")) {
              setupJVMLibNamesLinux();
-@@ -570,10 +522,6 @@
+@@ -555,10 +523,6 @@
          }
      }
  
@@ -5272,7 +5263,7 @@
  import sun.jvm.hotspot.runtime.win32_x86.Win32X86JavaThreadPDAccess;
  import sun.jvm.hotspot.runtime.win32_amd64.Win32AMD64JavaThreadPDAccess;
  import sun.jvm.hotspot.runtime.win32_aarch64.Win32AARCH64JavaThreadPDAccess;
-@@ -100,13 +96,7 @@
+@@ -99,13 +97,7 @@
  
          access = null;
          // FIXME: find the platform specific PD class by reflection?
@@ -5629,7 +5620,7 @@
  extern sctp_getpaddrs_func* nio_sctp_getpaddrs;
 --- old/src/jdk.sctp/unix/native/libsctp/SctpChannelImpl.c	2020-05-20 18:03:40.558308663 -0700
 +++ new/src/jdk.sctp/unix/native/libsctp/SctpChannelImpl.c	2020-05-20 18:03:40.174301290 -0700
-@@ -334,10 +334,11 @@
+@@ -331,10 +331,11 @@
              break;
          case SCTP_ADDR_MADE_PRIM :
              event = sun_nio_ch_sctp_PeerAddrChange_SCTP_ADDR_MADE_PRIM;
@@ -5644,7 +5635,7 @@
  
 --- old/src/jdk.sctp/unix/native/libsctp/SctpNet.c	2020-05-20 18:03:41.630329248 -0700
 +++ new/src/jdk.sctp/unix/native/libsctp/SctpNet.c	2020-05-20 18:03:41.242321797 -0700
-@@ -364,11 +364,7 @@
+@@ -371,11 +371,7 @@
      int i, addrCount;
      jobjectArray isaa;
  
@@ -5653,10 +5644,10 @@
 -#else /* __linux__ */
      if ((addrCount = nio_sctp_getladdrs(fd, 0, (struct sockaddr **)&addr_buf)) == -1) {
 -#endif
-         handleSocketError(env, errno);
+         sctpHandleSocketError(env, errno);
          return NULL;
      }
-@@ -413,11 +409,7 @@
+@@ -420,11 +416,7 @@
      int i, addrCount;
      jobjectArray isaa;
  
@@ -5665,7 +5656,7 @@
 -#else /* __linux__ */
      if ((addrCount = nio_sctp_getpaddrs(fd, id, (struct sockaddr **)&addr_buf)) == -1) {
 -#endif
-         handleSocketError(env, errno);
+         sctpHandleSocketError(env, errno);
          return NULL;
      }
 --- old/src/jdk.security.auth/share/classes/com/sun/security/auth/module/Krb5LoginModule.java	2020-05-20 18:03:42.730350368 -0700
@@ -13786,7 +13777,7 @@
 -#endif // OS_SOLARIS_OS_SOLARIS_HPP
 --- old/src/hotspot/os/solaris/os_solaris.inline.hpp	2020-05-20 18:09:36.197137133 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,63 +0,0 @@
+@@ -1,67 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -13842,6 +13833,10 @@
 -// Bang the shadow pages if they need to be touched to be mapped.
 -inline void os::map_stack_shadow_pages(address sp) {
 -}
+-
+-// Trim-native support, stubbed out for now, may be enabled later
+-inline bool os::can_trim_native_heap() { return false; }
+-inline bool os::trim_native_heap(os::size_change_t* rss_change) { return false; }
 -
 -//////////////////////////////////////////////////////////////////////////////
 -////////////////////////////////////////////////////////////////////////////////
@@ -14992,11 +14987,6 @@
 -    // factor me: getPCfromContext
 -    pc = (address) uc->uc_mcontext.gregs[REG_PC];
 -
--    if (StubRoutines::is_safefetch_fault(pc)) {
--      os::Posix::ucontext_set_pc(uc, StubRoutines::continuation_for_safefetch_fault(pc));
--      return true;
--    }
--
 -    // Handle ALL stack overflow variations here
 -    if (sig == SIGSEGV && info->si_code == SEGV_ACCERR) {
 -      address addr = (address) info->si_addr;
@@ -15300,10 +15290,15 @@
 -#endif // AMD64
 -  st->cr();
 -  st->cr();
+-}
 -
--  intptr_t *sp = (intptr_t *)os::Solaris::ucontext_get_sp(uc);
--  st->print_cr("Top of Stack: (sp=" INTPTR_FORMAT ")", (intptr_t)sp);
--  print_hex_dump(st, (address)sp, (address)(sp + 8*sizeof(intptr_t)), sizeof(intptr_t));
+-void os::print_tos_pc(outputStream *st, const void *context) {
+-  if (context == NULL) return;
+-
+-  const ucontext_t* uc = (const ucontext_t*)context;
+-
+-  address sp = (address)os::Solaris::ucontext_get_sp(uc);
+-  print_tos(st, sp);
 -  st->cr();
 -
 -  // Note: it may be unsafe to inspect memory near pc. For example, pc may

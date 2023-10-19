@@ -5,14 +5,11 @@
 #
 
 #
-# the tag is 17.0.1+xx, the filename is 17-xx
-# for 17.0.1, ga is +12
-# for 17.0.2, ga is +8
-# for 17.0.2, ga is +7
+# just pull the ga tag
 #
 cd ~/ud
-${THOME}/build/unpack jdk17u-jdk-17.0.8-ga
-cd jdk17u-jdk-17.0.8-ga
+${THOME}/build/unpack jdk17u-jdk-17.0.9-ga
+cd jdk17u-jdk-17.0.9-ga
 
 #
 # jdk17 needs autoconf installed
@@ -49,9 +46,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 # 
-# openjdk version "17.0.8-internal" 2023-07-18
-# OpenJDK Runtime Environment (build 17.0.8-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.8-ga)
-# OpenJDK 64-Bit Server VM (build 17.0.8-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.8-ga, mixed mode, sharing)
+# openjdk version "17.0.9-internal" 2023-10-17
+# OpenJDK Runtime Environment (build 17.0.9-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.9-ga)
+# OpenJDK 64-Bit Server VM (build 17.0.9-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.9-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
