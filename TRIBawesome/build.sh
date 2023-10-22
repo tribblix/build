@@ -1,12 +1,10 @@
 #!/bin/sh
 #
-# Needs gobject-introspection, fixed for pango
+# Needs gobject-introspection, fixed for pango and gdk-pixbuf
 # Needs TRIBlibxdg-basedir, lua, lgi
 #
-${THOME}/build/unpack awesome-4.3
-cd awesome-4.3
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
-gmake -j 8
-${THOME}/build/genpkg TRIBawesome
+# current tarball (4.3) is old and won't compile with current gcc
+# so use a git checkout
+#
+$THOME/build/cmbuild -64only https://github.com/awesomeWM/awesome -C -DGENERATE_DOC=OFF
+${THOME}/build/genpkg TRIBawesome awesome
