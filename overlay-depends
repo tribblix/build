@@ -81,14 +81,14 @@ touch $TMPF
 PKGL=""
 for PKGI in $(<${OVL}.pkgs)
 do
-  if [ -f ../build/${PKGI}/depend.${ARCH} ]; then
+  if [ -f ${THOME}/build/${PKGI}/depend.${ARCH} ]; then
      # accumulate the depend files and invoke grep once later
-     PKGL="${PKGL} ../build/${PKGI}/depend.${ARCH}"
-  elif [ -f ../build/${PKGI}/depend ]; then
+     PKGL="${PKGL} ${THOME}/build/${PKGI}/depend.${ARCH}"
+  elif [ -f ${THOME}/build/${PKGI}/depend ]; then
      # accumulate the depend files and invoke grep once later
-     PKGL="${PKGL} ../build/${PKGI}/depend"
+     PKGL="${PKGL} ${THOME}/build/${PKGI}/depend"
   fi
-  if [ ! -d ../build/${PKGI} ]; then
+  if [ ! -d ${THOME}/build/${PKGI} ]; then
       for npkgi in $(awk -v p=$PKGI -F'|' '{if ($1 == p) print $3}' $CATALOG)
       do
 	  echo "P $npkgi" >> $TMPF
@@ -135,18 +135,18 @@ for ndep in $OUTMISS
 do
 for PKGI in $(<${OVL}.pkgs)
 do
-  if [ -f ../build/${PKGI}/depend.${ARCH} ]; then
-      if grep -q -w $ndep ../build/${PKGI}/depend.${ARCH}
+  if [ -f ${THOME}/build/${PKGI}/depend.${ARCH} ]; then
+      if grep -q -w $ndep ${THOME}/build/${PKGI}/depend.${ARCH}
       then
 	  echo "${PKGI} requires: ${ndep}"
       fi
-  elif [ -f ../build/${PKGI}/depend ]; then
-      if grep -q -w $ndep ../build/${PKGI}/depend
+  elif [ -f ${THOME}/build/${PKGI}/depend ]; then
+      if grep -q -w $ndep ${THOME}/build/${PKGI}/depend
       then
 	  echo "${PKGI} requires: ${ndep}"
       fi
   fi
-  if [ ! -d ../build/${PKGI} ]; then
+  if [ ! -d ${THOME}/build/${PKGI} ]; then
       egrep "( |\|)${ndep}( |\|)" $CATALOG | awk -v p=$PKGI -F'|' '{if ($1 == p) print $1" requires: " $3}'
   fi
 done
