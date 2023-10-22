@@ -35,3 +35,5 @@ esac
 # 64-bit typelib
 #
 cp ../pango-1.44.7-64bit/build/pango/Pango*typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
+cp ../atk-2.38.0-64bit/build/atk/Atk-1.0.typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
+cp ../gdk-pixbuf-2.42.10-64bit/build/gdk-pixbuf/GdkPixbuf-2.0.typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0

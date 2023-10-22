@@ -17,13 +17,21 @@
 # note that if you have to update gobject-introspection you'll
 # probably have to go round the loop from scratch
 #
-${THOME}/build/dobuild gdk-pixbuf-2.36.12 -C --with-x11
+env AR=/usr/bin/ar PATH=${PATH}:/usr/versions/python-3.11/bin ${THOME}/build/mesonbuild -gnu gdk-pixbuf-2.42.10 -C '-Dtests=false -Dinstalled_tests=false'
 ${THOME}/build/mesonbuild atk-2.38.0
 ${THOME}/build/dobuild -gnu gtk+-3.24.34 -C --disable-cups
-env CC=gcc ${THOME}/build/mesonbuild pango-1.44.7
+${THOME}/build/mesonbuild pango-1.44.7
 
 #
-# 64-bit, gdk just SEGV's, Pango needs extra help
+# 64-bit needs extra help
+#
+mv gdk-pixbuf-2.42.10 gdk-pixbuf-2.42.10-32bit
+env CC="gcc -m64" AR=/usr/bin/ar PATH=${PATH}:/usr/versions/python-3.11/bin ${THOME}/build/mesonbuild +64 -gnu gdk-pixbuf-2.42.10 -C '-Dtests=false -Dinstalled_tests=false'
+mv gdk-pixbuf-2.42.10-32bit gdk-pixbuf-2.42.10
+#
+mv atk-2.38.0 atk-2.38.0-32bit
+env CC="gcc -m64" ${THOME}/build/mesonbuild +64 atk-2.38.0
+mv atk-2.38.0-32bit atk-2.38.0
 #
 mv pango-1.44.7 pango-1.44.7-32bit
 env CC="gcc -m64" ${THOME}/build/mesonbuild +64 pango-1.44.7
