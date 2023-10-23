@@ -1,0 +1,11 @@
+--- openttd-13.4/src/network/core/os_abstraction.cpp~	Sun Jul 30 00:01:44 2023
++++ openttd-13.4/src/network/core/os_abstraction.cpp	Mon Oct 23 15:12:19 2023
+@@ -166,7 +166,7 @@
+  */
+ bool SetReusePort(SOCKET d)
+ {
+-#ifdef _WIN32
++#ifndef SO_REUSEPORT
+ 	/* Windows has no SO_REUSEPORT, but for our usecases SO_REUSEADDR does the same job. */
+ 	int reuse_port = 1;
+ 	return setsockopt(d, SOL_SOCKET, SO_REUSEADDR, (const char *)&reuse_port, sizeof(reuse_port)) == 0;

@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# unpack the base graphics, sound, and music sets
+#
+gunzip usr/share/man/man6/openttd.6.gz
+mkdir -p usr/share/games/openttd/baseset
+cd usr/share/games/openttd/baseset
+${THOME}/build/unpack opengfx-7.1-all
+${THOME}/build/unpack openmsx-0.4.2-all
+${THOME}/build/unpack opensfx-1.0.3-all

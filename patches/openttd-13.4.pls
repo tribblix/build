@@ -1,0 +1,2 @@
+-p1 openttd-alloca.patch
+-p1 openttd-socket.patch
