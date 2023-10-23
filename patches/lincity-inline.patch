@@ -1,0 +1,40 @@
+--- a/mouse.c	Sun Oct  5 06:53:32 2003
++++ b/mouse.c	Mon Oct 23 19:31:12 2023
+@@ -1056,7 +1056,7 @@
+    and set to 1 if the existing transport if the more expensive sort
+    (e.g. GROUP_RAIL when overwriting GROUP_ROAD).
+ */
+-inline int
++static inline int
+ mt_erase(int x, int y)
+ {
+     if (x < 0 || y < 0 || x >= WORLD_SIDE_LEN || y >= WORLD_SIDE_LEN)
+@@ -1093,7 +1093,7 @@
+     return 0;
+ }
+ 
+-inline int
++static inline int
+ mt_temp(int x, int y)
+ {
+     if (x < 0 || y < 0 || x >= WORLD_SIDE_LEN || y >= WORLD_SIDE_LEN)
+@@ -1127,7 +1127,7 @@
+     return 0;
+ }
+ 
+-inline int
++static inline int
+ mt_perm(int x, int y)
+ {
+     /* By now, it has already been mt_erase()'d */
+--- a/pixmap.c	Sun Mar 16 22:32:40 2003
++++ b/pixmap.c	Mon Oct 23 19:32:38 2023
+@@ -390,7 +390,7 @@
+ 		  likes it in the file.  Still need to fix this in autoconf,
+                   but for now this will do. */
+ #if !defined (WIN32)
+-inline int 
++extern inline int 
+ pixmap_index (int x, int y)
+ {
+     return y*pixmap_width + x;
