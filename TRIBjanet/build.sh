@@ -1,17 +1,23 @@
 #!/bin/sh
 #
 #
-${THOME}/build/unpack janet-1.26.0
-cd janet-1.26.0
-sed -i 's:ln -sf -T:ln -sf:' Makefile 
-gmake CC=gcc PREFIX=/usr CLIBS="-lsocket -lnsl -lm" CFLAGS="-O2 -D__EXTENSIONS__"
+${THOME}/build/unpack janet-1.32.1
+cd janet-1.32.1
+
+# this updates COMMON_CFLAGS so it applies to both the bootstrap
+# and the build
+sed -i 's:-fPIC:-fPIC -D__EXTENSIONS__:' Makefile 
+# syntax is gnu
+sed -i 's:strip :/usr/gnu/bin/strip :' Makefile
+
+gmake CC=gcc PREFIX=/usr CLIBS="-lsocket -lnsl -lm"
 #
 # optional, but this ought to pass
 #
-#gmake test CC=gcc PREFIX=/usr CLIBS="-lsocket -lnsl -lm" CFLAGS="-O2 -D__EXTENSIONS__"
+#gmake test CC=gcc PREFIX=/usr CLIBS="-lsocket -lnsl -lm"
 #
 rm -fr /tmp/jj126
-gmake install DESTDIR=/tmp/jj126 CC=gcc PREFIX=/usr CLIBS="-lsocket -lnsl -lm" CFLAGS="-O2 -D__EXTENSIONS__"
+gmake install DESTDIR=/tmp/jj126 CC=gcc PREFIX=/usr CLIBS="-lsocket -lnsl -lm"
 
 #
 # to install jpm you need to have built janet and installed it once
