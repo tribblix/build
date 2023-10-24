@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-# later versions introduce dependencies we don't have
+# urxvt used to bundle libptytty, we now have to build it separately
+# as a preconf script
 #
-${THOME}/build/dobuild -64only rxvt-unicode-9.22
-${THOME}/build/genpkg TRIBterminal-urxvt rxvt-unicode-9.22
+env TRIBBLIX_PKG_CONFIG_PATH=/tmp/libptytty/lib/amd64/pkgconfig ${THOME}/build/dobuild -64only rxvt-unicode-9.31
+${THOME}/build/genpkg TRIBterminal-urxvt rxvt-unicode-9.31
+rm -fr /tmp/libptytty
