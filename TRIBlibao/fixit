@@ -1,2 +1,4 @@
 #!/bin/sh
 rm -fr usr/share/doc
+rm -f usr/lib/ao/plugins-4/lib*.la
+rm -f usr/lib/*/ao/plugins-4/lib*.la
