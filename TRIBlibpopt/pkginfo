@@ -1,4 +1,4 @@
 PKG="TRIBlibpopt"
 NAME="libpopt option parser"
-VERSION="1.16.1"
-ZAP_URL="http://rpm5.org/files/popt/"
+VERSION="1.19.0"
+ZAP_URL="http://rpm.org/download.html"
