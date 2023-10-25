@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# the sparc build fails, most obviously in make check where all the
+# tests coredump
+#
+# it turns out that it's failing in memset_s(), so simply disable that
+#
+case `uname -p` in
+sparc)
+  sed -i s:-DHAVE_MEMSET_S=1:: `find . -name Makefile`
+  ;;
+esac
