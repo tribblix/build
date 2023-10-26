@@ -88,11 +88,36 @@ do
 done
 }
 
+#
+# find any other dependencies
+# pick runtime modules based on file path
+#
+getotherdeps()
+{
+    for file in $*
+    do
+	case $file in
+	    *usr/versions/python-3.11/*)
+		echo TRIBv-python-311
+		;;
+	    *usr/versions/python-3.12/*)
+		echo TRIBv-python-312
+		;;
+	    *usr/versions/python-2.7/*)
+		echo TRIBv-python-27
+		;;
+	    *usr/perl5/*)
+		echo TRIBperl-534
+		;;
+	esac
+    done
+}
+
 case $STYLE in
     'recurse')
-	getlongdeps $* | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
+	(getlongdeps $* ; getotherdeps $*) | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
 	exit 0
 	;;
 esac
 
-getdeps $* | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBv-browser-52|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
+(getdeps $* ; getotherdeps $*) | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
