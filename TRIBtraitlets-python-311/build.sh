@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBtraitlets-python-311 traitlets-5.11.2
+${THOME}/build/pkg_pep518 TRIBtraitlets-python-311 traitlets-5.12.0
