@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-tk"
+NAME="Perl Tk module"
+VERSION="804.036.0"
+ZAP_URL="https://metacpan.org/dist/Tk"
