@@ -1,8 +1,7 @@
 P TRIBgdk-pixbuf
 P TRIBimage-libjpeg
 P TRIBlib-desktop-atk
-P TRIBlib-desktop-gtk
-P TRIBlib-desktop-pango
+P TRIBlib-desktop-gtk3
 P TRIBlib-glib2
 P TRIBlibxml2
 P TRIBx11-lib-mesa
