@@ -1,9 +1,13 @@
+P TRIBbeautifulsoup4-python-311
 P TRIBblinker-python-311
 P TRIBdateutil-python-311
 P TRIBdocutils-python-311
 P TRIBfeedgenerator-python-311
+P TRIBfeedparser-python-311
 P TRIBjinja-python-311
+P TRIBlxml-python-311
 P TRIBmarkdown-python-311
+P TRIBpandoc
 P TRIBpygments-311
 P TRIBpytz-python-311
 P TRIBrich-python-311
