@@ -26,7 +26,7 @@
  src/utils/IdealGraphVisualizer : hotspot/src/share/tools/IdealGraphVisualizer
 --- old/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:24.212234589 -0700
 +++ new/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:23.828227215 -0700
-@@ -164,8 +164,6 @@
+@@ -168,8 +168,6 @@
      OPENJDK_TARGET_OS := linux
    else ifeq ($(UNAME_OS), Darwin)
      OPENJDK_TARGET_OS := macosx
@@ -35,7 +35,7 @@
    else
      OPENJDK_TARGET_OS := $(UNAME_OS)
    endif
-@@ -175,28 +173,15 @@
+@@ -182,28 +180,15 @@
  # Assume little endian unless otherwise specified
  OPENJDK_TARGET_CPU_ENDIAN := little
  
@@ -72,7 +72,7 @@
  endif
  
  OPENJDK_TARGET_CPU_ARCH := $(OPENJDK_TARGET_CPU)
-@@ -221,11 +206,6 @@
+@@ -228,11 +213,6 @@
  else ifeq ($(OPENJDK_TARGET_OS), macosx)
    NUM_CORES := $(shell /usr/sbin/sysctl -n hw.ncpu)
    MEMORY_SIZE := $(shell $(EXPR) `/usr/sbin/sysctl -n hw.memsize` / 1024 / 1024)
@@ -86,7 +86,7 @@
    MEMORY_SIZE := $(shell \
 --- old/make/RunTestsPrebuiltSpec.gmk	2020-05-20 17:58:25.304255556 -0700
 +++ new/make/RunTestsPrebuiltSpec.gmk	2020-05-20 17:58:24.916248106 -0700
-@@ -171,16 +171,6 @@
+@@ -173,16 +173,6 @@
  FILE := file
  ULIMIT := ulimit
  
@@ -317,8 +317,8 @@
 --- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
 +++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
 @@ -1081,7 +1081,7 @@
-           $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).pdb \
-               $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).map
+           $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_BASENAME).pdb \
+               $$($1_SYMBOLS_DIR)/$$($1_BASENAME).map
  
 -        else ifeq ($(call isTargetOs, linux solaris), true)
 +        else ifeq ($(call isTargetOs, linux), true)
@@ -1027,7 +1027,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -500,7 +500,7 @@
+@@ -497,7 +497,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1036,7 +1036,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -518,12 +518,6 @@
+@@ -515,12 +515,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1352,7 +1352,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1888,8 +1888,6 @@
+@@ -1894,8 +1894,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1361,7 +1361,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1954,8 +1952,6 @@
+@@ -1960,8 +1958,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1675,7 +1675,7 @@
  #define RESTARTABLE(_cmd, _result) do { \
    do { \
 @@ -503,7 +488,7 @@
-  * The following functions are common on Solaris, Linux and AIX.
+  * The following functions are for Linux
   */
  
 -#if defined(__solaris__) || defined (__linux__)
