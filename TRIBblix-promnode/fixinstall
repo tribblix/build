@@ -26,4 +26,4 @@ fi
 # there is no make install, simply copy the file
 #
 mkdir -p ${DESTDIR}/opt/tribblix/prometheus/sbin
-cp node_exporter/node_exporter ${DESTDIR}/opt/tribblix/prometheus/sbin
+cp node_exporter*/node_exporter ${DESTDIR}/opt/tribblix/prometheus/sbin
