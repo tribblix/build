@@ -13,7 +13,7 @@ WORKING_ROOT=`pwd`
 case $# in
     0)
 	echo "Usage: $0 [-64|+64|-64only|+64only] [-gnu] src_name \\"
-        echo "  [-S subdir] [-P alt_prefix] [-C configure_args] \\"
+        echo "  [-B|-S subdir] [-P alt_prefix] [-C configure_args] \\"
 	echo "  [-M make_args] [-J parallelism] [-L]"
 	exit 1
 	;;
@@ -42,6 +42,17 @@ ONLY64="false"
 ONLY64BIN="false"
 UNPACK_FLAGS=""
 BRANCHARGS=""
+
+#
+# out of tree builds from -B will replace these
+# with an out of tree build, you build in a subdirectory
+# and the source is at '..'
+#
+# this is incompatible with -S, not only does it not make much sense
+# but we use the -S subdir mechanism to implement it
+#
+SRCDIR="."
+BUILDDIR="."
 
 #
 # if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
@@ -108,6 +119,14 @@ case $1 in
 	;;
 -gnu)
 	DOGNU="true"
+	shift
+	;;
+-B)
+	shift
+	BUILDDIR="$1"
+	SRCDIR=".."
+	TSUBDIR="$1"
+	SUBDIR="/$1"
 	shift
 	;;
 -S)
@@ -296,13 +315,14 @@ EOF
 		echo "${TSUBDIR}" > .tribblix_build_subdir
 		cd ${WORKING_ROOT}
 	    fi
+	    mkdir -p ${pkg}-64bit/${BUILDDIR}
 	    cd ${pkg}-64bit${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
 		${BUILD}/patches/${pkg}.preconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ./configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
@@ -330,11 +350,12 @@ EOF
 		echo "${TSUBDIR}" > .tribblix_build_subdir
 		cd ${WORKING_ROOT}
 	    fi
+	    mkdir -p ${pkg}/${BUILDDIR}
 	    cd ${pkg}${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ./configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX} ${LIBARGS32}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX} ${LIBARGS32}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
