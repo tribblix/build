@@ -33,3 +33,4 @@ By default, reserve the group id as well
 129 zookeeper	    TRIBblix-zookeeper
 130 tengine	    TRIBblix-tengine
 131 promnode	    TRIBblix-promnode
+132 dnsmasq	    TRIBdnsmasq

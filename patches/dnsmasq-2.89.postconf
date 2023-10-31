@@ -1,2 +1,7 @@
 #!/bin/sh
 sed -i 's:sort -k:/usr/gnu/bin/sort -k:' bld/get-version
+#
+# this is where the dhcp lease file is stored
+# have a dedicated directory owned by the dnsmasq user
+#
+sed -i s:/var/cache/dnsmasq.leases:/var/dnsmasq/dnsmasq.leases: src/config.h

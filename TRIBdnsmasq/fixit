@@ -3,3 +3,27 @@
 # create this up front
 #
 mkdir -p etc/dnsmasq.d
+#
+# this is where dnsmasq.leases is stored
+#
+mkdir -p var/dnsmasq
+
+#
+# smf manifest
+#
+mkdir -p lib/svc/manifest/network
+cp ${BUILDROOT}/patches/dnsmasq.xml lib/svc/manifest/network
+chmod 0444 lib/svc/manifest/network/dnsmasq.xml
+
+#
+# auths
+#
+mkdir -p etc/security/auth_attr.d
+mkdir -p etc/security/prof_attr.d
+cat > etc/security/auth_attr.d/dnsmasq <<EOF
+tribblix.smf.modify.dnsmasq:::Modify dnsmasq service properties::
+tribblix.smf.manage.dnsmasq:::Manage dnsmasq service states::
+EOF
+cat > etc/security/prof_attr.d/dnsmasq <<EOF
+dnsmasq Administration::::auths=tribblix.smf.manage.dnsmasq,tribblix.smf.modify.dnsmasq
+EOF
