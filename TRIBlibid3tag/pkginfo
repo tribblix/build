@@ -1,4 +1,4 @@
 PKG="TRIBlibid3tag"
 NAME="ID3 tag manipulation library"
-VERSION="0.15.1.2.2"
-ZAP_URL="http://www.underbit.com/products/mad/"
+VERSION="0.16.3.0"
+ZAP_URL="https://codeberg.org/tenacityteam/libid3tag"
