@@ -1,4 +1,4 @@
 PKG="TRIBgkrellm"
 NAME="GKrellM system monitor"
-VERSION="2.3.11.2"
+VERSION="2.3.11.3"
 ZAP_URL="http://gkrellm.srcbox.net/"
