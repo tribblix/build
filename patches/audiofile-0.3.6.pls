@@ -1,0 +1,12 @@
+-p1 audiofile/01_gcc6.patch
+-p1 audiofile/02_hurd.patch
+-p1 audiofile/03_CVE-2015-7747.patch
+-p1 audiofile/04_clamp-index-values-to-fix-index-overflow-in-IMA.cpp.patch
+-p1 audiofile/05_Always-check-the-number-of-coefficients.patch
+-p1 audiofile/06_Check-for-multiplication-overflow-in-MSADPCM-decodeSam.patch
+-p1 audiofile/07_Check-for-multiplication-overflow-in-sfconvert.patch
+-p1 audiofile/08_Fix-signature-of-multiplyCheckOverflow.-It-returns-a-b.patch
+-p1 audiofile/09_Actually-fail-when-error-occurs-in-parseFormat.patch
+-p1 audiofile/10_Check-for-division-by-zero-in-BlockCodec-runPull.patch
+-p1 audiofile/11_CVE-2018-13440.patch
+-p1 audiofile/12_CVE-2018-17095.patch
