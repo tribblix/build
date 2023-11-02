@@ -1,5 +1,6 @@
 P TRIBboehm-gc
 P TRIBboost
+P TRIBdouble-conversion
 P TRIBgdk-pixbuf
 P TRIBharfbuzz
 P TRIBimage-libjpeg
