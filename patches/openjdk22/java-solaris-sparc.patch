@@ -713,7 +713,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -646,10 +644,7 @@
+@@ -651,10 +649,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -725,7 +725,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -676,7 +671,6 @@
+@@ -681,7 +676,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1147,8 +1147,8 @@
  # include "semaphore_posix.hpp"
  #else
  # include OS_HEADER(semaphore)
---- old/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.698816829 -0700
-+++ new/src/hotspot/share/services/memTracker.cpp	2020-05-20 18:00:38.318809532 -0700
+--- old/src/hotspot/share/nmt/memTracker.cpp	2020-05-20 18:00:38.698816829 -0700
++++ new/src/hotspot/share/nmt/memTracker.cpp	2020-05-20 18:00:38.318809532 -0700
 @@ -48,12 +48,6 @@
  #include <windows.h>
  #endif
@@ -1162,8 +1162,8 @@
  NMT_TrackingLevel MemTracker::_tracking_level = NMT_unknown;
  
  MemBaseline MemTracker::_baseline;
---- old/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
-+++ new/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
+--- old/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
++++ new/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
 @@ -34,11 +34,9 @@
  #include "utilities/debug.hpp"
  #include "utilities/nativeCallStack.hpp"
@@ -3894,21 +3894,21 @@
  
 --- old/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2020-05-20 18:02:52.281381711 -0700
 +++ new/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2020-05-20 18:02:51.897374338 -0700
-@@ -82,12 +82,8 @@
-         String s2 = lib.substring(k + 7);
-         String libDir;
-         if ("64".equals(System.getProperty("sun.arch.data.model"))) {
--            if ("SunOS".equals(System.getProperty("os.name"))) {
--                libDir = "lib/64";
--            } else {
--                // assume Linux convention
--                libDir = "lib64";
--            }
-+            // assume Linux convention
-+            libDir = "lib64";
-         } else {
-             // must be 32-bit
-             libDir = "lib";
+@@ -86,12 +86,8 @@
+         if (k != -1) {
+             String libDir;
+             if ("64".equals(System.getProperty("sun.arch.data.model"))) {
+-                if ("SunOS".equals(System.getProperty("os.name"))) {
+-                    libDir = "lib/64";
+-                } else {
+-                    // assume Linux convention
+-                    libDir = "lib64";
+-                }
++                // assume Linux convention
++                libDir = "lib64";
+             } else {
+                 // must be 32-bit
+                 libDir = "lib";
 --- old/src/java.xml/share/classes/com/sun/org/apache/xalan/internal/xsltc/runtime/output/WriterOutputBuffer.java	2020-05-20 18:02:53.293401143 -0700
 +++ new/src/java.xml/share/classes/com/sun/org/apache/xalan/internal/xsltc/runtime/output/WriterOutputBuffer.java	2020-05-20 18:02:52.961394768 -0700
 @@ -33,21 +33,12 @@
@@ -8009,7 +8009,7 @@
 -#include "runtime/vm_version.hpp"
 -#include "semaphore_posix.hpp"
 -#include "services/attachListener.hpp"
--#include "services/memTracker.hpp"
+-#include "nmt/memTracker.hpp"
 -#include "services/runtimeService.hpp"
 -#include "signals_posix.hpp"
 -#include "utilities/align.hpp"

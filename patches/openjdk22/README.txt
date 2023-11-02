@@ -12,6 +12,11 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+22
+
+memTracker was moved from src/hotspot/share/services to
+src/hotspot/share/nmt
+
 22+21
 
 Trivial patch noise
