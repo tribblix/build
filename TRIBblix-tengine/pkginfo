@@ -1,4 +1,0 @@
-PKG="TRIBblix-tengine"
-NAME="High performance http server"
-VERSION="3.0.0.1"
-ZAP_URL="http://tengine.taobao.org/"
