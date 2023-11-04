@@ -1,0 +1,10 @@
+P TRIBdev-check
+P TRIBgdk-pixbuf
+P TRIBgstreamer1
+P TRIBgstreamer1-plugins-base
+P TRIBlib-glib2
+P TRIBlib-zlib
+P TRIBlibsoup
+P TRIBlibvips
+P TRIBsvc-net-dns-mdns
+P TRIBtotem-pl-parser
