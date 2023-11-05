@@ -7,4 +7,4 @@
 #
 # used by the pandas build
 #
-${THOME}/build/pkg_pep518 TRIBmesonpy-python-311 meson_python-0.14.0
+${THOME}/build/pkg_pep518 TRIBmesonpy-python-311 meson_python-0.15.0
