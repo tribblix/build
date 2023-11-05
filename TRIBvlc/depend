@@ -21,6 +21,7 @@ P TRIBlibidn
 P TRIBlibmad
 P TRIBlibnotify
 P TRIBlibogg
+P TRIBlibsamplerate
 P TRIBlibsdl
 P TRIBlibsdl-image
 P TRIBlibsecret
@@ -38,6 +39,7 @@ P TRIBqt5
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBsys-libdbus
+P TRIBtaglib
 P TRIBx11-libx11
 P TRIBx11-libxext
 P TRIBx11-libxinerama
