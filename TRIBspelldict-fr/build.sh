@@ -3,6 +3,6 @@
 # https://www.dicollecte.org/download/fr/hunspell-french-dictionaries-v7.0.zip
 # but that site appears to have gone AWOL
 #
-# use the libreoffice dictionaries instead, see the fixit scrip
+# use the libreoffice dictionaries instead, see the fixit script
 #
-${THOME}/build/genpkg TRIBspelldict-fr /tmp/sp-fr
+${THOME}/build/genpkg TRIBspelldict-fr
