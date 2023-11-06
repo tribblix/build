@@ -1,4 +1,4 @@
 PKG="TRIBv-palemoon"
 NAME="Pale Moon Web browser"
-VERSION="32.4.1.0"
+VERSION="32.5.0.0"
 ZAP_URL="http://www.palemoon.org/"

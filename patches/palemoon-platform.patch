@@ -1,0 +1,24 @@
+diff --git a/old-configure.in b/old-configure.in
+index aa1750ec90..840554a541 100644
+--- a/old-configure.in
++++ b/old-configure.in
+@@ -3267,6 +3267,9 @@ case "$OS_ARCH:$CPU_ARCH" in
+   WINNT:x86)
+       MOZ_LIBAV_FFT=1
+   ;;
++  SunOS:x86_64)
++      MOZ_LIBAV_FFT=
++  ;;
+   *:x86_64)
+       MOZ_LIBAV_FFT=1
+   ;;
+@@ -3334,6 +3337,9 @@ case "$OS_ARCH:$CPU_ARCH" in
+   WINNT:x86)
+       MOZ_FFVPX=1
+   ;;
++  SunOS:x86_64)
++      MOZ_FFVPX=
++  ;;
+   *:x86_64)
+       MOZ_FFVPX=1
+   ;;

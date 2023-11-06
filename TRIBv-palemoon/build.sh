@@ -21,6 +21,13 @@
 # git submodule init && git submodule update
 # git checkout release && git submodule update
 #
+# there's an essential patch, as yasm generates text relocation errors
+# around libav and ffvpx, so turn it off
+#
+# cd platform
+# gpatch -p1 < $THOME/build/patches/palemoon-platform.patch
+# cd ..
+#
 # and then the build
 #
 # cp $THOME/build/patches/palemoon.mozconfig .mozconfig
@@ -39,9 +46,9 @@
 # but I've found that doesn't work
 #
 # This will create a tarball
-#   palemoon-32.4.1.solaris2.11-x86_64-illumos.tar.xz
+#   palemoon-32.5.0.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-32.4.1.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-32.5.0.solaris2.11-x86_64-illumos
