@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# unpack hunspell dictionaries from the libreoffice download
+#
+LOOVER=7.6.2.1
+DICT=it_IT
+SDICT=it_IT
+DICT_ALIASES=
+mkdir -p usr/share/hunspell
+cd usr/share/hunspell
+gtar xf $THOME/tarballs/libreoffice-dictionaries-${LOOVER}.tar.xz libreoffice-${LOOVER}/dictionaries/${DICT}
+mv libreoffice-${LOOVER}/dictionaries/${DICT}/README_${SDICT}.txt README_${DICT}.txt
+mv libreoffice-${LOOVER}/dictionaries/${DICT}/${SDICT}.dic ${DICT}.dic
+mv libreoffice-${LOOVER}/dictionaries/${DICT}/${SDICT}.aff ${DICT}.aff
+rm -fr libreoffice-${LOOVER}
+for alt in $DICT_ALIASES
+do
+    ln -s ${DICT}.dic ${alt}.dic
+    ln -s ${DICT}.aff ${alt}.aff
+done
