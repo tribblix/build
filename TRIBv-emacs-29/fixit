@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+VERSION=29
+mkdir -p usr/bin
+ln -s ../versions/emacs-${VERSION}/bin/emacs usr/bin/emacs
+ln -s ../versions/emacs-${VERSION}/bin/emacsclient usr/bin/emacsclient
+ln -s ../versions/emacs-${VERSION}/bin/etags usr/bin/etags
+mkdir -p usr/share/man/man1
+gunzip usr/versions/emacs-${VERSION}/share/man/man1/*.gz
+mv usr/versions/emacs-${VERSION}/share/man/man1/emacs* usr/share/man/man1
+mv usr/versions/emacs-${VERSION}/share/man/man1/etags* usr/share/man/man1
