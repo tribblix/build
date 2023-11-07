@@ -2,22 +2,10 @@
 #
 # don't conflict with the solaris standard
 #
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
 
-VERSION=5.39
+VERSION=5.45
 #
-# ship both 32 and 64-bit libraries, but the command itself
-# only needs the one version
-#
-rm -f usr/bin/file
-mv usr/bin/${ARCH64}/file usr/bin/file-${VERSION}
+mv usr/bin/file usr/bin/file-${VERSION}
 mv usr/share/man/man1/file.1 usr/share/man/man1/file-${VERSION}.1
-mv usr/share/man/man4/magic.4 usr/share/man/man4/magic-${VERSION}.1
+mv usr/share/man/man4/magic.4 usr/share/man/man4/magic-${VERSION}.4
 rmdir usr/share/man/man5
