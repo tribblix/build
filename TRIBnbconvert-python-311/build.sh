@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBnbconvert-python-311 nbconvert-7.10.0
+${THOME}/build/pkg_pep518 TRIBnbconvert-python-311 nbconvert-7.11.0
