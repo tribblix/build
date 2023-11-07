@@ -1,4 +1,0 @@
-PKG="TRIBlibunique"
-NAME="GNOME single instance library"
-VERSION="1.1.6.2"
-ZAP_URL="https://download.gnome.org/sources/libunique/"
