@@ -1,3 +1,0 @@
-tribblix_srcs=gzip-1.12
-tribblix_gnu_opt=-gnu
-tribblix_64_opt=-64only

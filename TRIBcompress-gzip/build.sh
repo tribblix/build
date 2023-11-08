@@ -1,3 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/newbuild.sh both TRIBcompress-gzip
+${THOME}/build/dobuild -gnu -64only gzip-1.13
+${THOME}/build/genpkg TRIBcompress-gzip gzip-1.13
