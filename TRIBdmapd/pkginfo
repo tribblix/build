@@ -1,4 +1,0 @@
-PKG="TRIBdmapd"
-NAME="dmapd"
-VERSION="0.0.95.0"
-ZAP_URL="https://www.flyn.org/projects/dmapd/"
