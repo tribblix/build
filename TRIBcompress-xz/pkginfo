@@ -1,4 +1,4 @@
 PKG="TRIBcompress-xz"
 NAME="XZ Utils"
-VERSION="5.2.2.0"
+VERSION="5.4.5.0"
 ZAP_URL="https://tukaani.org/xz/"
