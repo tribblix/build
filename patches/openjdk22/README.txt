@@ -6,11 +6,21 @@ See also README-zero.txt for note on a project zero variant.
 JDK 22 now that jdk21 has been forked off.
 
 Issues known that indicate serious bugs, likely due to not integrating
-loom correctly as they date back to that change. Specifically, I
-suspect we need to provide a working DefaultPoller implementation
-rather than the current stub.
+loom correctly as they date back to that change.
 * jshell doesn't work
 * illuminate doesn't work
+
+22+23
+
+Signature change in DefaultPoller.java, the whole of Poller has been
+reworked. As our DevPollPoller was a stub and never worked, delete and
+replace with a copy of EPollPoller from Linux:
+
+cp src/java.base/linux/classes/sun/nio/ch/EPoll* src/java.base/solaris/classes/sun/nio/ch
+cp src/java.base/linux/classes/sun/nio/ch/EventFD.java src/java.base/solaris/classes/sun/nio/ch
+cp src/java.base/linux/native/libnio/ch/EPoll.c src/java.base/solaris/native/libnio/ch/EPoll.c
+
+See revised illumos-pollerprovider.patch
 
 22+22
 
