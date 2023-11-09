@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# force no linkage against libgcc_s
-#
-perl -pi -e 's#(\$CC.*\$compiler_flags)#$1 -nostdlib -lc#g;' libtool
