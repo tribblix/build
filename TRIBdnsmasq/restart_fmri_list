@@ -1,1 +1,2 @@
 svc:/system/rbac:default
+svc:/system/manifest-import:default
