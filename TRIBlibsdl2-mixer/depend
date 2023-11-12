@@ -1,4 +1,6 @@
 P TRIBlibflac
+P TRIBlibmodplug
 P TRIBlibsdl2
 P TRIBlibvorbis
-P TRIBsmpeg2
+P TRIBmpg123
+P TRIBopusfile
