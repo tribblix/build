@@ -1,2 +1,0 @@
-#!/bin/sh
-sed -i 's:rm -f -v:rm -f:' perl/Makefile*
