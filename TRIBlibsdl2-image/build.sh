@@ -1,4 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64 SDL2_image-2.0.1
-${THOME}/build/genpkg TRIBlibsdl2-image SDL2_image-2.0.1
+# the image libraries for png jpeg tiff webp are dlopen'ed
+# so won't show up automatically as dependencies
+#
+${THOME}/build/dobuild -64 SDL_image-release-2.0.5
+${THOME}/build/genpkg TRIBlibsdl2-image SDL_image-release-2.0.5
