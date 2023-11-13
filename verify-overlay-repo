@@ -18,7 +18,8 @@ do
     echo "ERROR: ${pkg}.pkgs missing"
   fi
   if [ -f ${pkg}.ovl ]; then
-      nver=`grep '^VERSION=' ${pkg}.ovl | sed 's:VERSION=::'`
+      nver=$(grep '^VERSION=' ${pkg}.ovl)
+      nver=${nver##*=}
       if [ "X${nver}" != "X${iver}" ]; then
 	  echo "ERROR: $pkg is at the wrong version"
       fi
@@ -47,23 +48,25 @@ done
 
 #
 # check that every required overlay exists
+#
+for req in $(grep REQUIRES= *.ovl | awk -F= '{print $NF}')
+do
+    if [ ! -f "${req}.ovl" ]; then
+	echo "ERROR: Missing dependency ${req}"
+    fi
+done
+
+#
 # and for circular dependencies
 #
 # note that we only detect direct circular dependencies, where two
 # overlays depend on each other
 #
-for file in *.ovl
-do
-    ovl=${file%.ovl}
-    for req in $(awk -F= '{if ($1 == "REQUIRES") print $2}' ${file})
-    do
-	if [ -f "${req}.ovl" ]; then
-	    CIRC=$(grep "^REQUIRES=$ovl\$" ${req}.ovl)
-	    if [ -n "${CIRC}" ]; then
-		echo "ERROR: circular dependency between $ovl and $req"
-	    fi
-	else
-	    echo "ERROR: missing require $req in $file"
-	fi
-    done
-done
+# print the dependencies both forwards and backwards, and a circular
+# dependency will then be repeated
+#
+CIRCDEP=$(grep REQUIRES= *.ovl | awk -F'[\.=]' '{print $1,$NF"\n"$NF,$1}' | sort | uniq -d)
+if [ -n "${CIRCDEP}" ]; then
+    echo "ERROR: circular dependency"
+    echo "${CIRCDEP}"
+fi
