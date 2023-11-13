@@ -1,0 +1,12 @@
+diff -wpruN '--exclude=*.orig' a~/src/nettest_omni.c a/src/nettest_omni.c
+--- a~/src/nettest_omni.c	1970-01-01 00:00:00
++++ a/src/nettest_omni.c	1970-01-01 00:00:00
+@@ -485,7 +485,7 @@ static int client_port_max = 65535;
+ 
+  /* different options for the sockets				*/
+ 
+-int
++extern int
+   loc_nodelay,		/* don't/do use NODELAY	locally		*/
+   rem_nodelay,		/* don't/do use NODELAY remotely	*/
+   loc_sndavoid,		/* avoid send copies locally		*/

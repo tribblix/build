@@ -1,6 +1,6 @@
 --- netperf-2.7.0-orig/src/netlib.c	Fri Apr 24 18:08:33 2015
 +++ netperf-2.7.0/src/netlib.c	Mon Oct  5 15:20:25 2015
-@@ -143,6 +143,9 @@
+@@ -165,6 +165,9 @@
  #endif /* __sgi */
  #endif /* _AIX */
  
