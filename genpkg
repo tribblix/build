@@ -115,7 +115,7 @@ case $# in
 		    . ./.tribblix_ldopts
 		fi
 		if [ -f .tribblix_cmake_build ]; then
-		    cd build
+		    cd $(cat .tribblix_cmake_build)
 		fi
 		if [ -f .tribblix_build_subdir ]; then
 		    cd $(cat .tribblix_build_subdir)
@@ -142,7 +142,7 @@ case $# in
 		    . ./.tribblix_ldopts
 		fi
 		if [ -f .tribblix_cmake_build ]; then
-		    cd build
+		    cd $(cat .tribblix_cmake_build)
 		fi
 		if [ -f .tribblix_build_subdir ]; then
 		    cd $(cat .tribblix_build_subdir)

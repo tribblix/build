@@ -14,7 +14,7 @@ WORKING_ROOT=`pwd`
 case $# in
     0)
 	echo "Usage: $0 [-64|+64|-64only|+64only] [-gnu] src_name \\"
-        echo "  [-P alt_prefix] [-C configure_args] \\"
+        echo "  [-B build_dir] [-P alt_prefix] [-C configure_args] \\"
 	echo "  [-M make_args] [-J parallelism] [-L]"
 	exit 1
 	;;
@@ -54,6 +54,7 @@ ONLY64="false"
 ONLY64BIN="false"
 UNPACK_FLAGS=""
 BRANCHARGS=""
+BUILDDIR="build"
 
 #
 # if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
@@ -72,7 +73,8 @@ DOGNU="false"
 # -I install_args [unused]
 # -J parallelism
 # -L disable LD_OPTIONS
-# -B run cmake directly in the source tree, not in a build subdir
+# -B subdirectory to use rather than the default
+# +B run cmake directly in the source tree, not in a build subdir
 # -b branch for git checkout
 #
 IPREFIX="/usr"
@@ -146,6 +148,11 @@ case $1 in
 	DO_LD=""
 	;;
 -B)
+	shift
+	BUILDDIR="$1"
+	shift
+	;;
++B)
 	shift
 	BFLAG=""
 	BDIR="."
@@ -264,9 +271,9 @@ EOF
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    if [[ -n $BFLAG ]]; then
-		touch .tribblix_cmake_build
-		mkdir build
-		cd build
+		echo "${BUILDDIR}" > .tribblix_cmake_build
+		mkdir ${BUILDDIR}
+		cd ${BUILDDIR}
 	    fi
 	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m64 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/${LIBDIR64} -DBIN_INSTALL_DIR=${IPREFIX}/${BINDIR64} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/${LIBDIR64} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/${BINDIR64} ${CONFARGS64} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
@@ -299,9 +306,9 @@ EOF
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    if [[ -n $BFLAG ]]; then
-		touch .tribblix_cmake_build
-		mkdir build
-		cd build
+		echo "${BUILDDIR}" > .tribblix_cmake_build
+		mkdir ${BUILDDIR}
+		cd ${BUILDDIR}
 	    fi
 	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m32 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m32 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=${IPREFIX} -DLIB_INSTALL_DIR=${IPREFIX}/${LIBDIR32} -DBIN_INSTALL_DIR=${IPREFIX}/${BINDIR32} -DCMAKE_INSTALL_LIBDIR=${IPREFIX}/${LIBDIR32} -DCMAKE_INSTALL_BINDIR=${IPREFIX}/${BINDIR32} ${CONFARGS32} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
