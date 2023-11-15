@@ -1,4 +1,4 @@
 PKG="TRIBaxpbox"
 NAME="AXPbox Alpha emulator"
-VERSION="1.0"
+VERSION="1.1.1.0"
 ZAP_URL="https://github.com/lenticularis39/axpbox"
