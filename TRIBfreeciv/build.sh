@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-$THOME/build/dobuild freeciv-3.0.7 -C "--enable-ipv6=test --disable-dependency-tracking"
-${THOME}/build/genpkg TRIBfreeciv freeciv-3.0.7
+$THOME/build/dobuild -64only freeciv-3.0.9 -C "--enable-ipv6=test --disable-dependency-tracking"
+${THOME}/build/genpkg TRIBfreeciv freeciv-3.0.9
