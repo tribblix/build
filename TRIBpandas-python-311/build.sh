@@ -10,9 +10,9 @@
 # html[*]: BeautifulSoup4[*],html5lib[*],lxml[*]
 # xml[*]: lxml[*]
 # compression[*]: zstandard[*]
-# databases: SQLAlchemy,psycopg2[*],pymysql
+# databases: SQLAlchemy[*],psycopg2[*],pymysql
 #
-# a pep518 build requires --no-build-isolation otherwise it tries
+# a pep518 build requires -N == --no-build-isolation otherwise it tries
 # to build its own numpy, which would fail as it doesn't have the
 # modifications we need to make it build successfully
 #
@@ -22,11 +22,4 @@
 # PATH so it can find the cython executable
 # Need to pass -m64 down to meson
 #
-${THOME}/build/unpack pandas-2.1.2
-cd pandas-2.1.2
-
-env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH /usr/versions/python-3.11/bin/python3 -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-warn-script-location --compile --no-build-isolation --root=/tmp/pil -I .
-
-${THOME}/build/create_pkg TRIBpandas-python-311 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBpandas-python-311 pandas-2.1.3
