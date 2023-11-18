@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# we don't use this, really we don't
+#
+rm -fr usr/lib/systemd

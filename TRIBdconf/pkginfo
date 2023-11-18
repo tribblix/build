@@ -1,4 +1,4 @@
 PKG="TRIBdconf"
 NAME="DConf"
-VERSION="0.24.0.1"
-ZAP_URL="https://git.gnome.org/browse/dconf/"
+VERSION="0.40.0.0"
+ZAP_URL="https://download.gnome.org/sources/dconf/"
