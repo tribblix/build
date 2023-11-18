@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/cmbuild -64 librsync-2.2.1
-${THOME}/build/genpkg TRIBlibrsync librsync-2.2.1
+${THOME}/build/cmbuild -64only librsync-2.3.4
+${THOME}/build/genpkg TRIBlibrsync librsync-2.3.4
