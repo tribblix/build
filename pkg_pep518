@@ -4,13 +4,28 @@
 # than the old setup.py mechanism
 #
 
-case $1 in
-    -v)
-	SPYVER=$2
-	shift
-	shift
-	;;
-esac
+#
+# Arguments
+# -v - specify version of python (for packages that don't embed the python
+#      version in the package name)
+# -N - enables --no-build-isolation
+#
+XARGS=""
+while getopts "v:N" opt; do
+    case $opt in
+	v)
+	    SPYVER="$OPTARG"
+	    ;;
+	N)
+	    XARGS="--no-build-isolation"
+	    ;;
+	*)
+            echo "ERROR: invalid option $OPTARG"
+            exit 1
+            ;;
+    esac
+done
+shift $((OPTIND-1))
 
 case $# in
 0|1)
@@ -110,7 +125,7 @@ fi
 #
 # use pip to install
 #
-python${PYVER} -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-warn-script-location --compile --root=${BDIR} -I .
+python${PYVER} -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-warn-script-location --compile ${XARGS} --root=${BDIR} -I .
 cd ..
 #
 # end loop
