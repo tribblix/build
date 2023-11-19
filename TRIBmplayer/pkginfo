@@ -1,4 +1,4 @@
 PKG="TRIBmplayer"
 NAME="MPlayer - The Movie Player"
-VERSION="1.5.1"
-ZAP_URL="https://www.mplayerhq.hu/"
+VERSION="1.5.2"
+ZAP_URL="https://www5.mplayerhq.hu/"
