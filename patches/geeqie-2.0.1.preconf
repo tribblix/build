@@ -1,2 +1,0 @@
-#!/bin/sh
-sed -i 's:#define HAVE_STRVERSCMP 1:#undef HAVE_STRVERSCMP:' config.h.in

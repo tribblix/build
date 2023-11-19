@@ -1,0 +1,1 @@
+-p1 geeqie-includes.patch

@@ -1,0 +1,53 @@
+--- geeqie-2.1/src/cache.cc	Sat Jun 17 13:12:30 2023
++++ geeqie-2.1/src/cache.cc	Sun Nov 19 17:24:28 2023
+@@ -28,6 +28,7 @@
+ #include "ui-fileops.h"
+ 
+ #include <utime.h>
++#include <cerrno>
+ 
+ 
+ /**
+--- geeqie-2.1/src/filedata.cc	Sat Jun 17 13:12:30 2023
++++ geeqie-2.1/src/filedata.cc	Sun Nov 19 17:25:39 2023
+@@ -35,6 +35,7 @@
+ #include "misc.h"
+ 
+ #include <grp.h>
++#include <cerrno>
+ 
+ #ifdef DEBUG_FILEDATA
+ gint global_file_data_count = 0;
+--- geeqie-2.1/src/misc.cc	Sat Jun 17 13:12:30 2023
++++ geeqie-2.1/src/misc.cc	Sun Nov 19 17:28:23 2023
+@@ -24,6 +24,8 @@
+ #include "ui-fileops.h"
+ 
+ #include <langinfo.h>
++#include <locale.h>
++#include <cerrno>
+ 
+ gdouble get_zoom_increment()
+ {
+diff -ur geeqie-2.1/src//remote.cc ../geeqie-2.1-64bit/src//remote.cc
+--- geeqie-2.1/src/remote.cc	Sat Jun 17 13:12:30 2023
++++ geeqie-2.1/src/remote.cc	Sun Nov 19 17:26:34 2023
+@@ -44,6 +44,7 @@
+ #include <signal.h>
+ 
+ #include "glua.h"
++#include <cerrno>
+ 
+ #define SERVER_MAX_CLIENTS 8
+ 
+
+--- geeqie-2.1/src/secure-save.cc	Sat Jun 17 13:12:30 2023
++++ geeqie-2.1/src/secure-save.cc	Sun Nov 19 17:28:40 2023
+@@ -21,6 +21,7 @@
+ #include "main.h"
+ #include <glib/gprintf.h>
+ #include <utime.h>
++#include <cerrno>
+ 
+ #include "secure-save.h"
+ 
