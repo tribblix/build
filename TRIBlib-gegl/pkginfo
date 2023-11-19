@@ -1,4 +1,4 @@
 PKG="TRIBlib-gegl"
 NAME="GEGL Generic Graphics Library"
-VERSION="0.4.44.2"
+VERSION="0.4.44.3"
 ZAP_URL="https://www.gegl.org/"
