@@ -1,0 +1,14 @@
+Need to ensure Internal::stringFormat is defined
+
+--- a/src/futils.cpp	Mon Nov  6 12:17:09 2023
++++ b/src/futils.cpp	Sun Nov 19 17:00:48 2023
+@@ -7,6 +7,9 @@
+ #include "enforce.hpp"
+ #include "error.hpp"
+ #include "utils.hpp"
++#if defined(__sun__)
++#include "image_int.hpp"
++#endif
+ 
+ // + standard includes
+ #include <algorithm>
