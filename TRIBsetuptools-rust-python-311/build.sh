@@ -2,4 +2,4 @@
 #
 # limited to x86 as rust is only present there
 #
-${THOME}/build/pkg_pep518 TRIBsetuptools-rust-python-311 setuptools-rust-1.7.0
+${THOME}/build/pkg_pep518 TRIBsetuptools-rust-python-311 setuptools-rust-1.8.1
