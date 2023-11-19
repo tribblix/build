@@ -1,3 +1,4 @@
 P TRIBgraphics-jasper
 P TRIBimage-libjpeg
 P TRIBlib-lcms2
+P TRIBlib-zlib
