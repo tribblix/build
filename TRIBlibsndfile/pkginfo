@@ -1,4 +1,4 @@
 PKG="TRIBlibsndfile"
 NAME="Libsndfile C library for reading and writing sound files"
-VERSION="1.2.2p.0"
+VERSION="1.2.2p.1"
 ZAP_URL="https://libsndfile.github.io/libsndfile/"

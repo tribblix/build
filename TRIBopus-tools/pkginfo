@@ -1,4 +1,4 @@
 PKG="TRIBopus-tools"
 NAME="Opus Tools"
-VERSION="0.2.1"
+VERSION="0.2.2"
 ZAP_URL="https://www.opus-codec.org/"
