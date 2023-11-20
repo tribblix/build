@@ -22,6 +22,7 @@ P TRIBlib-zlib
 P TRIBlibheif
 P TRIBlibmng
 P TRIBlibmypaint
+P TRIBlibwebp
 P TRIBopenexr
 P TRIBpoppler
 P TRIBsys-lib-fontconfig
