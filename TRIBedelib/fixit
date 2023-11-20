@@ -1,12 +1,18 @@
 #!/bin/sh
 #
-# need to add compile symlinks
+# need to add compile symlinks, which the install failed on
 #
+cd usr/bin
+if [ -d amd64 ]; then
+    mv amd64/* .
+    rmdir amd64
+fi
+if [ -d sparcv9 ]; then
+    mv sparcv9/* .
+    rmdir sparcv9
+fi
+cd ../..
 cd usr/lib
-rm *.la
-ln -s libedelib.so.2.1.0 libedelib.so
-ln -s libedelib_dbus.so.2.1.0 libedelib_dbus.so
-ln -s libedelib_gui.so.2.1.0 libedelib_gui.so
 if [ -d amd64 ]; then
     cd amd64
     rm *.la
