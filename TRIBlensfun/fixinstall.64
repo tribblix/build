@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# build python properly, rather than dropping the egg into place
+# and this guarantees it gets installed in the right place
+#
+DESTDIR=$1
+
+cd apps
+python3 setup.py build
+python3 setup.py install --root=${DESTDIR}
