@@ -11,9 +11,6 @@
   <service_fmri value='file://localhost/etc/dnsmasq.conf' />
 </dependency>
 <exec_method type='method' name='start' exec='/usr/sbin/dnsmasq' timeout_seconds='60'>
-  <method_context>
-    <method_credential user='dnsmasq' group='dnsmasq' privileges='basic,net_privaddr,net_icmpaccess'/>
-  </method_context>
 </exec_method>
 <exec_method type='method' name='stop' exec=':kill' timeout_seconds='60' />
 <property_group name='startd' type='framework'>
