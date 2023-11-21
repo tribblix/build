@@ -273,13 +273,9 @@ export LD_OPTIONS
 fi
 
 #
-# with -gnu, add /usr/gnu/bin at the head of PATH
+# save the PATH to manipulate later
 #
-if [ "x$DOGNU" != "xfalse" ]; then
-    TRIBBLIX_PATH=/usr/gnu/bin:$PATH
-else
-    TRIBBLIX_PATH=$PATH
-fi
+TRIBBLIX_PATH=$PATH
 
 #
 # if we want to add something to PKG_CONFIG_PATH
@@ -330,7 +326,12 @@ EOF
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=/usr/bin/${ARCH64}:$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
+	    if [ "x$DOGNU" != "xfalse" ]; then
+		TRIBBLIX_PATH=/usr/gnu/bin/${ARCH64}:/usr/gnu/bin:/usr/bin/${ARCH64}:$TRIBBLIX_PATH
+	    else
+		TRIBBLIX_PATH=/usr/bin/${ARCH64}:${TRIBBLIX_PATH/\/usr\/gnu\/bin//usr/gnu/bin/${ARCH64}:/usr/gnu/bin}
+	    fi
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
@@ -362,6 +363,9 @@ EOF
 	    cd ${pkg}${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    if [ "x$DOGNU" != "xfalse" ]; then
+		TRIBBLIX_PATH=/usr/gnu/bin:$TRIBBLIX_PATH
 	    fi
 	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX} ${LIBARGS32}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
