@@ -5,7 +5,7 @@
 cd $THOME/build
 for file in */depend */depend.*
 do
-    if ! /usr/xpg4/bin/sort -c $file
+    if ! /usr/bin/sort -c $file 2>/dev/null
     then
 	echo "sort -o $file $file"
     fi
