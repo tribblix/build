@@ -53,7 +53,7 @@ ONLY64="false"
 ONLY64BIN="false"
 UNPACK_FLAGS=""
 BRANCHARGS=""
-BUILDDIR="build"
+BUILDDIR="tribblix_build"
 
 #
 # if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
