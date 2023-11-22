@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-module-build"
+NAME="Per::Build module"
+VERSION="0.4234.0"
+ZAP_URL="https://metacpan.org/pod/Module::Build"
