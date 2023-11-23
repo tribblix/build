@@ -1,5 +1,5 @@
---- a/libvisual/libvisual/lv_types.h	Sun Feb 28 01:29:22 2016
-+++ b/libvisual/libvisual/lv_types.h	Mon Jun 20 11:05:47 2022
+--- a/libvisual/lv_types.h	Sun Feb 28 01:29:22 2016
++++ b/libvisual/lv_types.h	Mon Jun 20 11:05:47 2022
 @@ -38,7 +38,7 @@
  
  #define VISUAL_TABLESIZE(table)			(sizeof (table) / sizeof (table[0]))
