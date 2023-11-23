@@ -1,4 +1,0 @@
-PKG="TRIBorc"
-NAME="The OIL runtime compiler"
-VERSION="0.4.26.0"
-ZAP_URL="https://gstreamer.freedesktop.org/modules/orc.html"
