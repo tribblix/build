@@ -18,7 +18,7 @@ diff --git a/servconf.c b/servconf.c
 index b19d30e..c6f4bdd 100644
 --- a/servconf.c
 +++ b/servconf.c
-@@ -277,7 +277,12 @@ fill_default_server_options(ServerOptions *options)
+@@ -279,7 +279,12 @@ fill_default_server_options(ServerOptions *options)
  
  	/* Portable-specific options */
  	if (options->use_pam == -1)
@@ -31,7 +31,7 @@ index b19d30e..c6f4bdd 100644
  
  	/* Standard Options */
  	if (options->num_host_key_files == 0) {
-@@ -1328,8 +1333,17 @@ process_server_config_line_depth(ServerOptions *options, char *line,
+@@ -1399,8 +1404,17 @@ process_server_config_line_depth(ServerOptions *options, char *line,
  	switch (opcode) {
  	/* Portable-specific options */
  	case sUsePAM:
@@ -40,7 +40,7 @@ index b19d30e..c6f4bdd 100644
 +		logit("%s line %d: ignoring UsePAM option value."
 +		    " This option is always on.", filename, linenum);
 +		while (arg)
-+			arg = strdelim(&cp);
++			arg = strdelim(&str);
 +		break; 
 +#else
  		intptr = &options->use_pam;

@@ -11,8 +11,8 @@ diff --git a/configure.ac b/configure.ac
 index 1846eb2..580fa5c 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -4690,6 +4690,11 @@ AC_ARG_WITH([kerberos5],
- 			AC_PATH_PROG([KRB5CONF], [krb5-config],
+@@ -4704,6 +4704,11 @@ AC_ARG_WITH([kerberos5],
+ 			AC_PATH_TOOL([KRB5CONF], [krb5-config],
  				     [$KRB5ROOT/bin/krb5-config],
  				     [$KRB5ROOT/bin:$PATH])
 +			# Illumos has GSS but krb5-config doesn't talk about it
@@ -23,7 +23,7 @@ index 1846eb2..580fa5c 100644
  			if test -x $KRB5CONF ; then
  				K5CFLAGS="`$KRB5CONF --cflags`"
  				K5LIBS="`$KRB5CONF --libs`"
-@@ -4731,6 +4736,6 @@ AC_ARG_WITH([kerberos5],
+@@ -4745,7 +4750,7 @@ AC_ARG_WITH([kerberos5],
  						 AC_CHECK_LIB([des], [des_cbc_encrypt],
  						   [K5LIBS="$K5LIBS -ldes"])
  					       ], [ AC_MSG_RESULT([no])
@@ -31,6 +31,4 @@ index 1846eb2..580fa5c 100644
 +						 K5LIBS="-lkrb5"
  				])
  				AC_SEARCH_LIBS([dn_expand], [resolv])
--- 
-2.5.4 (Apple Git-61)
 
