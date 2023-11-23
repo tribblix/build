@@ -173,9 +173,9 @@ diff --new-file -ur jdk-jdk-22-22/src/java.base/solaris/classes/sun/nio/ch/EPoll
 diff --new-file -ur jdk-jdk-22-22/src/java.base/solaris/classes/sun/nio/ch/EPollPoller.java jdk-jdk-22-23/src/java.base/solaris/classes/sun/nio/ch/EPollPoller.java
 --- jdk-jdk-22-22/src/java.base/solaris/classes/sun/nio/ch/EPollPoller.java	1970-01-01 01:00:00.000000000 +0100
 +++ jdk-jdk-22-23/src/java.base/solaris/classes/sun/nio/ch/EPollPoller.java	2023-11-09 09:45:51.976254333 +0000
-@@ -0,0 +1,82 @@
+@@ -0,0 +1,85 @@
 +/*
-+ * Copyright (c) 2017, 2022, Oracle and/or its affiliates. All rights reserved.
++ * Copyright (c) 2017, 2023, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
 + *
 + * This code is free software; you can redistribute it and/or modify it
@@ -238,8 +238,11 @@ diff --new-file -ur jdk-jdk-22-22/src/java.base/solaris/classes/sun/nio/ch/EPoll
 +    }
 +
 +    @Override
-+    void implDeregister(int fdVal) {
-+        EPoll.ctl(epfd, EPOLL_CTL_DEL, fdVal, 0);
++    void implDeregister(int fdVal, boolean polled) {
++        // event is disabled if already polled
++        if (!polled) {
++            EPoll.ctl(epfd, EPOLL_CTL_DEL, fdVal, 0);
++        }
 +    }
 +
 +    @Override

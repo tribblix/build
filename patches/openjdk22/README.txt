@@ -10,6 +10,11 @@ loom correctly as they date back to that change.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+25
+
+Revised illumos-pollerprovider.patch for signature change in
+EPollPoller.implDeregister()
+
 22+24
 
 Trivial patch noise.
