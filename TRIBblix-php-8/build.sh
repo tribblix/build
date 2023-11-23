@@ -13,8 +13,8 @@
 # needs a tsrm patch to avoid crashes
 #
 zap uninstall TRIBlibtool
-${THOME}/build/unpack php-8.1.25
-cd php-8.1.25
+${THOME}/build/unpack php-8.2.13
+cd php-8.2.13
 #
 # CFLAGS because Zend.m4 hasn't a hope of correctness
 #
@@ -32,16 +32,21 @@ cd php-8.1.25
 env CFLAGS="-std=gnu99" PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig ./configure --prefix=/opt/tribblix/php --with-ldap=no --with-apxs2=/opt/tribblix/apache2/bin/apxs --enable-bcmath --enable-mbstring --enable-mysqlnd --with-pgsql=shared,/opt/tribblix/postgres15 --with-pdo-pgsql=shared,/opt/tribblix/postgres15 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --without-sqlite3 --without-pdo-sqlite --with-curl=/usr --enable-intl=shared --enable-gd --enable-exif --with-jpeg --with-bz2 --with-zlib --with-zlib-dir=/usr --with-freetype --enable-sockets --enable-fpm --with-zip --with-openssl --disable-mbregex --build=x86_64-pc-solaris2.11 CFLAGS=-m64 LDFLAGS=-m64 ICU_CFLAGS=-m64
 gsed -i 's:ext/sockets/ \$:ext/sockets/ -D_XPG4_2 \$:' Makefile
 gmake -j 6
+
 rm -fr /tmp/m2 /tmp/m2g /tmp/m2i /tmp/pear
 mkdir -p /tmp/m2/opt/tribblix/apache2/conf
-mkdir -p /tmp/m2g/opt/tribblix/php/lib/php/extensions/no-debug-zts-20210902
-mkdir -p /tmp/m2i/opt/tribblix/php/lib/php/extensions/no-debug-zts-20210902
 cp /opt/tribblix/apache2/conf/original/httpd.conf /tmp/m2/opt/tribblix/apache2/conf
+
 gmake install INSTALL_ROOT=/tmp/m2
-mv /tmp/m2/opt/tribblix/php/lib/php/extensions/no-debug-zts-20210902/*pgsql*.so /tmp/m2g/opt/tribblix/php/lib/php/extensions/no-debug-zts-20210902
-mv /tmp/m2/opt/tribblix/php/lib/php/extensions/no-debug-zts-20210902/*intl*.so /tmp/m2i/opt/tribblix/php/lib/php/extensions/no-debug-zts-20210902
+
+mkdir -p /tmp/m2g/opt/tribblix/php/lib/php/extensions/no-debug-zts-20220829
+mkdir -p /tmp/m2i/opt/tribblix/php/lib/php/extensions/no-debug-zts-20220829
+mv /tmp/m2/opt/tribblix/php/lib/php/extensions/no-debug-zts-20220829/*pgsql*.so /tmp/m2g/opt/tribblix/php/lib/php/extensions/no-debug-zts-20220829
+mv /tmp/m2/opt/tribblix/php/lib/php/extensions/no-debug-zts-20220829/*intl*.so /tmp/m2i/opt/tribblix/php/lib/php/extensions/no-debug-zts-20220829
+
 ${THOME}/build/create_pkg TRIBblix-php-8 /tmp/m2
 ${THOME}/build/create_pkg TRIBblix-php-8pg /tmp/m2g
 ${THOME}/build/create_pkg TRIBblix-php-8intl /tmp/m2i
+
 rm -fr /tmp/m2 /tmp/m2g /tmp/m2i /tmp/pear
 cd ..
