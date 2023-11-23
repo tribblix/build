@@ -4,4 +4,4 @@
 # so package them together
 #
 
-${THOME}/build/pkg_pep518 TRIBmkdocs-material-python-311 mkdocs_material-9.4.9 mkdocs_material_extensions-1.3
+${THOME}/build/pkg_pep518 TRIBmkdocs-material-python-311 mkdocs_material-9.4.10 mkdocs_material_extensions-1.3.1
