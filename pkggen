@@ -36,7 +36,14 @@ case $# in
 	;;
 esac
 
-PNAME=TRIB${pkg_name}
+case ${pkg_name} in
+    TRIB*)
+	PNAME=${pkg_name}
+	;;
+    *)
+	PNAME=TRIB${pkg_name}
+	;;
+esac
 
 if [ -d "$PNAME" ]; then
    echo "$PNAME already exists"
