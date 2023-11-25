@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+
+#
+# mail.local isn't installed by default
+#
+SAVEDIR=`pwd`
+cd obj.SunOS.5.11.*/mail.local
+gmake force-install DESTDIR=$DESTDIR
+cd $SAVEDIR
+
+#
+# populate /etc/mail/cf
+#
+tar cf - cf/README cf/domain/generic.m4 cf/feature cf/m4 cf/mailer cf/sh | (cd ${DESTDIR}/etc/mail ; tar xf -)
+tar cf - cf/cf/submit* cf/cf/Makefile | (cd ${DESTDIR}/etc/mail ; tar xf -)
+tar cf - cf/cf/generic-solaris* | (cd ${DESTDIR}/etc/mail ; tar xf -)
+tar cf - cf/ostype/solaris* | (cd ${DESTDIR}/etc/mail ; tar xf -)

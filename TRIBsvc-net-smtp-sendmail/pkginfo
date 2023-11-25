@@ -1,0 +1,4 @@
+PKG="TRIBsvc-net-smtp-sendmail"
+NAME="Sendmail MTA"
+VERSION="8.17.2.0"
+ZAP_URL="https://sendmail.org/"

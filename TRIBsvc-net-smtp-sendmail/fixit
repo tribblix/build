@@ -1,0 +1,81 @@
+#!/bin/sh
+#
+# clean things up the way we want them
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# we build libmilter 64-bit, the install puts it in the
+# 32-bit location and mangles the cmpilation symlink
+#
+mkdir -p usr/lib/${ARCH64}
+rm usr/lib/libmilter.so
+mv usr/lib/libmilter.so.1 usr/lib/${ARCH64}
+ln -s libmilter.so.1 usr/lib/${ARCH64}/libmilter.so
+
+#
+# need these directories too
+#
+mkdir -p var/adm/sm.bin
+mkdir -p var/spool/mqueue
+#
+# and set permissions
+#
+chmod 0755 var
+chmod 0775 var/adm
+chmod 0755 var/adm/sm.bin
+chmod 0755 var/spool
+chmod 0770 var/spool/clientmqueue
+chmod 0750 var/spool/mqueue
+
+#
+# populate config
+#
+cd etc
+ln -s ./mail/aliases .
+cd mail
+cd cf/cf
+mv generic-solaris.mc sendmail.mc
+mv generic-solaris.cf sendmail.cf
+ln -s sendmail.mc main.mc
+ln -s sendmail.cf main.cf
+ln -s sendmail.mc subsidiary.mc
+ln -s sendmail.cf subsidiary.cf
+cd ../..
+cp cf/cf/submit.cf .
+cp cf/cf/sendmail.cf .
+ln -s sendmail.cf main.cf
+ln -s sendmail.cf subsidiary.cf
+ln -s helpfile sendmail.hf
+touch local-host-names
+cp ${THOME}/build/patches/sendmail/aliases .
+cp ${THOME}/build/patches/sendmail/trusted-users .
+cp ${THOME}/build/patches/sendmail/solaris-*.m4 cf/domain
+cd ../..
+
+#
+# SMF
+#
+mkdir -p lib/svc/manifest/network
+mkdir -p lib/svc/method
+mkdir -p lib/svc/share
+cp ${THOME}/build/patches/sendmail/sendmail-client.xml lib/svc/manifest/network
+cp ${THOME}/build/patches/sendmail/smtp-sendmail.xml lib/svc/manifest/network
+chmod 444 lib/svc/manifest/network/*
+cp ${THOME}/build/patches/sendmail/sendmail-client lib/svc/method
+cp ${THOME}/build/patches/sendmail/smtp-sendmail lib/svc/method
+chmod 555 lib/svc/method/*
+cp ${THOME}/build/patches/sendmail/sendmail_include.sh lib/svc/share
+chmod 444 lib/svc/share/*
+
+#
+# extra commands
+#
+cp ${THOME}/build/patches/sendmail/check* usr/sbin
