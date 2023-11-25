@@ -44,7 +44,7 @@ do
 	# ignore directories
 	# strip any leading / off the names just once afterwards
 	#
-	/usr/bin/zipgrep / ${pkgname}.${pkgver}.zap ${pkgname}/pkgmap | nawk -v PKG=$pkgname '{if ($2 != "d") print $4,$2,PKG}' >> filelist.new
+	/usr/bin/zipgrep / ${pkgname}.${pkgver}.zap ${pkgname}/pkgmap | awk -v PKG=$pkgname '{if ($2 != "d") print $4,$2,PKG}' >> filelist.new
     else
 	echo "Missing file ${pkgname}.${pkgver}.zap"
     fi
