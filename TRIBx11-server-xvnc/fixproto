@@ -3,7 +3,7 @@
 # fixes up prototype files, by setting the correct permissions
 # for existing directories
 #
-nawk '
+awk '
 {if ($3 ~ /^usr\/bin\/Xvnc/) { $6 = "root" ; $5 = "root" ; $4 = "02555" }}
 {print}
 '

@@ -3,7 +3,7 @@
 # fixes up prototype files, by setting the correct permissions
 # for existing directories
 #
-nawk '
+awk '
 {if ($3 ~ /^opt\/tribblix\/clamav\/var/) { $6 = "clamav" ; $5 = "clamav" }}
 {print}
 '

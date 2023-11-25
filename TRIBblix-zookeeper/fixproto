@@ -3,7 +3,7 @@
 # fixes up prototype files, by setting the correct permissions
 # for existing directories
 #
-nawk '
+awk '
 {if ($3 ~ /^var\/zookeeper/) { $6 = "zookeeper" ; $5 = "zookeeper" }}
 {print}
 '

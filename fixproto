@@ -3,7 +3,7 @@
 # fixes up prototype files, by setting the correct permissions
 # for existing directories
 #
-nawk '
+awk '
 { $5 = "root"; $6 = "bin" } 
 {if ($3 == "usr/lib/pkgconfig")  $6 = "other"}
 {if ($3 == "usr/lib/amd64/pkgconfig")  $6 = "other"}
