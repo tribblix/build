@@ -13,7 +13,10 @@ P TRIBlib-zlib
 P TRIBlibarchive
 P TRIBlibetpan
 P TRIBlibgpg-error
+P TRIBlibgumbo
+P TRIBlibical
 P TRIBlibnotify
+P TRIBlibytnef
 P TRIBnettle
 P TRIBperl-534
 P TRIBpoppler
