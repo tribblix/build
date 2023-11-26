@@ -1,9 +1,9 @@
 #!/bin/sh
 #
 #
-$THOME/build/unpack photoflare-1.6.12
-cd photoflare-1.6.12
-env PATH=/usr/versions/Qt-5/bin:$PATH qmake Photoflare.pro PREFIX=/usr INCLUDEPATH=/usr/include/ImageMagick-6 LIBS="-lMagick++-6.Q16 /usr/versions/gcc-10/lib/libgomp.a"
+$THOME/build/unpack photoflare-1.6.13
+cd photoflare-1.6.13
+env PATH=/usr/versions/Qt-5/bin/`${THOME}/build/getarch`:$PATH qmake Photoflare.pro PREFIX=/usr INCLUDEPATH=/usr/include/GraphicsMagick LIBS="-lGraphicsMagick++ /usr/versions/gcc-10/lib/`${THOME}/build/getarch`/libgomp.a"
 gmake -j 6
 rm -fr /tmp/phf
 gmake install INSTALL_ROOT=/tmp/phf
