@@ -56,14 +56,14 @@ do
   PKG=${ZPKG%.zap}
   PNAME=${ZPKG%%.*}
   PKGVERS=${PKG#*.}
-  PKGNAME=`bash zipgrep '^NAME=' $ZPKG ${PNAME}/pkginfo 2>/dev/null| awk -F= '{print $NF}'`
-  PKGCKSUM=`cat ${ZPKG}.md5`
+  PKGNAME=`unzip -p $ZPKG ${PNAME}/pkginfo 2>/dev/null | awk -F= '{if ($1 == "NAME") print $NF}'`
+  PKGCKSUM=$(<${ZPKG}.md5)
   if [ -f catalog ]; then
       DEPLIST=`grep "^${PKG}|" catalog |awk -F'|' '{print $3}'`
   else
-      DEPLIST=`bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}'`
+      DEPLIST=`unzip -p $ZPKG ${PNAME}/install/depend 2>/dev/null | grep '^P' | awk '{printf("%s ", $2)}'`
   fi
-  FMRI=`bash zipgrep '^IPS_FMRI' $ZPKG ${PNAME}/pkginfo 2>/dev/null |awk -F'[=@]' '{print $2}'`
+  FMRI=`unzip -p $ZPKG ${PNAME}/pkginfo 2>/dev/null | grep '^IPS_FMRI' | awk -F'[=@]' '{print $2}'`
   echo "<dt><a name=\"${PNAME}\"></a><b>${PNAME}</b></dt>"
   echo "<dd>\n${PKGNAME}\n<ul>\n<li>Version: ${PKGVERS}</li>"
   FMRI=${FMRI/pkg:\/\/on-nightly\//}

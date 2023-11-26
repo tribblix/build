@@ -12,6 +12,8 @@ case $# in
 esac
 
 #
+# prefer zap as we can get dependencies, and it's quicker
+#
 cd $PKGDIR
 for ZPKG in *.zap
 do
@@ -31,6 +33,7 @@ do
     /bin/rm -f ${ZPKG}.md5
     echo $PKGMD5 > ${ZPKG}.md5
   fi
-  DEPLIST=$(bash zipgrep '^P' $ZPKG ${PNAME}/install/depend 2>/dev/null |awk '{printf("%s ", $2)}')
-  echo "${PNAME}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|" | sed 's: |:|:'
+  DEPLIST=$(unzip -p $ZPKG ${PNAME}/install/depend 2>/dev/null | awk '{if ($1 == "P") printf("%s ", $2)}')
+  DEPLIST=${DEPLIST%% }
+  echo "${PNAME}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|"
 done
