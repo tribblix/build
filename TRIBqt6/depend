@@ -1,6 +1,5 @@
 P TRIBbrotli
 P TRIBcompress-zstd
-P TRIBcups
 P TRIBdouble-conversion
 P TRIBgdk-pixbuf
 P TRIBgraphics-jasper
@@ -20,12 +19,15 @@ P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBlibicu
 P TRIBlibmng
+P TRIBlibwebp
 P TRIBlibxcb
 P TRIBlibxkbcommon
 P TRIBsvc-opengl-ogl-select
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBsys-lib-security-gss
+P TRIBsys-libdbus
+P TRIBx11-lib-mesa
 P TRIBx11-libice
 P TRIBx11-libsm
 P TRIBx11-libx11
