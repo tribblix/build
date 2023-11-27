@@ -2,10 +2,10 @@ P TRIBboehm-gc
 P TRIBboost
 P TRIBdouble-conversion
 P TRIBgdk-pixbuf
+P TRIBgraphicsmagick
 P TRIBharfbuzz
 P TRIBimage-libjpeg
 P TRIBimage-libpng
-P TRIBimagemagick
 P TRIBlib-desktop-atkmm
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-cairomm
