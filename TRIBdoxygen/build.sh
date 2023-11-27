@@ -1,9 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/unpack doxygen-1.8.14
-cd doxygen-1.8.14
-mkdir build
-cd build
-cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
-gmake -j 8
-${THOME}/build/genpkg TRIBdoxygen
+${THOME}/build/cmbuild -64only doxygen-1.9.8
+${THOME}/build/genpkg TRIBdoxygen doxygen-1.9.8
