@@ -1,10 +1,4 @@
 #!/bin/sh
 #
-git clone https://github.com/ptribble/tslim.git
-cd tslim
-mkdir build
-cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=/usr
-gmake -j 8
-${THOME}/build/genpkg TRIBtslim
-cd ../..
+${THOME}/build/cmbuild -64only https://github.com/ptribble/tslim
+${THOME}/build/genpkg TRIBtslim tslim
