@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-test-most"
+NAME="Perl Test::Most module"
+VERSION="0.38.0"
+ZAP_URL="https://metacpan.org/pod/Test::Most"

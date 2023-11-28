@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-test-warn"
+NAME="Perl Test::Warn module"
+VERSION="0.37.0"
+ZAP_URL="https://metacpan.org/pod/Test::Warn"

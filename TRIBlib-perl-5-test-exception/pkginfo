@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-test-exception"
+NAME="Perl Test::Exception module"
+VERSION="0.43.0"
+ZAP_URL="https://metacpan.org/pod/Test::Exception"
