@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-string-format"
+NAME="Perl String::Format module"
+VERSION="1.18.0"
+ZAP_URL="https://metacpan.org/pod/String::Format"
