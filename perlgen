@@ -1,0 +1,74 @@
+#!/bin/sh
+#
+# simple wrapper to create perl module metadata
+#
+# you may need to modify the depend file
+#
+
+case $# in
+2)
+	pkg_name=$1
+	TBALL=$2
+	;;
+*)
+	echo "Usage: $0 pkg_name tarball_name"
+	exit 1
+	;;
+esac
+
+PKGNAME=TRIBlib-perl-5-${pkg_name}
+
+#
+# check we're within the SVR4 package name length limit
+#
+NAMELEN=${#PKGNAME}
+if [ $NAMELEN -gt 31 ]; then
+    echo "Chosen name exceeds the SVR4 package name length limit (length $NAMELEN)"
+    exit 1
+fi
+
+if [ -d "$PKGNAME" ]; then
+   echo "$PKGNAME already exists"
+   exit 1
+fi
+
+#
+# the module name ought to match the tarball name
+# with the version number stripped off
+#
+PNAME=${TBALL%-*}
+PNAME=${PNAME//-/::}
+PVER=${TBALL##*-}
+
+#
+# OK, now we can create the package metadata
+#
+
+mkdir $PKGNAME
+echo "P TRIBperl-534" > $PKGNAME/depend
+cat > $PKGNAME/pkginfo <<EOF
+PKG="${PKGNAME}"
+NAME="Perl $PNAME module"
+VERSION="${PVER}.0"
+ZAP_URL="https://metacpan.org/pod/${PNAME}"
+EOF
+cat > $PKGNAME/build.sh <<EOF
+#!/bin/sh
+#
+\${THOME}/build/unpack $TBALL
+cd $TBALL
+perl Makefile.PL
+make
+cd ..
+\${THOME}/build/genpkg $PKGNAME $TBALL
+EOF
+chmod a+x $PKGNAME/build.sh
+
+#
+# automatic fixit to avoid shipping conflicting shared files
+#
+cat > $PKGNAME/fixit <<EOF
+#!/bin/sh
+/bin/rm -fr usr/perl5/5.34/lib
+EOF
+chmod a+x $PKGNAME/fixit
