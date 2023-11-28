@@ -1,7 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64 fontconfig-2.12.6 -C "--sysconfdir=/etc --localstatedir=/var"
-${THOME}/build/genpkg TRIBsys-lib-fontconfig fontconfig-2.12.6
-#
-# on sparc, this replaces SUNWfontconfig
-#
+${THOME}/build/dobuild -64 fontconfig-2.14.2 -C "--sysconfdir=/etc --localstatedir=/var --disable-dependency-tracking"
+${THOME}/build/genpkg TRIBsys-lib-fontconfig fontconfig-2.14.2
