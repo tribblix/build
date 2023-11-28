@@ -1,0 +1,14 @@
+#!/bin/sh
+/bin/rm -fr usr/perl5/5.34/lib
+#
+# put the command in the normal path so users can find it
+#
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/perl5/5.34/bin/perltidy .
+cd ../..
+
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/perl5/5.34/man/man1/perltidy.1 .
+cd ../../../..
