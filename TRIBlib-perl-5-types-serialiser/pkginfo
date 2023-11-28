@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-types-serialiser"
+NAME="Perl Types::Serialiser module"
+VERSION="1.01.0"
+ZAP_URL="https://metacpan.org/pod/Types::Serialiser"
