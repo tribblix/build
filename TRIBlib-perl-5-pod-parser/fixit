@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# this module installs stuff here, which is unusual
+#
+/bin/rm -f usr/perl5/5.34/lib/*/perllocal.pod
+rmdir usr/perl5/5.34/lib/*

@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-list-moreutils"
+NAME="Perl List::MoreUtils module"
+VERSION="0.430.0"
+ZAP_URL="https://metacpan.org/pod/List::MoreUtils"

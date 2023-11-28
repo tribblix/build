@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-class-tiny"
+NAME="Perl Class::Tiny module"
+VERSION="1.008.0"
+ZAP_URL="https://metacpan.org/pod/Class::Tiny"

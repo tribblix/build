@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-file-sharedir-in"
+NAME="Perl File::ShareDir::Install module"
+VERSION="0.14.0"
+ZAP_URL="https://metacpan.org/pod/File::ShareDir::Install"
