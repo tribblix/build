@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-exception-class"
+NAME="Perl Exception::Class module"
+VERSION="1.45.0"
+ZAP_URL="https://metacpan.org/pod/Exception::Class"
