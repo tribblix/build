@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-params-util"
+NAME="Perl Params::Util module"
+VERSION="1.102.0"
+ZAP_URL="https://metacpan.org/pod/Params::Util"

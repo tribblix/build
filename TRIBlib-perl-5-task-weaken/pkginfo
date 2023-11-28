@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-task-weaken"
+NAME="Perl Task::Weaken module"
+VERSION="1.06.0"
+ZAP_URL="https://metacpan.org/pod/Task::Weaken"
