@@ -4,9 +4,13 @@
 env LDFLAGS="-lsocket -lnsl" TRIBBLIX_LDFLAGS="-lsocket -lnsl" $THOME/build/cmbuild -64only exiv2-0.28.1 -C "-DEXIV2_ENABLE_INIH=OFF"
 
 #
-# SPARC needs a meson build (and patched) as it's got gcc7 which needs
-# stdc++fs for experimental/filesystem and cmake doesn't do that right
+# SPARC is a bit messy, because it has gcc7 and needs libstdc++fs, but
+# doesn't actually do it right. With meson, the library is linked correctly
+# but something else is wrong with the installation as consumers won't build
 #
-# env TRIBBLIX_LDFLAGS="-lsocket -lnsl" $THOME/build/mesonbuild -64only exiv2-0.28.1 -C -Dcurl=disabled
+# The fix is to cd to tribblix_build/src, edit CMakeFiles/exiv2lib.dir/link.txt
+# and add -lstdc++fs to the *end* of the link, then source that to rebuild
+# the library correctly (the position matters, because it resolves symbols
+# in order)
 #
 ${THOME}/build/genpkg TRIBexiv2 exiv2-0.28.1
