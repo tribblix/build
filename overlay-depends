@@ -15,7 +15,7 @@ case `pwd` in
 	ARCH=i386
 	;;
     */overlays.sparc)
-	ILVER=m27.sparc
+	ILVER=m28.sparc
 	ARCH=sparc
 	;;
     */overlays)
