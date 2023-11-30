@@ -65,7 +65,18 @@ for PKGI in `egrep -v '^(TRIBrelease-name|TRIBzap|TRIBzap-upgrade)$' ${OVL}.pkgs
 do
   if [ ! -d ${THOME}/build/${PKGI} ]; then
       if [ ! -f "${IPKGDIR}/${PKGI}.0.${PILVER}.zap" ]; then
-	  echo "ERROR: invalid package $PKGI"
+	  if [ "${ARCH}" = "sparc" ]; then
+	      case $PKGI in
+		  SUNW?fb*|SUNWm64*|SUNWopenxsun*|SUNWbge)
+		      :
+		      ;;
+		  *)
+		      echo "ERROR: invalid package $PKGI"
+		      ;;
+	      esac
+	  else
+	      echo "ERROR: invalid package $PKGI"
+	  fi
       fi
   else
       # error if marked for a different arch
