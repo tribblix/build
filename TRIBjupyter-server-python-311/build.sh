@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBjupyter-server-python-311 jupyter_server-2.10.1
+${THOME}/build/pkg_pep518 TRIBjupyter-server-python-311 jupyter_server-2.11.1
