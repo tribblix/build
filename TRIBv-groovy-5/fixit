@@ -2,5 +2,5 @@
 #
 # clean up other platforms
 #
-VERSION=5.0.0-alpha-2
+VERSION=5.0.0-alpha-3
 rm usr/versions/groovy-${VERSION}/bin/*.bat
