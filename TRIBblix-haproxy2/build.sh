@@ -1,9 +1,7 @@
 #!/bin/sh
 #
-# haproxy2
-#
-# the assumption is that there will only be one haproxy installed,
-# as v1 and v2 are installed in the same locations
+# haproxy2, installed in the same location as haproxy1,
+# the package for which is now deprecated and removed
 #
 ${THOME}/build/unpack haproxy-2.6.15
 cd haproxy-2.6.15

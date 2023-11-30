@@ -17,7 +17,7 @@ ulimit -n 65536
 
 . /lib/svc/share/smf_include.sh
 
-HAPROXY="/usr/sbin/haproxy"
+HAPROXY="/opt/tribblix/haproxy/sbin/haproxy"
 CONF_FILE="/etc/haproxy/haproxy.cfg"
 PID_FILE="/var/run/haproxy.pid"
 
