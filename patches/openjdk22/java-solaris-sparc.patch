@@ -257,16 +257,6 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
---- old/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.488604709 -0700
-+++ new/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.064596567 -0700
-@@ -93,7 +93,6 @@
- COMPILE_TYPE:=@COMPILE_TYPE@
- 
- # Legacy support
--OPENJDK_TARGET_CPU_ISADIR:=@OPENJDK_TARGET_CPU_ISADIR@
- OPENJDK_TARGET_CPU_LEGACY:=@OPENJDK_TARGET_CPU_LEGACY@
- OPENJDK_TARGET_CPU_LEGACY_LIB:=@OPENJDK_TARGET_CPU_LEGACY_LIB@
- OPENJDK_TARGET_CPU_OSARCH:=@OPENJDK_TARGET_CPU_OSARCH@
 --- old/make/autoconf/toolchain.m4	2020-05-20 17:58:44.612626291 -0700
 +++ new/make/autoconf/toolchain.m4	2020-05-20 17:58:44.216618687 -0700
 @@ -39,7 +39,6 @@
@@ -1027,7 +1017,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -497,7 +497,7 @@
+@@ -498,7 +498,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1036,7 +1026,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -515,12 +515,6 @@
+@@ -516,12 +516,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1128,7 +1118,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -167,7 +167,6 @@
+@@ -169,7 +169,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \
@@ -1352,7 +1342,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1902,8 +1902,6 @@
+@@ -1903,8 +1903,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1361,7 +1351,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1968,8 +1966,6 @@
+@@ -1969,8 +1967,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -7941,7 +7931,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3139 +0,0 @@
+@@ -1,3079 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8845,6 +8835,9 @@
 -typedef int (*dladdr1_func_type)(void *, Dl_info *, void **, int);
 -static dladdr1_func_type dladdr1_func = NULL;
 -
+-void os::prepare_native_symbols() {
+-}
+-
 -bool os::dll_address_to_function_name(address addr, char *buf,
 -                                      int buflen, int * offset,
 -                                      bool demangle) {
@@ -9646,69 +9639,6 @@
 -
 -bool os::numa_get_group_ids_for_range(const void** addresses, int* lgrp_ids, size_t count) {
 -  return false;
--}
--
--// Scan the pages from start to end until a page different than
--// the one described in the info parameter is encountered.
--char *os::scan_pages(char *start, char* end, page_info* page_expected,
--                     page_info* page_found) {
--  const uint_t info_types[] = { MEMINFO_VLGRP, MEMINFO_VPAGESIZE };
--  const size_t types = sizeof(info_types) / sizeof(info_types[0]);
--  uint64_t addrs[MAX_MEMINFO_CNT], outdata[types * MAX_MEMINFO_CNT + 1];
--  uint_t validity[MAX_MEMINFO_CNT];
--
--  size_t page_size = MAX2((size_t)os::vm_page_size(), page_expected->size);
--  uint64_t p = (uint64_t)start;
--  while (p < (uint64_t)end) {
--    addrs[0] = p;
--    size_t addrs_count = 1;
--    while (addrs_count < MAX_MEMINFO_CNT && addrs[addrs_count - 1] + page_size < (uint64_t)end) {
--      addrs[addrs_count] = addrs[addrs_count - 1] + page_size;
--      addrs_count++;
--    }
--
--    if (meminfo(addrs, addrs_count, info_types, types, outdata, validity) < 0) {
--      return NULL;
--    }
--
--    size_t i = 0;
--    for (; i < addrs_count; i++) {
--      if ((validity[i] & 1) != 0) {
--        if ((validity[i] & 4) != 0) {
--          if (outdata[types * i + 1] != page_expected->size) {
--            break;
--          }
--        } else if (page_expected->size != 0) {
--          break;
--        }
--
--        if ((validity[i] & 2) != 0 && page_expected->lgrp_id > 0) {
--          if (outdata[types * i] != page_expected->lgrp_id) {
--            break;
--          }
--        }
--      } else {
--        return NULL;
--      }
--    }
--
--    if (i < addrs_count) {
--      if ((validity[i] & 2) != 0) {
--        page_found->lgrp_id = outdata[types * i];
--      } else {
--        page_found->lgrp_id = -1;
--      }
--      if ((validity[i] & 4) != 0) {
--        page_found->size = outdata[types * i + 1];
--      } else {
--        page_found->size = 0;
--      }
--      return (char*)addrs[i];
--    }
--
--    p = addrs[addrs_count - 1] + page_size;
--  }
--  return end;
 -}
 -
 -bool os::pd_uncommit_memory(char* addr, size_t bytes, bool exec) {
