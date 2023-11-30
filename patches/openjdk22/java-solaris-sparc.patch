@@ -7931,7 +7931,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3079 +0,0 @@
+@@ -1,3033 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8832,9 +8832,6 @@
 -  return false;
 -}
 -
--typedef int (*dladdr1_func_type)(void *, Dl_info *, void **, int);
--static dladdr1_func_type dladdr1_func = NULL;
--
 -void os::prepare_native_symbols() {
 -}
 -
@@ -8846,62 +8843,28 @@
 -
 -  Dl_info dlinfo;
 -
--  // dladdr1_func was initialized in os::init()
--  if (dladdr1_func != NULL) {
--    // yes, we have dladdr1
--
--    // Support for dladdr1 is checked at runtime; it may be
--    // available even if the vm is built on a machine that does
--    // not have dladdr1 support.  Make sure there is a value for
--    // RTLD_DL_SYMENT.
--#ifndef RTLD_DL_SYMENT
--  #define RTLD_DL_SYMENT 1
--#endif
 -#ifdef _LP64
--    Elf64_Sym * info;
+-  Elf64_Sym * info;
 -#else
--    Elf32_Sym * info;
+-  Elf32_Sym * info;
 -#endif
--    if (dladdr1_func((void *)addr, &dlinfo, (void **)&info,
+-  if (dladdr1((void *)addr, &dlinfo, (void **)&info,
 -                     RTLD_DL_SYMENT) != 0) {
--      // see if we have a matching symbol that covers our address
--      if (dlinfo.dli_saddr != NULL &&
+-    // see if we have a matching symbol that covers our address
+-    if (dlinfo.dli_saddr != NULL &&
 -          (char *)dlinfo.dli_saddr + info->st_size > (char *)addr) {
--        if (dlinfo.dli_sname != NULL) {
--          if (!(demangle && Decoder::demangle(dlinfo.dli_sname, buf, buflen))) {
--            jio_snprintf(buf, buflen, "%s", dlinfo.dli_sname);
--          }
--          if (offset != NULL) *offset = addr - (address)dlinfo.dli_saddr;
--          return true;
+-      if (dlinfo.dli_sname != NULL) {
+-        if (!(demangle && Decoder::demangle(dlinfo.dli_sname, buf, buflen))) {
+-          jio_snprintf(buf, buflen, "%s", dlinfo.dli_sname);
 -        }
+-        if (offset != NULL) *offset = addr - (address)dlinfo.dli_saddr;
+-        return true;
 -      }
--      // no matching symbol so try for just file info
--      if (dlinfo.dli_fname != NULL && dlinfo.dli_fbase != NULL) {
--        if (Decoder::decode((address)(addr - (address)dlinfo.dli_fbase),
--                            buf, buflen, offset, dlinfo.dli_fname, demangle)) {
--          return true;
--        }
--      }
--    }
--    buf[0] = '\0';
--    if (offset != NULL) *offset  = -1;
--    return false;
--  }
--
--  // no, only dladdr is available
--  if (dladdr((void *)addr, &dlinfo) != 0) {
--    // see if we have a matching symbol
--    if (dlinfo.dli_saddr != NULL && dlinfo.dli_sname != NULL) {
--      if (!(demangle && Decoder::demangle(dlinfo.dli_sname, buf, buflen))) {
--        jio_snprintf(buf, buflen, dlinfo.dli_sname);
--      }
--      if (offset != NULL) *offset = addr - (address)dlinfo.dli_saddr;
--      return true;
 -    }
 -    // no matching symbol so try for just file info
 -    if (dlinfo.dli_fname != NULL && dlinfo.dli_fbase != NULL) {
 -      if (Decoder::decode((address)(addr - (address)dlinfo.dli_fbase),
--                          buf, buflen, offset, dlinfo.dli_fname, demangle)) {
+-                            buf, buflen, offset, dlinfo.dli_fname, demangle)) {
 -        return true;
 -      }
 -    }
@@ -10419,15 +10382,6 @@
 -  }
 -
 -  clock_tics_per_sec = CLK_TCK;
--
--  // check if dladdr1() exists; dladdr1 can provide more information than
--  // dladdr for os::dll_address_to_function_name. It comes with SunOS 5.9
--  // and is available on linker patches for 5.7 and 5.8.
--  // libdl.so must have been loaded, this call is just an entry lookup
--  void * hdl = dlopen("libdl.so", RTLD_NOW);
--  if (hdl) {
--    dladdr1_func = CAST_TO_FN_PTR(dladdr1_func_type, dlsym(hdl, "dladdr1"));
--  }
 -
 -  // main_thread points to the thread that created/loaded the JVM.
 -  main_thread = thr_self();

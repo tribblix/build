@@ -15,10 +15,12 @@ loom correctly as they date back to that change.
 Don/t patch make/autoconf/spec.gmk.in any more, the variable added is
 no longer used
 
-
 os::scan_pages() has been removed
 
 os::prepare_native_symbols() has been added, provide a no-op implementation
+
+Cleanup: we always have dlarr1() on all supported releases, so don't
+check for it or work around its potential absence
 
 22+25
 
