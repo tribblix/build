@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/ksh
 #
 # check validity of the package names for the given overlay(s)
 #
@@ -11,7 +11,7 @@ ILVER=m32
 PILVER=32
 PKGDIR=${THOME}/pkgs
 ARCH="i386"
-case `pwd` in
+case $(pwd) in
     *lx)
 	ILVER=m32lx
 	PILVER=32lx
@@ -30,16 +30,16 @@ case $1 in
     # look for all overlays
     for pkg in *.pkgs
     do
-	$0 ${pkg%.pkgs}
+	$0 "${pkg%.pkgs}"
     done
     exit 0
     ;;
 -f)
     # useful for overlays.iso
-    if [ -f $2 ]; then
-	for pkg in `cat $2`
+    if [ -f "$2" ]; then
+	for pkg in $(<"$2")
 	do
-	    $0 $pkg
+	    $0 "$pkg"
 	done
     else
 	echo "Missing file $2"
@@ -61,9 +61,9 @@ if [ ! -f "${OVL}.pkgs" ]; then
     echo "ERROR: unable to find overlay $OVL"
     exit 1
 fi
-for PKGI in `egrep -v '^(TRIBrelease-name|TRIBzap|TRIBzap-upgrade)$' ${OVL}.pkgs`
+for PKGI in $(grep -E -v '^(TRIBrelease-name|TRIBzap|TRIBzap-upgrade)$' "${OVL}.pkgs")
 do
-  if [ ! -d ${THOME}/build/${PKGI} ]; then
+  if [ ! -d "${THOME}/build/${PKGI}" ]; then
       if [ ! -f "${IPKGDIR}/${PKGI}.0.${PILVER}.zap" ]; then
 	  if [ "${ARCH}" = "sparc" ]; then
 	      case $PKGI in
@@ -80,27 +80,27 @@ do
       fi
   else
       # error if marked for a different arch
-      if [ -f ${THOME}/build/${PKGI}/arch.txt ]; then
-	  NARCH=`cat ${THOME}/build/${PKGI}/arch.txt`
+      if [ -f "${THOME}/build/${PKGI}/arch.txt" ]; then
+	  NARCH=$(<"${THOME}/build/${PKGI}/arch.tx"t)
 	  if [ "$NARCH" != "$ARCH" ]; then
 	      echo "ERROR: $PKGI is only valid for $NARCH"
 	  fi
       fi
       # use a per-arch version if present
-      if [ -f ${THOME}/build/${PKGI}/version.$ARCH ]; then
-	  PKGVERS=`cat ${THOME}/build/${PKGI}/version.$ARCH`
+      if [ -f "${THOME}/build/${PKGI}/version.$ARCH" ]; then
+	  PKGVERS=$(<"${THOME}/build/${PKGI}/version.$ARCH")
       else
-	  while read line
+	  while read -r line
 	  do
 	      case $line in
 		  VERSION=*)
 		      PKGVERS=${line#*=}
 		      ;;
 	      esac
-	  done < ${THOME}/build/${PKGI}/pkginfo
+	  done < "${THOME}/build/${PKGI}/pkginfo"
 	  PKGVERS=${PKGVERS//\"/}
       fi
-      if [ ! -f ${PKGDIR}/${PKGI}.${PKGVERS}.zap ]; then
+      if [ ! -f "${PKGDIR}/${PKGI}.${PKGVERS}.zap" ]; then
 	  echo "ERROR: missing package $PKGI"
       fi
   fi
