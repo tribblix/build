@@ -2,9 +2,14 @@
 #
 # this will override the default /usr/bin/perl
 #
+VERSION=5.34
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../perl5/5.34/bin/perl .
+ln -s ../perl5/${VERSION}/bin/perl .
+ln -s ../perl5/${VERSION}/bin/pod2* .
 cd ../perl5
-ln -s ./5.34/bin .
-ln -s ./5.34/man .
+ln -s ./${VERSION}/bin .
+ln -s ./${VERSION}/man .
+cd ../..
+mkdir -p usr/share/man/man1
+ln -s ../../../../usr/perl5/${VERSION}/man/man1/perl.1 usr/share/man/man1

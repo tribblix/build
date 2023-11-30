@@ -1,4 +1,4 @@
 PKG="TRIBperl-534"
 NAME="Perl 5.34"
-VERSION="5.34.0.0"
+VERSION="5.34.3.0"
 ZAP_URL="https://www.perl.org/"

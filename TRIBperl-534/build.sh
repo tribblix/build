@@ -3,8 +3,8 @@
 # System perl (to replace 5.22), flags from omnios (so we're as
 # compatible as possible)
 #
-${THOME}/build/unpack perl-5.34.0
-cd perl-5.34.0
+${THOME}/build/unpack perl-5.34.3
+cd perl-5.34.3
 ./Configure \
 -Dusethreads \
 -Duseshrplib \
@@ -37,3 +37,4 @@ cd perl-5.34.0
 gmake -j 8
 gmake test
 ${THOME}/build/genpkg TRIBperl-534
+cd ..
