@@ -34,3 +34,4 @@ By default, reserve the group id as well
 130 tengine	    TRIBblix-tengine
 131 promnode	    TRIBblix-promnode
 132 dnsmasq	    TRIBdnsmasq
+133 mysql	    TRIBblix-mariadb

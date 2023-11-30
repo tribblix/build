@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL)". You may
+# only use this file in accordance with the terms of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source. A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+
+#
+# Copyright 2023 Peter Tribble
+#
+
+ulimit -n 65536
+
+. /lib/svc/share/smf_include.sh
+
+BINDIR="/opt/tribblix/mariadb/bin"
+SCRIPTDIR="/opt/tribblix/mariadb/scripts"
+MARIADB="${BINDIR}/mariadbd-safe"
+MARIAINSTALLDB="${SCRIPTDIR}/mariadb-install-db"
+MARIADIR="/var/mariadb"
+PID_FILE="${MARIADIR}"/`/usr/bin/uname -n`.pid
+
+#
+# the directory should exist as it's packaged
+#
+[ ! -d ${MARIADIR} ] && exit ${SMF_EXIT_ERR_CONFIG}
+
+case "$1" in
+    start)
+	if [ ! -d ${MARIADIR}/mysql ]; then
+	    ${MARIAINSTALLDB} --user=mysql --datadir=${MARIADIR}
+	fi
+	${MARIADB} --user=mysql --datadir=${MARIADIR} --pid-file=${PID_FILE} > /dev/null &
+	;;
+    *)
+        echo "Usage: $0 {start}"
+        exit 1
+    ;;
+
+esac
+exit $SMF_EXIT_OK

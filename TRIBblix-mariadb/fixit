@@ -10,3 +10,22 @@ rm ${INSTDIR}/lib/*.a
 # this is a real hack
 #
 sed -i 's/-lnsl -lsocket/-lnsl -lsocket -lstdc++/' ${INSTDIR}/bin/mysql_config
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/application
+cp ${BUILDROOT}/patches/mariadb.xml var/svc/manifest/application
+mkdir -p opt/tribblix/mariadb/sbin
+cp ${BUILDROOT}/patches/svc-mariadb opt/tribblix/mariadb/sbin
+chmod 755 opt/tribblix/mariadb/sbin/svc-mariadb
+#
+mkdir -p etc/security/auth_attr.d
+cp ${BUILDROOT}/patches/mariadb-auth_attr etc/security/auth_attr.d/mariadb2
+mkdir -p etc/security/prof_attr.d
+cp ${BUILDROOT}/patches/mariadb-prof_attr etc/security/prof_attr.d/mariadb2
+#
+# we don't ship a configuration file
+# but this is where the data and the
+# pid file is expected to end up
+#
+mkdir -p var/mariadb

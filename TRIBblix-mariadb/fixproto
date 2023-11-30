@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+awk '
+{if ($3 ~ /^var\/mariadb/) { $6 = "mysql" ; $5 = "mysql" }}
+{print}
+'
