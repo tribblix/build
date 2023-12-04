@@ -9,7 +9,7 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 ILVER=m32
 ARCH=i386
-case `pwd` in
+case $(pwd) in
     */overlays.lx)
 	ILVER=m32lx
 	ARCH=i386
@@ -29,6 +29,9 @@ case `pwd` in
 esac
 CATALOG=${THOME}/illumos-pkgs-${ILVER}/pkgs/catalog
 
+GREP=/usr/bin/grep
+FGREP=/usr/bin/fgrep
+EGREP=/usr/bin/egrep
 #
 VERBOSE=""
 case $1 in
@@ -50,10 +53,10 @@ case $1 in
     ;;
 -f)
     # useful for overlays.iso
-    if [ -f $2 ]; then
-	for pkg in `cat $2`
+    if [ -f "$2" ]; then
+	for pkg in $(<"$2")
 	do
-	    $0 $VERBOSE $pkg
+	    $0 $VERBOSE "$pkg"
 	done
     else
 	echo "Missing file $2"
@@ -79,39 +82,39 @@ TMPF=/tmp/ovtmp.$$
 rm -f $TMPF
 touch $TMPF
 PKGL=""
-for PKGI in $(<${OVL}.pkgs)
+for PKGI in $(<"${OVL}.pkgs")
 do
-  if [ -f ${THOME}/build/${PKGI}/depend.${ARCH} ]; then
+  if [ -f "${THOME}/build/${PKGI}/depend.${ARCH}" ]; then
      # accumulate the depend files and invoke grep once later
      PKGL="${PKGL} ${THOME}/build/${PKGI}/depend.${ARCH}"
-  elif [ -f ${THOME}/build/${PKGI}/depend ]; then
+  elif [ -f "${THOME}/build/${PKGI}/depend" ]; then
      # accumulate the depend files and invoke grep once later
      PKGL="${PKGL} ${THOME}/build/${PKGI}/depend"
   fi
-  if [ ! -d ${THOME}/build/${PKGI} ]; then
-      for npkgi in $(awk -v p=$PKGI -F'|' '{if ($1 == p) print $3}' $CATALOG)
+  if [ ! -d "${THOME}/build/${PKGI}" ]; then
+      for npkgi in $(awk -v p="$PKGI" -F'|' '{if ($1 == p) print $3}' "$CATALOG")
       do
 	  echo "P $npkgi" >> $TMPF
       done
   fi
 done
 if [ -n "${PKGL}" ]; then
-  grep -h '^P' $PKGL >> $TMPF
+  ${GREP} -h '^P' $PKGL >> $TMPF
 fi
 #
 # find any dependencies that aren't handled by prerequisite overlays
 #
-POVL=`awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' base.ovl ${OVL}.ovl`
+POVL=$(awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' base.ovl "${OVL}.ovl")
 cat base.pkgs >> ${TMPF}.p
 if [ -n "$POVL" ]; then
   cat ${POVL//.ovl/.pkgs} >> ${TMPF}.p
-  PPOVL=`awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' ${POVL}`
+  PPOVL=$(awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' ${POVL})
   if [ -n "$PPOVL" ]; then
     cat ${PPOVL//.ovl/.pkgs} >> ${TMPF}.p
-    PPPOVL=`awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' ${PPOVL}`
+    PPPOVL=$(awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' ${PPOVL})
     if [ -n "$PPPOVL" ]; then
       cat ${PPPOVL//.ovl/.pkgs} >> ${TMPF}.p
-      PPPPOVL=`awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' ${PPPOVL}`
+      PPPPOVL=$(awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' ${PPPOVL})
       if [ -n "$PPPPOVL" ]; then
 	  cat ${PPPPOVL//.ovl/.pkgs} >> ${TMPF}.p
       fi
@@ -120,12 +123,12 @@ if [ -n "$POVL" ]; then
 fi
 sort -u ${TMPF}.p > ${TMPF}.t
 awk '{print $2}' $TMPF | sort -u > ${TMPF}.u
-OUTMISS=`/usr/bin/fgrep -v -x -f ${OVL}.pkgs ${TMPF}.u | /usr/bin/fgrep -v -x -f ${TMPF}.t`
+OUTMISS=$(${FGREP} -v -x -f "${OVL}.pkgs" ${TMPF}.u | ${FGREP} -v -x -f ${TMPF}.t)
 if [ -n "${OUTMISS}" ]; then
     echo ""
     echo "Missing dependencies in overlay ${OVL}:"
     echo "============================================="
-    /usr/bin/fgrep -v -x -f ${OVL}.pkgs ${TMPF}.u | /usr/bin/fgrep -v -x -f ${TMPF}.t
+    ${FGREP} -v -x -f "${OVL}.pkgs" ${TMPF}.u | ${FGREP} -v -x -f ${TMPF}.t
 fi
 
 if [ -n "${OUTMISS}" -a "X$VERBOSE" = "X-v" ]; then
@@ -133,21 +136,21 @@ echo "Finding source of missing dependencies:"
 echo "======================================="
 for ndep in $OUTMISS
 do
-for PKGI in $(<${OVL}.pkgs)
+for PKGI in $(<"${OVL}.pkgs")
 do
-  if [ -f ${THOME}/build/${PKGI}/depend.${ARCH} ]; then
-      if grep -q -w $ndep ${THOME}/build/${PKGI}/depend.${ARCH}
+  if [ -f "${THOME}/build/${PKGI}/depend.${ARCH}" ]; then
+      if ${GREP} -q -w "$ndep" "${THOME}/build/${PKGI}/depend.${ARCH}"
       then
 	  echo "${PKGI} requires: ${ndep}"
       fi
-  elif [ -f ${THOME}/build/${PKGI}/depend ]; then
-      if grep -q -w $ndep ${THOME}/build/${PKGI}/depend
+  elif [ -f "${THOME}/build/${PKGI}/depend" ]; then
+      if ${GREP} -q -w "$ndep" "${THOME}/build/${PKGI}/depend"
       then
 	  echo "${PKGI} requires: ${ndep}"
       fi
   fi
-  if [ ! -d ${THOME}/build/${PKGI} ]; then
-      egrep "( |\|)${ndep}( |\|)" $CATALOG | awk -v p=$PKGI -F'|' '{if ($1 == p) print $1" requires: " $3}'
+  if [ ! -d "${THOME}/build/${PKGI}" ]; then
+      ${EGREP} "( |\|)${ndep}( |\|)" "$CATALOG" | awk -v p="$PKGI" -F'|' '{if ($1 == p) print $1" requires: " $3}'
   fi
 done
 done
@@ -157,12 +160,12 @@ fi
 #
 # check syntax of the ovl file
 #
-OUTMISS=`egrep -v '^(VERSION|NAME|REQUIRES|SERVICE)=' ${OVL}.ovl`
+OUTMISS=$(${EGREP} -v '^(VERSION|NAME|REQUIRES|SERVICE)=' "${OVL}.ovl")
 if [ -n "${OUTMISS}" ]; then
     echo ""
     echo "Invalid syntax in ${OVL}.ovl:"
     echo "============================================="
-    egrep -v '^(VERSION|NAME|REQUIRES|SERVICE)=' ${OVL}.ovl
+    ${EGREP} -v '^(VERSION|NAME|REQUIRES|SERVICE)=' "${OVL}.ovl"
 fi
 
 rm -f $TMPF ${TMPF}.t ${TMPF}.p ${TMPF}.u
