@@ -26,25 +26,32 @@ fi
 
 case $STYLE in
     quick)
-cat catalog | awk -F'|' '{print $1,$2}' | while read pkg ver
+awk -F'|' '{print $1,$2}' catalog | while read -r pkg ver
 do
-  if [ ! -f ${pkg}.${ver}.zap ]; then
-    echo "ERROR: ${pkg}.${ver}.zap missing"
+  if [ ! -f "${pkg}.${ver}.zap" ]; then
+      echo "ERROR: ${pkg}.${ver}.zap missing"
+  else
+    if [ ! -f "${pkg}.${ver}.zap.sig" ]; then
+	echo "ERROR: ${pkg}.${ver}.zap.sig missing"
+    fi
   fi
 done
 ;;
 
     long)
-cat catalog | awk -F'|' '{print $1,$2,$4,$5}' | while read pkg ver psize psum
+awk -F'|' '{print $1,$2,$4,$5}' catalog | while read -r pkg ver psize psum
 do
-  if [ ! -f ${pkg}.${ver}.zap ]; then
+  if [ ! -f "${pkg}.${ver}.zap" ]; then
     echo "ERROR: ${pkg}.${ver}.zap missing"
   else
-    fsize=`/bin/ls -l ${pkg}.${ver}.zap | /usr/bin/awk '{print $5}'`
+    if [ ! -f "${pkg}.${ver}.zap.sig" ]; then
+	echo "ERROR: ${pkg}.${ver}.zap.sig missing"
+    fi
+    fsize=$(/bin/ls -l "${pkg}.${ver}.zap" | /usr/bin/awk '{print $5}')
     if [ "X$psize" != "X$fsize" ]; then
       echo "ERROR: ${pkg}.${ver}.zap has the wrong size"
     else
-      PKGMD5=`/usr/bin/openssl md5 ${pkg}.${ver}.zap| /usr/bin/awk '{print $NF}'`
+      PKGMD5=$(/usr/bin/openssl md5 "${pkg}.${ver}.zap" | /usr/bin/awk '{print $NF}')
       if [ "X$PKGMD5" != "X$psum" ]; then
         echo "ERROR: ${pkg}.${ver}.zap has the wrong checksum"
       fi  
@@ -54,12 +61,3 @@ done
 ;;
 
 esac
-
-if [ -f catalog.sig ]; then
-    cat catalog | awk -F'|' '{print $1,$2}' | while read pkg ver
-    do
-	if [ ! -f ${pkg}.${ver}.zap.sig ]; then
-	    echo "ERROR: ${pkg}.${ver}.zap.sig missing"
-	fi
-    done
-fi
