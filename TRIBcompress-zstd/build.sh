@@ -2,26 +2,22 @@
 #
 # yes, it's a bit messy
 #
-env CC=gcc PREFIX=/usr ${THOME}/build/dobuild zstd-1.4.9
-mv zstd-1.4.9 zstd-1.4.9-32bit
-env CC=gcc PREFIX=/usr CFLAGS=-m64 LDFLAGS=-m64 ${THOME}/build/dobuild zstd-1.4.9 
+# we shipped 1.4.9 previously, ZSTD_LIB_DEPRECATED=1 enables the functions
+# that were present then but were deprecated in 1.5.0
+#
+env CC=gcc PREFIX=/usr ${THOME}/build/dobuild zstd-1.5.5 -M "ZSTD_LIB_DEPRECATED=1 ZSTD_LIB_DICTBUILDER=0"
+mv zstd-1.5.5 zstd-1.5.5-32bit
+env CC=gcc PREFIX=/usr CFLAGS=-m64 LDFLAGS=-m64 ${THOME}/build/dobuild zstd-1.5.5 -M "ZSTD_LIB_DEPRECATED=1 ZSTD_LIB_DICTBUILDER=0"
 rm -fr /tmp/zzz
-cd zstd-1.4.9-32bit
+cd zstd-1.5.5-32bit
 env CC=gcc PREFIX=/usr DESTDIR=/tmp/zzz gmake -C lib install
 cd ..
-cd zstd-1.4.9
+cd zstd-1.5.5
 env CC=gcc PREFIX=/usr DESTDIR=/tmp/zzz/64 gmake -C lib install
 mv /tmp/zzz/64/usr/lib /tmp/zzz/usr/lib/`isainfo -k`
 sed -i 's:/lib:/lib/64:' /tmp/zzz/usr/lib/`isainfo -k`/pkgconfig/libzstd.pc
 rm -fr /tmp/zzz/64
-mkdir -p /tmp/zzz/usr/bin
-cp programs/zstd /tmp/zzz/usr/bin
-cp programs/zstdgrep /tmp/zzz/usr/bin
-cp programs/zstdless /tmp/zzz/usr/bin
-mkdir -p /tmp/zzz/usr/share/man/man1
-cp programs/zstd.1 /tmp/zzz/usr/share/man/man1
-cp programs/zstdgrep.1 /tmp/zzz/usr/share/man/man1
-cp programs/zstdless.1 /tmp/zzz/usr/share/man/man1
+env CC=gcc PREFIX=/usr DESTDIR=/tmp/zzz gmake -C programs install
 cd ..
 
 $THOME/build/create_pkg TRIBcompress-zstd /tmp/zzz
