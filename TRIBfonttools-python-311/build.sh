@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBfonttools-python-311 fonttools-4.45.1
+${THOME}/build/pkg_setup_py TRIBfonttools-python-311 fonttools-4.46.0
