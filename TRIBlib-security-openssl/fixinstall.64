@@ -32,15 +32,6 @@ esac
 #
 
 #
-# if we're not openssl 3.0, then remove the openssl 1.1.1
-# includes and man pages
-#
-if [ ! -f ${DESTDIR}/usr/include/openssl/sslerr_legacy.h ]; then
-    rm -fr ${DESTDIR}/usr/include
-    rm -fr ${DESTDIR}/usr/share/man
-fi
-
-#
 # save the 64-bit configuration.h; the fixit script will sort it out
 #
 
@@ -49,5 +40,5 @@ mv ${DESTDIR}/usr/include/openssl/configuration.h ${DESTDIR}/usr/include/openssl
 #
 # save a 64-bit openssl binary
 #
-mkdir -p  ${DESTDIR}/usr/bin/${ARCH64}
+mkdir -p ${DESTDIR}/usr/bin/${ARCH64}
 mv ${DESTDIR}/usr/bin/openssl ${DESTDIR}/usr/bin/${ARCH64}/openssl

@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# clean up and move
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# as we're only shipping the library components, delete all the bits we
+# don't want to ship at all
+#
+rm -fr usr/bin usr/include usr/ssl usr/share
+rm -fr usr/lib/pkgconfig usr/lib/${ARCH64}/pkgconfig
+#
+# delete the compilation symlinks
+#
+rm -f usr/lib/lib*.so
+rm -f usr/lib/64/lib*.so
+rm -f usr/lib/${ARCH64}/lib*.so
+#
+# libraries expect to live in /lib
+#
+mkdir -p lib/${ARCH64}
+mv usr/lib/lib*so* lib
+mv usr/lib/${ARCH64}/lib*so* lib/${ARCH64}
+#
+# the files live under /lib, symlinks under /usr/lib
+# this will also generate the compat symlinks in /usr/lib
+#
+cd usr/lib
+ln -s ../../lib/libssl.so* .
+ln -s ../../lib/libcrypto.so* .
+cd ${ARCH64}
+ln -s ../../../lib/${ARCH64}/libssl.so* .
+ln -s ../../../lib/${ARCH64}/libcrypto.so* .

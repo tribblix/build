@@ -1,0 +1,4 @@
+PKG="TRIBopenssl11-compat"
+NAME="OpenSSL toolkit 1.1 compatibility libraries"
+VERSION="1.1.1w.0"
+ZAP_URL="https://www.openssl.org/"
