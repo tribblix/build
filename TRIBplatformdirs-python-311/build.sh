@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBplatformdirs-python-311 platformdirs-4.0.0
+${THOME}/build/pkg_pep518 TRIBplatformdirs-python-311 platformdirs-4.1.0
