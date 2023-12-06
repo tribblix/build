@@ -1,9 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/unpack gophervr-src
+${THOME}/build/unpack Current-GopherVR-source
 cd gophervr
-# Hm. needs the old gopher source...
-${THOME}/build/unpack gopher_3.0.13
 gsed -i s:/usr/local/lib/hershey:/usr/share/lib/hershey: libvogl/hershey/src/htext.c
 gsed -i s:/usr/local/lib/hershey:/usr/share/lib/hershey: libvogl/Makefile
 cd gopher ; ./configure --prefix=/usr; cd ..
