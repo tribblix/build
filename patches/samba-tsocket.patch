@@ -1,6 +1,6 @@
---- samba-4.17.0/lib/tsocket/tsocket_bsd.c	2022-08-08 07:15:39.152190400 +0000
-+++ samba-4.17.0/lib/tsocket/tsocket_bsd.c.new	2022-09-17 05:56:02.043645009 +0000
-@@ -457,7 +457,7 @@
+--- samba-4.18.9/lib/tsocket/tsocket_bsd.c	2022-08-08 07:15:39.152190400 +0000
++++ samba-4.18.9/lib/tsocket/tsocket_bsd.c.new	2022-09-17 05:56:02.043645009 +0000
+@@ -539,7 +539,7 @@
  	char *buf = NULL;
  	uint64_t port = 0;
  	int ret;
@@ -9,7 +9,7 @@
  	uint16_t s_port = default_port;
  	bool conv_ret;
  	bool is_ipv6_by_squares = false;
-@@ -486,7 +486,7 @@
+@@ -568,7 +568,7 @@
  		/* IPv6 possibly with port - squares detected */
  		port_sep = pr_sq + 1;
  		if (*port_sep == '\0') {
@@ -18,7 +18,7 @@
  			*pr_sq = 0;
  			s_port = default_port;
  			goto get_addr;
-@@ -508,7 +508,7 @@
+@@ -590,7 +590,7 @@
  		s_port = (uint16_t)port;
  		*port_sep = 0;
  		*pr_sq = 0;
@@ -27,7 +27,7 @@
  		*pl_sq = 0;
  		goto get_addr;
  	} else if (pl_period != NULL && port_sep != NULL) {
-@@ -525,18 +525,18 @@
+@@ -607,18 +607,18 @@
  		}
  		s_port = (uint16_t)port;
  		*port_sep = 0;
