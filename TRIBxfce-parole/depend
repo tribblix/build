@@ -1,0 +1,12 @@
+P TRIBgdk-pixbuf
+P TRIBgstreamer1
+P TRIBgstreamer1-plugins-base
+P TRIBlib-desktop-cairo
+P TRIBlib-desktop-gtk3
+P TRIBlib-glib2
+P TRIBlibnotify
+P TRIBsys-libdbus
+P TRIBsys-libdbus-glib
+P TRIBtaglib
+P TRIBx11-libx11
+P TRIBxfce

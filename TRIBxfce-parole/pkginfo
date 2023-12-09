@@ -1,0 +1,4 @@
+PKG="TRIBxfce-parole"
+NAME="Xfce Parole media player"
+VERSION="4.18.1.0"
+ZAP_URL="https://archive.xfce.org/src/apps/parole/"
