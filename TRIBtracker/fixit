@@ -6,6 +6,11 @@
 rm -fr usr/share/xul-ext
 rm -fr usr/lib/thunderbird*
 rm -fr usr/lib/firefox*
+rm -fr usr/lib/systemd
+#
+rm -f usr/lib/*/tracker-1.0/lib*.la
+rm -f usr/lib/*/tracker-1.0/extract-modules/lib*.la
+rm -f usr/lib/*/tracker-1.0/writeback-modules/lib*.la
 #
 # these are desktop sample tools; we don't want to pull in desktop
 # dependencies and they are deprecated upstream
