@@ -3,7 +3,7 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
-JDK 22 now that jdk21 has been forked off.
+JDK 22 now switched to the jdk22 stabilisation repo
 
 Issues known that indicate serious bugs, likely due to not integrating
 loom correctly as they date back to that change.
@@ -13,6 +13,8 @@ loom correctly as they date back to that change.
 22+27
 
 Trivial patch noise
+
+Switch to jdk22 stabilisation repo
 
 22+26
 
