@@ -66,11 +66,13 @@ DOGNU="false"
 # package name
 # -P alternate_prefix
 # -C configure_args
+# +C configure_args [64-bit]
 # -L disable LD_OPTIONS
 # -b branch for git checkout
 #
 IPREFIX="/usr"
-CONFARGS=""
+CONFARGS32=""
+CONFARGS64=""
 LIBDIR64=""
 DO_LD="yes"
 
@@ -118,7 +120,12 @@ case $1 in
 	;;
 -C)
 	shift
-	CONFARGS="$1"
+	CONFARGS32="$1"
+	shift
+	;;
++C)
+	shift
+	CONFARGS64="$1"
 	shift
 	;;
 -L)
@@ -140,6 +147,14 @@ case $1 in
 	;;
 esac
 done
+
+#
+# if we don't have specific 64-bit configure args,
+# then use the 32-bit ones
+#
+if [[ -z $CONFARGS64 ]]; then
+    CONFARGS64="$CONFARGS32"
+fi
 
 #
 # 64-bit files go in these subdirectories
@@ -232,7 +247,7 @@ EOF
 	    else
 		TRIBBLIX_PATH=/usr/bin/${ARCH64}:${TRIBBLIX_PATH/\/usr\/gnu\/bin//usr/gnu/bin/${ARCH64}:/usr/gnu/bin}
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS} --libdir=${LIBDIR64} --bindir=${BINDIR64} ${BUILDDIR}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS64} --libdir=${LIBDIR64} --bindir=${BINDIR64} ${BUILDDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
@@ -263,7 +278,7 @@ EOF
 	    if [ "x$DOGNU" != "xfalse" ]; then
 		TRIBBLIX_PATH=/usr/gnu/bin:$TRIBBLIX_PATH
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS} ${BUILDDIR}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS32} ${BUILDDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
