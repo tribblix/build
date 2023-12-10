@@ -9,3 +9,11 @@
  #define _BSD_SOURCE 1 /* to get the prototype for fchmod() */
  
  #include <sys/stat.h>
+--- a/po-checktrans.py	Sun Aug 24 16:44:08 2014
++++ b/po-checktrans.py	Sun Dec 10 16:46:44 2023
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python2
+ #
+ # This quick hack gives translation statistics (from the core translation
+ # files).
