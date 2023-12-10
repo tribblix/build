@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBtifffile-python-311 tifffile-2023.9.26
+${THOME}/build/pkg_setup_py TRIBtifffile-python-311 tifffile-2023.12.9
