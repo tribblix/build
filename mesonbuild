@@ -68,6 +68,7 @@ DOGNU="false"
 # -C configure_args
 # +C configure_args [64-bit]
 # -L disable LD_OPTIONS
+# -B subdirectory to use rather than the default
 # -b branch for git checkout
 #
 IPREFIX="/usr"

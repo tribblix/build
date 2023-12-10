@@ -79,7 +79,6 @@ DOGNU="false"
 # -E set sysconfdir to arg
 # +E set sysconfdir to arg, with 64-bit subdir
 # -M make_args
-# -I install_args [unused]
 # -J parallelism
 # -L disable LD_OPTIONS
 # -b branch for git checkout

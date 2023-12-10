@@ -65,12 +65,10 @@ DOGNU="false"
 #
 # Other arguments are
 # package name
-# -S subdir [not supported for cmake]
 # -P alternate_prefix
 # -C configure_args
 # +C configure_args [64-bit]
 # -M make_args
-# -I install_args [unused]
 # -J parallelism
 # -L disable LD_OPTIONS
 # -B subdirectory to use rather than the default
