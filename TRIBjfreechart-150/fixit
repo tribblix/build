@@ -1,18 +1,9 @@
 #!/bin/sh
 #
-# we ship the old version (1.5.0) and jcommon, as that's hard-coded into
-# current jkstat/kar/illuminate packages, and ship the new version without
-# jcommon so that updates to consumers will pick it up
+# was originally 1.5.0 but now everything is updated we can just ship 1.5.4
 #
-# eventually we'll be able to drop the old files
-#
-mkdir -p usr/share/jfreechart-1.5.0
-cp ${THOME}/tarballs/jcommon-1.0.24.jar usr/share/jfreechart-1.5.0
-cp ${THOME}/tarballs/jfreechart-1.5.0.jar usr/share/jfreechart-1.5.0
 mkdir -p usr/share/jfreechart-1.5.4
 cp ${THOME}/tarballs/jfreechart-1.5.4.jar usr/share/jfreechart-1.5.4
 
 cd usr/share/jfreechart-1.5.4
 wget https://www.gnu.org/licenses/lgpl-3.0-standalone.html
-cd ../jfreechart-1.5.0
-ln -s ../jfreechart-1.5.4/lgpl-3.0-standalone.html .
