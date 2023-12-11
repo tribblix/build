@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# for a given package, lists its consumers, whether those are run-time
+# or build-time dependencies
+#
+
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BDIR=${THOME}/build
+PDIR="/var/sadm/pkg"
+
+STATUS=0
+
+#
+# if no arguments, shortcut for the package I'm looking at right now
+#
+case $# in
+    0)
+	DIR=$(pwd)
+	set -- "${DIR##*/}"
+	;;
+esac
+
+cd "$BDIR" || exit 1
+for dir in "$@"
+do
+    # remove any trailing / added by tab-completion
+    dir=${dir%%/}
+    if [ -d "${dir}" ]; then
+	if [ -f "${PDIR}/${dir}/pkginfo" ]
+	then
+	    echo "Checking $dir (installed)"
+	else
+	    echo "Checking $dir (not installed)"
+	fi
+	grep -lx "P $dir" */depend* | while read -r dep
+	do
+	    echo "  run-time ${dep%%/*}"
+	done
+	grep -lx "I $dir" */depend* | while read -r dep
+	do
+	    echo "  run-incompatible ${dep%%/*}"
+	done
+	grep -lx "$dir" */build_require* | while read -r dep
+	do
+	    echo "  build-time ${dep%%/*}"
+	done
+	grep -lx "$dir" */build_incompatible* | while read -r dep
+	do
+	    echo "  build-incompatible ${dep%%/*}"
+	done
+    else
+	echo "No such package $dir"
+	STATUS=1
+    fi
+done
+
+exit $STATUS

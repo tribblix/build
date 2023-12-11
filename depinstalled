@@ -30,27 +30,27 @@ ARCH=$(uname -p)
 case $# in
     0)
 	DIR=$(pwd)
-	set -- ${DIR##*/}
+	set -- "${DIR##*/}"
 	;;
 esac
 
-for dir in $*
+for dir in "$@"
 do
     # remove any trailing / added by tab-completion
     dir=${dir%%/}
-    if [ -d ${BDIR}/${dir} ]; then
+    if [ -d "${BDIR}/${dir}" ]; then
 	if [ -z "$QUIET" ]; then
-	    if [ -f ${PDIR}/${dir}/pkginfo ]
+	    if [ -f "${PDIR}/${dir}/pkginfo" ]
 	    then
 		echo "Checking $dir (installed)"
 	    else
 		echo "Checking $dir (not installed)"
 	    fi
 	fi
-	if [ -f ${BDIR}/${dir}/depend.${ARCH} ]; then
-	    while read deptype pkg
+	if [ -f "${BDIR}/${dir}/depend.${ARCH}" ]; then
+	    while read -r deptype pkg
 	    do
-		if [ -f ${PDIR}/${pkg}/pkginfo ]
+		if [ -f "${PDIR}/${pkg}/pkginfo" ]
 		then
 		    case $deptype in
 			I)
@@ -78,11 +78,11 @@ do
 			    ;;
 		    esac
 		fi
-	    done <  ${BDIR}/${dir}/depend.${ARCH}
-	elif [ -f ${BDIR}/${dir}/depend ]; then
-	    while read deptype pkg
+	    done < "${BDIR}/${dir}/depend.${ARCH}"
+	elif [ -f "${BDIR}/${dir}/depend" ]; then
+	    while read -r deptype pkg
 	    do
-		if [ -f ${PDIR}/${pkg}/pkginfo ]
+		if [ -f "${PDIR}/${pkg}/pkginfo" ]
 		then
 		    case $deptype in
 			I)
@@ -110,32 +110,32 @@ do
 			    ;;
 		    esac
 		fi
-	    done <  ${BDIR}/${dir}/depend
+	    done < "${BDIR}/${dir}/depend"
 	else
 	    if [ -z "$QUIET" ]; then
 		echo "  ... no dependencies to check"
 	    fi
 	fi
-	if [ -f ${BDIR}/${dir}/build_require ]; then
-	    for pkg in $(<${BDIR}/${dir}/build_require)
+	if [ -f "${BDIR}/${dir}/build_require" ]; then
+	    for pkg in $(<"${BDIR}/${dir}/build_require")
 	    do
-		if [ -f ${PDIR}/${pkg}/pkginfo ]
+		if [ -f "${PDIR}/${pkg}/pkginfo" ]
 		then
 		    if [ -z "$QUIET" ]; then
 			echo "  build $pkg .. ok"
 		    fi
 		else
 		    if [ -z "$QUIET" ]; then
-			echo " **ERROR** build $pkg .. missing"
+			echo "  **ERROR** build $pkg .. missing"
 		    fi
 		    STATUS=1
 		fi
 	    done
 	fi
-	if [ -f ${BDIR}/${dir}/build_incompatible ]; then
-	    for pkg in $(<${BDIR}/${dir}/build_incompatible)
+	if [ -f "${BDIR}/${dir}/build_incompatible" ]; then
+	    for pkg in $(<"${BDIR}/${dir}/build_incompatible")
 	    do
-		if [ -f ${PDIR}/${pkg}/pkginfo ]
+		if [ -f "${PDIR}/${pkg}/pkginfo" ]
 		then
 		    if [ -z "$QUIET" ]; then
 			echo "  **ERROR** incompatible build $pkg is installed"
