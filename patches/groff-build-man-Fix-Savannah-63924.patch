@@ -1,0 +1,17 @@
+https://savannah.gnu.org/bugs/?63924
+
+The original patched tmac/tmac.am which triggered automake, which failed
+because my automake is 'too old', so patch Makefile.in instead.
+
+--- a/Makefile.in	Wed Jul  5 21:58:38 2023
++++ b/Makefile.in	Mon Dec 11 20:47:42 2023
+@@ -15591,9 +15591,6 @@
+ 	$(AM_V_at)if test -n "$(tmac_wrap)"; then \
+ 	  for m in ""$(tmac_wrap); do \
+ 	    $(RM) $(top_builddir)/tmac/$$m-wrap; \
+-	    if test "$$m" = an; then \
+-	      echo .do mso an.tmac >>$(top_builddir)/tmac/$$m-wrap; \
+-	    fi; \
+ 	    echo .cp 1 >>$(top_builddir)/tmac/$$m-wrap; \
+ 	    echo .so $(sys_tmac_prefix)$$m \
+ 	      >>$(top_builddir)/tmac/$$m-wrap; \
