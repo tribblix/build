@@ -5,7 +5,7 @@ cd gophervr
 gsed -i s:/usr/local/lib/hershey:/usr/share/lib/hershey: libvogl/hershey/src/htext.c
 gsed -i s:/usr/local/lib/hershey:/usr/share/lib/hershey: libvogl/Makefile
 cd gopher ; ./configure --prefix=/usr; cd ..
-cd gopher/object ; gmake all ; cd ..
+cd gopher/object ; gmake all ; cd ../..
 cd libtracker; gmake MACHINE=linux ; cd ..
 # Need to disable optimization in libvogl
 cd libvogl; gmake linux LINUX_FLOAT="" LINUX_OPT="-g -DNO_MULTIBUF"; cd ..
