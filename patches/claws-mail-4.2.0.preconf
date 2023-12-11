@@ -2,5 +2,10 @@
 #
 # why, oh why...
 #
-gsed -i '/--export-dynamic/d' configure
-gsed -i s:_XOPEN_SOURCE:_XXXX_XOPEN_SOURCE: src/plugins/rssyl/libfeed/date.c
+sed -i '/--export-dynamic/d' configure
+sed -i s:_XOPEN_SOURCE:_XXXX_XOPEN_SOURCE: src/plugins/rssyl/libfeed/date.c
+#
+# it uses gnutls, so why not rely on gnutls to know where the certificate
+# stores are?
+#
+sed -i s:/etc/ssl/cert.pem:/etc/ssl/cacert.pem: src/common/ssl.c
