@@ -22,4 +22,4 @@
 # PATH so it can find the cython executable
 # Need to pass -m64 down to meson
 #
-env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBpandas-python-311 pandas-2.1.3
+env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBpandas-python-311 pandas-2.1.4
