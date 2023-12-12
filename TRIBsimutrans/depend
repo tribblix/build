@@ -1,0 +1,6 @@
+P TRIBcompress-bzip2
+P TRIBcompress-zstd
+P TRIBimage-libpng
+P TRIBlib-zlib
+P TRIBlibsdl2
+P TRIBsys-lib-freetype-2

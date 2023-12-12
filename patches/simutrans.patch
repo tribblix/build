@@ -1,0 +1,2334 @@
+diff --git a/src/simutrans/dataobj/objlist.cc b/src/simutrans/dataobj/objlist.cc
+index 6f3db3644..5dc007623 100644
+--- a/src/simutrans/dataobj/objlist.cc
++++ b/src/simutrans/dataobj/objlist.cc
+@@ -816,7 +816,7 @@ void objlist_t::rdwr(loadsave_t *file, koord3d current_pos)
+ 				case obj_t::senke:      new_obj = new senke_t(file);    break;
+ 				case obj_t::zeiger:     new_obj = new zeiger_t(file);   break;
+ 				case obj_t::signal:     new_obj = new signal_t(file);   break;
+-				case obj_t::label:      new_obj = new label_t(file);    break;
++				case obj_t::label:      new_obj = new simlabel_t(file);    break;
+ 				case obj_t::crossing:   new_obj = new crossing_t(file); break;
+ 
+ 				case obj_t::wayobj:
+diff --git a/src/simutrans/ground/grund.cc b/src/simutrans/ground/grund.cc
+index 8aa38c5b3..8b2fa6f33 100644
+--- a/src/simutrans/ground/grund.cc
++++ b/src/simutrans/ground/grund.cc
+@@ -134,8 +134,8 @@ const player_t* grund_t::get_label_owner() const
+ {
+ 	const player_t* player = NULL;
+ 	// if this ground belongs to a halt, the color should reflect the halt owner, not the ground owner!
+-	// Now, we use the color of label_t owner
+-	if(is_halt()  &&  find<label_t>()==NULL) {
++	// Now, we use the color of simlabel_t owner
++	if(is_halt()  &&  find<simlabel_t>()==NULL) {
+ 		// only halt label
+ 		const halthandle_t halt = get_halt();
+ 		player=halt->get_owner();
+@@ -143,7 +143,7 @@ const player_t* grund_t::get_label_owner() const
+ 	// else color according to current owner
+ 	else if(obj_bei(0)) {
+ 		player = obj_bei(0)->get_owner(); // for cityhall
+-		const label_t* l = find<label_t>();
++		const simlabel_t* l = find<simlabel_t>();
+ 		if(l) {
+ 			player = l->get_owner();
+ 		}
+@@ -230,7 +230,7 @@ void grund_t::rdwr(loadsave_t *file)
+ 		bool label;
+ 		file->rdwr_bool(label);
+ 		if(label) {
+-			objlist.add( new label_t(pos, welt->get_player(0), get_text() ) );
++			objlist.add( new simlabel_t(pos, welt->get_player(0), get_text() ) );
+ 		}
+ 	}
+ 
+diff --git a/src/simutrans/ground/grund.h b/src/simutrans/ground/grund.h
+index 8bc585a77..70eca5244 100644
+--- a/src/simutrans/ground/grund.h
++++ b/src/simutrans/ground/grund.h
+@@ -34,7 +34,7 @@ class field_t;
+ class pedestrian_t;
+ class gebaeude_t;
+ class groundobj_t;
+-class label_t;
++class simlabel_t;
+ class leitung_t;
+ class pillar_t;
+ class pumpe_t;
+@@ -56,7 +56,7 @@ template<> struct map_obj<field_t>        { static const obj_t::typ code = obj_t
+ template<> struct map_obj<pedestrian_t>   { static const obj_t::typ code = obj_t::pedestrian;   };
+ template<> struct map_obj<gebaeude_t>     { static const obj_t::typ code = obj_t::gebaeude;     };
+ template<> struct map_obj<groundobj_t>    { static const obj_t::typ code = obj_t::groundobj;    };
+-template<> struct map_obj<label_t>        { static const obj_t::typ code = obj_t::label;        };
++template<> struct map_obj<simlabel_t>        { static const obj_t::typ code = obj_t::label;        };
+ template<> struct map_obj<leitung_t>      { static const obj_t::typ code = obj_t::leitung;      };
+ template<> struct map_obj<pillar_t>       { static const obj_t::typ code = obj_t::pillar;       };
+ template<> struct map_obj<pumpe_t>        { static const obj_t::typ code = obj_t::pumpe;        };
+diff --git a/src/simutrans/gui/ai_option.cc b/src/simutrans/gui/ai_option.cc
+index 4cbc2a997..cd16e913c 100644
+--- a/src/simutrans/gui/ai_option.cc
++++ b/src/simutrans/gui/ai_option.cc
+@@ -45,7 +45,7 @@ ai_option_t::ai_option_t( player_t *player ) :
+ 
+ 	set_table_layout(1,0);
+ 
+-	new_component<gui_label_t>("construction speed");
++	new_component<gui_simlabel_t>("construction speed");
+ 
+ 	construction_speed.init( ai->get_construction_speed(), 25, 1000000, gui_numberinput_t::POWER2, false );
+ 	construction_speed.add_listener( this );
+diff --git a/src/simutrans/gui/banner.cc b/src/simutrans/gui/banner.cc
+index 2c87976e7..4745fd2f5 100644
+--- a/src/simutrans/gui/banner.cc
++++ b/src/simutrans/gui/banner.cc
+@@ -55,19 +55,19 @@ banner_t::banner_t() : gui_frame_t("")
+ {
+ 	set_table_layout(1,0);
+ 
+-	new_component<gui_label_t>("This is Simutrans" SIM_VERSION_BUILD_STRING, SYSCOL_TEXT_TITLE, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++	new_component<gui_simlabel_t>("This is Simutrans" SIM_VERSION_BUILD_STRING, SYSCOL_TEXT_TITLE, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 
+-	new_component<gui_label_t>(get_version(), SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++	new_component<gui_simlabel_t>(get_version(), SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 
+ 	add_table(5,0);
+ 	{
+-		new_component_span<gui_label_t>("The version is developed by", SYSCOL_TEXT_TITLE, gui_label_t::left, 5)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component_span<gui_simlabel_t>("The version is developed by", SYSCOL_TEXT_TITLE, gui_simlabel_t::left, 5)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 		new_component<gui_fill_t>();
+ 
+ 		add_table(1,0);
+-		new_component<gui_label_t>("the simutrans team", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-		new_component<gui_label_t>("under the Artistic Licence", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-		new_component<gui_label_t>("based on Simutrans 84.22.1", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component<gui_simlabel_t>("the simutrans team", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component<gui_simlabel_t>("under the Artistic Licence", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component<gui_simlabel_t>("based on Simutrans 84.22.1", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 		end_table();
+ 
+ 		new_component<gui_fill_t>();
+@@ -76,16 +76,16 @@ banner_t::banner_t() : gui_frame_t("")
+ 	}
+ 	end_table();
+ 
+-	new_component<gui_label_t>("Selling of the program is forbidden.", color_idx_to_rgb(COL_ORANGE), gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-	new_component<gui_label_t>("For questions and support please visit:", SYSCOL_TEXT_TITLE, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++	new_component<gui_simlabel_t>("Selling of the program is forbidden.", color_idx_to_rgb(COL_ORANGE), gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++	new_component<gui_simlabel_t>("For questions and support please visit:", SYSCOL_TEXT_TITLE, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 
+ 	add_table(3,0);
+ 	{
+ 		new_component<gui_fill_t>();
+ 		add_table(1,0);
+-		new_component<gui_label_t>("https://www.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-		new_component<gui_label_t>("https://forum.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-		new_component<gui_label_t>("https://wiki.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component<gui_simlabel_t>("https://www.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component<gui_simlabel_t>("https://forum.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component<gui_simlabel_t>("https://wiki.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 		end_table();
+ 		new_component<gui_fill_t>();
+ 	}
+diff --git a/src/simutrans/gui/citybuilding_edit.cc b/src/simutrans/gui/citybuilding_edit.cc
+index 2f932fc22..cad3bfc08 100644
+--- a/src/simutrans/gui/citybuilding_edit.cc
++++ b/src/simutrans/gui/citybuilding_edit.cc
+@@ -124,7 +124,7 @@ citybuilding_edit_frame_t::citybuilding_edit_frame_t(player_t* player_) :
+ 
+ 	// rotation
+ 	gui_aligned_container_t *tbl = cont_options.add_table(2,0);
+-	tbl->new_component<gui_label_t>("Rotation");
++	tbl->new_component<gui_simlabel_t>("Rotation");
+ 	tbl->add_component(&cb_rotation);
+ 	cb_rotation.add_listener(this);
+ 	cb_rotation.new_component<gui_rotation_item_t>(gui_rotation_item_t::random);
+diff --git a/src/simutrans/gui/citylist_frame.cc b/src/simutrans/gui/citylist_frame.cc
+index 7e1f11fda..4a58aaaa3 100644
+--- a/src/simutrans/gui/citylist_frame.cc
++++ b/src/simutrans/gui/citylist_frame.cc
+@@ -106,7 +106,7 @@ citylist_frame_t::citylist_frame_t() :
+ 	list.set_table_layout(1,0);
+ 
+ 	list.add_table(3, 3);
+-	list.new_component<gui_label_t>("Filter:");
++	list.new_component<gui_simlabel_t>("Filter:");
+ 	name_filter_input.set_text(name_filter, lengthof(name_filter));
+ 	list.add_component(&name_filter_input);
+ 	list.new_component<gui_fill_t>();
+@@ -130,7 +130,7 @@ citylist_frame_t::citylist_frame_t() :
+ 	list.new_component<gui_fill_t>();
+ 
+ 
+-	list.new_component<gui_label_t>("hl_txt_sort");
++	list.new_component<gui_simlabel_t>("hl_txt_sort");
+ 	sortedby.set_unsorted(); // do not sort
+ 	for (size_t i = 0; i < lengthof(sort_text); i++) {
+ 		sortedby.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate(sort_text[i]), SYSCOL_TEXT);
+diff --git a/src/simutrans/gui/climates.cc b/src/simutrans/gui/climates.cc
+index 29fb7afab..02a7849dc 100644
+--- a/src/simutrans/gui/climates.cc
++++ b/src/simutrans/gui/climates.cc
+@@ -32,7 +32,7 @@ climate_gui_t::climate_gui_t(settings_t* const sets_par) :
+ 	add_table( 2, 0 );
+ 	{
+ 		// Water level
+-		new_component<gui_label_t>("Water level");
++		new_component<gui_simlabel_t>("Water level");
+ 		water_level.init( sets->get_groundwater(), -20*(ground_desc_t::double_grounds?2:1), 20, gui_numberinput_t::AUTOLINEAR, false );
+ 		water_level.add_listener( this );
+ 		add_component( &water_level );
+@@ -42,23 +42,23 @@ climate_gui_t::climate_gui_t(settings_t* const sets_par) :
+ 		int mountain_roughness_start = (int)(sets->get_map_roughness()*20.0 + 0.5)-8;
+ 
+ 		// Mountain height
+-		new_component<gui_label_t>("Mountain height");
++		new_component<gui_simlabel_t>("Mountain height");
+ 		mountain_height.init( mountain_height_start, 0, min(1000,100*(11-mountain_roughness_start)), 10, false );
+ 		mountain_height.add_listener( this );
+ 		add_component( &mountain_height );
+ 
+ 		// Mountain roughness
+-		new_component<gui_label_t>("Map roughness");
++		new_component<gui_simlabel_t>("Map roughness");
+ 		mountain_roughness.init( mountain_roughness_start, 0, min(10, 11-((mountain_height_start+99)/100)), gui_numberinput_t::AUTOLINEAR, false );
+ 		mountain_roughness.add_listener( this );
+ 		add_component( &mountain_roughness );
+ 
+-		new_component<gui_label_t>( "Winter snowline" );
++		new_component<gui_simlabel_t>( "Winter snowline" );
+ 		snowline_winter.init( sets->get_winter_snowline(), sets->get_groundwater(), 127, gui_numberinput_t::AUTOLINEAR, false );
+ 		snowline_winter.add_listener( this );
+ 		add_component( &snowline_winter );
+ 
+-		new_component<gui_label_t>( "Wind direction" );
++		new_component<gui_simlabel_t>( "Wind direction" );
+ 		wind_dir.set_focusable( false );
+ 		for( int i = 0; i < 4; i++ ) {
+ 			wind_dir.new_component<gui_scrolled_list_t::const_text_scrollitem_t>( translator::translate( wind_dir_text[i] ), SYSCOL_TEXT );
+@@ -82,12 +82,12 @@ climate_gui_t::climate_gui_t(settings_t* const sets_par) :
+ 			climate_borders_ui[i][0].init( sets->get_climate_borders( i + 1, 0 ), sets->get_groundwater(), 127, gui_numberinput_t::AUTOLINEAR, false );
+ 			climate_borders_ui[i][0].add_listener( this );
+ 			height_climate.add_component( &(climate_borders_ui[i][0]) );
+-			height_climate.new_component<gui_label_t>( ground_desc_t::get_climate_name_from_bit( (climate)(i + 1) ) );
++			height_climate.new_component<gui_simlabel_t>( ground_desc_t::get_climate_name_from_bit( (climate)(i + 1) ) );
+ 			climate_borders_ui[i][1].init( sets->get_climate_borders( i + 1, 1 ), sets->get_climate_borders( i + 1, 0 ), 127, gui_numberinput_t::AUTOLINEAR, false );
+ 			climate_borders_ui[i][1].add_listener( this );
+ 			height_climate.add_component( &(climate_borders_ui[i][1]) );
+ 		}
+-		height_climate.new_component_span<gui_label_t>( "climate area percentage", 2 );
++		height_climate.new_component_span<gui_simlabel_t>( "climate area percentage", 2 );
+ 		patch_size.init( sets->get_patch_size_percentage(), 0, 100, gui_numberinput_t::AUTOLINEAR, false );
+ 		patch_size.add_listener( this );
+ 		height_climate.add_component( &patch_size );
+@@ -95,17 +95,17 @@ climate_gui_t::climate_gui_t(settings_t* const sets_par) :
+ 
+ 	humidity_climate.set_table_layout(3,0);
+ 	{
+-		humidity_climate.new_component_span<gui_label_t>( "moisture land", 2 );
++		humidity_climate.new_component_span<gui_simlabel_t>( "moisture land", 2 );
+ 		moistering.init( 1, 0, 10, gui_numberinput_t::AUTOLINEAR, false );
+ 		moistering.add_listener( this );
+ 		humidity_climate.add_component( &moistering );
+ 
+-		humidity_climate.new_component_span<gui_label_t>( "moisture water", 2 );
++		humidity_climate.new_component_span<gui_simlabel_t>( "moisture water", 2 );
+ 		moistering_water.init( 1, 0, 10, gui_numberinput_t::AUTOLINEAR, false );
+ 		moistering_water.add_listener( this );
+ 		humidity_climate.add_component( &moistering_water );
+ 
+-		humidity_climate.new_component<gui_label_t>( "humidities" );
++		humidity_climate.new_component<gui_simlabel_t>( "humidities" );
+ 		humidities[0].init( sets->get_desert_humidity(), 0, 100, gui_numberinput_t::AUTOLINEAR, false );
+ 		humidities[0].add_listener( this );
+ 		humidity_climate.add_component( &humidities[0] );
+@@ -113,7 +113,7 @@ climate_gui_t::climate_gui_t(settings_t* const sets_par) :
+ 		humidities[1].add_listener( this );
+ 		humidity_climate.add_component( &humidities[1] );
+ 
+-		humidity_climate.new_component_span<gui_label_t>( "temperature borders", 3 );
++		humidity_climate.new_component_span<gui_simlabel_t>( "temperature borders", 3 );
+ 
+ 		// other climate borders ...
+ 		for(  int i=0;  i<5;  i++  ) {
+@@ -124,7 +124,7 @@ climate_gui_t::climate_gui_t(settings_t* const sets_par) :
+ 		humidity_climate.new_component<gui_empty_t>();
+ 
+ 		// summer snowline (actually setting arctic broders)
+-		humidity_climate.new_component_span<gui_label_t>( "Summer snowline", 2 );
++		humidity_climate.new_component_span<gui_simlabel_t>( "Summer snowline", 2 );
+ 		snowline_summer.init( sets->get_climate_borders(arctic_climate,1), sets->get_groundwater(), 127, gui_numberinput_t::AUTOLINEAR, false );
+ 		snowline_summer.add_listener( this );
+ 		humidity_climate.add_component( &snowline_summer );
+@@ -132,7 +132,7 @@ climate_gui_t::climate_gui_t(settings_t* const sets_par) :
+ 
+ 	add_table(2,0);
+ 	{
+-		new_component<gui_label_t>("Trees");
++		new_component<gui_simlabel_t>("Trees");
+ 		tree.set_focusable( false );
+ 		tree.new_component<gui_scrolled_list_t::const_text_scrollitem_t>( translator::translate( "none" ), SYSCOL_TEXT );
+ 		tree.new_component<gui_scrolled_list_t::const_text_scrollitem_t>( translator::translate( "random" ), SYSCOL_TEXT );
+@@ -141,22 +141,22 @@ climate_gui_t::climate_gui_t(settings_t* const sets_par) :
+ 		add_component( &tree );
+ 		tree.add_listener( this );
+ 
+-		new_component<gui_label_t>("Lake height");
++		new_component<gui_simlabel_t>("Lake height");
+ 		lake.init( sets->lake_height, sets->get_groundwater(), 127, gui_numberinput_t::AUTOLINEAR, false );
+ 		lake.add_listener( this );
+ 		add_component( &lake );
+ 
+-		new_component<gui_label_t>("Number of rivers");
++		new_component<gui_simlabel_t>("Number of rivers");
+ 		river_n.init( sets->get_river_number(), 0, 1024, gui_numberinput_t::POWER2, false );
+ 		river_n.add_listener(this);
+ 		add_component( &river_n );
+ 
+-		new_component<gui_label_t>("minimum length of rivers");
++		new_component<gui_simlabel_t>("minimum length of rivers");
+ 		river_min.init( sets->get_min_river_length(), 0, max(16,sets->get_max_river_length())-16, gui_numberinput_t::AUTOLINEAR, false );
+ 		river_min.add_listener(this);
+ 		add_component( &river_min );
+ 
+-		new_component<gui_label_t>("maximum length of rivers");
++		new_component<gui_simlabel_t>("maximum length of rivers");
+ 		river_max.init( sets->get_max_river_length(), sets->get_min_river_length()+16, 1024, gui_numberinput_t::AUTOLINEAR, false );
+ 		river_max.add_listener(this);
+ 		add_component( &river_max );
+diff --git a/src/simutrans/gui/components/gui_convoiinfo.cc b/src/simutrans/gui/components/gui_convoiinfo.cc
+index f5f6d2f3f..6f159892c 100644
+--- a/src/simutrans/gui/components/gui_convoiinfo.cc
++++ b/src/simutrans/gui/components/gui_convoiinfo.cc
+@@ -79,7 +79,7 @@ gui_convoiinfo_t::gui_convoiinfo_t(convoihandle_t cnv)
+ 
+ 		add_table(2,1);
+ 		{
+-			new_component<gui_label_t>("Gewinn");
++			new_component<gui_simlabel_t>("Gewinn");
+ 			add_component(&label_profit);
+ 		}
+ 		end_table();
+diff --git a/src/simutrans/gui/components/gui_convoiinfo.h b/src/simutrans/gui/components/gui_convoiinfo.h
+index c425a6570..808bb0aac 100644
+--- a/src/simutrans/gui/components/gui_convoiinfo.h
++++ b/src/simutrans/gui/components/gui_convoiinfo.h
+@@ -26,7 +26,7 @@ private:
+ 	convoihandle_t cnv;
+ 
+ 	gui_speedbar_t filled_bar;
+-	gui_label_t label_name, label_next_halt;
++	gui_simlabel_t label_name, label_next_halt;
+ 	gui_label_buf_t label_line, label_profit;
+ 	button_t pos_next_halt;
+ 	gui_aligned_container_t *container_next_halt;
+diff --git a/src/simutrans/gui/components/gui_label.cc b/src/simutrans/gui/components/gui_label.cc
+index f2dd9ec19..f33348c1f 100644
+--- a/src/simutrans/gui/components/gui_label.cc
++++ b/src/simutrans/gui/components/gui_label.cc
+@@ -16,7 +16,7 @@
+ static scr_coord_val separator_width = 0;
+ static scr_coord_val large_money_width = 0;
+ 
+-gui_label_t::gui_label_t(const char* text, PIXVAL color_, align_t align_) :
++gui_simlabel_t::gui_simlabel_t(const char* text, PIXVAL color_, align_t align_) :
+ 	align(align_), tooltip(NULL)
+ {
+ 	separator_width = proportional_string_width( ",00$" );
+@@ -36,18 +36,18 @@ gui_label_t::gui_label_t(const char* text, PIXVAL color_, align_t align_) :
+ }
+ 
+ 
+-scr_size gui_label_t::get_min_size() const
++scr_size gui_simlabel_t::get_min_size() const
+ {
+ 	return scr_size( text ? display_calc_proportional_string_len_width(text,strlen(text)) : D_BUTTON_WIDTH, D_LABEL_HEIGHT );
+ }
+ 
+-scr_size gui_label_t::get_max_size() const
++scr_size gui_simlabel_t::get_max_size() const
+ {
+ 	return align == left  ? get_min_size() : scr_size(scr_size::inf.w, get_min_size().h);
+ }
+ 
+ 
+-void gui_label_t::set_text(const char *text, bool autosize)
++void gui_simlabel_t::set_text(const char *text, bool autosize)
+ {
+ 	if (text != NULL) {
+ 		set_text_pointer(translator::translate(text), autosize);
+@@ -58,7 +58,7 @@ void gui_label_t::set_text(const char *text, bool autosize)
+ }
+ 
+ 
+-void gui_label_t::set_text_pointer(const char *text_par, bool autosize)
++void gui_simlabel_t::set_text_pointer(const char *text_par, bool autosize)
+ {
+ 	text = text_par;
+ 
+@@ -68,7 +68,7 @@ void gui_label_t::set_text_pointer(const char *text_par, bool autosize)
+ }
+ 
+ 
+-void gui_label_t::draw(scr_coord offset)
++void gui_simlabel_t::draw(scr_coord offset)
+ {
+ 	if(  align == money_right) {
+ 		if(text) {
+@@ -124,7 +124,7 @@ void gui_label_t::draw(scr_coord offset)
+ 	}
+ }
+ 
+-void gui_label_t::set_tooltip(const char * t)
++void gui_simlabel_t::set_tooltip(const char * t)
+ {
+ 	tooltip = t;
+ }
+@@ -132,7 +132,7 @@ void gui_label_t::set_tooltip(const char * t)
+ 
+ void gui_label_buf_t::init(PIXVAL color_par, align_t align_par)
+ {
+-	gui_label_t::init(NULL, get_pos(), color_par, align_par);
++	gui_simlabel_t::init(NULL, get_pos(), color_par, align_par);
+ 	buf_changed = false;
+ }
+ 
+@@ -141,7 +141,7 @@ void gui_label_buf_t::update()
+ {
+ 	buffer_read = buffer_write;
+ 	buffer_write.clear();
+-	gui_label_t::set_text_pointer( (const char*)buffer_read, false /*no autoresize*/ );
++	gui_simlabel_t::set_text_pointer( (const char*)buffer_read, false /*no autoresize*/ );
+ 	buf_changed = false;
+ }
+ 
+@@ -151,7 +151,7 @@ void gui_label_buf_t::draw(scr_coord offset)
+ 	if (buf_changed) {
+ 		update();
+ 	}
+-	gui_label_t::draw(offset);
++	gui_simlabel_t::draw(offset);
+ }
+ 
+ 
+@@ -163,7 +163,7 @@ void gui_label_buf_t::set_min_width(scr_coord_val w)
+ 
+ scr_size gui_label_buf_t::get_min_size() const
+ {
+-	scr_size min_size = gui_label_t::get_min_size();
++	scr_size min_size = gui_simlabel_t::get_min_size();
+ 	min_size.w = max(min_size.w, min_width);
+ 	return min_size;
+ }
+diff --git a/src/simutrans/gui/components/gui_label.h b/src/simutrans/gui/components/gui_label.h
+index e1b6e0079..beec059b7 100644
+--- a/src/simutrans/gui/components/gui_label.h
++++ b/src/simutrans/gui/components/gui_label.h
+@@ -18,7 +18,7 @@
+  * The label component
+  * just displays a text, will be auto-translated
+  */
+-class gui_label_t : virtual public gui_component_t
++class gui_simlabel_t : virtual public gui_component_t
+ {
+ public:
+ 	enum align_t {
+@@ -46,7 +46,7 @@ protected:
+ 	using gui_component_t::init;
+ 
+ public:
+-	gui_label_t(const char* text=NULL, PIXVAL color=SYSCOL_TEXT, align_t align=left);
++	gui_simlabel_t(const char* text=NULL, PIXVAL color=SYSCOL_TEXT, align_t align=left);
+ 
+ 	void init( const char* text_par, scr_coord pos_par, PIXVAL color_par=SYSCOL_TEXT, align_t align_par=left) {
+ 		set_pos  ( pos_par   );
+@@ -113,14 +113,14 @@ public:
+ /**
+  * Label with own buffer.
+  */
+-class gui_label_buf_t : public gui_label_t
++class gui_label_buf_t : public gui_simlabel_t
+ {
+ 	bool buf_changed;
+ 	cbuffer_t buffer_write, buffer_read;
+ 	scr_coord_val min_width = 0;
+ 
+ public:
+-	gui_label_buf_t(PIXVAL color=SYSCOL_TEXT, align_t align=left) : gui_label_t(NULL, color, align), buf_changed(true) { }
++	gui_label_buf_t(PIXVAL color=SYSCOL_TEXT, align_t align=left) : gui_simlabel_t(NULL, color, align), buf_changed(true) { }
+ 
+ 	void init(PIXVAL color_par=SYSCOL_TEXT, align_t align_par=left);
+ 
+@@ -152,9 +152,9 @@ public:
+ 	scr_size get_min_size() const OVERRIDE;
+ 
+ protected:
+-	using gui_label_t::get_text_pointer;
+-	using gui_label_t::set_text;
+-	using gui_label_t::set_text_pointer;
++	using gui_simlabel_t::get_text_pointer;
++	using gui_simlabel_t::set_text;
++	using gui_simlabel_t::set_text_pointer;
+ };
+ 
+ #endif
+diff --git a/src/simutrans/gui/components/gui_schedule.h b/src/simutrans/gui/components/gui_schedule.h
+index c60a65602..0ece695fe 100644
+--- a/src/simutrans/gui/components/gui_schedule.h
++++ b/src/simutrans/gui/components/gui_schedule.h
+@@ -42,7 +42,7 @@ private:
+ 	// always needed
+ 	button_t bt_revert, bt_return, bt_remove_double;
+ 
+-	gui_label_t lb_load_str, lb_departure_str;
++	gui_simlabel_t lb_load_str, lb_departure_str;
+ 	gui_numberinput_t numimp_load;
+ 	gui_combobox_t cb_wait, insert_mode;
+ 
+diff --git a/src/simutrans/gui/components/gui_scrolled_list.h b/src/simutrans/gui/components/gui_scrolled_list.h
+index f0c897a75..80fa1b6e0 100644
+--- a/src/simutrans/gui/components/gui_scrolled_list.h
++++ b/src/simutrans/gui/components/gui_scrolled_list.h
+@@ -74,10 +74,10 @@ public:
+ 	/**
+ 	 * Text entry, non-editable
+ 	 */
+-	class const_text_scrollitem_t : public gui_label_t, public scrollitem_t
++	class const_text_scrollitem_t : public gui_simlabel_t, public scrollitem_t
+ 	{
+ 	public:
+-		const_text_scrollitem_t(char const* const t, PIXVAL const col) : gui_label_t(NULL, col) { set_text_pointer(t); }
++		const_text_scrollitem_t(char const* const t, PIXVAL const col) : gui_simlabel_t(NULL, col) { set_text_pointer(t); }
+ 
+ 		char const* get_text() const OVERRIDE { return get_text_pointer(); }
+ 
+@@ -88,9 +88,9 @@ public:
+ 
+ 		void draw(scr_coord pos) OVERRIDE;
+ 
+-		using gui_label_t::get_color;
++		using gui_simlabel_t::get_color;
+ 	private:
+-		using gui_label_t::set_text;
++		using gui_simlabel_t::set_text;
+ 
+ 	};
+ 
+diff --git a/src/simutrans/gui/components/gui_timeinput.cc b/src/simutrans/gui/components/gui_timeinput.cc
+index f8900bf12..8602bc790 100644
+--- a/src/simutrans/gui/components/gui_timeinput.cc
++++ b/src/simutrans/gui/components/gui_timeinput.cc
+@@ -31,7 +31,7 @@ gui_timeinput_t::gui_timeinput_t(const char *)
+ 	hours.allow_tooltip(false);
+ 	add_component(&hours);
+ 
+-	new_component<gui_label_t>(":");
++	new_component<gui_simlabel_t>(":");
+ 
+ 	minutes.init(0, 0, 59);
+ 	minutes.add_listener(this);
+diff --git a/src/simutrans/gui/convoi_detail.cc b/src/simutrans/gui/convoi_detail.cc
+index 7cbf2972d..048b2976c 100644
+--- a/src/simutrans/gui/convoi_detail.cc
++++ b/src/simutrans/gui/convoi_detail.cc
+@@ -49,7 +49,7 @@ public:
+ 		add_table(1,0);
+ 		{
+ 			// name
+-			new_component<gui_label_t>( v->get_desc()->get_name(), world()->use_timeline()  &&  v->get_desc()->is_retired(month_now) ? SYSCOL_OBSOLETE : SYSCOL_TEXT);
++			new_component<gui_simlabel_t>( v->get_desc()->get_name(), world()->use_timeline()  &&  v->get_desc()->is_retired(month_now) ? SYSCOL_OBSOLETE : SYSCOL_TEXT);
+ 			// age
+ 			gui_label_buf_t* l = new_component<gui_label_buf_t>();
+ 			const sint32 month = v->get_purchase_time();
+@@ -67,7 +67,7 @@ public:
+ 			}
+ 			add_table(2,1);
+ 			{
+-				new_component<gui_label_t>("Max income:");
++				new_component<gui_simlabel_t>("Max income:");
+ 				l = new_component<gui_label_buf_t>();
+ 				l->buf().append_money(max_income/100.0);
+ 				l->update();
+diff --git a/src/simutrans/gui/convoi_frame.cc b/src/simutrans/gui/convoi_frame.cc
+index b1a79b3f5..648f553fd 100644
+--- a/src/simutrans/gui/convoi_frame.cc
++++ b/src/simutrans/gui/convoi_frame.cc
+@@ -207,7 +207,7 @@ convoi_frame_t::convoi_frame_t() :
+ 
+ 	add_table(4,2);
+ 	{
+-		new_component<gui_label_t>("Filter:");
++		new_component<gui_simlabel_t>("Filter:");
+ 		name_filter_input.set_text( name_filter, lengthof(name_filter) );
+ 		add_component(&name_filter_input);
+ 		name_filter_input.add_listener(this);
+@@ -217,7 +217,7 @@ convoi_frame_t::convoi_frame_t() :
+ 		add_component(&filter_details);
+ 		new_component<gui_fill_t>();
+ 
+-		new_component<gui_label_t>("cl_txt_sort");
++		new_component<gui_simlabel_t>("cl_txt_sort");
+ 		sortedby.set_unsorted(); // do not sort
+ 		for(  size_t i=0;  i < lengthof(sort_text);  i++  ) {
+ 			sortedby.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate(sort_text[i]),SYSCOL_TEXT);
+diff --git a/src/simutrans/gui/convoi_info.cc b/src/simutrans/gui/convoi_info.cc
+index 52effeccf..f8a16ea08 100644
+--- a/src/simutrans/gui/convoi_info.cc
++++ b/src/simutrans/gui/convoi_info.cc
+@@ -113,8 +113,8 @@ void convoi_info_t::init(convoihandle_t cnv)
+ 			add_component(&speed_bar);
+ 			end_table();
+ 			add_table(3,1);
+-			new_component<gui_label_t>("Gewinn");
+-			profit_label.set_align(gui_label_t::left);
++			new_component<gui_simlabel_t>("Gewinn");
++			profit_label.set_align(gui_simlabel_t::left);
+ 			add_component(&profit_label);
+ 			add_component(&running_cost_label);
+ 			end_table();
+@@ -148,7 +148,7 @@ void convoi_info_t::init(convoihandle_t cnv)
+ 	container_freight.set_table_layout(1,0);
+ 	container_freight.add_table(2,1);
+ 	{
+-		container_freight.new_component<gui_label_t>("loaded passenger/freight");
++		container_freight.new_component<gui_simlabel_t>("loaded passenger/freight");
+ 
+ 		sort_button.init(button_t::roundbox, sort_text[env_t::default_sortmode]);
+ 		sort_button.set_tooltip("Sort by");
+@@ -165,7 +165,7 @@ void convoi_info_t::init(convoihandle_t cnv)
+ 
+ 	container_schedule.add_table( 3, 1 );
+ 	{
+-		container_schedule.new_component<gui_label_t>("Serves Line:");
++		container_schedule.new_component<gui_simlabel_t>("Serves Line:");
+ 		line_selector.clear_elements();
+ 		container_schedule.add_component(&line_selector);
+ 		line_selector.add_listener(this);
+diff --git a/src/simutrans/gui/curiosity_edit.cc b/src/simutrans/gui/curiosity_edit.cc
+index 86589063a..3389f396f 100644
+--- a/src/simutrans/gui/curiosity_edit.cc
++++ b/src/simutrans/gui/curiosity_edit.cc
+@@ -120,7 +120,7 @@ curiosity_edit_frame_t::curiosity_edit_frame_t(player_t* player_) :
+ 
+ 	// rotation
+ 	gui_aligned_container_t *tbl = cont_options.add_table(2,0);
+-	tbl->new_component<gui_label_t>("Rotation");
++	tbl->new_component<gui_simlabel_t>("Rotation");
+ 	tbl->add_component(&cb_rotation);
+ 	cb_rotation.add_listener(this);
+ 	cb_rotation.new_component<gui_rotation_item_t>(gui_rotation_item_t::random);
+diff --git a/src/simutrans/gui/curiositylist_frame.cc b/src/simutrans/gui/curiositylist_frame.cc
+index 5865ef2ca..ca3362c57 100644
+--- a/src/simutrans/gui/curiositylist_frame.cc
++++ b/src/simutrans/gui/curiositylist_frame.cc
+@@ -40,7 +40,7 @@ curiositylist_frame_t::curiositylist_frame_t() :
+ 	set_table_layout(1,0);
+ 	add_table(3, 3);
+ 	{
+-		new_component<gui_label_t>("Filter:");
++		new_component<gui_simlabel_t>("Filter:");
+ 		name_filter_input.set_text(name_filter, lengthof(name_filter));
+ 		add_component(&name_filter_input);
+ 		new_component<gui_fill_t>();
+@@ -63,7 +63,7 @@ curiositylist_frame_t::curiositylist_frame_t() :
+ 		add_component(&filterowner);
+ 		new_component<gui_fill_t>();
+ 
+-		new_component<gui_label_t>("hl_txt_sort");
++		new_component<gui_simlabel_t>("hl_txt_sort");
+ 		sortedby.set_unsorted(); // do not sort
+ 		for (size_t i = 0; i < lengthof(sort_text); i++) {
+ 			sortedby.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate(sort_text[i]), SYSCOL_TEXT);
+diff --git a/src/simutrans/gui/depot_frame.cc b/src/simutrans/gui/depot_frame.cc
+index 6a2f40be8..5b3837db2 100644
+--- a/src/simutrans/gui/depot_frame.cc
++++ b/src/simutrans/gui/depot_frame.cc
+@@ -212,7 +212,7 @@ void depot_frame_t::init(depot_t *dep)
+ 	line_button.add_listener(this);
+ 	add_component(&line_button);
+ 
+-	new_component<gui_label_t>("Serves Line:", SYSCOL_TEXT, gui_label_t::left);
++	new_component<gui_simlabel_t>("Serves Line:", SYSCOL_TEXT, gui_simlabel_t::left);
+ 	/*
+ 	* [SELECT ROUTE]:
+ 	*/
+@@ -307,7 +307,7 @@ void depot_frame_t::init(depot_t *dep)
+ 		gui_aligned_container_t *cont_3cols = new_component_span<gui_aligned_container_t>(3,0,3);
+ 		cont_3cols->add_component(&lb_convoi_count);
+ 		cont_3cols->new_component<gui_fill_t>();
+-		cont_3cols->new_component<gui_label_t>("Fahrzeuge:", SYSCOL_TEXT, gui_label_t::right);
++		cont_3cols->new_component<gui_simlabel_t>("Fahrzeuge:", SYSCOL_TEXT, gui_simlabel_t::right);
+ 	}
+ 	bt_veh_action.set_typ(button_t::roundbox | button_t::flexible);
+ 	bt_veh_action.add_listener(this);
+@@ -329,12 +329,12 @@ void depot_frame_t::init(depot_t *dep)
+ 			cont_4cols->new_component<gui_fill_t>();
+ 		}
+ 
+-		cont_4cols->new_component<gui_label_t>("Filter:", SYSCOL_TEXT, gui_label_t::right);
++		cont_4cols->new_component<gui_simlabel_t>("Filter:", SYSCOL_TEXT, gui_simlabel_t::right);
+ 
+ 		vehicle_filter.add_listener(this);
+ 		cont_4cols->add_component(&vehicle_filter);
+ 
+-		cont_4cols->new_component<gui_label_t>("Search:", SYSCOL_TEXT, gui_label_t::right);
++		cont_4cols->new_component<gui_simlabel_t>("Search:", SYSCOL_TEXT, gui_simlabel_t::right);
+ 	}
+ 	name_filter_input.set_text(name_filter_value, 60);
+ 	add_component(&name_filter_input);
+@@ -351,7 +351,7 @@ void depot_frame_t::init(depot_t *dep)
+ 
+ 		cont_3cols->add_component(&bt_show_all);
+ 		cont_3cols->new_component<gui_fill_t>();
+-		cont_3cols->new_component<gui_label_t>("Sort by:", SYSCOL_TEXT, gui_label_t::right);
++		cont_3cols->new_component<gui_simlabel_t>("Sort by:", SYSCOL_TEXT, gui_simlabel_t::right);
+ 	}
+ 	sort_by.add_listener(this);
+ 	add_component(&sort_by);
+diff --git a/src/simutrans/gui/display_settings.cc b/src/simutrans/gui/display_settings.cc
+index 3e62f6f4a..44a595c11 100644
+--- a/src/simutrans/gui/display_settings.cc
++++ b/src/simutrans/gui/display_settings.cc
+@@ -58,11 +58,11 @@ static button_t buttons[COLORS_MAX_BUTTONS];
+ * class to visualize station names
+ 	IDBTN_SHOW_FACTORY_STORAGE,
+ */
+-class gui_label_stationname_t : public gui_label_t
++class gui_label_stationname_t : public gui_simlabel_t
+ {
+ 	karte_ptr_t welt;
+ public:
+-	gui_label_stationname_t(const char* text) : gui_label_t(text) {}
++	gui_label_stationname_t(const char* text) : gui_simlabel_t(text) {}
+ 
+ 	void draw(scr_coord offset) OVERRIDE
+ 	{
+@@ -76,7 +76,7 @@ public:
+ 
+ 	scr_size get_min_size() const OVERRIDE
+ 	{
+-		return gui_label_t::get_min_size() + scr_size(LINESPACE + D_H_SPACE, 4);
++		return gui_simlabel_t::get_min_size() + scr_size(LINESPACE + D_H_SPACE, 4);
+ 	}
+ };
+ 
+@@ -94,7 +94,7 @@ gui_settings_t::gui_settings_t()
+ 	add_component( buttons + IDBTN_CHANGE_FONT, 3 );
+ 
+ 	// screen scale number input
+-	new_component<gui_label_t>("Screen scale:");
++	new_component<gui_simlabel_t>("Screen scale:");
+ 
+ 	add_table(2,0);
+ 	{
+@@ -111,7 +111,7 @@ gui_settings_t::gui_settings_t()
+ 	new_component<gui_fill_t>();
+ 
+ 	// position of menu
+-	new_component<gui_label_t>("Toolbar position:");
++	new_component<gui_simlabel_t>("Toolbar position:");
+ 	switch (env_t::menupos) {
+ 		case MENU_TOP: toolbar_pos.init(button_t::arrowup, NULL); break;
+ 		case MENU_LEFT: toolbar_pos.init(button_t::arrowleft, NULL); break;
+@@ -139,22 +139,22 @@ gui_settings_t::gui_settings_t()
+ 	add_component( &borderless, 3 );
+ 
+ 	// Frame time label
+-	new_component<gui_label_t>("Frame time:");
++	new_component<gui_simlabel_t>("Frame time:");
+ 	frame_time_value_label.buf().printf(" 9999 ms");
+ 	frame_time_value_label.update();
+ 	add_component( &frame_time_value_label, 2 );
+ 	// Idle time label
+-	new_component<gui_label_t>("Idle:");
++	new_component<gui_simlabel_t>("Idle:");
+ 	idle_time_value_label.buf().printf(" 9999 ms");
+ 	idle_time_value_label.update();
+ 	add_component( &idle_time_value_label, 2 );
+ 	// FPS label
+-	new_component<gui_label_t>("FPS:");
++	new_component<gui_simlabel_t>("FPS:");
+ 	fps_value_label.buf().printf(" 99.9 fps");
+ 	fps_value_label.update();
+ 	add_component( &fps_value_label, 2 );
+ 	// Simloops label
+-	new_component<gui_label_t>("Sim:");
++	new_component<gui_simlabel_t>("Sim:");
+ 	simloops_value_label.buf().printf(" 999.9");
+ 	simloops_value_label.update();
+ 	add_component( &simloops_value_label, 2 );
+@@ -242,7 +242,7 @@ map_settings_t::map_settings_t()
+ 	add_component( buttons + IDBTN_DAY_NIGHT_CHANGE, 2 );
+ 
+ 	// Brightness label
+-	new_component<gui_label_t>( "1LIGHT_CHOOSE" );
++	new_component<gui_simlabel_t>( "1LIGHT_CHOOSE" );
+ 
+ 	// brightness edit
+ 	brightness.set_value( env_t::daynight_level );
+@@ -265,14 +265,14 @@ map_settings_t::map_settings_t()
+ 	add_component(buttons + IDBTN_INFINITE_SCROLL, 2);
+ 
+ 	// scroll with genral tool selected if moved above a threshold
+-	new_component<gui_label_t>("Scroll threshold");
++	new_component<gui_simlabel_t>("Scroll threshold");
+ 
+ 	scroll_threshold.init(env_t::scroll_threshold, 1, 64, 1, false);
+ 	scroll_threshold.add_listener(this);
+ 	add_component(&scroll_threshold);
+ 
+ 	// Scroll speed label
+-	new_component<gui_label_t>( "3LIGHT_CHOOSE" );
++	new_component<gui_simlabel_t>( "3LIGHT_CHOOSE" );
+ 
+ 	// Scroll speed edit
+ 	scrollspeed.set_value( abs( env_t::scroll_multi ) );
+@@ -287,7 +287,7 @@ map_settings_t::map_settings_t()
+ #endif
+ 
+ 	// Set date format
+-	new_component<gui_label_t>( "Date format" );
++	new_component<gui_simlabel_t>( "Date format" );
+ 	time_setting.set_focusable( false );
+ 	uint8 old_show_month = env_t::show_month;
+ 	sint32 current_tick = world()->get_ticks();
+@@ -362,7 +362,7 @@ transparency_settings_t::transparency_settings_t()
+ 	cursor_hide_range.add_listener( this );
+ 	add_component( &cursor_hide_range );
+ 
+-	new_component<gui_label_t>( "Industry overlay" )->set_tooltip( translator::translate( "Display bars above factory to show the status" ) );
++	new_component<gui_simlabel_t>( "Industry overlay" )->set_tooltip( translator::translate( "Display bars above factory to show the status" ) );
+ 	factory_tooltip.set_focusable( false );
+ 	factory_tooltip.new_component<gui_scrolled_list_t::const_text_scrollitem_t>( translator::translate( "Do not show" ), SYSCOL_TEXT );
+ 	factory_tooltip.new_component<gui_scrolled_list_t::const_text_scrollitem_t>( translator::translate( "On mouseover" ), SYSCOL_TEXT );
+@@ -447,7 +447,7 @@ traffic_settings_t::traffic_settings_t()
+ 	add_component(buttons+IDBTN_PEDESTRIANS_AT_STOPS, 2);
+ 
+ 	// Traffic density label
+-	new_component<gui_label_t>("6WORLD_CHOOSE");
++	new_component<gui_simlabel_t>("6WORLD_CHOOSE");
+ 
+ 	// Traffic density edit
+ 	traffic_density.set_value(world()->get_settings().get_traffic_level());
+@@ -466,7 +466,7 @@ traffic_settings_t::traffic_settings_t()
+ 	convoy_tooltip.add_listener(this);
+ 
+ 	// Convoy follow mode
+-	new_component<gui_label_t>("Convoi following mode");
++	new_component<gui_simlabel_t>("Convoi following mode");
+ 
+ 	follow_mode.set_focusable(false);
+ 	follow_mode.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate("None"), SYSCOL_TEXT);
+diff --git a/src/simutrans/gui/enlarge_map_frame.cc b/src/simutrans/gui/enlarge_map_frame.cc
+index 9b3471b6c..8e7110f2c 100644
+--- a/src/simutrans/gui/enlarge_map_frame.cc
++++ b/src/simutrans/gui/enlarge_map_frame.cc
+@@ -89,13 +89,13 @@ enlarge_map_frame_t::enlarge_map_frame_t() :
+ 	add_table(2,0);
+ 	{
+ 		// Number of towns
+-		new_component<gui_label_t>("5WORLD_CHOOSE");
++		new_component<gui_simlabel_t>("5WORLD_CHOOSE");
+ 		inp_number_of_towns.add_listener(this);
+ 		inp_number_of_towns.init(abs(sets->get_city_count()), 0, 999);
+ 		add_component( &inp_number_of_towns );
+ 
+ 		// Town size
+-		new_component<gui_label_t>("Median Citizen per town");
++		new_component<gui_simlabel_t>("Median Citizen per town");
+ 		inp_town_size.add_listener(this);
+ 		inp_town_size.set_limits(0,999999);
+ 		inp_town_size.set_increment_mode(50);
+diff --git a/src/simutrans/gui/extend_edit.cc b/src/simutrans/gui/extend_edit.cc
+index d19f99e74..846dbf0d1 100644
+--- a/src/simutrans/gui/extend_edit.cc
++++ b/src/simutrans/gui/extend_edit.cc
+@@ -135,13 +135,13 @@ extend_edit_gui_t::extend_edit_gui_t(const char *name, player_t* player_) :
+ 	bool year_month_order = (  env_t::show_month == env_t::DATE_FMT_JAPANESE || env_t::show_month == env_t::DATE_FMT_JAPANESE_NO_SEASON  );
+ 
+ 	if( !year_month_order ) { // month first then year
+-		cont_timeline.new_component<gui_label_t>("Month");
++		cont_timeline.new_component<gui_simlabel_t>("Month");
+ 		cont_timeline.add_component(&ni_timeline_month);
+ 	}
+-	cont_timeline.new_component<gui_label_t>("Year");
++	cont_timeline.new_component<gui_simlabel_t>("Year");
+ 	cont_timeline.add_component(&ni_timeline_year);
+ 	if( year_month_order ) { // year first then month
+-		cont_timeline.new_component<gui_label_t>("Month");
++		cont_timeline.new_component<gui_simlabel_t>("Month");
+ 		cont_timeline.add_component(&ni_timeline_month);
+ 	}
+ 	ni_timeline_month.init( (sint32)(welt->get_current_month()%12+1), 1, 12, 1, true );
+@@ -156,7 +156,7 @@ extend_edit_gui_t::extend_edit_gui_t(const char *name, player_t* player_) :
+ 
+ 	// start filling cont_filter---------------------------------------------------------------------------------------------
+ 	// climate filter
+-	cont_filter.new_component<gui_label_t>("Climate");
++	cont_filter.new_component<gui_simlabel_t>("Climate");
+ 	cont_filter.add_component(&cb_climates, 2);
+ 	cb_climates.add_listener(this);
+ 	cb_climates.new_component<gui_climates_item_t>(climate::MAX_CLIMATES);
+@@ -166,7 +166,7 @@ extend_edit_gui_t::extend_edit_gui_t(const char *name, player_t* player_) :
+ 	cb_climates.set_selection(0);
+ 
+ 	// Sorting box
+-	cont_filter.new_component<gui_label_t>("Sort by");
++	cont_filter.new_component<gui_simlabel_t>("Sort by");
+ 	cont_filter.add_component(&cb_sortedby);
+ 	sort_order.init(button_t::sortarrow_state, "");
+ 	sort_order.set_tooltip(translator::translate("hl_btn_sort_order"));
+diff --git a/src/simutrans/gui/fabrik_info.cc b/src/simutrans/gui/fabrik_info.cc
+index 69bd2240c..281c737e7 100644
+--- a/src/simutrans/gui/fabrik_info.cc
++++ b/src/simutrans/gui/fabrik_info.cc
+@@ -343,7 +343,7 @@ void fabrik_info_t::update_components()
+ 		all_cities.remove_all();
+ 		all_cities.set_table_layout(6,0);
+ 		all_cities.set_margin(scr_size(0,0), scr_size(0,D_V_SPACE));
+-		all_cities.new_component_span<gui_label_t>(fab->is_end_consumer() ? "Customers live in:" : "Arbeiter aus:", 6);
++		all_cities.new_component_span<gui_simlabel_t>(fab->is_end_consumer() ? "Customers live in:" : "Arbeiter aus:", 6);
+ 		// no new class for entries to get better alignment for columns
+ 		for(stadt_t* const c : fab->get_target_cities()) {
+ 
+@@ -362,13 +362,13 @@ void fabrik_info_t::update_components()
+ 			l = all_cities.new_component<gui_label_buf_t>();
+ 			l->buf().printf("%i", pax_entry->supply);
+ 			l->update();
+-			l->set_align(gui_label_t::right);
++			l->set_align(gui_simlabel_t::right);
+ 			all_cities.new_component<gui_image_t>(skinverwaltung_t::passengers->get_image_id(0))->enable_offset_removal(true);
+ 			// mail
+ 			l = all_cities.new_component<gui_label_buf_t>();
+ 			l->buf().printf("%i", mail_entry->supply);
+ 			l->update();
+-			l->set_align(gui_label_t::right);
++			l->set_align(gui_simlabel_t::right);
+ 			all_cities.new_component<gui_image_t>(skinverwaltung_t::mail->get_image_id(0))->enable_offset_removal(true);
+ 		}
+ 		old_cities_count = fab->get_target_cities().get_count();
+diff --git a/src/simutrans/gui/factory_chart.cc b/src/simutrans/gui/factory_chart.cc
+index 4b71d267c..bb508c3f0 100644
+--- a/src/simutrans/gui/factory_chart.cc
++++ b/src/simutrans/gui/factory_chart.cc
+@@ -93,7 +93,7 @@ static const uint8 ref_color[MAX_FAB_REF_LINE] =
+ 	COL_DARK_GREEN, COL_SOFT_BLUE, COL_OPERATION
+ };
+ 
+-static const char *const label_text[MAX_PROD_LABEL] =
++static const char *const simlabel_text[MAX_PROD_LABEL] =
+ {
+ 	"Boost (%%)", "Max Boost (%%)", "Demand", "Passagiere", "Post", "Power (MW)"
+ };
+@@ -169,11 +169,11 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
+ 
+ 		if (input_count > 0) {
+ 			// create table of buttons, insert curves to chart
+-			goods_cont.new_component_span<gui_label_t>("Verbrauch", 4);
++			goods_cont.new_component_span<gui_simlabel_t>("Verbrauch", 4);
+ 
+ 			const array_tpl<ware_production_t>& input = factory->get_input();
+ 			for (uint32 g = 0; g < input_count; ++g) {
+-				goods_cont.new_component<gui_label_t>(input[g].get_typ()->get_name());
++				goods_cont.new_component<gui_simlabel_t>(input[g].get_typ()->get_name());
+ 				for (int s = 0; s < MAX_FAB_GOODS_STAT; ++s) {
+ 					uint16 curve = goods_chart.add_curve(color_idx_to_rgb(goods_color[count % MAX_GOODS_COLOR] + (s * 3) / 2), input[g].get_stats(), MAX_FAB_GOODS_STAT, s, MAX_MONTH, false, false, true, 0, goods_convert[s]);
+ 
+@@ -195,10 +195,10 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
+ 			}
+ 		}
+ 		if (output_count > 0) {
+-			goods_cont.new_component_span<gui_label_t>("Produktion", 4);
++			goods_cont.new_component_span<gui_simlabel_t>("Produktion", 4);
+ 			const array_tpl<ware_production_t>& output = factory->get_output();
+ 			for (uint32 g = 0; g < output_count; ++g) {
+-				goods_cont.new_component<gui_label_t>(output[g].get_typ()->get_name());
++				goods_cont.new_component<gui_simlabel_t>(output[g].get_typ()->get_name());
+ 				for (int s = 0; s < 3; ++s) {
+ 					uint16 curve = goods_chart.add_curve(color_idx_to_rgb(goods_color[count % MAX_GOODS_COLOR] + s * 2), output[g].get_stats(), MAX_FAB_GOODS_STAT, s, MAX_MONTH, false, false, true, 0, goods_convert[s]);
+ 
+@@ -229,7 +229,7 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
+ 		for(  int col = 0; col<4; col++, cell++) {
+ 			// labels
+ 			if (prod_cell_label[cell] < MAX_PROD_LABEL) {
+-				prod_cont.new_component<gui_label_t>(label_text[ prod_cell_label[cell] ]);
++				prod_cont.new_component<gui_simlabel_t>(simlabel_text[ prod_cell_label[cell] ]);
+ 			}
+ 			// chart, buttons for production
+ 			else if (prod_cell_button[cell] < MAX_FAB_STAT) {
+diff --git a/src/simutrans/gui/factory_edit.cc b/src/simutrans/gui/factory_edit.cc
+index 70bd28f5e..0101fc64f 100644
+--- a/src/simutrans/gui/factory_edit.cc
++++ b/src/simutrans/gui/factory_edit.cc
+@@ -135,12 +135,12 @@ factory_edit_frame_t::factory_edit_frame_t(player_t* player_) :
+ 
+ 	// rotation, production
+ 	gui_aligned_container_t *tbl = cont_options.add_table(2,2);
+-	tbl->new_component<gui_label_t>("Rotation");
++	tbl->new_component<gui_simlabel_t>("Rotation");
+ 	tbl->add_component(&cb_rotation);
+ 	cb_rotation.add_listener(this);
+ 	cb_rotation.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate("random"), SYSCOL_TEXT) ;
+ 
+-	tbl->new_component<gui_label_t>("Produktion");
++	tbl->new_component<gui_simlabel_t>("Produktion");
+ 
+ 	inp_production.set_limits(0,9999);
+ 	inp_production.add_listener( this );
+diff --git a/src/simutrans/gui/factorylist_frame.cc b/src/simutrans/gui/factorylist_frame.cc
+index d2eaaa5a8..a233e78dc 100644
+--- a/src/simutrans/gui/factorylist_frame.cc
++++ b/src/simutrans/gui/factorylist_frame.cc
+@@ -39,7 +39,7 @@ factorylist_frame_t::factorylist_frame_t() :
+ 	set_table_layout(1, 0);
+ 	add_table(3, 3);
+ 	{
+-		new_component<gui_label_t>("Filter:");
++		new_component<gui_simlabel_t>("Filter:");
+ 		name_filter_input.set_text(name_filter, lengthof(name_filter));
+ 		add_component(&name_filter_input);
+ 		new_component<gui_fill_t>();
+@@ -62,7 +62,7 @@ factorylist_frame_t::factorylist_frame_t() :
+ 		add_component(&filterowner);
+ 		new_component<gui_fill_t>();
+ 
+-		new_component_span<gui_label_t>("hl_txt_sort", 1);
++		new_component_span<gui_simlabel_t>("hl_txt_sort", 1);
+ 		sortedby.set_unsorted(); // do not sort
+ 		for (size_t i = 0; i < lengthof(sort_text); i++) {
+ 			sortedby.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate(sort_text[i]), SYSCOL_TEXT);
+diff --git a/src/simutrans/gui/goods_frame.cc b/src/simutrans/gui/goods_frame.cc
+index 132ec2b91..1d706306e 100644
+--- a/src/simutrans/gui/goods_frame.cc
++++ b/src/simutrans/gui/goods_frame.cc
+@@ -79,7 +79,7 @@ goods_frame_t::goods_frame_t() :
+ 	// sort mode
+ 	sort_row = add_table(3,1);
+ 	{
+-		new_component<gui_label_t>("hl_txt_sort");
++		new_component<gui_simlabel_t>("hl_txt_sort");
+ 
+ 		sortedby.set_unsorted(); // do not sort
+ 		for (size_t i = 0; i < lengthof(sort_text); i++) {
+diff --git a/src/simutrans/gui/goods_stats.cc b/src/simutrans/gui/goods_stats.cc
+index cf61c7b9e..6345813b4 100644
+--- a/src/simutrans/gui/goods_stats.cc
++++ b/src/simutrans/gui/goods_stats.cc
+@@ -28,23 +28,23 @@ void goods_stats_t::update_goodslist(vector_tpl<const goods_desc_t*>goods, int b
+ 	for(const goods_desc_t* wtyp : goods) {
+ 
+ 		new_component<gui_colorbox_t>(wtyp->get_color())->set_max_size(scr_size(D_INDICATOR_WIDTH, D_INDICATOR_HEIGHT));
+-		new_component<gui_label_t>(wtyp->get_name());
++		new_component<gui_simlabel_t>(wtyp->get_name());
+ 
+ 		const sint32 grundwert128 = (sint32)wtyp->get_value() * welt->get_settings().get_bonus_basefactor(); // bonus price will be always at least this
+ 		const sint32 grundwert_bonus = (sint32)wtyp->get_value()*(1000l+(bonus-100l)*wtyp->get_speed_bonus());
+ 		const sint32 price = (grundwert128>grundwert_bonus ? grundwert128 : grundwert_bonus);
+ 
+-		gui_label_buf_t *lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_label_t::right);
++		gui_label_buf_t *lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_simlabel_t::right);
+ 		lb->buf().append_money(price/300000.0);
+ 		lb->update();
+ 
+-		lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_label_t::right);
++		lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_simlabel_t::right);
+ 		lb->buf().printf("%d%%", wtyp->get_speed_bonus());
+ 		lb->update();
+ 
+-		new_component<gui_label_t>(wtyp->get_catg_name());
++		new_component<gui_simlabel_t>(wtyp->get_catg_name());
+ 
+-		lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_label_t::right);
++		lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_simlabel_t::right);
+ 		lb->buf().printf("%dKg", wtyp->get_weight_per_unit());
+ 		lb->update();
+ 	}
+diff --git a/src/simutrans/gui/halt_info.cc b/src/simutrans/gui/halt_info.cc
+index 86602026e..27b229278 100644
+--- a/src/simutrans/gui/halt_info.cc
++++ b/src/simutrans/gui/halt_info.cc
+@@ -161,13 +161,13 @@ private:
+ 	uint32 cached_convoy_count;
+ 
+ 	void insert_empty_row() {
+-		new_component<gui_label_t>("     ");
++		new_component<gui_simlabel_t>("     ");
+ 		new_component<gui_empty_t>();
+ 	}
+ 
+ 	void insert_show_nothing() {
+ 		new_component<gui_empty_t>();
+-		new_component<gui_label_t>("keine");
++		new_component<gui_simlabel_t>("keine");
+ 	}
+ 
+ public:
+@@ -378,7 +378,7 @@ void halt_info_t::init(halthandle_t halt)
+ 	// sort mode
+ 	container_freight.set_table_layout(1,0);
+ 	container_freight.add_table(2,1);
+-	container_freight.new_component<gui_label_t>("Sort waiting list by");
++	container_freight.new_component<gui_simlabel_t>("Sort waiting list by");
+ 
+ 	// added sort_button
+ 	sort_button.init(button_t::roundbox, sort_text[env_t::default_sortmode]);
+@@ -551,7 +551,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
+ 	slist_tpl<const goods_desc_t *> nimmt_an;
+ 
+ 	set_table_layout(2,0);
+-	new_component_span<gui_label_t>("Fabrikanschluss", 2);
++	new_component_span<gui_simlabel_t>("Fabrikanschluss", 2);
+ 
+ 	if (!fab_list.empty()) {
+ 		for(fabrik_t* const fab : fab_list) {
+@@ -580,7 +580,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
+ 	}
+ 
+ 	insert_empty_row();
+-	new_component_span<gui_label_t>("Angenommene Waren", 2);
++	new_component_span<gui_simlabel_t>("Angenommene Waren", 2);
+ 
+ 	if (!nimmt_an.empty()  &&  halt->get_ware_enabled()) {
+ 		for(uint32 i=0; i<goods_manager_t::get_count(); i++) {
+@@ -588,7 +588,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
+ 			if(nimmt_an.is_contained(ware)) {
+ 
+ 				new_component<gui_empty_t>();
+-				new_component<gui_label_t>(ware->get_name());
++				new_component<gui_simlabel_t>(ware->get_name());
+ 			}
+ 		}
+ 	}
+@@ -598,7 +598,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
+ 
+ 	insert_empty_row();
+ 	// add lines that serve this stop
+-	new_component_span<gui_label_t>("Lines serving this stop", 2);
++	new_component_span<gui_simlabel_t>("Lines serving this stop", 2);
+ 
+ 	if(  !halt->registered_lines.empty()  ) {
+ 		simline_t::linetype previous_linetype = simline_t::MAX_LINE_TYPE;
+@@ -615,7 +615,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
+ 			// Linetype if it is the first
+ 			if(  line->get_linetype() != previous_linetype  ) {
+ 				previous_linetype = line->get_linetype();
+-				new_component_span<gui_label_t>(simline_t::get_linetype_name(previous_linetype),2);
++				new_component_span<gui_simlabel_t>(simline_t::get_linetype_name(previous_linetype),2);
+ 			}
+ 
+ 			new_component<gui_line_button_t>(line);
+@@ -632,7 +632,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
+ 
+ 	insert_empty_row();
+ 	// add lineless convoys which serve this stop
+-	new_component_span<gui_label_t>("Lineless convoys serving this stop", 2);
++	new_component_span<gui_simlabel_t>("Lineless convoys serving this stop", 2);
+ 	if(  !halt->registered_convoys.empty()  ) {
+ 		for(  uint32 i=0;  i<halt->registered_convoys.get_count();  ++i  ) {
+ 
+@@ -651,7 +651,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
+ 	}
+ 
+ 	insert_empty_row();
+-	new_component_span<gui_label_t>("Direkt erreichbare Haltestellen", 2);
++	new_component_span<gui_simlabel_t>("Direkt erreichbare Haltestellen", 2);
+ 
+ 	bool has_stops = false;
+ 
+@@ -869,11 +869,11 @@ void gui_departure_board_t::update_departures(halthandle_t halt)
+ 	add_component( &absolute_times,3 );
+ 	slist_tpl<halthandle_t> exclude;
+ 	if(  destinations.get_count()>0  ) {
+-		new_component_span<gui_label_t>("Departures to\n", 3);
++		new_component_span<gui_simlabel_t>("Departures to\n", 3);
+ 
+ 		for(dest_info_t hi : destinations ) {
+ 			if(  freight_list_sorter_t::by_via_sum != env_t::default_sortmode  ||  !exclude.is_contained( hi.halt )  ) {
+-				gui_label_buf_t *lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_label_t::right);
++				gui_label_buf_t *lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_simlabel_t::right);
+ 				if( hi.delta_ticks == 0 ) {
+ 					lb->buf().append( translator::translate( "now" ) );
+ 				}
+@@ -888,18 +888,18 @@ void gui_departure_board_t::update_departures(halthandle_t halt)
+ 				lb->update();
+ 				insert_image(hi.cnv);
+ 
+-				new_component<gui_label_t>(hi.halt->get_name() );
++				new_component<gui_simlabel_t>(hi.halt->get_name() );
+ 				exclude.append( hi.halt );
+ 			}
+ 		}
+ 	}
+ 	exclude.clear();
+ 	if(  origins.get_count()>0  ) {
+-		new_component_span<gui_label_t>("Arrivals from\n", 3);
++		new_component_span<gui_simlabel_t>("Arrivals from\n", 3);
+ 
+ 		for(dest_info_t hi : origins ) {
+ 			if(  freight_list_sorter_t::by_via_sum != env_t::default_sortmode  ||  !exclude.is_contained( hi.halt )  ) {
+-				gui_label_buf_t *lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_label_t::right);
++				gui_label_buf_t *lb = new_component<gui_label_buf_t>(SYSCOL_TEXT, gui_simlabel_t::right);
+ 				if( hi.delta_ticks == 0 ) {
+ 					lb->buf().append( translator::translate( "now" ) );
+ 				}
+@@ -915,7 +915,7 @@ void gui_departure_board_t::update_departures(halthandle_t halt)
+ 
+ 				insert_image(hi.cnv);
+ 
+-				new_component<gui_label_t>(hi.halt->get_name() );
++				new_component<gui_simlabel_t>(hi.halt->get_name() );
+ 				exclude.append( hi.halt );
+ 			}
+ 		}
+diff --git a/src/simutrans/gui/halt_list_frame.cc b/src/simutrans/gui/halt_list_frame.cc
+index f34d73221..a084cd05a 100644
+--- a/src/simutrans/gui/halt_list_frame.cc
++++ b/src/simutrans/gui/halt_list_frame.cc
+@@ -128,7 +128,7 @@ halt_list_frame_t::halt_list_frame_t() :
+ 
+ 	add_table(4, 2);
+ 	{
+-		new_component<gui_label_t>("Filter:", 2);
++		new_component<gui_simlabel_t>("Filter:", 2);
+ 		name_filter_input.set_text(name_filter, lengthof(name_filter));
+ 		add_component(&name_filter_input);
+ 		filter_details.init(button_t::roundbox, "cl_btn_filter_settings");
+@@ -136,7 +136,7 @@ halt_list_frame_t::halt_list_frame_t() :
+ 		add_component(&filter_details);
+ 		new_component<gui_fill_t>();
+ 
+-		new_component_span<gui_label_t>("hl_txt_sort", 1);
++		new_component_span<gui_simlabel_t>("hl_txt_sort", 1);
+ 		sortedby.set_unsorted(); // do not sort
+ 		for (size_t i = 0; i < lengthof(sort_text); i++) {
+ 			sortedby.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate(sort_text[i]), SYSCOL_TEXT);
+diff --git a/src/simutrans/gui/kennfarbe.cc b/src/simutrans/gui/kennfarbe.cc
+index 61b1332d4..713d44328 100644
+--- a/src/simutrans/gui/kennfarbe.cc
++++ b/src/simutrans/gui/kennfarbe.cc
+@@ -51,7 +51,7 @@ farbengui_t::farbengui_t(player_t *player_) :
+ 	end_table();
+ 
+ 	// Player's primary color label
+-	new_component<gui_label_t>("Your primary color:");
++	new_component<gui_simlabel_t>("Your primary color:");
+ 
+ 	// Get all colors (except the current player's)
+ 	uint32 used_colors1 = 0;
+@@ -75,7 +75,7 @@ farbengui_t::farbengui_t(player_t *player_) :
+ 	end_table();
+ 
+ 	// Player's secondary color label
+-	new_component<gui_label_t>("Your secondary color:");
++	new_component<gui_simlabel_t>("Your secondary color:");
+ 
+ 	add_table(14,2);
+ 	// Secondary color buttons
+diff --git a/src/simutrans/gui/label_info.cc b/src/simutrans/gui/label_info.cc
+index 4a9eb2f26..0d7215fb1 100644
+--- a/src/simutrans/gui/label_info.cc
++++ b/src/simutrans/gui/label_info.cc
+@@ -14,7 +14,7 @@
+ #include "../utils/cbuffer.h"
+ 
+ 
+-label_info_t::label_info_t(label_t* l) :
++label_info_t::label_info_t(simlabel_t* l) :
+ 	gui_frame_t( translator::translate("Marker"), l->get_owner()),
+ 	view(l->get_pos(), scr_size( max(64, get_base_tile_raster_width()), max(56, (get_base_tile_raster_width()*7)/8) ))
+ {
+@@ -27,7 +27,7 @@ label_info_t::label_info_t(label_t* l) :
+ 
+ 	add_table(3,0)->set_alignment(ALIGN_TOP);
+ 	// left: player name
+-	new_component<gui_label_t>(label->get_owner()->get_name());
++	new_component<gui_simlabel_t>(label->get_owner()->get_name());
+ 	new_component<gui_fill_t>();
+ 	// right column: view
+ 	add_component( &view );
+diff --git a/src/simutrans/gui/label_info.h b/src/simutrans/gui/label_info.h
+index 030b4fa6e..cc309ca30 100644
+--- a/src/simutrans/gui/label_info.h
++++ b/src/simutrans/gui/label_info.h
+@@ -12,7 +12,7 @@
+ #include "components/gui_location_view.h"
+ #include "components/action_listener.h"
+ 
+-class label_t;
++class simlabel_t;
+ 
+ /**
+  * Label creation/edition window
+@@ -20,14 +20,14 @@ class label_t;
+ class label_info_t : public gui_frame_t, private action_listener_t
+ {
+ private:
+-	label_t *label;
++	simlabel_t *label;
+ 
+ 	gui_textinput_t input;
+ 	location_view_t view;
+ 	char edit_name[256];
+ 
+ public:
+-	label_info_t(label_t* l);
++	label_info_t(simlabel_t* l);
+ 
+ 	bool action_triggered(gui_action_creator_t*, value_t) OVERRIDE;
+ 
+diff --git a/src/simutrans/gui/labellist_frame.cc b/src/simutrans/gui/labellist_frame.cc
+index 5669b5f4d..ab94c3264 100644
+--- a/src/simutrans/gui/labellist_frame.cc
++++ b/src/simutrans/gui/labellist_frame.cc
+@@ -27,7 +27,7 @@ labellist_frame_t::labellist_frame_t() :
+ 
+ 	add_table(3, 3);
+ 	{
+-		new_component<gui_label_t>("Filter:");
++		new_component<gui_simlabel_t>("Filter:");
+ 		name_filter_input.set_text(name_filter, lengthof(name_filter));
+ 		add_component(&name_filter_input);
+ 		new_component<gui_fill_t>();
+@@ -38,7 +38,7 @@ labellist_frame_t::labellist_frame_t() :
+ 		filter.add_listener( this );
+ 		new_component<gui_fill_t>();
+ 
+-		new_component<gui_label_t>("hl_txt_sort");
++		new_component<gui_simlabel_t>("hl_txt_sort");
+ 		sortedby.set_unsorted(); // do not sort
+ 		for (size_t i = 0; i < lengthof(sort_text); i++) {
+ 			sortedby.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate(sort_text[i]), SYSCOL_TEXT);
+@@ -73,7 +73,7 @@ void labellist_frame_t::fill_list()
+ 
+ 	scrolly.clear_elements();
+ 	for(koord const& pos : welt->get_label_list()) {
+-		label_t* label = welt->lookup_kartenboden(pos)->find<label_t>();
++		simlabel_t* label = welt->lookup_kartenboden(pos)->find<simlabel_t>();
+ 		const char* name = welt->lookup_kartenboden(pos)->get_text();
+ 		// some old version games don't have label nor name.
+ 		// Check them to avoid crashes.
+@@ -92,7 +92,7 @@ uint32 labellist_frame_t::count_label()
+ {
+ 	uint32 labelcount = 0;
+ 	for(koord const& pos : welt->get_label_list()) {
+-		label_t* label = welt->lookup_kartenboden(pos)->find<label_t>();
++		simlabel_t* label = welt->lookup_kartenboden(pos)->find<simlabel_t>();
+ 		const char* name = welt->lookup_kartenboden(pos)->get_text();
+ 		// some old version games don't have label nor name.
+ 		if(label  &&  name  &&  (!labellist_stats_t::filter  ||  (label  &&  (label->get_owner() == welt->get_active_player())))) {
+diff --git a/src/simutrans/gui/labellist_stats.cc b/src/simutrans/gui/labellist_stats.cc
+index 12ca07f76..a499489ae 100644
+--- a/src/simutrans/gui/labellist_stats.cc
++++ b/src/simutrans/gui/labellist_stats.cc
+@@ -42,8 +42,8 @@ bool labellist_stats_t::compare(const gui_component_t *aa, const gui_component_t
+ 		case labellist::by_player:
+ 		{
+ 			if(!filter) {
+-				const label_t* a_l = a->get_label();
+-				const label_t* b_l = b->get_label();
++				const simlabel_t* a_l = a->get_label();
++				const simlabel_t* b_l = b->get_label();
+ 				if(a_l && b_l) {
+ 					cmp = a_l->get_owner()->get_player_nr() - b_l->get_owner()->get_player_nr();
+ 				}
+@@ -74,16 +74,16 @@ labellist_stats_t::labellist_stats_t(koord label_pos)
+ 	label.buf().printf("(%s) %s", label_pos.get_str(), get_text());
+ 	label.update();
+ 
+-	if (const label_t *lb = get_label()) {
++	if (const simlabel_t *lb = get_label()) {
+ 		label.set_color(PLAYER_FLAG | color_idx_to_rgb(lb->get_owner()->get_player_color1()+env_t::gui_player_color_dark));
+ 	}
+ }
+ 
+ 
+-const label_t* labellist_stats_t::get_label() const
++const simlabel_t* labellist_stats_t::get_label() const
+ {
+ 	if (grund_t *gr = welt->lookup_kartenboden(label_pos)) {
+-		return gr->find<label_t>();
++		return gr->find<simlabel_t>();
+ 	}
+ 	return NULL;
+ }
+@@ -119,7 +119,7 @@ bool labellist_stats_t::infowin_event(const event_t * ev)
+ 
+ 	if(  !swallowed  &&  IS_LEFTRELEASE(ev)  ) {
+ 		if (grund_t *gr = welt->lookup_kartenboden(label_pos)) {
+-			if (label_t *lb = gr->find<label_t>()) {
++			if (simlabel_t *lb = gr->find<simlabel_t>()) {
+ 				lb->show_info();
+ 			}
+ 		}
+diff --git a/src/simutrans/gui/labellist_stats.h b/src/simutrans/gui/labellist_stats.h
+index fe0b55d1c..8cd7a8ea7 100644
+--- a/src/simutrans/gui/labellist_stats.h
++++ b/src/simutrans/gui/labellist_stats.h
+@@ -21,7 +21,7 @@ namespace labellist {
+ 	};
+ };
+ 
+-class label_t;
++class simlabel_t;
+ 
+ class labellist_stats_t : public gui_aligned_container_t, public gui_scrolled_list_t::scrollitem_t
+ {
+@@ -29,7 +29,7 @@ private:
+ 	koord label_pos;
+ 	gui_label_buf_t label;
+ 
+-	const label_t* get_label() const;
++	const simlabel_t* get_label() const;
+ public:
+ 	static labellist::sort_mode_t sortby;
+ 	static bool sortreverse, filter;
+diff --git a/src/simutrans/gui/line_management_gui.h b/src/simutrans/gui/line_management_gui.h
+index b7896e8d5..b360e2f0d 100644
+--- a/src/simutrans/gui/line_management_gui.h
++++ b/src/simutrans/gui/line_management_gui.h
+@@ -33,11 +33,11 @@ class line_management_gui_t : public gui_frame_t, public action_listener_t
+ 
+ 	gui_textinput_t inp_name;
+ 
+-	gui_label_t lb_convoi_count;
++	gui_simlabel_t lb_convoi_count;
+ 	cbuffer_t lb_convoi_count_text;
+ 	gui_speedbar_t capacity_bar;
+ 	cbuffer_t lb_profit_value_text;
+-	gui_label_t lb_profit_value;
++	gui_simlabel_t lb_profit_value;
+ 	button_t bt_delete_line;
+ 
+ 	gui_tab_panel_t switch_mode;
+diff --git a/src/simutrans/gui/load_relief_frame.h b/src/simutrans/gui/load_relief_frame.h
+index 79b79d93b..879c054bd 100644
+--- a/src/simutrans/gui/load_relief_frame.h
++++ b/src/simutrans/gui/load_relief_frame.h
+@@ -19,7 +19,7 @@ class load_relief_frame_t : public savegame_frame_t
+ private:
+ 	settings_t* sets;
+ 
+-	gui_label_t load_mode_label;
++	gui_simlabel_t load_mode_label;
+ 	gui_combobox_t load_mode;
+ 
+ protected:
+diff --git a/src/simutrans/gui/map_frame.cc b/src/simutrans/gui/map_frame.cc
+index 14c23494d..ea842289a 100644
+--- a/src/simutrans/gui/map_frame.cc
++++ b/src/simutrans/gui/map_frame.cc
+@@ -137,7 +137,7 @@ bool gui_scrollpane_map_t::infowin_event(event_t const* ev)
+  */
+ class legend_entry_t : public gui_component_t
+ {
+-	gui_label_t label;
++	gui_simlabel_t label;
+ 	PIXVAL color;
+ public:
+ 	legend_entry_t(const char* text, PIXVAL c) : label(text), color(c) {}
+@@ -286,7 +286,7 @@ map_frame_t::map_frame_t() :
+ 	zoom_row = add_table(7,0);
+ 	{
+ 		// zoom levels label
+-		new_component<gui_label_t>("map zoom");
++		new_component<gui_simlabel_t>("map zoom");
+ 
+ 		// zoom levels arrow left
+ 		zoom_buttons[0].init(button_t::repeatarrowleft, NULL);
+@@ -442,9 +442,9 @@ map_frame_t::map_frame_t() :
+ 	scale_container.set_table_layout(3,0);
+ 	scale_container.set_visible(false);
+ 	add_component(&scale_container);
+-	scale_container.new_component<gui_label_t>("min");
++	scale_container.new_component<gui_simlabel_t>("min");
+ 	scale_container.new_component<gui_scale_t>();
+-	scale_container.new_component<gui_label_t>("max");
++	scale_container.new_component<gui_simlabel_t>("max");
+ 
+ 	// map scrolly
+ 	scrolly.set_show_scroll_x(true);
+diff --git a/src/simutrans/gui/message_option.h b/src/simutrans/gui/message_option.h
+index 85ef0e2a2..a2d41e702 100644
+--- a/src/simutrans/gui/message_option.h
++++ b/src/simutrans/gui/message_option.h
+@@ -23,7 +23,7 @@ class message_option_t : public gui_frame_t, private action_listener_t
+ {
+ private:
+ 	button_t buttons[4*message_t::MAX_MESSAGE_TYPE];
+-	gui_label_t text_lbl[message_t::MAX_MESSAGE_TYPE];
++	gui_simlabel_t text_lbl[message_t::MAX_MESSAGE_TYPE];
+ 	sint32 ticker_msg, window_msg, auto_msg, ignore_msg;
+ 	char option_texts[message_t::MAX_MESSAGE_TYPE][MAX_MESSAGE_OPTION_TEXTLEN];
+ 
+diff --git a/src/simutrans/gui/money_frame.cc b/src/simutrans/gui/money_frame.cc
+index a3c747b96..9a0d41338 100644
+--- a/src/simutrans/gui/money_frame.cc
++++ b/src/simutrans/gui/money_frame.cc
+@@ -99,7 +99,7 @@ static const sint8 cell_to_buttons[] =
+ 
+ 
+ // money label types: tt, atv, current/previous, type
+-static const uint16 label_type[] =
++static const uint16 simlabel_type[] =
+ {
+ 	TT_ALL, ATV_TRANSPORTED,                0, STANDARD,
+ 	TT_ALL, ATV_TRANSPORTED,                1, STANDARD,
+@@ -170,18 +170,18 @@ sint64 money_frame_t::get_statistics_value(int tt, uint8 type, int yearmonth, bo
+ 	}
+ }
+ 
+-class money_frame_label_t : public gui_label_buf_t
++class money_frame_simlabel_t : public gui_label_buf_t
+ {
+ 	uint8 transport_type;
+ 	uint8 type;
+-	uint8 label_type;
++	uint8 simlabel_type;
+ 	uint8 index;
+ 	bool monthly;
+ 
+ public:
+-	money_frame_label_t(uint8 tt, uint8 t, uint8 lt, uint8 i, bool mon)
+-	: gui_label_buf_t(lt == STANDARD ? SYSCOL_TEXT : MONEY_PLUS, lt != MONEY ? gui_label_t::right : gui_label_t::money_right)
+-	, transport_type(tt), type(t), label_type(lt), index(i), monthly(mon)
++	money_frame_simlabel_t(uint8 tt, uint8 t, uint8 lt, uint8 i, bool mon)
++	: gui_label_buf_t(lt == STANDARD ? SYSCOL_TEXT : MONEY_PLUS, lt != MONEY ? gui_simlabel_t::right : gui_simlabel_t::money_right)
++	, transport_type(tt), type(t), simlabel_type(lt), index(i), monthly(mon)
+ 	{
+ 	}
+ 
+@@ -191,7 +191,7 @@ public:
+ 		sint64 value = mf->get_statistics_value(tt, type, index, monthly ? 1 : 0);
+ 		PIXVAL color = value >= 0 ? (value > 0 ? MONEY_PLUS : SYSCOL_TEXT_UNUSED) : MONEY_MINUS;
+ 
+-		switch (label_type) {
++		switch (simlabel_type) {
+ 			case MONEY:
+ 				buf().append_money(value / 100.0);
+ 				break;
+@@ -256,10 +256,10 @@ bool money_frame_t::is_chart_table_zero(int ttoption)
+ 
+ money_frame_t::money_frame_t(player_t *player) :
+ 	gui_frame_t( translator::translate("Finanzen"), player),
+-	maintenance_money(MONEY_PLUS, gui_label_t::money_right),
+-	scenario_desc(SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left),
+-	scenario_completion(SYSCOL_TEXT, gui_label_t::left),
+-	warn(SYSCOL_TEXT_STRONG, gui_label_t::left),
++	maintenance_money(MONEY_PLUS, gui_simlabel_t::money_right),
++	scenario_desc(SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left),
++	scenario_completion(SYSCOL_TEXT, gui_simlabel_t::left),
++	warn(SYSCOL_TEXT_STRONG, gui_simlabel_t::left),
+ 	transport_type_option(0)
+ {
+ 	if(welt->get_player(0)!=player) {
+@@ -279,7 +279,7 @@ money_frame_t::money_frame_t(player_t *player) :
+ 	if(player->get_player_nr()!=1  &&  welt->get_scenario()->active()) {
+ 
+ 		add_table(3,1);
+-		new_component<gui_label_t>("Scenario_", SYSCOL_TEXT_HIGHLIGHT);
++		new_component<gui_simlabel_t>("Scenario_", SYSCOL_TEXT_HIGHLIGHT);
+ 		add_component(&scenario_desc);
+ 		add_component(&scenario_completion);
+ 		end_table();
+@@ -288,7 +288,7 @@ money_frame_t::money_frame_t(player_t *player) :
+ 	// select transport type
+ 	gui_aligned_container_t *top = add_table(4,1);
+ 	{
+-		new_component<gui_label_t>("Show finances for transport type");
++		new_component<gui_simlabel_t>("Show finances for transport type");
+ 
+ 		transport_type_c.set_selection(0);
+ 		transport_type_c.set_focusable( false );
+@@ -336,8 +336,8 @@ money_frame_t::money_frame_t(player_t *player) :
+ 
+ 		// first row: some labels
+ 		current->new_component<gui_empty_t>();
+-		current->new_component<gui_label_t>(i==0 ? "This Year" : "This Month", SYSCOL_TEXT_HIGHLIGHT);
+-		current->new_component<gui_label_t>(i==0 ? "Last Year" : "Last Month", SYSCOL_TEXT_HIGHLIGHT);
++		current->new_component<gui_simlabel_t>(i==0 ? "This Year" : "This Month", SYSCOL_TEXT_HIGHLIGHT);
++		current->new_component<gui_simlabel_t>(i==0 ? "Last Year" : "Last Month", SYSCOL_TEXT_HIGHLIGHT);
+ 		current->new_component<gui_empty_t>();
+ 		current->new_component<gui_empty_t>();
+ 
+@@ -370,15 +370,15 @@ money_frame_t::money_frame_t(player_t *player) :
+ 					button_to_chart.append(b, current_chart, curve);
+ 				}
+ 				else if (l >= 0) {
+-					// money_frame_label_t(uint8 tt, uint8 t, uint8 lt, uint8 i, bool mon)
+-					money_labels.append( current->new_component<money_frame_label_t>(label_type[4*l], label_type[4*l+1], label_type[4*l+3], label_type[4*l+2], i==1) );
++					// money_frame_simlabel_t(uint8 tt, uint8 t, uint8 lt, uint8 i, bool mon)
++					money_labels.append( current->new_component<money_frame_simlabel_t>(simlabel_type[4*l], simlabel_type[4*l+1], simlabel_type[4*l+3], simlabel_type[4*l+2], i==1) );
+ 				}
+ 				else {
+ 					if (r >= 2  &&  r<=4  &&  c == 4) {
+ 						switch(r) {
+-							case 2: current->new_component<gui_label_t>("This Month", SYSCOL_TEXT_HIGHLIGHT); break;
++							case 2: current->new_component<gui_simlabel_t>("This Month", SYSCOL_TEXT_HIGHLIGHT); break;
+ 							case 3: current->add_component(&maintenance_money); break;
+-							case 4: current->new_component<gui_label_t>("This Year", SYSCOL_TEXT_HIGHLIGHT);
++							case 4: current->new_component<gui_simlabel_t>("This Year", SYSCOL_TEXT_HIGHLIGHT);
+ 						}
+ 					}
+ 					else {
+@@ -431,7 +431,7 @@ money_frame_t::~money_frame_t()
+ 
+ void money_frame_t::update_labels()
+ {
+-	for(money_frame_label_t* lb : money_labels) {
++	for(money_frame_simlabel_t* lb : money_labels) {
+ 		lb->update(this);
+ 	}
+ 
+diff --git a/src/simutrans/gui/money_frame.h b/src/simutrans/gui/money_frame.h
+index 629c1bc3a..ec1bc3556 100644
+--- a/src/simutrans/gui/money_frame.h
++++ b/src/simutrans/gui/money_frame.h
+@@ -22,14 +22,14 @@
+ 
+ #define MAX_PLAYER_COST_BUTTON (13)
+ 
+-class money_frame_label_t;
++class money_frame_simlabel_t;
+ 
+ /**
+  * Finances dialog
+  */
+ class money_frame_t : public gui_frame_t, private action_listener_t
+ {
+-	friend class money_frame_label_t;
++	friend class money_frame_simlabel_t;
+ private:
+ 	cbuffer_t money_frame_title;
+ 
+@@ -63,7 +63,7 @@ private:
+ 
+ 	gui_button_to_chart_array_t button_to_chart;
+ 
+-	vector_tpl<money_frame_label_t*> money_labels;
++	vector_tpl<money_frame_simlabel_t*> money_labels;
+ 
+ 	void update_labels();
+ 
+diff --git a/src/simutrans/gui/pakinstaller.cc b/src/simutrans/gui/pakinstaller.cc
+index ef8145b75..9a876506d 100644
+--- a/src/simutrans/gui/pakinstaller.cc
++++ b/src/simutrans/gui/pakinstaller.cc
+@@ -29,7 +29,7 @@ pakinstaller_t::pakinstaller_t() :
+ 
+ 	set_table_layout(2, 0);
+ 
+-	new_component_span<gui_label_t>( "Select one or more graphics to install (Ctrl+click):", 2 );
++	new_component_span<gui_simlabel_t>( "Select one or more graphics to install (Ctrl+click):", 2 );
+ 
+ 	for (int i = 0; i < OBSOLETE_FROM; i++) {
+ 		if (pak_can_download(pakinfo + i)) {
+@@ -42,7 +42,7 @@ pakinstaller_t::pakinstaller_t() :
+ 	scr_coord_val paks_h = paks.get_max_size().h;
+ 	add_component(&paks,2);
+ 
+-	new_component_span<gui_label_t>( "The following graphics are unmaintained:", 2 );
++	new_component_span<gui_simlabel_t>( "The following graphics are unmaintained:", 2 );
+ 
+ 	for (int i = OBSOLETE_FROM; i < PAKSET_COUNT; i++) {
+ 		if (pak_can_download(pakinfo + i)) {
+diff --git a/src/simutrans/gui/password_frame.h b/src/simutrans/gui/password_frame.h
+index a1f1c37ba..252ae2f10 100644
+--- a/src/simutrans/gui/password_frame.h
++++ b/src/simutrans/gui/password_frame.h
+@@ -24,7 +24,7 @@ protected:
+ 
+ 	gui_textinput_t player_name;
+ 	gui_hidden_textinput_t password;
+-	gui_label_t fnlabel, const_player_name;
++	gui_simlabel_t fnlabel, const_player_name;
+ 
+ public:
+ 	password_frame_t( player_t *player );
+diff --git a/src/simutrans/gui/player_frame.cc b/src/simutrans/gui/player_frame.cc
+index ff42e74ca..45af95865 100644
+--- a/src/simutrans/gui/player_frame.cc
++++ b/src/simutrans/gui/player_frame.cc
+@@ -98,7 +98,7 @@ ki_kontroll_t::ki_kontroll_t() :
+ 		player_lock[i]->set_rigid(true);
+ 
+ 		// Income label
+-		ai_income[i] = new_component<gui_label_buf_t>(MONEY_PLUS, gui_label_t::money_right);
++		ai_income[i] = new_component<gui_label_buf_t>(MONEY_PLUS, gui_simlabel_t::money_right);
+ 		ai_income[i]->set_rigid(true);
+ 	}
+ 
+@@ -317,7 +317,7 @@ void ki_kontroll_t::update_income()
+ 			if (i != 1 && !welt->get_settings().is_freeplay() && player->get_finance()->get_history_com_year(0, ATC_NETWEALTH) < 0) {
+ 				ai_income[i]->set_color( MONEY_MINUS );
+ 				ai_income[i]->buf().append(translator::translate("Company bankrupt"));
+-				ai_income[i]->set_align(gui_label_t::left);
++				ai_income[i]->set_align(gui_simlabel_t::left);
+ 			}
+ 			else {
+ 				double account=player->get_account_balance_as_double();
+@@ -325,7 +325,7 @@ void ki_kontroll_t::update_income()
+ 				money_to_string(str, account );
+ 				ai_income[i]->buf().append(str);
+ 				ai_income[i]->set_color( account>=0.0 ? MONEY_PLUS : MONEY_MINUS );
+-				ai_income[i]->set_align(gui_label_t::money_right);
++				ai_income[i]->set_align(gui_simlabel_t::money_right);
+ 			}
+ 		}
+ 		ai_income[i]->update();
+diff --git a/src/simutrans/gui/savegame_frame.cc b/src/simutrans/gui/savegame_frame.cc
+index 8c73c824d..ad9e2d571 100644
+--- a/src/simutrans/gui/savegame_frame.cc
++++ b/src/simutrans/gui/savegame_frame.cc
+@@ -156,7 +156,7 @@ void savegame_frame_t::add_section(std::string &name){
+ 
+ 	// NOTE: These char buffers will be freed on the destructor
+ 	// +2 because of the space in printf and the ending \0
+-	char *label_text = new char [L_SHORTENED_SIZE+prefix_len+2];
++	char *simlabel_text = new char [L_SHORTENED_SIZE+prefix_len+2];
+ 	char *path_expanded = new char[FILENAME_MAX];
+ 
+ 	const size_t data_dir_len = strlen(env_t::base_dir);
+@@ -185,10 +185,10 @@ void savegame_frame_t::add_section(std::string &name){
+ 
+ 	shorten_path(shortened_path,path_expanded,L_SHORTENED_SIZE);
+ 
+-	sprintf(label_text,"%s %s", prefix_label , shortened_path);
++	sprintf(simlabel_text,"%s %s", prefix_label , shortened_path);
+ 
+-	gui_label_t* l = new gui_label_t(NULL, SYSCOL_TEXT_HIGHLIGHT);
+-	l->set_text_pointer(label_text);
++	gui_simlabel_t* l = new gui_simlabel_t(NULL, SYSCOL_TEXT_HIGHLIGHT);
++	l->set_text_pointer(simlabel_text);
+ 	l->set_tooltip(path_expanded);
+ 
+ 	this->entries.append(dir_entry_t(NULL, NULL, l, LI_HEADER, NULL));
+@@ -285,7 +285,7 @@ void savegame_frame_t::list_filled( void )
+ 	for(dir_entry_t const& i : entries) {
+ 		button_t*    const delete_button = i.del;
+ 		button_t*    const action_button = i.button;
+-		gui_label_t* const label   = i.label;
++		gui_simlabel_t* const label   = i.label;
+ 
+ 		if(i.type == LI_HEADER) {
+ 			if(this->num_sections < 2) {
+@@ -434,7 +434,7 @@ void savegame_frame_t::add_file(const char *fullpath, const char *filename, cons
+ 		}
+ 	}
+ 
+-	gui_label_t* l = new gui_label_t(NULL);
++	gui_simlabel_t* l = new gui_simlabel_t(NULL);
+ 	l->set_text_pointer(text);
+ 	entries.insert(i, dir_entry_t(button, new del_button_t(), l, LI_ENTRY, fullpath));
+ }
+diff --git a/src/simutrans/gui/savegame_frame.h b/src/simutrans/gui/savegame_frame.h
+index e95279bce..5c74fd2fa 100644
+--- a/src/simutrans/gui/savegame_frame.h
++++ b/src/simutrans/gui/savegame_frame.h
+@@ -63,7 +63,7 @@ protected:
+ 	 */
+ 	struct dir_entry_t
+ 	{
+-		dir_entry_t(button_t* button_, button_t* del_, gui_label_t* label_, dirlist_item_t type_ = LI_ENTRY, const char *info_=NULL) :
++		dir_entry_t(button_t* button_, button_t* del_, gui_simlabel_t* label_, dirlist_item_t type_ = LI_ENTRY, const char *info_=NULL) :
+ 			del(del_),
+ 			button(button_),
+ 			label(label_),
+@@ -73,7 +73,7 @@ protected:
+ 
+ 		button_t       *del;    //@< Delete button placed in the first column.
+ 		button_t       *button; //@< Action button placed in the second column.
+-		gui_label_t    *label;  //@< Label placed in the third column.
++		gui_simlabel_t    *label;  //@< Label placed in the third column.
+ 		dirlist_item_t  type;   //@< Item type, data or header.
+ 		const char     *info;   //@< A qualified path (might be relative) to the file, not just the name
+ 		static int compare (const dir_entry_t & l, const dir_entry_t &r) {
+@@ -94,7 +94,7 @@ protected:
+ 	gui_textinput_t  input;         //@< Filename input field
+ 	button_t         savebutton;    //@< Save button
+ 	button_t         cancelbutton;  //@< Cancel button
+-	gui_label_t      fnlabel;       //@< Static file name label
++	gui_simlabel_t      fnlabel;       //@< Static file name label
+ 	gui_aligned_container_t
+ 	                 top_frame,     //@< Contains input field
+ 					 bottom_left_frame, //@< container for elements on the left of the last row
+diff --git a/src/simutrans/gui/schedule_list.cc b/src/simutrans/gui/schedule_list.cc
+index cac56bf50..5d8c42230 100644
+--- a/src/simutrans/gui/schedule_list.cc
++++ b/src/simutrans/gui/schedule_list.cc
+@@ -73,7 +73,7 @@ schedule_list_gui_t::schedule_list_gui_t(player_t *player_) :
+ 	add_table(4,0);
+ 	{
+ 		// below line list: line filter
+-		new_component<gui_label_t>("Filter:");
++		new_component<gui_simlabel_t>("Filter:");
+ 		inp_filter.set_text( schedule_filter, lengthof( schedule_filter ) );
+ 		inp_filter.add_listener( this );
+ 		add_component( &inp_filter, 2 );
+@@ -114,7 +114,7 @@ schedule_list_gui_t::schedule_list_gui_t(player_t *player_) :
+ 
+ 
+ 		// sort by what
+-		new_component<gui_label_t>("hl_txt_sort");
++		new_component<gui_simlabel_t>("hl_txt_sort");
+ 		for( int i=0; i<MAX_SORT_IDX;  i++ ) {
+ 			sort_type_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>( translator::translate(idx_to_sort_text[i]), SYSCOL_TEXT) ;
+ 		}
+diff --git a/src/simutrans/gui/server_frame.cc b/src/simutrans/gui/server_frame.cc
+index d74cbf94b..ec48056ce 100644
+--- a/src/simutrans/gui/server_frame.cc
++++ b/src/simutrans/gui/server_frame.cc
+@@ -73,7 +73,7 @@ server_frame_t::server_frame_t() :
+ 	// When in network mode, display only local map info (and nickname changer)
+ 	// When not in network mode, display server picker
+ 	if (  !env_t::networkmode  ) {
+-		new_component<gui_label_t>("Select a server to join:" );
++		new_component<gui_simlabel_t>("Select a server to join:" );
+ 		new_component<gui_fill_t>();
+ 		join.init(button_t::roundbox, "join game");
+ 		join.disable();
+@@ -99,7 +99,7 @@ server_frame_t::server_frame_t() :
+ 
+ 		new_component_span<gui_divider_t>(3);
+ 
+-		new_component_span<gui_label_t>("Or enter a server manually:", 3);
++		new_component_span<gui_simlabel_t>("Or enter a server manually:", 3);
+ 
+ 		// Add server input/button
+ 		addinput.set_text( newserver_name, sizeof( newserver_name ) );
+@@ -150,7 +150,7 @@ server_frame_t::server_frame_t() :
+ 
+ 	new_component_span<gui_divider_t>(3);
+ 
+-	new_component<gui_label_t>("Nickname:" );
++	new_component<gui_simlabel_t>("Nickname:" );
+ 	add_component( &nick, 2 );
+ 	nick.add_listener(this);
+ 	nick.set_text( nick_buf, lengthof( nick_buf ) );
+diff --git a/src/simutrans/gui/server_frame.h b/src/simutrans/gui/server_frame.h
+index 4c9c3cd5a..f5871bb67 100644
+--- a/src/simutrans/gui/server_frame.h
++++ b/src/simutrans/gui/server_frame.h
+@@ -36,7 +36,7 @@ private:
+ 	gui_scrolled_list_t serverlist;
+ 	button_t add, join, find_mismatch;
+ 	button_t show_mismatched, show_offline;
+-	gui_label_t pak_version;
++	gui_simlabel_t pak_version;
+ 	gui_label_buf_t revision, date, label_size;
+ #if MSG_LEVEL>=4
+ 	gui_label_buf_t pakset_checksum;
+diff --git a/src/simutrans/gui/settings_stats.h b/src/simutrans/gui/settings_stats.h
+index 86c28b125..0058f2eee 100644
+--- a/src/simutrans/gui/settings_stats.h
++++ b/src/simutrans/gui/settings_stats.h
+@@ -46,7 +46,7 @@ class settings_t;
+ 	gui_numberinput_t *ni = new_component<gui_numberinput_t>();\
+ 	ni->init( (sint32)(a), (b), (c), (d), (e) );\
+ 	numinp.append( ni );\
+-	gui_label_t *lb = new_component<gui_label_t>();\
++	gui_simlabel_t *lb = new_component<gui_simlabel_t>();\
+ 	lb->set_text_pointer(t);\
+ }
+ 
+@@ -57,7 +57,7 @@ class settings_t;
+ 	gui_numberinput_t *ni = new_component<gui_numberinput_t>();\
+ 	ni->init((sint32)((val).r << 16 | (val).g << 8 | (val).b), 0, 0x00FFFFFF, (step), 0);\
+ 	numinp.append(ni);\
+-	gui_label_t *lb = new_component<gui_label_t>();\
++	gui_simlabel_t *lb = new_component<gui_simlabel_t>();\
+ 	lb->set_text_pointer(t);\
+ }
+ 
+@@ -69,7 +69,7 @@ class settings_t;
+ 	gui_numberinput_t *ni = new_component<gui_numberinput_t>();\
+ 	ni->init( (sint32)( (a)/(sint64)100 ), (b), (c), (d), (e) );\
+ 	numinp.append( ni );\
+-	gui_label_t *lb = new_component<gui_label_t>();\
++	gui_simlabel_t *lb = new_component<gui_simlabel_t>();\
+ 	lb->set_text_pointer(t);\
+ }\
+ 
+@@ -77,7 +77,7 @@ class settings_t;
+ 
+ #define INIT_LB(t) \
+ {\
+-	gui_label_t *lb = new_component<gui_label_t>();\
++	gui_simlabel_t *lb = new_component<gui_simlabel_t>();\
+ 	lb->set_text_pointer(t);\
+ }\
+ 
+diff --git a/src/simutrans/gui/signal_spacing.h b/src/simutrans/gui/signal_spacing.h
+index 321407170..39420a992 100644
+--- a/src/simutrans/gui/signal_spacing.h
++++ b/src/simutrans/gui/signal_spacing.h
+@@ -15,7 +15,7 @@
+ 
+ class gui_numberinput_t;
+ class button_t;
+-class gui_label_t;
++class gui_simlabel_t;
+ class tool_build_roadsign_t;
+ class player_t;
+ 
+@@ -32,7 +32,7 @@ private:
+ 	player_t *player;
+ 	tool_build_roadsign_t* tool;
+ 	gui_numberinput_t signal_spacing_inp;
+-	gui_label_t signal_label;
++	gui_simlabel_t signal_label;
+ 	button_t remove_button, replace_button;
+ 
+ public:
+diff --git a/src/simutrans/gui/sound_frame.cc b/src/simutrans/gui/sound_frame.cc
+index 0d9c7abf3..458c78f07 100644
+--- a/src/simutrans/gui/sound_frame.cc
++++ b/src/simutrans/gui/sound_frame.cc
+@@ -80,7 +80,7 @@ sound_frame_t::sound_frame_t() :
+ 	add_table(2,0);
+ 	{
+ 		// Sound volume label
+-		new_component<gui_label_t>( "Sound volume:" );
++		new_component<gui_simlabel_t>( "Sound volume:" );
+ 
+ 		sound_volume_scrollbar.set_knob( L_KNOB_SIZE, 255 + L_KNOB_SIZE );
+ 		sound_volume_scrollbar.set_knob_offset( sound_get_global_volume() );
+@@ -88,7 +88,7 @@ sound_frame_t::sound_frame_t() :
+ 		sound_volume_scrollbar.add_listener( this );
+ 		add_component( &sound_volume_scrollbar );
+ 
+-		new_component<gui_label_t>( "Sound range:" );
++		new_component<gui_simlabel_t>( "Sound range:" );
+ 
+ 		sound_range.set_value( env_t::sound_distance_scaling);
+ 		sound_range.set_limits( 1, 32 );
+@@ -97,7 +97,7 @@ sound_frame_t::sound_frame_t() :
+ 		add_component(&sound_range);
+ 
+ 		for( int i = 0; i < MAX_SOUND_TYPES; i++ ) {
+-			new_component<gui_label_t>( specific_volume_names[i] );
++			new_component<gui_simlabel_t>( specific_volume_names[i] );
+ 
+ 			specific_volume_scrollbar[ i ] = new scrollbar_t( scrollbar_t::horizontal );
+ 			specific_volume_scrollbar[i]->set_knob( L_KNOB_SIZE, 255 + L_KNOB_SIZE );
+@@ -129,7 +129,7 @@ sound_frame_t::sound_frame_t() :
+ 
+ 	add_table(2,0);
+ 	{
+-		new_component<gui_label_t>( "Music volume:" );
++		new_component<gui_simlabel_t>( "Music volume:" );
+ 
+ 		music_volume_scrollbar.set_knob( L_KNOB_SIZE, 255 + L_KNOB_SIZE );
+ 		music_volume_scrollbar.set_knob_offset( sound_get_midi_volume() );
+@@ -142,7 +142,7 @@ sound_frame_t::sound_frame_t() :
+ 	new_component<gui_margin_t>();
+ 
+ 	// song selection
+-	new_component<gui_label_t>( "Currently playing:" );
++	new_component<gui_simlabel_t>( "Currently playing:" );
+ 
+ 	add_table( 3, 1 );
+ 	{
+diff --git a/src/simutrans/gui/station_building_select.cc b/src/simutrans/gui/station_building_select.cc
+index 697783b3d..b9fbf510e 100644
+--- a/src/simutrans/gui/station_building_select.cc
++++ b/src/simutrans/gui/station_building_select.cc
+@@ -17,7 +17,7 @@
+ #include "../descriptor/building_desc.h"
+ 
+ 
+-static const char label_text[4][64] = {
++static const char simlabel_text[4][64] = {
+ 	"sued",
+ 	"ost",
+ 	"nord",
+@@ -49,7 +49,7 @@ station_building_select_t::station_building_select_t(const building_desc_t *desc
+ 				gui_building_t *g = new_component<gui_building_t>(desc, i);
+ 				g->add_listener(this);
+ 
+-				actionbutton[i].init( button_t::roundbox | button_t::flexible, translator::translate(label_text[i]) );
++				actionbutton[i].init( button_t::roundbox | button_t::flexible, translator::translate(simlabel_text[i]) );
+ 				actionbutton[i].add_listener(this);
+ 				add_component(&actionbutton[i]);
+ 			}
+diff --git a/src/simutrans/gui/vehiclelist_frame.cc b/src/simutrans/gui/vehiclelist_frame.cc
+index fefc2b503..c81aa3644 100644
+--- a/src/simutrans/gui/vehiclelist_frame.cc
++++ b/src/simutrans/gui/vehiclelist_frame.cc
+@@ -162,7 +162,7 @@ vehiclelist_frame_t::vehiclelist_frame_t() :
+ 
+ 	add_table(3,0);
+ 	{
+-		new_component<gui_label_t>("Filter:");
++		new_component<gui_simlabel_t>("Filter:");
+ 		name_filter_input.set_text(name_filter, lengthof(name_filter));
+ 		add_component(&name_filter_input,2);
+ 		name_filter_input.add_listener(this);
+@@ -203,7 +203,7 @@ vehiclelist_frame_t::vehiclelist_frame_t() :
+ 		add_component(&ware_filter);
+ 
+ 		// second row
+-		new_component<gui_label_t>( "hl_txt_sort" );
++		new_component<gui_simlabel_t>( "hl_txt_sort" );
+ 
+ 		sort_by.clear_elements();
+ 		for( int i = 0; i < vehicle_builder_t::sb_length; i++ ) {
+diff --git a/src/simutrans/gui/welt.cc b/src/simutrans/gui/welt.cc
+index 3e0e6075f..d88d4dada 100644
+--- a/src/simutrans/gui/welt.cc
++++ b/src/simutrans/gui/welt.cc
+@@ -100,7 +100,7 @@ welt_gui_t::welt_gui_t(settings_t* const sets_par) :
+ 		// input fields
+ 		add_table(2,3);
+ 		{
+-			new_component<gui_label_t>("2WORLD_CHOOSE");
++			new_component<gui_simlabel_t>("2WORLD_CHOOSE");
+ 			inp_map_number.init( abs(sets->get_map_number()), 0, 0x7FFFFFFF, 1, true );
+ 			inp_map_number.add_listener( this );
+ 			add_component( &inp_map_number );
+@@ -153,13 +153,13 @@ welt_gui_t::welt_gui_t(settings_t* const sets_par) :
+ 	add_table(2,0);
+ 	{
+ 		// Number of towns
+-		new_component<gui_label_t>("5WORLD_CHOOSE");
++		new_component<gui_simlabel_t>("5WORLD_CHOOSE");
+ 		inp_number_of_towns.add_listener(this);
+ 		inp_number_of_towns.init(abs(sets->get_city_count()), 0, 999);
+ 		add_component( &inp_number_of_towns );
+ 
+ 		// Town size
+-		new_component<gui_label_t>("Median Citizen per town");
++		new_component<gui_simlabel_t>("Median Citizen per town");
+ 		inp_town_size.add_listener(this);
+ 		inp_town_size.set_limits(0,999999);
+ 		inp_town_size.set_increment_mode(50);
+@@ -167,7 +167,7 @@ welt_gui_t::welt_gui_t(settings_t* const sets_par) :
+ 		add_component( &inp_town_size );
+ 
+ 		// Intercity road length
+-		new_component<gui_label_t>("Intercity road len:");
++		new_component<gui_simlabel_t>("Intercity road len:");
+ 		inp_intercity_road_len.add_listener(this);
+ 		inp_intercity_road_len.set_limits(0,9999);
+ 		inp_intercity_road_len.set_value( env_t::intercity_road_length );
+@@ -175,14 +175,14 @@ welt_gui_t::welt_gui_t(settings_t* const sets_par) :
+ 		add_component( &inp_intercity_road_len );
+ 
+ 		// Factories
+-		new_component<gui_label_t>("No. of Factories");
++		new_component<gui_simlabel_t>("No. of Factories");
+ 		inp_other_industries.add_listener(this);
+ 		inp_other_industries.set_limits(0,999);
+ 		inp_other_industries.set_value(abs(sets->get_factory_count()) );
+ 		add_component( &inp_other_industries );
+ 
+ 		// Tourist attr.
+-		new_component<gui_label_t>("Tourist attractions");
++		new_component<gui_simlabel_t>("Tourist attractions");
+ 		inp_tourist_attractions.add_listener(this);
+ 		inp_tourist_attractions.set_limits(0,999);
+ 		inp_tourist_attractions.set_value(abs(sets->get_tourist_attractions()) );
+diff --git a/src/simutrans/obj/label.cc b/src/simutrans/obj/label.cc
+index f273c4bac..2797caa6c 100644
+--- a/src/simutrans/obj/label.cc
++++ b/src/simutrans/obj/label.cc
+@@ -28,14 +28,14 @@ static pthread_mutex_t add_label_mutex = PTHREAD_MUTEX_INITIALIZER;
+ #endif
+ 
+ 
+-label_t::label_t(loadsave_t *file) :
++simlabel_t::simlabel_t(loadsave_t *file) :
+ 	obj_t()
+ {
+ 	rdwr(file);
+ }
+ 
+ 
+-label_t::label_t(koord3d pos, player_t *player, const char *text) :
++simlabel_t::simlabel_t(koord3d pos, player_t *player, const char *text) :
+ 	obj_t(pos)
+ {
+ 	set_owner( player );
+@@ -50,7 +50,7 @@ label_t::label_t(koord3d pos, player_t *player, const char *text) :
+ }
+ 
+ 
+-label_t::~label_t()
++simlabel_t::~simlabel_t()
+ {
+ 	koord k = get_pos().get_2d();
+ 	welt->remove_label(k);
+@@ -64,7 +64,7 @@ label_t::~label_t()
+ }
+ 
+ 
+-void label_t::finish_rd()
++void simlabel_t::finish_rd()
+ {
+ #ifdef MULTI_THREAD
+ 	pthread_mutex_lock( &add_label_mutex );
+@@ -83,15 +83,15 @@ void label_t::finish_rd()
+ }
+ 
+ 
+-image_id label_t::get_image() const
++image_id simlabel_t::get_image() const
+ {
+ 	grund_t *gr=welt->lookup(get_pos());
+ 	return gr && gr->obj_bei(0) == sim::up_cast<obj_t const*>(this) ? skinverwaltung_t::belegtzeiger->get_image_id(0) : IMG_EMPTY;
+ }
+ 
+ 
+-void label_t::show_info()
++void simlabel_t::show_info()
+ {
+-	label_t* l = this;
++	simlabel_t* l = this;
+ 	create_win(new label_info_t(l), w_info, (ptrdiff_t)this );
+ }
+diff --git a/src/simutrans/obj/label.h b/src/simutrans/obj/label.h
+index 14f90573e..02bf1bf82 100644
+--- a/src/simutrans/obj/label.h
++++ b/src/simutrans/obj/label.h
+@@ -14,12 +14,12 @@
+ /*
+  * Object which shows the label that indicates that the ground is owned by somebody
+  */
+-class label_t : public obj_t
++class simlabel_t : public obj_t
+ {
+ public:
+-	label_t(loadsave_t *file);
+-	label_t(koord3d pos, player_t *player, const char *text);
+-	~label_t();
++	simlabel_t(loadsave_t *file);
++	simlabel_t(koord3d pos, player_t *player, const char *text);
++	~simlabel_t();
+ 
+ 	void finish_rd() OVERRIDE;
+ 
+diff --git a/src/simutrans/script/api/api_map_objects.cc b/src/simutrans/script/api/api_map_objects.cc
+index f74a6f4ae..aa744d606 100644
+--- a/src/simutrans/script/api/api_map_objects.cc
++++ b/src/simutrans/script/api/api_map_objects.cc
+@@ -182,7 +182,7 @@ template<> struct bind_code<obj_t> { static const uint8 objtype = obj_t::obj; };
+ // implementation of get and push by macros
+ getpush_obj_pos(baum_t, obj_t::baum);
+ getpush_obj_pos(gebaeude_t, obj_t::gebaeude);
+-getpush_obj_pos(label_t, obj_t::label);
++getpush_obj_pos(simlabel_t, obj_t::label);
+ getpush_obj_pos(weg_t, obj_t::way);
+ getpush_obj_pos(leitung_t, obj_t::leitung);
+ getpush_obj_pos(field_t, obj_t::field);
+@@ -245,7 +245,7 @@ SQInteger script_api::param<obj_t*>::push(HSQUIRRELVM vm, obj_t* const& obj)
+ 	switch(type) {
+ 		case_resolve_obj(baum_t);
+ 		case_resolve_obj(gebaeude_t);
+-		case_resolve_obj(label_t);
++		case_resolve_obj(simlabel_t);
+ 		case_resolve_obj(weg_t);
+ 		case_resolve_obj(roadsign_t);
+ 		case_resolve_obj(signal_t);
+@@ -350,12 +350,12 @@ call_tool_work create_marker(koord pos, player_t* player, const char* text)
+ 	return call_tool_work(TOOL_MARKER | GENERAL_TOOL, text, 0, player, koord3d(pos, 0));
+ }
+ 
+-call_tool_init label_set_text(label_t *l, const char* text)
++call_tool_init label_set_text(simlabel_t *l, const char* text)
+ {
+ 	return command_rename(l->get_owner(), 'm', l->get_pos(), text);
+ }
+ 
+-const char* label_get_text(label_t* l)
++const char* label_get_text(simlabel_t* l)
+ {
+ 	if (l) {
+ 		if (grund_t *gr = welt->lookup(l->get_pos())) {
+@@ -708,7 +708,7 @@ void export_map_objects(HSQUIRRELVM vm)
+ 	/**
+ 	 * Labels.
+ 	 */
+-	begin_obj_class<label_t>(vm, "label_x", "map_object_x");
++	begin_obj_class<simlabel_t>(vm, "label_x", "map_object_x");
+ 	/**
+ 	 * Creates a new marker.
+ 	 * @param pos  position
+diff --git a/src/simutrans/script/api/api_world.cc b/src/simutrans/script/api/api_world.cc
+index 12caac603..e094a1eb3 100644
+--- a/src/simutrans/script/api/api_world.cc
++++ b/src/simutrans/script/api/api_world.cc
+@@ -189,13 +189,13 @@ SQInteger world_label_list_next(HSQUIRRELVM vm)
+ 	return generic_get_next(vm, welt->get_label_list().get_count());
+ }
+ 
+-label_t* world_label_list_get(label_list_t, uint32 index)
++simlabel_t* world_label_list_get(label_list_t, uint32 index)
+ {
+ 	auto list = welt->get_label_list();
+ 	if (index < list.get_count()) {
+ 		koord k = list[index];
+ 		if (grund_t *gr = welt->lookup_kartenboden(k)) {
+-			return gr->find<label_t>();
++			return gr->find<simlabel_t>();
+ 		}
+ 	}
+ 	return NULL;
+diff --git a/src/simutrans/script/api_param.h b/src/simutrans/script/api_param.h
+index 2d290bd03..53a01071f 100644
+--- a/src/simutrans/script/api_param.h
++++ b/src/simutrans/script/api_param.h
+@@ -29,7 +29,7 @@ class karte_t;
+ class karte_ptr_t;
+ class koord;
+ class koord3d;
+-class label_t;
++class simlabel_t;
+ class leitung_t;
+ class loadsave_t;
+ struct schedule_entry_t;
+@@ -415,7 +415,7 @@ namespace script_api {
+ 	declare_specialized_param(obj_t*, "t|x|y", "map_object_x");
+ 	declare_specialized_param(baum_t*, "t|x|y", "tree_x");
+ 	declare_specialized_param(gebaeude_t*, "t|x|y", "building_x");
+-	declare_specialized_param(label_t*, "t|x|y", "label_x");
++	declare_specialized_param(simlabel_t*, "t|x|y", "label_x");
+ 	declare_specialized_param(leitung_t*, "t|x|y", "powerline_x");
+ 	declare_specialized_param(weg_t*, "t|x|y", "way_x");
+ 	declare_specialized_param(field_t*, "t|x|y", "field_x");
+diff --git a/src/simutrans/simhalt.cc b/src/simutrans/simhalt.cc
+index 334c81bfa..0eeb3dd4f 100644
+--- a/src/simutrans/simhalt.cc
++++ b/src/simutrans/simhalt.cc
+@@ -585,7 +585,7 @@ void haltestelle_t::set_name(const char *new_name)
+ 				DBG_MESSAGE("haltestelle_t::set_name()","removing name %s already used!",gr->get_text());
+ 			}
+ 		}
+-		if(!gr->find<label_t>()) {
++		if(!gr->find<simlabel_t>()) {
+ 			gr->set_text( new_name );
+ 			if(new_name  &&  all_names.set(gr->get_text(),self).is_bound() ) {
+ 				DBG_MESSAGE("haltestelle_t::set_name()","name %s already used!",new_name);
+@@ -3300,7 +3300,7 @@ bool haltestelle_t::rem_grund(grund_t *gr)
+ 
+ 	// re-add name
+ 	if (station_name_to_transfer != NULL  &&  !tiles.empty()) {
+-		label_t *lb = tiles.front().grund->find<label_t>();
++		simlabel_t *lb = tiles.front().grund->find<simlabel_t>();
+ 		delete lb;
+ 		set_name( station_name_to_transfer );
+ 	}
+diff --git a/src/simutrans/tool/simmenu.cc b/src/simutrans/tool/simmenu.cc
+index ada8af1f2..08e3736f6 100644
+--- a/src/simutrans/tool/simmenu.cc
++++ b/src/simutrans/tool/simmenu.cc
+@@ -369,7 +369,7 @@ tool_t *create_dialog_tool(int toolnr)
+ 		case DIALOG_EDIT_HOUSE:      tool = new dialog_edit_house_t();      break;
+ 		case DIALOG_EDIT_TREE:       tool = new dialog_edit_tree_t();       break;
+ 		case DIALOG_ENLARGE_MAP:     tool = new dialog_enlarge_map_t();     break;
+-		case DIALOG_LIST_LABEL:      tool = new dialog_list_label_t();      break;
++		case DIALOG_LIST_LABEL:      tool = new dialog_list_simlabel_t();      break;
+ 		case DIALOG_CLIMATES:        tool = new dialog_climates_t();        break;
+ 		case DIALOG_SETTINGS:        tool = new dialog_settings_t();        break;
+ 		case DIALOG_GAMEINFO:        tool = new dialog_gameinfo_t();        break;
+diff --git a/src/simutrans/tool/simtool-dialogs.h b/src/simutrans/tool/simtool-dialogs.h
+index b4bf64cd1..6c313d51f 100644
+--- a/src/simutrans/tool/simtool-dialogs.h
++++ b/src/simutrans/tool/simtool-dialogs.h
+@@ -557,9 +557,9 @@ public:
+ };
+ 
+ /* open the list of label */
+-class dialog_list_label_t : public tool_t {
++class dialog_list_simlabel_t : public tool_t {
+ public:
+-	dialog_list_label_t() : tool_t(DIALOG_LIST_LABEL | DIALOGE_TOOL) {}
++	dialog_list_simlabel_t() : tool_t(DIALOG_LIST_LABEL | DIALOGE_TOOL) {}
+ 	char const* get_tooltip(player_t const*) const OVERRIDE{ return translator::translate("labellist_title"); }
+ 	bool is_selected() const OVERRIDE{ return win_get_magic(magic_labellist); }
+ 	bool init(player_t*) OVERRIDE{
+diff --git a/src/simutrans/tool/simtool.cc b/src/simutrans/tool/simtool.cc
+index bb99f1714..cdb2029ea 100644
+--- a/src/simutrans/tool/simtool.cc
++++ b/src/simutrans/tool/simtool.cc
+@@ -376,7 +376,7 @@ const char *tool_query_t::work( player_t *, koord3d pos )
+ 				}
+ 				case 1: // labels
+ 					if(  gr->get_flag(grund_t::marked)  ) {
+-						label_t *lb = gr->find<label_t>();
++						simlabel_t *lb = gr->find<simlabel_t>();
+ 						if(  lb  ) {
+ 							lb->show_info();
+ 							if(  old_count < win_get_open_count()  ) {
+@@ -438,7 +438,7 @@ DBG_MESSAGE("tool_remover_intern()","at (%s)", pos.get_str());
+ 
+ 	// marker?
+ 	if (type == obj_t::label  ||  type == obj_t::undefined) {
+-		if (label_t* l = gr->find<label_t>()) {
++		if (simlabel_t* l = gr->find<simlabel_t>()) {
+ 			msg = l->is_deletable(player);
+ 			if(msg==NULL) {
+ 				delete l;
+@@ -673,7 +673,7 @@ DBG_MESSAGE("tool_remover()",  "took out powerline");
+ 		gr->obj_remove(zeiger);
+ 	}
+ 	// do not delete other players label
+-	label_t *label = gr->find<label_t>();
++	simlabel_t *label = gr->find<simlabel_t>();
+ 	if(label) {
+ 		gr->obj_remove(label);
+ 	}
+@@ -1120,7 +1120,7 @@ const char *tool_setslope_t::tool_set_slope_work( player_t *player, koord3d pos,
+ 
+ 		// finally: empty enough
+ 		if(  gr1->get_grund_hang()!=gr1->get_weg_hang()  ||  gr1->get_halt().is_bound()  ||  gr1->kann_alle_obj_entfernen(player)  ||
+-				   gr1->find<gebaeude_t>()  ||  gr1->get_depot()  ||  (gr1->get_leitung() && gr1->hat_wege())  ||  gr1->get_weg(air_wt)  ||  gr1->find<label_t>()  ||  gr1->get_typ()==grund_t::brueckenboden) {
++				   gr1->find<gebaeude_t>()  ||  gr1->get_depot()  ||  (gr1->get_leitung() && gr1->hat_wege())  ||  gr1->get_weg(air_wt)  ||  gr1->find<simlabel_t>()  ||  gr1->get_typ()==grund_t::brueckenboden) {
+ 			return NOTICE_TILE_FULL;
+ 		}
+ 
+@@ -1466,9 +1466,9 @@ const char *tool_marker_t::work( player_t *player, koord3d pos )
+ 		if(!gr->get_text()) {
+ 			const obj_t* thing = gr->obj_bei(0);
+ 			if(thing == NULL  ||  thing->get_owner() == player  ||  (player_t::check_owner(thing->get_owner(), player)  &&  (thing->get_typ() != obj_t::gebaeude))) {
+-				gr->obj_add(new label_t(gr->get_pos(), player, default_param ? default_param : "\0"));
++				gr->obj_add(new simlabel_t(gr->get_pos(), player, default_param ? default_param : "\0"));
+ 				if (can_use_gui()) {
+-					gr->find<label_t>()->show_info();
++					gr->find<simlabel_t>()->show_info();
+ 				}
+ 				return NULL;
+ 			}
+@@ -8088,7 +8088,7 @@ bool tool_rename_t::init(player_t *player)
+ 
+ 		case 'm':
+ 			if(  grund_t *gr = welt->lookup(pos)  ) {
+-				label_t *label = gr->find<label_t>();
++				simlabel_t *label = gr->find<simlabel_t>();
+ 				if (label  &&  (!env_t::networkmode  ||  player_t::check_owner(label->get_owner(), player))  ) {
+ 					gr->set_text(p);
+ 				}
+diff --git a/src/simutrans/utils/searchfolder.cc b/src/simutrans/utils/searchfolder.cc
+index 7bae17cbe..a5c4d2607 100644
+--- a/src/simutrans/utils/searchfolder.cc
++++ b/src/simutrans/utils/searchfolder.cc
+@@ -177,16 +177,11 @@ void searchfolder_t::search_path(const std::string path, const std::string name,
+ 			if(entry->d_name[0]!='.' || (entry->d_name[1]!='.' && entry->d_name[1]!=0)) {
+ 
+ 				bool is_dir = false;
+-				if( entry->d_type == DT_DIR ) {
+-					is_dir = true;
+-				}
+-				else if( entry->d_type == DT_UNKNOWN || entry->d_type == DT_LNK ) {
+-					struct stat st;
+-					if( fstatat(dir_fd, entry->d_name, &st, 0) == -1 ) {
+-						continue;
+-					}
+-					is_dir = S_ISDIR(st.st_mode);
++				struct stat st;
++				if( fstatat(dir_fd, entry->d_name, &st, 0) == -1 ) {
++				  continue;
+ 				}
++				is_dir = S_ISDIR(st.st_mode);
+ 
+ 				if( is_dir && (search_flags&SF_NOADDONS) && !STRICMP(entry->d_name, "addons") ) {
+ 					continue;

@@ -1,0 +1,4 @@
+PKG="TRIBsimutrans"
+NAME="Simutrans transportation simulator"
+VERSION="d222765.0"
+ZAP_URL="https://www.simutrans.com/en/"
