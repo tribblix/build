@@ -4,7 +4,8 @@
 # so you can either go downrev, or apply fixes/workarounds
 # 1. It isn't compatible with gmake 4.3, using 4.2.1 is fine if you can
 # or look at the bug https://bugs.openjdk.org/browse/JDK-8237879 and apply
-# https://hg.openjdk.org/jdk/jdk/rev/0743e1d49930
+# https://hg.openjdk.org/jdk/jdk/rev/0743e1d49930. This is now fixed with
+# jdk12-make.patch
 # 2. It isn't compatible by default with gcc10, gcc7 is fine but with gcc10
 # you'll need to add -fcommon (the problem is that -fno-common is the default)
 #

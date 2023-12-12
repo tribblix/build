@@ -35,3 +35,4 @@
 -p1 openjdk12/tribblix-sparc1.patch
 -p1 openjdk12/tribblix-sparc2.patch
 -p1 openjdk12/tribblix-sparc3.patch
+-p1 openjdk12/jdk12-make.patch
