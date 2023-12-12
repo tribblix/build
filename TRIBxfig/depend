@@ -3,7 +3,9 @@ P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-libtiff
 P TRIBlib-zlib
+P TRIBsys-lib-fontconfig
 P TRIBx11-lib-toolkit-libxaw3d
 P TRIBx11-lib-toolkit-libxt
 P TRIBx11-libx11
+P TRIBx11-libxft
 P TRIBx11-libxpm
