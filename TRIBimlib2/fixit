@@ -3,4 +3,6 @@
 # clean up a bit
 #
 rm -f usr/lib/imlib2/loaders/*.la
+rm -f usr/lib/imlib2/filters/*.la
 rm -f usr/lib/*/imlib2/loaders/*.la
+rm -f usr/lib/*/imlib2/filters/*.la
