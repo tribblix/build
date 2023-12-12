@@ -1,0 +1,19 @@
+#!/bin/sh
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# the xcircuit installed in /usr/bin is a shell script
+# launcher that calls wish. Unfortunately it tries to run the
+# default /usr/bin/wish, which is 32-bit
+#
+# this will either fail or no longer be necessary when tcl/tk become
+# 64-bit only
+#
+sed -i s:/usr/bin/wish:/usr/bin/${ARCH64}/wish: usr/bin/xcircuit
