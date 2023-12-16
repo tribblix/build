@@ -20,33 +20,42 @@ case $# in
 	;;
 esac
 
+install_status() {
+    pkg=$1
+    if [ -f "${PDIR}/${pkg}/pkginfo" ]
+    then
+	echo "installed"
+    else
+	echo "not installed"
+    fi
+}
+
 cd "$BDIR" || exit 1
 for dir in "$@"
 do
     # remove any trailing / added by tab-completion
     dir=${dir%%/}
     if [ -d "${dir}" ]; then
-	if [ -f "${PDIR}/${dir}/pkginfo" ]
-	then
-	    echo "Checking $dir (installed)"
-	else
-	    echo "Checking $dir (not installed)"
-	fi
+	echo "Checking $dir ($(install_status $dir))"
 	grep -lx "P $dir" */depend* | while read -r dep
 	do
-	    echo "  run-time ${dep%%/*}"
+	    pkg=${dep%%/*}
+	    echo "  run-time ${pkg} ($(install_status $pkg))"
 	done
 	grep -lx "I $dir" */depend* | while read -r dep
 	do
-	    echo "  run-incompatible ${dep%%/*}"
+	    pkg=${dep%%/*}
+	    echo "  run-incompatible ${pkg} ($(install_status $pkg))"
 	done
 	grep -lx "$dir" */build_require* | while read -r dep
 	do
-	    echo "  build-time ${dep%%/*}"
+	    pkg=${dep%%/*}
+	    echo "  build-time ${pkg} ($(install_status $pkg))"
 	done
 	grep -lx "$dir" */build_incompatible* | while read -r dep
 	do
-	    echo "  build-incompatible ${dep%%/*}"
+	    pkg=${dep%%/*}
+	    echo "  build-incompatible ${pkg} ($(install_status $pkg))"
 	done
     else
 	echo "No such package $dir"
