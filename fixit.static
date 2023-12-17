@@ -17,17 +17,14 @@
 #
 
 #
-# default fixes to installed packages
+# we do not ship static archives, as a rule
 #
-# - remove lib*.a
-# would like to also kill lib*.la but libtool is utterly broken
+# if a package needs to ship static archives, touch the allowstatic
+# file in the package directory and create_pkg will not run this script
 #
 /bin/rm -f usr/lib/lib*.a
-#/bin/rm -f usr/lib/lib*.la
 /bin/rm -f usr/lib/amd64/lib*.a
-#/bin/rm -f usr/lib/amd64/lib*.la
 /bin/rm -f usr/lib/sparcv9/lib*.a
-#/bin/rm -f usr/lib/sparcv9/lib*.la
 /bin/rm -f usr/gnu/lib/lib*.a
 /bin/rm -f usr/gnu/lib/amd64/lib*.a
 /bin/rm -f usr/gnu/lib/sparcv9/lib*.a
