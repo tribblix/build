@@ -7,8 +7,8 @@
 #
 rm -fr ZenLib MediaInfoLib MediaInfo
 ${THOME}/build/unpack libzen_0.4.41
-${THOME}/build/unpack libmediainfo_23.04
-${THOME}/build/unpack mediainfo_23.04
+${THOME}/build/unpack libmediainfo_23.11
+${THOME}/build/unpack mediainfo_23.11
 
 zap install libtool
 
