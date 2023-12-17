@@ -16,6 +16,9 @@
 # Copyright 2023 Peter Tribble
 #
 
+LC_COLLATE=C
+export LC_COLLATE
+
 #
 # check depend files are sorted for all packages
 #
