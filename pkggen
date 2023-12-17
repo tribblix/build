@@ -23,6 +23,28 @@
 # and add the ZAP_URL to pkginfo
 #
 
+#
+# flags
+# -c cmake style (cmbuild)
+# -d autoconf style (dobuild, the default)
+# -m meson style (mesonbuild)
+#
+BUILDER="dobuild"
+while getopts "cdm" opt; do
+    case $opt in
+    c)
+	BUILDER="cmbuild"
+	;;
+    d)
+	BUILDER="dobuild"
+	;;
+    m)
+	BUILDER="mesonbuild"
+	;;
+    esac
+done
+shift $((OPTIND-1))
+
 case $1 in
 -64)
 	XFLAGS="-64 "
@@ -48,7 +70,7 @@ case $# in
 	TBALL=$2
 	;;
 *)
-	echo "Usage: $0 [-64|+64|-64only|+64only] pkg_name tarball_name"
+	echo "Usage: $0 [-c|-d|-m] [-64|+64|-64only|+64only] pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -85,10 +107,17 @@ EOF
 cat > $PNAME/build.sh <<EOF
 #!/bin/sh
 #
-\${THOME}/build/dobuild ${XFLAGS}$TBALL
+\${THOME}/build/${BUILDER} ${XFLAGS}$TBALL
 \${THOME}/build/genpkg $PNAME $TBALL
 EOF
 chmod a+x $PNAME/build.sh
+
+case $BUILDER in
+    mesonbuild)
+	echo "TRIBmeson-python-311" > $PNAME/build_require
+	echo "TRIBninja" >> $PNAME/build_require
+	;;
+esac
 
 echo "Now check $PNAME/pkginfo"
 echo "After building, check $PNAME/depend"
