@@ -21,7 +21,7 @@
 #  alias|name
 #
 THOME=${THOME:-/packages/localsrc/Tribblix}
-PKGDIR=${THOME}/illumos-pkgs-m18/pkgs
+PKGDIR=${THOME}/illumos-pkgs-m33/pkgs
 
 case $# in
 1)
