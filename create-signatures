@@ -30,9 +30,12 @@ case $# in
 	;;
 esac
 
-if [ ! -f "${HOME}/Tribblix/Sign.phrase" ]; then
-    echo "Missing passphrase, must sign packages manually"
-    exit 1
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BUILD="${THOME}/build"
+
+if [ ! -d "$BUILD" ]; then
+   echo "ERROR: unable to find build directory $BUILD"
+   exit 1
 fi
 
 if [ ! -f "${PKGDIR}/catalog" ]; then
@@ -44,14 +47,7 @@ awk -F'|' '{print $1,$2}' "${PKGDIR}/catalog" | while read -r PKG PKGVERS
 do
   if [ -f "${PKGDIR}/${PKG}.${PKGVERS}.zap" ]; then
     if [ ! -f "${PKGDIR}/${PKG}.${PKGVERS}.zap.sig" ]; then
-	echo ""
-	echo "Signing package ${PKG}.${PKGVERS}"
-	echo ""
-	gpg --detach-sign --no-secmem-warning --passphrase-file "${HOME}/Tribblix/Sign.phrase" "${PKGDIR}/${PKG}.${PKGVERS}.zap"
-	if [ -f "${PKGDIR}/${PKG}.${PKGVERS}.zap.sig" ]; then
-	    echo "Package signed successfully."
-	    echo ""
-	fi
+      "${BUILD}"/sign-file "${PKGDIR}/${PKG}.${PKGVERS}.zap"
     fi
   fi
 done

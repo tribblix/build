@@ -327,18 +327,9 @@ chmod a+r ${PKGNAME}.${PKGVER}.zap
 cd /
 # pregenerate the md5 checksum ready for catalog creation
 openssl md5 ${BROOT}/${PKGNAME}.${PKGVER}.zap| /usr/bin/awk '{print $NF}' > ${BROOT}/${PKGNAME}.${PKGVER}.zap.md5
-# if the passphrase file exists, sign the package
-# otherwise, it will have to be signed manually
-if [ -f ${HOME}/Tribblix/Sign.phrase ]; then
-    echo ""
-    echo "Signing package."
-    echo ""
-    gpg --detach-sign --no-secmem-warning --passphrase-file ${HOME}/Tribblix/Sign.phrase ${BROOT}/${PKGNAME}.${PKGVER}.zap
-    if [ -f ${BROOT}/${PKGNAME}.${PKGVER}.zap.sig ]; then
-	echo "Package signed successfully."
-	echo ""
-    fi
-fi
+# sign the zap file
+${BUILD}/sign-file ${BROOT}/${PKGNAME}.${PKGVER}.zap
+
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.pkg
 ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.zap
 rm -fr ${BROOT}/${PKGNAME}
