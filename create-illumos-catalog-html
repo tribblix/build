@@ -17,8 +17,7 @@
 #
 
 #
-# catalog format is
-#  name|version|dependencies|size|md5|
+# like the catalog, but neatly formatted as html
 #
 RELVER=m33
 THOME=${THOME:-/packages/localsrc/Tribblix}

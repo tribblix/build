@@ -18,6 +18,8 @@
 
 #
 # generate a merged list of dependencies for the given overlay(s)
+# and compares that with the overlay's contents, printing out any
+# dpendent packages that have been missed
 #
 
 THOME=${THOME:-/packages/localsrc/Tribblix}
