@@ -17,7 +17,7 @@
 #
 
 #
-# this will sign every zap file in the given directory
+# this will sign every unsigned zap file in the given directory
 #
 
 builtin echo
@@ -32,25 +32,25 @@ case $# in
     ;;
 esac
 
-if [ ! -f ${HOME}/Tribblix/Sign.phrase ]; then
+if [ ! -f "${HOME}/Tribblix/Sign.phrase" ]; then
     echo "Missing passphrase, must sign packages manually"
     exit 1
 fi
 
-if [ ! -d ${PKGDIR} ]; then
+if [ ! -d "${PKGDIR}" ]; then
     echo "Cannot find $PKGDIR"
     exit 1
 fi
 
-cd $PKGDIR
+cd "$PKGDIR" || exit
 for PKG in *.zap
 do
-    if [ ! -f ${PKG}.sig ]; then
+    if [ ! -f "${PKG}.sig" ]; then
 	echo ""
 	echo "Signing ${PKG}"
 	echo ""
-	gpg --detach-sign --no-secmem-warning --passphrase-file ${HOME}/Tribblix/Sign.phrase ${PKG}
-	if [ -f ${PKG}.sig ]; then
+	gpg --detach-sign --no-secmem-warning --passphrase-file "${HOME}/Tribblix/Sign.phrase" "${PKG}"
+	if [ -f "${PKG}.sig" ]; then
 	    echo "Package signed successfully."
 	    echo ""
 	fi

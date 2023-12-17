@@ -18,7 +18,7 @@
 
 #
 # this will sign just the current versions of packages
-# (otherwise, you could use a trivial loop over all files)
+# (otherwise, you could use sign-directory)
 #
 
 builtin echo
