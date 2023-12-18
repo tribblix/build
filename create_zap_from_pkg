@@ -17,7 +17,7 @@
 #
 
 #
-# given an existing pkg, convert it into the proper zap file
+# convert an svr4 package (in datastream format) into zap format
 #
 # this is for when something else has already provided an SVR4 package
 # in datastream format and we're just importing it
@@ -83,7 +83,7 @@ rm -f ${PKGNAME}.${PKGVER}.zap ${PKGNAME}.${PKGVER}.zap.md5 ${PKGNAME}.${PKGVER}
 chmod a+r ${PKGNAME}.${PKGVER}.zap
 cd /
 # pregenerate the md5 checksum ready for catalog creation
-openssl md5 ${BROOT}/${PKGNAME}.${PKGVER}.zap| /usr/bin/awk '{print $NF}' > ${BROOT}/${PKGNAME}.${PKGVER}.zap.md5
+openssl md5 ${BROOT}/${PKGNAME}.${PKGVER}.zap | /usr/bin/awk '{print $NF}' > ${BROOT}/${PKGNAME}.${PKGVER}.zap.md5
 # sign the zap file
 ${BUILD}/sign-file ${BROOT}/${PKGNAME}.${PKGVER}.zap
 

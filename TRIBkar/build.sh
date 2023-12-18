@@ -12,7 +12,3 @@ mv /tmp/TRIBkar-i386.pkg ${THOME}/pkgs/TRIBkar.1.5.pkg
 mv /tmp/TRIBkar-sparc.pkg ${THOME}/pkgs.sparc/TRIBkar.1.5.pkg
 ${THOME}/build/pkg2zap ${THOME}/pkgs/TRIBkar.1.5.pkg ${THOME}/pkgs
 ${THOME}/build/pkg2zap ${THOME}/pkgs.sparc/TRIBkar.1.5.pkg ${THOME}/pkgs.sparc
-openssl md5 ${THOME}/pkgs/TRIBkar.1.5.zap | /usr/bin/awk '{print $NF}' > ${THOME}/pkgs/TRIBkar.1.5.zap.md5
-openssl md5 ${THOME}/pkgs.sparc/TRIBkar.1.5.zap | /usr/bin/awk '{print $NF}' > ${THOME}/pkgs.sparc/TRIBkar.1.5.zap.md5
-${THOME}/build/sign-file ${THOME}/pkgs/TRIBkar.1.5.zap
-${THOME}/build/sign-file ${THOME}/pkgs.sparc/TRIBkar.1.5.zap
