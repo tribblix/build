@@ -1,4 +1,4 @@
 PKG="TRIBgupnp-dlna"
 NAME="GObject-based DLNA specific UPnP library"
-VERSION="0.10.5.2"
+VERSION="0.10.5.3"
 ZAP_URL="https://download.gnome.org/sources/gupnp-dlna/"
