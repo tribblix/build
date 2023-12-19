@@ -1,0 +1,3 @@
+#!/bin/sh
+rm -f opt/tribblix/varnish/lib/*/varnish/vmods/lib*.la
+rm -f opt/tribblix/varnish/lib/*/lib*.la
