@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-$THOME/build/unpack rclone-v1.64.2
-cd rclone-v1.64.2
+$THOME/build/unpack rclone-v1.65.0
+cd rclone-v1.65.0
 env PATH=/usr/gnu/bin:/usr/versions/go-1.21/bin:$PATH gmake
 
 rm -fr /tmp/cs
@@ -13,3 +13,4 @@ cp ./README.md ./COPYING /tmp/cs/usr/share/rclone
 cp ./rclone.1 /tmp/cs/usr/share/man/man1
 ${THOME}/build/create_pkg TRIBrclone /tmp/cs
 rm -fr /tmp/cs
+cd ..
