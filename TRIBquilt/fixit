@@ -1,3 +1,0 @@
-#!/bin/sh
-/bin/rm -fr usr/share/emacs
-/bin/rm -fr usr/share/doc
