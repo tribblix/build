@@ -2,4 +2,4 @@
 #
 # (built in python)
 #
-${THOME}/build/pkg_setup_py -v 311 TRIBscons SCons-4.5.2
+${THOME}/build/pkg_setup_py -v 311 TRIBscons SCons-4.6.0
