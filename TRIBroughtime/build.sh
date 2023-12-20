@@ -5,22 +5,26 @@ mkdir c
 cd c
 setenv GOPATH `pwd`
 
-go get -u github.com/cloudflare/roughtime
-go install github.com/cloudflare/roughtime...
+# the instructions are definitely wrong
+# go get -u github.com/cloudflare/roughtime
+# go install github.com/cloudflare/roughtime...
 
-sed -i s:ecosystem.config:/etc/roughtime/ecosystem.config: src/github.com/cloudflare/roughtime/recipes/alerter.go
-go build src/github.com/cloudflare/roughtime/recipes/alerter.go
+git clone https://github.com/cloudflare/roughtime
+cd roughtime
+sed -i s:ecosystem.json:/etc/roughtime/ecosystem.json: recipes/alerter.go
+go build -v recipes/alerter.go
+go build -v cmd/getroughtime/main.go
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
-cp bin/getroughtime /tmp/ee/usr/bin
+cp main /tmp/ee/usr/bin/getroughtime
 cp alerter /tmp/ee/usr/bin/roughtime-alerter
 mkdir -p /tmp/ee/usr/share/doc/roughtime
-cp src/github.com/cloudflare/roughtime/LICENSE src/github.com/cloudflare/roughtime/README.md /tmp/ee/usr/share/doc/roughtime
+cp LICENSE README.md /tmp/ee/usr/share/doc/roughtime
 mkdir -p /tmp/ee/etc/roughtime
-cp src/github.com/cloudflare/roughtime/ecosystem.config /tmp/ee/etc/roughtime
+cp ecosystem.json /tmp/ee/etc/roughtime
 ${THOME}/build/create_pkg TRIBroughtime /tmp/ee
 rm -fr /tmp/ee
 
-cd ..
+cd ../..
 rm -fr c
