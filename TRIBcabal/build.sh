@@ -20,7 +20,7 @@ rm -fr /tmp/cbls
 exit 0
 
 #
-# below is the initial bootsrap of cabal
+# below is the initial bootstrap of cabal
 #
 
 #
