@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# add a convenience link
+#
+PYVERS=3.11
+rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/test
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/python-${PYVERS}/bin/sbom4python .
