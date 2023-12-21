@@ -10,7 +10,7 @@ loom correctly as they date back to that change.
 * jshell doesn't work
 * illuminate doesn't work
 
-22+28
+22+28, 22+29
 
 No changes.
 
