@@ -8,3 +8,5 @@
 -p1 python/curses.311.patch
 -p1 python/disable_epoll.311.patch
 -p1 python/static-assert.patch
+-p1 python/default-lib-path.311.patch
+-p1 python/dont-use-ccs.311.patch
