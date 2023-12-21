@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBhttpx-python-311 httpx-0.25.2
+${THOME}/build/pkg_pep518 TRIBhttpx-python-311 httpx-0.26.0
