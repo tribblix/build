@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# help it find pod2man
-#
-sed -i s:pod2man:/usr/perl5/bin/pod2man: man/Makefile*
-sed -i s:pod2html:/usr/perl5/bin/pod2html: man/Makefile*
