@@ -1,4 +1,4 @@
 PKG="TRIBgupnp"
 NAME="Framework for creating UPnP devices and control points"
-VERSION="1.0.6.0"
+VERSION="1.0.6.1"
 ZAP_URL="https://download.gnome.org/sources/gupnp/"
