@@ -2,8 +2,5 @@
 #
 # putty
 #
-$THOME/build/unpack putty-0.76
-cd putty-0.76/unix
-./configure --prefix=/usr LIBS="-lsocket -lnsl"
-gmake -j 6
-${THOME}/build/genpkg TRIBputty
+env TRIBBLIX_LDFLAGS="-lsocket -lnsl" $THOME/build/cmbuild -64only putty-0.80
+${THOME}/build/genpkg TRIBputty putty-0.80
