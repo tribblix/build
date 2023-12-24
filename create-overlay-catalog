@@ -20,4 +20,4 @@
 # catalog format is
 #  name|version|other data|
 #
-/usr/bin/grep ^VERSION *.ovl | /usr/bin/sed -e 's,.ovl:VERSION=,|,' -e 's:$:||:'
+/usr/bin/grep -H ^VERSION *.ovl | /usr/bin/sed -e 's,.ovl:VERSION=,|,' -e 's:$:||:'
