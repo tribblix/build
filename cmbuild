@@ -61,6 +61,8 @@ fi
 # if a dual 32- and 64-bit build is desired, specify -64 *first*
 # +64 means just do the 64-bit (useful for testing it in isolation)
 # note that +64 will wipe the 32-bit directory
+# +32 means just do the 32-bit
+# note that +32 will NOT wipe the 64-bit directory
 # -64only means put the 64-bit binaries in the default path
 # +64only means put all 64-bit objects in the
 # default path, rather than in a subdirectory
@@ -103,6 +105,10 @@ BDIR=".."
 
 while [[ $# -gt 0 ]]; do
 case $1 in
++32)
+	UNPACK_FLAGS="+32"
+	shift
+	;;
 -64)
 	DO64="true"
 	UNPACK_FLAGS="-64"

@@ -35,9 +35,22 @@ GPATCH="/usr/bin/gpatch"
 ZCAT="/usr/bin/zcat"
 LZIP="/usr/bin/lzip"
 
+#
+# options:
+# none - only 32-bit, delete 64-bit
+# +32 - only 32-bit, but don't delete 64-bit
+# -64 - both 32-bit and 64-bit
+# +64 - only 32-bit
+#
 DO32="true"
 DO64="false"
+RM32="true"
+RM64="true"
 case $1 in
++32)
+	RM64="false"
+	shift
+	;;
 -64)
 	DO64="true"
 	shift
@@ -78,7 +91,12 @@ dopatch() {
 
 for pkg in "$@"
 do
-        /usr/bin/rm -fr ${pkg} ${pkg}-64bit
+        if [ "x$RM32" != "xfalse" ]; then
+            /usr/bin/rm -fr ${pkg}
+	fi
+        if [ "x$RM64" != "xfalse" ]; then
+            /usr/bin/rm -fr ${pkg}-64bit
+	fi
 	DONEUNPACK=""
 
 	for filetype in \
