@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# would like to add the OpenJPEG support too, but the openjpeg install
-# is broken and mixes up 32- and 64-bit objects
-#
-${THOME}/build/cmbuild -64 libheif-1.17.5 -C "-DWITH_JPEG_ENCODER=YES -DWITH_JPEG_DECODER=YES"
-${THOME}/build/genpkg TRIBlibheif libheif-1.17.5
+${THOME}/build/cmbuild +64 libheif-1.17.6 -C "-DWITH_JPEG_ENCODER=YES -DWITH_JPEG_DECODER=YES -DWITH_OpenJPEG_ENCODER=YES -DWITH_OpenJPEG_DECODER=YES -DCMAKE_PREFIX_PATH=/usr/lib/`${THOME}/build/getarch`/openjpeg-2.5"
+${THOME}/build/cmbuild +32 libheif-1.17.6 -C "-DWITH_JPEG_ENCODER=YES -DWITH_JPEG_DECODER=YES -DWITH_OpenJPEG_ENCODER=YES -DWITH_OpenJPEG_DECODER=YES"
+${THOME}/build/genpkg TRIBlibheif libheif-1.17.6
