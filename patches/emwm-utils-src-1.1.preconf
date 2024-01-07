@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# there isn't a configure, so tweak the Makefile
+#
+# force 64-bit
+#
+sed -i 's:gcc:gcc -m64:' mf/Makefile.SunOS
+#
+# add DESTDIR to install targets
+#
+sed -i 's:\$:$(DESTDIR)$:' mf/Makefile.SunOS
+#
+# we do have an Xft-enabled Motif
+#
+sed -i 's:# cp:cp:' mf/Makefile.SunOS
+#
+# install permissions aren't right
+#
+sed -i s:775:755: mf/Makefile.SunOS
+sed -i s:664:644: mf/Makefile.SunOS
