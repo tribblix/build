@@ -117,6 +117,9 @@ case $# in
 	if [ -f .tribblix_ldopts ]; then
 	    . ./.tribblix_ldopts
 	fi
+	if [ -x ${BUILD}/${PKGNAME}/fixpreinstall ]; then
+	    ${BUILD}/${PKGNAME}/fixpreinstall $BDIR
+	fi
 	$GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL $MAKEARGS
 	if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 	    ${BUILD}/${PKGNAME}/fixinstall $BDIR
@@ -136,6 +139,9 @@ case $# in
 		fi
 		if [ -f .tribblix_build_subdir ]; then
 		    cd $(cat .tribblix_build_subdir)
+		fi
+		if [ -x ${BUILD}/${PKGNAME}/fixpreinstall.64 ]; then
+		    ${BUILD}/${PKGNAME}/fixpreinstall.64 $BDIR
 		fi
 		if [ -f .tribblix_meson_build ]; then
 		    env DESTDIR=$BDIR ninja -C $(cat .tribblix_meson_build) install
@@ -163,6 +169,9 @@ case $# in
 		fi
 		if [ -f .tribblix_build_subdir ]; then
 		    cd $(cat .tribblix_build_subdir)
+		fi
+		if [ -x ${BUILD}/${PKGNAME}/fixpreinstall ]; then
+		    ${BUILD}/${PKGNAME}/fixpreinstall $BDIR
 		fi
 		if [ -f .tribblix_meson_build ]; then
 		    env DESTDIR=$BDIR ninja -C $(cat .tribblix_meson_build) install
