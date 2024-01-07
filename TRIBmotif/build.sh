@@ -8,5 +8,5 @@
 # there's an extra patch needed for --disable-printing to work, but
 # that removes the deprecated libXp dependency
 #
-env TRIBBLIX_CFLAGS=-D_POSIX_PTHREAD_SEMANTICS ${THOME}/build/dobuild -64 motif-2.3.8 -L -C --disable-printing
+env TRIBBLIX_CFLAGS=-D_POSIX_PTHREAD_SEMANTICS ${THOME}/build/dobuild -64 motif-2.3.8 -L -C "--disable-printing --enable-jpeg --enable-png --enable-xft --enable-shared --disable-static"
 ${THOME}/build/genpkg TRIBmotif motif-2.3.8
