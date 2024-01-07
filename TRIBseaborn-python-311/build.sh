@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBseaborn-python-311 seaborn-0.13.0
+${THOME}/build/pkg_pep518 TRIBseaborn-python-311 seaborn-0.13.1
