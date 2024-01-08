@@ -1,9 +1,8 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64only openssh-9.5p1 -C "--sysconfdir=/etc/ssh --libexecdir=/usr/lib/ssh --with-solaris-contracts --with-solaris-projects --with-ssl-engine --with-pam"
+${THOME}/build/dobuild -64only openssh-9.6p1 -C "--sysconfdir=/etc/ssh --libexecdir=/usr/lib/ssh --with-solaris-contracts --with-solaris-projects --with-ssl-engine --with-pam"
 #
-# Need to split to match the old layout
-# TRIBnet-ssh-ssh-key is now deprecated and forcibly removed in m31
+# split into client and server packages
 #
-${THOME}/build/genpkg TRIBnet-ssh openssh-9.5p1
-${THOME}/build/genpkg TRIBsvc-net-ssh openssh-9.5p1
+${THOME}/build/genpkg TRIBnet-ssh openssh-9.6p1
+${THOME}/build/genpkg TRIBsvc-net-ssh openssh-9.6p1
