@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBalabaster-python-311 alabaster-0.7.13
+${THOME}/build/pkg_pep518 TRIBalabaster-python-311 alabaster-0.7.15
