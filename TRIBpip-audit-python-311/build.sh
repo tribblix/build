@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBpip-audit-python-311 pip_audit-2.6.2
+${THOME}/build/pkg_pep518 TRIBpip-audit-python-311 pip_audit-2.6.3
