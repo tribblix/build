@@ -733,7 +733,7 @@
      LDFLAGS_macosx := -L$(call FindLibDirForModule, java.base), \
      LDFLAGS_aix := -L$(SUPPORT_OUTPUTDIR)/native/java.base, \
      LIBS := $(JDKLIB_LIBS), \
-     LIBS_unix := -ljava -ljvm $(LIBZ_LIBS), \
+     LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := -ljli $(LIBDL), \
 -    LIBS_solaris := -ljli $(LIBDL), \
      LIBS_aix := -liconv -ljli_static $(LIBDL), \
@@ -7931,7 +7931,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3033 +0,0 @@
+@@ -1,3029 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -9801,10 +9801,6 @@
 -// MPSS allows application to commit large page memory on demand; with ISM
 -// the entire memory region must be allocated as shared memory.
 -bool os::can_commit_large_page_memory() {
--  return true;
--}
--
--bool os::can_execute_large_page_memory() {
 -  return true;
 -}
 -
