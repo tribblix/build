@@ -1,4 +1,4 @@
 PKG="TRIBapache-hc-client-423"
 NAME="Apache HttpComponents Client"
-VERSION="4.2.3"
-ZAP_URL="http://hc.apache.org/"
+VERSION="4.5.14.0"
+ZAP_URL="https://hc.apache.org/"
