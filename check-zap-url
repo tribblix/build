@@ -18,6 +18,8 @@
 
 #
 # lists packages that don't have ZAP_URL set
+# also checks that build scripts exist (even as a no-op, they should echo
+# why they aren't needed for a package)
 #
 
 for PKGI in */pkginfo
@@ -26,5 +28,8 @@ do
     PKGHOME=`awk -F= '{if ($1 == "ZAP_URL") print $2}' $PKGI | sed 's="==g'`
     if [ -z "${PKGHOME}" ]; then
 	echo "$PKG does not have ZAP_URL set"
+    fi
+    if [ ! -x "${PKG}/build.sh" ]; then
+	echo "$PKG does not have a build script"
     fi
 done
