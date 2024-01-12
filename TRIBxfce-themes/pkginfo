@@ -1,3 +1,4 @@
 PKG="TRIBxfce-themes"
 NAME="Xfce Themes"
 VERSION="4.10.0.0"
+ZAP_URL="https://archive.xfce.org/src/art/xfwm4-themes/4.10/"
