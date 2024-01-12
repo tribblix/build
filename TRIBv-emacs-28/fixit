@@ -1,11 +1,39 @@
 #!/bin/sh
 #
 VERSION=28
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
 mkdir -p usr/bin
 ln -s ../versions/emacs-${VERSION}/bin/emacs usr/bin/emacs
 ln -s ../versions/emacs-${VERSION}/bin/emacsclient usr/bin/emacsclient
 ln -s ../versions/emacs-${VERSION}/bin/etags usr/bin/etags
+ln -s ../versions/emacs-${VERSION}/bin/ebrowse usr/bin/ebrowse
 mkdir -p usr/share/man/man1
 gunzip usr/versions/emacs-${VERSION}/share/man/man1/*.gz
 mv usr/versions/emacs-${VERSION}/share/man/man1/emacs* usr/share/man/man1
 mv usr/versions/emacs-${VERSION}/share/man/man1/etags* usr/share/man/man1
+mv usr/versions/emacs-${VERSION}/share/man/man1/ebrowse* usr/share/man/man1
+# we have our own ctags, so this would be confusing
+rm usr/versions/emacs-${VERSION}/share/man/man1/ctags.1
+rmdir usr/versions/emacs-${VERSION}/share/man/man1
+rmdir usr/versions/emacs-${VERSION}/share/man
+# put these where desktops will find them
+mkdir -p usr/share/applications
+mv usr/versions/emacs-${VERSION}/share/applications/* usr/share/applications
+rmdir usr/versions/emacs-${VERSION}/share/applications
+mkdir -p usr/share/icons
+mv usr/versions/emacs-${VERSION}/share/icons/* usr/share/icons
+rmdir usr/versions/emacs-${VERSION}/share/icons
+# we don't have systemd, honest
+rm -fr usr/versions/emacs-${VERSION}/lib/systemd
+rm -fr usr/versions/emacs-${VERSION}/lib/${ARCH64}/systemd
+rmdir usr/versions/emacs-${VERSION}/lib/${ARCH64}
+rmdir usr/versions/emacs-${VERSION}/lib
