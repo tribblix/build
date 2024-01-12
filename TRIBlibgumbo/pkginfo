@@ -1,3 +1,4 @@
 PKG="TRIBlibgumbo"
 NAME="libgumbo"
 VERSION="0.12.1.0"
+ZAP_URL="https://codeberg.org/grisha/gumbo-parser/releases"
