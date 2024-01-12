@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# fixes up prototype files, by setting the correct permissions
-# for existing directories
-#
-awk '
-{if ($3 ~ /^etc\/mail/) { $6 = "mail" ; $5 = "root" }}
-{print}
-'
