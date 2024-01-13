@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBgapi-common-python-311 googleapis-common-protos-1.60.0
+${THOME}/build/pkg_setup_py TRIBgapi-common-python-311 googleapis-common-protos-1.62.0
