@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBgcs-python-311 google-cloud-storage-2.11.0
+${THOME}/build/pkg_setup_py TRIBgcs-python-311 google-cloud-storage-2.14.0
