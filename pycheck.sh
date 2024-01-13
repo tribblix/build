@@ -64,6 +64,34 @@ if [ $# -gt 0 ]; then
     exit 0
 fi
 
+#
+# first look at packages built from wheels
+#
+egrep -H 'build/pkg_wheel' *-${PY3VER}/build.sh | while read -r ffile fpkgname fwheel
+do
+    file=${ffile%%/*}
+    #
+    # a wheel name is like foo-1.23.4-py2.py3-none-any.whl
+    # so strip off everything from -py onwards
+    # and then the version is the previous part
+    # and the package name is everything in front of that
+    #
+    fwheel=${fwheel%%-py*}
+    pkgver=${fwheel##*-}
+    pkgname=${fwheel%-*}
+    if [ "${pkgname}" == "cloud-custodian" ]; then
+	pkgname=c7n
+	pkgver=${pkgver%.0}
+    fi
+    curver=$(wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version)
+    curver=${curver//\"/}
+    if [ "X$pkgver" != "X$curver" ]; then
+	echo "NEW VERSION $curver of $file, we have $pkgver"
+    else
+	echo "$file is good"
+    fi
+done
+
 egrep -H 'build/(unpack|pkg_pep518|pkg_setup_py)' *-${PY3VER}/build.sh | while read -r ffile fpkgstr
 do
     file=${ffile%%/*}
