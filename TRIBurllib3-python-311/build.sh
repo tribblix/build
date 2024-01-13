@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBurllib3-python-311 urllib3-1.26.18
+${THOME}/build/pkg_pep518 TRIBurllib3-python-311 urllib3-2.0.7
