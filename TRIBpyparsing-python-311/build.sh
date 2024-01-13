@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBpyparsing-python-311 pyparsing-3.1.1
+${THOME}/build/pkg_setup_py TRIBpyparsing-python-311 pyparsing-2.4.7
