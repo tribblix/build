@@ -65,6 +65,31 @@ if [ $# -gt 0 ]; then
 fi
 
 #
+# these packages don't have the python version in their package name
+# so will be missed by the wildcard below
+#
+# we skip commix, which isn't updated on PyPi
+#
+egrep -H 'build/(unpack|pkg_pep518|pkg_setup_py)' TRIB{mog,pgactivity,pgbarman,s3cmd,scons}/build.sh | while read -r ffile fpkgstr
+do
+    file=${ffile%%/*}
+    pkgstr=${fpkgstr##* }
+    pkgver=${pkgstr##*-}
+    pkgname=${pkgstr%-*}
+    if [ "${pkgname}" == "cloud-custodian" ]; then
+	pkgname=c7n
+	pkgver=${pkgver%.0}
+    fi
+    curver=$(wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version)
+    curver=${curver//\"/}
+    if [ "X$pkgver" != "X$curver" ]; then
+	echo "NEW VERSION $curver of $file, we have $pkgver"
+    else
+	echo "$file is good"
+    fi
+done
+
+#
 # first look at packages built from wheels
 #
 egrep -H 'build/pkg_wheel' *-${PY3VER}/build.sh | while read -r ffile fpkgname fwheel
