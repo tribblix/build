@@ -1,0 +1,4 @@
+PKG="TRIBcompress-bzip3"
+NAME="A better and stronger spiritual successor to BZip2"
+VERSION="1.4.0.0"
+ZAP_URL="https://github.com/kspalaiologos/bzip3"
