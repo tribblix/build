@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBcheckdmarc-python-311 checkdmarc-5.3.0
+${THOME}/build/pkg_pep518 TRIBcheckdmarc-python-311 checkdmarc-5.3.1
