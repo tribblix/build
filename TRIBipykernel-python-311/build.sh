@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBipykernel-python-311 ipykernel-6.28.0
+${THOME}/build/pkg_pep518 TRIBipykernel-python-311 ipykernel-6.29.0
