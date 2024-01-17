@@ -1,0 +1,2 @@
+#!/bin/sh
+rm -f usr/lib/xfce4/panel/plugins/lib*.la
