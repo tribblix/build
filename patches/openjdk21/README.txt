@@ -12,6 +12,10 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+21.0.2
+
+A bit of shuffling in ProcessHandleImpl_unix.c
+
 21.0.1
 
 Now jdk21u.

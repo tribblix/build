@@ -5,8 +5,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk21u-jdk-21.0.1-ga
-cd jdk21u-jdk-21.0.1-ga
+${THOME}/build/unpack jdk21u-jdk-21.0.2-ga
+cd jdk21u-jdk-21.0.2-ga
 
 #
 # jdk21 needs autoconf installed
@@ -44,9 +44,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "21.0.1-internal" 2023-10-17
-# OpenJDK Runtime Environment (build 21.0.1-internal-adhoc.ptribble.jdk21u-jdk-21.0.1-ga)
-# OpenJDK 64-Bit Server VM (build 21.0.1-internal-adhoc.ptribble.jdk21u-jdk-21.0.1-ga, mixed mode, sharing)
+# openjdk version "21.0.2-internal" 2024-01-16
+# OpenJDK Runtime Environment (build 21.0.2-internal-adhoc.ptribble.jdk21u-jdk-21.0.2-ga)
+# OpenJDK 64-Bit Server VM (build 21.0.2-internal-adhoc.ptribble.jdk21u-jdk-21.0.2-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
