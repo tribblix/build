@@ -9,8 +9,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk11u-jdk-11.0.21-ga
-cd jdk11u-jdk-11.0.21-ga
+${THOME}/build/unpack jdk11u-jdk-11.0.22-ga
+cd jdk11u-jdk-11.0.22-ga
 
 #
 # as of 11.0.7, switch to a gcc build to replace Studio
@@ -47,9 +47,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "11.0.21-internal" 2023-07-18
-# OpenJDK Runtime Environment (build 11.0.21-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.21-ga)
-# OpenJDK 64-Bit Server VM (build 11.0.21-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.21-ga, mixed mode)
+# openjdk version "11.0.22-internal" 2024-01-16
+# OpenJDK Runtime Environment (build 11.0.22-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.22-ga)
+# OpenJDK 64-Bit Server VM (build 11.0.22-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.22-ga, mixed mode)
 #
 
 rm -fr /tmp/jdk
