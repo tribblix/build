@@ -26,7 +26,7 @@
  src/utils/IdealGraphVisualizer : hotspot/src/share/tools/IdealGraphVisualizer
 --- old/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:24.212234589 -0700
 +++ new/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:23.828227215 -0700
-@@ -163,8 +163,6 @@
+@@ -167,8 +167,6 @@
      OPENJDK_TARGET_OS := linux
    else ifeq ($(UNAME_OS), Darwin)
      OPENJDK_TARGET_OS := macosx
@@ -35,7 +35,7 @@
    else
      OPENJDK_TARGET_OS := $(UNAME_OS)
    endif
-@@ -174,28 +172,15 @@
+@@ -181,28 +179,15 @@
  # Assume little endian unless otherwise specified
  OPENJDK_TARGET_CPU_ENDIAN := little
  
@@ -72,7 +72,7 @@
  endif
  
  OPENJDK_TARGET_CPU_ARCH := $(OPENJDK_TARGET_CPU)
-@@ -225,11 +205,6 @@
+@@ -227,11 +212,6 @@
  else ifeq ($(OPENJDK_TARGET_OS), macosx)
    NUM_CORES := $(shell /usr/sbin/sysctl -n hw.ncpu)
    MEMORY_SIZE := $(shell $(EXPR) `/usr/sbin/sysctl -n hw.memsize` / 1024 / 1024)
@@ -256,7 +256,7 @@
    fi
  
    # librt for legacy clock_gettime
-@@ -159,12 +157,6 @@
+@@ -153,12 +151,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -269,7 +269,7 @@
    if test "x$OPENJDK_TARGET_OS" = xwindows; then
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS kernel32.lib user32.lib gdi32.lib winspool.lib \
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib powrprof.lib uuid.lib \
-@@ -182,7 +174,6 @@
+@@ -176,7 +168,6 @@
    AC_SUBST(JVM_LIBS)
    AC_SUBST(OPENJDK_BUILD_JDKLIB_LIBS)
    AC_SUBST(OPENJDK_BUILD_JVM_LIBS)
@@ -308,7 +308,7 @@
    # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
    OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
    if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -608,9 +593,6 @@
+@@ -610,9 +595,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -318,7 +318,7 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -667,25 +649,9 @@
+@@ -669,25 +651,9 @@
    PLATFORM_SET_MODULE_TARGET_OS_VALUES
    PLATFORM_SET_RELEASE_FILE_OS_VALUES
    PLATFORM_SETUP_LEGACY_VARS
@@ -983,16 +983,6 @@
      LIBS_aix := -lperfstat,\
      LIBS_windows := jvm.lib psapi.lib $(WIN_JAVA_LIB) advapi32.lib, \
  ))
---- old/make/modules/jdk.net/Lib.gmk	2020-05-20 17:59:25.877418605 -0700
-+++ new/make/modules/jdk.net/Lib.gmk	2020-05-20 17:59:25.493411232 -0700
-@@ -36,7 +36,6 @@
-       LDFLAGS := $(LDFLAGS_JDKLIB) \
-           $(call SET_SHARED_LIBRARY_ORIGIN), \
-       LIBS := -ljava, \
--      LIBS_solaris := -lsocket, \
-       LIBS_linux := -ljvm, \
-   ))
- 
 --- old/make/modules/jdk.sctp/Lib.gmk	2020-05-20 17:59:26.921438651 -0700
 +++ new/make/modules/jdk.sctp/Lib.gmk	2020-05-20 17:59:26.541431354 -0700
 @@ -44,7 +44,6 @@
@@ -1137,7 +1127,7 @@
      BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libnativeStack.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -73,9 +73,6 @@
+@@ -75,9 +75,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1480,7 +1470,7 @@
  
 --- old/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/services/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -87,11 +87,9 @@
+@@ -89,11 +89,9 @@
  #include "services/threadStackTracker.hpp"
  #include "services/virtualMemoryTracker.hpp"
  
@@ -1488,15 +1478,15 @@
 -
 -#define CURRENT_PC ((MemTracker::tracking_level() == NMT_detail && NMT_stack_walkable) ? \
 +#define CURRENT_PC ((MemTracker::tracking_level() == NMT_detail) ? \
-                     NativeCallStack(0) : NativeCallStack::empty_stack())
+                     NativeCallStack(0) : FAKE_CALLSTACK)
 -#define CALLER_PC  ((MemTracker::tracking_level() == NMT_detail && NMT_stack_walkable) ?  \
 +#define CALLER_PC  ((MemTracker::tracking_level() == NMT_detail) ?  \
-                     NativeCallStack(1) : NativeCallStack::empty_stack())
+                     NativeCallStack(1) : FAKE_CALLSTACK)
  
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -637,12 +637,11 @@
+@@ -641,12 +641,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1668,7 +1658,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1790,8 +1790,6 @@
+@@ -1791,8 +1791,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1677,7 +1667,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1853,8 +1851,6 @@
+@@ -1854,8 +1852,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -2116,7 +2106,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -585,7 +576,7 @@
+@@ -587,7 +580,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -4638,7 +4628,7 @@
      static boolean isLinux() {
          return (osname.equals("Linux"));
      }
-@@ -303,7 +299,7 @@
+@@ -307,7 +303,7 @@
                  }
              }
          } else {
@@ -4647,7 +4637,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -487,7 +483,7 @@
+@@ -491,7 +487,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -4656,7 +4646,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -658,7 +654,7 @@
+@@ -662,7 +658,7 @@
                  psuri = printerInfo[1];
              }
          } else {
@@ -4665,7 +4655,7 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
-@@ -878,7 +874,7 @@
+@@ -882,7 +878,7 @@
          ArrayList<String> results = null;
          try {
              final String[] cmd = new String[3];

@@ -7,6 +7,15 @@ Most patches -p0
 
 JDK17:
 
+17.0.10
+
+Drop the make/modules/jdk.net/Lib.gmk patch, as it's guarded in such a
+way as will never be used on solaris.
+
+Need to add illumos-port-18.patch (derived from jdk21's
+illumos-port-24.patch) so that test/jdk/java/io/File/libGetXSpace.c
+will compile.
+
 17.0.9
 
 Much rework around safefetch. Removed illumos-port-12.patch, and
