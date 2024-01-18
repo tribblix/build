@@ -4,12 +4,14 @@ P TRIBlib-desktop-at-spi2
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
 P TRIBlib-glib2
+P TRIBlib-nspr
 P TRIBlibcanberra
 P TRIBlibmatekbd
 P TRIBlibnotify
 P TRIBlibxklavier
 P TRIBmate-desktop
 P TRIBsys-lib-fontconfig
+P TRIBsys-lib-mozilla-nss
 P TRIBsys-libdbus
 P TRIBsys-libdbus-glib
 P TRIBx11-libx11
