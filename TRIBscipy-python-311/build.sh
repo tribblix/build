@@ -1,23 +1,11 @@
 #!/bin/sh
 #
-${THOME}/build/unpack scipy-1.10.1
-cd scipy-1.10.1
+# build pins some dependencies
+# Cython>=0.29.35,<3.0
+# pybind11>=2.10.4,<2.11.1
+# pythran>=0.12.0,<0.15.0
 #
 # it's relatively hard work to get the build to be consistently 64-bit
+# PKG_CONFIG_PATH so meson can find openblas (replaces the old site.cfg)
 #
-
-#
-# it only checks in /usr/lib by default, which won't work because we
-# don't ship 32-bit openblas libraries, so tell it where to really look
-#
-echo "[openblas]" > site.cfg
-echo "libraries = openblas" >> site.cfg
-echo "library_dirs = /usr/lib/`$THOME/build/getarch`" >> site.cfg
-echo "include_dirs = /usr/include" >> site.cfg
-
-env CC="gcc -m64" FFLAGS=-m64 FORTRANFLAGS=-m64 LDFLAGS=-m64 /usr/versions/python-3.11/bin/python3 setup.py build
-rm -fr /tmp/pil
-env CC="gcc -m64" FFLAGS=-m64 FORTRANFLAGS=-m64 LDFLAGS=-m64 /usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBscipy-python-311 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig CXXFLAGS=-m64 CFLAGS=-m64 CC="gcc -m64" FFLAGS=-m64 FORTRANFLAGS=-m64 LDFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscipy-python-311 scipy-1.11.4
