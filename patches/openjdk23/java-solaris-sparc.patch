@@ -1017,7 +1017,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -498,7 +498,7 @@
+@@ -499,7 +499,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1026,7 +1026,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -516,12 +516,6 @@
+@@ -517,12 +517,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -7931,7 +7931,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3029 +0,0 @@
+@@ -1,3051 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10961,6 +10961,28 @@
 -void os::jfr_report_memory_info() {}
 -
 -#endif // INCLUDE_JFR
+-
+-bool os::pd_dll_unload(void* libhandle, char* ebuf, int ebuflen) {
+-
+-  if (ebuf && ebuflen > 0) {
+-    ebuf[0] = '\0';
+-    ebuf[ebuflen - 1] = '\0';
+-  }
+-
+-  bool res = (0 == ::dlclose(libhandle));
+-  if (!res) {
+-    // error analysis when dlopen fails
+-    const char* error_report = ::dlerror();
+-    if (error_report == nullptr) {
+-      error_report = "dlerror returned no error description";
+-    }
+-    if (ebuf != nullptr && ebuflen > 0) {
+-      snprintf(ebuf, ebuflen - 1, "%s", error_report);
+-    }
+-  }
+-
+-  return res;
+-} // end: os::pd_dll_unload()
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,201 +0,0 @@
