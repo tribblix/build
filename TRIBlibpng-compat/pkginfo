@@ -1,3 +1,4 @@
 PKG="TRIBlibpng-compat"
 NAME="Old libpng files for compatibility"
 VERSION="0.9o"
+ZAP_URL="http://www.libpng.org/pub/png/libpng.html"

@@ -1,3 +1,4 @@
 PKG="TRIBspelldict-fr"
 NAME="Spell checking dictionaries - french"
 VERSION="1.0"
+ZAP_URL="https://github.com/LibreOffice/dictionaries"
