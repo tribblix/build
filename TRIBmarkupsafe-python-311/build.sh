@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBmarkupsafe-python-311 MarkupSafe-2.1.3
+${THOME}/build/pkg_setup_py TRIBmarkupsafe-python-311 MarkupSafe-2.1.4
