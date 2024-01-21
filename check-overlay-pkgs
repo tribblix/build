@@ -74,10 +74,18 @@ case $# in
 	exit 1
 	;;
 esac
+
 if [ ! -f "${OVL}.pkgs" ]; then
     echo "ERROR: unable to find overlay $OVL"
     exit 1
 fi
+
+DUPPKGS=$(sort ${OVL}.pkgs | uniq -d)
+if [ -n "${DUPPKGS}" ]; then
+    echo "ERROR: duplicate packages in ${OVL}"
+    sort ${OVL}.pkgs | uniq -c | awk '{if ($1 != 1) print}'
+fi
+
 for PKGI in $(grep -E -v '^(TRIBrelease-name|TRIBzap|TRIBzap-upgrade)$' "${OVL}.pkgs")
 do
   if [ ! -d "${THOME}/build/${PKGI}" ]; then
