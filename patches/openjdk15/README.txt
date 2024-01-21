@@ -5,6 +5,11 @@ Most patches -p0
 
 JDK15:
 
+There is now a functioning set of patches to reinstate SPARC support,
+see ../jdk15u-jdk-15.0.10-ga.pls.sparc. Note that some of the patches
+for SPARC are incompatible with builds on other architectures, so they
+should only be applied if building on a SPARC system.
+
 jdk15 is likely to see more significant changes as it's cut from a
 rapidly evolving trunk, whereas older versions were more static,
 getting bugfixes on a relatively static base
