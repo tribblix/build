@@ -15,3 +15,4 @@ rm -f usr/share/xscreensaver/config/fireworkx.xml
 # we don't ship the command, nor should we
 #
 rm -f usr/share/man/man1/xscreensaver-systemd.1
+rm -f usr/share/man/man6/xscreensaver-systemd.6
