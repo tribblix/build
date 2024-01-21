@@ -1,0 +1,3 @@
+-p1 tuntap/bootmsg.patch
+-p1 tuntap/kmod.patch
+-p1 tuntap/makefile.patch
