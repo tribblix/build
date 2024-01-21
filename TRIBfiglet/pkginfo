@@ -1,0 +1,4 @@
+PKG="TRIBfiglet"
+NAME="FIGlet"
+VERSION="2.2.5.0"
+ZAP_URL="http://www.figlet.org/"

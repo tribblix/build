@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# there's no configure, tweak the Makefile directly
+#
+sed -i s:usr/local:usr: Makefile
+sed -i 's:Wall:Wall -m64:' Makefile
+sed -i 's:LDFLAGS =:LDFLAGS = -m64:' Makefile
+#
+# ?
+#
+sed -i '/__BEGIN_DECLS/d' utf8.h
+sed -i '/__END_DECLS/d' utf8.h
