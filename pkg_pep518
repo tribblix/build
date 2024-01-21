@@ -116,6 +116,19 @@ esac
 echo $PYVER
 
 #
+# all pythons are 64-bit, so we must always set a 64-bit
+# version of PKG_CONFIG_PATH
+#
+PKG_CONFIG_PATH=/usr/lib/$(${THOME}/build/getarch)/pkgconfig
+#
+# if we want to add something to PKG_CONFIG_PATH
+#
+if [ -n "${TRIBBLIX_PKG_CONFIG_PATH}" ]; then
+    PKG_CONFIG_PATH="${TRIBBLIX_PKG_CONFIG_PATH}:${PKG_CONFIG_PATH}"
+fi
+export PKG_CONFIG_PATH
+
+#
 # define and create working location
 #
 BDIR="${BROOT}/pkg.$$"

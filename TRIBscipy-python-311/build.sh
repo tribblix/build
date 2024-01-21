@@ -6,6 +6,5 @@
 # pythran>=0.12.0,<0.15.0
 #
 # it's relatively hard work to get the build to be consistently 64-bit
-# PKG_CONFIG_PATH so meson can find openblas (replaces the old site.cfg)
 #
-env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig CXXFLAGS=-m64 CFLAGS=-m64 CC="gcc -m64" FFLAGS=-m64 FORTRANFLAGS=-m64 LDFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscipy-python-311 scipy-1.11.4
+env CXXFLAGS=-m64 CFLAGS=-m64 CC="gcc -m64" FFLAGS=-m64 FORTRANFLAGS=-m64 LDFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscipy-python-311 scipy-1.11.4
