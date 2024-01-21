@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# the directory is versioned
+# also fix VERSION in preremove and postinstall
+#
+VERSION=1.11.8
+mkdir -p usr/bin
+rm -f usr/versions/freeplane-${VERSION}/freeplane.exe
+rm -f usr/versions/freeplane-${VERSION}/freeplaneConsole.exe
+rm -f usr/versions/freeplane-${VERSION}/freeplane.bat
+rm -f usr/versions/freeplane-${VERSION}/*.dll
+rm -f usr/versions/freeplane-${VERSION}/libflatlaf-linux-x86_64.so
+cat > usr/bin/freeplane <<EOF
+#!/bin/sh
+exec /usr/versions/freeplane-${VERSION}/freeplane.sh "\$@"
+EOF
+chmod a+x usr/bin/freeplane
+
+#
+# package files with spaces in the names
+#
+cd usr/versions/freeplane-${VERSION}/doc
+tar cf Images.tar Images
+rm -fr Images
+
+#
+# desktop integration
+#
+cd ../../../..
+mkdir -p usr/share/icons/hicolor/32x32/apps
+cp usr/versions/freeplane-${VERSION}/freeplane.png -resize 48x48 usr/share/icons/hicolor/32x32/apps/freeplane-icon.png
+mkdir -p usr/share/applications
+cd usr/share/applications
+cat > imagej.desktop << _EOF
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=Freeplane
+Comment=Freeplane
+Exec=freeplane
+Icon=freeplane-icon
+Terminal=false
+Type=Application
+Categories=Application;Graphics;
+_EOF
