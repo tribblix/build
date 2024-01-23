@@ -1,13 +1,24 @@
 # this is the IceWM programs menu
 prog PaleMoon web-browser palemoon
+prog Claws claws-mail claws-mail
+prog Terminal xterm xterm
+menu Office folder {
 prog Abiword abiword abiword
-prog Bluefish bluefish bluefish
-prog LibreOffice libreoffice-main soffice
-prog Geany geany geany
 prog Gnumeric gnumeric gnumeric
 prog Grisbi grisbi grisbi
-prog gFtp gftp gftp
 prog Imagination imagination imagination
+prog Osmo osmo osmo
+prog LibreOffice libreoffice-main soffice
+}
+menu Editors folder {
+prog Geany geany geany
+prog Bluefish bluefish bluefish
+}
+menu Network folder {
+prog gFtp gftp gftp
 prog Pidgin pidgin pidgin
+}
+menu Graphics folder {
+prog Gimp gimp gimp
 prog XFig xfig xfig
-prog Claws claws-mail claws-mail
+}
