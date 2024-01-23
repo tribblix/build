@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBrpds-py-python-311 rpds_py-0.16.2
+${THOME}/build/pkg_pep518 TRIBrpds-py-python-311 rpds_py-0.17.1
