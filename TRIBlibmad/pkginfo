@@ -1,4 +1,4 @@
 PKG="TRIBlibmad"
 NAME="MAD: MPEG Audio Decoder"
-VERSION="0.15.1.2.3"
-ZAP_URL="http://www.underbit.com/products/mad/"
+VERSION="0.16.4.0"
+ZAP_URL="https://codeberg.org/tenacityteam/libmad"
