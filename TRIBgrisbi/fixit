@@ -4,6 +4,10 @@
 #
 rm -fr usr/share/doc/grisbi/fr
 #
+# german isn't much better
+#
+rm -fr usr/share/doc/grisbi/de
+#
 # the english documentation is a duplicate of C
 #
 rm -fr usr/share/doc/grisbi/en
