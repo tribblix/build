@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py -v 311 TRIBpgbarman barman-3.9.0
+${THOME}/build/pkg_setup_py -v 311 TRIBpgbarman barman-3.10.0
