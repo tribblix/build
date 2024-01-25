@@ -1,0 +1,7 @@
+P TRIBbrotli
+P TRIBcompress-bzip2
+P TRIBcompress-lz4
+P TRIBcompress-xz
+P TRIBcompress-zstd
+P TRIBlib-pcre2
+P TRIBlib-zlib
