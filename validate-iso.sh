@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -77,12 +77,15 @@ get_normal_deps (){
     #
     # also add the "all" driver overlays, and wifi
     #
-    for ovl in all-*.ovl
+    for ovl in $(ls -1d all-*.ovl | egrep -v all-fabric )
     do
 	get_deps ${ovl%.ovl}
     done
     if [ -f wifi.ovl ]; then
 	get_deps wifi
+    fi
+    if [ -f san-support.ovl ]; then
+	get_deps san-support
     fi
     get_deps server-manage
 }
@@ -95,10 +98,13 @@ get_minimal_deps (){
     get_deps ec2-baseline
     get_deps pkgsrc
     get_deps dbus-glib
+    if [ -f san-support.ovl ]; then
+	get_deps san-support
+    fi
     #
     # also add the "all" driver overlays
     #
-    for ovl in $(ls -1d all-*.ovl | egrep -v '(xorg|1394)')
+    for ovl in $(ls -1d all-*.ovl | egrep -v '(fabric|xorg|1394)')
     do
 	get_deps ${ovl%.ovl}
     done
