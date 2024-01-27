@@ -34,7 +34,7 @@ case $(pwd) in
 	ARCH=i386
 	;;
     */overlays.sparc)
-	ILVER=m28.sparc
+	ILVER=m29.sparc
 	ARCH=sparc
 	;;
     */overlays)
@@ -179,8 +179,8 @@ fi
 #
 # check syntax of the ovl file
 #
-OUTMISS=$(${EGREP} -v '^(VERSION|NAME|REQUIRES|SERVICE)=' "${OVL}.ovl")
-if [ -n "${OUTMISS}" ]; then
+OVLMISS=$(${EGREP} -v '^(VERSION|NAME|REQUIRES|SERVICE)=' "${OVL}.ovl")
+if [ -n "${OLVMISS}" ]; then
     echo ""
     echo "Invalid syntax in ${OVL}.ovl:"
     echo "============================================="

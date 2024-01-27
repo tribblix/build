@@ -34,8 +34,8 @@ case $(pwd) in
 	PILVER=33lx
 	;;
     *sparc)
-	ILVER=m28.sparc
-	PILVER=28
+	ILVER=m29.sparc
+	PILVER=29
 	PKGDIR=${THOME}/pkgs.sparc
 	ARCH="sparc"
 	;;
