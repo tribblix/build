@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# this is a front-end to MPlayer, hence the dependency on TRIBmplayer
+# 23.12.0 builds but hangs on startup
 #
 $THOME/build/unpack smplayer-22.2.0
 $THOME/build/unpack smplayer-skins-20.11.0
