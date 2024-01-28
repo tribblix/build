@@ -1,4 +1,0 @@
-PKG="TRIBopenjdk8u372"
-NAME="OpenJDK 8u372"
-VERSION="1.8.0.372.0"
-ZAP_URL="http://openjdk.java.net/"
