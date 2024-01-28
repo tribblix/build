@@ -34,16 +34,18 @@ while getopts "cdm" opt; do
     case $opt in
     c)
 	BUILDER="cmbuild"
+	shift
 	;;
     d)
 	BUILDER="dobuild"
+	shift
 	;;
     m)
 	BUILDER="mesonbuild"
+	shift
 	;;
     esac
 done
-shift $((OPTIND-1))
 
 case $1 in
 -64)
