@@ -10,6 +10,12 @@ loom correctly as they date back to that change.
 * jshell doesn't work
 * illuminate doesn't work
 
+22+33
+
+No changes.
+
+Tidied up the fatal(dlerror()) warning.
+
 22+28, 22+29, 22+30, 22+31, 22+32
 
 No changes.
