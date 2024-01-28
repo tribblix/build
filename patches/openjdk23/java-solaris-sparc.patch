@@ -154,9 +154,9 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -427,9 +427,6 @@
+@@ -482,9 +481,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
-     CFLAGS_OS_DEF_JVM="-DLINUX"
+     CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
 -  elif test "x$OPENJDK_TARGET_OS" = xsolaris; then
 -    CFLAGS_OS_DEF_JVM="-DSOLARIS"
@@ -1017,7 +1017,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -499,7 +499,7 @@
+@@ -500,7 +500,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1026,7 +1026,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -517,12 +517,6 @@
+@@ -518,12 +518,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -10283,7 +10283,7 @@
 -static address resolve_symbol(const char* name) {
 -  address addr = resolve_symbol_lazy(name);
 -  if (addr == NULL) {
--    fatal(dlerror());
+-    fatal("resolve_symbol failed (%s)", dlerror());
 -  }
 -  return addr;
 -}

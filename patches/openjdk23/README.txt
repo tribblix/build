@@ -10,6 +10,10 @@ loom correctly as they date back to that change.
 * jshell doesn't work
 * illuminate doesn't work
 
+23+7
+
+Tidied up the fatal(dlerror()) warning.
+
 23+6
 
 New undefined symbol os::pd_dll_unload; copy the implementation from
