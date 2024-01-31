@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -61,4 +61,4 @@ chmod a+r ${BROOT}/${BPKG%.zap}.pkg
 #
 cd /
 rm -fr $TDIR
-ls -lsh ${BROOT}/${BPKG%.zap}.pkg
+ls -lh ${BROOT}/${BPKG%.zap}.pkg
