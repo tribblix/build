@@ -20,6 +20,10 @@ That's to do with freetype, I think.
 
 More recently:
 
+Tidied up the fatal(dlerror() warning
+
+Removed the unused create_detachall_operation()
+
 Fix 'SIGSEGV happened inside stack but outside yellow and red zone.' -
 see illumos-port-14.patch
 

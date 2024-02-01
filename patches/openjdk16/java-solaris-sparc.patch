@@ -8741,7 +8741,7 @@
 -################################################################################
 --- old/src/hotspot/os/solaris/attachListener_solaris.cpp	2020-05-20 18:09:27.484969868 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,781 +0,0 @@
+@@ -1,776 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -9027,11 +9027,6 @@
 -  // return operation
 -  *err = 0;
 -  return op;
--}
--
--// create special operation to indicate all clients have detached
--static SolarisAttachOperation* create_detachall_operation() {
--  return new SolarisAttachOperation(AttachOperation::detachall_operation_name());
 -}
 -
 -// This is door function which the client executes via a door_call.
@@ -14084,7 +14079,7 @@
 -static address resolve_symbol(const char* name) {
 -  address addr = resolve_symbol_lazy(name);
 -  if (addr == NULL) {
--    fatal(dlerror());
+-    fatal("resolve_symbol failed (%s)", dlerror());
 -  }
 -  return addr;
 -}
