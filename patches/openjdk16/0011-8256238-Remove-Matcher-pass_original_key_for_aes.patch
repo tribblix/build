@@ -1,0 +1,338 @@
+This is a straight revert of the original commit.
+
+Ideally it would be simplified to simply guard the changes by
+cehcing for SPARC, rather than keying off a function in the ad files.
+
+From 19bade02804b8fdb9fa5bbd091c6a59a08d70cb2 Mon Sep 17 00:00:00 2001
+From: Claes Redestad <redestad@openjdk.org>
+Date: Thu, 12 Nov 2020 14:21:24 +0000
+Subject: [PATCH 011/798] 8256238: Remove Matcher::pass_original_key_for_aes
+
+Reviewed-by: thartmann, chagedorn
+---
+ src/hotspot/cpu/aarch64/aarch64.ad      |  5 --
+ src/hotspot/cpu/arm/arm.ad              |  5 --
+ src/hotspot/cpu/ppc/ppc.ad              |  5 --
+ src/hotspot/cpu/s390/s390.ad            |  5 --
+ src/hotspot/cpu/x86/x86.ad              |  6 --
+ src/hotspot/share/opto/library_call.cpp | 81 ++++++-------------------
+ src/hotspot/share/opto/library_call.hpp |  1 -
+ src/hotspot/share/opto/matcher.hpp      |  3 -
+ src/hotspot/share/opto/runtime.cpp      | 24 --------
+ 9 files changed, 17 insertions(+), 118 deletions(-)
+
+diff --git a/src/hotspot/cpu/aarch64/aarch64.ad b/src/hotspot/cpu/aarch64/aarch64.ad
+index ff82cd08cc1..a9df812c634 100644
+--- a/src/hotspot/cpu/aarch64/aarch64.ad
++++ b/src/hotspot/cpu/aarch64/aarch64.ad
+@@ -2526,11 +2526,6 @@ const uint Matcher::vector_ideal_reg(int len) {
+   return 0;
+ }
+ 
+-// AES support not yet implemented
+-const bool Matcher::pass_original_key_for_aes() {
+-  return false;
+-}
+-
+ // aarch64 supports misaligned vectors store/load.
+ const bool Matcher::misaligned_vectors_ok() {
+   return true;
+diff --git a/src/hotspot/cpu/arm/arm.ad b/src/hotspot/cpu/arm/arm.ad
+index b7c6ec48896..7ea64d1d1ac 100644
+--- a/src/hotspot/cpu/arm/arm.ad
++++ b/src/hotspot/cpu/arm/arm.ad
+@@ -1045,11 +1045,6 @@ const bool Matcher::misaligned_vectors_ok() {
+   return false;
+ }
+ 
+-// ARM doesn't support AES intrinsics
+-const bool Matcher::pass_original_key_for_aes() {
+-  return false;
+-}
+-
+ const bool Matcher::convL2FSupported(void) {
+   return false;
+ }
+diff --git a/src/hotspot/cpu/ppc/ppc.ad b/src/hotspot/cpu/ppc/ppc.ad
+index b8f4f26995f..27dad6cff94 100644
+--- a/src/hotspot/cpu/ppc/ppc.ad
++++ b/src/hotspot/cpu/ppc/ppc.ad
+@@ -2215,11 +2215,6 @@ const bool Matcher::misaligned_vectors_ok() {
+   return false;
+ }
+ 
+-// PPC AES support not yet implemented
+-const bool Matcher::pass_original_key_for_aes() {
+-  return false;
+-}
+-
+ // RETURNS: whether this branch offset is short enough that a short
+ // branch can be used.
+ //
+diff --git a/src/hotspot/cpu/s390/s390.ad b/src/hotspot/cpu/s390/s390.ad
+index de1565194ed..98194c73047 100644
+--- a/src/hotspot/cpu/s390/s390.ad
++++ b/src/hotspot/cpu/s390/s390.ad
+@@ -1599,11 +1599,6 @@ const bool Matcher::misaligned_vectors_ok() {
+   return true;
+ }
+ 
+-// Not yet ported to z/Architecture.
+-const bool Matcher::pass_original_key_for_aes() {
+-  return false;
+-}
+-
+ // RETURNS: whether this branch offset is short enough that a short
+ // branch can be used.
+ //
+diff --git a/src/hotspot/cpu/x86/x86.ad b/src/hotspot/cpu/x86/x86.ad
+index 7551dfaa0fc..7895073be03 100644
+--- a/src/hotspot/cpu/x86/x86.ad
++++ b/src/hotspot/cpu/x86/x86.ad
+@@ -1920,12 +1920,6 @@ const bool Matcher::misaligned_vectors_ok() {
+   return true;
+ }
+ 
+-// x86 AES instructions are compatible with SunJCE expanded
+-// keys, hence we do not need to pass the original key to stubs
+-const bool Matcher::pass_original_key_for_aes() {
+-  return false;
+-}
+-
+ 
+ const bool Matcher::convi2l_type_required = true;
+ 
+diff --git a/src/hotspot/share/opto/library_call.cpp b/src/hotspot/share/opto/library_call.cpp
+index a9acf673318..43028fdb56f 100644
+--- a/src/hotspot/share/opto/library_call.cpp
++++ b/src/hotspot/share/opto/library_call.cpp
+@@ -5660,22 +5660,10 @@ bool LibraryCallKit::inline_aescrypt_Block(vmIntrinsics::ID id) {
+   Node* k_start = get_key_start_from_aescrypt_object(aescrypt_object);
+   if (k_start == NULL) return false;
+ 
+-  if (Matcher::pass_original_key_for_aes()) {
+-    // on SPARC we need to pass the original key since key expansion needs to happen in intrinsics due to
+-    // compatibility issues between Java key expansion and SPARC crypto instructions
+-    Node* original_k_start = get_original_key_start_from_aescrypt_object(aescrypt_object);
+-    if (original_k_start == NULL) return false;
+-
+-    // Call the stub.
+-    make_runtime_call(RC_LEAF|RC_NO_FP, OptoRuntime::aescrypt_block_Type(),
+-                      stubAddr, stubName, TypePtr::BOTTOM,
+-                      src_start, dest_start, k_start, original_k_start);
+-  } else {
+-    // Call the stub.
+-    make_runtime_call(RC_LEAF|RC_NO_FP, OptoRuntime::aescrypt_block_Type(),
+-                      stubAddr, stubName, TypePtr::BOTTOM,
+-                      src_start, dest_start, k_start);
+-  }
++  // Call the stub.
++  make_runtime_call(RC_LEAF|RC_NO_FP, OptoRuntime::aescrypt_block_Type(),
++                    stubAddr, stubName, TypePtr::BOTTOM,
++                    src_start, dest_start, k_start);
+ 
+   return true;
+ }
+@@ -5758,25 +5746,11 @@ bool LibraryCallKit::inline_cipherBlockChaining_AESCrypt(vmIntrinsics::ID id) {
+   if (objRvec == NULL) return false;
+   Node* r_start = array_element_address(objRvec, intcon(0), T_BYTE);
+ 
+-  Node* cbcCrypt;
+-  if (Matcher::pass_original_key_for_aes()) {
+-    // on SPARC we need to pass the original key since key expansion needs to happen in intrinsics due to
+-    // compatibility issues between Java key expansion and SPARC crypto instructions
+-    Node* original_k_start = get_original_key_start_from_aescrypt_object(aescrypt_object);
+-    if (original_k_start == NULL) return false;
+-
+-    // Call the stub, passing src_start, dest_start, k_start, r_start, src_len and original_k_start
+-    cbcCrypt = make_runtime_call(RC_LEAF|RC_NO_FP,
+-                                 OptoRuntime::cipherBlockChaining_aescrypt_Type(),
+-                                 stubAddr, stubName, TypePtr::BOTTOM,
+-                                 src_start, dest_start, k_start, r_start, len, original_k_start);
+-  } else {
+-    // Call the stub, passing src_start, dest_start, k_start, r_start and src_len
+-    cbcCrypt = make_runtime_call(RC_LEAF|RC_NO_FP,
+-                                 OptoRuntime::cipherBlockChaining_aescrypt_Type(),
+-                                 stubAddr, stubName, TypePtr::BOTTOM,
+-                                 src_start, dest_start, k_start, r_start, len);
+-  }
++  // Call the stub, passing src_start, dest_start, k_start, r_start and src_len
++  Node* cbcCrypt = make_runtime_call(RC_LEAF|RC_NO_FP,
++                                     OptoRuntime::cipherBlockChaining_aescrypt_Type(),
++                                     stubAddr, stubName, TypePtr::BOTTOM,
++                                     src_start, dest_start, k_start, r_start, len);
+ 
+   // return cipher length (int)
+   Node* retvalue = _gvn.transform(new ProjNode(cbcCrypt, TypeFunc::Parms));
+@@ -5855,16 +5829,11 @@ bool LibraryCallKit::inline_electronicCodeBook_AESCrypt(vmIntrinsics::ID id) {
+   Node* k_start = get_key_start_from_aescrypt_object(aescrypt_object);
+   if (k_start == NULL) return false;
+ 
+-  Node* ecbCrypt;
+-  if (Matcher::pass_original_key_for_aes()) {
+-    // no SPARC version for AES/ECB intrinsics now.
+-    return false;
+-  }
+   // Call the stub, passing src_start, dest_start, k_start, r_start and src_len
+-  ecbCrypt = make_runtime_call(RC_LEAF | RC_NO_FP,
+-                               OptoRuntime::electronicCodeBook_aescrypt_Type(),
+-                               stubAddr, stubName, TypePtr::BOTTOM,
+-                               src_start, dest_start, k_start, len);
++  Node* ecbCrypt = make_runtime_call(RC_LEAF | RC_NO_FP,
++                                     OptoRuntime::electronicCodeBook_aescrypt_Type(),
++                                     stubAddr, stubName, TypePtr::BOTTOM,
++                                     src_start, dest_start, k_start, len);
+ 
+   // return cipher length (int)
+   Node* retvalue = _gvn.transform(new ProjNode(ecbCrypt, TypeFunc::Parms));
+@@ -5939,16 +5908,11 @@ bool LibraryCallKit::inline_counterMode_AESCrypt(vmIntrinsics::ID id) {
+   Node* saved_encCounter_start = array_element_address(saved_encCounter, intcon(0), T_BYTE);
+   Node* used = field_address_from_object(counterMode_object, "used", "I", /*is_exact*/ false);
+ 
+-  Node* ctrCrypt;
+-  if (Matcher::pass_original_key_for_aes()) {
+-    // no SPARC version for AES/CTR intrinsics now.
+-    return false;
+-  }
+   // Call the stub, passing src_start, dest_start, k_start, r_start and src_len
+-  ctrCrypt = make_runtime_call(RC_LEAF|RC_NO_FP,
+-                               OptoRuntime::counterMode_aescrypt_Type(),
+-                               stubAddr, stubName, TypePtr::BOTTOM,
+-                               src_start, dest_start, k_start, cnt_start, len, saved_encCounter_start, used);
++  Node* ctrCrypt = make_runtime_call(RC_LEAF|RC_NO_FP,
++                                     OptoRuntime::counterMode_aescrypt_Type(),
++                                     stubAddr, stubName, TypePtr::BOTTOM,
++                                     src_start, dest_start, k_start, cnt_start, len, saved_encCounter_start, used);
+ 
+   // return cipher length (int)
+   Node* retvalue = _gvn.transform(new ProjNode(ctrCrypt, TypeFunc::Parms));
+@@ -5980,17 +5944,6 @@ Node * LibraryCallKit::get_key_start_from_aescrypt_object(Node *aescrypt_object)
+   return k_start;
+ }
+ 
+-//------------------------------get_original_key_start_from_aescrypt_object-----------------------
+-Node * LibraryCallKit::get_original_key_start_from_aescrypt_object(Node *aescrypt_object) {
+-  Node* objAESCryptKey = load_field_from_object(aescrypt_object, "lastKey", "[B", /*is_exact*/ false);
+-  assert (objAESCryptKey != NULL, "wrong version of com.sun.crypto.provider.AESCrypt");
+-  if (objAESCryptKey == NULL) return (Node *) NULL;
+-
+-  // now have the array, need to get the start address of the lastKey array
+-  Node* original_k_start = array_element_address(objAESCryptKey, intcon(0), T_BYTE);
+-  return original_k_start;
+-}
+-
+ //----------------------------inline_cipherBlockChaining_AESCrypt_predicate----------------------------
+ // Return node representing slow path of predicate check.
+ // the pseudo code we want to emulate with this predicate is:
+diff --git a/src/hotspot/share/opto/library_call.hpp b/src/hotspot/share/opto/library_call.hpp
+index 476e1098fbf..cfff1d1052b 100644
+--- a/src/hotspot/share/opto/library_call.hpp
++++ b/src/hotspot/share/opto/library_call.hpp
+@@ -274,7 +274,6 @@ class LibraryCallKit : public GraphKit {
+   Node* inline_electronicCodeBook_AESCrypt_predicate(bool decrypting);
+   Node* inline_counterMode_AESCrypt_predicate();
+   Node* get_key_start_from_aescrypt_object(Node* aescrypt_object);
+-  Node* get_original_key_start_from_aescrypt_object(Node* aescrypt_object);
+   bool inline_ghash_processBlocks();
+   bool inline_base64_encodeBlock();
+   bool inline_base64_decodeBlock();
+diff --git a/src/hotspot/share/opto/matcher.hpp b/src/hotspot/share/opto/matcher.hpp
+index 5409dc09bb1..285f33d8e93 100644
+--- a/src/hotspot/share/opto/matcher.hpp
++++ b/src/hotspot/share/opto/matcher.hpp
+@@ -354,9 +354,6 @@ public:
+   // CPU supports misaligned vectors store/load.
+   static const bool misaligned_vectors_ok();
+ 
+-  // Should original key array reference be passed to AES stubs
+-  static const bool pass_original_key_for_aes();
+-
+   // Used to determine a "low complexity" 64-bit constant.  (Zero is simple.)
+   // The standard of comparison is one (StoreL ConL) vs. two (StoreI ConI).
+   // Depends on the details of 64-bit constant generation on the CPU.
+diff --git a/src/hotspot/share/opto/runtime.cpp b/src/hotspot/share/opto/runtime.cpp
+index 0bf1e175271..b5943bde690 100644
+--- a/src/hotspot/share/opto/runtime.cpp
++++ b/src/hotspot/share/opto/runtime.cpp
+@@ -786,18 +786,12 @@ const TypeFunc* OptoRuntime::array_fill_Type() {
+ const TypeFunc* OptoRuntime::aescrypt_block_Type() {
+   // create input type (domain)
+   int num_args      = 3;
+-  if (Matcher::pass_original_key_for_aes()) {
+-    num_args = 4;
+-  }
+   int argcnt = num_args;
+   const Type** fields = TypeTuple::fields(argcnt);
+   int argp = TypeFunc::Parms;
+   fields[argp++] = TypePtr::NOTNULL;    // src
+   fields[argp++] = TypePtr::NOTNULL;    // dest
+   fields[argp++] = TypePtr::NOTNULL;    // k array
+-  if (Matcher::pass_original_key_for_aes()) {
+-    fields[argp++] = TypePtr::NOTNULL;    // original k array
+-  }
+   assert(argp == TypeFunc::Parms+argcnt, "correct decoding");
+   const TypeTuple* domain = TypeTuple::make(TypeFunc::Parms+argcnt, fields);
+ 
+@@ -879,9 +873,6 @@ const TypeFunc* OptoRuntime::updateBytesAdler32_Type() {
+ const TypeFunc* OptoRuntime::cipherBlockChaining_aescrypt_Type() {
+   // create input type (domain)
+   int num_args      = 5;
+-  if (Matcher::pass_original_key_for_aes()) {
+-    num_args = 6;
+-  }
+   int argcnt = num_args;
+   const Type** fields = TypeTuple::fields(argcnt);
+   int argp = TypeFunc::Parms;
+@@ -890,9 +881,6 @@ const TypeFunc* OptoRuntime::cipherBlockChaining_aescrypt_Type() {
+   fields[argp++] = TypePtr::NOTNULL;    // k array
+   fields[argp++] = TypePtr::NOTNULL;    // r array
+   fields[argp++] = TypeInt::INT;        // src len
+-  if (Matcher::pass_original_key_for_aes()) {
+-    fields[argp++] = TypePtr::NOTNULL;    // original k array
+-  }
+   assert(argp == TypeFunc::Parms+argcnt, "correct decoding");
+   const TypeTuple* domain = TypeTuple::make(TypeFunc::Parms+argcnt, fields);
+ 
+@@ -907,9 +895,6 @@ const TypeFunc* OptoRuntime::cipherBlockChaining_aescrypt_Type() {
+ const TypeFunc* OptoRuntime::electronicCodeBook_aescrypt_Type() {
+   // create input type (domain)
+   int num_args = 4;
+-  if (Matcher::pass_original_key_for_aes()) {
+-     num_args = 5;
+-  }
+   int argcnt = num_args;
+   const Type** fields = TypeTuple::fields(argcnt);
+   int argp = TypeFunc::Parms;
+@@ -917,9 +902,6 @@ const TypeFunc* OptoRuntime::electronicCodeBook_aescrypt_Type() {
+   fields[argp++] = TypePtr::NOTNULL;    // dest
+   fields[argp++] = TypePtr::NOTNULL;    // k array
+   fields[argp++] = TypeInt::INT;        // src len
+-  if (Matcher::pass_original_key_for_aes()) {
+-     fields[argp++] = TypePtr::NOTNULL;    // original k array
+-  }
+   assert(argp == TypeFunc::Parms + argcnt, "correct decoding");
+   const TypeTuple* domain = TypeTuple::make(TypeFunc::Parms + argcnt, fields);
+ 
+@@ -934,9 +916,6 @@ const TypeFunc* OptoRuntime::electronicCodeBook_aescrypt_Type() {
+ const TypeFunc* OptoRuntime::counterMode_aescrypt_Type() {
+   // create input type (domain)
+   int num_args = 7;
+-  if (Matcher::pass_original_key_for_aes()) {
+-    num_args = 8;
+-  }
+   int argcnt = num_args;
+   const Type** fields = TypeTuple::fields(argcnt);
+   int argp = TypeFunc::Parms;
+@@ -947,9 +926,6 @@ const TypeFunc* OptoRuntime::counterMode_aescrypt_Type() {
+   fields[argp++] = TypeInt::INT; // src len
+   fields[argp++] = TypePtr::NOTNULL; // saved_encCounter
+   fields[argp++] = TypePtr::NOTNULL; // saved used addr
+-  if (Matcher::pass_original_key_for_aes()) {
+-    fields[argp++] = TypePtr::NOTNULL; // original k array
+-  }
+   assert(argp == TypeFunc::Parms + argcnt, "correct decoding");
+   const TypeTuple* domain = TypeTuple::make(TypeFunc::Parms + argcnt, fields);
+   // returning cipher len (int)
+-- 
+2.43.0
+
