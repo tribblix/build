@@ -694,7 +694,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -482,7 +480,7 @@
+@@ -480,7 +478,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -703,7 +703,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -656,10 +654,7 @@
+@@ -654,10 +652,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -715,7 +715,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -686,7 +681,6 @@
+@@ -684,7 +679,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1118,7 +1118,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -169,7 +169,6 @@
+@@ -170,7 +170,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \
@@ -4178,7 +4178,7 @@
      int ret;
      jlong total = 0, avail = 0;
  
-@@ -184,37 +128,7 @@
+@@ -190,37 +134,7 @@
  Java_com_sun_management_internal_OperatingSystemImpl_getCommittedVirtualMemorySize0
    (JNIEnv *env, jobject mbean)
  {
@@ -4217,7 +4217,7 @@
      struct task_basic_info t_info;
      mach_msg_type_number_t t_info_count = TASK_BASIC_INFO_COUNT;
  
-@@ -240,7 +184,7 @@
+@@ -276,7 +190,7 @@
       * BSDNOTE: FreeBSD implements _SC_CLK_TCK since FreeBSD 5, so
       *          add a magic to handle it
       */
@@ -7931,7 +7931,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3051 +0,0 @@
+@@ -1,3055 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -9484,6 +9484,10 @@
 -    debug_only(warning("MADV_FREE failed."));
 -    return;
 -  }
+-}
+-
+-size_t os::pd_pretouch_memory(void* first, void* last, size_t page_size) {
+-  return page_size;
 -}
 -
 -bool os::pd_create_stack_guard_pages(char* addr, size_t size) {

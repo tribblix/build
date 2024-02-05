@@ -10,6 +10,11 @@ loom correctly as they date back to that change.
 * jshell doesn't work
 * illuminate doesn't work
 
+23+8
+
+Implement os::pd_pretouch_memory(), copying the basic implementation
+from aix.
+
 23+7
 
 Tidied up the fatal(dlerror()) warning.
