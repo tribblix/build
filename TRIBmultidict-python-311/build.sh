@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBmultidict-python-311 multidict-6.0.4
+${THOME}/build/pkg_setup_py TRIBmultidict-python-311 multidict-6.0.5
