@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # clean up the junk
-# add convenience links
 #
 VERSION=1.19
 rm -fr usr/versions/go-${VERSION}/pkg/bootstrap
