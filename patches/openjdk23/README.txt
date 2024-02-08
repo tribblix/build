@@ -9,6 +9,13 @@ Issues known that indicate serious bugs, likely due to not integrating
 loom correctly as they date back to that change.
 * jshell doesn't work
 * illuminate doesn't work
+* test suite doesn't run at all
+
+23+9
+
+Needed to implement os::total_swap_space and os::free_swap_space
+This uses the (undocumented in the man page) swapctl(SC_AINFO, &ai)
+call, as in the doswap() function in usr/src/cmd/swap/swap.c
 
 23+8
 

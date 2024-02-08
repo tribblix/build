@@ -105,7 +105,7 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -289,8 +289,6 @@
+@@ -290,8 +290,6 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
      TAR_TYPE="busybox"
@@ -7931,7 +7931,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3055 +0,0 @@
+@@ -1,3076 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8034,6 +8034,7 @@
 -# include <sys/shm.h>
 -# include <sys/socket.h>
 -# include <sys/stat.h>
+-# include <sys/swap.h>  // for swapctl
 -# include <sys/systeminfo.h>
 -# include <sys/time.h>
 -# include <sys/times.h>
@@ -8050,6 +8051,7 @@
 -# include <sys/loadavg.h>
 -# include <string.h>
 -# include <stdio.h>
+-# include <vm/anon.h>  // for swap anoninfo
 -
 -# include <procfs.h>
 -
@@ -8191,6 +8193,25 @@
 -}
 -
 -julong os::Solaris::_physical_memory = 0;
+-
+-jlong os::total_swap_space() {
+-  struct anoninfo ai;
+-  pgcnt_t allocated, reserved, available;
+-  int ret = swapctl(SC_AINFO, &ai);
+-  if (ret == -1) {
+-    return -1;
+-  }
+-  return  (jlong)(ai.ani_max * sysconf(_SC_PAGESIZE));
+-}
+-
+-jlong os::free_swap_space() {
+-  struct anoninfo ai;
+-  int ret = swapctl(SC_AINFO, &ai);
+-  if (ret == -1) {
+-    return -1;
+-  }
+-  return (jlong)(ai.ani_free * sysconf(_SC_PAGESIZE));
+-}
 -
 -julong os::physical_memory() {
 -  return Solaris::physical_memory();
