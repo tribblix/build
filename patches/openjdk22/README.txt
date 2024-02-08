@@ -9,8 +9,9 @@ Issues known that indicate serious bugs, likely due to not integrating
 loom correctly as they date back to that change.
 * jshell doesn't work
 * illuminate doesn't work
+* test suite doesn't run at all
 
-22+34
+22+34, 22+35
 
 No changes.
 
