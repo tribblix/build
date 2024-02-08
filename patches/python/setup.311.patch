@@ -9,7 +9,7 @@ diff -wpruN '--exclude=*.orig' a~/setup.py a/setup.py
  VXWORKS = ('vxworks' in HOST_PLATFORM)
  EMSCRIPTEN = HOST_PLATFORM == 'emscripten-wasm32'
  CC = os.environ.get("CC")
-@@ -846,7 +847,7 @@ class PyBuildExt(build_ext):
+@@ -847,7 +848,7 @@ class PyBuildExt(build_ext):
          # Ensure that /usr/local is always used, but the local build
          # directories (i.e. '.' and 'Include') must be first.  See issue
          # 10520.

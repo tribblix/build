@@ -16,7 +16,7 @@
 # there's a curses patch to make curses work and avoid ncurses
 #
 
-${THOME}/build/dobuild +64only Python-3.11.7 -P /usr/versions/python-3.11 -L -C --enable-shared
+${THOME}/build/dobuild +64only Python-3.11.8 -P /usr/versions/python-3.11 -L -C --enable-shared
 #
 # NB. TRIBv-python-311 must not be installed, or the make
 # install step will get confused
@@ -24,4 +24,4 @@ ${THOME}/build/dobuild +64only Python-3.11.7 -P /usr/versions/python-3.11 -L -C 
 # zap d TRIBv-python-311-tests TRIBv-python-311-tkinter TRIBv-python-311
 #
 # Horrid hack to work around deficiencies in setuptools
-${THOME}/build/genpkg TRIBv-python-311 Python-3.11.7
+${THOME}/build/genpkg TRIBv-python-311 Python-3.11.8
