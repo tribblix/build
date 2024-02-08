@@ -1,4 +1,4 @@
 PKG="TRIBlibgit2"
 NAME="Library providing a pure C implementation of the git core methods"
-VERSION="1.7.1.0"
+VERSION="1.7.2.0"
 ZAP_URL="https://libgit2.org/"
