@@ -1,4 +1,4 @@
 PKG="TRIBhexchat"
 NAME="HexChat - IRC chat program"
-VERSION="2.16.1.2"
+VERSION="2.16.2.0"
 ZAP_URL="https://hexchat.github.io/"
