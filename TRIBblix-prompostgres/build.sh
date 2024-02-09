@@ -14,8 +14,8 @@ cd promu
 env PATH=/usr/versions/go-1.21/bin:$PATH gmake build
 cd ..
 
-$THOME/build/unpack postgres_exporter-0.14.0
-cd postgres_exporter-0.14.0
+$THOME/build/unpack postgres_exporter-0.15.0
+cd postgres_exporter-0.15.0
 env PATH=/usr/versions/go-1.21/bin:$PATH gmake build
 
 ${THOME}/build/genpkg TRIBblix-prompostgres
