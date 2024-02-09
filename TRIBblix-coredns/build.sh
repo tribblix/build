@@ -4,7 +4,7 @@
 #
 $THOME/build/unpack coredns-1.11.1
 cd coredns-1.11.1
-env PATH=/usr/versions/go-1.20/bin:$PATH gmake
+env PATH=/usr/versions/go-1.21/bin:$PATH gmake
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/coredns/bin
