@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-env GOPATH=`pwd` PATH=/usr/versions/go-1.20/bin:$PATH go install github.com/google/osv-scanner/cmd/osv-scanner@v1
+env GOPATH=`pwd` PATH=/usr/versions/go-1.21/bin:$PATH go install github.com/google/osv-scanner/cmd/osv-scanner@v1
 
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
