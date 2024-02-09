@@ -1,4 +1,4 @@
 PKG="TRIBreferencing-python-311"
 NAME="Python referencing"
-VERSION="0.32.1.0"
+VERSION="0.33.0.0"
 ZAP_URL="https://pypi.org/project/referencing"
