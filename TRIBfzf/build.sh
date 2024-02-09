@@ -11,7 +11,7 @@ cd fzf
 #
 sed -i s:x86_64:i86pc: Makefile
 
-env PATH=/usr/versions/go-1.20/bin:$PATH gmake bin/fzf
+env PATH=/usr/versions/go-1.21/bin:$PATH gmake bin/fzf
 
 rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/bin
