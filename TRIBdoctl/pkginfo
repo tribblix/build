@@ -1,4 +1,4 @@
 PKG="TRIBdoctl"
 NAME="Digital Ocean official CLI"
-VERSION="1.79.2"
+VERSION="1.79.3"
 ZAP_URL="https://github.com/digitalocean/doctl"
