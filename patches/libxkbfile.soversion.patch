@@ -11,7 +11,7 @@
  libxkbfileinclude_HEADERS = \
 --- ./src/Makefile.in.orig	2016-05-19 02:19:55.056133965 +0200
 +++ ./src/Makefile.in	2016-05-19 02:20:18.776397570 +0200
-@@ -373,7 +373,7 @@
+@@ -376,7 +376,7 @@
  AM_CPPFLAGS = -I$(top_srcdir)/include/ -I$(top_srcdir)/include/X11/extensions/
  AM_CFLAGS = $(CWARNFLAGS) @XKBFILE_CFLAGS@
  libxkbfile_la_LIBADD = @XKBFILE_LIBS@
@@ -20,3 +20,14 @@
  libxkbfileincludedir = $(includedir)/X11/extensions
  libxkbfileinclude_HEADERS = \
      $(top_srcdir)/include/X11/extensions/XKM.h\
+--- ./src/meson.build.orig	Sun Feb  4 22:14:13 2024
++++ ./src/meson.build	Fri Feb  9 09:28:01 2024
+@@ -30,7 +30,7 @@
+         include_directories: includes,
+         install: true,
+         sources: libxkbfile_sources,
+-        version: '1.0.2'
++        version: '5'
+ )
+ 
+ libxkbfile_headers = [
