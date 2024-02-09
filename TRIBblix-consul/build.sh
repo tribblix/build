@@ -7,9 +7,9 @@ cd src/github.com/hashicorp/
 git clone https://github.com/hashicorp/consul
 cd consul
 #
-git checkout v1.15.3
+git checkout v1.17.2
 #
-env GOPATH=${HOME}/ud/c PATH=/usr/versions/go-1.20/bin:$PATH gmake
+env GOPATH=${HOME}/ud/c PATH=/usr/versions/go-1.21/bin:$PATH gmake
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/consul/bin
 cp bin/consul /tmp/ee/opt/tribblix/consul/bin

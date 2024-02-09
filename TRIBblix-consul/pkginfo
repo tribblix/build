@@ -1,4 +1,4 @@
 PKG="TRIBblix-consul"
 NAME="Consul tool for service discovery and configuration."
-VERSION="1.15.3.0"
+VERSION="1.17.2.0"
 ZAP_URL="https://www.consul.io/"
