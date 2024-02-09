@@ -1,0 +1,4 @@
+PKG="TRIBlibavif"
+NAME="Library for encoding and decoding .avif files"
+VERSION="1.0.4.0"
+ZAP_URL="https://github.com/AOMediaCodec/libavif"
