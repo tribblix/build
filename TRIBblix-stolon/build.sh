@@ -7,7 +7,7 @@ cd s2
 #
 git clone https://github.com/sorintlab/stolon
 cd stolon
-env PATH=/usr/versions/go-1.20/bin:$PATH gmake
+env PATH=/usr/versions/go-1.21/bin:$PATH gmake
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/stolon/bin
