@@ -15,8 +15,8 @@ env PATH=/usr/versions/go-1.21/bin:$PATH gmake build
 cd ..
 
 #
-$THOME/build/unpack node_exporter-1.6.1
-cd node_exporter-1.6.1
+$THOME/build/unpack node_exporter-1.7.0
+cd node_exporter-1.7.0
 #
 # cp collector/uname_bsd.go collector/uname_solaris.go
 # and change to build on solaris
