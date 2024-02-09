@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-env GOPATH=`pwd` go install github.com/antonmedv/fx@latest
+# pinned at 24.1.0 due to containerd/console
+#
+env GOPATH=`pwd` go install github.com/antonmedv/fx@24.1.0
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
 mkdir -p /tmp/cs/usr/share/fx
