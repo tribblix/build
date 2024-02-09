@@ -1,4 +1,4 @@
 PKG="TRIBgstreamer1"
 NAME="GStreamer (stable) multimedia framework"
-VERSION="1.20.7.0"
+VERSION="1.20.7.1"
 ZAP_URL="http://gstreamer.freedesktop.org/"

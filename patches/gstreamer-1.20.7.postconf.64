@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# the registry is binary and specific to wordsize
+# so we need different gstreamer registries for 32 and
+# 64-bit applications, otherwise one will create the
+# registry and then any applications of the other bitness
+# will just panic
+#
+# we override *both* with these patches so that existing
+# users with the wrong registry get fixed
+#
+
+#
+# normally it uses TARGET_CPU from the build, override by
+# adding a 64 suffix
+#
+sed -i 's:TARGET_CPU:TARGET_CPU "-64":' gst/gstregistry.c
