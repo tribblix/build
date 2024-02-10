@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# the patches for bazel are for an abstract version of gcc; we need
+# to insert the paths for the actual current gcc
+#
+CXX_INCLUDE_DIRS=$(g++ -E -x c++ - -v < /dev/null 2>&1 | awk '/include.*search starts here:/, /End of search list./' | grep '^ */')
+
+#echo $CXX_INCLUDE_DIRS
+
+for path in $CXX_INCLUDE_DIRS
+do
+	NCXX_INCLUDE_DIRS="$NCXX_INCLUDE_DIRS `/usr/gnu/bin/realpath $path`"
+done
+
+#echo $NCXX_INCLUDE_DIRS
+
+#echo $NCXX_INCLUDE_DIRS | sed -e 's: :\",\":g' -e 's:^:\":' -e 's:$:\":'
+
+CXX_INCLUDE_DIRECTORIES=$(echo $NCXX_INCLUDE_DIRS | sed -e 's: :\",\":g' -e 's:^:\":' -e 's:$:\":')
+
+#echo $CXX_INCLUDE_DIRECTORIES
+
+GCCPATH=$(ls -l /usr/bin/gcc | awk '{print $NF}' | sed -e 's:\.\./::g' -e 's:/bin/gcc::' -e 's:^:/:')
+
+#echo $GCCPATH
+
+sed -i -e "s;@@GCCPATH@@;${GCCPATH};" -e "s;@@CXX_INCLUDE_DIRECTORIES@@;${CXX_INCLUDE_DIRECTORIES};" tools/cpp/illumos_cc_toolchain_config.bzl

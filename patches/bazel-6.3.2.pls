@@ -1,0 +1,2 @@
+-p1 bazel-illumos.patch
+-p1 bazel-tribblix.patch
