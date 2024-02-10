@@ -1,4 +1,0 @@
-PKG="TRIBv-groovy-3"
-NAME="Groovy - A dynamic language for the Java platform"
-VERSION="3.0.20.0"
-ZAP_URL="https://groovy.apache.org/"

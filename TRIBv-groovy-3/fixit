@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# clean up other platforms
-#
-VERSION=3.0.20
-rm usr/versions/groovy-${VERSION}/bin/*.bat
