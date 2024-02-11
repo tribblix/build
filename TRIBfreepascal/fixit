@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# add symlinks needed for fpc to run
+#
+ln -s /usr/gnu/bin/ld usr/versions/fpc/bin/gld
+ln -s /usr/gnu/bin/strip usr/versions/fpc/bin/gstrip
+cd usr/versions/fpc/bin
+ln -s ../lib/fpc/3.2.2/ppc* .

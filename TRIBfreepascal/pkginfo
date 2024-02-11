@@ -1,0 +1,4 @@
+PKG="TRIBfreepascal"
+NAME="Free Pascal"
+VERSION="3.2.2.0"
+ZAP_URL="https://www.freepascal.org/"
