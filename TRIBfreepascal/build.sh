@@ -5,6 +5,8 @@
 # into /tmp/f and add a couple of symlinks
 #  ln -s /usr/gnu/bin/ld /tmp/f/bin/gld
 #  ln -s /usr/gnu/bin/strip /tmp/f/bin/gstrip
+# on sparc in addition
+#  ln -s /usr/gnu/bin/as /tmp/f/bin/gas
 #
 # the fixit script will add the required symlinks to the installed version
 #

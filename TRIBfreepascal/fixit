@@ -4,5 +4,10 @@
 #
 ln -s /usr/gnu/bin/ld usr/versions/fpc/bin/gld
 ln -s /usr/gnu/bin/strip usr/versions/fpc/bin/gstrip
+case `uname -p` in
+sparc)
+    ln -s /usr/gnu/bin/as usr/versions/fpc/bin/gas
+    ;;
+esac
 cd usr/versions/fpc/bin
 ln -s ../lib/fpc/3.2.2/ppc* .
