@@ -1,0 +1,20 @@
+--- a/netsurf/Makefile	Thu Dec 28 00:57:22 2023
++++ b/netsurf/Makefile	Sun Feb 11 21:56:33 2024
+@@ -215,6 +215,8 @@
+ CXXFLAGS += $(SAN_FLAGS)
+ LDFLAGS += $(SAN_FLAGS)
+ 
++CFLAGS += -D__EXTENSIONS__
++
+ # and the logging filter
+ CFLAGS += -DNETSURF_BUILTIN_LOG_FILTER=\"$(NETSURF_BUILTIN_LOG_FILTER)\"
+ CXXFLAGS += -DNETSURF_BUILTIN_LOG_FILTER=\"$(NETSURF_BUILTIN_LOG_FILTER)\"
+@@ -231,7 +233,7 @@
+ 
+ # We trace during link so that we can determine if a libary changes under us in
+ # order to re-link.  This *may* be gcc specific, so may need tweaks in future.
+-LDFLAGS += -Wl,--trace
++# LDFLAGS += -Wl,--trace
+ 
+ # ----------------------------------------------------------------------------
+ # General make rules
