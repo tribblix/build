@@ -12,6 +12,9 @@ rather than the current stub.
 * jshell doesn't work
 * illuminate doesn't work
 
+Cleanup: missed the dropping of TIERED in 17+8, it's now
+COMPILER1_AND_COMPILER2
+
 21.0.2
 
 A bit of shuffling in ProcessHandleImpl_unix.c

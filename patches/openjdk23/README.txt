@@ -11,6 +11,9 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+Cleanup: missed the dropping of TIERED in 17+8, it's now
+COMPILER1_AND_COMPILER2
+
 23+9
 
 Needed to implement os::total_swap_space and os::free_swap_space

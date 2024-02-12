@@ -5,6 +5,9 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Most patches -p0
 
+Cleanup: missed the dropping of TIERED in 17+8, it's now
+COMPILER1_AND_COMPILER2
+
 19.0.2
 
 Minor patch noise, needed to remove a hunk for

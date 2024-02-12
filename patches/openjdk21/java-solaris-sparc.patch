@@ -5315,7 +5315,7 @@
 -
 -  GEN_VALUE(DATA_MODEL, data_model);
 -  GEN_VALUE(POINTER_SIZE, pointer_size);
--#if defined(TIERED)
+-#if COMPILER1_AND_COMPILER2
 -  GEN_VALUE(COMPILER, 3);
 -#elif COMPILER1
 -  GEN_VALUE(COMPILER, 1);

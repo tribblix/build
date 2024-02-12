@@ -3,6 +3,9 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: missed the dropping of TIERED in 17+8, it's now
+COMPILER1_AND_COMPILER2
+
 20.0.2
 
 Reinstate make/data/charsetmapping/stdcs-solaris, removal broke the
