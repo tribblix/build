@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/bin/sh
 #
 # need to checkout precisely the version we're going to build
 #
@@ -8,9 +8,9 @@
 mkdir tf
 cd tf
 git clone https://github.com/hashicorp/terraform
-cd terraform/
-git checkout v1.4.6
-env PATH=/usr/versions/go-1.20/bin:$PATH go install .
+cd terraform
+git checkout v1.7.3
+env PATH=/usr/versions/go-1.21/bin:$PATH go install .
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
