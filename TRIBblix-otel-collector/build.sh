@@ -3,7 +3,7 @@
 git clone https://github.com/open-telemetry/opentelemetry-collector
 cd opentelemetry-collector
 
-env PATH=/usr/versions/go-1.20/bin:$PATH gmake otelcorecol
+env PATH=/usr/versions/go-1.21/bin:$PATH gmake otelcorecol
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/otel/bin
