@@ -1,4 +1,4 @@
 PKG="TRIBxosview"
 NAME="xosview"
-VERSION="1.23.1"
+VERSION="1.24.0"
 ZAP_URL="http://www.pogo.org.uk/~mark/xosview/"
