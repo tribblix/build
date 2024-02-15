@@ -1,4 +1,4 @@
 PKG="TRIBplanner"
 NAME="Gnome planner"
-VERSION="0.14.91.0"
+VERSION="0.14.92.0"
 ZAP_URL="https://download.gnome.org/sources/planner/"
