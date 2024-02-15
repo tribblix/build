@@ -20,6 +20,8 @@ That's to do with freetype, I think.
 
 More recently:
 
+Clean away STLPORT remnants
+
 Tidied up the fatal(dlerror() warning
 
 Removed the unused create_detachall_operation()

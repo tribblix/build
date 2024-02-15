@@ -639,14 +639,6 @@
  TAR_INCLUDE_PARAM:=@TAR_INCLUDE_PARAM@
  TAR_SUPPORTS_TRANSFORM:=@TAR_SUPPORTS_TRANSFORM@
  
-@@ -778,7 +769,6 @@
- VCRUNTIME_1_DLL:=@VCRUNTIME_1_DLL@
- MSVCP_DLL:=@MSVCP_DLL@
- UCRT_DLL_DIR:=@UCRT_DLL_DIR@
--STLPORT_LIB:=@STLPORT_LIB@
- ENABLE_PANDOC:=@ENABLE_PANDOC@
- PANDOC_MARKDOWN_FLAG:=@PANDOC_MARKDOWN_FLAG@
- 
 --- old/make/autoconf/toolchain.m4	2020-05-20 17:58:44.612626291 -0700
 +++ new/make/autoconf/toolchain.m4	2020-05-20 17:58:44.216618687 -0700
 @@ -35,11 +35,10 @@
@@ -1189,23 +1181,6 @@
  else ifeq ($(call isTargetOs, macosx), true)
    # The copied fdlibm routines in these files must not be optimized
    BUILD_LIBJVM_sharedRuntimeTrig.cpp_CXXFLAGS := $(FDLIBM_CFLAGS) $(LIBJVM_FDLIBM_COPY_OPT_FLAG)
---- old/make/hotspot/test/GtestImage.gmk	2020-05-20 17:59:02.544970605 -0700
-+++ new/make/hotspot/test/GtestImage.gmk	2020-05-20 17:59:02.160963232 -0700
-@@ -56,14 +56,4 @@
-   )
- endif
- 
--ifeq ($(call isTargetOs, solaris), true)
--  $(foreach v, $(JVM_VARIANTS), \
--    $(eval $(call SetupCopyFiles, COPY_GTEST_STLPORT_$v, \
--        DEST := $(TEST_IMAGE_DIR)/hotspot/gtest/$v, \
--        FILES := $(STLPORT_LIB), \
--    )) \
--    $(eval TARGETS += $$(COPY_GTEST_STLPORT_$v)) \
--  )
--endif
--
- all: $(TARGETS)
 --- old/make/ide/netbeans/hotspot/nbproject/configurations.xml	2020-05-20 17:59:03.596990804 -0700
 +++ new/make/ide/netbeans/hotspot/nbproject/configurations.xml	2020-05-20 17:59:03.216983508 -0700
 @@ -42,19 +42,6 @@
