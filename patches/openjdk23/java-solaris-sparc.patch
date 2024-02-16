@@ -157,7 +157,7 @@
 @@ -482,9 +481,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
-     CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
+     CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_FILE_OFFSET_BITS=64"
 -  elif test "x$OPENJDK_TARGET_OS" = xsolaris; then
 -    CFLAGS_OS_DEF_JVM="-DSOLARIS"
 -    CFLAGS_OS_DEF_JDK="-D__solaris__"
@@ -780,7 +780,7 @@
  
 --- old/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.653337499 -0700
 +++ new/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.257329896 -0700
-@@ -68,11 +68,10 @@
+@@ -65,11 +65,10 @@
      CFLAGS := $(CFLAGS_JDKLIB) $(SA_CFLAGS), \
      CXXFLAGS := $(CXXFLAGS_JDKLIB) $(SA_CFLAGS) $(SA_CXXFLAGS), \
      EXTRA_SRC := $(LIBSA_EXTRA_SRC), \
@@ -1170,7 +1170,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -609,12 +609,11 @@
+@@ -608,12 +608,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1428,16 +1428,18 @@
  # A list of preferred providers for specific algorithms. These providers will
 --- old/src/java.base/share/native/libjli/jli_util.h	2020-05-20 18:00:56.651161527 -0700
 +++ new/src/java.base/share/native/libjli/jli_util.h	2020-05-20 18:00:56.263154077 -0700
-@@ -100,9 +100,6 @@
+@@ -100,11 +100,7 @@
  #define JLI_StrCaseCmp(p1, p2)          strcasecmp((p1), (p2))
  #define JLI_StrNCaseCmp(p1, p2, p3)     strncasecmp((p1), (p2), (p3))
  #define JLI_Open                        open
 -#ifdef __solaris__
 -#define JLI_Lseek                       llseek
+-#else
+ #define JLI_Lseek                       lseek
 -#endif
- #ifdef __linux__
- #define _LARGFILE64_SOURCE
- #define JLI_Lseek                       lseek64
+ #endif /* _WIN32 */
+ 
+ /*
 --- old/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.667181035 -0700
 +++ new/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.335174660 -0700
 @@ -81,7 +81,6 @@
@@ -1622,7 +1624,7 @@
   * the special device files /dev/random and /dev/urandom.  This
 --- old/src/java.base/unix/native/libjava/ProcessHandleImpl_unix.c	2020-05-20 18:01:07.167363445 -0700
 +++ new/src/java.base/unix/native/libjava/ProcessHandleImpl_unix.c	2020-05-20 18:01:06.779355995 -0700
-@@ -45,20 +45,10 @@
+@@ -45,16 +45,8 @@
  #include <sys/stat.h>
  #include <sys/wait.h>
  
@@ -1632,19 +1634,14 @@
 -#endif
  #include <pwd.h>
  
--#ifdef _AIX
--#include <sys/procfs.h>
--#endif
 -#ifdef __solaris__
 -#include <procfs.h>
 -#endif
 -
  #if defined(_AIX)
-+  #include <sys/procfs.h>
-   #define DIR DIR64
-   #define dirent dirent64
-   #define opendir opendir64
-@@ -138,18 +128,13 @@
+   #include <sys/procfs.h>
+ #endif
+@@ -131,18 +123,13 @@
  #define WTERMSIG(status) ((status)&0x7F)
  #endif
  
@@ -1664,7 +1661,7 @@
  
  #define RESTARTABLE(_cmd, _result) do { \
    do { \
-@@ -503,7 +488,7 @@
+@@ -496,7 +483,7 @@
   * The following functions are for Linux
   */
  
@@ -1673,7 +1670,7 @@
  
  /*
   * Return pids of active processes, and optionally parent pids and
-@@ -632,13 +617,13 @@
+@@ -625,13 +612,13 @@
      return count;
  }
  
@@ -1690,7 +1687,7 @@
  
  /**
   * Helper function to get the 'psinfo_t' data from "/proc/%d/psinfo".
-@@ -702,19 +687,6 @@
+@@ -695,19 +682,6 @@
      int ret;
  
      /*
@@ -1710,7 +1707,7 @@
       * Now try to open /proc/%d/psinfo
       */
      if (getPsinfo(pid, &psinfo) < 0) {
-@@ -743,4 +715,4 @@
+@@ -736,4 +710,4 @@
                        prargs[0] == '\0' ? NULL : prargs);
  }
  
@@ -1785,9 +1782,9 @@
  #define fileclose       fclose
 -#endif
  
- #if defined(_ALLBSD_SOURCE)
- #define stat64 stat
-@@ -81,7 +76,7 @@
+ #if defined(__linux__) || defined(_ALLBSD_SOURCE)
+ static const char *ETC_TIMEZONE_FILE = "/etc/timezone";
+@@ -75,7 +70,7 @@
  static const char *ETC_ENVIRONMENT_FILE = "/etc/environment";
  #endif
  
@@ -1796,7 +1793,7 @@
  
  /*
   * remove repeated path separators ('/') in the given 'path'.
-@@ -191,13 +186,6 @@
+@@ -185,13 +180,6 @@
           */
          if ((strcmp(dp->d_name, "ROC") == 0)
              || (strcmp(dp->d_name, "posixrules") == 0)
@@ -1810,7 +1807,7 @@
              || (strcmp(dp->d_name, "localtime") == 0)) {
              continue;
          }
-@@ -269,8 +257,6 @@
+@@ -263,8 +251,6 @@
      return possibleMatch;
  }
  
@@ -1819,7 +1816,7 @@
  /*
   * Performs Linux specific mapping and returns a zone ID
   * if found. Otherwise, NULL is returned.
-@@ -382,183 +368,6 @@
+@@ -376,183 +362,6 @@
      return tz;
  }
  
@@ -2003,7 +2000,7 @@
  #elif defined(_AIX)
  
  static char *
-@@ -852,15 +533,6 @@
+@@ -718,15 +527,6 @@
              free((void *) freetz);
          }
  #else
@@ -2021,17 +2018,18 @@
              javatz = strdup(tz);
 --- old/src/java.base/unix/native/libjava/UnixFileSystem_md.c	2020-05-20 18:01:11.571448007 -0700
 +++ new/src/java.base/unix/native/libjava/UnixFileSystem_md.c	2020-05-20 18:01:11.171440327 -0700
-@@ -63,10 +63,6 @@
-   #define stat stat64
+@@ -57,11 +57,6 @@
+   #endif
+   #define statvfs statvfs64
  #endif
- 
+-
 -#if defined(__solaris__) && !defined(NAME_MAX)
 -  #define NAME_MAX MAXNAMLEN
 -#endif
 -
- #if defined(_ALLBSD_SOURCE)
-   #ifndef MACOSX
-     #define statvfs64 statvfs
+ /* -- Field IDs -- */
+ 
+ static struct {
 --- old/src/java.base/unix/native/libjava/io_util_md.c	2020-05-20 18:01:12.679469282 -0700
 +++ new/src/java.base/unix/native/libjava/io_util_md.c	2020-05-20 18:01:12.271461448 -0700
 @@ -30,10 +30,6 @@
@@ -3201,7 +3199,7 @@
  #else
 --- old/src/java.base/unix/native/libnio/fs/UnixNativeDispatcher.c	2020-05-20 18:01:37.127938711 -0700
 +++ new/src/java.base/unix/native/libnio/fs/UnixNativeDispatcher.c	2020-05-20 18:01:36.787932182 -0700
-@@ -45,17 +45,10 @@
+@@ -46,17 +46,10 @@
  #include <sys/xattr.h>
  #endif
  
@@ -3220,15 +3218,15 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -381,8 +374,7 @@
+@@ -360,8 +353,7 @@
  
      /* system calls that might not be available at run time */
  
--#if (defined(__solaris__) && defined(_LP64)) || defined(_ALLBSD_SOURCE)
+-#if defined(__solaris__) || defined(_ALLBSD_SOURCE)
 -    /* Solaris 64-bit does not have openat64/fstatat64 */
 +#if defined(_ALLBSD_SOURCE)
-     my_openat64_func = (openat64_func*)dlsym(RTLD_DEFAULT, "openat");
-     my_fstatat64_func = (fstatat64_func*)dlsym(RTLD_DEFAULT, "fstatat");
+     my_openat_func = (openat_func*)dlsym(RTLD_DEFAULT, "openat");
+     my_fstatat_func = (fstatat_func*)dlsym(RTLD_DEFAULT, "fstatat");
  #else
 --- old/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:38.255960369 -0700
 +++ new/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:37.863952843 -0700
@@ -4113,7 +4111,7 @@
      struct timeval t;
 --- old/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:36.322227327 -0700
 +++ new/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:35.934219877 -0700
-@@ -85,63 +85,7 @@
+@@ -77,63 +77,7 @@
  // true = get available swap in bytes
  // false = get total swap in bytes
  static jlong get_total_or_available_swap_space_size(JNIEnv* env, jboolean available) {
@@ -4178,7 +4176,7 @@
      int ret;
      jlong total = 0, avail = 0;
  
-@@ -190,37 +134,7 @@
+@@ -182,37 +126,7 @@
  Java_com_sun_management_internal_OperatingSystemImpl_getCommittedVirtualMemorySize0
    (JNIEnv *env, jobject mbean)
  {
@@ -4217,7 +4215,7 @@
      struct task_basic_info t_info;
      mach_msg_type_number_t t_info_count = TASK_BASIC_INFO_COUNT;
  
-@@ -276,7 +190,7 @@
+@@ -268,7 +182,7 @@
       * BSDNOTE: FreeBSD implements _SC_CLK_TCK since FreeBSD 5, so
       *          add a magic to handle it
       */
@@ -7931,7 +7929,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3076 +0,0 @@
+@@ -1,3075 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -7961,7 +7959,6 @@
 -#include "classfile/classLoader.hpp"
 -#include "classfile/systemDictionary.hpp"
 -#include "classfile/vmSymbols.hpp"
--#include "code/icBuffer.hpp"
 -#include "code/vtableStubs.hpp"
 -#include "compiler/compileBroker.hpp"
 -#include "compiler/disassembler.hpp"
@@ -11761,7 +11758,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ORDERACCESS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2020-05-20 18:10:01.145616115 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,662 +0,0 @@
+@@ -1,661 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11793,7 +11790,6 @@
 -#include "classfile/systemDictionary.hpp"
 -#include "classfile/vmSymbols.hpp"
 -#include "code/codeCache.hpp"
--#include "code/icBuffer.hpp"
 -#include "code/vtableStubs.hpp"
 -#include "interpreter/interpreter.hpp"
 -#include "logging/log.hpp"

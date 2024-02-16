@@ -11,6 +11,13 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+10
+
+Patch noise; much of it associated with cleaning up the 64-bit
+function name usage in Linux and AIX
+
+Remove #include of code/icBuffer.hpp, as the file has gone
+
 Cleanup: missed the dropping of TIERED in 17+8, it's now
 COMPILER1_AND_COMPILER2
 
