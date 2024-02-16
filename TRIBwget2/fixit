@@ -6,4 +6,4 @@ rm -f usr/lib/charset.alias
 #
 # unsure what that's doing here...
 #
-rm -f usr/bin/wget2_noinstall 
+rm -f usr/bin/wget2_noinstall

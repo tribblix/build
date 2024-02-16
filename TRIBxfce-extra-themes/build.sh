@@ -12,7 +12,7 @@ ${THOME}/build/unpack PRO-dark-XFCE-4.14
 mv PRO-dark-XFCE-4.14/READ\ ME PRO-dark-XFCE-4.14/README
 mv PRO-dark-XFCE-4.14/gtk-2.0/READ\ ME PRO-dark-XFCE-4.14/gtk-2.0/README
 rm -f PRO-dark-XFCE-4.14/gtk-2.0/apps\ \(copy\ 1\).rc
-rm -f PRO-dark-XFCE-4.14/gtk-2.0/assets/entry-border-bg\ \(copy\ 1\).png 
+rm -f PRO-dark-XFCE-4.14/gtk-2.0/assets/entry-border-bg\ \(copy\ 1\).png
 rm -f PRO-dark-XFCE-4.14/gtk-2.0/menubar-toolbar/entry-toolbar\ \(copy\ 1\).png
 mv PRO-dark-XFCE-4.14 PRO-dark
 #

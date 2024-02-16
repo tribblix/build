@@ -11,4 +11,4 @@ cd R-4.3.1-64bit
 gmake check
 cd ..
 
-$THOME/build/genpkg TRIBr R-4.3.1 
+$THOME/build/genpkg TRIBr R-4.3.1

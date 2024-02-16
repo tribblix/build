@@ -49,7 +49,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # openjdk version "13.0.14-internal" 2023-01-17
 # OpenJDK Runtime Environment (build 13.0.14-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.14-ga)
 # OpenJDK 64-Bit Server VM (build 13.0.14-internal+0-adhoc.ptribble.jdk13u-jdk-13.0.14-ga, mixed mode, sharing)
-# 
+#
 
 rm -fr /tmp/jdk
 mkdir -p /tmp/jdk/usr/versions/openjdk13

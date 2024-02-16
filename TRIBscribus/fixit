@@ -7,10 +7,10 @@ rm -fr usr/share/doc/scribus/it
 #
 # there seems to be some confusion as to where these should go
 #
-cp usr/share/scribus/icons/1_5_0/zeichen.png usr/share/scribus/icons/1_5_1/zeichen.png 
-cp usr/share/scribus/icons/1_5_0/screen.png usr/share/scribus/icons/1_5_1/screen.png 
-cp usr/share/scribus/icons/1_5_0/ellipsis.png usr/share/scribus/icons/1_5_1/ellipsis.png 
-cp usr/share/scribus/icons/1_5_0/clear_right.png usr/share/scribus/icons/1_5_1/clear_right.png 
+cp usr/share/scribus/icons/1_5_0/zeichen.png usr/share/scribus/icons/1_5_1/zeichen.png
+cp usr/share/scribus/icons/1_5_0/screen.png usr/share/scribus/icons/1_5_1/screen.png
+cp usr/share/scribus/icons/1_5_0/ellipsis.png usr/share/scribus/icons/1_5_1/ellipsis.png
+cp usr/share/scribus/icons/1_5_0/clear_right.png usr/share/scribus/icons/1_5_1/clear_right.png
 #
 # bundle filenames with spaces
 #

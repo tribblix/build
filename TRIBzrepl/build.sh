@@ -5,7 +5,7 @@ cd rr
 git clone https://github.com/zrepl/zrepl
 cd zrepl
 #
-# the build script has some fixed ideas 
+# the build script has some fixed ideas
 #
 env PATH=${HOME}/go/bin:$PATH GOPATH=${HOME}/go ./lazy.sh godep
 env PATH=${HOME}/go/bin:${PATH} GOPATH=${HOME}/go gmake zrepl-bin

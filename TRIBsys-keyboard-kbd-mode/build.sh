@@ -8,7 +8,7 @@ cd kbd_mode
 make CC=gcc
 mkdir -p /tmp/km/usr/share/man/man1
 cp kbd_mode.1 /tmp/km/usr/share/man/man1
-mkdir -p /tmp/km/usr/bin 
+mkdir -p /tmp/km/usr/bin
 cp kbd_mode /tmp/km/usr/bin
 cd ..
 ${THOME}/build/create_pkg TRIBsys-keyboard-kbd-mode /tmp/km

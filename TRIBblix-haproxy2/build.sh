@@ -8,6 +8,6 @@ cd haproxy-2.6.16
 
 gmake -j 4 CC=gcc TARGET=solaris USE_PCRE2=1 USE_OPENSSL=1 ARCH=64 USE_PROMEX=1
 
-sed -i 's:PREFIX = /usr/local:PREFIX = /opt/tribblix/haproxy:' Makefile 
+sed -i 's:PREFIX = /usr/local:PREFIX = /opt/tribblix/haproxy:' Makefile
 ${THOME}/build/genpkg TRIBblix-haproxy2
 cd ..

@@ -20,7 +20,7 @@ $THOME/build/dobuild -64 glw-8.0.0
 #
 # note that running make clean breaks the build
 #
-# OI currently have 
+# OI currently have
 # --with-dri-drivers='i915 i965 r200 radeon swrast'
 # but the legacy version only has swrast, the r200 and radeon being
 # supplied by the ati driver, so I remove r200 and radeon for now

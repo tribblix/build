@@ -1,1 +1,1 @@
--p1 libxi-solaris-abi.patch  
+-p1 libxi-solaris-abi.patch

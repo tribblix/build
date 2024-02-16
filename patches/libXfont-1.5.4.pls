@@ -1,1 +1,1 @@
--p1 libXfont-pc.patch 
+-p1 libXfont-pc.patch

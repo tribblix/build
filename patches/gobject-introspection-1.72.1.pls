@@ -1,3 +1,3 @@
 -p1 giscanner-no-as-needed.patch
 -p1 gir-disable-tests.patch
--p1 giscanner-shlibs.py.patch 
+-p1 giscanner-shlibs.py.patch

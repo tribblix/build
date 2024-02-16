@@ -4,8 +4,6 @@
 #
 /usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
 #
-# 
-#
 cd usr/share/gc
 rm -f README.DGUX386 README.Mac README.MacOSX README.OS2
 rm -f README.amiga README.arm.cross README.cmake README.darwin

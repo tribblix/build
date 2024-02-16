@@ -36,6 +36,6 @@ done
 # these need help to find libicudata.so.69
 #
 #/usr/bin/elfedit -e 'dyn:runpath $ORIGIN' libicui18n.so.69
-#/usr/bin/elfedit -e 'dyn:runpath $ORIGIN' libicuuc.so.69 
+#/usr/bin/elfedit -e 'dyn:runpath $ORIGIN' libicuuc.so.69
 #/usr/bin/elfedit -e 'dyn:rpath $ORIGIN' libicui18n.so.69
-#/usr/bin/elfedit -e 'dyn:rpath $ORIGIN' libicuuc.so.69 
+#/usr/bin/elfedit -e 'dyn:rpath $ORIGIN' libicuuc.so.69

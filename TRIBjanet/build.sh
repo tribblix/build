@@ -6,7 +6,7 @@ cd janet-1.32.1
 
 # this updates COMMON_CFLAGS so it applies to both the bootstrap
 # and the build
-sed -i 's:-fPIC:-fPIC -D__EXTENSIONS__:' Makefile 
+sed -i 's:-fPIC:-fPIC -D__EXTENSIONS__:' Makefile
 # syntax is gnu
 sed -i 's:strip :/usr/gnu/bin/strip :' Makefile
 

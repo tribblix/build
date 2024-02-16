@@ -12,7 +12,7 @@ rmdir usr/savelib
 #
 # fix up the pc file
 #
-sed -i s:`pwd`:: usr/lib/`$THOME/build/getarch`/pkgconfig/openblas.pc 
+sed -i s:`pwd`:: usr/lib/`$THOME/build/getarch`/pkgconfig/openblas.pc
 sed -i s:/usr/lib:/usr/lib/`$THOME/build/getarch`: usr/lib/`$THOME/build/getarch`/pkgconfig/openblas.pc
 #
 # and cmake

@@ -3,7 +3,7 @@
 -p1 top-03.sunos5.patch
 -p1 top-04.percent_cpu.patch
 -p1 top-05.zfs_arc_stats.patch
--p1 top-06.all-is-long.patch 
+-p1 top-06.all-is-long.patch
 -p1 top-07.itoa-fix-long.patch
 -p1 top-08-winch-segfault-fix.patch
 -p1 top-09-man-page-references.patch

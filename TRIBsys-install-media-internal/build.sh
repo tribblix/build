@@ -1,7 +1,7 @@
 #!/bin/tcsh
 #
 # assuming the repo is checked out
-# 
+#
 # https://github.com/tribblix/tribblix-media
 #
 rm -fr /tmp/lt2

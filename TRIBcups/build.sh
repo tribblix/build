@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # may need to rename the downloaded tarball, like so:
-#  mv cups-2.4.6-source.tar.gz cups-2.4.6.tar.gz 
+#  mv cups-2.4.6-source.tar.gz cups-2.4.6.tar.gz
 #
 
 #

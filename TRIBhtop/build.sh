@@ -2,7 +2,7 @@
 #
 # htop support for solaris/illumos is experimental
 #
-# Thanks to Guy M Broome <gmbroome@vcu.edu> 
+# Thanks to Guy M Broome <gmbroome@vcu.edu>
 #
 # the build here is rather manual
 #

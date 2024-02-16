@@ -53,7 +53,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# 
+#
 # openjdk version "14.0.2-internal" 2020-07-14
 # OpenJDK Runtime Environment (build 14.0.2-internal+0-adhoc.ptribble.jdk14u-jdk-14.0.212)
 # OpenJDK 64-Bit Server VM (build 14.0.2-internal+0-adhoc.ptribble.jdk14u-jdk-14.0.212, mixed mode, sharing)

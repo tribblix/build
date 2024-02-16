@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# 
-#
 $THOME/build/unpack libreoffice-7.4.7.2
 cd libreoffice-7.4.7.2
 $THOME/build/patches/libreoffice-7.4.7.2.preconf

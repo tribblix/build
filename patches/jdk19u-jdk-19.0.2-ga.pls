@@ -2,7 +2,7 @@
 -p0 openjdk19/patch-make_GenerateLinkOptData.gmk
 -p0 openjdk19/patch-make_autoconf_flags-cflags.m4
 -p0 openjdk19/patch-make_autoconf_jdk-options.m4
--p0 openjdk19/patch-make_launcher_LauncherCommon.gmk 
+-p0 openjdk19/patch-make_launcher_LauncherCommon.gmk
 -p0 openjdk19/patch-make_lib_LibCommon.gmk
 -p0 openjdk19/patch-src_hotspot_os__cpu_solaris__x86_atomic__solaris__x86.hpp
 -p0 openjdk19/patch-src_hotspot_os__cpu_solaris__x86_bytes__solaris__x86.inline.hpp

@@ -3,7 +3,7 @@
 rm -fr /tmp/j1 /tmp/jEdit /tmp/man /tmp/bin
 # requires java 11
 # sparc downrev
-java -jar ${THOME}/tarballs/jedit5.6.0install.jar 
+java -jar ${THOME}/tarballs/jedit5.6.0install.jar
 # Install under /tmp instead of $HOME, not the API documentation
 mkdir -p /tmp/j1/usr/lib/jEdit
 mkdir -p /tmp/j1/usr/bin

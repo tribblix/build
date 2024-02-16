@@ -10,7 +10,7 @@ mv gcc-gcc-4.4.4-il-4 gcc-4.4.4-il-4
 cd gcc-4.4.4-il-4
 
 # needed for sparc
-gpatch -p1 < ${THOME}/build/patches/566b8eb0ae46d81c5eefda2dfd5c3c375fe77e4d.patch 
+gpatch -p1 < ${THOME}/build/patches/566b8eb0ae46d81c5eefda2dfd5c3c375fe77e4d.patch
 
 ${THOME}/build/unpack mpc-0.8.1
 ${THOME}/build/unpack gmp-4.3.2

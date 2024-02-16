@@ -1,1 +1,1 @@
--p1 libspectrum-configure.patch 
+-p1 libspectrum-configure.patch

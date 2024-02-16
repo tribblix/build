@@ -1,5 +1,5 @@
 -p1 loo7/01-sal-osol-unx-socket.cxx.patch
--p1 loo7/12-illumos-raptor.patch 
+-p1 loo7/12-illumos-raptor.patch
 -p1 loo7/openssl-gcc.patch
 -p1 loo7/skia-libs.patch
 -p1 loo7/purpenv-alloca.patch
@@ -15,9 +15,9 @@
 -p1 loo7/06-i18n_ic.cxx.patch
 -p1 loo7/rtfcontrolwords.patch
 -p1 loo7/htmlattr.patch
--p1 loo7/56-add-platform-mk.patch 
--p1 loo7/57-configure.ca-enable-64bit-solaris.patch 
--p1 loo7/57a-configure.patch 
--p1 loo7/58-backtrace-c.patch 
--p1 loo7/59-bridge-library.patch 
--p1 loo7/61-fix-coinmp-makefile.patch 
+-p1 loo7/56-add-platform-mk.patch
+-p1 loo7/57-configure.ca-enable-64bit-solaris.patch
+-p1 loo7/57a-configure.patch
+-p1 loo7/58-backtrace-c.patch
+-p1 loo7/59-bridge-library.patch
+-p1 loo7/61-fix-coinmp-makefile.patch

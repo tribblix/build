@@ -8,7 +8,7 @@
 #
 git clone https://github.com/xerial/sqlite-jdbc
 cd sqlite-jdbc
-sed -i 's:O2s-fPIC:O2 -fPIC:' Makefile.common 
+sed -i 's:O2s-fPIC:O2 -fPIC:' Makefile.common
 gmake native CC="gcc -m64"
 # there's no install target, the fixinstall script will
 # copy the library to the right place

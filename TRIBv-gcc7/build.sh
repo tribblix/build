@@ -17,7 +17,7 @@ cd gcc-7.3.0-il-4
 # use the illumos ssp implementation to avoid pulling in gcc's libssp
 # see https://github.com/illumos/gcc/pull/41
 #
-gpatch -p1 < ${THOME}/build/patches/27ff7246bedc81237e6bf5b5a188a7548d8bf68f.patch 
+gpatch -p1 < ${THOME}/build/patches/27ff7246bedc81237e6bf5b5a188a7548d8bf68f.patch
 
 #
 # these are the recommended versions

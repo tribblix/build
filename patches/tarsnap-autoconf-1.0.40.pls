@@ -1,1 +1,1 @@
--p1 tarsnap-conf.patch 
+-p1 tarsnap-conf.patch

@@ -1,2 +1,2 @@
--p1 xorg-116.sdksyms.patch 
+-p1 xorg-116.sdksyms.patch
 -p1 xorg-18.hotkey.patch

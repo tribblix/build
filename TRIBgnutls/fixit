@@ -24,6 +24,6 @@ rm -f usr/lib/*/lib*.la
 cp -p /usr/lib/libgnutls.so.28.43.4 usr/lib/libgnutls.so.28.43.4
 cp -p /usr/lib/${ARCH64}/libgnutls.so.28.43.4 usr/lib/${ARCH64}/libgnutls.so.28.43.4
 cd usr/lib
-ln -s libgnutls.so.28.43.4 libgnutls.so.28 
+ln -s libgnutls.so.28.43.4 libgnutls.so.28
 cd ${ARCH64}
-ln -s libgnutls.so.28.43.4 libgnutls.so.28 
+ln -s libgnutls.so.28.43.4 libgnutls.so.28

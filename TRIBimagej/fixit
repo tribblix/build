@@ -10,7 +10,7 @@ rm -f `find . -name .DS_Store`
 rm -f ImageJ.exe
 rm -f macros/About\ Startup\ Macros
 rm -f plugins/Examples/_Scripts/About\ Scripts
-mv plugins/3D/Stack\ 3D\ Surface\ Plot.ijm plugins/3D/Stack_3D_Surface_Plot.ijm 
+mv plugins/3D/Stack\ 3D\ Surface\ Plot.ijm plugins/3D/Stack_3D_Surface_Plot.ijm
 for file in macros/toolsets/*
 do
     mv "$file" `echo $file | sed 's: :_:g'`

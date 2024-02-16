@@ -52,7 +52,7 @@ cp ${THOME}/build/patches/jdk-libsoftcrypto.h src/jdk.crypto.ucrypto/solaris/nat
 # patch 149064-01 or your own copy needed
 # needs cups, just copy /usr/include/cups from a system that has it
 # gobjcopy stuff doesn't actually work anyway, so try with -k
-# get a build error 
+# get a build error
 # "/home/ptribble/ud/openjdk9/hotspot/src/os/solaris/vm/perfMemory_solaris.cpp", line 339: Error: d_fd is not a member of DIR.
 # [that's just posix - needs __XOPEN_OR_POSIX defined, or use dd_fd]
 #

@@ -45,7 +45,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
-# 
+#
 # openjdk version "17.0.10-internal" 2023-10-17
 # OpenJDK Runtime Environment (build 17.0.10-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.10-ga)
 # OpenJDK 64-Bit Server VM (build 17.0.10-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.10-ga, mixed mode, sharing)
