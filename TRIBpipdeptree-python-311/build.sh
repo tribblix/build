@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBpipdeptree-python-311 pipdeptree-2.13.2
+${THOME}/build/pkg_pep518 TRIBpipdeptree-python-311 pipdeptree-2.14.0
