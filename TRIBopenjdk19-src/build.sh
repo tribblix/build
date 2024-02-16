@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/bin/sh
 #
 # a separate package for src.zip to live in to keep the main package smaller
 #

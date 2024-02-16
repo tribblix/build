@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/bin/sh
 #
 # use the libreoffice dictionaries instead, see the fixit script
 #

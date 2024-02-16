@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/bin/sh
 #
 # requires rust
 #
