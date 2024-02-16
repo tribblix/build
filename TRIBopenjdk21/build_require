@@ -1,6 +1,6 @@
 TRIBautoconf
 TRIBcups
-TRIBopenjdk18
+TRIBopenjdk20
 TRIBx11-libice
 TRIBx11-libsm
 TRIBx11-libxext
