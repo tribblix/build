@@ -13422,7 +13422,7 @@
 -    if (_illumos_page_sizes[beg] <= size_limit) {
 -      _page_sizes.add(_illumos_page_sizes[beg]);
 -      if (_illumos_page_sizes[beg] > *page_size) {
--	*page_size = _illumos_page_sizes[beg];
+-        *page_size = _illumos_page_sizes[beg];
 -      }
 -    }
 -  }
