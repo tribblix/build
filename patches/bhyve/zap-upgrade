@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# No actions are necessary to upgrade bhyve zones
+#
+exit 0
