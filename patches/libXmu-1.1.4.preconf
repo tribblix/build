@@ -1,0 +1,9 @@
+#!/bin/sh
+cp -r ${PATCHDIR}/libXmu/* .
+cp ${PATCHDIR}/mapfile-Xmu .
+cp ${PATCHDIR}/mapfile-Xmuu .
+#
+# we need to do this because of automake and libtool
+# version mismatches
+#
+autoreconf -fvi
