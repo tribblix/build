@@ -1,4 +1,4 @@
 PKG="TRIBxmlto"
 NAME="xml converter"
 VERSION="0.0.28.0"
-ZAP_URL="https://fedorahosted.org/xmlto/"
+ZAP_URL="https://pagure.io/xmlto/"

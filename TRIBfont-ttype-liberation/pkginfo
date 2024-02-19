@@ -1,4 +1,4 @@
 PKG="TRIBfont-ttype-liberation"
 NAME="Liberation fonts"
 VERSION="2.00.1.1"
-ZAP_URL="https://fedorahosted.org/liberation-fonts/"
+ZAP_URL="https://github.com/liberationfonts/liberation-fonts"
