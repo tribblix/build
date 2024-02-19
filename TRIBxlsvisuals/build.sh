@@ -1,8 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/unpack xlsvisuals
-cd xlsvisuals
-xmkmf -DHasGcc3=YES
-make
-cd ..
-${THOME}/build/genpkg TRIBxlsvisuals xlsvisuals
+${THOME}/build/imakebuild -64only xlsvisuals-1.1
+${THOME}/build/genpkg TRIBxlsvisuals xlsvisuals-1.1
