@@ -1,0 +1,199 @@
+#!/bin/ksh
+#
+# {{{ CDDL HEADER
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source. A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+# }}}
+#
+# Copyright 2024 Peter Tribble
+#
+
+#
+# build some software
+#
+# assumes imake
+#
+
+THOME=${THOME:-/packages/localsrc/Tribblix}
+BUILD="${THOME}/build"
+GMAKE="/usr/bin/make"
+WORKING_ROOT=`pwd`
+
+case $# in
+    0)
+	echo "Usage: $0 [-64|+64|-64only|+64only] src_name \\"
+        echo "  [-C configure_args] [-M make_args]"
+	exit 1
+	;;
+esac
+
+#
+# sanity check
+#
+if [ ! -x ${GMAKE} ]; then
+    echo "ERROR: make not installed"
+    exit 1
+fi
+
+#
+# sanity check to avoid messing up a repo
+#
+if [ -d .git ]; then
+    echo "ERROR: cannot run in a git repo"
+    exit 1
+fi
+     
+#
+# note that not all of these make sense for imake builds, as it has
+# its own ideas of how to build and where to install things
+#
+# if a dual 32- and 64-bit build is desired, specify -64 *first*
+# +64 means just do the 64-bit (useful for testing it in isolation,
+# or for building 64-bit and 32-bit with different flags)
+# note that +64 will wipe the 32-bit directory
+# +32 means just do the 32-bit
+# note that +32 will NOT wipe the 64-bit directory
+# -64only means put the 64-bit binaries in the default path
+# +64only means put all 64-bit objects in the
+# default path, rather than in a subdirectory
+#
+DO32="true"
+DO64="false"
+ONLY64="false"
+ONLY64BIN="false"
+UNPACK_FLAGS=""
+
+while [[ $# -gt 0 ]]; do
+case $1 in
++32)
+	UNPACK_FLAGS="+32"
+	shift
+	;;
+-64)
+	DO64="true"
+	UNPACK_FLAGS="-64"
+	shift
+	;;
++64)
+	DO64="true"
+	DO32="false"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
+-64only)
+	DO64="true"
+	DO32="false"
+	ONLY64BIN="true"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
++64only)
+	DO64="true"
+	DO32="false"
+	ONLY64="true"
+	ONLY64BIN="true"
+	UNPACK_FLAGS="+64"
+	shift
+	;;
+-C)
+	shift
+	CONFARGS32="$1"
+	shift
+	;;
++C)
+	shift
+	CONFARGS64="$1"
+	shift
+	;;
+-M)
+	shift
+	MAKEARGS="$1"
+	shift
+	;;
+-*)
+	echo "Invalid argument $1"
+	exit 1
+	;;
+*)
+	THISPKG="$THISPKG $1"
+	shift
+	;;
+esac
+done
+
+#
+# 64-bit flags
+#
+case `uname -p` in
+sparc)
+    ARCH64="sparcv9"
+    IMAKE64FLAGS="-DSparc64Architecture=YES -DDefaultCCOptions=-m64"
+    ;;
+i386)
+    ARCH64="amd64"
+    IMAKE64FLAGS="-DAMD64Architecture=YES -DDefaultCCOptions=-m64"
+    ;;
+esac
+BINDIR64="bin/${ARCH64}"
+if [ "x${ONLY64BIN}" != "xfalse" ]; then
+    BINDIR64="bin"
+fi
+
+UNPACKER=${BUILD}/unpack
+export UNPACKER
+PATCHDIR=${BUILD}/patches
+export PATCHDIR
+for pkg in ${THISPKG}
+do
+	${UNPACKER} ${UNPACK_FLAGS} ${pkg}
+	case $pkg in
+	    https://*)
+		pkg=${pkg##*/}
+		pkg=${pkg%.git}
+		;;
+	esac
+	if [ "x$DO64" != "xfalse" ]; then
+	    cd ${WORKING_ROOT}
+	    if [ ! -d ${pkg}-64bit ]; then
+		echo "Cannot find source directory ${pkg}-64bit"
+		exit 1
+	    fi
+	    cd ${pkg}-64bit
+	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
+		${BUILD}/patches/${pkg}.preconf.64
+	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
+		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    xmkmf -DHasGcc3=YES ${IMAKE64FLAGS}
+	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
+		${BUILD}/patches/${pkg}.postconf.64
+	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
+		${BUILD}/patches/${pkg}.postconf
+	    fi
+	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
+	fi
+	if [ "x$DO32" != "xfalse" ]; then
+	    cd ${WORKING_ROOT}
+	    if [ ! -d ${pkg} ]; then
+		echo "Cannot find source directory ${pkg}"
+		exit 1
+	    fi
+	    cd ${pkg}
+	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
+		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    xmkmf -DHasGcc3=YES
+	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
+		${BUILD}/patches/${pkg}.postconf
+	    fi
+	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
+	fi
+done
