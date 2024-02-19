@@ -1,9 +1,4 @@
 #!/bin/sh
 #
-${THOME}/build/unpack xlsextensions
-cd xlsextensions
-xmkmf -DHasGcc3=YES
-gsed -i /XIElib.h/d xlsextensions.c
-make
-cd ..
-${THOME}/build/genpkg TRIBxlsextensions xlsextensions
+${THOME}/build/imakebuild -64only xlsextensions-1.1
+${THOME}/build/genpkg TRIBxlsextensions xlsextensions-1.1
