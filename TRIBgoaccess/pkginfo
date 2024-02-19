@@ -1,4 +1,4 @@
 PKG="TRIBgoaccess"
 NAME="real time web log analyzer"
-VERSION="1.7.2.0"
+VERSION="1.9.1.0"
 ZAP_URL="https://goaccess.io/"
