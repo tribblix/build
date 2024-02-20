@@ -2,7 +2,7 @@ diff --git a/src/simutrans/dataobj/objlist.cc b/src/simutrans/dataobj/objlist.cc
 index 6f3db3644..5dc007623 100644
 --- a/src/simutrans/dataobj/objlist.cc
 +++ b/src/simutrans/dataobj/objlist.cc
-@@ -816,7 +816,7 @@ void objlist_t::rdwr(loadsave_t *file, koord3d current_pos)
+@@ -916,7 +916,7 @@ void objlist_t::rdwr(loadsave_t *file, koord3d current_pos)
  				case obj_t::senke:      new_obj = new senke_t(file);    break;
  				case obj_t::zeiger:     new_obj = new zeiger_t(file);   break;
  				case obj_t::signal:     new_obj = new signal_t(file);   break;
@@ -80,57 +80,66 @@ index 4cbc2a997..cd16e913c 100644
  	construction_speed.init( ai->get_construction_speed(), 25, 1000000, gui_numberinput_t::POWER2, false );
  	construction_speed.add_listener( this );
 diff --git a/src/simutrans/gui/banner.cc b/src/simutrans/gui/banner.cc
-index 2c87976e7..4745fd2f5 100644
+index cb3021d88..3162a5922 100644
 --- a/src/simutrans/gui/banner.cc
 +++ b/src/simutrans/gui/banner.cc
-@@ -55,19 +55,19 @@ banner_t::banner_t() : gui_frame_t("")
- {
- 	set_table_layout(1,0);
- 
--	new_component<gui_label_t>("This is Simutrans" SIM_VERSION_BUILD_STRING, SYSCOL_TEXT_TITLE, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+	new_component<gui_simlabel_t>("This is Simutrans" SIM_VERSION_BUILD_STRING, SYSCOL_TEXT_TITLE, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
- 
--	new_component<gui_label_t>(get_version(), SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+	new_component<gui_simlabel_t>(get_version(), SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
- 
- 	add_table(5,0);
- 	{
--		new_component_span<gui_label_t>("The version is developed by", SYSCOL_TEXT_TITLE, gui_label_t::left, 5)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+		new_component_span<gui_simlabel_t>("The version is developed by", SYSCOL_TEXT_TITLE, gui_simlabel_t::left, 5)->set_shadow(SYSCOL_TEXT_SHADOW, true);
- 		new_component<gui_fill_t>();
+@@ -134,8 +134,8 @@ banner_t::banner_t() : gui_frame_t("")
+ 			add_table(1,0);
+ 			{
+ 				add_table(2,0)->set_spacing(scr_size(0,0));{
+-					new_component<gui_label_t>("Welcome to Simutrans", SYSCOL_TEXT_TITLE, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-					new_component<gui_label_t>(SIM_VERSION_BUILD_STRING, SYSCOL_TEXT_TITLE, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++					new_component<gui_simlabel_t>("Welcome to Simutrans", SYSCOL_TEXT_TITLE, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++					new_component<gui_simlabel_t>(SIM_VERSION_BUILD_STRING, SYSCOL_TEXT_TITLE, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 				}
+ 				end_table();
+ 				new_component<gui_fill_t>(true, true);
+@@ -143,9 +143,9 @@ banner_t::banner_t() : gui_frame_t("")
+ 				{
+ 					new_component<gui_fill_t>();
+ 					add_table(1,0);
+-						new_component<gui_label_t>("Developed by the Simutrans Team", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-						new_component<gui_label_t>("under the Artistic Licence ", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-						new_component<gui_label_t>("based on Simutrans 84.22.1", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++						new_component<gui_simlabel_t>("Developed by the Simutrans Team", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++						new_component<gui_simlabel_t>("under the Artistic Licence ", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++						new_component<gui_simlabel_t>("based on Simutrans 84.22.1", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 					end_table();
+ 					new_component<gui_fill_t>();
+ 				}
+@@ -161,8 +161,8 @@ banner_t::banner_t() : gui_frame_t("")
  
  		add_table(1,0);
--		new_component<gui_label_t>("the simutrans team", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
--		new_component<gui_label_t>("under the Artistic Licence", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
--		new_component<gui_label_t>("based on Simutrans 84.22.1", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+		new_component<gui_simlabel_t>("the simutrans team", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+		new_component<gui_simlabel_t>("under the Artistic Licence", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+		new_component<gui_simlabel_t>("based on Simutrans 84.22.1", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 		{
+-		new_component<gui_label_t>("Selling of the program is forbidden.", color_idx_to_rgb(COL_RED), gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-		new_component<gui_label_t>("For questions and support please visit:", SYSCOL_TEXT_TITLE, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component<gui_simlabel_t>("Selling of the program is forbidden.", color_idx_to_rgb(COL_RED), gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component<gui_simlabel_t>("For questions and support please visit:", SYSCOL_TEXT_TITLE, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 		}
  		end_table();
  
- 		new_component<gui_fill_t>();
-@@ -76,16 +76,16 @@ banner_t::banner_t() : gui_frame_t("")
+@@ -170,9 +170,9 @@ banner_t::banner_t() : gui_frame_t("")
+ 		{
+ 			new_component<gui_fill_t>();
+ 			add_table(1,0);
+-			new_component<gui_label_t>("https://www.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-			new_component<gui_label_t>("https://forum.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+-			new_component<gui_label_t>("https://wiki.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++			new_component<gui_simlabel_t>("https://www.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++			new_component<gui_simlabel_t>("https://forum.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++			new_component<gui_simlabel_t>("https://wiki.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+ 			end_table();
+ 			new_component<gui_fill_t>();
+ 		}
+@@ -181,7 +181,7 @@ banner_t::banner_t() : gui_frame_t("")
+ 		new_component<gui_fill_t>(false, true);
+ 		new_component<banner_text_t>();
+ 		new_component<gui_fill_t>(false, true);
+-		new_component<gui_label_t>(get_version(), SYSCOL_TEXT_HIGHLIGHT, gui_label_t::right)->set_shadow(SYSCOL_TEXT_SHADOW, true);
++		new_component<gui_simlabel_t>(get_version(), SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::right)->set_shadow(SYSCOL_TEXT_SHADOW, true);
  	}
  	end_table();
  
--	new_component<gui_label_t>("Selling of the program is forbidden.", color_idx_to_rgb(COL_ORANGE), gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
--	new_component<gui_label_t>("For questions and support please visit:", SYSCOL_TEXT_TITLE, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+	new_component<gui_simlabel_t>("Selling of the program is forbidden.", color_idx_to_rgb(COL_ORANGE), gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+	new_component<gui_simlabel_t>("For questions and support please visit:", SYSCOL_TEXT_TITLE, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
- 
- 	add_table(3,0);
- 	{
- 		new_component<gui_fill_t>();
- 		add_table(1,0);
--		new_component<gui_label_t>("https://www.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
--		new_component<gui_label_t>("https://forum.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
--		new_component<gui_label_t>("https://wiki.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+		new_component<gui_simlabel_t>("https://www.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+		new_component<gui_simlabel_t>("https://forum.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
-+		new_component<gui_simlabel_t>("https://wiki.simutrans.com", SYSCOL_TEXT_HIGHLIGHT, gui_simlabel_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
- 		end_table();
- 		new_component<gui_fill_t>();
- 	}
 diff --git a/src/simutrans/gui/citybuilding_edit.cc b/src/simutrans/gui/citybuilding_edit.cc
 index 2f932fc22..cad3bfc08 100644
 --- a/src/simutrans/gui/citybuilding_edit.cc
@@ -1680,7 +1689,7 @@ diff --git a/src/simutrans/gui/savegame_frame.cc b/src/simutrans/gui/savegame_fr
 index 8c73c824d..ad9e2d571 100644
 --- a/src/simutrans/gui/savegame_frame.cc
 +++ b/src/simutrans/gui/savegame_frame.cc
-@@ -156,7 +156,7 @@ void savegame_frame_t::add_section(std::string &name){
+@@ -158,7 +158,7 @@ void savegame_frame_t::add_section(std::string &name){
  
  	// NOTE: These char buffers will be freed on the destructor
  	// +2 because of the space in printf and the ending \0
@@ -1689,7 +1698,7 @@ index 8c73c824d..ad9e2d571 100644
  	char *path_expanded = new char[FILENAME_MAX];
  
  	const size_t data_dir_len = strlen(env_t::base_dir);
-@@ -185,10 +185,10 @@ void savegame_frame_t::add_section(std::string &name){
+@@ -187,10 +187,10 @@ void savegame_frame_t::add_section(std::string &name){
  
  	shorten_path(shortened_path,path_expanded,L_SHORTENED_SIZE);
  
@@ -1703,7 +1712,7 @@ index 8c73c824d..ad9e2d571 100644
  	l->set_tooltip(path_expanded);
  
  	this->entries.append(dir_entry_t(NULL, NULL, l, LI_HEADER, NULL));
-@@ -285,7 +285,7 @@ void savegame_frame_t::list_filled( void )
+@@ -287,7 +287,7 @@ void savegame_frame_t::list_filled( void )
  	for(dir_entry_t const& i : entries) {
  		button_t*    const delete_button = i.del;
  		button_t*    const action_button = i.button;
@@ -1712,7 +1721,7 @@ index 8c73c824d..ad9e2d571 100644
  
  		if(i.type == LI_HEADER) {
  			if(this->num_sections < 2) {
-@@ -434,7 +434,7 @@ void savegame_frame_t::add_file(const char *fullpath, const char *filename, cons
+@@ -436,7 +436,7 @@ void savegame_frame_t::add_file(const char *fullpath, const char *filename, cons
  		}
  	}
  
@@ -1725,7 +1734,7 @@ diff --git a/src/simutrans/gui/savegame_frame.h b/src/simutrans/gui/savegame_fra
 index e95279bce..5c74fd2fa 100644
 --- a/src/simutrans/gui/savegame_frame.h
 +++ b/src/simutrans/gui/savegame_frame.h
-@@ -63,7 +63,7 @@ protected:
+@@ -64,7 +64,7 @@ protected:
  	 */
  	struct dir_entry_t
  	{
@@ -1734,7 +1743,7 @@ index e95279bce..5c74fd2fa 100644
  			del(del_),
  			button(button_),
  			label(label_),
-@@ -73,7 +73,7 @@ protected:
+@@ -74,7 +74,7 @@ protected:
  
  		button_t       *del;    //@< Delete button placed in the first column.
  		button_t       *button; //@< Action button placed in the second column.
@@ -1743,7 +1752,7 @@ index e95279bce..5c74fd2fa 100644
  		dirlist_item_t  type;   //@< Item type, data or header.
  		const char     *info;   //@< A qualified path (might be relative) to the file, not just the name
  		static int compare (const dir_entry_t & l, const dir_entry_t &r) {
-@@ -94,7 +94,7 @@ protected:
+@@ -95,7 +95,7 @@ protected:
  	gui_textinput_t  input;         //@< Filename input field
  	button_t         savebutton;    //@< Save button
  	button_t         cancelbutton;  //@< Cancel button
@@ -2298,7 +2307,7 @@ index bb99f1714..cdb2029ea 100644
  				}
  				return NULL;
  			}
-@@ -8088,7 +8088,7 @@ bool tool_rename_t::init(player_t *player)
+@@ -8093,7 +8093,7 @@ bool tool_rename_t::init(player_t *player)
  
  		case 'm':
  			if(  grund_t *gr = welt->lookup(pos)  ) {
