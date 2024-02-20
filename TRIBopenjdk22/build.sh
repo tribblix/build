@@ -5,8 +5,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk22-jdk-22-35
-cd jdk22-jdk-22-35
+${THOME}/build/unpack jdk22-jdk-22-36
+cd jdk22-jdk-22-36
 
 #
 # jdk22 needs autoconf installed
@@ -45,8 +45,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 #
 # openjdk version "22-internal" 2024-03-19
-# OpenJDK Runtime Environment (build 22-internal-adhoc.ptribble.jdk22-jdk-22-35)
-# OpenJDK 64-Bit Server VM (build 22-internal-adhoc.ptribble.jdk22-jdk-22-35, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 22-internal-adhoc.ptribble.jdk22-jdk-22-36)
+# OpenJDK 64-Bit Server VM (build 22-internal-adhoc.ptribble.jdk22-jdk-22-36, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

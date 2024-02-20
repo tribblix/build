@@ -14,7 +14,7 @@ loom correctly as they date back to that change.
 Cleanup: missed the dropping of TIERED in 17+8, it's now
 COMPILER1_AND_COMPILER2
 
-22+34, 22+35
+22+34, 22+35, 22+36
 
 No changes.
 
