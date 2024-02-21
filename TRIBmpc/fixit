@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# libmpdclient is statically linked so don't expose it
+#
+rm -fr usr/include/mpd
+rmdir usr/include
+rm -f usr/lib/amd64/pkgconfig/libmpdclient.pc
+rmdir usr/lib/amd64/pkgconfig
+rmdir usr/lib/amd64
+rmdir usr/lib
+rm -fr usr/share/doc/libmpdclient
+rm -fr usr/share/vala

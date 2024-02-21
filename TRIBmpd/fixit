@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# fmt shouldn't be part of this package
+#
+rm -fr usr/include/fmt
+rmdir usr/include
+rm -f usr/lib/amd64/pkgconfig/fmt.pc
+rmdir usr/lib/amd64/pkgconfig
+rmdir usr/lib/amd64
+rmdir usr/lib
