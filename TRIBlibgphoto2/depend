@@ -3,4 +3,5 @@ P TRIBimage-libexif
 P TRIBimage-libjpeg
 P TRIBlibgd
 P TRIBlibltdl
+P TRIBlibusb
 P TRIBlibxml2

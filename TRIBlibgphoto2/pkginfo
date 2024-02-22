@@ -1,4 +1,4 @@
 PKG="TRIBlibgphoto2"
 NAME="libgphoto2 camera access core library"
-VERSION="2.5.29.0"
+VERSION="2.5.31.0"
 ZAP_URL="http://www.gphoto.org/proj/libgphoto2/"
