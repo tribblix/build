@@ -1,4 +1,4 @@
 PKG="TRIBgnu-m4"
 NAME="Gnu M4"
-VERSION="1.4.18.2"
+VERSION="1.4.19.0"
 ZAP_URL="https://www.gnu.org/software/m4/"
