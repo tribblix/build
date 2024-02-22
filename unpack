@@ -72,6 +72,16 @@ while getopts "b:" opt; do
     esac
 done
 
+case $# in
+1)
+	pkg=$1
+	;;
+*)
+	echo "Usage: $0 [+32|-64|+64] [-b branch] [-n dirname] filename"
+	exit 1
+	;;
+esac
+
 dopatch() {
   if [ -f ${PATCHDIR}/${1}.pls ]; then
       cd ${1}
@@ -91,76 +101,80 @@ dopatch() {
   fi
 }
 
-for pkg in "$@"
+#
+# delete old copies
+#
+if [ "x$RM32" != "xfalse" ]; then
+    /usr/bin/rm -fr ${pkg}
+fi
+if [ "x$RM64" != "xfalse" ]; then
+    /usr/bin/rm -fr ${pkg}-64bit
+fi
+DONEUNPACK=""
+
+#
+# try various sources, first tarballs of various compressed forms
+# then zip, then a git repo
+#
+for filetype in \
+    '.tar.Z' \
+	'.tar.gz' \
+	'.tgz' \
+	'.src.tgz' \
+	'.src.tar.gz' \
+	'.tar.bz2' \
+	'.tbz' \
+	'-source.tar.bz2' \
+	'.tar.xz' \
+	'.source.tar.xz' \
+	'.tar.lz' \
+	'.tar'
 do
-        if [ "x$RM32" != "xfalse" ]; then
-            /usr/bin/rm -fr ${pkg}
+    if [ -f ${SRCDIR}/${pkg}${filetype} ]; then
+	if [ -n "${DONEUNPACK}" ]; then
+	    echo "ERROR: multiple $pkg sources $DONEUNPACK and $filetype"
 	fi
-        if [ "x$RM64" != "xfalse" ]; then
-            /usr/bin/rm -fr ${pkg}-64bit
+        gtar axf ${SRCDIR}/${pkg}${filetype}
+        dopatch ${pkg}
+        if [ "x$DO64" != "xfalse" ]; then
+            mv ${pkg} ${pkg}-64bit
+            if [ "x$DO32" != "xfalse" ]; then
+                gtar axf ${SRCDIR}/${pkg}${filetype}
+                dopatch ${pkg}
+            fi
+        fi
+	DONEUNPACK="$filetype"
+    fi
+done
+
+if [ -f ${SRCDIR}/${pkg}.zip ]; then
+    if [ -n "${DONEUNPACK}" ]; then
+     	echo "ERROR: multiple $pkg sources $DONEUNPACK and .zip"
+    fi
+    ${UNZIP} -q ${SRCDIR}/${pkg}.zip
+    dopatch ${pkg}
+    if [ "x$DO64" != "xfalse" ]; then
+	mv ${pkg} ${pkg}-64bit
+	if [ "x$DO32" != "xfalse" ]; then
+	    ${UNZIP} -q ${SRCDIR}/${pkg}.zip
+	    dopatch ${pkg}
 	fi
-	DONEUNPACK=""
+    fi
+fi
 
-	for filetype in \
-			'.tar.Z' \
-			'.tar.gz' \
-			'.tgz' \
-			'.src.tgz' \
-			'.src.tar.gz' \
-			'.tar.bz2' \
-			'.tbz' \
-			'-source.tar.bz2' \
-			'.tar.xz' \
-			'.source.tar.xz' \
-			'.tar.lz' \
-			'.tar'
-        do
-           if [ -f ${SRCDIR}/${pkg}${filetype} ]; then
-	      if [ -n "${DONEUNPACK}" ]; then
-		 echo "ERROR: multiple $pkg sources $DONEUNPACK and $filetype"
-	      fi
-              gtar axf ${SRCDIR}/${pkg}${filetype}
-              dopatch ${pkg}
-              if [ "x$DO64" != "xfalse" ]; then
-                 mv ${pkg} ${pkg}-64bit
-                 if [ "x$DO32" != "xfalse" ]; then
-                     gtar axf ${SRCDIR}/${pkg}${filetype}
-                     dopatch ${pkg}
-                 fi
-              fi
-	      DONEUNPACK="$filetype"
-           fi
-        done
-
-	if [ -f ${SRCDIR}/${pkg}.zip ]; then
-	   if [ -n "${DONEUNPACK}" ]; then
-     	      echo "ERROR: multiple $pkg sources $DONEUNPACK and .zip"
-	   fi
-	   ${UNZIP} -q ${SRCDIR}/${pkg}.zip
-	   dopatch ${pkg}
-	   if [ "x$DO64" != "xfalse" ]; then
-	      mv ${pkg} ${pkg}-64bit
-	      if [ "x$DO32" != "xfalse" ]; then
-		  ${UNZIP} -q ${SRCDIR}/${pkg}.zip
-		  dopatch ${pkg}
-	      fi
-	   fi
-	fi
-
-	case $pkg in
-	    https://*)
-		spkg=${pkg##*/}
-		spkg=${spkg%.git}
-		/usr/bin/rm -fr ${spkg} ${spkg}-64bit
+case $pkg in
+    https://*)
+	spkg=${pkg##*/}
+	spkg=${spkg%.git}
+	/usr/bin/rm -fr ${spkg} ${spkg}-64bit
+	git clone $BRANCHARGS $pkg
+	dopatch ${spkg}
+	if [ "x$DO64" != "xfalse" ]; then
+	    mv ${spkg} ${spkg}-64bit
+	    if [ "x$DO32" != "xfalse" ]; then
 		git clone $BRANCHARGS $pkg
 		dopatch ${spkg}
-		if [ "x$DO64" != "xfalse" ]; then
-		    mv ${spkg} ${spkg}-64bit
-		    if [ "x$DO32" != "xfalse" ]; then
-			git clone $BRANCHARGS $pkg
-			dopatch ${spkg}
-		    fi
-		fi
-		;;
-	esac
-done
+	    fi
+	fi
+	;;
+esac
