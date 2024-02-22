@@ -62,13 +62,15 @@ case $1 in
 	;;
 esac
 
-case $1 in
-    -b)
-	BRANCHARGS="-b $2"
+while getopts "b:" opt; do
+    case $opt in
+    b)
+	BRANCHARGS="-b $OPTARG"
 	shift
 	shift
 	;;
-esac
+    esac
+done
 
 dopatch() {
   if [ -f ${PATCHDIR}/${1}.pls ]; then
