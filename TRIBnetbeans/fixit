@@ -16,6 +16,13 @@ rm -fr profiler/lib/deployed/jdk16/linux*
 rm -fr profiler/lib/deployed/jdk16/mac*
 rm -fr profiler/lib/deployed/jdk16/win*
 rm -f bin/*.exe
+rm -f platform/lib/*.exe
+rm -f platform/lib/*.dll
+rm -fr harness/launchers/*.exe
+rm -fr platform/modules/lib/aarch64
+rm -fr platform/modules/lib/riscv64
+rm -f platform/modules/lib/*.dylib
+rm -f platform/modules/lib/*/*.dylib
 cd ../../..
 
 mkdir -p usr/bin

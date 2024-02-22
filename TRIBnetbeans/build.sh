@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBnetbeans netbeans-12.5-bin
+${THOME}/build/pkg_tarball TRIBnetbeans netbeans-21-bin
