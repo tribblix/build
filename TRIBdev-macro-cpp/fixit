@@ -1,18 +1,6 @@
 #!/bin/sh
 #
-# These are old OpenSolaris binaries
+# extra legacy compat symlink
 #
-# This package just ships the old binary
-#
-# The tarball was created on an older system, we just unpack it here
-#
-case `uname -p` in
-    i386)
-	tar xf ${BUILDROOT}/patches/binary-cpp.tar
-	;;
-    sparc)
-	tar xf ${BUILDROOT}/patches/binary-cpp.sparc.tar
-	;;
-esac
 mkdir -p usr/ccs/lib
 ln -s ../../lib/cpp usr/ccs/lib
