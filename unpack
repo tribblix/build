@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -27,20 +27,15 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 SRCDIR="${THOME}/tarballs"
 PATCHDIR="${THOME}/build/patches"
 
-GZCAT="/usr/bin/gzcat"
-BZCAT="/usr/bin/bzcat"
-XZCAT="/usr/bin/xz"
 UNZIP="/usr/bin/unzip"
 GPATCH="/usr/bin/gpatch"
-ZCAT="/usr/bin/zcat"
-LZIP="/usr/bin/lzip"
 
 #
 # options:
 # none - only 32-bit, delete 64-bit
 # +32 - only 32-bit, but don't delete 64-bit
 # -64 - both 32-bit and 64-bit
-# +64 - only 32-bit
+# +64 - only 64-bit
 #
 DO32="true"
 DO64="false"
@@ -62,10 +57,15 @@ case $1 in
 	;;
 esac
 
-while getopts "b:" opt; do
+while getopts "b:n:" opt; do
     case $opt in
     b)
 	BRANCHARGS="-b $OPTARG"
+	shift
+	shift
+	;;
+    n)
+	upkg=${OPTARG}
 	shift
 	shift
 	;;
@@ -81,6 +81,22 @@ case $# in
 	exit 1
 	;;
 esac
+
+#
+# there are 2 names we are interested in, the name of the tarball, and
+# the directory it unpacks into
+#
+# ideally these are the same, but some sources don't follow that very
+# sensible convention, and in that case give the name of the unpacked
+# directory with -n, and we'll rename it here to match the tarball name
+#
+# but if the arguments we're given are the same, then that won't work
+# because we would then be renaming something to itself
+#
+if [ "x${pkg}" = "x${upkg}" ]; then
+    echo "ERROR: -n name must differ from primary name"
+    exit 1
+fi
 
 dopatch() {
   if [ -f ${PATCHDIR}/${1}.pls ]; then
@@ -110,11 +126,24 @@ fi
 if [ "x$RM64" != "xfalse" ]; then
     /usr/bin/rm -fr ${pkg}-64bit
 fi
+#
+# and for the unpacked name, if there is one
+#
+if [ -n "${upkg}" ]; then
+    if [ "x$RM32" != "xfalse" ]; then
+	/usr/bin/rm -fr ${upkg}
+    fi
+    if [ "x$RM64" != "xfalse" ]; then
+	/usr/bin/rm -fr ${upkg}-64bit
+    fi
+fi
 DONEUNPACK=""
 
 #
 # try various sources, first tarballs of various compressed forms
 # then zip, then a git repo
+#
+# if given an alternate name, move that to the primary name
 #
 for filetype in \
     '.tar.Z' \
@@ -135,11 +164,17 @@ do
 	    echo "ERROR: multiple $pkg sources $DONEUNPACK and $filetype"
 	fi
         gtar axf ${SRCDIR}/${pkg}${filetype}
+	if [ -n "${upkg}" ]; then
+	    mv ${upkg} ${pkg}
+	fi
         dopatch ${pkg}
         if [ "x$DO64" != "xfalse" ]; then
             mv ${pkg} ${pkg}-64bit
             if [ "x$DO32" != "xfalse" ]; then
                 gtar axf ${SRCDIR}/${pkg}${filetype}
+		if [ -n "${upkg}" ]; then
+		    mv ${upkg} ${pkg}
+		fi
                 dopatch ${pkg}
             fi
         fi
@@ -152,16 +187,26 @@ if [ -f ${SRCDIR}/${pkg}.zip ]; then
      	echo "ERROR: multiple $pkg sources $DONEUNPACK and .zip"
     fi
     ${UNZIP} -q ${SRCDIR}/${pkg}.zip
+    if [ -n "${upkg}" ]; then
+	mv ${upkg} ${pkg}
+    fi
     dopatch ${pkg}
     if [ "x$DO64" != "xfalse" ]; then
 	mv ${pkg} ${pkg}-64bit
 	if [ "x$DO32" != "xfalse" ]; then
 	    ${UNZIP} -q ${SRCDIR}/${pkg}.zip
+	    if [ -n "${upkg}" ]; then
+		mv ${upkg} ${pkg}
+	    fi
 	    dopatch ${pkg}
 	fi
     fi
 fi
 
+#
+# we don't do alternate names for git repos, because
+# the problem doesn't arise
+#
 case $pkg in
     https://*)
 	spkg=${pkg##*/}
