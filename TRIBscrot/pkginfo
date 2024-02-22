@@ -1,0 +1,4 @@
+PKG="TRIBscrot"
+NAME="SCReen shOT capture utility"
+VERSION="0.10.0.0"
+ZAP_URL="https://github.com/dreamer/scrot"
