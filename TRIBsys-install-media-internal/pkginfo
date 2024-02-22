@@ -1,4 +1,4 @@
 PKG="TRIBsys-install-media-internal"
 NAME="Live boot methods"
-VERSION="0.20.0"
+VERSION="0.33.0"
 ZAP_URL="https://github.com/tribblix/tribblix-media"
