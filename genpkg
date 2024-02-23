@@ -130,6 +130,14 @@ case $# in
 	shift
 	for SOFTDIR in $*
 	do
+	    if [ ! -d ${SOFTDIR}-64bit ]; then
+		if [ ! -d ${SOFTDIR} ]; then
+		    bail "missing directory ${SOFTDIR}"
+		fi
+	    fi
+	done
+	for SOFTDIR in $*
+	do
 	    if [ -d ${SOFTDIR}-64bit ]; then
 		cd ${SOFTDIR}-64bit
 		if [ -f .tribblix_ldopts ]; then
