@@ -1,0 +1,4 @@
+PKG="TRIBrlpycairo-python-311"
+NAME="Python rlPyCairo"
+VERSION="0.3.0.0"
+ZAP_URL="https://pypi.org/project/rlPyCairo"

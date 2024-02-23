@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBreportlab-python-311 reportlab-3.6.13
+${THOME}/build/pkg_setup_py TRIBreportlab-python-311 reportlab-4.1.0
