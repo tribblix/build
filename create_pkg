@@ -217,12 +217,6 @@ elif [ -f ${BUILD}/${PKGNAME}/depend ]; then
    cp ${BUILD}/${PKGNAME}/depend install
    echo "i depend=./install/depend" >> pp.$$
 fi
-# add post scripts
-#ls -l ${BUILD}/${PKGNAME}/restart_fmri_list
-#if [ -f ${BUILD}/${PKGNAME}/restart_fmri_list ]; then
-#   cp ${BUILD}/${PKGNAME}/restart_fmri_list ${BDIR}
-#   handle_restarts
-#fi
 
 #
 # clean up any scripts from a previous run
