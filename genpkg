@@ -55,6 +55,11 @@ case $# in
 	;;
 esac
 
+bail() {
+    echo "ERROR: $1"
+    exit 1
+}
+
 #
 # Default locations
 #
@@ -67,24 +72,20 @@ GMAKE="/usr/bin/gmake"
 # sanity check
 #
 if [ ! -d $BUILD ]; then
-   echo "ERROR: unable to find build directory $BUILD"
-   exit 1
+   bail "unable to find build directory $BUILD"
 fi
 if [ ! -d $BROOT ]; then
    mkdir -p ${BROOT}
 fi
 if [ ! -d $BROOT ]; then
-   echo "ERROR: unable to find temporary directory $BROOT"
-   exit 1
+   bail "unable to find temporary directory $BROOT"
 fi
 if [ ! -x $GMAKE ]; then
-   echo "ERROR: unable to find $GMAKE"
-   exit 1
+   bail "unable to find $GMAKE"
 fi
 if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
-   echo "ERROR: missing package data"
    echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
-   exit 1
+   bail "missing package data"
 fi
 
 #
