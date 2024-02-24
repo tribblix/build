@@ -6,3 +6,4 @@
 #
 rm -f usr/share/mime/*
 rm -f usr/share/applications/mimeinfo.cache
+rm -f `find usr/lib -name '*.la'`
