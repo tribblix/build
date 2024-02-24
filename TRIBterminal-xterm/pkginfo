@@ -1,4 +1,4 @@
 PKG="TRIBterminal-xterm"
 NAME="xterm"
-VERSION="387.0"
+VERSION="390.0"
 ZAP_URL="http://invisible-island.net/xterm/"
