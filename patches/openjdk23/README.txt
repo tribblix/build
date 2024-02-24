@@ -11,6 +11,17 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+11
+
+Extensive rework of NativeCompilation.gmk, the hunk we want is now in
+make/common/native/DebugSymbols.gmk
+
+The file make/scripts/compare_exceptions.sh.incl is now empty, so
+don't try and patch it
+
+os::pd_remap_memory() has been removed
+os::pd_map_memory() os::pd_unmap_memory() have been centralized into os_posix
+
 23+10
 
 Patch noise; much of it associated with cleaning up the 64-bit

@@ -1,6 +1,6 @@
 --- a/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	Fri Oct 16 12:20:06 2020
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	Fri Oct 16 14:58:59 2020
-@@ -219,42 +219,12 @@
+@@ -218,42 +218,12 @@
    return frame(sp, fp, epc);
  }
  
@@ -49,7 +49,7 @@
  }
  
  frame os::get_sender_for_C_frame(frame* fr) {
-@@ -323,39 +293,8 @@
+@@ -322,39 +292,8 @@
      // Handle ALL stack overflow variations here
      if (sig == SIGSEGV && info->si_code == SEGV_ACCERR) {
        address addr = (address) info->si_addr;

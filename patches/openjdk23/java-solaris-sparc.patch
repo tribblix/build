@@ -269,7 +269,7 @@
  VALID_TOOLCHAINS_windows="microsoft"
 --- old/make/common/MakeBase.gmk	2020-05-20 17:58:45.708647335 -0700
 +++ new/make/common/MakeBase.gmk	2020-05-20 17:58:45.324639962 -0700
-@@ -263,33 +263,7 @@
+@@ -267,33 +267,7 @@
  ################################################################################
  # All install-file and related macros automatically call DecodeSpace when needed.
  
@@ -304,9 +304,9 @@
    # On mac, extended attributes sometimes creep into the source files, which may later
    # cause the creation of ._* files which confuses testing. Clear these with xattr if
    # set. Some files get their write permissions removed after being copied to the
---- old/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.780687120 -0700
-+++ new/make/common/NativeCompilation.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -1081,7 +1081,7 @@
+--- old/make/common/native/DebugSymbols.gmk	2020-05-20 17:58:47.780687120 -0700
++++ new/make/common/native/DebugSymbols.gmk	2020-05-20 17:58:47.440680591 -0700
+@@ -51,7 +51,7 @@
            $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_BASENAME).pdb \
                $$($1_SYMBOLS_DIR)/$$($1_BASENAME).map
  
@@ -703,7 +703,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -654,10 +652,7 @@
+@@ -656,10 +654,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -715,7 +715,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -684,7 +679,6 @@
+@@ -686,7 +681,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -852,7 +852,7 @@
      TARGETS += $(BUILD_LIBSCTP)
 --- old/make/scripts/compare.sh	2020-05-20 17:59:27.985459081 -0700
 +++ new/make/scripts/compare.sh	2020-05-20 17:59:27.597451631 -0700
-@@ -73,14 +73,7 @@
+@@ -75,14 +75,7 @@
  # Disassembly diff filters. These filters try to filter out ephemeral parts of the
  # disassembly, such as hard-coded addresses, to be able to catch "actual" differences.
  
@@ -868,7 +868,7 @@
    if [ "$OPENJDK_TARGET_CPU" = "x86" ]; then
      DIS_DIFF_FILTER="$SED -r \
          -e 's/^  [0-9A-F]{16}: //' \
-@@ -447,14 +440,7 @@
+@@ -405,14 +398,7 @@
      fi
  
      CONTENTS_DIFF_FILE=$WORK_DIR/$ZIP_FILE.diff
@@ -884,7 +884,7 @@
  
      ONLY_OTHER=$($GREP "^Only in $OTHER_UNZIPDIR" $CONTENTS_DIFF_FILE)
      ONLY_THIS=$($GREP "^Only in $THIS_UNZIPDIR" $CONTENTS_DIFF_FILE)
-@@ -474,14 +460,8 @@
+@@ -434,14 +420,8 @@
      fi
  
      if [ "$CMP_ZIPS_CONTENTS" = "true" ]; then
@@ -901,7 +901,7 @@
  
          # Separate executable/library files from other files in zip.
          DIFFING_TEXT_FILES=
-@@ -826,10 +806,6 @@
+@@ -789,10 +769,6 @@
          # to filter out that extra information.
          $DUMPBIN -exports $OTHER_FILE | $GREP  -E '^ +[0-9A-F]+ +[0-9A-F]+ [0-9A-F]+' | sed 's/ = .*//g' | cut -c27- | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.other
          $DUMPBIN -exports $THIS_FILE  | $GREP  -E '^ +[0-9A-F]+ +[0-9A-F]+ [0-9A-F]+' | sed 's/ = .*//g' | cut -c27- | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.this
@@ -912,29 +912,6 @@
      elif [ "$OPENJDK_TARGET_OS" = "aix" ]; then
          $OBJDUMP -T $ORIG_OTHER_FILE 2> /dev/null | $GREP -v $NAME | $AWK '{print $2, $3, $4, $5}' | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.other
          $OBJDUMP -T $ORIG_THIS_FILE  2> /dev/null | $GREP -v $NAME | $AWK '{print $2, $3, $4, $5}' | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.this
---- old/make/scripts/compare_exceptions.sh.incl	2020-05-20 17:59:29.057479665 -0700
-+++ new/make/scripts/compare_exceptions.sh.incl	2020-05-20 17:59:28.665472137 -0700
-@@ -45,20 +45,6 @@
-         ./hotspot/gtest/server/libjvm.so
-         "
-    fi
--elif [ "$OPENJDK_TARGET_OS" = "solaris" ]; then
--  SKIP_BIN_DIFF="true"
--  SKIP_FULLDUMP_DIFF="true"
--  MAX_KNOWN_DIS_DIFF_SIZE="3000"
--  SORT_SYMBOLS="
--      ./lib/libfontmanager.so
--      ./lib/libjimage.so
--      ./lib/server/libjvm.so
--      ./hotspot/gtest/server/libjvm.so
--      "
--  KNOWN_DIS_DIFF="
--      ./lib/libfontmanager.so
--  "
--  STRIP_TESTS_BEFORE_COMPARE="true"
- elif [ "$OPENJDK_TARGET_OS" = "windows" ]; then
-   SKIP_BIN_DIFF="true"
-   SKIP_FULLDUMP_DIFF="true"
 --- old/make/scripts/hide_important_warnings_from_javac.sh	2020-05-20 17:59:30.069499096 -0700
 +++ new/make/scripts/hide_important_warnings_from_javac.sh	2020-05-20 17:59:29.733492644 -0700
 @@ -22,13 +22,8 @@
@@ -7929,7 +7906,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3075 +0,0 @@
+@@ -1,3028 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10639,53 +10616,6 @@
 -// move file pointer to the specified offset
 -jlong os::seek_to_file_offset(int fd, jlong offset) {
 -  return (jlong)::lseek64(fd, (off64_t)offset, SEEK_SET);
--}
--
--// Map a block of memory.
--char* os::pd_map_memory(int fd, const char* file_name, size_t file_offset,
--                        char *addr, size_t bytes, bool read_only,
--                        bool allow_exec) {
--  int prot;
--  int flags;
--
--  if (read_only) {
--    prot = PROT_READ;
--    flags = MAP_SHARED;
--  } else {
--    prot = PROT_READ | PROT_WRITE;
--    flags = MAP_PRIVATE;
--  }
--
--  if (allow_exec) {
--    prot |= PROT_EXEC;
--  }
--
--  if (addr != NULL) {
--    flags |= MAP_FIXED;
--  }
--
--  char* mapped_address = (char*)mmap(addr, (size_t)bytes, prot, flags,
--                                     fd, file_offset);
--  if (mapped_address == MAP_FAILED) {
--    return NULL;
--  }
--  return mapped_address;
--}
--
--
--// Remap a block of memory.
--char* os::pd_remap_memory(int fd, const char* file_name, size_t file_offset,
--                          char *addr, size_t bytes, bool read_only,
--                          bool allow_exec) {
--  // same as map_memory() on this OS
--  return os::map_memory(fd, file_name, file_offset, addr, bytes, read_only,
--                        allow_exec);
--}
--
--
--// Unmap a block of memory.
--bool os::pd_unmap_memory(char* addr, size_t bytes) {
--  return munmap(addr, bytes) == 0;
 -}
 -
 -const intptr_t thr_time_off  = (intptr_t)(&((prusage_t *)(NULL))->pr_utime);
