@@ -1,8 +1,8 @@
 #!/bin/sh
 #
 
-$THOME/build/unpack mupdf-1.23.7-source
-cd mupdf-1.23.7-source
+$THOME/build/unpack mupdf-1.23.11-source
+cd mupdf-1.23.11-source
 
 sed -i -e s:Linux:SunOS: -e '/LDREMOVEUNREACH/d' Makerules
 sed -i 's:install -:ginstall -:' Makefile
