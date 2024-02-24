@@ -2,5 +2,5 @@
 #
 # 64-bit only, as is only consumer (wireshark)
 #
-$THOME/build/dobuild +64 c-ares-1.26.0
-$THOME/build/genpkg TRIBlibcares c-ares-1.26.0
+$THOME/build/dobuild +64 c-ares-1.27.0
+$THOME/build/genpkg TRIBlibcares c-ares-1.27.0
