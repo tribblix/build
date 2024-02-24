@@ -1,3 +1,2 @@
 #!/bin/sh
-/bin/rm -f usr/gnu/lib/charset.alias
-/bin/rm -fr usr/gnu/share/doc
+/bin/rm -f `find usr/lib -name '*.la'`
