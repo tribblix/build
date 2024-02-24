@@ -1,4 +1,4 @@
 PKG="TRIBjson-glib"
 NAME="json-glib"
-VERSION="1.6.6.0"
+VERSION="1.8.0.0"
 ZAP_URL="https://wiki.gnome.org/Projects/JsonGlib"

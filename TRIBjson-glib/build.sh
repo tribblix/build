@@ -1,4 +1,4 @@
 #!/bin/sh
 #
-env PATH=/usr/gnu/bin:$PATH $THOME/build/mesonbuild -64 json-glib-1.6.6 -C "-Dintrospection=disabled"
-${THOME}/build/genpkg TRIBjson-glib json-glib-1.6.6
+env PATH=/usr/gnu/bin:$PATH $THOME/build/mesonbuild -64only json-glib-1.8.0 -C "-Dintrospection=disabled -Dtests=false -Dman=true"
+${THOME}/build/genpkg TRIBjson-glib json-glib-1.8.0
