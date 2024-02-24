@@ -34,7 +34,7 @@ PKGSKIP=""
 REPO="tribblix-m33"
 LREPODIR="${THOME}/pkgs"
 
-ACREATE="create-aliases"
+ACREATE="create-aliases-from-catalog"
 AFILE="aliases"
 CCREATE="create-catalog"
 CFILE="catalog"
@@ -134,16 +134,13 @@ fi
 # then we must create the metadata files
 #
 cd ${THOME}/build || bail "Cannot cd to build repo"
-# FIXME: only create aliases if necessary
-if [ -z "$QUICKMODE" ]; then
-    echo "Creating aliases"
-    ./${ACREATE} > ${LREPODIR}/${AFILE}
-fi
 echo "Creating catalog"
 ./${CCREATE} > ${LREPODIR}/${CFILE}
 echo "Creating html index"
 ./${HCREATE} ${LREPODIR}/${CFILE} > ${LREPODIR}/${HFILE}
 if [ -z "$QUICKMODE" ]; then
+    echo "Creating aliases"
+    ./${ACREATE} > ${LREPODIR}/${AFILE}
     echo "Creating file list"
     ./${FCREATE} ${LREPODIR}
 fi
