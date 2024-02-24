@@ -1,0 +1,2 @@
+#!/bin/sh
+rm -f `find usr/lib -name '*.la'`
