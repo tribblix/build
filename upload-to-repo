@@ -43,6 +43,11 @@ HFILE="index.html"
 FCREATE="create-file-list"
 FFILE="filelist.bz2"
 
+bail() {
+    echo "ERROR: $1"
+    exit 1
+}
+
 #
 # with -q avoid the aliases and the file list
 # with many version updates they are unnecessary
@@ -59,41 +64,34 @@ case $1 in
 esac
 
 if [ ! -d "$LREPODIR" ]; then
-    echo "Cannot find local repo dir $LREPODIR"
-    exit 1
+    bail "Cannot find local repo dir $LREPODIR"
 fi
 
 #
 # sanity check
 #
 if [ ! -d "$THOME" ]; then
-    echo "Cannot find my home"
-    exit 1
+    bail "Cannot find my home"
 fi
 if [ ! -d "${THOME}/build" ]; then
-    echo "Cannot find the build repo"
-    exit 1
+    bail "Cannot find the build repo"
 fi
 
 #
 # check for all the creation scripts
 #
-cd ${THOME}/build
+cd ${THOME}/build || bail "Cannot cd to build repo"
 if [ ! -f "$ACREATE" ]; then
-    echo "Cannot find $ACREATE"
-    exit 1
+    bail "Cannot find $ACREATE"
 fi
 if [ ! -f "$CCREATE" ]; then
-    echo "Cannot find $CCREATE"
-    exit 1
+    bail "Cannot find $CCREATE"
 fi
 if [ ! -f "$HCREATE" ]; then
-    echo "Cannot find $HCREATE"
-    exit 1
+    bail "Cannot find $HCREATE"
 fi
 if [ ! -f "$FCREATE" ]; then
-    echo "Cannot find $FCREATE"
-    exit 1
+    bail "Cannot find $FCREATE"
 fi
 
 if [ -z "$PKGSKIP" ]; then
@@ -101,13 +99,11 @@ if [ -z "$PKGSKIP" ]; then
 # is there anything to upload?
 #
 if [ ! -d "$STAGE" ]; then
-    echo "No staging area"
-    exit 2
+    bail "No staging area"
 fi
 FTOUPLOAD=`/bin/ls -1 ${STAGE}/*.zap 2>/dev/null`
 if [ -z "$FTOUPLOAD" ]; then
-    echo "Cannot find anything to upload"
-    exit 2
+    bail "Cannot find anything to upload"
 fi
 
 #
@@ -118,12 +114,11 @@ fi
 # exit if the pkg area already contains any matching files
 # as that's almost always a mistake
 #
-cd $STAGE
+cd $STAGE || bail "Cannot cd to staging area"
 for file in `/bin/ls -1 *.zap*`
 do
     if [ -f "${LREPODIR}/${file}" ]; then
-	echo "ERROR: preexisting file in repo ${LREPODIR}/${file}"
-	exit 1
+	bail "preexisting file in repo ${LREPODIR}/${file}"
     fi
 done
 for file in `/bin/ls -1 *.zap*`
@@ -135,11 +130,10 @@ done
 #
 fi
 
-
 #
 # then we must create the metadata files
 #
-cd ${THOME}/build
+cd ${THOME}/build || bail "Cannot cd to build repo"
 # FIXME: only create aliases if necessary
 if [ -z "$QUICKMODE" ]; then
     echo "Creating aliases"
@@ -162,11 +156,11 @@ echo "Uploading files"
 if [ -n "$PKGSKIP" ]; then
     scp ${LREPODIR}/${AFILE} ${LREPODIR}/${HFILE} ${LREPODIR}/${FFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
 elif [ -z "$QUICKMODE" ]; then
-    cd $STAGE
+    cd $STAGE || bail "Cannot cd to staging area"
     scp *.zap *.zap.sig ${LREPODIR}/${AFILE} ${LREPODIR}/${HFILE} ${LREPODIR}/${FFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
 else
-    cd $STAGE
+    cd $STAGE || bail "Cannot cd to staging area"
     scp *.zap *.zap.sig ${LREPODIR}/${HFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
 fi
-cd $THOME
+cd $THOME || bail "Cannot cd to build home"
 /bin/rm -fr $STAGE
