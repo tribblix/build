@@ -67,8 +67,6 @@ fi
 #
 DO32="true"
 DO64="false"
-ONLY64="false"
-ONLY64BIN="false"
 UNPACK_FLAGS=""
 
 while [[ $# -gt 0 ]]; do
@@ -91,26 +89,13 @@ case $1 in
 -64only)
 	DO64="true"
 	DO32="false"
-	ONLY64BIN="true"
 	UNPACK_FLAGS="+64"
 	shift
 	;;
 +64only)
 	DO64="true"
 	DO32="false"
-	ONLY64="true"
-	ONLY64BIN="true"
 	UNPACK_FLAGS="+64"
-	shift
-	;;
--C)
-	shift
-	CONFARGS32="$1"
-	shift
-	;;
-+C)
-	shift
-	CONFARGS64="$1"
 	shift
 	;;
 -M)
@@ -134,18 +119,12 @@ done
 #
 case `uname -p` in
 sparc)
-    ARCH64="sparcv9"
     IMAKE64FLAGS="-DSparc64Architecture=YES -DDefaultCCOptions=-m64"
     ;;
 i386)
-    ARCH64="amd64"
     IMAKE64FLAGS="-DAMD64Architecture=YES -DDefaultCCOptions=-m64"
     ;;
 esac
-BINDIR64="bin/${ARCH64}"
-if [ "x${ONLY64BIN}" != "xfalse" ]; then
-    BINDIR64="bin"
-fi
 
 UNPACKER=${BUILD}/unpack
 export UNPACKER
