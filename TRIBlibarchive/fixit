@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# replace the 32-bit binaries with the 64-bit ones
-#
 case `uname -p` in
 sparc)
   ARCH64="sparcv9"
@@ -11,19 +9,10 @@ i386)
   ;;
 esac
 
-if [ -x usr/bin/${ARCH64}/bsdcat ]; then
-  mv usr/bin/${ARCH64}/bsdcat usr/bin/bsdcat
-fi
-if [ -x usr/bin/${ARCH64}/bsdcpio ]; then
-  mv usr/bin/${ARCH64}/bsdcpio usr/bin/bsdcpio
-fi
-if [ -x usr/bin/${ARCH64}/bsdtar ]; then
-  mv usr/bin/${ARCH64}/bsdtar usr/bin/bsdtar
-fi
-rmdir usr/bin/${ARCH64}
-
 #
 # remove errant requirement on iconv
 #
-sed -i 's:iconv ::' usr/lib/pkgconfig/libarchive.pc
+if [ -f usr/lib/pkgconfig/libarchive.pc ]; then
+    sed -i 's:iconv ::' usr/lib/pkgconfig/libarchive.pc
+fi
 sed -i 's:iconv ::' usr/lib/${ARCH64}/pkgconfig/libarchive.pc
