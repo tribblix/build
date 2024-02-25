@@ -18,10 +18,10 @@ cp man/wg.8 /tmp/wg123/opt/tribblix/wireguard/man/man8
 cd ../../..
 
 #
-# and Joshua's port of wireguard-go
+# and nshalman's port of wireguard-go
 #
-git clone https://github.com/jclulow/wireguard-go-illumos-wip
-cd wireguard-go-illumos-wip
+git clone https://github.com/nshalman/wireguard-go
+cd wireguard-go
 env PATH=/usr/versions/go-1.21/bin:$PATH gmake
 cp wireguard-go /tmp/wg123/opt/tribblix/wireguard/bin
 cp README.md /tmp/wg123/opt/tribblix/wireguard/doc
