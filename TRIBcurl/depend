@@ -1,4 +1,5 @@
 P TRIBca-bundle
+P TRIBcompress-zstd
 P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBlibnghttp2
