@@ -54,22 +54,22 @@ do
     dir=${dir%%/}
     if [ -d "${dir}" ]; then
 	echo "Checking $dir ($(install_status $dir))"
-	grep -lx "P $dir" */depend* | while read -r dep
+	grep -lx "P $dir" TRIB*/depend* | while read -r dep
 	do
 	    pkg=${dep%%/*}
 	    echo "  run-time ${pkg} ($(install_status $pkg))"
 	done
-	grep -lx "I $dir" */depend* | while read -r dep
+	grep -lx "I $dir" TRIB*/depend* | while read -r dep
 	do
 	    pkg=${dep%%/*}
 	    echo "  run-incompatible ${pkg} ($(install_status $pkg))"
 	done
-	grep -lx "$dir" */build_require* | while read -r dep
+	grep -lx "$dir" TRIB*/build_require* | while read -r dep
 	do
 	    pkg=${dep%%/*}
 	    echo "  build-time ${pkg} ($(install_status $pkg))"
 	done
-	grep -lx "$dir" */build_incompatible* | while read -r dep
+	grep -lx "$dir" TRIB*/build_incompatible* | while read -r dep
 	do
 	    pkg=${dep%%/*}
 	    echo "  build-incompatible ${pkg} ($(install_status $pkg))"
