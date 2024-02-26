@@ -1,0 +1,4 @@
+PKG="TRIBopensp"
+NAME="OpenSP SGML parser"
+VERSION="1.5.2.1"
+ZAP_URL="http://openjade.sourceforge.net/"
