@@ -1,0 +1,4 @@
+PKG="TRIBlibofx"
+NAME="The libofx OFX banking protocol abstraction library"
+VERSION="0.10.9.0"
+ZAP_URL="https://github.com/libofx/libofx"

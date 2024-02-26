@@ -1,0 +1,2 @@
+#!/bin/sh
+rm -fr usr/share/doc/libofx/html
