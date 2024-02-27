@@ -9,9 +9,11 @@ P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
+P TRIBlib-nspr
 P TRIBlibidn
 P TRIBlibxml2
 P TRIBperl-534
+P TRIBsys-lib-mozilla-nss
 P TRIBsys-libdbus
 P TRIBsys-libdbus-glib
 P TRIBtcl

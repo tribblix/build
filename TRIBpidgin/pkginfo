@@ -1,4 +1,4 @@
 PKG="TRIBpidgin"
 NAME="Pidgin communications client"
-VERSION="2.14.12.0"
+VERSION="2.14.13.0"
 ZAP_URL="https://pidgin.im/"
