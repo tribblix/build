@@ -98,8 +98,6 @@ case $SPYVER in
 	;;
 esac
 
-echo $PYVER
-
 #
 # define and create working location
 #

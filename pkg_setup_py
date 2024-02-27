@@ -97,8 +97,6 @@ case $SPYVER in
 	;;
 esac
 
-echo $PYVER
-
 #
 # all pythons are 64-bit, so we must always set a 64-bit
 # version of PKG_CONFIG_PATH
