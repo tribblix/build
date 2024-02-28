@@ -1,0 +1,4 @@
+PKG="TRIBjedi-lang-serv-python-311"
+NAME="Python jedi_language_server"
+VERSION="0.41.3.0"
+ZAP_URL="https://pypi.org/project/jedi_language_server"
