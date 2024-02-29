@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -93,6 +93,7 @@ DOGNU="false"
 # -B subdirectory to use rather than the default
 # +B run cmake directly in the source tree, not in a build subdir
 # -b branch for git checkout
+# -n wrong name of dir that tarball unpacks into
 #
 IPREFIX="/usr"
 CONFARGS32=""
@@ -181,6 +182,11 @@ case $1 in
 -b)
 	shift
 	BRANCHARGS="-b $1"
+	shift
+	;;
+-n)
+	shift
+	UNPACK_FLAGS="${UNPACK_FLAGS} -n $1"
 	shift
 	;;
 -*)
