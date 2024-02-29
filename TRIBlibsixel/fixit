@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# the config script ought to be purely 64-bit
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+if [ -f usr/bin/libsixel-config ]; then
+   mkdir usr/bin/${ARCH64}
+   mv usr/bin/libsixel-config usr/bin/${ARCH64}
+fi
+if [ -d usr/lib/python3.11 ]; then
+    mkdir -p usr/versions/python-3.11/lib
+    mv usr/lib/python3.11 usr/versions/python-3.11/lib
+fi

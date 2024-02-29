@@ -1,0 +1,4 @@
+PKG="TRIBlibsixel"
+NAME="libsixel"
+VERSION="1.8.6.0"
+ZAP_URL="https://saitoha.github.io/libsixel/"
