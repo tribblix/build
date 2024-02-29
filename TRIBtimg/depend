@@ -1,5 +1,8 @@
 P TRIBffmpeg
-P TRIBgraphicsmagick
 P TRIBimage-libexif
 P TRIBimage-libjpeg
-P TRIBlib-zlib
+P TRIBlib-desktop-cairo
+P TRIBlib-glib2
+P TRIBlibdeflate
+P TRIBlibsixel
+P TRIBpoppler
