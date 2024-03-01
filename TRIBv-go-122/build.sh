@@ -18,12 +18,14 @@ cd ..
 rm -fr /tmp/gg
 mkdir -p /tmp/gg/usr/versions/go-1.22
 tar cf - . | (cd /tmp/gg/usr/versions/go-1.22 ; tar xf -)
-# [need to package godoc and gox]
+# [package extras - godoc gopls gox]
 # need to not be at a valid GOROOT
 mkdir t
 cd t
 env GOROOT=/tmp/gg/usr/versions/go-1.22 GOPATH=`pwd` ../bin/go install golang.org/x/tools/cmd/godoc@latest
 cp bin/godoc /tmp/gg/usr/versions/go-1.22/bin
+env GOROOT=/tmp/gg/usr/versions/go-1.22 GOPATH=`pwd` ../bin/go install golang.org/x/tools/gopls@latest
+cp bin/gopls /tmp/gg/usr/versions/go-1.22/bin
 env GOROOT=/tmp/gg/usr/versions/go-1.22 GOPATH=`pwd` ../bin/go install github.com/mitchellh/gox@latest
 cp bin/gox /tmp/gg/usr/versions/go-1.22/bin
 ${THOME}/build/create_pkg TRIBv-go-122 /tmp/gg
