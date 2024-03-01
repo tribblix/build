@@ -1,4 +1,3 @@
 P TRIBgdk-pixbuf
-P TRIBlib-desktop-gtk
-P TRIBlib-desktop-pango
+P TRIBlib-desktop-gtk3
 P TRIBlib-glib2
