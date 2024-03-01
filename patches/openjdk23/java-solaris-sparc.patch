@@ -154,7 +154,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -482,9 +481,6 @@
+@@ -479,9 +479,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_FILE_OFFSET_BITS=64"
@@ -447,7 +447,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -160,7 +157,6 @@
+@@ -175,7 +172,6 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -465,48 +465,6 @@
  
  ifneq ($(GTEST_FRAMEWORK_SRC), )
    ifneq ($(CREATING_BUILDJDK), true)
---- old/make/hotspot/lib/JvmMapfile.gmk	2020-05-20 17:59:00.372928900 -0700
-+++ new/make/hotspot/lib/JvmMapfile.gmk	2020-05-20 17:58:59.980921373 -0700
-@@ -48,18 +48,6 @@
-   endif
- endif
- 
--ifeq ($(call isTargetOs, solaris), true)
--  ifeq ($(call check-jvm-feature, dtrace), true)
--    # Additional mapfiles that are only used when dtrace is enabled
--    ifeq ($(call check-jvm-feature, compiler2), true)
--      # This also covers the case of compiler1+compiler2.
--      SYMBOLS_SRC += $(TOPDIR)/make/hotspot/symbols/symbols-solaris-dtrace-compiler2
--    else ifeq ($(call check-jvm-feature, compiler1), true)
--      SYMBOLS_SRC += $(TOPDIR)/make/hotspot/symbols/symbols-solaris-dtrace-compiler1
--    endif
--  endif
--endif
--
- ################################################################################
- # Create a dynamic list of symbols from the built object files. This is highly
- # platform dependent.
-@@ -76,20 +64,6 @@
-         if ($$3 ~ /$(FILTER_SYMBOLS_PATTERN)/) print $$3; \
-       }'
- 
--else ifeq ($(call isTargetOs, solaris), true)
--  DUMP_SYMBOLS_CMD := $(NM) -p *.o
--  ifneq ($(FILTER_SYMBOLS_PATTERN), )
--    FILTER_SYMBOLS_PATTERN := $(FILTER_SYMBOLS_PATTERN)|
--  endif
--  FILTER_SYMBOLS_PATTERN := $(FILTER_SYMBOLS_PATTERN)^__1c.*__vtbl_$$|^gHotSpotVM
--  FILTER_SYMBOLS_PATTERN := $(FILTER_SYMBOLS_PATTERN)|^UseSharedSpaces$$
--  FILTER_SYMBOLS_PATTERN := $(FILTER_SYMBOLS_PATTERN)|^__1cJArgumentsRSharedArchivePath_$$
--  FILTER_SYMBOLS_AWK_SCRIPT := \
--      '{ \
--        if ($$2 == "U") next; \
--        if ($$3 ~ /$(FILTER_SYMBOLS_PATTERN)/) print $$3; \
--      }'
--
- else ifeq ($(call isTargetOs, macosx), true)
-   # nm on macosx prints out "warning: nm: no name list" to stderr for
-   # files without symbols. Hide this, even at the expense of hiding real errors.
 --- old/make/ide/visualstudio/hotspot/CreateVSProject.gmk	2020-05-20 17:59:05.797033047 -0700
 +++ new/make/ide/visualstudio/hotspot/CreateVSProject.gmk	2020-05-20 17:59:05.409025597 -0700
 @@ -76,7 +76,6 @@
@@ -517,17 +475,6 @@
      -ignorePath x86_32 \
      -ignorePath zero \
        #
---- old/make/langtools/build.xml	2020-05-20 17:59:06.849053246 -0700
-+++ new/make/langtools/build.xml	2020-05-20 17:59:06.465045873 -0700
-@@ -100,7 +100,7 @@
-     <property name="xpatch.noquotes.cmd" value="--patch-module=${xpatch.noquotes.rest}"/>
- 
-     <!-- java.marker is set to a marker file to check for within a Java install dir.
--         The best file to check for across Solaris/Linux/Windows/MacOS is one of the
-+         The best file to check for across Linux/Windows/MacOS is one of the
-          executables; regrettably, that is OS-specific. -->
-     <condition property="java.marker" value="bin/java">
-         <os family="unix"/>
 --- old/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.941074214 -0700
 +++ new/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.553066764 -0700
 @@ -190,7 +190,7 @@
@@ -664,9 +611,9 @@
 -        #
 -  endif
 -
+   LIBJSOUND_LINK_TYPE := C
    ifeq ($(call isTargetOs, macosx), true)
-     LIBJSOUND_TOOLCHAIN := TOOLCHAIN_LINK_CXX
-   endif
+     LIBJSOUND_LINK_TYPE := C++
 --- old/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
 +++ new/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
 @@ -77,7 +77,7 @@
@@ -1319,7 +1266,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1910,8 +1910,6 @@
+@@ -1914,8 +1914,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1328,7 +1275,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1976,8 +1974,6 @@
+@@ -1980,8 +1978,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");

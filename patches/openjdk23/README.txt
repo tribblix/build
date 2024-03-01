@@ -1,4 +1,4 @@
-This is originally derived from the pkgsrc-joyent set for openjdk11,
+ This is originally derived from the pkgsrc-joyent set for openjdk11,
 considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
@@ -10,6 +10,21 @@ loom correctly as they date back to that change.
 * jshell doesn't work
 * illuminate doesn't work
 * test suite doesn't run at all
+
+23+12
+
+More rework of the build system.
+flags-cflags.m4 use of --version-script and SET_SHARED_LIBRARY_MAPFILE
+has been removed. make/hotspot/lib/JvmMapfile.gmk has been removed and
+there's a static mapfile at make/data/hotspot-symbols/version-script.txt
+referenced as HOTSPOT_VERSION_SCRIPT in make/hotspot/lib/CompileJvm.gmk
+That version-script.txt isn't a valid solution for us, and is rejected
+by our ld, so ignore the mapfile stuff completely.
+
+If we do need to look at this again, the commit that did it is here:
+https://github.com/openjdk/jdk/commit/da14aa463b8fcd56ba1f1a4cdb3e3f7b19f78964
+
+Cleanup: drop the comment-only change to make/langtools/build.xml
 
 23+11
 
