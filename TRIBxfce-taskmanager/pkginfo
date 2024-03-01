@@ -1,4 +1,4 @@
 PKG="TRIBxfce-taskmanager"
 NAME="Xfce Task Manager"
-VERSION="1.5.4.0"
+VERSION="1.5.7.0"
 ZAP_URL="https://docs.xfce.org/apps/xfce4-taskmanager/start"
