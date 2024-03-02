@@ -3,7 +3,7 @@
 # the directory is versioned
 # also fix VERSION in preremove and postinstall
 #
-VERSION=1.11.10
+VERSION=1.11.11
 mkdir -p usr/bin
 rm -f usr/versions/freeplane-${VERSION}/freeplane.exe
 rm -f usr/versions/freeplane-${VERSION}/freeplaneConsole.exe
@@ -31,7 +31,7 @@ mkdir -p usr/share/icons/hicolor/32x32/apps
 cp usr/versions/freeplane-${VERSION}/freeplane.png -resize 48x48 usr/share/icons/hicolor/32x32/apps/freeplane-icon.png
 mkdir -p usr/share/applications
 cd usr/share/applications
-cat > imagej.desktop << _EOF
+cat > freeplane.desktop << _EOF
 [Desktop Entry]
 Encoding=UTF-8
 Version=1.0
