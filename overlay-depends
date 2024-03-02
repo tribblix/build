@@ -180,7 +180,7 @@ fi
 # check syntax of the ovl file
 #
 OVLMISS=$(${EGREP} -v '^(VERSION|NAME|REQUIRES|SERVICE)=' "${OVL}.ovl")
-if [ -n "${OLVMISS}" ]; then
+if [ -n "${OVLMISS}" ]; then
     echo ""
     echo "Invalid syntax in ${OVL}.ovl:"
     echo "============================================="
