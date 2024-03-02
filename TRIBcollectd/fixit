@@ -11,7 +11,7 @@ mkdir -p usr/perl5
 mv usr/lib/site_perl usr/perl5
 mv usr/perl5/site_perl/5.34.0 usr/perl5/site_perl/5.34
 mv usr/perl5/site_perl/C* usr/perl5/site_perl/5.34
-rm -fr usr/lib/i86pc-solaris-thread-multi-64
+rm -fr usr/lib/*-solaris-thread-multi-64
 
 rm -f usr/lib/*/lib*.la
 rm -f usr/lib/*/collectd/*.la

@@ -1,9 +1,9 @@
 #!/bin/sh
-/bin/rm -fr usr/perl5/5.34.0/lib
+/bin/rm -fr usr/perl5/5.34/lib
 #
 # the install tries to write this in place
 #
-cat > usr/perl5/site_perl/5.34.0/XML/SAX/ParserDetails.ini <<EOF
+cat > usr/perl5/site_perl/5.34/XML/SAX/ParserDetails.ini <<EOF
 [XML::SAX::PurePerl]
 http://xml.org/sax/features/namespaces = 1
 
