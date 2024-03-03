@@ -1,4 +1,4 @@
 PKG="TRIBx11-lib-toolkit-libxaw3d"
 NAME="libXaw3d"
-VERSION="1.6.5.0"
+VERSION="1.6.6.0"
 ZAP_URL="https://www.x.org/releases/individual/lib/"
