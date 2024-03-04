@@ -1,4 +1,4 @@
 PKG="TRIBlibraw"
 NAME="LibRaw library for reading RAW files"
-VERSION="0.21.1.1"
+VERSION="0.21.1.2"
 ZAP_URL="https://www.libraw.org/"
