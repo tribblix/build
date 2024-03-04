@@ -1,4 +1,4 @@
 PKG="TRIBlibglade"
 NAME="Graphical Interface Description Loader API"
-VERSION="2.6.4.3"
-ZAP_URL="https://glade.gnome.org/"
+VERSION="2.6.4.4"
+ZAP_URL="https://download.gnome.org/sources/libglade/"
