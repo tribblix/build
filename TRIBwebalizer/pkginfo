@@ -1,4 +1,4 @@
 PKG="TRIBwebalizer"
 NAME="web server log file analysis program"
-VERSION="2.23.08.0"
+VERSION="2.23.08.1"
 ZAP_URL="https://github.com/hyc/webalizer"
