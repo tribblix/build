@@ -3,11 +3,9 @@ rm -fr usr/share/doc/ImageMagick-*/www
 case `uname -p` in
 sparc)
   ARCH64="sparcv9"
-  ARCH32="sparcv7"
   ;;
 i386)
   ARCH64="amd64"
-  ARCH32="i86"
   ;;
 esac
 #
@@ -15,24 +13,7 @@ rm -f usr/lib/lib*.la
 rm -f usr/lib/${ARCH64}/lib*.la
 
 #
-# we need to ship 32-bit libraries, but aren't interested in
-# 32-bit binaries, so drop those entirely and ship 64-bit by default
+# hide the config scripts in the 64-bit directory
 #
-# these are all symlinks to magick
-#
-for imbin in animate compare composite conjure convert display identify import mogrify montage stream magick-script
-do
-    rm -f usr/bin/${ARCH64}/$imbin
-done
-rm -f usr/bin/magick
-mv usr/bin/${ARCH64}/magick usr/bin/magick
-#
-# we need to ship the existing 32-bit config scripts
-#
-
-#
-# usr/include/ImageMagick-7/MagickCore/magick-baseconfig.h is platform-dependent
-#
-mv usr/include/ImageMagick-7/MagickCore/magick-baseconfig.h usr/include/ImageMagick-7/MagickCore/magick-baseconfig-32.h
-cp ${BUILDROOT}/patches/magick-baseconfig.h usr/include/ImageMagick-7/MagickCore/magick-baseconfig.h
-sed -i s:/usr/bin/${ARCH64}/:/usr/bin/: usr/include/ImageMagick-7/MagickCore/magick-baseconfig-64.h
+mkdir -p usr/bin/${ARCH64}
+mv usr/bin/Magick*-config usr/bin/${ARCH64}
