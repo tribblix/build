@@ -2,7 +2,7 @@
 #
 # slightly hacked about to force a 64-bit build
 #
-${THOME}/build/unpack live.2023.07.24
+${THOME}/build/unpack live.2024.02.28
 cd live
 cat config.linux-with-shared-libraries | sed 's:-O2:-m64 -O2 -DSOLARIS -DNEWLOCALE_NOT_USED -DNO_STD_LIB:' | sed 's:-DBSD=1 ::' > config.solaris-shared
 sed -i -e 's:-o:-m64 -o:' config.solaris-shared
