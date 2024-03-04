@@ -1,4 +1,4 @@
 PKG="TRIBx11-libxcursor"
 NAME="libXcursor"
-VERSION="1.2.1.0"
+VERSION="1.2.2.0"
 ZAP_URL="https://www.x.org/releases/individual/lib/"
