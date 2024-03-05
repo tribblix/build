@@ -300,6 +300,10 @@ if [ -x ${BUILD}/${PKGNAME}/fixproto ]; then
     cat old.pp.$$ | ${BUILD}/${PKGNAME}/fixproto > pp.$$
     rm old.pp.$$
 fi
+#
+# Add CLASSES here
+#
+echo "CLASSES=\"none\"" >> pkginfo
 # create the package
 pkgmk -d ${BROOT} -f pp.$$ -r ${BDIR} ${PKGNAME}
 /usr/bin/rm pp.$$
