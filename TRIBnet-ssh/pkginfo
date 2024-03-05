@@ -1,4 +1,4 @@
 PKG="TRIBnet-ssh"
 NAME="SSH Client and utilities"
-VERSION="9.6.1.0"
+VERSION="9.6.1.1"
 ZAP_URL="http://www.openssh.com/portable.html"
