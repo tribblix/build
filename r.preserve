@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# handler for removing editable files in the preserve class
+#
+# spoiler alert - they aren't removed
+#
+exit 0

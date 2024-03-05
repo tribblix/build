@@ -301,9 +301,45 @@ if [ -x ${BUILD}/${PKGNAME}/fixproto ]; then
     rm old.pp.$$
 fi
 #
-# Add CLASSES here
+# Handle files that are marked for preservation.
 #
-echo "CLASSES=\"none\"" >> pkginfo
+# Any files listed in the preserve file will be listed in class preserve
+# and marked as editable (type e).
+#
+# This also ensures that a save spool file is created, so that when this
+# package is copied into a zone the original unmodified file will be
+# present in the zone, rather than the a copy of the possibly modified
+# version in the global zone.
+#
+# Normal SVR4 packaging ensures that if the file already exists, it
+# will not be overwritten. We go further here by adding a class action
+# script to be run on package removal that leaves the file in place, thus
+# actually preserving it for next time around (there is no central
+# r.preserve in /usr/sadm/install/scripts). It's necessary to make
+# sure that configuration files are preserved as the update/upgrade
+# mechanism in Tribblix is to do a full package remove and reinstall.
+#
+# As we've added a new class of files, we need to have a modified
+# CLASSES= statement in the pkginfo file to make sure they're handled.
+#
+if [ -s ${BUILD}/${PKGNAME}/preserve ]; then
+    echo "CLASSES=\"none preserve\"" >> pkginfo
+    for file in $(<${BUILD}/${PKGNAME}/preserve)
+    do
+	mv pp.$$ old.pp.$$
+	cat old.pp.$$ |awk -v pn=$file '{if ($3 == pn) { $2 = "preserve" ; $1 = "e" }}{print}' > pp.$$
+	rm old.pp.$$
+    done
+    #
+    # we need to add a cas to handle the remove, or more accurately,
+    # to ignore the remove
+    #
+    mkdir -p install
+    cp ${BUILD}/r.preserve install/r.preserve
+    echo "i r.preserve=./install/r.preserve" >> ${BDIR}/pp.$$
+else
+    echo "CLASSES=\"none\"" >> pkginfo
+fi
 # create the package
 pkgmk -d ${BROOT} -f pp.$$ -r ${BDIR} ${PKGNAME}
 /usr/bin/rm pp.$$
