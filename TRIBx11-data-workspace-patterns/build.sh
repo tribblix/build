@@ -8,6 +8,6 @@
 #
 rm -fr /tmp/tpat
 mkdir /tmp/tpat
-(cd / ; tar cf - usr/share/patterns) | ( cd /tmp/tpat ; tar xf -)
+tar cf - -C / usr/share/patterns | ( cd /tmp/tpat ; tar xf -)
 ${THOME}/build/create_pkg TRIBx11-data-workspace-patterns /tmp/tpat
 rm -fr /tmp/tpat
