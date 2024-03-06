@@ -10,4 +10,4 @@
 # the other modules always take precedence, because the pins in c7n are
 # often for its submodules rather than for c7n core
 #
-${THOME}/build/pkg_pep518 TRIBc7n-python-311 cloud-custodian-0.9.34.0
+${THOME}/build/pkg_pep518 TRIBc7n-python-311 cloud-custodian-0.9.35.0
