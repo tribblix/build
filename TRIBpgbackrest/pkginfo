@@ -1,0 +1,4 @@
+PKG="TRIBpgbackrest"
+NAME="Reliable PostgreSQL Backup and Restore"
+VERSION="2.50.0"
+ZAP_URL="https://pgbackrest.org/"
