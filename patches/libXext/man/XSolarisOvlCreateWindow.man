@@ -24,7 +24,6 @@
 .SH NAME
 XSolarisOvlCreateWindow \- creates an overlay window
 .SH SYNOPSIS
-.LP
 \&#include <X11/extensions/transovl.h>
 
 .IP \f3Window\f1 9n
@@ -96,5 +95,4 @@ It behaves exactly as its counterpart
 except the newly created window can be rendered into with both opaque
 and transparent paint, and the background is transparent.
 .SH SEE ALSO
-.LP
 .BR XCreateWindow (3)

@@ -24,7 +24,6 @@
 .SH NAME
 XSolarisOvlSetWindowTransparent \- sets the background state of an overlay window to be transparent
 .SH SYNOPSIS
-.LP
 \&#include <X11/extensions/transovl.h>
 
 .IP \f3void\f1 5n
@@ -56,7 +55,6 @@ is not an overlay window,
 .SB BadMatch
 is generated.
 .SH ERRORS
-.LP
 .nf
 .SB BadMatch
 .fi

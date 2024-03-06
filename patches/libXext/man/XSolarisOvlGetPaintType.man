@@ -24,7 +24,6 @@
 .SH NAME
 XSolarisOvlGetPaintType \- gets the current paint type set in the GC
 .SH SYNOPSIS
-.LP
 \&#include <X11/extensions/transovl.h>
 
 .IP \f3XSolarisOvlPaintType\f1

@@ -26,7 +26,6 @@
 XSolarisOvlCopyAreaAndPaintType \- copies the given area and paint type data
 from one pair of drawables to another
 .SH SYNOPSIS
-.LP
 \&#include <X11/extensions/transovl.h>
 
 .IP \f3void\f1 5n
@@ -202,7 +201,6 @@ overlay/drawable	A2	Impossible	A6	A6
 drawable/overlay	A3	Impossible	A7	A7
 drawable/drawable	A4	Impossible	A8	A8
 .TE
-.LP
 .HP
 A1\(emThe paint type information from
 .I painttypesrc
@@ -336,7 +334,6 @@ and
 .SB BadValue
 errors.
 .SH ERRORS
-.LP
 .nf
 .SB BadDrawable
 .SB BadGC

@@ -24,7 +24,6 @@
 .SH NAME
 XSolarisOvlSetPaintType \- specifies the type of paint rendered by subsequent Xlib drawing with the given GC
 .SH SYNOPSIS
-.LP
 \&#include <X11/extensions/transovl.h>
 
 .IP \f3void\f1 5n

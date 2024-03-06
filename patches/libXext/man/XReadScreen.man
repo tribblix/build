@@ -24,7 +24,6 @@
 .SH NAME
 XReadScreen \- returns the displayed colors in a rectangle of the screen
 .SH SYNOPSIS
-.LP
 \&#include <X11/extensions/transovl.h>
 
 .IP \f3XImage *\f1

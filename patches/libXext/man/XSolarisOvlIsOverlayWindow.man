@@ -24,7 +24,6 @@
 .SH NAME
 XSolarisOvlIsOverlayWindow \- indicates whether a given window is an overlay window
 .SH SYNOPSIS
-.LP
 \&#include <X11/extensions/transovl.h>
 
 .IP \f3Bool\f1 5n

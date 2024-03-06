@@ -23,7 +23,7 @@ diff --git a/src/Makefile.am b/src/Makefile.am
 index b828547..fc57d28 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
-@@ -64,3 +64,13 @@ lintlib_DATA = $(LINTLIB)
+@@ -65,3 +65,13 @@ lintlib_DATA = $(LINTLIB)
  $(LINTLIB): $(libXext_la_SOURCES)
  	$(LINT) -y -oXext -x $(ALL_LINT_FLAGS) $(libXext_la_SOURCES)
  endif MAKE_LINT_LIB

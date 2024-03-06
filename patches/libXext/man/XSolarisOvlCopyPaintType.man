@@ -27,7 +27,6 @@ XSolarisOvlCreateWindow \- renders opaque and transparent paint into the
 destination drawable based on the paint type attributes of the pixels in
 the source drawable
 .SH SYNOPSIS
-.LP
 \&#include <X11/extensions/transovl.h>
 
 .IP \f3void\f1 5n
@@ -137,7 +136,6 @@ _
 overlay	A1	A2
 drawable	A3	A4
 .TE
-.LP
 .HP
 A1\(emOpaque pixels in the source overlay cause the corresponding pixels in the
 destination to be filled with opaque color as specified by the fill
@@ -194,7 +192,6 @@ and
 .SB BadValue
 errors.
 .SH ERRORS
-.LP
 .nf
 .SB BadDrawable
 .SB BadGC

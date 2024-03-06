@@ -24,7 +24,6 @@
 .SH NAME
 XSolarisOvlSelectPartner \- returns the overlay/underlay visual that best meets the criteria
 .SH SYNOPSIS
-.LP
 \&#include <X11/extensions/transovl.h>
 
 .IP \f3XSolarisOvlSelectStatus\f1
@@ -83,7 +82,6 @@ This return argument is only meaningful when the routine returns a value of
 or
 .B XSolarisOvlCriteriaFailure.
 .SH Argument Types
-.LP
 See the
 .B XSolarisOvlSelectPartner
 Description section for a full description of how these types should be used.
@@ -149,7 +147,6 @@ These are described in the
 .B XSolarisOvlSelectPartner
 Description documentation that follows.
 .SH Return Types
-.LP
 .B XSolarisOvlSelectStatus
 .LP
 A value that indicates whether the routine succeeded in finding a visual and,
@@ -192,7 +189,6 @@ structure with the fewest hard criteria not met.
 .B XSolarisOvlFailure
 is returned if some other error is encountered besides criteria match failure.
 .SH DESCRIPTION
-.LP
 Portable applications using overlays may wish to search for an appropriate
 overlay visual to use for a given underlay visual, or vice-versa.
 Each X screen supporting the overlay extension defines a set of overlay
