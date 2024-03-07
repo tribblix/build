@@ -26,7 +26,6 @@
 -p0 openjdk15/patch-src_java.desktop_share_native_libsplashscreen_libpng_pngpriv.h
 -p0 openjdk15/patch-src_jdk.crypto.ec_share_native_libsunec_ECC__JNI.cpp
 -p0 openjdk15/tribblix-LauncherCommon.patch
--p0 openjdk15/tribblix-attachListener_solaris.patch
 -p0 openjdk15/tribblix-flags-cflags.patch
 -p0 openjdk15/tribblix-flags-ldflags.patch
 -p0 openjdk15/tribblix-flags-ldflags2.patch

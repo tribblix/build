@@ -7345,7 +7345,7 @@
 -    if (::rename(initial_path, door_path) == -1) {
 -        ::close(dd);
 -        ::fdetach(initial_path);
--        log_debug(attach)("unable to create door - rename %s to %s failed (%d)", errno);
+-        log_debug(attach)("unable to create door - rename %s to %s failed (%d)", initial_path, door_path, errno);
 -        dd = -1;
 -    }
 -  }
