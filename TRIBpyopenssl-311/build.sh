@@ -3,4 +3,4 @@
 # despite the name, the actual openssl bindings are in the
 # cryptography module, not this one
 #
-${THOME}/build/pkg_setup_py TRIBpyopenssl-311 pyOpenSSL-23.3.0
+${THOME}/build/pkg_setup_py TRIBpyopenssl-311 pyOpenSSL-24.0.0
