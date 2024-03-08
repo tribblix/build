@@ -154,7 +154,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -479,9 +479,6 @@
+@@ -485,9 +485,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_FILE_OFFSET_BITS=64"
@@ -1094,7 +1094,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -608,12 +608,11 @@
+@@ -611,12 +611,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");

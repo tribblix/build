@@ -11,6 +11,11 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+13
+
+More work on make/autoconf/flags-cflags.m4, need to make sure that the
+misguided --disable-new-dtags doesn't apply to us.
+
 23+12
 
 More rework of the build system.

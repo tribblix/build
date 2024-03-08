@@ -4,11 +4,13 @@ Support for SunOS/gcc.
 
 --- make/autoconf/flags-cflags.m4.orig	2019-01-08 09:40:27.000000000 +0000
 +++ make/autoconf/flags-cflags.m4
-@@ -39,7 +39,11 @@ AC_DEFUN([FLAGS_SETUP_SHARED_LIBS],
-     SHARED_LIBRARY_FLAGS='-shared'
-     SET_EXECUTABLE_ORIGIN='-Wl,-rpath,\$$ORIGIN[$]1'
+@@ -42,7 +42,13 @@ AC_DEFUN([FLAGS_SETUP_SHARED_LIBS],
+     # overridden using LD_LIBRARY_PATH. See JDK-8326891 for more information.
+     SET_EXECUTABLE_ORIGIN='-Wl,-rpath,\$$ORIGIN[$]1 -Wl,--disable-new-dtags'
      SET_SHARED_LIBRARY_ORIGIN="-Wl,-z,origin $SET_EXECUTABLE_ORIGIN"
 +   if test "x$OPENJDK_TARGET_OS" = xsolaris; then
++    SET_EXECUTABLE_ORIGIN='-Wl,-rpath,\$$ORIGIN[$]1'
++    SET_SHARED_LIBRARY_ORIGIN="-Wl,-z,origin $SET_EXECUTABLE_ORIGIN"
 +    SET_SHARED_LIBRARY_NAME='-Wl,-h,[$]1'
 +   else
      SET_SHARED_LIBRARY_NAME='-Wl,-soname=[$]1'
@@ -16,10 +18,10 @@ Support for SunOS/gcc.
  
    elif test "x$TOOLCHAIN_TYPE" = xclang; then
      if test "x$OPENJDK_TARGET_OS" = xmacosx; then
-@@ -60,7 +64,11 @@
-       # Default works for linux, might work on other platforms as well.
-       SHARED_LIBRARY_FLAGS='-shared'
-       SET_EXECUTABLE_ORIGIN='-Wl,-rpath,\$$ORIGIN[$]1'
+@@ -66,7 +72,11 @@
+       if test "x$OPENJDK_TARGET_OS" = xlinux; then
+         SET_EXECUTABLE_ORIGIN="$SET_EXECUTABLE_ORIGIN -Wl,--disable-new-dtags"
+       fi
 -      SET_SHARED_LIBRARY_NAME='-Wl,-soname=[$]1'
 +      if test "x$OPENJDK_TARGET_OS" = xsolaris; then
 +        SET_SHARED_LIBRARY_NAME='-Wl,-h,[$]1'
@@ -29,7 +31,7 @@ Support for SunOS/gcc.
  
        # arm specific settings
        if test "x$OPENJDK_TARGET_CPU" = "xarm"; then
-@@ -541,6 +549,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
+@@ -547,6 +556,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
  
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE -D_REENTRANT"
