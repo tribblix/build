@@ -5574,11 +5574,11 @@
 -
 - public:
 -  enum {
--    ATTACH_PROTOCOL_VER = 1                             // protocol version
+-    ATTACH_PROTOCOL_VER = 1                     // protocol version
 -  };
 -  enum {
--    ATTACH_ERROR_BADREQUEST     = 100,                  // error code returned by
--    ATTACH_ERROR_BADVERSION     = 101,                  // the door call
+-    ATTACH_ERROR_BADREQUEST     = 100,          // error codes
+-    ATTACH_ERROR_BADVERSION     = 101,
 -    ATTACH_ERROR_RESOURCE       = 102,
 -    ATTACH_ERROR_INTERNAL       = 103,
 -    ATTACH_ERROR_DENIED         = 104
@@ -5590,18 +5590,18 @@
 -      _has_door_path = false;
 -    } else {
 -      strncpy(_door_path, path, PATH_MAX);
--      _door_path[PATH_MAX] = '\0';      // ensure it's nul terminated
+-      _door_path[PATH_MAX] = '\0';
 -      _has_door_path = true;
 -    }
 -  }
 -
 -  static void set_door_descriptor(int dd)               { _door_descriptor = dd; }
 -
--  // initialize the listener
+-  // initialize the listener, returns 0 if okay
 -  static int init();
 -
--  static bool has_door_path()                           { return _has_door_path; }
 -  static char* door_path()                              { return _door_path; }
+-  static bool has_door_path()                           { return _has_door_path; }
 -  static int door_descriptor()                          { return _door_descriptor; }
 -
 -  // enqueue an operation
@@ -5632,8 +5632,8 @@
 - public:
 -  void complete(jint res, bufferedStream* st);
 -
--  int socket() const                                     { return _socket; }
--  void set_socket(int s)                                 { _socket = s; }
+-  void set_socket(int s)                                { _socket = s; }
+-  int socket() const                                    { return _socket; }
 -
 -  SolarisAttachOperation(char* name) : AttachOperation(name) {
 -    set_socket(-1);
@@ -6034,7 +6034,7 @@
 -      ::shutdown(this->socket(), 2);
 -    }
 -
--    // close socket and we're done
+-    // done
 -    ::close(this->socket());
 -  }
 -  delete this;
@@ -6085,16 +6085,6 @@
 -  return ret_code;
 -}
 -
--// Attach Listener is started lazily except in the case when
--// +ReduseSignalUsage is used
--bool AttachListener::init_at_startup() {
--  if (ReduceSignalUsage) {
--    return true;
--  } else {
--    return false;
--  }
--}
--
 -bool AttachListener::check_socket_file() {
 -  int ret;
 -  struct stat64 st;
@@ -6113,6 +6103,16 @@
 -    return is_init_trigger();
 -  }
 -  return false;
+-}
+-
+-// Attach Listener is started lazily except in the case when
+-// +ReduseSignalUsage is used
+-bool AttachListener::init_at_startup() {
+-  if (ReduceSignalUsage) {
+-    return true;
+-  } else {
+-    return false;
+-  }
 -}
 -
 -// If the file .attach_pid<pid> exists in the working directory
@@ -6149,7 +6149,7 @@
 -  return false;
 -}
 -
--// if VM aborts then detach/cleanup
+-// if VM aborts then remove listener
 -void AttachListener::abort() {
 -  listener_cleanup();
 -}

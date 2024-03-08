@@ -11,6 +11,9 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+Cleanup: reduce gratuitous formatting differences between our
+attachListener_solaris.cpp and other platforms, without changing any code
+
 23+13
 
 More work on make/autoconf/flags-cflags.m4, need to make sure that the
