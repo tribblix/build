@@ -6,4 +6,4 @@
 # [cmdline] argcomplete progressbar
 # also pypdf defusedxml
 #
-${THOME}/build/pkg_setup_py TRIBdiffoscope-python-311 diffoscope-259
+${THOME}/build/pkg_setup_py TRIBdiffoscope-python-311 diffoscope-260
