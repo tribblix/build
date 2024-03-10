@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# multiple files get installed mode 066 by default
+#
+chmod og-w usr/versions/python-3.11/lib/python3.11/site-packages/graphviz*.egg-info/*
