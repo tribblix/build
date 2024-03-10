@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-$THOME/build/unpack rclone-v1.65.2
-cd rclone-v1.65.2
+$THOME/build/unpack rclone-v1.66.0
+cd rclone-v1.66.0
 env PATH=/usr/gnu/bin:/usr/versions/go-1.21/bin:$PATH gmake
 
 rm -fr /tmp/cs
