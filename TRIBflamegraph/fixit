@@ -4,6 +4,10 @@
 #
 mkdir -p usr/bin
 cp ${BUILDROOT}/patches/flamegraph.sh usr/bin/flamegraph
+#
+# flamegraph is only usable by root, so having it accessible to
+# the world doesn't make much sense
+#
 chmod 0750 usr/bin/flamegraph
 mkdir -p usr/versions
 cd usr/versions
