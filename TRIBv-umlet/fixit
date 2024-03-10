@@ -4,11 +4,12 @@
 #
 mkdir -p usr/bin
 rm -f usr/versions/Umlet/umlet.exe
+rm -f usr/versions/Umlet/Umlet.exe
 cat > usr/bin/umlet <<EOF
 #!/bin/sh
 exec /usr/versions/Umlet/umlet.sh "\$@"
 EOF
-chmod a+x usr/bin/umlet
+chmod 755 usr/bin/umlet
 
 #
 # permissions in the zip file are slightly odd
@@ -16,13 +17,14 @@ chmod a+x usr/bin/umlet
 chmod 755 usr/versions/Umlet/umlet.sh
 chmod 755 usr/versions/Umlet/custom_elements
 chmod 755 usr/versions/Umlet/img
+chmod 644 usr/versions/Umlet/img/*
 chmod 755 usr/versions/Umlet/lib
 chmod 644 usr/versions/Umlet/lib/*.jar
 chmod 755 usr/versions/Umlet/palettes
 chmod 644 usr/versions/Umlet/umlet.jar
 chmod 644 usr/versions/Umlet/umlet.desktop
 chmod 644 usr/versions/Umlet/LICENCE.txt
-
+chmod 755 usr/versions/Umlet
 #
 # package files with spaces in the names
 #
