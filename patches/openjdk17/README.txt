@@ -7,6 +7,9 @@ Most patches -p0
 
 JDK17:
 
+Cleanup: Restore the necessary parts of sparc into the main patch, to
+ease future maintenance.
+
 Cleanup: missed the dropping of TIERED in 17+8, it's now
 COMPILER1_AND_COMPILER2
 
