@@ -13,7 +13,7 @@ esac
 
 #
 # we build libmilter 64-bit, the install puts it in the
-# 32-bit location and mangles the cmpilation symlink
+# 32-bit location and mangles the compilation symlink
 #
 mkdir -p usr/lib/${ARCH64}
 rm usr/lib/libmilter.so

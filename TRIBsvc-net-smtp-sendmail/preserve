@@ -1,0 +1,6 @@
+etc/mail/trusted-users
+etc/mail/submit.cf
+etc/mail/sendmail.cf
+etc/mail/aliases
+etc/mail/local-host-names
+etc/mail/statistics
