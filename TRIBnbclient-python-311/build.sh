@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBnbclient-python-311 nbclient-0.9.0
+${THOME}/build/pkg_pep518 TRIBnbclient-python-311 nbclient-0.10.0
