@@ -1,4 +1,4 @@
 PKG="TRIBshared-mime-info"
 NAME="Glib mime info"
-VERSION="1.6.0"
+VERSION="2.4.0"
 ZAP_URL="https://www.freedesktop.org/wiki/Software/shared-mime-info/"

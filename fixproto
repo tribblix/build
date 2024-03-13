@@ -39,6 +39,7 @@ awk '
 {if ($3 == "usr/bin/gkrellmd")  $6 = "sys"}
 {if ($3 ~ /^kernel/)  $6 = "sys"}
 {if ($3 ~ /^boot/)  $6 = "sys"}
+{if ($3 ~ /^usr\/share\/mime\/application/)  $6 = "root"}
 {if ($3 == "opt")  $6 = "sys"}
 {if ($3 == "usr")  $6 = "sys"}
 {if ($3 == "var")  $6 = "sys"}
