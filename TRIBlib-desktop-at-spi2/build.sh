@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64 -gnu at-spi2-core-2.24.1 -C "--disable-introspection --with-dbus_daemondir=/usr/lib"
-${THOME}/build/genpkg TRIBlib-desktop-at-spi2 at-spi2-core-2.24.1
+# newer versions need newer glib2
+#
+${THOME}/build/mesonbuild -64 -gnu at-spi2-core-2.40.3 -C "-Dintrospection=no -Ddbus_daemon=/usr/lib"
+${THOME}/build/genpkg TRIBlib-desktop-at-spi2 at-spi2-core-2.40.3

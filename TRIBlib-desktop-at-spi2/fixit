@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# not for us...
+#
+rm -fr usr/lib/systemd
+#
+# we tell it it ut things under a /usr prefix, and get ignored
+# move it back to where it lived before
+#
+mv etc usr/etc
