@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBmarkdown-python-311 Markdown-3.5.2
+${THOME}/build/pkg_pep518 TRIBmarkdown-python-311 Markdown-3.6
