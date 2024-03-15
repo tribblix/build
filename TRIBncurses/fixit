@@ -8,7 +8,5 @@ fi
 #
 # get the config file to give the correct --libs
 #
-gsed -i 's:-L\$libdir:\"-L\$libdir -R\$libdir\":' usr/gnu/bin/ncurses5-config
-gsed -i 's:-L\$libdir:\"-L\$libdir -R\$libdir\":' usr/gnu/bin/`isainfo -k`/ncurses5-config
 gsed -i 's:-L\$libdir:\"-L\$libdir -R\$libdir\":' usr/gnu/bin/ncurses6-config
 gsed -i 's:-L\$libdir:\"-L\$libdir -R\$libdir\":' usr/gnu/bin/`isainfo -k`/ncurses6-config
