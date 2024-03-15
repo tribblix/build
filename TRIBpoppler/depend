@@ -4,7 +4,9 @@ P TRIBimage-libtiff
 P TRIBlib-desktop-cairo
 P TRIBlib-glib2
 P TRIBlib-lcms2
+P TRIBlib-nspr
 P TRIBlib-openjpeg
 P TRIBlib-zlib
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
+P TRIBsys-lib-mozilla-nss
