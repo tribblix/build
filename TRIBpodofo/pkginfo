@@ -1,0 +1,4 @@
+PKG="TRIBpodofo"
+NAME="podofo"
+VERSION="0.10.3.0"
+ZAP_URL="https://github.com/podofo/podofo"
