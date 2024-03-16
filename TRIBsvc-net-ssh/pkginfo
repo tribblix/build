@@ -1,4 +1,4 @@
 PKG="TRIBsvc-net-ssh"
 NAME="SSH Server"
-VERSION="9.6.1.1"
+VERSION="9.7.1.0"
 ZAP_URL="http://www.openssh.com/portable.html"
