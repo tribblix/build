@@ -1,4 +1,4 @@
 PKG="TRIBlib-pcre2"
 NAME="Perl Compatible regular Expression Library, v2"
-VERSION="10.40.0"
+VERSION="10.43.0"
 ZAP_URL="http://www.pcre.org/"
