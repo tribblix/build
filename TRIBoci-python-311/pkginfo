@@ -1,0 +1,4 @@
+PKG="TRIBoci-python-311"
+NAME="Python oci modules and cli"
+VERSION="3.37.13.0"
+ZAP_URL="https://pypi.org/project/oci"
