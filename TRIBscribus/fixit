@@ -3,17 +3,14 @@
 # slim down the docs
 #
 rm -fr usr/share/doc/scribus/de
+rm -fr usr/share/doc/scribus/ru
 rm -fr usr/share/doc/scribus/it
+#
+# apart from having a space, this probably shouldn't be there
+#
+rm -f usr/share/scribus/icons/1_5_1_dark/22/dialog-warning\ -\ Copie.png
 #
 # there seems to be some confusion as to where these should go
 #
-cp usr/share/scribus/icons/1_5_0/zeichen.png usr/share/scribus/icons/1_5_1/zeichen.png
 cp usr/share/scribus/icons/1_5_0/screen.png usr/share/scribus/icons/1_5_1/screen.png
-cp usr/share/scribus/icons/1_5_0/ellipsis.png usr/share/scribus/icons/1_5_1/ellipsis.png
 cp usr/share/scribus/icons/1_5_0/clear_right.png usr/share/scribus/icons/1_5_1/clear_right.png
-#
-# bundle filenames with spaces
-#
-cd usr/share/scribus
-tar cf swatches.tar swatches
-rm -fr swatches

@@ -2,6 +2,7 @@ P TRIBcups
 P TRIBharfbuzz
 P TRIBhunspell
 P TRIBimage-libjpeg
+P TRIBimage-libpng
 P TRIBimage-libtiff
 P TRIBlib-desktop-cairo
 P TRIBlib-lcms2
@@ -12,8 +13,9 @@ P TRIBlibrevenge
 P TRIBlibvisio
 P TRIBlibxml2
 P TRIBlibzmf
+P TRIBpodofo
 P TRIBpoppler
 P TRIBqt5
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
-P TRIBv-python-27
+P TRIBv-python-311

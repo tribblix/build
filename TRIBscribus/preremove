@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# swatches has files whose names contain spaces, so we unpack them
-# rather than package them
-#
-cd ${BASEDIR}/usr/share/scribus
-if [ -d swatches ]; then
-  /usr/bin/rm -fr swatches
-fi

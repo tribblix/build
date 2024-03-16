@@ -1,0 +1,15 @@
+There are 2 errors here: it overrides a variable that's supposed
+to be user-defined, so the user can't fix it, and it supplies a
+value that's likely to be wrong.
+
+--- a/CMakeLists_Dependencies.cmake	Sun Jan 23 16:16:42 2022
++++ b/CMakeLists_Dependencies.cmake	Thu Dec  7 15:36:14 2023
+@@ -3,7 +3,7 @@
+ 
+ #<< Qt
+ #Qt less than 6
+-set(CMAKE_PREFIX_PATH "${QT_PREFIX}/lib/cmake")
++set(CMAKE_PREFIX_PATH "/usr/versions/Qt-5/lib/amd64/cmake")
+ set(CMAKE_INCLUDE_CURRENT_DIR ON)
+ 
+ if (NOT WANT_QT6)
