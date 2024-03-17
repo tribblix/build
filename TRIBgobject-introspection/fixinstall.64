@@ -32,8 +32,21 @@ esac
 #
 
 #
+# this is the default build subdir for mesonbuild
+#
+TBUILD="tribblix_build"
+#
 # 64-bit typelib
 #
-cp ../pango-1.44.7-64bit/build/pango/Pango*typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
-cp ../atk-2.38.0-64bit/build/atk/Atk-1.0.typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
-cp ../gdk-pixbuf-2.42.10-64bit/build/gdk-pixbuf/GdkPixbuf-2.0.typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
+cp ../harfbuzz-4.3.0-64bit/${TBUILD}/src/HarfBuzz*gir ${DESTDIR}/usr/share/gir-1.0
+cp ../harfbuzz-4.3.0-64bit/${TBUILD}/src/HarfBuzz*typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
+cp ../pango-1.50.14-64bit/${TBUILD}/pango/Pango*gir ${DESTDIR}/usr/share/gir-1.0
+cp ../pango-1.50.14-64bit/${TBUILD}/pango/Pango*typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
+cp ../atk-2.38.0-64bit/${TBUILD}/atk/Atk-1.0.gir ${DESTDIR}/usr/share/gir-1.0
+cp ../atk-2.38.0-64bit/${TBUILD}/atk/Atk-1.0.typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
+cp ../gdk-pixbuf-2.42.10-64bit/${TBUILD}/gdk-pixbuf/GdkPixbuf-2.0.gir ${DESTDIR}/usr/share/gir-1.0
+cp ../gdk-pixbuf-2.42.10-64bit/${TBUILD}/gdk-pixbuf/GdkPixbuf-2.0.typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
+cp ../gtk+-3.24.34-64bit/gdk/Gdk*gir ${DESTDIR}/usr/share/gir-1.0
+cp ../gtk+-3.24.34-64bit/gtk/Gtk-3.0.gir ${DESTDIR}/usr/share/gir-1.0
+cp ../gtk+-3.24.34-64bit/gdk/Gdk*typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
+cp ../gtk+-3.24.34-64bit/gtk/Gtk-3.0.typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0

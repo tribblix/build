@@ -17,30 +17,29 @@
 # note that if you have to update gobject-introspection you'll
 # probably have to go round the loop from scratch
 #
-env AR=/usr/bin/ar PATH=${PATH}:/usr/versions/python-3.11/bin ${THOME}/build/mesonbuild -gnu gdk-pixbuf-2.42.10 -C '-Dtests=false -Dinstalled_tests=false'
-${THOME}/build/mesonbuild atk-2.38.0
-${THOME}/build/dobuild -gnu gtk+-3.24.34 -C --disable-cups
-${THOME}/build/mesonbuild pango-1.44.7
 
 #
 # 64-bit needs extra help
 #
-mv gdk-pixbuf-2.42.10 gdk-pixbuf-2.42.10-32bit
 env CC="gcc -m64" AR=/usr/bin/ar PATH=${PATH}:/usr/versions/python-3.11/bin ${THOME}/build/mesonbuild +64 -gnu gdk-pixbuf-2.42.10 -C '-Dtests=false -Dinstalled_tests=false'
-mv gdk-pixbuf-2.42.10-32bit gdk-pixbuf-2.42.10
 #
-mv atk-2.38.0 atk-2.38.0-32bit
 env CC="gcc -m64" ${THOME}/build/mesonbuild +64 atk-2.38.0
-mv atk-2.38.0-32bit atk-2.38.0
 #
-mv pango-1.44.7 pango-1.44.7-32bit
-env CC="gcc -m64" ${THOME}/build/mesonbuild +64 pango-1.44.7
-mv pango-1.44.7-32bit pango-1.44.7
+env CC="gcc -m64" $THOME/build/mesonbuild +64 harfbuzz-4.3.0 -C "-Dglib=enabled -Dcairo=enabled -Dicu=enabled -Dfreetype=enabled -Dgraphite2=enabled"
+#
+# pango needs the harfbuzz files installed first
+#
+env CC="gcc -m64" ${THOME}/build/mesonbuild +64 pango-1.50.14
+#
+# gtk needs the atk and gdk-pixbuf files installed first
+#
+# gtk can fail to build the gir files
+# if it does, copy them from the installed system (from a prior version
+# of this package) into the relevant build directory and run gmake
+#
+env CC="gcc -m64" ${THOME}/build/dobuild +64 -gnu gtk+-3.24.34 -C --disable-cups
 
 #
-# the old version is only compatible with python2, so this makes sure
-# we not only link against python2 but put it in the shebang too
 #
-env PYTHON=/usr/bin/python2 ${THOME}/build/dobuild gobject-introspection-1.44.0
 $THOME/build/mesonbuild +64 gobject-introspection-1.72.1
-${THOME}/build/genpkg TRIBgobject-introspection gobject-introspection-1.44.0 gobject-introspection-1.72.1
+${THOME}/build/genpkg TRIBgobject-introspection gobject-introspection-1.72.1
