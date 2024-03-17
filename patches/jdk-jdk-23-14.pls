@@ -41,3 +41,4 @@
 -p1 openjdk23/sparc-bitness.patch
 -p1 openjdk23/illumos-jline.patch
 -p1 openjdk23/illumos-port-27.patch
+-p1 openjdk23/ix-TestFilesCompilation.patch

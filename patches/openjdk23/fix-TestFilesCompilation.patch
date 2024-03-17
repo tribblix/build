@@ -1,0 +1,12 @@
+--- a/make/common/TestFilesCompilation.gmk	Thu Mar 14 06:20:49 2024
++++ b/make/common/TestFilesCompilation.gmk	Sun Mar 17 15:15:24 2024
+@@ -61,7 +61,9 @@
+ 
+   ifeq ($(TOOLCHAIN_TYPE), gcc)
+     TEST_CFLAGS += -fvisibility=hidden
++   ifneq ($(OPENJDK_TARGET_OS), solaris)
+     TEST_LDFLAGS += -Wl,--exclude-libs,ALL
++   endif
+   else ifeq ($(TOOLCHAIN_TYPE), clang)
+     TEST_CFLAGS += -fvisibility=hidden
+   else ifeq ($(TOOLCHAIN_TYPE), xlc)

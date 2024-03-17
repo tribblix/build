@@ -154,7 +154,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -485,9 +485,6 @@
+@@ -455,9 +455,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_FILE_OFFSET_BITS=64"
@@ -265,7 +265,7 @@
  VALID_TOOLCHAINS_linux="gcc clang"
 -VALID_TOOLCHAINS_solaris="gcc"
  VALID_TOOLCHAINS_macosx="clang"
- VALID_TOOLCHAINS_aix="xlc clang"
+ VALID_TOOLCHAINS_aix="clang"
  VALID_TOOLCHAINS_windows="microsoft"
 --- old/make/common/MakeBase.gmk	2020-05-20 17:58:45.708647335 -0700
 +++ new/make/common/MakeBase.gmk	2020-05-20 17:58:45.324639962 -0700
@@ -317,7 +317,7 @@
            # It cannot be run separately since it updates the original target file
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -163,7 +163,6 @@
+@@ -161,7 +161,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -325,7 +325,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -173,14 +172,11 @@
+@@ -171,14 +170,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -447,7 +447,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -175,7 +172,6 @@
+@@ -172,7 +169,6 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -496,15 +496,6 @@
        LDFLAGS := $(LDFLAGS_JDKEXE), \
        OUTPUT_DIR := $(SUPPORT_OUTPUTDIR)/modules_libs/$(MODULE), \
    ))
-@@ -74,7 +73,7 @@
- 
- ################################################################################
- 
--ifeq ($(call isTargetOs, macosx solaris aix linux), true)
-+ifeq ($(call isTargetOs, macosx aix linux), true)
-   $(eval $(call SetupJdkExecutable, BUILD_JSPAWNHELPER, \
-       NAME := jspawnhelper, \
-       SRC := $(TOPDIR)/src/$(MODULE)/unix/native/jspawnhelper, \
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
 @@ -56,7 +56,6 @@
@@ -515,7 +506,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_windows := ws2_32.lib jvm.lib secur32.lib iphlpapi.lib winhttp.lib \
          delayimp.lib $(WIN_JAVA_LIB) advapi32.lib, \
-@@ -83,8 +82,6 @@
+@@ -82,8 +81,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := -ljava -lnet, \
      LIBS_linux := -lpthread $(LIBDL), \
@@ -524,7 +515,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation -framework CoreServices, \
-@@ -137,7 +134,6 @@
+@@ -136,7 +133,6 @@
          LDFLAGS := $(LDFLAGS_JDKLIB) \
              $(call SET_SHARED_LIBRARY_ORIGIN), \
          LIBS_linux := $(LIBDL), \
@@ -567,7 +558,7 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBVERIFY_OPTIMIZATION := LOW
    endif
-@@ -66,7 +66,6 @@
+@@ -65,7 +65,6 @@
      LDFLAGS_macosx := -L$(SUPPORT_OUTPUTDIR)/native/$(MODULE)/, \
      LIBS_unix := -ljvm, \
      LIBS_linux := $(LIBDL), \
@@ -575,7 +566,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -181,7 +180,6 @@
+@@ -180,7 +179,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -633,7 +624,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -421,7 +420,6 @@
+@@ -420,7 +419,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -641,7 +632,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -480,7 +478,7 @@
+@@ -479,7 +477,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -650,7 +641,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -656,10 +654,7 @@
+@@ -646,10 +644,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -662,7 +653,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -686,7 +681,6 @@
+@@ -676,7 +671,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -892,7 +883,7 @@
    BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libMonitorWithDeadObjectTest.c libTestPsig.c exeGetCreatedJavaVMs.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -107,9 +107,6 @@
+@@ -92,9 +92,6 @@
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1548,7 +1539,7 @@
   * the special device files /dev/random and /dev/urandom.  This
 --- old/src/java.base/unix/native/libjava/ProcessHandleImpl_unix.c	2020-05-20 18:01:07.167363445 -0700
 +++ new/src/java.base/unix/native/libjava/ProcessHandleImpl_unix.c	2020-05-20 18:01:06.779355995 -0700
-@@ -45,16 +45,8 @@
+@@ -44,16 +44,8 @@
  #include <sys/stat.h>
  #include <sys/wait.h>
  
@@ -1565,7 +1556,7 @@
  #if defined(_AIX)
    #include <sys/procfs.h>
  #endif
-@@ -131,18 +123,13 @@
+@@ -130,18 +122,13 @@
  #define WTERMSIG(status) ((status)&0x7F)
  #endif
  
@@ -1582,10 +1573,10 @@
 + */
  #define WTERMSIG_RETURN(status) (WTERMSIG(status) + 0x80)
 -#endif
- 
- #define RESTARTABLE(_cmd, _result) do { \
-   do { \
-@@ -496,7 +483,7 @@
+
+ /* Field id for jString 'command' in java.lang.ProcessHandleImpl.Info */
+ jfieldID ProcessHandleImpl_Info_commandID;
+@@ -482,7 +469,7 @@
   * The following functions are for Linux
   */
  
@@ -1594,7 +1585,7 @@
  
  /*
   * Return pids of active processes, and optionally parent pids and
-@@ -625,13 +612,13 @@
+@@ -611,13 +598,13 @@
      return count;
  }
  
@@ -1611,7 +1602,7 @@
  
  /**
   * Helper function to get the 'psinfo_t' data from "/proc/%d/psinfo".
-@@ -695,19 +682,6 @@
+@@ -681,19 +668,6 @@
      int ret;
  
      /*
@@ -1631,7 +1622,7 @@
       * Now try to open /proc/%d/psinfo
       */
      if (getPsinfo(pid, &psinfo) < 0) {
-@@ -736,4 +710,4 @@
+@@ -722,4 +696,4 @@
                        prargs[0] == '\0' ? NULL : prargs);
  }
  
@@ -1695,10 +1686,10 @@
 -#endif
  
  #include "jvm.h"
- #include "TimeZone_md.h"
-@@ -53,11 +50,9 @@
-   } while((_result == -1) && (errno == EINTR)); \
- } while(0)
+ #include "jni_util.h"
+@@ -46,11 +43,9 @@
+ 
+ static char *isFileIdentical(char* buf, size_t size, char *pathname);
  
 -#if !defined(__solaris__) || defined(__sparcv9) || defined(amd64)
  #define fileopen        fopen
@@ -1708,7 +1699,7 @@
  
  #if defined(__linux__) || defined(_ALLBSD_SOURCE)
  static const char *ETC_TIMEZONE_FILE = "/etc/timezone";
-@@ -75,7 +70,7 @@
+@@ -68,7 +63,7 @@
  static const char *ETC_ENVIRONMENT_FILE = "/etc/environment";
  #endif
  
@@ -1717,7 +1708,7 @@
  
  /*
   * remove repeated path separators ('/') in the given 'path'.
-@@ -185,13 +180,6 @@
+@@ -178,13 +173,6 @@
           */
          if ((strcmp(dp->d_name, "ROC") == 0)
              || (strcmp(dp->d_name, "posixrules") == 0)
@@ -1731,7 +1722,7 @@
              || (strcmp(dp->d_name, "localtime") == 0)) {
              continue;
          }
-@@ -263,8 +251,6 @@
+@@ -256,8 +244,6 @@
      return possibleMatch;
  }
  
@@ -1740,7 +1731,7 @@
  /*
   * Performs Linux specific mapping and returns a zone ID
   * if found. Otherwise, NULL is returned.
-@@ -376,183 +362,6 @@
+@@ -369,183 +355,6 @@
      return tz;
  }
  
@@ -1776,7 +1767,7 @@
 -            }
 -            if (strncmp(p, "TZ=", 3) == 0) {
 -                p += 3;
--                SKIP_SPACE(p);
+-                while (*p == ' ' || *p == '\t') p++;
 -                c = *p;
 -                if (c == '"' || c == '\'') {
 -                    quote = c;
@@ -1924,7 +1915,7 @@
  #elif defined(_AIX)
  
  static char *
-@@ -718,15 +527,6 @@
+@@ -711,15 +520,6 @@
              free((void *) freetz);
          }
  #else
@@ -2618,7 +2609,7 @@
    #if !defined(AF_INET_SDP)
      #define AF_INET_SDP     27
    #endif
-@@ -55,10 +51,7 @@
+@@ -48,10 +44,7 @@
  {
      int s;
  
@@ -3112,7 +3103,7 @@
  #else
 --- old/src/java.base/unix/native/libnio/ch/nio_util.h	2020-05-20 18:01:36.115919279 -0700
 +++ new/src/java.base/unix/native/libnio/ch/nio_util.h	2020-05-20 18:01:35.695911215 -0700
-@@ -41,8 +41,6 @@
+@@ -35,8 +35,6 @@
  #ifndef SO_REUSEPORT
  #ifdef __linux__
  #define SO_REUSEPORT 15
@@ -3142,7 +3133,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -360,8 +353,7 @@
+@@ -348,8 +341,7 @@
  
      /* system calls that might not be available at run time */
  

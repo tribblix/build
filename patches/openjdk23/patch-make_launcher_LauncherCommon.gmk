@@ -13,4 +13,4 @@ Support for SunOS/gcc.
 + endif
  else ifeq ($(TOOLCHAIN_TYPE), clang)
    LAUNCHER_CFLAGS += -fvisibility=hidden
- else ifeq ($(TOOLCHAIN_TYPE), xlc)
+ endif

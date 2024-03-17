@@ -31,11 +31,11 @@ Support for SunOS/gcc.
  
        # arm specific settings
        if test "x$OPENJDK_TARGET_CPU" = "xarm"; then
-@@ -547,6 +556,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
+@@ -511,6 +521,7 @@ AC_DEFUN([FLAGS_SETUP_CFLAGS_HELPER],
  
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE -D_REENTRANT"
 +    ALWAYS_DEFINES_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
    elif test "x$TOOLCHAIN_TYPE" = xclang; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE"
-   elif test "x$TOOLCHAIN_TYPE" = xxlc; then
+   elif test "x$TOOLCHAIN_TYPE" = xmicrosoft; then

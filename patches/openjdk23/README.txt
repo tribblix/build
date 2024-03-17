@@ -14,6 +14,21 @@ loom correctly as they date back to that change.
 Cleanup: reduce gratuitous formatting differences between our
 attachListener_solaris.cpp and other platforms, without changing any code
 
+23+14
+
+A little bit of patch cleanup needed due to removal of the xlc toolchain.
+
+More use of "isTargetOsType" rather than enumerating the
+OS variants individually, which actually helps solaris.
+
+Some removals of local RESTARTABLE definition which moves the lines around.
+
+SKIP_SPACE was removed in src/java.base/unix/native/libjava/TimeZone_md.c,
+just inline it.
+
+Another gnuism of --exclude-libs in make/common/TestFilesCompilation.gmk
+to hide, see fix-TestFilesCompilation.patch
+
 23+13
 
 More work on make/autoconf/flags-cflags.m4, need to make sure that the
