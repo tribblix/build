@@ -1,4 +1,4 @@
 PKG="TRIBlibpeas"
 NAME="Libpeas - GObject Plugin System"
-VERSION="1.26.0.1"
+VERSION="1.36.0.0"
 ZAP_URL="https://wiki.gnome.org/Projects/Libpeas"
