@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBjson5-python-311 json5-0.9.22
+${THOME}/build/pkg_pep518 TRIBjson5-python-311 json5-0.9.24
