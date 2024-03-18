@@ -1,4 +1,4 @@
 PKG="TRIBxfce-datetime-plugin"
 NAME="Xfce DateTime Panel Plugin"
-VERSION="0.8.3.0"
+VERSION="0.8.3.1"
 ZAP_URL="https://docs.xfce.org/panel-plugins/xfce4-datetime-plugin/start"
