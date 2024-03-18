@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-env TRIBBLIX_LDFLAGS=-lkstat ${THOME}/build/dobuild -gnu xfce4-systemload-plugin-1.3.1
+# 1.3.2 needs a newer Xfce
+#
+env TRIBBLIX_LDFLAGS=-lkstat ${THOME}/build/dobuild -64 -gnu xfce4-systemload-plugin-1.3.1
 ${THOME}/build/genpkg TRIBxfce-systemload-plugin xfce4-systemload-plugin-1.3.1
