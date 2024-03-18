@@ -1,4 +1,4 @@
 PKG="TRIBlib-glib2"
 NAME="GNOME glib2"
-VERSION="2.62.6.0"
+VERSION="2.64.6.0"
 ZAP_URL="https://download.gnome.org/sources/glib/"
