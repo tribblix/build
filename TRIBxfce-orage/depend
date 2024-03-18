@@ -3,6 +3,7 @@ P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
+P TRIBlibical
 P TRIBlibnotify
 P TRIBsys-libdbus
 P TRIBsys-libdbus-glib
