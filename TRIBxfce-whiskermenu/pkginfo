@@ -1,4 +1,4 @@
 PKG="TRIBxfce-whiskermenu"
 NAME="Xfce Whisker Menu"
-VERSION="2.8.3.0"
+VERSION="2.8.3.1"
 ZAP_URL="https://docs.xfce.org/panel-plugins/xfce4-whiskermenu-plugin"
