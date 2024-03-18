@@ -1,4 +1,4 @@
 PKG="TRIBxfce-clipman-plugin"
 NAME="Xfce Clipboard Manager Plugin"
-VERSION="1.6.6.0"
+VERSION="1.6.6.1"
 ZAP_URL="https://docs.xfce.org/panel-plugins/xfce4-clipman-plugin/start"
