@@ -1,0 +1,25 @@
+#!/bin/sh
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+#
+# 64-bit binaries by default
+#
+mv usr/bin/${ARCH64}/* usr/bin
+rmdir usr/bin/${ARCH64}
+#
+# for binary compatibility, ship the 1.3.4 libs
+#
+cp -p /usr/lib/libhunspell-1.3.so.0.0.0 usr/lib
+cp -p /usr/lib/${ARCH64}/libhunspell-1.3.so.0.0.0 usr/lib/${ARCH64}
+cd usr/lib
+ln -s libhunspell-1.3.so.0.0.0 libhunspell-1.3.so.0
+ln -s libhunspell-1.3.so.0.0.0 libhunspell-1.3.so
+cd ${ARCH64}
+ln -s libhunspell-1.3.so.0.0.0 libhunspell-1.3.so.0
+ln -s libhunspell-1.3.so.0.0.0 libhunspell-1.3.so
