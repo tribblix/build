@@ -8,7 +8,5 @@
 # if you need the old one to build gtk2 applications, you need to
 # install package version 0.5.2.0 explicitly
 #
-# after 0.7.7 the build switched to meson
-#
-${THOME}/build/dobuild -64 libnotify-0.7.7 -C --disable-introspection
-${THOME}/build/genpkg TRIBlibnotify libnotify-0.7.7
+${THOME}/build/mesonbuild -64only libnotify-0.7.12 -C "-Dintrospection=disabled -Dman=false -Dgtk_doc=false"
+${THOME}/build/genpkg TRIBlibnotify libnotify-0.7.12
