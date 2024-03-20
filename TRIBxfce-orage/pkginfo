@@ -1,4 +1,4 @@
 PKG="TRIBxfce-orage"
 NAME="Xfce Orage calendar"
-VERSION="4.16.0.2"
+VERSION="4.16.0.3"
 ZAP_URL="https://archive.xfce.org/src/apps/orage/"
