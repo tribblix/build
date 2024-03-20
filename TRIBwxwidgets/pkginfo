@@ -1,4 +1,0 @@
-PKG="TRIBwxwidgets"
-NAME="wxWidgets Cross-Platform GUI Library"
-VERSION="3.1.5.0"
-ZAP_URL="https://www.wxwidgets.org/"
