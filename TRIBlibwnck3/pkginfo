@@ -1,4 +1,4 @@
 PKG="TRIBlibwnck3"
 NAME="GNOME libwnck 3"
-VERSION="3.24.1.0"
+VERSION="3.30.0.0"
 ZAP_URL="https://download.gnome.org/sources/libwnck/"
