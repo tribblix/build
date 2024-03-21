@@ -11,4 +11,4 @@
 # paramiko *or* pexpect for ssh
 # requests is used by multiple backends
 #
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/pkg_setup_py TRIBduplicity-python-311 duplicity-2.2.2
+env PATH=/usr/gnu/bin:$PATH ${THOME}/build/pkg_setup_py TRIBduplicity-python-311 duplicity-2.2.3
