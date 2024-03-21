@@ -1,4 +1,4 @@
 PKG="TRIBlibzmf"
 NAME="Library for reading Zoner Callisto/Draw documents"
-VERSION="0.0.2.1"
+VERSION="0.0.2.2"
 ZAP_URL="https://wiki.documentfoundation.org/DLP/Libraries/libzmf"
