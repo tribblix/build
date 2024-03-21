@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# we use less to provide /usr/xpg4/bin/more, as that's really what
+# less is, and the xpg4 more is a closed binary
+#
+mkdir -p usr/xpg4/bin
+ln -s ../../../usr/bin/less usr/xpg4/bin/more
