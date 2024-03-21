@@ -1,2 +1,0 @@
-#!/bin/sh
-gsed -i 's=pow(2,=std::pow(2,=' src/lib/VSDMetaData.cpp
