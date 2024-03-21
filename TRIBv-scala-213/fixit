@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-VERSION=2.13.12
+VERSION=2.13.13
 mkdir -p usr/bin
 ln -s ../../usr/versions/scala-${VERSION}/bin/scala usr/bin/
 ln -s ../../usr/versions/scala-${VERSION}/bin/scalap usr/bin/
