@@ -4,3 +4,7 @@ rm -f usr/share/doc/stunnel/stunnel.pl.html
 rm -f usr/lib/stunnel/libstunnel.la
 rm -f usr/lib/*/stunnel/libstunnel.la
 rm -f usr/bin/stunnel3
+rm -f usr/share/doc/stunnel/INSTALL.*
+rm -f usr/share/doc/stunnel/examples/stunnel.rh.init
+rm -f usr/share/doc/stunnel/examples/stunnel.service
+rm -f usr/share/doc/stunnel/examples/stunnel.spec
