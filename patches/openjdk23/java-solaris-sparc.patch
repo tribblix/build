@@ -317,15 +317,15 @@
            # It cannot be run separately since it updates the original target file
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -161,7 +161,6 @@
+@@ -147,7 +147,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
 -      CFLAGS_solaris := -fPIC, \
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
-       LDFLAGS := $$(LDFLAGS_JDKEXE) \
-@@ -171,14 +170,11 @@
+       LDFLAGS := $$($1_LDFLAGS), \
+@@ -155,14 +154,11 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
@@ -452,9 +452,9 @@
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
 -    EXTRA_OBJECT_FILES := $(DTRACE_EXTRA_OBJECT_FILES), \
+     DEFAULT_CFLAGS := false, \
      CFLAGS := $(JVM_CFLAGS), \
      abstract_vm_version.cpp_CXXFLAGS := $(CFLAGS_VM_VERSION), \
-     arguments.cpp_CXXFLAGS := $(CFLAGS_VM_VERSION), \
 --- old/make/hotspot/lib/CompileLibraries.gmk	2020-05-20 17:58:58.224887656 -0700
 +++ new/make/hotspot/lib/CompileLibraries.gmk	2020-05-20 17:58:57.836880206 -0700
 @@ -32,7 +32,6 @@
@@ -486,19 +486,9 @@
    $(eval $(call SetupCopyFiles, COPY_SDP_CONF, \
        FILES := $(TOPDIR)/src/java.base/$(OPENJDK_TARGET_OS_TYPE)/conf/sdp/sdp.conf.template, \
        DEST := $(CONF_DST_DIR)/sdp, \
---- old/make/modules/java.base/Launcher.gmk	2020-05-20 17:59:09.001094567 -0700
-+++ new/make/modules/java.base/Launcher.gmk	2020-05-20 17:59:08.617087194 -0700
-@@ -64,7 +64,6 @@
-       CFLAGS := $(CFLAGS_JDKEXE) \
-           -I$(TOPDIR)/src/$(MODULE)/share/native/libjli, \
-       CFLAGS_linux := -fPIC, \
--      CFLAGS_solaris := -KPIC, \
-       LDFLAGS := $(LDFLAGS_JDKEXE), \
-       OUTPUT_DIR := $(SUPPORT_OUTPUTDIR)/modules_libs/$(MODULE), \
-   ))
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
-@@ -56,7 +56,6 @@
+@@ -53,7 +53,6 @@
          -delayload:winhttp.dll, \
      LIBS_unix := -ljvm -ljava, \
      LIBS_linux := $(LIBDL), \
@@ -506,18 +496,17 @@
      LIBS_aix := $(LIBDL),\
      LIBS_windows := ws2_32.lib jvm.lib secur32.lib iphlpapi.lib winhttp.lib \
          delayimp.lib $(WIN_JAVA_LIB) advapi32.lib, \
-@@ -82,8 +81,6 @@
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -76,7 +75,6 @@
+         libnet, \
      LIBS_unix := -ljava -lnet, \
      LIBS_linux := -lpthread $(LIBDL), \
--    LIBS_solaris := -ljvm -lsocket -lposix4 $(LIBDL) \
--        -lsendfile, \
+-    LIBS_solaris := -ljvm -lsocket -lposix4 $(LIBDL) -lsendfile, \
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation -framework CoreServices, \
-@@ -136,7 +133,6 @@
-         LDFLAGS := $(LDFLAGS_JDKLIB) \
-             $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -124,7 +121,6 @@
+         OPTIMIZATION := LOW, \
+         jsig.c_CFLAGS := -DHOTSPOT_VM_DISTRO='"$(HOTSPOT_VM_DISTRO)"', \
          LIBS_linux := $(LIBDL), \
 -        LIBS_solaris := $(LIBDL), \
          LIBS_aix := $(LIBDL), \
@@ -558,7 +547,7 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBVERIFY_OPTIMIZATION := LOW
    endif
-@@ -65,7 +65,6 @@
+@@ -58,7 +58,6 @@
      LDFLAGS_macosx := -L$(SUPPORT_OUTPUTDIR)/native/$(MODULE)/, \
      LIBS_unix := -ljvm, \
      LIBS_linux := $(LIBDL), \
@@ -566,8 +555,8 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -180,7 +179,6 @@
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -165,7 +164,6 @@
+     DISABLED_WARNINGS_clang := format-nonliteral deprecated-non-prototype, \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
 -    LIBS_solaris := $(LIBDL), \
@@ -607,7 +596,7 @@
      LIBJSOUND_LINK_TYPE := C++
 --- old/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
 +++ new/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
-@@ -77,7 +77,7 @@
+@@ -74,7 +74,7 @@
        #
  endif
  
@@ -616,7 +605,7 @@
    LIBAWT_EXFILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -155,7 +155,6 @@
+@@ -151,7 +151,6 @@
          -delayload:comctl32.dll -delayload:shlwapi.dll, \
      LIBS_unix := -ljvm -ljava $(LIBM), \
      LIBS_linux :=  $(LIBDL), \
@@ -624,7 +613,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -420,7 +419,6 @@
+@@ -404,7 +403,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -632,7 +621,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -479,7 +477,7 @@
+@@ -460,7 +458,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -641,7 +630,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -646,10 +644,7 @@
+@@ -624,10 +622,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -653,7 +642,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -676,7 +671,6 @@
+@@ -651,7 +646,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -663,9 +652,9 @@
  
 --- old/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.469237961 -0700
 +++ new/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.081230511 -0700
-@@ -44,13 +44,11 @@
-         $(call SET_SHARED_LIBRARY_ORIGIN) \
-         $(LIBINSTRUMENT_LDFLAGS), \
+@@ -41,13 +41,11 @@
+     CFLAGS_release := -DNO_JPLIS_LOGGING, \
+     EXTRA_HEADER_DIRS := java.base:libjli, \
      LDFLAGS_linux := -L$(call FindLibDirForModule, java.base), \
 -    LDFLAGS_solaris := -L$(call FindLibDirForModule, java.base), \
      LDFLAGS_macosx := -L$(call FindLibDirForModule, java.base), \
@@ -688,9 +677,9 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBMANAGEMENT_OPTIMIZATION := LOW
    endif
-@@ -41,7 +41,6 @@
-     LDFLAGS := $(LDFLAGS_JDKLIB) \
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -38,7 +38,6 @@
+     NAME := management, \
+     OPTIMIZATION := $(LIBMANAGEMENT_OPTIMIZATION), \
      LIBS := $(JDKLIB_LIBS), \
 -    LIBS_solaris := -lkstat, \
      LIBS_aix := -lperfstat,\
@@ -698,8 +687,8 @@
  ))
 --- old/make/modules/java.prefs/Lib.gmk	2020-05-20 17:59:18.521277362 -0700
 +++ new/make/modules/java.prefs/Lib.gmk	2020-05-20 17:59:18.141270065 -0700
-@@ -41,7 +41,6 @@
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -38,7 +38,6 @@
+     OPTIMIZATION := HIGH, \
      LIBS_unix := -ljvm, \
      LIBS_linux := -ljava, \
 -    LIBS_solaris := -ljava, \
@@ -708,9 +697,9 @@
      LIBS_windows := advapi32.lib jvm.lib $(WIN_JAVA_LIB), \
 --- old/make/modules/jdk.attach/Lib.gmk	2020-05-20 17:59:20.593317146 -0700
 +++ new/make/modules/jdk.attach/Lib.gmk	2020-05-20 17:59:20.209309773 -0700
-@@ -42,7 +42,6 @@
-     LDFLAGS := $(LDFLAGS_JDKLIB) \
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -40,7 +40,6 @@
+     CFLAGS := $(LIBATTACH_CFLAGS), \
+     CFLAGS_windows := /Gy, \
      LIBS := $(JDKLIB_LIBS), \
 -    LIBS_solaris := -ldoor, \
      LIBS_windows := $(WIN_JAVA_LIB) advapi32.lib psapi.lib, \
@@ -718,13 +707,8 @@
  
 --- old/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.653337499 -0700
 +++ new/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.257329896 -0700
-@@ -65,11 +65,10 @@
-     CFLAGS := $(CFLAGS_JDKLIB) $(SA_CFLAGS), \
-     CXXFLAGS := $(CXXFLAGS_JDKLIB) $(SA_CFLAGS) $(SA_CXXFLAGS), \
+@@ -67,7 +67,6 @@
      EXTRA_SRC := $(LIBSA_EXTRA_SRC), \
--    LDFLAGS := $(LDFLAGS_JDKLIB) $(SA_LDFLAGS) $(call SET_SHARED_LIBRARY_ORIGIN), \
-+    LDFLAGS := $(LDFLAGS_JDKLIB) $(call SET_SHARED_LIBRARY_ORIGIN), \
-     LIBS := $(LIBCXX), \
      LIBS_unix := -ljava, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -ldl -lstdc++ -lthread -lproc, \
@@ -733,16 +717,16 @@
      LIBS_windows := dbgeng.lib $(WIN_JAVA_LIB), \
 --- old/make/modules/jdk.jdwp.agent/Lib.gmk	2020-05-20 17:59:23.709376977 -0700
 +++ new/make/modules/jdk.jdwp.agent/Lib.gmk	2020-05-20 17:59:23.321369527 -0700
-@@ -38,7 +38,6 @@
-     LDFLAGS := $(LDFLAGS_JDKLIB) \
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -35,7 +35,6 @@
+         include \
+         libjdwp/export, \
      LIBS_linux := -lpthread, \
 -    LIBS_solaris := -lnsl -lsocket, \
      LIBS_windows := $(JDKLIB_LIBS) ws2_32.lib iphlpapi.lib, \
  ))
  
-@@ -66,7 +65,6 @@
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -61,7 +60,6 @@
+       libjdwp/export, \
      LIBS := $(JDKLIB_LIBS), \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := $(LIBDL), \
@@ -760,9 +744,9 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBMANAGEMENT_EXT_OPTIMIZATION := LOW
    endif
-@@ -49,7 +49,6 @@
-     LDFLAGS := $(LDFLAGS_JDKLIB) \
-         $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -47,7 +47,6 @@
+     DISABLED_WARNINGS_clang_UnixOperatingSystem.c := format-nonliteral, \
+     CFLAGS := $(CFLAGS_JDKLIB) $(LIBMANAGEMENT_EXT_CFLAGS), \
      LIBS := $(JDKLIB_LIBS), \
 -    LIBS_solaris := -lkstat, \
      LIBS_aix := -lperfstat,\
@@ -770,9 +754,9 @@
  ))
 --- old/make/modules/jdk.net/Lib.gmk	2020-05-20 17:59:25.877418605 -0700
 +++ new/make/modules/jdk.net/Lib.gmk	2020-05-20 17:59:25.493411232 -0700
-@@ -36,7 +36,6 @@
-       LDFLAGS := $(LDFLAGS_JDKLIB) \
-           $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -33,7 +33,6 @@
+       NAME := extnet, \
+       OPTIMIZATION := LOW, \
        LIBS_unix := -ljava, \
 -      LIBS_solaris := -lsocket, \
        LIBS_linux := -ljvm, \
@@ -780,8 +764,8 @@
    ))
 --- old/make/modules/jdk.sctp/Lib.gmk	2020-05-20 17:59:26.921438651 -0700
 +++ new/make/modules/jdk.sctp/Lib.gmk	2020-05-20 17:59:26.541431354 -0700
-@@ -42,7 +42,6 @@
-             $(call SET_SHARED_LIBRARY_ORIGIN), \
+@@ -39,7 +39,6 @@
+             java.base:libnio/ch, \
          LIBS_unix := -lnio -lnet -ljava -ljvm, \
          LIBS_linux := -lpthread $(LIBDL), \
 -        LIBS_solaris := -lsocket, \
@@ -1657,7 +1641,7 @@
  }
  
  static const char*
-@@ -450,7 +443,7 @@
+@@ -454,7 +447,7 @@
  #endif
  
  /* vfork(2) is deprecated on Darwin */
@@ -1666,7 +1650,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -603,7 +596,7 @@
+@@ -609,7 +602,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -4255,17 +4239,6 @@
          sctpHandleSocketError(env, errno);
          return NULL;
      }
---- old/src/jdk.security.auth/share/classes/com/sun/security/auth/module/Krb5LoginModule.java	2020-05-20 18:03:42.730350368 -0700
-+++ new/src/jdk.security.auth/share/classes/com/sun/security/auth/module/Krb5LoginModule.java	2020-05-20 18:03:42.338342841 -0700
-@@ -104,7 +104,7 @@
-  * to false if you do not want this module to use the ticket cache.
-  * (Default is False).
-  * This module will search for the ticket
-- * cache in the following locations: On Solaris and Linux
-+ * cache in the following locations: On Linux
-  * it will look for the ticket cache in /tmp/krb5cc_{@code uid}
-  * where the uid is numeric user identifier. If the ticket cache is
-  * not available in the above location, or if we are on a
 --- old/src/jdk.security.auth/unix/native/libjaas/Unix.c	2020-05-20 18:03:43.842371720 -0700
 +++ new/src/jdk.security.auth/unix/native/libjaas/Unix.c	2020-05-20 18:03:43.450364193 -0700
 @@ -32,10 +32,6 @@

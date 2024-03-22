@@ -11,6 +11,20 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+15
+
+Significant rework of the Makefiles.
+
+Remove the Launcher.gmk patch as it was guarded by a linux check,
+delivering jexec which we don't
+
+Remove patch-make_launcher_LauncherCommon.gmk,
+patch-make_lib_LibCommon.gmk, and fix-TestFilesCompilation.patch as the
+code being patched no longer exists
+
+The rework benefits us because we only have to patch out the incorrect
+--exclude-libs usage in one place
+
 Cleanup: reduce gratuitous formatting differences between our
 attachListener_solaris.cpp and other platforms, without changing any code
 
