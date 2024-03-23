@@ -1,4 +1,4 @@
 PKG="TRIBdjview"
 NAME="DjView4 viewer for DjVuLibre"
-VERSION="4.12.0"
+VERSION="4.12.1"
 ZAP_URL="http://djvu.sourceforge.net/djview4.html"
