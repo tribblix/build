@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-rm -f usr/versions/pmd-bin-7.0.0-rc4/bin/pmd.bat
+rm -f usr/versions/pmd-bin-7.0.0/bin/pmd.bat
 mkdir -p usr/bin
 # must be an absolute path
-ln -s /usr/versions/pmd-bin-7.0.0-rc4/bin/pmd usr/bin/pmd
+ln -s /usr/versions/pmd-bin-7.0.0/bin/pmd usr/bin/pmd
