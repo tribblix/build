@@ -1,4 +1,4 @@
 PKG="TRIBx11-xedit"
 NAME="xedit"
-VERSION="1.2.3.0"
+VERSION="1.2.4.0"
 ZAP_URL="https://www.x.org/releases/individual/app/"
