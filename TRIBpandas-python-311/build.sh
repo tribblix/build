@@ -6,11 +6,16 @@
 # plot[*]: matplotlib[*]
 # output-formatting[*]: jinja2[*],tabulate[*]
 # computation[*]: scipy[*],xarray[*]
-# excel[*]: odfpy[*],xlrd[*],xlsxwriter[*],openpyxl[*],pyxlsb[*]
+# excel[*]: odfpy[*],xlrd[*],xlsxwriter[*],openpyxl[*],pyxlsb[*],calamine
 # html[*]: BeautifulSoup4[*],html5lib[*],lxml[*]
 # xml[*]: lxml[*]
 # compression[*]: zstandard[*]
-# databases: SQLAlchemy[*],psycopg2[*],pymysql
+# postgresql: SQLAlchemy[*],psycopg2[*],adbc-driver-postgresql
+# mysql: SQLAlchemy[*],pymysql
+# sql-other: SQLAlchemy[*],adbc-driver-postgresql,adbc-driver-sqlite
+# pyarrow,feather,parquet: pyarrow
+#
+# note that calamine requires rust
 #
 # a pep518 build requires -N == --no-build-isolation otherwise it tries
 # to build its own numpy, which would fail as it doesn't have the
@@ -22,4 +27,4 @@
 # PATH so it can find the cython executable
 # Need to pass -m64 down to meson
 #
-env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBpandas-python-311 pandas-2.1.4
+env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBpandas-python-311 pandas-2.2.1
