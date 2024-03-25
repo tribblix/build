@@ -1,5 +1,5 @@
 On sparc, we're downrev as the newer cryptography module versions
-require a rust toolchain whcih we don't have.
+require a rust toolchain which we don't have.
 
 This means we have to patch out FIPS_mode_set FIPS_mode ERR_GET_FUNC
 which don't exist in openssl3.

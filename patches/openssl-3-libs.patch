@@ -6,7 +6,7 @@ libraries are libdl.so & libpthread.so
 There's no specific problem with an application or library linking with these
 (just a slight overhead) but when a library is used by a component within
 illumos-omnios, a check is made which generates a warning if an
-unecessary library is linked.
+unnecessary library is linked.
 
 Openssl is one of the libraries used by illumos-omnios and therefore we
 patch the configuration script to stop linking against these two libraries.
