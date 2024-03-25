@@ -123,8 +123,8 @@ fi
 #
 # find any dependencies that aren't handled by prerequisite overlays
 #
-POVL=$(awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' base.ovl "${OVL}.ovl")
-cat base.pkgs >> ${TMPF}.p
+POVL=$(awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' "${OVL}.ovl")
+cat core-tribblix.pkgs >> ${TMPF}.p
 if [ -n "$POVL" ]; then
   cat ${POVL//.ovl/.pkgs} >> ${TMPF}.p
   PPOVL=$(awk -F= '{if ($1 == "REQUIRES") print $2".ovl"}' ${POVL})
