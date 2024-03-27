@@ -39,9 +39,9 @@
 # but I've found that doesn't work
 #
 # This will create a tarball
-#   palemoon-33.0.1.solaris2.11-x86_64-illumos.tar.xz
+#   palemoon-33.0.2.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-33.0.1.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-33.0.2.solaris2.11-x86_64-illumos
