@@ -11,6 +11,19 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+16
+
+Much more mucking around with Makefiles.
+
+Centralization of breakpoint()
+
+The patch for make/modules/jdk.net/Lib.gmk was broken and unnecessary,
+as the Solaris libextnet was removed back in jdk15. It was unnecessary
+because there was a guard that prevented it being built on Solaris,
+That guard has been removed, and that causes the build to fail because
+there isn't a Solaris libextnet. So reinstate a guard to prevent
+libextnet being built on Solaris.
+
 23+15
 
 Significant rework of the Makefiles.

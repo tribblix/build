@@ -815,14 +815,3 @@
 +                                 errno);
 +    env->Throw((jthrowable) exc);
 +}
---- a/make/modules/jdk.internal.le/Lib.gmk	Tue May 23 22:32:28 2023
-+++ b/make/modules/jdk.internal.le/Lib.gmk	Fri Jun  2 11:33:06 2023
-@@ -27,7 +27,7 @@
- 
- ################################################################################
- 
--ifeq ($(call isTargetOs, linux macosx windows), true)
-+ifeq ($(call isTargetOs, linux macosx solaris windows), true)
- 
-   $(eval $(call SetupJdkLibrary, BUILD_LIBLE, \
-       NAME := le, \
