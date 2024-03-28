@@ -2,8 +2,8 @@
 #
 # need to have the matching Xorg server that you're building for installed
 #
-$THOME/build/unpack xf86-video-nv-2.1.21
-cd xf86-video-nv-2.1.21
+$THOME/build/unpack xf86-video-nv-2.1.23
+cd xf86-video-nv-2.1.23
 env PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig \
 ./configure --prefix=/usr \
 --with-xorg-module-dir=/usr/lib/xorg/modules/amd64 \
@@ -14,4 +14,4 @@ CXXFLAGS="-m64 -O2"
 gmake -j
 cd ..
 
-${THOME}/build/genpkg TRIBxorg-driver-video-nv xf86-video-nv-2.1.21
+${THOME}/build/genpkg TRIBxorg-driver-video-nv xf86-video-nv-2.1.23
