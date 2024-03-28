@@ -1754,21 +1754,13 @@
     identifiers matching a C constant. The PREFIX_ is filtered out in the
 --- old/src/java.base/share/conf/security/java.security	2020-05-20 18:00:54.519120590 -0700
 +++ new/src/java.base/share/conf/security/java.security	2020-05-20 18:00:54.183114138 -0700
-@@ -63,9 +63,6 @@
- #
- # List of providers and their preference orders (see above):
- #
--#ifdef solaris
--security.provider.tbd=SunPKCS11 ${java.home}/conf/security/sunpkcs11-solaris.cfg
--#endif
- security.provider.tbd=SUN
- security.provider.tbd=SunRsaSign
- security.provider.tbd=SunEC
-@@ -83,9 +80,7 @@
+@@ -80,11 +80,7 @@
  #ifdef macosx
  security.provider.tbd=Apple
  #endif
--#ifndef solaris
+-#ifdef solaris
+-security.provider.tbd=SunPKCS11 ${java.home}/conf/security/sunpkcs11-solaris.cfg
+-#else
  security.provider.tbd=SunPKCS11
 -#endif
  
