@@ -1,4 +1,4 @@
 PKG="TRIBlib-desktop-pangomm"
 NAME="Pango C++ bindings"
-VERSION="2.42.2.0"
+VERSION="2.46.4.0"
 ZAP_URL="https://download.gnome.org/sources/pangomm/"
