@@ -12,6 +12,15 @@ rm -f usr/share/man/man6/fireworkx.6
 rm -f usr/share/xscreensaver/config/fireworkx.xml
 
 #
+# mapscroller requires perl modules that we either don't install by
+# default, or ship at all
+#
+rm -f usr/libexec/xscreensaver/mapscroller
+rm -f usr/libexec/xscreensaver/mapscroller.pl
+rm -f usr/share/man/man6/mapscroller.6
+rm -f usr/share/xscreensaver/config/mapscroller.xml
+
+#
 # we don't ship the command, nor should we
 #
 rm -f usr/share/man/man1/xscreensaver-systemd.1
