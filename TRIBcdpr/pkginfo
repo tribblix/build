@@ -1,4 +1,4 @@
 PKG="TRIBcdpr"
 NAME="Cisco Discovery Protocol Reporter"
-VERSION="2.4.0"
+VERSION="2.4.1"
 ZAP_URL="http://www.monkeymental.com/"

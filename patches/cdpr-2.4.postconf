@@ -1,3 +1,9 @@
 #!/bin/sh
-gsed -i 's:#CFLAGS = -DSOLARIS -Wall -I. -I../libpcap-0.7.1 -L../libpcap-0.7.1 -ggdb:CFLAGS = -DSOLARIS -Wall -I.:' Makefile
-gsed -i 's:#LDFLAGS = -lsocket -lnsl -lpcap:LDFLAGS = -lsocket -lnsl -lpcap:' Makefile
+#
+# customize the Makefile:
+# - use installed libpcap
+# - 64-bit
+# - add -fcommon to enable a gcc10 build
+#
+gsed -i 's:#CFLAGS = -DSOLARIS -Wall -I. -I../libpcap-0.7.1 -L../libpcap-0.7.1 -ggdb:CFLAGS = -m64 -fcommon -DSOLARIS -Wall -O -I.:' Makefile
+gsed -i 's:#LDFLAGS = -lsocket -lnsl -lpcap:LDFLAGS = -m64 -lsocket -lnsl -lpcap:' Makefile
