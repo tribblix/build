@@ -4,7 +4,7 @@ in WCHAR_T is UCS-4LE, so we use it.
 
 --- glibmm-2.58.0/glib/glibmm/ustring.cc	2018-05-06 12:47:56.000000000 +0000
 +++ glibmm-2.58.0/glib/glibmm/ustring.cc.new	2018-12-01 19:55:47.373116133 +0000
-@@ -1378,7 +1378,7 @@ ustring::FormatStream::to_string() const
+@@ -1386,7 +1386,7 @@ ustring::FormatStream::to_string() const
  #else
    gsize n_bytes = 0;
    const auto buf = make_unique_ptr_gfree(g_convert(reinterpret_cast<const char*>(str.data()),
@@ -13,7 +13,7 @@ in WCHAR_T is UCS-4LE, so we use it.
  #endif /* !(__STDC_ISO_10646__ || G_OS_WIN32) */
  
  #else /* !GLIBMM_HAVE_WIDE_STREAM */
-@@ -1466,7 +1466,7 @@ operator>>(std::wistream& is, ustring& u
+@@ -1474,7 +1474,7 @@ operator>>(std::wistream& is, ustring& u
  #else
    gsize n_bytes = 0;
    const auto buf = make_unique_ptr_gfree(g_convert(reinterpret_cast<const char*>(wstr.data()),
@@ -22,7 +22,7 @@ in WCHAR_T is UCS-4LE, so we use it.
  #endif // !(__STDC_ISO_10646__ || G_OS_WIN32)
  
    if (error)
-@@ -1494,7 +1494,7 @@ operator<<(std::wostream& os, const ustr
+@@ -1502,7 +1502,7 @@ operator<<(std::wostream& os, const ustr
      g_utf8_to_utf16(utf8_string.raw().data(), utf8_string.raw().size(), nullptr, nullptr, &error));
  #else
    const auto buf = make_unique_ptr_gfree(g_convert(utf8_string.raw().data(),
