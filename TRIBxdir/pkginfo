@@ -1,4 +1,0 @@
-PKG="TRIBxdir"
-NAME="LLNL XDIR - Motif-based FTP client"
-VERSION="2.1.2.0"
-ZAP_URL="https://computing.llnl.gov/resources/xdir/xdir.html"
