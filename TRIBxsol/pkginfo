@@ -1,4 +1,4 @@
 PKG="TRIBxsol"
 NAME="Solitaire game using Motif"
-VERSION="0.31.0"
+VERSION="0.31.1"
 ZAP_URL="https://www.ibiblio.org/pub/Linux/X11/games/"
