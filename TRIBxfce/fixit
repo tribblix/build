@@ -165,14 +165,6 @@ ln -s ../../../gnome/${SIZE}/mimetypes/application-x-executable.png .
 ln -s ../../../gnome/${SIZE}/mimetypes/x-office-calendar.png office-calendar.png
 
 #
-# compatibility fix, seems to catch most things until they're
-# rebuilt
-#
-cd $MYDIR
-cd usr/lib
-ln -s libxfce4util.so.7.0.0 libxfce4util.so.6
-
-#
 # ugly fix to pass timezone to the panel clock
 # and for it to display it
 #
