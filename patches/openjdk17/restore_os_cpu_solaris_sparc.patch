@@ -902,8 +902,8 @@ diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/prefetch_solaris_sparc.in
 +
 +#include "runtime/prefetch.hpp"
 +
-+// For Sun Studio inplementation is in solaris_sparc.il
-+// For gcc inplementation is just below
++// For Sun Studio implementation is in solaris_sparc.il
++// For gcc implementation is just below
 +extern "C" void _Prefetch_read (void *loc, intx interval);
 +extern "C" void _Prefetch_write(void *loc, intx interval);
 +
@@ -1797,7 +1797,7 @@ diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/vm_version_solaris_sparc.
 +
 +  uint32_t av = avs[AV_HW1_IDX];
 +
-+  // Obsolete and 32b legacy mode capabilites NOT probed here, despite being
++  // Obsolete and 32b legacy mode capabilities NOT probed here, despite being
 +  // set by Solaris 11.4 (onward) also on V9; AV_SPARC_MUL32, AV_SPARC_DIV32
 +  // and AV_SPARC_FSMULD (and AV_SPARC_V8PLUS).
 +

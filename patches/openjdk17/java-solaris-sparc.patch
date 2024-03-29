@@ -1619,7 +1619,7 @@
 -// warnings.
 -//
 -// This also means that pointers to functions can no longer be "hidden"
--// in opaque types like void * because at the invokation point warnings
+-// in opaque types like void * because at the invocation point warnings
 -// will be generated. While this makes perfect sense from a type safety
 -// point of view it causes a lot of warnings on old code using C header
 -// files. Here are some typedefs to make the job of silencing warnings
@@ -9875,7 +9875,7 @@
 -    path = &info->dls_serpath[0];
 -
 -    // Note: Due to a legacy implementation, most of the library path
--    // is set in the launcher. This was to accomodate linking restrictions
+-    // is set in the launcher. This was to accommodate linking restrictions
 -    // on legacy Solaris implementations (which are no longer supported).
 -    // Eventually, all the library path setting will be done here.
 -    //
@@ -11624,11 +11624,11 @@
 -// meaningless in this mode so we must adjust the real lwp's priority.
 -// The routines below implement the getting and setting of lwp priorities.
 -//
--// Note: There are three priority scales used on Solaris.  Java priotities
+-// Note: There are three priority scales used on Solaris.  Java priorities
 -//       which range from 1 to 10, libthread "thr_setprio" scale which range
 -//       from 0 to 127, and the current scheduling class of the process we
 -//       are running in.  This is typically from -60 to +60.
--//       The setting of the lwp priorities in done after a call to thr_setprio
+-//       The setting of the lwp priorities is done after a call to thr_setprio
 -//       so Java priorities are mapped to libthread priorities and we map from
 -//       the latter to lwp priorities.  We don't keep priorities stored in
 -//       Java priorities since some of our worker threads want to set priorities

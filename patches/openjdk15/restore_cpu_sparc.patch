@@ -2057,7 +2057,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/assembler_sparc.inline.hpp b/src/hot
 +inline void Assembler::avoid_pipeline_stall() {
 +#ifdef VALIDATE_PIPELINE
 +  if (_hazard_state == PcHazard) {
-+    assert(is_cbcond_before() || is_rdpc_before(), "PC-hazard not preceeded by CBCOND or RDPC.");
++    assert(is_cbcond_before() || is_rdpc_before(), "PC-hazard not preceded by CBCOND or RDPC.");
 +    assert_no_delay("Must not have PC-hazard state in delay-slot.");
 +    nop();
 +    _hazard_state = NoHazard;
@@ -4897,7 +4897,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.cpp b/src/hots
 +    __ mov(O0, I0);  // Preserve the exception
 +  }
 +
-+  // Preform needed unlocking
++  // Perform needed unlocking
 +  MonitorExitStub* stub = NULL;
 +  if (method()->is_synchronized()) {
 +    monitor_address(0, FrameMap::I1_opr);
@@ -5194,7 +5194,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.cpp b/src/hots
 +      // result must be 0 if value is NaN; test by comparing value to itself
 +      __ fcmp(FloatRegisterImpl::S, Assembler::fcc0, rsrc, rsrc);
 +      __ fb(Assembler::f_unordered, true, Assembler::pn, L);
-+      __ delayed()->st(G0, addr); // annuled if contents of rsrc is not NaN
++      __ delayed()->st(G0, addr); // annulled if contents of rsrc is not NaN
 +      __ ftoi(FloatRegisterImpl::S, rsrc, rsrc);
 +      // move integer result from float register to int register
 +      __ stf(FloatRegisterImpl::S, rsrc, addr.base(), addr.disp());
@@ -6051,7 +6051,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.cpp b/src/hots
 +          break;
 +
 +        case T_OBJECT:
-+          // there are only equal/notequal comparisions on objects
++          // there are only equal/notequal comparisons on objects
 +          { jobject con = opr2->as_constant_ptr()->as_jobject();
 +            if (con == NULL) {
 +              __ cmp(opr1->as_register(), 0);
@@ -7953,7 +7953,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.hpp b/src/hots
 +  //
 +  // Sparc load/store emission
 +  //
-+  // The sparc ld/st instructions cannot accomodate displacements > 13 bits long.
++  // The sparc ld/st instructions cannot accommodate displacements > 13 bits long.
 +  // The following "pseudo" sparc instructions (load/store) make it easier to use the indexed addressing mode
 +  // by allowing 32 bit displacements:
 +  //
@@ -11390,7 +11390,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c2_MacroAssembler_sparc.cpp b/src/ho
 +  sra(size,0,size);
 +  andcc(inp, 0x7, i);                 // unaligned offset -> i
 +  br(Assembler::zero, true, Assembler::pn, Lcore); // starts 8B aligned?
-+  delayed()->add(size, -8, t5);       // (annuled) core end index -> t5
++  delayed()->add(size, -8, t5);       // (annulled) core end index -> t5
 +
 +  // ===========================================================
 +
@@ -11402,7 +11402,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c2_MacroAssembler_sparc.cpp b/src/ho
 +  //   bits set.
 +  cmp(size, 0);
 +  br(Assembler::zero, true, Assembler::pn, Lreturn); // short-circuit?
-+  delayed()->mov(0,result);      // annuled so i not clobbered for following
++  delayed()->mov(0,result);      // annulled so i not clobbered for following
 +  neg(i, t4);
 +  add(i, size, t5);
 +  ldx(inp, t4, t3);  // raw aligned 8B containing unaligned head -> t3
@@ -11417,7 +11417,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c2_MacroAssembler_sparc.cpp b/src/ho
 +  sllx(t3, t4, t3); // bytes outside string in 8B header obliterated -> t3
 +  andcc(lmask, t3, G0);
 +  brx(Assembler::notZero, true, Assembler::pn, Lreturn); // short circuit?
-+  delayed()->mov(1,result);      // annuled so i not clobbered for following
++  delayed()->mov(1,result);      // annulled so i not clobbered for following
 +  add(size, -8, t5);             // core end index -> t5
 +  mov(8, t4);
 +  sub(t4, i, i);                 // # bytes examined in unalgn head (<8) -> i
@@ -11438,7 +11438,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c2_MacroAssembler_sparc.cpp b/src/ho
 +  ldx(inp, i, t3);
 +  andcc(t3, lmask, G0);
 +  brx(Assembler::notZero, true, Assembler::pn, Lreturn);
-+  delayed()->mov(1, result);    // annuled so i not clobbered for following
++  delayed()->mov(1, result);    // annulled so i not clobbered for following
 +  add(i, 8, i);
 +  cmp_and_br_short(i, t5, Assembler::lessEqual, Assembler::pn, Lcore_rpt);
 +  // ===========================================================
@@ -11454,7 +11454,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c2_MacroAssembler_sparc.cpp b/src/ho
 +  subcc(size, i, t4);   // # of remaining bytes in string -> t4
 +  // return 0 if no more remaining bytes
 +  br(Assembler::lessEqual, true, Assembler::pn, Lreturn);
-+  delayed()->mov(0, result); // annuled so i not clobbered for following
++  delayed()->mov(0, result); // annulled so i not clobbered for following
 +  ldx(inp, i, t3);       // load final 8B (aligned) containing tail -> t3
 +  mov(8, t5);
 +  sub(t5, t4, t4);
@@ -15178,7 +15178,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/interp_masm_sparc.cpp b/src/hotspot/
 +
 +// Implementation of InterpreterMacroAssembler
 +
-+// This file specializes the assember with interpreter-specific macros
++// This file specializes the assembler with interpreter-specific macros
 +
 +const Address InterpreterMacroAssembler::l_tmp(FP, (frame::interpreter_frame_l_scratch_fp_offset * wordSize) + STACK_BIAS);
 +const Address InterpreterMacroAssembler::d_tmp(FP, (frame::interpreter_frame_d_scratch_fp_offset * wordSize) + STACK_BIAS);
@@ -16079,7 +16079,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/interp_masm_sparc.cpp b/src/hotspot/
 +// unlock if synchronized method
 +//
 +// Unlock the receiver if this is a synchronized method.
-+// Unlock any Java monitors from syncronized blocks.
++// Unlock any Java monitors from synchronized blocks.
 +//
 +// If there are locked Java monitors
 +//    If throw_monitor_exception
@@ -16259,7 +16259,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/interp_masm_sparc.cpp b/src/hotspot/
 +// remove activation
 +//
 +// Unlock the receiver if this is a synchronized method.
-+// Unlock any Java monitors from syncronized blocks.
++// Unlock any Java monitors from synchronized blocks.
 +// Remove the activation from the stack.
 +//
 +// If there are locked Java monitors
@@ -17182,7 +17182,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/interp_masm_sparc.cpp b/src/hotspot/
 +
 +      // If we don't profile all invoke bytecodes we must make sure
 +      // it's a bytecode we indeed profile. We can't go back to the
-+      // begining of the ProfileData we intend to update to check its
++      // beginning of the ProfileData we intend to update to check its
 +      // type because we're right after it and we don't known its
 +      // length.
 +      Label do_profile;
@@ -17814,7 +17814,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/interp_masm_sparc.hpp b/src/hotspot/
 +#include "asm/macroAssembler.hpp"
 +#include "interpreter/invocationCounter.hpp"
 +
-+// This file specializes the assember with interpreter-specific macros
++// This file specializes the assembler with interpreter-specific macros
 +
 +typedef ByteSize (*OffsetFunction)(uint);
 +
@@ -17864,7 +17864,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/interp_masm_sparc.hpp b/src/hotspot/
 +
 +  // helper routine for frame allocation/deallocation
 +  // compute the delta by which the caller's SP has to
-+  // be adjusted to accomodate for the non-argument
++  // be adjusted to accommodate for the non-argument
 +  // locals
 +  void compute_extra_locals_size_in_bytes(Register args_size, Register locals_size, Register delta);
 +
@@ -18257,7 +18257,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/interpreterRT_sparc.cpp b/src/hotspo
 +  intptr_t* _RegArgSignature;                   // Signature of first Arguments to be passed in Registers
 +  uint      _argcount;
 +
-+  enum {                                        // We need to differenciate float from non floats in reg args
++  enum {                                        // We need to differentiate float from non floats in reg args
 +    non_float  = 0,
 +    float_sig  = 1,
 +    double_sig = 2,
@@ -19246,7 +19246,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +  return  inst & ~m  |  v;
 +}
 +
-+// Return the offset of the branch destionation of instruction inst
++// Return the offset of the branch destination of instruction inst
 +// at offset pos.
 +// Should have pcs, but since all is relative, it works out.
 +int MacroAssembler::branch_destination(int inst, int pos) {
@@ -20558,7 +20558,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +  subcc( Rparam_words, Argument::n_register_parameters, Rresult); // how many mem words?
 +  Label no_extras;
 +  br( negative, true, pt, no_extras ); // if neg, clear reg
-+  delayed()->set(0, Rresult);          // annuled, so only if taken
++  delayed()->set(0, Rresult);          // annulled, so only if taken
 +  bind( no_extras );
 +}
 +
@@ -22345,7 +22345,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +  if (src == dst) {
 +    // optimize for frequent case src == dst
 +    bpr(rc_nz, true, Assembler::pt, src, done);
-+    delayed() -> sub(src, G6_heapbase, dst); // annuled if not taken
++    delayed() -> sub(src, G6_heapbase, dst); // annulled if not taken
 +    bind(done);
 +    srlx(src, LogMinObjAlignmentInBytes, dst);
 +  } else {
@@ -22392,7 +22392,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +  if (CompressedOops::base() != NULL) {
 +    Label done;
 +    bpr(rc_nz, true, Assembler::pt, dst, done);
-+    delayed() -> add(dst, G6_heapbase, dst); // annuled if not taken
++    delayed() -> add(dst, G6_heapbase, dst); // annulled if not taken
 +    bind(done);
 +  }
 +  verify_oop(dst);
@@ -27735,7 +27735,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/registerMap_sparc.hpp b/src/hotspot/
 +#ifndef CPU_SPARC_REGISTERMAP_SPARC_HPP
 +#define CPU_SPARC_REGISTERMAP_SPARC_HPP
 +
-+// machine-dependent implemention for register maps
++// machine-dependent implementation for register maps
 +  friend class frame;
 +  friend class MethodHandles;
 +
@@ -29276,7 +29276,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp b/src/hotspo
 +  // compiled target.  If there is one, we need to patch the caller's call.
 +  // However we will run interpreted if we come thru here. The next pass
 +  // thru the call site will run compiled. If we ran compiled here then
-+  // we can (theorectically) do endless i2c->c2i->i2c transitions during
++  // we can (theoretically) do endless i2c->c2i->i2c transitions during
 +  // deopt/uncommon trap cycles. If we always go interpreted here then
 +  // we can have at most one and don't need to play any tricks to keep
 +  // from endlessly growing the stack.
@@ -29519,7 +29519,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp b/src/hotspo
 +  if (comp_args_on_stack > 0) {
 +    // Convert VMReg stack slots to words.
 +    int comp_words_on_stack = align_up(comp_args_on_stack*VMRegImpl::stack_slot_size, wordSize)>>LogBytesPerWord;
-+    // Round up to miminum stack alignment, in wordSize
++    // Round up to minimum stack alignment, in wordSize
 +    comp_words_on_stack = align_up(comp_words_on_stack, 2);
 +    // Now compute the distance from Lesp to SP.  This calculation does not
 +    // include the space for total_args_passed because Lesp has not yet popped
@@ -30502,8 +30502,8 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp b/src/hotspo
 +// They are roughly structured like this:
 +//    if (GCLocker::needs_gc())
 +//      SharedRuntime::block_for_jni_critical();
-+//    tranistion to thread_in_native
-+//    unpack arrray arguments and call native entry point
++//    transition to thread_in_native
++//    unpack array arguments and call native entry point
 +//    check for safepoint in progress
 +//    check if any thread suspend flags are set
 +//      call into JVM and possible unlock the JNI critical
@@ -30547,7 +30547,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp b/src/hotspo
 +  }
 +  assert(native_func != NULL, "must have function");
 +
-+  // Native nmethod wrappers never take possesion of the oop arguments.
++  // Native nmethod wrappers never take possession of the oop arguments.
 +  // So the caller will gc the arguments. The only thing we need an
 +  // oopMap for is if the call is static
 +  //
@@ -32044,7 +32044,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/spa
 +//----------REGISTER DEFINITION BLOCK------------------------------------------
 +// This information is used by the matcher and the register allocator to
 +// describe individual registers and classes of registers within the target
-+// archtecture.
++// architecture.
 +register %{
 +//----------Architecture Description Register Definitions----------------------
 +// General Registers
@@ -34965,7 +34965,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/spa
 +//         Region 6-7 is determined per call site.
 +// Note 2: If the calling convention leaves holes in the incoming argument
 +//         area, those holes are owned by SELF.  Holes in the outgoing area
-+//         are owned by the CALLEE.  Holes should not be nessecary in the
++//         are owned by the CALLEE.  Holes should not be necessary in the
 +//         incoming area, as the Java calling convention is completely under
 +//         the control of the AD file.  Doubles can be sorted and packed to
 +//         avoid holes.  Holes in the outgoing arguments may be necessary for
@@ -36231,7 +36231,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/spa
 +    IALU  : R(2);
 +%}
 +
-+// Integer ALU reg-imm operaion
++// Integer ALU reg-imm operation
 +pipe_class ialu_reg_imm(iRegI dst, iRegI src1, immI13 src2) %{
 +    single_instruction;
 +    dst   : E(write);
@@ -39433,7 +39433,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/spa
 +  ins_pipe(ialu_reg_imm);
 +%}
 +
-+// Register Shift Right Arithmatic Long
++// Register Shift Right Arithmetic Long
 +instruct sarL_reg_reg(iRegL dst, iRegL src1, iRegI src2) %{
 +  match(Set dst (RShiftL src1 src2));
 +
@@ -42906,7 +42906,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/spa
 +//
 +// // Change (inc mov) to lea
 +// peephole %{
-+//   // increment preceeded by register-register move
++//   // increment preceded by register-register move
 +//   peepmatch ( incI_eReg movI );
 +//   // require that the destination register of the increment
 +//   // match the destination register of the move
@@ -44105,7 +44105,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +        // Copy with shift 16 bytes per iteration if arrays do not have
 +        // the same alignment mod 8, otherwise fall through to the next
 +        // code for aligned copy.
-+        // The compare above (count >= 23) guarantes 'count' >= 16 bytes.
++        // The compare above (count >= 23) guarantees 'count' >= 16 bytes.
 +        // Also jump over aligned copy after the copy with shift completed.
 +
 +        copy_16_bytes_forward_with_shift(from, to, count, 0, L_copy_byte);
@@ -44210,8 +44210,8 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +      } else {
 +        // Copy with shift 16 bytes per iteration if arrays do not have
 +        // the same alignment mod 8, otherwise jump to the next
-+        // code for aligned copy (and substracting 16 from 'count' before jump).
-+        // The compare above (count >= 11) guarantes 'count' >= 16 bytes.
++        // code for aligned copy (and subtracting 16 from 'count' before jump).
++        // The compare above (count >= 11) guarantees 'count' >= 16 bytes.
 +        // Also jump over aligned copy after the copy with shift completed.
 +
 +       copy_16_bytes_backward_with_shift(end_from, end_to, count, 16,
@@ -44325,7 +44325,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +        // Copy with shift 16 bytes per iteration if arrays do not have
 +        // the same alignment mod 8, otherwise fall through to the next
 +        // code for aligned copy.
-+        // The compare above (count >= 11) guarantes 'count' >= 16 bytes.
++        // The compare above (count >= 11) guarantees 'count' >= 16 bytes.
 +        // Also jump over aligned copy after the copy with shift completed.
 +
 +        copy_16_bytes_forward_with_shift(from, to, count, 1, L_copy_2_bytes);
@@ -44660,8 +44660,8 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +      } else {
 +        // Copy with shift 16 bytes per iteration if arrays do not have
 +        // the same alignment mod 8, otherwise jump to the next
-+        // code for aligned copy (and substracting 8 from 'count' before jump).
-+        // The compare above (count >= 11) guarantes 'count' >= 16 bytes.
++        // code for aligned copy (and subtracting 8 from 'count' before jump).
++        // The compare above (count >= 11) guarantees 'count' >= 16 bytes.
 +        // Also jump over aligned copy after the copy with shift completed.
 +
 +        copy_16_bytes_backward_with_shift(end_from, end_to, count, 8,
@@ -46387,14 +46387,14 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +    // read expanded key length
 +    __ ldsw(Address(key, arrayOopDesc::length_offset_in_bytes() - arrayOopDesc::base_offset_in_bytes(T_INT)), keylen, 0);
 +
-+    // load initial vector, 8-byte alignment is guranteed
++    // load initial vector, 8-byte alignment is guaranteed
 +    __ ldf(FloatRegisterImpl::D, rvec, 0, F60);
 +    __ ldf(FloatRegisterImpl::D, rvec, 8, F62);
-+    // load key, 8-byte alignment is guranteed
++    // load key, 8-byte alignment is guaranteed
 +    __ ldx(key,0,G1);
 +    __ ldx(key,8,G5);
 +
-+    // start loading expanded key, 8-byte alignment is guranteed
++    // start loading expanded key, 8-byte alignment is guaranteed
 +    for ( int i = 0, j = 16;  i <= 38; i += 2, j += 8 ) {
 +      __ ldf(FloatRegisterImpl::D, key, j, as_FloatRegister(i));
 +    }
@@ -46502,7 +46502,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +    __ subcc(len_reg, 16, len_reg);
 +    __ br(Assembler::notEqual, false, Assembler::pt, L_cbcenc128);
 +    __ delayed()->nop();
-+    // re-init intial vector for next block, 8-byte alignment is guaranteed
++    // re-init initial vector for next block, 8-byte alignment is guaranteed
 +    __ stf(FloatRegisterImpl::D, F60, rvec, 0);
 +    __ stf(FloatRegisterImpl::D, F62, rvec, 8);
 +    __ mov(L0, I0);
@@ -46593,7 +46593,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +    __ add(to, 16, to);
 +    __ br(Assembler::notEqual, false, Assembler::pt, L_cbcenc192);
 +    __ delayed()->nop();
-+    // re-init intial vector for next block, 8-byte alignment is guaranteed
++    // re-init initial vector for next block, 8-byte alignment is guaranteed
 +    __ stf(FloatRegisterImpl::D, F60, rvec, 0);
 +    __ stf(FloatRegisterImpl::D, F62, rvec, 8);
 +    __ mov(L0, I0);
@@ -46686,7 +46686,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +    __ add(to, 16, to);
 +    __ br(Assembler::notEqual, false, Assembler::pt, L_cbcenc256);
 +    __ delayed()->nop();
-+    // re-init intial vector for next block, 8-byte alignment is guaranteed
++    // re-init initial vector for next block, 8-byte alignment is guaranteed
 +    __ stf(FloatRegisterImpl::D, F60, rvec, 0);
 +    __ stf(FloatRegisterImpl::D, F62, rvec, 8);
 +    __ mov(L0, I0);
@@ -47292,7 +47292,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +    __ delayed()->nop();
 +
 +    __ BIND(L_cbcdec_end);
-+    // re-init intial vector for next block, 8-byte alignment is guaranteed
++    // re-init initial vector for next block, 8-byte alignment is guaranteed
 +    __ stx(L0, rvec, 0);
 +    __ stx(L1, rvec, 8);
 +    __ mov(L7, I0);
@@ -47745,7 +47745,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspo
 +    __ inc(buff, 8);
 +
 +    // Inner loop processes 16 elements at a time, might never execute if only 16 elements
-+    // to be processed by the outter loop
++    // to be processed by the outer loop
 +    __ ba_short(L_inner_loop_check);
 +
 +    __ BIND(L_inner_loop);
@@ -50854,7 +50854,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/templateInterpreterGenerator_sparc.c
 +    __ st(Gtmp1, popframe_condition_addr);
 +
 +    // Return from the current method
-+    // The caller's SP was adjusted upon method entry to accomodate
++    // The caller's SP was adjusted upon method entry to accommodate
 +    // the callee's non-argument locals. Undo that adjustment.
 +    __ ret();
 +    __ delayed()->restore(I5_savedSP, G0, SP);
@@ -50867,7 +50867,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/templateInterpreterGenerator_sparc.c
 +
 +  // Get out of the current method (how this is done depends on the particular compiler calling
 +  // convention that the interpreter currently follows)
-+  // The caller's SP was adjusted upon method entry to accomodate
++  // The caller's SP was adjusted upon method entry to accommodate
 +  // the callee's non-argument locals. Undo that adjustment.
 +  __ restore(I5_savedSP, G0, SP);
 +  // The method data pointer was incremented already during
@@ -50944,7 +50944,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/templateInterpreterGenerator_sparc.c
 +                        CAST_FROM_FN_PTR(address, SharedRuntime::exception_handler_for_return_address),
 +                        G2_thread, Oissuing_pc->after_save());
 +
-+  // The caller's SP was adjusted upon method entry to accomodate
++  // The caller's SP was adjusted upon method entry to accommodate
 +  // the callee's non-argument locals. Undo that adjustment.
 +  __ JMP(O0, 0);                         // return exception handler in caller
 +  __ delayed()->restore(I5_savedSP, G0, SP);
@@ -50974,7 +50974,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/templateInterpreterGenerator_sparc.c
 +                       /* throw_monitor_exception */ false,
 +                       /* install_monitor_exception */ false);
 +
-+  // The caller's SP was adjusted upon method entry to accomodate
++  // The caller's SP was adjusted upon method entry to accommodate
 +  // the callee's non-argument locals. Undo that adjustment.
 +  __ ret();                             // return to caller
 +  __ delayed()->restore(I5_savedSP, G0, SP);
@@ -51191,7 +51191,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/templateTable_sparc.cpp b/src/hotspo
 +}
 +
 +//----------------------------------------------------------------------------------------------------
-+// Miscelaneous helper routines
++// Miscellaneous helper routines
 +
 +
 +Address TemplateTable::at_bcp(int offset) {
@@ -52509,7 +52509,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/templateTable_sparc.cpp b/src/hotspo
 +
 +
 +void TemplateTable::convert() {
-+// %%%%% Factor this first part accross platforms
++// %%%%% Factor this first part across platforms
 +  #ifdef ASSERT
 +    TosState tos_in  = ilgl;
 +    TosState tos_out = ilgl;
@@ -53130,7 +53130,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/templateTable_sparc.cpp b/src/hotspo
 +  }
 +  __ remove_activation(state, /* throw_monitor_exception */ true);
 +
-+  // The caller's SP was adjusted upon method entry to accomodate
++  // The caller's SP was adjusted upon method entry to accommodate
 +  // the callee's non-argument locals. Undo that adjustment.
 +  __ ret();                             // return to caller
 +  __ delayed()->restore(I5_savedSP, G0, SP);
@@ -53146,7 +53146,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/templateTable_sparc.cpp b/src/hotspo
 +//
 +// According to the new Java Memory Model (JMM):
 +// (1) All volatiles are serialized wrt to each other.
-+// ALSO reads & writes act as aquire & release, so:
++// ALSO reads & writes act as acquire & release, so:
 +// (2) A read cannot let unrelated NON-volatile memory refs that happen after
 +// the read float up to before the read.  It's OK for non-volatile memory refs
 +// that happen before the volatile read to float down below it.
@@ -55193,7 +55193,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/vm_version_ext_sparc.cpp b/src/hotsp
 +  _kcid = kcid;
 +
 +  // find the number of online processors
-+  // for modern processsors, it is also known as the
++  // for modern processors, it is also known as the
 +  // hardware threads.
 +  _no_of_threads  = sysconf(_SC_NPROCESSORS_ONLN);
 +
@@ -56673,7 +56673,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/vtableStubs_sparc.cpp b/src/hotspot/
 +  // Do not target a left-over number of zero, because a very
 +  // large vtable or itable offset (> 4K) will require an extra
 +  // sethi/or pair of instructions.
-+  // Found typecheck(60) + lookup(72) to exceed previous extimate (32*4).
++  // Found typecheck(60) + lookup(72) to exceed previous estimate (32*4).
 +  const ptrdiff_t estimate = 36*BytesPerInstWord;
 +  const ptrdiff_t codesize = typecheckSize + lookupSize + index_dependent_slop;
 +  slop_delta  = (int)(estimate - codesize);
