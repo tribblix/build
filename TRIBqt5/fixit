@@ -15,15 +15,11 @@ rm -fr usr/versions/Qt-${VERSION}/examples
 mkdir -p usr/lib/pkgconfig
 mkdir -p usr/lib/${ARCH64}/pkgconfig
 
-cd usr/lib/pkgconfig
-ln -s ../../versions/Qt-${VERSION}/lib/pkgconfig/* .
-cd ../../versions/Qt-${VERSION}/lib/pkgconfig
-gsed -i -e 's: -L/usr/versions/Qt-5/lib: -L/usr/versions/Qt-5/lib -R/usr/versions/Qt-5/lib:g' -e 's: -L/usr/sfw/lib::g' -e 's: -L/usr/openwin/lib::g' -e 's: -L${libdir}: -L${libdir} -R${libdir}:' *
-cd ../../../../..
-
 cd usr/lib/${ARCH64}/pkgconfig
 ln -s ../../../versions/Qt-${VERSION}/lib/${ARCH64}/pkgconfig/* .
 cd ../../../versions/Qt-${VERSION}/lib/${ARCH64}/pkgconfig
 gsed -i -e 's: -L/usr/versions/Qt-5/lib: -L/usr/versions/Qt-5/lib -R/usr/versions/Qt-5/lib:g' -e 's: -L/usr/sfw/lib::g' -e 's: -L/usr/openwin/lib::g' -e 's: -L${libdir}: -L${libdir} -R${libdir}:' *
 cd ../../../../../..
 
+cd usr/versions/Qt-${VERSION}/bin
+ln -s ${ARCH64}/* .
