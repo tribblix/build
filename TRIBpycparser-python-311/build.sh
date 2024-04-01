@@ -1,10 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/unpack pycparser-2.21
-cd pycparser-2.21
-/usr/versions/python-3.11/bin/python3 setup.py build
-rm -fr /tmp/pil
-/usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/pil
-${THOME}/build/create_pkg TRIBpycparser-python-311 /tmp/pil
-cd ..
-rm -fr /tmp/pil
+${THOME}/build/pkg_setup_py TRIBpycparser-python-311 pycparser-2.22
