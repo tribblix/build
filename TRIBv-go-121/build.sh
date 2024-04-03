@@ -11,7 +11,7 @@
 #
 chmod -R u+w go
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.21.8.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.21.9.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.21 GOROOT_BOOTSTRAP=/usr/versions/go-1.20 ./all.bash
 cd ..
