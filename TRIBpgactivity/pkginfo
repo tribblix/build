@@ -1,4 +1,4 @@
 PKG="TRIBpgactivity"
 NAME="A top-like utility for PostgreSQL"
-VERSION="3.5.0.0"
+VERSION="3.5.1.0"
 ZAP_URL="https://github.com/dalibo/pg_activity"
