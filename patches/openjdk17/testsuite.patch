@@ -139,3 +139,89 @@ suite. It would be nice to be complete, but that isn't true yet.
          if (!okToHaveAllocateHeap) {
              output.shouldNotContain("AllocateHeap");
          }
+--- a/test/hotspot/jtreg/runtime/ReservedStack/ReservedStackTest.java	Tue Jan  9 21:18:15 2024
++++ b/test/hotspot/jtreg/runtime/ReservedStack/ReservedStackTest.java	Thu Apr  4 10:25:01 2024
+@@ -241,6 +241,7 @@
+             (Platform.isLinux() &&
+              (Platform.isPPC() || Platform.isS390x() || Platform.isX64() ||
+               Platform.isX86() || Platform.isAArch64() || Platform.isRISCV64())) ||
++            Platform.isSolaris() ||
+             Platform.isOSX();
+     }
+ 
+--- a/test/jdk/java/security/Security/ClassLoaderDeadlock/Deadlock.sh	Tue Jan  9 21:18:15 2024
++++ b/test/jdk/java/security/Security/ClassLoaderDeadlock/Deadlock.sh	Thu Apr  4 11:02:00 2024
+@@ -34,6 +34,10 @@
+ # set platform-dependent variables
+ OS=`uname -s`
+ case "$OS" in
++  SunOS )
++    PATHSEP=":"
++    FILESEP="/"
++    ;;
+   Linux )
+     PATHSEP=":"
+     FILESEP="/"
+--- a/test/jdk/java/security/Security/ClassLoaderDeadlock/ClassLoaderDeadlock.sh	Tue Jan  9 21:18:15 2024
++++ b/test/jdk/java/security/Security/ClassLoaderDeadlock/ClassLoaderDeadlock.sh	Thu Apr  4 11:02:20 2024
+@@ -50,6 +50,10 @@
+ # set platform-dependent variables
+ OS=`uname -s`
+ case "$OS" in
++  SunOS )
++    PATHSEP=":"
++    FILESEP="/"
++    ;;
+   Linux )
+     PATHSEP=":"
+     FILESEP="/"
+--- a/test/jdk/sun/security/krb5/runNameEquals.sh	Tue Jan  9 21:18:15 2024
++++ b/test/jdk/sun/security/krb5/runNameEquals.sh	Thu Apr  4 11:04:28 2024
+@@ -52,7 +52,7 @@
+ # set platform-dependent variables
+ OS=`uname -s`
+ case "$OS" in
+-  Linux | Darwin )
++  SunOS | Linux | Darwin )
+     PATHSEP=":"
+     FILESEP="/"
+     NATIVE=true
+--- a/test/jdk/sun/security/provider/PolicyFile/getinstance/getinstance.sh	Tue Jan  9 21:18:15 2024
++++ b/test/jdk/sun/security/provider/PolicyFile/getinstance/getinstance.sh	Thu Apr  4 11:06:23 2024
+@@ -51,6 +51,10 @@
+ # set platform-dependent variables
+ OS=`uname -s`
+ case "$OS" in
++  SunOS )
++    PS=":"
++    FS="/"
++    ;;
+   Linux )
+     PS=":"
+     FS="/"
+--- a/test/jdk/sun/security/ssl/SSLSocketImpl/NotifyHandshakeTest.sh	Tue Jan  9 21:18:15 2024
++++ b/test/jdk/sun/security/ssl/SSLSocketImpl/NotifyHandshakeTest.sh	Thu Apr  4 11:07:24 2024
+@@ -46,7 +46,7 @@
+ 
+ OS=`uname -s`
+ case "$OS" in
+-    Linux | Darwin | AIX )
++    SunOS | Linux | Darwin | AIX )
+         FILESEP="/"
+         PATHSEP=":"
+         ;;
+--- a/test/jdk/sun/security/pkcs11/Provider/MultipleLogins.sh	Tue Jan  9 21:18:15 2024
++++ b/test/jdk/sun/security/pkcs11/Provider/MultipleLogins.sh	Thu Apr  4 11:29:40 2024
+@@ -56,6 +56,12 @@
+ 
+ OS=`uname -s`
+ case "$OS" in
++  SunOS )
++    FS="/"
++    PS=":"
++    CP="${FS}bin${FS}cp"
++    CHMOD="${FS}bin${FS}chmod"
++    ;;
+   Linux )
+     FS="/"
+     PS=":"
