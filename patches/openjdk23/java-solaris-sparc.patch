@@ -8547,11 +8547,11 @@
 -
 -  char buf[64];
 -  if (status == 0) {
--    log_info(os, thread)("Thread started (tid: " UINTX_FORMAT ", attributes: %s). ",
--      (uintx) tid, describe_thr_create_attributes(buf, sizeof(buf), stack_size, flags));
+-    log_info(os, thread)("Thread \"%s\" started (tid: " UINTX_FORMAT ", attributes: %s). ",
+-      thread->name(), (uintx) tid, describe_thr_create_attributes(buf, sizeof(buf), stack_size, flags));
 -  } else {
--    log_warning(os, thread)("Failed to start thread - thr_create failed (%s) for attributes: %s.",
--      os::errno_name(status), describe_thr_create_attributes(buf, sizeof(buf), stack_size, flags));
+-    log_warning(os, thread)("Failed to start thread \"%s\" - thr_create failed (%s) for attributes: %s.",
+-      thread->name(), os::errno_name(status), describe_thr_create_attributes(buf, sizeof(buf), stack_size, flags));
 -    // Log some OS information which might explain why creating the thread failed.
 -    log_info(os, thread)("Number of threads approx. running in the VM: %d", Threads::number_of_threads());
 -    LogStream st(Log(os, thread)::info());
