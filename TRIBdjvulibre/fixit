@@ -1,0 +1,15 @@
+#!/bin/sh
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+mkdir usr/bin/${ARCH64}
+cd usr/bin/${ARCH64}
+ln -s ../* .
+rm ${ARCH64}
