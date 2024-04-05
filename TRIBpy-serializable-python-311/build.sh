@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBpy-serializable-python-311 py_serializable-1.0.2
+${THOME}/build/pkg_pep518 TRIBpy-serializable-python-311 py_serializable-1.0.3
