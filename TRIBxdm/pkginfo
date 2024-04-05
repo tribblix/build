@@ -1,4 +1,4 @@
 PKG="TRIBxdm"
 NAME="X Display Manager"
-VERSION="1.1.15.0"
+VERSION="1.1.16.0"
 ZAP_URL="https://www.x.org/releases/individual/app/"
