@@ -11,6 +11,14 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+17
+
+More mucking around with Makefiles.
+
+Need to remove notproduct from RUNTIME_OS_FLAGS in globals_solaris.hpp
+
+Minimum boot jdk now bumped to jdk22.
+
 23+16
 
 Much more mucking around with Makefiles.
@@ -137,7 +145,7 @@ No changes needed, identical to 22+27.
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk21 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk22 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \

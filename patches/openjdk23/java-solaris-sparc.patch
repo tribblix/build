@@ -325,19 +325,16 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        DISABLED_WARNINGS_gcc := unused-function, \
        LDFLAGS := $$($1_LDFLAGS), \
-@@ -151,11 +150,8 @@
+@@ -151,8 +150,6 @@
            -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
            -L$(call FindLibDirForModule, java.base), \
 -      LDFLAGS_solaris := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
 -          -L$(call FindLibDirForModule, java.base), \
        LDFLAGS_aix := -L$(SUPPORT_OUTPUTDIR)/native/java.base, \
-       JDK_LIBS_linux := -ljli, \
--      JDK_LIBS_solaris := -ljli, \
-       JDK_LIBS_macosx := -ljli, \
-       JDK_LIBS_aix := -ljli_static, \
+       JDK_LIBS_unix := -ljli, \
        JDK_LIBS_windows := \
-@@ -164,7 +160,6 @@
+@@ -161,7 +158,6 @@
        LIBS := $$($1_LIBS), \
        LIBS_unix := $(LIBZ_LIBS), \
        LIBS_linux := $(LIBDL) -lpthread, \
@@ -560,14 +557,14 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := \
          -framework CoreFoundation \
-@@ -174,7 +173,6 @@
+@@ -180,7 +179,6 @@
      DISABLED_WARNINGS_clang := format-nonliteral deprecated-non-prototype, \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
 -    LIBS_solaris := $(LIBDL), \
-     LIBS_aix := $(LIBDL),\
      LIBS_macosx := \
          -framework ApplicationServices \
+         -framework Cocoa \
 --- old/make/modules/java.desktop/Gensrc.gmk	2020-05-20 17:59:13.277176671 -0700
 +++ new/make/modules/java.desktop/Gensrc.gmk	2020-05-20 17:59:12.889169221 -0700
 @@ -32,7 +32,7 @@
@@ -653,7 +650,7 @@
            -framework Cocoa \
 --- old/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.469237961 -0700
 +++ new/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.081230511 -0700
-@@ -38,19 +38,16 @@
+@@ -38,16 +38,14 @@
      CFLAGS_release := -DNO_JPLIS_LOGGING, \
      EXTRA_HEADER_DIRS := java.base:libjli, \
      LDFLAGS_linux := -L$(call FindLibDirForModule, java.base), \
@@ -661,10 +658,7 @@
      LDFLAGS_macosx := -L$(call FindLibDirForModule, java.base), \
      LDFLAGS_aix := -L$(SUPPORT_OUTPUTDIR)/native/java.base, \
      JDK_LIBS := $(JDKLIB_LIBS), \
-     JDK_LIBS_linux := -ljli, \
--    JDK_LIBS_solaris := -ljli, \
-     JDK_LIBS_macosx := -ljli, \
-     JDK_LIBS_aix := -ljli_static, \
+     JDK_LIBS_unix := -ljli, \
      JDK_LIBS_windows := $(WIN_JAVA_LIB) \
          $(SUPPORT_OUTPUTDIR)/native/java.base/libjli/jli.lib jvm.lib, \
      LIBS_unix := $(LIBZ_LIBS), \
@@ -675,7 +669,7 @@
          -framework ApplicationServices \
 --- old/make/modules/java.management/Lib.gmk	2020-05-20 17:59:17.481257392 -0700
 +++ new/make/modules/java.management/Lib.gmk	2020-05-20 17:59:17.145250941 -0700
-@@ -28,7 +28,7 @@
+@@ -30,7 +30,7 @@
  ################################################################################
  
  LIBMANAGEMENT_OPTIMIZATION := HIGH
@@ -684,7 +678,7 @@
    LIBMANAGEMENT_OPTIMIZATION := LOW
  endif
  
-@@ -37,7 +37,6 @@
+@@ -39,7 +39,6 @@
      OPTIMIZATION := $(LIBMANAGEMENT_OPTIMIZATION), \
      JDK_LIBS := $(JDKLIB_LIBS), \
      JDK_LIBS_windows := $(WIN_JAVA_LIB) jvm.lib, \
@@ -742,7 +736,7 @@
  ))
 --- old/make/modules/jdk.management/Lib.gmk	2020-05-20 17:59:24.761397176 -0700
 +++ new/make/modules/jdk.management/Lib.gmk	2020-05-20 17:59:24.373389726 -0700
-@@ -35,7 +35,7 @@
+@@ -37,7 +37,7 @@
  endif
  
  LIBMANAGEMENT_EXT_OPTIMIZATION := HIGH
@@ -751,8 +745,8 @@
    LIBMANAGEMENT_EXT_OPTIMIZATION := LOW
  endif
  
-@@ -46,7 +46,6 @@
-     CFLAGS := $(CFLAGS_JDKLIB) $(LIBMANAGEMENT_EXT_CFLAGS), \
+@@ -48,7 +48,6 @@
+     CFLAGS := $(LIBMANAGEMENT_EXT_CFLAGS), \
      JDK_LIBS := $(JDKLIB_LIBS), \
      JDK_LIBS_windows := $(WIN_JAVA_LIB) jvm.lib, \
 -    LIBS_solaris := -lkstat, \
@@ -890,7 +884,7 @@
 -    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -lthread -ldl
    endif
    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeJliLaunchTest := -ljli
-   BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeCallerAccessTest := -ljvm
+   ifeq ($(call isTargetOs, aix), true)
 --- old/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.533642413 -0700
 +++ new/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.197635961 -0700
 @@ -57,7 +57,7 @@
@@ -6814,7 +6808,7 @@
 -}
 --- old/src/hotspot/os/solaris/globals_solaris.hpp	2020-05-20 18:09:31.185040905 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,49 +0,0 @@
+@@ -1,48 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -6849,7 +6843,6 @@
 -                         develop_pd, \
 -                         product, \
 -                         product_pd, \
--                         notproduct, \
 -                         range, \
 -                         constraint)
 -
