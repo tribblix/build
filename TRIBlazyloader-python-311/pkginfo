@@ -1,4 +1,4 @@
 PKG="TRIBlazyloader-python-311"
 NAME="Python lazy_loader"
-VERSION="0.3.0"
+VERSION="0.4.0"
 ZAP_URL="https://pypi.org/project/lazy_loader"
