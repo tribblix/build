@@ -4,3 +4,5 @@
 #
 sed -i s:xemacs:emacs:g default-config/config
 sed -i s:XEmacs:Emacs:g default-config/config
+sed -i s:chromium:palemoon:g default-config/config
+sed -i 's:Chromium:Pale Moon:g' default-config/config
