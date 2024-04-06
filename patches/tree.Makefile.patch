@@ -11,7 +11,7 @@
 -INSTALL=install
 +INSTALL=ginstall
  
- VERSION=2.0.4
+ VERSION=2.1.1
  TREE_DEST=tree
 @@ -26,9 +26,12 @@
  DESTDIR=${PREFIX}/bin
