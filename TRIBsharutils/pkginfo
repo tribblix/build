@@ -1,4 +1,4 @@
 PKG="TRIBsharutils"
 NAME="GNU sharutils"
-VERSION="4.15.2.0"
+VERSION="4.15.2.1"
 ZAP_URL="https://www.gnu.org/software/sharutils/"
