@@ -1,4 +1,4 @@
 PKG="TRIBdateutils"
 NAME="Dateutils"
-VERSION="0.4.10.0"
+VERSION="0.4.11.0"
 ZAP_URL="http://www.fresse.org/dateutils/"
