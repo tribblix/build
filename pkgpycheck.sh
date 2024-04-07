@@ -112,6 +112,7 @@ do
 		echo "expected ${psha}"
 		echo "actual ${osha}"
 	    else
+		rm -f "${JFILE}"
 		exit 0
 	    fi
 	fi
