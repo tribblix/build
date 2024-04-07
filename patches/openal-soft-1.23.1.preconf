@@ -1,0 +1,7 @@
+#!/bin/sh
+sed -i 's:Wl,--version-script=:Wl,-M :' CMakeLists.txt
+#
+# otherwise we'll try and package a filename with a space in it
+#
+sed -i 's:Default HRTF.mhr:Default_HRTF.mhr:' CMakeLists.txt
+mv 'hrtf/Default HRTF.mhr' hrtf/Default_HRTF.mhr

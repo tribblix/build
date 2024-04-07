@@ -1,4 +1,4 @@
 PKG="TRIBopenal"
 NAME="OpenAL 3d audio API implementation"
-VERSION="1.5.1.1"
-ZAP_URL="http://openal-soft.sourceforge.net/"
+VERSION="1.23.1.0"
+ZAP_URL="https://openal-soft.org/"
