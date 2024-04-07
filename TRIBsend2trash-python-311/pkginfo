@@ -1,4 +1,4 @@
 PKG="TRIBsend2trash-python-311"
 NAME="Python Send2Trash"
-VERSION="1.8.2.0"
+VERSION="1.8.3.0"
 ZAP_URL="https://pypi.org/project/Send2Trash"
