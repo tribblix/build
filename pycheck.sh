@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -31,9 +31,10 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 cd ${THOME}/build || exit 1
 
 PY3VER=311
+CHECKER=${THOME}/build/pkgpycheck.sh
 
-if [ ! -x /usr/bin/wget ]; then
-    echo "ERROR: unable to find wget"
+if [ ! -x /usr/bin/curl ]; then
+    echo "ERROR: unable to find curl"
     exit 1
 fi
 if [ ! -x /usr/bin/jq ]; then
@@ -52,13 +53,7 @@ if [ $# -gt 0 ]; then
 		pkgname=c7n
 		pkgver=${pkgver%.0}
 	    fi
-	    curver=$(wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version)
-	    curver=${curver//\"/}
-	    if [ "X$pkgver" != "X$curver" ]; then
-		echo "NEW VERSION $curver of $file, we have $pkgver"
-	    else
-		echo "$file is good"
-	    fi
+	    "${CHECKER}" "${file}" "${pkgname}" "${pkgver}"
 	done
     done
     exit 0
@@ -80,13 +75,7 @@ do
 	pkgname=c7n
 	pkgver=${pkgver%.0}
     fi
-    curver=$(wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version)
-    curver=${curver//\"/}
-    if [ "X$pkgver" != "X$curver" ]; then
-	echo "NEW VERSION $curver of $file, we have $pkgver"
-    else
-	echo "$file is good"
-    fi
+    "${CHECKER}" "${file}" "${pkgname}" "${pkgver}"
 done
 
 #
@@ -108,13 +97,7 @@ do
 	pkgname=c7n
 	pkgver=${pkgver%.0}
     fi
-    curver=$(wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version)
-    curver=${curver//\"/}
-    if [ "X$pkgver" != "X$curver" ]; then
-	echo "NEW VERSION $curver of $file, we have $pkgver"
-    else
-	echo "$file is good"
-    fi
+    "${CHECKER}" -w "${file}" "${pkgname}" "${pkgver}"
 done
 
 egrep -H 'build/(unpack|pkg_pep518|pkg_setup_py)' *-${PY3VER}/build.sh | while read -r ffile fpkgstr
@@ -127,11 +110,5 @@ do
 	pkgname=c7n
 	pkgver=${pkgver%.0}
     fi
-    curver=$(wget -q -O - https://pypi.python.org/pypi/${pkgname}/json | jq .info.version)
-    curver=${curver//\"/}
-    if [ "X$pkgver" != "X$curver" ]; then
-	echo "NEW VERSION $curver of $file, we have $pkgver"
-    else
-	echo "$file is good"
-    fi
+    "${CHECKER}" "${file}" "${pkgname}" "${pkgver}"
 done
