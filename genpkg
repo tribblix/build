@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -24,6 +24,8 @@
 # handle arguments
 # -I what to install (normally "install")
 # -M extra make arguments (normally blank)
+# -P extra prefix PATH element
+# -gnu is a shortcut for -P /usr/gnu/bin
 #
 INSTALLWHAT="install"
 MAKEARGS=""
@@ -37,6 +39,15 @@ case $1 in
 -M)
 	MAKEARGS=$2
 	shift
+	shift
+	;;
+-P)
+	PATH=${2}:$PATH
+	shift
+	shift
+	;;
+-gnu)
+	PATH=/usr/gnu/bin:$PATH
 	shift
 	;;
 *)
