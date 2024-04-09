@@ -3,8 +3,11 @@ P TRIBjansson
 P TRIBlib-glib2
 P TRIBlib-security-openssl
 P TRIBlibgcrypt
+P TRIBlibmicrohttpd
 P TRIBlibnotify
 P TRIBlibpcap
 P TRIBlibxml2
+P TRIBperl-534
+P TRIBprotobuf-c
 P TRIBrrdtool
 P TRIByajl
