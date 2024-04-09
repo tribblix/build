@@ -7,4 +7,4 @@
 # dobuild uses well enough
 #
 env PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild -64 libimagequant-2.18.0
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/genpkg TRIBlibimagequant libimagequant-2.18.0
+${THOME}/build/genpkg -gnu TRIBlibimagequant libimagequant-2.18.0
