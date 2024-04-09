@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -47,18 +47,18 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 BUILD="${THOME}/build"
 BROOT="/tmp/pct"
 
-if [ ! -d $BUILD ]; then
+if [ ! -d "${BUILD}" ]; then
    echo "ERROR: unable to find build directory $BUILD"
    exit 1
 fi
-if [ ! -d $BROOT ]; then
-    mkdir -p $BROOT
+if [ ! -d "${BROOT}" ]; then
+    mkdir -p "${BROOT}"
 fi
-if [ ! -d $BROOT ]; then
+if [ ! -d "${BROOT}" ]; then
    echo "ERROR: unable to find temporary directory $BROOT"
    exit 1
 fi
-if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+if [ ! -f "${BUILD}/${PKGNAME}/pkginfo" ]; then
    echo "ERROR: missing package data"
    echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
    exit 1
@@ -76,14 +76,14 @@ fi
 # define and create working location
 #
 BDIR="${BROOT}/pkg.$$"
-rm -fr ${BDIR}
-mkdir -p ${BDIR}/${STD_DESTINATION}
-cd ${BDIR}/${STD_DESTINATION}
+rm -fr "${BDIR}"
+mkdir -p "${BDIR}/${STD_DESTINATION}"
+cd "${BDIR}/${STD_DESTINATION}" || exit 1
 
-${BUILD}/unpack $SOFTDIR
-${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+"${BUILD}/unpack" "${SOFTDIR}"
+"${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
 cd /
 
 # remove our temporary files
-rm -fr ${BDIR}
-rm -fr ${BROOT}/${PKGNAME}
+rm -fr "${BDIR}"
+rm -fr "${BROOT}/${PKGNAME}"
