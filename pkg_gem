@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -54,26 +54,26 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 BUILD="${THOME}/build"
 BROOT="/tmp/pct"
 
-if [ ! -d $BUILD ]; then
+if [ ! -d "$BUILD" ]; then
    echo "ERROR: unable to find build directory $BUILD"
    exit 1
 fi
-if [ ! -d $BROOT ]; then
-    mkdir -p $BROOT
+if [ ! -d "$BROOT" ]; then
+    mkdir -p "$BROOT"
 fi
-if [ ! -d $BROOT ]; then
+if [ ! -d "$BROOT" ]; then
    echo "ERROR: unable to find temporary directory $BROOT"
    exit 1
 fi
-if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+if [ ! -f "${BUILD}/${PKGNAME}/pkginfo" ]; then
    echo "ERROR: missing package data"
    echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
    exit 1
 fi
 
 # this is the path we install to
-INSTDIRG=${STD_DESTINATION}/ruby-${RUBYVER}/lib/ruby/vendor_ruby/gems/${RUBYFULLVER}
-INSTDIRB=${STD_DESTINATION}/ruby-${RUBYVER}/bin
+INSTDIRG="${STD_DESTINATION}/ruby-${RUBYVER}/lib/ruby/vendor_ruby/gems/${RUBYFULLVER}"
+INSTDIRB="${STD_DESTINATION}/ruby-${RUBYVER}/bin"
 GEMBIN="/${STD_DESTINATION}/ruby-${RUBYVER}/bin/gem"
 
 if [ ! -x "${GEMBIN}" ]; then
@@ -85,14 +85,14 @@ fi
 # define and create working location
 #
 BDIR="${BROOT}/pkg.$$"
-rm -fr ${BDIR}
-mkdir -p ${BDIR}/${STD_DESTINATION}
+rm -fr "${BDIR}"
+mkdir -p "${BDIR}/${STD_DESTINATION}"
 
-$GEMBIN install -V --force --install-dir ${BDIR}/${INSTDIRG} --bindir ${BDIR}/${INSTDIRB} $SOFTDIR
+$GEMBIN install -V --force --install-dir "${BDIR}/${INSTDIRG}" --bindir "${BDIR}/${INSTDIRB}" "$SOFTDIR"
 
-${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+"${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
 cd /
 
 # remove our temporary files
-rm -fr ${BDIR}
-rm -fr ${BROOT}/${PKGNAME}
+rm -fr "${BDIR}"
+rm -fr "${BROOT}/${PKGNAME}"

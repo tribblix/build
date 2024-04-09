@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -49,11 +49,11 @@ BROOT="/tmp/pct"
 #
 # verify that our arguments refer to a package and to a file
 #
-if [ ! -d $BUILD ]; then
+if [ ! -d "$BUILD" ]; then
    echo "ERROR: unable to find build directory $BUILD"
    exit 1
 fi
-if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+if [ ! -f "${BUILD}/${PKGNAME}/pkginfo" ]; then
    echo "ERROR: missing package data"
    echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
    exit 1
@@ -67,10 +67,10 @@ if [ -d .git ]; then
     exit 1
 fi
      
-if [ ! -d $BROOT ]; then
-    mkdir -p $BROOT
+if [ ! -d "$BROOT" ]; then
+    mkdir -p "$BROOT"
 fi
-if [ ! -d $BROOT ]; then
+if [ ! -d "$BROOT" ]; then
    echo "ERROR: unable to find temporary directory $BROOT"
    exit 1
 fi
@@ -101,7 +101,7 @@ esac
 # all pythons are 64-bit, so we must always set a 64-bit
 # version of PKG_CONFIG_PATH
 #
-PKG_CONFIG_PATH=/usr/lib/$(${THOME}/build/getarch)/pkgconfig
+PKG_CONFIG_PATH=/usr/lib/$("${THOME}"/build/getarch)/pkgconfig
 #
 # if we want to add something to PKG_CONFIG_PATH
 #
@@ -119,17 +119,17 @@ rm -fr ${BDIR}
 #
 # loop over arguments
 #
-for PFILE in $*
+for PFILE in "$@"
 do
 #
 # unpack
 #
-${BUILD}/unpack $PFILE
+"${BUILD}/unpack" "${PFILE}"
 if [ ! -d "${PFILE}" ]; then
     echo "Missing source directory $PFILE"
     exit 1
 fi
-cd $PFILE
+cd "${PFILE}" || exit 1
 if [ ! -f setup.py ]; then
     echo "No setup.py, is this really a python project?"
     exit 1
@@ -138,14 +138,14 @@ fi
 # build and install using setup.py
 #
 python${PYVER} setup.py build
-python${PYVER} setup.py install --root=${BDIR}
+python${PYVER} setup.py install --root="${BDIR}"
 cd ..
 #
 # end loop
 #
 done
 
-${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+"${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
 cd /
 
 #
@@ -157,4 +157,4 @@ if [ -n "${badfiles}" ]; then
 fi
 
 # remove our temporary files
-rm -fr ${BDIR}
+rm -fr "${BDIR}"

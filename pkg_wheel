@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -50,11 +50,11 @@ BROOT="/tmp/pct"
 #
 # verify that our arguments refer to a package and to a wheel
 #
-if [ ! -d $BUILD ]; then
+if [ ! -d "$BUILD" ]; then
    echo "ERROR: unable to find build directory $BUILD"
    exit 1
 fi
-if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+if [ ! -f "${BUILD}/${PKGNAME}/pkginfo" ]; then
    echo "ERROR: missing package data"
    echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
    exit 1
@@ -68,10 +68,10 @@ if [ -d .git ]; then
     exit 1
 fi
      
-if [ ! -d $BROOT ]; then
-    mkdir -p $BROOT
+if [ ! -d "$BROOT" ]; then
+    mkdir -p "$BROOT"
 fi
-if [ ! -d $BROOT ]; then
+if [ ! -d "$BROOT" ]; then
    echo "ERROR: unable to find temporary directory $BROOT"
    exit 1
 fi
@@ -107,7 +107,7 @@ rm -fr ${BDIR}
 #
 # loop over arguments
 #
-for PFILE in $*
+for PFILE in "$@"
 do
 
 if [ ! -f "${THOME}/tarballs/${PFILE}" ]; then
@@ -117,7 +117,7 @@ fi
 #
 # use pip to install
 #
-python${PYVER} -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-compile --no-warn-script-location --root=${BDIR} -I ${THOME}/tarballs/${PFILE}
+python${PYVER} -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-compile --no-warn-script-location --root="${BDIR}" -I "${THOME}/tarballs/${PFILE}"
 #
 # end loop
 #
@@ -130,10 +130,10 @@ done
 # force unchecked-hash to ensure that nothing, even as root, will ever
 # try to recompile and overwrite packaged pyc files
 #
-python${PYVER} -m compileall -f -p / -s ${BDIR} --invalidation-mode unchecked-hash ${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages
+python${PYVER} -m compileall -f -p / -s "${BDIR}" --invalidation-mode unchecked-hash "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages"
 
-${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+"${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
 cd /
 
 # remove our temporary files
-rm -fr ${BDIR}
+rm -fr "${BDIR}"
