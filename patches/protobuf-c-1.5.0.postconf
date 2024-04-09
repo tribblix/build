@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# protoc looks for standard files installed in /usr/include
+# but the build supplies "-I.", so symlink them here
+#
+ln -s /usr/include/google .

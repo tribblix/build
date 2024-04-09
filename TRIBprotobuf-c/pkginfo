@@ -1,0 +1,4 @@
+PKG="TRIBprotobuf-c"
+NAME="Protocol Buffers for C"
+VERSION="1.5.0.0"
+ZAP_URL="https://github.com/protobuf-c/protobuf-c"
