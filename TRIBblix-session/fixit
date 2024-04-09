@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+
+#
+# sparc doesn't have all the options
+#
+case $(uname -p) in
+sparc)
+    rm -f usr/share/tribblix-session/e19.*
+    rm -f usr/share/tribblix-session/leftwm.*
+    ;;
+esac
