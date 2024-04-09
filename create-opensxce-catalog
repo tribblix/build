@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -31,7 +31,7 @@ esac
 #
 # prefer zap as we can get dependencies, and it's quicker
 #
-cd $PKGDIR
+cd "$PKGDIR" || exit 1
 for ZPKG in *.zap
 do
   DEPLIST=""
@@ -39,18 +39,18 @@ do
   PF=${ZPKG%.zap}
   PKGVERS=${PF#*.}
   if [ -x /usr/bin/stat ]; then
-    PKGSIZE=$(/usr/bin/stat --printf="%s" ${ZPKG})
+    PKGSIZE=$(/usr/bin/stat --printf="%s" "${ZPKG}")
   else
-    PKGSIZE=$(/bin/ls -l ${ZPKG} | /usr/bin/awk '{print $5}')
+    PKGSIZE=$(/bin/ls -l "${ZPKG}" | /usr/bin/awk '{print $5}')
   fi
-  if [ ${ZPKG}.md5 -nt ${ZPKG} ]; then
-    PKGMD5=$(<${ZPKG}.md5)
+  if [ "${ZPKG}.md5" -nt "${ZPKG}" ]; then
+    PKGMD5=$(<"${ZPKG}.md5")
   else
-    PKGMD5=$(openssl md5 ${ZPKG} | /usr/bin/awk '{print $NF}')
-    /bin/rm -f ${ZPKG}.md5
-    echo $PKGMD5 > ${ZPKG}.md5
+    PKGMD5=$(openssl md5 "${ZPKG}" | /usr/bin/awk '{print $NF}')
+    /bin/rm -f "${ZPKG}.md5"
+    echo "$PKGMD5" > "${ZPKG}.md5"
   fi
-  DEPLIST=$(unzip -p $ZPKG ${PNAME}/install/depend 2>/dev/null | awk '{if ($1 == "P") printf("%s ", $2)}')
+  DEPLIST=$(unzip -p "$ZPKG" "${PNAME}/install/depend" 2>/dev/null | awk '{if ($1 == "P") printf("%s ", $2)}')
   DEPLIST=${DEPLIST%% }
   echo "${PNAME}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|"
 done

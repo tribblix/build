@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -29,44 +29,44 @@ case $# in
 	;;
 esac
 
-ggrep '^VERSION=' */pkginfo | while read vstring
+grep '^VERSION=' [A-Z]*/pkginfo | while read -r vstring
 do
   PKG=${vstring%/*}
   PKGVERS=${vstring##*=}
   PKGVERS=${PKGVERS//\"/}
-  if [ -f ${PKG}/version.${ARCH} ]; then
-      PKGVERS=$(<${PKG}/version.${ARCH})
+  if [ -f "${PKG}/version.${ARCH}" ]; then
+      PKGVERS=$(<"${PKG}/version.${ARCH}")
   fi
   DEPLIST=""
-  if [ -f ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
+  if [ -f "${PKGDIR}/${PKG}.${PKGVERS}.zap" ]; then
     if [ -x /usr/bin/stat ]; then
-	PKGSIZE=$(/usr/bin/stat --printf="%s" ${PKGDIR}/${PKG}.${PKGVERS}.zap)
+	PKGSIZE=$(/usr/bin/stat --printf="%s" "${PKGDIR}/${PKG}.${PKGVERS}.zap")
     else
-	PKGSIZE=$(/bin/ls -l ${PKGDIR}/${PKG}.${PKGVERS}.zap | /usr/bin/awk '{print $5}')
+	PKGSIZE=$(/bin/ls -l "${PKGDIR}/${PKG}.${PKGVERS}.zap" | /usr/bin/awk '{print $5}')
     fi
-    if [ ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5 -nt ${PKGDIR}/${PKG}.${PKGVERS}.zap ]; then
-	PKGMD5=$(<${PKGDIR}/${PKG}.${PKGVERS}.zap.md5)
+    if [ "${PKGDIR}/${PKG}.${PKGVERS}.zap.md5" -nt "${PKGDIR}/${PKG}.${PKGVERS}.zap" ]; then
+	PKGMD5=$(<"${PKGDIR}/${PKG}.${PKGVERS}.zap.md5")
     else
-	PKGMD5=$(openssl md5 ${PKGDIR}/${PKG}.${PKGVERS}.zap| /usr/bin/awk '{print $NF}')
-	/bin/rm -f ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
-	echo $PKGMD5 > ${PKGDIR}/${PKG}.${PKGVERS}.zap.md5
+	PKGMD5=$(openssl md5 "${PKGDIR}/${PKG}.${PKGVERS}.zap"| /usr/bin/awk '{print $NF}')
+	/bin/rm -f "${PKGDIR}/${PKG}.${PKGVERS}.zap.md5"
+	echo "$PKGMD5" > "${PKGDIR}/${PKG}.${PKGVERS}.zap.md5"
     fi
-    if [ -f ${PKG}/depend.${ARCH} ]; then
+    if [ -f "${PKG}/depend.${ARCH}" ]; then
 	DEPLIST=""
-	while read d p
+	while read -r d p
 	do
 	    if [ "X$d" = "XP" ]; then
 		DEPLIST="$DEPLIST$p "
 	    fi
-	done < ${PKG}/depend.${ARCH}
-    elif [ -f ${PKG}/depend ]; then
+	done < "${PKG}/depend.${ARCH}"
+    elif [ -f "${PKG}/depend" ]; then
 	DEPLIST=""
-	while read d p
+	while read -r d p
 	do
 	    if [ "X$d" = "XP" ]; then
 		DEPLIST="$DEPLIST$p "
 	    fi
-	done < ${PKG}/depend
+	done < "${PKG}/depend"
     fi
     DEPLIST=${DEPLIST/% /}
     echo "${PKG}|${PKGVERS}|${DEPLIST}|${PKGSIZE}|${PKGMD5}|"
