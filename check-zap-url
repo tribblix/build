@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -25,7 +25,7 @@
 for PKGI in */pkginfo
 do
     PKG=${PKGI%/*}
-    PKGHOME=`awk -F= '{if ($1 == "ZAP_URL") print $2}' $PKGI | sed 's="==g'`
+    PKGHOME=$(/usr/bin/grep '^ZAP_URL' "${PKGI}")
     if [ -z "${PKGHOME}" ]; then
 	echo "$PKG does not have ZAP_URL set"
     fi
