@@ -117,11 +117,20 @@ fi
 #
 # use pip to install
 #
-python${PYVER} -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-warn-script-location --root=${BDIR} -I ${THOME}/tarballs/${PFILE}
+python${PYVER} -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-compile --no-warn-script-location --root=${BDIR} -I ${THOME}/tarballs/${PFILE}
 #
 # end loop
 #
 done
+
+#
+# compile separately, to avoid install paths and timestamps ending up
+# embedded in pyc files
+#
+# force unchecked-hash to ensure that nothing, even as root, will ever
+# try to recompile and overwrite packaged pyc files
+#
+python${PYVER} -m compileall -f -p / -s ${BDIR} --invalidation-mode unchecked-hash ${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages
 
 ${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
 cd /
