@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# a pep518 build requires -n == --no-build-isolation otherwise it tries
+# a pep518 build requires -N == --no-build-isolation otherwise it tries
 # to build its own numpy, which would fail as it doesn't have the
 # modifications we need to make it build successfully
 #
@@ -14,4 +14,4 @@
 # if it doesn't, you may need to edit openmp_helpers.py and make
 # check_openmp_support() unconditionally return False
 #
-env CC="gcc -m64" LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-learn-python-311 scikit-learn-1.4.1.post1
+env CC="gcc -m64" LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-learn-python-311 scikit-learn-1.4.2
