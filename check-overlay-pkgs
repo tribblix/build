@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -42,48 +42,17 @@ case $(pwd) in
 esac
 IPKGDIR=${THOME}/illumos-pkgs-${ILVER}/pkgs
 
-case $1 in
--a)
-    # look for all overlays
-    for pkg in *.pkgs
-    do
-	$0 "${pkg%.pkgs}"
-    done
-    exit 0
-    ;;
--f)
-    # useful for overlays.iso
-    if [ -f "$2" ]; then
-	for pkg in $(<"$2")
-	do
-	    $0 "$pkg"
-	done
-    else
-	echo "Missing file $2"
-    fi
-    exit 0
-    ;;
-esac
-
-case $# in
-1)
-	OVL="$1"
-	;;
-*)
-	echo "Usage: $0 -a|overlay|-f listfile"
-	exit 1
-	;;
-esac
-
+docheck() {
+    OVL="$1"
 if [ ! -f "${OVL}.pkgs" ]; then
     echo "ERROR: unable to find overlay $OVL"
     exit 1
 fi
 
-DUPPKGS=$(sort ${OVL}.pkgs | uniq -d)
+DUPPKGS=$(sort "${OVL}.pkgs" | uniq -d)
 if [ -n "${DUPPKGS}" ]; then
     echo "ERROR: duplicate packages in ${OVL}"
-    sort ${OVL}.pkgs | uniq -c | awk '{if ($1 != 1) print}'
+    sort "${OVL}.pkgs" | uniq -c | awk '{if ($1 != 1) print}'
 fi
 
 for PKGI in $(grep -E -v '^(TRIBrelease-name|TRIBzap|TRIBzap-upgrade)$' "${OVL}.pkgs")
@@ -130,3 +99,37 @@ do
       fi
   fi
 done
+}
+
+case $1 in
+-a)
+    # look for all overlays
+    for pkg in *.pkgs
+    do
+	docheck "${pkg%.pkgs}"
+    done
+    exit 0
+    ;;
+-f)
+    # useful for overlays.iso
+    if [ -f "$2" ]; then
+	for pkg in $(<"$2")
+	do
+	    docheck "$pkg"
+	done
+    else
+	echo "Missing file $2"
+    fi
+    exit 0
+    ;;
+esac
+
+case $# in
+1)
+	docheck "$1"
+	;;
+*)
+	echo "Usage: $0 -a|overlay|-f listfile"
+	exit 1
+	;;
+esac
