@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -68,14 +68,14 @@ do
   PKG=${PKGI%/*}
   # if marked for a different arch, ignore
   if [ -f "${PKG}/arch.txt" ]; then
-      NARCH=$(<${PKG}/arch.txt)
+      NARCH=$(<"${PKG}/arch.txt")
       if [ "$NARCH" != "$ARCH" ]; then
 	  continue
       fi
   fi
   # use a per-arch version if present
   if [ -f "${PKG}/version.$ARCH" ]; then
-      PKGVERS=$(<${PKG}/version.$ARCH)
+      PKGVERS=$(<"${PKG}/version.$ARCH")
   else
       PKGVERS=""
       while read -r line
@@ -86,7 +86,7 @@ do
 		  break
 		  ;;
 	  esac
-      done<${PKGI}
+      done<"${PKGI}"
       PKGVERS=${PKGVERS//\"/}
   fi
   if [ -f "${PKGDIR}/${PKG}.${PKGVERS}.zap" ]; then
