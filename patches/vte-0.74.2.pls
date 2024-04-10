@@ -1,0 +1,5 @@
+-p1 vte-TIOCGWINSZ.patch
+-p1 vte-W_EXITCODE.patch
+-p1 vte-cfmakeraw.patch
+-p1 vte-deshift2.patch
+-p1 vte-std.patch

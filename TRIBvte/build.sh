@@ -3,5 +3,7 @@
 # this is a patched vte, that handles home/end/pgup/pgdown sanely
 # without requiring shift
 #
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild -64only vte-0.52.4 -C "--disable-Bsymbolic --enable-introspection=no --enable-vala=no"
-${THOME}/build/genpkg TRIBvte vte-0.52.4
+# later versions require newer glib
+#
+env TRIBBLIX_CXXFLAGS=-D__EXTENSIONS__ PATH=/usr/gnu/bin:$PATH ${THOME}/build/mesonbuild -64only vte-0.74.2 -C "-D_b_symbolic_functions=false -Dgir=false -Dvapi=false -Dicu=false -D_systemd=false -Dgtk4=false"
+${THOME}/build/genpkg TRIBvte vte-0.74.2

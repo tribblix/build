@@ -1,0 +1,11 @@
+--- a/meson.build	2020-03-02 22:45:24.255106014 -0800
++++ b/meson.build	2020-03-02 22:45:44.297656586 -0800
+@@ -255,7 +255,7 @@
+ # Check for symbols
+ 
+ check_symbols_required = [
+-  ['TIOCGWINSZ', 'sys/ioctl.h'],
++  ['TIOCGWINSZ', 'sys/termios.h'],
+ ]
+ 
+ foreach symbol: check_symbols_required

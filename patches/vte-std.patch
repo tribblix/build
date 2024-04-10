@@ -1,0 +1,17 @@
+Defining a bunch of POSIX defines makes a bunch of stuff invisible.
+
+
+--- a/meson.build	Wed Apr 10 13:08:26 2024
++++ b/meson.build	Wed Apr 10 13:09:29 2024
+@@ -231,6 +231,11 @@
+ 
+   libc_feature_defines = []
+ 
++elif system == 'sunos'
++  # Likewise
++
++  libc_feature_defines = []
++
+ elif system == 'darwin'
+   # See issue #2592
+   libc_feature_defines += [

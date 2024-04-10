@@ -1,3 +1,0 @@
--p1 vte-deshift2.patch
--p1 vte-no-ssp.patch
--p1 vte-TIOCPKT.patch
