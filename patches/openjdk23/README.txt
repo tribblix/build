@@ -11,6 +11,11 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+18
+
+Minor tweak to one line in os_solaris_x86.cpp to match changes in
+Linux.
+
 23+17
 
 More mucking around with Makefiles.
