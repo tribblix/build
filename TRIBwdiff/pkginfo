@@ -1,0 +1,4 @@
+PKG="TRIBwdiff"
+NAME="wdiff"
+VERSION="1.2.2.0"
+ZAP_URL="https://www.gnu.org/software/wdiff/"
