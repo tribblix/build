@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-env GOPATH=`pwd` go install github.com/gohugoio/hugo@latest
+env PATH=/usr/versions/go-1.22/bin:$PATH GOPATH=`pwd` go install github.com/gohugoio/hugo@latest
 
 rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/bin
