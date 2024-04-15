@@ -13,13 +13,13 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
 # a little helper to return the arch string
 #
-case `uname -p` in
+case $(uname -p) in
 sparc)
   ARCH64="sparcv9"
   ;;
@@ -28,5 +28,5 @@ i386)
   ;;
 esac
 
-echo $ARCH64
+echo "$ARCH64"
 exit 0
