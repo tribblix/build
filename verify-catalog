@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -31,7 +31,7 @@ case $# in
 	;;
 esac
 
-if [ ! -f $CFILE ]; then
+if [ ! -f "$CFILE" ]; then
     echo "ERROR: $CFILE not found"
     exit 1
 fi
@@ -39,9 +39,9 @@ fi
 #
 # assume we're in the build directory
 #
-for pkg in `awk -F'|' '{print $1}' $CFILE`
+for pkg in $(awk -F'|' '{print $1}' "$CFILE")
 do
-    if [ ! -d $pkg ]; then
+    if [ ! -d "$pkg" ]; then
 	echo "WARN: missing package $pkg"
     fi
 done

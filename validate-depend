@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -43,7 +43,7 @@ if [ $# -gt 0 ]; then
     ILREL=${ILVER/m/}
     ILREL=${ILREL/.sparc/}
 fi
-if [ ! -d ../illumos-pkgs-${ILVER}/pkgs ]; then
+if [ ! -d "../illumos-pkgs-${ILVER}/pkgs" ]; then
     echo "ERROR: no illumos packages for $ILVER"
     exit 2
 fi
@@ -51,12 +51,12 @@ fi
 #
 # just walk through all the depend files
 #
-for dep in `sort -u */depend | awk '{print $2}'`
+for dep in $(sort -u ./*/depend | awk '{print $2}')
 do
-    if [ ! -d $dep ]; then
-	if [ ! -f ../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap ]; then
+    if [ ! -d "$dep" ]; then
+	if [ ! -f "../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap" ]; then
 	    echo "Missing dependency $dep"
-	    grep -x "P ${dep}" */depend
+	    grep -x "P ${dep}" ./*/depend
 	fi
     fi
 done
@@ -64,12 +64,12 @@ done
 #
 # and build_require
 #
-for dep in `sort -u */build_require`
+for dep in $(sort -u ./*/build_require)
 do
-    if [ ! -d $dep ]; then
-	if [ ! -f ../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap ]; then
+    if [ ! -d "$dep" ]; then
+	if [ ! -f "../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap" ]; then
 	    echo "Missing build_require $dep"
-	    grep -x "${dep}" */build_require
+	    grep -x "${dep}" ./*/build_require
 	fi
     fi
 done
@@ -77,7 +77,7 @@ done
 #
 # and check for blank lines
 #
-for dep in `grep '^[ ]*$' */depend */build_require`
+for dep in $(grep '^[ ]*$' ./*/depend ./*/build_require)
 do
     echo "Blank line in $dep"
 done

@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -29,13 +29,13 @@ fi
 # check that all overlays listed in the catalog exist and are at the
 # correct version
 #
-awk -F'|' '{print $1, $2}' catalog | while read pkg iver
+awk -F'|' '{print $1, $2}' catalog | while read -r pkg iver
 do
-  if [ ! -f ${pkg}.pkgs ]; then
+  if [ ! -f "${pkg}.pkgs" ]; then
     echo "ERROR: ${pkg}.pkgs missing"
   fi
-  if [ -f ${pkg}.ovl ]; then
-      nver=$(grep '^VERSION=' ${pkg}.ovl)
+  if [ -f "${pkg}.ovl" ]; then
+      nver=$(grep '^VERSION=' "${pkg}.ovl")
       nver=${nver##*=}
       if [ "X${nver}" != "X${iver}" ]; then
 	  echo "ERROR: $pkg is at the wrong version"
