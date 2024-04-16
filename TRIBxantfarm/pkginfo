@@ -1,4 +1,4 @@
 PKG="TRIBxantfarm"
 NAME="Xantfarm simulates an ant hill"
-VERSION="2014.0"
+VERSION="2014.1"
 ZAP_URL="https://www.acme.com/software/xantfarm/"
