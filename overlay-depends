@@ -13,7 +13,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -34,7 +34,7 @@ case $(pwd) in
 	ARCH=i386
 	;;
     */overlays.sparc)
-	ILVER=m29.sparc
+	ILVER=m30.sparc
 	ARCH=sparc
 	;;
     */overlays)
