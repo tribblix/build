@@ -1,0 +1,25 @@
+It looks for /proc, but can't handle the real thing. So we force ps
+by default, and even then need to fix invalid usage.
+
+--- shellingham-1.5.4/src/shellingham/posix/__init__.py~	Tue Oct 24 02:51:22 2023
++++ shellingham-1.5.4/src/shellingham/posix/__init__.py	Tue Apr 16 15:20:17 2024
+@@ -40,7 +40,7 @@
+     * `/proc` is used if supported.
+     * The system `ps` utility is used as a fallback option.
+     """
+-    for impl in (proc, ps):
++    for impl in (ps, proc):
+         try:
+             iterator = impl.iter_process_parents(pid, max_depth)
+         except EnvironmentError:
+--- shellingham-1.5.4/src/shellingham/posix/ps.py~	Tue Oct 24 02:51:22 2023
++++ shellingham-1.5.4/src/shellingham/posix/ps.py	Tue Apr 16 15:26:22 2024
+@@ -12,7 +12,7 @@
+ def iter_process_parents(pid, max_depth=10):
+     """Try to look up the process tree via the output of `ps`."""
+     try:
+-        cmd = ["ps", "-ww", "-o", "pid=", "-o", "ppid=", "-o", "args="]
++        cmd = ["ps", "-o", "pid=", "-o", "ppid=", "-o", "args="]
+         output = subprocess.check_output(cmd)
+     except OSError as e:  # Python 2-compatible FileNotFoundError.
+         if e.errno != errno.ENOENT:
