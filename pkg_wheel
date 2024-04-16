@@ -17,6 +17,12 @@
 #
 
 #
+# fix environment
+#
+LC_ALL=C
+export LC_ALL
+
+#
 # package one or more python project(s) directly from a downloaded
 # wheel (see pkg_pep518 for one that creates the wheel from source)
 #

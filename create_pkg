@@ -17,6 +17,12 @@
 #
 
 #
+# fix environment
+#
+LC_ALL=C
+export LC_ALL
+
+#
 # package the files in a given directory
 #
 case $# in
