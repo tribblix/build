@@ -307,9 +307,15 @@ export LD_OPTIONS
 fi
 
 #
-# save the PATH to manipulate later
+# set the PATH we'll use later
 #
-TRIBBLIX_PATH=$PATH
+if [ "x$DOGNU" != "xfalse" ]; then
+    TRIBBLIX_PATH64=/usr/gnu/bin/${ARCH64}:/usr/gnu/bin:/usr/bin/${ARCH64}:$PATH
+    TRIBBLIX_PATH32=/usr/gnu/bin:$PATH
+else
+    TRIBBLIX_PATH64=/usr/bin/${ARCH64}:${PATH/\/usr\/gnu\/bin//usr/gnu/bin/${ARCH64}:/usr/gnu/bin}
+    TRIBBLIX_PATH32=$PATH
+fi
 
 #
 # if we want to add something to PKG_CONFIG_PATH
@@ -360,12 +366,7 @@ EOF
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    if [ "x$DOGNU" != "xfalse" ]; then
-		TRIBBLIX_PATH=/usr/gnu/bin/${ARCH64}:/usr/gnu/bin:/usr/bin/${ARCH64}:$TRIBBLIX_PATH
-	    else
-		TRIBBLIX_PATH=/usr/bin/${ARCH64}:${TRIBBLIX_PATH/\/usr\/gnu\/bin//usr/gnu/bin/${ARCH64}:/usr/gnu/bin}
-	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
@@ -398,10 +399,7 @@ EOF
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    if [ "x$DOGNU" != "xfalse" ]; then
-		TRIBBLIX_PATH=/usr/gnu/bin:$TRIBBLIX_PATH
-	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX} ${LIBARGS32}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX} ${LIBARGS32}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
