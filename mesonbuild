@@ -81,10 +81,12 @@ BRANCHARGS=""
 BUILDDIR="tribblix_build"
 
 #
-# if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
-# then specify -gnu
+# if /usr/gnu/bin is needed at the head of the PATH (often, to find
+# GNU gettext) then specify -gnu to add for configuration, and specifyg
+# +gnu to force for both configuration and build
 #
-DOGNU="false"
+CONFGNU="false"
+BUILDGNU="false"
 
 #
 # Other arguments are
@@ -136,7 +138,12 @@ case $1 in
 	shift
 	;;
 -gnu)
-	DOGNU="true"
+	CONFGNU="true"
+	shift
+	;;
++gnu)
+	CONFGNU="true"
+	BUILDGNU="true"
 	shift
 	;;
 -B)
@@ -232,12 +239,19 @@ fi
 #
 # set the PATH we'll use later
 #
-if [ "x$DOGNU" != "xfalse" ]; then
-    TRIBBLIX_PATH64=/usr/gnu/bin/${ARCH64}:/usr/gnu/bin:/usr/bin/${ARCH64}:$PATH
-    TRIBBLIX_PATH32=/usr/gnu/bin:$PATH
+if [ "x$CONFGNU" != "xfalse" ]; then
+    TRIBBLIX_CONF_PATH64=/usr/gnu/bin/${ARCH64}:/usr/gnu/bin:/usr/bin/${ARCH64}:$PATH
+    TRIBBLIX_CONF_PATH32=/usr/gnu/bin:$PATH
 else
-    TRIBBLIX_PATH64=/usr/bin/${ARCH64}:${PATH/\/usr\/gnu\/bin//usr/gnu/bin/${ARCH64}:/usr/gnu/bin}
-    TRIBBLIX_PATH32=$PATH
+    TRIBBLIX_CONF_PATH64=/usr/bin/${ARCH64}:${PATH/\/usr\/gnu\/bin//usr/gnu/bin/${ARCH64}:/usr/gnu/bin}
+    TRIBBLIX_CONF_PATH32=$PATH
+fi
+if [ "x$BUILDGNU" != "xfalse" ]; then
+    TRIBBLIX_BUILD_PATH32=/usr/gnu/bin:$PATH
+    TRIBBLIX_BUILD_PATH64=/usr/gnu/bin/${ARCH64}:/usr/gnu/bin:$PATH
+else
+    TRIBBLIX_BUILD_PATH32=$PATH
+    TRIBBLIX_BUILD_PATH64=$PATH
 fi
 
 #
@@ -284,13 +298,13 @@ EOF
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    echo "${BUILDDIR}" > .tribblix_meson_build
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS64} --libdir=${LIBDIR64} --bindir=${BINDIR64} ${BUILDDIR}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_CONF_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS64} --libdir=${LIBDIR64} --bindir=${BINDIR64} ${BUILDDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    ninja -C ${BUILDDIR}
+	    env PATH=$TRIBBLIX_BUILD_PATH64 ninja -C ${BUILDDIR}
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
@@ -312,10 +326,10 @@ EOF
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    echo "${BUILDDIR}" > .tribblix_meson_build
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS32} ${BUILDDIR}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_CONF_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS32} ${BUILDDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    ninja -C ${BUILDDIR}
+	    env PATH=$TRIBBLIX_BUILD_PATH32 ninja -C ${BUILDDIR}
 	fi
 done

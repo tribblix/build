@@ -88,10 +88,12 @@ SRCDIR="."
 BUILDDIR="."
 
 #
-# if /usr/gnu/bin is needed in the PATH (usually, to find GNU gettext)
-# then specify -gnu
+# if /usr/gnu/bin is needed at the head of the PATH (often, to find
+# GNU gettext) then specify -gnu to add for configuration, and specifyg
+# +gnu to force for both configuration and build
 #
-DOGNU="false"
+CONFGNU="false"
+BUILDGNU="false"
 
 #
 # Other arguments are
@@ -155,7 +157,12 @@ case $1 in
 	shift
 	;;
 -gnu)
-	DOGNU="true"
+	CONFGNU="true"
+	shift
+	;;
++gnu)
+	CONFGNU="true"
+	BUILDGNU="true"
 	shift
 	;;
 -B)
@@ -309,12 +316,19 @@ fi
 #
 # set the PATH we'll use later
 #
-if [ "x$DOGNU" != "xfalse" ]; then
-    TRIBBLIX_PATH64=/usr/gnu/bin/${ARCH64}:/usr/gnu/bin:/usr/bin/${ARCH64}:$PATH
-    TRIBBLIX_PATH32=/usr/gnu/bin:$PATH
+if [ "x$CONFGNU" != "xfalse" ]; then
+    TRIBBLIX_CONF_PATH64=/usr/gnu/bin/${ARCH64}:/usr/gnu/bin:/usr/bin/${ARCH64}:$PATH
+    TRIBBLIX_CONF_PATH32=/usr/gnu/bin:$PATH
 else
-    TRIBBLIX_PATH64=/usr/bin/${ARCH64}:${PATH/\/usr\/gnu\/bin//usr/gnu/bin/${ARCH64}:/usr/gnu/bin}
-    TRIBBLIX_PATH32=$PATH
+    TRIBBLIX_CONF_PATH64=/usr/bin/${ARCH64}:${PATH/\/usr\/gnu\/bin//usr/gnu/bin/${ARCH64}:/usr/gnu/bin}
+    TRIBBLIX_CONF_PATH32=$PATH
+fi
+if [ "x$BUILDGNU" != "xfalse" ]; then
+    TRIBBLIX_BUILD_PATH32=/usr/gnu/bin:$PATH
+    TRIBBLIX_BUILD_PATH64=/usr/gnu/bin/${ARCH64}:/usr/gnu/bin:$PATH
+else
+    TRIBBLIX_BUILD_PATH32=$PATH
+    TRIBBLIX_BUILD_PATH64=$PATH
 fi
 
 #
@@ -366,13 +380,13 @@ EOF
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_CONF_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
+	    env PATH=$TRIBBLIX_BUILD_PATH64 ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
@@ -399,10 +413,10 @@ EOF
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX} ${LIBARGS32}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_CONF_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX} ${LIBARGS32}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
+	    env PATH=$TRIBBLIX_BUILD_PATH32 ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
 	fi
 done
