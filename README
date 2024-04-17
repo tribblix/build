@@ -1,10 +1,17 @@
 This is the framework used to build SVR4 packages for Tribblix.
 
 The primary script is dobuild, which unpacks a tarball, runs configure
-and make. Then genpkg will create a package.
+and make. There are variants mesonbuild (for meson projects), cmbuild
+(for cmake projects), and imakebuild (for legacy projects using Imake).
+
+Then genpkg will create a package.
 
 dobuild xrestop-0.4
 genpkg TRIBxrestop xrestop-0.4
+
+There are also canned variants (pkg_setup_py, pkg_pep518, pkg_wheel)
+for the various styles of python projects. Along with pkg_gem for ruby
+gems, and pkg_tarball for simple tarballs.
 
 You need to create a directory for each package. Minimally, this must
 contain a pkginfo fragment. There is optionally a depend file with
@@ -12,3 +19,8 @@ package dependencies (the autodepend script can help generate that
 list). If any SMF services should be restarted on package
 install/removal, list them in a restart_fmri_list file. And if you want
 to modify the proto area, add a fixit script.
+
+To apply patches, put the patches you need into the patches directory,
+and create a pls file named after the (versioned) tarball you're unpacking.
+Along with the pls file, you can create preconf and postconf scripts
+that run before before and after the configuration respectively.
