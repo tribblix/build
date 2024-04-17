@@ -154,9 +154,9 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -427,9 +427,6 @@
+@@ -481,9 +481,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
-     CFLAGS_OS_DEF_JVM="-DLINUX"
+     CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
 -  elif test "x$OPENJDK_TARGET_OS" = xsolaris; then
 -    CFLAGS_OS_DEF_JVM="-DSOLARIS"
@@ -736,7 +736,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -456,7 +454,7 @@
+@@ -454,7 +452,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -745,7 +745,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -625,10 +623,7 @@
+@@ -623,10 +621,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -757,7 +757,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -655,7 +650,6 @@
+@@ -653,7 +648,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1059,7 +1059,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -504,7 +504,7 @@
+@@ -506,7 +506,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1068,7 +1068,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -522,12 +522,6 @@
+@@ -524,12 +524,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1170,7 +1170,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1589,10 +1589,8 @@
+@@ -1592,10 +1592,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1183,7 +1183,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1874,8 +1872,7 @@
+@@ -1877,8 +1875,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1409,7 +1409,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1888,8 +1888,6 @@
+@@ -1889,8 +1889,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1418,7 +1418,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1954,8 +1952,6 @@
+@@ -1955,8 +1953,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -3053,7 +3053,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -862,20 +629,10 @@
+@@ -864,20 +631,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -3074,7 +3074,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -892,61 +649,8 @@
+@@ -894,61 +651,8 @@
      }
  #endif
  
@@ -3944,21 +3944,21 @@
  
 --- old/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2020-05-20 18:02:52.281381711 -0700
 +++ new/src/java.smartcardio/unix/classes/sun/security/smartcardio/PlatformPCSC.java	2020-05-20 18:02:51.897374338 -0700
-@@ -82,12 +82,8 @@
-         String s2 = lib.substring(k + 7);
-         String libDir;
-         if ("64".equals(System.getProperty("sun.arch.data.model"))) {
--            if ("SunOS".equals(System.getProperty("os.name"))) {
--                libDir = "lib/64";
--            } else {
--                // assume Linux convention
--                libDir = "lib64";
--            }
-+            // assume Linux convention
-+            libDir = "lib64";
-         } else {
-             // must be 32-bit
-             libDir = "lib";
+@@ -86,12 +86,8 @@
+         if (k != -1) {
+             String libDir;
+             if ("64".equals(System.getProperty("sun.arch.data.model"))) {
+-                if ("SunOS".equals(System.getProperty("os.name"))) {
+-                    libDir = "lib/64";
+-                } else {
+-                    // assume Linux convention
+-                    libDir = "lib64";
+-                }
++                // assume Linux convention
++                libDir = "lib64";
+             } else {
+                 // must be 32-bit
+                 libDir = "lib";
 --- old/src/java.xml/share/classes/com/sun/org/apache/xalan/internal/xsltc/runtime/output/WriterOutputBuffer.java	2020-05-20 18:02:53.293401143 -0700
 +++ new/src/java.xml/share/classes/com/sun/org/apache/xalan/internal/xsltc/runtime/output/WriterOutputBuffer.java	2020-05-20 18:02:52.961394768 -0700
 @@ -33,21 +33,12 @@
@@ -4238,7 +4238,7 @@
      int ret;
      jlong total = 0, avail = 0;
  
-@@ -184,37 +128,7 @@
+@@ -190,37 +134,7 @@
  Java_com_sun_management_internal_OperatingSystemImpl_getCommittedVirtualMemorySize0
    (JNIEnv *env, jobject mbean)
  {
@@ -4277,7 +4277,7 @@
      struct task_basic_info t_info;
      mach_msg_type_number_t t_info_count = TASK_BASIC_INFO_COUNT;
  
-@@ -240,7 +184,7 @@
+@@ -276,7 +190,7 @@
       * BSDNOTE: FreeBSD implements _SC_CLK_TCK since FreeBSD 5, so
       *          add a magic to handle it
       */
@@ -8025,7 +8025,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3129 +0,0 @@
+@@ -1,3154 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8918,6 +8918,9 @@
 -  }
 -
 -  return false;
+-}
+-
+-void os::prepare_native_symbols() {
 -}
 -
 -typedef int (*dladdr1_func_type)(void *, Dl_info *, void **, int);
@@ -11155,6 +11158,28 @@
 -void os::jfr_report_memory_info() {}
 -
 -#endif // INCLUDE_JFR
+-
+-bool os::pd_dll_unload(void* libhandle, char* ebuf, int ebuflen) {
+-
+-  if (ebuf && ebuflen > 0) {
+-    ebuf[0] = '\0';
+-    ebuf[ebuflen - 1] = '\0';
+-  }
+-
+-  bool res = (0 == ::dlclose(libhandle));
+-  if (!res) {
+-    // error analysis when dlopen fails
+-    const char* error_report = ::dlerror();
+-    if (error_report == nullptr) {
+-      error_report = "dlerror returned no error description";
+-    }
+-    if (ebuf != nullptr && ebuflen > 0) {
+-      snprintf(ebuf, ebuflen - 1, "%s", error_report);
+-    }
+-  }
+-
+-  return res;
+-} // end: os::pd_dll_unload()
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,198 +0,0 @@
