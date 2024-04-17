@@ -56,6 +56,7 @@ env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin  bash ./configure \
 # changes to remove the Studio/sparcWorks usage, so we give a bit of
 # extra help
 # SPARC needs to set ASFLAGS=-m64 but not AS
+# SPARC requires env HOTSPOT_DISABLE_DTRACE_PROBES=true ...
 env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin gmake all USE_GCC=1 AS=/usr/gnu/bin/as
 
 #
