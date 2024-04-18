@@ -26,7 +26,7 @@
  src/utils/IdealGraphVisualizer : hotspot/src/share/tools/IdealGraphVisualizer
 --- old/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:24.212234589 -0700
 +++ new/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:23.828227215 -0700
-@@ -167,8 +167,6 @@
+@@ -168,8 +168,6 @@
      OPENJDK_TARGET_OS := linux
    else ifeq ($(UNAME_OS), Darwin)
      OPENJDK_TARGET_OS := macosx
@@ -35,7 +35,7 @@
    else
      OPENJDK_TARGET_OS := $(UNAME_OS)
    endif
-@@ -181,38 +179,20 @@
+@@ -182,38 +180,20 @@
  # Assume little endian unless otherwise specified
  OPENJDK_TARGET_CPU_ENDIAN := little
  
@@ -82,7 +82,7 @@
  endif
  
  ifeq ($(OPENJDK_TARGET_OS), windows)
-@@ -227,11 +212,6 @@
+@@ -233,11 +213,6 @@
  else ifeq ($(OPENJDK_TARGET_OS), macosx)
    NUM_CORES := $(shell /usr/sbin/sysctl -n hw.ncpu)
    MEMORY_SIZE := $(shell $(EXPR) `/usr/sbin/sysctl -n hw.memsize` / 1024 / 1024)
@@ -96,7 +96,7 @@
    MEMORY_SIZE := $(shell \
 --- old/make/RunTestsPrebuiltSpec.gmk	2020-05-20 17:58:25.304255556 -0700
 +++ new/make/RunTestsPrebuiltSpec.gmk	2020-05-20 17:58:24.916248106 -0700
-@@ -172,16 +172,6 @@
+@@ -174,16 +174,6 @@
  HG := hg
  ULIMIT := ulimit
  
@@ -182,7 +182,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -413,9 +413,6 @@
+@@ -415,9 +415,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -384,7 +384,7 @@
  
  # LDFLAGS used to link the jdk native launchers (C-code)
  LDFLAGS_JDKEXE:=@LDFLAGS_JDKEXE@
-@@ -753,7 +751,6 @@
+@@ -756,7 +754,6 @@
  LDD:=@LDD@
  OTOOL:=@OTOOL@
  READELF:=@READELF@
@@ -867,7 +867,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -449,7 +447,7 @@
+@@ -447,7 +445,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -876,7 +876,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -615,10 +613,7 @@
+@@ -618,10 +616,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -888,7 +888,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -645,7 +640,6 @@
+@@ -648,7 +643,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1146,7 +1146,7 @@
  set -e
 --- old/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:33.301561154 -0700
 +++ new/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:32.909553627 -0700
-@@ -869,10 +869,6 @@
+@@ -871,10 +871,6 @@
  
  BUILD_HOTSPOT_JTREG_EXECUTABLES_LIBS_exesigtest := -ljvm
  
@@ -1268,7 +1268,7 @@
  #ifdef __APPLE__
 --- old/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:44.033767220 -0700
 +++ new/src/hotspot/os/posix/os_posix.hpp	2020-05-20 17:59:43.649759847 -0700
-@@ -125,8 +125,6 @@
+@@ -134,8 +134,6 @@
    sigjmp_buf _jmpbuf;
  };
  
@@ -1277,7 +1277,7 @@
  /*
   * This is the platform-specific implementation underpinning
   * the ParkEvent class, which itself underpins Java-level monitor
-@@ -292,6 +290,4 @@
+@@ -301,6 +299,4 @@
    void notify_all();
  };
  
@@ -1377,7 +1377,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -690,10 +690,6 @@
+@@ -693,10 +693,6 @@
    product_pd(bool, DontYieldALot,                                           \
            "Throw away obvious excess yield calls")                          \
                                                                              \
@@ -1388,7 +1388,7 @@
    product(bool, DisablePrimordialThreadGuardPages, false, EXPERIMENTAL,     \
                 "Disable the use of stack guard pages if the JVM is loaded " \
                 "on the primordial process thread")                          \
-@@ -743,10 +739,6 @@
+@@ -746,10 +742,6 @@
            "When true prevents OS-level spurious, or premature, wakeups "    \
            "from Object.wait (Ignored for Windows)")                         \
                                                                              \
@@ -1399,7 +1399,7 @@
    product(bool, ReduceSignalUsage, false,                                   \
            "Reduce the use of OS signals in Java and/or the VM")             \
                                                                              \
-@@ -1670,10 +1662,8 @@
+@@ -1673,10 +1665,8 @@
    product(intx, ThreadPriorityPolicy, 0,                                    \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1412,7 +1412,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -2022,8 +2012,7 @@
+@@ -2025,8 +2015,7 @@
             "do not map the archive")                                        \
             range(0, 2)                                                      \
                                                                              \
@@ -2130,7 +2130,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -587,7 +580,7 @@
+@@ -606,7 +599,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -3718,7 +3718,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -908,19 +675,10 @@
+@@ -910,19 +677,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -3738,7 +3738,7 @@
      int rv;
      int arg, alen;
  
-@@ -938,61 +696,8 @@
+@@ -940,61 +698,8 @@
      }
  #endif
  
@@ -3991,8 +3991,8 @@
 -
  #ifdef __linux__
  #include <sys/syscall.h>
- #endif
-@@ -267,8 +260,7 @@
+ #include <sys/sysmacros.h> // makedev macros
+@@ -389,8 +382,7 @@
  
      /* system calls that might not be available at run time */
  

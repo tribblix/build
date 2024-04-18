@@ -35,7 +35,7 @@ suite. It would be nice to be complete, but that isn't true yet.
          } else if (isLinux()) {
              if (isS390x() || isARM()) {
                  return false; // SA not implemented.
-@@ -406,6 +417,7 @@
+@@ -424,6 +435,7 @@
                  isServer() &&
                  (isLinux()   ||
                   isOSX()     ||
@@ -43,7 +43,7 @@ suite. It would be nice to be complete, but that isn't true yet.
                   isWindows()) &&
                  !isZero()    &&
                  !isMinimal() &&
-@@ -416,6 +428,6 @@
+@@ -434,6 +446,6 @@
       * This should match the #if condition in ClassListParser::load_class_from_source().
       */
      public static boolean areCustomLoadersSupportedForCDS() {
@@ -96,17 +96,6 @@ suite. It would be nice to be complete, but that isn't true yet.
  
      private static final String[] paths = {"/bin", "/usr/bin"};
  
---- a/test/jdk/java/util/Currency/PropertiesTest.sh	Tue Jan  9 21:18:15 2024
-+++ b/test/jdk/java/util/Currency/PropertiesTest.sh	Tue Apr  2 12:42:01 2024
-@@ -53,7 +53,7 @@
- # set platform-dependent variables
- OS=`uname -s`
- case "$OS" in
--  Linux | Darwin | AIX )
-+  SunOS | Linux | Darwin | AIX )
-     PS=":"
-     FS="/"
-     ;;
 --- a/test/hotspot/jtreg/runtime/jni/terminatedThread/TestTerminatedThread.java	Tue Jan  9 21:18:15 2024
 +++ b/test/hotspot/jtreg/runtime/jni/terminatedThread/TestTerminatedThread.java	Tue Apr  2 13:28:55 2024
 @@ -25,13 +25,16 @@

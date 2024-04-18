@@ -7,6 +7,18 @@ Most patches -p0
 
 JDK17:
 
+17.0.11
+
+Needed to restore src/hotspot/share/services/dtraceAttacher.hpp
+Copied illumos-port-17.patch from the original fix in jdk 19+11,
+here as illumos-port-19.patch
+This file should have been removed in the original solaris
+deprecation along with the corresponding cpp file, but was forgotten
+about, and has recently been cleaned up. As we still #include it, we
+need to put it back. As we disable DTrace in any case, it would be
+cleaner to simply remove all of it.
+
+
 Cleanup: Restore the necessary parts of sparc into the main patch, to
 ease future maintenance.
 
