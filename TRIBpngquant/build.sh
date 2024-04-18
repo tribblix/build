@@ -9,5 +9,5 @@
 # it's not an autoconf configure, but it understands the arguments that
 # dobuild uses well enough
 #
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/dobuild -64only pngquant-2.18.0 -C --with-libimagequant
+${THOME}/build/dobuild -64only pngquant-2.18.0 -C --with-libimagequant
 ${THOME}/build/genpkg -gnu TRIBpngquant pngquant-2.18.0
