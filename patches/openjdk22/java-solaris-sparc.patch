@@ -156,7 +156,7 @@
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
 @@ -427,9 +427,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
-     CFLAGS_OS_DEF_JVM="-DLINUX"
+     CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
 -  elif test "x$OPENJDK_TARGET_OS" = xsolaris; then
 -    CFLAGS_OS_DEF_JVM="-DSOLARIS"
@@ -694,7 +694,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -482,7 +480,7 @@
+@@ -480,7 +478,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -703,7 +703,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -656,10 +654,7 @@
+@@ -654,10 +652,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -715,7 +715,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -686,7 +681,6 @@
+@@ -684,7 +679,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1017,7 +1017,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -498,7 +498,7 @@
+@@ -500,7 +500,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1026,7 +1026,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -516,12 +516,6 @@
+@@ -518,12 +518,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -4170,7 +4170,7 @@
      int ret;
      jlong total = 0, avail = 0;
  
-@@ -184,37 +128,7 @@
+@@ -190,37 +134,7 @@
  Java_com_sun_management_internal_OperatingSystemImpl_getCommittedVirtualMemorySize0
    (JNIEnv *env, jobject mbean)
  {
@@ -4209,7 +4209,7 @@
      struct task_basic_info t_info;
      mach_msg_type_number_t t_info_count = TASK_BASIC_INFO_COUNT;
  
-@@ -240,7 +184,7 @@
+@@ -276,7 +190,7 @@
       * BSDNOTE: FreeBSD implements _SC_CLK_TCK since FreeBSD 5, so
       *          add a magic to handle it
       */
@@ -7923,7 +7923,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3033 +0,0 @@
+@@ -1,3055 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10957,6 +10957,28 @@
 -void os::jfr_report_memory_info() {}
 -
 -#endif // INCLUDE_JFR
+-
+-bool os::pd_dll_unload(void* libhandle, char* ebuf, int ebuflen) {
+-
+-  if (ebuf && ebuflen > 0) {
+-    ebuf[0] = '\0';
+-    ebuf[ebuflen - 1] = '\0';
+-  }
+-
+-  bool res = (0 == ::dlclose(libhandle));
+-  if (!res) {
+-    // error analysis when dlopen fails
+-    const char* error_report = ::dlerror();
+-    if (error_report == nullptr) {
+-      error_report = "dlerror returned no error description";
+-    }
+-    if (ebuf != nullptr && ebuflen > 0) {
+-      snprintf(ebuf, ebuflen - 1, "%s", error_report);
+-    }
+-  }
+-
+-  return res;
+-} // end: os::pd_dll_unload()
 --- old/src/hotspot/os/solaris/os_solaris.hpp	2020-05-20 18:09:35.461123002 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,201 +0,0 @@

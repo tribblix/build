@@ -11,6 +11,11 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+22.0.1
+
+New undefined symbol os::pd_dll_unload; copy the implementation from
+os_linux.cpp
+
 Cleanup: missed the dropping of TIERED in 17+8, it's now
 COMPILER1_AND_COMPILER2
 
