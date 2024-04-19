@@ -21,6 +21,8 @@
 #
 LC_ALL=C
 export LC_ALL
+TZ=UTC
+export TZ
 
 #
 # package one or more python project(s) that use the old setup.py mechanism
