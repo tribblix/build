@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# a pinentry wrapper
+#
+# there are several possible implementations - curses, fltk, gtk-2
+# which are shipped in separate packages to manage dependencies
+# so we select the "appropriate" version here
+#
+# this wrapper is shipped with the curses binary, so that will always
+# be available
+#
+if [ -z "${DISPLAY}" ]; then
+    exec /usr/bin/pinentry-curses "$@"
+fi
+
+if [ -x /usr/bin/pinentry-gtk-2 ]; then
+    exec /usr/bin/pinentry-gtk-2 "$@"
+elif [ -x /usr/bin/pinentry-fltk ]; then
+    exec /usr/bin/pinentry-fltk "$@"
+else
+    exec /usr/bin/pinentry-curses "$@"
+fi

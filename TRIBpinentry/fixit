@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# split out binaries into separate packages
+#
+TDIR=/tmp/pinsplit.fltk.$$
+rm -fr $TDIR
+mkdir -p $TDIR/usr/bin
+mv usr/bin/pinentry-fltk $TDIR/usr/bin
+"${THOME}"/build/create_pkg TRIBpinentry-fltk $TDIR
+rm -fr $TDIR
+
+TDIR=/tmp/pinsplit.gtk.$$
+rm -fr $TDIR
+mkdir -p $TDIR/usr/bin
+mv usr/bin/pinentry-gtk-2 $TDIR/usr/bin
+"${THOME}"/build/create_pkg TRIBpinentry-gtk $TDIR
+rm -fr $TDIR
+
+#
+# replace the symlink by a wrapper
+#
+rm -f usr/bin/pinentry
+cp "${BUILDROOT}"/patches/pinentry usr/bin/pinentry
+chmod 755 usr/bin/pinentry
