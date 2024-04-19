@@ -186,7 +186,7 @@
          # this is an error
 --- old/make/autoconf/libraries.m4	2020-05-20 17:58:41.188560546 -0700
 +++ new/make/autoconf/libraries.m4	2020-05-20 17:58:40.768552482 -0700
-@@ -139,15 +139,13 @@
+@@ -133,15 +133,13 @@
    BASIC_JVM_LIBS="$LIBM"
  
    # Dynamic loading library
@@ -203,7 +203,7 @@
    fi
  
    # librt for legacy clock_gettime
-@@ -164,12 +162,6 @@
+@@ -158,12 +156,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -267,9 +267,9 @@
  VALID_TOOLCHAINS_macosx="clang"
  VALID_TOOLCHAINS_aix="clang"
  VALID_TOOLCHAINS_windows="microsoft"
---- old/make/common/MakeBase.gmk	2020-05-20 17:58:45.708647335 -0700
-+++ new/make/common/MakeBase.gmk	2020-05-20 17:58:45.324639962 -0700
-@@ -267,33 +267,7 @@
+--- old/make/common/FileUtils.gmk	2020-05-20 17:58:45.708647335 -0700
++++ new/make/common/FileUtils.gmk	2020-05-20 17:58:45.324639962 -0700
+@@ -114,33 +114,7 @@
  ################################################################################
  # All install-file and related macros automatically call DecodeSpace when needed.
  
@@ -304,37 +304,23 @@
    # On mac, extended attributes sometimes creep into the source files, which may later
    # cause the creation of ._* files which confuses testing. Clear these with xattr if
    # set. Some files get their write permissions removed after being copied to the
---- old/make/common/native/DebugSymbols.gmk	2020-05-20 17:58:47.780687120 -0700
-+++ new/make/common/native/DebugSymbols.gmk	2020-05-20 17:58:47.440680591 -0700
-@@ -51,7 +51,7 @@
-           $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_BASENAME).pdb \
-               $$($1_SYMBOLS_DIR)/$$($1_BASENAME).map
- 
--        else ifeq ($(call isTargetOs, linux solaris), true)
-+        else ifeq ($(call isTargetOs, linux), true)
-           $1_DEBUGINFO_FILES := $$($1_SYMBOLS_DIR)/$$($1_NOSUFFIX).debuginfo
-           # Setup the command line creating debuginfo files, to be run after linking.
-           # It cannot be run separately since it updates the original target file
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -147,7 +147,6 @@
+@@ -146,7 +146,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
 -      CFLAGS_solaris := -fPIC, \
        CFLAGS_windows := $$($1_CFLAGS_windows), \
+       EXTRA_HEADER_DIRS := java.base:libjvm, \
        DISABLED_WARNINGS_gcc := unused-function, \
+@@ -153,13 +152,11 @@
        LDFLAGS := $$($1_LDFLAGS), \
-@@ -155,8 +154,6 @@
-           -L$(call FindLibDirForModule, java.base), \
-       LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
-           -L$(call FindLibDirForModule, java.base), \
--      LDFLAGS_solaris := $$(call SET_EXECUTABLE_ORIGIN,/../lib) \
--          -L$(call FindLibDirForModule, java.base), \
-       LDFLAGS_aix := -L$(SUPPORT_OUTPUTDIR)/native/java.base, \
-       JDK_LIBS_unix := -ljli, \
-       JDK_LIBS_windows := \
-@@ -165,7 +162,6 @@
+       LDFLAGS_linux := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
+       LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
+-      LDFLAGS_solaris := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
+       JDK_LIBS := java.base:libjli, \
+       JDK_LIBS_windows := java.base:libjava, \
        LIBS := $$($1_LIBS), \
        LIBS_unix := $(LIBZ_LIBS), \
        LIBS_linux := $(LIBDL) -lpthread, \
@@ -439,7 +425,7 @@
  endif
 --- old/make/hotspot/lib/CompileJvm.gmk	2020-05-20 17:58:57.164867303 -0700
 +++ new/make/hotspot/lib/CompileJvm.gmk	2020-05-20 17:58:56.788860083 -0700
-@@ -29,9 +29,6 @@
+@@ -31,9 +31,6 @@
  include lib/JvmOverrideFiles.gmk
  include lib/JvmFlags.gmk
  
@@ -449,7 +435,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -173,7 +170,6 @@
+@@ -175,7 +172,6 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -491,22 +477,25 @@
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
 @@ -56,7 +56,6 @@
-     JDK_LIBS_unix := -ljava -ljvm, \
-     JDK_LIBS_windows := $(WIN_JAVA_LIB) jvm.lib, \
+         -delayload:winhttp.dll, \
+     JDK_LIBS := libjava libjvm, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -lnsl -lsocket $(LIBDL), \
      LIBS_aix := $(LIBDL),\
      LIBS_windows := advapi32.lib delayimp.lib iphlpapi.lib secur32.lib \
          winhttp.lib ws2_32.lib, \
-@@ -84,7 +83,6 @@
-     JDK_LIBS_windows := $(WIN_JAVA_LIB) jvm.lib \
-         $(SUPPORT_OUTPUTDIR)/native/$(MODULE)/libnet/net.lib, \
+@@ -78,9 +77,8 @@
+         libnio/ch \
+         libnio/fs \
+         libjvm, \
++    JDK_LIBS := libjava libnet, \
+-    JDK_LIBS := libjava libjvm libnet, \
      LIBS_linux := $(LIBDL) -lpthread, \
--    LIBS_solaris := -ljvm -lsocket -lposix4 $(LIBDL) -lsendfile, \
+-    LIBS_solaris := -lsocket -lposix4 $(LIBDL) -lsendfile, \
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation \
-@@ -128,7 +126,6 @@
+@@ -119,7 +117,6 @@
        OPTIMIZATION := LOW, \
        jsig.c_CFLAGS := -DHOTSPOT_VM_DISTRO='"$(HOTSPOT_VM_DISTRO)"', \
        LIBS_linux := $(LIBDL), \
@@ -549,15 +538,15 @@
    LIBVERIFY_OPTIMIZATION := LOW
  endif
  
-@@ -62,7 +62,6 @@
-     JDK_LIBS_unix := -ljvm, \
-     JDK_LIBS_windows := jvm.lib, \
+@@ -60,7 +60,6 @@
+     DISABLED_WARNINGS_gcc_ProcessImpl_md.c := unused-result, \
+     JDK_LIBS := libjvm, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -lsocket -lnsl -lscf $(LIBDL), \
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := \
          -framework CoreFoundation \
-@@ -180,7 +179,6 @@
+@@ -172,7 +171,6 @@
      DISABLED_WARNINGS_clang := format-nonliteral deprecated-non-prototype, \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -578,7 +567,7 @@
  
 --- old/make/modules/java.desktop/Lib.gmk	2020-05-20 17:59:14.281195949 -0700
 +++ new/make/modules/java.desktop/Lib.gmk	2020-05-20 17:59:13.949189574 -0700
-@@ -47,15 +47,10 @@
+@@ -48,15 +48,10 @@
        -DX_PLATFORM=X_$(OPENJDK_TARGET_OS_UPPERCASE) \
        -DUSE_PORTS=TRUE \
        -DUSE_DAUDIO=TRUE \
@@ -596,9 +585,9 @@
    LIBJSOUND_LINK_TYPE := C
    ifeq ($(call isTargetOs, macosx), true)
      LIBJSOUND_LINK_TYPE := C++
---- old/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
-+++ new/make/modules/java.desktop/lib/Awt2dLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
-@@ -76,7 +76,7 @@
+--- old/make/modules/java.desktop/lib/AwtLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
++++ new/make/modules/java.desktop/lib/AwtLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
+@@ -57,7 +57,7 @@
        #
  endif
  
@@ -607,23 +596,80 @@
    LIBAWT_EXCLUDE_FILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -148,7 +148,6 @@
-     JDK_LIBS_windows := $(WIN_JAVA_LIB) jvm.lib, \
+@@ -125,7 +125,6 @@
+     JDK_LIBS := java.base:libjava java.base:libjvm, \
      LIBS_unix := $(LIBM), \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := $(LIBDL), \
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := \
          -framework ApplicationServices \
-@@ -390,7 +389,6 @@
-       LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
-       JDK_LIBS_unix := -lawt -ljava -ljvm, \
+@@ -181,9 +180,8 @@
+       EXTRA_HEADER_DIRS := $(LIBAWT_HEADLESS_EXTRA_HEADER_DIRS), \
+       DISABLED_WARNINGS_gcc_X11Renderer.c := unused-function, \
+       DISABLED_WARNINGS_gcc_X11SurfaceData.c := unused-function, \
+-      JDK_LIBS := libawt java.base:libjava java.base:libjvm, \
++      JDK_LIBS := libawt java.base:libjava, \
        LIBS_linux := $(LIBDL) $(LIBM), \
 -      LIBS_solaris := $(LIBDL) $(LIBM) $(LIBCXX), \
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -433,7 +431,7 @@
+@@ -271,7 +269,7 @@
+       DISABLED_WARNINGS_clang_aix_sun_awt_X11_GtkFileDialogPeer.c := \
+           parentheses, \
+       DISABLED_WARNINGS_clang_aix_awt_InputMethod.c := sign-compare, \
+-      JDK_LIBS := libawt java.base:libjava java.base:libjvm, \
++      JDK_LIBS := libawt java.base:libjava, \
+       LIBS_unix := $(LIBDL) $(LIBM) $(X_LIBS) -lX11 -lXext -lXi -lXrender \
+           -lXtst, \
+       LIBS_linux := -lpthread, \
+@@ -388,7 +386,7 @@
+ endif
+ 
+ ifeq ($(call isTargetOsType, unix)+$(call isTargetOs, macosx), true+false)
+-  LIBJAWT_JDK_LIBS_unix := libawt java.base:libjava java.base:libjvm
++  LIBJAWT_JDK_LIBS_unix := libawt
+   ifeq ($(ENABLE_HEADLESS_ONLY), false)
+     LIBJAWT_JDK_LIBS_unix += libawt_xawt
+   else
+@@ -408,7 +406,6 @@
+     LDFLAGS_windows := $(LDFLAGS_CXX_JDK), \
+     LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
+     JDK_LIBS_unix := $(LIBJAWT_JDK_LIBS_unix), \
+-    LIBS_solaris := $(X_LIBS) -lXrender, \
+     JDK_LIBS_windows := libawt, \
+     JDK_LIBS_macosx := libawt_lwawt, \
+     LIBS_macosx := -framework Cocoa, \
+--- old/make/modules/java.desktop/lib/ClientLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
++++ new/make/modules/java.desktop/lib/ClientLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
+@@ -87,7 +87,7 @@
+     DISABLED_WARNINGS_gcc := format-nonliteral type-limits \
+         stringop-truncation, \
+     DISABLED_WARNINGS_clang := format-nonliteral, \
+-    JDK_LIBS := libawt java.base:libjava java.base:libjvm, \
++    JDK_LIBS := libawt java.base:libjava, \
+     LIBS_unix := $(LCMS_LIBS) $(LIBM), \
+ ))
+ 
+@@ -121,7 +121,7 @@
+     DISABLED_WARNINGS_gcc_imageioJPEG.c := clobbered array-bounds, \
+     DISABLED_WARNINGS_gcc_jcmaster.c := implicit-fallthrough, \
+     DISABLED_WARNINGS_gcc_jdphuff.c := shift-negative-value, \
+-    JDK_LIBS := java.base:libjava java.base:libjvm, \
++    JDK_LIBS := java.base:libjava, \
+     LIBS := $(LIBJPEG_LIBS), \
+ ))
+ 
+@@ -242,7 +242,6 @@
+       LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS), \
+       LIBS_unix := $(LIBM) -lpthread, \
+       LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
+-      LIBS_solaris := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
+       LIBS_macosx := -liconv \
+           -framework ApplicationServices \
+           -framework Cocoa \
+@@ -290,7 +289,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -632,35 +678,10 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -621,7 +619,6 @@
-     LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
-     LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
-     JDK_LIBS_unix := $(LIBJAWT_JDK_LIBS_unix) $(JDKLIB_LIBS), \
--    LIBS_solaris := $(X_LIBS) -lXrender, \
-     JDK_LIBS_macosx := -lawt_lwawt, \
-     JDK_LIBS_windows := $(WIN_AWT_LIB), \
-     LIBS_macosx := -framework Cocoa, \
-@@ -769,7 +766,6 @@
-       LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS), \
-       LIBS_unix := $(LIBM) -lpthread, \
-       LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
--      LIBS_solaris := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
-       LIBS_macosx := -liconv \
-           -framework ApplicationServices \
-           -framework Cocoa \
 --- old/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.469237961 -0700
 +++ new/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.081230511 -0700
-@@ -38,16 +38,14 @@
-     CFLAGS_release := -DNO_JPLIS_LOGGING, \
-     EXTRA_HEADER_DIRS := java.base:libjli, \
-     LDFLAGS_linux := -L$(call FindLibDirForModule, java.base), \
--    LDFLAGS_solaris := -L$(call FindLibDirForModule, java.base), \
-     LDFLAGS_macosx := -L$(call FindLibDirForModule, java.base), \
-     LDFLAGS_aix := -L$(SUPPORT_OUTPUTDIR)/native/java.base, \
-     JDK_LIBS := $(JDKLIB_LIBS), \
-     JDK_LIBS_unix := -ljli, \
-     JDK_LIBS_windows := $(WIN_JAVA_LIB) \
-         $(SUPPORT_OUTPUTDIR)/native/java.base/libjli/jli.lib jvm.lib, \
+@@ -39,7 +39,6 @@
+     JDK_LIBS := java.base:libjava java.base:libjli java.base:libjvm, \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := $(LIBDL), \
@@ -678,39 +699,34 @@
    LIBMANAGEMENT_OPTIMIZATION := LOW
  endif
  
-@@ -39,7 +39,6 @@
+@@ -38,7 +38,6 @@
+     NAME := management, \
      OPTIMIZATION := $(LIBMANAGEMENT_OPTIMIZATION), \
-     JDK_LIBS := $(JDKLIB_LIBS), \
-     JDK_LIBS_windows := $(WIN_JAVA_LIB) jvm.lib, \
+     JDK_LIBS := java.base:libjava java.base:libjvm, \
 -    LIBS_solaris := -lkstat, \
      LIBS_aix := -lperfstat,\
      LIBS_windows := advapi32.lib psapi.lib, \
  ))
---- old/make/modules/java.prefs/Lib.gmk	2020-05-20 17:59:18.521277362 -0700
-+++ new/make/modules/java.prefs/Lib.gmk	2020-05-20 17:59:18.141270065 -0700
-@@ -40,7 +40,6 @@
-     OPTIMIZATION := HIGH, \
-     JDK_LIBS_unix := -ljvm, \
-     JDK_LIBS_linux := -ljava, \
--    JDK_LIBS_solaris := -ljava, \
-     JDK_LIBS_aix := -ljava, \
-     JDK_LIBS_windows := $(WIN_JAVA_LIB) jvm.lib, \
-     LIBS_macosx := \
 --- old/make/modules/jdk.attach/Lib.gmk	2020-05-20 17:59:20.593317146 -0700
 +++ new/make/modules/jdk.attach/Lib.gmk	2020-05-20 17:59:20.209309773 -0700
-@@ -42,7 +42,6 @@
+@@ -41,8 +41,7 @@
+     OPTIMIZATION := LOW, \
      CFLAGS := $(LIBATTACH_CFLAGS), \
      CFLAGS_windows := -Gy, \
-     JDK_LIBS := $(JDKLIB_LIBS), \
++    JDK_LIBS := java.base:libjava, \
+-    JDK_LIBS := java.base:libjava java.base:libjvm, \
 -    LIBS_solaris := -ldoor, \
-     JDK_LIBS_windows := $(WIN_JAVA_LIB), \
      LIBS_windows := advapi32.lib psapi.lib, \
  ))
+ 
 --- old/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.653337499 -0700
 +++ new/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.257329896 -0700
-@@ -69,7 +69,6 @@
-     JDK_LIBS_unix := -ljava, \
-     JDK_LIBS_windows := $(WIN_JAVA_LIB), \
+@@ -67,9 +67,8 @@
+     CFLAGS := $(LIBSAPROC_CFLAGS), \
+     CXXFLAGS := $(LIBSAPROC_CFLAGS) $(LIBSAPROC_CXXFLAGS), \
+     EXTRA_SRC := $(LIBSAPROC_EXTRA_SRC), \
+-    JDK_LIBS := java.base:libjava java.base:libjvm, \
++    JDK_LIBS := java.base:libjava, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -ldl -lstdc++ -lthread -lproc, \
      LIBS_macosx := \
@@ -726,9 +742,9 @@
      LIBS_windows := iphlpapi.lib ws2_32.lib, \
  ))
  
-@@ -65,7 +64,6 @@
-         libjdwp/export, \
-     JDK_LIBS := $(JDKLIB_LIBS), \
+@@ -64,7 +63,6 @@
+         java.base:libjava \
+         java.base:libjvm, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := $(LIBDL), \
      LIBS_macosx := -liconv, \
@@ -745,14 +761,25 @@
    LIBMANAGEMENT_EXT_OPTIMIZATION := LOW
  endif
  
-@@ -48,7 +48,6 @@
+@@ -47,7 +47,6 @@
+     DISABLED_WARNINGS_clang_UnixOperatingSystem.c := format-nonliteral, \
      CFLAGS := $(LIBMANAGEMENT_EXT_CFLAGS), \
-     JDK_LIBS := $(JDKLIB_LIBS), \
-     JDK_LIBS_windows := $(WIN_JAVA_LIB) jvm.lib, \
+     JDK_LIBS := java.base:libjava java.base:libjvm, \
 -    LIBS_solaris := -lkstat, \
      LIBS_aix := -lperfstat,\
      LIBS_windows := advapi32.lib psapi.lib, \
  ))
+--- old/make/modules/jdk.management.agent/Lib.gmk   Fri Apr 19 15:01:40 2024
++++ new/make/modules/jdk.management.agent/Lib.gmk  Thu Apr 18 06:50:24 2024
+@@ -32,7 +32,7 @@
+ $(eval $(call SetupJdkLibrary, BUILD_LIBMANAGEMENT_AGENT, \
+     NAME := management_agent, \
+     OPTIMIZATION := LOW, \
+-    JDK_LIBS := java.base:libjava java.base:libjvm, \
++    JDK_LIBS := java.base:libjava, \
+     LIBS_windows := advapi32.lib, \
+ ))
+ 
 --- old/make/modules/jdk.net/Lib.gmk	2020-05-20 17:59:25.877418605 -0700
 +++ new/make/modules/jdk.net/Lib.gmk	2020-05-20 17:59:25.493411232 -0700
 @@ -29,8 +29,6 @@
@@ -764,17 +791,17 @@
  $(eval $(call SetupJdkLibrary, BUILD_LIBEXTNET, \
      NAME := extnet, \
      OPTIMIZATION := LOW, \
-@@ -43,5 +41,3 @@
- $(BUILD_LIBEXTNET): $(call FindLib, java.base, java)
+@@ -40,5 +38,3 @@
+ ))
  
  TARGETS += $(BUILD_LIBEXTNET)
 -
 -endif
 --- old/make/modules/jdk.sctp/Lib.gmk	2020-05-20 17:59:26.921438651 -0700
 +++ new/make/modules/jdk.sctp/Lib.gmk	2020-05-20 17:59:26.541431354 -0700
-@@ -39,7 +39,6 @@
+@@ -40,7 +40,6 @@
            java.base:libnio/ch, \
-       JDK_LIBS_unix := -ljava -ljvm -lnet -lnio, \
+       JDK_LIBS := java.base:libjava java.base:libnet, \
        LIBS_linux := $(LIBDL) -lpthread, \
 -      LIBS_solaris := -lsocket, \
    ))
@@ -862,9 +889,9 @@
  EXP="${EXP}|Note: Recompile with -Xlint:deprecation for details."
 --- old/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:33.301561154 -0700
 +++ new/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:32.909553627 -0700
-@@ -861,10 +861,6 @@
- 
- BUILD_HOTSPOT_JTREG_EXECUTABLES_LIBS_exesigtest := -ljvm
+@@ -867,10 +867,6 @@
+ BUILD_HOTSPOT_JTREG_LIBRARIES_JDK_LIBS_libatExit := java.base:libjvm
+ BUILD_HOTSPOT_JTREG_EXECUTABLES_JDK_LIBS_exedaemonDestroy := java.base:libjvm
  
 -ifeq ($(call isTargetOs, solaris), true)
 -    BUILD_HOTSPOT_JTREG_EXCLUDE += libterminatedThread.c
@@ -875,16 +902,39 @@
    BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libMonitorWithDeadObjectTest.c libTestPsig.c exeGetCreatedJavaVMs.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -92,9 +92,6 @@
+@@ -59,10 +59,10 @@
+ BUILD_JDK_JTREG_EXECUTABLES_JDK_LIBS_exeCallerAccessTest := java.base:libjvm
+ BUILD_JDK_JTREG_EXECUTABLES_JDK_LIBS_exeNullCallerTest := java.base:libjvm
+ 
+-BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libstringPlatformChars := java.base:libjava java.base:libjvm
++BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libstringPlatformChars := java.base:libjava
+ BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libTracePinnedThreads := java.base:libjvm
+-BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libNewDirectByteBuffer := java.base:libjava java.base:libjvm
+-BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libGetXSpace := java.base:libjava java.base:libjvm
++BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libNewDirectByteBuffer := java.base:libjava
++BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libGetXSpace := java.base:libjava
+ 
+ # Platform specific setup
+ ifeq ($(call isTargetOs, windows), true)
+@@ -74,7 +74,7 @@
+   BUILD_JDK_JTREG_EXECUTABLES_LIBS_exerevokeall := advapi32.lib
+   BUILD_JDK_JTREG_EXECUTABLES_CFLAGS_exeNullCallerTest := /EHsc
+ else
+-  BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libDirectIO := java.base:libjava java.base:libjvm
++  BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libDirectIO := java.base:libjava
+   BUILD_JDK_JTREG_LIBRARIES_LDFLAGS_libNativeThread := -pthread
+ 
+   # java.lang.foreign tests
+@@ -91,9 +91,6 @@
    ifeq ($(call isTargetOs, linux), true)
-     BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava
+     BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libInheritedChannel := java.base:libjava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
 -  else ifeq ($(call isTargetOs, solaris), true)
--    BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava -lsocket -lnsl
--    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -lthread -ldl
+-    BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libInheritedChannel := java.base:libjava java.base:libjvm
+-    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -lsocket -lnsl -lthread -ldl
    endif
-   BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeJliLaunchTest := -ljli
-   ifeq ($(call isTargetOs, aix), true)
+   BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeNullCallerTest := $(LIBCXX)
+ endif
 --- old/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.533642413 -0700
 +++ new/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.197635961 -0700
 @@ -57,7 +57,7 @@
@@ -925,7 +975,7 @@
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
 @@ -511,7 +511,7 @@
-   st->print("%d", sysconf(_SC_CHILD_MAX));
+   st->print("%ld", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
 -#elif !defined(SOLARIS)
@@ -1093,8 +1143,8 @@
    tty->print_cr("class metadata.");
 --- old/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.978937412 -0700
 +++ new/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.586929885 -0700
-@@ -41,36 +41,15 @@
- #include <stdlib.h>
+@@ -49,36 +49,15 @@
+ #endif
  #include <wchar.h>
  
 -#ifdef SOLARIS
@@ -1127,10 +1177,10 @@
 -# include <sys/procfs.h>
 -# endif
 -
- #if defined(LINUX) || defined(_ALLBSD_SOURCE)
+ #if defined(LINUX) || defined(_ALLBSD_SOURCE) || defined(_AIX)
  #include <signal.h>
  #ifndef __OpenBSD__
-@@ -83,34 +62,6 @@
+@@ -91,34 +70,6 @@
  #include <sys/time.h>
  #endif // LINUX || _ALLBSD_SOURCE
  
@@ -1165,7 +1215,7 @@
  // NULL vs NULL_WORD:
  // On Linux NULL is defined as a special type '__null'. Assigning __null to
  // integer variable will cause gcc warning. Use NULL_WORD in places where a
-@@ -129,51 +80,8 @@
+@@ -137,51 +88,8 @@
    #define NULL_WORD  NULL
  #endif
  
@@ -1216,7 +1266,7 @@
 -#elif defined(__APPLE__)
 +#if defined(__APPLE__)
  inline int g_isnan(double f) { return isnan(f); }
- #elif defined(LINUX) || defined(_ALLBSD_SOURCE)
+ #elif defined(LINUX) || defined(_ALLBSD_SOURCE) || defined(_AIX)
  inline int g_isnan(float  f) { return isnan(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700

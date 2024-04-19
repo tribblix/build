@@ -11,6 +11,25 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+19
+
+Much much more mucking around with Makefiles.
+
+Hunk from make/common/MakeBase.gmk now moved to make/common/FileUtils.gmk
+
+Rework of make/common/native/DebugSymbols.gmk makes our patch unnecessary.
+
+Awt2dLibraries.gmk renamed to AwtLibraries.gmk, and none-Awt split out
+into ClientLibraries.gmk
+
+The attachListener centralization is incorrectly guarded. It only
+implements bsd and linux, so should be guarded as such, not !aix
+See illumos-attachlistener.patch
+(The file also has the wrong name which will get corrected.)
+
+With the shuffling around, it can't link properly, had to add libjvm
+explicitly in a few places. There must be a better way to do this.
+
 23+18
 
 Minor tweak to one line in os_solaris_x86.cpp to match changes in
