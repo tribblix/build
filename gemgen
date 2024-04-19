@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -77,6 +79,8 @@ VERSION="1.0"
 EOF
 cat > $RUBYNAME/build.sh <<EOF
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
 #
 \${THOME}/build/$BUILDER $RUBYNAME $TBALL
 EOF
