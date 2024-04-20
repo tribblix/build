@@ -1,4 +1,5 @@
 P TRIBgdk-pixbuf
+P TRIBjson-c
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango

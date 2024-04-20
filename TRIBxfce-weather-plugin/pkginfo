@@ -1,4 +1,4 @@
 PKG="TRIBxfce-weather-plugin"
 NAME="Xfce Weather Plugin"
-VERSION="0.11.1.3"
+VERSION="0.11.2.0"
 ZAP_URL="https://docs.xfce.org/panel-plugins/xfce4-weather-plugin"
