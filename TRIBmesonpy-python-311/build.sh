@@ -5,6 +5,6 @@
 #
 # and note that MesonPy on PyPi is something completely different
 #
-# used by the pandas build
+# used by the pandas and scikit-image build
 #
-${THOME}/build/pkg_pep518 TRIBmesonpy-python-311 meson_python-0.15.0
+${THOME}/build/pkg_pep518 TRIBmesonpy-python-311 meson_python-0.16.0
