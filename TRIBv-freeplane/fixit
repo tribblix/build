@@ -3,7 +3,7 @@
 # the directory is versioned
 # also fix VERSION in preremove and postinstall
 #
-VERSION=1.11.11
+VERSION=1.11.12
 mkdir -p usr/bin
 rm -f usr/versions/freeplane-${VERSION}/freeplane.exe
 rm -f usr/versions/freeplane-${VERSION}/freeplaneConsole.exe
