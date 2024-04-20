@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -26,6 +28,11 @@ ODIR=${THOME}/overlays
 ITYPE=""
 INAME="regular "
 
+bail() {
+    echo "ERROR: $1"
+    exit 1
+}
+
 #
 # flags
 # -d directory
@@ -40,35 +47,45 @@ while getopts "d:t:" opt; do
 	INAME="$OPTARG "
 	ITYPE=".${OPTARG}"
 	;;
+    *)
+	bail "unrecognized option"
+	;;
     esac
 done
 shift $((OPTIND-1))
 
-if [ ! -d $ODIR ]; then
-    echo "ERROR: Unable to find $ODIR"
-    exit 1
+if [ ! -d "$ODIR" ]; then
+    bail "Unable to find $ODIR"
 fi
 
 OFILE="overlays${ITYPE}.iso"
+cd "${ODIR}" || bail "Unable to cd to $ODIR"
 
-cd ${ODIR}
-
-if [ ! -f $OFILE ]; then
-    echo "ERROR: Unable to find $OFILE"
-    exit 1
+if [ ! -f "$OFILE" ]; then
+    bail "Unable to find $OFILE"
 fi
+
+case $ODIR in
+    *.sparc)
+	ARCH=sparc
+	;;
+esac
 
 TFILE=/tmp/ival.$$
 
 get_deps() {
-    echo $1
-    for dep in `awk -F= '{if ($1 == "REQUIRES") print $2}' ${1}.ovl`
+    echo "$1"
+    for dep in $(awk -F= '{if ($1 == "REQUIRES") print $2}' "${1}".ovl)
     do
-	get_deps $dep
+	get_deps "$dep"
     done
 }
 
 get_normal_deps (){
+    get_deps base-iso
+    if [ -f base-server.ovl ]; then
+	get_deps base-server
+    fi
     #
     # the idea is that the iso should have the kitchen sink on it
     # but nothing else for applications
@@ -81,6 +98,14 @@ get_normal_deps (){
     do
 	get_deps ${ovl%.ovl}
     done
+    #
+    # sparc does have the fabric drivers
+    #
+    case $ARCH in
+	sparc)
+	    get_deps all-fabric-drivers
+	    ;;
+    esac
     if [ -f wifi.ovl ]; then
 	get_deps wifi
     fi
@@ -91,19 +116,23 @@ get_normal_deps (){
 }
 
 get_minimal_deps (){
+    get_deps base-iso
+    get_deps base-server
     #
-    # the idea is that the minimal iso should have ec2 and pkgsrc on it
-    # but nothing else for applications
+    # the idea is that the minimal iso should have pkgsrc and
+    # server components
     #
-    get_deps ec2-baseline
     get_deps pkgsrc
-    get_deps dbus-glib
+    get_deps networked-system
+    get_deps server
+    get_deps server-manage
+    get_deps storage-nas
+    #
+    # also add san and "all" driver overlays
+    #
     if [ -f san-support.ovl ]; then
 	get_deps san-support
     fi
-    #
-    # also add the "all" driver overlays
-    #
     for ovl in $(ls -1d all-*.ovl | egrep -v '(fabric|xorg|1394)')
     do
 	get_deps ${ovl%.ovl}
@@ -120,7 +149,7 @@ get_ec2_deps (){
 
 rm -f ${TFILE}.iso ${TFILE}.sorted
 
-cat ${OFILE} | sort > ${TFILE}.iso
+sort "${OFILE}" > ${TFILE}.iso
 case $INAME in
     "minimal ")
 	get_minimal_deps | sort -u > ${TFILE}.sorted
@@ -133,7 +162,7 @@ case $INAME in
 	;;
 esac
 
-ISDIFF=`diff ${TFILE}.iso ${TFILE}.sorted`
+ISDIFF=$(diff ${TFILE}.iso ${TFILE}.sorted)
 if [ -n "${ISDIFF}" ]; then
     echo "WARN: iso overlay mismatch"
     if [ -n "$DISPLAY" ]; then
