@@ -1,2 +1,0 @@
--p1 gir-no-as-needed.patch
--p1 giscanner-shlibs-a.py.patch

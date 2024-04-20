@@ -1,3 +1,0 @@
-#!/bin/sh
-gsed -i s/-Werror// Makefile
-gsed -i s/-Werror// tests/Makefile

@@ -1,3 +1,0 @@
-#!/bin/sh
-gsed -i 's:compat/libcompat.la \\:compat/libcompat.la:' src/Makefile
-gsed -i '/libcompatnoopt/d' src/Makefile
