@@ -1,4 +1,4 @@
 PKG="TRIBjson-c"
 NAME="JSON-C"
-VERSION="0.12.1.1"
+VERSION="0.17.0"
 ZAP_URL="https://github.com/json-c/json-c"
