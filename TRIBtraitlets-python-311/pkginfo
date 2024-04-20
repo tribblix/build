@@ -1,4 +1,4 @@
 PKG="TRIBtraitlets-python-311"
 NAME="Python traitlets"
-VERSION="5.14.2.0"
+VERSION="5.14.3.0"
 ZAP_URL="https://pypi.org/project/traitlets"
