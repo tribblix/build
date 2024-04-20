@@ -5,5 +5,5 @@
 #
 # sparc needs -Dgl-graphene=disabled
 #
-env TRIBBLIX_LDFLAGS="-lsocket" AR=/usr/bin/ar PATH=/usr/gnu/bin:$PATH ${THOME}/build/mesonbuild -64 gst-plugins-base-1.20.7 -C "-Dintrospection=disabled -Dexamples=disabled -Dtests=disabled -Dgl_api=opengl -Dgl-graphene=disabled"
+env TRIBBLIX_LDFLAGS="-lsocket" AR=/usr/bin/ar ${THOME}/build/mesonbuild +gnu -64 gst-plugins-base-1.20.7 -C "-Dintrospection=disabled -Dexamples=disabled -Dtests=disabled -Dgl_api=opengl -Dgl-graphene=disabled"
 ${THOME}/build/genpkg TRIBgstreamer1-plugins-base gst-plugins-base-1.20.7
