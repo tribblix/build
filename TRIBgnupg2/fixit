@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we aren't Linux, and we don't have systemd
 #
 rm -fr usr/share/doc/gnupg/examples/systemd-user

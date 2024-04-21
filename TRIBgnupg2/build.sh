@@ -1,8 +1,10 @@
 #!/bin/sh
 #
-# gnupg2
+# SPDX-License-Identifier: CDDL-1.0
 #
-# has a postconf script
+# needs a postconf script
 #
-${THOME}/build/dobuild gnupg-2.2.41 -64only -C "--disable-ldap --enable-gpg-is-gpg2"
-${THOME}/build/genpkg TRIBgnupg2 gnupg-2.2.41
+# disabling the internal ccid driver avoids pulling in libusb
+#
+${THOME}/build/dobuild gnupg-2.2.43 -64only -C "--disable-ldap --enable-gpg-is-gpg2 --disable-ccid-driver"
+${THOME}/build/genpkg TRIBgnupg2 gnupg-2.2.43
