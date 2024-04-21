@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -146,12 +148,21 @@ fi
 # build and install using setup.py
 #
 python${PYVER} setup.py build
-python${PYVER} setup.py install --root="${BDIR}"
+python${PYVER} setup.py install --no-compile --root="${BDIR}"
 cd ..
 #
 # end loop
 #
 done
+
+#
+# compile separately, to avoid install paths and timestamps ending up
+# embedded in pyc files
+#
+# force unchecked-hash to ensure that nothing, even as root, will ever
+# try to recompile and overwrite packaged pyc files
+#
+python${PYVER} -m compileall -f -p / -s "${BDIR}" --invalidation-mode unchecked-hash "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages"
 
 "${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
 cd /
