@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/tcsh
+#
+# SPDX-License-Identifier: CDDL-1.0
 #
 # the gmake build instructions require docker
 #

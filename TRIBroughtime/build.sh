@@ -1,9 +1,10 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 mkdir c
 cd c
-setenv GOPATH `pwd`
 
 # the instructions are definitely wrong
 # go get -u github.com/cloudflare/roughtime
@@ -12,8 +13,8 @@ setenv GOPATH `pwd`
 git clone https://github.com/cloudflare/roughtime
 cd roughtime
 sed -i s:ecosystem.json:/etc/roughtime/ecosystem.json: recipes/alerter.go
-go build -v recipes/alerter.go
-go build -v cmd/getroughtime/main.go
+env GOPATH=`pwd`/.. go build -v recipes/alerter.go
+env GOPATH=`pwd`/.. go build -v cmd/getroughtime/main.go
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin

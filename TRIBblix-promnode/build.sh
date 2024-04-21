@@ -1,9 +1,10 @@
-#!/bin/tcsh
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
 #
 
 mkdir p1
 cd p1
-setenv GOPATH `pwd`
 
 #
 # we need to build the promu tool first, as otherwise the main build
@@ -11,7 +12,7 @@ setenv GOPATH `pwd`
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env PATH=/usr/versions/go-1.21/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.21/bin:$PATH gmake build
 cd ..
 
 #
@@ -22,7 +23,7 @@ cd node_exporter-1.7.0
 # and change to build on solaris
 # and add solaris to the build of collector/uname.go
 #
-env PATH=/usr/versions/go-1.21/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.21/bin:$PATH gmake build
 cd ..
 
 ${THOME}/build/genpkg TRIBblix-promnode

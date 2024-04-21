@@ -1,12 +1,13 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 mkdir ~/ud/gg
 cd ~/ud/gg
 
-setenv GOPATH `pwd`
 git clone --depth 1 https://github.com/gogs/gogs.git gogs
 cd gogs
-go build -tags "cert" -o gogs
+env GOPATH=`pwd`/.. go build -tags "cert" -o gogs
 
 # sanity check, run './gogs web'
 

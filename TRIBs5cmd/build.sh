@@ -1,11 +1,12 @@
-#!/bin/tcsh
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
 #
 mkdir 5
 cd 5
-setenv GOPATH `pwd`
 git clone https://github.com/peak/s5cmd
 cd s5cmd
-gmake build
+env GOPATH=`pwd`/.. gmake build
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
