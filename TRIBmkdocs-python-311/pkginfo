@@ -1,4 +1,4 @@
 PKG="TRIBmkdocs-python-311"
 NAME="Python mkdocs"
-VERSION="1.5.3.0"
+VERSION="1.6.0.0"
 ZAP_URL="https://pypi.org/project/mkdocs"
