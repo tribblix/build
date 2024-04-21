@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/bin/sh
 #
 # You first need to download the tarballs
 #

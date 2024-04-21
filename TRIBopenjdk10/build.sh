@@ -1,9 +1,6 @@
-#!/bin/tcsh
+#!/bin/sh
 #
-# You first need to download the tarballs
-# this method from BLFS
-#
-# are we now a single tarball? it's 85M or so, bzipped
+# Now a single tarball.
 #
 cd /tmp
 wget http://hg.openjdk.java.net/jdk-updates/jdk10u/archive/jdk-10.0.2+13.tar.bz2

@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/bin/sh
 #
 # Note: to build this on current systems requires a couple of changes
 # so you can either go downrev, or apply fixes/workarounds

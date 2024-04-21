@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/bin/sh
 #
 # jdk mainline has been migrated to git
 # go to https://github.com/openjdk/jdk19/tags
