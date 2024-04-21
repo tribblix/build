@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # don't ship the update-pciids script; the way to update
 # the file is via packaging
 #
