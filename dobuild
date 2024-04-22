@@ -1,5 +1,7 @@
 #!/bin/ksh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -91,7 +93,7 @@ BUILDDIR="."
 
 #
 # if /usr/gnu/bin is needed at the head of the PATH (often, to find
-# GNU gettext) then specify -gnu to add for configuration, and specifyg
+# GNU gettext) then specify -gnu to add for configuration, and specify
 # +gnu to force for both configuration and build
 #
 CONFGNU="false"
