@@ -1,8 +1,11 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild libgcrypt-1.8.10
-mv libgcrypt-1.8.10 libgcrypt-1.8.10-32bit
+# SPDX-License-Identifier: CDDL-1.0
+#
 # sparc just requires --disable-asm
-${THOME}/build/dobuild +64 libgcrypt-1.8.10 -C "--disable-amd64-as-feature-detection --disable-asm"
-mv libgcrypt-1.8.10-32bit libgcrypt-1.8.10
-${THOME}/build/genpkg TRIBlibgcrypt libgcrypt-1.8.10
+#
+# specify -O2 as the build tries to turn off optimization for jitterentropy.c
+# and doesn't understand the simplest case of -O
+#
+env TRIBBLIX_CFLAGS=-O2 ${THOME}/build/dobuild -64only libgcrypt-1.10.3 -C "--disable-amd64-as-feature-detection gcry_cv_gcc_amd64_platform_as_ok=no --disable-asm"
+${THOME}/build/genpkg TRIBlibgcrypt libgcrypt-1.10.3
