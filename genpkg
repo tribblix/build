@@ -1,5 +1,7 @@
 #!/bin/ksh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -162,11 +164,11 @@ case $# in
 		if [ -f .tribblix_ldopts ]; then
 		    . ./.tribblix_ldopts
 		fi
-		if [ -f .tribblix_cmake_build ]; then
-		    cd $(cat .tribblix_cmake_build)
-		fi
 		if [ -f .tribblix_build_subdir ]; then
 		    cd $(cat .tribblix_build_subdir)
+		fi
+		if [ -f .tribblix_cmake_build ]; then
+		    cd $(cat .tribblix_cmake_build)
 		fi
 		if [ -x ${BUILD}/${PKGNAME}/fixpreinstall.64 ]; then
 		    ${BUILD}/${PKGNAME}/fixpreinstall.64 $BDIR
@@ -192,11 +194,11 @@ case $# in
 		if [ -f .tribblix_ldopts ]; then
 		    . ./.tribblix_ldopts
 		fi
-		if [ -f .tribblix_cmake_build ]; then
-		    cd $(cat .tribblix_cmake_build)
-		fi
 		if [ -f .tribblix_build_subdir ]; then
 		    cd $(cat .tribblix_build_subdir)
+		fi
+		if [ -f .tribblix_cmake_build ]; then
+		    cd $(cat .tribblix_cmake_build)
 		fi
 		if [ -x ${BUILD}/${PKGNAME}/fixpreinstall ]; then
 		    ${BUILD}/${PKGNAME}/fixpreinstall $BDIR

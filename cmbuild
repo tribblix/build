@@ -96,6 +96,7 @@ BUILDGNU="false"
 #
 # Other arguments are
 # package name
+# -S subdir
 # -P alternate_prefix
 # -C configure_args
 # +C configure_args [64-bit]
@@ -112,6 +113,7 @@ CONFARGS32=""
 CONFARGS64=""
 MAKEARGS=""
 GMAKEFLAGS="-j 4"
+SUBDIR=""
 DO_LD="yes"
 BFLAG="yes"
 BDIR=".."
@@ -195,6 +197,12 @@ case $1 in
 	shift
 	BFLAG=""
 	BDIR="."
+	;;
+-S)
+	shift
+	TSUBDIR="$1"
+	SUBDIR="/$1"
+	shift
 	;;
 -b)
 	shift
@@ -317,7 +325,12 @@ export LD_OPTIONS
 EOF
 		cd ${WORKING_ROOT}
 	    fi
-	    cd ${pkg}-64bit
+	    if [[ -n $SUBDIR ]]; then
+		cd ${pkg}-64bit
+		echo "${TSUBDIR}" > .tribblix_build_subdir
+		cd ${WORKING_ROOT}
+	    fi
+	    cd ${pkg}-64bit${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
 		${BUILD}/patches/${pkg}.preconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
@@ -354,7 +367,12 @@ export LD_OPTIONS
 EOF
 		cd ${WORKING_ROOT}
 	    fi
-	    cd ${pkg}
+	    if [[ -n $SUBDIR ]]; then
+		cd ${pkg}
+		echo "${TSUBDIR}" > .tribblix_build_subdir
+		cd ${WORKING_ROOT}
+	    fi
+	    cd ${pkg}${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
