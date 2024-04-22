@@ -10,6 +10,7 @@ P TRIBimage-librsvg
 P TRIBimage-libtiff
 P TRIBlib-desktop-cairo
 P TRIBlib-glib2
+P TRIBlib-openjpeg
 P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBlibraw

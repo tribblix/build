@@ -1,4 +1,4 @@
 PKG="TRIBe19-enlightenment"
 NAME="Enlightenment Window Manager"
-VERSION="0.21.11.0"
+VERSION="0.22.4.0"
 ZAP_URL="https://www.enlightenment.org/"
