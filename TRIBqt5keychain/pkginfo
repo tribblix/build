@@ -1,4 +1,4 @@
 PKG="TRIBqt5keychain"
 NAME="qt5keychain"
-VERSION="0.13.2.0"
+VERSION="0.13.2.1"
 ZAP_URL="https://github.com/frankosterfeld/qtkeychain"
