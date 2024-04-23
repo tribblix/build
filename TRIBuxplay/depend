@@ -1,0 +1,12 @@
+P TRIBgstreamer1
+P TRIBgstreamer1-libav
+P TRIBgstreamer1-plugins-bad
+P TRIBgstreamer1-plugins-base
+P TRIBlib-glib2
+P TRIBlib-security-openssl
+P TRIBlibplist
+P TRIBsvc-net-dns-mdns
+P TRIBx11-libice
+P TRIBx11-libsm
+P TRIBx11-libx11
+P TRIBx11-libxext

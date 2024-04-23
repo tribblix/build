@@ -1,0 +1,24 @@
+--- a/lib/raop_ntp.c	Mon Apr 22 22:55:09 2024
++++ b/lib/raop_ntp.c	Tue Apr 23 14:14:19 2024
+@@ -23,6 +23,9 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <stdbool.h>
++#ifdef __sun
++#include <sys/filio.h>
++#endif
+ #ifdef _WIN32
+ #define CAST (char *)
+ #else
+--- a/lib/raop_rtp_mirror.c	Mon Apr 22 22:55:09 2024
++++ b/lib/raop_rtp_mirror.c	Tue Apr 23 14:15:35 2024
+@@ -23,6 +23,9 @@
+ #include <assert.h>
+ #include <errno.h>
+ #include <stdbool.h>
++#ifdef __sun
++#include <sys/types.h>
++#endif
+ #ifdef _WIN32
+ #include <winsock2.h>
+ #else
