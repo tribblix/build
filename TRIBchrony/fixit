@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+
+mkdir -p var/lib/chrony
+
+mkdir -p etc/inet
+cp ${BUILDROOT}/patches/chrony.conf etc/inet
+cp ${BUILDROOT}/patches/chrony.keys etc/inet
+
+mkdir -p lib/svc/manifest/network
+cp ${BUILDROOT}/patches/chrony.xml lib/svc/manifest/network

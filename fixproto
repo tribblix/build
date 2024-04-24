@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -64,6 +66,7 @@ awk '
 {if ($3 == "var/svc/manifest/site")  $6 = "sys"}
 {if ($3 == "var/svc/manifest/application")  $6 = "sys"}
 {if ($3 == "etc")  $6 = "sys"}
+{if ($3 == "etc/inet")  $6 = "sys"}
 {if ($3 == "etc/security")  $6 = "sys"}
 {if ($3 == "etc/security/auth_attr.d")  $6 = "sys"}
 {if ($3 == "etc/security/exec_attr.d")  $6 = "sys"}

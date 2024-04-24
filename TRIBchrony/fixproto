@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+awk '
+{if ($3 ~ /^var\/lib\/chrony/) { $6 = "chrony" ; $5 = "chrony" }}
+{if ($3 ~ /^etc\/inet\/chrony.keys/) { $6 = "chrony" ; $5 = "root" ; $4 = "0640" }}
+{print}
+'

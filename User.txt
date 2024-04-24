@@ -5,6 +5,7 @@ Start at 101, leaving 100 and below for illumos.
 By default, reserve the group id as well
 
 
+23  chrony  	    TRIBchrony
 27  postfix 	    TRIBpostfix
 28  postdrop	    TRIBpostfix (group only)
 53  named   	    TRIBsvc-bind9
