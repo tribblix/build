@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# create privsep directory
-#
-mkdir -p var/empty
-chmod 0755 var/empty

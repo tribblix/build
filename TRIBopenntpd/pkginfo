@@ -1,4 +1,0 @@
-PKG="TRIBopenntpd"
-NAME="OpenNTPD implementation of NTP"
-VERSION="6.8p1.0"
-ZAP_URL="http://www.openntpd.org/"
