@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBwebsocket-client-python-311 websocket-client-1.7.0
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_setup_py TRIBwebsocket-client-python-311 websocket_client-1.8.0
