@@ -1,9 +1,11 @@
-This is derived from the pkgsrc-joyent set for openjdk11
+This originally derived from the pkgsrc-joyent set for openjdk11
 https://github.com/joyent/pkgsrc-joyent/tree/master/openjdk11
 
-All patches -p0
-
 This set of patches for jdk11u
+
+Cleanup - pick the right assembler for gcc builds so they'll work
+without accidentally picking up or needing the sun as, see the new
+toolchain-assembler.patch
 
 11.0.20
 
