@@ -1,4 +1,4 @@
 PKG="TRIBlibupnp"
 NAME="The Portable SDK for UPnP Devices"
-VERSION="1.14.18.0"
+VERSION="1.14.19.0"
 ZAP_URL="https://github.com/pupnp/pupnp"
