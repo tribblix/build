@@ -1,4 +1,4 @@
 PKG="TRIBx11-xconsole"
 NAME="xconsole"
-VERSION="1.0.8.0"
+VERSION="1.1.0.0"
 ZAP_URL="https://www.x.org/releases/individual/app/"
