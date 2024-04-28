@@ -435,7 +435,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -175,7 +172,6 @@
+@@ -168,7 +165,6 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -1529,7 +1529,7 @@
     identifiers matching a C constant. The PREFIX_ is filtered out in the
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.927301234 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.535293707 -0700
-@@ -128,10 +128,6 @@
+@@ -127,10 +127,6 @@
          return rootDirectory;
      }
  
@@ -11639,7 +11639,7 @@
 -#endif // OS_CPU_SOLARIS_X86_ORDERACCESS_SOLARIS_X86_HPP
 --- old/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2020-05-20 18:10:01.145616115 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,661 +0,0 @@
+@@ -1,660 +0,0 @@
 -/*
 - * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12003,8 +12003,8 @@
 -         thread->thread_state() == _thread_in_native) {
 -      if (sig == SIGBUS && info->si_code == BUS_OBJERR && thread->doing_unsafe_access()) {
 -        address next_pc = Assembler::locate_next_instruction(pc);
--        if (UnsafeCopyMemory::contains_pc(pc)) {
--          next_pc = UnsafeCopyMemory::page_error_continue_pc(pc);
+-        if (UnsafeMemoryAccess::contains_pc(pc)) {
+-          next_pc = UnsafeMemoryAccess::page_error_continue_pc(pc);
 -        }
 -        stub = SharedRuntime::handle_unsafe_access(thread, next_pc);
 -      }
@@ -12022,17 +12022,16 @@
 -        CodeBlob* cb = CodeCache::find_blob(pc);
 -        if (cb != NULL) {
 -          nmethod* nm = cb->as_nmethod_or_null();
--          bool is_unsafe_arraycopy = thread->doing_unsafe_access() && UnsafeCopyMemory::contains_pc(pc);
--          if ((nm != NULL && nm->has_unsafe_access()) || is_unsafe_arraycopy) {
+-          bool is_unsafe_memory_access = thread->doing_unsafe_access() && UnsafeMemoryAccess::contains_pc(pc);
+-          if ((nm != NULL && nm->has_unsafe_access()) || is_unsafe_memory_access) {
 -            address next_pc = Assembler::locate_next_instruction(pc);
--            if (is_unsafe_arraycopy) {
--              next_pc = UnsafeCopyMemory::page_error_continue_pc(pc);
+-            if (is_unsafe_memory_access) {
+-              next_pc = UnsafeMemoryAccess::page_error_continue_pc(pc);
 -            }
 -            stub = SharedRuntime::handle_unsafe_access(thread, next_pc);
 -          }
 -        }
--      }
--      else
+-      } else
 -      if (sig == SIGFPE && info->si_code == FPE_INTDIV) {
 -        // integer divide by zero
 -        stub = SharedRuntime::continuation_for_implicit_exception(thread, pc, SharedRuntime::IMPLICIT_DIVIDE_BY_ZERO);

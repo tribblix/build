@@ -10,7 +10,6 @@
 -p0 openjdk23/tribblix-demangle1.patch
 -p1 openjdk23/illumos-port-2.patch
 -p1 openjdk23/illumos-port-3.patch
--p1 openjdk23/illumos-port-4.patch
 -p1 openjdk23/illumos-port-5.patch
 -p1 openjdk23/illumos-cpu_microcode_revision.patch
 -p1 openjdk23/illumos-port-6.patch

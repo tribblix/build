@@ -11,6 +11,19 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+20
+
+Fixed up attachListener filename.
+
+Unsafe arraycopy and memory access function and variable renaming.
+
+Blocker type change in EPollSelectorImpl.java
+
+Removed illumos-port-4.patch, the solaris-specific code
+(SolarisUserDefinedFileAttributeView) that used the extra
+newFileChannel() variant was removed in jdk 20+4, and now fails to
+build.
+
 23+19
 
 Much much more mucking around with Makefiles.
