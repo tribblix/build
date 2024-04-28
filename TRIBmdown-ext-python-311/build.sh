@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBmdown-ext-python-311 pymdown_extensions-10.8
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 TRIBmdown-ext-python-311 pymdown_extensions-10.8.1
