@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # The graphviz extra is useful for graphical output, using the graphiviz
 # module provided by the TRIBgraphviz-python-311 package
 #
@@ -7,4 +9,4 @@
 # because it would pull in graphviz and most of the desktop stack which
 # would not be what's wanted by default
 #
-${THOME}/build/pkg_pep518 TRIBpipdeptree-python-311 pipdeptree-2.18.1
+${THOME}/build/pkg_pep518 TRIBpipdeptree-python-311 pipdeptree-2.19.0
