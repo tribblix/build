@@ -49,7 +49,6 @@
 -p1 openjdk8/patch-jdk_src_share_native_sun_awt_image_jpeg_jpegdecoder.c.patch
 -p1 openjdk8/patch-jdk_src_share_native_sun_security_ec_impl_ecc__impl.h.patch
 -p1 openjdk8/patch-jdk_src_solaris_bin_ergo__i586.c.patch
--p1 openjdk8/patch-jdk_src_solaris_bin_ergo.c.patch
 -p1 openjdk8/patch-jdk_src_solaris_native_java_net_net__util__md.c.patch
 -p1 openjdk8/patch-jdk_src_solaris_native_java_net_NetworkInterface.c.patch
 -p1 openjdk8/patch-jdk_src_solaris_native_sun_awt_X11Color.c.patch
