@@ -2,7 +2,6 @@
 -p1 openjdk8/ldflags-pie.patch
 -p1 openjdk8/patch-as.patch
 -p1 openjdk8/patch-at.patch
--p1 openjdk8/patch-common_autoconf_boot-jdk.m4.patch
 -p1 openjdk8/patch-common_autoconf_generated-configure.sh.patch
 -p1 openjdk8/patch-common_autoconf_spec.gmk.in.patch
 -p1 openjdk8/patch-hotspot_make_solaris_makefiles_adlc.make.patch

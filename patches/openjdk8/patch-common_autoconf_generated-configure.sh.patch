@@ -10,15 +10,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
  VALID_TOOLCHAINS_macosx="gcc clang"
  VALID_TOOLCHAINS_aix="xlc"
  VALID_TOOLCHAINS_windows="microsoft"
-@@ -25641,6 +25641,7 @@ $as_echo_n "checking flags for boot jdk
-     JVM_MAX_HEAP=1600M
-     STACK_SIZE=1536
-   fi
-+  JVM_MAX_HEAP=800M
- 
-   $ECHO "Check if jvm arg is ok: -Xmx$JVM_MAX_HEAP" >&5
-   $ECHO "Command: $JAVA -Xmx$JVM_MAX_HEAP -version" >&5
-@@ -42456,6 +42457,14 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42456,6 +42456,14 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
        SET_SHARED_LIBRARY_ORIGIN="$SET_EXECUTABLE_ORIGIN"
        SET_SHARED_LIBRARY_NAME='-Xlinker -install_name -Xlinker @rpath/$1'
        SET_SHARED_LIBRARY_MAPFILE=''
@@ -33,7 +25,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
      else
        # Default works for linux, might work on other platforms as well.
        SHARED_LIBRARY_FLAGS='-shared'
-@@ -42524,11 +42533,6 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42524,11 +42532,6 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
  
  
  
@@ -45,7 +37,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
    # The (cross) compiler is now configured, we can now test capabilities
    # of the target platform.
  
-@@ -42627,6 +42631,11 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42627,6 +42630,11 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
          C_O_FLAG_HI="-Os"
          C_O_FLAG_NORM="-Os"
          C_O_FLAG_NONE=""
@@ -57,7 +49,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
        else
          C_O_FLAG_HIGHEST="-O3"
          C_O_FLAG_HI="-O3"
-@@ -42685,9 +42694,9 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42685,9 +42693,9 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
      CFLAGS_JDK="${CFLAGS_JDK} -qchars=signed -q64 -qfullpath -qsaveopt"
      CXXFLAGS_JDK="${CXXFLAGS_JDK} -qchars=signed -q64 -qfullpath -qsaveopt"
    elif test "x$TOOLCHAIN_TYPE" = xgcc; then
@@ -70,7 +62,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
        LDFLAGS_JDK="$LDFLAGS_JDK -Wl,-z,relro"
        LEGACY_EXTRA_LDFLAGS="$LEGACY_EXTRA_LDFLAGS -Wl,-z,relro"
      fi
-@@ -42812,7 +42821,7 @@ fi
+@@ -42812,7 +42820,7 @@ fi
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
      # these options are used for both C and C++ compiles
      CCXXFLAGS_JDK="$CCXXFLAGS $CCXXFLAGS_JDK -Wall -Wno-parentheses -Wextra -Wno-unused -Wno-unused-parameter -Wformat=2 \
@@ -79,7 +71,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
      case $OPENJDK_TARGET_CPU_ARCH in
        arm )
          # on arm we don't prevent gcc to omit frame pointer but do prevent strict aliasing
-@@ -44813,11 +44822,6 @@ fi
+@@ -44813,11 +44821,6 @@ fi
  
    if test "x$OPENJDK_TARGET_OS" = xsolaris; then
      OPENWIN_HOME="/usr/openwin"
@@ -91,7 +83,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
    fi
  
    #
-@@ -49144,7 +49148,7 @@ $as_echo "$as_me: The path of FREETYPE_L
+@@ -49144,7 +49147,7 @@ $as_echo "$as_me: The path of FREETYPE_L
        if test "x$OPENJDK_TARGET_OS" = xwindows; then
          FREETYPE_LIBS="$FREETYPE_LIB_PATH/freetype.lib"
        else
