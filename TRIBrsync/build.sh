@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64only rsync-3.2.7 -C "--disable-xxhash"
-${THOME}/build/genpkg TRIBrsync rsync-3.2.7
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/dobuild -64only rsync-3.3.0 -C "--disable-xxhash --with-included-popt"
+${THOME}/build/genpkg TRIBrsync rsync-3.3.0
