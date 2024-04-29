@@ -5,7 +5,9 @@
 # dask and distributed are locked together version-wise so package
 # them together
 #
-# the dependency list is thus for the combinbation of both modules
+# the dependency list is thus for the combination of modules
+#
+# we would like dask-expr, but it requires pyarrow dataset support
 #
 # there's a distributed patch necessary to handle RLIMIT
 #
