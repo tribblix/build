@@ -1,0 +1,17 @@
+RLIMIT_RSS is non-standard, RLIMIT_AS is the closest available.
+
+--- distributed-2024.4.2/distributed/system.py~	Fri Oct 13 22:59:50 2023
++++ distributed-2024.4.2/distributed/system.py	Mon Apr 29 21:35:23 2024
+@@ -52,10 +52,10 @@
+         try:
+             import resource
+ 
+-            hard_limit = resource.getrlimit(resource.RLIMIT_RSS)[1]
++            hard_limit = resource.getrlimit(resource.RLIMIT_AS)[1]
+             if 0 < hard_limit < limit:
+                 logger.debug(
+-                    "Limiting system memory based on RLIMIT_RSS to %s", hard_limit
++                    "Limiting system memory based on RLIMIT_AS to %s", hard_limit
+                 )
+                 limit = hard_limit
+         except (ImportError, OSError):
