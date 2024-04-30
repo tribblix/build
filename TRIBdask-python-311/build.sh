@@ -7,7 +7,8 @@
 #
 # the dependency list is thus for the combination of modules
 #
-# we would like dask-expr, but it requires pyarrow dataset support
+# dask-expr is also locked to a specific version of dask, so update that
+# if this package is updated
 #
 # there's a distributed patch necessary to handle RLIMIT
 #
