@@ -6,7 +6,7 @@
 # it expands the dependency tree, and not all dependencies are (yet)
 # available on sparc
 #
-# it's version-locked to dask, so this and the main dask package
-# need to be updated together
+# it's version-locked to dask, so this will need updating if the main
+# dask package is
 #
-${THOME}/build/pkg_pep518 TRIBdask-expr-python-311 dask_expr-1.0.13
+${THOME}/build/pkg_pep518 TRIBdask-expr-python-311 dask_expr-1.0.14
