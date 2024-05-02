@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# itstool crashes while processing this and breaks the build
+#
+rm -fr help/ja
