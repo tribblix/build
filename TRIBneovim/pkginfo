@@ -1,0 +1,4 @@
+PKG="TRIBneovim"
+NAME="neovim"
+VERSION="0.9.5.0"
+ZAP_URL="http://neovim.io/"
