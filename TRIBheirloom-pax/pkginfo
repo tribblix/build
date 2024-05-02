@@ -1,0 +1,4 @@
+PKG="TRIBheirloom-pax"
+NAME="heirloom-pax"
+VERSION="1.0"
+ZAP_URL="https://github.com/ptribble/heirloom"
