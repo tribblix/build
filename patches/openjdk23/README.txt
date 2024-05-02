@@ -11,6 +11,16 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+21
+
+Tiny amount of patch noise.
+
+Remove local copies of os::dont_yield() os::naked_yield()
+
+Saw build failures with jobs=12:
+There is insufficient memory for the Java Runtime Environment to continue.
+But clean build if dialled down to 8.
+
 23+20
 
 Fixed up attachListener filename.
@@ -188,7 +198,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --with-source-date=current \
---with-jobs=3 \
+--with-jobs=8 \
 DATE=/usr/gnu/bin/date \
 STRIP=/usr/gnu/bin/strip
 

@@ -10,6 +10,6 @@ Fix build on SunOS in C99 mode.
   */
 -#ifndef _POSIX_SOURCE
 +#if (!defined(__sun) || (__STDC_VERSION__-0 < 199901L)) && !defined(_POSIX_SOURCE)
- # define _POSIX_SOURCE 1 /* Just the POSIX 1003.1 and C89 APIs */
+ #  define _POSIX_SOURCE 1 /* Just the POSIX 1003.1 and C89 APIs */
  #endif
  
