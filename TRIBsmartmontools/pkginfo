@@ -1,0 +1,4 @@
+PKG="TRIBsmartmontools"
+NAME="smartmontools"
+VERSION="7.4.0"
+ZAP_URL="https://www.smartmontools.org/"
