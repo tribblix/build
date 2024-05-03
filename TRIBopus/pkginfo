@@ -1,4 +1,4 @@
 PKG="TRIBopus"
 NAME="Opus library"
-VERSION="1.4.0"
+VERSION="1.5.2.0"
 ZAP_URL="https://www.opus-codec.org/"
