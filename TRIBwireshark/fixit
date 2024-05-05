@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # remove the qt gui which is shipped separately
 # in the TRIBwireshark-qt package
 #
