@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a compat build shipping the 1.1.1 libraries only
 #
 
@@ -9,7 +11,6 @@
 ${THOME}/build/unpack -64 openssl-1.1.1w
 cd openssl-1.1.1w
 env __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=1.0.0 --prefix=/usr
-sed -i s:pod2man:/usr/perl5/bin/pod2man: util/process_docs.pl
 gmake -j 6
 cd ..
 #
@@ -18,7 +19,6 @@ cd ..
 #
 cd openssl-1.1.1w-64bit
 env __CNF_CFLAGS=-m64 __CNF_LDFLAGS="-m64 -z aslr -z ignore" ./Configure solaris64-x86_64-gcc shared threads zlib --api=1.0.0 --prefix=/usr --libdir=lib/amd64
-sed -i s:pod2man:/usr/perl5/bin/pod2man: util/process_docs.pl
 gmake -j 6
 cd ..
 
