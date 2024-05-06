@@ -1,0 +1,4 @@
+PKG="TRIBtrurl"
+NAME="trurl"
+VERSION="0.12.0"
+ZAP_URL="https://curl.se/trurl/"
