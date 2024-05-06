@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a generic wrapper for managing the zabbix database back-end
 #
 # if the database does not exist, it will initialize it and insert

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we build 3 separate packages from the same source
 # we apply these patches to all builds, although they are ignored
 # in some cases
