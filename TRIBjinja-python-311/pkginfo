@@ -1,4 +1,4 @@
 PKG="TRIBjinja-python-311"
 NAME="Python Jinja2"
-VERSION="3.1.3.0"
+VERSION="3.1.4.0"
 ZAP_URL="https://pypi.org/project/Jinja2"

@@ -1,5 +1,5 @@
 #!/bin/sh
 #
-# needs Babel MarkupSafe
+# SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBjinja-python-311 Jinja2-3.1.3
+${THOME}/build/pkg_pep518 TRIBjinja-python-311 jinja2-3.1.4
