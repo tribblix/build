@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # either uninstall gdb, or run make.bash rather than all.bash, as the gdb
 # test fails on Tribblix
 #
@@ -11,7 +13,7 @@
 #
 chmod -R u+w go
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.22.2.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.22.3.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.22 GOROOT_BOOTSTRAP=/usr/versions/go-1.21 ./all.bash
 cd ..
