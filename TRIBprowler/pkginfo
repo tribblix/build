@@ -1,4 +1,0 @@
-PKG="TRIBprowler"
-NAME="Prowler AWS Security Tool"
-VERSION="2.12.1.0"
-ZAP_URL="https://github.com/toniblyx/prowler"
