@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBpatiencediff-python-311 patiencediff-0.2.14
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_setup_py TRIBpatiencediff-python-311 patiencediff-0.2.15
