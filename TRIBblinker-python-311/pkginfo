@@ -1,4 +1,4 @@
 PKG="TRIBblinker-python-311"
 NAME="Python blinker"
-VERSION="1.8.1.0"
+VERSION="1.8.2.0"
 ZAP_URL="https://pypi.org/project/blinker"
