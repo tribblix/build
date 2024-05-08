@@ -1,8 +1,10 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # just name off the primary version
 #
-VERSION=9.0.88
+VERSION=9.0.89
 cd usr/versions
 ln -s apache-tomcat-${VERSION} tomcat9
 chmod a+x apache-tomcat-${VERSION}/bin/*.sh
