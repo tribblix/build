@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -71,7 +73,7 @@ do
       PKGMD5=$(/usr/bin/openssl md5 "${pkg}.${ver}.zap" | /usr/bin/awk '{print $NF}')
       if [ "X$PKGMD5" != "X$psum" ]; then
         echo "ERROR: ${pkg}.${ver}.zap has the wrong checksum"
-      fi  
+      fi
     fi
   fi
 done

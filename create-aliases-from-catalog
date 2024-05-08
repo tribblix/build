@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -57,12 +59,12 @@ fi
 for PKG in $(awk -F'|' '{print $1}' $CFILE)
 do
     PKGI=${PKG}/alias
-    if [ -f ${PKGI}.${PLAT} ]; then	    
+    if [ -f ${PKGI}.${PLAT} ]; then
 	for PALIAS in $(<${PKGI}.${PLAT})
 	do
 	    echo "${PALIAS}|${PKG}"
 	done
-    elif [ -f $PKGI ]; then	    
+    elif [ -f $PKGI ]; then
 	for PALIAS in $(<${PKGI})
 	do
 	    echo "${PALIAS}|${PKG}"

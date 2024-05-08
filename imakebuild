@@ -1,5 +1,7 @@
 #!/bin/ksh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -60,7 +62,7 @@ if [ -d .git ]; then
     echo "ERROR: cannot run in a git repo"
     exit 1
 fi
-     
+
 #
 # note that not all of these make sense for imake builds, as it has
 # its own ideas of how to build and where to install things

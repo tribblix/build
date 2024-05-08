@@ -1,5 +1,7 @@
 #!/bin/ksh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -70,7 +72,7 @@ fi
 
 #
 # find shared objects
-# look for library followed by a space (the actual file) or 
+# look for library followed by a space (the actual file) or
 # by =, which is for a symlink
 #
 getdeps()
@@ -89,7 +91,7 @@ done
 
 #
 # find shared objects
-# look for library followed by a space (the actual file) or 
+# look for library followed by a space (the actual file) or
 # by =, which is for a symlink
 #
 getlongdeps()

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -82,7 +84,7 @@ if [ ! -f "${BUILD}/${PKGNAME}/pkginfo" ]; then
    echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
    exit 1
 fi
-     
+
 #
 # sanity check to avoid messing up a repo
 #
@@ -90,7 +92,7 @@ if [ -d .git ]; then
     echo "ERROR: cannot run in a git repo"
     exit 1
 fi
-     
+
 if [ ! -d "$BROOT" ]; then
     mkdir -p "$BROOT"
 fi

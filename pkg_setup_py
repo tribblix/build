@@ -76,7 +76,7 @@ if [ -d .git ]; then
     echo "ERROR: cannot run in a git repo"
     exit 1
 fi
-     
+
 if [ ! -d "$BROOT" ]; then
     mkdir -p "$BROOT"
 fi

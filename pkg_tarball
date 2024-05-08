@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -71,7 +73,7 @@ if [ -d .git ]; then
     echo "ERROR: cannot run in a git repo"
     exit 1
 fi
-     
+
 #
 # define and create working location
 #

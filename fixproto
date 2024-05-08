@@ -23,7 +23,7 @@
 # for existing directories
 #
 awk '
-{ $5 = "root"; $6 = "bin" } 
+{ $5 = "root"; $6 = "bin" }
 {if ($3 == "usr/lib/pkgconfig")  $6 = "other"}
 {if ($3 == "usr/lib/amd64/pkgconfig")  $6 = "other"}
 {if ($3 == "usr/lib/sparcv9/pkgconfig")  $6 = "other"}
@@ -83,7 +83,7 @@ awk '
 {if ($3 == "etc/init.d")  $6 = "sys"}
 {if ($3 == "usr/share/lib")  $6 = "sys"}
 {if ($3 == "usr/share/aclocal")  $6 = "other"}
-{if ($3 == "usr/gnu/share")  $6 = "sys"} 
-{if ($3 == "usr/perl5/site_perl")  $6 = "root"} 
+{if ($3 == "usr/gnu/share")  $6 = "sys"}
+{if ($3 == "usr/perl5/site_perl")  $6 = "root"}
 {print}
 '

@@ -65,7 +65,7 @@ if [ -d .git ]; then
     echo "ERROR: cannot run in a git repo"
     exit 1
 fi
-     
+
 #
 # if a dual 32- and 64-bit build is desired, specify -64 *first*
 # +64 means just do the 64-bit (useful for testing it in isolation)
