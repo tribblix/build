@@ -1,1 +1,1 @@
--p1 scribus-cmake.patch 
+-p1 scribus-cmake.patch
