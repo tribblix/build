@@ -90,6 +90,9 @@ chmod a+x $PKGNAME/build.sh
 #
 cat > $PKGNAME/fixit <<EOF
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 /bin/rm -fr usr/perl5/5.34/lib
 EOF
 chmod a+x $PKGNAME/fixit
