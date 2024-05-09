@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBspotbugs spotbugs-4.8.3
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_tarball TRIBspotbugs spotbugs-4.8.5
