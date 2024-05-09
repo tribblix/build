@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBsetup-scm-python-311 setuptools-scm-8.0.4
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 TRIBsetup-scm-python-311 setuptools_scm-8.1.0
