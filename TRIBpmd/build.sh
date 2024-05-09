@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBpmd pmd-dist-7.0.0-bin
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_tarball TRIBpmd pmd-dist-7.1.0-bin
