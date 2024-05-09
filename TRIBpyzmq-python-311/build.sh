@@ -7,4 +7,4 @@
 # the setup.py build fails, as it builds things quite differently
 # need to pass flags through to cmake
 #
-env CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS=-m64 ${THOME}/build/pkg_pep518 TRIBpyzmq-python-311 pyzmq-26.0.2
+env CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS=-m64 ${THOME}/build/pkg_pep518 TRIBpyzmq-python-311 pyzmq-26.0.3
