@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # add the php module to httpd.conf
 #
 if [ ! -x /opt/tribblix/apache2/bin/apxs ]; then

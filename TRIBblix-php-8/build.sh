@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # update php, modular extension for postgres now
 #
 # disable ldap for now, see #70260
@@ -13,8 +15,8 @@
 # needs a tsrm patch to avoid crashes
 #
 zap uninstall TRIBlibtool
-${THOME}/build/unpack php-8.2.18
-cd php-8.2.18
+${THOME}/build/unpack php-8.2.19
+cd php-8.2.19
 #
 # CFLAGS because Zend.m4 hasn't a hope of correctness
 #
