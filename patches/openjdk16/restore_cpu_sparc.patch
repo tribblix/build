@@ -20111,7 +20111,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +  assert(oop_recorder() != NULL, "this assembler needs an OopRecorder");
 +  int klass_index = oop_recorder()->find_index(k);
 +  RelocationHolder rspec = metadata_Relocation::spec(klass_index);
-+  uint32_t encoded_k = CompressedKlassPointers::encode(k);
++  narrowKlass encoded_k = CompressedKlassPointers::encode(k);
 +
 +  assert_not_delayed();
 +  // Relocation with special format (see relocInfo_sparc.hpp).
@@ -31842,7 +31842,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp b/src/hotspo
 diff -ur --new-file a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/sparc.ad
 --- a/src/hotspot/cpu/sparc/sparc.ad	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/cpu/sparc/sparc.ad	2023-04-16 11:42:11.074882766 +0000
-@@ -0,0 +1,10865 @@
+@@ -0,0 +1,10873 @@
 +//
 +// Copyright (c) 1998, 2020, Oracle and/or its affiliates. All rights reserved.
 +// DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -38562,6 +38562,14 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/spa
 +instruct castII( iRegI dst ) %{
 +  match(Set dst (CastII dst));
 +  format %{ "# castII of $dst" %}
++  ins_encode( /*empty encoding*/ );
++  ins_cost(0);
++  ins_pipe(empty);
++%}
++
++instruct castLL( iRegL dst ) %{
++  match(Set dst (CastLL dst));
++  format %{ "# castLL of $dst" %}
 +  ins_encode( /*empty encoding*/ );
 +  ins_cost(0);
 +  ins_pipe(empty);
