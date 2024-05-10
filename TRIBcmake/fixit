@@ -1,8 +1,10 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # put in the regular path
 #
-VERSION=3.27
+VERSION=3.29
 mkdir usr/bin
 cd usr/bin
 ln -s ../versions/cmake-${VERSION}/bin/c* .
@@ -11,6 +13,6 @@ strip c*
 cd ../share/cmake-${VERSION}/Help/generator
 for file in *
 do
-    nfile=`echo $file | sed 's: :_:g'`
-    mv "$file" $nfile
+    nfile=${file// /_}
+    mv "$file" "$nfile"
 done
