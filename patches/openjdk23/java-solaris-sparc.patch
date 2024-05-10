@@ -1143,7 +1143,7 @@
    tty->print_cr("class metadata.");
 --- old/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.978937412 -0700
 +++ new/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.586929885 -0700
-@@ -49,36 +49,15 @@
+@@ -50,36 +50,15 @@
  #endif
  #include <wchar.h>
  
@@ -1180,7 +1180,7 @@
  #if defined(LINUX) || defined(_ALLBSD_SOURCE) || defined(_AIX)
  #include <signal.h>
  #ifndef __OpenBSD__
-@@ -91,34 +70,6 @@
+@@ -92,34 +71,6 @@
  #include <sys/time.h>
  #endif // LINUX || _ALLBSD_SOURCE
  
@@ -1215,7 +1215,7 @@
  // NULL vs NULL_WORD:
  // On Linux NULL is defined as a special type '__null'. Assigning __null to
  // integer variable will cause gcc warning. Use NULL_WORD in places where a
-@@ -137,51 +88,8 @@
+@@ -138,51 +89,8 @@
    #define NULL_WORD  NULL
  #endif
  
@@ -5483,7 +5483,7 @@
 -################################################################################
 --- old/src/hotspot/os/solaris/attachListener_solaris.cpp	2020-05-20 18:09:27.484969868 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,715 +0,0 @@
+@@ -1,719 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5865,11 +5865,11 @@
 -
 -// Create the door
 -int SolarisAttachListener::create_door() {
--  char door_path[PATH_MAX+1];
--  char initial_path[PATH_MAX+1];
+-  char door_path[PATH_MAX];
+-  char initial_path[PATH_MAX];
 -  int fd, res;
 -
--  // register exit function
+-  // register function to cleanup
 -  if (!_atexit_registered) {
 -    _atexit_registered = true;
 -    ::atexit(listener_cleanup);
@@ -5881,10 +5881,14 @@
 -    return -1;
 -  }
 -
--  // create initial file to attach door descriptor
--  snprintf(door_path, sizeof(door_path), "%s/.java_pid%d",
--           os::get_temp_directory(), os::current_process_id());
--  snprintf(initial_path, sizeof(initial_path), "%s.tmp", door_path);
+-  int n = snprintf(door_path, PATH_MAX, "%s/.java_pid%d",
+-                   os::get_temp_directory(), os::current_process_id());
+-  if (n < (int)PATH_MAX) {
+-    snprintf(initial_path, PATH_MAX, "%s.tmp", door_path);
+-  }
+-  if (n >= (int)PATH_MAX) {
+-    return -1;
+-  }
 -  RESTARTABLE(::creat(initial_path, S_IRUSR | S_IWUSR), fd);
 -  if (fd == -1) {
 -    log_debug(attach)("attempt to create door file %s failed (%d)", initial_path, errno);
@@ -7865,7 +7869,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,2993 +0,0 @@
+@@ -1,2984 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10521,15 +10525,6 @@
 -#endif
 -
 -  return fd;
--}
--
--// create binary file, rewriting existing file if required
--int os::create_binary_file(const char* path, bool rewrite_existing) {
--  int oflags = O_WRONLY | O_CREAT;
--  if (!rewrite_existing) {
--    oflags |= O_EXCL;
--  }
--  return ::open64(path, oflags, S_IREAD | S_IWRITE);
 -}
 -
 -// return current position of file pointer
