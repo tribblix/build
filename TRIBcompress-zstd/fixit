@@ -1,5 +1,5 @@
 #!/bin/sh
 #
-# fix the names
+# SPDX-License-Identifier: CDDL-1.0
 #
 rm -fr usr/share/doc/zstd/examples_old
