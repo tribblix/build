@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # create locations to drop configuration into
 #
 mkdir -p opt/tribblix/nginx/conf.d
