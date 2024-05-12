@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBsetup-gettext-python-311 setuptools-gettext-0.1.11
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_setup_py TRIBsetup-gettext-python-311 setuptools_gettext-0.1.14

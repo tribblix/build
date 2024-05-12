@@ -1,4 +1,4 @@
 PKG="TRIBsetup-gettext-python-311"
 NAME="Python setuptools-gettext"
-VERSION="0.1.11.0"
+VERSION="0.1.14.0"
 ZAP_URL="https://pypi.org/project/setuptools-gettext"
