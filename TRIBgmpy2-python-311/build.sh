@@ -14,8 +14,7 @@ export TZ
 #
 # first build a static copy of mpc/mpfr
 #
-
-${THOME}/build/patches/gmpy2.conf gmpy2-2.1.5
+${THOME}/build/patches/gmpy2.preconf
 
 #
 # this is manual because it's a slightly different path to pick up the
