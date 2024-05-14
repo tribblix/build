@@ -7,6 +7,9 @@
 # we shipped 1.4.9 previously, ZSTD_LIB_DEPRECATED=1 enables the functions
 # that were present then but were deprecated in 1.5.0
 #
+# sparc needs ZSTD_NO_ASM=1 as well, otherwise it blindly builds amd64
+# assembler
+#
 env CC=gcc PREFIX=/usr ${THOME}/build/dobuild zstd-1.5.6 -M "ZSTD_LIB_DEPRECATED=1 ZSTD_LIB_DICTBUILDER=0"
 mv zstd-1.5.6 zstd-1.5.6-32bit
 env CC=gcc PREFIX=/usr CFLAGS=-m64 LDFLAGS=-m64 ${THOME}/build/dobuild zstd-1.5.6 -M "ZSTD_LIB_DEPRECATED=1 ZSTD_LIB_DICTBUILDER=0"
