@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-kstat"
+NAME="Perl Tribblix::Kstat module"
+VERSION="0.0"
+ZAP_URL="https://github.com/tribblix/tribblix-kstat"
