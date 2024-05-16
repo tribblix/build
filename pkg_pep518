@@ -36,15 +36,19 @@ export TZ
 # -v - specify version of python (for packages that don't embed the python
 #      version in the package name)
 # -N - enables --no-build-isolation
+# -C - passed through to pip
 #
 XARGS=""
-while getopts "v:N" opt; do
+while getopts "v:C:N" opt; do
     case $opt in
 	v)
 	    SPYVER="$OPTARG"
 	    ;;
 	N)
-	    XARGS="--no-build-isolation"
+	    XARGS="${XARGS} --no-build-isolation"
+	    ;;
+	C)
+	    XARGS="${XARGS} $OPTARG"
 	    ;;
 	*)
             echo "ERROR: invalid option $OPTARG"
