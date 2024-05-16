@@ -5,4 +5,4 @@
 # there's a huge list of optional extras, we don't declare any of them
 # as dependencies directly
 #
-${THOME}/build/pkg_pep518 TRIBfsspec-python-311 fsspec-2024.3.1
+${THOME}/build/pkg_pep518 TRIBfsspec-python-311 fsspec-2024.5.0
