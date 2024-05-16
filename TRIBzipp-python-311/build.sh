@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBzipp-python-311 zipp-3.18.1
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 TRIBzipp-python-311 zipp-3.18.2
