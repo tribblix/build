@@ -1,5 +1,0 @@
---- /dev/null	Sat Aug 26 14:31:40 2023
-+++ a/mplsetup.cfg	Sat Aug 26 14:04:00 2023
-@@ -0,0 +0,2 @@
-+[libs]
-+system_freetype = True
