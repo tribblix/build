@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBtrove-class-python-311 trove-classifiers-2024.4.10
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 TRIBtrove-class-python-311 trove_classifiers-2024.5.17
