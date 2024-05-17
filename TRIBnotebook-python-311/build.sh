@@ -1,3 +1,7 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBnotebook-python-311 notebook-7.1.3
+# SPDX-License-Identifier: CDDL-1.0
+#
+# needs hatch-jupyter-builder to go along with -N
+#
+${THOME}/build/pkg_pep518 -N TRIBnotebook-python-311 notebook-7.2.0
