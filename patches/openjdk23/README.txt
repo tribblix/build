@@ -11,6 +11,10 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+23
+
+JLine updated, our patch no longer needed (or useful).
+
 23+22
 
 os::create_binary_file() centralized

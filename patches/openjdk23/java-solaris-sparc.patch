@@ -166,7 +166,7 @@
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -274,7 +274,7 @@
+@@ -285,7 +285,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -175,7 +175,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -287,7 +287,7 @@
+@@ -298,7 +298,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -1023,7 +1023,7 @@
  #endif
 --- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
-@@ -446,8 +446,6 @@
+@@ -454,8 +454,6 @@
      case lir_monaddr:        // input and result always valid, info always invalid
      case lir_null_check:     // input and info always valid, result always invalid
      case lir_move:           // input and result always valid, may have info
@@ -1032,7 +1032,7 @@
      {
        assert(op->as_Op1() != nullptr, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1728,8 +1726,6 @@
+@@ -1740,8 +1738,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1052,7 +1052,7 @@
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2236,9 +2234,6 @@
+@@ -2239,9 +2237,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1064,7 +1064,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -453,7 +453,7 @@
+@@ -468,7 +468,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -1287,7 +1287,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1055,7 +1055,7 @@
+@@ -1042,7 +1042,7 @@
  
  #ifndef PRODUCT
  
@@ -3909,7 +3909,7 @@
  }
 --- old/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.697524107 -0700
 +++ new/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.357517578 -0700
-@@ -711,15 +711,10 @@
+@@ -720,15 +720,10 @@
          lib = expand(lib);
          int i = lib.indexOf("/$ISA/");
          if (i != -1) {
