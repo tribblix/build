@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# for modern compiler compatibility
-#
-sed -i 's/^Bookmark/extern Bookmark/' sh_util/gpshare.c
