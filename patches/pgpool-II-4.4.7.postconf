@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # prototype mismatch within the same file
 #
 #sed -i 's:static pid_t watchdog_main:static int watchdog_main:' src/watchdog/watchdog.c
