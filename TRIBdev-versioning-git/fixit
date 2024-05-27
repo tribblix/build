@@ -1,10 +1,12 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the man pages come in a separate download
 #
 mkdir -p usr/share/man
 cd usr/share/man
-${BUILDROOT}/unpack git-manpages-2.43.2
+${BUILDROOT}/unpack git-manpages-2.45.1
 chmod a+rx .
 cd ../../..
 #
