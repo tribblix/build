@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # these libraries are private and have been deprecated
 #
 rm -f usr/lib/libbind9.a

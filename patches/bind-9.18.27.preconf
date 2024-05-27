@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need private copy of libuv
 #
 # explicitly specify -fPIC, as otherwise it will get turned off by building
