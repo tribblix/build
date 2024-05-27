@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # Only the currently supported LTS release has standard symlinks
 #
 VERSION=20
