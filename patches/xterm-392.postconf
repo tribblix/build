@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # guide it a bit on termios
 #
 sed -i s:__INTERIX:__sun: xterm_io.h
