@@ -75,11 +75,11 @@ do
 	  fi
       fi
   else
-      # error if marked for a different arch
+      # error if not marked for this arch
       if [ -f "${THOME}/build/${PKGI}/arch.txt" ]; then
-	  NARCH=$(<"${THOME}/build/${PKGI}/arch.txt")
-	  if [ "$NARCH" != "$ARCH" ]; then
-	      echo "ERROR: $PKGI is only valid for $NARCH"
+	  XARCH=$(grep -x "$ARCH" "${THOME}/build/${PKGI}/arch.txt")
+	  if [ -z "${XARCH}" ]; then
+	      echo "ERROR: $PKGI is not valid for ${ARCH}, only for "$(<"${THOME}/build/${PKGI}/arch.txt")
 	  fi
       fi
       # use a per-arch version if present
