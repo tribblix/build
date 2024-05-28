@@ -1,5 +1,7 @@
 #!/bin/ksh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -68,8 +70,8 @@ do
   PKG=${PKGI%/*}
   # if marked for a different arch, ignore
   if [ -f "${PKG}/arch.txt" ]; then
-      NARCH=$(<"${PKG}/arch.txt")
-      if [ "$NARCH" != "$ARCH" ]; then
+      NARCH=$(grep -x "$ARCH" "${PKG}/arch.txt")
+      if [ -z "$NARCH" ]; then
 	  continue
       fi
   fi
