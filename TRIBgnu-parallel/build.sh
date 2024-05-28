@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild parallel-20240322 -P /usr/gnu
-${THOME}/build/genpkg TRIBgnu-parallel parallel-20240322
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/dobuild parallel-20240522 -P /usr/gnu
+${THOME}/build/genpkg TRIBgnu-parallel parallel-20240522

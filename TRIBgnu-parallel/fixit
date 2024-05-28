@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the docs largely duplicate the man pages
 #
 rm -fr usr/gnu/share/doc/parallel
