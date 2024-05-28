@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBjupyterlab-wdgts-python-311 jupyterlab_widgets-3.0.10
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 -N TRIBjupyterlab-wdgts-python-311 jupyterlab_widgets-3.0.11
