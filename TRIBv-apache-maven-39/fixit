@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-VERSION=3.9.6
+# SPDX-License-Identifier: CDDL-1.0
+#
+VERSION=3.9.7
 #
 # default
 #
