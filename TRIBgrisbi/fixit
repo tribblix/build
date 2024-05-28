@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the french documentation is bigger than the product itself
 #
 rm -fr usr/share/doc/grisbi/fr
