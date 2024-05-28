@@ -1064,7 +1064,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -468,7 +468,7 @@
+@@ -456,7 +456,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {

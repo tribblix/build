@@ -11,6 +11,15 @@ loom correctly as they date back to that change.
 * illuminate doesn't work
 * test suite doesn't run at all
 
+23+24
+
+Saw build failures with jobs=8:
+There is insufficient memory for the Java Runtime Environment to
+continue.
+(This has been seen in both the bootstrap compiler and the newly built
+compiler, so I don't think it's a recent code change, but is more
+likely related to changes in the build process.)
+
 23+23
 
 JLine updated, our patch no longer needed (or useful).
