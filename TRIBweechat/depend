@@ -1,0 +1,10 @@
+P TRIBaspell
+P TRIBcompress-zstd
+P TRIBcurl
+P TRIBgnu-libiconv
+P TRIBgnutls
+P TRIBlib-zlib
+P TRIBlibgcrypt
+P TRIBncurses
+P TRIBperl-534
+P TRIBtcl

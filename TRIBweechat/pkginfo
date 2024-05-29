@@ -1,0 +1,4 @@
+PKG="TRIBweechat"
+NAME="WeeChat"
+VERSION="4.3.0.0"
+ZAP_URL="https://weechat.org/"

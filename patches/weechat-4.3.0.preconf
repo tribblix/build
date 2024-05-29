@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# need a little extra help to find ncurses, this fixes up the cmake
+# configuration so it can find it in the first place, you still need
+# to set the appropriate TRIBBLIX_ environment variables so that the
+# right things happen later in the compile
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+sed -i s:/usr/local:/usr/gnu: cmake/FindNcurses.cmake
+
+sed -i s:/usr/gnu/lib:/usr/gnu/lib/${ARCH64}: cmake/FindNcurses.cmake
