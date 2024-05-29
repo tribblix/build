@@ -1,0 +1,4 @@
+PKG="TRIBgdal"
+NAME="gdal"
+VERSION="3.9.0.0"
+ZAP_URL="https://gdal.org/"
