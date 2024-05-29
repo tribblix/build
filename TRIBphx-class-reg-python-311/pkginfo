@@ -1,0 +1,4 @@
+PKG="TRIBphx-class-reg-python-311"
+NAME="Python phx-class-registry"
+VERSION="4.1.0.0"
+ZAP_URL="https://pypi.org/project/phx-class-registry"
