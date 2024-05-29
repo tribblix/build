@@ -1,0 +1,4 @@
+PKG="TRIBgeos"
+NAME="C/C++ library for computational geometry"
+VERSION="3.12.1.0"
+ZAP_URL="https://libgeos.org/"
