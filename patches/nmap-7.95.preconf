@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# need to use gmake here, prior versions did it correctly
+#
+sed -i 's:make:\$(MAKE):' liblinear/Makefile
