@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # look at src/version.cc to check the version string
 #
 git clone https://github.com/ninja-build/ninja.git
