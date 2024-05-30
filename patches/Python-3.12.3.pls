@@ -1,0 +1,10 @@
+-p1 python312/asyncio-watcher.patch
+-p1 python312/default-lib-path.patch
+-p1 python312/disable_epoll.patch
+-p1 python312/dont-use-ccs.patch
+-p1 python312/mod-posix-sched_priority.patch
+-p1 python312/mod-shutil-sendfile.patch
+-p1 python312/posix_spawn-close_fds-support.patch
+-p1 python312/posix_spawn-environment-fix.patch
+-p1 python312/static-assert.patch
+-p1 python312/termios-set-before-get.patch
