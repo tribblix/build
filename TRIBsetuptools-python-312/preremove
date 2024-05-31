@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# setuptools has files whose names contain spaces, so we unpack them
+# rather than package them
+#
+cd ${BASEDIR}/usr/versions/python-3.12/lib/python3.12/site-packages
+if [ -d setuptools ]; then
+  /usr/bin/rm -fr setuptools
+fi
