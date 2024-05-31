@@ -156,4 +156,9 @@ cat > $PY312NAME/build.sh <<EOF
 \${THOME}/build/$BUILDER $PY312NAME $TBALL
 EOF
 chmod a+x $PY312NAME/build.sh
+case $BUILDER in
+    pkg_setup_py)
+	echo "TRIBsetuptools-python-$PY312VER" > $PY312NAME/build_require
+	;;
+esac
 fi
