@@ -1,0 +1,4 @@
+PKG="TRIBs3transfer-python-312"
+NAME="Python s3transfer"
+VERSION="0.10.1.0"
+ZAP_URL="https://pypi.org/project/s3transfer"
