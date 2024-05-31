@@ -13,6 +13,10 @@ loom correctly as they date back to that change.
 
 23+24
 
+Saw insufficient memory build failures even with jobs=4.
+
+23+24
+
 Saw build failures with jobs=8:
 There is insufficient memory for the Java Runtime Environment to
 continue.
