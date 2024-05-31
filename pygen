@@ -29,8 +29,10 @@
 #
 
 PY311VER=311
+PY312VER=312
 
 DO311="yes"
+DO312=""
 
 case $1 in
     -p)
@@ -67,6 +69,7 @@ case $# in
 esac
 
 PY311NAME=TRIB${pkg_name}-python-${PY311VER}
+PY312NAME=TRIB${pkg_name}-python-${PY312VER}
 
 #
 # check we're within the SVR4 package name length limit
@@ -77,9 +80,18 @@ if [ $NAMELEN -gt 31 ]; then
     exit 1
 fi
 
+if [ -n "$DO311" ]; then
 if [ -d "$PY311NAME" ]; then
    echo "$PY311NAME already exists"
    exit 1
+fi
+fi
+
+if [ -n "$DO312" ]; then
+if [ -d "$PY312NAME" ]; then
+   echo "$PY312NAME already exists"
+   exit 1
+fi
 fi
 
 #
@@ -122,4 +134,26 @@ cat > $PY311NAME/build.sh <<EOF
 \${THOME}/build/$BUILDER $PY311NAME $TBALL
 EOF
 chmod a+x $PY311NAME/build.sh
+fi
+
+if [ -n "$DO312" ]; then
+#
+# python 3.12
+#
+mkdir $PY312NAME
+echo "P TRIBv-python-$PY312VER" > $PY312NAME/depend
+cat > $PY312NAME/pkginfo <<EOF
+PKG="${PY312NAME}"
+NAME="Python $PNAME"
+VERSION="${PVER}.0"
+ZAP_URL="https://pypi.org/project/${PNAME}"
+EOF
+cat > $PY312NAME/build.sh <<EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+\${THOME}/build/$BUILDER $PY312NAME $TBALL
+EOF
+chmod a+x $PY312NAME/build.sh
 fi
