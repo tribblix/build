@@ -1,0 +1,4 @@
+PKG="TRIBtoml-python-312"
+NAME="Python toml"
+VERSION="0.10.2.0"
+ZAP_URL="https://pypi.org/project/toml"

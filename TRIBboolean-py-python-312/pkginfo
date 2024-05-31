@@ -1,0 +1,4 @@
+PKG="TRIBboolean-py-python-312"
+NAME="Python boolean.py"
+VERSION="4.0.0"
+ZAP_URL="https://pypi.org/project/boolean.py"

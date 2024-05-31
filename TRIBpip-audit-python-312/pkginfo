@@ -1,0 +1,4 @@
+PKG="TRIBpip-audit-python-312"
+NAME="Python pip_audit"
+VERSION="2.7.3.0"
+ZAP_URL="https://pypi.org/project/pip_audit"

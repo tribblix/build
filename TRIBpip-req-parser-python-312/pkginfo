@@ -1,0 +1,4 @@
+PKG="TRIBpip-req-parser-python-312"
+NAME="Python pip-requirements-parser"
+VERSION="32.0.1.0"
+ZAP_URL="https://pypi.org/project/pip-requirements-parser"

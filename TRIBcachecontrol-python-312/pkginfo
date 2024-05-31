@@ -1,0 +1,4 @@
+PKG="TRIBcachecontrol-python-312"
+NAME="Python cachecontrol"
+VERSION="0.14.0.0"
+ZAP_URL="https://pypi.org/project/cachecontrol"
