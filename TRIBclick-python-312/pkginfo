@@ -1,0 +1,4 @@
+PKG="TRIBclick-python-312"
+NAME="Python click"
+VERSION="8.1.7.0"
+ZAP_URL="https://pypi.org/project/click"
