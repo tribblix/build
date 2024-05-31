@@ -1,0 +1,4 @@
+PKG="TRIBcertifi-python-312"
+NAME="Python certifi"
+VERSION="2024.2.2.0"
+ZAP_URL="https://pypi.org/project/certifi"
