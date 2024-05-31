@@ -1,0 +1,4 @@
+PKG="TRIBgibberish-det-python-312"
+NAME="Python gibberish_detector"
+VERSION="0.1.1.1"
+ZAP_URL="https://pypi.org/project/gibberish_detector"
