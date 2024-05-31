@@ -1,0 +1,4 @@
+PKG="TRIBtqdm-python-312"
+NAME="Python tqdm"
+VERSION="4.66.4.0"
+ZAP_URL="https://pypi.org/project/tqdm"

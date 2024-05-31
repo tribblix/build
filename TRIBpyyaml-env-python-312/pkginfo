@@ -1,0 +1,4 @@
+PKG="TRIBpyyaml-env-python-312"
+NAME="Python pyyaml_env_tag"
+VERSION="0.1.1"
+ZAP_URL="https://pypi.org/project/pyyaml_env_tag"
