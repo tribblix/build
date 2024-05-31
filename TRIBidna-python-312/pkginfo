@@ -1,0 +1,4 @@
+PKG="TRIBidna-python-312"
+NAME="Python idna"
+VERSION="3.7.0"
+ZAP_URL="https://pypi.org/project/idna"
