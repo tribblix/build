@@ -1,0 +1,4 @@
+PKG="TRIBhtml5lib-python-312"
+NAME="Python html5lib"
+VERSION="1.1.0"
+ZAP_URL="https://pypi.org/project/html5lib"
