@@ -1,0 +1,4 @@
+PKG="TRIBlogfury-python-312"
+NAME="Python logfury"
+VERSION="1.0.1.0"
+ZAP_URL="https://pypi.org/project/logfury"

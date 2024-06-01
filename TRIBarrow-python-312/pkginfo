@@ -1,0 +1,4 @@
+PKG="TRIBarrow-python-312"
+NAME="Python arrow"
+VERSION="1.2.3.0"
+ZAP_URL="https://pypi.org/project/arrow"
