@@ -1,0 +1,4 @@
+PKG="TRIBpexpect-python-312"
+NAME="Python pexpect"
+VERSION="4.9.0.0"
+ZAP_URL="https://pypi.org/project/pexpect"

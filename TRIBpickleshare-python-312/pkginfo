@@ -1,0 +1,4 @@
+PKG="TRIBpickleshare-python-312"
+NAME="Python pickleshare"
+VERSION="0.7.5.0"
+ZAP_URL="https://pypi.org/project/pickleshare"

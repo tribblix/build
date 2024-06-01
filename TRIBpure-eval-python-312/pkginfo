@@ -1,0 +1,4 @@
+PKG="TRIBpure-eval-python-312"
+NAME="Python pure_eval"
+VERSION="0.2.2.0"
+ZAP_URL="https://pypi.org/project/pure_eval"
