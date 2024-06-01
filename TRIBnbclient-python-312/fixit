@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# test files are unpackageable as the names contain spaces
+#
+rm -fr usr/versions/python-3.12/lib/python3.11/site-packages/nbclient/tests
