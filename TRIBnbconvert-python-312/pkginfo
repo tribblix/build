@@ -1,0 +1,4 @@
+PKG="TRIBnbconvert-python-312"
+NAME="Python nbconvert"
+VERSION="7.16.4.0"
+ZAP_URL="https://pypi.org/project/nbconvert"
