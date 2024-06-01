@@ -1,0 +1,4 @@
+PKG="TRIBshellingham-python-312"
+NAME="Python shellingham"
+VERSION="1.5.4.0"
+ZAP_URL="https://pypi.org/project/shellingham"
