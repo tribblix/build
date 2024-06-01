@@ -1,0 +1,4 @@
+PKG="TRIBjupyterlab-srv-python-312"
+NAME="Python jupyterlab_server"
+VERSION="2.27.2.0"
+ZAP_URL="https://pypi.org/project/jupyterlab_server"
