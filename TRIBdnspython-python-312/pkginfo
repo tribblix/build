@@ -1,0 +1,4 @@
+PKG="TRIBdnspython-python-312"
+NAME="Python dnspython"
+VERSION="2.6.1.0"
+ZAP_URL="https://pypi.org/project/dnspython"

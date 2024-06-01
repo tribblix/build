@@ -1,0 +1,4 @@
+PKG="TRIBexpiringdict-python-312"
+NAME="Python expiringdict"
+VERSION="1.2.2.0"
+ZAP_URL="https://pypi.org/project/expiringdict"
