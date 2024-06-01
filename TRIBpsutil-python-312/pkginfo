@@ -1,0 +1,4 @@
+PKG="TRIBpsutil-python-312"
+NAME="Python psutil"
+VERSION="5.9.8.0"
+ZAP_URL="https://pypi.org/project/psutil"

@@ -1,0 +1,4 @@
+PKG="TRIBetcd-python-312"
+NAME="Python python-etcd"
+VERSION="0.4.5.0"
+ZAP_URL="https://pypi.org/project/python-etcd"
