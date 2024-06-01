@@ -1,0 +1,4 @@
+PKG="TRIBisoduration-python-312"
+NAME="Python isoduration"
+VERSION="20.11.0.0"
+ZAP_URL="https://pypi.org/project/isoduration"

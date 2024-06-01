@@ -1,0 +1,4 @@
+PKG="TRIBargon2-cffi-python-312"
+NAME="Python argon2_cffi"
+VERSION="23.1.0.0"
+ZAP_URL="https://pypi.org/project/argon2_cffi"

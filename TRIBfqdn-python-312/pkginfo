@@ -1,0 +1,4 @@
+PKG="TRIBfqdn-python-312"
+NAME="Python fqdn"
+VERSION="1.5.1.0"
+ZAP_URL="https://pypi.org/project/fqdn"

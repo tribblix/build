@@ -1,0 +1,4 @@
+PKG="TRIBjupyter-events-python-312"
+NAME="Python jupyter_events"
+VERSION="0.10.0.0"
+ZAP_URL="https://pypi.org/project/jupyter_events"
