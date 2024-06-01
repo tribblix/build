@@ -1,0 +1,4 @@
+PKG="TRIBlinode-cli-python-312"
+NAME="Python linode-cli"
+VERSION="5.49.1.0"
+ZAP_URL="https://pypi.org/project/linode-cli"
