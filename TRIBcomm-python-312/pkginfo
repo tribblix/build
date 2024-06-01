@@ -1,0 +1,4 @@
+PKG="TRIBcomm-python-312"
+NAME="Python comm"
+VERSION="0.2.2.0"
+ZAP_URL="https://pypi.org/project/comm"

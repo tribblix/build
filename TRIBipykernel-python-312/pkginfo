@@ -1,0 +1,4 @@
+PKG="TRIBipykernel-python-312"
+NAME="Python ipykernel"
+VERSION="6.29.4.0"
+ZAP_URL="https://pypi.org/project/ipykernel"

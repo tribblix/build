@@ -1,0 +1,4 @@
+PKG="TRIBjupyter-client-python-312"
+NAME="Python jupyter_client"
+VERSION="8.6.2.0"
+ZAP_URL="https://pypi.org/project/jupyter_client"
