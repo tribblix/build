@@ -1,0 +1,2 @@
+-p1 numpy-setup.patch
+-p1 numpy-meson.patch
