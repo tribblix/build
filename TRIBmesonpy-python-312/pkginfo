@@ -1,0 +1,4 @@
+PKG="TRIBmesonpy-python-312"
+NAME="Python meson_python"
+VERSION="0.16.0.0"
+ZAP_URL="https://pypi.org/project/meson_python"
