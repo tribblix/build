@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# permissions all messed up
+#
+chmod -R a+r usr/versions
