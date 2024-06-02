@@ -1,0 +1,4 @@
+PKG="TRIBsc-jsmath-python-312"
+NAME="Python sphinxcontrib-jsmath"
+VERSION="1.0.1.0"
+ZAP_URL="https://pypi.org/project/sphinxcontrib-jsmath"

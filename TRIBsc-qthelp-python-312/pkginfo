@@ -1,0 +1,4 @@
+PKG="TRIBsc-qthelp-python-312"
+NAME="Python sphinxcontrib-qthelp"
+VERSION="1.0.7.0"
+ZAP_URL="https://pypi.org/project/sphinxcontrib-qthelp"
