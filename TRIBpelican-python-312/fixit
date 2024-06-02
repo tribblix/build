@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+PYVERS=3.12
+#
+# clean up tests, some files have interesting names
+#
+rm -fr usr/versions/python-3.12/lib/python3.12/site-packages/pelican/tests
+#
+# add a convenience link
+#
+exit 0
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/python-${PYVERS}/bin/pelican* .
