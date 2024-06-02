@@ -1,0 +1,4 @@
+PKG="TRIBdocstring2md-python-312"
+NAME="Python docstring-to-markdown"
+VERSION="0.15.0"
+ZAP_URL="https://pypi.org/project/docstring-to-markdown"

@@ -1,0 +1,4 @@
+PKG="TRIBcattrs-python-312"
+NAME="Python cattrs"
+VERSION="23.2.3.0"
+ZAP_URL="https://pypi.org/project/cattrs"
