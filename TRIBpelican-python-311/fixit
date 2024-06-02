@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 PYVERS=3.11
 #
 # clean up tests, some files have interesting names

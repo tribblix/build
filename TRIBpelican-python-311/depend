@@ -7,9 +7,10 @@ P TRIBfeedparser-python-311
 P TRIBjinja-python-311
 P TRIBlxml-python-311
 P TRIBmarkdown-python-311
+P TRIBordered-set-python-311
 P TRIBpandoc
 P TRIBpygments-311
-P TRIBpytz-python-311
 P TRIBrich-python-311
 P TRIBunidecode-python-311
 P TRIBv-python-311
+P TRIBwatchfiles-python-311
