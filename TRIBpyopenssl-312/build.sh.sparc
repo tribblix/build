@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# despite the name, the actual openssl bindings are in the
+# cryptography module, not this one
+#
+# v21.0.0 requires cryptography 3.3, and is the newest
+# version of pyOpenSSL to support a cryptography version
+# that doesn't require rust
+#
+# hence the maximum pyOpenSSL on sparc will be v21
+#
+${THOME}/build/pkg_setup_py TRIBpyopenssl-312 pyOpenSSL-21.0.0
