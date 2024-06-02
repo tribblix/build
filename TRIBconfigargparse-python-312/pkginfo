@@ -1,0 +1,4 @@
+PKG="TRIBconfigargparse-python-312"
+NAME="Python ConfigArgParse"
+VERSION="1.7.0"
+ZAP_URL="https://pypi.org/project/ConfigArgParse"
