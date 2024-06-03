@@ -1,0 +1,6 @@
+P TRIBgfortran4runtime
+P TRIBnumpy-python-312
+P TRIBopenblas
+P TRIBv-gcc10
+P TRIBv-gfortran10
+P TRIBv-python-312
