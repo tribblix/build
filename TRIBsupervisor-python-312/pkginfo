@@ -1,0 +1,4 @@
+PKG="TRIBsupervisor-python-312"
+NAME="supervisord"
+VERSION="4.2.5.0"
+ZAP_URL="http://supervisord.org/"
