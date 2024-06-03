@@ -32,7 +32,7 @@ PY311VER=311
 PY312VER=312
 
 DO311="yes"
-DO312=""
+DO312="yes"
 
 case $1 in
     -p)
