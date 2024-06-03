@@ -1,0 +1,4 @@
+PKG="TRIBconfigobj-python-312"
+NAME="Python configobj"
+VERSION="5.0.8.0"
+ZAP_URL="https://pypi.org/project/configobj"
