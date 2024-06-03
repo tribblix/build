@@ -1,0 +1,4 @@
+PKG="TRIBwhoosh-python-312"
+NAME="Python Whoosh"
+VERSION="2.7.4.0"
+ZAP_URL="https://pypi.org/project/Whoosh"

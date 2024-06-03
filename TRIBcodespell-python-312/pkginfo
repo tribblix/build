@@ -1,0 +1,4 @@
+PKG="TRIBcodespell-python-312"
+NAME="Python codespell"
+VERSION="2.3.0.0"
+ZAP_URL="https://pypi.org/project/codespell"

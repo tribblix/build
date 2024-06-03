@@ -1,0 +1,4 @@
+PKG="TRIBcdiff-python-312"
+NAME="Python cdiff"
+VERSION="1.0.0"
+ZAP_URL="https://pypi.org/project/cdiff"
