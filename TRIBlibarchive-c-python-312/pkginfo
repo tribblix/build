@@ -1,0 +1,4 @@
+PKG="TRIBlibarchive-c-python-312"
+NAME="Python libarchive-c"
+VERSION="5.1.0"
+ZAP_URL="https://pypi.org/project/libarchive-c"

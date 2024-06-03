@@ -1,0 +1,4 @@
+PKG="TRIBprogressbar-python-312"
+NAME="Python progressbar"
+VERSION="2.5.0"
+ZAP_URL="https://pypi.org/project/progressbar"
