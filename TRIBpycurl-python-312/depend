@@ -1,0 +1,6 @@
+P TRIBcurl
+P TRIBlib-security-openssl
+P TRIBlib-zlib
+P TRIBlibnghttp2
+P TRIBlibssh2
+P TRIBv-python-312

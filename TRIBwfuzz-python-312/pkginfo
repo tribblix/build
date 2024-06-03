@@ -1,0 +1,4 @@
+PKG="TRIBwfuzz-python-312"
+NAME="Python wfuzz"
+VERSION="3.1.0.2"
+ZAP_URL="https://pypi.org/project/wfuzz"
