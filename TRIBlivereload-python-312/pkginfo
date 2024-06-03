@@ -1,0 +1,4 @@
+PKG="TRIBlivereload-python-312"
+NAME="Python livereload"
+VERSION="2.6.3.0"
+ZAP_URL="https://pypi.org/project/livereload"

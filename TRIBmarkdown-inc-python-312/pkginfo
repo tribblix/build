@@ -1,0 +1,4 @@
+PKG="TRIBmarkdown-inc-python-312"
+NAME="Python markdown-include"
+VERSION="0.8.1.0"
+ZAP_URL="https://pypi.org/project/markdown-include"
