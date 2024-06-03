@@ -2,13 +2,13 @@ To find S_IRUSR and S_IWUSR
 
 --- a/src/backend/distributed/commands/multi_copy.c	Fri Sep 16 10:33:09 2022
 +++ b/src/backend/distributed/commands/multi_copy.c	Wed Jan 11 20:28:24 2023
-@@ -52,6 +52,9 @@
+@@ -47,6 +47,9 @@
  #include <netinet/in.h> /* for htons */
  #include <string.h>
  
 +#include <sys/types.h>
 +#include <sys/stat.h>
 +
- #include "distributed/pg_version_constants.h"
+ #include "postgres.h"
  
- #include "access/htup_details.h"
+ #include "libpq-fe.h"
