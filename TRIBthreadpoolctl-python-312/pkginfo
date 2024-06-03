@@ -1,0 +1,4 @@
+PKG="TRIBthreadpoolctl-python-312"
+NAME="Python threadpoolctl"
+VERSION="3.5.0.0"
+ZAP_URL="https://pypi.org/project/threadpoolctl"
