@@ -1,4 +1,4 @@
 PKG="TRIBsqlmap"
 NAME="SQL injection penetration testing tool"
-VERSION="1.7.0"
+VERSION="1.8.0"
 ZAP_URL="https://sqlmap.org/"

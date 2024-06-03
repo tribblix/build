@@ -1,8 +1,10 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # put a link in the regular path
 #
-VERSION=1.7
+VERSION=1.8
 mv usr/versions/sqlmap-${VERSION} usr/versions/sqlmap
 mkdir -p usr/bin
 cd usr/bin
