@@ -1,0 +1,4 @@
+PKG="TRIBpandas-python-312"
+NAME="Python pandas"
+VERSION="2.2.2.0"
+ZAP_URL="https://pypi.org/project/pandas"

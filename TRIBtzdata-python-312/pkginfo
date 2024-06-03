@@ -1,0 +1,4 @@
+PKG="TRIBtzdata-python-312"
+NAME="Python tzdata"
+VERSION="2024.1.0"
+ZAP_URL="https://pypi.org/project/tzdata"
