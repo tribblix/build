@@ -187,6 +187,9 @@ EOF
 }
 
 PKGVER=`/usr/bin/grep '^VERSION=' ${BUILD}/${PKGNAME}/pkginfo | /usr/bin/awk -F= '{print $2}' | /usr/bin/sed 's:"::g'`
+if [ -f ${BUILD}/${PKGNAME}/version.${MYARCH} ]; then
+    PKGVER=$(<${BUILD}/${PKGNAME}/version.${MYARCH})
+fi
 cd $BDIR || bail "no directory to package"
 # copy packaging files from archive
 cp ${BUILD}/${PKGNAME}/pkginfo .
@@ -194,6 +197,10 @@ if [ -f ${BUILD}/${PKGNAME}/pkginfo.arch ]; then
     cat ${BUILD}/${PKGNAME}/pkginfo.arch >> pkginfo
 else
     echo "ARCH=\"$MYARCH\"" >> pkginfo
+fi
+if [ -f ${BUILD}/${PKGNAME}/version.${MYARCH} ]; then
+    sed -i '/VERSION=/d' pkginfo
+    echo "VERSION=\"$PKGVER\"" >> pkginfo
 fi
 cat ${BUILD}/pkginfo.base >> pkginfo
 echo "i pkginfo=./pkginfo" > pp.$$
