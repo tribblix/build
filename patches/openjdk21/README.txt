@@ -5,12 +5,15 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now we're in rampdown.
 
-Issues known that indicate serious bugs, likely due to not integrating
-loom correctly as they date back to that change. Specifically, I
-suspect we need to provide a working DefaultPoller implementation
-rather than the current stub.
-* jshell doesn't work
-* illuminate doesn't work
+Known issues remaining: I suspect we need to provide a working
+DefaultPoller implementation rather than the current stub in order to
+get loom fully working.
+
+21.0.3 respin 1
+
+Fixed the patch for src/java.base/unix/classes/java/lang/ProcessImpl.java
+which fixes the startup hang in jshell and illuminate (and hopefully
+the minecraft reports)
 
 Cleanup: missed the dropping of TIERED in 17+8, it's now
 COMPILER1_AND_COMPILER2

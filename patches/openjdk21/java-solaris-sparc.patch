@@ -1538,7 +1538,7 @@
                      if (lm != LaunchMechanism.VFORK) {
                          return lm; // All but VFORK are valid
                      }
-@@ -368,41 +364,6 @@
+@@ -368,44 +364,6 @@
                  });
                  break;
  
@@ -1568,10 +1568,13 @@
 -                 * need no native code).
 -                 */
 -                ProcessHandleImpl.completion(pid, true).handle((exitcode, throwable) -> {
--                    synchronized (this) {
+-                    lock.lock();
+-                    try {
 -                        this.exitcode = (exitcode == null) ? -1 : exitcode.intValue();
 -                        this.hasExited = true;
--                        this.notifyAll();
+-                        condition.signalAll();
+-                    } finally {
+-                        lock.unlock();
 -                    }
 -                    return null;
 -                });
@@ -1580,7 +1583,7 @@
              case AIX:
                  stdin = (fds[0] == -1) ?
                          ProcessBuilder.NullOutputStream.INSTANCE :
-@@ -519,29 +480,6 @@
+@@ -519,32 +480,6 @@
                  try { stderr.close(); } catch (IOException ignored) {}
                  break;
  
@@ -1591,19 +1594,22 @@
 -                // there is an unavoidable race condition here, but the window
 -                // is very small, and OSes try hard to not recycle pids too
 -                // soon, so this is quite safe.
--                synchronized (this) {
+-                lock.lock();
+-                try {
 -                    if (!hasExited)
 -                        processHandle.destroyProcess(force);
--                    try {
--                        stdin.close();
--                        if (stdout_inner_stream != null)
--                            stdout_inner_stream.closeDeferred(stdout);
--                        if (stderr instanceof DeferredCloseInputStream)
--                            ((DeferredCloseInputStream) stderr)
--                                .closeDeferred(stderr);
--                    } catch (IOException e) {
--                        // ignore
--                    }
+-                } finally {
+-                    lock.unlock();
+-                }
+-                try {
+-                    stdin.close();
+-                    if (stdout_inner_stream != null)
+-                        stdout_inner_stream.closeDeferred(stdout);
+-                    if (stderr instanceof DeferredCloseInputStream)
+-                        ((DeferredCloseInputStream) stderr)
+-                            .closeDeferred(stderr);
+-                } catch (IOException e) {
+-                    // ignore
 -                }
 -                break;
 -
