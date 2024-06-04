@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# downrev on sparc due to rust dependency
+#
+${THOME}/build/pkg_setup_py TRIBsnappy-python-311 python-snappy-0.6.1
