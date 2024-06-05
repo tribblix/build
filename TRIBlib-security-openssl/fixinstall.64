@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fix script run in the install context
 # assumes you're in the directory containing the built software
 # the argument is DESTDIR
@@ -34,11 +36,11 @@ esac
 #
 # save the 64-bit configuration.h; the fixit script will sort it out
 #
-
 mv ${DESTDIR}/usr/include/openssl/configuration.h ${DESTDIR}/usr/include/openssl/configuration-64.h
 
 #
-# save a 64-bit openssl binary
+# save a 64-bit openssl binary, the 32-bit install will overwrite it
+# otherwise; the fixit script will put this one back into /usr/bin
 #
 mkdir -p ${DESTDIR}/usr/bin/${ARCH64}
 mv ${DESTDIR}/usr/bin/openssl ${DESTDIR}/usr/bin/${ARCH64}/openssl
