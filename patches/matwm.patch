@@ -1,0 +1,27 @@
+It's not quite a normal configure. dobuild adds --bindir and --libdir,
+so just ignore that, and force a proper install program.
+
+--- a/configure	Thu May  9 05:05:08 2024
++++ b/configure	Wed Jun  5 09:15:11 2024
+@@ -198,6 +198,8 @@
+ 		                    echo "	prefix explicitly set to $prefix";;
+ 		--mandir=*)         mandir="`echo ${opt} | cut -d '=' -f 2`"
+ 		                    echo "	man directory explicitly set to $mandir";;
++		--bindir=*)         echo "	ignoring bindir";;
++		--libdir=*)         echo "	ignoring libdir";;
+ 		--cc=*)             cc="`echo ${opt} | cut -d '=' -f 2`"
+ 		                    echo "	compiler explicitly set to $cc";;
+ 		--rm=*)             rm="`echo ${opt} | cut -d '=' -f 2`"
+--- a/Makefile.in	Thu May  9 05:05:08 2024
++++ b/Makefile.in	Wed Jun  5 09:16:29 2024
+@@ -24,8 +24,8 @@
+ 
+ install: matwm2
+ 	mkdir -p $(DESTDIR)$(PREFIX)/bin $(DESTDIR)$(MANDIR)/man1
+-	install -s matwm2 $(DESTDIR)$(PREFIX)/bin
+-	install matwm2.1 $(DESTDIR)$(MANDIR)/man1
++	ginstall -s matwm2 $(DESTDIR)$(PREFIX)/bin
++	ginstall matwm2.1 $(DESTDIR)$(MANDIR)/man1
+ 
+ deinstall:
+ 	$(RM) $(DESTDIR)$(PREFIX)/bin/matwm2 $(DESTDIR)$(MANDIR)/man1/matwm2.1* $(DESTDIR)$(MANDIR)/cat1/matwm2.1*

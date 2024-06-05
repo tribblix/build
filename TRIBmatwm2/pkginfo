@@ -1,4 +1,4 @@
 PKG="TRIBmatwm2"
 NAME="matwm2 window manager"
-VERSION="0.1.2pre3.0"
+VERSION="0.1.2.0"
 ZAP_URL="https://github.com/segin/matwm2"
