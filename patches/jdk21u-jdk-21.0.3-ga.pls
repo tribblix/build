@@ -40,3 +40,4 @@
 -p1 openjdk21/sparc-bitness.patch
 -p1 openjdk21/illumos-jline.patch
 -p1 openjdk21/illumos-port-27.patch
+-p1 openjdk21/testsuite.patch
