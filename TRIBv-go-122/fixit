@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: CDDL-1.0
 #
 # clean up the junk
-# don't add convenience links yet
 #
 VERSION=1.22
 rm -fr usr/versions/go-${VERSION}/pkg/bootstrap
@@ -12,8 +11,6 @@ rmdir usr/versions/go-${VERSION}/pkg/obj
 rm -fr usr/versions/go-${VERSION}/test
 rm -f usr/versions/go-${VERSION}/favicon.ico
 rm -f usr/versions/go-${VERSION}/robots.txt
-
-exit 0
 
 mkdir -p usr/bin
 cd usr/bin
