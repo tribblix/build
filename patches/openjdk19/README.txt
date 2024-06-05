@@ -5,6 +5,12 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Most patches -p0
 
+19.0.2 respin 1
+
+Fixed the patch for src/java.base/unix/classes/java/lang/ProcessImpl.java
+which fixes the startup hang in jshell and illuminate (and hopefully
+the minecraft reports)
+
 Cleanup: missed the dropping of TIERED in 17+8, it's now
 COMPILER1_AND_COMPILER2
 

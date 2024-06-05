@@ -1776,7 +1776,7 @@
              if (osName.equals("AIX")) { return AIX; }
  
              throw new Error(osName + " is not a supported OS platform.");
-@@ -394,41 +388,6 @@
+@@ -394,44 +388,6 @@
                  });
                  break;
  
@@ -1806,10 +1806,13 @@
 -                 * need no native code).
 -                 */
 -                ProcessHandleImpl.completion(pid, true).handle((exitcode, throwable) -> {
--                    synchronized (this) {
+-                    lock.lock();
+-                    try {
 -                        this.exitcode = (exitcode == null) ? -1 : exitcode.intValue();
 -                        this.hasExited = true;
--                        this.notifyAll();
+-                        condition.signalAll();
+-                    } finally {
+-                        lock.unlock();
 -                    }
 -                    return null;
 -                });
@@ -1818,7 +1821,7 @@
              case AIX:
                  stdin = (fds[0] == -1) ?
                          ProcessBuilder.NullOutputStream.INSTANCE :
-@@ -543,29 +502,6 @@
+@@ -543,32 +502,6 @@
                  try { stderr.close(); } catch (IOException ignored) {}
                  break;
  
@@ -1829,19 +1832,22 @@
 -                // there is an unavoidable race condition here, but the window
 -                // is very small, and OSes try hard to not recycle pids too
 -                // soon, so this is quite safe.
--                synchronized (this) {
+-                lock.lock();
+-                try {
 -                    if (!hasExited)
 -                        processHandle.destroyProcess(force);
--                    try {
--                        stdin.close();
--                        if (stdout_inner_stream != null)
--                            stdout_inner_stream.closeDeferred(stdout);
--                        if (stderr instanceof DeferredCloseInputStream)
--                            ((DeferredCloseInputStream) stderr)
--                                .closeDeferred(stderr);
--                    } catch (IOException e) {
--                        // ignore
--                    }
+-                } finally {
+-                    lock.unlock();
+-                }
+-                try {
+-                    stdin.close();
+-                    if (stdout_inner_stream != null)
+-                        stdout_inner_stream.closeDeferred(stdout);
+-                    if (stderr instanceof DeferredCloseInputStream)
+-                        ((DeferredCloseInputStream) stderr)
+-                            .closeDeferred(stderr);
+-                } catch (IOException e) {
+-                    // ignore
 -                }
 -                break;
 -
