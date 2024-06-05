@@ -15,7 +15,7 @@
 #
 
 #
-# the build needs six and cffi and libzonecfg.h - see build_require
+# the build needs six cffi jsonrpclib and libzonecfg.h - see build_require
 #
 git clone https://github.com/omniosorg/pkg5
 cd pkg5
