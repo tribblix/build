@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64only icewm-3.4.7
-${THOME}/build/genpkg TRIBicewm icewm-3.4.7
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/dobuild -64only icewm-3.5.0
+${THOME}/build/genpkg TRIBicewm icewm-3.5.0
