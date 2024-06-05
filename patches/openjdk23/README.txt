@@ -5,11 +5,13 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 23 now that jdk22 has been forked off.
 
-Issues known that indicate serious bugs, likely due to not integrating
-loom correctly as they date back to that change.
-* jshell doesn't work
-* illuminate doesn't work
-* test suite doesn't run at all
+Known issues remaining: I suspect we need to provide a working
+DefaultPoller implementation rather than the current stub in order to
+get loom fully working.
+
+Fixed the patch for src/java.base/unix/classes/java/lang/ProcessImpl.java
+which fixes the startup hang in jshell and illuminate (and hopefully
+the minecraft reports)
 
 23+24
 
