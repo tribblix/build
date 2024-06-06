@@ -5,9 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now we're in rampdown.
 
-Known issues remaining: I suspect we need to provide a working
-DefaultPoller implementation rather than the current stub in order to
-get loom fully working.
+21.0.3 respin 2
+
+Provide a working DefaultPoller implementation rather than the current
+stub in order to get loom fully working. (Courtesy of Jasper Siepkes.)
 
 21.0.3 respin 1
 

@@ -14473,7 +14473,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/ch/SolarisEventPort.java	2020-05-20 18:10:16.985920232 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,268 +0,0 @@
+@@ -1,272 +0,0 @@
 -/*
 - * Copyright (c) 2008, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -14538,6 +14538,10 @@
 -    // port sources
 -    static final short PORT_SOURCE_USER     = 3;
 -    static final short PORT_SOURCE_FD       = 4;
+-
+-    // events (sys/poll.h)
+-    static final int POLLIN  = 0x0001;
+-    static final int POLLOUT = 0x0004;
 -
 -    // file descriptor to event port.
 -    private final int port;
