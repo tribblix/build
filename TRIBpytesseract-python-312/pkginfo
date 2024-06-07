@@ -1,0 +1,4 @@
+PKG="TRIBpytesseract-python-312"
+NAME="Python pytesseract"
+VERSION="0.3.10.0"
+ZAP_URL="https://pypi.org/project/pytesseract"
