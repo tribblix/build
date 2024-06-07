@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # tesseract needs trained data to function
 # as a shortcut, just download the english one and assume
 # whoever might run it knows what they're doing if they need
