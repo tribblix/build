@@ -39,15 +39,16 @@ RUBYVER="3"
 RUBYFULLVER="3.2.0"
 
 case $# in
-2)
-        SOFTDIR="$2"
-        PKGNAME="$1"
-	;;
-*)
-	echo "Usage: $0 pkg_name file_root"
+0|1)
+	echo "Usage: $0 pkg_name file_root [gem_args]"
 	exit 1
 	;;
 esac
+
+SOFTDIR="$2"
+PKGNAME="$1"
+shift
+shift
 
 #
 # sanity check to avoid messing up a repo
@@ -92,13 +93,26 @@ if [ ! -x "${GEMBIN}" ]; then
 fi
 
 #
+# we are always 64-bit, so we must always set a 64-bit
+# version of PKG_CONFIG_PATH
+#
+PKG_CONFIG_PATH=/usr/lib/$("${THOME}"/build/getarch)/pkgconfig
+#
+# if we want to add something to PKG_CONFIG_PATH
+#
+if [ -n "${TRIBBLIX_PKG_CONFIG_PATH}" ]; then
+    PKG_CONFIG_PATH="${TRIBBLIX_PKG_CONFIG_PATH}:${PKG_CONFIG_PATH}"
+fi
+export PKG_CONFIG_PATH
+
+#
 # define and create working location
 #
 BDIR="${BROOT}/pkg.$$"
 rm -fr "${BDIR}"
 mkdir -p "${BDIR}/${STD_DESTINATION}"
 
-$GEMBIN install -V --force --install-dir "${BDIR}/${INSTDIRG}" --bindir "${BDIR}/${INSTDIRB}" "$SOFTDIR"
+$GEMBIN install -V --force --install-dir "${BDIR}/${INSTDIRG}" --bindir "${BDIR}/${INSTDIRB}" "$SOFTDIR" "$@"
 
 "${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
 cd /
