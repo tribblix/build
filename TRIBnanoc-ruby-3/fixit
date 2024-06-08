@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # multiple files get installed mode 0664 by default
 #
 chmod -R og-w usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.2.0/gems
