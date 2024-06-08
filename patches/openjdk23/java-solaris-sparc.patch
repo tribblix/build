@@ -166,7 +166,7 @@
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -285,7 +285,7 @@
+@@ -281,7 +281,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -175,7 +175,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -298,7 +298,7 @@
+@@ -294,7 +294,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -306,7 +306,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -146,7 +146,6 @@
+@@ -133,7 +133,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -314,7 +314,7 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        EXTRA_HEADER_DIRS := java.base:libjvm, \
        DISABLED_WARNINGS_gcc := unused-function, \
-@@ -153,13 +152,11 @@
+@@ -140,13 +139,11 @@
        LDFLAGS := $$($1_LDFLAGS), \
        LDFLAGS_linux := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
@@ -1011,7 +1011,7 @@
  
 --- old/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:46.085806620 -0700
 +++ new/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:45.745800092 -0700
-@@ -40,9 +40,6 @@
+@@ -41,9 +41,6 @@
  #include <sys/syscall.h>
  #include <unistd.h>
  #endif
@@ -1075,7 +1075,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -170,7 +170,6 @@
+@@ -171,7 +171,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \
@@ -1111,7 +1111,7 @@
  MemBaseline MemTracker::_baseline;
 --- old/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -34,11 +34,9 @@
+@@ -35,11 +35,9 @@
  #include "utilities/debug.hpp"
  #include "utilities/nativeCallStack.hpp"
  
@@ -1287,7 +1287,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1042,7 +1042,7 @@
+@@ -1064,7 +1064,7 @@
  
  #ifndef PRODUCT
  
@@ -1548,7 +1548,7 @@
      }
 --- old/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.971321280 -0700
 +++ new/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.583313830 -0700
-@@ -831,15 +831,7 @@
+@@ -830,15 +830,7 @@
                      ("NOFOLLOW_LINKS is not supported on this platform");
              flags |= O_NOFOLLOW;
          }

@@ -1085,7 +1085,7 @@ diff --new-file -ur jdk-jdk-22-22/src/java.base/solaris/native/libnio/ch/EPoll.c
 +}
 --- /dev/null
 +++ a/src/java.base/solaris/classes/sun/nio/ch/SolarisEventPortPoller.java
-@@ -0,0 +1,103 @@
+@@ -0,0 +1,105 @@
 +/*
 +* Copyright (c) 2008, 2020, Oracle and/or its affiliates. All rights reserved.
 +* DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1137,7 +1137,6 @@ diff --new-file -ur jdk-jdk-22-22/src/java.base/solaris/native/libnio/ch/EPoll.c
 +    private final AllocatedNativeObject pollArray;
 +
 +    SolarisEventPortPoller(boolean subPoller, boolean read) throws IOException {
-+        super(read);
 +        this.epid = SolarisEventPort.port_create();
 +        this.event = (read) ? POLLIN : POLLOUT;
 +
@@ -1162,11 +1161,14 @@ diff --new-file -ur jdk-jdk-22-22/src/java.base/solaris/native/libnio/ch/EPoll.c
 +    }
 +
 +    @Override
-+    void implDeregister(int fdVal) {
-+        try{
-+            SolarisEventPort.port_dissociate(epid, PORT_SOURCE_FD, fdVal);
-+        } catch (IOException e) {
-+            // Ignore.
++    void implDeregister(int fdVal, boolean polled) {
++        // event is disabled if already polled
++        if (!polled) {
++            try{
++                SolarisEventPort.port_dissociate(epid, PORT_SOURCE_FD, fdVal);
++            } catch (IOException e) {
++                // Ignore.
++            }
 +        }
 +    }
 +

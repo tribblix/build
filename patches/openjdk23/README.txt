@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 23 now that jdk22 has been forked off.
 
+23+26
+
+Branched off now that jdk24 is mainline.
+
 Cleanup: switch to SolarisEventPortPoller
 
 Fixed the patch for src/java.base/unix/classes/java/lang/ProcessImpl.java
@@ -221,7 +225,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --with-source-date=current \
---with-jobs=8 \
+--with-jobs=4 \
 DATE=/usr/gnu/bin/date \
 STRIP=/usr/gnu/bin/strip
 
