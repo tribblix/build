@@ -5,9 +5,7 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 23 now that jdk22 has been forked off.
 
-Known issues remaining: I suspect we need to provide a working
-DefaultPoller implementation rather than the current stub in order to
-get loom fully working.
+Cleanup: switch to SolarisEventPortPoller
 
 Fixed the patch for src/java.base/unix/classes/java/lang/ProcessImpl.java
 which fixes the startup hang in jshell and illuminate (and hopefully

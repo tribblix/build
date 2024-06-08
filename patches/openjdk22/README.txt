@@ -5,9 +5,7 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 22 now switched to the jdk22 stabilisation repo
 
-Known issues remaining: I suspect we need to provide a working
-DefaultPoller implementation rather than the current stub in order to
-get loom fully working.
+Cleanup: switch to SolarisEventPortPoller
 
 22.0.1 respin 1
 
