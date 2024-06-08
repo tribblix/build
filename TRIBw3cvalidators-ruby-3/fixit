@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# we already have these, see TRIBnokogiri-ruby-3
+#
+rm -fr `find usr/versions | grep /mini_portile2-`
+rm -fr `find usr/versions | grep /nokogiri-`
+rm -fr `find usr/versions | grep /racc-`
+rm -f usr/versions/ruby-3/bin/racc
+rm -f usr/versions/ruby-3/bin/nokogiri
+rmdir usr/versions/ruby-3/bin
