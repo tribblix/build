@@ -14473,7 +14473,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/ch/SolarisEventPort.java	2020-05-20 18:10:16.985920232 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,272 +0,0 @@
+@@ -1,273 +0,0 @@
 -/*
 - * Copyright (c) 2008, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -14726,7 +14726,8 @@
 -    static native int port_get(int port, long address) throws IOException;
 -
 -    /**
--     * Retrieves at most {@code max} events from a port.
+-     * Retrieves at most {@code max} events from a port. A time-out of {@code < 0} means
+-     * never time-out.
 -     */
 -    static native int port_getn(int port, long address, int max, long timeout)
 -        throws IOException;
