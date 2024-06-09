@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 mkdir rr
 cd rr
 git clone https://github.com/zrepl/zrepl
