@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 #
 git clone https://github.com/junegunn/fzf.git
@@ -11,7 +13,7 @@ cd fzf
 #
 sed -i s:x86_64:i86pc: Makefile
 
-env PATH=/usr/versions/go-1.21/bin:$PATH gmake bin/fzf
+env PATH=/usr/versions/go-1.22/bin:$PATH gmake bin/fzf
 
 rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/bin
