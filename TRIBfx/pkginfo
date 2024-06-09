@@ -1,4 +1,4 @@
 PKG="TRIBfx"
 NAME="Terminal json viewer"
-VERSION="24.1.0.1"
+VERSION="24.1.0.2"
 ZAP_URL="https://github.com/antonmedv/fx"
