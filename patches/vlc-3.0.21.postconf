@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # you go to all this effort to look for gtar and then use the wrong one anyway
 #
 sed -i 's:tar cvvzf:gtar cvvzf:' share/Makefile

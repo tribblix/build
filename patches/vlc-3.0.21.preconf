@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # don't disable sse just because old solaris can't cope with it
 #
 sed -i 's:!= "solaris":!= "othersolaris":' configure
