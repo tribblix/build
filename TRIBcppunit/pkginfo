@@ -1,4 +1,4 @@
 PKG="TRIBcppunit"
 NAME="CPPunit C++ unit testing"
-VERSION="1.13.2.1"
+VERSION="1.13.2.2"
 ZAP_URL="https://freedesktop.org/wiki/Software/cppunit/"
