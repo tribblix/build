@@ -1,6 +1,10 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # dot, for example, can't find its plugins without this
 #
 ARCH64=`${BUILDROOT}/getarch`
 env LD_LIBRARY_PATH=`pwd`/usr/lib/${ARCH64} GVBINDIR=`pwd`/usr/lib/${ARCH64}/graphviz `pwd`/usr/bin/dot -c
+
+rm -f `find usr/lib -name 'lib*.la'`
