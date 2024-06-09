@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/znapzend/bin/* .
+cd ../..
+
+# put manpages in the normal places
+mv usr/versions/znapzend/share usr
+
+# add an SMF manifest
+mkdir -p var/svc/manifest/system
+cp ${BUILDROOT}/patches/system-znapzend.xml var/svc/manifest/system
