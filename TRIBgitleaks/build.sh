@@ -1,9 +1,11 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 git clone https://github.com/gitleaks/gitleaks.git
 cd gitleaks
 # needs gnu sort
-env PATH=/usr/versions/go-1.21/bin:/usr/gnu/bin:$PATH gmake build
+env PATH=/usr/versions/go-1.22/bin:/usr/gnu/bin:$PATH gmake build
 
 rm -fr /tmp/cgl
 mkdir -p /tmp/cgl/usr/bin
