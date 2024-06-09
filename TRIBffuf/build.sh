@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 mkdir ff
 cd ff
 env GOPATH=`pwd` go install github.com/ffuf/ffuf/v2@latest
