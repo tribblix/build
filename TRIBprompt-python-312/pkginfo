@@ -1,4 +1,4 @@
 PKG="TRIBprompt-python-312"
 NAME="Python prompt-toolkit"
-VERSION="3.0.46.0"
+VERSION="3.0.47.0"
 ZAP_URL="https://pypi.org/project/prompt-toolkit"
