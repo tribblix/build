@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # remove conflicts with shared-mime-info
 #
 rm usr/share/mime/XMLnamespaces
