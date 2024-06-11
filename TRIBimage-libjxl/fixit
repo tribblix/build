@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# it installs a static copy of libhwy, which we don't want, and it's
+# static so gets removed anyway, so remove the remainder of the files
+# so anything else doesn't get fooled into thinking it exists
+#
+rm -fr usr/include/hwy
+rm -f usr/lib/pkgconfig/libhwy.pc
+rm -f usr/lib/*/pkgconfig/libhwy.pc
+rm -fr usr/lib/cmake/hwy
+rmdir usr/lib/cmake
+rm -fr usr/lib/amd64/cmake/hwy
+rmdir usr/lib/*/cmake

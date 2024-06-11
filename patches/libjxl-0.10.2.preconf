@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# need to download a bunch of stuff before running cmake
+#
+env PATH=/usr/gnu/bin:/usr/bin ./deps.sh

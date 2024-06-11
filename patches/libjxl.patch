@@ -1,0 +1,47 @@
+Need to ignore --version-script; we can't rewrite to -M because the actual
+version scripts aren't valid mapfiles for us.
+
+--- lib/jxl.cmake~	Fri Mar  8 08:10:58 2024
++++ lib/jxl.cmake	Tue Jun 11 18:47:15 2024
+@@ -240,7 +240,7 @@
+   if(APPLE)
+   set_property(TARGET ${target} APPEND_STRING PROPERTY
+       LINK_FLAGS "-Wl,-exported_symbols_list,${CMAKE_CURRENT_SOURCE_DIR}/jxl/jxl_osx.syms")
+-  elseif(WIN32)
++  elseif(${CMAKE_SYSTEM_NAME} MATCHES "SunOS")
+     # Nothing needed here, we use __declspec(dllexport) (jxl_export.h)
+   else()
+   set_property(TARGET ${target} APPEND_STRING PROPERTY
+--- lib/jxl_threads.cmake~	Fri Mar  8 08:10:58 2024
++++ lib/jxl_threads.cmake	Tue Jun 11 18:48:03 2024
+@@ -43,7 +43,7 @@
+ if(APPLE)
+   set_property(TARGET ${target} APPEND_STRING PROPERTY
+       LINK_FLAGS "-Wl,-exported_symbols_list,${CMAKE_CURRENT_SOURCE_DIR}/jxl/jxl_osx.syms")
+-elseif(WIN32)
++elseif(${CMAKE_SYSTEM_NAME} MATCHES "SunOS")
+ # Nothing needed here, we use __declspec(dllexport) (jxl_threads_export.h)
+ else()
+   set_property(TARGET jxl_threads APPEND_STRING PROPERTY
+--- lib/jpegli.cmake~	Fri Mar  8 08:10:58 2024
++++ lib/jpegli.cmake	Tue Jun 11 18:50:53 2024
+@@ -136,8 +136,6 @@
+ # appropriate version number.
+ set_target_properties(jpeg PROPERTIES
+   LINK_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/jpegli/jpeg.version.${JPEGLI_LIBJPEG_LIBRARY_SOVERSION})
+-set_property(TARGET jpeg APPEND_STRING PROPERTY
+-  LINK_FLAGS " -Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/jpegli/jpeg.version.${JPEGLI_LIBJPEG_LIBRARY_SOVERSION}")
+ 
+ if (JPEGXL_INSTALL_JPEGLI_LIBJPEG)
+   install(TARGETS jpeg
+--- tools/speed_stats.cc~	Fri Mar  8 08:10:58 2024
++++ tools/speed_stats.cc	Tue Jun 11 19:07:48 2024
+@@ -43,7 +43,7 @@
+   }
+ 
+   // Prefer geomean unless numerically unreliable (too many reps)
+-  if (pow(elapsed_[0], elapsed_.size()) < 1E100) {
++  if (pow((double)elapsed_[0], (double)elapsed_.size()) < 1E100) {
+     double product = 1.0;
+     for (size_t i = 1; i < elapsed_.size(); ++i) {
+       product *= elapsed_[i];
