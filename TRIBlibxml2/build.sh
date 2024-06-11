@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we build TRIBlibxml2-python-* at the same time
 #
 # ***MUST have libtool installed or -nostdlib won't take***
@@ -14,6 +16,15 @@ cd libxml2-2.9.14-64bit/python
 /usr/versions/python-3.11/bin/python3 setup.py install --root=/tmp/lxp
 ${THOME}/build/create_pkg TRIBlibxml2-python-311 /tmp/lxp
 /usr/versions/python-3.11/bin/python3 setup.py clean
+cd ../..
+
+# python3.12 is 64-bit
+rm -fr /tmp/lxp
+cd libxml2-2.9.14-64bit/python
+/usr/versions/python-3.12/bin/python3 setup.py build
+/usr/versions/python-3.12/bin/python3 setup.py install --root=/tmp/lxp
+${THOME}/build/create_pkg TRIBlibxml2-python-312 /tmp/lxp
+/usr/versions/python-3.12/bin/python3 setup.py clean
 cd ../..
 
 rm -fr /tmp/lxp
