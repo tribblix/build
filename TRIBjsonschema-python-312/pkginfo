@@ -1,0 +1,4 @@
+PKG="TRIBjsonschema-python-312"
+NAME="Python jsonschema"
+VERSION="2.6.0.1"
+ZAP_URL="https://pypi.org/project/jsonschema"

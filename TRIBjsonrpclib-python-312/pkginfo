@@ -1,0 +1,4 @@
+PKG="TRIBjsonrpclib-python-312"
+NAME="Python jsonrpclib"
+VERSION="0.4.2.0"
+ZAP_URL="https://github.com/tcalmant/jsonrpclib"
