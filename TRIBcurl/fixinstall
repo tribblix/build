@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+        DESTDIR=$1
+        ;;
+*)
+        exit 0
+        ;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+
+if [ ! -f ${DESTDIR}/usr/share/man/man1/curl-config.1 ]; then
+    cp docs/curl-config.1 ${DESTDIR}/usr/share/man/man1
+    chmod 644 ${DESTDIR}/usr/share/man/man1/curl-config.1
+fi

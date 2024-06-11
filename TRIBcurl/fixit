@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # replace the 32-bit binary with the 64-bit one
 #
 case `uname -p` in
@@ -14,3 +16,4 @@ esac
 if [ -x usr/bin/${ARCH64}/curl ]; then
   mv usr/bin/${ARCH64}/curl usr/bin/curl
 fi
+  
