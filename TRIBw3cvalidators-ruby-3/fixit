@@ -10,3 +10,7 @@ rm -fr `find usr/versions | grep /racc-`
 rm -f usr/versions/ruby-3/bin/racc
 rm -f usr/versions/ruby-3/bin/nokogiri
 rmdir usr/versions/ruby-3/bin
+#
+# multiple files get installed mode 0664 by default
+#
+chmod -R og-w usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.2.0/gems
