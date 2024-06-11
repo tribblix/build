@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # two steps just in case library manpages get added later
 #
 rm -fr usr/share/man/man1
