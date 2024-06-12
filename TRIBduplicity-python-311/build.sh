@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # note that it declares setup-scm as a runtime dependency, so we do too
 #
 # the backends are soft requirements, the dependencies declared here
@@ -11,4 +13,4 @@
 # paramiko *or* pexpect for ssh
 # requests is used by multiple backends
 #
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/pkg_setup_py TRIBduplicity-python-311 duplicity-2.2.3
+${THOME}/build/pkg_setup_py -gnu TRIBduplicity-python-311 duplicity-2.2.3
