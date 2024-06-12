@@ -1,0 +1,4 @@
+PKG="TRIBdurdraw"
+NAME="Versatile ASCII and ANSI Art text editor"
+VERSION="0.27.1.0"
+ZAP_URL="https://durdraw.org/"
