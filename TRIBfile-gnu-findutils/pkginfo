@@ -1,4 +1,4 @@
 PKG="TRIBfile-gnu-findutils"
 NAME="Gnu findutils"
-VERSION="4.9.0.0"
+VERSION="4.10.0.0"
 ZAP_URL="https://www.gnu.org/software/findutils/"
