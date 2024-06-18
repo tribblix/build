@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBargcomplete-python-311 argcomplete-3.3.0
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 TRIBargcomplete-python-311 argcomplete-3.4.0
