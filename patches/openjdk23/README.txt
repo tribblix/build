@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 23 now that jdk22 has been forked off.
 
+23+27
+
+No changes.
+
 23+26
 
 Branched off now that jdk24 is mainline.
