@@ -16,4 +16,3 @@ esac
 if [ -x usr/bin/${ARCH64}/curl ]; then
   mv usr/bin/${ARCH64}/curl usr/bin/curl
 fi
-  
