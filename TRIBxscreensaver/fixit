@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # as of v6, the main prog doesn't need to be setuid, but the auth helper does
 #
 chmod 4511 usr/libexec/xscreensaver/xscreensaver-auth
@@ -25,3 +27,4 @@ rm -f usr/share/xscreensaver/config/mapscroller.xml
 #
 rm -f usr/share/man/man1/xscreensaver-systemd.1
 rm -f usr/share/man/man6/xscreensaver-systemd.6
+rm -f usr/share/xscreensaver/xscreensaver.service

@@ -1,9 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64only -gnu xscreensaver-6.08 -C "--with-gtk"
-cd xscreensaver-6.08-64bit
-rm -fr /tmp/xs
-gmake install install_prefix=/tmp/xs
-${THOME}/build/create_pkg TRIBxscreensaver /tmp/xs
-rm -fr /tmp/xs
-cd ..
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/dobuild -64only -gnu xscreensaver-6.09 -C "--with-gtk"
+$THOME/build/genpkg -D install_prefix TRIBxscreensaver xscreensaver-6.09
