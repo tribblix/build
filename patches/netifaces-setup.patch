@@ -1,0 +1,26 @@
+We need to pass '-lsocket -lnsl' through to the tests. The libraries
+variable is correctly detected by setup.py, but there are some tests
+where it isn't passed through.
+
+The first hunk here is for getifaddrs(), the second for PF_ROUTE.
+
+--- a/setup.py	Wed Jun 19 13:16:16 2024
++++ b/setup.py	Wed Jun 19 13:02:01 2024
+@@ -148,7 +148,7 @@
+               return 0;
+             }
+             """
+-            if self.test_build(testrig):
++            if self.test_build(testrig,libraries=libraries):
+                 result = True
+             else:
+                 result = False
+@@ -479,7 +479,7 @@
+             }
+             """
+ 
+-            result = self.test_build(testrig)
++            result = self.test_build(testrig,libraries=libraries)
+ 
+         if result:
+             output('yes. %s' % cached)
