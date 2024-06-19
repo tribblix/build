@@ -32,15 +32,22 @@ export TZ
 
 #
 # handle arguments
+# -D variable naming alternate destination, usually "DESTDIR"
 # -I what to install (normally "install")
 # -M extra make arguments (normally blank)
 # -P extra prefix PATH element
 # -gnu is a shortcut for -P /usr/gnu/bin
 #
+DESTDIRNAME="DESTDIR"
 INSTALLWHAT="install"
 MAKEARGS=""
 while [[ $# -gt 0 ]]; do
 case $1 in
+-D)
+	DESTDIRNAME=$2
+	shift
+	shift
+	;;
 -I)
 	INSTALLWHAT=$2
 	shift
@@ -142,7 +149,7 @@ case $# in
 	if [ -x ${BUILD}/${PKGNAME}/fixpreinstall ]; then
 	    ${BUILD}/${PKGNAME}/fixpreinstall $BDIR
 	fi
-	$GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL $MAKEARGS
+	$GMAKE -k $INSTALLWHAT ${DESTDIRNAME}=$BDIR $MYINSTALL $MAKEARGS
 	if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 	    ${BUILD}/${PKGNAME}/fixinstall $BDIR
 	fi
@@ -176,7 +183,7 @@ case $# in
 		if [ -f .tribblix_meson_build ]; then
 		    env DESTDIR=$BDIR ninja -C $(cat .tribblix_meson_build) install
 		else
-		    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL $MAKEARGS
+		    $GMAKE -k $INSTALLWHAT ${DESTDIRNAME}=$BDIR $MYINSTALL $MAKEARGS
 		fi
 		if [ -x ${BUILD}/${PKGNAME}/fixinstall.64 ]; then
 		    ${BUILD}/${PKGNAME}/fixinstall.64 $BDIR
@@ -206,7 +213,7 @@ case $# in
 		if [ -f .tribblix_meson_build ]; then
 		    env DESTDIR=$BDIR ninja -C $(cat .tribblix_meson_build) install
 		else
-		    $GMAKE -k $INSTALLWHAT DESTDIR=$BDIR $MYINSTALL $MAKEARGS
+		    $GMAKE -k $INSTALLWHAT ${DESTDIRNAME}=$BDIR $MYINSTALL $MAKEARGS
 		fi
 		if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
 		    ${BUILD}/${PKGNAME}/fixinstall $BDIR
