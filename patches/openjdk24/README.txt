@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+2
+
+Trivial patch noise.
+
 24+0, 24+1
 
 Start with no changes from 23+26.

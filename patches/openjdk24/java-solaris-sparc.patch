@@ -937,8 +937,8 @@
  endif
 --- old/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.533642413 -0700
 +++ new/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.197635961 -0700
-@@ -57,7 +57,7 @@
- #define INCLUDE_RTM_OPT 1
+@@ -52,7 +52,7 @@
+ #define DEFAULT_PADDING_SIZE DEFAULT_CACHE_LINE_SIZE
  #endif
  
 -#if defined(LINUX) || defined(SOLARIS) || defined(__APPLE__)
@@ -1287,7 +1287,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1064,7 +1064,7 @@
+@@ -1073,7 +1073,7 @@
  
  #ifndef PRODUCT
  
