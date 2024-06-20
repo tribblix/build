@@ -1,0 +1,4 @@
+PKG="TRIBblix-postgis16"
+NAME="PostGIS for PostgreSQL 16"
+VERSION="3.4.2.0"
+ZAP_URL="https://postgis.net/"
