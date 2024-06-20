@@ -25,13 +25,13 @@
 #
 
 #
-# by default, package for 3.11
+# by default, package for 3.12
 #
 
 PY311VER=311
 PY312VER=312
 
-DO311="yes"
+DO311=""
 DO312="yes"
 
 case $1 in
