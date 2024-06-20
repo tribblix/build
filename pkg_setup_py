@@ -159,6 +159,12 @@ if [ ! -f setup.py ]; then
     exit 1
 fi
 #
+# any preconf actions run here
+#
+if [ -x "${BUILD}/patches/${PFILE}.preconf" ]; then
+    ${BUILD}/patches/${PFILE}.preconf
+fi
+#
 # build and install using setup.py
 #
 python${PYVER} setup.py build

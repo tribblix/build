@@ -165,6 +165,12 @@ if [ ! -f pyproject.toml ]; then
     exit 1
 fi
 #
+# any preconf actions run here
+#
+if [ -x "${BUILD}/patches/${PFILE}.preconf" ]; then
+    ${BUILD}/patches/${PFILE}.preconf
+fi
+#
 # use pip to install
 #
 python${PYVER} -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-warn-script-location --no-compile ${XARGS} --root="${BDIR}" -I .
