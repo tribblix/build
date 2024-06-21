@@ -5,6 +5,11 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+3
+
+Wants an os::rss() implementation; return 0 for now, just like AIX does
+(and other platforms return 0 as the "don't know" answer).
+
 24+2
 
 Trivial patch noise.
