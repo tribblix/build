@@ -6,9 +6,14 @@
 # openssl 1.1 now shipped in the separate TRIBopenssl11-compat package
 #
 
+#
+# -D_REENTRANT forces per-thread errno, which solves the EAGAIN failures
+# we were seeing in the b2 and aws s3 clients
+#
+
 ${THOME}/build/unpack -64 openssl-3.0.14
 cd openssl-3.0.14
-env __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=1.1.1 --prefix=/usr
+env __CNF_CFLAGS="-D_REENTRANT" __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=1.1.1 --prefix=/usr
 gmake -j 6
 cd ..
 #
@@ -16,7 +21,7 @@ cd ..
 # would actually do the right thing, but no ...
 #
 cd openssl-3.0.14-64bit
-env __CNF_CFLAGS=-m64 __CNF_LDFLAGS="-m64 -z aslr -z ignore" ./Configure solaris64-x86_64-gcc shared threads zlib --api=1.1.1 --prefix=/usr --libdir=lib/amd64 enable-ec_nistp_64_gcc_128
+env __CNF_CFLAGS="-D_REENTRANT -m64" __CNF_LDFLAGS="-m64 -z aslr -z ignore" ./Configure solaris64-x86_64-gcc shared threads zlib --api=1.1.1 --prefix=/usr --libdir=lib/amd64 enable-ec_nistp_64_gcc_128
 gmake -j 6
 cd ..
 
