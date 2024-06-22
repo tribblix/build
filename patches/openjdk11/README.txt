@@ -45,7 +45,7 @@ Anything named tribblix* is my additional patches:
 tribblix-attachListener_solaris.patch
   fixes incorrect arguments
 
-tribblix-flags-cflags.patch 
+tribblix-flags-cflags.patch
   remove SSP
 
 tribblix-Launcher-jdk.patch
@@ -74,7 +74,7 @@ tribblix-sparc1.patch
 tribblix-sparc2.patch
   fixes to enable a sparc build with gcc; it's possible that using the
   atomic_linux_sparc.hpp from linux_sparc rather than
-  atomic_solaris_sparc.hpp from solaris_sparc may also be required 
+  atomic_solaris_sparc.hpp from solaris_sparc may also be required
 
 Build:
 

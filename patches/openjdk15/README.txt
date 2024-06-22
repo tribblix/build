@@ -67,13 +67,13 @@ patch-make_autoconf_flags-ldflags.m4
 
 modified:
 
-patch-make_lib_Lib-jdk.crypto.ucrypto.gmk 
-patch-make_lib_LibCommon.gmk 
-tribblix-agent-mt.patch 
+patch-make_lib_Lib-jdk.crypto.ucrypto.gmk
+patch-make_lib_LibCommon.gmk
+tribblix-agent-mt.patch
 tribblix-demangle2.patch
-patch-make_lib_Awt2dLibraries.gmk 
-patch-make_launcher_LauncherCommon.gmk 
-tribblix-LauncherCommon.patch 
+patch-make_lib_Awt2dLibraries.gmk
+patch-make_launcher_LauncherCommon.gmk
+tribblix-LauncherCommon.patch
   files moved around in 15+21
 
 patch-make_autoconf_libraries.m4
@@ -88,10 +88,10 @@ add:
 tribblix-flags-ldflags3.patch
   fixes -pie and --shlib-undefined
 
-tribblix-demangle1.patch 
-tribblix-demangle2.patch 
-tribblix-demangle3.patch 
-tribblix-demangle4.patch 
+tribblix-demangle1.patch
+tribblix-demangle2.patch
+tribblix-demangle3.patch
+tribblix-demangle4.patch
   replace the studio demangle with the gcc one
 
 Post JEP-381:

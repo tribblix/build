@@ -43,7 +43,7 @@ tribblix-flags-cflags.patch
 patch-make_autoconf_flags-ldflags.m4
   hunk 2 broken as of 13.0.3
 
-tribblix-flags-ldflags3.patch 
+tribblix-flags-ldflags3.patch
   fix -pie and --shlib-undefined
 
 tribblix-demangle1.patch

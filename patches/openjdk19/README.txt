@@ -99,7 +99,7 @@ Minor patch noise.
 
 This includes Project Loom aka virtual threads.
 
-New DefaultPollerProvider; create a DevPollPoller stub that throws 
+New DefaultPollerProvider; create a DevPollPoller stub that throws
 UnsupportedOperationException similar to the way that the AIX
 implementation does. This is enough to make the code compile, and
 things like jkstat work, but jshell doesn't present a prompt (it was

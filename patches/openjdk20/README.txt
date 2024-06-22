@@ -49,7 +49,7 @@ os::supports_sse() has been removed
 
 20+23
 
-ExtendedDTraceProbes has been removed. Which removes 
+ExtendedDTraceProbes has been removed. Which removes
 DTrace::set_extended_dprobes() as well.
 
 20+22
@@ -85,7 +85,7 @@ FileDispatcherImpl has been split out into a shared
 UnixFileDispatcherImpl plus platform-specific FileDispatcherImpl, so
 we need our own implementation, and that includes parts of what would
 have been FileChannelImpl.c, the new files are
-src/java.base/solaris/classes/sun/nio/ch/FileDispatcherImpl.java and 
+src/java.base/solaris/classes/sun/nio/ch/FileDispatcherImpl.java and
 src/java.base/solaris/native/libnio/ch/FileDispatcherImpl.c, and all
 we need to do is implement our copy of transferTo0 from the old
 FileChannelImpl.c, see illumos-port-21.patch
