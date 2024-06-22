@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the repo itself lives here (although it's usually a zfs dataset)
 #
 mkdir -p var/repo
