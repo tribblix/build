@@ -1,4 +1,4 @@
 PKG="TRIBpycairo-python-312"
 NAME="Python pycairo"
-VERSION="1.26.0.0"
+VERSION="1.26.1.0"
 ZAP_URL="https://pypi.org/project/pycairo"
