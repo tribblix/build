@@ -9,4 +9,4 @@
 # and unpack that in postinstall, like we used to do for python
 # itself in prior releases
 #
-${THOME}/build/pkg_pep518 TRIBsetuptools-python-312 setuptools-70.0.0
+${THOME}/build/pkg_pep518 TRIBsetuptools-python-312 setuptools-70.1.0
