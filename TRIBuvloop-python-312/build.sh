@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# unfortunately, SO_REUSUEPORT appears insufficently guarded
+# unfortunately, SO_REUSUEPORT appears insufficiently guarded
 # there's a patch and preconf to do that correctly
 # https://github.com/MagicStack/uvloop/issues/550
 #
