@@ -1,0 +1,4 @@
+PKG="TRIBhdf5"
+NAME="hdf5"
+VERSION="hdf5_1.14.4.3.0"
+ZAP_URL="https://www.hdfgroup.org/"
