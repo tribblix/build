@@ -1,4 +1,4 @@
 PKG="TRIBdev-check"
 NAME="Check: a unit test framework for C"
-VERSION="0.15.2.0"
+VERSION="0.15.2.1"
 ZAP_URL="http://libcheck.github.io/check/"
