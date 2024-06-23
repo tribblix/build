@@ -1,4 +1,4 @@
 PKG="TRIBlibsdl2"
 NAME="SDL2 Simple DirectMedia Layer multimedia library"
-VERSION="2.26.5.0"
+VERSION="2.26.5.1"
 ZAP_URL="https://www.libsdl.org/"

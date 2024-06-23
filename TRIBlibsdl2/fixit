@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-# fixinstall.64 saved the 64-bit ffi.h for us, now
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fixinstall.64 saved the 64-bit header for us, now
 # we wrap it
 #
 mv usr/include/SDL2/SDL_config.h usr/include/SDL2/SDL_config-32.h

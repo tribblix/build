@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fix script run in the install context
 # assumes you're in the directory containing the built software
 # the argument is DESTDIR
@@ -21,7 +23,7 @@ fi
 #
 # local package tweaks below
 #
-# save the 64-bit ffi.h; the fixit script will sort it out
+# save the 64-bit header; the fixit script will sort it out
 #
 
 mv ${DESTDIR}/usr/include/SDL2/SDL_config.h ${DESTDIR}/usr/include/SDL2/SDL_config-64.h
