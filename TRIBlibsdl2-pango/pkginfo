@@ -1,4 +1,4 @@
 PKG="TRIBlibsdl2-pango"
 NAME="SDL2 pango library"
-VERSION="2.1.5.0"
+VERSION="2.1.5.1"
 ZAP_URL="https://github.com/markuskimius/SDL2_Pango"

@@ -1,4 +1,4 @@
 PKG="TRIBlibsdl2-ttf"
 NAME="SDL2 TrueType font rendering library"
-VERSION="2.0.18.0"
+VERSION="2.0.18.1"
 ZAP_URL="https://github.com/libsdl-org/SDL_ttf"
