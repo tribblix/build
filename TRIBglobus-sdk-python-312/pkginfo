@@ -1,0 +1,4 @@
+PKG="TRIBglobus-sdk-python-312"
+NAME="Python globus_sdk"
+VERSION="3.41.0.0"
+ZAP_URL="https://pypi.org/project/globus_sdk"
