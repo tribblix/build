@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 VERSION=29
 rm -fr usr/versions/emacs-${VERSION}/lib/*/systemd
 rm -f usr/versions/emacs-${VERSION}/share/emacs/*/etc/emacs.service
