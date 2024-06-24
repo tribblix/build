@@ -1,9 +1,11 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 git clone https://github.com/open-telemetry/opentelemetry-collector
 cd opentelemetry-collector
 
-env PATH=/usr/versions/go-1.21/bin:$PATH gmake otelcorecol
+env PATH=/usr/versions/go-1.22/bin:$PATH gmake otelcorecol
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/otel/bin
