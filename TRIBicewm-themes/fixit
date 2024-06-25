@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# move it to the right place
+#
+mv usr/share/icewm/icewm-extra usr/share/icewm/themes
+#
+# simply drop the themes with spaces
+#
+rm -fr usr/share/icewm/themes/FrostyG
+rm -fr usr/share/icewm/themes/Crux-Teal
+#
+# permissions are wonky
+#
+chmod -R a+rX usr/share/icewm/themes
