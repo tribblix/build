@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-#
+# SPDX-License-Identifier: CDDL-1.0
 #
 zap install TRIBdocutils-python-311
-${THOME}/build/unpack mercurial-6.7.2
-cd mercurial-6.7.2
+${THOME}/build/unpack mercurial-6.7.4
+cd mercurial-6.7.4
 sed -i 's:install -d:ginstall -d:' Makefile
 sed -i 's:install -m:ginstall -m:' Makefile
 sed -i 's:install -m:ginstall -m:' doc/Makefile
