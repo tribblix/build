@@ -1,9 +1,11 @@
 P TRIBbrotli
 P TRIBcompress-zstd
+P TRIBcups
 P TRIBdouble-conversion
 P TRIBgdk-pixbuf
 P TRIBgraphics-jasper
 P TRIBgstreamer1
+P TRIBgstreamer1-plugins-bad
 P TRIBgstreamer1-plugins-base
 P TRIBharfbuzz
 P TRIBhunspell
@@ -15,6 +17,7 @@ P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
+P TRIBlib-pcre2
 P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBlibicu
