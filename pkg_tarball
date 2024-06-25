@@ -21,12 +21,17 @@
 #
 # package something that's already a tarball, assumed to be into
 # its named subdirectory of /usr/versions (or /opt/tribblix if the
-# -T flag is supplied)
+# -T flag is supplied, or wherever using -P)
 #
 STD_DESTINATION="usr/versions"
 case $1 in
 -T)
     STD_DESTINATION="opt/tribblix"
+    shift
+    ;;
+-P)
+    STD_DESTINATION="$2"
+    shift
     shift
     ;;
 esac
