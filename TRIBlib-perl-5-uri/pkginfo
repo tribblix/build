@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-uri"
 NAME="Perl URI module"
-VERSION="1.69.1"
-ZAP_URL="http://search.cpan.org/~ether/URI-1.69/"
+VERSION="5.28.0"
+ZAP_URL="https://metacpan.org/dist/URI"
