@@ -1,4 +1,4 @@
 PKG="TRIBblix-vault"
 NAME="Vault - a tool for managing secrets"
-VERSION="1.15.5.0"
+VERSION="1.17.1.0"
 ZAP_URL="https://www.vaultproject.io/"
