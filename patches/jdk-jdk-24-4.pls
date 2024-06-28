@@ -37,4 +37,5 @@
 -p1 openjdk24/illumos-zero-2.patch
 -p1 openjdk24/sparc-bitness.patch
 -p1 openjdk24/illumos-port-27.patch
+-p1 openjdk24/illumos-port-28.patch
 -p1 openjdk24/illumos-attachlistener.patch
