@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-cgi"
 NAME="Perl CGI.pm"
-VERSION="4.54.0"
-ZAP_URL="http://search.cpan.org/~leejo/CGI-4.54/"
+VERSION="4.66.0"
+ZAP_URL="https://metacpan.org/dist/CGI"
