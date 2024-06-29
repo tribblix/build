@@ -4,4 +4,4 @@
 #
 # not available on sparc as orjson needs rust
 #
-${THOME}/build/pkg_pep518 TRIBglances-python-312 glances-4.0.8
+${THOME}/build/pkg_pep518 TRIBglances-python-312 glances-4.1.1
