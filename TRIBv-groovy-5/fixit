@@ -1,6 +1,8 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # clean up other platforms
 #
-VERSION=5.0.0-alpha-8
+VERSION=5.0.0-alpha-9
 rm usr/versions/groovy-${VERSION}/bin/*.bat
