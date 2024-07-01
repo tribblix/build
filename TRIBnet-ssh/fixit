@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # The original solaris had ssh split into 3 packages
 # We replicate the split here, although TRIBnet-ssh-ssh-key and
 # ssh-keysign are now deprecated
