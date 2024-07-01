@@ -30,7 +30,7 @@
 THOME=${THOME:-/packages/localsrc/Tribblix}
 cd ${THOME}/build || exit 1
 
-PY3VER=311
+PY3VER=312
 CHECKER=${THOME}/build/pkgpycheck.sh
 
 if [ ! -x /usr/bin/curl ]; then
