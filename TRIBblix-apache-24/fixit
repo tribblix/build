@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # don't need static libs or la files for anything else to build against
 #
 rm -f opt/tribblix/apache2/lib/*.a
