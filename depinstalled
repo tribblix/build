@@ -133,7 +133,22 @@ do
 		echo "  ... no dependencies to check"
 	    fi
 	fi
-	if [ -f "${BDIR}/${dir}/build_require" ]; then
+	if [ -f "${BDIR}/${dir}/build_require.${ARCH}" ]; then
+	    for pkg in $(<"${BDIR}/${dir}/build_require.${ARCH}")
+	    do
+		if [ -f "${PDIR}/${pkg}/pkginfo" ]
+		then
+		    if [ -z "$QUIET" ]; then
+			echo "  build $pkg .. ok"
+		    fi
+		else
+		    if [ -z "$QUIET" ]; then
+			echo "  **ERROR** build $pkg .. missing"
+		    fi
+		    STATUS=1
+		fi
+	    done
+	elif [ -f "${BDIR}/${dir}/build_require" ]; then
 	    for pkg in $(<"${BDIR}/${dir}/build_require")
 	    do
 		if [ -f "${PDIR}/${pkg}/pkginfo" ]
