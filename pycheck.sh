@@ -49,10 +49,6 @@ if [ $# -gt 0 ]; then
 	do
 	    pkgver=${pkgstr##*-}
 	    pkgname=${pkgstr%-*}
-	    if [ "${pkgname}" == "cloud-custodian" ]; then
-		pkgname=c7n
-		pkgver=${pkgver%.0}
-	    fi
 	    "${CHECKER}" "${file}" "${pkgname}" "${pkgver}"
 	done
     done
@@ -71,10 +67,6 @@ do
     pkgstr=${fpkgstr##* }
     pkgver=${pkgstr##*-}
     pkgname=${pkgstr%-*}
-    if [ "${pkgname}" == "cloud-custodian" ]; then
-	pkgname=c7n
-	pkgver=${pkgver%.0}
-    fi
     "${CHECKER}" "${file}" "${pkgname}" "${pkgver}"
 done
 
@@ -93,10 +85,6 @@ do
     fwheel=${fwheel%%-py*}
     pkgver=${fwheel##*-}
     pkgname=${fwheel%-*}
-    if [ "${pkgname}" == "cloud-custodian" ]; then
-	pkgname=c7n
-	pkgver=${pkgver%.0}
-    fi
     "${CHECKER}" -w "${file}" "${pkgname}" "${pkgver}"
 done
 
@@ -106,9 +94,5 @@ do
     pkgstr=${fpkgstr##* }
     pkgver=${pkgstr##*-}
     pkgname=${pkgstr%-*}
-    if [ "${pkgname}" == "cloud-custodian" ]; then
-	pkgname=c7n
-	pkgver=${pkgver%.0}
-    fi
     "${CHECKER}" "${file}" "${pkgname}" "${pkgver}"
 done
