@@ -1,6 +1,17 @@
 #!/bin/sh
 #
-# actually, we do almost all the installation here
+# SPDX-License-Identifier: CDDL-1.0
+#
+
+case `uname -p` in
+i386)
+    exit 0
+    ;;
+esac
+
+#
+# the remainder is for the old shell-script version of pg_back
+# as shipped on sparc
 #
 
 #
@@ -11,7 +22,7 @@ VERSION=1.10
 #
 # this is the default version of postgres we target
 #
-PGVERSION=13
+PGVERSION=15
 
 $THOME/build/unpack pg_back-${VERSION}
 
