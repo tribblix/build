@@ -25,11 +25,15 @@ PYVER="3.12"
 BUILD="${THOME}/build"
 BDIR="/tmp/pct/pkg.$$"
 rm -fr ${BDIR}
-$THOME/build/unpack gmpy2-2.2.0a1
-cd gmpy2-2.2.0a1
+$THOME/build/unpack gmpy2-2.2.0
+cd gmpy2-2.2.0
 python${PYVER} setup.py build_ext --static-dir=/tmp/.gmpy22static
 
-python${PYVER} setup.py install --no-compile --root="${BDIR}"
+#
+# post 2.2.0a1 broke the build by recompiling at install time (self.force = 1)
+# so we have to tell it again where mpc and mpfr are to be found
+#
+env LDFLAGS=-L/tmp/.gmpy22static/lib CPPFLAGS=-I/tmp/.gmpy22static/include python${PYVER} setup.py install --no-compile --root="${BDIR}"
 cd ..
 
 python${PYVER} -m compileall -f -p / -s "${BDIR}" --invalidation-mode unchecked-hash "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages"
