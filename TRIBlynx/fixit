@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # add desktop menu item
 #
 mkdir -p usr/share/{applications,icons}
