@@ -1,0 +1,56 @@
+The CplusplusCompilerMajorVersion change to 55 is to make sure it'll never
+match; this is to avoid taking the Studio path and invoking ptclean.
+
+--- a/programs/dtinfo/mmdb/Imakefile	Mon Jan 13 01:10:57 2020
++++ b/programs/dtinfo/mmdb/Imakefile	Tue Jul  2 11:55:46 2024
+@@ -240,7 +240,7 @@
+ XCOMM CDEBUGFLAGS = -g -DDEBUG
+ XCOMM CXXDEBUGFLAGS = -g -DDEBUG
+ 
+-#if defined(SunArchitecture) && CplusplusCompilerMajorVersion > 5
++#if defined(SunArchitecture) && CplusplusCompilerMajorVersion > 55
+ AllTarget(libMMDBTemplates.a)
+ 
+ libMMDBTemplates.a:
+--- a/config/cf/DtInfo.rules	Mon Jan 13 01:10:57 2020
++++ b/config/cf/DtInfo.rules	Tue Jul  2 11:55:30 2024
+@@ -153,7 +153,7 @@
+ 	$(LD) -r -o $@ objlist
+ 
+ 
+-#if defined(SunArchitecture) && CplusplusCompilerMajorVersion > 5
++#if defined(SunArchitecture) && CplusplusCompilerMajorVersion > 55
+ #define SimpleLibraryT(libname,objlist,libdir)			@@\
+ SimpleLibrary(libname,objlist,libdir)				@@\
+ 								@@\
+@@ -198,7 +198,7 @@
+ 	@echo STR(*** Making NotSoSimpleLibrary libname.a)	@@\
+ 	$(LD) -r -o $@ objlist
+ 
+-#if defined(SunArchitecture) && CplusplusCompilerMajorVersion > 5
++#if defined(SunArchitecture) && CplusplusCompilerMajorVersion > 55
+ #define NotSoSimpleLibraryT(libname,objlist,libdir,otherdeps)	@@\
+ NotSoSimpleLibrary(libname,objlist,libdir,otherdeps)		@@\
+ 								@@\
+--- a/config/imake/Makefile.ini	Mon Jan 13 01:10:57 2020
++++ b/config/imake/Makefile.ini	Tue Jul  2 11:57:59 2024
+@@ -9,7 +9,7 @@
+ #
+ 
+ BOOTSTRAPCFLAGS = 
+-CC = cc
++CC = gcc
+ CDEBUGFLAGS = -O
+ INCLUDES = -I../../include -I/usr/local/include/X11 -I/usr/include/X11 -I/usr/X11R6/include/X11 -I/usr/X11R7/include/X11
+ CFLAGS = $(BOOTSTRAPCFLAGS) $(CDEBUGFLAGS) $(INCLUDES)
+--- a/programs/dtdocbook/instant/Imakefile	Mon Jan 13 01:10:57 2020
++++ b/programs/dtdocbook/instant/Imakefile	Tue Jul  2 11:58:57 2024
+@@ -3,7 +3,7 @@
+ XLATESRC  = $(DTSVCSRC)/DtUtil2
+ 
+ TCLINC =
+-TCLLIB = -ltcl
++TCLLIB = -ltcl8.6
+ 
+ #if defined(LinuxArchitecture)
+ TCLINC = -I/usr/include/tcl
