@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBs3transfer-python-311 s3transfer-0.10.1
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_setup_py TRIBs3transfer-python-311 s3transfer-0.10.2
