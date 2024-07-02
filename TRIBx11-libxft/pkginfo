@@ -1,4 +1,4 @@
 PKG="TRIBx11-libxft"
 NAME="libXft"
-VERSION="2.3.2.0"
+VERSION="2.3.8.0"
 ZAP_URL="https://www.x.org/releases/individual/lib/"
