@@ -1,5 +1,7 @@
 #!/bin/tcsh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # Add the CA bundle
 # (has an extra symlink for wget compatibility)
 # http://stackoverflow.com/questions/3777075/ssl-certificate-rejected-trying-to-access-github-over-https-behind-firewall
