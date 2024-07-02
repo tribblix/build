@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the version number is a bit arbitrary as we're building from a current
 # git checkout, but use the latest release as the pkg version as that's
 # what weed reports itself
