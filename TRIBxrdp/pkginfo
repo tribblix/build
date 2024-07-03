@@ -1,4 +1,4 @@
 PKG="TRIBxrdp"
 NAME="Remote Desktop Protocol server"
-VERSION="0.9.23.1.0"
+VERSION="0.9.26.0"
 ZAP_URL="http://xrdp.org/"
