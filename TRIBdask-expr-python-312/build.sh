@@ -9,4 +9,4 @@
 # it's version-locked to dask, so this will need updating if the main
 # dask package is
 #
-${THOME}/build/pkg_pep518 TRIBdask-expr-python-312 dask_expr-1.1.5
+${THOME}/build/pkg_pep518 TRIBdask-expr-python-312 dask_expr-1.1.6
