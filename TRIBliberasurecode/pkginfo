@@ -1,0 +1,4 @@
+PKG="TRIBliberasurecode"
+NAME="liberasurecode"
+VERSION="1.6.3.0"
+ZAP_URL="https://opendev.org/openstack/liberasurecode"

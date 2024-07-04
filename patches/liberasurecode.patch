@@ -1,0 +1,48 @@
+diff --git a/src/backends/shss/shss.c b/src/backends/shss/shss.c
+index 75e24b6..37aa657 100644
+--- a/src/backends/shss/shss.c
++++ b/src/backends/shss/shss.c
+@@ -31,6 +31,7 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <alloca.h>
+ 
+ #include "erasurecode.h"
+ #include "erasurecode_helpers.h"
+diff --git a/src/utils/chksum/alg_sig.c b/src/utils/chksum/alg_sig.c
+index 86a97a7..84477dc 100644
+--- a/src/utils/chksum/alg_sig.c
++++ b/src/utils/chksum/alg_sig.c
+@@ -27,6 +27,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <strings.h>
+ #define GALOIS_SINGLE_MULTIPLY "galois_single_multiply"
+ #define GALOIS_UNINIT "galois_uninit_field"
+ 
+diff --git a/test/builtin/xor_codes/test_xor_hd_code.c b/test/builtin/xor_codes/test_xor_hd_code.c
+index f40621b..11bd7e8 100644
+--- a/test/builtin/xor_codes/test_xor_hd_code.c
++++ b/test/builtin/xor_codes/test_xor_hd_code.c
+@@ -25,6 +25,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <strings.h>
+ #include <time.h>
+ #include <xor_code.h>
+ #include "test_xor_hd_code.h"
+diff --git a/test/utils/chksum/test_alg_sig.c b/test/utils/chksum/test_alg_sig.c
+index 5314548..6adaa88 100644
+--- a/test/utils/chksum/test_alg_sig.c
++++ b/test/utils/chksum/test_alg_sig.c
+@@ -26,6 +26,7 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
++#include <strings.h>
+ #include <time.h>
+ 
+ // Max is 8 bytes right now (64-bits)
