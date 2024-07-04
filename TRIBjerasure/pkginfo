@@ -1,0 +1,4 @@
+PKG="TRIBjerasure"
+NAME="jerasure"
+VERSION="2.0.0"
+ZAP_URL="https://github.com/ceph/jerasure"

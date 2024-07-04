@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+rm usr/bin/cauchy_*
+rm usr/bin/jerasure_*
+rm usr/bin/liberation_*
+rm usr/bin/reed_sol_*
