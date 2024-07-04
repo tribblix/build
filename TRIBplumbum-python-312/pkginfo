@@ -1,0 +1,4 @@
+PKG="TRIBplumbum-python-312"
+NAME="Python plumbum"
+VERSION="1.8.3.0"
+ZAP_URL="https://pypi.org/project/plumbum"
