@@ -1,0 +1,14 @@
+Properly, we would patch Python itself, but the patch for Python3.12
+appears to be incomplete.
+
+--- a/setup.py	Tue Apr 19 17:03:27 2022
++++ b/setup.py	Thu Jul  4 11:18:52 2024
+@@ -53,7 +53,7 @@
+ # this is to be used only for library existence/version checks,
+ # not for rpath handling
+ def _find_library(name):
+-    target_lib = find_library(name)
++    target_lib = find_library(name, True)
+     if platform_str.find("Darwin") > -1:
+         # If we didn't find it, try extending our search a bit
+         if not target_lib:
