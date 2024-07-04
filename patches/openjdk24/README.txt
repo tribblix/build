@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+5
+
+Trivial patch noise.
+
 24+4
 
 Offsets due to os::committed_in_range() implementation. The guards
