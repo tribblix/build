@@ -1,0 +1,4 @@
+PKG="TRIBgf-complete"
+NAME="gf-complete"
+VERSION="1.03.0"
+ZAP_URL="https://github.com/ceph/gf-complete"
