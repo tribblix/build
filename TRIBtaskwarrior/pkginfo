@@ -1,0 +1,4 @@
+PKG="TRIBtaskwarrior"
+NAME="taskwarrior"
+VERSION="3.0.2.0"
+ZAP_URL="https://taskwarrior.org/"
