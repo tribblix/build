@@ -79,6 +79,7 @@ ONLY64="false"
 ONLY64BIN="false"
 UNPACK_FLAGS=""
 BRANCHARGS=""
+AUTOGEN=""
 
 #
 # out of tree builds from -B will replace these
@@ -102,6 +103,7 @@ BUILDGNU="false"
 #
 # Other arguments are
 # package name
+# -A automatically run autogen.sh
 # -S subdir
 # -P alternate_prefix
 # +P alternate library prefix
@@ -168,6 +170,10 @@ case $1 in
 	CONFGNU="true"
 	BUILDGNU="true"
 	shift
+	;;
+-A)
+	shift
+	AUTOGEN="yes"
 	;;
 -B)
 	shift
@@ -384,6 +390,13 @@ EOF
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
+	    if [ -n "${AUTOGEN}" ]; then
+		if [ -f autogen.sh ]; then
+		    sh autogen.sh
+		else
+		    autoreconf -i -v -f
+		fi
+	    fi
 	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_CONF_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
@@ -416,6 +429,13 @@ EOF
 	    cd ${pkg}${SUBDIR}
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
+	    fi
+	    if [ -n "${AUTOGEN}" ]; then
+		if [ -f autogen.sh ]; then
+		    sh autogen.sh
+		else
+		    autoreconf -i -v -f
+		fi
 	    fi
 	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_CONF_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX} ${LIBARGS32}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
