@@ -4,4 +4,4 @@
 #
 # force the use of the system freetype
 #
-env CXXFLAGS=-m64 CFLAGS=-m64 CC="gcc -m64" PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N -C --config-settings=setup-args=-Dsystem-freetype=true TRIBmatplotlib-python-311 matplotlib-3.9.0
+env CXXFLAGS=-m64 CFLAGS=-m64 CC="gcc -m64" PATH=/usr/versions/python-3.11/bin:$PATH ${THOME}/build/pkg_pep518 -N -C --config-settings=setup-args=-Dsystem-freetype=true TRIBmatplotlib-python-311 matplotlib-3.9.1
