@@ -1,0 +1,13 @@
+stdatomic.h doesn't work for C++
+
+--- a/leptonica/src/environ.h	Thu May  2 10:45:26 2024
++++ b/leptonica/src/environ.h	Fri Jul  5 15:34:00 2024
+@@ -65,7 +65,7 @@
+ 
+ #endif /* _MSC_VER */
+ 
+-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L) && !defined(__STDC_NO_ATOMICS__)
++#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L) && !defined(__STDC_NO_ATOMICS__) && !defined(__cplusplus)
+ #include <stdatomic.h>
+ typedef atomic_int l_atomic;
+ #else

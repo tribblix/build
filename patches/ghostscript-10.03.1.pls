@@ -1,0 +1,1 @@
+-p1 ghost-leptonica.patch

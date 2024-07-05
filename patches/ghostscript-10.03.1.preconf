@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# remove the local copies so that the system libraries are used
+#
+rm -fr tiff freetype zlib jpeg libpng openjpeg
