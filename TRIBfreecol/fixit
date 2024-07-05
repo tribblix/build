@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # don't have files with spaces
 #
 mv 'usr/versions/freecol/data/mods/19thCenturyNations/resources/images/coat-of-arms/REF Crown.png' usr/versions/freecol/data/mods/19thCenturyNations/resources/images/coat-of-arms/REF_Crown.png
