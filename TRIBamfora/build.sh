@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # requires go
 #
 git clone https://github.com/makeworld-the-better-one/amfora
