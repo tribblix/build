@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# gpg-error
+# SPDX-License-Identifier: CDDL-1.0
 #
-env TRIBBLIX_LDFLAGS="-lsocket -lnsl" ${THOME}/build/dobuild -64 libgpg-error-1.48
-${THOME}/build/genpkg TRIBlibgpg-error libgpg-error-1.48
+env TRIBBLIX_LDFLAGS="-lsocket -lnsl" ${THOME}/build/dobuild -64 libgpg-error-1.50
+${THOME}/build/genpkg TRIBlibgpg-error libgpg-error-1.50
