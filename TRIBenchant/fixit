@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -f usr/lib/enchant/*.la
 rm -f usr/lib/*/enchant/*.la
 rm -f usr/lib/enchant/*.a
