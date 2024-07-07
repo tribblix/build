@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 mkdir s2
 cd s2
 #
@@ -7,7 +9,7 @@ cd s2
 #
 git clone https://github.com/sorintlab/stolon
 cd stolon
-env PATH=/usr/versions/go-1.21/bin:$PATH gmake
+env PATH=/usr/versions/go-1.22/bin:$PATH gmake
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/stolon/bin
