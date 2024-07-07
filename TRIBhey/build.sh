@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 env GOPATH=`pwd` go install github.com/rakyll/hey@latest
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
