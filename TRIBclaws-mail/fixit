@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # clean up plugins
 #
 rm -f usr/lib/*/claws-mail/plugins/*.a
