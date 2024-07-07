@@ -39,10 +39,16 @@ do
   fi
   DEPLIST=""
   if [ -f "${PKGDIR}/${PKG}.${PKGVERS}.zap" ]; then
-    if [ -x /usr/bin/stat ]; then
-	PKGSIZE=$(/usr/bin/stat --printf="%s" "${PKGDIR}/${PKG}.${PKGVERS}.zap")
+    if [ "${PKGDIR}/${PKG}.${PKGVERS}.zap.size" -nt "${PKGDIR}/${PKG}.${PKGVERS}.zap" ]; then
+	PKGSIZE=$(<"${PKGDIR}/${PKG}.${PKGVERS}.zap.size")
     else
-	PKGSIZE=$(/bin/ls -l "${PKGDIR}/${PKG}.${PKGVERS}.zap" | /usr/bin/awk '{print $5}')
+	if [ -x /usr/bin/stat ]; then
+	    PKGSIZE=$(/usr/bin/stat --printf="%s" "${PKGDIR}/${PKG}.${PKGVERS}.zap")
+	else
+	    PKGSIZE=$(/bin/ls -l "${PKGDIR}/${PKG}.${PKGVERS}.zap" | /usr/bin/awk '{print $5}')
+	fi
+	/bin/rm -f "${PKGDIR}/${PKG}.${PKGVERS}.zap.size"
+	echo "$PKGSIZE" > "${PKGDIR}/${PKG}.${PKGVERS}.zap.size"
     fi
     if [ "${PKGDIR}/${PKG}.${PKGVERS}.zap.md5" -nt "${PKGDIR}/${PKG}.${PKGVERS}.zap" ]; then
 	PKGMD5=$(<"${PKGDIR}/${PKG}.${PKGVERS}.zap.md5")
