@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # v1.6.3 fails to build
 #
 mkdir ~/ud/ff
