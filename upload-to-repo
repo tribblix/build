@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -49,8 +51,8 @@ bail() {
 }
 
 #
-# with -q avoid the aliases and the file list
-# with many version updates they are unnecessary
+# with -q avoid the the file list
+# with many version updates it is unnecessary, and expensive
 #
 # with -n just refresh the metadata, there are no packages
 #
@@ -80,7 +82,7 @@ fi
 #
 # check for all the creation scripts
 #
-cd ${THOME}/build || bail "Cannot cd to build repo"
+cd "${THOME}/build" || bail "Cannot cd to build repo"
 if [ ! -f "$ACREATE" ]; then
     bail "Cannot find $ACREATE"
 fi
@@ -101,7 +103,7 @@ if [ -z "$PKGSKIP" ]; then
 if [ ! -d "$STAGE" ]; then
     bail "No staging area"
 fi
-FTOUPLOAD=`/bin/ls -1 ${STAGE}/*.zap 2>/dev/null`
+FTOUPLOAD=$(/bin/ls -1 ${STAGE}/*.zap 2>/dev/null)
 if [ -z "$FTOUPLOAD" ]; then
     bail "Cannot find anything to upload"
 fi
@@ -115,15 +117,15 @@ fi
 # as that's almost always a mistake
 #
 cd $STAGE || bail "Cannot cd to staging area"
-for file in `/bin/ls -1 *.zap*`
+for file in $(/bin/ls -1 *.zap*)
 do
     if [ -f "${LREPODIR}/${file}" ]; then
 	bail "preexisting file in repo ${LREPODIR}/${file}"
     fi
 done
-for file in `/bin/ls -1 *.zap*`
+for file in $(/bin/ls -1 *.zap*)
 do
-    /bin/cp ${file} ${LREPODIR}/${file}
+    /bin/cp "${file}" "${LREPODIR}/${file}"
 done
 #
 # end of PKGSKIP
@@ -133,16 +135,16 @@ fi
 #
 # then we must create the metadata files
 #
-cd ${THOME}/build || bail "Cannot cd to build repo"
+cd "${THOME}/build" || bail "Cannot cd to build repo"
 echo "Creating catalog"
-./${CCREATE} > ${LREPODIR}/${CFILE}
+./${CCREATE} > "${LREPODIR}/${CFILE}"
 echo "Creating html index"
-./${HCREATE} ${LREPODIR}/${CFILE} > ${LREPODIR}/${HFILE}
+./${HCREATE} "${LREPODIR}/${CFILE}" > "${LREPODIR}/${HFILE}"
+echo "Creating aliases"
+./${ACREATE} > "${LREPODIR}/${AFILE}"
 if [ -z "$QUICKMODE" ]; then
-    echo "Creating aliases"
-    ./${ACREATE} > ${LREPODIR}/${AFILE}
     echo "Creating file list"
-    ./${FCREATE} ${LREPODIR}
+    ./${FCREATE} "${LREPODIR}"
 fi
 
 #
@@ -151,13 +153,13 @@ fi
 #
 echo "Uploading files"
 if [ -n "$PKGSKIP" ]; then
-    scp ${LREPODIR}/${AFILE} ${LREPODIR}/${HFILE} ${LREPODIR}/${FFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
+    scp "${LREPODIR}/${AFILE}" "${LREPODIR}/${HFILE}" "${LREPODIR}/${FFILE}" "${LREPODIR}/${CFILE}" "${REPOHOST}:${REPODIR}/${REPO}"
 elif [ -z "$QUICKMODE" ]; then
     cd $STAGE || bail "Cannot cd to staging area"
-    scp *.zap *.zap.sig ${LREPODIR}/${AFILE} ${LREPODIR}/${HFILE} ${LREPODIR}/${FFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
+    scp ./*.zap ./*.zap.sig "${LREPODIR}/${AFILE}" "${LREPODIR}/${HFILE}" "${LREPODIR}/${FFILE}" "${LREPODIR}/${CFILE}" "${REPOHOST}:${REPODIR}/${REPO}"
 else
     cd $STAGE || bail "Cannot cd to staging area"
-    scp *.zap *.zap.sig ${LREPODIR}/${HFILE} ${LREPODIR}/${CFILE} ${REPOHOST}:${REPODIR}/${REPO}
+    scp ./*.zap ./*.zap.sig "${LREPODIR}/${AFILE}" "${LREPODIR}/${HFILE}" "${LREPODIR}/${CFILE}" "${REPOHOST}:${REPODIR}/${REPO}"
 fi
-cd $THOME || bail "Cannot cd to build home"
+cd "$THOME" || bail "Cannot cd to build home"
 /bin/rm -fr $STAGE
