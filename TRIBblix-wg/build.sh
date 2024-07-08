@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # requires go
 #
 rm -fr /tmp/wg123
@@ -22,7 +24,7 @@ cd ../../..
 #
 git clone https://github.com/nshalman/wireguard-go
 cd wireguard-go
-env PATH=/usr/versions/go-1.21/bin:$PATH gmake
+env PATH=/usr/versions/go-1.22/bin:$PATH gmake
 cp wireguard-go /tmp/wg123/opt/tribblix/wireguard/bin
 cp README.md /tmp/wg123/opt/tribblix/wireguard/doc
 cd ../..
