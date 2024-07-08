@@ -12,11 +12,11 @@ cd p1
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.21/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.22/bin:$PATH gmake build
 cd ..
 
 $THOME/build/unpack postgres_exporter-0.15.0
 cd postgres_exporter-0.15.0
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.21/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.22/bin:$PATH gmake build
 
 ${THOME}/build/genpkg TRIBblix-prompostgres
