@@ -16,7 +16,7 @@ cd $GOPATH/src/github.com/prometheus
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env PATH=/usr/versions/go-1.21/bin:$PATH gmake build
+env PATH=/usr/versions/go-1.22/bin:$PATH gmake build
 cd ..
 
 #
@@ -25,8 +25,8 @@ cd ..
 git clone https://github.com/prometheus/prometheus.git
 cd prometheus
 # be specific, 2.45 is LTS
-git checkout v2.45.3
-env PATH=/usr/gnu/bin:/usr/versions/yarn-v1.22.19/bin:/usr/versions/node-v20/bin:/usr/versions/go-1.21/bin:$PATH gmake build
+git checkout v2.45.6
+env PATH=/usr/gnu/bin:/usr/versions/yarn-v1.22.19/bin:/usr/versions/node-v20/bin:/usr/versions/go-1.22/bin:$PATH gmake build
 cd ..
 
 rm -fr /tmp/ppr1
