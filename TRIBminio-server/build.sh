@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 mkdir ~/ud/c
 cd ~/ud/c
 
@@ -8,7 +10,7 @@ cd ~/ud/c
 # https://github.com/minio/minio/issues/17398
 # https://github.com/containerd/console/issues/75
 #
-env GOPATH=`pwd` PATH=/usr/versions/go-1.21/bin:$PATH go install github.com/minio/minio@RELEASE.2023-05-18T00-05-36Z
+env GOPATH=`pwd` PATH=/usr/versions/go-1.22/bin:$PATH go install github.com/minio/minio@RELEASE.2023-05-18T00-05-36Z
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
