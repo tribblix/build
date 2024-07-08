@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # specify version explicitly, rather than @latest
 # later versions fail to build
 #
