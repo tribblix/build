@@ -1,7 +1,10 @@
 #!/bin/sh
 #
-# bumping the version requires rebuilding all dependants as the
-# SONAME changes
+# SPDX-License-Identifier: CDDL-1.0
+#
+# bumping the version requires rebuilding direct dependants as the
+# SONAME changes, although most packages go via libpoppler-glib which
+# is more stable
 #
 
 #
@@ -13,7 +16,7 @@ env CPPFLAGS="-D_XPG6" ${THOME}/build/dobuild -64 poppler-0.56.0 -C "--enable-xp
 # the new version
 # slightly downrev due to dependencies (eg boost)
 #
-env CC="gcc -m64" ${THOME}/build/cmbuild +64 poppler-22.12.0 -C "-DENABLE_STATIC=FALSE -DBUILD_QT5_TESTS=OFF -DBUILD_GTK_TESTS=OFF -DENABLE_UNSTABLE_API_ABI_HEADERS=ON -DENABLE_QT5=OFF -DENABLE_QT6=OFF -DENABLE_LIBCURL=OFF -DWITH_GObjectIntrospection=OFF -DCMAKE_PREFIX_PATH=/usr/lib/amd64/openjpeg-2.5"
+env CC="gcc -m64" ${THOME}/build/cmbuild +64 poppler-22.12.0 -C "-DENABLE_STATIC=FALSE -DBUILD_QT5_TESTS=OFF -DBUILD_GTK_TESTS=OFF -DENABLE_UNSTABLE_API_ABI_HEADERS=ON -DENABLE_QT5=OFF -DENABLE_QT6=OFF -DENABLE_LIBCURL=OFF -DWITH_GObjectIntrospection=OFF -DCMAKE_PREFIX_PATH=/usr/lib/`$THOME/build/getarch`/cmake/openjpeg-2.5"
 ${THOME}/build/cmbuild +32 poppler-22.12.0 -C "-DENABLE_STATIC=FALSE -DBUILD_QT5_TESTS=OFF -DBUILD_GTK_TESTS=OFF -DENABLE_UNSTABLE_API_ABI_HEADERS=ON -DENABLE_QT5=OFF -DENABLE_QT6=OFF -DENABLE_LIBCURL=OFF -DWITH_GObjectIntrospection=OFF"
 
 #
@@ -47,4 +50,4 @@ ${THOME}/build/create_pkg TRIBpoppler /tmp/pp1b
 rm -fr /tmp/pp1b
 
 #when we drop the old compat layer we can do this
-#${THOME}/build/genpkg TRIBpoppler poppler-22.12.0
+#${THOME}/build/genpkg TRIBpoppler poppler-22.12.0 poppler-data-0.4.12
