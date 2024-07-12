@@ -1,0 +1,4 @@
+PKG="TRIBaniso8601-python-312"
+NAME="Python aniso8601"
+VERSION="9.0.1.0"
+ZAP_URL="https://pypi.org/project/aniso8601"
