@@ -10,4 +10,4 @@
 # jupyter needs the [format-nongpl] extra, see depend.format-nongpl for
 # the packages included in that
 #
-${THOME}/build/pkg_pep518 TRIBjsonschema4-python-311 jsonschema-4.22.0
+${THOME}/build/pkg_pep518 TRIBjsonschema4-python-311 jsonschema-4.23.0
