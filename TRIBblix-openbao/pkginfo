@@ -1,0 +1,4 @@
+PKG="TRIBblix-openbao"
+NAME="Open source, community-driven fork of Vault"
+VERSION="2.0.0a.0"
+ZAP_URL="https://openbao.org/"
