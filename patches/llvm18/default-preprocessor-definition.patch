@@ -2,11 +2,11 @@ $NetBSD: patch-lib_Basic_Targets_OSTargets.h,v 1.4 2019/10/19 13:54:29 adam Exp 
 
 Sync SunOS default defines with a working reality.
 
-diff -wpruN '--exclude=*.orig' a~/lib/Basic/Targets/OSTargets.h a/lib/Basic/Targets/OSTargets.h
---- a~/lib/Basic/Targets/OSTargets.h	1970-01-01 00:00:00
-+++ a/lib/Basic/Targets/OSTargets.h	1970-01-01 00:00:00
-@@ -626,22 +626,15 @@ protected:
-     Builder.defineMacro("__ELF__");
+diff -wpruN --no-dereference '--exclude=*.orig' a~/lib/Basic/Targets/OSTargets.h a/lib/Basic/Targets/OSTargets.h
+--- a/clang/lib/Basic/Targets/OSTargets.h	1970-01-01 00:00:00
++++ b/clang/lib/Basic/Targets/OSTargets.h	1970-01-01 00:00:00
+@@ -594,22 +594,15 @@ protected:
+     DefineStd(Builder, "unix", Opts);
      Builder.defineMacro("__svr4__");
      Builder.defineMacro("__SVR4");
 -    // Solaris headers require _XOPEN_SOURCE to be set to 600 for C99 and

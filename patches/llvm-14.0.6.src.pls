@@ -1,2 +1,0 @@
--p1 llvm/posix_madvise.patch
--p1 llvm/tools_llvm-shlib_CMakeLists.txt.patch
