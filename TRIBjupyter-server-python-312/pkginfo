@@ -1,4 +1,4 @@
 PKG="TRIBjupyter-server-python-312"
 NAME="Python jupyter_server"
-VERSION="2.14.1.0"
-ZAP_URL="https://pypi.org/project/jupyter_server"
+VERSION="2.14.2.0"
+ZAP_URL="https://pypi.org/project/jupyter-server"
