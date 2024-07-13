@@ -1,0 +1,4 @@
+PKG="TRIBreqexceptions-python-312"
+NAME="Python requestsexceptions"
+VERSION="1.4.0.0"
+ZAP_URL="https://pypi.org/project/requestsexceptions"
