@@ -25714,7 +25714,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/methodHandles_sparc.cpp b/src/hotspo
 +    }
 +
 +    default:
-+      fatal("unexpected intrinsic %d: %s", iid, vmIntrinsics::name_at(iid));
++      fatal("unexpected intrinsic %d: %s", vmIntrinsics::as_int(iid), vmIntrinsics::name_at(iid));
 +      break;
 +    }
 +
