@@ -1,0 +1,4 @@
+PKG="TRIBhcloud"
+NAME="A command-line interface for Hetzner Cloud"
+VERSION="1.44.2.0"
+ZAP_URL="https://github.com/hetznercloud/cli"
