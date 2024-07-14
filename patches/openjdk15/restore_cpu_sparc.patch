@@ -21883,7 +21883,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +   // operations.  If T2 discovers that a stomp has occurred it vacates
 +   // the monitor M and wakes any other threads stranded on the now-orphan M.
 +   // In addition the monitor scavenger, which performs deflation,
-+   // would also need to check for orpan monitors and stranded threads.
++   // would also need to check for orphan monitors and stranded threads.
 +   //
 +   // Finally, inflation is also used when T2 needs to assign a hashCode
 +   // to O and O is stack-locked by T1.  The "stomp" race could cause
@@ -22718,7 +22718,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +  mov(31, G4);
 +  cmp_and_br_short(len, G4, Assembler::lessEqualUnsigned, Assembler::pt, L_cleanup_check);
 +
-+  // Align buffer to 8 byte boundry
++  // Align buffer to 8 byte boundary
 +  mov(8, O5);
 +  and3(buf, 0x7, O4);
 +  sub(O5, O4, O5);
@@ -22742,7 +22742,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +  nop();
 +  cmp_and_br_short(O5, 0, Assembler::notEqual, Assembler::pt, L_align_loop);
 +
-+  // Aligned on 64-bit (8-byte) boundry at this point
++  // Aligned on 64-bit (8-byte) boundary at this point
 +  // Check if still above cutoff (31-bytes)
 +  mov(31, G4);
 +  cmp_and_br_short(len, G4, Assembler::lessEqualUnsigned, Assembler::pt, L_cleanup_check);
@@ -23867,7 +23867,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.hpp b/src/hotsp
 +  inline void ldxl( Register s1, Register s2, Register d);
 +  inline void ldfl(FloatRegisterImpl::Width w, Register s1, Register s2, FloatRegister d);
 +
-+  // membar psuedo instruction.  takes into account target memory model.
++  // membar pseudo instruction.  takes into account target memory model.
 +  inline void membar( Assembler::Membar_mask_bits const7a );
 +
 +  // returns if membar generates anything.
@@ -25817,7 +25817,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/methodHandles_sparc.cpp b/src/hotspo
 +    intptr_t *dump_sp = cur_frame.sender_sp();
 +    intptr_t *dump_fp = cur_frame.link();
 +
-+    bool walkable = has_mh; // whether the traced frame shoud be walkable
++    bool walkable = has_mh; // whether the traced frame should be walkable
 +
 +    // the sender for cur_frame is the caller of trace_method_handle
 +    if (walkable) {
@@ -29126,7 +29126,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp b/src/hotspo
 +    }
 +  }
 +
-+  // retun the amount of stack space these arguments will need.
++  // return the amount of stack space these arguments will need.
 +  return slot;
 +}
 +
@@ -29655,7 +29655,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp b/src/hotspo
 +  // space.  We grow the current (compiled) stack, then repack the args.  We
 +  // finally end in a jump to the generic interpreter entry point.  On exit
 +  // from the interpreter, the interpreter will restore our SP (lest the
-+  // compiled code, which relys solely on SP and not FP, get sick).
++  // compiled code, which relies solely on SP and not FP, get sick).
 +
 +  address c2i_unverified_entry = __ pc();
 +  Label L_skip_fixup;
