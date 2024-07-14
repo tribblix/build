@@ -3,3 +3,5 @@
 # SPDX-License-Identifier: CDDL-1.0
 #
 strip usr/bin/*
+gunzip usr/share/man/man1/*.gz
+gunzip usr/share/man/*/man1/*.gz
