@@ -1,0 +1,4 @@
+PKG="TRIBcwm"
+NAME="CWM - OpenBSD Window Manager"
+VERSION="7.4.0"
+ZAP_URL="https://github.com/leahneukirchen/cwm"

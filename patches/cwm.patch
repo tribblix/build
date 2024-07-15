@@ -1,0 +1,21 @@
+Use of d_type -is non-portable.
+
+--- a/kbfunc.c
++++ b/kbfunc.c
+@@ -678,14 +678,14 @@ kbfunc_menu_exec(void *ctx, struct cargs *cargs)
+ 			if (l == -1 || l >= sizeof(tpath))
+ 				continue;
+ 			/* Skip everything but regular files and symlinks. */
+-			if (dp->d_type != DT_REG && dp->d_type != DT_LNK) {
++			//if (dp->d_type != DT_REG && dp->d_type != DT_LNK) {
+ 				/* lstat(2) in case d_type isn't supported. */
+ 				if (lstat(tpath, &sb) == -1)
+ 					continue;
+ 				if (!S_ISREG(sb.st_mode) &&
+ 				    !S_ISLNK(sb.st_mode))
+ 					continue;
+-			}
++			//}
+ 			if (access(tpath, X_OK) == 0)
+ 				menuq_add(&menuq, NULL, "%s", dp->d_name);
+ 		}
