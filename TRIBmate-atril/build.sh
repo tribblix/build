@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64only +gnu atril-1.26.2 -C --without-keyring
-${THOME}/build/genpkg TRIBmate-atril atril-1.26.2
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/dobuild -64only +gnu atril-1.28.0 -C --without-keyring
+${THOME}/build/genpkg TRIBmate-atril atril-1.28.0

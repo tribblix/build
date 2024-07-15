@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -f usr/lib/*/atril/3/backends/lib*.la
 rm -f usr/lib/*/caja/extensions-2.0/lib*.la
 rm -f usr/lib/*/atril/3/backends/lib*.a
