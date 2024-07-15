@@ -1,5 +1,7 @@
 #!/sbin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # Automatically generated install script
 #
 if [ "${BASEDIR}" = "/" ]; then

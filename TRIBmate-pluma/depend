@@ -9,6 +9,7 @@ P TRIBlib-desktop-pango
 P TRIBlib-glib2
 P TRIBlibpeas
 P TRIBlibxml2
+P TRIBmate-desktop
 P TRIBx11-libice
 P TRIBx11-libsm
 P TRIBx11-libx11
