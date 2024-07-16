@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # clean up a bit
 #
 rm -f usr/lib/imlib2/loaders/*.la
