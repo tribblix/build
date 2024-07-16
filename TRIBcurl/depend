@@ -3,4 +3,5 @@ P TRIBcompress-zstd
 P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBlibnghttp2
+P TRIBlibpsl
 P TRIBlibssh2
