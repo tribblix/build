@@ -1,29 +1,13 @@
 #!/bin/sh
 #
-# Default build is 64-bit
+# SPDX-License-Identifier: CDDL-1.0
 #
 
 #
-# old version for binary compatibility only needed on x86
+# The build on solaris is 64-bit by default, we specify -64only so
+# we don't get conflicting flags
 #
-${THOME}/build/unpack protobuf-2.6.1
-cd protobuf-2.6.1
-./configure --prefix=/usr
-gmake -j 4
-gmake install DESTDIR=/tmp/pbf
-rm -fr /tmp/pbf/usr/include /tmp/pbf/usr/bin
-rm -fr /tmp/pbf/usr/lib/amd64/pkgconfig
-rm -f /tmp/pbf/usr/lib/amd64/*.{a,la,so}
-cd ..
-
+# file sizes balloon if we use a bare configure/make process
 #
-# current version
-#
-${THOME}/build/unpack protobuf-cpp-3.20.1
-cd protobuf-3.20.1
-./configure --prefix=/usr
-gmake -j 4
-gmake install DESTDIR=/tmp/pbf
-cd ..
-
-${THOME}/build/create_pkg TRIBprotobuf /tmp/pbf
+${THOME}/build/dobuild -64only -n protobuf-3.20.1 protobuf-cpp-3.20.1 
+${THOME}/build/genpkg TRIBprotobuf protobuf-cpp-3.20.1

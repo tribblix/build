@@ -1,4 +1,4 @@
 PKG="TRIBprotobuf"
 NAME="Protocol Buffers"
-VERSION="3.20.1.0"
-ZAP_URL="https://developers.google.com/protocol-buffers/"
+VERSION="3.20.1.1"
+ZAP_URL="https://protobuf.dev/"
