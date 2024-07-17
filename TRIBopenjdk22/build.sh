@@ -1,12 +1,12 @@
 #!/bin/sh
 #
 # jdk mainline has been migrated to git
-# go to https://github.com/openjdk/jdk22/tags
+# go to https://github.com/openjdk/jdk22u/tags
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk22u-jdk-22.0.1-ga
-cd jdk22u-jdk-22.0.1-ga
+${THOME}/build/unpack jdk22u-jdk-22.0.2-ga
+cd jdk22u-jdk-22.0.2-ga
 
 #
 # jdk22 needs autoconf installed
@@ -44,9 +44,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "22.0.1-internal" 2024-04-16
-# OpenJDK Runtime Environment (build 22.0.1-internal-adhoc.ptribble.jdk22u-jdk-22.0.1-ga)
-# OpenJDK 64-Bit Server VM (build 22.0.1-internal-adhoc.ptribble.jdk22u-jdk-22.0.1-ga, mixed mode, sharing)
+# openjdk version "22.0.2-internal" 2024-07-16
+# OpenJDK Runtime Environment (build 22.0.2-internal-adhoc.ptribble.jdk22u-jdk-22.0.2-ga)
+# OpenJDK 64-Bit Server VM (build 22.0.2-internal-adhoc.ptribble.jdk22u-jdk-22.0.2-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

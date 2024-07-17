@@ -154,7 +154,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -427,9 +427,6 @@
+@@ -433,9 +433,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
@@ -166,7 +166,7 @@
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -274,7 +274,7 @@
+@@ -285,7 +285,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -175,7 +175,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -287,7 +287,7 @@
+@@ -298,7 +298,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -620,7 +620,7 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBVERIFY_OPTIMIZATION := LOW
    endif
-@@ -66,7 +66,6 @@
+@@ -67,7 +67,6 @@
      LDFLAGS_macosx := -L$(SUPPORT_OUTPUTDIR)/native/$(MODULE)/, \
      LIBS_unix := -ljvm, \
      LIBS_linux := $(LIBDL), \
@@ -628,7 +628,7 @@
      LIBS_aix := $(LIBDL) $(LIBM),\
      LIBS_macosx := -framework CoreFoundation \
          -framework Foundation \
-@@ -181,7 +180,6 @@
+@@ -182,7 +181,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) -lpthread, \
@@ -703,7 +703,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -654,10 +652,7 @@
+@@ -656,10 +654,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -715,7 +715,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -684,7 +679,6 @@
+@@ -686,7 +681,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1017,7 +1017,7 @@
  #endif /* !_JAVASOFT_JVM_MD_H_ */
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -500,7 +500,7 @@
+@@ -511,7 +511,7 @@
    st->print("%d", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -1026,7 +1026,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -518,12 +518,6 @@
+@@ -529,12 +529,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1743,7 +1743,7 @@
  }
  
  static const char*
-@@ -450,7 +443,7 @@
+@@ -454,7 +447,7 @@
  #endif
  
  /* vfork(2) is deprecated on Darwin */
@@ -1752,7 +1752,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -603,7 +596,7 @@
+@@ -609,7 +602,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -7929,7 +7929,7 @@
 -}
 --- old/src/hotspot/os/solaris/os_solaris.cpp	2020-05-20 18:09:34.749109332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,3055 +0,0 @@
+@@ -1,2974 +0,0 @@
 -/*
 - * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8085,9 +8085,6 @@
 -
 -// System parameters used internally
 -static clock_t clock_tics_per_sec = 100;
--
--// Track if we have called enable_extended_FILE_stdio (on Solaris 10u4+)
--static bool enabled_extended_FILE_stdio = false;
 -
 -// For diagnostics to print a message once. see run_periodic_checks
 -static bool check_addr0_done = false;
@@ -8420,14 +8417,6 @@
 -
 -#undef SYS_EXT_DIR
 -#undef EXTENSIONS_DIR
--}
--
--void os::breakpoint() {
--  BREAKPOINT;
--}
--
--extern "C" void breakpoint() {
--  // use debugger to set breakpoint here
 -}
 -
 -static thread_t main_thread;
@@ -9810,33 +9799,6 @@
 -  return _vm_min_address_default;
 -}
 -  
--// Used to convert frequent JVM_Yield() to nops
--bool os::dont_yield() {
--  if (DontYieldALot) {
--    static hrtime_t last_time = 0;
--    hrtime_t diff = getTimeNanos() - last_time;
--
--    if (diff < DontYieldALotInterval * 1000000) {
--      return true;
--    }
--
--    last_time += diff;
--
--    return false;
--  } else {
--    return false;
--  }
--}
--
--// Note that yield semantics are defined by the scheduling class to which
--// the thread currently belongs.  Typically, yield will _not yield to
--// other equal or higher priority threads that reside on the dispatch queues
--// of other CPUs.
--
--void os::naked_yield() {
--  thr_yield();
--}
--
 -// Interface for setting lwp priorities.  We are using T2 libthread,
 -// which forces the use of bound threads, so all of our threads will
 -// be assigned to real lwp's.  Using the thr_setprio function is
@@ -10525,49 +10487,6 @@
 -      return -1;
 -    }
 -  }
--
--  // 32-bit Solaris systems suffer from:
--  //
--  // - an historical default soft limit of 256 per-process file
--  //   descriptors that is too low for many Java programs.
--  //
--  // - a design flaw where file descriptors created using stdio
--  //   fopen must be less than 256, _even_ when the first limit above
--  //   has been raised.  This can cause calls to fopen (but not calls to
--  //   open, for example) to fail mysteriously, perhaps in 3rd party
--  //   native code (although the JDK itself uses fopen).  One can hardly
--  //   criticize them for using this most standard of all functions.
--  //
--  // We attempt to make everything work anyways by:
--  //
--  // - raising the soft limit on per-process file descriptors beyond
--  //   256
--  //
--  // - As of Solaris 10u4, we can request that Solaris raise the 256
--  //   stdio fopen limit by calling function enable_extended_FILE_stdio.
--  //   This is done in init_2 and recorded in enabled_extended_FILE_stdio
--  //
--  // - If we are stuck on an old (pre 10u4) Solaris system, we can
--  //   workaround the bug by remapping non-stdio file descriptors below
--  //   256 to ones beyond 256, which is done below.
--  //
--  // See:
--  // 1085341: 32-bit stdio routines should support file descriptors >255
--  // 6533291: Work around 32-bit Solaris stdio limit of 256 open files
--  // 6431278: Netbeans crash on 32 bit Solaris: need to call
--  //          enable_extended_FILE_stdio() in VM initialisation
--  // Giri Mandalika's blog
--  // http://technopark02.blogspot.com/2005_05_01_archive.html
--  //
--#ifndef  _LP64
--  if ((!enabled_extended_FILE_stdio) && fd < 256) {
--    int newfd = ::fcntl(fd, F_DUPFD, 256);
--    if (newfd != -1) {
--      ::close(fd);
--      fd = newfd;
--    }
--  }
--#endif // 32-bit Solaris
 -
 -  // All file descriptors that are opened in the JVM and not
 -  // specifically destined for a subprocess should have the

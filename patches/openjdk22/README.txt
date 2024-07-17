@@ -5,6 +5,15 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 22 now switched to the jdk22 stabilisation repo
 
+22.0.2
+
+Removed last remnants of extended_FILE_stdio, it's unused as 32-bit
+only, and the code to enable it had already been removed.
+
+Remove local copies of os::dont_yield() os::naked_yield()
+
+Centralization of breakpoint()
+
 Cleanup: switch to SolarisEventPortPoller
 
 22.0.1 respin 1
