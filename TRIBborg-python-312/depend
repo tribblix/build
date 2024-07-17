@@ -4,3 +4,4 @@ P TRIBlib-security-openssl
 P TRIBmsgpack-python-312
 P TRIBpackaging-python-312
 P TRIBv-python-312
+P TRIBxxhash
