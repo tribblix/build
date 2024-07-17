@@ -1,0 +1,4 @@
+PKG="TRIBjaraco-functools-python-312"
+NAME="Python jaraco_functools"
+VERSION="4.0.1.0"
+ZAP_URL="https://pypi.org/project/jaraco_functools"
