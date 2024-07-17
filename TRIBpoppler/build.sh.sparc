@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# bumping the version requires rebuilding direct dependants as the
+# SONAME changes, although most packages go via libpoppler-glib which
+# is more stable
+#
+
+#
+# this is the old compatibility version which is all we have on sparc
+#
+env CPPFLAGS="-D_XPG6" ${THOME}/build/dobuild -64 poppler-0.56.0 -C "--enable-xpdf-headers --disable-introspection --disable-gtk-test"
+
+#
+# and poppler-data
+#
+${THOME}/build/cmbuild poppler-data-0.4.12
+
+${THOME}/build/genpkg TRIBpoppler poppler-0.56.0 poppler-data-0.4.12
