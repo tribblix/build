@@ -5,6 +5,15 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now we're in rampdown.
 
+21.0.4
+
+Removed last remnants of extended_FILE_stdio, it's unused as 32-bit
+only, and the code to enable it had already been removed.
+
+Remove local copies of os::dont_yield() os::naked_yield()
+
+Centralization of breakpoint()
+
 21.0.3 respin 2
 
 Provide a working DefaultPoller implementation rather than the current
