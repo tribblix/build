@@ -1,0 +1,4 @@
+PKG="TRIBmc"
+NAME="Midnight Commander"
+VERSION="4.8.31.0"
+ZAP_URL="https://midnight-commander.org/"
