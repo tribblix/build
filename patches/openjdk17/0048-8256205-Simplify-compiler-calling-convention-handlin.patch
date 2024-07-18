@@ -244,7 +244,7 @@ diff --git a/src/hotspot/cpu/ppc/ppc.ad b/src/hotspot/cpu/ppc/ppc.ad
 index 27dad6cff94..8bbbc3d4aa3 100644
 --- a/src/hotspot/cpu/ppc/ppc.ad
 +++ b/src/hotspot/cpu/ppc/ppc.ad
-@@ -3764,8 +3764,6 @@ frame %{
+@@ -3774,8 +3774,6 @@ frame %{
  
    stack_alignment(frame::alignment_in_bytes);
  
@@ -253,7 +253,7 @@ index 27dad6cff94..8bbbc3d4aa3 100644
    // Number of outgoing stack slots killed above the
    // out_preserve_stack_slots for calls to C. Supports the var-args
    // backing area for register parms.
-@@ -3790,40 +3788,6 @@ frame %{
+@@ -3800,40 +3798,6 @@ frame %{
    //    4 what apparently works and saves us some spills.
    return_addr(STACK 4);
  
@@ -323,7 +323,7 @@ diff --git a/src/hotspot/cpu/s390/s390.ad b/src/hotspot/cpu/s390/s390.ad
 index 98194c73047..9a574ac0854 100644
 --- a/src/hotspot/cpu/s390/s390.ad
 +++ b/src/hotspot/cpu/s390/s390.ad
-@@ -2366,8 +2366,6 @@ frame %{
+@@ -2368,8 +2368,6 @@ frame %{
    // Use alignment_in_bytes instead of log_2_of_alignment_in_bits.
    stack_alignment(frame::alignment_in_bytes);
  
@@ -332,7 +332,7 @@ index 98194c73047..9a574ac0854 100644
    // A `slot' is assumed 4 bytes here!
    // out_preserve_stack_slots(frame::jit_out_preserve_size_in_4_byte_units);
  
-@@ -2382,38 +2380,6 @@ frame %{
+@@ -2384,38 +2382,6 @@ frame %{
    // stack slot.
    return_addr(REG Z_R14);
  
@@ -734,7 +734,7 @@ diff --git a/src/hotspot/share/adlc/output_c.cpp b/src/hotspot/share/adlc/output
 index c6083533b58..a044ceab00b 100644
 --- a/src/hotspot/share/adlc/output_c.cpp
 +++ b/src/hotspot/share/adlc/output_c.cpp
-@@ -4157,29 +4157,15 @@ void ArchDesc::buildFrameMethods(FILE *fp_cpp) {
+@@ -4160,29 +4160,15 @@ void ArchDesc::buildFrameMethods(FILE *fp_cpp) {
      fprintf(fp_cpp," return OptoReg::stack2reg(%s); }\n\n",
              _frame->_return_addr);
    }
@@ -783,7 +783,7 @@ diff --git a/src/hotspot/share/code/nmethod.cpp b/src/hotspot/share/code/nmethod
 index 4e21b69836b..9f03c16ef96 100644
 --- a/src/hotspot/share/code/nmethod.cpp
 +++ b/src/hotspot/share/code/nmethod.cpp
-@@ -3239,7 +3239,7 @@ void nmethod::print_nmethod_labels(outputStream* stream, address block_begin, bo
+@@ -3237,7 +3237,7 @@ void nmethod::print_nmethod_labels(outputStream* stream, address block_begin, bo
          assert(sig_index == sizeargs, "");
        }
        const char* spname = "sp"; // make arch-specific?
@@ -887,7 +887,7 @@ index 0846cad3c3f..a06252cab8a 100644
  
      // And mask for same
      _return_value_mask = RegMask(regs.first());
-@@ -757,7 +757,7 @@ void Matcher::Fixup_Save_On_Entry( ) {
+@@ -760,7 +760,7 @@ void Matcher::Fixup_Save_On_Entry( ) {
    uint reth_edge_cnt = TypeFunc::Parms+1;
    RegMask *reth_rms  = init_input_masks( reth_edge_cnt + soe_cnt, _return_addr_mask, c_frame_ptr_mask );
    // Rethrow takes exception oop only, but in the argument 0 slot.
@@ -896,7 +896,7 @@ index 0846cad3c3f..a06252cab8a 100644
    if (reg >= 0) {
      reth_rms[TypeFunc::Parms] = mreg2regmask[reg];
  #ifdef _LP64
-@@ -2019,10 +2019,10 @@ void Matcher::ReduceOper( State *s, int rule, Node *&mem, MachNode *mach ) {
+@@ -2022,10 +2022,10 @@ void Matcher::ReduceOper( State *s, int rule, Node *&mem, MachNode *mach ) {
  
  //------------------------------find_receiver----------------------------------
  // For a given signature, return the OptoReg for parameter 0.

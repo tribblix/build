@@ -3426,7 +3426,7 @@ diff -ur jdk-jdk-15-26/src/utils/hsdis/hsdis.c jdk-jdk-15-25/src/utils/hsdis/hsd
  #endif
 --- old/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:33.301561154 -0700
 +++ new/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:32.909553627 -0700
-@@ -850,6 +850,10 @@
+@@ -852,6 +852,10 @@
  ################################################################################
  
  # Platform specific setup

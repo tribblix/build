@@ -14,3 +14,6 @@
 -p1 openjdk17/sparc-linker.patch
 -p1+-R openjdk17/0001-8282477-x86-aarch64-vmassert-_last_Java_pc-NULL-alre.patch
 -p1 openjdk17/sparc-safefetch.patch
+-p1+-R openjdk17/0001-8283520-JFR-Memory-leak-in-dcmd_arena.patch
+-p1+-R openjdk17/0001-8270491-SEGV-at-read_string_field-oopDesc-char-const.patch
+-p1+-R openjdk17/0001-8268702-JFR-diagnostic-commands-lack-argument-descri.patch
