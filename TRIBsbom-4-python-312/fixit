@@ -4,7 +4,6 @@
 #
 # add a convenience link
 #
-exit 0
 PYVERS=3.12
 rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/test
 mkdir -p usr/bin

@@ -1,4 +1,4 @@
 PKG="TRIBsbom-4-python-312"
 NAME="Python sbom4python"
-VERSION="0.10.4.0"
+VERSION="0.10.4.1"
 ZAP_URL="https://pypi.org/project/sbom4python"
