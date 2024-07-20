@@ -1,4 +1,4 @@
 PKG="TRIBflawfinder"
 NAME="flawfinder"
-VERSION="2.0.19.1"
+VERSION="2.0.19.2"
 ZAP_URL="https://dwheeler.com/flawfinder/"
