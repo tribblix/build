@@ -4,7 +4,6 @@
 #
 # add convenience links
 #
-exit 0
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../../usr/versions/python-3.12/bin/* .
