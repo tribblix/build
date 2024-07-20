@@ -1,8 +1,9 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # add a convenience link
 #
-exit 0
 PYVERS=3.12
 mkdir -p usr/bin
 cd usr/bin
