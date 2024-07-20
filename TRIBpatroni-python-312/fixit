@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# add a convenience link
+#
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/python-3.12/bin/patroni* .
