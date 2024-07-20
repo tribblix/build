@@ -1,4 +1,4 @@
 PKG="TRIBrst2ansi-python-312"
 NAME="Python rst2ansi"
-VERSION="0.1.5.0"
+VERSION="0.1.5.1"
 ZAP_URL="https://pypi.org/project/rst2ansi"
