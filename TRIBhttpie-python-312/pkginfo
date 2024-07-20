@@ -1,4 +1,4 @@
 PKG="TRIBhttpie-python-312"
 NAME="Python httpie"
-VERSION="3.2.3.0"
+VERSION="3.2.3.1"
 ZAP_URL="https://pypi.org/project/httpie"
