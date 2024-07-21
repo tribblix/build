@@ -1,4 +1,4 @@
 PKG="TRIBduviz"
 NAME="ASCII art disk usage visualization"
-VERSION="3.2.0.1"
+VERSION="3.2.0.2"
 ZAP_URL="https://github.com/soxofaan/duviz"
