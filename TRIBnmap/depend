@@ -3,4 +3,4 @@ P TRIBlib-security-openssl
 P TRIBlib-zlib
 P TRIBlibpcap
 P TRIBlibssh2
-P TRIBv-python-311
+P TRIBv-python-312
