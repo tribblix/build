@@ -1,0 +1,1 @@
+-p1 itstool-escape-sequences.patch
