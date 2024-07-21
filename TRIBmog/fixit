@@ -1,7 +1,10 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 mkdir -p usr/bin
 cd usr/bin
-PYVERS=3.11
+PYVERS=3.12
 ln -s ../../usr/versions/python-${PYVERS}/bin/mog .
 # the symlink for pygmentize comes in this package because
 # this is where we know which version we want
