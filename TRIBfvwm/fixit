@@ -1,5 +1,11 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the xdg location is hardwired into the script, but ours is different
 #
 sed -i s:etc/xdg:usr/etc/xdg:g usr/bin/fvwm-menu-desktop
+#
+# make sure we use the right python
+#
+sed -i 's:/usr/bin/python3$:/usr/bin/python3.12:' usr/bin/fvwm-menu-desktop
