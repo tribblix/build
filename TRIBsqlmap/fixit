@@ -10,6 +10,6 @@ mkdir -p usr/bin
 cd usr/bin
 cat > sqlmap <<EOF
 #!/bin/sh
-exec /usr/bin/python3.11 /usr/versions/sqlmap/sqlmap.py "\$@"
+exec /usr/bin/python3.12 /usr/versions/sqlmap/sqlmap.py "\$@"
 EOF
 chmod a+x sqlmap
