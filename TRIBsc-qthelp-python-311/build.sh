@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBsc-qthelp-python-311 sphinxcontrib_qthelp-1.0.7
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 TRIBsc-qthelp-python-311 sphinxcontrib_qthelp-1.0.8
