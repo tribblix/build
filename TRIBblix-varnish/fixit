@@ -1,3 +1,6 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -f opt/tribblix/varnish/lib/*/varnish/vmods/lib*.la
 rm -f opt/tribblix/varnish/lib/*/lib*.la
