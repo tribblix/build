@@ -1,4 +1,4 @@
 PKG="TRIBcurl"
 NAME="Curl groks URLs"
-VERSION="8.8.0.1"
+VERSION="8.9.0.0"
 ZAP_URL="https://curl.se/"
