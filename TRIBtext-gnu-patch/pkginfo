@@ -1,4 +1,4 @@
 PKG="TRIBtext-gnu-patch"
 NAME="GNU patch"
-VERSION="2.7.6.1"
+VERSION="2.7.6.2"
 ZAP_URL="http://savannah.gnu.org/projects/patch/"

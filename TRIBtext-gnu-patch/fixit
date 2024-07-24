@@ -1,9 +1,18 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # add a g-prefixed link
+# and the bare links, as there is no native patch command
 #
 rm -f usr/gnu/lib/charset.alias
 rmdir usr/gnu/lib
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../gnu/bin/patch gpatch
+ln -s ../gnu/bin/patch patch
+cd ../..
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/gnu/share/man/man1/patch.1 gpatch.1
+ln -s ../../../../usr/gnu/share/man/man1/patch.1 patch.1
