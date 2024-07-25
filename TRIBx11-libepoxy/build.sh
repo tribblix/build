@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64 libepoxy-1.5.2 -C --enable-egl=no
-${THOME}/build/genpkg TRIBx11-libepoxy libepoxy-1.5.2
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/mesonbuild -64 libepoxy-1.5.10
+${THOME}/build/genpkg TRIBx11-libepoxy libepoxy-1.5.10

@@ -1,4 +1,4 @@
 PKG="TRIBx11-libepoxy"
 NAME="libepoxy"
-VERSION="1.5.2.0"
+VERSION="1.5.10.0"
 ZAP_URL="https://github.com/anholt/libepoxy"
