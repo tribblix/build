@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fix script run in the install context
 # assumes you're in the directory containing the built software
 # the argument is DESTDIR
@@ -38,8 +40,8 @@ TBUILD="tribblix_build"
 #
 # 64-bit typelib
 #
-cp ../harfbuzz-4.3.0-64bit/${TBUILD}/src/HarfBuzz*gir ${DESTDIR}/usr/share/gir-1.0
-cp ../harfbuzz-4.3.0-64bit/${TBUILD}/src/HarfBuzz*typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
+cp ../harfbuzz-9.0.0-64bit/${TBUILD}/src/HarfBuzz*gir ${DESTDIR}/usr/share/gir-1.0
+cp ../harfbuzz-9.0.0-64bit/${TBUILD}/src/HarfBuzz*typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
 cp ../pango-1.50.14-64bit/${TBUILD}/pango/Pango*gir ${DESTDIR}/usr/share/gir-1.0
 cp ../pango-1.50.14-64bit/${TBUILD}/pango/Pango*typelib ${DESTDIR}/usr/lib/${ARCH64}/girepository-1.0
 cp ../atk-2.38.0-64bit/${TBUILD}/atk/Atk-1.0.gir ${DESTDIR}/usr/share/gir-1.0
