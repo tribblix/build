@@ -9434,7 +9434,7 @@
 -}
 -
 -// Uncommit the pages in a specified region.
--void os::pd_free_memory(char* addr, size_t bytes, size_t alignment_hint) {
+-void os::pd_disclaim_memory(char* addr, size_t bytes) {
 -  if (posix_madvise(addr, bytes, MADV_FREE) < 0) {
 -    debug_only(warning("MADV_FREE failed."));
 -    return;

@@ -5,6 +5,14 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+8
+
+In os_solaris.cpp, os::pd_free_memory() has been removed and
+os::pd_disclaim_memory() added. Looking at AIX, both were no-ops. On
+Linux, they're quite different. On BSD, the implementation is
+identical. So what I'll do is keep the same implementation, just
+changing the name and signature.
+
 24+7
 
 No changes.
