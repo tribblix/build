@@ -1,0 +1,4 @@
+PKG="TRIBipytree-python-312"
+NAME="Python ipytree"
+VERSION="0.2.2.0"
+ZAP_URL="https://pypi.org/project/ipytree"
