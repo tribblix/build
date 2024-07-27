@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 LC_COLLATE=C
@@ -24,6 +26,18 @@ export LC_COLLATE
 #
 cd $THOME/build
 for file in */depend */depend.*
+do
+    if ! /usr/bin/sort -c $file 2>/dev/null
+    then
+	echo "sort -o $file $file"
+    fi
+done
+
+#
+# same policy for build_require
+#
+cd $THOME/build
+for file in */build_require */build_require.*
 do
     if ! /usr/bin/sort -c $file 2>/dev/null
     then
