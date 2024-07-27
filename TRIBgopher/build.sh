@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack gopher-release-3.0.17
 cd gopher-release-3.0.17
 ./configure --prefix=/usr
@@ -16,4 +18,3 @@ cp doc/gopherrc.5 /tmp/ggf/usr/share/man/man5
 ${THOME}/build/create_pkg TRIBgopher /tmp/ggf
 rm -fr /tmp/ggf
 cd ..
-

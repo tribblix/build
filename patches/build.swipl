@@ -270,4 +270,3 @@ if [ "$setvars" = "false" ]; then
   # See whether any package failed to build
   bash packages/report-failed || exit 1
 fi # setvars
-

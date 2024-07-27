@@ -10,4 +10,3 @@ mkdir -p usr/share/man/man1
 mv usr/versions/python-3.12/man/man1/* usr/share/man/man1
 rmdir usr/versions/python-3.12/man/man1
 rmdir usr/versions/python-3.12/man
-

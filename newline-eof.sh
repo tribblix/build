@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -38,7 +40,28 @@ do
 	nl=$(( $nl ))
 	case $nl in
 	    0)
-		echo "FAIL: $file"
+		echo "FAIL: no newline at end of $file"
+		;;
+	esac
+	#
+	# ignore trailing blank lines for certain files in patches
+	#
+	case $file in
+	    *.patch|*mapfile*|*.map|patches/*.conf)
+		continue
+		;;
+	esac
+	#
+	# and trailing blank lines, builtins are fine here
+	#
+	nw=`tail -1 $file|wc -w`
+	#
+	# cheat to trim surrounding spaces
+	#
+	nw=$(( $nw ))
+	case $nw in
+	    0)
+		echo "FAIL: blank line at end of $file"
 		;;
 	esac
     fi

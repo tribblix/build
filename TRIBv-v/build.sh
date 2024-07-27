@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 git clone https://github.com/vlang/v
 cd v
 #
@@ -31,4 +33,3 @@ mkdir -p /tmp/ppv/usr/versions/v
 tar cf - . | (cd /tmp/ppv/usr/versions/v ; tar xf -)
 ${THOME}/build/create_pkg TRIBv-v /tmp/ppv
 rm -fr /tmp/ppv
-

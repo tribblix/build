@@ -1,7 +1,8 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # cleanup
 #
 rm -fr usr/share/man/nl
 rm -fr usr/share/man/ru
-
