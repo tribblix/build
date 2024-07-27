@@ -1,3 +1,4 @@
 PKG="TRIBchrony"
 NAME="chrony"
 VERSION="4.5.0"
+ZAP_URL="https://chrony-project.org/"
