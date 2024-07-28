@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we use less to provide /usr/xpg4/bin/more, as that's really what
 # less is, and the xpg4 more is a closed binary
 #
