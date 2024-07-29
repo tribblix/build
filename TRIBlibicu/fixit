@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-# an update is an SONAME bump, so save the previous version for compatibility
+# SPDX-License-Identifier: CDDL-1.0
+#
+# an update is an SONAME bump, so save the previous version(s) for compatibility
 #
 case `uname -p` in
 sparc)
@@ -15,5 +17,21 @@ esac
 # just in case
 #
 mkdir -p usr/lib/${ARCH64}
-cp -a /usr/lib/libicu*.50* usr/lib
-cp -a /usr/lib/${ARCH64}/libicu*.50* usr/lib/${ARCH64}
+
+#
+# x86 doesn't need 32-bit, and can be more specific
+#
+case $ARCH64 in
+    sparcv9)
+	cp -a /usr/lib/libicu*.50* usr/lib
+	cp -a /usr/lib/${ARCH64}/libicu*.50* usr/lib/${ARCH64}
+	;;
+    *)
+	cp -a /usr/lib/${ARCH64}/libicudata*.50* usr/lib/${ARCH64}
+	cp -a /usr/lib/${ARCH64}/libicui18n*.50* usr/lib/${ARCH64}
+	cp -a /usr/lib/${ARCH64}/libicuuc*.50* usr/lib/${ARCH64}
+	;;
+esac
+
+cp -a /usr/lib/libicu*.68* usr/lib
+cp -a /usr/lib/${ARCH64}/libicu*.68* usr/lib/${ARCH64}
