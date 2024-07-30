@@ -1,4 +1,4 @@
 PKG="TRIBlibicu"
 NAME="ICU4c"
-VERSION="74.2.0"
+VERSION="72.1.0"
 ZAP_URL="http://site.icu-project.org/"
