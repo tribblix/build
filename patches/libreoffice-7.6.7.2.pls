@@ -10,7 +10,6 @@
 -p1 loo7/wmadaptor-alloca.patch
 -p1 loo7/03-alloca.patch
 -p1 loo7/salframe-alloca.patch
--p1 loo7/ttime.patch
 -p1 loo7/04-printerinfomanager.cxx.patch
 -p1 loo7/06-i18n_ic.cxx.patch
 -p1 loo7/rtfcontrolwords.patch
@@ -21,3 +20,4 @@
 -p1 loo7/58-backtrace-c.patch
 -p1 loo7/59-bridge-library.patch
 -p1 loo7/61-fix-coinmp-makefile.patch
+-p1 loo7/20-skia-illumos-no-malloc-usable-size.patch

@@ -1,3 +1,5 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 cp -r ${THOME}/build/patches/loo7/gcc3_solaris_x86-64 bridges/source/cpp_uno

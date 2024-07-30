@@ -29,7 +29,7 @@ P TRIBlibzmf
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
 P TRIBsys-libdbus
-P TRIBv-python-311
+P TRIBv-python-312
 P TRIBx11-libepoxy
 P TRIBx11-libice
 P TRIBx11-libsm

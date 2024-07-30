@@ -1,8 +1,10 @@
 #!/bin/sh
 #
-$THOME/build/unpack libreoffice-7.4.7.2
-cd libreoffice-7.4.7.2
-$THOME/build/patches/libreoffice-7.4.7.2.preconf
+# SPDX-License-Identifier: CDDL-1.0
+#
+$THOME/build/unpack libreoffice-7.6.7.2
+cd libreoffice-7.6.7.2
+$THOME/build/patches/libreoffice-7.6.7.2.preconf
 
 #
 # if you have a previous build, copy the contents of external/tarballs
@@ -39,7 +41,7 @@ sed -i '/stack-protector-strong/d' ./solenv/gbuild/platform/com_GCC_defs.mk
 #
 
 #
-# need to ensure we find python3.11, which is 64-bit
+# need to ensure we find python3.12, which is 64-bit
 #
 # note that we specify 64-bit in multiple ways, as there are multiple
 # components which pick up on different things
@@ -48,7 +50,7 @@ sed -i '/stack-protector-strong/d' ./solenv/gbuild/platform/com_GCC_defs.mk
 env CFLAGS="-m64" LDFLAGS="-m64" CXXFLAGS="-m64" \
 CC="gcc -m64" CXX="g++ -m64" AFLAGS="-m64" \
 PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig \
-PATH=/usr/gnu/bin:/usr/versions/python-3.11/bin:/usr/bin/amd64:$PATH \
+PATH=/usr/gnu/bin:/usr/versions/python-3.12/bin:/usr/bin/amd64:$PATH \
 bash ./configure \
 --prefix=/usr/versions/libreoffice-7 \
 --without-java \
@@ -84,11 +86,11 @@ bash ./configure \
 env CFLAGS="-m64" LDFLAGS="-m64" CXXFLAGS="-m64" \
 CC="gcc -m64" CXX="g++ -m64" AFLAGS="-m64" \
 PKG_CONFIG_PATH=/usr/lib/amd64/pkgconfig \
-PATH=/usr/gnu/bin:/usr/versions/python-3.11/bin:/usr/bin/amd64:$PATH \
+PATH=/usr/gnu/bin:/usr/versions/python-3.12/bin:/usr/bin/amd64:$PATH \
 /usr/gnu/bin/make -j 6 VERBOSE=1 gb_SUPPRESS_TESTS=x
 
 #
 # need distro-pack-install to get things assembled the right way
 #
-env PATH=/usr/gnu/bin:/usr/versions/python-3.11/bin:$PATH /usr/gnu/bin/make distro-pack-install DESTDIR=/tmp/loo
+env PATH=/usr/gnu/bin:/usr/versions/python-3.12/bin:$PATH /usr/gnu/bin/make distro-pack-install DESTDIR=/tmp/loo
 ${THOME}/build/create_pkg TRIBlibreoffice /tmp/loo

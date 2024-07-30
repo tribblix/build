@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 # the user command
 mkdir -p usr/bin
@@ -27,7 +30,7 @@ gunzip usr/share/man/man1/*.gz
 # some files are shipped with a broken RPATH
 #
 cd usr/versions/libreoffice-7/lib/libreoffice/program
-for file in librdf-lo.so.0 librasqal-lo.so.3 libwpd-0.10-lo.so.10 libwpg-0.3-lo.so.3 libodfgen-0.1-lo.so.1 liborcus-0.17.so.0 libCbc.so.3 libCbcSolver.so.3 libCgl.so.1 libClp.so.1 libCoinMP.so.1 libOsi.so.1 libOsiClp.so.1 libmwaw-0.3-lo.so.3 libetonyek-0.1-lo.so.1 libstaroffice-0.0-lo.so.0
+for file in librdf-lo.so.0 librasqal-lo.so.3 libwpd-0.10-lo.so.10 libwpg-0.3-lo.so.3 libodfgen-0.1-lo.so.1 liborcus-0.18.so.0 libCbc.so.3 libCbcSolver.so.3 libCgl.so.1 libClp.so.1 libCoinMP.so.1 libOsi.so.1 libOsiClp.so.1 libmwaw-0.3-lo.so.3 libetonyek-0.1-lo.so.1 libstaroffice-0.0-lo.so.0
 do
     /usr/bin/elfedit -e 'dyn:runpath $ORIGIN' $file
     /usr/bin/elfedit -e 'dyn:rpath $ORIGIN' $file
