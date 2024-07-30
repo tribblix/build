@@ -1,11 +1,12 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # 3.12 is 64-bit
 #
 # There's a preconf patch to disable epoll
 #
-# not yet default, so the default symlinks aren't created - see the
-# ###FIXME### lines in the fixit file
+# now default
 #
 
 #
@@ -24,6 +25,6 @@ env TRIBBLIX_CFLAGS="-D_XOPEN_SOURCE=600 -D__EXTENSIONS__=1 -I/usr/gnu/include -
 #
 # zap d TRIBv-python-312-tests TRIBv-python-312-tkinter TRIBv-python-312
 #
-# TODO: consider packaging pip + setuptools separately
+# TODO: consider packaging pip separately
 #
 ${THOME}/build/genpkg TRIBv-python-312 Python-3.12.4

@@ -1,10 +1,14 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # 3.11 is 64-bit
 #
 # There's a preconf patch to disable epoll
 # There's an xpg6 patch to fix socket
 # There's a setup patch to enable ILLUMOS
+#
+# no longer default, so the default symlinks aren't created
 #
 
 #
@@ -17,6 +21,7 @@
 #
 
 ${THOME}/build/dobuild +64only Python-3.11.9 -P /usr/versions/python-3.11 -L -C --enable-shared
+
 #
 # NB. TRIBv-python-311 must not be installed, or the make
 # install step will get confused
