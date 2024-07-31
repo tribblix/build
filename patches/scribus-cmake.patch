@@ -4,7 +4,7 @@ value that's likely to be wrong.
 
 --- a/CMakeLists_Dependencies.cmake	Sun Jan 23 16:16:42 2022
 +++ b/CMakeLists_Dependencies.cmake	Thu Dec  7 15:36:14 2023
-@@ -3,7 +3,7 @@
+@@ -50,7 +50,7 @@
  
  #<< Qt
  #Qt less than 6
