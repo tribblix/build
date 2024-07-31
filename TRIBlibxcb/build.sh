@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # some parts need prior parts installed, so need to build a partial
 # package and install it before moving on
 #
