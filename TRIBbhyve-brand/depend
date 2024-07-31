@@ -3,5 +3,5 @@ P TRIBdev-acpi
 P TRIBsys-bhyve
 P TRIBsys-bhyve-firmware
 P TRIBsys-zones
-P TRIBv-python-311
-P TRIByaml-python-311
+P TRIBv-python-312
+P TRIByaml-python-312
