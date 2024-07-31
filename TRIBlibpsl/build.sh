@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # It will pick up libicu as the runtime by default, but we want to avoid
 # such a large package being pulled in by curl
 # The alternative is libidn{,2} but that pulls in libunistring and again
