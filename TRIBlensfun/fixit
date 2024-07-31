@@ -1,5 +1,8 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # delete the python egg, it's in the wrong place anyway
 #
 rm -fr usr/lib/python3.11
+rm -fr usr/lib/python3.12
