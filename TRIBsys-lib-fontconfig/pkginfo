@@ -1,4 +1,4 @@
 PKG="TRIBsys-lib-fontconfig"
 NAME="fontconfig"
-VERSION="2.14.2.0"
+VERSION="2.15.0.0"
 ZAP_URL="https://www.freedesktop.org/wiki/Software/fontconfig/"
