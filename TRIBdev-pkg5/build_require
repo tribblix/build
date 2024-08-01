@@ -1,6 +1,8 @@
-TRIBcffi-python-311
+TRIBcffi-python-312
 TRIBintltool
-TRIBjsonrpclib-python-311
-TRIBpycparser-python-311
-TRIBsix-python-311
+TRIBjsonrpclib-python-312
+TRIBpycparser-python-312
+TRIBsetuptools-python-312
+TRIBsix-python-312
+TRIBsys-net-overlay
 TRIBsys-zones-internal
