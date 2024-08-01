@@ -1,4 +1,0 @@
-PKG="TRIBpackageurl-python-311"
-NAME="Python packageurl-python"
-VERSION="0.15.6.0"
-ZAP_URL="https://pypi.org/project/packageurl-python"
