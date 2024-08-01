@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-${THOME}/build/pkg_wheel TRIBsbom-4-python-311 sbom4python-0.10.4-py2.py3-none-any.whl
