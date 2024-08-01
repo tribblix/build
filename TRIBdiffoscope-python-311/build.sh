@@ -8,4 +8,4 @@
 # [cmdline] argcomplete progressbar
 # also pypdf defusedxml
 #
-${THOME}/build/pkg_setup_py TRIBdiffoscope-python-311 diffoscope-272
+${THOME}/build/pkg_setup_py TRIBdiffoscope-python-311 diffoscope-273
