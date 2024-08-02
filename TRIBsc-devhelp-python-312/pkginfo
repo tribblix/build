@@ -1,4 +1,4 @@
 PKG="TRIBsc-devhelp-python-312"
 NAME="Python sphinxcontrib-devhelp"
-VERSION="1.0.6.0"
+VERSION="2.0.0.0"
 ZAP_URL="https://pypi.org/project/sphinxcontrib-devhelp"

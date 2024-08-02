@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBsc-devhelp-python-311 sphinxcontrib_devhelp-1.0.6
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 TRIBsc-devhelp-python-311 sphinxcontrib_devhelp-2.0.0
