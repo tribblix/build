@@ -104,7 +104,7 @@ EOF
 
 chmod 555 lib/svc/method/fc-cache
 
-cat > lib/svc/manifest/application/font/fc-cache.xml  <<EOF
+cat > lib/svc/manifest/application/font/fc-cache.xml <<EOF
 <?xml version="1.0"?>
 <!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
 <!--

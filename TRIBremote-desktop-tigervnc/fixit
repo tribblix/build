@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is the client package, so the only binary we want is
 # vncviewer
 #
@@ -7,18 +9,18 @@ rm -fr usr/share/man/man8 usr/share/doc
 rm -fr usr/lib/systemd
 rm -fr etc usr/libexec usr/sbin
 
-cd usr/bin
+cd usr/bin || exit 1
 for file in *
 do
-	if [ "x$file" != "xvncviewer" ]; then
-	   rm $file
-	fi
+    if [ "x$file" != "xvncviewer" ]; then
+	rm $file
+    fi
 done
 cd ../..
-cd usr/share/man/man1
+cd usr/share/man/man1 || exit 1
 for file in *
 do
-	if [ "x$file" != "xvncviewer.1" ]; then
-	   rm $file
-	fi
+    if [ "x$file" != "xvncviewer.1" ]; then
+	rm $file
+    fi
 done

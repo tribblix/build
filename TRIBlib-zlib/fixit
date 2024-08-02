@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 case `uname -p` in
 sparc)
   ARCH64="sparcv9"
@@ -15,13 +17,13 @@ rm lib/libz.so.1
 mv lib/libz.so.1.* lib/libz.so.1
 cd lib
 rm libz.so
-ln -s libz.so.1  libz.so
+ln -s libz.so.1 libz.so
 cd ..
 rm lib/${ARCH64}/libz.so.1
 mv lib/${ARCH64}/libz.so.1.* lib/${ARCH64}/libz.so.1
 cd lib/${ARCH64}
 rm libz.so
-ln -s libz.so.1  libz.so
+ln -s libz.so.1 libz.so
 cd ../..
 #
 # the installation and build correctly puts the libs in /lib instead of

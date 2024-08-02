@@ -1,10 +1,12 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fixes up prototype files, by setting the correct permissions
 # for existing directories
 #
 awk '
-{if ($3 ~ /^var\/adm/)  $6 = "sys"}
+{if ($3 ~ /^var\/adm/) $6 = "sys"}
 {if ($3 == "etc/mail") { $6 = "mail" ; $5 = "root" }}
 {if ($3 ~ /^etc\/mail\/cf/) { $6 = "mail" ; $5 = "root" }}
 {if ($3 ~ /^var\/spool\/clientmqueue/) { $6 = "smmsp" ; $5 = "smmsp" ; $4 = "0770" }}

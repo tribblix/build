@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 rm -fr usr/share/man/sk
 rm -fr usr/share/man/cs
@@ -11,9 +13,9 @@ rmdir usr/share/WindowMaker/Backgrounds
 ln -s ../pixmaps/backgrounds usr/share/WindowMaker/Backgrounds
 
 cd usr/share/WindowMaker
-for file in  *menu*
+for file in *menu*
 do
-mv $file temp.$file
-cat temp.$file | sed s:/usr/local/GNUstep/Applications/WPrefs.app/WPrefs:/usr/bin/WPrefs:g | sed s:/usr/local/share:/usr/share:g > $file
-rm temp.$file
+    mv $file temp.$file
+    cat temp.$file | sed s:/usr/local/GNUstep/Applications/WPrefs.app/WPrefs:/usr/bin/WPrefs:g | sed s:/usr/local/share:/usr/share:g > $file
+    rm temp.$file
 done

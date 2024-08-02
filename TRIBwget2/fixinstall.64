@@ -25,5 +25,5 @@ fi
 #
 mkdir -p ${DESTDIR}/usr/share/man/man1
 mkdir -p ${DESTDIR}/usr/share/man/man3
-cp docs/man/man1/wget2.1  ${DESTDIR}/usr/share/man/man1
-cp docs/man/man3/*.3  ${DESTDIR}/usr/share/man/man3
+cp docs/man/man1/wget2.1 ${DESTDIR}/usr/share/man/man1
+cp docs/man/man3/*.3 ${DESTDIR}/usr/share/man/man3

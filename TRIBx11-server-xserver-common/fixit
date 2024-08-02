@@ -1,10 +1,12 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # simply put back the pieces from the old package that we still want
 #
 mkdir -p usr/lib/xorg
-cp -p  ${BUILDROOT}/patches/xserver-common/TrustedExtensionsPolicy usr/lib/xorg
-cp -p  ${BUILDROOT}/patches/xserver-common/protocol.txt usr/lib/xorg
+cp -p ${BUILDROOT}/patches/xserver-common/TrustedExtensionsPolicy usr/lib/xorg
+cp -p ${BUILDROOT}/patches/xserver-common/protocol.txt usr/lib/xorg
 mkdir -p usr/bin
 cd usr/bin
 ln -s Xorg Xserver
