@@ -5,4 +5,4 @@
 # dependencies are not only the basic but also all of [standard]
 # except on sparc, which misses watchfiles which depends on rust
 #
-${THOME}/build/pkg_pep518 TRIBuvicorn-python-312 uvicorn-0.30.4
+${THOME}/build/pkg_pep518 TRIBuvicorn-python-312 uvicorn-0.30.5
