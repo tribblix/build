@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 #
 # the ga tarball can be obtained from here or github
@@ -46,7 +48,7 @@ env PATH=${HOME}/sunstudio12.1/bin:/usr/bin:/usr/sbin gmake all
 #
 # new gcc build
 #
-env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin  bash ./configure \
+env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin bash ./configure \
 --with-milestone=fcs --with-update-version=412 --with-build-number=b08 \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk1.8.0 \
 --with-toolchain-type=gcc \

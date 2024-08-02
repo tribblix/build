@@ -1,9 +1,11 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # The value of info.source_url in the OI package gives us the list
 # of source files, which is in filelist
 #
-# The way OI appear to  ship these is to take those fonts and split out all
+# The way OI appear to ship these is to take those fonts and split out all
 # the ISO8859 fonts into separate packages
 # OI also put those fonts into separate directories
 # The current build also packages gzipped versions of the fonts
