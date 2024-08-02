@@ -1,4 +1,4 @@
 PKG="TRIBvala"
 NAME="Vala programming language for GNOME"
-VERSION="0.56.1.0"
+VERSION="0.56.1.1"
 ZAP_URL="https://wiki.gnome.org/Projects/Vala"
