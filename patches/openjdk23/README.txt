@@ -8,7 +8,7 @@ JDK 23 now that jdk22 has been forked off.
 Cleanup: Removed last remnants of extended_FILE_stdio, it's unused as 32-bit
 only, and the code to enable it had already been removed.
 
-23+27, 23+28, 23+29, 23+30, 23+31, 23+32, 23+33, 23+34
+23+27, 23+28, 23+29, 23+30, 23+31, 23+32, 23+33, 23+34, 23+35
 
 No changes.
 
