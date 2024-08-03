@@ -21,6 +21,12 @@
 # git clone https://repo.palemoon.org/Basilisk-Dev/Basilisk ./
 # git submodule init && git submodule update
 #
+# temporary hack: edit the file
+# basilisk/installer/package-manifest.in
+# and guard the line
+# @RESPATH@/components/content_geckomediaplugins.xpt
+# with an #ifdef MOZ_GMP / #endif
+#
 # and then the build
 #
 # cp $THOME/build/patches/basilisk.mozconfig .mozconfig
@@ -36,12 +42,12 @@
 # a 15GB ld process
 #
 # it's suggested that './mach run' can run basilisk from the build tree
-# but I've found that doesn't work
+# but I've found that doesn't always work
 #
 # This will create a tarball
-#   basilisk-20230807090211.solaris2.11-x86_64-illumos.tar.xz
+#   basilisk-20240803112139.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-basilisk basilisk-20230807090211.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-basilisk basilisk-20240803112139.solaris2.11-x86_64-illumos
