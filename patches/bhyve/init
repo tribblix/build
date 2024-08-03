@@ -17,7 +17,7 @@
 # }}}
 
 # Copyright 2021 OmniOS Community Edition (OmniOSce) Association.
-# Copyright 2022 Peter Tribble
+# Copyright 2024 Peter Tribble
 
 import getopt
 import logging
@@ -431,7 +431,7 @@ except:
     pass
 
 # Additional Disks
-for i, v in build_devlist('disk', 20).items():
+for i, v in build_devlist('disk', 16).items():
     if i < 10:
         args.extend([
             '-s', '{0}:{1},{2},{3}'.format(DISK_SLOT, i, opts['diskif'],
@@ -439,7 +439,7 @@ for i, v in build_devlist('disk', 20).items():
         ])
     else:
         args.extend([
-            '-s', '{0}:{1},{2},{3}'.format(DISK_SLOT2, i - 10, opts['diskif'],
+            '-s', '{0}:{1},{2},{3}'.format(DISK_SLOT2, i - 8, opts['diskif'],
             diskpath(v))
         ])
 
