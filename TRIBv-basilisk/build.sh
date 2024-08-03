@@ -1,7 +1,12 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a two-stage build
 # first, build basilisk, the build is like Pale Moon
+#
+# requires python2, and also requires TRIBopenssl11-compat because
+# hashlib is linked against openssl11
 #
 # the two tweaks you'll need are
 #   ac_add_options --disable-gconf

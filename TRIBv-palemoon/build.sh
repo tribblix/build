@@ -9,6 +9,9 @@
 # first, build palemoon according to the instructions
 #   http://developer.palemoon.org/build/sunos/
 #
+# requires python2, and also requires TRIBopenssl11-compat because
+# hashlib is linked against openssl11
+#
 # the two tweaks you'll need are
 #   ac_add_options --disable-gconf
 #   ac_add_options --disable-pulseaudio
