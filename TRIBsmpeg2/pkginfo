@@ -1,4 +1,4 @@
 PKG="TRIBsmpeg2"
 NAME="SDL2 MPEG Player library"
-VERSION="2.0.0.2"
+VERSION="2.0.0.3"
 ZAP_URL="http://icculus.org/smpeg/"
