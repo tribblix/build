@@ -1,3 +1,4 @@
 P TRIBcompress-bzip2
+P TRIBcompress-xz
+P TRIBcompress-zstd
 P TRIBlib-zlib
-P TRIBlibicu
