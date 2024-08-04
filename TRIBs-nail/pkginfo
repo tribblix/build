@@ -1,4 +1,4 @@
 PKG="TRIBs-nail"
 NAME="MIME-capable advanced replacement for mailx"
-VERSION="14.9.24.1"
+VERSION="14.9.25.0"
 ZAP_URL="https://www.sdaoden.eu/code.html"
