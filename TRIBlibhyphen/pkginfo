@@ -1,4 +1,4 @@
 PKG="TRIBlibhyphen"
 NAME="libhyphen"
-VERSION="2.8.8.0"
+VERSION="2.8.8.1"
 ZAP_URL="https://github.com/hunspell/hyphen"
