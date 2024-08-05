@@ -119,6 +119,9 @@ EOF
 chmod a+x $PNAME/build.sh
 
 case $BUILDER in
+    cmbuild)
+	echo "TRIBcmake" > $PNAME/build_require
+	;;
     mesonbuild)
 	echo "TRIBmeson-python-311" > $PNAME/build_require
 	echo "TRIBninja" >> $PNAME/build_require
