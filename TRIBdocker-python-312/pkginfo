@@ -1,0 +1,4 @@
+PKG="TRIBdocker-python-312"
+NAME="Python docker"
+VERSION="7.1.0.0"
+ZAP_URL="https://pypi.org/project/docker"
