@@ -1,0 +1,4 @@
+PKG="TRIBx11-xfs"
+NAME="X11 font server"
+VERSION="1.2.2.0"
+ZAP_URL="https://www.x.org/releases/individual/app/"
