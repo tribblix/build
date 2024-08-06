@@ -10,8 +10,8 @@ fi
 #
 # get the config file to give the correct --libs
 #
-gsed -i 's:-L\$libdir:\"-L\$libdir -R\$libdir\":' usr/gnu/bin/ncurses6-config
-gsed -i 's:-L\$libdir:\"-L\$libdir -R\$libdir\":' usr/gnu/bin/`isainfo -k`/ncurses6-config
+gsed -i 's:-L\$libdir:-L\$libdir -R\$libdir:' usr/gnu/bin/ncursesw6-config
+gsed -i 's:-L\$libdir:-L\$libdir -R\$libdir:' usr/gnu/bin/`isainfo -k`/ncursesw6-config
 
 #
 # symlinks for ncurses as opposed to ncursesw
