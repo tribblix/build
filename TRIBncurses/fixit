@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fix up sun-color
 #
 if [ -d usr/gnu/share/terminfo/s ]; then
@@ -10,3 +12,16 @@ fi
 #
 gsed -i 's:-L\$libdir:\"-L\$libdir -R\$libdir\":' usr/gnu/bin/ncurses6-config
 gsed -i 's:-L\$libdir:\"-L\$libdir -R\$libdir\":' usr/gnu/bin/`isainfo -k`/ncurses6-config
+
+#
+# symlinks for ncurses as opposed to ncursesw
+#
+VER="6.4"
+MVER="6"
+cd usr/gnu/lib/`isainfo -k`
+for lib in form menu ncurses panel
+do
+    ln -s lib${lib}w.so lib${lib}.so
+    ln -s lib${lib}w.so.${VER} lib${lib}.so.${VER}
+    ln -s lib${lib}w.so.${MVER} lib${lib}.so.${MVER}
+done
