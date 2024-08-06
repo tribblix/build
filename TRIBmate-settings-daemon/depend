@@ -12,7 +12,5 @@ P TRIBlibxklavier
 P TRIBmate-desktop
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-mozilla-nss
-P TRIBsys-libdbus
-P TRIBsys-libdbus-glib
 P TRIBx11-libx11
 P TRIBx11-libxi
