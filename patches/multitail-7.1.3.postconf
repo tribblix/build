@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# ncurses is in /usr/gnu
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+sed -i "s:/usr/local/include/:/usr/gnu/include:" makefile.solaris_gcc
+#
+# add -m64 to EXTRA_CFLAGS and EXTRA_LDFLAGS too
+#
+sed -i "s:-L/usr/local/lib/:-L/usr/gnu/lib/${ARCH64} -R/usr/gnu/lib/${ARCH64}:" makefile.solaris_gcc

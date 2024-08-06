@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# ncurses is in /usr/gnu
-#
-sed -i 's:/usr/local/include/:/usr/gnu/include:' makefile.solaris_gcc
-sed -i 's:-L/usr/local/lib/:-L/usr/gnu/lib -R/usr/gnu/lib:' makefile.solaris_gcc
