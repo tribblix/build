@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# put things in the right place
-#
-mv usr/bin/`isainfo -k`/htop usr/bin
-rmdir usr/bin/`isainfo -k`

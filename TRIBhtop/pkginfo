@@ -1,4 +1,4 @@
 PKG="TRIBhtop"
 NAME="A better top"
-VERSION="2.2.0.1"
+VERSION="2.2.0.2"
 ZAP_URL="https://github.com/hishamhm/htop"
