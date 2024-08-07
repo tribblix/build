@@ -3,5 +3,6 @@ P TRIBgoog-res-media-python-311
 P TRIBgoogle-api-core-python-311
 P TRIBgoogle-auth-python-311
 P TRIBgoogle-crc32c-python-311
+P TRIBprotobuf-python-311
 P TRIBrequests-python-311
 P TRIBv-python-311
