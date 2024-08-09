@@ -1,4 +1,4 @@
 PKG="TRIBgcs-python-312"
 NAME="Python google-cloud-storage"
-VERSION="2.18.1.0"
+VERSION="2.18.2.0"
 ZAP_URL="https://pypi.org/project/google-cloud-storage"
