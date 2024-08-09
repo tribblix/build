@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -37,11 +39,11 @@ do
     # exclude alias files for which there's a platform-specific one
     SRCH=$(echo */alias.$PLAT | sed -e s:\.${PLAT}::g -e 's: :|:g')
     # exclude alias files that don't apply to this platform
-    LS2=$(grep -vl $PLAT */arch.txt)
+    LS2=$(ggrep -vl $PLAT */arch.txt)
     SRCH2=$(echo $LS2 | sed -e s:/arch.txt:/alias:g -e 's: :|:g')
     # simple grep is fine, the string is intrinsically anchored by the
     # leading TRIB prefix and the /alias on the end
-    CFILES=$(ls -1d */alias | egrep -v -e "(${SRCH})" -e "(${SRCH2})")
+    CFILES=$(ls -1d */alias | gegrep -v -e "(${SRCH})" -e "(${SRCH2})")
     DUPS=$(sort $CFILES */alias.${PLAT}|uniq -d)
     if [[ -n $DUPS ]]; then
 	echo "ERROR: duplicates found for ${PLAT}"
@@ -55,7 +57,7 @@ done
 #
 for PLAT in $PLATFORMS
 do
-    LS2=$(grep -vl "$PLAT" */arch.txt)
+    LS2=$(ggrep -vl "$PLAT" */arch.txt)
     for file in $LS2
     do
 	if [ -f "${file/arch.txt/alias}.${PLAT}" ]; then
