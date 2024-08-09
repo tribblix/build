@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# clamdtop requires ncurses, but clamav has an interesting way to pass
+# ncurses through that plain doesn't work correctly for us, so disable it
+#
+sed -i '/clamdtop/d' CMakeLists.txt

@@ -1,12 +1,15 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # clamav
 #
-# ensure that libtool isn't installed
-#  zap uninstall libtool
+# there's a preconf to disable clamdtop, which needs curses but can't find it
 #
-# libjson enables clamsubmit which is optional and we've not shipped
-# in the past
+# disable tests and milter as they don't build
 #
-${THOME}/build/dobuild -64only clamav-0.103.11 -P /opt/tribblix/clamav -C --without-libjson
-${THOME}/build/genpkg TRIBblix-clamav clamav-0.103.11
+# there are strange failures in rust - just delete the .so it complains about
+# and rerun gmake
+#
+${THOME}/build/cmbuild +gnu -64only clamav-1.0.6 -P /opt/tribblix/clamav -C "-DENABLE_MILTER=OFF -DENABLE_TESTS=OFF"
+${THOME}/build/genpkg TRIBblix-clamav clamav-1.0.6
