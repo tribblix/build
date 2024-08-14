@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -26,11 +28,11 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 # xref against this illumos catalog
 #
-ILVER=m34
+ILVER=m35
 ARCH=i386
 case $(pwd) in
     */overlays.lx)
-	ILVER=m34lx
+	ILVER=m35lx
 	ARCH=i386
 	;;
     */overlays.sparc)
@@ -38,7 +40,7 @@ case $(pwd) in
 	ARCH=sparc
 	;;
     */overlays)
-	ILVER=m34
+	ILVER=m35
 	ARCH=i386
 	;;
     *)
