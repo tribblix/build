@@ -1,5 +1,14 @@
 --- fs-uae-3.1.66.orig/src/slirp/slirp.h	So. Dez. 19 04:24:39 2021
 +++ fs-uae-3.1.66/src/slirp/slirp.h	Di. Juni 14 08:45:16 2022
+@@ -74,7 +74,7 @@
+ #endif
+ 
+ #ifdef NEED_TYPEDEFS
+-typedef char int8_t;
++typedef signed char int8_t;
+ typedef unsigned char u_int8_t;
+ 
+ # if SIZEOF_SHORT == 2
 @@ -290,41 +290,41 @@
  #endif
  
