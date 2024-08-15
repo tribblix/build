@@ -1,7 +1,6 @@
 P TRIBcompress-bzip2
 P TRIBcompress-xz
 P TRIBlib-zlib
-P TRIBlibsdl2
 P TRIBlibxcb
 P TRIBx11-libx11
 P TRIBx11-libxext
