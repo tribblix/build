@@ -11,6 +11,7 @@
 #
 ${THOME}/build/unpack https://github.com/open-simh/simh
 cd simh
+sed -i s:fp_zero:sfp_zero: sigma/sigma_fp.c I1620/i1620_fp.c
 env PATH=/usr/bin/`${THOME}/build/getarch`:$PATH gmake -j 4 WARNINGS=ALLOWED TESTS=0 CC="gcc -m64"
 rm -fr /tmp/simh
 mkdir -p /tmp/simh/usr/versions/simh
