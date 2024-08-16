@@ -1,2 +1,4 @@
 P TRIBimage-libpng
+P TRIBlib-zlib
 P TRIBlibsdl2
+P TRIBlibsdl2-ttf

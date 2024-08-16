@@ -1,10 +1,17 @@
 #!/bin/sh
 #
-# unpack the master.zip file and rename to simh-master.zip
+# SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/unpack simh-master
-cd simh-master
-gmake
+# the open-simh fork appears to be more actively maintained
+#
+# the cmake build isn't portable and is broken
+#
+# we turn off warnings-as-errors and tests, as some fail and thus break
+# the build
+#
+${THOME}/build/unpack https://github.com/open-simh/simh
+cd simh
+env PATH=/usr/bin/`${THOME}/build/getarch`:$PATH gmake -j 4 WARNINGS=ALLOWED TESTS=0 CC="gcc -m64"
 rm -fr /tmp/simh
 mkdir -p /tmp/simh/usr/versions/simh
 cp BIN/* README.md /tmp/simh/usr/versions/simh

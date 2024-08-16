@@ -1,6 +1,11 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # symlinks
+#
+# all prefixed with simh-, we can't use the original names as they
+# might conflict with something else (they certainly did in the past)
 #
 mkdir -p usr/bin
 cd usr/versions/simh
@@ -8,4 +13,4 @@ for file in *
 do
   ln -s ../../usr/versions/simh/$file ../../bin/simh-$file
 done
-rm ../../bin/simh-README.md
+rm -f ../../bin/simh-README.md
