@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we ship gvim and the desktop integration pieces in the
 # TRIBeditor-vim-gtk2 package
 #
@@ -8,5 +10,5 @@
 #
 # need to make with -k because msgfmt can't cope with one or more files
 #
-env TRIBBLIX_CFLAGS=-std=gnu99 ${THOME}/build/dobuild +gnu -64only vim-9.1.0356 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --without-x --disable-canberra --disable-libsodium" -M -k
-${THOME}/build/genpkg TRIBeditor-vim vim-9.1.0356
+env TRIBBLIX_CFLAGS=-std=gnu99 ${THOME}/build/dobuild +gnu -64only vim-9.1.0678 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --without-x --disable-canberra --disable-libsodium" -M -k
+${THOME}/build/genpkg TRIBeditor-vim vim-9.1.0678
