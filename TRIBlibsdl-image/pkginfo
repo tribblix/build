@@ -1,4 +1,4 @@
 PKG="TRIBlibsdl-image"
 NAME="SDL image file loading library"
-VERSION="1.2.12.2"
+VERSION="1.2.12.3"
 ZAP_URL="http://www.libsdl.org/projects/SDL_image/release-1.2.html"
