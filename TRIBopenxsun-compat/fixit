@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 SDIR="${BUILDROOT}/patches/openXsun"
 
@@ -10,6 +12,16 @@ mkdir -p usr/openwin/server/lib
 cp ${SDIR}/libowconfig.so.0 usr/openwin/server/lib
 cp ${SDIR}/liblbxutil.so.1 usr/openwin/server/lib
 chmod 755 usr/openwin/server/lib/lib*
+mkdir -p usr/share/X11
+cp ${SDIR}/XErrorDB usr/share/X11
+cp ${SDIR}/XKeysymDB usr/share/X11
+chmod 0444 usr/share/X11/X*
+mkdir -p usr/X11/lib/X11
+mkdir -p usr/X11/share/X11
+ln -s ../../../share/X11/XErrorDB usr/X11/lib/X11
+ln -s ../../../share/X11/XKeysymDB usr/X11/lib/X11
+ln -s ../../../share/X11/XErrorDB usr/X11/share/X11
+ln -s ../../../share/X11/XKeysymDB usr/X11/share/X11
 
 #
 # this wrapper is like the one in /usr/openwin/bin, but with the correct
@@ -35,3 +47,8 @@ cd usr/openwin/lib/X11
 ln -s ../../../../usr/lib/X11/rgb.txt .
 ln -s ../../../../usr/lib/X11/rgb.dir .
 ln -s ../../../../usr/lib/X11/rgb.pag .
+ln -s ../../../share/X11/XErrorDB .
+ln -s ../../../share/X11/XKeysymDB .
+cd ..
+ln -s X11/XErrorDB .
+ln -s X11/XKeysymDB .
