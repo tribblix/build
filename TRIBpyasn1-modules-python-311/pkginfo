@@ -1,4 +1,0 @@
-PKG="TRIBpyasn1-modules-python-311"
-NAME="Python pyasn1-modules"
-VERSION="0.4.0.0"
-ZAP_URL="https://pypi.org/project/pyasn1-modules"

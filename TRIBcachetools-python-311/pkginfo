@@ -1,4 +1,0 @@
-PKG="TRIBcachetools-python-311"
-NAME="Python cachetools"
-VERSION="5.4.0.0"
-ZAP_URL="https://pypi.org/project/cachetools"

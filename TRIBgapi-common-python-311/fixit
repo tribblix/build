@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-# permissions all messed up
-#
-chmod -R a+r usr/versions
