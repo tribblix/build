@@ -1,8 +1,9 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/unpack janet-1.32.1
-cd janet-1.32.1
+${THOME}/build/unpack janet-1.35.2
+cd janet-1.35.2
 
 # this updates COMMON_CFLAGS so it applies to both the bootstrap
 # and the build
