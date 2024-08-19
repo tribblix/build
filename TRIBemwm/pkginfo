@@ -1,4 +1,4 @@
 PKG="TRIBemwm"
 NAME="Enhanced Motif Window Manager"
-VERSION="1.1.0"
+VERSION="1.2.0"
 ZAP_URL="http://fastestcode.org/emwm.html"
