@@ -1,4 +1,0 @@
-PKG="TRIBtifffile-python-311"
-NAME="Python tifffile"
-VERSION="2024.8.10.0"
-ZAP_URL="https://pypi.org/project/tifffile"
