@@ -1,4 +1,0 @@
-PKG="TRIBordered-set-python-311"
-NAME="Python ordered-set"
-VERSION="4.1.0.0"
-ZAP_URL="https://pypi.org/project/ordered-set"
