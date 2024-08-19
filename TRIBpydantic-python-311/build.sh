@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-# build together, as they're joined at the hip and version locked
-#
-${THOME}/build/pkg_pep518 TRIBpydantic-python-311 pydantic_core-2.20.1 pydantic-2.8.2
