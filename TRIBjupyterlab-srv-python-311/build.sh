@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-${THOME}/build/pkg_pep518 TRIBjupyterlab-srv-python-311 jupyterlab_server-2.27.3

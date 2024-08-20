@@ -1,4 +1,0 @@
-PKG="TRIBhatch-jup-build-python-311"
-NAME="Python hatch_jupyter_builder"
-VERSION="0.9.1.0"
-ZAP_URL="https://pypi.org/project/hatch_jupyter_builder"
