@@ -1,6 +1,0 @@
-P TRIBgfortran4runtime
-P TRIBnumpy-python-311
-P TRIBopenblas
-P TRIBv-gcc10
-P TRIBv-gfortran10
-P TRIBv-python-311
