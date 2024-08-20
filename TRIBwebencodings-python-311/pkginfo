@@ -1,4 +1,0 @@
-PKG="TRIBwebencodings-python-311"
-NAME="Python webencodings"
-VERSION="0.5.1.0"
-ZAP_URL="https://pypi.org/project/webencodings"
