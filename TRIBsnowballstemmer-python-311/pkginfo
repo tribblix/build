@@ -1,4 +1,0 @@
-PKG="TRIBsnowballstemmer-python-311"
-NAME="Python snowballstemmer"
-VERSION="2.2.0.0"
-ZAP_URL="https://pypi.org/project/snowballstemmer"
