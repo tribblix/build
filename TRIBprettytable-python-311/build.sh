@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-${THOME}/build/pkg_pep518 -N TRIBprettytable-python-311 prettytable-3.11.0
