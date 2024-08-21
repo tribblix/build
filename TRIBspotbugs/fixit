@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-VERSION=4.8.5
+VERSION=4.8.6
 mkdir -p usr/bin
 chmod a+x usr/versions/spotbugs-${VERSION}/bin/spotbugs
 ln -s ../../usr/versions/spotbugs-${VERSION}/bin/spotbugs usr/bin
