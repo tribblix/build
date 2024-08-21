@@ -1,4 +1,0 @@
-PKG="TRIBpsycopg-311"
-NAME="Python-PostgreSQL Database Adapter"
-VERSION="3.2.1.0"
-ZAP_URL="https://www.psycopg.org/psycopg3/"

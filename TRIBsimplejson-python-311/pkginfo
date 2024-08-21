@@ -1,4 +1,0 @@
-PKG="TRIBsimplejson-python-311"
-NAME="Python simplejson"
-VERSION="3.17.2.0"
-ZAP_URL="https://pypi.org/project/simplejson"
