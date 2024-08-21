@@ -25,13 +25,11 @@
 #
 
 #
-# by default, package for 3.12
+# package for 3.12
 #
 
-PY311VER=311
 PY312VER=312
 
-DO311=""
 DO312="yes"
 
 case $1 in
@@ -68,30 +66,22 @@ case $# in
 	;;
 esac
 
-PY311NAME=TRIB${pkg_name}-python-${PY311VER}
 PY312NAME=TRIB${pkg_name}-python-${PY312VER}
 
 #
 # check we're within the SVR4 package name length limit
 #
-NAMELEN=${#PY311NAME}
-if [ $NAMELEN -gt 31 ]; then
+NAMELEN=${#PY312NAME}
+if [ "$NAMELEN" -gt 31 ]; then
     echo "Chosen name exceeds the SVR4 package name length limit (length $NAMELEN)"
     exit 1
 fi
 
-if [ -n "$DO311" ]; then
-if [ -d "$PY311NAME" ]; then
-   echo "$PY311NAME already exists"
-   exit 1
-fi
-fi
-
 if [ -n "$DO312" ]; then
-if [ -d "$PY312NAME" ]; then
-   echo "$PY312NAME already exists"
-   exit 1
-fi
+    if [ -d "$PY312NAME" ]; then
+	echo "$PY312NAME already exists"
+	exit 1
+    fi
 fi
 
 #
@@ -114,51 +104,29 @@ fi
 # OK, now we can create the package metadata
 #
 
-if [ -n "$DO311" ]; then
-#
-# python 3.11
-#
-mkdir $PY311NAME
-echo "P TRIBv-python-$PY311VER" > $PY311NAME/depend
-cat > $PY311NAME/pkginfo <<EOF
-PKG="${PY311NAME}"
-NAME="Python $PNAME"
-VERSION="${PVER}.0"
-ZAP_URL="https://pypi.org/project/${PNAME}"
-EOF
-cat > $PY311NAME/build.sh <<EOF
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-\${THOME}/build/$BUILDER $PY311NAME $TBALL
-EOF
-chmod a+x $PY311NAME/build.sh
-fi
-
 if [ -n "$DO312" ]; then
 #
 # python 3.12
 #
-mkdir $PY312NAME
-echo "P TRIBv-python-$PY312VER" > $PY312NAME/depend
-cat > $PY312NAME/pkginfo <<EOF
+mkdir "$PY312NAME"
+echo "P TRIBv-python-$PY312VER" > "$PY312NAME/depend"
+cat > "$PY312NAME/pkginfo" <<EOF
 PKG="${PY312NAME}"
 NAME="Python $PNAME"
 VERSION="${PVER}.0"
 ZAP_URL="https://pypi.org/project/${PNAME}"
 EOF
-cat > $PY312NAME/build.sh <<EOF
+cat > "$PY312NAME/build.sh" <<EOF
 #!/bin/sh
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
 \${THOME}/build/$BUILDER $PY312NAME $TBALL
 EOF
-chmod a+x $PY312NAME/build.sh
+chmod a+x "$PY312NAME/build.sh"
 case $BUILDER in
     pkg_setup_py)
-	echo "TRIBsetuptools-python-$PY312VER" > $PY312NAME/build_require
+	echo "TRIBsetuptools-python-$PY312VER" > "$PY312NAME/build_require"
 	;;
 esac
 fi
