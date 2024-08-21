@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+        DESTDIR=$1
+        ;;
+*)
+        exit 0
+        ;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+
+#
+# local package tweaks below
+#
+# all the install done here
+#
+
+mkdir -p ${DESTDIR}/usr/bin
+cp bin/git-lfs ${DESTDIR}/usr/bin
+chmod 755 ${DESTDIR}/usr/bin/git-lfs
+
+gmake man
+mkdir -p ${DESTDIR}/usr/share/man/man1
+cp man/man1/* ${DESTDIR}/usr/share/man/man1
+mkdir -p ${DESTDIR}/usr/share/man/man5
+cp man/man5/* ${DESTDIR}/usr/share/man/man5
+mkdir -p ${DESTDIR}/usr/share/man/man7
+cp man/man7/* ${DESTDIR}/usr/share/man/man7
+chmod 0444 ${DESTDIR}/usr/share/man/man*/*

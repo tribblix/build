@@ -1,0 +1,4 @@
+PKG="TRIBgit-lfs"
+NAME="git-lfs"
+VERSION="3.5.1.0"
+ZAP_URL="https://git-lfs.com/"
