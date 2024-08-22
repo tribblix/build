@@ -1,4 +1,4 @@
 PKG="TRIBipywidgets-python-312"
 NAME="Python ipywidgets"
-VERSION="8.1.3.0"
+VERSION="8.1.4.0"
 ZAP_URL="https://pypi.org/project/ipywidgets"
