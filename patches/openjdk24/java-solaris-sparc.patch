@@ -3172,7 +3172,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -348,8 +341,7 @@
+@@ -365,8 +358,7 @@
  
      /* system calls that might not be available at run time */
  
