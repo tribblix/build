@@ -5,8 +5,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-23-36
-cd jdk-jdk-23-36
+${THOME}/build/unpack jdk-jdk-23-37
+cd jdk-jdk-23-37
 
 #
 # jdk23 needs autoconf installed
@@ -45,8 +45,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 #
 # openjdk version "23-internal" 2024-09-17
-# OpenJDK Runtime Environment (build 23-internal-adhoc.ptribble.jdk-jdk-23-36)
-# OpenJDK 64-Bit Server VM (build 23-internal-adhoc.ptribble.jdk-jdk-23-36, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 23-internal-adhoc.ptribble.jdk-jdk-23-37)
+# OpenJDK 64-Bit Server VM (build 23-internal-adhoc.ptribble.jdk-jdk-23-37, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
