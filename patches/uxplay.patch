@@ -1,9 +1,9 @@
 --- a/lib/raop_ntp.c	Mon Apr 22 22:55:09 2024
 +++ b/lib/raop_ntp.c	Tue Apr 23 14:14:19 2024
-@@ -23,6 +23,9 @@
- #include <stdio.h>
+@@ -24,6 +24,9 @@
  #include <string.h>
  #include <stdbool.h>
+ #include <errno.h>
 +#ifdef __sun
 +#include <sys/filio.h>
 +#endif
