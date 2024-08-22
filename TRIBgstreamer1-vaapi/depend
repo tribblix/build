@@ -1,0 +1,7 @@
+P TRIBgstreamer1
+P TRIBgstreamer1-plugins-bad
+P TRIBgstreamer1-plugins-base
+P TRIBlib-glib2
+P TRIBlibva
+P TRIBx11-libx11
+P TRIBx11-libxrandr
