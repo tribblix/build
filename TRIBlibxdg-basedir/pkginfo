@@ -1,4 +1,4 @@
 PKG="TRIBlibxdg-basedir"
 NAME="Implementation of XDG Base Directory specification"
-VERSION="1.2.0.2"
+VERSION="1.2.0.3"
 ZAP_URL="https://launchpad.net/ubuntu/+source/libxdg-basedir"
