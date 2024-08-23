@@ -1,4 +1,4 @@
 PKG="TRIBstartup-notification"
 NAME="Startup Notification 0.10"
-VERSION="0.10.0.3"
+VERSION="0.10.0.4"
 ZAP_URL="https://www.freedesktop.org/wiki/Software/startup-notification/"
