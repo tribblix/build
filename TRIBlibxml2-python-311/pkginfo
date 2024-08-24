@@ -1,4 +1,0 @@
-PKG="TRIBlibxml2-python-311"
-NAME="Libxml2 python3 bindings"
-VERSION="2.9.14.0"
-ZAP_URL="http://www.xmlsoft.org/"
