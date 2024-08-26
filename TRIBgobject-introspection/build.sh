@@ -23,7 +23,7 @@
 #
 # 64-bit needs extra help
 #
-env CC="gcc -m64" AR=/usr/bin/ar PATH=${PATH}:/usr/versions/python-3.12/bin ${THOME}/build/mesonbuild +64 -gnu gdk-pixbuf-2.42.10 -C '-Dtests=false -Dinstalled_tests=false'
+env CC="gcc -m64" AR=/usr/bin/ar ${THOME}/build/mesonbuild +64 -gnu gdk-pixbuf-2.42.10 -C '-Dtests=false -Dinstalled_tests=false -Dman=false'
 #
 env CC="gcc -m64" ${THOME}/build/mesonbuild +64 atk-2.38.0
 #
