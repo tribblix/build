@@ -1,4 +1,0 @@
-PKG="TRIBbrotli-python-311"
-NAME="Python Brotli"
-VERSION="1.1.0.0"
-ZAP_URL="https://pypi.org/project/Brotli"

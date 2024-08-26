@@ -1,4 +1,0 @@
-PKG="TRIBpysocks-python-311"
-NAME="Python PySocks"
-VERSION="1.7.1.0"
-ZAP_URL="https://pypi.org/project/PySocks"
