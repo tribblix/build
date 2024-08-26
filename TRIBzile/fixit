@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# cleanup to avoid conflicts
-#
-rm -f usr/lib/charset.alias
