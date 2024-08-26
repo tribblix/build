@@ -1,0 +1,4 @@
+PKG="TRIBfluidsynth"
+NAME="FluidSynth A SoundFont Synthesizer"
+VERSION="2.3.6.0"
+ZAP_URL="https://www.fluidsynth.org/"
