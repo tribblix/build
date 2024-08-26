@@ -1,4 +1,4 @@
 PKG="TRIBalabaster-python-312"
 NAME="Python alabaster"
-VERSION="0.7.16.0"
+VERSION="1.0.0.0"
 ZAP_URL="https://pypi.org/project/alabaster"
