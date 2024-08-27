@@ -21,6 +21,7 @@
 #
 
 THOME=${THOME:-/packages/localsrc/Tribblix}
+CHECKSUMFILE="${THOME}/build/checksums.txt"
 
 bail() {
     echo "ERROR: $1"
@@ -107,11 +108,15 @@ do
     if [ -n "${psha}" ]; then
 	if [ -f "${THOME}/tarballs/${pfile}" ]; then
 	    osha=$(openssl sha256 "${THOME}/tarballs/${pfile}"|awk '{print $NF}')
+	    CKSAVE=$(grep "^${pfile} " ${CHECKSUMFILE} | awk '{print $2}')
 	    if [ "X${psha}" != "X${osha}" ]; then
 		echo "ERROR: checksum mismatch for ${pfile}"
 		echo "expected ${psha}"
 		echo "actual ${osha}"
 	    else
+		if [ -z "${CKSAVE}" ]; then
+		    echo "${pfile} ${psha}" >> ${CHECKSUMFILE}
+		fi
 		rm -f "${JFILE}"
 		exit 0
 	    fi

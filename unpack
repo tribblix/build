@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -26,6 +28,7 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 
 SRCDIR="${THOME}/tarballs"
 PATCHDIR="${THOME}/build/patches"
+CHECKSUMFILE="${THOME}/build/checksums.txt"
 
 UNZIP="/usr/bin/unzip"
 GPATCH="/usr/bin/gpatch"
@@ -98,6 +101,29 @@ if [ "x${pkg}" = "x${upkg}" ]; then
     exit 1
 fi
 
+#
+# we create a checksum of the file we're unpacking
+# if the file is listed in the checksum list, we compare the checksum
+# we've calculated and exit fatally if there's a mismatch
+# if the file isn't listed, we add it
+#
+dochecksum() {
+    #
+    # we're passed the full name, strip off the directory portion
+    #
+    FNAME=${1##*/}
+    CKSAVE=$(grep "^${FNAME} " ${CHECKSUMFILE} | awk '{print $2}')
+    CKNOW=$(openssl sha256  "$1" | awk '{print $NF}')
+    if [ -n "${CKSAVE}" ]; then
+	if [ "${CKSAVE}" != "${CKNOW}" ]; then
+	    echo "ERROR: checksum mismatch for ${1}"
+	    exit 1
+	fi
+    else
+	echo "$FNAME ${CKNOW}" >> ${CHECKSUMFILE}
+    fi
+}
+
 dopatch() {
   if [ -f ${PATCHDIR}/${1}.pls ]; then
       cd ${1}
@@ -160,6 +186,7 @@ for filetype in \
 	'.tar'
 do
     if [ -f ${SRCDIR}/${pkg}${filetype} ]; then
+	dochecksum ${SRCDIR}/${pkg}${filetype}
 	if [ -n "${DONEUNPACK}" ]; then
 	    echo "ERROR: multiple $pkg sources $DONEUNPACK and $filetype"
 	fi
@@ -183,6 +210,7 @@ do
 done
 
 if [ -f ${SRCDIR}/${pkg}.zip ]; then
+    dochecksum ${SRCDIR}/${pkg}.zip
     if [ -n "${DONEUNPACK}" ]; then
      	echo "ERROR: multiple $pkg sources $DONEUNPACK and .zip"
     fi
