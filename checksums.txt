@@ -448,3 +448,4 @@ zict-3.0.0.tar.gz e321e263b6a97aafc0790c3cfb3c04656b7066e6738c37fffcca95d803c9fb
 zipp-3.20.0.tar.gz 0145e43d89664cfe1a2e533adc75adafed82fe2da404b4bbb6b026c0157bdb31
 zipp-3.20.1.tar.gz c22b14cc4763c5a5b04134207736c107db42e9d3ef2d9779d465f5f1bcba572b
 googleapis_common_protos-1.64.0.tar.gz 7d77ca6b7c0c38eb6b1bab3b4c9973acf57ce4f2a6d3a4136acba10bcbfb3025
+jupyterlab-4.2.5.tar.gz ae7f3a1b8cb88b4f55009ce79fa7c06f99d70cd63601ee4aa91815d054f46f75
