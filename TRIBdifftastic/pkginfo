@@ -1,4 +1,4 @@
 PKG="TRIBdifftastic"
 NAME="A structural diff tool that understands syntax"
-VERSION="0.55.0.0"
+VERSION="0.60.0.0"
 ZAP_URL="https://difftastic.wilfred.me.uk/"

@@ -1,9 +1,11 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 #
-$THOME/build/unpack difftastic-0.55.0
-cd difftastic-0.55.0
+$THOME/build/unpack difftastic-0.60.0
+cd difftastic-0.60.0
 #
 # -- release took hours without finishing, so don't
 #
