@@ -1,4 +1,0 @@
-PKG="TRIBiamb"
-NAME="A Matrix client for Vim addicts"
-VERSION="0.0.8p.0"
-ZAP_URL="https://github.com/ulyssa/iamb"
