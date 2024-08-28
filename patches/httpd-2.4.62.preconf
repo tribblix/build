@@ -4,7 +4,7 @@
 #
 # need to unpack apr and apr-util
 #
-APRVER=1.7.4
+APRVER=1.7.5
 APRUVER=1.6.3
 $UNPACKER apr-${APRVER}
 $UNPACKER apr-util-${APRUVER}
