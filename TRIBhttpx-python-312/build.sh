@@ -2,4 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 TRIBhttpx-python-312 httpx-0.27.0
+# we declare dependencies for the 'cli' extra, and add
+# for the brotli and zstd overlays too
+#
+${THOME}/build/pkg_pep518 TRIBhttpx-python-312 httpx-0.27.2
