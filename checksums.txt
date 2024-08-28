@@ -454,3 +454,5 @@ rich-13.8.0.tar.gz a5ac1f1cd448ade0d59cc3356f7db7a7ccda2c8cbae9c7a90c28ff463d3e9
 zeroconf-0.133.0.tar.gz 0bd9dec747284c55a58e98733b90ce0c4434f0e24a4f46cf7c22341f80aab212
 xclipboard-1.1.5.tar.xz 8e47a4e18a88d47b14e8eb61a5f298687624a38f9decee9988d8b51a20514c45
 contourpy-1.3.0.tar.gz 7ffa0db17717a8ffb127efd0c95a4362d996b892c2904db72428d5b52e1938a4
+googleapis_common_protos-1.65.0.tar.gz 334a29d07cddc3aa01dee4988f9afd9b2916ee2ff49d6b757155dc0d197852c0
+google_api_core-2.19.2.tar.gz ca07de7e8aa1c98a8bfca9321890ad2340ef7f2eb136e558cee68f24b94b0a8f
