@@ -1,6 +1,8 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 zap uninstall TRIBgraphviz
 #
-${THOME}/build/dobuild -64only GraphicsMagick-1.3.43 -C "--enable-shared --disable-static --disable-openmp"
-${THOME}/build/genpkg TRIBgraphicsmagick GraphicsMagick-1.3.43
+${THOME}/build/dobuild -64only GraphicsMagick-1.3.45 -C "--enable-shared --disable-static --disable-openmp"
+${THOME}/build/genpkg TRIBgraphicsmagick GraphicsMagick-1.3.45

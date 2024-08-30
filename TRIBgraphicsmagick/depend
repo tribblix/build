@@ -9,6 +9,7 @@ P TRIBlib-zlib
 P TRIBlibheif
 P TRIBlibwebp
 P TRIBlibxml2
+P TRIBlibzip
 P TRIBsys-lib-freetype-2
 P TRIBx11-libx11
 P TRIBx11-libxext
