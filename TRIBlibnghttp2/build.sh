@@ -4,5 +4,5 @@
 #
 # just the library
 #
-${THOME}/build/dobuild -64 nghttp2-1.62.1 -C --enable-lib-only
-${THOME}/build/genpkg TRIBlibnghttp2 nghttp2-1.62.1
+${THOME}/build/dobuild -64 nghttp2-1.63.0 -C --enable-lib-only
+${THOME}/build/genpkg TRIBlibnghttp2 nghttp2-1.63.0
