@@ -465,7 +465,7 @@
        #
 --- old/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.941074214 -0700
 +++ new/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.553066764 -0700
-@@ -190,7 +190,7 @@
+@@ -188,7 +188,7 @@
  
  TARGETS += $(NET_PROPERTIES_DST)
  
@@ -3172,7 +3172,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -365,8 +358,7 @@
+@@ -366,8 +359,7 @@
  
      /* system calls that might not be available at run time */
  
@@ -21073,7 +21073,7 @@
 -}
 --- old/src/jdk.attach/solaris/classes/sun/tools/attach/VirtualMachineImpl.java	2020-05-20 18:10:38.606335320 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,272 +0,0 @@
+@@ -1,273 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -21113,6 +21113,7 @@
 -/*
 - * Solaris implementation of HotSpotVirtualMachine.
 - */
+-@SuppressWarnings("restricted")
 -public class VirtualMachineImpl extends HotSpotVirtualMachine {
 -    // "/tmp" is used as a global well-known location for the files
 -    // .java_pid<pid>. and .attach_pid<pid>. It is important that this
