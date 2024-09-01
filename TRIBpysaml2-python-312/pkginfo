@@ -1,0 +1,4 @@
+PKG="TRIBpysaml2-python-312"
+NAME="Python pysaml2"
+VERSION="7.5.0.0"
+ZAP_URL="https://pypi.org/project/pysaml2"
