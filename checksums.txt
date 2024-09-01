@@ -509,3 +509,4 @@ oslo.cache-3.8.0.tar.gz f084343b71de599e46d836d28f386217efe69fdab4fea245fc0211c3
 keystonemiddleware-10.7.1.tar.gz 2d14c9a6eb48a0c5e81f0661cbeea974a209b20579e6daaf917d88b792f6cf38
 nghttp3-1.5.0.tar.xz 8c00e3910ea2ad1218dafebcf8dd2ffdf030c992d9ceb65834d29e5e5278dd0d
 freetype-py-2.5.1.zip cfe2686a174d0dd3d71a9d8ee9bf6a2c23f5872385cf8ce9f24af83d076e2fbd
+publicsuffixlist-1.0.2.20240827.tar.gz 68f5aa02abe59a192f2b13d41f587eafe14b16811fc563549c8dacc2a9264954
