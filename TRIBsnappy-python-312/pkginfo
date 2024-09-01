@@ -1,4 +1,4 @@
 PKG="TRIBsnappy-python-312"
 NAME="Python python-snappy"
-VERSION="0.7.2.0"
+VERSION="0.7.3.0"
 ZAP_URL="https://pypi.org/project/python-snappy"
