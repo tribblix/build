@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-VERSION=1.10.14
+# SPDX-License-Identifier: CDDL-1.0
+#
+VERSION=1.10.15
 mkdir -p usr/bin
 ln -s ../versions/apache-ant-${VERSION}/bin/ant usr/bin/ant
 #
