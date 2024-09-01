@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
 #
 mkdir -p lib/svc/manifest/system
 cp ${BUILDROOT}/patches/ec2-credential.xml lib/svc/manifest/system

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # copied verbatim from
 #
 # https://github.com/omniti-labs/omnios-build/tree/master/build/ec2-credential

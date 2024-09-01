@@ -1,4 +1,3 @@
 PKG="TRIBec2-credential"
-NAME="Set up EC2 ssh keys"
-VERSION="1.2"
-ZAP_URL="https://github.com/omniti-labs/omnios-build/tree/master/build/ec2-credential"
+NAME="Initial EC2 credentials and setup"
+VERSION="1.3"
