@@ -1,0 +1,4 @@
+PKG="TRIBstatsd-python-312"
+NAME="Python statsd"
+VERSION="4.0.1.0"
+ZAP_URL="https://pypi.org/project/statsd"
