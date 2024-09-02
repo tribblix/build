@@ -534,3 +534,4 @@ kombu-5.4.0.tar.gz ad200a8dbdaaa2bbc5f26d2ee7d707d9a1fded353a0f4bd751ce8c7d9f449
 lib4sbom-0.7.4-py2.py3-none-any.whl 6fceb54a748924d54cda101426806c0f2bf5e512e71d5e2cfb4d41947f73722d
 sbom2dot-0.3.1-py2.py3-none-any.whl df34753f72db11b220bbcdee945dbf06252d23aab8925338b05ffcf5ed28026c
 watchdog-5.0.0.tar.gz 990aedb9e2f336b45a70aed9c014450e7c4a70fd99c5f5b1834d57e1453a177e
+ImageMagick-7.1.1-38.tar.xz 48de548d4977fc226c982ca03b9d6ad8001b47d8dc142b49fdca69333bc4ad82
