@@ -161,8 +161,7 @@ if [ ! -d "${PFILE}" ]; then
 fi
 cd "${PFILE}" || exit 1
 if [ ! -f pyproject.toml ]; then
-    echo "No pyproject.toml, is this really a pep518 project?"
-    exit 1
+    echo "WARNING: No pyproject.toml, is this really a pep518 project?"
 fi
 #
 # any preconf actions run here
