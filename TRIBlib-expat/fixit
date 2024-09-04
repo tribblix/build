@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we never shipped .la files before, no need to do so now
 #
 case `uname -p` in
