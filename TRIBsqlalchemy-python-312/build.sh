@@ -6,4 +6,4 @@
 # there's an architecture switch that doesn't work the way they
 # expect on solaris
 #
-${THOME}/build/pkg_pep518 TRIBsqlalchemy-python-312 SQLAlchemy-2.0.32
+${THOME}/build/pkg_pep518 TRIBsqlalchemy-python-312 sqlalchemy-2.0.33
