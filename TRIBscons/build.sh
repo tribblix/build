@@ -4,4 +4,4 @@
 #
 # (built in python)
 #
-${THOME}/build/pkg_setup_py -v 312 TRIBscons SCons-4.8.0
+${THOME}/build/pkg_setup_py -v 312 TRIBscons SCons-4.8.1
