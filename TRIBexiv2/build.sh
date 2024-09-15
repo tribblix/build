@@ -1,7 +1,8 @@
 #!/bin/sh
 #
-
-env LDFLAGS="-lsocket -lnsl" TRIBBLIX_LDFLAGS="-lsocket -lnsl" $THOME/build/cmbuild -64only exiv2-0.28.2 -C "-DEXIV2_ENABLE_INIH=OFF"
+# SPDX-License-Identifier: CDDL-1.0
+#
+env LDFLAGS="-lsocket -lnsl" TRIBBLIX_LDFLAGS="-lsocket -lnsl" $THOME/build/cmbuild -64only exiv2-0.28.3 -C "-DEXIV2_ENABLE_INIH=OFF"
 
 #
 # SPARC is a bit messy, because it has gcc7 and needs libstdc++fs, but
@@ -13,4 +14,5 @@ env LDFLAGS="-lsocket -lnsl" TRIBBLIX_LDFLAGS="-lsocket -lnsl" $THOME/build/cmbu
 # the library correctly (the position matters, because it resolves symbols
 # in order)
 #
-${THOME}/build/genpkg TRIBexiv2 exiv2-0.28.2
+
+${THOME}/build/genpkg TRIBexiv2 exiv2-0.28.3
