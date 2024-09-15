@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the man pages have a mismatch between suffix and location
 # easiest to fix the location
 #

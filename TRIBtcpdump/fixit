@@ -1,2 +1,5 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 /bin/rm -f usr/bin/tcpdump.4.*
