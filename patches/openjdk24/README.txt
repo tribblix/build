@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+25
+
+Tiny amount of patch noise.
+
 24+24
 
 A lot of patch noise, mostly due to a lot of Makefiles having clang

@@ -2073,9 +2073,9 @@
  #include <dlfcn.h>
  #include <errno.h>
  #include <pthread.h>
-@@ -61,16 +51,9 @@
-   #define false 0
- #endif
+@@ -54,16 +44,9 @@
+ #include <string.h>
+ #include <stdbool.h>
  
 -#ifdef SOLARIS
 -#define MAX_SIGNALS (SIGRTMAX+1)
@@ -2090,7 +2090,7 @@
  
  static sigset_t jvmsigs; /* Signals used by jvm. */
  
-@@ -95,20 +78,6 @@
+@@ -88,20 +71,6 @@
  static bool jvm_signal_installed = false;
  
  
@@ -2111,7 +2111,7 @@
  static void signal_lock() {
    pthread_mutex_lock(&mutex);
    /* When the jvm is installing its set of signal handlers, threads
-@@ -168,18 +137,7 @@
+@@ -161,18 +130,7 @@
    sact[sig].sa_handler = disp;
    sigemptyset(&set);
    sact[sig].sa_mask = set;
@@ -2131,7 +2131,7 @@
  }
  
  static sa_handler_t set_signal(int sig, sa_handler_t disp, bool is_sigset) {
-@@ -188,7 +146,6 @@
+@@ -181,7 +139,6 @@
    bool sigblocked;
  
    signal_lock();
@@ -2139,7 +2139,7 @@
  
    sigused = sigismember(&jvmsigs, sig);
    if (jvm_signal_installed && sigused) {
-@@ -200,13 +157,6 @@
+@@ -193,13 +150,6 @@
      oldhandler = sact[sig].sa_handler;
      save_signal_handler(sig, disp, is_sigset);
  
@@ -2153,7 +2153,7 @@
      signal_unlock();
      return oldhandler;
    } else if (jvm_signal_installing) {
-@@ -284,7 +234,6 @@
+@@ -277,7 +227,6 @@
  
    signal_lock();
  
@@ -2161,7 +2161,7 @@
    sigused = sigismember(&jvmsigs, sig);
    if (jvm_signal_installed && sigused) {
      /* jvm has installed its signal handler for this signal. */
-@@ -351,7 +300,6 @@
+@@ -344,7 +293,6 @@
  }
  
  JNIEXPORT struct sigaction *JVM_get_signal_action(int sig) {
