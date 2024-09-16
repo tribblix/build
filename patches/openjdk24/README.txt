@@ -5,6 +5,11 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+24
+
+A lot of patch noise, mostly due to a lot of Makefiles having clang
+warnings tweaked, and some whitespace cleanup.
+
 24+13
 
 In src/jdk.attach/solaris/classes/sun/tools/attach/VirtualMachineImpl.java:270: warning: [restricted] System.loadLibrary(String) is a restricted method.
