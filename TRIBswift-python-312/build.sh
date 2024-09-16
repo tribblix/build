@@ -4,4 +4,4 @@
 #
 # part of openstack
 #
-${THOME}/build/pkg_setup_py TRIBswift-python-312 swift-2.33.0
+${THOME}/build/pkg_setup_py TRIBswift-python-312 swift-2.34.0
