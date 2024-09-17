@@ -629,3 +629,4 @@ psycopg_c-3.2.2.tar.gz de8cac75bc6640ef0f54ad9187b81e07c430206a83c566b73d4cca41e
 multidict-6.1.0.tar.gz 22ae2ebf9b0c69d206c003e2f6a914ea33f0a932d4aa16f236afc049d9958f4a
 xarray-2024.9.0.tar.gz e796a6b3eaec11da24f33e4bb14af41897011660a0516fa4037d3ae4bbd1d378
 sqlalchemy-2.0.35.tar.gz e11d7ea4d24f0a262bccf9a7cd6284c976c5369dac21db237cff59586045ab9f
+python-openstackclient-7.1.1.tar.gz b10e35ffd5ff6db6ee7d0762cb1749372fe9a1063e9ba4bb8bb4b911c9ecf0ba
