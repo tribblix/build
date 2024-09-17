@@ -633,3 +633,4 @@ python-openstackclient-7.1.1.tar.gz b10e35ffd5ff6db6ee7d0762cb1749372fe9a1063e9b
 regex-2024.9.11.tar.gz 6c188c307e8433bcb63dc1915022deb553b4203a70722fc542c363bf120a01fd
 py_serializable-1.1.1.tar.gz f268db3afc42c8786da6dc64a8a36e33a82cf65cdcff22d1188b0927f6d4cfa9
 filelock-3.16.0.tar.gz 81de9eb8453c769b63369f87f11131a7ab04e367f8d97ad39dc230daa07e3bec
+more-itertools-10.5.0.tar.gz 5482bfef7849c25dc3c6dd53a6173ae4795da2a41a80faea6700d9f5846c5da6
