@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBregex-python-312 regex-2024.7.24
+${THOME}/build/pkg_setup_py TRIBregex-python-312 regex-2024.9.11
