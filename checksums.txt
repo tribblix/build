@@ -631,3 +631,4 @@ xarray-2024.9.0.tar.gz e796a6b3eaec11da24f33e4bb14af41897011660a0516fa4037d3ae4b
 sqlalchemy-2.0.35.tar.gz e11d7ea4d24f0a262bccf9a7cd6284c976c5369dac21db237cff59586045ab9f
 python-openstackclient-7.1.1.tar.gz b10e35ffd5ff6db6ee7d0762cb1749372fe9a1063e9ba4bb8bb4b911c9ecf0ba
 regex-2024.9.11.tar.gz 6c188c307e8433bcb63dc1915022deb553b4203a70722fc542c363bf120a01fd
+py_serializable-1.1.1.tar.gz f268db3afc42c8786da6dc64a8a36e33a82cf65cdcff22d1188b0927f6d4cfa9
