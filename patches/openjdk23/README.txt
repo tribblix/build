@@ -5,6 +5,9 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 23 now that jdk22 has been forked off.
 
+Cleanup: remove the epoll provider code, it wasn't used on illumos and
+doesn't compile on Solaris.
+
 Cleanup: Removed last remnants of extended_FILE_stdio, it's unused as 32-bit
 only, and the code to enable it had already been removed.
 

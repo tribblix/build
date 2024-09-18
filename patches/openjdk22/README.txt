@@ -5,6 +5,9 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 22 now switched to the jdk22 stabilisation repo
 
+Cleanup: remove the epoll provider code, it wasn't used on illumos and
+doesn't compile on Solaris.
+
 22.0.2
 
 Removed last remnants of extended_FILE_stdio, it's unused as 32-bit
