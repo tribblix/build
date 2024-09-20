@@ -672,3 +672,4 @@ sbom4python-0.11.2-py2.py3-none-any.whl f9560b3409f4e011072e179b94bef3d7a633c4c0
 sbom4files-0.4.4-py2.py3-none-any.whl f6cefbacceff562d2d7e84b572fe7a487ef15e9c5b6db72fdbf1dcb3bc8c0c56
 prometheus_client-0.21.0.tar.gz 96c83c606b71ff2b0a433c98889d275f51ffec6c5e267de37c7a2b5c9aa9233e
 importlib_metadata-8.5.0.tar.gz 71522656f0abace1d072b9e5481a48f07c138e00f079c38c8f883823f9c26bd7
+fsspec-2024.9.0.tar.gz 4b0afb90c2f21832df142f292649035d80b421f60a9e1c027802e5a0da2b04e8
