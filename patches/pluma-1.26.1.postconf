@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# itstool crashes while processing this and breaks the build
-#
-rm -fr help/ru
