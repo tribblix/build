@@ -1,4 +1,0 @@
-#!/bin/sh
-sed -i 's;-version-number 1:0:0;-version-number 1;' src/Makefile.in
-sed -i 's;-version-number;-Wl,-M$(top_srcdir)/mapfile-vers -version-number;' src/Makefile.in
-cp ${PATCHDIR}/libXevie.mapfile mapfile-vers
