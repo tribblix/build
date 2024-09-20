@@ -8,6 +8,10 @@ JDK 24 now that jdk23 has been branched off.
 Cleanup: remove the epoll provider code, it wasn't used on illumos and
 doesn't compile on Solaris.
 
+24+16
+
+Trivial patch noise
+
 Cleanup: src/hotspot/os/solaris and src/hotspot/os_cpu/solaris_x86
 split out into separate restore patches.
 
