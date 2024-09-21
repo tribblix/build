@@ -1,0 +1,4 @@
+PKG="TRIBapache-arrow-adbc"
+NAME="apache-arrow-adbc"
+VERSION="14.0"
+ZAP_URL="https://arrow.apache.org/"
