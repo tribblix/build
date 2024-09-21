@@ -681,3 +681,4 @@ apache-arrow-adbc-14.tar.gz 695eb7bfb4fe7b42079d67391cb0045a39fac97c4288cd2712fa
 adbc_driver_postgresql-1.2.0.tar.gz 1bf66beaf0a57d66fac642b95f97565bd5f47cddb52ae3c8f92b14925253d6df
 adbc_driver_manager-1.2.0.tar.gz 3a45bb119b7f842444c9a2489adae8a4dc233e72b0fe0c9019494382a52d7bf9
 importlib_resources-6.4.5.tar.gz 980862a1d16c9e147a59603677fa2aa5fd82b87f223b6cb870695bcfce830065
+configobj-5.0.9.tar.gz 03c881bbf23aa07bccf1b837005975993c4ab4427ba57f959afdd9d1a2386848

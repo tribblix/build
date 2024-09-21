@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBconfigobj-python-312 configobj-5.0.8
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_setup_py TRIBconfigobj-python-312 configobj-5.0.9
