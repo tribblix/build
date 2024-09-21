@@ -8,5 +8,5 @@
 # installs into the same prefix as the postgres version it's built
 # against, and is versioned to match
 #
-$THOME/build/dobuild +64only postgis-3.4.2 -P /opt/tribblix/postgres16 -C "--with-pgconfig=/opt/tribblix/postgres16/bin/pg_config --sysconfdir=/etc"
-$THOME/build/genpkg TRIBblix-postgis16 postgis-3.4.2
+$THOME/build/dobuild +64only postgis-3.4.3 -P /opt/tribblix/postgres16 -C "--with-pgconfig=/opt/tribblix/postgres16/bin/pg_config --sysconfdir=/etc"
+$THOME/build/genpkg TRIBblix-postgis16 postgis-3.4.3

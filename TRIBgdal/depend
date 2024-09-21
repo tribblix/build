@@ -6,6 +6,7 @@ P TRIBdatabase-sqlite-3
 P TRIBgeos
 P TRIBgiflib
 P TRIBimage-libjpeg
+P TRIBimage-libjxl
 P TRIBimage-libpng
 P TRIBimage-libtiff
 P TRIBjson-c
