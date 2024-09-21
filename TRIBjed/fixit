@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # not sure why this gets installed here
 #
 rm -f usr/share/man/man1/rgrep.1
