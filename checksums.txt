@@ -692,3 +692,4 @@ pymdown_extensions-10.10.tar.gz 13899c05c2d3cd486e9f57963f7154d2fed2c57530c50a77
 starlette-0.38.6.tar.gz 863a1588f5574e70a821dadefb41e4881ea451a47a3cd1b4df359d4ffefe5ead
 python_multipart-0.0.10.tar.gz 46eb3c6ce6fdda5fb1a03c7e11d490e407c6930a2703fe7aef4da71c374688fa
 websockets-13.1.tar.gz a3b3366087c1bc0a2795111edcadddb8b3b59509d5db5d7ea3fdd69f954a8878
+cattrs-24.1.2.tar.gz 8028cfe1ff5382df59dd36474a86e02d817b06eaf8af84555441bac915d2ef85
