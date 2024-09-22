@@ -694,3 +694,4 @@ python_multipart-0.0.10.tar.gz 46eb3c6ce6fdda5fb1a03c7e11d490e407c6930a2703fe7ae
 websockets-13.1.tar.gz a3b3366087c1bc0a2795111edcadddb8b3b59509d5db5d7ea3fdd69f954a8878
 cattrs-24.1.2.tar.gz 8028cfe1ff5382df59dd36474a86e02d817b06eaf8af84555441bac915d2ef85
 fastapi-0.115.0.tar.gz f93b4ca3529a8ebc6fc3fcf710e5efa8de3df9b41570958abf1d97d843138004
+libXres-1.2.2.tar.xz 9a7446f3484b9b7538ac5ee30d2c1ce9e5b7fbbaf1440e02f6cca186a1fa745f
