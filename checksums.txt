@@ -691,3 +691,4 @@ postgis-3.4.3.tar.gz f8ded505daeb8f57659da2b9e577ff71e183aaa094708d2eece2c56d933
 pymdown_extensions-10.10.tar.gz 13899c05c2d3cd486e9f57963f7154d2fed2c57530c50a7774fc13041610e82a
 starlette-0.38.6.tar.gz 863a1588f5574e70a821dadefb41e4881ea451a47a3cd1b4df359d4ffefe5ead
 python_multipart-0.0.10.tar.gz 46eb3c6ce6fdda5fb1a03c7e11d490e407c6930a2703fe7aef4da71c374688fa
+websockets-13.1.tar.gz a3b3366087c1bc0a2795111edcadddb8b3b59509d5db5d7ea3fdd69f954a8878
