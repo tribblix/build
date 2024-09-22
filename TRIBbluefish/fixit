@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # remove conflicting files
 # these will be regenerated correctly by the package
 # install and remove scripts
