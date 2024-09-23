@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/mesonbuild -64 libXvMC-1.0.14
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/mesonbuild -64only libXvMC-1.0.14
 ${THOME}/build/genpkg TRIBx11-libxvmc libXvMC-1.0.14
