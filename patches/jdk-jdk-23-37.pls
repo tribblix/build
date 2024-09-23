@@ -36,3 +36,4 @@
 -p1 openjdk23/illumos-port-27.patch
 -p1 openjdk23/illumos-attachlistener.patch
 -p1 openjdk23/jvmci-os.patch
+-p1 openjdk23/testsuite.patch
