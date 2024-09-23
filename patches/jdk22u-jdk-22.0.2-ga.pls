@@ -40,3 +40,4 @@
 -p1 openjdk22/sparc-bitness.patch
 -p1 openjdk22/illumos-jline.patch
 -p1 openjdk22/illumos-port-27.patch
+-p1 openjdk22/jvmci-os.patch

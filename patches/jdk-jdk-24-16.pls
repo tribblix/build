@@ -36,3 +36,4 @@
 -p1 openjdk24/illumos-port-27.patch
 -p1 openjdk24/illumos-port-28.patch
 -p1 openjdk24/illumos-attachlistener.patch
+-p1 openjdk24/jvmci-os.patch
