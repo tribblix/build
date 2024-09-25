@@ -4237,7 +4237,7 @@
 -#endif
 -
 -/* Function types to support dynamic linking of socket API extension functions
-- * for SCTP. This is so that there is no linkage depandancy during build or
+- * for SCTP. This is so that there is no linkage dependency during build or
 - * runtime for libsctp.*/
 -typedef int sctp_getladdrs_func(int sock, sctp_assoc_t id, void **addrs);
 -typedef int sctp_freeladdrs_func(void* addrs);
@@ -6207,7 +6207,7 @@
 -class EventPortSelectorImpl
 -    extends SelectorImpl
 -{
--    // maximum number of events to retrive in one call to port_getn
+-    // maximum number of events to retrieve in one call to port_getn
 -    static final int MAX_EVENTS = Math.min(IOUtil.fdLimit()-1, 1024);
 -
 -    // port file descriptor
@@ -10178,7 +10178,7 @@
 -  J->bcp = bcp;
 -
 -  /* On x86 with C2 JVM: native frame may have wrong regs[R_FP]
--   * For example: JVM_SuspendThread frame poins to the top interpreted frame.
+-   * For example: JVM_SuspendThread frame points to the top interpreted frame.
 -   * If we call is_method(J, methodPtr) before codecache_contains(J, pc)
 -   * then we go over and omit both: nmethod and I2CAdapter frames.
 -   * Note, that regs[R_PC] is always correct if frame defined correctly.
@@ -10440,7 +10440,7 @@
 -// generic error messages
 -#define JVM_ERR_OUT_OF_MEMORY            "out of memory (native heap)"
 -#define JVM_ERR_INVALID_PARAM            "invalid input parameter(s)"
--#define JVM_ERR_NULL_PARAM               "input paramater is NULL"
+-#define JVM_ERR_NULL_PARAM               "input parameter is NULL"
 -
 -// error messages for attach
 -#define JVM_ERR_CANT_OPEN_DOOR           "cannot open door file"
