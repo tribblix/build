@@ -1,8 +1,12 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 git clone https://github.com/openjdk/jtreg
 cd jtreg
+git checkout jtreg-7.3.1+1
+
 env PATH=/usr/gnu/bin:$PATH bash make/build.sh --jdk /usr/jdk/instances/jdk11
 
 rm -fr /tmp/jtb
