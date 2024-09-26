@@ -5,6 +5,9 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: Fix TestMemoryAllocationLogging failures. The tests were
+looking for specific output for mmap and munmap failures.
+
 Cleanup: jdk.internal.vm.ci/share/classes/jdk/vm/ci/services/Services.java
 needs to know about Solaris.
 

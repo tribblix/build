@@ -2409,7 +2409,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-09-16 14:41:33.968071187 +0100
-@@ -0,0 +1,2940 @@
+@@ -0,0 +1,2967 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -3890,11 +3890,20 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +        numa_make_global(addr, bytes);
 +    }
 +    return 0;
++  } else {
++    ErrnoPreserver ep;
++    log_trace(os, map)("mmap failed: " RANGEFMT " errno=(%s)",
++                       RANGEFMTARGS(addr, size),
++                       os::strerror(ep.saved_errno()));
 +  }
 +
 +  int err = errno;  // save errno from mmap() call in mmap_chunk()
 +
 +  if (!recoverable_mmap_error(err)) {
++    ErrnoPreserver ep;
++    log_trace(os, map)("mmap failed: " RANGEFMT " errno=(%s)",
++                       RANGEFMTARGS(addr, size),
++                       os::strerror(ep.saved_errno()));
 +    warn_fail_commit_memory(addr, bytes, exec, err);
 +    vm_exit_out_of_memory(bytes, OOM_MMAP_ERROR, "committing reserved memory.");
 +  }
@@ -4102,10 +4111,17 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  // Map uncommitted pages PROT_NONE so we fail early if we touch an
 +  // uncommitted page. Otherwise, the read/write might succeed if we
 +  // have enough swap space to back the physical page.
-+  return
-+    NULL != Solaris::mmap_chunk(addr, size,
++  char *res = Solaris::mmap_chunk(addr, size,
 +                                MAP_PRIVATE|MAP_FIXED|MAP_NORESERVE,
 +                                PROT_NONE);
++  if (res == NULL) {
++    ErrnoPreserver ep;
++    log_trace(os, map)("mmap failed: " RANGEFMT " errno=(%s)",
++                       RANGEFMTARGS(addr, size),
++                       os::strerror(ep.saved_errno()));
++    return false;
++  }
++  return true;
 +}
 +
 +char* os::Solaris::mmap_chunk(char *addr, size_t size, int flags, int prot) {
@@ -4170,9 +4186,20 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  return NULL;
 +}
 +
++static int anon_munmap(char * addr, size_t size) {
++  if (::munmap(addr, size) != 0) {
++    ErrnoPreserver ep;
++    log_trace(os, map)("munmap failed: " RANGEFMT " errno=(%s)",
++                       RANGEFMTARGS(addr, size),
++                       os::strerror(ep.saved_errno()));
++    return 0;
++  }
++  return 1;
++}
++
 +bool os::pd_release_memory(char* addr, size_t bytes) {
 +  size_t size = bytes;
-+  return munmap(addr, size) == 0;
++  return anon_munmap(addr, size);
 +}
 +
 +static bool solaris_mprotect(char* addr, size_t bytes, int prot) {
