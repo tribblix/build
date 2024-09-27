@@ -1052,7 +1052,7 @@
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2239,9 +2237,6 @@
+@@ -2240,9 +2238,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1362,7 +1362,7 @@
     identifiers matching a C constant. The PREFIX_ is filtered out in the
 --- old/src/java.base/share/conf/security/java.security	2020-05-20 18:00:54.519120590 -0700
 +++ new/src/java.base/share/conf/security/java.security	2020-05-20 18:00:54.183114138 -0700
-@@ -83,11 +83,7 @@
+@@ -110,11 +110,7 @@
  #ifdef macosx
  security.provider.tbd=Apple
  #endif

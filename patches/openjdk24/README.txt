@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+16
+
+Trivial patch noise
+
 Cleanup: Fix TestMemoryAllocationLogging failures. The tests were
 looking for specific output for mmap and munmap failures.
 
