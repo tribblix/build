@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 TRIBvirtualenv-python-312 virtualenv-20.26.5
+${THOME}/build/pkg_pep518 TRIBvirtualenv-python-312 virtualenv-20.26.6
