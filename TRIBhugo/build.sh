@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 env PATH=/usr/versions/go-1.22/bin:$PATH GOPATH=`pwd` go install github.com/gohugoio/hugo@latest
 
 rm -fr /tmp/ll
