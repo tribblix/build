@@ -1,4 +1,4 @@
 PKG="TRIBtk"
 NAME="Tk - Tcl GUI toolkit"
-VERSION="8.6.14.0"
+VERSION="8.6.15.0"
 ZAP_URL="http://www.tcl.tk/"
