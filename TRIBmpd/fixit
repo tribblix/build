@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fmt shouldn't be part of this package
 #
 rm -fr usr/include/fmt

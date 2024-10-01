@@ -2,6 +2,7 @@ P TRIBcompress-bzip2
 P TRIBcurl
 P TRIBdatabase-sqlite-3
 P TRIBffmpeg
+P TRIBfluidsynth
 P TRIBlib-expat
 P TRIBlib-pcre2
 P TRIBlib-zlib
