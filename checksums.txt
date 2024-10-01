@@ -770,3 +770,4 @@ openmsx-0.4.2-all.zip 5a4277a2e62d87f2952ea5020dc20fb2f6ffafdccf9913fbf35ad45ee3
 opensfx-1.0.3-all.zip e0a218b7dd9438e701503b0f84c25a97c1c11b7c2f025323fb19d6db16ef3759
 go1.22.8.src.tar.gz df12c23ebf19dea0f4bf46a22cbeda4a3eca6f474f318390ce774974278440b8
 go1.23.2.src.tar.gz 36930162a93df417d90bd22c6e14daff4705baac2b02418edda671cdfa9cd07f
+libmspub-0.1.4.tar.xz ef36c1a1aabb2ba3b0bedaaafe717bf4480be2ba8de6f3894be5fd3702b013ba
