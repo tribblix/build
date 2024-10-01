@@ -761,3 +761,4 @@ psycopg_c-3.2.3.tar.gz 06ae7db8eaec1a3845960fa7f997f4ccdb1a7a7ab8dc593a680bcc74e
 pydantic_core-2.23.4.tar.gz 2584f7cf844ac4d970fba483a717dbe10c1c1c96a969bf65d61ffe94df1b2863
 pydantic-2.9.2.tar.gz d155cef71265d1e9807ed1c32b4c8deec042a44a50a4188b25ac67ecd81a9c0f
 mkdocs_material-9.5.39.tar.gz 25faa06142afa38549d2b781d475a86fb61de93189f532b88e69bf11e5e5c3be
+libical-3.0.18.tar.gz 72b7dc1a5937533aee5a2baefc990983b66b141dd80d43b51f80aced4aae219c
