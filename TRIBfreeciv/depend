@@ -1,6 +1,8 @@
 P TRIBcompress-bzip2
 P TRIBcompress-xz
+P TRIBcompress-zstd
 P TRIBcurl
+P TRIBdatabase-sqlite-3
 P TRIBgdk-pixbuf
 P TRIBimagemagick
 P TRIBlib-desktop-cairo
