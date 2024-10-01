@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# our libxml and zlib don't supply a .pc file
-#
-gsed -i 's: libxml-2.0 zlib::' usr/lib/pkgconfig/libvisio-0.1.pc
