@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # unpack the base graphics, sound, and music sets
 #
 gunzip usr/share/man/man6/openttd.6.gz
