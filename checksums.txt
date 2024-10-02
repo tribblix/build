@@ -773,3 +773,4 @@ go1.23.2.src.tar.gz 36930162a93df417d90bd22c6e14daff4705baac2b02418edda671cdfa9c
 libmspub-0.1.4.tar.xz ef36c1a1aabb2ba3b0bedaaafe717bf4480be2ba8de6f3894be5fd3702b013ba
 libvisio-0.1.7.tar.xz 8faf8df870cb27b09a787a1959d6c646faa44d0d8ab151883df408b7166bea4c
 vobject-0.9.8.tar.gz db00a7f4db49397155dd8a6871e8a2a0175a6eba5a654c30e910f82b29514b58
+setuptools_rust-1.10.2.tar.gz 5d73e7eee5f87a6417285b617c97088a7c20d1a70fcea60e3bdc94ff567c29dc
