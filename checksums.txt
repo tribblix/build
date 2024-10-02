@@ -779,3 +779,4 @@ reportlab-4.2.5.tar.gz 5cf35b8fd609b68080ac7bbb0ae1e376104f7d5f7b2d3914c7adc63f2
 pymdown_extensions-10.11.2.tar.gz bc8847ecc9e784a098efd35e20cba772bc5a1b529dfcef9dc1972db9021a1049
 py_serializable-1.1.2.tar.gz 89af30bc319047d4aa0d8708af412f6ce73835e18bacf1a080028bb9e2f42bdb
 linode_cli-5.52.0.tar.gz 3d45caa2f269ae2ba673167c443040f902a3da990a53afa2e4beec2901d59aea
+httpcore-1.0.6.tar.gz 73f6dbd6eb8c21bbf7ef8efad555481853f5f6acdeaff1edb0694289269ee17f
