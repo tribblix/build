@@ -778,3 +778,4 @@ rich-13.9.1.tar.gz 097cffdf85db1babe30cc7deba5ab3a29e1b9885047dab24c57e9a7f8a9c1
 reportlab-4.2.5.tar.gz 5cf35b8fd609b68080ac7bbb0ae1e376104f7d5f7b2d3914c7adc63f2593941f
 pymdown_extensions-10.11.2.tar.gz bc8847ecc9e784a098efd35e20cba772bc5a1b529dfcef9dc1972db9021a1049
 py_serializable-1.1.2.tar.gz 89af30bc319047d4aa0d8708af412f6ce73835e18bacf1a080028bb9e2f42bdb
+linode_cli-5.52.0.tar.gz 3d45caa2f269ae2ba673167c443040f902a3da990a53afa2e4beec2901d59aea
