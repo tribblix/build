@@ -781,3 +781,4 @@ py_serializable-1.1.2.tar.gz 89af30bc319047d4aa0d8708af412f6ce73835e18bacf1a0800
 linode_cli-5.52.0.tar.gz 3d45caa2f269ae2ba673167c443040f902a3da990a53afa2e4beec2901d59aea
 httpcore-1.0.6.tar.gz 73f6dbd6eb8c21bbf7ef8efad555481853f5f6acdeaff1edb0694289269ee17f
 apache-activemq-5.18.6-bin.tar.gz b1363696e4e014423f6ab22f1ece4bf14ee32b80bfa5bdbae7dd4026a47ff03a
+ipython-8.28.0.tar.gz 0d0d15ca1e01faeb868ef56bc7ee5a0de5bd66885735682e8a322ae289a13d1a
