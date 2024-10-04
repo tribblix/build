@@ -1,4 +1,4 @@
-PKG=TRIBmate-wallpaper1
-NAME=Some wallpapers for MATE and Xfce
-VERSION=1.0
+PKG="TRIBmate-wallpaper1"
+NAME="Some wallpapers for MATE and Xfce"
+VERSION="1.0"
 ZAP_URL="http://wallpaper.soa-admin.eu/"

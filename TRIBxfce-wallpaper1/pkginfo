@@ -1,4 +1,4 @@
-PKG=TRIBxfce-wallpaper1
-NAME=Some wallpapers for Xfce and MATE
-VERSION=1.0.1
+PKG="TRIBxfce-wallpaper1"
+NAME="Some wallpapers for Xfce and MATE"
+VERSION="1.0.1"
 ZAP_URL="http://petertribble.co.uk/Fun/wallpaper1.html"

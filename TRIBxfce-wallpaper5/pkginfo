@@ -1,4 +1,4 @@
-PKG=TRIBxfce-wallpaper5
-NAME=Xfce Desktop wallpaper
-VERSION=1.0
+PKG="TRIBxfce-wallpaper5"
+NAME="Xfce Desktop wallpaper"
+VERSION="1.0"
 ZAP_URL="https://unsplash.com/"
