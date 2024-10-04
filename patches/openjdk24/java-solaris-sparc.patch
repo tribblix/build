@@ -1043,7 +1043,7 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -939,8 +939,6 @@
+@@ -940,8 +940,6 @@
        , lir_monaddr
        , lir_roundfp
        , lir_safepoint
@@ -1052,7 +1052,7 @@
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2240,9 +2238,6 @@
+@@ -2241,9 +2239,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1270,7 +1270,7 @@
  inline int g_isnan(float  f) { return isnan(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700
-@@ -401,14 +401,6 @@
+@@ -403,14 +403,6 @@
  #define NOT_AIX(code) code
  #endif
  
