@@ -1,9 +1,19 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fixes up prototype files, by setting the correct permissions
 # for existing directories
 #
 awk '
 {if ($3 ~ /^var\/cache\/cups/) { $5 = "lp" ; $6 = "lp" }}
+{if ($3 ~ /^var\/spool\/cups/) { $6 = "lp" }}
+{if ($3 ~ /^var\/run\/cups/) { $6 = "lp" }}
+{if ($3 ~ /^etc\/cups/) { $6 = "lp" }}
+{if ($3 ~ /^etc\/cups\/cups-files.conf/) { $6 = "lp" }}
+{if ($3 ~ /^etc\/cups\/cupsd.conf/) { $6 = "lp" }}
+{if ($3 ~ /^etc\/cups\/cupsd.conf.default/) { $6 = "lp" }}
+{if ($3 ~ /^etc\/cups\/ppd/) { $6 = "lp" }}
+{if ($3 ~ /^etc\/cups\/ssl/) { $6 = "lp" }}
 {print}
 '

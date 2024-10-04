@@ -1,14 +1,24 @@
 Tribblix doesn't have the Solaris identity:cert service, or
-anything equivalent. Make a minimal fix
+anything equivalent. Make a minimal fix.
+
+Also, make cups start after mdnsd on boot, so that printers are advertised.
 
 --- cups-2.4.6/scheduler/cups.xml.in.orig	2022-05-26 08:17:21.000000000 +0000
 +++ cups-2.4.6/scheduler/cups.xml.in	2022-10-23 15:00:19.116296979 +0000
-@@ -54,7 +54,7 @@
+@@ -54,7 +54,15 @@
          grouping='require_all'
          restart_on='refresh'
          type='service'>
 -        <service_fmri value='svc:/system/identity:cert'/>
 +        <service_fmri value='svc:/system/identity:node'/>
++    </dependency>
++
++    <dependency
++        name='mdns'
++        type='service'
++        grouping='optional_all'
++        restart_on='none'>
++        <service_fmri value='svc:/network/dns/multicast:default' />
      </dependency>
  
      <exec_method

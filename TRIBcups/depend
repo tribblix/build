@@ -1,4 +1,5 @@
 P TRIBgnutls
 P TRIBlib-zlib
+P TRIBlibusb
 P TRIBsvc-net-dns-mdns
 P TRIBsys-libdbus

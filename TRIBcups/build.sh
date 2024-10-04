@@ -1,7 +1,9 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # may need to rename the downloaded tarball, like so:
-#  mv cups-2.4.6-source.tar.gz cups-2.4.6.tar.gz
+#  mv cups-2.4.11-source.tar.gz cups-2.4.11.tar.gz
 #
 
 #
@@ -19,5 +21,5 @@
 #
 # don't use openssl, we've built against gnutls in the past
 #
-env CC=gcc CXX=g++ TRIBBLIX_CFLAGS="-D_XOPEN_SOURCE=600 -D__EXTENSIONS__" TRIBBLIX_LDFLAGS=-lsocket ${THOME}/build/dobuild -64only cups-2.4.6 -C "--sysconfdir=/etc --localstatedir=/var --with-smfmanifestdir=/lib/svc/manifest/application --with-cups-user=lp --with-cups-group=lp --disable-gssapi --with-tls=gnutls --with-archflags=-m64"
-$THOME/build/genpkg TRIBcups cups-2.4.6
+env CC=gcc CXX=g++ TRIBBLIX_CFLAGS="-D_XOPEN_SOURCE=600 -D__EXTENSIONS__" TRIBBLIX_LDFLAGS=-lsocket ${THOME}/build/dobuild -64only cups-2.4.11 -C "--sysconfdir=/etc --localstatedir=/var --with-smfmanifestdir=/lib/svc/manifest/application --with-cups-user=lp --with-cups-group=lp --disable-gssapi --with-tls=gnutls --with-archflags=-m64"
+$THOME/build/genpkg TRIBcups cups-2.4.11

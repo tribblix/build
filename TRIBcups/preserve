@@ -1,0 +1,5 @@
+etc/cups/cups-files.conf
+etc/cups/cups-pdf.conf
+etc/cups/cupsd.conf
+etc/cups/printers.conf
+etc/cups/snmp.conf
