@@ -1,4 +1,4 @@
 PKG="TRIBfeh"
 NAME="X11 image viewer aimed mostly at console users"
-VERSION="3.9.1.0"
+VERSION="3.10.3.0"
 ZAP_URL="https://feh.finalrewind.org/"

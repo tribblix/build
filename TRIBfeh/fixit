@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+rm -f usr/share/doc/feh/TODO
