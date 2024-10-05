@@ -1,4 +1,4 @@
 PKG="TRIBblix-memcached"
 NAME="Distributed memory object caching system"
-VERSION="1.6.29.0"
+VERSION="1.6.31.0"
 ZAP_URL="http://memcached.org/"
