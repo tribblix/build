@@ -45,9 +45,9 @@
 # but I've found that doesn't always work
 #
 # This will create a tarball
-#   basilisk-20240803112139.solaris2.11-x86_64-illumos.tar.xz
+#   basilisk-20241006090817.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-basilisk basilisk-20240803112139.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-basilisk basilisk-20241006090817.solaris2.11-x86_64-illumos

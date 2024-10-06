@@ -1,4 +1,4 @@
 PKG="TRIBv-basilisk"
 NAME="Basilisk Web browser"
-VERSION="2024.08.03.0"
+VERSION="2024.10.06.0"
 ZAP_URL="https://www.basilisk-browser.org/"
