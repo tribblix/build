@@ -810,3 +810,4 @@ memcached-1.6.31.tar.gz 20d8d339b8fb1f6c79cee20559dc6ffb5dfee84db9e589f4eb214f6d
 libevent-2.1.12-stable.tar.gz 92e6de1be9ec176428fd2367677e61ceffc2ee1cb119035037a27d346b0403bb
 varnish-7.6.0.tgz aba283c5a31baaa5356a6db38f38748cbb9158feca018193445ccc8514715d5c
 dnspython-2.7.0.tar.gz ce9c432eda0dc91cf618a5cedf1a4e142651196bbcd2c80e89ed5a907e5cfaf1
+humanize-4.11.0.tar.gz e66f36020a2d5a974c504bd2555cf770621dbdbb6d82f94a6857c0b1ea2608be
