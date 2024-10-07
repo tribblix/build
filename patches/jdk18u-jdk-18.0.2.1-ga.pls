@@ -37,3 +37,4 @@
 -p1 openjdk18/illumos-zero-1.patch
 -p1 openjdk18/illumos-zero-2.patch
 -p1 openjdk18/sparc-bitness.patch
+-p1 openjdk18/testsuite.patch

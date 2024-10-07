@@ -7,6 +7,8 @@ Most patches -p0
 
 Forked off into the jdk18 repo; mainline is now jdk19.
 
+Cleanup: add some basic patches for the test suite.
+
 Cleanup: missed the dropping of TIERED in 17+8, it's now
 COMPILER1_AND_COMPILER2
 
