@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# separate build for sparc so as to avoid amd64 assembler
+#
+${THOME}/build/dobuild -64only imlib2-1.12.3
+${THOME}/build/genpkg TRIBimlib2 imlib2-1.12.3
