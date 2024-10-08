@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 VERSION=1.14
 rm -f usr/versions/subversion-${VERSION}/lib/lib*.a
 rm -f usr/versions/subversion-${VERSION}/lib/lib*.la
