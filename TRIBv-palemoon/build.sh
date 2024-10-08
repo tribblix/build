@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# Note that we're approved for official branding:
+# Note that Tribblix is approved for official branding:
 #  https://forum.palemoon.org/viewtopic.php?f=5&t=26412
 #
 # this is a two-stage build
@@ -44,9 +44,9 @@
 # but I've found that doesn't work
 #
 # This will create a tarball
-#   palemoon-33.3.1.solaris2.11-x86_64-illumos.tar.xz
+#   palemoon-33.4.0.1.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-33.3.1.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-33.4.0.1.solaris2.11-x86_64-illumos
