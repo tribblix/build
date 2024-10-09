@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need to make sure the qt filename matches the unpacked directory name,
 # sometimes an extra "opensource" appears in the tarball
 #

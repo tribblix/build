@@ -1,4 +1,4 @@
 PKG="TRIBqt5"
 NAME="Qt a cross-platform application and UI framework"
-VERSION="5.15.13.0"
+VERSION="5.15.13.1"
 ZAP_URL="https://www.qt.io/"
