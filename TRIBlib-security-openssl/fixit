@@ -28,6 +28,15 @@ mv usr/ssl/man usr/share
 #
 rm -fr usr/share/man/man3
 #
+# the man pages without the openssl prefix shadow legitimate system
+# manual pages, and are scheduled for removal in openssl4 anyway
+#
+mv usr/share/man/man1 usr/share/man/man1.tmp
+mkdir usr/share/man/man1
+mv usr/share/man/man1.tmp/openssl* usr/share/man/man1
+mv usr/share/man/man1.tmp/C* usr/share/man/man1
+rm -fr usr/share/man/man1.tmp
+#
 # we should have a 64-bit configuration.h saved, now fix it to be dual-arch
 #
 mv usr/include/openssl/configuration.h usr/include/openssl/configuration-32.h
