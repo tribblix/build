@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# just name off the primary version
+#
+VERSION=11.0.0
+cd usr/versions
+ln -s apache-tomcat-${VERSION} tomcat11
+chmod a+x apache-tomcat-${VERSION}/bin/*.sh
+rm apache-tomcat-${VERSION}/bin/*.bat
