@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# this file is also shipped by the TRIBpkg-config, and shouldn't be
+# supplied by us because (a) it's a file that logically belongs to
+# pkg-config, and (b) it's for a specific pkg-config version that
+# may not be the one actually installed
+#
+rm -f usr/share/aclocal/pkg.m4
+rmdir usr/share/aclocal
