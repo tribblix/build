@@ -1,0 +1,4 @@
+PKG="TRIBcursive-python-312"
+NAME="Python cursive"
+VERSION="0.2.3.0"
+ZAP_URL="https://pypi.org/project/cursive"
