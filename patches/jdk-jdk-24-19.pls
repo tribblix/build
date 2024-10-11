@@ -22,7 +22,6 @@
 -p1 openjdk24/illumos-port-17.patch
 -p1 openjdk24/illumos-pollerprovider.patch
 -p1 openjdk24/illumos-port-18.patch
--p1 openjdk24/illumos-port-19.patch
 -p1 openjdk24/illumos-port-20.patch
 -p1 openjdk24/illumos-port-21.patch
 -p1 openjdk24/illumos-port-22.patch

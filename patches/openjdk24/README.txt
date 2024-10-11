@@ -5,6 +5,18 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+19
+
+Needs jdk23 as the boot jdk now.
+
+osThread has been completely restructured. This splats 3 places:
+osThread_solaris.{c,h}pp os_solaris.cpp vmStructs_solaris.hpp
+I've ignored the os_solaris.cpp because in Linux they only changed the cast
+type, and we don't have that at all.
+I've ignored vmStructs foor now as I don't quite follow what's needed.
+I've followed the Linux changes up to a point, but different platforms
+are quite divergent.
+
 24+17, 24+18
 
 Trivial patch noise
@@ -91,7 +103,7 @@ Start with no changes from 23+26.
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk22 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk23 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \

@@ -721,7 +721,7 @@
  
 --- old/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.653337499 -0700
 +++ new/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.257329896 -0700
-@@ -70,9 +70,8 @@
+@@ -68,9 +68,8 @@
      CFLAGS := $(LIBSAPROC_CFLAGS), \
      CXXFLAGS := $(LIBSAPROC_CFLAGS) $(LIBSAPROC_CXXFLAGS), \
      EXTRA_SRC := $(LIBSAPROC_EXTRA_SRC), \
@@ -3180,7 +3180,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -366,8 +359,7 @@
+@@ -369,8 +362,7 @@
  
      /* system calls that might not be available at run time */
  
