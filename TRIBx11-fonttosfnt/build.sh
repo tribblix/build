@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64only fonttosfnt-1.2.3
-${THOME}/build/genpkg TRIBx11-fonttosfnt fonttosfnt-1.2.3
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/dobuild -64only fonttosfnt-1.2.4
+${THOME}/build/genpkg TRIBx11-fonttosfnt fonttosfnt-1.2.4
