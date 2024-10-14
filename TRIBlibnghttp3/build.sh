@@ -2,5 +2,5 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/dobuild -64 nghttp3-1.5.0
-${THOME}/build/genpkg TRIBlibnghttp3 nghttp3-1.5.0
+${THOME}/build/dobuild -64 nghttp3-1.6.0
+${THOME}/build/genpkg TRIBlibnghttp3 nghttp3-1.6.0
