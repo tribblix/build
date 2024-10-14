@@ -1,3 +1,4 @@
 PKG="TRIBpkgconf"
 NAME="pkgconf"
 VERSION="2.3.0.0"
+ZAP_URL="http://pkgconf.org/"
