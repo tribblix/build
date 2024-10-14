@@ -102,13 +102,13 @@ PVER=${TBALL##*-}
 # OK, now we can create the package metadata
 #
 
-mkdir $PNAME
-cat > $PNAME/pkginfo <<EOF
+mkdir "$PNAME"
+cat > "$PNAME/pkginfo" <<EOF
 PKG="${PNAME}"
 NAME="$pkg_name"
 VERSION="${PVER}.0"
 EOF
-cat > $PNAME/build.sh <<EOF
+cat > "$PNAME/build.sh" <<EOF
 #!/bin/sh
 #
 # SPDX-License-Identifier: CDDL-1.0
@@ -116,15 +116,15 @@ cat > $PNAME/build.sh <<EOF
 \${THOME}/build/${BUILDER} ${XFLAGS}$TBALL
 \${THOME}/build/genpkg $PNAME $TBALL
 EOF
-chmod a+x $PNAME/build.sh
+chmod a+x "$PNAME/build.sh"
 
 case $BUILDER in
     cmbuild)
-	echo "TRIBcmake" > $PNAME/build_require
+	echo "TRIBcmake" > "$PNAME/build_require"
 	;;
     mesonbuild)
-	echo "TRIBmeson-python-311" > $PNAME/build_require
-	echo "TRIBninja" >> $PNAME/build_require
+	echo "TRIBmeson-python-311" > "$PNAME/build_require"
+	echo "TRIBninja" >> "$PNAME/build_require"
 	;;
 esac
 

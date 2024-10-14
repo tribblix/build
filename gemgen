@@ -55,7 +55,7 @@ RUBYNAME=TRIB${pkg_name}-ruby-${RUBYVER}
 # check we're within the SVR4 package name length limit
 #
 NAMELEN=${#RUBYNAME}
-if [ $NAMELEN -gt 31 ]; then
+if [ "$NAMELEN" -gt 31 ]; then
     echo "Chosen name exceeds the SVR4 package name length limit (length $NAMELEN)"
     exit 1
 fi
@@ -70,20 +70,20 @@ fi
 #
 
 #
-mkdir $RUBYNAME
-echo "P TRIBv-ruby-$RUBYVER" > $RUBYNAME/depend
-cat > $RUBYNAME/pkginfo <<EOF
+mkdir "$RUBYNAME"
+echo "P TRIBv-ruby-$RUBYVER" > "$RUBYNAME/depend"
+cat > "$RUBYNAME/pkginfo" <<EOF
 PKG="${RUBYNAME}"
 NAME="Ruby $TBALL"
 VERSION="1.0"
 EOF
-cat > $RUBYNAME/build.sh <<EOF
+cat > "$RUBYNAME/build.sh" <<EOF
 #!/bin/sh
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
 \${THOME}/build/$BUILDER $RUBYNAME $TBALL
 EOF
-chmod a+x $RUBYNAME/build.sh
+chmod a+x "$RUBYNAME/build.sh"
 
 echo "Now check $RUBYNAME/pkginfo and $RUBYNAME/depend"

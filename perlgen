@@ -41,7 +41,7 @@ PKGNAME=TRIBlib-perl-5-${pkg_name}
 # check we're within the SVR4 package name length limit
 #
 NAMELEN=${#PKGNAME}
-if [ $NAMELEN -gt 31 ]; then
+if [ "$NAMELEN" -gt 31 ]; then
     echo "Chosen name exceeds the SVR4 package name length limit (length $NAMELEN)"
     exit 1
 fi
@@ -63,15 +63,15 @@ PVER=${TBALL##*-}
 # OK, now we can create the package metadata
 #
 
-mkdir $PKGNAME
-echo "P TRIBperl-534" > $PKGNAME/depend
-cat > $PKGNAME/pkginfo <<EOF
+mkdir "$PKGNAME"
+echo "P TRIBperl-534" > "$PKGNAME/depend"
+cat > "$PKGNAME/pkginfo" <<EOF
 PKG="${PKGNAME}"
 NAME="Perl $PNAME module"
 VERSION="${PVER}.0"
 ZAP_URL="https://metacpan.org/pod/${PNAME}"
 EOF
-cat > $PKGNAME/build.sh <<EOF
+cat > "$PKGNAME/build.sh" <<EOF
 #!/bin/sh
 #
 # SPDX-License-Identifier: CDDL-1.0
@@ -83,16 +83,16 @@ make
 cd ..
 \${THOME}/build/genpkg $PKGNAME $TBALL
 EOF
-chmod a+x $PKGNAME/build.sh
+chmod a+x "$PKGNAME/build.sh"
 
 #
 # automatic fixit to avoid shipping conflicting shared files
 #
-cat > $PKGNAME/fixit <<EOF
+cat > "$PKGNAME/fixit" <<EOF
 #!/bin/sh
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
 /bin/rm -fr usr/perl5/5.34/lib
 EOF
-chmod a+x $PKGNAME/fixit
+chmod a+x "$PKGNAME/fixit"
