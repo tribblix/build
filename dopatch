@@ -40,12 +40,15 @@ case $# in
     ;;
 esac
 
-if [ ! -f ${PATCHLIST} ]; then
+if [ ! -f "${PATCHLIST}" ]; then
     echo "ERROR: cannot find patch list ${PATCHLIST}"
     exit 1
 fi
 
-cat ${PATCHLIST} | while read patcharg patchfile
+#
+# allow pls files to have comments
+#
+grep -v '^#' "${PATCHLIST}" | while read -r patcharg patchfile
 do
-    ${GPATCH} ${patcharg/+/ } -i ${PATCHDIR}/${patchfile}
+    ${GPATCH} ${patcharg/+/ } -i "${PATCHDIR}/${patchfile}"
 done
