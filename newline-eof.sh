@@ -33,11 +33,11 @@ do
 	#
 	# force binaries, not builtins
 	#
-	nl=`/usr/bin/tail -1 $file|/usr/bin/wc -l`
+	nl=$(/usr/bin/tail -1 "$file"|/usr/bin/wc -l)
 	#
 	# cheat to trim surrounding spaces
 	#
-	nl=$(( $nl ))
+	nl=$((nl))
 	case $nl in
 	    0)
 		echo "FAIL: no newline at end of $file"
@@ -54,11 +54,11 @@ do
 	#
 	# and trailing blank lines, builtins are fine here
 	#
-	nw=`tail -1 $file|wc -w`
+	nw=$(tail -1 "$file"|wc -w)
 	#
 	# cheat to trim surrounding spaces
 	#
-	nw=$(( $nw ))
+	nw=$((nw))
 	case $nw in
 	    0)
 		echo "FAIL: blank line at end of $file"

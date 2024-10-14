@@ -172,8 +172,8 @@ python${PYVER} setup.py install --no-compile --root="${BDIR}"
 #
 # run fixinstall here, while we're still cd'ed into the module
 #
-if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
-    ${BUILD}/${PKGNAME}/fixinstall $BDIR
+if [ -x "${BUILD}/${PKGNAME}/fixinstall" ]; then
+    "${BUILD}/${PKGNAME}/fixinstall" $BDIR
 fi
 cd ..
 #

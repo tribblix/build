@@ -41,7 +41,7 @@ fi
 #
 # assume we're in the build directory
 #
-for pkg in $(awk -F'|' '{print $1}' "$CFILE")
+awk -F'|' '{print $1}' "$CFILE" | while read -r pkg
 do
     if [ ! -d "$pkg" ]; then
 	echo "WARN: missing package $pkg"

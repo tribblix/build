@@ -94,7 +94,7 @@ get_normal_deps (){
     #
     # also add the "all" driver overlays, and wifi
     #
-    for ovl in $(ls -1d all-*.ovl | egrep -v all-fabric )
+    for ovl in $(ls -1d all-*.ovl | grep -E -v all-fabric )
     do
 	get_deps ${ovl%.ovl}
     done
@@ -133,7 +133,7 @@ get_minimal_deps (){
     if [ -f san-support.ovl ]; then
 	get_deps san-support
     fi
-    for ovl in $(ls -1d all-*.ovl | egrep -v '(fabric|xorg|1394)')
+    for ovl in $(ls -1d all-*.ovl | grep -E -v '(fabric|xorg|1394)')
     do
 	get_deps ${ovl%.ovl}
     done

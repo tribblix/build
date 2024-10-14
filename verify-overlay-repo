@@ -68,7 +68,7 @@ done
 #
 # check that every required overlay exists
 #
-for req in $(grep REQUIRES= *.ovl | awk -F= '{print $NF}')
+grep REQUIRES= [a-z]*.ovl | awk -F= '{print $NF}' | while read -r req
 do
     if [ ! -f "${req}.ovl" ]; then
 	echo "ERROR: Missing dependency ${req}"
@@ -84,7 +84,7 @@ done
 # print the dependencies both forwards and backwards, and a circular
 # dependency will then be repeated
 #
-CIRCDEP=$(grep REQUIRES= *.ovl | awk -F'[\.=]' '{print $1,$NF"\n"$NF,$1}' | sort | uniq -d)
+CIRCDEP=$(grep -H REQUIRES= [a-z]*.ovl | awk -F'[\.=]' '{print $1,$NF"\n"$NF,$1}' | sort | uniq -d)
 if [ -n "${CIRCDEP}" ]; then
     echo "ERROR: circular dependency"
     echo "${CIRCDEP}"
