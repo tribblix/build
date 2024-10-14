@@ -32,6 +32,7 @@ CHECKSUMFILE="${THOME}/build/checksums.txt"
 
 UNZIP="/usr/bin/unzip"
 GPATCH="/usr/bin/gpatch"
+MYARCH=$(uname -p)
 
 #
 # options:
@@ -112,7 +113,7 @@ dochecksum() {
     # we're passed the full name, strip off the directory portion
     #
     FNAME=${1##*/}
-    CKSAVE=$(grep "^${FNAME} " ${CHECKSUMFILE} | awk '{print $2}')
+    CKSAVE=$(grep "^${FNAME} " "${CHECKSUMFILE}" | awk '{print $2}')
     CKNOW=$(openssl sha256  "$1" | awk '{print $NF}')
     if [ -n "${CKSAVE}" ]; then
 	if [ "${CKSAVE}" != "${CKNOW}" ]; then
@@ -120,24 +121,24 @@ dochecksum() {
 	    exit 1
 	fi
     else
-	echo "$FNAME ${CKNOW}" >> ${CHECKSUMFILE}
+	echo "$FNAME ${CKNOW}" >> "${CHECKSUMFILE}"
     fi
 }
 
 dopatch() {
-  if [ -f ${PATCHDIR}/${1}.pls ]; then
-      cd ${1}
-      cat ${PATCHDIR}/${1}.pls | while read patcharg patchfile
+  if [ -f "${PATCHDIR}/${1}.pls" ]; then
+      cd "${1}" || exit 1
+      grep -v '^#' "${PATCHDIR}/${1}.pls" | while read -r patcharg patchfile
       do
-	  ${GPATCH} ${patcharg/+/ } -i ${PATCHDIR}/${patchfile}
+	  ${GPATCH} ${patcharg/+/ } -i "${PATCHDIR}/${patchfile}"
       done
       cd ..
   fi
-  if [ -f ${PATCHDIR}/${1}.pls.`uname -p` ]; then
-      cd ${1}
-      cat ${PATCHDIR}/${1}.pls.`uname -p` | while read patcharg patchfile
+  if [ -f "${PATCHDIR}"/"${1}".pls."${MYARCH}" ]; then
+      cd "${1}" || exit 1
+      grep -v '^#' "${PATCHDIR}"/"${1}".pls."${MYARCH}" | while read -r patcharg patchfile
       do
-	  ${GPATCH} ${patcharg/+/ } -i ${PATCHDIR}/${patchfile}
+	  ${GPATCH} ${patcharg/+/ } -i "${PATCHDIR}/${patchfile}"
       done
       cd ..
   fi
@@ -147,20 +148,20 @@ dopatch() {
 # delete old copies
 #
 if [ "x$RM32" != "xfalse" ]; then
-    /usr/bin/rm -fr ${pkg}
+    /usr/bin/rm -fr "${pkg}"
 fi
 if [ "x$RM64" != "xfalse" ]; then
-    /usr/bin/rm -fr ${pkg}-64bit
+    /usr/bin/rm -fr "${pkg}-64bit"
 fi
 #
 # and for the unpacked name, if there is one
 #
 if [ -n "${upkg}" ]; then
     if [ "x$RM32" != "xfalse" ]; then
-	/usr/bin/rm -fr ${upkg}
+	/usr/bin/rm -fr "${upkg}"
     fi
     if [ "x$RM64" != "xfalse" ]; then
-	/usr/bin/rm -fr ${upkg}-64bit
+	/usr/bin/rm -fr "${upkg}-64bit"
     fi
 fi
 DONEUNPACK=""
@@ -185,48 +186,48 @@ for filetype in \
 	'.tar.lz' \
 	'.tar'
 do
-    if [ -f ${SRCDIR}/${pkg}${filetype} ]; then
-	dochecksum ${SRCDIR}/${pkg}${filetype}
+    if [ -f "${SRCDIR}/${pkg}${filetype}" ]; then
+	dochecksum "${SRCDIR}/${pkg}${filetype}"
 	if [ -n "${DONEUNPACK}" ]; then
 	    echo "ERROR: multiple $pkg sources $DONEUNPACK and $filetype"
 	fi
-        gtar axf ${SRCDIR}/${pkg}${filetype}
+        gtar axf "${SRCDIR}/${pkg}${filetype}"
 	if [ -n "${upkg}" ]; then
-	    mv ${upkg} ${pkg}
+	    mv "${upkg}" "${pkg}"
 	fi
-        dopatch ${pkg}
+        dopatch "${pkg}"
         if [ "x$DO64" != "xfalse" ]; then
-            mv ${pkg} ${pkg}-64bit
+            mv "${pkg}" "${pkg}-64bit"
             if [ "x$DO32" != "xfalse" ]; then
-                gtar axf ${SRCDIR}/${pkg}${filetype}
+                gtar axf "${SRCDIR}/${pkg}${filetype}"
 		if [ -n "${upkg}" ]; then
-		    mv ${upkg} ${pkg}
+		    mv "${upkg}" "${pkg}"
 		fi
-                dopatch ${pkg}
+                dopatch "${pkg}"
             fi
         fi
 	DONEUNPACK="$filetype"
     fi
 done
 
-if [ -f ${SRCDIR}/${pkg}.zip ]; then
-    dochecksum ${SRCDIR}/${pkg}.zip
+if [ -f "${SRCDIR}/${pkg}.zip" ]; then
+    dochecksum "${SRCDIR}/${pkg}.zip"
     if [ -n "${DONEUNPACK}" ]; then
      	echo "ERROR: multiple $pkg sources $DONEUNPACK and .zip"
     fi
-    ${UNZIP} -q ${SRCDIR}/${pkg}.zip
+    ${UNZIP} -q "${SRCDIR}/${pkg}.zip"
     if [ -n "${upkg}" ]; then
-	mv ${upkg} ${pkg}
+	mv "${upkg}" "${pkg}"
     fi
-    dopatch ${pkg}
+    dopatch "${pkg}"
     if [ "x$DO64" != "xfalse" ]; then
-	mv ${pkg} ${pkg}-64bit
+	mv "${pkg}" "${pkg}-64bit"
 	if [ "x$DO32" != "xfalse" ]; then
-	    ${UNZIP} -q ${SRCDIR}/${pkg}.zip
+	    ${UNZIP} -q "${SRCDIR}/${pkg}.zip"
 	    if [ -n "${upkg}" ]; then
-		mv ${upkg} ${pkg}
+		mv "${upkg}" "${pkg}"
 	    fi
-	    dopatch ${pkg}
+	    dopatch "${pkg}"
 	fi
     fi
 fi
@@ -239,14 +240,14 @@ case $pkg in
     https://*)
 	spkg=${pkg##*/}
 	spkg=${spkg%.git}
-	/usr/bin/rm -fr ${spkg} ${spkg}-64bit
-	git clone $BRANCHARGS $pkg
-	dopatch ${spkg}
+	/usr/bin/rm -fr "${spkg}" "${spkg}-64bit"
+	git clone $BRANCHARGS "$pkg"
+	dopatch "${spkg}"
 	if [ "x$DO64" != "xfalse" ]; then
-	    mv ${spkg} ${spkg}-64bit
+	    mv "${spkg}" "${spkg}-64bit"
 	    if [ "x$DO32" != "xfalse" ]; then
-		git clone $BRANCHARGS $pkg
-		dopatch ${spkg}
+		git clone $BRANCHARGS "$pkg"
+		dopatch "${spkg}"
 	    fi
 	fi
 	;;
