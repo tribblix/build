@@ -1,5 +1,7 @@
 #!/bin/ksh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -59,16 +61,16 @@ MYARCH=$(uname -p)
 #
 # sanity check
 #
-if [ ! -d $BUILD ]; then
+if [ ! -d "$BUILD" ]; then
    bail "unable to find build directory $BUILD"
 fi
-if [ ! -d $BROOT ]; then
-   mkdir -p ${BROOT}
+if [ ! -d "$BROOT" ]; then
+   mkdir -p "${BROOT}"
 fi
-if [ ! -d $BROOT ]; then
+if [ ! -d "$BROOT" ]; then
    bail "unable to find temporary directory $BROOT"
 fi
-if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+if [ ! -f "${BUILD}/${PKGNAME}/pkginfo" ]; then
    echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
    bail "missing package data"
 fi
@@ -78,50 +80,50 @@ fi
 # script; this copied from ips2svr4
 #
 handle_restarts() {
-if [ -f ${BDIR}/restart_fmri_list ]; then
-mkdir -p ${BDIR}/install
-if [ ! -f ${BDIR}/install/postinstall ]; then
-cat > ${BDIR}/install/postinstall <<EOF
+if [ -f "${BDIR}/restart_fmri_list" ]; then
+mkdir -p "${BDIR}/install"
+if [ ! -f "${BDIR}/install/postinstall" ]; then
+cat > "${BDIR}/install/postinstall" <<EOF
 #!/sbin/sh
 #
 # Automatically generated service restart script
 #
 EOF
-chmod a+x ${BDIR}/install/postinstall
-echo "i postinstall=./install/postinstall" >> ${BDIR}/pp.$$
+chmod a+x "${BDIR}/install/postinstall"
+echo "i postinstall=./install/postinstall" >> "${BDIR}"/pp.$$
 fi
-if [ ! -f ${BDIR}/install/postremove ]; then
-cat > ${BDIR}/install/postremove <<EOF
+if [ ! -f "${BDIR}/install/postremove" ]; then
+cat > "${BDIR}/install/postremove" <<EOF
 #!/sbin/sh
 #
 # Automatically generated service restart script
 #
 EOF
-chmod a+x ${BDIR}/install/postremove
-echo "i postremove=./install/postremove" >> ${BDIR}/pp.$$
+chmod a+x "${BDIR}/install/postremove"
+echo "i postremove=./install/postremove" >> "${BDIR}"/pp.$$
 fi
 #
 # this check is so we only actually restart if the install is to the
 # current system. If we're installing to an alternate image, then the
 # restarts will happen automatically when it boots
 #
-cat >> ${BDIR}/install/postinstall <<EOF
+cat >> "${BDIR}/install/postinstall" <<EOF
 if [ "\${BASEDIR}" = "/" ]; then
 EOF
-cat >> ${BDIR}/install/postremove <<EOF
+cat >> "${BDIR}/install/postremove" <<EOF
 if [ "\${BASEDIR}" = "/" ]; then
 EOF
-/usr/bin/cat ${BDIR}/restart_fmri_list | /usr/bin/sort -u | /usr/bin/awk '{print "/usr/sbin/svcadm restart "$1}' >> ${BDIR}/install/postinstall
-/usr/bin/cat ${BDIR}/restart_fmri_list | /usr/bin/sort -u | /usr/bin/awk '{print "/usr/sbin/svcadm restart "$1}' >> ${BDIR}/install/postremove
-echo "fi" >> ${BDIR}/install/postinstall
-echo "fi" >> ${BDIR}/install/postremove
+/usr/bin/cat "${BDIR}/restart_fmri_list" | /usr/bin/sort -u | /usr/bin/awk '{print "/usr/sbin/svcadm restart "$1}' >> "${BDIR}/install/postinstall"
+/usr/bin/cat "${BDIR}/restart_fmri_list" | /usr/bin/sort -u | /usr/bin/awk '{print "/usr/sbin/svcadm restart "$1}' >> "${BDIR}/install/postremove"
+echo "fi" >> "${BDIR}/install/postinstall"
+echo "fi" >> "${BDIR}/install/postremove"
 #
 # some of the packages have broken dependencies, so we exit cleanly to
 # stop errors from missing services messing up pkgadd or pkgrm
 #
-echo "exit 0" >> ${BDIR}/install/postinstall
-echo "exit 0" >> ${BDIR}/install/postremove
-/usr/bin/rm ${BDIR}/restart_fmri_list
+echo "exit 0" >> "${BDIR}/install/postinstall"
+echo "exit 0" >> "${BDIR}/install/postremove"
+/usr/bin/rm "${BDIR}/restart_fmri_list"
 fi
 }
 
@@ -129,28 +131,28 @@ fi
 # deal with users and groups
 #
 init_preinstall() {
-if [ ! -f ${BDIR}/install/preinstall ]; then
-mkdir -p ${BDIR}/install
-cat > ${BDIR}/install/preinstall <<EOF
+if [ ! -f "${BDIR}/install/preinstall" ]; then
+mkdir -p "${BDIR}/install"
+cat > "${BDIR}/install/preinstall" <<EOF
 #!/sbin/sh
 #
 # Automatically generated preinstall script
 #
 EOF
-echo "i preinstall=./install/preinstall" >> ${BDIR}/pp.$$
+echo "i preinstall=./install/preinstall" >> "${BDIR}"/pp.$$
 fi
 }
 close_preinstall() {
-if [ -f ${BDIR}/install/preinstall ]; then
-    echo "exit 0" >> ${BDIR}/install/preinstall
+if [ -f "${BDIR}/install/preinstall" ]; then
+    echo "exit 0" >> "${BDIR}/install/preinstall"
 fi
 }
 do_group() {
     init_preinstall
-    cat ${BUILD}/${PKGNAME}/group | while read gline
+    cat "${BUILD}/${PKGNAME}/group" | while read -r gline
     do
-	gname=`echo $gline|awk -F: '{print $1}'`
-	cat >> ${BDIR}/install/preinstall <<EOF
+	gname=$(echo "$gline"|awk -F: '{print $1}')
+	cat >> "${BDIR}/install/preinstall" <<EOF
 if ! /usr/bin/grep -q "^${gname}:" \${BASEDIR}/etc/group
 then
    echo "$gline" >> \${BASEDIR}/etc/group
@@ -160,10 +162,10 @@ EOF
 }
 do_passwd() {
     init_preinstall
-    cat ${BUILD}/${PKGNAME}/passwd | while read pline
+    cat "${BUILD}/${PKGNAME}/passwd" | while read -r pline
     do
-	pname=`echo $pline|awk -F: '{print $1}'`
-	cat >> ${BDIR}/install/preinstall <<EOF
+	pname=$(echo "$pline"|awk -F: '{print $1}')
+	cat >> "${BDIR}/install/preinstall" <<EOF
 if ! /usr/bin/grep -q "^${pname}:" \${BASEDIR}/etc/passwd
 then
    echo "$pline" >> \${BASEDIR}/etc/passwd
@@ -174,10 +176,10 @@ EOF
 }
 do_user_attr() {
     init_preinstall
-    cat ${BUILD}/${PKGNAME}/user_attr | while read pline
+    cat "${BUILD}/${PKGNAME}/user_attr" | while read -r pline
     do
-	pname=`echo $pline|awk -F: '{print $1}'`
-	cat >> ${BDIR}/install/preinstall <<EOF
+	pname=$(echo $pline|awk -F: '{print $1}')
+	cat >> "${BDIR}/install/preinstall" <<EOF
 if ! /usr/bin/grep -q "^${pname}:" \${BASEDIR}/etc/user_attr
 then
    echo "$pline" >> \${BASEDIR}/etc/user_attr
@@ -186,133 +188,133 @@ EOF
     done
 }
 
-PKGVER=`/usr/bin/grep '^VERSION=' ${BUILD}/${PKGNAME}/pkginfo | /usr/bin/awk -F= '{print $2}' | /usr/bin/sed 's:"::g'`
-if [ -f ${BUILD}/${PKGNAME}/version.${MYARCH} ]; then
-    PKGVER=$(<${BUILD}/${PKGNAME}/version.${MYARCH})
+PKGVER=$(/usr/bin/grep '^VERSION=' "${BUILD}/${PKGNAME}/pkginfo" | /usr/bin/awk -F= '{print $2}' | /usr/bin/sed 's:"::g')
+if [ -f "${BUILD}/${PKGNAME}/version.${MYARCH}" ]; then
+    PKGVER=$(<"${BUILD}/${PKGNAME}/version.${MYARCH}")
 fi
-cd $BDIR || bail "no directory to package"
+cd "$BDIR" || bail "no directory to package"
 # copy packaging files from archive
-cp ${BUILD}/${PKGNAME}/pkginfo .
-if [ -f ${BUILD}/${PKGNAME}/pkginfo.arch ]; then
-    cat ${BUILD}/${PKGNAME}/pkginfo.arch >> pkginfo
+cp "${BUILD}/${PKGNAME}/pkginfo" .
+if [ -f "${BUILD}/${PKGNAME}/pkginfo.arch" ]; then
+    cat "${BUILD}/${PKGNAME}/pkginfo.arch" >> pkginfo
 else
     echo "ARCH=\"$MYARCH\"" >> pkginfo
 fi
-if [ -f ${BUILD}/${PKGNAME}/version.${MYARCH} ]; then
+if [ -f "${BUILD}/${PKGNAME}/version.${MYARCH}" ]; then
     sed -i '/VERSION=/d' pkginfo
     echo "VERSION=\"$PKGVER\"" >> pkginfo
 fi
-cat ${BUILD}/pkginfo.base >> pkginfo
+cat "${BUILD}/pkginfo.base" >> pkginfo
 echo "i pkginfo=./pkginfo" > pp.$$
 #
 # export BUILDROOT so the fixit script knows where to find stuff
 #
 BUILDROOT="${BUILD}"
 export BUILDROOT
-if [ -x ${BUILD}/${PKGNAME}/fixit ]; then
+if [ -x "${BUILD}/${PKGNAME}/fixit" ]; then
    echo "Fixing..."
-   ${BUILD}/${PKGNAME}/fixit
+   "${BUILD}"/${PKGNAME}/fixit
 fi
-if [ -x ${BUILD}/fixit.default ]; then
-   ${BUILD}/fixit.default
+if [ -x "${BUILD}/fixit.default" ]; then
+   "${BUILD}"/fixit.default
 fi
 #
 # if 'allowstatic' exists, don't delete the static libs
 #
-if [ ! -f ${BUILD}/${PKGNAME}/allowstatic ]; then
-   if [ -x ${BUILD}/fixit.static ]; then
-      ${BUILD}/fixit.static
+if [ ! -f "${BUILD}/${PKGNAME}/allowstatic" ]; then
+   if [ -x "${BUILD}/fixit.static" ]; then
+      "${BUILD}"/fixit.static
    fi
 fi
 # add dependencies
-if [ -f ${BUILD}/${PKGNAME}/depend.${MYARCH} ]; then
+if [ -f "${BUILD}/${PKGNAME}/depend.${MYARCH}" ]; then
    mkdir -p install
-   cp ${BUILD}/${PKGNAME}/depend.${MYARCH} install/depend
+   cp "${BUILD}/${PKGNAME}/depend.${MYARCH}" install/depend
    echo "i depend=./install/depend" >> pp.$$
-elif [ -f ${BUILD}/${PKGNAME}/depend ]; then
+elif [ -f "${BUILD}/${PKGNAME}/depend" ]; then
    mkdir -p install
-   cp ${BUILD}/${PKGNAME}/depend install
+   cp "${BUILD}/${PKGNAME}/depend" install
    echo "i depend=./install/depend" >> pp.$$
 fi
 
 #
 # clean up any scripts from a previous run
 #
-rm -f ${BDIR}/install/postinstall
-rm -f ${BDIR}/install/postremove
-rm -f ${BDIR}/install/preremove
-if [ -f ${BUILD}/${PKGNAME}/postinstall ]; then
-    mkdir -p ${BDIR}/install
-    cp ${BUILD}/${PKGNAME}/postinstall ${BDIR}/install
-    chmod a+x ${BDIR}/install/postinstall
-    echo "i postinstall=./install/postinstall" >> ${BDIR}/pp.$$
+rm -f "${BDIR}/install/postinstall"
+rm -f "${BDIR}/install/postremove"
+rm -f "${BDIR}/install/preremove"
+if [ -f "${BUILD}/${PKGNAME}/postinstall" ]; then
+    mkdir -p "${BDIR}/install"
+    cp "${BUILD}/${PKGNAME}/postinstall" "${BDIR}/install"
+    chmod a+x "${BDIR}/install/postinstall"
+    echo "i postinstall=./install/postinstall" >> "${BDIR}"/pp.$$
 fi
-if [ -f ${BUILD}/${PKGNAME}/postremove ]; then
-    mkdir -p ${BDIR}/install
-    cp ${BUILD}/${PKGNAME}/postremove ${BDIR}/install
-    chmod a+x ${BDIR}/install/postremove
-    echo "i postremove=./install/postremove" >> ${BDIR}/pp.$$
+if [ -f "${BUILD}/${PKGNAME}/postremove" ]; then
+    mkdir -p "${BDIR}/install"
+    cp "${BUILD}/${PKGNAME}/postremove" "${BDIR}/install"
+    chmod a+x "${BDIR}/install/postremove"
+    echo "i postremove=./install/postremove" >> "${BDIR}"/pp.$$
 fi
-if [ -f ${BUILD}/${PKGNAME}/preremove ]; then
-    mkdir -p ${BDIR}/install
-    cp ${BUILD}/${PKGNAME}/preremove ${BDIR}/install
-    chmod a+x ${BDIR}/install/preremove
-    echo "i preremove=./install/preremove" >> ${BDIR}/pp.$$
+if [ -f "${BUILD}/${PKGNAME}/preremove" ]; then
+    mkdir -p "${BDIR}/install"
+    cp "${BUILD}/${PKGNAME}/preremove" "${BDIR}/install"
+    chmod a+x "${BDIR}/install/preremove"
+    echo "i preremove=./install/preremove" >> "${BDIR}"/pp.$$
 fi
-if [ -f ${BUILD}/${PKGNAME}/restart_fmri_list ]; then
-   cp ${BUILD}/${PKGNAME}/restart_fmri_list ${BDIR}
+if [ -f "${BUILD}/${PKGNAME}/restart_fmri_list" ]; then
+   cp "${BUILD}/${PKGNAME}/restart_fmri_list" "${BDIR}"
    handle_restarts
 fi
 #
 # deal with users and groups
 #
-rm -f ${BDIR}/install/preinstall
-if [ -f ${BUILD}/${PKGNAME}/group ]; then
+rm -f "${BDIR}/install/preinstall"
+if [ -f "${BUILD}/${PKGNAME}/group" ]; then
     do_group
 fi
-if [ -f ${BUILD}/${PKGNAME}/passwd ]; then
+if [ -f "${BUILD}/${PKGNAME}/passwd" ]; then
     do_passwd
 fi
-if [ -f ${BUILD}/${PKGNAME}/user_attr ]; then
+if [ -f "${BUILD}/${PKGNAME}/user_attr" ]; then
     do_user_attr
 fi
 close_preinstall
 #
-if [ -d ${BDIR}/usr ]; then
+if [ -d "${BDIR}/usr" ]; then
    (cd ${BDIR} ; pkgproto usr | ${BUILD}/fixproto) >> pp.$$
 fi
-if [ -d ${BDIR}/etc ]; then
+if [ -d "${BDIR}/etc" ]; then
    (cd ${BDIR} ; pkgproto etc | ${BUILD}/fixproto) >> pp.$$
 fi
-if [ -d ${BDIR}/kernel ]; then
+if [ -d "${BDIR}/kernel" ]; then
    (cd ${BDIR} ; pkgproto kernel | ${BUILD}/fixproto) >> pp.$$
 fi
-if [ -d ${BDIR}/lib ]; then
+if [ -d "${BDIR}/lib" ]; then
    (cd ${BDIR} ; pkgproto lib | ${BUILD}/fixproto) >> pp.$$
 fi
-if [ -d ${BDIR}/sbin ]; then
+if [ -d "${BDIR}/sbin" ]; then
    (cd ${BDIR} ; pkgproto sbin | ${BUILD}/fixproto) >> pp.$$
 fi
-if [ -d ${BDIR}/var ]; then
+if [ -d "${BDIR}/var" ]; then
    (cd ${BDIR} ; pkgproto var | ${BUILD}/fixproto) >> pp.$$
 fi
-if [ -d ${BDIR}/opt ]; then
+if [ -d "${BDIR}/opt" ]; then
    (cd ${BDIR} ; pkgproto opt | ${BUILD}/fixproto) >> pp.$$
 fi
 # zonelib is just for TRIBblix-zones
-if [ -d ${BDIR}/zonelib ]; then
+if [ -d "${BDIR}/zonelib" ]; then
    (cd ${BDIR} ; pkgproto zonelib | ${BUILD}/fixproto) >> pp.$$
 fi
 # boot is just for TRIBsys-install-media-internal
-if [ -d ${BDIR}/boot ]; then
+if [ -d "${BDIR}/boot" ]; then
    (cd ${BDIR} ; pkgproto boot | ${BUILD}/fixproto) >> pp.$$
 fi
 #
 # any per-package proto fixes
 #
-if [ -x ${BUILD}/${PKGNAME}/fixproto ]; then
+if [ -x "${BUILD}/${PKGNAME}/fixproto" ]; then
     mv pp.$$ old.pp.$$
-    cat old.pp.$$ | ${BUILD}/${PKGNAME}/fixproto > pp.$$
+    cat old.pp.$$ | "${BUILD}/${PKGNAME}/fixproto" > pp.$$
     rm old.pp.$$
 fi
 #
@@ -337,12 +339,12 @@ fi
 # As we've added a new class of files, we need to have a modified
 # CLASSES= statement in the pkginfo file to make sure they're handled.
 #
-if [ -s ${BUILD}/${PKGNAME}/preserve ]; then
+if [ -s "${BUILD}/${PKGNAME}/preserve" ]; then
     echo "CLASSES=\"none preserve\"" >> pkginfo
-    for file in $(<${BUILD}/${PKGNAME}/preserve)
+    for file in $(<"${BUILD}/${PKGNAME}/preserve")
     do
 	mv pp.$$ old.pp.$$
-	cat old.pp.$$ |awk -v pn=$file '{if ($3 == pn) { $2 = "preserve" ; $1 = "e" }}{print}' > pp.$$
+	awk -v pn="$file" '{if ($3 == pn) { $2 = "preserve" ; $1 = "e" }}{print}' old.pp.$$ > pp.$$
 	rm old.pp.$$
     done
     #
@@ -350,31 +352,31 @@ if [ -s ${BUILD}/${PKGNAME}/preserve ]; then
     # to ignore the remove
     #
     mkdir -p install
-    cp ${BUILD}/r.preserve install/r.preserve
-    echo "i r.preserve=./install/r.preserve" >> ${BDIR}/pp.$$
+    cp "${BUILD}/r.preserve" install/r.preserve
+    echo "i r.preserve=./install/r.preserve" >> "${BDIR}"/pp.$$
 else
     echo "CLASSES=\"none\"" >> pkginfo
 fi
 # create the package
-pkgmk -d ${BROOT} -f pp.$$ -r ${BDIR} ${PKGNAME}
+pkgmk -d "${BROOT}" -f pp.$$ -r "${BDIR}" "${PKGNAME}"
 /usr/bin/rm pp.$$
-pkgtrans -s ${BROOT} ${BROOT}/${PKGNAME}.${PKGVER}.pkg ${PKGNAME}
+pkgtrans -s "${BROOT}" "${BROOT}/${PKGNAME}.${PKGVER}.pkg" "${PKGNAME}"
 # create the zap file
-cd $BROOT
+cd "$BROOT" || bail "oops"
 # 7z gives us an extra 2-3% reduction in file size
 #zip -9 -q -r ${PKGNAME} ${PKGNAME}
-rm -f ${PKGNAME}.${PKGVER}.zap ${PKGNAME}.${PKGVER}.zap.md5 ${PKGNAME}.${PKGVER}.zap.sig
-7za a -tzip -mx=9 -mfb=256 ${PKGNAME}.${PKGVER}.zap ${PKGNAME}
-chmod a+r ${PKGNAME}.${PKGVER}.zap
+rm -f "${PKGNAME}.${PKGVER}.zap" "${PKGNAME}.${PKGVER}.zap.md5" "${PKGNAME}.${PKGVER}.zap.sig"
+7za a -tzip -mx=9 -mfb=256 "${PKGNAME}.${PKGVER}.zap" "${PKGNAME}"
+chmod a+r "${PKGNAME}.${PKGVER}.zap"
 cd /
 # pregenerate the md5 checksum ready for catalog creation
-openssl md5 ${BROOT}/${PKGNAME}.${PKGVER}.zap| /usr/bin/awk '{print $NF}' > ${BROOT}/${PKGNAME}.${PKGVER}.zap.md5
+openssl md5 "${BROOT}/${PKGNAME}.${PKGVER}.zap" | /usr/bin/awk '{print $NF}' > "${BROOT}/${PKGNAME}.${PKGVER}.zap.md5"
 # sign the zap file
-${BUILD}/sign-file ${BROOT}/${PKGNAME}.${PKGVER}.zap
+"${BUILD}"/sign-file "${BROOT}/${PKGNAME}.${PKGVER}.zap"
 
-ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.pkg
-ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.zap
-rm -fr ${BROOT}/${PKGNAME}
+ls -lh "${BROOT}/${PKGNAME}.${PKGVER}.pkg"
+ls -lh "${BROOT}/${PKGNAME}.${PKGVER}.zap"
+rm -fr "${BROOT}/${PKGNAME}"
 
 echo "Checking dependencies"
-${THOME}/build/instdepcheck.sh ${PKGNAME} ${BDIR}
+"${THOME}"/build/instdepcheck.sh "${PKGNAME}" "${BDIR}"

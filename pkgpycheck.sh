@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -108,14 +110,14 @@ do
     if [ -n "${psha}" ]; then
 	if [ -f "${THOME}/tarballs/${pfile}" ]; then
 	    osha=$(openssl sha256 "${THOME}/tarballs/${pfile}"|awk '{print $NF}')
-	    CKSAVE=$(grep "^${pfile} " ${CHECKSUMFILE} | awk '{print $2}')
+	    CKSAVE=$(grep "^${pfile} " "${CHECKSUMFILE}" | awk '{print $2}')
 	    if [ "X${psha}" != "X${osha}" ]; then
 		echo "ERROR: checksum mismatch for ${pfile}"
 		echo "expected ${psha}"
 		echo "actual ${osha}"
 	    else
 		if [ -z "${CKSAVE}" ]; then
-		    echo "${pfile} ${psha}" >> ${CHECKSUMFILE}
+		    echo "${pfile} ${psha}" >> "${CHECKSUMFILE}"
 		fi
 		rm -f "${JFILE}"
 		exit 0

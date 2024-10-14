@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -43,16 +45,16 @@ if [ ! -f "${WDIR}/catalog" ]; then
     exit 1
 fi
 
-cd $WDIR
+cd "$WDIR" || exit 1
 
 #
 # loop over every zap file in the current catalog
 #
 rm -f filelist.new
 touch filelist.new
-awk -F'|' '{print $1,$2}' catalog | while read pkgname pkgver
+awk -F'|' '{print $1,$2}' catalog | while read -r pkgname pkgver
 do
-    if [ -f ${pkgname}.${pkgver}.zap ]; then
+    if [ -f "${pkgname}.${pkgver}.zap" ]; then
 	#
 	# grep / out of the pkgmap file to get the list of paths
 	# this also skips the informational files
@@ -61,7 +63,7 @@ do
 	# ignore directories
 	# strip any leading / off the names just once afterwards
 	#
-	unzip -p ${pkgname}.${pkgver}.zap ${pkgname}/pkgmap | grep / | awk -v PKG=$pkgname '{if ($2 != "d") print $4,$2,PKG}' >> filelist.new
+	unzip -p "${pkgname}.${pkgver}.zap" "${pkgname}/pkgmap" | grep / | awk -v PKG="$pkgname" '{if ($2 != "d") print $4,$2,PKG}' >> filelist.new
     else
 	echo "Missing file ${pkgname}.${pkgver}.zap"
     fi

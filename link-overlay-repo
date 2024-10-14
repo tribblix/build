@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -23,22 +25,22 @@
 
 SRCDIR="$1"
 
-if [ ! -f ${SRCDIR}/catalog ]; then
+if [ ! -f "${SRCDIR}/catalog" ]; then
    echo "No catalog. Is this a repo?"
    exit 1
 fi
 
-cat ${SRCDIR}/catalog | awk -F'|' '{print $1}' | while read ovl
+awk -F'|' '{print $1}' "${SRCDIR}/catalog" | while read -r ovl
 do
-  if [ ! -f ${SRCDIR}/${ovl}.ovl ]; then
+  if [ ! -f "${SRCDIR}/${ovl}.ovl" ]; then
     echo "ERROR: ${ovl}.ovl missing"
   else
-     cp -p ${SRCDIR}/${ovl}.ovl .
+     cp -p "${SRCDIR}/${ovl}.ovl" .
   fi
-  if [ ! -f ${SRCDIR}/${ovl}.pkgs ]; then
+  if [ ! -f "${SRCDIR}/${ovl}.pkgs" ]; then
     echo "ERROR: ${ovl}.pkgs missing"
   else
-     cp -p ${SRCDIR}/${ovl}.pkgs .
+     cp -p "${SRCDIR}/${ovl}.pkgs" .
   fi
 done
-cp ${SRCDIR}/catalog .
+cp "${SRCDIR}/catalog" .

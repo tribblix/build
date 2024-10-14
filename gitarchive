@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -35,10 +37,10 @@ case $# in
 esac
 
 RNAME=${RURL##*/}
-rm -fr $RNAME
-$GIT clone $RURL
-rm -fr ${RNAME}/.git
-rm -f ${SRCDIR}/${RNAME}.tar.* ${SRCDIR}/${RNAME}.zip
-tar cf ${SRCDIR}/${RNAME}.tar ${RNAME}
-pbzip2 ${SRCDIR}/${RNAME}.tar
-rm -fr ${RNAME}
+rm -fr "$RNAME"
+$GIT clone "$RURL"
+rm -fr "${RNAME}/.git"
+rm -f "${SRCDIR}"/"${RNAME}".tar.* "${SRCDIR}/${RNAME}.zip"
+tar cf "${SRCDIR}/${RNAME}.tar" "${RNAME}"
+pbzip2 "${SRCDIR}/${RNAME}.tar"
+rm -fr "${RNAME}"

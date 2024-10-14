@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -23,20 +25,20 @@
 
 SRCDIR="$1"
 
-if [ ! -f ${SRCDIR}/catalog ]; then
+if [ ! -f "${SRCDIR}/catalog" ]; then
    echo "No catalog. Is this a repo?"
    exit 1
 fi
 
-cat ${SRCDIR}/catalog | awk -F'|' '{print $1,$2}' | while read pkg ver
+awk -F'|' '{print $1,$2}' "${SRCDIR}/catalog" | while read -r pkg ver
 do
-  if [ ! -f ${SRCDIR}/${pkg}.${ver}.zap ]; then
+  if [ ! -f "${SRCDIR}/${pkg}.${ver}.zap" ]; then
     echo "ERROR: ${pkg}.${ver}.zap missing"
   else
-     ln ${SRCDIR}/${pkg}.${ver}.zap .
+     ln "${SRCDIR}/${pkg}.${ver}.zap" .
   fi
-  if [ -f ${SRCDIR}/${pkg}.${ver}.zap.sig ]; then
-     ln ${SRCDIR}/${pkg}.${ver}.zap.sig .
+  if [ -f "${SRCDIR}/${pkg}.${ver}.zap.sig" ]; then
+     ln "${SRCDIR}/${pkg}.${ver}.zap.sig" .
   fi
 done
-cp ${SRCDIR}/catalog ${SRCDIR}/aliases ${SRCDIR}/index.html ${SRCDIR}/filelist.bz2 .
+cp "${SRCDIR}/catalog" "${SRCDIR}/aliases" "${SRCDIR}/index.html" "${SRCDIR}/filelist.bz2" .

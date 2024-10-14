@@ -1,5 +1,7 @@
 #!/bin/ksh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -48,45 +50,45 @@ BUILD="${THOME}/build"
 #
 # sanity check
 #
-if [ ! -d $BUILD ]; then
+if [ ! -d "$BUILD" ]; then
    echo "ERROR: unable to find build directory $BUILD"
    exit 1
 fi
-if [ ! -d $BROOT ]; then
-   mkdir -p ${BROOT}
+if [ ! -d "$BROOT" ]; then
+   mkdir -p "${BROOT}"
 fi
-if [ ! -d $BROOT ]; then
+if [ ! -d "$BROOT" ]; then
    echo "ERROR: unable to find temporary directory $BROOT"
    exit 1
 fi
-if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+if [ ! -f "${BUILD}/${PKGNAME}/pkginfo" ]; then
    echo "ERROR: missing package data"
    echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
    exit 1
 fi
-if [ ! -f $BFILE ]; then
+if [ ! -f "$BFILE" ]; then
    echo "ERROR: unable to find input package $BFILE"
    exit 1
 fi
 
-PKGVER=`/usr/bin/grep '^VERSION=' ${BUILD}/${PKGNAME}/pkginfo | /usr/bin/awk -F= '{print $2}' | /usr/bin/sed 's:"::g'`
+PKGVER=$(/usr/bin/grep '^VERSION=' "${BUILD}/${PKGNAME}/pkginfo" | /usr/bin/awk -F= '{print $2}' | /usr/bin/sed 's:"::g')
 
 # copy the existing package file to one with the right name
-cp ${BFILE}  ${BROOT}/${PKGNAME}.${PKGVER}.pkg
-pkgtrans ${BROOT}/${PKGNAME}.${PKGVER}.pkg ${BROOT} ${PKGNAME}
+cp "${BFILE}" "${BROOT}/${PKGNAME}.${PKGVER}.pkg"
+pkgtrans "${BROOT}/${PKGNAME}.${PKGVER}.pkg" "${BROOT}" "${PKGNAME}"
 # create the zap file
-cd $BROOT
+cd "$BROOT" || exit 1
 # 7z gives us an extra 2-3% reduction in file size
 #zip -9 -q -r ${PKGNAME} ${PKGNAME}
-rm -f ${PKGNAME}.${PKGVER}.zap ${PKGNAME}.${PKGVER}.zap.md5 ${PKGNAME}.${PKGVER}.zap.sig
-7za a -tzip -mx=9 -mfb=256 ${PKGNAME}.${PKGVER}.zap ${PKGNAME}
-chmod a+r ${PKGNAME}.${PKGVER}.zap
+rm -f "${PKGNAME}.${PKGVER}.zap" "${PKGNAME}.${PKGVER}.zap.md5" "${PKGNAME}.${PKGVER}.zap.sig"
+7za a -tzip -mx=9 -mfb=256 "${PKGNAME}.${PKGVER}.zap" "${PKGNAME}"
+chmod a+r "${PKGNAME}.${PKGVER}.zap"
 cd /
 # pregenerate the md5 checksum ready for catalog creation
-openssl md5 ${BROOT}/${PKGNAME}.${PKGVER}.zap | /usr/bin/awk '{print $NF}' > ${BROOT}/${PKGNAME}.${PKGVER}.zap.md5
+openssl md5 "${BROOT}/${PKGNAME}.${PKGVER}.zap" | /usr/bin/awk '{print $NF}' > "${BROOT}/${PKGNAME}.${PKGVER}.zap.md5"
 # sign the zap file
-${BUILD}/sign-file ${BROOT}/${PKGNAME}.${PKGVER}.zap
+"${BUILD}"/sign-file "${BROOT}/${PKGNAME}.${PKGVER}.zap"
 
-ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.pkg
-ls -lh ${BROOT}/${PKGNAME}.${PKGVER}.zap
-rm -fr ${BROOT}/${PKGNAME}
+ls -lh "${BROOT}/${PKGNAME}.${PKGVER}.pkg"
+ls -lh "${BROOT}/${PKGNAME}.${PKGVER}.zap"
+rm -fr "${BROOT}/${PKGNAME}"

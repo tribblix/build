@@ -48,7 +48,7 @@ shift $((OPTIND-1))
 
 CFILE="${PKGDIR}/${CATNAME}"
 
-if [ ! -f $CFILE ]; then
+if [ ! -f "$CFILE" ]; then
     echo "ERROR: $CFILE not found"
     exit 1
 fi
@@ -56,16 +56,16 @@ fi
 #
 # assume we're in the build directory
 #
-for PKG in $(awk -F'|' '{print $1}' $CFILE)
+for PKG in $(awk -F'|' '{print $1}' "$CFILE")
 do
     PKGI=${PKG}/alias
-    if [ -f ${PKGI}.${PLAT} ]; then
-	for PALIAS in $(<${PKGI}.${PLAT})
+    if [ -f "${PKGI}.${PLAT}" ]; then
+	for PALIAS in $(<"${PKGI}.${PLAT}")
 	do
 	    echo "${PALIAS}|${PKG}"
 	done
-    elif [ -f $PKGI ]; then
-	for PALIAS in $(<${PKGI})
+    elif [ -f "$PKGI" ]; then
+	for PALIAS in $(<"${PKGI}")
 	do
 	    echo "${PALIAS}|${PKG}"
 	done

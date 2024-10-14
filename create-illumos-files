@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -36,7 +38,7 @@ if [ ! -d "$TARGET" ]; then
    exit 1
 fi
 
-TESTFILE=`/bin/ls -1 ${TARGET}/SUNWcs.*.zap`
+TESTFILE=$(/bin/ls -1 "${TARGET}"/SUNWcs.*.zap)
 if [ ! -f "$TESTFILE" ]; then
    echo "Unable to find any packages in $TARGET"
    exit 1
@@ -44,17 +46,17 @@ fi
 
 if [ ! -f "${TESTFILE}.sig" ]; then
    echo "Signing packages"
-   ./sign-directory $TARGET
+   ./sign-directory "$TARGET"
 fi
 
 echo "Creating catalog"
-./create-illumos-catalog $TARGET > $TARGET/catalog
+./create-illumos-catalog "$TARGET" > "$TARGET/catalog"
 
 echo "Creating index.html"
-./create-illumos-catalog-html $TARGET > $TARGET/index.html
+./create-illumos-catalog-html "$TARGET" > "$TARGET/index.html"
 
 echo "Creating aliases"
-./create-illumos-aliases $TARGET > $TARGET/aliases
+./create-illumos-aliases "$TARGET" > "$TARGET/aliases"
 
 echo "Creating file list"
-./create-file-list $TARGET
+./create-file-list "$TARGET"

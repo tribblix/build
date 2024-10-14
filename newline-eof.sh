@@ -15,21 +15,21 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
 # check files end in a newline
 #
-for file in $*
+for file in "$@"
 do
-    if [ -d $file ]; then
+    if [ -d "$file" ]; then
 	continue
     fi
     #
     # ignore zero-length files (like allowstatic)
     #
-    if [ -s $file ]; then
+    if [ -s "$file" ]; then
 	#
 	# force binaries, not builtins
 	#

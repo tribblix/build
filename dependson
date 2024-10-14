@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -53,26 +55,26 @@ do
     # remove any trailing / added by tab-completion
     dir=${dir%%/}
     if [ -d "${dir}" ]; then
-	echo "Checking $dir ($(install_status $dir))"
+	echo "Checking $dir ($(install_status "$dir"))"
 	grep -lx "P $dir" TRIB*/depend* | while read -r dep
 	do
 	    pkg=${dep%%/*}
-	    echo "  run-time ${pkg} ($(install_status $pkg))"
+	    echo "  run-time ${pkg} ($(install_status "$pkg"))"
 	done
 	grep -lx "I $dir" TRIB*/depend* | while read -r dep
 	do
 	    pkg=${dep%%/*}
-	    echo "  run-incompatible ${pkg} ($(install_status $pkg))"
+	    echo "  run-incompatible ${pkg} ($(install_status "$pkg"))"
 	done
 	grep -lx "$dir" TRIB*/build_require* | while read -r dep
 	do
 	    pkg=${dep%%/*}
-	    echo "  build-time ${pkg} ($(install_status $pkg))"
+	    echo "  build-time ${pkg} ($(install_status "$pkg"))"
 	done
 	grep -lx "$dir" TRIB*/build_incompatible* | while read -r dep
 	do
 	    pkg=${dep%%/*}
-	    echo "  build-incompatible ${pkg} ($(install_status $pkg))"
+	    echo "  build-incompatible ${pkg} ($(install_status "$pkg"))"
 	done
     else
 	echo "No such package $dir"

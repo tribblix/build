@@ -1,5 +1,7 @@
 #!/bin/ksh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -47,18 +49,19 @@ fi
 
 #
 BPKG=${FPKG##*/}
-TDIR=/tmp/zap2pkg.`date '+%F-%T'`.$$
-rm -fr $TDIR
-mkdir -p $TDIR
+PNAME=${BPKG%.zap}
+TDIR=/tmp/zap2pkg.$(date '+%F-%T').$$
+rm -fr "$TDIR"
+mkdir -p "$TDIR"
 
-cd $TDIR
-unzip $FPKG
-pkgtrans . ${BROOT}/${BPKG%.zap}.pkg all
-chmod a+r ${BROOT}/${BPKG%.zap}.pkg
+cd "$TDIR" || exit 1
+unzip "$FPKG"
+pkgtrans . "${BROOT}"/"${PNAME}".pkg all
+chmod a+r "${BROOT}"/"${PNAME}".pkg
 
 #
 # clean up
 #
 cd /
-rm -fr $TDIR
-ls -lh ${BROOT}/${BPKG%.zap}.pkg
+rm -fr "$TDIR"
+ls -lh "${BROOT}"/"${PNAME}".pkg

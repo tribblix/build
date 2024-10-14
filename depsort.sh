@@ -24,10 +24,10 @@ export LC_COLLATE
 #
 # check depend files are sorted for all packages
 #
-cd $THOME/build
+cd "$THOME/build" || exit 1
 for file in */depend */depend.*
 do
-    if ! /usr/bin/sort -c $file 2>/dev/null
+    if ! /usr/bin/sort -c "$file" 2>/dev/null
     then
 	echo "sort -o $file $file"
     fi
@@ -36,10 +36,10 @@ done
 #
 # same policy for build_require
 #
-cd $THOME/build
+cd "$THOME/build" || exit 1
 for file in */build_require */build_require.*
 do
-    if ! /usr/bin/sort -c $file 2>/dev/null
+    if ! /usr/bin/sort -c "$file" 2>/dev/null
     then
 	echo "sort -o $file $file"
     fi

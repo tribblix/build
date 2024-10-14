@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -28,7 +30,7 @@
 #
 
 THOME=${THOME:-/packages/localsrc/Tribblix}
-cd ${THOME}/build || exit 1
+cd "${THOME}/build" || exit 1
 
 PY3VER=312
 CHECKER=${THOME}/build/pkgpycheck.sh
@@ -45,7 +47,7 @@ fi
 if [ $# -gt 0 ]; then
     for file in "$@"
     do
-	for pkgstr in $(egrep 'build/(unpack|pkg_pep518|pkg_setup_py)' ${file}/build.sh | awk '{print $NF}')
+	for pkgstr in $(grep -E 'build/(unpack|pkg_pep518|pkg_setup_py)' "${file}/build.sh" | awk '{print $NF}')
 	do
 	    pkgver=${pkgstr##*-}
 	    pkgname=${pkgstr%-*}
@@ -61,7 +63,7 @@ fi
 #
 # we skip commix, which isn't updated on PyPi
 #
-egrep -H 'build/(unpack|pkg_pep518|pkg_setup_py)' TRIB{mog,pgactivity,pgbarman,s3cmd,scons}/build.sh | while read -r ffile fpkgstr
+grep -E -H 'build/(unpack|pkg_pep518|pkg_setup_py)' TRIB{mog,pgactivity,pgbarman,s3cmd,scons}/build.sh | while read -r ffile fpkgstr
 do
     file=${ffile%%/*}
     pkgstr=${fpkgstr##* }
@@ -73,7 +75,7 @@ done
 #
 # first look at packages built from wheels
 #
-egrep -H 'build/pkg_wheel' *-${PY3VER}/build.sh | while read -r ffile fpkgname fwheel
+grep -E -H 'build/pkg_wheel' *-${PY3VER}/build.sh | while read -r ffile fpkgname fwheel
 do
     file=${ffile%%/*}
     #
@@ -88,7 +90,7 @@ do
     "${CHECKER}" -w "${file}" "${pkgname}" "${pkgver}"
 done
 
-egrep -H 'build/(unpack|pkg_pep518|pkg_setup_py)' *-${PY3VER}/build.sh | while read -r ffile fpkgstr
+grep -E -H 'build/(unpack|pkg_pep518|pkg_setup_py)' *-${PY3VER}/build.sh | while read -r ffile fpkgstr
 do
     file=${ffile%%/*}
     pkgstr=${fpkgstr##* }

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # {{{ CDDL HEADER
 #
 # This file and its contents are supplied under the terms of the
@@ -13,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2023 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -53,8 +55,8 @@ rm -f usr/lib/*/lib*.la
 #
 # don't embed compiler location in .la files
 #
-for file in `find . -name '*.la'`
+for file in $(find . -name '*.la')
 do
-gsed -i -e s:/usr/lib/libstdc++.la:-lstdc++:g -e s:/usr/lib/amd64/libstdc++.la:-lstdc++:g -e s:/usr/lib/sparcv9/libstdc++.la:-lstdc++:g $file
-gsed -i -e s:/usr/versions/gcc-7/lib/libstdc++.la:-lstdc++:g -e s:/usr/versions/gcc-7/lib/amd64/libstdc++.la:-lstdc++:g -e s:/usr/versions/gcc-7/lib/sparcv9/libstdc++.la:-lstdc++:g $file
+    gsed -i -e s:/usr/lib/libstdc++.la:-lstdc++:g -e s:/usr/lib/amd64/libstdc++.la:-lstdc++:g -e s:/usr/lib/sparcv9/libstdc++.la:-lstdc++:g "$file"
+    gsed -i -e s:/usr/versions/gcc-7/lib/libstdc++.la:-lstdc++:g -e s:/usr/versions/gcc-7/lib/amd64/libstdc++.la:-lstdc++:g -e s:/usr/versions/gcc-7/lib/sparcv9/libstdc++.la:-lstdc++:g "$file"
 done
