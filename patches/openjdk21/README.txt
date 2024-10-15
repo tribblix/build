@@ -3,6 +3,9 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: src/hotspot/os/solaris and src/hotspot/os_cpu/solaris_x86
+split out into separate restore patches.
+
 Cleanup: format warning in print_memory_info()
 
 Cleanup: use jdk21 to build jdk21, as it's LTS.
