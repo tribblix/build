@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# reproduce the original package which was group sys
+#
+awk '
+{if ($3 ~ /^usr\/share/) { $6 = "sys" }}
+{print}
+'
