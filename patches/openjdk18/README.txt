@@ -7,6 +7,8 @@ Most patches -p0
 
 Forked off into the jdk18 repo; mainline is now jdk19.
 
+Cleanup: Since Solaris 10, fork() has always been fork1()
+
 Cleanup: add some basic patches for the test suite.
 
 Cleanup: missed the dropping of TIERED in 17+8, it's now

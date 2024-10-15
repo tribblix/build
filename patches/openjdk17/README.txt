@@ -7,6 +7,8 @@ Most patches -p0
 
 JDK17:
 
+Cleanup: Since Solaris 10, fork() has always been fork1()
+
 17.0.12
 
 Removed last remnants of extended_FILE_stdio, it's unused as 32-bit
