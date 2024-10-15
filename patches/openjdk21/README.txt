@@ -5,6 +5,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 21 now we're in rampdown.
 
+Cleanup: use jdk21 to build jdk21, as it's LTS.
+
 21.0.4
 
 Removed last remnants of extended_FILE_stdio, it's unused as 32-bit
@@ -261,7 +263,7 @@ a constant so we can easily handle that.
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk20 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk21 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
