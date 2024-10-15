@@ -3,7 +3,7 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
-JDK 21 now we're in rampdown.
+Cleanup: format warning in print_memory_info()
 
 Cleanup: use jdk21 to build jdk21, as it's LTS.
 
