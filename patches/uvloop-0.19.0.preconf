@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# uvloop-reuseport.patch fixes the bug, we need to delete the generated
-# C file so it gets regenerated from the pyx file
-#
-rm -f uvloop/loop.c
