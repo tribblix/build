@@ -19,7 +19,7 @@ many cleanups to the main patch that need to be restored.
  ifeq ($(call isTargetOs, windows), true)
 @@ -148,6 +152,7 @@
      DISABLED_WARNINGS_clang := logical-op-parentheses extern-initializer \
-         sign-compare format-nonliteral, \
+         sign-compare format-nonliteral deprecated-non-prototype, \
      DISABLED_WARNINGS_microsoft := 4244 4267 4996, \
 +    ASFLAGS := $(LIBAWT_ASFLAGS), \
      LDFLAGS := $(LDFLAGS_JDKLIB) $(call SET_SHARED_LIBRARY_ORIGIN), \
@@ -65,7 +65,7 @@ diff -ur jdk-jdk-15-26/src/hotspot/os/posix/os_posix.cpp jdk-jdk-15-25/src/hotsp
 diff -ur jdk-jdk-15-26/src/hotspot/share/adlc/formssel.cpp jdk-jdk-15-25/src/hotspot/share/adlc/formssel.cpp
 --- jdk-jdk-15-26/src/hotspot/share/adlc/formssel.cpp	   :: 
 +++ jdk-jdk-15-25/src/hotspot/share/adlc/formssel.cpp	   :: 
-@@ -1057,7 +1057,11 @@
+@@ -1059,7 +1059,11 @@
      const char  *opType   = NULL;
      while (_matrule->base_operand(position, globals, result, name, opType)) {
        if ( strcmp(opType,"ConP") == 0 ) {
@@ -77,7 +77,7 @@ diff -ur jdk-jdk-15-26/src/hotspot/share/adlc/formssel.cpp jdk-jdk-15-25/src/hot
        }
        ++position;
      }
-@@ -1091,7 +1095,13 @@
+@@ -1093,7 +1097,13 @@
    // Check for any component being an immediate float or double.
    Form::DataType data_type = is_chain_of_constant(globals);
    if( data_type==idealD || data_type==idealF ) {
@@ -94,7 +94,7 @@ diff -ur jdk-jdk-15-26/src/hotspot/share/adlc/formssel.cpp jdk-jdk-15-25/src/hot
 diff -ur jdk-jdk-15-26/src/hotspot/share/adlc/output_c.cpp jdk-jdk-15-25/src/hotspot/share/adlc/output_c.cpp
 --- jdk-jdk-15-26/src/hotspot/share/adlc/output_c.cpp	   :: 
 +++ jdk-jdk-15-25/src/hotspot/share/adlc/output_c.cpp	   :: 
-@@ -723,7 +723,13 @@
+@@ -738,7 +748,13 @@
    if (!_pipeline)
      /* Do Nothing */;
  
@@ -358,7 +358,7 @@ diff -ur jdk-jdk-15-26/src/hotspot/share/opto/generateOptoStub.cpp jdk-jdk-15-25
 diff -ur jdk-jdk-15-26/src/hotspot/share/opto/output.cpp jdk-jdk-15-25/src/hotspot/share/opto/output.cpp
 --- jdk-jdk-15-26/src/hotspot/share/opto/output.cpp	   :: 
 +++ jdk-jdk-15-25/src/hotspot/share/opto/output.cpp	   :: 
-@@ -872,6 +872,14 @@
+@@ -877,6 +877,14 @@
        array->append(new_loc_value( C->regalloc(), regnum, Location::lng ));
      }
  #else //_LP64

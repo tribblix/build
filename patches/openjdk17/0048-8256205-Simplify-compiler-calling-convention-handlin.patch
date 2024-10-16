@@ -589,7 +589,7 @@ diff --git a/src/hotspot/share/adlc/adlparse.cpp b/src/hotspot/share/adlc/adlpar
 index 7d62f861686..ecb722c56b2 100644
 --- a/src/hotspot/share/adlc/adlparse.cpp
 +++ b/src/hotspot/share/adlc/adlparse.cpp
-@@ -1019,7 +1019,8 @@ void ADLParser::frame_parse(void) {
+@@ -1020,7 +1020,8 @@ void ADLParser::frame_parse(void) {
          return_addr_parse(frame, false);
        }
        if (strcmp(token,"in_preserve_stack_slots")==0) {
@@ -599,7 +599,7 @@ index 7d62f861686..ecb722c56b2 100644
        }
        if (strcmp(token,"out_preserve_stack_slots")==0) {
          parse_err(WARN, "Using obsolete token, out_preserve_stack_slots");
-@@ -1029,7 +1030,8 @@ void ADLParser::frame_parse(void) {
+@@ -1030,7 +1031,8 @@ void ADLParser::frame_parse(void) {
          frame->_varargs_C_out_slots_killed = parse_one_arg("varargs C out slots killed");
        }
        if (strcmp(token,"calling_convention")==0) {
@@ -609,7 +609,7 @@ index 7d62f861686..ecb722c56b2 100644
        }
        if (strcmp(token,"return_value")==0) {
          frame->_return_value = return_value_parse();
-@@ -1041,7 +1043,8 @@ void ADLParser::frame_parse(void) {
+@@ -1042,7 +1044,8 @@ void ADLParser::frame_parse(void) {
          return_addr_parse(frame, true);
        }
        if (strcmp(token,"c_calling_convention")==0) {
@@ -619,7 +619,7 @@ index 7d62f861686..ecb722c56b2 100644
        }
        if (strcmp(token,"c_return_value")==0) {
          frame->_c_return_value = return_value_parse();
-@@ -1072,18 +1075,10 @@ void ADLParser::frame_parse(void) {
+@@ -1073,18 +1076,10 @@ void ADLParser::frame_parse(void) {
      parse_err(SYNERR, "missing return address location in frame section.\n");
      return;
    }
@@ -638,7 +638,7 @@ index 7d62f861686..ecb722c56b2 100644
    if(frame->_return_value == NULL) {
      parse_err(SYNERR, "missing return value definition in frame section.\n");
      return;
-@@ -1096,9 +1091,6 @@ void ADLParser::frame_parse(void) {
+@@ -1097,9 +1092,6 @@ void ADLParser::frame_parse(void) {
      frame->_c_return_addr = frame->_return_addr;
      frame->_c_return_addr_loc = frame->_return_addr_loc;
    }
@@ -648,7 +648,7 @@ index 7d62f861686..ecb722c56b2 100644
    if(frame->_c_return_value == NULL) {
      frame->_c_return_value = frame->_return_value;
    }
-@@ -1221,37 +1213,9 @@ void ADLParser::return_addr_parse(FrameForm *frame, bool native) {
+@@ -1222,37 +1214,9 @@ void ADLParser::return_addr_parse(FrameForm *frame, bool native) {
    }
  }
  
@@ -734,7 +734,7 @@ diff --git a/src/hotspot/share/adlc/output_c.cpp b/src/hotspot/share/adlc/output
 index c6083533b58..a044ceab00b 100644
 --- a/src/hotspot/share/adlc/output_c.cpp
 +++ b/src/hotspot/share/adlc/output_c.cpp
-@@ -4160,29 +4160,15 @@ void ArchDesc::buildFrameMethods(FILE *fp_cpp) {
+@@ -4175,29 +4175,15 @@ void ArchDesc::buildFrameMethods(FILE *fp_cpp) {
      fprintf(fp_cpp," return OptoReg::stack2reg(%s); }\n\n",
              _frame->_return_addr);
    }

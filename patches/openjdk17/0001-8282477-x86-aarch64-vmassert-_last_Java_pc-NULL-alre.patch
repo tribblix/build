@@ -299,7 +299,7 @@ diff --git a/src/hotspot/share/runtime/thread.hpp b/src/hotspot/share/runtime/th
 index 9700d6be2a5..9a3fe0efe6e 100644
 --- a/src/hotspot/share/runtime/thread.hpp
 +++ b/src/hotspot/share/runtime/thread.hpp
-@@ -1440,7 +1440,7 @@ class JavaThread: public Thread {
+@@ -1442,7 +1442,7 @@ class JavaThread: public Thread {
   public:
    // Accessing frames
    frame last_frame() {
