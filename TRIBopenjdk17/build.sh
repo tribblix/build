@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # jdk mainline has been migrated to git
 # go to https://github.com/openjdk/jdk17u/tags
 #
@@ -8,8 +10,8 @@
 # just pull the ga tag
 #
 cd ~/ud
-${THOME}/build/unpack jdk17u-jdk-17.0.12-ga
-cd jdk17u-jdk-17.0.12-ga
+${THOME}/build/unpack jdk17u-jdk-17.0.13-ga
+cd jdk17u-jdk-17.0.13-ga
 
 #
 # jdk17 needs autoconf installed
@@ -46,9 +48,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "17.0.12-internal" 2024-07-16
-# OpenJDK Runtime Environment (build 17.0.12-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.12-ga)
-# OpenJDK 64-Bit Server VM (build 17.0.12-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.12-ga, mixed mode, sharing)
+# openjdk version "17.0.13-internal" 2024-10-15
+# OpenJDK Runtime Environment (build 17.0.13-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.13-ga)
+# OpenJDK 64-Bit Server VM (build 17.0.13-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.13-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -95,3 +97,6 @@ cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk17/lib/security
 (cd /tmp/jdk/usr/versions/openjdk17/conf/security/ ; gpatch -p1 < ${THOME}/build/patches/sunpkcs11-solaris.cfg.patch)
 
 ${THOME}/build/create_pkg TRIBopenjdk17 /tmp/jdk
+
+cd
+rm -fr /tmp/jdk

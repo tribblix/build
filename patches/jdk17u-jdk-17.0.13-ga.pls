@@ -8,7 +8,6 @@
 -p0 openjdk17/patch-src_hotspot_os__cpu_solaris__x86_bytes__solaris__x86.inline.hpp
 -p0 openjdk17/patch-src_hotspot_os__cpu_solaris__x86_prefetch__solaris__x86.inline.hpp
 -p0 openjdk17/patch-src_hotspot_share_gc_g1_g1Analytics.cpp
--p0 openjdk17/patch-src_java.desktop_share_native_libsplashscreen_libpng_pngpriv.h
 -p0 openjdk17/tribblix-flags-cflags.patch
 -p0 openjdk17/tribblix-flags-ldflags.patch
 -p0 openjdk17/tribblix-flags-ldflags2.patch
@@ -38,6 +37,7 @@
 -p1 openjdk17/illumos-port-17.patch
 -p1 openjdk17/illumos-port-18.patch
 -p1 openjdk17/illumos-port-19.patch
+-p1 openjdk17/illumos-port-20.patch
 -p1 openjdk17/illumos-zero-1.patch
 -p1 openjdk17/illumos-zero-2.patch
 -p1 openjdk17/sparc-bitness.patch

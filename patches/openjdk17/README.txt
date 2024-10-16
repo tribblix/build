@@ -3,9 +3,15 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
-Most patches -p0
-
 JDK17:
+
+17.0.13
+
+Drop the png patch. It no longer applies and appears unnecessary with
+the png update.
+
+Pipewire has been added, so need to patch that like wed id in jdk21.
+See illumos-port-20.patch.
 
 Cleanup: Since Solaris 10, fork() has always been fork1()
 
