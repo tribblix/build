@@ -728,7 +728,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -396,7 +395,6 @@
+@@ -403,7 +402,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -736,7 +736,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -454,7 +452,7 @@
+@@ -461,7 +459,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -745,7 +745,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -625,10 +623,7 @@
+@@ -635,10 +633,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -757,7 +757,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -655,7 +650,6 @@
+@@ -665,7 +660,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -822,7 +822,7 @@
  
 --- old/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.653337499 -0700
 +++ new/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.257329896 -0700
-@@ -67,11 +67,10 @@
+@@ -68,11 +68,10 @@
      CFLAGS := $(CFLAGS_JDKLIB) $(SA_CFLAGS), \
      CXXFLAGS := $(CXXFLAGS_JDKLIB) $(SA_CFLAGS) $(SA_CXXFLAGS), \
      EXTRA_SRC := $(LIBSA_EXTRA_SRC), \
@@ -864,7 +864,7 @@
    ifeq ($(COMPILE_WITH_DEBUG_SYMBOLS), true)
      LIBMANAGEMENT_EXT_OPTIMIZATION := LOW
    endif
-@@ -48,7 +48,6 @@
+@@ -49,7 +49,6 @@
      LDFLAGS := $(LDFLAGS_JDKLIB) \
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS := $(JDKLIB_LIBS), \
@@ -1170,7 +1170,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1596,10 +1596,8 @@
+@@ -1599,10 +1599,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1183,7 +1183,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1881,8 +1879,7 @@
+@@ -1884,8 +1882,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1409,7 +1409,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1890,8 +1890,6 @@
+@@ -1891,8 +1891,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1418,7 +1418,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1956,8 +1954,6 @@
+@@ -1957,8 +1955,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1819,7 +1819,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -609,7 +602,7 @@
+@@ -618,7 +611,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -3286,7 +3286,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -381,8 +374,7 @@
+@@ -382,8 +375,7 @@
  
      /* system calls that might not be available at run time */
  

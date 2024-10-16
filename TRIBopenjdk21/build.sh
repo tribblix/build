@@ -1,12 +1,14 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # jdk mainline has been migrated to git
 # go to https://github.com/openjdk/jdk21u/tags
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk21u-jdk-21.0.4-ga
-cd jdk21u-jdk-21.0.4-ga
+${THOME}/build/unpack jdk21u-jdk-21.0.5-ga
+cd jdk21u-jdk-21.0.5-ga
 
 #
 # jdk21 needs autoconf installed
@@ -45,9 +47,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "21.0.4-internal" 2024-07-16
-# OpenJDK Runtime Environment (build 21.0.4-internal-adhoc.ptribble.jdk21u-jdk-21.0.4-ga)
-# OpenJDK 64-Bit Server VM (build 21.0.4-internal-adhoc.ptribble.jdk21u-jdk-21.0.4-ga, mixed mode, sharing)
+# openjdk version "21.0.5-internal" 2024-10-15
+# OpenJDK Runtime Environment (build 21.0.5-internal-adhoc.ptribble.jdk21u-jdk-21.0.5-ga)
+# OpenJDK 64-Bit Server VM (build 21.0.5-internal-adhoc.ptribble.jdk21u-jdk-21.0.5-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -92,3 +94,5 @@ cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk21/lib/security
 (cd /tmp/jdk/usr/versions/openjdk21/conf/security/ ; gpatch -p1 < ${THOME}/build/patches/sunpkcs11-solaris.cfg.patch)
 
 ${THOME}/build/create_pkg TRIBopenjdk21 /tmp/jdk
+
+rm -fr /tmp/jdk

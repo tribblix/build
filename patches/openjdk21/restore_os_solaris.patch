@@ -2440,7 +2440,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-10-15 14:59:36.867779471 +0100
-@@ -0,0 +1,3073 @@
+@@ -0,0 +1,3077 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -4013,6 +4013,10 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    debug_only(warning("MADV_FREE failed."));
 +    return;
 +  }
++}
++
++size_t os::pd_pretouch_memory(void* first, void* last, size_t page_size) {
++  return page_size;
 +}
 +
 +bool os::pd_create_stack_guard_pages(char* addr, size_t size) {

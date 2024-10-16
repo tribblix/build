@@ -3,6 +3,13 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+21.0.5
+
+Drop the png patch. It no longer applies and appears unnecessary with
+the png update.
+
+Need to provide an implementation of pd_pretouch_memory()
+
 Cleanup: src/hotspot/os/solaris and src/hotspot/os_cpu/solaris_x86
 split out into separate restore patches.
 
