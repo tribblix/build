@@ -24,7 +24,6 @@
 -p0 openjdk11/patch-src_hotspot_share_gc_g1_g1Analytics.cpp
 -p0 openjdk11/patch-src_hotspot_share_utilities_globalDefinitions__gcc.hpp
 -p0 openjdk11/patch-src_java.base_solaris_native_libnio_ch_DevPollArrayWrapper.c
--p0 openjdk11/patch-src_java.desktop_share_native_libsplashscreen_libpng_pngpriv.h
 -p0 openjdk11/patch-src_jdk.crypto.ec_share_native_libsunec_ECC__JNI.cpp
 -p0 openjdk11/tribblix-Launcher-jdk.patch
 -p0 openjdk11/tribblix-LauncherCommon.patch

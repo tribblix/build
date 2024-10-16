@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # You first need to download the tarballs
 #
 # now a single tarball - it's 85M or so, bzipped
@@ -9,8 +11,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk11u-jdk-11.0.24-ga
-cd jdk11u-jdk-11.0.24-ga
+${THOME}/build/unpack jdk11u-jdk-11.0.25-ga
+cd jdk11u-jdk-11.0.25-ga
 
 #
 # as of 11.0.7, switch to a gcc build to replace Studio
@@ -47,9 +49,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-normal-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "11.0.24-internal" 2024-07-16
-# OpenJDK Runtime Environment (build 11.0.24-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.24-ga)
-# OpenJDK 64-Bit Server VM (build 11.0.24-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.24-ga, mixed mode)
+# openjdk version "11.0.25-internal" 2024-10-15
+# OpenJDK Runtime Environment (build 11.0.25-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.25-ga)
+# OpenJDK 64-Bit Server VM (build 11.0.25-internal+0-adhoc.ptribble.jdk11u-jdk-11.0.25-ga, mixed mode)
 #
 
 rm -fr /tmp/jdk
@@ -98,3 +100,6 @@ cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk11/lib/security
 (cd /tmp/jdk/usr/versions/openjdk11/conf/security/ ; gpatch -p1 < ${THOME}/build/patches/sunpkcs11-solaris.cfg.patch)
 
 ${THOME}/build/create_pkg TRIBopenjdk11 /tmp/jdk
+
+cd
+rm -fr /tmp/jdk

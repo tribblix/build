@@ -32,8 +32,8 @@ Ensure support libraries can be found during build.
  # A specific java binary with specific options can be used to run
  # the long running background sjavac servers and other long running tasks.
  SJAVAC_SERVER_JAVA = $(SJAVAC_SERVER_JAVA_CMD) \
-@@ -653,8 +653,8 @@ JAVAC_FLAGS?=@JAVAC_FLAGS@
- JAVAC_FLAGS? = @JAVAC_FLAGS@
+@@ -656,8 +656,8 @@ JAVAC_FLAGS?=@JAVAC_FLAGS@
+ JTREG_JAVA = @FIXPATH@ $(JTREG_JDK)/bin/java $(JAVA_FLAGS_BIG) $(JAVA_FLAGS)
  
  BUILD_JAVA_FLAGS := @BOOTCYCLE_JVM_ARGS_BIG@
 -BUILD_JAVA=@FIXPATH@ $(BUILD_JDK)/bin/java $(BUILD_JAVA_FLAGS)
