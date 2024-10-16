@@ -1,6 +1,8 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # depends on libgcrypt, but via dlopen rather than being linked in
 #
-${THOME}/build/dobuild -64only mbuffer-20240107 -C --sysconfdir=/etc
-${THOME}/build/genpkg TRIBmbuffer mbuffer-20240107
+${THOME}/build/dobuild -64only mbuffer-20241007 -C --sysconfdir=/etc
+${THOME}/build/genpkg TRIBmbuffer mbuffer-20241007
