@@ -1,12 +1,14 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # jdk mainline has been migrated to git
 # go to https://github.com/openjdk/jdk/tags
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-23-37
-cd jdk-jdk-23-37
+${THOME}/build/unpack jdk23u-jdk-23.0.1-ga
+cd jdk23u-jdk-23.0.1-ga
 
 #
 # jdk23 needs autoconf installed
@@ -44,9 +46,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "23-internal" 2024-09-17
-# OpenJDK Runtime Environment (build 23-internal-adhoc.ptribble.jdk-jdk-23-37)
-# OpenJDK 64-Bit Server VM (build 23-internal-adhoc.ptribble.jdk-jdk-23-37, mixed mode, sharing)
+# openjdk version "23.0.1-internal" 2024-10-15
+# OpenJDK Runtime Environment (build 23.0.1-internal-adhoc.ptribble.jdk23u-jdk-23.0.1-ga)
+# OpenJDK 64-Bit Server VM (build 23.0.1-internal-adhoc.ptribble.jdk23u-jdk-23.0.1-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -86,3 +88,6 @@ cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk23/lib/security
 (cd /tmp/jdk/usr/versions/openjdk23/conf/security/ ; gpatch -p1 < ${THOME}/build/patches/sunpkcs11-solaris.cfg.patch)
 
 ${THOME}/build/create_pkg TRIBopenjdk23 /tmp/jdk
+
+cd
+rm -fr /tmp/jdk

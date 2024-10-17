@@ -3,7 +3,15 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
-JDK 23 now that jdk22 has been forked off.
+23.0.1
+
+Minimal patch noise.
+
+Dropped the png patch, like we did with all the other releases this
+update cycle.
+
+Note: jdk23 was developed as a branch in the jdk repo; there is no
+separate jdk23 repo. For updates, we go straight to the jdk23u repo.
 
 Cleanup: Fix TestMemoryAllocationLogging failures. The tests were
 looking for specific output for mmap and munmap failures.

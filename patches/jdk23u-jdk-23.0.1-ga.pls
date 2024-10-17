@@ -5,7 +5,6 @@
 -p0 openjdk23/patch-make_autoconf_flags-cflags.m4
 -p0 openjdk23/patch-make_autoconf_jdk-options.m4
 -p0 openjdk23/patch-src_hotspot_share_gc_g1_g1Analytics.cpp
--p0 openjdk23/patch-src_java.desktop_share_native_libsplashscreen_libpng_pngpriv.h
 -p0 openjdk23/tribblix-flags-cflags.patch
 -p0 openjdk23/tribblix-flags-ldflags.patch
 -p0 openjdk23/tribblix-flags-ldflags3.patch

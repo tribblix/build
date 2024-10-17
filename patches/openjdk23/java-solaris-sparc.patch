@@ -1298,7 +1298,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1914,8 +1914,6 @@
+@@ -1915,8 +1915,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1307,7 +1307,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1980,8 +1978,6 @@
+@@ -1981,8 +1979,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -3172,7 +3172,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -348,8 +341,7 @@
+@@ -349,8 +342,7 @@
  
      /* system calls that might not be available at run time */
  
