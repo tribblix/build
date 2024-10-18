@@ -5,6 +5,10 @@ See also README-zero.txt for patches to build a project zero variant.
 
 JDK17:
 
+Cleanup: remove unused JSIG_VERSION_1_4_1 define
+
+Cleanup: remove unused SOLARIS_MUTATOR_LIBTHREAD hunk
+
 17.0.13
 
 Drop the png patch. It no longer applies and appears unnecessary with
