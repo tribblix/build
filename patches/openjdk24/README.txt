@@ -5,6 +5,17 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+20
+
+os::Posix::realpath() is now just os::realpath()
+
+Remove our copies of os::current_file_offset() and os::seek_to_file_offset()
+as they have been centralised.
+
+Cleanup: remove unused JSIG_VERSION_1_4_1 define
+
+Cleanup: remove unused SOLARIS_MUTATOR_LIBTHREAD hunk
+
 24+19
 
 Needs jdk23 as the boot jdk now.

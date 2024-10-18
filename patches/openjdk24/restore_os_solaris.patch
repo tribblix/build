@@ -2413,7 +2413,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-09-16 14:41:33.968071187 +0100
-@@ -0,0 +1,2967 @@
+@@ -0,0 +1,2957 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -3783,7 +3783,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  int ret = dladdr(CAST_FROM_FN_PTR(void *, os::jvm_path), &dlinfo);
 +  assert(ret != 0, "cannot locate libjvm");
 +  if (ret != 0 && dlinfo.dli_fname != NULL) {
-+    if (os::Posix::realpath((char *)dlinfo.dli_fname, buf, buflen) == NULL) {
++    if (os::realpath((char *)dlinfo.dli_fname, buf, buflen) == NULL) {
 +      return;
 +    }
 +  } else {
@@ -3816,7 +3816,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +        p = strrchr(buf, '/');
 +        assert(strstr(p, "/libjvm") == p, "invalid library name");
 +
-+        if (os::Posix::realpath(java_home_var, buf, buflen) == NULL) {
++        if (os::realpath(java_home_var, buf, buflen) == NULL) {
 +          return;
 +        }
 +        // determine if this is a legacy image or modules image
@@ -3835,7 +3835,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +          snprintf(buf + len, buflen-len, "/hotspot/libjvm.so");
 +        } else {
 +          // Go back to path of .so
-+          if (os::Posix::realpath((char *)dlinfo.dli_fname, buf, buflen) == NULL) {
++          if (os::realpath((char *)dlinfo.dli_fname, buf, buflen) == NULL) {
 +            return;
 +          }
 +        }
@@ -5052,16 +5052,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +#endif
 +
 +  return fd;
-+}
-+
-+// return current position of file pointer
-+jlong os::current_file_offset(int fd) {
-+  return (jlong)::lseek64(fd, (off64_t)0, SEEK_CUR);
-+}
-+
-+// move file pointer to the specified offset
-+jlong os::seek_to_file_offset(int fd, jlong offset) {
-+  return (jlong)::lseek64(fd, (off64_t)offset, SEEK_SET);
 +}
 +
 +const intptr_t thr_time_off  = (intptr_t)(&((prusage_t *)(NULL))->pr_utime);
