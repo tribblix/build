@@ -17,7 +17,8 @@
 #
 # Copyright 2024 Peter Tribble
 #
-
+builtin tail
+builtin wc
 #
 # check files end in a newline
 #
@@ -30,10 +31,7 @@ do
     # ignore zero-length files (like allowstatic)
     #
     if [ -s "$file" ]; then
-	#
-	# force binaries, not builtins
-	#
-	nl=$(/usr/bin/tail -1 "$file"|/usr/bin/wc -l)
+	nl=$(tail -1 "$file"|wc -l)
 	#
 	# cheat to trim surrounding spaces
 	#
@@ -52,7 +50,7 @@ do
 		;;
 	esac
 	#
-	# and trailing blank lines, builtins are fine here
+	# and trailing blank lines
 	#
 	nw=$(tail -1 "$file"|wc -w)
 	#
