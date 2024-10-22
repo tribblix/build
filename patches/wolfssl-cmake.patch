@@ -1,0 +1,14 @@
+The wolfssl build looks for x64, but unfortunately on SunOS cmake
+uses `uname `p` which is i386 and doesn't match.
+
+--- wolfssl-5.7.2-stable-64bit/CMakeLists.txt~	Mon Jul  8 19:02:46 2024
++++ wolfssl-5.7.2-stable-64bit/CMakeLists.txt	Tue Oct 22 18:48:42 2024
+@@ -1284,7 +1284,7 @@
+ 
+ # Base64
+ set(BASE64_ENCODE_DEFAULT "no")
+-if("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "x86_64|AMD64|arm64")
++if("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i386|x86_64|AMD64|arm64")
+     set(BASE64_ENCODE_DEFAULT "yes")
+ endif()
+ 

@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# the cmake directive to put the libraries in the right place is
+# completely ignored, so override it here
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# it should exist, because it manages to put the cmake files in the right place
+#
+mkdir -p usr/lib/${ARCH64}
+mv usr/lib/lib*.so* usr/lib/${ARCH64}
