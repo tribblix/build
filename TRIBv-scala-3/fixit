@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-VERSION=3.3.3
+# SPDX-License-Identifier: CDDL-1.0
+#
+VERSION=3.3.4
 mkdir -p usr/bin
 ln -s ../../usr/versions/scala3-${VERSION}/bin/scala usr/bin/
 ln -s ../../usr/versions/scala3-${VERSION}/bin/scalac usr/bin/
