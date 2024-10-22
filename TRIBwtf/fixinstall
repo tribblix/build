@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fix script run in the install context
 # assumes you're in the directory containing the built software
 # the argument is DESTDIR
@@ -31,3 +33,4 @@ sed -i s:/usr/share/misc:/usr/share/wtf: ${DESTDIR}/usr/bin/wtf
 chmod a+x ${DESTDIR}/usr/bin/wtf
 mkdir -p ${DESTDIR}/usr/share/man/man6
 cp wtf.6 ${DESTDIR}/usr/share/man/man6/wtf.6
+sed -i s:/usr/share/misc:/usr/share/wtf: ${DESTDIR}/usr/share/man/man6/wtf.6

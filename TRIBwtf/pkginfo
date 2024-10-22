@@ -1,4 +1,4 @@
 PKG="TRIBwtf"
 NAME="BSD WTF"
-VERSION="20230804.0"
+VERSION="20230906.0"
 ZAP_URL="https://sourceforge.net/projects/bsdwtf/"
