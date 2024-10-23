@@ -1636,7 +1636,7 @@ diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/vm_version_solaris_sparc.
 +    return CPUVisitor::visit(nodeh, state);
 +  }
 +
-+  PICL(bool is_fujitsu, bool is_sun4v) : _L1_data_cache_line_size(0), _L2_data_cache_line_size(0), _dl_handle(NULL) {
++  PICL(bool is_fujitsu, bool is_sun4v) : _dl_handle(NULL), _L1_data_cache_line_size(0), _L2_data_cache_line_size(0) {
 +    if (!open_library()) {
 +      return;
 +    }
