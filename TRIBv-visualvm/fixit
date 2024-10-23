@@ -1,8 +1,10 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # CLI wrapper
 #
-VERSION=visualvm_216
+VERSION=visualvm_2110
 mkdir -p usr/bin
 ln -s /usr/versions/${VERSION}/bin/visualvm usr/bin
 #
