@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# CLI link
+#
+VERSION=jbang-0.119.0
+mkdir -p usr/bin
+ln -s /usr/versions/${VERSION}/bin/jbang usr/bin
+#
+# clean up
+#
+cd usr/versions/${VERSION}
+rm -f bin/*.cmd
+rm -f bin/*.ps1
