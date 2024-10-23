@@ -12465,8 +12465,8 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/frame_sparc.cpp b/src/hotspot/cpu/sp
 +
 +frame::frame(intptr_t* sp, intptr_t* younger_sp, bool younger_frame_is_interpreted) :
 +  _sp(sp),
-+  _younger_sp(younger_sp),
 +  _deopt_state(unknown),
++  _younger_sp(younger_sp),
 +  _sp_adjustment_by_callee(0) {
 +  if (younger_sp == NULL) {
 +    // make a deficient frame which doesn't know where its PC is
