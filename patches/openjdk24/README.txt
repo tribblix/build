@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+21
+
+No changes.
+
 24+20
 
 os::Posix::realpath() is now just os::realpath()
