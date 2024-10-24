@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 git clone https://github.com/wireghoul/graudit/
 cd graudit
 sed -i s:grep:ggrep: graudit
