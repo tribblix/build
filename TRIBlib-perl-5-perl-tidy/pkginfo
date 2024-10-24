@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-perl-tidy"
 NAME="Perl Perl::Tidy module"
-VERSION="20240511.0"
+VERSION="20240903.0"
 ZAP_URL="https://metacpan.org/pod/Perl::Tidy"
