@@ -2,21 +2,19 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# update php, modular extension for postgres now
+# php, modular extension for postgres and intl in separate packages
 #
 # disable ldap for now, see #70260
 #
 # must not have libtool installed
-#
-# also builds the pg package
 #
 # must have apache24 installed
 #
 # needs a tsrm patch to avoid crashes
 #
 zap uninstall TRIBlibtool
-${THOME}/build/unpack php-8.2.24
-cd php-8.2.24
+${THOME}/build/unpack php-8.2.25
+cd php-8.2.25
 #
 # CFLAGS because Zend.m4 hasn't a hope of correctness
 #
