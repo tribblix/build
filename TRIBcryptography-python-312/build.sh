@@ -4,4 +4,4 @@
 #
 # current versions require a rust toolchain to build
 #
-${THOME}/build/pkg_pep518 TRIBcryptography-python-312 cryptography-43.0.1
+${THOME}/build/pkg_pep518 -N TRIBcryptography-python-312 cryptography-43.0.3
