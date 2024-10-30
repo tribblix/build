@@ -1,4 +1,0 @@
-#!/bin/sh
-#
-rm -f usr/lib/lib*.la
-rm -f usr/lib/*/lib*.la
