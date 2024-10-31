@@ -1033,3 +1033,4 @@ python_multipart-0.0.17.tar.gz 41330d831cae6e2f22902704ead2826ea038d0419530eadff
 hatch_vcs-0.4.0.tar.gz 093810748fe01db0d451fabcf2c1ac2688caefd232d4ede967090b1c1b07d9f7
 prettytable-3.12.0.tar.gz f04b3e1ba35747ac86e96ec33e3bb9748ce08e254dc2a1c6253945901beec804
 linode_cli-5.54.0.tar.gz 213b195239343bb4af5ceb23fec503f7da493ce66f39c2d5d48e9abd5e8979db
+checkdmarc-5.7.5.tar.gz 1c9eea8dabf7beb3356c92e3bef6091cee7cbb0c7cd79ed7856f1c6d85c3c8c8
