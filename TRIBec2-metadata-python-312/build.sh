@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBec2-metadata-python-312 ec2_metadata-2.13.0
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 -N TRIBec2-metadata-python-312 ec2_metadata-2.14.0
