@@ -1106,7 +1106,7 @@
  MemBaseline MemTracker::_baseline;
 --- old/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -35,11 +35,9 @@
+@@ -34,11 +34,9 @@
  #include "utilities/debug.hpp"
  #include "utilities/nativeCallStack.hpp"
  
@@ -1289,7 +1289,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1915,8 +1915,6 @@
+@@ -1919,8 +1919,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1298,7 +1298,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1981,8 +1979,6 @@
+@@ -1985,8 +1983,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -3178,8 +3178,8 @@
 -#if defined(__solaris__) || defined(_ALLBSD_SOURCE)
 -    /* Solaris 64-bit does not have openat64/fstatat64 */
 +#if defined(_ALLBSD_SOURCE)
-     my_openat_func = (openat_func*)dlsym(RTLD_DEFAULT, "openat");
-     my_fstatat_func = (fstatat_func*)dlsym(RTLD_DEFAULT, "fstatat");
+     my_openat_func = (openat_func*) openat;
+     my_fstatat_func = (fstatat_func*) fstatat;
  #else
 --- old/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:38.255960369 -0700
 +++ new/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:37.863952843 -0700
@@ -3612,57 +3612,16 @@
              return getBSDServiceAttributes();
 --- old/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.805218963 -0700
 +++ new/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.465212435 -0700
-@@ -57,57 +57,7 @@
+@@ -57,16 +57,7 @@
  
  #define MAXFDIRS 512    /* Max number of directories that contain fonts */
  
 -#if defined(__solaris__)
--/*
-- * This can be set in the makefile to "/usr/X11" if so desired.
-- */
--#ifndef OPENWINHOMELIB
--#define OPENWINHOMELIB "/usr/openwin/lib/"
--#endif
--
--/* This is all known Solaris X11 directories on Solaris 8, 9 and 10.
-- * It is ordered to give precedence to TrueType directories.
-- * It is needed if fontconfig is not installed or configured properly.
+-/* These are well known Solaris 11 or illumos X11 directories.
 - */
 -static char *fullSolarisFontPath[] = {
--    OPENWINHOMELIB "X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/euro_fonts/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/iso_8859_2/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/iso_8859_5/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/iso_8859_7/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/iso_8859_8/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/iso_8859_9/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/iso_8859_13/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/iso_8859_15/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/ar/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/hi_IN.UTF-8/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/ja/X11/fonts/TT",
--    OPENWINHOMELIB "locale/ko/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/ko.UTF-8/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/KOI8-R/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/ru.ansi-1251/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/th_TH/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/zh_TW/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/zh_TW.BIG5/X11/fonts/TT",
--    OPENWINHOMELIB "locale/zh_HK.BIG5HK/X11/fonts/TT",
--    OPENWINHOMELIB "locale/zh_CN.GB18030/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/zh/X11/fonts/TrueType",
--    OPENWINHOMELIB "locale/zh.GBK/X11/fonts/TrueType",
--    OPENWINHOMELIB "X11/fonts/Type1",
--    OPENWINHOMELIB "X11/fonts/Type1/sun",
--    OPENWINHOMELIB "X11/fonts/Type1/sun/outline",
--    OPENWINHOMELIB "locale/iso_8859_2/X11/fonts/Type1",
--    OPENWINHOMELIB "locale/iso_8859_4/X11/fonts/Type1",
--    OPENWINHOMELIB "locale/iso_8859_5/X11/fonts/Type1",
--    OPENWINHOMELIB "locale/iso_8859_7/X11/fonts/Type1",
--    OPENWINHOMELIB "locale/iso_8859_8/X11/fonts/Type1",
--    OPENWINHOMELIB "locale/iso_8859_9/X11/fonts/Type1",
--    OPENWINHOMELIB "locale/iso_8859_13/X11/fonts/Type1",
--    OPENWINHOMELIB "locale/ar/X11/fonts/Type1",
+-    "/usr/share/fonts/TrueType",
+-    "/usr/share/fonts/X11/Type1",
 -    NULL, /* terminates the list */
 -};
 -
@@ -3671,22 +3630,7 @@
  /* All the known interesting locations we have discovered on
   * various flavors of Linux
   */
-@@ -222,14 +172,6 @@
-         if (strstr(x11Path[i], ".gnome") != NULL) {
-             continue;
-         }
--#ifdef __solaris__
--        if (strstr(x11Path[i], "/F3/") != NULL) {
--            continue;
--        }
--        if (strstr(x11Path[i], "bitmap") != NULL) {
--            continue;
--        }
--#endif
-         fontdirs[pos] = strdup(x11Path[i]);
-         slen = strlen(fontdirs[pos]);
-         if (slen > 0 && fontdirs[pos][slen-1] == '/') {
-@@ -379,8 +321,6 @@
+@@ -330,8 +321,6 @@
  
  #if defined(__linux__)
      knowndirs = fullLinuxFontPath;
@@ -13724,7 +13668,7 @@
 -        // "load" command to ensure that the right exception is thrown.
 -        if (completionStatus != 0) {
 -            // read from the stream and use that as the error message
--            String message = readErrorMessage(sis);
+-            String message = readMessage(sis);
 -            sis.close();
 -            if (cmd.equals("load")) {
 -                String msg = "Failed to load agent library";

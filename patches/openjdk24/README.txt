@@ -5,6 +5,22 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+22
+
+Cleanup: remove the historic OPENWIN font locations from fontpath.c
+
+Dropped the png patch, like we did with all the other releases this
+update cycle.
+
+Minor noise in UnixNativeDispatcher.c
+
+In src/jdk.attach/solaris/classes/sun/tools/attach/VirtualMachineImpl.java
+readErrorMessage() has been renamed readMessage()
+
+Need to include sys/filio.h for FIONREAD in
+src/java.base/unix/native/libnio/ch/UnixFileDispatcherImpl.c 
+see illumos-port-29.patch
+
 24+21
 
 No changes.
