@@ -5,4 +5,4 @@
 # orjson needs rust, but is now an optional dependency (not
 # even declared)
 #
-${THOME}/build/pkg_pep518 TRIBglances-python-312 glances-4.2.0
+${THOME}/build/pkg_pep518 -N TRIBglances-python-312 glances-4.2.1
