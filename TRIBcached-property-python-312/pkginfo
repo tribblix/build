@@ -1,4 +1,4 @@
 PKG="TRIBcached-property-python-312"
 NAME="Python cached-property"
-VERSION="1.5.2.0"
+VERSION="2.0.1.0"
 ZAP_URL="https://pypi.org/project/cached-property"
