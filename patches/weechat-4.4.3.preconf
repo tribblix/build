@@ -19,3 +19,12 @@ esac
 sed -i s:/usr/local:/usr/gnu: cmake/FindNcurses.cmake
 
 sed -i s:/usr/gnu/lib:/usr/gnu/lib/${ARCH64}: cmake/FindNcurses.cmake
+
+#
+# and it doesn't understand the difference between ncurses and ncursesw
+#
+sed -i s:ncurses/term.h:ncursesw/term.h: src/gui/curses/gui-curses-term.c
+#
+# we aren't android, but this gives the correct headers for htobe64
+#
+sed -i s:ANDROID:sun: src/core/core-crypto.c
