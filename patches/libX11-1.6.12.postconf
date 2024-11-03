@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# the patches assume the mapfile is in the wrong place
-# fix here rather than in the patches, just in case they change
-#
-# as it reruns configure later, fix all the input Makefiles
-#
-sed -i s:../mapfile-vers:mapfile-vers: src/Makefile*
