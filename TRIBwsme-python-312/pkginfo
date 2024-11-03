@@ -1,4 +1,4 @@
 PKG="TRIBwsme-python-312"
 NAME="Python WSME"
-VERSION="0.12.1.0"
+VERSION="0.12.1.1"
 ZAP_URL="https://pypi.org/project/WSME"
