@@ -1,4 +1,4 @@
 PKG="TRIBhunspell"
 NAME="Hunspell spell checker"
-VERSION="1.7.2.1"
+VERSION="1.7.2.2"
 ZAP_URL="http://hunspell.github.io/"
