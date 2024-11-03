@@ -46,7 +46,7 @@ diff --git a/src/Context.c b/src/Context.c
 index 8a07871..dd4df6b 100644
 --- a/src/Context.c
 +++ b/src/Context.c
-@@ -190,6 +190,9 @@ int XSaveContext(
+@@ -191,6 +191,9 @@ int XSaveContext(
  	    return XCNOMEM;
  	}
  	db->numentries = 0;
@@ -74,16 +74,7 @@ diff --git a/src/locking.c b/src/locking.c
 index e4e0444..eb875e3 100644
 --- libX11-1.6.2/src/locking.c.~2~	2015-02-04 10:00:11.175372726 +0300
 +++ libX11-1.6.2/src/locking.c	2015-02-04 10:04:59.050279588 +0300
-@@ -99,11 +99,24 @@
- static LockInfoRec global_lock;
- static LockInfoRec i18n_lock;
- 
-+#ifdef SUNSOFT
-+static void _XCreateMutex(LockInfoPtr lip); /* Forward declaration */
-+#endif
-+
- static void _XLockMutex(
-     LockInfoPtr lip
+@@ 107,6 107,16 @@
      XTHREADS_FILE_LINE_ARGS
      )
  {
@@ -93,6 +84,7 @@ index e4e0444..eb875e3 100644
 +     * to XInitThreads after other Xlib calls (Sun bugs 1234757 & 4010755)
 +     */
 +    if (lip->lock == NULL) {
++       static void _XCreateMutex(LockInfoPtr lip); /* Forward declaration */
 +	_XCreateMutex(lip);
 +    }
 +#endif /* SUNSOFT */

@@ -25,7 +25,7 @@ diff --git a/src/Makefile.am b/src/Makefile.am
 index ddad93c..677b0ee 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
-@@ -348,6 +348,9 @@ libX11_xcb_la_SOURCES = x11_xcb.c Xxcbint.h
+@@ -343,6 +343,9 @@ libX11_xcb_la_SOURCES = x11_xcb.c Xxcbint.h
  libX11_xcb_la_SOURCES = x11_xcb.c Xxcbint.h
  libX11_xcb_la_LDFLAGS = -version-number 1:0:0 -no-undefined
  
@@ -52,7 +52,7 @@ index a14d13b..ead8703 100644
  #if defined(XTHREADS) && defined(SUNSOFT)
  struct _DisplayPtrLink {
      Display *dpy;
-@@ -582,6 +588,21 @@ XOpenDisplay (
+@@ -589,6 +595,21 @@ XOpenDisplay (
  #ifdef XKB
  	XkbUseExtension(dpy,NULL,NULL);
  #endif

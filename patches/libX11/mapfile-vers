@@ -758,6 +758,11 @@ SUNW_1.4 {
 	_XGetRequest;
 } SUNW_1.3;
 
+# New function added in libX11 1.7 for error handling
+SUNW_1.5 {
+	XSetIOErrorExitHandler;
+} SUNW_1.4;
+
 SUNWprivate {
     global:
 	XauDisposeAuth 		= FUNCTION FILTER libXau.so.6;

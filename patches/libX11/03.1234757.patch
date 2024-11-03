@@ -38,8 +38,8 @@ diff --git a/include/X11/Xlibint.h b/include/X11/Xlibint.h
 index 4431559..bc32bdf 100644
 --- a/include/X11/Xlibint.h
 +++ b/include/X11/Xlibint.h
-@@ -207,6 +207,10 @@ struct _XDisplay
- 	Bool req_seq_syncing; /* requests syncing is in-progress */
+@@ -217,6 +217,10 @@ struct _XDisplay
+ #endif
  };
  
 +#if defined(XTHREADS) && defined(SUNSOFT)
@@ -75,7 +75,7 @@ index 3793814..a14d13b 100644
  #ifdef XTHREADS
  #include "locking.h"
  int  (*_XInitDisplayLock_fn)(Display *dpy) = NULL;
-@@ -209,6 +224,13 @@ XOpenDisplay (
+@@ -212,6 +227,13 @@ XOpenDisplay (
  		return(NULL);
  	}
  
@@ -89,7 +89,7 @@ index 3793814..a14d13b 100644
  	if (!_XPollfdCacheInit(dpy)) {
  	        OutOfMemory (dpy);
  		return(NULL);
-@@ -577,6 +599,10 @@ XOpenDisplay (
+@@ -584,6 +606,10 @@ XOpenDisplay (
  
  void _XFreeDisplayStructure(Display *dpy)
  {
@@ -100,7 +100,7 @@ index 3793814..a14d13b 100644
  	/* move all cookies in the EQ to the jar, then free them. */
  	if (dpy->qfree) {
  	    _XQEvent *qelt = dpy->qfree;
-@@ -697,6 +723,103 @@ void _XFreeDisplayStructure(Display *dpy)
+@@ -704,6 +730,103 @@ void _XFreeDisplayStructure(Display *dpy)
  	Xfree (dpy);
  }
  
@@ -208,7 +208,7 @@ diff --git a/src/locking.c b/src/locking.c
 index 9f4fe06..e4e0444 100644
 --- a/src/locking.c
 +++ b/src/locking.c
-@@ -614,6 +614,11 @@ Status XInitThreads(void)
+@@ -648,6 +648,11 @@ Status XInitThreads(void)
  #endif
  #endif
  

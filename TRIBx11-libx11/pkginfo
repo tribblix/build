@@ -1,4 +1,4 @@
 PKG="TRIBx11-libx11"
 NAME="LibX11"
-VERSION="1.6.12.0"
+VERSION="1.8.10.0"
 ZAP_URL="https://www.x.org/releases/individual/lib/"

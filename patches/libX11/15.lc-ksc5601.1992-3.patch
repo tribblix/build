@@ -46,7 +46,7 @@ diff --git a/src/xlibi18n/lcGeneric.c b/src/xlibi18n/lcGeneric.c
 index 20c455c..0562a71 100644
 --- a/src/xlibi18n/lcGeneric.c
 +++ b/src/xlibi18n/lcGeneric.c
-@@ -747,6 +747,8 @@ load_generic(
+@@ -753,6 +753,8 @@ load_generic(
              /* 3.4.1 side */
              if (!_XlcNCompareISOLatin1(value[0], "none", 4)) {
                  codeset->side =  XlcNONE;

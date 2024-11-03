@@ -23,7 +23,7 @@
 
 --- a/configure.ac	Tue Mar 17 10:20:46 2015
 +++ b/configure.ac	Tue Mar 17 10:21:04 2015
-@@ -402,6 +402,7 @@
+@@ -413,6 +413,7 @@
  		modules/im/ximcp/Makefile
  		modules/lc/Makefile
  		modules/lc/def/Makefile

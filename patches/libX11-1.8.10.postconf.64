@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # add the extra 64-bit mapfile
 #
 sed -i 's:-Wl,-M$(top_srcdir)/mapfile-vers:-Wl,-M$(top_srcdir)/mapfile-vers -Wl,-M$(top_srcdir)/mapfile-vers-64:' src/Makefile*

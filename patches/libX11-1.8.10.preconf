@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # copy in the extra X11 sources
 #
 cp -r ${PATCHDIR}/libX11/srcs/* .
@@ -14,3 +16,10 @@ cp ${PATCHDIR}/libX11/mapfile-vers* .
 # as it reruns configure later, fix all the input Makefiles
 #
 sed -i s:../mapfile-vers:mapfile-vers: src/Makefile*
+#
+# explicitly rerun autoreconf
+# otherwsie, it requires the versions of the autotools present
+# where the distribution was built, as opposed to the versions
+# present here
+#
+autoreconf

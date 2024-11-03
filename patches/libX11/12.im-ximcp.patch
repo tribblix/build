@@ -101,7 +101,7 @@ index f134e84..898fc1f 100644
  /*
   * Macros to save and recall last input character in XIC
   */
-@@ -1210,6 +1258,42 @@
+@@ -1208,6 +1256,42 @@
      return;
  }
  
@@ -144,7 +144,7 @@ index f134e84..898fc1f 100644
  /*
   * Helper functions for _XimThaiFilter()
   */
-@@ -1217,8 +1301,20 @@
+@@ -1215,8 +1299,20 @@
  ThaiFltAcceptInput(Xic ic, unsigned char new_char, KeySym symbol)
  {
      DefTreeBase *b = &ic->private.local.base;
@@ -165,7 +165,7 @@ index f134e84..898fc1f 100644
  
      if ((new_char <= 0x1f) || (new_char == 0x7f))
          b->tree[ic->private.local.composed].keysym = symbol;
-@@ -1233,9 +1329,23 @@
+@@ -1231,9 +1327,23 @@
  {
      DefTreeBase *b = &ic->private.local.base;
      if (!IC_DeletePreviousChar(ic)) return False;
@@ -189,7 +189,7 @@ index f134e84..898fc1f 100644
  
      b->tree[ic->private.local.composed].keysym = NoSymbol;
  
-@@ -1247,8 +1357,20 @@
+@@ -1245,8 +1355,20 @@
  {
      DefTreeBase *b = &ic->private.local.base;
      if (!IC_DeletePreviousChar(ic)) return False;
@@ -210,7 +210,7 @@ index f134e84..898fc1f 100644
  
      if ((new_char <= 0x1f) || (new_char == 0x7f))
          b->tree[ic->private.local.composed].keysym = symbol;
-@@ -1374,7 +1496,15 @@
+@@ -1372,7 +1494,15 @@
       */
      isc_mode = IC_IscMode(ic);
      if (!(previous_char = IC_GetPreviousChar(ic))) previous_char = ' ';

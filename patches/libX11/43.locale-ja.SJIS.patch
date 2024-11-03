@@ -39,7 +39,7 @@ diff --git a/nls/ja.SJIS/XLC_LOCALE.pre b/nls/ja.SJIS/XLC_LOCALE.pre
 index 671a985..38448db 100644
 --- a/nls/ja.SJIS/XLC_LOCALE.pre
 +++ b/nls/ja.SJIS/XLC_LOCALE.pre
-@@ -29,9 +29,20 @@ fs1	{
+@@ -28,9 +28,20 @@ fs1	{
  		substitute      JISX0208.1990-0:GL
  	}
  }
@@ -61,7 +61,7 @@ index 671a985..38448db 100644
  		name		JISX0201.1976-0:GR
  	}
  	font	{
-@@ -40,15 +51,7 @@ fs2	{
+@@ -39,15 +50,7 @@ fs2	{
  		vertical_rotate	all
  	}
  }
@@ -78,7 +78,7 @@ index 671a985..38448db 100644
  END XLC_FONTSET
  
  XCOMM 
-@@ -141,8 +144,273 @@ cs1	{
+@@ -140,8 +143,273 @@ cs1	{
      [\xef40,\xef7e]->\x7d21,[\xef80,\xef9e]->\x7d60,[\xef9f,\xeffc]->\x7e21
  }
  
