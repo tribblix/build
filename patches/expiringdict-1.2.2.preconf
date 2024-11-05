@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# dependencies are wrong for python3
+#
+sed -i '/typing/d' setup.py
