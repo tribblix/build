@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# we need the file from file-magic
+#
+sed -i "s:\['file':\['file-5.45':" mog/__init__.py
