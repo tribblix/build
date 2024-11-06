@@ -1075,3 +1075,4 @@ jsonrpclib-0.4.2.tar.gz 4b99dfa6d918a32e8ed82204afa7fbbf7ccd08149e2eae00fb4e6f60
 alembic-1.14.0.tar.gz b00892b53b3642d0b8dbedba234dbf1924b69be83a9a769d5a624b01094e304b
 cachecontrol-0.14.1.tar.gz 06ef916a1e4eb7dba9948cdfc9c76e749db2e02104a9a1277e8b642591a0f717
 werkzeug-3.1.2.tar.gz f471a4cd167233077e9d2a8190c3471c5bc520c636a9e3c1e9300c33bced03bc
+oslo.utils-7.4.0.tar.gz aa5dcb5daa05ddf4b534f2cdeda56f7f21485c96f5cbaf6a8c0871d803b73ece
