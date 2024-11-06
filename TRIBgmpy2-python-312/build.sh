@@ -13,7 +13,7 @@ export TZ
 
 #
 # first build a static copy of mpc/mpfr
-# 2.2 needs newer versions then prior versions
+# 2.2 needs newer mpc/mpfr than prior versions
 #
 ${THOME}/build/patches/gmpy22.preconf
 
