@@ -21817,7 +21817,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +    // if someone beat us on the allocation, try again, otherwise continue
 +    cmp(obj, end);
 +    brx(Assembler::notEqual, false, Assembler::pn, retry);
-+    delayed()->mov(end, obj);                              // nop if successfull since obj == end
++    delayed()->mov(end, obj);                              // nop if successful since obj == end
 +
 +#ifdef ASSERT
 +    // make sure eden top is properly aligned

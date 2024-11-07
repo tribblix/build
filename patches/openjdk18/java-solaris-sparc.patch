@@ -27497,7 +27497,7 @@
 - /* G_NOCORE */       "No such core file",
 - /* G_NOPROCORCORE */ "No such process or core",
 - /* G_NOEXEC */       "Cannot locate executable file",
-- /* G_ZOMB   */       "Zombie processs",
+- /* G_ZOMB   */       "Zombie process",
 - /* G_PERM   */       "No permission to attach",
 - /* G_BUSY   */       "Another process has already attached",
 - /* G_SYS    */       "System process - can not attach",

@@ -8102,7 +8102,7 @@
 -#
 -
 -# This script creates a devkit for building OpenJDK on Solaris by copying
--# part of a Solaris Studio installation and cretaing a sysroot by installing
+-# part of a Solaris Studio installation and creating a sysroot by installing
 -# a limited set of system packages. It is assumed that a suitable pkg
 -# publisher is configured for the system where the script is executed.
 -#
@@ -8289,7 +8289,7 @@
 -#
 -
 -# This script creates a devkit for building OpenJDK on Solaris by copying
--# part of a Solaris Studio installation and cretaing a sysroot by installing
+-# part of a Solaris Studio installation and creating a sysroot by installing
 -# a limited set of system packages. It is assumed that a suitable pkg
 -# publisher is configured for the system where the script is executed.
 -#
@@ -30994,7 +30994,7 @@
 - * }
 - *
 - * where <Service> can be "MessageDigest", "Cipher", etc. and <Algorithm>
-- * reprepresents the value that's passed into the various getInstance() calls.
+- * represents the value that's passed into the various getInstance() calls.
 - *
 - * @since   9
 - */
@@ -37185,7 +37185,7 @@
 -      dlsym(lib, UCRYPTO_STRERROR);
 -
 -
--    // These should be avilable for all libsoftcrypto libs
+-    // These should be available for all libsoftcrypto libs
 -    ftab->ucryptoEncryptInit = (UCRYPTO_ENCRYPT_INIT_FN_PTR)
 -      dlsym(lib, UCRYPTO_ENCRYPT_INIT);
 -    ftab->ucryptoEncryptUpdate = (UCRYPTO_ENCRYPT_UPDATE_FN_PTR)
@@ -39827,7 +39827,7 @@
 - /* G_NOCORE */       "No such core file",
 - /* G_NOPROCORCORE */ "No such process or core",
 - /* G_NOEXEC */       "Cannot locate executable file",
-- /* G_ZOMB   */       "Zombie processs",
+- /* G_ZOMB   */       "Zombie process",
 - /* G_PERM   */       "No permission to attach",
 - /* G_BUSY   */       "Another process has already attached",
 - /* G_SYS    */       "System process - can not attach",
