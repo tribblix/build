@@ -7,6 +7,7 @@ P TRIBjson-logger-python-312
 P TRIBlibyaml
 P TRIBprettytable-python-312
 P TRIBpsutil-python-312
+P TRIBpsycopg-312
 P TRIBpsycopg2-312
 P TRIBpysyncobj-python-312
 P TRIBurllib3-python-312
