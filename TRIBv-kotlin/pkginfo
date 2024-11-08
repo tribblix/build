@@ -1,4 +1,4 @@
 PKG="TRIBv-kotlin"
 NAME="Kotlin Command Line Compiler"
-VERSION="1.9.23.0"
+VERSION="1.9.25.0"
 ZAP_URL="https://kotlinlang.org/"
