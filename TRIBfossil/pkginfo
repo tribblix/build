@@ -1,4 +1,4 @@
 PKG="TRIBfossil"
 NAME="Fossil SCM"
-VERSION="2.24.0"
+VERSION="2.25.0"
 ZAP_URL="https://www.fossil-scm.org/"
