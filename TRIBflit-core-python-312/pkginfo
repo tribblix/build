@@ -1,0 +1,4 @@
+PKG="TRIBflit-core-python-312"
+NAME="Python flit_core"
+VERSION="3.10.1.0"
+ZAP_URL="https://pypi.org/project/flit_core"
