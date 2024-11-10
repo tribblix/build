@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 TRIBpackaging-python-311 packaging-24.1
+${THOME}/build/pkg_pep518 TRIBpackaging-python-311 packaging-24.2
