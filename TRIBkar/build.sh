@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # In kar itself:
 ./build packages deps
 #
@@ -8,7 +10,8 @@
 #
 # then copy the packages
 #
-mv /tmp/TRIBkar-i386.pkg ${THOME}/pkgs/TRIBkar.1.6.pkg
-mv /tmp/TRIBkar-sparc.pkg ${THOME}/pkgs.sparc/TRIBkar.1.6.pkg
-${THOME}/build/pkg2zap ${THOME}/pkgs/TRIBkar.1.6.pkg ${THOME}/pkgs
-${THOME}/build/pkg2zap ${THOME}/pkgs.sparc/TRIBkar.1.6.pkg ${THOME}/pkgs.sparc
+mkdir -p /tmp/pct
+mv /tmp/TRIBkar-i386.pkg /tmp/pct/TRIBkar.1.7.pkg
+mv /tmp/TRIBkar-sparc.pkg ${THOME}/pkgs.sparc/TRIBkar.1.7.pkg
+${THOME}/build/pkg2zap /tmp/pct/TRIBkar.1.7.pkg /tmp/pct
+${THOME}/build/pkg2zap ${THOME}/pkgs.sparc/TRIBkar.1.7.pkg ${THOME}/pkgs.sparc
