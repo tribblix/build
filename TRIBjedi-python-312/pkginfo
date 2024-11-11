@@ -1,4 +1,4 @@
 PKG="TRIBjedi-python-312"
 NAME="Python jedi"
-VERSION="0.19.1.0"
+VERSION="0.19.2.0"
 ZAP_URL="https://pypi.org/project/jedi"
