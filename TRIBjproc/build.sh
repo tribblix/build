@@ -8,7 +8,8 @@
 #
 # then copy the packages
 #
-mv /tmp/TRIBjproc-i386.pkg ${THOME}/pkgs/TRIBjproc.1.5.pkg
-mv /tmp/TRIBjproc-sparc.pkg ${THOME}/pkgs.sparc/TRIBjproc.1.5.pkg
-${THOME}/build/pkg2zap ${THOME}/pkgs/TRIBjproc.1.5.pkg ${THOME}/pkgs
-${THOME}/build/pkg2zap ${THOME}/pkgs.sparc/TRIBjproc.1.5.pkg ${THOME}/pkgs.sparc
+mkdir -p /tmp/pct
+mv /tmp/TRIBjproc-i386.pkg /tmp/pct/TRIBjproc.1.6.pkg
+mv /tmp/TRIBjproc-sparc.pkg ${THOME}/pkgs.sparc/TRIBjproc.1.6.pkg
+${THOME}/build/pkg2zap /tmp/pct/TRIBjproc.1.6.pkg /tmp/pct
+${THOME}/build/pkg2zap ${THOME}/pkgs.sparc/TRIBjproc.1.6.pkg ${THOME}/pkgs.sparc
