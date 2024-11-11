@@ -1,15 +1,14 @@
 #!/bin/sh
 #
-# In illuminate itself:
-./build packages deps
+# SPDX-License-Identifier: CDDL-1.0
 #
-# that creates sparc and x86 packages, so we have to handle both,
-# which means the manual shenanigans below
+# In illuminate itself:
+./build tribblix-package
+#
 #  *** make sure the pkg version matches that here ***
 #
-# then copy the packages
+# then copy the package into our own format
 #
-mv /tmp/TRIBilluminate-i386.pkg ${THOME}/pkgs/TRIBilluminate.0.7.pkg
-mv /tmp/TRIBilluminate-sparc.pkg ${THOME}/pkgs.sparc/TRIBilluminate.0.7.pkg
-${THOME}/build/pkg2zap ${THOME}/pkgs/TRIBilluminate.0.7.pkg ${THOME}/pkgs
-${THOME}/build/pkg2zap ${THOME}/pkgs.sparc/TRIBilluminate.0.7.pkg ${THOME}/pkgs.sparc
+mkdir -p /tmp/pct
+mv /tmp/TRIBilluminate.pkg /tmp/pct/TRIBilluminate.1.0.pkg
+${THOME}/build/pkg2zap /tmp/pct/TRIBilluminate.1.0.pkg /tmp/pct
