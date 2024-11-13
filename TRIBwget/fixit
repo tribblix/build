@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # cleanup to avoid conflicts
 #
 rm -f usr/lib/charset.alias
