@@ -4,5 +4,5 @@
 #
 # postgres 15
 #
-${THOME}/build/dobuild +64only -P /opt/tribblix/postgres15 postgresql-15.8 -C "--without-readline --with-perl --with-openssl" -M world
-${THOME}/build/genpkg -I install-world TRIBblix-postgres15 postgresql-15.8
+${THOME}/build/dobuild +64only -P /opt/tribblix/postgres15 postgresql-15.9 -C "--without-readline --with-perl --with-openssl" -M world
+${THOME}/build/genpkg -I install-world TRIBblix-postgres15 postgresql-15.9
