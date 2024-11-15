@@ -177,33 +177,9 @@ suite. It would be nice to be complete, but that isn't true yet.
      PATHSEP=":"
      FILESEP="/"
      NATIVE=true
---- a/test/jdk/sun/security/provider/PolicyFile/getinstance/getinstance.sh	Tue Jan  9 21:18:15 2024
-+++ b/test/jdk/sun/security/provider/PolicyFile/getinstance/getinstance.sh	Thu Apr  4 11:06:23 2024
-@@ -51,6 +51,10 @@
- # set platform-dependent variables
- OS=`uname -s`
- case "$OS" in
-+  SunOS )
-+    PS=":"
-+    FS="/"
-+    ;;
-   Linux )
-     PS=":"
-     FS="/"
---- a/test/jdk/sun/security/ssl/SSLSocketImpl/NotifyHandshakeTest.sh	Tue Jan  9 21:18:15 2024
-+++ b/test/jdk/sun/security/ssl/SSLSocketImpl/NotifyHandshakeTest.sh	Thu Apr  4 11:07:24 2024
-@@ -46,7 +46,7 @@
- 
- OS=`uname -s`
- case "$OS" in
--    Linux | Darwin | AIX )
-+    SunOS | Linux | Darwin | AIX )
-         FILESEP="/"
-         PATHSEP=":"
-         ;;
 --- a/test/jdk/sun/security/pkcs11/Provider/MultipleLogins.sh	Tue Jan  9 21:18:15 2024
 +++ b/test/jdk/sun/security/pkcs11/Provider/MultipleLogins.sh	Thu Apr  4 11:29:40 2024
-@@ -57,6 +57,12 @@
+@@ -58,6 +58,12 @@
  
  OS=`uname -s`
  case "$OS" in

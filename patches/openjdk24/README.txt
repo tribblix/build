@@ -5,6 +5,28 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+24
+
+This is a major change.
+
+The Security Manager is effectively removed. Lots of patche noise
+associated with that. Removed the calls to checkPermission(),
+GetPropertyAction.privilegedGetProperty(), and
+AccessController.doPrivileged(). Removed checkAccess() from the patch
+for src/java.base/solaris/classes/sun/nio/fs/SolarisAclFileAttributeView.java
+
+NOTE: AccessController.doPrivileged() retained, in 
+src/java.base/solaris/classes/sun/nio/ch/DefaultSelectorProvider.java
+because the equivalent Linux call hasn't been removed.
+
+Fixed up the patch for
+src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/runtime/Threads.java
+it failed to apply because 32-bit windows has been removed, but we shouldn't
+have been adding 32-bit Solaris back. And remove the file
+SolarisX86JavaThreadPDAccess.java entirely
+
+os::print_tos_pc() has been centralized, so remove our copy.
+
 24+23
 
 Trivial patch noise

@@ -28,7 +28,7 @@
       * void rewind(FILE* stream);
       */
      static native void rewind(long stream) throws UnixException;
-@@ -500,6 +521,25 @@
+@@ -514,6 +535,25 @@
          throws UnixException;
  
      /**
