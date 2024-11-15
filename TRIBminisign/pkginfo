@@ -1,0 +1,4 @@
+PKG="TRIBminisign"
+NAME="A dead simple tool to sign files and verify signatures."
+VERSION="0.11.0"
+ZAP_URL="https://jedisct1.github.io/minisign/"
