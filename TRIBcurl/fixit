@@ -16,3 +16,10 @@ esac
 if [ -x usr/bin/${ARCH64}/curl ]; then
   mv usr/bin/${ARCH64}/curl usr/bin/curl
 fi
+
+#
+# the shipped pc files blindly refer to requirements that do not and
+# will not ever exist
+#
+sed -i s:ldap,:: usr/lib/pkgconfig/libcurl.pc
+sed -i s:ldap,:: usr/lib/*/pkgconfig/libcurl.pc
