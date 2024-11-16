@@ -8,5 +8,5 @@
 # rather than 'char' (see /usr/include/sys/int_types.h)
 # as in https://www.illumos.org/issues/16523
 #
-$THOME/build/cmbuild -64only -S cpp apache-arrow-17.0.0 -C "-DARROW_JEMALLOC=OFF -DARROW_BUILD_STATIC=OFF -DARROW_COMPUTE=ON -DARROW_FILESYSTEM=ON -DARROW_CSV=ON -DARROW_DATASET=ON -DARROW_JSON=ON -DARROW_PARQUET=ON"
-${THOME}/build/genpkg TRIBapache-arrow apache-arrow-17.0.0
+$THOME/build/cmbuild -64only -S cpp apache-arrow-18.0.0 -C "-DARROW_JEMALLOC=OFF -DARROW_BUILD_STATIC=OFF -DARROW_COMPUTE=ON -DARROW_FILESYSTEM=ON -DARROW_CSV=ON -DARROW_DATASET=ON -DARROW_JSON=ON -DARROW_PARQUET=ON"
+${THOME}/build/genpkg TRIBapache-arrow apache-arrow-18.0.0
