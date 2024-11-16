@@ -7,7 +7,7 @@ cd rr
 git clone https://github.com/restic/restic
 cd restic
 #
-git checkout v0.17.2
+git checkout v0.17.3
 /usr/versions/go-1.22/bin/go run build.go
 
 rm -fr /tmp/rr
