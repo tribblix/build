@@ -1,0 +1,6 @@
+P TRIBx11-libx11
+P TRIBx11-libxcomposite
+P TRIBx11-libxdamage
+P TRIBx11-libxext
+P TRIBx11-libxfixes
+P TRIBx11-libxrender

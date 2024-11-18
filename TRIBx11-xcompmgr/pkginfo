@@ -1,0 +1,4 @@
+PKG="TRIBx11-xcompmgr"
+NAME="xcompmgr"
+VERSION="1.1.10.0"
+ZAP_URL="https://www.x.org/releases/individual/app/"
