@@ -32206,7 +32206,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/spa
 +  if (preserve_g2)   __ mov(L7, G2);
 +
 +#ifdef ASSERT
-+  if (preserve_g2 && (VerifyCompiledCode || VerifyOops)) {
++  if (preserve_g2 && VerifyOops) {
 +    // Trash argument dump slots.
 +    __ set(0xb0b8ac0db0b8ac0d, G1);
 +    __ mov(G1, G5);
