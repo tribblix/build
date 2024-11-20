@@ -1,4 +1,4 @@
 PKG="TRIBdesktop-file-utils"
 NAME="Glib desktop file utilities"
-VERSION="0.23.0"
+VERSION="0.28.0"
 ZAP_URL="https://www.freedesktop.org/wiki/Software/desktop-file-utils/"
