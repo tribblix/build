@@ -1,11 +1,12 @@
 #!/bin/sh
 #
-# the build is, um, wacky - it interprets prefix rather oddly; explicitly
-# uses "make" in subdirs which can't handle -j; manpage install ignores
-# DESTDIR.
+# SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/dobuild xgalaga-2.1.1.0 -P /usr/share/xgalaga
-cd xgalaga-2.1.1.0
+# the build interprets prefix rather oddly; explicitly uses "make" in
+# subdirs which can't handle -j; manpage install ignores DESTDIR.
+#
+${THOME}/build/dobuild -64only xgalaga-2.1.1.0 -P /usr/share/xgalaga
+cd xgalaga-2.1.1.0-64bit
 gmake
 rm -fr /tmp/g
 gmake install DESTDIR=/tmp/g
@@ -16,3 +17,4 @@ cp xgalaga.6x.gz /tmp/g/usr/share/man/man6
 gunzip /tmp/g/usr/share/man/man6/xgalaga.6x.gz
 mv /tmp/g/usr/share/man/man6/xgalaga.6x /tmp/g/usr/share/man/man6/xgalaga.6
 ${THOME}/build/create_pkg TRIBxgalaga /tmp/g
+rm -fr /tmp/g
