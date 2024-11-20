@@ -403,7 +403,7 @@ EOF
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_BUILD_PATH64 ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_BUILD_PATH64 ${GMAKE} ${GMAKEFLAGS} "${MAKEARGS}"
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
 	    cd ${WORKING_ROOT}
@@ -441,6 +441,6 @@ EOF
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_BUILD_PATH32 ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_BUILD_PATH32 ${GMAKE} ${GMAKEFLAGS} "${MAKEARGS}"
 	fi
 done
