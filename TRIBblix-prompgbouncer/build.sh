@@ -15,8 +15,8 @@ cd promu
 env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.22/bin:$PATH gmake build
 cd ..
 
-$THOME/build/unpack pgbouncer_exporter-0.8.0
-cd pgbouncer_exporter-0.8.0
+$THOME/build/unpack pgbouncer_exporter-0.10.2
+cd pgbouncer_exporter-0.10.2
 env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.22/bin:$PATH gmake build
 
 ${THOME}/build/genpkg TRIBblix-prompgbouncer
