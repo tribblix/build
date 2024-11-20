@@ -1,8 +1,9 @@
 #!/bin/sh
 #
-${THOME}/build/unpack unrarsrc-6.2.10
-cd unrar
-gmake -j 4
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/dobuild -64only -n unrar unrarsrc-7.1.1 -M CXX="c++ -m64"
+cd unrarsrc-7.1.1-64bit
 rm -fr /tmp/uu
 mkdir -p /tmp/uu/usr/bin
 cp unrar /tmp/uu/usr/bin
