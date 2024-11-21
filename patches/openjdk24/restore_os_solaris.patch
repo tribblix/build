@@ -3935,7 +3935,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +         SIZE_FORMAT " is not aligned to " SIZE_FORMAT,
 +         alignment, (size_t) os::vm_page_size());
 +
-+  int page_sizes_max = 9;
++  const int page_sizes_max = 9;
 +  size_t _illumos_page_sizes[page_sizes_max];
 +  int n = getpagesizes(_illumos_page_sizes, page_sizes_max);
 +  for (int i = 0; _illumos_page_sizes[i] != 0; i++) {
@@ -4249,7 +4249,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +bool os::Solaris::mpss_sanity_check(bool warn, size_t* page_size) {
 +  // Find the page sizes supported by the system
-+  int page_sizes_max = 9;
++  const int page_sizes_max = 9;
 +  size_t _illumos_page_sizes[page_sizes_max];
 +  int n = getpagesizes(_illumos_page_sizes, page_sizes_max);
 +  assert(n > 0, "illumos bug?");
