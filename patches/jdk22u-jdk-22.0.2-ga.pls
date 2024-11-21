@@ -39,3 +39,4 @@
 -p1 openjdk22/illumos-port-27.patch
 -p1 openjdk22/jvmci-os.patch
 -p1 openjdk22/testsuite.patch
+-p1 openjdk22/fastdebug.patch

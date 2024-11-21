@@ -5,6 +5,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 22 now switched to the jdk22 stabilisation repo
 
+Cleanup: allow fastdebug builds, see fastdebug.patch
+
 Cleanup: remove unused JSIG_VERSION_1_4_1 define
 
 Cleanup: remove unused SOLARIS_MUTATOR_LIBTHREAD hunk

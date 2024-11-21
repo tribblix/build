@@ -1,0 +1,18 @@
+To build in fastdebug mode, configure with
+
+  bash ./configure ... --with-debug-level=fastdebug
+
+The patches here are for code that's only built in debug mode.
+
+--- a/src/hotspot/share/utilities/vmError.cpp	Thu Nov 21 11:00:15 2024
++++ b/src/hotspot/share/utilities/vmError.cpp	Thu Nov 21 12:00:25 2024
+@@ -71,6 +71,9 @@
+ #ifndef PRODUCT
+ #include <signal.h>
+ #endif // PRODUCT
++#ifdef ASSERT
++# include <alloca.h>
++#endif // ASSERT
+ 
+ bool              VMError::coredump_status;
+ char              VMError::coredump_message[O_BUFLEN];

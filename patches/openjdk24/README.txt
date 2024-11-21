@@ -5,6 +5,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: allow fastdebug builds, see fastdebug.patch
+
 24+24
 
 This is a major change.
