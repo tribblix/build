@@ -1,0 +1,11 @@
+--- a/makefiles/Makefile.solarisx86	Sat Feb  4 16:15:41 2017
++++ b/makefiles/Makefile.solarisx86	Fri Nov 22 17:19:20 2024
+@@ -2,7 +2,7 @@
+ #
+ # Solaris x86 makefile
+ #
+-CC=gcc
++CC=gcc -m64
+ AR=ar
+ 
+ # For editres, add -DEDITRES to CFLAGS and -lXmu to LIBS

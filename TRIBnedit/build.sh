@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack nedit-5.7
 cd nedit-5.7
 make solarisx86
