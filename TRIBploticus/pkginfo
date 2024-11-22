@@ -1,4 +1,4 @@
 PKG="TRIBploticus"
 NAME="Ploticus data display package"
-VERSION="2.42.1"
+VERSION="2.42.2"
 ZAP_URL="http://ploticus.sourceforge.net/doc/welcome.html"

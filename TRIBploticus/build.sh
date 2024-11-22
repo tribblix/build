@@ -3,6 +3,7 @@
 ${THOME}/build/unpack ploticus242_src
 cd ploticus242/src
 #edit Makefile
+# - add -m64 to CC
 # - enable x11 (libs is alt linux)
 # - INSTALLBIN to /usr/bin
 #edit pl.h
