@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+cp system.piewmrc ${DESTDIR}/usr/lib/X11/twm/
+cp ../xli_1.17.0+20061110.orig-64bit/xli ${DESTDIR}/usr/lib/X11/twm/xloadimage
+

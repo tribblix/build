@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+mkdir -p usr/share/man/man1
+mv usr/man/man1/tvtwm.1x usr/share/man/man1/tvtwm.1
+rm -fr usr/man
+rm -f usr/lib/X11/twm/system.twmrc
+ln usr/bin/tvtwm usr/bin/piewm
+ln usr/share/man/man1/tvtwm.1 usr/share/man/man1/piewm.1
