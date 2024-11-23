@@ -1,4 +1,4 @@
 PKG="TRIBminio-client"
 NAME="Minio Client"
-VERSION="2023.07.21.1"
+VERSION="2024.11.17.0"
 ZAP_URL="https://minio.io/"
