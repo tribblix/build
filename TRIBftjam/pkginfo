@@ -1,4 +1,4 @@
 PKG="TRIBftjam"
 NAME="FT Jam build tool"
-VERSION="2.5.2.0"
+VERSION="2.5.2.1"
 ZAP_URL="https://www.freetype.org/jam/index.html"
