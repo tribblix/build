@@ -1,8 +1,6 @@
 #!/bin/sh
 #
-# we don't ship .la files for base libraries
-#
-/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
+# SPDX-License-Identifier: CDDL-1.0
 #
 # don't ship documentation
 #

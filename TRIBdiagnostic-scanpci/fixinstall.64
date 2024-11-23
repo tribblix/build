@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+# this should only apply in the 64-bit case, so we install the 64-bit scanpci
+#
+mkdir -p ${DESTDIR}/usr/share/man/man1
+cp man/scanpci.man ${DESTDIR}/usr/share/man/man1/scanpci.1
+sed -i 's/__xorgversion__/X Version 11/' ${DESTDIR}/usr/share/man/man1/scanpci.1
+mkdir -p ${DESTDIR}/usr/bin
+cp tribblix_build/scanpci/scanpci ${DESTDIR}/usr/bin

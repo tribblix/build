@@ -1,4 +1,4 @@
 PKG="TRIBdiagnostic-scanpci"
 NAME="libpciaccess and scanpci"
-VERSION="0.17.0"
+VERSION="0.18.1.0"
 ZAP_URL="https://www.x.org/releases/individual/lib/"
