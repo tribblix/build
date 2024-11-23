@@ -25,4 +25,3 @@ fi
 #
 cp system.piewmrc ${DESTDIR}/usr/lib/X11/twm/
 cp ../xli_1.17.0+20061110.orig-64bit/xli ${DESTDIR}/usr/lib/X11/twm/xloadimage
-

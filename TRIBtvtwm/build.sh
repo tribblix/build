@@ -7,4 +7,4 @@ $THOME/build/imakebuild -64only ptvtwm-1.0b3
 #
 # fixinstall will copy xloadimage to the right place
 #
-${THOME}/build/genpkg -I "install install.man" TRIBtvtwm ptvtwm-1.0b3 
+${THOME}/build/genpkg -I "install install.man" TRIBtvtwm ptvtwm-1.0b3
