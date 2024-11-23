@@ -6,11 +6,17 @@ mkdir ~/ud/c
 cd ~/ud/c
 
 #
-# containerd/console is broken, so pick a tag that works
-# https://github.com/minio/minio/issues/17398
-# https://github.com/containerd/console/issues/75
+# in pkg/mod/github.com/ncw/directio@v1.0.5/direct_io_unix.go
+# syscall -> unix (import syscall -> golang.org/x/sys/unix)
 #
-env GOPATH=`pwd` PATH=/usr/versions/go-1.22/bin:$PATH go install github.com/minio/minio@RELEASE.2023-05-18T00-05-36Z
+# in pkg/mod/github.com/minio/minio@v0.0.0-20241107005220-cefc43e4daa4/internal/disk/directio_unix.go
+# syscall -> unix (import remove syscall)
+#
+# must be go 1.23, otherwise you get a completely useless error message
+# could not import golang.org/x/sys/unix (open : no such file or directory)
+#
+env GOPATH=`pwd` PATH=/usr/versions/go-1.23/bin:$PATH go install github.com/minio/minio@RELEASE.2024-11-07T00-52-20Z
+
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
