@@ -6,12 +6,27 @@ See also README-zero.txt for note on a project zero variant.
 JDK 24 now that jdk23 has been branched off.
 
 Cleanup: allow fastdebug builds, see fastdebug.patch
+24+25
+
+Lots of patch noise. Much of it due to cleanup following the Security
+Manager removal.
+
+Cleanup: the hack in UnixPath.java to rewrite EINVAL to ELOOP, which
+was a workaround for S10U3 and earlier, has been removed.
+
+The src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java
+hunk that replaces $ISA was reworked to be unconditional, as the SM
+cleanup also removed the osname and osarch we formerly switched on.
+
+NOTE: AccessController.doPrivileged() cleaned up in 
+src/java.base/solaris/classes/sun/nio/ch/DefaultSelectorProvider.java
+as the equivalent Linux call has now been removed.
 
 24+24
 
 This is a major change.
 
-The Security Manager is effectively removed. Lots of patche noise
+The Security Manager is effectively removed. Lots of patch noise
 associated with that. Removed the calls to checkPermission(),
 GetPropertyAction.privilegedGetProperty(), and
 AccessController.doPrivileged(). Removed checkAccess() from the patch

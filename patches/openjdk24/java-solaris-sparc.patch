@@ -1059,7 +1059,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -488,7 +488,7 @@
+@@ -493,7 +493,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -1318,17 +1318,6 @@
      private static final JavaIOFileDescriptorAccess fdAccess =
          SharedSecrets.getJavaIOFileDescriptorAccess();
  
---- old/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:50.351040561 -0700
-+++ new/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:49.963033111 -0700
-@@ -512,7 +512,7 @@
-     private static native boolean isReusePortAvailable0();
- 
-     /*
--     * Returns 1 for Windows and -1 for Solaris/Linux/Mac OS
-+     * Returns 1 for Windows and -1 for Linux/Mac OS
-      */
-     private static native int isExclusiveBindAvailable();
- 
 --- old/src/java.base/share/classes/sun/nio/ch/SocketOptionRegistry.java.template	2020-05-20 18:00:51.403060759 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/SocketOptionRegistry.java.template	2020-05-20 18:00:51.019053386 -0700
 @@ -43,8 +43,6 @@
@@ -1524,38 +1513,6 @@
  /* To be able to name the Java constants the same as the C constants without
     having the preprocessor rewrite those identifiers, add PREFIX_ to all
     identifiers matching a C constant. The PREFIX_ is filtered out in the
---- old/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.927301234 -0700
-+++ new/src/java.base/unix/classes/sun/nio/fs/UnixFileSystem.java	2020-05-20 18:01:03.535293707 -0700
-@@ -127,10 +127,6 @@
-         return rootDirectory;
-     }
- 
--    boolean isSolaris() {
--        return false;
--    }
--
-     static List<String> standardFileAttributeViews() {
-         return Arrays.asList("basic", "posix", "unix", "owner");
-     }
---- old/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.971321280 -0700
-+++ new/src/java.base/unix/classes/sun/nio/fs/UnixPath.java	2020-05-20 18:01:04.583313830 -0700
-@@ -830,15 +830,7 @@
-                     ("NOFOLLOW_LINKS is not supported on this platform");
-             flags |= O_NOFOLLOW;
-         }
--        try {
--            return open(this, flags, 0);
--        } catch (UnixException x) {
--            // HACK: EINVAL instead of ELOOP on Solaris 10 prior to u4 (see 6460380)
--            if (getFileSystem().isSolaris() && x.errno() == EINVAL)
--                x.setError(ELOOP);
--
--            throw x;
--        }
-+        return open(this, flags, 0);
-     }
- 
-     void checkRead() {
 --- old/src/java.base/unix/classes/sun/security/provider/NativePRNG.java	2020-05-20 18:01:06.091342785 -0700
 +++ new/src/java.base/unix/classes/sun/security/provider/NativePRNG.java	2020-05-20 18:01:05.707335412 -0700
 @@ -33,7 +33,7 @@
@@ -3171,7 +3128,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -372,8 +365,7 @@
+@@ -363,8 +356,7 @@
  
      /* system calls that might not be available at run time */
  
@@ -3194,7 +3151,7 @@
   * Since winsock doesn't have the equivalent of strerror(errno)
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
-@@ -1422,22 +1422,6 @@
+@@ -1401,22 +1401,6 @@
                  }
              }
          }
@@ -3237,7 +3194,7 @@
              default -> UNKNOWN;
 --- old/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:48.020147849 -0700
 +++ new/src/java.desktop/share/classes/sun/font/FontUtilities.java	2020-05-20 18:01:47.620140168 -0700
-@@ -41,8 +41,6 @@
+@@ -39,8 +39,6 @@
   */
  public final class FontUtilities {
  
@@ -3246,14 +3203,14 @@
      public static boolean isLinux;
  
      public static boolean isMacOSX;
-@@ -67,8 +65,6 @@
-             @SuppressWarnings("deprecation") // PlatformLogger.setLevel is deprecated.
-             @Override
-             public Object run() {
--
--                isSolaris = OSInfo.getOSType() == OSInfo.OSType.SOLARIS;
+@@ -61,8 +59,6 @@
  
-                 isLinux = OSInfo.getOSType() == OSInfo.OSType.LINUX;
+     @SuppressWarnings("deprecation") // PlatformLogger.setLevel is deprecated.
+     private static void initStatic() {
+-
+-        isSolaris = OSInfo.getOSType() == OSInfo.OSType.SOLARIS;
+ 
+         isLinux = OSInfo.getOSType() == OSInfo.OSType.LINUX;
  
 --- old/src/java.desktop/share/native/libjsound/SoundDefs.h	2020-05-20 18:01:56.500310674 -0700
 +++ new/src/java.desktop/share/native/libjsound/SoundDefs.h	2020-05-20 18:01:56.112303224 -0700
@@ -3394,7 +3351,7 @@
                  if ((f = new File("/etc/fedora-release")).canRead()) {
 --- old/src/java.desktop/unix/classes/sun/print/PrintServiceLookupProvider.java	2020-05-20 18:02:38.501117121 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/PrintServiceLookupProvider.java	2020-05-20 18:02:38.117109747 -0700
-@@ -150,10 +150,6 @@
+@@ -139,10 +139,6 @@
          return OSInfo.getOSType() == OSInfo.OSType.MACOSX;
      }
  
@@ -3405,7 +3362,7 @@
      static boolean isLinux() {
          return OSInfo.getOSType() == OSInfo.OSType.LINUX;
      }
-@@ -305,7 +301,7 @@
+@@ -291,7 +287,7 @@
                  }
              }
          } else {
@@ -3414,7 +3371,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -489,7 +485,7 @@
+@@ -475,7 +471,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -3423,7 +3380,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -660,7 +656,7 @@
+@@ -646,7 +642,7 @@
                  psuri = printerInfo[1];
              }
          } else {
@@ -3432,7 +3389,7 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
-@@ -880,7 +876,7 @@
+@@ -865,7 +861,7 @@
          ArrayList<String> results = null;
          try {
              final String[] cmd = new String[3];
@@ -3443,7 +3400,7 @@
                  cmd[2] = "env LC_ALL=C " + command;
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.605138318 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.221130945 -0700
-@@ -872,51 +872,25 @@
+@@ -869,51 +869,25 @@
                          isAttributeCategorySupported(JobSheets.class)) {
              ncomps+=1;
          }
@@ -3516,7 +3473,7 @@
          if (IPPPrintService.debugPrint) {
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.629157980 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.293151529 -0700
-@@ -220,31 +220,6 @@
+@@ -218,31 +218,6 @@
          return name;
      }
  
@@ -3548,7 +3505,7 @@
      private PrinterIsAcceptingJobs getPrinterIsAcceptingJobsBSD() {
          if (PrintServiceLookupProvider.cmdIndex ==
              PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -322,9 +297,7 @@
+@@ -320,9 +295,7 @@
      }
  
      private PrinterIsAcceptingJobs getPrinterIsAcceptingJobs() {
@@ -3559,7 +3516,7 @@
              return getPrinterIsAcceptingJobsBSD();
          } else if (PrintServiceLookupProvider.isAIX()) {
              return getPrinterIsAcceptingJobsAIX();
-@@ -351,14 +324,6 @@
+@@ -349,14 +322,6 @@
          }
      }
  
@@ -3574,7 +3531,7 @@
      private QueuedJobCount getQueuedJobCountBSD() {
          if (PrintServiceLookupProvider.cmdIndex ==
              PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -415,9 +380,7 @@
+@@ -413,9 +378,7 @@
      }
  
      private QueuedJobCount getQueuedJobCount() {
@@ -3585,7 +3542,7 @@
              return getQueuedJobCountBSD();
          } else if (PrintServiceLookupProvider.isAIX()) {
              return getQueuedJobCountAIX();
-@@ -426,13 +389,6 @@
+@@ -424,13 +387,6 @@
          }
      }
  
@@ -3599,7 +3556,7 @@
      private PrintServiceAttributeSet getBSDServiceAttributes() {
          PrintServiceAttributeSet attrs = new HashPrintServiceAttributeSet();
          attrs.add(getQueuedJobCountBSD());
-@@ -471,9 +427,7 @@
+@@ -469,9 +425,7 @@
      }
  
      private PrintServiceAttributeSet getDynamicAttributes() {
@@ -3858,20 +3815,15 @@
  }
 --- old/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.697524107 -0700
 +++ new/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.357517578 -0700
-@@ -742,15 +742,10 @@
+@@ -725,10 +725,10 @@
          lib = expand(lib);
          int i = lib.indexOf("/$ISA/");
          if (i != -1) {
 -            // replace "/$ISA/" with "/amd64/" on Solaris AMD64.
--            // On all other platforms, just turn it into a "/"
 +            // replace "/$ISA/" with "/"
              String prefix = lib.substring(0, i);
              String suffix = lib.substring(i + 5);
--            if (osName.equals("SunOS") && osArch.equals("amd64")) {
--                lib = prefix + "/amd64" + suffix;
--            } else {
--                lib = prefix + suffix;
--            }
+-            lib = prefix + "/amd64" + suffix;
 +            lib = prefix + suffix;
          }
          if (DEBUG) {
@@ -4118,7 +4070,7 @@
      clk_tck = 100;
 --- old/src/jdk.sctp/unix/classes/sun/nio/ch/sctp/SctpNet.java	2020-05-20 18:03:38.442268035 -0700
 +++ new/src/jdk.sctp/unix/classes/sun/nio/ch/sctp/SctpNet.java	2020-05-20 18:03:38.054260584 -0700
-@@ -44,12 +44,6 @@
+@@ -42,12 +42,6 @@
      /* -- Miscellaneous SCTP utilities -- */
  
      private static boolean IPv4MappedAddresses() {
@@ -5579,7 +5531,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/ch/DefaultSelectorProvider.java	2020-05-20 18:10:11.945823468 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,54 +0,0 @@
+@@ -1,46 +0,0 @@
 -/*
 - * Copyright (c) 2015, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5607,20 +5559,12 @@
 -
 -package sun.nio.ch;
 -
--import java.security.AccessController;
--import java.security.PrivilegedAction;
--
 -/**
 - * Creates this platform's default SelectorProvider
 - */
 -
--@SuppressWarnings("removal")
 -public class DefaultSelectorProvider {
--    private static final SelectorProviderImpl INSTANCE;
--    static {
--        PrivilegedAction<SelectorProviderImpl> pa = DevPollSelectorProvider::new;
--        INSTANCE = AccessController.doPrivileged(pa);
--    }
+-    private static final SelectorProviderImpl INSTANCE = new DevPollSelectorProvider();
 -
 -    /**
 -     * Prevent instantiation.
@@ -7456,7 +7400,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/fs/SolarisFileSystem.java	2020-05-20 18:10:20.625990118 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,127 +0,0 @@
+@@ -1,122 +0,0 @@
 -/*
 - * Copyright (c) 2008, 2012, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -7508,11 +7452,6 @@
 -        int minorVersion = Integer.parseInt(vers[1]);
 -        this.hasSolaris11Features =
 -            (majorVersion > 5 || (majorVersion == 5 && minorVersion >= 11));
--    }
--
--    @Override
--    boolean isSolaris() {
--        return true;
 -    }
 -
 -    @Override
@@ -13388,7 +13327,7 @@
 -#endif // PLATFORM_API_SOLARISOS_UTILS_H_INCLUDED
 --- old/src/jdk.attach/solaris/classes/sun/tools/attach/AttachProviderImpl.java	2020-05-20 18:10:37.910321958 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,79 +0,0 @@
+@@ -1,76 +0,0 @@
 -/*
 - * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -13440,8 +13379,6 @@
 -    public VirtualMachine attachVirtualMachine(String vmid)
 -        throws AttachNotSupportedException, IOException
 -    {
--        checkAttachPermission();
--
 -        // AttachNotSupportedException will be thrown if the target VM can be determined
 -        // to be not attachable.
 -        testAttachable(vmid);
@@ -13460,7 +13397,6 @@
 -        // implementation which only returns a list of attachable VMs.
 -        if (vmd instanceof HotSpotVirtualMachineDescriptor) {
 -            assert ((HotSpotVirtualMachineDescriptor)vmd).isAttachable();
--            checkAttachPermission();
 -            return new VirtualMachineImpl(this, vmd.id());
 -        } else {
 -            return attachVirtualMachine(vmd.id());
