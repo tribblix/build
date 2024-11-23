@@ -1,6 +1,9 @@
 #!/bin/sh
 #
-# pkg-config 0.28 (0.29 is borked)
+# SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/dobuild pkg-config-0.28 -C --with-internal-glib
-${THOME}/build/genpkg TRIBpkg-config pkg-config-0.28
+# Need to build with +64only to get a 64-bit binary that defaults to the
+# 32-bit search path, as that's what the rest of the build system expects
+#
+${THOME}/build/dobuild +64only pkg-config-0.29.2 -C --disable-host-tool
+${THOME}/build/genpkg TRIBpkg-config pkg-config-0.29.2

@@ -1,4 +1,4 @@
 PKG="TRIBpkg-config"
 NAME="Pkg-Config"
-VERSION="0.28.0"
+VERSION="0.29.2.0"
 ZAP_URL="http://www.freedesktop.org/wiki/Software/pkg-config/"
