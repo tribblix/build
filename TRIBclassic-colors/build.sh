@@ -1,10 +1,12 @@
 #!/bin/sh
 #
-git clone https://github.com/justinmeiners/classic-colors
-cd classic-colors
-sed -i s:/usr/local/share/classic-colors/help:/usr/share/classic-colors/help: ui_main.c
-./configure
-gmake
+# SPDX-License-Identifier: CDDL-1.0
+#
+# there's a patch to fix install paths and make it 64-bit
+#
+$THOME/build/dobuild -64only https://github.com/justinmeiners/classic-colors
+
+cd classic-colors-64bit
 
 rm -fr /tmp/xd1
 mkdir -p /tmp/xd1/usr/bin

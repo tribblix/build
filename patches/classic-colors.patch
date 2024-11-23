@@ -1,0 +1,26 @@
+diff --git a/configure b/configure
+index 8f99e12..c56303e 100755
+--- a/configure
++++ b/configure
+@@ -14,6 +14,8 @@ pkg-config --exists --print-errors x11 xext xt xpm
+ # "X Error of failed request:  BadWindow (invalid Window parameter)
+ #  Major opcode of failed request:  19 (X_DeleteProperty)"
+ cat >> config.mk <<-EOF
++	CFLAGS = -m64
++	LDFLAGS = -m64
+ 	CFLAGS += -std=c99 $(pkg-config --cflags x11 xext xt xpm) $(pkg-config --silence-errors --cflags xp)
+ 	LDFLAGS += $(pkg-config --libs-only-other --libs-only-L x11 xext xt xpm) $(pkg-config --silence-errors --libs-only-other --libs-only-L xp)
+ 	LDLIBS += -lm $(pkg-config --libs-only-l x11 xext) -lXm $(pkg-config --libs-only-l xt xpm) $(pkg-config --silence-errors --libs-only-L xp)
+diff --git a/ui_main.c b/ui_main.c
+index e88aca5..86492d5 100644
+--- a/ui_main.c
++++ b/ui_main.c
+@@ -147,7 +147,7 @@ static void cb_help_menu_(Widget widget, XtPointer a, XtPointer call_data)
+     {
+         case 0:
+         {
+-            open_url_("/usr/local/share/classic-colors/help/classic-colors_help-en.html");
++            open_url_("/usr/share/classic-colors/help/classic-colors_help-en.html");
+             break;
+         }
+         case 1:

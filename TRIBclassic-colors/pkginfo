@@ -1,4 +1,4 @@
 PKG="TRIBclassic-colors"
 NAME="Classic Colors - Motif-based paint program"
-VERSION="1.0"
+VERSION="1.1"
 ZAP_URL="https://github.com/justinmeiners/classic-colors"
