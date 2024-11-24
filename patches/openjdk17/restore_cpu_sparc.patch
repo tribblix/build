@@ -9314,7 +9314,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c1_LIR_sparc.cpp b/src/hotspot/cpu/s
 +  assert(disp() == 0 || index()->is_illegal(), "can't have both");
 +  assert(base()->is_cpu_register(), "wrong base operand");
 +  assert(index()->is_illegal() || index()->is_double_cpu(), "wrong index operand");
-+  assert(base()->type() == T_OBJECT || base()->type() == T_LONG || base()->type() == T_METADATA,
++  assert(base()->type() == T_ADDRESS || base()->type() == T_OBJECT || base()->type() == T_LONG || base()->type() == T_METADATA,
 +         "wrong type for addresses");
 +}
 +#endif // PRODUCT
