@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we already have webrick
 #
 rm -fr `find usr/versions | grep webrick-1`
