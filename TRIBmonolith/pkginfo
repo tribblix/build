@@ -1,0 +1,4 @@
+PKG="TRIBmonolith"
+NAME="CLI for saving complete web pages as a single HTML file"
+VERSION="2.8.3.0"
+ZAP_URL="https://github.com/Y2Z/monolith"
