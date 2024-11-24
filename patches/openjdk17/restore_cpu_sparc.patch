@@ -32712,7 +32712,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/spa
 +#ifndef PRODUCT
 +void MachConstantBaseNode::format(PhaseRegAlloc* ra_, outputStream* st) const {
 +  char reg[128];
-+  ra_->dump_register(this, reg);
++  ra_->dump_register(this, reg, sizeof(reg));
 +  st->print("SET    &constanttable,%s\t! constant table base", reg);
 +}
 +#endif
