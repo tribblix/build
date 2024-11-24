@@ -18,7 +18,7 @@ The src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java
 hunk that replaces $ISA was reworked to be unconditional, as the SM
 cleanup also removed the osname and osarch we formerly switched on.
 
-NOTE: AccessController.doPrivileged() cleaned up in 
+NOTE: AccessController.doPrivileged() cleaned up in
 src/java.base/solaris/classes/sun/nio/ch/DefaultSelectorProvider.java
 as the equivalent Linux call has now been removed.
 
@@ -32,7 +32,7 @@ GetPropertyAction.privilegedGetProperty(), and
 AccessController.doPrivileged(). Removed checkAccess() from the patch
 for src/java.base/solaris/classes/sun/nio/fs/SolarisAclFileAttributeView.java
 
-NOTE: AccessController.doPrivileged() retained, in 
+NOTE: AccessController.doPrivileged() retained, in
 src/java.base/solaris/classes/sun/nio/ch/DefaultSelectorProvider.java
 because the equivalent Linux call hasn't been removed.
 
@@ -61,7 +61,7 @@ In src/jdk.attach/solaris/classes/sun/tools/attach/VirtualMachineImpl.java
 readErrorMessage() has been renamed readMessage()
 
 Need to include sys/filio.h for FIONREAD in
-src/java.base/unix/native/libnio/ch/UnixFileDispatcherImpl.c 
+src/java.base/unix/native/libnio/ch/UnixFileDispatcherImpl.c
 see illumos-port-29.patch
 
 24+21
