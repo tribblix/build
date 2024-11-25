@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # remove the client pieces
 #
 rm -fr usr/share/locale
@@ -15,11 +17,12 @@ rm -fr usr/share/doc
 rm -fr var
 
 #
-# this is for the man Xserver package
+# this is for the main Xserver package
 #
 rm -f usr/share/man/man1/Xserver.1
 
 rm -f usr/lib/xorg/modules/extensions/libvnc.la
+rm -f usr/lib/xorg/modules/*/extensions/libvnc.la
 #so I'm not sure about this
 # should we ship libvnc.so or not?
 rm -fr usr/lib
@@ -27,5 +30,5 @@ rm -fr usr/lib
 #
 # we are responsible for this, apparently
 #
-cd usr/lib/mdb/proc
-ln -s Xserver.so Xvnc.so
+#cd usr/lib/mdb/proc
+#ln -s Xserver.so Xvnc.so
