@@ -2,6 +2,8 @@ P TRIBargcomplete-python-312
 P TRIBblix-postgres15
 P TRIBboto3-python-312
 P TRIBdateutil-python-312
+P TRIBlz4-python-312
 P TRIBpsycopg2-312
 P TRIBsnappy-python-312
 P TRIBv-python-312
+P TRIBzstandard-python-312
