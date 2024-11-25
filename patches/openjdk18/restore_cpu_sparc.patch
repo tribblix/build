@@ -4562,7 +4562,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c1_FrameMap_sparc.hpp b/src/hotspot/
 diff -ur --new-file a/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.cpp b/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.cpp
 --- a/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.cpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.cpp	2023-04-16 11:42:11.058218611 +0000
-@@ -0,0 +1,3345 @@
+@@ -0,0 +1,3329 @@
 +/*
 + * Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -7838,14 +7838,6 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.cpp b/src/hots
 +            // swap previous instruction into delay slot
 +            inst->at_put(i - 1, op);
 +            inst->at_put(i, new LIR_OpDelay(prev, op->info()));
-+#ifndef PRODUCT
-+            if (LIRTracePeephole) {
-+              tty->print_cr("delayed");
-+              inst->at(i - 1)->print();
-+              inst->at(i)->print();
-+              tty->cr();
-+            }
-+#endif
 +            continue;
 +          }
 +        }
@@ -7868,14 +7860,6 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/c1_LIRAssembler_sparc.cpp b/src/hots
 +          // Only moves without info can be put into the delay slot.
 +          inst->at_put(i - 1, op);
 +          inst->at_put(i, new LIR_OpDelay(prev, op->info()));
-+#ifndef PRODUCT
-+          if (LIRTracePeephole) {
-+            tty->print_cr("delayed");
-+            inst->at(i - 1)->print();
-+            inst->at(i)->print();
-+            tty->cr();
-+          }
-+#endif
 +        } else {
 +          LIR_Op* delay_op = new LIR_OpDelay(new LIR_Op0(lir_nop), op->as_OpJavaCall()->info());
 +          inst->insert_before(i + 1, delay_op);

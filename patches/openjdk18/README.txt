@@ -5,6 +5,8 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Forked off into the jdk18 repo; mainline is now jdk19.
 
+Cleanup: remove now non-existent LIRTracePeephole on sparc
+
 Cleanup: remove unused JSIG_VERSION_1_4_1 define
 
 Cleanup: remove unused SOLARIS_MUTATOR_LIBTHREAD hunk
