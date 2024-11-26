@@ -2440,7 +2440,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-10-15 14:59:36.867779471 +0100
-@@ -0,0 +1,3077 @@
+@@ -0,0 +1,3057 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -4904,18 +4904,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  return false;
 +}
 +
-+// int pset_getloadavg(psetid_t pset, double loadavg[], int nelem);
-+typedef long (*pset_getloadavg_type)(psetid_t pset, double loadavg[], int nelem);
-+static pset_getloadavg_type pset_getloadavg_ptr = NULL;
-+
-+void init_pset_getloadavg_ptr(void) {
-+  pset_getloadavg_ptr =
-+    (pset_getloadavg_type)dlsym(RTLD_DEFAULT, "pset_getloadavg");
-+  if (pset_getloadavg_ptr == NULL) {
-+    log_warning(os)("pset_getloadavg function not found");
-+  }
-+}
-+
 +int os::Solaris::_dev_zero_fd = -1;
 +
 +// this is called _before_ the global arguments have been parsed
@@ -5061,9 +5049,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +      warning("os::init2 atexit(perfMemory_exit_helper) failed");
 +    }
 +  }
-+
-+  // Init pset_loadavg function pointer
-+  init_pset_getloadavg_ptr();
 +
 +  // Shared Posix initialization
 +  os::Posix::init_2();
@@ -5295,14 +5280,9 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +}
 +
 +// System loadavg support.  Returns -1 if load average cannot be obtained.
-+// Return the load average for our processor set if the primitive exists
-+// (Solaris 9 and later).  Otherwise just return system wide loadavg.
++// Return the load average for our processor set.
 +int os::loadavg(double loadavg[], int nelem) {
-+  if (pset_getloadavg_ptr != NULL) {
-+    return (*pset_getloadavg_ptr)(PS_MYID, loadavg, nelem);
-+  } else {
-+    return ::getloadavg(loadavg, nelem);
-+  }
++  return (*pset_getloadavg_ptr)(PS_MYID, loadavg, nelem);
 +}
 +
 +//---------------------------------------------------------------------------------

@@ -5,7 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: use pset_getloadavg() directly
+
 Cleanup: allow fastdebug builds, see fastdebug.patch
+
 24+25
 
 Lots of patch noise. Much of it due to cleanup following the Security
