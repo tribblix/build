@@ -2131,25 +2131,6 @@
  #ifdef MACOSX
          /*
           * For the case on MacOS X where encoding is set to US-ASCII, but we
---- old/src/java.base/unix/native/libjava/jlong_md.h	2020-05-20 18:01:15.935531801 -0700
-+++ new/src/java.base/unix/native/libjava/jlong_md.h	2020-05-20 18:01:15.547524351 -0700
-@@ -23,8 +23,8 @@
-  * questions.
-  */
- 
--#ifndef _SOLARIS_JLONG_MD_H_
--#define _SOLARIS_JLONG_MD_H_
-+#ifndef _UNIX_JLONG_MD_H_
-+#define _UNIX_JLONG_MD_H_
- 
- /* Make sure ptrdiff_t is defined */
- #include <stddef.h>
-@@ -97,4 +97,4 @@
- #define size_to_jlong(a)    ((jlong)(a))
- #define long_to_jlong(a)    ((jlong)(a))
- 
--#endif /* !_SOLARIS_JLONG_MD_H_ */
-+#endif /* !_UNIX_JLONG_MD_H_ */
 --- old/src/java.base/unix/native/libjsig/jsig.c	2020-05-20 18:01:20.019610218 -0700
 +++ new/src/java.base/unix/native/libjsig/jsig.c	2020-05-20 18:01:19.603602231 -0700
 @@ -35,16 +35,6 @@
