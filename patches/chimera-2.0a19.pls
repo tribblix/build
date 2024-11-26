@@ -1,2 +1,3 @@
 -p1 chimera-common-tmpl.patch
 -p1 chimera-image-png.patch
+-p1 chimera-image-endian.patch

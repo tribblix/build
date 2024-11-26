@@ -1,12 +1,14 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack chimera-2.0a19
 cd chimera-2.0a19
 cp Common.tmpl.dist Common.tmpl
 xmkmf
 make Makefiles
 
-gmake CCOPTIONS= MAPFILES_FOR_PROGS=
+gmake CCOPTIONS=-m64 MAPFILES_FOR_PROGS=
 gmake install install.man DESTDIR=/tmp/c INSTALL=ginstall
 mkdir -p /tmp/c/usr/share/man/man1
 mv /tmp/c/usr/share/man/chimera.1x /tmp/c/usr/share/man/man1/chimera.1
@@ -31,4 +33,10 @@ rm -fr /tmp/c
 ## png_info_init --> png_create_info_struct
 ## png_read_destroy --> png_destroy_read_struct, and &() or NULL for args
 ## png_write_destroy --> png_destroy_write_struct
+#
+
+#
+# building in 64-bit fails with
+# Error: Unknown endianism of architecture
+# because it's only checking for i386, not amd64
 #
