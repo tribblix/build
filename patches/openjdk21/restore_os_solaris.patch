@@ -5282,7 +5282,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +// System loadavg support.  Returns -1 if load average cannot be obtained.
 +// Return the load average for our processor set.
 +int os::loadavg(double loadavg[], int nelem) {
-+  return (*pset_getloadavg_ptr)(PS_MYID, loadavg, nelem);
++  return pset_getloadavg(PS_MYID, loadavg, nelem);
 +}
 +
 +//---------------------------------------------------------------------------------
