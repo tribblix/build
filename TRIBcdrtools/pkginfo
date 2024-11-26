@@ -1,4 +1,4 @@
 PKG="TRIBcdrtools"
 NAME="Tools to manipulate CDs, DVDs, and ISO images"
-VERSION="3.01.0"
+VERSION="3.01.1"
 ZAP_URL="http://cdrtools.sourceforge.net/private/cdrecord.html"
