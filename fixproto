@@ -51,6 +51,8 @@ awk '
 {if ($3 == "var/run")  $6 = "sys"}
 {if ($3 == "var/run/istat") { $6 = "daemon" ; $5 = "daemon" }}
 {if ($3 == "var/cache/istat") { $6 = "daemon" ; $5 = "daemon" }}
+{if ($3 == "var/sadm")  $6 = "sys"}
+{if ($3 == "var/sadm/license")  $6 = "sys"}
 {if ($3 == "sbin")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest")  $6 = "sys"}
 {if ($3 == "lib/svc/manifest/application")  $6 = "sys"}
