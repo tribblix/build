@@ -1288,3 +1288,4 @@ chimera-2.0a19.tar.gz dbc7315b2f52659379cdce0aaa1238fc34cc8aa829feb02efb14050e9a
 djvulibre-3.5.28.tar.gz fcd009ea7654fde5a83600eb80757bd3a76998e47d13c66b54c8db849f8f2edc
 bandit-1.8.0.tar.gz b5bfe55a095abd9fe20099178a7c6c060f844bfd4fe4c76d28e35e4c52b9d31e
 maturin-1.7.5.tar.gz f05ccbdfe96ad58d70dba9c3eed090726db8ccbaf07ec03852113ca2fec6d84b
+keystoneauth1-5.9.1.tar.gz fb0c66d842d5b964752264fff20b3b4ab73610d66d9b8d20d0dcf796ba09dc43
