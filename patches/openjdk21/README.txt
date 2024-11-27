@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: remove audio solaris 7 compatibility code
+
 Cleanup: use pset_getloadavg() directly
 
 Cleanup: Remove SolarisX86JavaThreadPDAccess, it's for 32-bit.

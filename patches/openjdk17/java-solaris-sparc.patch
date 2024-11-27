@@ -23718,7 +23718,7 @@
 -#endif // USE_DAUDIO
 --- old/src/java.desktop/solaris/native/libjsound/PLATFORM_API_SolarisOS_Ports.c	2020-05-20 18:10:35.750280487 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,600 +0,0 @@
+@@ -1,579 +0,0 @@
 -/*
 - * Copyright (c) 2002, 2016, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -23755,9 +23755,6 @@
 -#define MONITOR_GAIN_STRING "Monitor Gain"
 -
 -#define ALL_TARGET_PORT_COUNT 6
--
--// define the following to not use audio_prinfo_t.mod_ports
--#define SOLARIS7_COMPATIBLE
 -
 -// Solaris audio defines
 -static int targetPorts[ALL_TARGET_PORT_COUNT] = {
@@ -23945,28 +23942,18 @@
 -                        info->ports[info->targetPortCount] = i;
 -                        info->targetPortCount++;
 -                    }
--#ifdef SOLARIS7_COMPATIBLE
--                    TRACE3("Target %d %s: avail=%d\n", i, targetPortNames[i],
--                           info->audioInfo.play.avail_ports & targetPorts[i]);
--#else
 -                    TRACE4("Target %d %s: avail=%d  mod=%d\n", i, targetPortNames[i],
 -                           info->audioInfo.play.avail_ports & targetPorts[i],
 -                           info->audioInfo.play.mod_ports & targetPorts[i]);
--#endif
 -                }
 -                for (i = 0; i < ALL_SOURCE_PORT_COUNT; i++) {
 -                    if (info->audioInfo.record.avail_ports & sourcePorts[i]) {
 -                        info->ports[info->targetPortCount + info->sourcePortCount] = i;
 -                        info->sourcePortCount++;
 -                    }
--#ifdef SOLARIS7_COMPATIBLE
--                    TRACE3("Source %d %s: avail=%d\n", i, sourcePortNames[i],
--                           info->audioInfo.record.avail_ports & sourcePorts[i]);
--#else
 -                    TRACE4("Source %d %s: avail=%d  mod=%d\n", i, sourcePortNames[i],
 -                           info->audioInfo.record.avail_ports & sourcePorts[i],
 -                           info->audioInfo.record.mod_ports & sourcePorts[i]);
--#endif
 -                }
 -            }
 -        }
@@ -24135,18 +24122,10 @@
 -                              type | PORT_CONTROL_TYPE_OUTPUT_MUTED,
 -                              controls, &controlCount);
 -            addAllControls(info, creator, controls, &controlCount);
--#ifdef SOLARIS7_COMPATIBLE
--            selectable = info->audioInfo.play.avail_ports & targetPorts[info->ports[portIndex]];
--#else
 -            selectable = info->audioInfo.play.mod_ports & targetPorts[info->ports[portIndex]];
--#endif
 -        } else {
 -            type = PORT_CONTROL_TYPE_RECORD;
--#ifdef SOLARIS7_COMPATIBLE
--            selectable = info->audioInfo.record.avail_ports & sourcePorts[info->ports[portIndex]];
--#else
 -            selectable = info->audioInfo.record.mod_ports & sourcePorts[info->ports[portIndex]];
--#endif
 -        }
 -        // add a mixer strip with volume, ...
 -        createPortControl(info, creator, portIndex,
@@ -24517,7 +24496,7 @@
 -}
 --- old/src/java.desktop/solaris/native/libjsound/PLATFORM_API_SolarisOS_Utils.h	2020-05-20 18:10:37.194308211 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,97 +0,0 @@
+@@ -1,85 +0,0 @@
 -/*
 - * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24547,7 +24526,6 @@
 -#include <string.h>
 -#include <stdlib.h>
 -#include <fcntl.h>
--/* does not work on Solaris 2.7 */
 -#include <sys/audio.h>
 -#include <sys/mixer.h>
 -#include <sys/types.h>
@@ -24560,17 +24538,6 @@
 -
 -#ifndef PLATFORM_API_SOLARISOS_UTILS_H_INCLUDED
 -#define PLATFORM_API_SOLARISOS_UTILS_H_INCLUDED
--
--/* defines for Solaris 2.7
--   #ifndef AUDIO_AUX1_OUT
--   #define AUDIO_AUX1_OUT   (0x08)  // output to aux1 out
--   #define AUDIO_AUX2_OUT   (0x10)  // output to aux2 out
--   #define AUDIO_SPDIF_OUT  (0x20)  // output to SPDIF port
--   #define AUDIO_AUX1_IN    (0x08)    // input from aux1 in
--   #define AUDIO_AUX2_IN    (0x10)    // input from aux2 in
--   #define AUDIO_SPDIF_IN   (0x20)    // input from SPDIF port
--   #endif
--*/
 -
 -/* input from Codec inter. loopback */
 -#ifndef AUDIO_CODEC_LOOPB_IN
