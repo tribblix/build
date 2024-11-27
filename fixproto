@@ -46,7 +46,6 @@ awk '
 {if ($3 == "usr")  $6 = "sys"}
 {if ($3 == "var")  $6 = "sys"}
 {if ($3 == "var/lib")  $6 = "other"}
-{if ($3 == "var/lib/gdm")  { $6 = "gdm" ; $5 = "gdm" }}
 {if ($3 == "var/log")  $6 = "sys"}
 {if ($3 == "var/run")  $6 = "sys"}
 {if ($3 == "var/run/istat") { $6 = "daemon" ; $5 = "daemon" }}
