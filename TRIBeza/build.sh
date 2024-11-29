@@ -6,6 +6,7 @@
 #
 git clone https://github.com/eza-community/eza
 cd eza
+git checkout v0.20.10
 env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --release
 
 rm -fr /tmp/ll
@@ -21,7 +22,7 @@ pandoc --to=man man/eza_colors.5.md --output=/tmp/ll/usr/share/man/man5/eza_colo
 pandoc --to=man man/eza_colors-explanation.5.md --output=/tmp/ll/usr/share/man/man5/eza_colors-explanation.5
 
 mkdir -p /tmp/ll/usr/share/eza
-cp LICENCE README.md /tmp/ll/usr/share/eza
+cp LICENSE.txt README.md /tmp/ll/usr/share/eza
 
 mkdir -p /tmp/ll/usr/share/bash-completion/completions
 cp completions/bash/eza /tmp/ll/usr/share/bash-completion/completions
