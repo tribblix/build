@@ -5,6 +5,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+26
+
+More patch noise due to Security Manager cleanup.
+
 Cleanup: remove audio solaris 7 compatibility code
 
 Cleanup: use pset_getloadavg() directly

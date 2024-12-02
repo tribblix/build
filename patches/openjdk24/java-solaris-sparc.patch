@@ -1122,7 +1122,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -611,12 +611,11 @@
+@@ -620,12 +620,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -3109,7 +3109,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -363,8 +356,7 @@
+@@ -346,8 +339,7 @@
  
      /* system calls that might not be available at run time */
  
@@ -3683,19 +3683,19 @@
  
 --- old/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:49.005318809 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:48.665312280 -0700
-@@ -91,9 +91,6 @@
-                                 = System.getProperty("sun.security.jgss.lib");
-                         if (defaultLib == null || defaultLib.trim().equals("")) {
-                             gssLibs = switch (OperatingSystem.current()) {
--                                case SOLARIS -> new String[]{
--                                        "libgss.so",
--                                };
-                                 case LINUX -> new String[]{
-                                         "libgssapi.so",
-                                         "libgssapi_krb5.so",
+@@ -85,9 +85,6 @@
+         String defaultLib = System.getProperty("sun.security.jgss.lib");
+         if (defaultLib == null || defaultLib.trim().equals("")) {
+             gssLibs = switch (OperatingSystem.current()) {
+-                case SOLARIS -> new String[]{
+-                        "libgss.so",
+-                };
+                 case LINUX -> new String[]{
+                         "libgssapi.so",
+                         "libgssapi_krb5.so",
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:50.089339623 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:49.705332249 -0700
-@@ -930,8 +930,6 @@
+@@ -905,8 +905,6 @@
              if (name == null) {
                  name = "c:\\winnt\\krb5.ini";
              }
@@ -3706,7 +3706,7 @@
          } else {
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/internal/rcache/DflCache.java	2020-05-20 18:02:51.185360667 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/krb5/internal/rcache/DflCache.java	2020-05-20 18:02:50.801353294 -0700
-@@ -107,7 +107,7 @@
+@@ -106,7 +106,7 @@
  
      private static long uid;
      static {
@@ -3740,7 +3740,7 @@
  
 -    static {
 -        // Set a larger buffer size for Solaris
--        final String osName = SecuritySupport.getSystemProperty("os.name");
+-        final String osName = System.getProperty("os.name");
 -        if (osName.equalsIgnoreCase("solaris")) {
 -            BUFFER_SIZE = 32 * KB;
 -        }
