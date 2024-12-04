@@ -236,7 +236,7 @@ diff -ur -N /tmp/g/bytes_solaris_zero.inline.hpp b/src/hotspot/os_cpu/solaris_ze
 diff -ur -N /tmp/g/globals_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/globals_solaris_zero.hpp
 --- /tmp/g/globals_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/globals_solaris_zero.hpp	2020-08-31 18:03:16.351225683 +0000
-@@ -0,0 +1,40 @@
+@@ -0,0 +1,39 @@
 +/*
 + * Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -267,7 +267,6 @@ diff -ur -N /tmp/g/globals_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/gl
 +// Sets the default values for platform dependent flags used by the runtime system.
 +// (see globals.hpp)
 +
-+define_pd_global(bool, DontYieldALot,            true); // Determined in the design center
 +define_pd_global(intx, CompilerThreadStackSize,  1024);
 +define_pd_global(intx, ThreadStackSize,          1024); // 0 => use system default
 +define_pd_global(intx, VMThreadStackSize,        1024);
