@@ -1,4 +1,4 @@
 PKG="TRIBhttpx-python-312"
 NAME="Python httpx"
-VERSION="0.27.2.0"
+VERSION="0.28.0.0"
 ZAP_URL="https://pypi.org/project/httpx"
