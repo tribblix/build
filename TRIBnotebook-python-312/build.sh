@@ -4,4 +4,4 @@
 #
 # needs hatch-jupyter-builder to go along with -N
 #
-${THOME}/build/pkg_pep518 -N TRIBnotebook-python-312 notebook-7.2.2
+${THOME}/build/pkg_pep518 -N TRIBnotebook-python-312 notebook-7.3.1
