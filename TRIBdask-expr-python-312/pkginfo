@@ -1,4 +1,4 @@
 PKG="TRIBdask-expr-python-312"
 NAME="Python dask_expr"
-VERSION="1.1.19.0"
+VERSION="1.1.20.0"
 ZAP_URL="https://pypi.org/project/dask_expr"
