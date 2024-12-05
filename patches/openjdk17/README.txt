@@ -5,6 +5,8 @@ See also README-zero.txt for patches to build a project zero variant.
 
 JDK17:
 
+Cleanup: remove 32-bit SSE check
+
 Cleanup: os::is_allocatable() is always true on 64-bit
 
 Cleanup: src/hotspot/os/solaris and src/hotspot/os_cpu/solaris_x86

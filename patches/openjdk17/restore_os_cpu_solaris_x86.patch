@@ -642,7 +642,7 @@ diff -urN /tmp/a/orderAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/or
 diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
 --- /tmp/a/os_solaris_x86.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2024-12-05 11:44:56.899045800 +0000
-@@ -0,0 +1,767 @@
+@@ -0,0 +1,719 @@
 +/*
 + * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -921,56 +921,8 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +  }
 +}
 +
-+#ifndef AMD64
-+
-+// Detecting SSE support by OS
-+// From solaris_i486.s
-+extern "C" bool sse_check();
-+extern "C" bool sse_unavailable();
-+
-+enum { SSE_UNKNOWN, SSE_NOT_SUPPORTED, SSE_SUPPORTED};
-+static int sse_status = SSE_UNKNOWN;
-+
-+
-+static void  check_for_sse_support() {
-+  if (!VM_Version::supports_sse()) {
-+    sse_status = SSE_NOT_SUPPORTED;
-+    return;
-+  }
-+  // looking for _sse_hw in libc.so, if it does not exist or
-+  // the value (int) is 0, OS has no support for SSE
-+  int *sse_hwp;
-+  void *h;
-+
-+  if ((h=dlopen("/usr/lib/libc.so", RTLD_LAZY)) == NULL) {
-+    //open failed, presume no support for SSE
-+    sse_status = SSE_NOT_SUPPORTED;
-+    return;
-+  }
-+  if ((sse_hwp = (int *)dlsym(h, "_sse_hw")) == NULL) {
-+    sse_status = SSE_NOT_SUPPORTED;
-+  } else if (*sse_hwp == 0) {
-+    sse_status = SSE_NOT_SUPPORTED;
-+  }
-+  dlclose(h);
-+
-+  if (sse_status == SSE_UNKNOWN) {
-+    bool (*try_sse)() = (bool (*)())sse_check;
-+    sse_status = (*try_sse)() ? SSE_SUPPORTED : SSE_NOT_SUPPORTED;
-+  }
-+
-+}
-+
-+#endif // AMD64
-+
 +bool os::supports_sse() {
-+#ifdef AMD64
 +  return true;
-+#else
-+  if (sse_status == SSE_UNKNOWN)
-+    check_for_sse_support();
-+  return sse_status == SSE_SUPPORTED;
-+#endif // AMD64
 +}
 +
 +bool os::is_allocatable(size_t bytes) {
