@@ -5,6 +5,9 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Forked off into the jdk18 repo; mainline is now jdk19.
 
+Cleanup: src/hotspot/os/solaris and src/hotspot/os_cpu/solaris_x86
+split out into separate restore patches.
+
 Cleanup: remove audio solaris 7 compatibility code
 
 Cleanup: remove now non-existent LIRTracePeephole on sparc
