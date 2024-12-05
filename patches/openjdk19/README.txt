@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
+Cleanup: os::is_allocatable() is always true on 64-bit
+
 Cleanup: src/hotspot/os/solaris and src/hotspot/os_cpu/solaris_x86
 split out into separate restore patches.
 

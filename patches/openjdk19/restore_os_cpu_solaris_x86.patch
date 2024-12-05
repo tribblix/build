@@ -529,7 +529,7 @@ diff -urN /tmp/a/orderAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/or
 diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
 --- /tmp/a/os_solaris_x86.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2024-12-05 10:27:32.568349918 +0000
-@@ -0,0 +1,776 @@
+@@ -0,0 +1,760 @@
 +/*
 + * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -853,23 +853,7 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +}
 +
 +bool os::is_allocatable(size_t bytes) {
-+#ifdef AMD64
 +  return true;
-+#else
-+
-+  if (bytes < 2 * G) {
-+    return true;
-+  }
-+
-+  char* addr = reserve_memory(bytes, NULL);
-+
-+  if (addr != NULL) {
-+    release_memory(addr, bytes);
-+  }
-+
-+  return addr != NULL;
-+#endif // AMD64
-+
 +}
 +
 +juint os::cpu_microcode_revision() {
