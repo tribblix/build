@@ -872,7 +872,7 @@ diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/os_solaris_sparc.hpp b/sr
 diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/prefetch_solaris_sparc.inline.hpp b/src/hotspot/os_cpu/solaris_sparc/prefetch_solaris_sparc.inline.hpp
 --- a/src/hotspot/os_cpu/solaris_sparc/prefetch_solaris_sparc.inline.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_sparc/prefetch_solaris_sparc.inline.hpp	2023-04-16 12:14:52.819320391 +0000
-@@ -0,0 +1,51 @@
+@@ -0,0 +1,38 @@
 +/*
 + * Copyright (c) 2003, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -902,32 +902,19 @@ diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/prefetch_solaris_sparc.in
 +
 +#include "runtime/prefetch.hpp"
 +
-+// For Sun Studio implementation is in solaris_sparc.il
-+// For gcc implementation is just below
-+extern "C" void _Prefetch_read (void *loc, intx interval);
-+extern "C" void _Prefetch_write(void *loc, intx interval);
-+
 +inline void Prefetch::read(void *loc, intx interval) {
-+#  ifdef SPARC_WORKS
-+  _Prefetch_read(loc, interval);
-+#  else
 +  __asm__ volatile("prefetch [%0+%1], 0" : : "r" (loc), "r" (interval) : "memory" );
-+#  endif
 +}
 +
 +inline void Prefetch::write(void *loc, intx interval) {
-+#  ifdef SPARC_WORKS
-+  _Prefetch_write(loc, interval);
-+#  else
 +  __asm__ volatile("prefetch [%0+%1], 2" : : "r" (loc), "r" (interval) : "memory" );
-+#  endif
 +}
 +
 +#endif // OS_CPU_SOLARIS_SPARC_PREFETCH_SOLARIS_SPARC_INLINE_HPP
 diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/solaris_sparc.il b/src/hotspot/os_cpu/solaris_sparc/solaris_sparc.il
 --- a/src/hotspot/os_cpu/solaris_sparc/solaris_sparc.il	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_sparc/solaris_sparc.il	2023-04-16 11:42:17.120394568 +0000
-@@ -0,0 +1,120 @@
+@@ -0,0 +1,98 @@
 +//
 +// Copyright (c) 2002, 2017, Oracle and/or its affiliates. All rights reserved.
 +// DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -978,28 +965,6 @@ diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/solaris_sparc.il b/src/ho
 +        stx     %o2, [%o1]
 +        .nonvolatile
 +        .end
-+
-+  // Support for void Prefetch::read(void *loc, intx interval)
-+  //
-+  // Prefetch for several reads.
-+
-+        .inline _Prefetch_read, 2
-+        .volatile
-+        prefetch [%o0+%o1], 0
-+        .nonvolatile
-+        .end
-+
-+
-+  // Support for void Prefetch::write(void *loc, intx interval)
-+  //
-+  // Prefetch for several writes.
-+
-+        .inline _Prefetch_write, 2
-+        .volatile
-+        prefetch [%o0+%o1], 2
-+        .nonvolatile
-+        .end
-+
 +
 +  // Support for void Copy::conjoint_jlongs_atomic(jlong* from, jlong* to, size_t count)
 +  //

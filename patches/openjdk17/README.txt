@@ -5,6 +5,8 @@ See also README-zero.txt for patches to build a project zero variant.
 
 JDK17:
 
+Cleanup: remove SPARC_WORKS
+
 Cleanup: remove 32-bit SSE check
 
 Cleanup: os::is_allocatable() is always true on 64-bit
