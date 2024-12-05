@@ -675,7 +675,7 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 diff -ur -N /tmp/g/os_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.hpp
 --- /tmp/g/os_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.hpp	2020-09-01 22:01:25.502220121 +0000
-@@ -0,0 +1,63 @@
+@@ -0,0 +1,62 @@
 +/*
 + * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -722,7 +722,6 @@ diff -ur -N /tmp/g/os_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +  static void setup_fpu() {}
 +#endif // AMD64
 +
-+  static bool supports_sse();
 +  static juint cpu_microcode_revision();
 +
 +  static jlong rdtsc();
