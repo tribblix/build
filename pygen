@@ -114,7 +114,7 @@ cat > "$PY312NAME/pkginfo" <<EOF
 PKG="${PY312NAME}"
 NAME="Python $PNAME"
 VERSION="${PVER}.0"
-ZAP_URL="https://pypi.org/project/${PNAME}"
+ZAP_URL="https://pypi.org/project/${PNAME}/"
 EOF
 cat > "$PY312NAME/build.sh" <<EOF
 #!/bin/sh
