@@ -1378,3 +1378,4 @@ sqlparse-0.5.3.tar.gz 09f67787f56a0b16ecdbde1bfc7f5d9c3371ca683cfeaa8e6ff60b4807
 publicsuffixlist-1.0.2.20241210.tar.gz 4863508968378c572557b365d025d33af6b2bf935a1c34860dfb54331859bdca
 pdfly-0.4.0.tar.gz aff261b45397b2c6eb1e2cdd42fd89325aa5e88c2dae9f0af15d3859bdcba9b9
 jupyterlab-4.3.3.tar.gz 76fa39e548fdac94dc1204af5956c556f54c785f70ee26aa47ea08eda4d5bbcd
+scikit_learn-1.6.0.tar.gz 9d58481f9f7499dff4196927aedd4285a0baec8caa3790efbe205f13de37dd6e
