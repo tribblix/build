@@ -306,7 +306,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -133,7 +133,6 @@
+@@ -143,7 +143,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -314,13 +314,14 @@
        CFLAGS_windows := $$($1_CFLAGS_windows), \
        EXTRA_HEADER_DIRS := java.base:libjvm, \
        DISABLED_WARNINGS_gcc := unused-function unused-variable, \
-@@ -141,13 +140,11 @@
+@@ -151,14 +150,12 @@
        LDFLAGS := $$($1_LDFLAGS), \
        LDFLAGS_linux := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
 -      LDFLAGS_solaris := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
-       JDK_LIBS := java.base:libjli, \
-       JDK_LIBS_windows := java.base:libjava, \
+       LDFLAGS_FILTER_OUT := $$($1_LDFLAGS_FILTER_OUT), \
+       JDK_LIBS := $$($1_JDK_LIBS), \
+       JDK_LIBS_windows := $$($1_JDK_LIBS_windows), \
        LIBS := $$($1_LIBS), \
        LIBS_unix := $(LIBZ_LIBS), \
        LIBS_linux := $(LIBDL) -lpthread, \
@@ -604,7 +605,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework ApplicationServices \
-@@ -183,9 +182,8 @@
+@@ -189,9 +188,8 @@
        DISABLED_WARNINGS_gcc_X11SurfaceData.c := unused-function, \
        DISABLED_WARNINGS_clang_X11Renderer.c := unused-function, \
        DISABLED_WARNINGS_clang_X11SurfaceData.c := unused-function, \
@@ -615,7 +616,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -274,7 +272,7 @@
+@@ -280,7 +278,7 @@
        DISABLED_WARNINGS_clang_aix_sun_awt_X11_GtkFileDialogPeer.c := \
            parentheses, \
        DISABLED_WARNINGS_clang_aix_awt_InputMethod.c := unused-function sign-compare, \
@@ -624,7 +625,7 @@
        LIBS_unix := $(LIBDL) $(LIBM) $(X_LIBS) -lX11 -lXext -lXi -lXrender \
            -lXtst, \
        LIBS_linux := -lpthread, \
-@@ -392,7 +390,7 @@
+@@ -401,7 +399,7 @@
  endif
  
  ifeq ($(call isTargetOsType, unix)+$(call isTargetOs, macosx), true+false)
@@ -633,7 +634,7 @@
    ifeq ($(ENABLE_HEADLESS_ONLY), false)
      LIBJAWT_JDK_LIBS_unix += libawt_xawt
    else
-@@ -412,7 +410,6 @@
+@@ -421,7 +419,6 @@
      LDFLAGS_windows := $(LDFLAGS_CXX_JDK), \
      LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
      JDK_LIBS_unix := $(LIBJAWT_JDK_LIBS_unix), \
@@ -661,7 +662,7 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -249,7 +249,6 @@
+@@ -258,7 +258,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS), \
        LIBS_unix := $(LIBM) -lpthread, \
        LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
@@ -669,7 +670,7 @@
        LIBS_macosx := -liconv \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -298,7 +297,7 @@
+@@ -308,7 +307,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif
@@ -1171,7 +1172,7 @@
  #if defined(LINUX) || defined(_ALLBSD_SOURCE) || defined(_AIX)
  #include <signal.h>
  #ifndef __OpenBSD__
-@@ -92,34 +71,6 @@
+@@ -92,73 +71,8 @@
  #include <sys/time.h>
  #endif // LINUX || _ALLBSD_SOURCE
  
@@ -1193,23 +1194,10 @@
 -// whenever a system header file is included. Linux handles NULL correctly
 -// through a special type '__null'.
 -#ifdef SOLARIS
--  #ifdef _LP64
--    #undef NULL
--    #define NULL 0L
--  #else
--    #ifndef NULL
--      #define NULL 0
--    #endif
--  #endif
+-  #undef NULL
+-  #define NULL 0L
 -#endif
 -
- // NULL vs NULL_WORD:
- // On Linux NULL is defined as a special type '__null'. Assigning __null to
- // integer variable will cause gcc warning. Use NULL_WORD in places where a
-@@ -138,51 +89,8 @@
-   #define NULL_WORD  NULL
- #endif
- 
 -#ifdef SOLARIS
 -// ANSI C++ fixes
 -// NOTE:In the ANSI committee's continuing attempt to make each version
@@ -3343,7 +3331,7 @@
      static boolean isLinux() {
          return OSInfo.getOSType() == OSInfo.OSType.LINUX;
      }
-@@ -291,7 +287,7 @@
+@@ -285,7 +281,7 @@
                  }
              }
          } else {
@@ -3352,7 +3340,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -475,7 +471,7 @@
+@@ -469,7 +465,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -3361,7 +3349,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -646,7 +642,7 @@
+@@ -624,7 +620,7 @@
                  psuri = printerInfo[1];
              }
          } else {
@@ -3370,7 +3358,7 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
-@@ -865,7 +861,7 @@
+@@ -843,7 +839,7 @@
          ArrayList<String> results = null;
          try {
              final String[] cmd = new String[3];
@@ -3381,7 +3369,7 @@
                  cmd[2] = "env LC_ALL=C " + command;
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.605138318 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.221130945 -0700
-@@ -869,51 +869,25 @@
+@@ -853,51 +853,25 @@
                          isAttributeCategorySupported(JobSheets.class)) {
              ncomps+=1;
          }
@@ -3537,7 +3525,7 @@
      private PrintServiceAttributeSet getBSDServiceAttributes() {
          PrintServiceAttributeSet attrs = new HashPrintServiceAttributeSet();
          attrs.add(getQueuedJobCountBSD());
-@@ -469,9 +425,7 @@
+@@ -464,9 +420,7 @@
      }
  
      private PrintServiceAttributeSet getDynamicAttributes() {
@@ -3683,7 +3671,7 @@
  
 --- old/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:49.005318809 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:48.665312280 -0700
-@@ -85,9 +85,6 @@
+@@ -84,9 +84,6 @@
          String defaultLib = System.getProperty("sun.security.jgss.lib");
          if (defaultLib == null || defaultLib.trim().equals("")) {
              gssLibs = switch (OperatingSystem.current()) {
@@ -7381,7 +7369,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/fs/SolarisFileSystem.java	2020-05-20 18:10:20.625990118 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,122 +0,0 @@
+@@ -1,121 +0,0 @@
 -/*
 - * Copyright (c) 2008, 2012, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -7412,7 +7400,6 @@
 -import java.nio.file.*;
 -import java.io.IOException;
 -import java.util.*;
--import sun.security.action.GetPropertyAction;
 -import static sun.nio.fs.SolarisNativeDispatcher.*;
 -
 -/**
@@ -7506,7 +7493,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/fs/SolarisFileSystemProvider.java	2020-05-20 18:10:21.314003326 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,94 +0,0 @@
+@@ -1,93 +0,0 @@
 -/*
 - * Copyright (c) 2008, 2018, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -7539,7 +7526,6 @@
 -import java.nio.file.spi.FileTypeDetector;
 -import java.io.IOException;
 -import jdk.internal.util.StaticProperty;
--import sun.security.action.GetPropertyAction;
 -
 -/**
 - * Solaris implementation of FileSystemProvider

@@ -5,6 +5,16 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+27
+
+Need to use gnu sort, as something is trying to sort invalid data.
+
+IMPORTANT: note that the build target has changed, from 'all' to
+'product-images', as 'all' tries to build a static image which doesn't
+work.
+
+Still more patch noise.
+
 Cleanup: remove deprecated DontYieldALot
 
 24+26
@@ -196,6 +206,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-source-date=current \
 --with-jobs=4 \
 DATE=/usr/gnu/bin/date \
+SORT=/usr/gnu/bin/sort \
 STRIP=/usr/gnu/bin/strip
 
-env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
+env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images
