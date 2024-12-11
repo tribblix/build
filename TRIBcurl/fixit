@@ -18,8 +18,8 @@ if [ -x usr/bin/${ARCH64}/curl ]; then
 fi
 
 #
-# the shipped pc files blindly refer to requirements that do not and
-# will not ever exist
+# In 8.11.0 the shipped pc files blindly referred to requirements that do not
+# and will not ever exist
 #
-sed -i s:ldap,:: usr/lib/pkgconfig/libcurl.pc
-sed -i s:ldap,:: usr/lib/*/pkgconfig/libcurl.pc
+#sed -i s:ldap,:: usr/lib/pkgconfig/libcurl.pc
+#sed -i s:ldap,:: usr/lib/*/pkgconfig/libcurl.pc
