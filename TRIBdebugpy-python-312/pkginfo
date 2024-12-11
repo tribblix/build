@@ -1,4 +1,4 @@
 PKG="TRIBdebugpy-python-312"
 NAME="Python debugpy"
-VERSION="1.8.9.0"
-ZAP_URL="https://pypi.org/project/debugpy"
+VERSION="1.8.10.0"
+ZAP_URL="https://pypi.org/project/debugpy/"
