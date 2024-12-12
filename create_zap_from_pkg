@@ -74,21 +74,22 @@ fi
 PKGVER=$(/usr/bin/grep '^VERSION=' "${BUILD}/${PKGNAME}/pkginfo" | /usr/bin/awk -F= '{print $2}' | /usr/bin/sed 's:"::g')
 
 # copy the existing package file to one with the right name
-cp "${BFILE}" "${BROOT}/${PKGNAME}.${PKGVER}.pkg"
-pkgtrans "${BROOT}/${PKGNAME}.${PKGVER}.pkg" "${BROOT}" "${PKGNAME}"
+PNAME="${PKGNAME}.${PKGVER}"
+cp "${BFILE}" "${BROOT}/${PNAME}.pkg"
+pkgtrans "${BROOT}/${PNAME}.pkg" "${BROOT}" "${PKGNAME}"
 # create the zap file
 cd "$BROOT" || exit 1
 # 7z gives us an extra 2-3% reduction in file size
 #zip -9 -q -r ${PKGNAME} ${PKGNAME}
-rm -f "${PKGNAME}.${PKGVER}.zap" "${PKGNAME}.${PKGVER}.zap.md5" "${PKGNAME}.${PKGVER}.zap.sig"
-7za a -tzip -mx=9 -mfb=256 "${PKGNAME}.${PKGVER}.zap" "${PKGNAME}"
-chmod a+r "${PKGNAME}.${PKGVER}.zap"
+rm -f "${PNAME}.zap" "${PNAME}.zap.md5" "${PNAME}.zap.sig"
+7za a -tzip -mx=9 -mfb=256 "${PNAME}.zap" "${PKGNAME}"
+chmod a+r "${PNAME}.zap"
 cd /
 # pregenerate the md5 checksum ready for catalog creation
-openssl md5 "${BROOT}/${PKGNAME}.${PKGVER}.zap" | /usr/bin/awk '{print $NF}' > "${BROOT}/${PKGNAME}.${PKGVER}.zap.md5"
+openssl md5 "${BROOT}/${PNAME}.zap" | /usr/bin/awk '{print $NF}' > "${BROOT}/${PNAME}.zap.md5"
 # sign the zap file
-"${BUILD}"/sign-file "${BROOT}/${PKGNAME}.${PKGVER}.zap"
+"${BUILD}"/sign-file "${BROOT}/${PNAME}.zap"
 
-ls -lh "${BROOT}/${PKGNAME}.${PKGVER}.pkg"
-ls -lh "${BROOT}/${PKGNAME}.${PKGVER}.zap"
+ls -lh "${BROOT}/${PNAME}.pkg"
+ls -lh "${BROOT}/${PNAME}.zap"
 rm -fr "${BROOT}/${PKGNAME}"
