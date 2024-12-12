@@ -1,9 +1,8 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild xcoral-3.47 -J 1
-rm -fr /tmp/xc
-cd xcoral-3.47
-gmake install exec_prefix=/tmp/xc/usr
-${THOME}/build/create_pkg TRIBxcoral /tmp/xc
-rm -fr /tmp/xc
-cd ..
+# SPDX-License-Identifier: CDDL-1.0
+#
+# need -J 1 otherwise word.h will be constructed after it's used
+#
+${THOME}/build/dobuild xcoral-4.02.6 -J 1
+$THOME/build/genpkg TRIBxcoral xcoral-4.02.6
