@@ -1,6 +1,7 @@
 P TRIBcachetools-python-312
 P TRIBcryptography-python-312
 P TRIBpyasn1-modules-python-312
+P TRIBpyjwt-python-312
 P TRIBpyopenssl-312
 P TRIBrequests-python-312
 P TRIBrsa-python-312
