@@ -7,4 +7,4 @@
 #
 # note that testtools adds setuptools as a requirement
 #
-${THOME}/build/pkg_pep518 TRIBoslo-db-python-312 oslo.db-17.0.0 testresources-2.0.1 testscenarios-0.5.0 testtools-2.7.2
+${THOME}/build/pkg_pep518 TRIBoslo-db-python-312 oslo.db-17.1.0 testresources-2.0.1 testscenarios-0.5.0 testtools-2.7.2
