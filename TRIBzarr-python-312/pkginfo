@@ -1,4 +1,4 @@
 PKG="TRIBzarr-python-312"
 NAME="Python zarr"
-VERSION="2.18.3.0"
-ZAP_URL="https://pypi.org/project/zarr"
+VERSION="2.18.4.0"
+ZAP_URL="https://pypi.org/project/zarr/"
