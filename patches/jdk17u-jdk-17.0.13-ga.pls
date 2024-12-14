@@ -1,6 +1,6 @@
 -p1+-R openjdk17/java-solaris-sparc.patch
--p1 openjdk17/restore_os_cpu_solaris_x86.patch 
--p1 openjdk17/restore_os_solaris.patch 
+-p1 openjdk17/restore_os_cpu_solaris_x86.patch
+-p1 openjdk17/restore_os_solaris.patch
 -p0 openjdk17/patch-make_GenerateLinkOptData.gmk
 -p0 openjdk17/patch-make_autoconf_flags-cflags.m4
 -p0 openjdk17/patch-make_autoconf_jdk-options.m4
