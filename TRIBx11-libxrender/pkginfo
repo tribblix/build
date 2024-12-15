@@ -1,4 +1,4 @@
 PKG="TRIBx11-libxrender"
 NAME="libXrender"
-VERSION="0.9.11.0"
+VERSION="0.9.12.0"
 ZAP_URL="https://www.x.org/releases/individual/lib/"
