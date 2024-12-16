@@ -1,9 +1,10 @@
- This is originally derived from the pkgsrc-joyent set for openjdk11,
-considerably modified. Cut from the jdk15 patches as of jdk15+32.
-
 See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
+
+24+28
+
+Now in rampdown. No changes.
 
 24+27
 
