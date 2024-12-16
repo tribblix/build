@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+2
+
+ReservedSpace::page_align_size_down() replaced by os::align_down_vm_page_size()
+
 25+0, 25+1
 
 Start with no changes from 24+27.

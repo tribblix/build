@@ -3199,7 +3199,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    // the basic stack size allotment before this method is invoked.
 +    // Attempt to allow for a normally sized java_stack.
 +    size_t current_stack_offset = (size_t)(base - (address)&stack_size);
-+    stack_size += ReservedSpace::page_align_size_down(current_stack_offset);
++    stack_size += os::align_down_vm_page_size(current_stack_offset);
 +  } else {
 +    // 6269555: If we were not created by a Java launcher, i.e. if we are
 +    // running embedded in a native application, treat the primordial thread
