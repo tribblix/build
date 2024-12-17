@@ -6,8 +6,8 @@
 # Archive::Zip we already had, Compress::Raw:Lzma was easy
 # others send you down the rabbit hole
 #
-${THOME}/build/unpack Image-ExifTool-12.93
-cd Image-ExifTool-12.93
+${THOME}/build/unpack Image-ExifTool-13.09
+cd Image-ExifTool-13.09
 perl Makefile.PL
 make
 ${THOME}/build/genpkg TRIBexiftool
