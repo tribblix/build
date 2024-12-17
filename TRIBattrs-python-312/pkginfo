@@ -1,4 +1,4 @@
 PKG="TRIBattrs-python-312"
 NAME="Python attrs"
-VERSION="24.2.0.0"
-ZAP_URL="https://pypi.org/project/attrs"
+VERSION="24.3.0.0"
+ZAP_URL="https://pypi.org/project/attrs/"
