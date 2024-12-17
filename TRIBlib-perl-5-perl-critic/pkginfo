@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-perl-critic"
 NAME="Per::Critic module"
-VERSION="1.152.0"
+VERSION="1.156.0"
 ZAP_URL="https://metacpan.org/pod/Perl::Critic"

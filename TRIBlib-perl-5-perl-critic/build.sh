@@ -1,7 +1,9 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Perl-Critic-1.152
-cd Perl-Critic-1.152
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/unpack Perl-Critic-1.156
+cd Perl-Critic-1.156
 perl Build.PL
 ./Build
 rm -fr /tmp/hoac
