@@ -6,6 +6,7 @@ P TRIBlib-perl-5-http-daemon
 P TRIBlib-perl-5-http-date
 P TRIBlib-perl-5-http-message
 P TRIBlib-perl-5-http-negotiate
+P TRIBlib-perl-5-io-socket-ssl
 P TRIBlib-perl-5-lwp-mediatypes
 P TRIBlib-perl-5-net-http
 P TRIBlib-perl-5-www-robotrules
