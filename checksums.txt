@@ -1443,3 +1443,4 @@ cmd2-2.5.8.tar.gz ddf29beaa7c9d4e9806eefad528a59c372ca97b4c0d83e019fef0e37c44f44
 meson-1.6.1.tar.gz 1eca49eb6c26d58bbee67fd3337d8ef557c0804e30a6d16bfdf269db997464de
 jupyter_events-0.11.0.tar.gz c0bc56a37aac29c1fbc3bcfbddb8c8c49533f9cf11f1c4e6adadba936574ab90
 mkdocs_material-9.5.49.tar.gz 3671bb282b4f53a1c72e08adbe04d2481a98f85fed392530051f80ff94a9621d
+debugpy-1.8.11.tar.gz 6ad2688b69235c43b020e04fecccdf6a96c8943ca9c2fb340b8adc103c655e57
