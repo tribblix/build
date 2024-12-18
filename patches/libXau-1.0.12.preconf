@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 sed -i 's;-version-number 6:0:0;-version-number 6;' Makefile.in
 sed -i 's;-version-number;-Wl,-M$(top_srcdir)/mapfile-vers -version-number;' Makefile.in
 cp ${PATCHDIR}/libXau.mapfile mapfile-vers
