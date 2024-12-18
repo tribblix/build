@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this depends on jsonschema[format-nongpl], see the file
 # TRIBjsonschema4-python-312/depend.format-nongpl
 #
