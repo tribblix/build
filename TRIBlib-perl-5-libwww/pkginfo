@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-libwww"
 NAME="Perl LWP module"
-VERSION="6.77.0"
+VERSION="6.77.1"
 ZAP_URL="https://metacpan.org/dist/libwww-perl"

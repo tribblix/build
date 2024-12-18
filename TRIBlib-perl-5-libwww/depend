@@ -1,6 +1,7 @@
 P TRIBlib-perl-5-encode-locale
 P TRIBlib-perl-5-file-listing
 P TRIBlib-perl-5-html-parser
+P TRIBlib-perl-5-http-cookiejar
 P TRIBlib-perl-5-http-cookies
 P TRIBlib-perl-5-http-daemon
 P TRIBlib-perl-5-http-date
