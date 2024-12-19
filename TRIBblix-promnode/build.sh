@@ -16,8 +16,8 @@ env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.22/bin:$PATH gmake build
 cd ..
 
 #
-$THOME/build/unpack node_exporter-1.8.1
-cd node_exporter-1.8.1
+$THOME/build/unpack node_exporter-1.8.2
+cd node_exporter-1.8.2
 #
 # cp collector/uname_bsd.go collector/uname_solaris.go
 # and change to build on solaris
