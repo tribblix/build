@@ -113,10 +113,19 @@ fi
 # to the local repo, because the metadata creation scripts rely on that
 # they're copied now, deleted later
 #
+# if signatures are missing, create them here (may be the case if the
+# zap files are built elsewhere)
+#
 # exit if the pkg area already contains any matching files
 # as that's almost always a mistake
 #
 cd $STAGE || bail "Cannot cd to staging area"
+for file in $(/bin/ls -1 *.zap)
+do
+    if [ ! -f "${file}.sig" ]; then
+	${THOME}/build/sign-file "${BROOT}/${PKGNAME}.${PKGVER}.zap"
+    fi
+done
 for file in $(/bin/ls -1 *.zap*)
 do
     if [ -f "${LREPODIR}/${file}" ]; then
