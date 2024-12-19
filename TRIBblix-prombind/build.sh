@@ -12,11 +12,11 @@ cd p1
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.22/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.23/bin:$PATH gmake build
 cd ..
 
-$THOME/build/unpack bind_exporter-0.7.0
-cd bind_exporter-0.7.0
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.22/bin:$PATH gmake build
+$THOME/build/unpack bind_exporter-0.8.0
+cd bind_exporter-0.8.0
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.23/bin:$PATH gmake build
 
 ${THOME}/build/genpkg TRIBblix-prombind
