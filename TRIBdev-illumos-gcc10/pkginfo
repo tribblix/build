@@ -1,4 +1,4 @@
 PKG="TRIBdev-illumos-gcc10"
 NAME="illumos GCC 10"
-VERSION="10.4.0.1.0"
+VERSION="10.4.0.2.0"
 ZAP_URL="https://github.com/illumos/gcc"

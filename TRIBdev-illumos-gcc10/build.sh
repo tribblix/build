@@ -7,22 +7,23 @@
 #
 # download the tarball like so
 #
-# wget https://github.com/illumos/gcc/archive/gcc-10.4.0-il-1.tar.gz
+# wget https://github.com/illumos/gcc/archive/gcc-10.4.0-il-2.tar.gz
 #
 
-${THOME}/build/unpack gcc-10.4.0-il-1
-mv gcc-gcc-10.4.0-il-1 gcc-10.4.0-il-1
-cd gcc-10.4.0-il-1
+${THOME}/build/unpack gcc-10.4.0-il-2
+mv gcc-gcc-10.4.0-il-2 gcc-10.4.0-il-2
+cd gcc-10.4.0-il-2
 
 #
 # these are the required versions for an in-tree build
+# (see contrib/download_prerequisites for the desired versions)
 #
 ${THOME}/build/unpack mpc-1.0.3
 ${THOME}/build/unpack gmp-6.1.0
-${THOME}/build/unpack mpfr-3.1.4
+${THOME}/build/unpack mpfr-3.1.6
 mv mpc-1.0.3 mpc
 mv gmp-6.1.0 gmp
-mv mpfr-3.1.4 mpfr
+mv mpfr-3.1.6 mpfr
 
 mkdir build
 cd build
