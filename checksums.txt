@@ -1470,3 +1470,4 @@ sbom4python-0.12.1-py2.py3-none-any.whl c7e3cba40dc7e3224cdadda6ff66b34002d4a7d4
 jupyterlab-4.3.4.tar.gz f0bb9b09a04766e3423cccc2fc23169aa2ffedcdf8713e9e0fb33cac0b6859d0
 nginx-prometheus-exporter-1.4.0.tar.gz 531e5934a00fe75c8fa5a943c9ab9955be95e2efe9f460e02ced8ae854096937
 bind_exporter-0.8.0.tar.gz d8a7571c3bc1c22788f79e7da7c032065bdf0e45ed189ffb4d866801e681251f
+postgres_exporter-0.16.0.tar.gz ab6b43046a6bb0f3e624319988e6206348b38eefa20fcacedcd02bf91618566a
