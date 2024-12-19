@@ -2,6 +2,9 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
+
+cabal update
+
 git clone https://github.com/koalaman/shellcheck
 cd shellcheck
 /usr/bin/cabal install --installdir=/tmp/cbls/usr/bin --install-method=copy
