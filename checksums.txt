@@ -1472,3 +1472,4 @@ nginx-prometheus-exporter-1.4.0.tar.gz 531e5934a00fe75c8fa5a943c9ab9955be95e2efe
 bind_exporter-0.8.0.tar.gz d8a7571c3bc1c22788f79e7da7c032065bdf0e45ed189ffb4d866801e681251f
 postgres_exporter-0.16.0.tar.gz ab6b43046a6bb0f3e624319988e6206348b38eefa20fcacedcd02bf91618566a
 node_exporter-1.8.2.tar.gz f615c70be816550498dd6a505391dbed1a896705eff842628de13a1fa7654e8f
+php-8.2.27.tar.xz 3eec91294d8c09b3df80b39ec36d574ed9b05de4c8afcb25fa215d48f9ecbc6b
