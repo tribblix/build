@@ -1,4 +1,4 @@
 PKG="TRIBnbclient-python-312"
 NAME="Python nbclient"
-VERSION="0.10.1.0"
-ZAP_URL="https://pypi.org/project/nbclient"
+VERSION="0.10.2.0"
+ZAP_URL="https://pypi.org/project/nbclient/"
