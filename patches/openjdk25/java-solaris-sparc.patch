@@ -1123,7 +1123,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -620,12 +620,11 @@
+@@ -621,12 +621,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1277,7 +1277,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1915,8 +1915,6 @@
+@@ -1858,8 +1858,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1286,7 +1286,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1981,8 +1979,6 @@
+@@ -1924,8 +1922,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1358,7 +1358,7 @@
  /*
 --- old/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.667181035 -0700
 +++ new/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.335174660 -0700
-@@ -81,7 +81,6 @@
+@@ -85,7 +85,6 @@
  
      /* check if SO_REUSEPORT is supported on this platform */
      REUSEPORT_available = reuseport_supported(IPv6_available);
@@ -2602,9 +2602,9 @@
  #if defined(MACOSX)
  #include <sys/sysctl.h>
  #endif
-@@ -58,20 +50,6 @@
- #define IPV6_FLOWINFO_SEND      33
- #endif
+@@ -67,20 +59,6 @@
+     return 0;
+ }
  
 -#if defined(__solaris__) && !defined(MAXINT)
 -#define MAXINT INT_MAX
@@ -2623,7 +2623,7 @@
  void
  NET_ThrowByNameWithLastError(JNIEnv *env, const char *name,
                     const char *defaultDetail) {
-@@ -78,94 +56,6 @@
+@@ -87,94 +65,6 @@
      JNU_ThrowByNameWithMessageAndLastError(env, name, defaultDetail);
  }
  
@@ -2718,7 +2718,7 @@
  void
  NET_ThrowNew(JNIEnv *env, int errorNumber, char *msg) {
      char fullMsg[512];
-@@ -243,50 +133,6 @@
+@@ -252,50 +142,6 @@
      }
  #endif
  
@@ -2769,7 +2769,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -351,26 +197,6 @@
+@@ -360,26 +206,6 @@
      }
  }
  
@@ -2796,7 +2796,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -612,65 +438,6 @@
+@@ -621,65 +447,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -2862,7 +2862,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -785,20 +552,10 @@
+@@ -794,20 +561,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -2883,7 +2883,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -815,61 +572,8 @@
+@@ -824,61 +581,8 @@
      }
  #endif
  
@@ -3109,9 +3109,9 @@
  #else
 --- old/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:38.255960369 -0700
 +++ new/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:37.863952843 -0700
-@@ -125,8 +125,6 @@
-     }
-     return TRUE;
+@@ -117,8 +117,6 @@
+ 
+     return WSAStartup(MAKEWORD(2,2), &wsadata);
  }
 - 
 -void parseExclusiveBindProperty(JNIEnv *env) {}
