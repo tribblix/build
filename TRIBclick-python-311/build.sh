@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBclick-python-311 click-8.1.7
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 TRIBclick-python-311 click-8.1.8
