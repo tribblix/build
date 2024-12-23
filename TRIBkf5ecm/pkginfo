@@ -1,0 +1,4 @@
+PKG="TRIBkf5ecm"
+NAME="KDE5 extra-cmake-modules"
+VERSION="5.116.0.0"
+ZAP_URL="https://download.kde.org/stable/frameworks/5.116/"
