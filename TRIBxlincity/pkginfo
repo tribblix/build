@@ -1,4 +1,4 @@
 PKG="TRIBxlincity"
 NAME="lincity - a city simulation game"
-VERSION="1.12.1.0"
+VERSION="1.13.1.0"
 ZAP_URL="https://sourceforge.net/projects/lincity/"
