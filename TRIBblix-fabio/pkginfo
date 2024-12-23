@@ -1,4 +1,0 @@
-PKG="TRIBblix-fabio"
-NAME="Fabio: Consul load balancing made simple."
-VERSION="1.6.2.3"
-ZAP_URL="https://github.com/fabiolb/fabio"
