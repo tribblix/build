@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+rm -f usr/lib/${ARCH64}/charset.alias
