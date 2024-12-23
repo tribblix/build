@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+sed -i 's:install -m:ginstall -m:' Makefile
+sed -i 's:/usr/local:/usr:' Makefile
+sed -i 's:/usr/local:/usr:' etc/luajit.pc
+sed -i 's:/usr/local:/usr:' src/luaconf.h

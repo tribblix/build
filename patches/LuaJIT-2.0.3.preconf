@@ -1,5 +1,0 @@
-#!/bin/sh
-gsed -i 's:install -m:ginstall -m:' Makefile
-gsed -i 's:/usr/local:/usr:' Makefile
-gsed -i 's:/usr/local:/usr:' etc/luajit.pc
-gsed -i 's:/usr/local:/usr:' src/luaconf.h
