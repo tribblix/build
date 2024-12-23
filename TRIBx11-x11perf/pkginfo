@@ -1,4 +1,0 @@
-PKG="TRIBx11-x11perf"
-NAME="x11perf"
-VERSION="1.7.0.0"
-ZAP_URL="https://www.x.org/releases/individual/app/"
