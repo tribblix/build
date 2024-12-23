@@ -1,4 +1,0 @@
-PKG="TRIBblix-stolon"
-NAME="PostgreSQL cloud native High Availability"
-VERSION="0.17.4"
-ZAP_URL="https://github.com/sorintlab/stolon"
