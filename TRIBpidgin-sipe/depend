@@ -1,7 +1,0 @@
-P TRIBfarstream
-P TRIBgstreamer1
-P TRIBgstreamer1-plugins-base
-P TRIBlib-glib2
-P TRIBlibxml2
-P TRIBpidgin
-P TRIBsys-libdbus
