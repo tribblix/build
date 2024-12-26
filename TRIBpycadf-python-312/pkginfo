@@ -1,4 +1,4 @@
 PKG="TRIBpycadf-python-312"
 NAME="Python pycadf"
-VERSION="3.1.1.0"
-ZAP_URL="https://pypi.org/project/pycadf"
+VERSION="4.0.0.0"
+ZAP_URL="https://pypi.org/project/pycadf/"
