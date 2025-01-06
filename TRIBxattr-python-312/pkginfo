@@ -1,4 +1,4 @@
 PKG="TRIBxattr-python-312"
 NAME="Python xattr"
-VERSION="1.1.0.0"
-ZAP_URL="https://pypi.org/project/xattr"
+VERSION="1.1.4.0"
+ZAP_URL="https://pypi.org/project/xattr/"
