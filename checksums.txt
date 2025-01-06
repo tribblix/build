@@ -1523,3 +1523,4 @@ virtualenv-20.28.1.tar.gz 5d34ab240fdb5d21549b76f9e8ff3af28252f5499fb6d6f031adac
 xattr-1.1.4.tar.gz b7b02ecb2270da5b7e7deaeea8f8b528c17368401c2b9d5f63e91f545b45d372
 argcomplete-3.5.3.tar.gz c12bf50eded8aebb298c7b7da7a5ff3ee24dffd9f5281867dfe1424b58c55392
 glances-4.3.0.8.tar.gz d4efb3767f398a769896aa71c25258703c6d57e66ca3623c8f4781cd3562bfcd
+google_api_python_client-2.157.0.tar.gz 2ee342d0967ad1cedec43ccd7699671d94bff151e1f06833ea81303f9a6d86fd
