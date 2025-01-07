@@ -1,4 +1,4 @@
 PKG="TRIBgftp"
 NAME="gFTP multithreaded file transfer client"
 VERSION="2.9.1b.1"
-ZAP_URL="https://www.gftp.org/"
+ZAP_URL="https://github.com/masneyb/gftp"
