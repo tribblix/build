@@ -40,7 +40,7 @@ knrflag =
 #### For Convex whatever, do -DCONVEX
 #### For SCO ODT 3.0, do -DSCO -DSVR4 -DMOTIF1_2
 #### For Motorola SVR4, do -DSVR4 -DMOTOROLA -DMOTIF1_2
-sysconfigflags = -DSOLARIS -DSVR4 -DMOTIF1_2 -DSOLARIS24X86 -DUSE_STDARG
+sysconfigflags = -DSOLARIS -DSVR4 -DMOTIF1_2 -DSOLARIS24X86 -DUSE_STDARG -DHAVE_STRERROR
 
 #### System libraries.
 # syslibs = -lPW -lsun -lmalloc
