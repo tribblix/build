@@ -1,4 +1,4 @@
 PKG="TRIBtkdiff"
 NAME="TkDiff - a Tcl/Tk front-end to diff"
-VERSION="5.6.0"
+VERSION="5.7.0"
 ZAP_URL="http://sourceforge.net/projects/tkdiff/"
