@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+4
+
+Trivial patch noise.
+
 25+3
 
 Modest patch noise.

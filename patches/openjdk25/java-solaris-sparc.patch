@@ -1249,7 +1249,7 @@
  inline int g_isnan(float  f) { return isnan(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700
-@@ -403,14 +403,6 @@
+@@ -418,14 +418,6 @@
  #define NOT_AIX(code) code
  #endif
  
