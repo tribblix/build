@@ -1,0 +1,11 @@
+--- pglast-7.2/libpg_query/src/postgres/include/pg_config.h~	Tue Oct  1 07:07:41 2024
++++ pglast-7.2/libpg_query/src/postgres/include/pg_config.h	Wed Jan  8 10:11:46 2025
+@@ -398,7 +398,7 @@
+ #define HAVE_STDLIB_H 1
+ 
+ /* Define to 1 if you have the `strchrnul' function. */
+-/* #undef HAVE_STRCHRNUL */
++#define HAVE_STRCHRNUL 1
+ 
+ /* Define to 1 if you have the `strerror_r' function. */
+ #define HAVE_STRERROR_R 1
