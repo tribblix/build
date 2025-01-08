@@ -1,4 +1,4 @@
 PKG="TRIBjosm"
 NAME="JOSM - Java OpenStreetMap editor"
-VERSION="19207.0"
+VERSION="19277.0"
 ZAP_URL="https://josm.openstreetmap.de/"
