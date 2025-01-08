@@ -1,4 +1,4 @@
 PKG="TRIBhelix-editor"
 NAME="A Kakoune / Neovim inspired editor"
-VERSION="24.03.0"
-ZAP_URL="https://helix-editor.com/"
+VERSION="25.01.0"
+ZAP_URL="https://github.com/helix-editor/helix"
