@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# actually, we do almost all the installation here
+#
+
+#
+#
+mkdir -p usr/share/jmapviewer
+cd usr/share/jmapviewer
+${THOME}/build/unpack JMapViewer-2.22
+rm JMapViewer_src.jar
+cd ../../..
+
+mkdir -p usr/bin
+cd usr/bin
+cat > jmapviewer <<_EOF
+#!/bin/sh
+exec /usr/jdk/instances/jdk17/bin/java -jar /usr/share/jmapviewer/JMapViewer_Demo.jar
+_EOF
+chmod a+x jmapviewer
+cd ../..
+
+mkdir -p usr/share/applications
+cd usr/share/applications
+cat > jmapviewer.desktop <<_EOF
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=Java OpenStreetMap Viewer
+Exec=jmapviewer
+Terminal=false
+Type=Application
+Categories=Application;
+_EOF
+cd ../../..

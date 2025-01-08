@@ -1,0 +1,4 @@
+PKG="TRIBjmapviewer"
+NAME="Java OpenStreetMap Viewer"
+VERSION="2.22.0"
+ZAP_URL="https://wiki.openstreetmap.org/wiki/JMapViewer"
