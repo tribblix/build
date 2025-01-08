@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBlinode-cli-python-312 linode_cli-5.55.0
+${THOME}/build/pkg_setup_py TRIBlinode-cli-python-312 linode_cli-5.56.0
