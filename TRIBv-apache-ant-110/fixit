@@ -8,10 +8,10 @@ ln -s ../versions/apache-ant-${VERSION}/bin/ant usr/bin/ant
 #
 # add extras, ivy now comes with jsch too
 #
-${THOME}/build/unpack apache-ivy-2.5.2-bin-with-deps
-cp apache-ivy-2.5.2/ivy-2.5.2.jar usr/versions/apache-ant-${VERSION}/lib
-cp apache-ivy-2.5.2/lib/*.jar usr/versions/apache-ant-${VERSION}/lib
-rm -fr apache-ivy-2.5.2
+${THOME}/build/unpack apache-ivy-2.5.3-bin-with-deps
+cp apache-ivy-2.5.3/ivy-2.5.3.jar usr/versions/apache-ant-${VERSION}/lib
+cp apache-ivy-2.5.3/lib/*.jar usr/versions/apache-ant-${VERSION}/lib
+rm -fr apache-ivy-2.5.3
 mkdir -p svnant-1.3.1
 cd svnant-1.3.1
 ${THOME}/build/unpack svnant-1.3.1
