@@ -1,5 +1,21 @@
-Use of d_type -is non-portable.
-
+diff --git a/Makefile b/Makefile
+index 1f56cd4..d5ec697 100644
+--- a/Makefile
++++ b/Makefile
+@@ -18,9 +18,9 @@ PKG_CONFIG?=	pkg-config
+ 
+ CPPFLAGS+=	`${PKG_CONFIG} --cflags x11 xft xrandr`
+ 
+-CFLAGS?=	-Wall -O2 -g -D_GNU_SOURCE
++CFLAGS?=	-Wall -O2 -m64 -g -D_GNU_SOURCE
+ 
+-LDFLAGS+=	`${PKG_CONFIG} --libs x11 xft xrandr`
++LDFLAGS+=	-m64 `${PKG_CONFIG} --libs x11 xft xrandr`
+ 
+ MANPREFIX?=	${PREFIX}/share/man
+ 
+diff --git a/kbfunc.c b/kbfunc.c
+index b6f6355..b2b8e99 100644
 --- a/kbfunc.c
 +++ b/kbfunc.c
 @@ -678,14 +678,14 @@ kbfunc_menu_exec(void *ctx, struct cargs *cargs)
