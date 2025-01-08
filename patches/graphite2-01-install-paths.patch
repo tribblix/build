@@ -15,8 +15,8 @@
 +install(FILES ${PROJECT_BINARY_DIR}/graphite2.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 --- a/src/CMakeLists.txt	2013-12-18 02:11:19.630231082 +0000
 +++ b/src/CMakeLists.txt	2013-12-18 02:22:20.323562493 +0000
-@@ -148,5 +148,5 @@
- endif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+@@ -155,5 +155,5 @@
+ endif()
  
  
 -install(TARGETS graphite2 EXPORT graphite2 LIBRARY DESTINATION lib${LIB_SUFFIX} ARCHIVE DESTINATION lib${LIB_SUFFIX} PUBLIC_HEADER DESTINATION include/graphite2 RUNTIME DESTINATION bin)

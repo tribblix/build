@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# this seems optional, and it's not installed correctly as it ends
+# up being 32-bit
+#
+rm -f usr/bin/gr2fonttest
+rmdir usr/bin
