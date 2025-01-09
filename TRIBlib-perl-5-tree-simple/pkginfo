@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-tree-simple"
+NAME="Perl Tree::Simple module"
+VERSION="1.34.0"
+ZAP_URL="https://metacpan.org/pod/Tree::Simple"
