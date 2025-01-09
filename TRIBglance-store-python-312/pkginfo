@@ -1,4 +1,4 @@
 PKG="TRIBglance-store-python-312"
 NAME="Python glance_store"
-VERSION="4.8.1.0"
-ZAP_URL="https://pypi.org/project/glance_store"
+VERSION="4.9.0.0"
+ZAP_URL="https://pypi.org/project/glance_store/"
