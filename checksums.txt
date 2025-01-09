@@ -1558,3 +1558,4 @@ rust-1.83.0-x86_64-unknown-illumos.tar.xz e29039d1e5a192a1222892a974f26b7341b530
 orjson-3.10.14.tar.gz cf31f6f071a6b8e7aa1ead1fa27b935b48d00fbfa6a28ce856cfff2d5dd68eed
 glance_store-4.9.0.tar.gz 6cec07647fdbb5b798a0b9783b17bdc41de51a58e153edba51b9249b28138bd4
 importlib_resources-6.5.2.tar.gz 185f87adef5bcc288449d98fb4fba07cea78bc036455dd44c5fc4a2fe78fed2c
+et_xmlfile-2.0.0.tar.gz dab3f4764309081ce75662649be815c4c9081e88f0837825f90fd28317d4da54
