@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 case `uname -p` in
 sparc)
   ARCH64="sparcv9"
@@ -13,8 +15,6 @@ esac
 # general cleanup
 #
 rm -fr usr/share/doc
-# OI doesn't ship 64-bit binaries, so we don't either
-rm -fr usr/bin/${ARCH64}
 mkdir -p var/lib/dbus
 mkdir -p etc/dbus-1/session.d
 mkdir -p etc/dbus-1/system.d
@@ -42,6 +42,7 @@ chmod 755 lib/svc/method/svc-dbus
 # TRIBsys-lib-dbus-dbus-x11
 #
 rm -f usr/bin/dbus-launch
+rm -f usr/bin/${ARCH64}/dbus-launch
 rm -f usr/share/man/man1/dbus-launch.1
 
 #

@@ -1,10 +1,24 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we only need 2 files
 #
-mv usr/bin/dbus-launch .
-mv usr/share/man/man1/dbus-launch.1 .
-rm -fr usr etc
-mkdir -p usr/bin usr/share/man/man1
-mv dbus-launch usr/bin/dbus-launch
-mv dbus-launch.1 usr/share/man/man1/dbus-launch.1
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+mv usr nusr
+mkdir -p usr/bin/${ARCH64} usr/share/man/man1
+
+mv nusr/bin/dbus-launch usr/bin/dbus-launch
+mv nusr/bin/${ARCH64}/dbus-launch usr/bin/${ARCH64}/dbus-launch
+
+mv nusr/share/man/man1/dbus-launch.1 usr/share/man/man1/dbus-launch.1
+
+rm -fr nusr etc

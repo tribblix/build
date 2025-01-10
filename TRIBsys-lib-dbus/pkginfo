@@ -1,4 +1,4 @@
 PKG="TRIBsys-lib-dbus"
 NAME="D-Bus IPC library"
-VERSION="1.12.24.0"
+VERSION="1.12.28.0"
 ZAP_URL="https://www.freedesktop.org/wiki/Software/dbus/"
