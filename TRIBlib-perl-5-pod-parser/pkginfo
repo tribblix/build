@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-pod-parser"
 NAME="Perl Pod::Parser module"
-VERSION="1.66.0"
+VERSION="1.67.0"
 ZAP_URL="https://metacpan.org/pod/Pod::Parser"
