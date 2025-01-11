@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # tweak the default terminal preferences
 # we don't ship a x-terminal-emulator link like debian, so replace
 # that with our preferred default of sakura
