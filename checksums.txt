@@ -1594,3 +1594,4 @@ Pod-Spell-1.27.tar.gz 7ef56c9229f3efbc71a0462ce44490c0dd49fbf3b21fe85bb08b1eeac6
 Pod-Parser-1.67.tar.gz 5deccbf55d750ce65588cd211c1a03fa1ef3aaa15d1ac2b8d85383a42c1427ea
 Net-SSLeay-1.94.tar.gz 9d7be8a56d1bedda05c425306cc504ba134307e0c09bda4a788c98744ebcd95d
 Net-HTTP-6.23.tar.gz 0d65c09dd6c8589b2ae1118174d3c1a61703b6ecfc14a3442a8c74af65e0c94e
+Try-Tiny-0.32.tar.gz ef2d6cab0bad18e3ab1c4e6125cc5f695c7e459899f512451c8fa3ef83fa7fc0
