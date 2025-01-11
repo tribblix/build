@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-capture-tiny"
 NAME="Perl Capture::Tiny module"
-VERSION="0.48.0"
+VERSION="0.50.0"
 ZAP_URL="https://metacpan.org/pod/Capture::Tiny"
