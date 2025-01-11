@@ -3,6 +3,7 @@ P TRIBgdk-pixbuf
 P TRIBlib-desktop-gtk
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
+P TRIBlibsodium
 P TRIBx11-lib-toolkit-libxt
 P TRIBx11-libice
 P TRIBx11-libsm
