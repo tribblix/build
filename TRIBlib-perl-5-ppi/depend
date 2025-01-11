@@ -1,4 +1,6 @@
 P TRIBlib-perl-5-clone
 P TRIBlib-perl-5-params-util
+P TRIBlib-perl-5-safe-isa
 P TRIBlib-perl-5-task-weaken
+P TRIBlib-perl-5-yaml-pp
 P TRIBperl-534

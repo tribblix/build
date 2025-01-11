@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-safe-isa"
+NAME="Perl Safe::Isa module"
+VERSION="1.000010.0"
+ZAP_URL="https://metacpan.org/pod/Safe::Isa"
