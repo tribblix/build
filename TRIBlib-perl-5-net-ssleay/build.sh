@@ -1,7 +1,10 @@
 #!/bin/sh
 #
-${THOME}/build/unpack Net-SSLeay-1.92
-cd Net-SSLeay-1.92
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/unpack Net-SSLeay-1.94
+cd Net-SSLeay-1.94
 perl Makefile.PL
 make
-${THOME}/build/genpkg TRIBlib-perl-5-net-ssleay
+cd ..
+${THOME}/build/genpkg TRIBlib-perl-5-net-ssleay Net-SSLeay-1.94

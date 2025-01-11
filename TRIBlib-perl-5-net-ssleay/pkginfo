@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-net-ssleay"
 NAME="Perl Net::SSLeay module"
-VERSION="1.92.0"
-ZAP_URL="http://search.cpan.org/~mikem/Net-SSLeay-1.81/"
+VERSION="1.94.0"
+ZAP_URL="https://metacpan.org/dist/Net-SSLeay"
