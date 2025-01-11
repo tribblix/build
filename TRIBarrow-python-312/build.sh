@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBarrow-python-312 arrow-1.2.3
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 -N TRIBarrow-python-312 arrow-1.3.0
