@@ -1,4 +1,4 @@
 PKG="TRIBmemconf"
 NAME="Tool to identify memory modules"
-VERSION="3.16.0"
+VERSION="3.17.1.0"
 ZAP_URL="http://www.4schmidts.com/memconf.html"
