@@ -1,8 +1,10 @@
 #!/bin/sh
 #
-${THOME}/build/unpack File-Listing-6.14
-cd File-Listing-6.14
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/unpack File-Listing-6.16
+cd File-Listing-6.16
 perl Makefile.PL
 make
-${THOME}/build/genpkg TRIBlib-perl-5-file-listing
 cd ..
+${THOME}/build/genpkg TRIBlib-perl-5-file-listing File-Listing-6.16

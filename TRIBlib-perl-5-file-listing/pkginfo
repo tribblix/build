@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-file-listing"
 NAME="Perl File::Listing module"
-VERSION="6.14.0"
+VERSION="6.16.0"
 ZAP_URL="https://metacpan.org/dist/File-Listing"
