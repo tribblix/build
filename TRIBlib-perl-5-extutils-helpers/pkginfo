@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-extutils-helpers"
 NAME="Perl Extutils::Helpers module"
-VERSION="0.026.0"
+VERSION="0.028.0"
 ZAP_URL="https://metacpan.org/pod/ExtUtils::Helpers"
