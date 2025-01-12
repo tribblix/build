@@ -1,7 +1,10 @@
 #!/bin/sh
 #
-${THOME}/build/unpack IO-Tty-1.12
-cd IO-Tty-1.12
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/unpack IO-Tty-1.20
+cd IO-Tty-1.20
 perl Makefile.PL
 make
-${THOME}/build/genpkg TRIBlib-perl-5-io-tty
+cd ..
+${THOME}/build/genpkg TRIBlib-perl-5-io-tty IO-Tty-1.20

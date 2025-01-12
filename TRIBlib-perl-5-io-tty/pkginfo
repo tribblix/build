@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-io-tty"
 NAME="Perl IO::Tty module"
-VERSION="1.12.1"
-ZAP_URL="http://search.cpan.org/~toddr/IO-Tty-1.12/"
+VERSION="1.20.0"
+ZAP_URL="https://metacpan.org/dist/IO-Tty"
