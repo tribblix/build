@@ -1,8 +1,10 @@
 #!/bin/sh
 #
-${THOME}/build/unpack B-Keywords-1.26
-cd B-Keywords-1.26
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/unpack B-Keywords-1.27
+cd B-Keywords-1.27
 perl Makefile.PL
 make
 cd ..
-${THOME}/build/genpkg TRIBlib-perl-5-b-keywords B-Keywords-1.26
+${THOME}/build/genpkg TRIBlib-perl-5-b-keywords B-Keywords-1.27
