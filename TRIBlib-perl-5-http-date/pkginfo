@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-http-date"
 NAME="Perl HTTP::Date module"
-VERSION="6.05.0"
-ZAP_URL="http://search.cpan.org/~gaas/HTTP-Date-6.05/"
+VERSION="6.06.0"
+ZAP_URL="https://metacpan.org/dist/HTTP-Date"
