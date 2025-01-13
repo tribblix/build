@@ -1617,3 +1617,4 @@ File-Listing-6.16.tar.gz 189b3a13fc0a1ba412b9d9ec5901e9e5e444cc746b9f0156d439937
 Module-Build-Tiny-0.051.tar.gz 74fdce35e8cd4d787bc2d4fc1d43a291b7bbced4e94dc5fc592bd81ca93a98e9
 IO-Tty-1.20.tar.gz b15309fc85623893289cb9b2b88dfa9ed1e69156b75f29938553a45be6d730af
 Class-Data-Inheritable-0.10.tar.gz aa1ae68a611357b7bfd9a2f64907cc196ddd6d047cae64ef9d0ad099d98ae54a
+Clone-0.47.tar.gz 4c2c0cb9a483efbf970cb1a75b2ca75b0e18cb84bcb5c09624f86e26b09c211d
