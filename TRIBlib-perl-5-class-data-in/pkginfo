@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-class-data-in"
 NAME="Perl Class::Data::Inheritable module"
-VERSION="0.09.0"
+VERSION="0.10.0"
 ZAP_URL="https://metacpan.org/pod/Class::Data::Inheritable"
