@@ -3,6 +3,8 @@ my openjdk14 set.
 
 Most patches -p0
 
+Cleanup: remove enough of stlport for the test suite to work.
+
 JDK15:
 
 There is now a functioning set of patches to reinstate SPARC support,
