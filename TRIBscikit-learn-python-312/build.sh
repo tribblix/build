@@ -16,4 +16,4 @@
 # if it doesn't, you may need to edit openmp_helpers.py and make
 # check_openmp_support() unconditionally return False
 #
-env CC="gcc -m64" LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.12/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-learn-python-312 scikit_learn-1.6.0
+env CC="gcc -m64" LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.12/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-learn-python-312 scikit_learn-1.6.1
