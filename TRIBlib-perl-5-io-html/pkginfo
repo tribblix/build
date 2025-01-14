@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-io-html"
 NAME="Perl IO::HTML module"
 VERSION="1.004.0"
-ZAP_URL="http://search.cpan.org/~cjm/IO-HTML-1.004/"
+ZAP_URL="https://metacpan.org/dist/IO-HTML"

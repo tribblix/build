@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-www-robotrules"
 NAME="Perl WWW::RobotRules module"
 VERSION="6.02.2"
-ZAP_URL="http://search.cpan.org/~gaas/WWW-RobotRules-6.02/"
+ZAP_URL="https://metacpan.org/dist/WWW-RobotRules"
