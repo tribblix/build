@@ -5,8 +5,9 @@
 # http-message need encode-locale
 # http-message need lwp-mediatypes
 #
-${THOME}/build/unpack HTTP-Message-6.36
-cd HTTP-Message-6.36
+${THOME}/build/unpack HTTP-Message-7.00
+cd HTTP-Message-7.00
 perl Makefile.PL
 make
-${THOME}/build/genpkg TRIBlib-perl-5-http-message
+cd ..
+${THOME}/build/genpkg TRIBlib-perl-5-http-message HTTP-Message-7.00
