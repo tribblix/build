@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 TRIBzeroconf-python-312 zeroconf-0.137.2
+${THOME}/build/pkg_pep518 -N TRIBzeroconf-python-312 zeroconf-0.139.0
