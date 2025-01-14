@@ -1,4 +1,4 @@
 PKG="TRIBlicense-express-python-312"
 NAME="Python license-expression"
-VERSION="30.4.0.0"
-ZAP_URL="https://pypi.org/project/license-expression"
+VERSION="30.4.1.0"
+ZAP_URL="https://pypi.org/project/license-expression/"
