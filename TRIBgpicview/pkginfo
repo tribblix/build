@@ -1,4 +1,4 @@
 PKG="TRIBgpicview"
 NAME="LXDE image viewer"
 VERSION="0.2.5.2"
-ZAP_URL="http://lxde.sourceforge.net/gpicview/"
+ZAP_URL="https://lxde.sourceforge.net/gpicview/"

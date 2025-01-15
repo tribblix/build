@@ -1,4 +1,4 @@
 PKG="TRIBjoe"
 NAME="Joe's own editor"
 VERSION="4.6.1"
-ZAP_URL="http://joe-editor.sourceforge.net/"
+ZAP_URL="https://joe-editor.sourceforge.net/"

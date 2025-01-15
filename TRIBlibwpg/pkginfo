@@ -1,4 +1,4 @@
 PKG="TRIBlibwpg"
 NAME="Library for handling Corel WordPerfect(tm) Graphics"
 VERSION="0.3.4.2"
-ZAP_URL="http://libwpg.sourceforge.net/"
+ZAP_URL="https://libwpg.sourceforge.net/"

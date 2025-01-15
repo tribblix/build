@@ -1,4 +1,4 @@
 PKG="TRIBcompress-p7zip"
 NAME="p7zip"
 VERSION="16.02.0"
-ZAP_URL="http://p7zip.sourceforge.net/"
+ZAP_URL="https://p7zip.sourceforge.net/"

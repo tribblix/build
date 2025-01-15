@@ -1,4 +1,4 @@
 PKG="TRIBxdiskusage"
 NAME="Disk Usage Display"
 VERSION="1.60.1"
-ZAP_URL="http://xdiskusage.sourceforge.net/"
+ZAP_URL="https://xdiskusage.sourceforge.net/"

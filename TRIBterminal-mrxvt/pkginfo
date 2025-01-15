@@ -1,4 +1,4 @@
 PKG="TRIBterminal-mrxvt"
 NAME="Mrxvt terminal emulator"
 VERSION="0.5.4.1"
-ZAP_URL="http://materm.sourceforge.net/wiki/pmwiki.php"
+ZAP_URL="https://materm.sourceforge.net/wiki/pmwiki.php"

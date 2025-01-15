@@ -1,4 +1,4 @@
 PKG="TRIBlibspectrum"
 NAME="The Spectrum emulator file format and information library"
 VERSION="1.5.0.1"
-ZAP_URL="http://fuse-emulator.sourceforge.net/libspectrum.php"
+ZAP_URL="https://fuse-emulator.sourceforge.net/libspectrum.php"

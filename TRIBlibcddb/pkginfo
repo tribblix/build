@@ -1,4 +1,4 @@
 PKG="TRIBlibcddb"
 NAME="Library to access a CDDB server"
 VERSION="1.3.2.2"
-ZAP_URL="http://libcddb.sourceforge.net/"
+ZAP_URL="https://libcddb.sourceforge.net/"

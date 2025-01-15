@@ -1,4 +1,4 @@
 PKG="TRIBgdmap"
 NAME="Graphical Disk Map"
 VERSION="0.8.1.1"
-ZAP_URL="http://gdmap.sourceforge.net/"
+ZAP_URL="https://gdmap.sourceforge.net/"

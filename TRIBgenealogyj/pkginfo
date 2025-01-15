@@ -1,4 +1,4 @@
 PKG="TRIBgenealogyj"
 NAME="GenealogyJ is a viewer and editor for genealogic data"
 VERSION="3.6865.0"
-ZAP_URL="http://genj.sourceforge.net/"
+ZAP_URL="https://genj.sourceforge.net/"

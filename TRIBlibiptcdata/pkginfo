@@ -1,4 +1,4 @@
 PKG="TRIBlibiptcdata"
 NAME="IPTC metadata manipulation library"
 VERSION="1.0.4.2"
-ZAP_URL="http://libiptcdata.sourceforge.net/"
+ZAP_URL="https://libiptcdata.sourceforge.net/"

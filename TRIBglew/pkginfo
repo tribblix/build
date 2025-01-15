@@ -1,4 +1,4 @@
 PKG="TRIBglew"
 NAME="glew"
 VERSION="2.1.0.0"
-ZAP_URL="http://glew.sourceforge.net/"
+ZAP_URL="https://glew.sourceforge.net/"

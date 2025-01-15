@@ -1,4 +1,4 @@
 PKG="TRIBxfig"
 NAME="Xfig interactive drawing tool"
 VERSION="3.2.9.0"
-ZAP_URL="http://mcj.sourceforge.net/"
+ZAP_URL="https://mcj.sourceforge.net/"

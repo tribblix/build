@@ -1,4 +1,4 @@
 PKG="TRIBcde"
 NAME="CDE - common desktop environment"
 VERSION="2.3.2.0"
-ZAP_URL="http://sourceforge.net/projects/cdesktopenv/"
+ZAP_URL="https://sourceforge.net/projects/cdesktopenv/"

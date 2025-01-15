@@ -1,4 +1,4 @@
 PKG="TRIBfreeglut"
 NAME="FreeGLUT replacement for GLUT toolkit"
 VERSION="3.2.2.0"
-ZAP_URL="http://freeglut.sourceforge.net/"
+ZAP_URL="https://freeglut.sourceforge.net/"

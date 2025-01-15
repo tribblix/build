@@ -1,4 +1,4 @@
 PKG="TRIBgiflib"
 NAME="GIFLIB"
 VERSION="5.1.4.2"
-ZAP_URL="http://giflib.sourceforge.net/"
+ZAP_URL="https://giflib.sourceforge.net/"

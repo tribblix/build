@@ -1,4 +1,4 @@
 PKG="TRIBjomic"
 NAME="Jomic is a viewer and converter for comic books"
 VERSION="0.9.34.0"
-ZAP_URL="http://jomic.sourceforge.net/"
+ZAP_URL="https://jomic.sourceforge.net/"
