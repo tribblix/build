@@ -1,4 +1,4 @@
 PKG="TRIBxxhash"
 NAME="xxHash - extremely fast non-cryptographic hash algorithm"
-VERSION="0.8.2.0"
-ZAP_URL="http://www.xxhash.com/"
+VERSION="0.8.3.0"
+ZAP_URL="https://xxhash.com/"

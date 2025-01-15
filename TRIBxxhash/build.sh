@@ -1,14 +1,16 @@
 #!/bin/sh
 #
-${THOME}/build/unpack +64 xxHash-0.8.2
-cd xxHash-0.8.2-64bit
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/unpack +64 xxHash-0.8.3
+cd xxHash-0.8.3-64bit
 gmake CC=gcc MOREFLAGS=-m64 PREFIX=/usr
 cd ..
 #
 # manual install
 #
 rm -fr /tmp/xx
-cd xxHash-0.8.2-64bit
+cd xxHash-0.8.3-64bit
 gmake install CC=gcc MOREFLAGS=-m64 DESTDIR=/tmp/xx PREFIX=/usr
 cd ..
 mkdir /tmp/xx/usr/lib/`${THOME}/build/getarch`
