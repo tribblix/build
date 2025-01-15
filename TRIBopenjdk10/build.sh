@@ -3,7 +3,7 @@
 # Now a single tarball.
 #
 cd /tmp
-wget http://hg.openjdk.java.net/jdk-updates/jdk10u/archive/jdk-10.0.2+13.tar.bz2
+wget https://hg.openjdk.org/jdk-updates/jdk10u/archive/jdk-10.0.2+13.tar.bz2
 
 cd ~/ud
 ${THOME}/build/unpack jdk-10.0.2+13
@@ -18,10 +18,10 @@ cd jdk10u-jdk-10.0.2+13
 # src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
 #
 # removed in
-# http://hg.openjdk.java.net/jdk9/jdk9/jdk/rev/9db62c197dcd
+# https://hg.openjdk.org/jdk9/jdk9/jdk/rev/9db62c197dcd
 # so pull the version from the parent of that commit
 #
-# http://hg.openjdk.java.net/jdk9/jdk9/jdk/raw-file/48148c98c95a/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
+# https://hg.openjdk.org/jdk9/jdk9/jdk/raw-file/48148c98c95a/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
 #
 # cp libsoftcrypto.h jdk/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto
 #

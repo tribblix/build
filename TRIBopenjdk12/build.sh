@@ -14,13 +14,13 @@
 # now a single tarball, 80M
 #
 # initial 12 release:
-# wget http://hg.openjdk.java.net/jdk/jdk12/archive/jdk-12+33.tar.bz2
+# wget https://hg.openjdk.org/jdk/jdk12/archive/jdk-12+33.tar.bz2
 #
 # first update
-# wget http://hg.openjdk.java.net/jdk-updates/jdk12u/archive/jdk-12.0.1+12.tar.bz2
+# wget https://hg.openjdk.org/jdk-updates/jdk12u/archive/jdk-12.0.1+12.tar.bz2
 #
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk12u/archive/jdk-12.0.2+10.tar.bz2
+wget https://hg.openjdk.org/jdk-updates/jdk12u/archive/jdk-12.0.2+10.tar.bz2
 
 cd ~/ud
 ${THOME}/build/unpack jdk-12.0.2+10
@@ -38,10 +38,10 @@ cd jdk12u-jdk-12.0.2+10
 # or via devkit)
 #
 # removed in
-# http://hg.openjdk.java.net/jdk9/jdk9/jdk/rev/9db62c197dcd
+# https://hg.openjdk.org/jdk9/jdk9/jdk/rev/9db62c197dcd
 # so pull the version from the parent of that commit
 #
-# http://hg.openjdk.java.net/jdk9/jdk9/jdk/raw-file/48148c98c95a/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
+# https://hg.openjdk.org/jdk9/jdk9/jdk/raw-file/48148c98c95a/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto/libsoftcrypto.h
 #
 # cp libsoftcrypto.h jdk/src/jdk.crypto.ucrypto/solaris/native/libj2ucrypto
 #

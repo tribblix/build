@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk13"
 NAME="OpenJDK 13"
 VERSION="13.0.14.0"
-ZAP_URL="http://openjdk.java.net/"
+ZAP_URL="https://openjdk.org/"

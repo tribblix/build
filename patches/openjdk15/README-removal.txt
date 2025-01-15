@@ -2,7 +2,7 @@
 include it, it was based on a slightly earlier commit.
 
 However, this is a set of notes on how the removal is being addressed
-http://cr.openjdk.java.net/~mikael/webrevs/8244224/webrev.final/open/webrev/
+https://cr.openjdk.org/~mikael/webrevs/8244224/webrev.final/open/webrev/
 it's therefore relatively trivial to revert the removal at this point
 
 The patch there was:

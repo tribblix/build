@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk23"
 NAME="OpenJDK 23"
 VERSION="23.0.1.0"
-ZAP_URL="http://openjdk.java.net/"
+ZAP_URL="https://openjdk.org/"

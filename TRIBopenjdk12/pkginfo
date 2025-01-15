@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk12"
 NAME="OpenJDK 12"
 VERSION="12.0.2.10.0"
-ZAP_URL="http://openjdk.java.net/"
+ZAP_URL="https://openjdk.org/"

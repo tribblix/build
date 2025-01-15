@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk22-src"
 NAME="OpenJDK22 src.zip"
 VERSION="22.0.2.0"
-ZAP_URL="http://openjdk.java.net/"
+ZAP_URL="https://openjdk.org/"

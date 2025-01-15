@@ -177,7 +177,7 @@ to silence format warnings (sync with linux version)
 In 16+10
 
 The ProcDebuggerLocal stuff was modified, underlying commit
-http://hg.openjdk.java.net/jdk/jdk/rev/bdbb1c956626
+https://hg.openjdk.org/jdk/jdk/rev/bdbb1c956626
 
 in ProcDebuggerLocal, lookupByName() can be removed
 

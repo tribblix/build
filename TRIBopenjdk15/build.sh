@@ -9,18 +9,18 @@
 # as of 15+25, solaris support removed from mainline
 #
 # original release
-#wget http://hg.openjdk.java.net/jdk/jdk15/archive/jdk-15+36.tar.bz2
+#wget https://hg.openjdk.org/jdk/jdk15/archive/jdk-15+36.tar.bz2
 #ln jdk-15+36.tar.bz2 jdk15-jdk-15+36.tar.bz2
 #
 # 15.0.1
-# wget http://hg.openjdk.java.net/jdk-updates/jdk15u/archive/jdk-15.0.1+9.tar.bz2
+# wget https://hg.openjdk.org/jdk-updates/jdk15u/archive/jdk-15.0.1+9.tar.bz2
 #
 # for 15.0.2 the ga tag doesn't match any other tag (latest is +7)
-# wget http://hg.openjdk.java.net/jdk-updates/jdk15u/archive/jdk-15.0.2-ga.tar.bz2
+# wget https://hg.openjdk.org/jdk-updates/jdk15u/archive/jdk-15.0.2-ga.tar.bz2
 # ln jdk-15.0.2-ga.tar.bz2 jdk15u-jdk-15.0.2-ga.tar.bz2
 #
 #cd ${THOME}/tarballs
-#wget http://hg.openjdk.java.net/jdk-updates/jdk15u/archive/jdk-15.0.3+3.tar.bz2
+#wget https://hg.openjdk.org/jdk-updates/jdk15u/archive/jdk-15.0.3+3.tar.bz2
 #ln jdk-15.0.3+3.tar.bz2 jdk15u-jdk-15.0.3+3.tar.bz2
 
 #

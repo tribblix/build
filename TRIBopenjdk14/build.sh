@@ -5,13 +5,13 @@
 # now a single tarball, 80M
 #
 # original release
-# wget http://hg.openjdk.java.net/jdk/jdk14/archive/jdk-14+36.tar.bz2
+# wget https://hg.openjdk.org/jdk/jdk14/archive/jdk-14+36.tar.bz2
 #
 # 1st update
-# wget http://hg.openjdk.java.net/jdk-updates/jdk14u/archive/jdk-14.0.1+7.tar.bz2
+# wget https://hg.openjdk.org/jdk-updates/jdk14u/archive/jdk-14.0.1+7.tar.bz2
 #
 cd ${THOME}/tarballs
-wget http://hg.openjdk.java.net/jdk-updates/jdk14u/archive/jdk-14.0.2+12.tar.bz2
+wget https://hg.openjdk.org/jdk-updates/jdk14u/archive/jdk-14.0.2+12.tar.bz2
 #
 # fix the tarball name to match the directory it unpacks into
 # this needed to get the patches to apply correctly
