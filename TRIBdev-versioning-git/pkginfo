@@ -1,4 +1,4 @@
 PKG="TRIBdev-versioning-git"
 NAME="Git Version Control"
 VERSION="2.48.1.0"
-ZAP_URL="http://git-scm.com/"
+ZAP_URL="https://git-scm.com/"

@@ -1,4 +1,4 @@
 PKG="TRIBthunar-vcs-plugin"
 NAME="Thunar VCS Plugin"
 VERSION="0.2.0.3"
-ZAP_URL="http://goodies.xfce.org/projects/thunar-plugins/thunar-vcs-plugin"
+ZAP_URL="https://docs.xfce.org/xfce/thunar/thunar-vcs-plugin"

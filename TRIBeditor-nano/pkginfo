@@ -1,4 +1,4 @@
 PKG="TRIBeditor-nano"
 NAME="Gnu nano"
 VERSION="6.4.0"
-ZAP_URL="http://www.nano-editor.org/"
+ZAP_URL="https://www.nano-editor.org/"

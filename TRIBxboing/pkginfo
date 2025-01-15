@@ -1,4 +1,4 @@
 PKG="TRIBxboing"
 NAME="XBoing game"
 VERSION="2.4.0"
-ZAP_URL="http://www.techrescue.org/xboing/"
+ZAP_URL="https://www.techrescue.org/xboing/"

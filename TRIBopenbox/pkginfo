@@ -1,4 +1,4 @@
 PKG="TRIBopenbox"
 NAME="Openbox window manager"
 VERSION="3.6.1.4"
-ZAP_URL="http://openbox.org/wiki/Main_Page"
+ZAP_URL="http://openbox.org/"

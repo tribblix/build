@@ -1,4 +1,4 @@
 PKG="TRIBmtr"
 NAME="my traceroute - combined traceroute and ping"
 VERSION="0.95.0"
-ZAP_URL="http://www.bitwizard.nl/mtr/"
+ZAP_URL="https://www.bitwizard.nl/mtr/"

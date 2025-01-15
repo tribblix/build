@@ -1,4 +1,4 @@
 PKG="TRIBintltool"
 NAME="intltool"
 VERSION="0.51.0.1"
-ZAP_URL="http://freedesktop.org/wiki/Software/intltool/"
+ZAP_URL="https://freedesktop.org/wiki/Software/intltool/"

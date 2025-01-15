@@ -1,4 +1,4 @@
 PKG="TRIBfarstream"
 NAME="GStreamer videoconferencing modules"
 VERSION="0.2.9.2"
-ZAP_URL="http://www.freedesktop.org/wiki/Software/Farstream/"
+ZAP_URL="https://www.freedesktop.org/wiki/Software/Farstream/"

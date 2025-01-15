@@ -1,4 +1,4 @@
 PKG="TRIBswi-prolog"
 NAME="Prolog for the real world."
 VERSION="9.0.4.1"
-ZAP_URL="http://www.swi-prolog.org/"
+ZAP_URL="https://www.swi-prolog.org/"

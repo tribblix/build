@@ -1,4 +1,4 @@
 PKG="TRIBlibestr"
 NAME="libestr"
 VERSION="0.1.11.1"
-ZAP_URL="http://libestr.adiscon.com/"
+ZAP_URL="https://libestr.adiscon.com/"

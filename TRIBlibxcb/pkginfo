@@ -1,4 +1,4 @@
 PKG="TRIBlibxcb"
 NAME="XCB library"
 VERSION="1.16.1.1"
-ZAP_URL="http://xcb.freedesktop.org/"
+ZAP_URL="https://xcb.freedesktop.org/"

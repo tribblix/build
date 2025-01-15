@@ -1,4 +1,4 @@
 PKG="TRIBchimera"
 NAME="chimera web browser"
 VERSION="2.0.19.2"
-ZAP_URL="http://www.physics.unlv.edu/~john/hacks/chimera/"
+ZAP_URL="https://www.physics.unlv.edu/~john/hacks/chimera/"

@@ -1,4 +1,4 @@
 PKG="TRIBgnome-hicolor-icon-theme"
 NAME="GNOME hicolor icon theme"
 VERSION="0.18.0"
-ZAP_URL="http://icon-theme.freedesktop.org/releases"
+ZAP_URL="https://icon-theme.freedesktop.org/releases/"

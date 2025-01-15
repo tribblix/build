@@ -1,4 +1,4 @@
 PKG="TRIBgimp"
 NAME="GNOME Image Manipulation Program"
 VERSION="2.10.36.1"
-ZAP_URL="http://www.gimp.org/"
+ZAP_URL="https://www.gimp.org/"

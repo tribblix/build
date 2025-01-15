@@ -1,4 +1,4 @@
 PKG="TRIBcompress-zip"
 NAME="The Info-Zip (zip) compression utility"
 VERSION="3.0.2"
-ZAP_URL="http://www.info-zip.org/Zip.html"
+ZAP_URL="https://infozip.sourceforge.net/Zip.html"

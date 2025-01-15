@@ -1,4 +1,4 @@
 PKG="TRIBjansson"
 NAME="Jansson is a C library for encoding, decoding and manipulating JSON data"
 VERSION="2.14.0"
-ZAP_URL="http://www.digip.org/jansson/"
+ZAP_URL="https://github.com/akheron/jansson"

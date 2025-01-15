@@ -1,4 +1,4 @@
 PKG="TRIBdev-xorg-macros"
 NAME="Xorg macros or util-macros"
 VERSION="1.19.3.0"
-ZAP_URL="http://xorg.freedesktop.org/releases/individual/util/"
+ZAP_URL="https://www.x.org/releases/individual/util/"

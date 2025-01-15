@@ -1,4 +1,4 @@
 PKG="TRIBtcpdump"
 NAME="network traffic analyzer"
 VERSION="4.99.5.0"
-ZAP_URL="http://www.tcpdump.org/"
+ZAP_URL="https://www.tcpdump.org/"

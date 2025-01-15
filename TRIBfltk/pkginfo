@@ -1,4 +1,4 @@
 PKG="TRIBfltk"
 NAME="FLTK Fast Light Toolkit"
 VERSION="1.3.9.0"
-ZAP_URL="http://www.fltk.org/index.php"
+ZAP_URL="https://www.fltk.org/index.php"

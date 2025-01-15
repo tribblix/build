@@ -1,4 +1,4 @@
 PKG="TRIBswig"
 NAME="SWIG interface compiler"
 VERSION="4.1.1.0"
-ZAP_URL="http://www.swig.org/"
+ZAP_URL="https://www.swig.org/"

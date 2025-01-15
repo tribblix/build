@@ -1,4 +1,4 @@
 PKG="TRIBiftop"
 NAME="iftop - display bandwidth usage"
 VERSION="0.17.1"
-ZAP_URL="http://www.ex-parrot.com/pdw/iftop/"
+ZAP_URL="https://pdw.ex-parrot.com/iftop/"

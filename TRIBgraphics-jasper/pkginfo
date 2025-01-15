@@ -1,4 +1,4 @@
 PKG="TRIBgraphics-jasper"
 NAME="The Jasper JPEG2000 library"
 VERSION="4.2.4.0"
-ZAP_URL="http://www.ece.uvic.ca/~frodo/jasper/"
+ZAP_URL="https://www.ece.uvic.ca/~frodo/jasper/"

@@ -1,4 +1,4 @@
 PKG="TRIBmpage"
 NAME="Print multiple pages on a single sheet"
 VERSION="2.5.8.0"
-ZAP_URL="http://www.mesa.nl/pub/mpage/"
+ZAP_URL="https://www.mesa.nl/pub/mpage/"

@@ -1,4 +1,4 @@
 PKG="TRIBgstreamer1-vaapi"
 NAME="GStreamer (stable) vaapi plugin"
 VERSION="1.20.7.0"
-ZAP_URL="http://gstreamer.freedesktop.org/"
+ZAP_URL="https://gstreamer.freedesktop.org/"

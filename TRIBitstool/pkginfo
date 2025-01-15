@@ -1,4 +1,4 @@
 PKG="TRIBitstool"
 NAME="ITS Tool XML to PO translator"
 VERSION="2.0.7.2"
-ZAP_URL="http://itstool.org/"
+ZAP_URL="https://itstool.org/"

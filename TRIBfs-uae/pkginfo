@@ -1,4 +1,4 @@
 PKG="TRIBfs-uae"
 NAME="FS-UAE Amiga Emulator"
 VERSION="3.1.66.1"
-ZAP_URL="http://fs-uae.net/"
+ZAP_URL="https://fs-uae.net/"

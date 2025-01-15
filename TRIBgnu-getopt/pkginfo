@@ -1,4 +1,4 @@
 PKG="TRIBgnu-getopt"
 NAME="Parse command-line arguments from shell scripts"
 VERSION="1.1.6.1"
-ZAP_URL="http://frodo.looijaard.name/project/getopt"
+ZAP_URL="https://frodo.looijaard.name/project/getopt"

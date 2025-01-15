@@ -1,4 +1,4 @@
 PKG="TRIBggobi"
 NAME="GGobi data visualization system"
 VERSION="2.1.11.0"
-ZAP_URL="http://www.ggobi.org/"
+ZAP_URL="http://ggobi.org/"

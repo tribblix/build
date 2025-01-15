@@ -1,4 +1,4 @@
 PKG="TRIBcompress-unrar"
 NAME="RARLAB UnRAR"
 VERSION="7.1.1.0"
-ZAP_URL="http://www.rarlab.com/rar_add.htm"
+ZAP_URL="https://www.rarlab.com/rar_add.htm"

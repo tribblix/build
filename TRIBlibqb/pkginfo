@@ -1,4 +1,4 @@
 PKG="TRIBlibqb"
 NAME="Thread-safe client-server library"
 VERSION="1.0.6.1"
-ZAP_URL="http://clusterlabs.org/wiki/Libqb"
+ZAP_URL="https://projects.clusterlabs.org/w/projects/libqb/"

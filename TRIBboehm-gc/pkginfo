@@ -1,4 +1,4 @@
 PKG="TRIBboehm-gc"
 NAME="Boehm garbage collector"
 VERSION="7.2g.0"
-ZAP_URL="http://www.hboehm.info/gc/"
+ZAP_URL="https://www.hboehm.info/gc/"

@@ -1,4 +1,4 @@
 PKG="TRIBlibgraphite2"
 NAME="libgraphite2"
 VERSION="1.3.14.1"
-ZAP_URL="http://graphite.sil.org/"
+ZAP_URL="https://graphite.sil.org/"
