@@ -1,21 +1,28 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the download links here were derived from manually
 # navigating the website http://wallpaper.soa-admin.eu/
+#
+# the original site has gone, but is captured by the Wayback Machine
+# https://web.archive.org/web/20211130191337/http://wallpaper.soa-admin.eu/
+#
+# the links belwo
 #
 BDIR=usr/share/backgrounds
 NDIR=${BDIR}/mate/nature
 XDIR=${BDIR}/xfce
 mkdir -p $NDIR
-wget http://wallpaper.soa-admin.eu/upload/0000000043/1600.jpg -q -O ${NDIR}/A-Flower.jpg
-wget http://wallpaper.soa-admin.eu/upload/0000000049/1600.jpg -q -O ${NDIR}/A-ButterFly.jpg
-wget http://wallpaper.soa-admin.eu/upload/0000000122/1600.jpg -q -O ${NDIR}/A-Berberys.jpg
-wget http://wallpaper.soa-admin.eu/upload/0000000129/1600.jpg -q -O ${NDIR}/A-Squirrel.jpg
-wget http://wallpaper.soa-admin.eu/upload/0000000251/1600.jpg -q -O ${NDIR}/A-Lake.jpg
-wget http://wallpaper.soa-admin.eu/upload/0000000259/1600.jpg -q -O ${NDIR}/A-Current.jpg
-wget http://wallpaper.soa-admin.eu/upload/0000000282/1600.jpg -q -O ${NDIR}/A-Christianso.jpg
-wget http://wallpaper.soa-admin.eu/upload/0000000472/1600.jpg -q -O ${NDIR}/A-Winter.jpg
+wget https://web.archive.org/web/20201230122217if_/http://wallpaper.soa-admin.eu/upload/0000000043/1600.jpg -q -O ${NDIR}/A-Flower.jpg
+wget https://web.archive.org/web/20201230122217if_/http://wallpaper.soa-admin.eu/upload/0000000049/1600.jpg -q -O ${NDIR}/A-ButterFly.jpg
+wget https://web.archive.org/web/20201230122217if_/http://wallpaper.soa-admin.eu/upload/0000000122/1600.jpg -q -O ${NDIR}/A-Berberys.jpg
+wget https://web.archive.org/web/20201230122217if_/http://wallpaper.soa-admin.eu/upload/0000000129/1600.jpg -q -O ${NDIR}/A-Squirrel.jpg
+wget https://web.archive.org/web/20201230122217if_/http://wallpaper.soa-admin.eu/upload/0000000251/1600.jpg -q -O ${NDIR}/A-Lake.jpg
+wget https://web.archive.org/web/20201230122217if_/http://wallpaper.soa-admin.eu/upload/0000000259/1600.jpg -q -O ${NDIR}/A-Current.jpg
+wget https://web.archive.org/web/20201230122217if_/http://wallpaper.soa-admin.eu/upload/0000000282/1600.jpg -q -O ${NDIR}/A-Christianso.jpg
+wget https://web.archive.org/web/20201230122217if_/http://wallpaper.soa-admin.eu/upload/0000000472/1600.jpg -q -O ${NDIR}/A-Winter.jpg
 chmod -R a+rX usr
 mkdir -p $XDIR
-cd $XDIR
+cd $XDIR || exit 0
 ln -s ../mate/nature/*jpg .
