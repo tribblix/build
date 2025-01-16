@@ -5,15 +5,15 @@
 # either uninstall gdb, or run make.bash rather than all.bash, as the gdb
 # test fails on Tribblix
 #
-# 1.22 release, now default
-#
+# 1.22 release, no longer default
+#go1.22.11.src.tar.gz
 # the tarball has some test files with UTF-8 filenames
 #
 # As of 1.20, this MUST be GOOS=illumos or the build fails
 #
 chmod -R u+w go
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.22.10.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.22.11.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.22 GOROOT_BOOTSTRAP=/usr/versions/go-1.21 ./all.bash
 cd ..
