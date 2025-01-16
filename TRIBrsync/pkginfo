@@ -1,4 +1,4 @@
 PKG="TRIBrsync"
 NAME="Fast incremental file transfer utility"
-VERSION="3.4.0.0"
+VERSION="3.4.1.0"
 ZAP_URL="https://rsync.samba.org/"
