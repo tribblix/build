@@ -1,4 +1,4 @@
 PKG="TRIBlibsecret"
 NAME="GNOME libsecret"
-VERSION="0.21.4.0"
+VERSION="0.21.6.0"
 ZAP_URL="https://download.gnome.org/sources/libsecret/"
