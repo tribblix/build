@@ -1,4 +1,4 @@
 PKG="TRIBlibde265"
 NAME="Open h.265 video codec implementation."
-VERSION="1.0.14.0"
+VERSION="1.0.15.0"
 ZAP_URL="https://github.com/strukturag/libde265"

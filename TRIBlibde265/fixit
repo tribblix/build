@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we only want this as a dependency, and some of the files it installs
 # have problematic name - eg "tests"
 #
