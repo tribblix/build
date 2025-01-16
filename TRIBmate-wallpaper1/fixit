@@ -2,13 +2,16 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# the download links here were derived from manually
+# The download links here were derived from manually
 # navigating the website http://wallpaper.soa-admin.eu/
 #
-# the original site has gone, but is captured by the Wayback Machine
+# The original site has gone, but is captured by the Wayback Machine
 # https://web.archive.org/web/20211130191337/http://wallpaper.soa-admin.eu/
 #
-# the links belwo
+# The links below refer to the copy on the Wayback Machine, and are for the
+# actual images. If you go to the Wayback Machine and navigate to an image,
+# you get a htmal page decorating the image, so need to read the html to
+# extract the final image location.
 #
 BDIR=usr/share/backgrounds
 NDIR=${BDIR}/mate/nature
