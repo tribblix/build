@@ -306,15 +306,15 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -143,7 +143,6 @@
+@@ -146,7 +146,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
 -      CFLAGS_solaris := -fPIC, \
-       CFLAGS_windows := $$($1_CFLAGS_windows), \
        EXTRA_HEADER_DIRS := java.base:libjvm, \
+       JAVA_HEADERS := false, \
        DISABLED_WARNINGS_gcc := unused-function unused-variable, \
-@@ -151,14 +150,12 @@
+@@ -154,7 +153,6 @@
        LDFLAGS := $$($1_LDFLAGS), \
        LDFLAGS_linux := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
        LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
@@ -322,13 +322,6 @@
        LDFLAGS_FILTER_OUT := $$($1_LDFLAGS_FILTER_OUT), \
        JDK_LIBS := $$($1_JDK_LIBS), \
        JDK_LIBS_windows := $$($1_JDK_LIBS_windows), \
-       LIBS := $$($1_LIBS), \
-       LIBS_unix := $(LIBZ_LIBS), \
-       LIBS_linux := $(LIBDL) -lpthread, \
--      LIBS_solaris := $(LIBDL) -lthread, \
-       LIBS_macosx := \
-           -framework ApplicationServices \
-           -framework Cocoa \
 --- old/make/hotspot/gensrc/GensrcAdlc.gmk	2020-05-20 17:58:54.036807242 -0700
 +++ new/make/hotspot/gensrc/GensrcAdlc.gmk	2020-05-20 17:58:53.652799869 -0700
 @@ -36,9 +36,6 @@
@@ -1019,16 +1012,16 @@
  #endif
 --- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
-@@ -452,8 +452,6 @@
-     case lir_monaddr:        // input and result always valid, info always invalid
-     case lir_null_check:     // input and info always valid, result always invalid
-     case lir_move:           // input and result always valid, may have info
+@@ -457,8 +457,6 @@
+     case lir_neg:
+     case lir_f2hf:
+     case lir_hf2f:
 -    case lir_pack64:         // input and result always valid
 -    case lir_unpack64:       // input and result always valid
      {
        assert(op->as_Op1() != nullptr, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1738,8 +1736,6 @@
+@@ -1746,8 +1744,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1039,16 +1032,16 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -940,8 +940,6 @@
-       , lir_monaddr
-       , lir_roundfp
+@@ -945,8 +945,6 @@
+       , lir_f2hf
+       , lir_hf2f
        , lir_safepoint
 -      , lir_pack64
 -      , lir_unpack64
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2241,9 +2239,6 @@
+@@ -2251,9 +2249,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1531,7 +1524,7 @@
  #if defined(_AIX)
    #include <sys/procfs.h>
  #endif
-@@ -130,18 +122,13 @@
+@@ -119,18 +111,13 @@
  #define WTERMSIG(status) ((status)&0x7F)
  #endif
  
@@ -1551,65 +1544,6 @@
 
  /* Field id for jString 'command' in java.lang.ProcessHandleImpl.Info */
  jfieldID ProcessHandleImpl_Info_commandID;
-@@ -482,7 +469,7 @@
-  * The following functions are for Linux
-  */
- 
--#if defined(__solaris__) || defined (__linux__)
-+#if defined (__linux__)
- 
- /*
-  * Return pids of active processes, and optionally parent pids and
-@@ -611,13 +598,13 @@
-     return count;
- }
- 
--#endif // defined(__solaris__) || defined (__linux__)
-+#endif // defined (__linux__)
- 
- /*
-- * The following functions are common on Solaris and AIX.
-+ * The following functions are for AIX.
-  */
- 
--#if defined(__solaris__) || defined(_AIX)
-+#if defined(_AIX)
- 
- /**
-  * Helper function to get the 'psinfo_t' data from "/proc/%d/psinfo".
-@@ -674,26 +661,10 @@
- 
- void unix_getCmdlineAndUserInfo(JNIEnv *env, jobject jinfo, pid_t pid) {
-     psinfo_t psinfo;
--    char fn[32];
--    char exePath[PATH_MAX];
-     char prargs[PRARGSZ + 1];
-     jstring cmdexe = NULL;
--    int ret;
- 
-     /*
--     * On Solaris, the full path to the executable command is the link in
--     * /proc/<pid>/paths/a.out. But it is only readable for processes we own.
--     */
--#if defined(__solaris__)
--    snprintf(fn, sizeof fn, "/proc/%d/path/a.out", pid);
--    if ((ret = readlink(fn, exePath, PATH_MAX - 1)) > 0) {
--        // null terminate and create String to store for command
--        exePath[ret] = '\0';
--        CHECK_NULL(cmdexe = JNU_NewStringPlatform(env, exePath));
--    }
--#endif
--
--    /*
-      * Now try to open /proc/%d/psinfo
-      */
-     if (getPsinfo(pid, &psinfo) < 0) {
-@@ -722,4 +693,4 @@
-                       prargs[0] == '\0' ? NULL : prargs);
- }
- 
--#endif // defined(__solaris__) || defined(_AIX)
-+#endif // defined(_AIX)
 --- old/src/java.base/unix/native/libjava/ProcessHandleImpl_unix.h	2020-05-20 18:01:08.239384029 -0700
 +++ new/src/java.base/unix/native/libjava/ProcessHandleImpl_unix.h	2020-05-20 18:01:07.851376579 -0700
 @@ -29,7 +29,7 @@
@@ -1990,25 +1924,27 @@
  #include <dlfcn.h>
  #include <errno.h>
  #include <pthread.h>
-@@ -54,16 +44,9 @@
+@@ -54,18 +44,9 @@
  #include <string.h>
  #include <stdbool.h>
  
 -#ifdef SOLARIS
--#define MAX_SIGNALS (SIGRTMAX+1)
+-#define MAX_SIGNALS (_SIGRTMAX+1)
 -
--/* On solaris, MAX_SIGNALS is a macro, not a constant, so we must allocate sact dynamically. */
+-/* On solaris, SIGRTMAX is a macro and _SIGRTMAX a constant.
+- * Historically we used SIGRTMAX and allocated sact dynamically.
+- */
 -static struct sigaction *sact = (struct sigaction *)NULL; /* saved signal handlers */
 -#else
  #define MAX_SIGNALS NSIG
  
  static struct sigaction sact[MAX_SIGNALS]; /* saved signal handlers */
 -#endif
+ static bool deprecated_usage[MAX_SIGNALS]; /* usage of signal/sigset */
  
  static sigset_t jvmsigs; /* Signals used by jvm. */
- 
-@@ -88,20 +71,6 @@
- static bool jvm_signal_installed = false;
+@@ -90,20 +73,6 @@
+ static bool warning_printed = false;
  
  
 -/* assume called within signal_lock */
@@ -2028,7 +1964,7 @@
  static void signal_lock() {
    pthread_mutex_lock(&mutex);
    /* When the jvm is installing its set of signal handlers, threads
-@@ -161,18 +130,7 @@
+@@ -168,18 +137,7 @@
    sact[sig].sa_handler = disp;
    sigemptyset(&set);
    sact[sig].sa_mask = set;
@@ -2048,15 +1984,15 @@
  }
  
  static sa_handler_t set_signal(int sig, sa_handler_t disp, bool is_sigset) {
-@@ -181,7 +139,6 @@
+@@ -188,7 +146,6 @@
    bool sigblocked;
  
    signal_lock();
 -  allocate_sact();
  
-   sigused = sigismember(&jvmsigs, sig);
-   if (jvm_signal_installed && sigused) {
-@@ -193,13 +150,6 @@
+   deprecated_usage[sig] = true;
+ 
+@@ -203,13 +160,6 @@
      oldhandler = sact[sig].sa_handler;
      save_signal_handler(sig, disp, is_sigset);
  
@@ -2070,7 +2006,7 @@
      signal_unlock();
      return oldhandler;
    } else if (jvm_signal_installing) {
-@@ -277,7 +227,6 @@
+@@ -287,7 +237,6 @@
  
    signal_lock();
  
@@ -2078,7 +2014,7 @@
    sigused = sigismember(&jvmsigs, sig);
    if (jvm_signal_installed && sigused) {
      /* jvm has installed its signal handler for this signal. */
-@@ -344,7 +293,6 @@
+@@ -357,7 +306,6 @@
  }
  
  JNIEXPORT struct sigaction *JVM_get_signal_action(int sig) {
@@ -3877,7 +3813,7 @@
  
  #include "socket_md.h"
  #include "sysSocket.h"
-@@ -275,35 +271,6 @@
+@@ -284,35 +280,6 @@
      return 0;
  }
  
@@ -3913,7 +3849,7 @@
  int
  dbgsysTlsAlloc() {
      pthread_key_t key;
-@@ -329,8 +296,6 @@
+@@ -338,8 +305,6 @@
      return pthread_getspecific((pthread_key_t)index);
  }
  
@@ -8515,7 +8451,7 @@
 -}
 --- old/src/java.base/solaris/native/libjava/ProcessHandleImpl_solaris.c	2020-05-20 18:10:25.002074133 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,51 +0,0 @@
+@@ -1,266 +0,0 @@
 -/*
 - * Copyright (c) 2014, 2015, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8546,6 +8482,13 @@
 -#include "ProcessHandleImpl_unix.h"
 -
 -#include <procfs.h>
+-#include <sys/types.h>
+-#include <dirent.h>
+-#include <limits.h>
+-#include <signal.h>
+-#include <stdlib.h>
+-#include <string.h>
+-#include <unistd.h>
 -
 -/*
 - * Implementation of native ProcessHandleImpl functions for Solaris.
@@ -8554,17 +8497,225 @@
 -
 -void os_initNative(JNIEnv *env, jclass clazz) {}
 -
+-/*
+- * Return pids of active processes, and optionally parent pids and
+- * start times for each process.
+- * For a specific non-zero pid, only the direct children are returned.
+- * If the pid is zero, all active processes are returned.
+- * Reads /proc and accumulates any process following the rules above.
+- * The resulting pids are stored into an array of longs named jarray.
+- * The number of pids is returned if they all fit.
+- * If the parentArray is non-null, store also the parent pid.
+- * In this case the parentArray must have the same length as the result pid array.
+- * Of course in the case of a given non-zero pid all entries in the parentArray
+- * will contain this pid, so this array does only make sense in the case of a given
+- * zero pid.
+- * If the jstimesArray is non-null, store also the start time of the pid.
+- * In this case the jstimesArray must have the same length as the result pid array.
+- * If the array(s) (is|are) too short, excess pids are not stored and
+- * the desired length is returned.
+- */
 -jint os_getChildren(JNIEnv *env, jlong jpid, jlongArray jarray,
 -                    jlongArray jparentArray, jlongArray jstimesArray) {
--    return unix_getChildren(env, jpid, jarray, jparentArray, jstimesArray);
+-    DIR* dir;
+-    struct dirent* ptr;
+-    pid_t pid = (pid_t) jpid;
+-    jlong* pids = NULL;
+-    jlong* ppids = NULL;
+-    jlong* stimes = NULL;
+-    jsize parentArraySize = 0;
+-    jsize arraySize = 0;
+-    jsize stimesSize = 0;
+-    jsize count = 0;
+-
+-    arraySize = (*env)->GetArrayLength(env, jarray);
+-    JNU_CHECK_EXCEPTION_RETURN(env, -1);
+-    if (jparentArray != NULL) {
+-        parentArraySize = (*env)->GetArrayLength(env, jparentArray);
+-        JNU_CHECK_EXCEPTION_RETURN(env, -1);
+-
+-        if (arraySize != parentArraySize) {
+-            JNU_ThrowIllegalArgumentException(env, "array sizes not equal");
+-            return 0;
+-        }
+-    }
+-    if (jstimesArray != NULL) {
+-        stimesSize = (*env)->GetArrayLength(env, jstimesArray);
+-        JNU_CHECK_EXCEPTION_RETURN(env, -1);
+-
+-        if (arraySize != stimesSize) {
+-            JNU_ThrowIllegalArgumentException(env, "array sizes not equal");
+-            return 0;
+-        }
+-    }
+-
+-    /*
+-     * To locate the children we scan /proc looking for files that have a
+-     * position integer as a filename.
+-     */
+-    if ((dir = opendir("/proc")) == NULL) {
+-        JNU_ThrowByNameWithMessageAndLastError(env,
+-            "java/lang/RuntimeException", "Unable to open /proc");
+-        return -1;
+-    }
+-
+-    do { // Block to break out of on Exception
+-        pids = (*env)->GetLongArrayElements(env, jarray, NULL);
+-        if (pids == NULL) {
+-            break;
+-        }
+-        if (jparentArray != NULL) {
+-            ppids  = (*env)->GetLongArrayElements(env, jparentArray, NULL);
+-            if (ppids == NULL) {
+-                break;
+-            }
+-        }
+-        if (jstimesArray != NULL) {
+-            stimes  = (*env)->GetLongArrayElements(env, jstimesArray, NULL);
+-            if (stimes == NULL) {
+-                break;
+-            }
+-        }
+-
+-        while ((ptr = readdir(dir)) != NULL) {
+-            pid_t ppid = 0;
+-            jlong totalTime = 0L;
+-            jlong startTime = 0L;
+-
+-            /* skip files that aren't numbers */
+-            pid_t childpid = (pid_t) atoi(ptr->d_name);
+-            if ((int) childpid <= 0) {
+-                continue;
+-            }
+-
+-            // Get the parent pid, and start time
+-            ppid = os_getParentPidAndTimings(env, childpid, &totalTime, &startTime);
+-            if (ppid >= 0 && (pid == 0 || ppid == pid)) {
+-                if (count < arraySize) {
+-                    // Only store if it fits
+-                    pids[count] = (jlong) childpid;
+-
+-                    if (ppids != NULL) {
+-                        // Store the parentPid
+-                        ppids[count] = (jlong) ppid;
+-                    }
+-                    if (stimes != NULL) {
+-                        // Store the process start time
+-                        stimes[count] = startTime;
+-                    }
+-                }
+-                count++; // Count to tabulate size needed
+-            }
+-        }
+-    } while (0);
+-
+-    if (pids != NULL) {
+-        (*env)->ReleaseLongArrayElements(env, jarray, pids, 0);
+-    }
+-    if (ppids != NULL) {
+-        (*env)->ReleaseLongArrayElements(env, jparentArray, ppids, 0);
+-    }
+-    if (stimes != NULL) {
+-        (*env)->ReleaseLongArrayElements(env, jstimesArray, stimes, 0);
+-    }
+-
+-    closedir(dir);
+-    // If more pids than array had size for; count will be greater than array size
+-    return count;
 -}
 -
--pid_t os_getParentPidAndTimings(JNIEnv *env, pid_t pid, jlong *total, jlong *start) {
--    return unix_getParentPidAndTimings(env, pid, total, start);
+-/**
+- * Helper function to get the 'psinfo_t' data from "/proc/%d/psinfo".
+- * Returns 0 on success and -1 on error.
+- */
+-static int getPsinfo(pid_t pid, psinfo_t *psinfo) {
+-    FILE* fp;
+-    char fn[32];
+-    size_t ret;
+-
+-    /*
+-     * Try to open /proc/%d/psinfo
+-     */
+-    snprintf(fn, sizeof fn, "/proc/%d/psinfo", pid);
+-    fp = fopen(fn, "r");
+-    if (fp == NULL) {
+-        return -1;
+-    }
+-
+-    ret = fread(psinfo, 1, sizeof(psinfo_t), fp);
+-    fclose(fp);
+-    if (ret < sizeof(psinfo_t)) {
+-        return -1;
+-    }
+-    return 0;
+-}
+-
+-pid_t os_getParentPidAndTimings(JNIEnv *env, pid_t pid, jlong *totalTime, jlong *startTime) {
+-    psinfo_t psinfo;
+-
+-    if (getPsinfo(pid, &psinfo) < 0) {
+-        return -1;
+-    }
+-
+-    // Validate the pid before returning the info
+-    if (kill(pid, 0) < 0) {
+-        return -1;
+-    }
+-
+-    *totalTime = psinfo.pr_time.tv_sec * 1000000000L + psinfo.pr_time.tv_nsec;
+-
+-    *startTime = psinfo.pr_start.tv_sec * (jlong)1000 +
+-                 psinfo.pr_start.tv_nsec / 1000000;
+-
+-    return (pid_t) psinfo.pr_ppid;
 -}
 -
 -void os_getCmdlineAndUserInfo(JNIEnv *env, jobject jinfo, pid_t pid) {
--    unix_getCmdlineAndUserInfo(env, jinfo, pid);
+-    psinfo_t psinfo;
+-    char fn[32];
+-    char exePath[PATH_MAX];
+-    char prargs[PRARGSZ + 1];
+-    jstring cmdexe = NULL;
+-    int ret;
+-
+-    /*
+-     * The full path to the executable command is the link in
+-     * /proc/<pid>/paths/a.out. But it is only readable for processes we own.
+-     */
+-    snprintf(fn, sizeof fn, "/proc/%d/path/a.out", pid);
+-    if ((ret = readlink(fn, exePath, PATH_MAX - 1)) > 0) {
+-        // null terminate and create String to store for command
+-        exePath[ret] = '\0';
+-        CHECK_NULL(cmdexe = JNU_NewStringPlatform(env, exePath));
+-    }
+-
+-    /*
+-     * Now try to open /proc/%d/psinfo
+-     */
+-    if (getPsinfo(pid, &psinfo) < 0) {
+-        unix_fillArgArray(env, jinfo, 0, NULL, NULL, cmdexe, NULL);
+-        return;
+-    }
+-
+-    unix_getUserInfo(env, jinfo, psinfo.pr_uid);
+-
+-    /*
+-     * Now read psinfo.pr_psargs which contains the first PRARGSZ characters of the
+-     * argument list (i.e. arg[0] arg[1] ...). Unfortunately, PRARGSZ is usually set
+-     * to 80 characters only. Nevertheless it's better than nothing :)
+-     */
+-    strncpy(prargs, psinfo.pr_psargs, PRARGSZ);
+-    prargs[PRARGSZ] = '\0';
+-    if (prargs[0] == '\0') {
+-        /* If psinfo.pr_psargs didn't contain any strings, use psinfo.pr_fname
+-         * (which only contains the last component of exec()ed pathname) as a
+-         * last resort.
+-         */
+-        strncpy(prargs, psinfo.pr_fname, PRARGSZ);
+-        prargs[PRARGSZ] = '\0';
+-    }
+-    unix_fillArgArray(env, jinfo, 0, NULL, NULL, cmdexe,
+-                      prargs[0] == '\0' ? NULL : prargs);
 -}
 -
 --- old/src/java.base/solaris/native/libjvm_db/libjvm_db.c	2020-05-20 18:10:25.750088494 -0700

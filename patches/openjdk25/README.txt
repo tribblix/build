@@ -4,6 +4,20 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+6
+
+Quite a lot of rework to fix patch noise.
+
+In ProcessHandleImpl, the old unix_getchildren has been moved to a
+local implementation os_getchildren in the os-specific file. And also
+getParentPidAndTimings() and getCmdlineAndUserInfo().
+
+String format changes UINTX_FORMAT->%zu INTX_FORMAT->%zd
+
+The deprecation message in libjsig wants a new array
+deprecated_usage[] which needs handling like sact; I punted and used
+_SIGRTMAX rather than SIGRTMAX, but left sact dynamic.
+
 25+4, 25+5
 
 Trivial patch noise.

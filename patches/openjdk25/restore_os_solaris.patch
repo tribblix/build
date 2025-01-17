@@ -2951,7 +2951,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +  osthr->set_lwp_id(_lwp_self());  // Store lwp in case we are bound
 +
-+  log_info(os, thread)("Thread is alive (tid: " UINTX_FORMAT ").",
++  log_info(os, thread)("Thread is alive (tid: %zu).",
 +    os::current_thread_id());
 +
 +  if (UseNUMA) {
@@ -2991,7 +2991,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    Atomic::dec(&os::Solaris::_os_thread_count);
 +  }
 +
-+  log_info(os, thread)("Thread finished (tid: " UINTX_FORMAT ").", os::current_thread_id());
++  log_info(os, thread)("Thread finished (tid: %zu).", os::current_thread_id());
 +
 +  thr_exit(NULL);
 +  ShouldNotReachHere();
@@ -3042,7 +3042,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  // and save the caller's signal mask
 +  PosixSignals::hotspot_sigmask(thread);
 +
-+  log_info(os, thread)("Thread attached (tid: " UINTX_FORMAT ").",
++  log_info(os, thread)("Thread attached (tid: %zu).",
 +    os::current_thread_id());
 +
 +  return true;
@@ -3143,7 +3143,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +  char buf[64];
 +  if (status == 0) {
-+    log_info(os, thread)("Thread \"%s\" started (tid: " UINTX_FORMAT ", attributes: %s). ",
++    log_info(os, thread)("Thread \"%s\" started (tid: %zu, attributes: %s). ",
 +      thread->name(), (uintx) tid, describe_thr_create_attributes(buf, sizeof(buf), stack_size, flags));
 +  } else {
 +    log_warning(os, thread)("Failed to start thread \"%s\" - thr_create failed (%s) for attributes: %s.",
@@ -5305,7 +5305,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  jio_snprintf(p, buflen-len,
 +               "\n\n"
 +               "Do you want to debug the problem?\n\n"
-+               "To debug, run 'dbx - %d'; then switch to thread " INTX_FORMAT "\n"
++               "To debug, run 'dbx - %d'; then switch to thread %zd\n"
 +               "Enter 'yes' to launch dbx automatically (PATH must include dbx)\n"
 +               "Otherwise, press RETURN to abort...",
 +               os::current_process_id(), os::current_thread_id());
