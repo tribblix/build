@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# tweak the configure script rather than patching configure.ac
-#
-sed -i s:x=epoll_create:x=NOepoll_create: configure
