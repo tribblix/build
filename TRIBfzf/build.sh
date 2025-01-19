@@ -6,6 +6,7 @@
 #
 git clone https://github.com/junegunn/fzf.git
 cd fzf
+git checkout v0.57.0
 
 #
 # the Makefile attempts to enumerate all possible build targets
@@ -13,7 +14,7 @@ cd fzf
 #
 sed -i s:x86_64:i86pc: Makefile
 
-env PATH=/usr/versions/go-1.22/bin:$PATH gmake bin/fzf
+env PATH=/usr/versions/go-1.23/bin:$PATH gmake bin/fzf
 
 rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/bin
