@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# clean up and move
+# SPDX-License-Identifier: CDDL-1.0
 #
 case `uname -p` in
 sparc)
@@ -10,8 +10,14 @@ i386)
   ARCH64="amd64"
   ;;
 esac
+
 #
-# we never shipped .la files before, don't do so now
+# only ship the 64-bit binaries
 #
-rm -f usr/lib/lib*.la
-rm -f usr/lib/${ARCH64}/lib*.la
+if [ -d usr/bin/${ARCH64} ]; then
+    cd usr/bin/${ARCH64}
+    mv * ..
+    cd ..
+    rmdir ${ARCH64}
+    cd ../..
+fi
