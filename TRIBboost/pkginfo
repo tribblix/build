@@ -1,4 +1,4 @@
 PKG="TRIBboost"
 NAME="Boost C++ Libraries"
-VERSION="1.85.0"
+VERSION="1.85.1"
 ZAP_URL="https://www.boost.org/"
