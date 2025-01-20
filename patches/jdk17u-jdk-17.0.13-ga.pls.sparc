@@ -17,3 +17,4 @@
 -p1+-R openjdk17/0001-8283520-JFR-Memory-leak-in-dcmd_arena.patch
 -p1+-R openjdk17/0001-8270491-SEGV-at-read_string_field-oopDesc-char-const.patch
 -p1+-R openjdk17/0001-8268702-JFR-diagnostic-commands-lack-argument-descri.patch
+-p1 openjdk17/sparc-noflatten.patch

@@ -12,3 +12,4 @@
 -p1 openjdk18/8254231-for-sparc.patch
 -p1+-R openjdk18/0001-8264868-Reduce-inclusion-of-registerMap.hpp-and-regi.patch
 -p1 openjdk18/sparc-linker.patch
+-p1 openjdk18/sparc-noflatten.patch

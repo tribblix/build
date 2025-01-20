@@ -10,3 +10,4 @@
 -p1 openjdk16/sparc-misc.patch
 -p1 openjdk16/assembler-hpp.patch
 -p1 openjdk16/8254231-for-sparc.patch
+-p1 openjdk16/sparc-noflatten.patch
