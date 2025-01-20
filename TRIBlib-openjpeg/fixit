@@ -13,11 +13,13 @@ esac
 
 #
 # only ship the 64-bit binaries
+# the cmake config files require the binaries to be present in the 64-bit
+# locations, though, so add hard links
 #
 if [ -d usr/bin/${ARCH64} ]; then
     cd usr/bin/${ARCH64}
     mv * ..
+    ln ../opj* .
     cd ..
-    rmdir ${ARCH64}
     cd ../..
 fi
