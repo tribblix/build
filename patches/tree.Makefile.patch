@@ -1,19 +1,21 @@
 --- a/Makefile	Wed Dec 21 19:21:55 2022
 +++ b/Makefile	Wed Dec 21 19:28:44 2022
-@@ -16,10 +16,10 @@
+@@ -16,11 +16,11 @@
  # along with this program; if not, write to the Free Software
  # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  
 -PREFIX=/usr/local
 +PREFIX=/usr
+
  
- CC=gcc
--INSTALL=install
-+INSTALL=ginstall
+-CC ?= gcc
+-INSTALL ?= install
++CC=gcc
++INSTALL ?= ginstall
  
- VERSION=2.1.2
+ VERSION=2.2.1
  TREE_DEST=tree
-@@ -26,9 +26,12 @@
+@@ -27,9 +27,12 @@
  DESTDIR=${PREFIX}/bin
  MAN=tree.1
  # Probably needs to be ${PREFIX}/share/man for most systems now
