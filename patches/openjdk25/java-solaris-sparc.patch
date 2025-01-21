@@ -8451,7 +8451,7 @@
 -}
 --- old/src/java.base/solaris/native/libjava/ProcessHandleImpl_solaris.c	2020-05-20 18:10:25.002074133 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,266 +0,0 @@
+@@ -1,267 +0,0 @@
 -/*
 - * Copyright (c) 2014, 2015, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8478,6 +8478,7 @@
 - */
 -
 -#include "jni.h"
+-#include "jni_util.h"
 -
 -#include "ProcessHandleImpl_unix.h"
 -
