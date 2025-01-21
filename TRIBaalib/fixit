@@ -1,7 +1,8 @@
 #!/bin/sh
 #
-# replace the 32-bit binaries with the 64-bit ones
-# but not aalib-config
+# SPDX-License-Identifier: CDDL-1.0
+#
+# put aalib-config in the 64-bit directory
 #
 case `uname -p` in
 sparc)
@@ -12,9 +13,10 @@ i386)
   ;;
 esac
 
-for mfile in aafire aainfo aasavefont aatest
+for mfile in aalib-config
 do
-    if [ -x usr/bin/${ARCH64}/${mfile} ]; then
-	mv usr/bin/${ARCH64}/${mfile} usr/bin/${mfile}
+    if [ -x usr/bin/${mfile} ]; then
+	mkdir -p usr/bin/${ARCH64}
+	mv usr/bin/${mfile} usr/bin/${ARCH64}/${mfile}
     fi
 done
