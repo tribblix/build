@@ -1,0 +1,4 @@
+PKG="TRIBlogutils-python-312"
+NAME="Python logutils"
+VERSION="0.3.5.0"
+ZAP_URL="https://pypi.org/project/logutils/"
