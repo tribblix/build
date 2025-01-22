@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # Run the installer. It places files into ~/TripleA
 # Then convert those files into a package
 #
