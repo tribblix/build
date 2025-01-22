@@ -7,8 +7,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk23u-jdk-23.0.1-ga
-cd jdk23u-jdk-23.0.1-ga
+${THOME}/build/unpack jdk23u-jdk-23.0.2-ga
+cd jdk23u-jdk-23.0.2-ga
 
 #
 # jdk23 needs autoconf installed
@@ -46,9 +46,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "23.0.1-internal" 2024-10-15
-# OpenJDK Runtime Environment (build 23.0.1-internal-adhoc.ptribble.jdk23u-jdk-23.0.1-ga)
-# OpenJDK 64-Bit Server VM (build 23.0.1-internal-adhoc.ptribble.jdk23u-jdk-23.0.1-ga, mixed mode, sharing)
+# openjdk version "23.0.2-internal" 2025-01-21
+# OpenJDK Runtime Environment (build 23.0.2-internal-adhoc.ptribble.jdk23u-jdk-23.0.2-ga)
+# OpenJDK 64-Bit Server VM (build 23.0.2-internal-adhoc.ptribble.jdk23u-jdk-23.0.2-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
