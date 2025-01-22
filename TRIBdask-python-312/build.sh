@@ -7,9 +7,15 @@
 #
 # the dependency list is thus for the combination of modules
 #
-# dask-expr is also locked to a specific version of dask, so update that
-# if this package is updated
+# as of 2025.1.0 dask-expr is no more, the dataframe extra of dask replaces it
+# so the dask overlay (on x86, anyway) has the additional packages for the
+# appropriate dask extras
+# [complete] = [array,dataframe,diagnostics,distributed] + pyarrow + lz4
+# [array] = numpy (pulled in via pandas in [dataframe])
+# [dataframe] = [array] + pandas + pyarrow
+# [distributed] = distributed
+# [diagnostics] = bokeh + jinja2 (jinja2 pulled in via distributed)
 #
 # there's a distributed patch necessary to handle RLIMIT
 #
-${THOME}/build/pkg_pep518 -N TRIBdask-python-312 dask-2024.12.1 distributed-2024.12.1
+${THOME}/build/pkg_pep518 -N TRIBdask-python-312 dask-2025.1.0 distributed-2025.1.0
