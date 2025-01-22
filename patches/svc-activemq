@@ -1,11 +1,12 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # wrapper to start activemq
 #
-
 cd /opt/tribblix/activemq/bin
 ACTIVEMQ_BASE=/var/activemq
 export ACTIVEMQ_BASE
-JAVA_HOME=/usr/jdk/instances/jdk11
+JAVA_HOME=/usr/jdk/instances/jdk17
 export JAVA_HOME
 bash ./activemq $1
