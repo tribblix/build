@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 TRIBfilelock-python-312 filelock-3.16.1
+${THOME}/build/pkg_pep518 -N TRIBfilelock-python-312 filelock-3.17.0
