@@ -11,5 +11,5 @@
 # there are strange failures in rust - just delete the .so it complains about
 # and rerun gmake
 #
-${THOME}/build/cmbuild +gnu -64only clamav-1.0.7 -P /opt/tribblix/clamav -C "-DENABLE_MILTER=OFF -DENABLE_TESTS=OFF"
-${THOME}/build/genpkg TRIBblix-clamav clamav-1.0.7
+${THOME}/build/cmbuild +gnu -64only clamav-1.0.8 -P /opt/tribblix/clamav -C "-DENABLE_MILTER=OFF -DENABLE_TESTS=OFF"
+${THOME}/build/genpkg TRIBblix-clamav clamav-1.0.8
