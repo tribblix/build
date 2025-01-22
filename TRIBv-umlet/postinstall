@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # palettes has files whose names contain spaces, so we unpack them
 # rather than package them
 #

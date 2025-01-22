@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the directory isn't versioned
 #
 mkdir -p usr/bin
@@ -7,6 +9,11 @@ rm -f usr/versions/Umlet/umlet.exe
 rm -f usr/versions/Umlet/Umlet.exe
 cat > usr/bin/umlet <<EOF
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+JAVA_HOME=/usr/jdk/instances/jdk17
+export JAVA_HOME
 exec /usr/versions/Umlet/umlet.sh "\$@"
 EOF
 chmod 755 usr/bin/umlet
