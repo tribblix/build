@@ -62,12 +62,12 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk11 jdk11
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk11 .
-#default links
-ln -s openjdk11 latest
-mkdir -p /tmp/jdk/usr/bin
-cd /tmp/jdk/usr/bin
-ln -s ../jdk/latest/bin/* .
-rm -f amd64 sparcv9
+# no longer default
+#ln -s openjdk11 latest
+#mkdir -p /tmp/jdk/usr/bin
+#cd /tmp/jdk/usr/bin
+#ln -s ../jdk/latest/bin/* .
+#rm -f amd64 sparcv9
 cd /tmp/jdk/usr/versions/openjdk11
 rm `find . -name '*.diz'`
 

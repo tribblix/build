@@ -10,8 +10,8 @@
 # just pull the ga tag
 #
 cd ~/ud
-${THOME}/build/unpack jdk17u-jdk-17.0.13-ga
-cd jdk17u-jdk-17.0.13-ga
+${THOME}/build/unpack jdk17u-jdk-17.0.14-ga
+cd jdk17u-jdk-17.0.14-ga
 
 #
 # jdk17 needs autoconf installed
@@ -48,9 +48,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "17.0.13-internal" 2024-10-15
-# OpenJDK Runtime Environment (build 17.0.13-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.13-ga)
-# OpenJDK 64-Bit Server VM (build 17.0.13-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.13-ga, mixed mode, sharing)
+# openjdk version "17.0.14-internal" 2025-01-21
+# OpenJDK Runtime Environment (build 17.0.14-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.14-ga)
+# OpenJDK 64-Bit Server VM (build 17.0.14-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.14-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -61,12 +61,12 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk17 jdk17
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk17 .
-#don't make it the default (yet)
-#ln -s openjdk17 latest
-#mkdir -p /tmp/jdk/usr/bin
-#cd /tmp/jdk/usr/bin
-#ln -s ../jdk/latest/bin/* .
-#rm -f amd64 sparcv9
+# now default
+ln -s openjdk17 latest
+mkdir -p /tmp/jdk/usr/bin
+cd /tmp/jdk/usr/bin
+ln -s ../jdk/latest/bin/* .
+rm -f amd64 sparcv9
 cd /tmp/jdk/usr/versions/openjdk17
 rm `find . -name '*.diz'`
 

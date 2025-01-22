@@ -3,7 +3,9 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
-JDK17:
+17.0.14
+
+Minor patch noise.
 
 Cleanup: remove SPARC_WORKS
 
@@ -364,6 +366,6 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --enable-deprecated-ports=yes \
---with-jobs=3
+--with-jobs=4
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
