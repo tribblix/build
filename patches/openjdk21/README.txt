@@ -3,6 +3,10 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+21.0.6
+
+Minor patch noise.
+
 Cleanup: remove audio solaris 7 compatibility code
 
 Cleanup: use pset_getloadavg() directly
@@ -291,7 +295,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --with-source-date=current \
---with-jobs=3 \
+--with-jobs=4 \
 DATE=/usr/gnu/bin/date \
 STRIP=/usr/gnu/bin/strip
 
