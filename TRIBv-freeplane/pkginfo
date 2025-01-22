@@ -1,4 +1,4 @@
 PKG="TRIBv-freeplane"
 NAME="Freeplane mind mapping tool"
-VERSION="1.12.6.0"
+VERSION="1.12.8.0"
 ZAP_URL="https://docs.freeplane.org/"

@@ -5,7 +5,7 @@
 # the directory is versioned
 # also fix VERSION in preremove and postinstall
 #
-VERSION=1.12.6
+VERSION=1.12.8
 mkdir -p usr/bin
 rm -f usr/versions/freeplane-${VERSION}/freeplane.exe
 rm -f usr/versions/freeplane-${VERSION}/freeplaneConsole.exe
@@ -14,6 +14,11 @@ rm -f usr/versions/freeplane-${VERSION}/*.dll
 rm -f usr/versions/freeplane-${VERSION}/libflatlaf-linux-x86_64.so
 cat > usr/bin/freeplane <<EOF
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+JAVA_HOME=/usr/jdk/instances/jdk17
+export JAVA_HOME
 exec /usr/versions/freeplane-${VERSION}/freeplane.sh "\$@"
 EOF
 chmod a+x usr/bin/freeplane
