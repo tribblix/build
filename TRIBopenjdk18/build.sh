@@ -28,6 +28,8 @@ zap install autoconf
 #
 # use jdk17 (lts) as the boot jdk
 #
+# sparc needs --disable-jvm-feature-jfr
+#
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk17 \
 --with-native-debug-symbols=none \
