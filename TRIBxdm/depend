@@ -1,5 +1,7 @@
 P TRIBx11-lib-toolkit-libxaw7
 P TRIBx11-lib-toolkit-libxt
+P TRIBx11-libice
+P TRIBx11-libsm
 P TRIBx11-libx11
 P TRIBx11-libxau
 P TRIBx11-libxdmcp

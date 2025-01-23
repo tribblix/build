@@ -1,0 +1,60 @@
+--- a/config/xdm-config.in	Fri Apr  5 01:04:33 2024
++++ b/config/xdm-config.in	Thu Jan 23 17:41:27 2025
+@@ -10,7 +10,7 @@
+ DisplayManager.servers:		XDMCONFIGDIR/Xservers
+ DisplayManager.accessFile:	XDMCONFIGDIR/Xaccess
+ DisplayManager*resources:	XDMCONFIGDIR/Xresources
+-DisplayManager.willing:		SU nobody -s /bin/sh -c XDMSCRIPTDIR/Xwilling
++DisplayManager.willing:		SU nobody -c XDMSCRIPTDIR/Xwilling
+ ! All displays should use authorization, but we cannot be sure
+ ! X terminals may not be configured that way, so they will require
+ ! individual resource settings.
+@@ -30,4 +30,8 @@
+ #endif /* XPM */
+ ! SECURITY: do not listen for XDMCP or Chooser requests
+ ! Comment out this line if you want to manage X terminals with xdm
+-DisplayManager.requestPort:	0
++!
++! Tribblix uses SLiM for the local desktop management, the role of xdm is
++! for remote session management
++!
++!DisplayManager.requestPort:	0
+--- a/config/Xservers.ws.in	Fri Apr  5 01:04:33 2024
++++ b/config/Xservers.ws.in	Thu Jan 23 17:43:55 2025
+@@ -9,4 +9,4 @@
+ XCOMM look like:
+ XCOMM	XTerminalName:0 foreign
+ XCOMM
+-:0 local BINDIR/X :0 DEFAULTVT
++XCOMM :0 local BINDIR/X :0 DEFAULTVT
+--- a/config/Xaccess	Fri Apr  5 01:04:33 2024
++++ b/config/Xaccess	Thu Jan 23 17:45:55 2025
+@@ -43,7 +43,11 @@
+ # right hand sides can match.
+ #
+ 
+-#*					#any host can get a login window
++#
++# on Tribblix, we are using xdm solely for remote xdmcp queries
++# so remote access is enabled by default
++#
++*					#any host can get a login window
+ 
+ #
+ # To hardwire a specific terminal to a specific host, you can
+--- a/config/Xsession.in	Fri Apr  5 01:04:33 2024
++++ b/config/Xsession.in	Thu Jan 23 17:50:15 2025
+@@ -52,6 +52,13 @@
+ startup=$HOME/.xsession
+ resources=$HOME/.Xresources
+ 
++#
++# fall back to .xinitrc, which is what setxsession will create
++#
++if [ ! -s "$startup" ]; then
++	startup=$HOME/.xinitrc
++fi
++
+ if [ -s "$startup" ]; then
+ 	if [ -x "$startup" ]; then
+ 		exec "$startup"
