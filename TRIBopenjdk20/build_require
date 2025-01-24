@@ -1,6 +1,7 @@
 TRIBautoconf
 TRIBcups
 TRIBopenjdk19
+TRIBshell-bash
 TRIBx11-lib-toolkit-libxt
 TRIBx11-libice
 TRIBx11-libsm
