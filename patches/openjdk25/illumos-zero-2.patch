@@ -361,7 +361,7 @@ diff -ur -N /tmp/g/orderAccess_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zer
 diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.cpp
 --- /tmp/g/os_solaris_zero.cpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.cpp	2020-09-02 13:28:22.493092922 +0000
-@@ -0,0 +1,294 @@
+@@ -0,0 +1,293 @@
 +/*
 + * Copyright (c) 2003, 2020, Oracle and/or its affiliates. All rights reserved.
 + * Copyright 2007, 2008, 2009, 2010 Red Hat, Inc.
@@ -389,7 +389,6 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +
 +#include <pthread.h> /* For pthread_attr_get_np */
 +
-+// no precompiled headers
 +#include "jvm.h"
 +#include "assembler_zero.inline.hpp"
 +#include "classfile/classLoader.hpp"
@@ -766,7 +765,7 @@ diff -ur -N /tmp/g/prefetch_solaris_zero.inline.hpp b/src/hotspot/os_cpu/solaris
 diff -ur -N /tmp/g/javaThread_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/javaThread_solaris_zero.cpp
 --- /tmp/g/javaThread_solaris_zero.cpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/javaThread_solaris_zero.cpp	2020-09-01 21:40:25.604734766 +0000
-@@ -0,0 +1,37 @@
+@@ -0,0 +1,36 @@
 +/*
 + * Copyright (c) 1997, 2018, Oracle and/or its affiliates. All rights reserved.
 + * Copyright 2009, 2010 Red Hat, Inc.
@@ -792,7 +791,6 @@ diff -ur -N /tmp/g/javaThread_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero
 + *
 + */
 +
-+#include "precompiled.hpp"
 +#include "runtime/frame.inline.hpp"
 +#include "runtime/javaThread.hpp"
 +

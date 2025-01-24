@@ -332,9 +332,9 @@
 -    ADLC_LDFLAGS := -m64
 -    ADLC_CFLAGS := -m64 -fpermissive
    else ifeq ($(call isBuildOs, aix), true)
-     ifeq ($(TOOLCHAIN_TYPE), clang)
-       ADLC_LDFLAGS += -m64
-@@ -104,8 +101,6 @@
+     ADLC_LDFLAGS += -m64
+     ADLC_CFLAGS := -fno-rtti -fexceptions -ffunction-sections -m64 -DAIX -mcpu=pwr8
+@@ -99,8 +96,6 @@
    # ADLC flags depending on target OS
    ifeq ($(call isTargetOs, linux), true)
      ADLCFLAGS += -DLINUX=1 -D_GNU_SOURCE=1
@@ -1000,7 +1000,7 @@
  
 --- old/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:46.085806620 -0700
 +++ new/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:45.745800092 -0700
-@@ -41,9 +41,6 @@
+@@ -40,9 +40,6 @@
  #include <sys/syscall.h>
  #include <unistd.h>
  #endif
@@ -1012,7 +1012,7 @@
  #endif
 --- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
-@@ -457,8 +457,6 @@
+@@ -456,8 +456,6 @@
      case lir_neg:
      case lir_f2hf:
      case lir_hf2f:
@@ -1021,7 +1021,7 @@
      {
        assert(op->as_Op1() != nullptr, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1746,8 +1744,6 @@
+@@ -1745,8 +1743,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -1041,7 +1041,7 @@
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2251,9 +2249,6 @@
+@@ -2242,9 +2240,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1053,7 +1053,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -493,7 +493,7 @@
+@@ -492,7 +492,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -1064,7 +1064,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -171,7 +171,6 @@
+@@ -170,7 +170,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \
@@ -1085,7 +1085,7 @@
  # include OS_HEADER(semaphore)
 --- old/src/hotspot/share/nmt/memTracker.cpp	2020-05-20 18:00:38.698816829 -0700
 +++ new/src/hotspot/share/nmt/memTracker.cpp	2020-05-20 18:00:38.318809532 -0700
-@@ -48,12 +48,6 @@
+@@ -47,12 +47,6 @@
  #include <windows.h>
  #endif
  
@@ -1100,7 +1100,7 @@
  MemBaseline MemTracker::_baseline;
 --- old/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -35,11 +35,9 @@
+@@ -34,11 +34,9 @@
  #include "utilities/debug.hpp"
  #include "utilities/nativeCallStack.hpp"
  
@@ -1116,7 +1116,7 @@
  class MemBaseline;
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -621,12 +621,11 @@
+@@ -620,12 +620,11 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1259,7 +1259,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1074,7 +1074,7 @@
+@@ -1073,7 +1073,7 @@
  
  #ifndef PRODUCT
  
@@ -1270,7 +1270,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1858,8 +1858,6 @@
+@@ -1869,8 +1869,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1279,7 +1279,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1924,8 +1922,6 @@
+@@ -1935,8 +1933,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -5284,7 +5284,7 @@
 -################################################################################
 --- old/src/hotspot/share/services/dtraceAttacher.cpp	2020-05-20 18:10:08.361754658 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,99 +0,0 @@
+@@ -1,98 +0,0 @@
 -/*
 - * Copyright (c) 2006, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5309,7 +5309,6 @@
 - *
 - */
 -
--#include "precompiled.hpp"
 -#include "code/codeCache.hpp"
 -#include "memory/resourceArea.hpp"
 -#include "runtime/deoptimization.hpp"

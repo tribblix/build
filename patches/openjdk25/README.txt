@@ -4,6 +4,14 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+7
+
+Quite a lot of simple patch noise, often a 1 line offset due to
+precompiled.hpp no longer being included. Remove the include from our
+code too.
+
+More format changes SIZE_FORMAT->%zu
+
 25+6
 
 Quite a lot of rework to fix patch noise.

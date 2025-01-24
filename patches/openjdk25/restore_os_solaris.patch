@@ -1,7 +1,7 @@
 diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListener_solaris.cpp
 --- /tmp/a/attachListener_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/attachListener_solaris.cpp	2024-09-16 14:41:33.965885977 +0100
-@@ -0,0 +1,719 @@
+@@ -0,0 +1,718 @@
 +/*
 + * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,7 +26,6 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 + *
 + */
 +
-+#include "precompiled.hpp"
 +#include "logging/log.hpp"
 +#include "runtime/interfaceSupport.inline.hpp"
 +#include "runtime/os.inline.hpp"
@@ -1449,7 +1448,7 @@ diff -urN /tmp/a/globals_solaris.hpp b/src/hotspot/os/solaris/globals_solaris.hp
 diff -urN /tmp/a/osThread_solaris.cpp b/src/hotspot/os/solaris/osThread_solaris.cpp
 --- /tmp/a/osThread_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/osThread_solaris.cpp	2024-09-16 14:41:33.966705744 +0100
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,45 @@
 +/*
 + * Copyright (c) 1998, 2014, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1474,7 +1473,6 @@ diff -urN /tmp/a/osThread_solaris.cpp b/src/hotspot/os/solaris/osThread_solaris.
 + *
 + */
 +
-+#include "precompiled.hpp"
 +#include "memory/allocation.hpp"
 +#include "runtime/mutex.hpp"
 +#include "runtime/osThread.hpp"
@@ -1601,7 +1599,7 @@ diff -urN /tmp/a/osThread_solaris.hpp b/src/hotspot/os/solaris/osThread_solaris.
 diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cpp
 --- /tmp/a/os_perf_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_perf_solaris.cpp	2024-09-16 14:41:33.967040032 +0100
-@@ -0,0 +1,808 @@
+@@ -0,0 +1,807 @@
 +/*
 + * Copyright (c) 2012, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1626,7 +1624,6 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 + *
 + */
 +
-+#include "precompiled.hpp"
 +#include "jvm.h"
 +#include "memory/allocation.inline.hpp"
 +#include "runtime/os.hpp"
@@ -2413,7 +2410,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-09-16 14:41:33.968071187 +0100
-@@ -0,0 +1,2937 @@
+@@ -0,0 +1,2934 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -2438,7 +2435,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 + *
 + */
 +
-+// no precompiled headers
 +#include "jvm.h"
 +#include "classfile/classLoader.hpp"
 +#include "classfile/systemDictionary.hpp"
@@ -3075,7 +3071,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +static char* describe_thr_create_attributes(char* buf, size_t buflen,
 +                                            size_t stacksize, long flags) {
 +  stringStream ss(buf, buflen);
-+  ss.print("stacksize: " SIZE_FORMAT "k, ", stacksize / 1024);
++  ss.print("stacksize: %zuk, ", stacksize / 1024);
 +  ss.print("flags: ");
 +  #define PRINT_FLAG(f) if (flags & f) ss.print( #f " ");
 +  #define ALL(X) \
@@ -3223,7 +3219,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    size_t size = adjust_stack_size(base, (size_t)limits.rlim_cur);
 +    assert(size >= jt->stack_size(), "Stack size problem in main thread");
 +#endif
-+    tty->print_cr("Stack size of " SIZE_FORMAT " Kb exceeds current limit of " SIZE_FORMAT " Kb.\n"
++    tty->print_cr("Stack size of %zu Kb exceeds current limit of %zu Kb.\n"
 +                  "(Stack sizes are rounded up to a multiple of the system page size.)\n"
 +                  "See limit(1) to increase the stack size limit.",
 +                  stack_size / K, jt->stack_size() / K);
@@ -3719,7 +3715,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +      p = (prmap_t *)mbuff;
 +      for(int i = 0; i < nmap; i++){
 +        if (p->pr_vaddr == 0x0) {
-+          st->print("Warning: Address: " PTR_FORMAT ", Size: " SIZE_FORMAT "K, ",p->pr_vaddr, p->pr_size/1024);
++          st->print("Warning: Address: %zu, Size: %zuK, ",p->pr_vaddr, p->pr_size/1024);
 +          st->print("Mapped file: %s, ", p->pr_mapname[0] == '\0' ? "None" : p->pr_mapname);
 +          st->print("Access: ");
 +          st->print("%s",(p->pr_mflags & MA_READ)  ? "r" : "-");
@@ -3754,7 +3750,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +void os::print_memory_info(outputStream* st) {
 +  st->print("Memory:");
-+  st->print(" " SIZE_FORMAT "k page", os::vm_page_size()>>10);
++  st->print(" %zuk page", os::vm_page_size()>>10);
 +  st->print(", physical " UINT64_FORMAT "k", os::physical_memory()>>10);
 +  st->print("(" UINT64_FORMAT "k free)", os::available_memory() >> 10);
 +  st->cr();
@@ -3872,17 +3868,15 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +static void warn_fail_commit_memory(char* addr, size_t bytes, bool exec,
 +                                    int err) {
-+  warning("INFO: os::commit_memory(" PTR_FORMAT ", " SIZE_FORMAT
-+          ", %d) failed; error='%s' (errno=%d)", p2i(addr), bytes, exec,
-+          os::strerror(err), err);
++  warning("INFO: os::commit_memory(" PTR_FORMAT ", %zu, %d) failed; error='%s' (errno=%d)",
++          p2i(addr), bytes, exec, os::strerror(err), err);
 +}
 +
 +static void warn_fail_commit_memory(char* addr, size_t bytes,
 +                                    size_t alignment_hint, bool exec,
 +                                    int err) {
-+  warning("INFO: os::commit_memory(" PTR_FORMAT ", " SIZE_FORMAT
-+          ", " SIZE_FORMAT ", %d) failed; error='%s' (errno=%d)", p2i(addr),
-+          bytes, alignment_hint, exec, os::strerror(err), err);
++  warning("INFO: os::commit_memory(" PTR_FORMAT ", %zu, %zu, %d) failed; error='%s' (errno=%d)",
++          p2i(addr), bytes, alignment_hint, exec, os::strerror(err), err);
 +}
 +
 +int os::Solaris::commit_memory_impl(char* addr, size_t bytes, bool exec) {
@@ -3932,7 +3926,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +size_t os::Solaris::page_size_for_alignment(size_t alignment) {
 +  assert(is_aligned(alignment, (size_t) os::vm_page_size()),
-+         SIZE_FORMAT " is not aligned to " SIZE_FORMAT,
++         "%zu is not aligned to %zu",
 +         alignment, (size_t) os::vm_page_size());
 +
 +  const int page_sizes_max = 9;
@@ -3952,7 +3946,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  int err = Solaris::commit_memory_impl(addr, bytes, exec);
 +  if (err == 0 && UseLargePages && alignment_hint > 0) {
 +    assert(is_aligned(bytes, alignment_hint),
-+           SIZE_FORMAT " is not aligned to " SIZE_FORMAT, bytes, alignment_hint);
++           "%zu is not aligned to %zu", bytes, alignment_hint);
 +
 +    // The syscall memcntl requires an exact page size (see man memcntl for details).
 +    size_t page_size = page_size_for_alignment(alignment_hint);
@@ -4288,11 +4282,11 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +}
 +
 +bool os::Solaris::setup_large_pages(caddr_t start, size_t bytes, size_t align) {
-+  assert(is_valid_page_size(align), SIZE_FORMAT " is not a valid page size", align);
++  assert(is_valid_page_size(align), "%zu is not a valid page size", align);
 +  assert(is_aligned((void*) start, align),
-+         PTR_FORMAT " is not aligned to " SIZE_FORMAT, p2i((void*) start), align);
++         PTR_FORMAT " is not aligned to %zu", p2i((void*) start), align);
 +  assert(is_aligned(bytes, align),
-+         SIZE_FORMAT " is not aligned to " SIZE_FORMAT, bytes, align);
++         "%zu is not aligned to %zu", bytes, align);
 +
 +  // Signal to OS that we want large pages for addresses
 +  // from addr, addr + bytes
