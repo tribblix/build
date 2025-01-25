@@ -1,4 +1,0 @@
-PKG="TRIBblix-mod-proxy-proto-24"
-NAME="mod_proxy_protocol for apache24"
-VERSION="7e55104"
-ZAP_URL="https://github.com/roadrunner2/mod-proxy-protocol"
