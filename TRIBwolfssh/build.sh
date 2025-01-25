@@ -4,5 +4,8 @@
 #
 # experimental build
 #
-env LIBS="-lsocket -lnsl" ${THOME}/build/dobuild -A -64only wolfssh-1.4.18-stable -C "--enable-sshclient"
-${THOME}/build/genpkg TRIBwolfssh wolfssh-1.4.18-stable
+# note that wolfssl doesn't provide stable libraries, bumping SONAME, so
+# this may need to be rebuilt if wolfssl is updated
+#
+env LIBS="-lsocket -lnsl" ${THOME}/build/dobuild -A -64only wolfssh-1.4.19-stable -C "--enable-sshclient"
+${THOME}/build/genpkg TRIBwolfssh wolfssh-1.4.19-stable

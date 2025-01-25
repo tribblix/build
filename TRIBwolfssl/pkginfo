@@ -1,4 +1,4 @@
 PKG="TRIBwolfssl"
 NAME="wolfSSL"
-VERSION="5.7.2.0"
+VERSION="5.7.6.0"
 ZAP_URL="https://www.wolfssl.com/"
