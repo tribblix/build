@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -46,12 +46,12 @@ case $# in
 	;;
 esac
 
-if [ ! -e "$1" ]; then
+if [ ! -e $1 ]; then
    echo "$1 not found"
    exit 1
 fi
 
-case $(uname -p) in
+case `uname -p` in
 sparc)
   ARCH64="sparcv9"
   ;;
@@ -77,8 +77,8 @@ fi
 #
 getdeps()
 {
-rpathlist=$(/usr/bin/dump -Lv "$@" 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u)
-for dep in $(/usr/bin/dump -Lv "$@" 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort -u | sed 's:\+:\\\\+:g')
+rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u`
+for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort -u | sed 's:\+:\\\\+:g'`
 do
   # split multiple directories in the RPATH here
   for rpath in ${rpathlist/:/ }
@@ -96,8 +96,8 @@ done
 #
 getlongdeps()
 {
-rpathlist=$(/usr/bin/dump -Lv "$@" 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u)
-for dep in $(/usr/bin/ldd "$@" 2>/dev/null| $EGREP / | awk '{print $1}' | sort -u | sed 's:\+:\\\\+:g')
+rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u`
+for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort -u | sed 's:\+:\\\\+:g'`
 do
   for rpath in $rpathlist
   do
@@ -113,7 +113,7 @@ done
 #
 getotherdeps()
 {
-    for file in "$@"
+    for file in $*
     do
 	case $file in
 	    *usr/versions/python-3.11/*)
@@ -134,9 +134,9 @@ getotherdeps()
 
 case $STYLE in
     'recurse')
-	(getlongdeps "$@" ; getotherdeps "$@") | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
+	(getlongdeps $* ; getotherdeps $*) | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
 	exit 0
 	;;
 esac
 
-(getdeps "$@" ; getotherdeps "$@") | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
+(getdeps $* ; getotherdeps $*) | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
