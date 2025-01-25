@@ -10,7 +10,7 @@ mkdir w
 cd w
 git clone https://github.com/seaweedfs/seaweedfs
 cd seaweedfs/weed
-env PATH=/usr/versions/go-1.22/bin:$PATH GOPATH=`pwd` gmake
+env PATH=/usr/versions/go-1.23/bin:$PATH GOPATH=`pwd` gmake
 cd ..
 #
 rm -fr /tmp/ee
