@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -fr usr/lib/perl5
 rm -f usr/lib/*/purple-2/*.la
 rm -f usr/lib/*/pidgin/*.la
