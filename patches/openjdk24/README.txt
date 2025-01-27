@@ -2,6 +2,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: fix an assert in fastdebug builds
+
 24+28, 24+29, 24+30, 24+31, 24+32, 24+33
 
 Now in rampdown. No changes.

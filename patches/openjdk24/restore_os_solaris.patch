@@ -3243,7 +3243,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +  // We are told to free resources of the argument thread,
 +  // but we can only really operate on the current thread.
-+  assert(Thread::current()->osthread() == osthread,
++  assert(Thread::current_or_null() == nullptr || Thread::current()->osthread() == osthread,
 +         "os::free_thread but not current thread");
 +
 +  // Restore caller's signal mask
