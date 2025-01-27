@@ -4,7 +4,7 @@
 #
 # CLI link
 #
-VERSION=jbang-0.119.0
+VERSION=jbang-0.123.0
 mkdir -p usr/bin
 ln -s /usr/versions/${VERSION}/bin/jbang usr/bin
 #
