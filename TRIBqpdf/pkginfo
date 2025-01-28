@@ -1,4 +1,4 @@
 PKG="TRIBqpdf"
 NAME="QPDF PDF tool and library"
-VERSION="11.9.0.0"
+VERSION="11.9.1.0"
 ZAP_URL="https://github.com/qpdf/qpdf"
