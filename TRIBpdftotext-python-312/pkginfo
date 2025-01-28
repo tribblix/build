@@ -1,0 +1,4 @@
+PKG="TRIBpdftotext-python-312"
+NAME="Python pdftotext"
+VERSION="3.0.0.0"
+ZAP_URL="https://pypi.org/project/pdftotext/"
