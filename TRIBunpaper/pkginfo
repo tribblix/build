@@ -1,0 +1,4 @@
+PKG="TRIBunpaper"
+NAME="Unpaper"
+VERSION="7.0.0.0"
+ZAP_URL="https://www.flameeyes.com/projects/unpaper"
