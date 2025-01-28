@@ -1792,3 +1792,4 @@ google_api_core-2.24.1.tar.gz f8b36f5456ab0dd99a1b693a40a31d1e7757beea380ad1b38f
 google_api_python_client-2.160.0.tar.gz a8ccafaecfa42d15d5b5c3134ced8de08380019717fc9fb1ed510ca58eca3b7e
 proto_plus-1.26.0.tar.gz 6e93d5f5ca267b54300880fff156b6a3386b3fa3f43b1da62e680fc0c586ef22
 publicsuffixlist-1.0.2.20250127.tar.gz 6b61bae2bef9dab94b8948c942c74bbadd82a9a2d9641e00e47265029ea08b98
+YAML-PP-v0.38.1.tar.gz cf5f1096af3ea5c036d838847b213a613e9a85b757962bacf508d4ad72f88f49
