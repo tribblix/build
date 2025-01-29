@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 TRIBdogpilecache-python-312 dogpile.cache-1.3.3
+${THOME}/build/pkg_pep518 -N TRIBdogpilecache-python-312 dogpile_cache-1.3.4
