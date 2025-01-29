@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-env GOPATH=`pwd` PATH=/usr/versions/go-1.22/bin:$PATH go install github.com/google/osv-scanner/cmd/osv-scanner@v1
+env GOPATH=`pwd` PATH=/usr/versions/go-1.23/bin:$PATH go install github.com/google/osv-scanner/cmd/osv-scanner@v1
 
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
