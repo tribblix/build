@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # put a wrapper in the regular path
 #
 mkdir -p usr/bin
