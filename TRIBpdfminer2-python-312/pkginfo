@@ -1,4 +1,0 @@
-PKG="TRIBpdfminer2-python-312"
-NAME="Python pdfminer2"
-VERSION="20151206.0"
-ZAP_URL="https://pypi.org/project/pdfminer2"
