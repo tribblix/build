@@ -5,4 +5,6 @@
 # depends on python
 # needs the gnureadline module
 #
-${THOME}/build/pkg_setup_py -v 312 TRIBcommix commix-3.9
+# needs a fix to make the version string compatible with setuptools
+#
+${THOME}/build/pkg_setup_py -v 312 TRIBcommix commix-4.0
