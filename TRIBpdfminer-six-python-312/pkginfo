@@ -1,0 +1,4 @@
+PKG="TRIBpdfminer-six-python-312"
+NAME="Python pdfminer.six"
+VERSION="20240706.0"
+ZAP_URL="https://pypi.org/project/pdfminer.six/"
