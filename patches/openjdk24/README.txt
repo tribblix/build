@@ -4,7 +4,7 @@ JDK 24 now that jdk23 has been branched off.
 
 Cleanup: fix an assert in fastdebug builds
 
-24+28, 24+29, 24+30, 24+31, 24+32, 24+33
+24+28, 24+29, 24+30, 24+31, 24+32, 24+33, 24+34
 
 Now in rampdown. No changes.
 
