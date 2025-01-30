@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+8
+
+Trivial patch noise.
+
 Cleanup: fix an assert in fastdebug builds
 
 25+7

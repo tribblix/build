@@ -154,7 +154,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -451,9 +451,6 @@
+@@ -452,9 +452,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_FILE_OFFSET_BITS=64"
@@ -1053,7 +1053,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -492,7 +492,7 @@
+@@ -512,7 +512,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -1557,7 +1557,7 @@
  
 --- old/src/java.base/unix/native/libjava/ProcessImpl_md.c	2020-05-20 18:01:09.319404766 -0700
 +++ new/src/java.base/unix/native/libjava/ProcessImpl_md.c	2020-05-20 18:01:08.935397393 -0700
-@@ -230,14 +230,7 @@
+@@ -229,14 +229,7 @@
  static const char*
  defaultPath(void)
  {
@@ -1573,7 +1573,7 @@
  }
  
  static const char*
-@@ -454,7 +447,7 @@
+@@ -453,7 +446,7 @@
  #endif
  
  /* vfork(2) is deprecated on Darwin */
@@ -1582,7 +1582,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -620,7 +613,7 @@
+@@ -619,7 +612,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
