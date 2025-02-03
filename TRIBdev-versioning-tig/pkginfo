@@ -1,4 +1,4 @@
 PKG="TRIBdev-versioning-tig"
 NAME="Ncurses interface to git"
-VERSION="2.5.10.0"
+VERSION="2.5.11.0"
 ZAP_URL="https://jonas.github.io/tig/"
