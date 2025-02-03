@@ -1837,3 +1837,4 @@ tig-2.5.11.tar.gz b36ef52b1a19d87257adfa9047cc3e21d6bd528bbd28458fe49003eb3e374a
 beautifulsoup4-4.13.1.tar.gz 741c8b6903a1e4ae8ba32b9c9ae7510dab7a197fdbadcf9fcdeb0891ef5ec66a
 snac2-2.70.tar.gz 53dba9a47e2166e8e22291eedcc97e5257b774eef1a60e50079ad7a0d0f045ab
 nginx-prometheus-exporter-1.4.1.tar.gz e779b59af082c6d2fdf0f0e0e06c791549aed06f5825bbb4f24f30157f7071c0
+xhost-1.0.10.tar.xz a8afd70059479c712948b895e41c35a4a8bfcede3ba2d5a4b855c88bbb725be1
