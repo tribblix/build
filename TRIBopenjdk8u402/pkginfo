@@ -1,4 +1,0 @@
-PKG="TRIBopenjdk8u402"
-NAME="OpenJDK 8u402"
-VERSION="1.8.0.402.0"
-ZAP_URL="https://openjdk.org/"
