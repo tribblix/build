@@ -1,4 +1,4 @@
 PKG="TRIBpyzmq-python-312"
 NAME="Python pyzmq"
-VERSION="26.2.0.0"
-ZAP_URL="https://pypi.org/project/pyzmq"
+VERSION="26.2.1.0"
+ZAP_URL="https://pypi.org/project/pyzmq/"
