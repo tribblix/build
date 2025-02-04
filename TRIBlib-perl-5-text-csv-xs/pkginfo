@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-text-csv-xs"
 NAME="Perl Text::CSV_XS module"
-VERSION="1.59.0"
+VERSION="1.60.0"
 ZAP_URL="https://metacpan.org/release/Text-CSV_XS"
