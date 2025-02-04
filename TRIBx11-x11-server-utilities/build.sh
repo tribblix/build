@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# the is the x86 version of the package, which supplies what OI
+# this is a merged package, which supplies what OI
 # used to in prehistoric times
 #
 # except for dispswitch, which has been split out
@@ -10,8 +10,8 @@
 
 #
 # SPARC needs
-#  env XORG_LIBS=-L/usr/lib XORG_CFLAGS=-I/usr/openwin/server/include
-# for rgb
+#  env XORG_LIBS=-L/usr/lib/sparcv9 XORG_CFLAGS=-I/usr/openwin/server/include
+# for rgb (as it's missing the xorg.pc file)
 #
 
 ${THOME}/build/dobuild -64only rgb-1.1.0 -C "--with-rgb-db-dir=/usr/lib/X11/rgb --with-rgb-db-type=ndbm"
