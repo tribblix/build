@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBjson-logger-python-312 python-json-logger-2.0.7
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 -N TRIBjson-logger-python-312 python_json_logger-3.2.1
