@@ -101,6 +101,12 @@ if [ -n "${PKGVERS}" ]; then
 fi
 
 #
+# often, the tarball name uses underscores whereas the project name might have
+# regular dashes, so convert
+#
+PNAME=${PNAME//_/-}
+
+#
 # OK, now we can create the package metadata
 #
 
