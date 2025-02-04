@@ -1,4 +1,4 @@
 PKG="TRIBimage-libexif"
 NAME="The libexif C EXIF library"
-VERSION="0.6.24.1"
+VERSION="0.6.25.0"
 ZAP_URL="https://libexif.github.io/"
