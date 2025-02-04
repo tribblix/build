@@ -18,11 +18,7 @@ cd ..
 #
 $THOME/build/unpack blackbox_exporter-0.25.0
 cd blackbox_exporter-0.25.0
-#
-# cp collector/uname_bsd.go collector/uname_solaris.go
-# and change to build on solaris
-# and add solaris to the build of collector/uname.go
-#
+
 env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.23/bin:$PATH gmake build
 cd ..
 
