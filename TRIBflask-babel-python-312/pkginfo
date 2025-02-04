@@ -1,4 +1,4 @@
 PKG="TRIBflask-babel-python-312"
-NAME="Python flask_babel"
+NAME="Python flask-babel"
 VERSION="4.0.0.0"
-ZAP_URL="https://pypi.org/project/flask_babel"
+ZAP_URL="https://pypi.org/project/flask-babel/"

@@ -1,4 +1,4 @@
 PKG="TRIBhatch-vcs-python-312"
-NAME="Python hatch_vcs"
+NAME="Python hatch-vcs"
 VERSION="0.4.0.0"
-ZAP_URL="https://pypi.org/project/hatch_vcs"
+ZAP_URL="https://pypi.org/project/hatch-vcs/"

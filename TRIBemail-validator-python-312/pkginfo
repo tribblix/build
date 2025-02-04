@@ -1,4 +1,4 @@
 PKG="TRIBemail-validator-python-312"
-NAME="Python email_validator"
+NAME="Python email-validator"
 VERSION="2.2.0.0"
-ZAP_URL="https://pypi.org/project/email_validator"
+ZAP_URL="https://pypi.org/project/email-validator/"

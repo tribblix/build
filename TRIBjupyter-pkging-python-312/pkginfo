@@ -1,4 +1,4 @@
 PKG="TRIBjupyter-pkging-python-312"
-NAME="Python jupyter_packaging"
+NAME="Python jupyter-packaging"
 VERSION="0.12.3.0"
-ZAP_URL="https://pypi.org/project/jupyter_packaging"
+ZAP_URL="https://pypi.org/project/jupyter-packaging/"
