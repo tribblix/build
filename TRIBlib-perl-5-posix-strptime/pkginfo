@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-posix-strptime"
+NAME="Perl POSIX::strptime module"
+VERSION="0.13.0"
+ZAP_URL="https://metacpan.org/pod/POSIX::strptime"
