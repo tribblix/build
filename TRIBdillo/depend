@@ -3,4 +3,5 @@ P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBlib-security-openssl
 P TRIBlib-zlib
+P TRIBlibwebp
 P TRIBx11-libx11
