@@ -1,4 +1,4 @@
 PKG="TRIBgexiv2"
 NAME="GObject wrapper for exiv2"
-VERSION="0.14.2.1"
-ZAP_URL="https://wiki.gnome.org/gexiv2"
+VERSION="0.14.3.0"
+ZAP_URL="https://download.gnome.org/sources/gexiv2/"
