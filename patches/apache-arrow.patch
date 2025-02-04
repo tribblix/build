@@ -31,7 +31,7 @@
  
    /// \brief Return true if the value is NaN
    constexpr bool is_nan() const { return (bits_ & 0x7fff) > 0x7c00; }
-@@ -166,8 +166,8 @@
+@@ -158,8 +158,8 @@
      return (lhs.bits() == rhs.bits()) || (lhs.is_zero() && rhs.is_zero());
    }
    static constexpr bool CompareLt(Float16 lhs, Float16 rhs) {
@@ -42,7 +42,7 @@
          // Both are negative
          return lhs.bits() > rhs.bits();
        } else {
-@@ -174,7 +174,7 @@
+@@ -166,7 +166,7 @@
          // Handle +/-0
          return !lhs.is_zero() || rhs.bits() != 0;
        }
