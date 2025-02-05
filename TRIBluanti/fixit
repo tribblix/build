@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+
+#
+# there's an interesting interpretation of prefix going on here
+#
+if [ -f usr/usr/bin/luanti ]; then
+    mv usr/usr/bin usr/bin
+    rmdir usr/usr
+fi

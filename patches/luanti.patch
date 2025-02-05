@@ -1,0 +1,120 @@
+--- a/src/threading/thread.cpp	Sun Nov 10 18:17:53 2024
++++ b/src/threading/thread.cpp	Tue Feb  4 18:58:00 2025
+@@ -225,6 +225,10 @@
+ 
+ 	pthread_setname_np(pthread_self(), "%s", const_cast<char*>(name.c_str()));
+ 
++#elif defined(__sun)
++
++	pthread_setname_np(pthread_self(), name.c_str());
++
+ #elif defined(__APPLE__)
+ 
+ 	pthread_setname_np(name.c_str());
+@@ -295,7 +299,7 @@
+ 	return r == 0;
+ #elif defined(__sun) || defined(sun)
+ 
+-	return processor_bind(P_LWPID, P_MYID, proc_number, NULL) == 0
++	return processor_bind(P_LWPID, P_MYID, proc_number, NULL) == 0;
+ 
+ #elif defined(_AIX)
+ 
+--- a/src/skyparams.h	Sun Nov 10 18:17:53 2024
++++ b/src/skyparams.h	Tue Feb  4 18:51:53 2025
+@@ -109,14 +109,14 @@
+ 
+ 	static const SunParams getSunDefaults()
+ 	{
+-		SunParams sun;
+-		sun.visible = true;
+-		sun.sunrise_visible = true;
+-		sun.texture = "sun.png";
+-		sun.tonemap = "sun_tonemap.png";
+-		sun.sunrise = "sunrisebg.png";
+-		sun.scale = 1;
+-		return sun;
++		SunParams solsun;
++		solsun.visible = true;
++		solsun.sunrise_visible = true;
++		solsun.texture = "sun.png";
++		solsun.tonemap = "sun_tonemap.png";
++		solsun.sunrise = "sunrisebg.png";
++		solsun.scale = 1;
++		return solsun;
+ 	}
+ 
+ 	static const MoonParams getMoonDefaults()
+--- a/src/gui/touchcontrols.cpp	Sun Nov 10 18:17:53 2024
++++ b/src/gui/touchcontrols.cpp	Tue Feb  4 19:08:08 2025
+@@ -652,7 +652,7 @@
+ 					(!m_fixed_joystick && distance_sq > touch_threshold_sq)) {
+ 				m_joystick_has_really_moved = true;
+ 
+-				m_joystick_direction = atan2(dir.X, -dir.Y);
++				m_joystick_direction = atan2((double)dir.X, -(double)dir.Y);
+ 
+ 				const double distance = sqrt(distance_sq);
+ 				if (distance <= m_touchscreen_threshold) {
+--- a/src/network/clientpackethandler.cpp	Sun Nov 10 18:17:53 2024
++++ b/src/network/clientpackethandler.cpp	Tue Feb  4 19:11:36 2025
+@@ -1327,7 +1327,7 @@
+ 		} catch (...) {}
+ 
+ 		// Use default skybox settings:
+-		SunParams sun = SkyboxDefaults::getSunDefaults();
++		SunParams solsun = SkyboxDefaults::getSunDefaults();
+ 		MoonParams moon = SkyboxDefaults::getMoonDefaults();
+ 		StarParams stars = SkyboxDefaults::getStarDefaults();
+ 
+@@ -1338,8 +1338,8 @@
+ 			skybox.fog_moon_tint = video::SColor(255, 255, 255, 255);
+ 			skybox.fog_sun_tint = video::SColor(255, 255, 255, 255);
+ 		} else {
+-			sun.visible = false;
+-			sun.sunrise_visible = false;
++			solsun.visible = false;
++			solsun.sunrise_visible = false;
+ 			moon.visible = false;
+ 			stars.visible = false;
+ 		}
+@@ -1352,7 +1352,7 @@
+ 
+ 		ClientEvent *sun_event = new ClientEvent();
+ 		sun_event->type = CE_SET_SUN;
+-		sun_event->sun_params = new SunParams(sun);
++		sun_event->sun_params = new SunParams(solsun);
+ 		m_client_event_queue.push(sun_event);
+ 
+ 		ClientEvent *moon_event = new ClientEvent();
+@@ -1406,14 +1406,14 @@
+ 
+ void Client::handleCommand_HudSetSun(NetworkPacket *pkt)
+ {
+-	SunParams sun;
++	SunParams solsun;
+ 
+-	*pkt >> sun.visible >> sun.texture>> sun.tonemap
+-		>> sun.sunrise >> sun.sunrise_visible >> sun.scale;
++	*pkt >> solsun.visible >> solsun.texture>> solsun.tonemap
++		>> solsun.sunrise >> solsun.sunrise_visible >> solsun.scale;
+ 
+ 	ClientEvent *event = new ClientEvent();
+ 	event->type        = CE_SET_SUN;
+-	event->sun_params  = new SunParams(sun);
++	event->sun_params  = new SunParams(solsun);
+ 	m_client_event_queue.push(event);
+ }
+ 
+--- a/src/porting.cpp	Sun Nov 10 18:17:53 2024
++++ b/src/porting.cpp	Tue Feb  4 19:18:15 2025
+@@ -14,6 +14,9 @@
+ 	#include <sys/types.h>
+ 	#include <sys/sysctl.h>
+ 	extern char **environ;
++#elif defined(__sun)
++	#include <spawn.h>
++	extern char **environ;
+ #elif defined(_WIN32)
+ 	#include <windows.h>
+ 	#include <wincrypt.h>

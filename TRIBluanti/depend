@@ -1,0 +1,14 @@
+P TRIBcompress-zstd
+P TRIBcurl
+P TRIBdatabase-sqlite-3
+P TRIBgnu-libiconv
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBlib-gmp
+P TRIBlib-zlib
+P TRIBlibvorbis
+P TRIBncurses
+P TRIBopenal
+P TRIBsys-lib-freetype-2
+P TRIBx11-lib-mesa
+P TRIBx11-libx11
