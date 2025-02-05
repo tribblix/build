@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-anyevent-i3"
 NAME="Perl AnyEvent-I3 module"
 VERSION="4.24.0"
-ZAP_URL="https://i3wm.org"
+ZAP_URL="https://i3wm.org/"
