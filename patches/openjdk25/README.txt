@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: drop 2 unnecessary patches
+patch-src_hotspot_share_gc_g1_g1Analytics.cpp
+patch-make_autoconf_jdk-options.m4
+
 25+8
 
 Trivial patch noise.
