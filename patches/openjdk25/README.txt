@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Fix: align default_stack_size() with other platforms
+
 Cleanup: remove Solaris 2.6 libthread check
 
 Cleanup: remove print_libversion_info(), it's really a no-op as

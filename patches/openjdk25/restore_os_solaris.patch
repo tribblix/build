@@ -3088,8 +3088,8 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +// return default stack size for thr_type
 +size_t os::Posix::default_stack_size(os::ThreadType thr_type) {
-+  // default stack size when not specified by caller is 1M (2M for LP64)
-+  size_t s = (BytesPerWord >> 2) * K * K;
++  // default stack size (compiler thread needs larger stack)
++  size_t s = (thr_type == os::compiler_thread ? 4 * M : 1 * M);
 +  return s;
 +}
 +
