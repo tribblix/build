@@ -2410,7 +2410,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-09-16 14:41:33.968071187 +0100
-@@ -0,0 +1,2925 @@
+@@ -0,0 +1,2915 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -4771,17 +4771,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +}
 +
 +void os::Solaris::libthread_init() {
-+  address func = (address)dlsym(RTLD_DEFAULT, "_thr_suspend_allmutators");
-+
 +  lwp_priocntl_init();
-+
-+  // RTLD_DEFAULT was not defined on some early versions of 5.5.1
-+  if (func == NULL) {
-+    func = (address) dlsym(RTLD_NEXT, "_thr_suspend_allmutators");
-+    // Guarantee that this VM is running on an new enough OS (5.6 or
-+    // later) that it will have a new enough libthread.so.
-+    guarantee(func != NULL, "libthread.so is too old.");
-+  }
 +
 +  int size;
 +  void (*handler_info_func)(address *, int *);
