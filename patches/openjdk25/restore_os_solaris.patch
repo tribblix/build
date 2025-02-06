@@ -2410,7 +2410,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-09-16 14:41:33.968071187 +0100
-@@ -0,0 +1,2934 @@
+@@ -0,0 +1,2925 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -3641,8 +3641,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  os::Solaris::print_distro_info(st);
 +
 +  os::Posix::print_uname_info(st);
-+
-+  os::Solaris::print_libversion_info(st);
 +}
 +
 +void os::print_os_info(outputStream* st) {
@@ -3653,8 +3651,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  os::Posix::print_uname_info(st);
 +
 +  os::Posix::print_uptime_info(st);
-+
-+  os::Solaris::print_libversion_info(st);
 +
 +  os::Posix::print_rlimit_info(st);
 +
@@ -3686,11 +3682,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    }
 +    fclose(fp);
 +  }
-+}
-+
-+void os::Solaris::print_libversion_info(outputStream* st) {
-+  st->print("  (T2 libthread)");
-+  st->cr();
 +}
 +
 +static bool check_addr0(outputStream* st) {
@@ -5348,7 +5339,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 --- /tmp/a/os_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.hpp	2024-09-16 14:41:33.968210379 +0100
-@@ -0,0 +1,201 @@
+@@ -0,0 +1,200 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5481,7 +5472,6 @@ diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 +  static address _main_stack_base;
 +
 +  static void print_distro_info(outputStream* st);
-+  static void print_libversion_info(outputStream* st);
 +
 + public:
 +  static void libthread_init();
