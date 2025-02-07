@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+9
+
+Trivial patch noise.
+
 Fix: align default_stack_size() with other platforms
 
 Cleanup: remove Solaris 2.6 libthread check

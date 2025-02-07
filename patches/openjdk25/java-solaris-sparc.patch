@@ -26,7 +26,7 @@
  src/utils/IdealGraphVisualizer : hotspot/src/share/tools/IdealGraphVisualizer
 --- old/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:24.212234589 -0700
 +++ new/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:23.828227215 -0700
-@@ -168,8 +168,6 @@
+@@ -169,8 +169,6 @@
      OPENJDK_TARGET_OS := linux
    else ifeq ($(UNAME_OS), Darwin)
      OPENJDK_TARGET_OS := macosx
@@ -35,7 +35,7 @@
    else
      OPENJDK_TARGET_OS := $(UNAME_OS)
    endif
-@@ -182,28 +180,15 @@
+@@ -183,28 +181,15 @@
  # Assume little endian unless otherwise specified
  OPENJDK_TARGET_CPU_ENDIAN := little
  
@@ -72,7 +72,7 @@
  endif
  
  OPENJDK_TARGET_CPU_ARCH := $(OPENJDK_TARGET_CPU)
-@@ -228,11 +213,6 @@
+@@ -229,11 +214,6 @@
  else ifeq ($(OPENJDK_TARGET_OS), macosx)
    NUM_CORES := $(shell /usr/sbin/sysctl -n hw.ncpu)
    MEMORY_SIZE := $(shell $(EXPR) `/usr/sbin/sysctl -n hw.memsize` / 1024 / 1024)
@@ -429,7 +429,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -176,7 +173,6 @@
+@@ -174,7 +171,6 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
