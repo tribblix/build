@@ -2,6 +2,14 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24+35
+
+Now in rampdown. No changes.
+
+Cleanup: drop 2 unnecessary patches
+patch-src_hotspot_share_gc_g1_g1Analytics.cpp
+patch-make_autoconf_jdk-options.m4
+
 Fix: align default_stack_size() with other platforms
 
 Cleanup: remove Solaris 2.6 libthread check
