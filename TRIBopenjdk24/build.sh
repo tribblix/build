@@ -7,8 +7,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-24-34
-cd jdk-jdk-24-34
+${THOME}/build/unpack jdk-jdk-24-36
+cd jdk-jdk-24-36
 
 #
 # jdk24 needs autoconf installed
@@ -48,8 +48,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # ./bin/java -version
 #
 # openjdk version "24-internal" 2025-03-18
-# OpenJDK Runtime Environment (build 24-internal-adhoc.ptribble.jdk-jdk-24-34)
-# OpenJDK 64-Bit Server VM (build 24-internal-adhoc.ptribble.jdk-jdk-24-34, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 24-internal-adhoc.ptribble.jdk-jdk-24-36)
+# OpenJDK 64-Bit Server VM (build 24-internal-adhoc.ptribble.jdk-jdk-24-36, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

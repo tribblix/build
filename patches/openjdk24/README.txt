@@ -2,7 +2,7 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
-24+35
+24+35, 24+36
 
 Now in rampdown. No changes.
 
