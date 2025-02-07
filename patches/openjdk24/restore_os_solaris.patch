@@ -2413,7 +2413,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-09-16 14:41:33.968071187 +0100
-@@ -0,0 +1,2937 @@
+@@ -0,0 +1,2918 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -3092,8 +3092,8 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +// return default stack size for thr_type
 +size_t os::Posix::default_stack_size(os::ThreadType thr_type) {
-+  // default stack size when not specified by caller is 1M (2M for LP64)
-+  size_t s = (BytesPerWord >> 2) * K * K;
++  // default stack size (compiler thread needs larger stack)
++  size_t s = (thr_type == os::compiler_thread ? 4 * M : 1 * M);
 +  return s;
 +}
 +
@@ -3645,8 +3645,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  os::Solaris::print_distro_info(st);
 +
 +  os::Posix::print_uname_info(st);
-+
-+  os::Solaris::print_libversion_info(st);
 +}
 +
 +void os::print_os_info(outputStream* st) {
@@ -3657,8 +3655,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  os::Posix::print_uname_info(st);
 +
 +  os::Posix::print_uptime_info(st);
-+
-+  os::Solaris::print_libversion_info(st);
 +
 +  os::Posix::print_rlimit_info(st);
 +
@@ -3690,11 +3686,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    }
 +    fclose(fp);
 +  }
-+}
-+
-+void os::Solaris::print_libversion_info(outputStream* st) {
-+  st->print("  (T2 libthread)");
-+  st->cr();
 +}
 +
 +static bool check_addr0(outputStream* st) {
@@ -4786,17 +4777,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +}
 +
 +void os::Solaris::libthread_init() {
-+  address func = (address)dlsym(RTLD_DEFAULT, "_thr_suspend_allmutators");
-+
 +  lwp_priocntl_init();
-+
-+  // RTLD_DEFAULT was not defined on some early versions of 5.5.1
-+  if (func == NULL) {
-+    func = (address) dlsym(RTLD_NEXT, "_thr_suspend_allmutators");
-+    // Guarantee that this VM is running on an new enough OS (5.6 or
-+    // later) that it will have a new enough libthread.so.
-+    guarantee(func != NULL, "libthread.so is too old.");
-+  }
 +
 +  int size;
 +  void (*handler_info_func)(address *, int *);
@@ -5354,7 +5335,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 --- /tmp/a/os_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.hpp	2024-09-16 14:41:33.968210379 +0100
-@@ -0,0 +1,201 @@
+@@ -0,0 +1,200 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5487,7 +5468,6 @@ diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 +  static address _main_stack_base;
 +
 +  static void print_distro_info(outputStream* st);
-+  static void print_libversion_info(outputStream* st);
 +
 + public:
 +  static void libthread_init();
