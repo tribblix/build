@@ -6,6 +6,6 @@
 # declare the ones we already have available
 #
 # [cmdline] argcomplete progressbar
-# also pypdf defusedxml distro
+# also pypdf defusedxml distro python-debian
 #
-${THOME}/build/pkg_setup_py TRIBdiffoscope-python-312 diffoscope-287
+${THOME}/build/pkg_setup_py TRIBdiffoscope-python-312 diffoscope-288
