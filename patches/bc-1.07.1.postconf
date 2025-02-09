@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# the Makefile here is plain wrong, as LINK outputs to the target
-#
-gsed -i 's:$(LINK) -o:$(CCLD) -o:' bc/Makefile
