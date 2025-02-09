@@ -1,4 +1,4 @@
 PKG="TRIBlibvips"
 NAME="Fast image processing library"
-VERSION="8.15.2.0"
+VERSION="8.16.0.0"
 ZAP_URL="https://github.com/libvips/libvips"
