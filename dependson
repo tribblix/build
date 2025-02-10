@@ -15,16 +15,17 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
 # for a given package, lists its consumers, whether those are run-time
-# or build-time dependencies
+# or build-time dependencies, or overlays it's a member of
 #
 
 THOME=${THOME:-/packages/localsrc/Tribblix}
 BDIR=${THOME}/build
+OVDIR=${THOME}/overlays
 PDIR="/var/sadm/pkg"
 
 STATUS=0
@@ -75,6 +76,12 @@ do
 	do
 	    pkg=${dep%%/*}
 	    echo "  build-incompatible ${pkg} ($(install_status "$pkg"))"
+	done
+	grep -lx "$dir" ${OVDIR}/*.pkgs | while read -r dep
+	do
+	    pkg=${dep%.pkgs}
+	    pkg=${pkg##*/}
+	    echo "  member of overlay ${pkg}"
 	done
     else
 	echo "No such package $dir"
