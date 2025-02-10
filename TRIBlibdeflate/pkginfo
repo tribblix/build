@@ -1,4 +1,4 @@
 PKG="TRIBlibdeflate"
 NAME="libdeflate"
-VERSION="1.19.0"
+VERSION="1.23.0"
 ZAP_URL="https://github.com/ebiggers/libdeflate"
