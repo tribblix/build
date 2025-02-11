@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # pinned at 24.1.0 due to containerd/console
 #
 env GOPATH=`pwd` go install github.com/antonmedv/fx@24.1.0
