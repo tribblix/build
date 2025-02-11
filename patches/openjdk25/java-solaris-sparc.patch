@@ -5132,7 +5132,7 @@
 -}
 --- old/make/hotspot/symbols/symbols-solaris	2020-05-20 18:08:18.759650332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,25 +0,0 @@
+@@ -1,24 +0,0 @@
 -#
 -# Copyright (c) 2016, Oracle and/or its affiliates. All rights reserved.
 -# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5157,7 +5157,6 @@
 -#
 -
 -JVM_handle_solaris_signal
--sysThreadAvailableStackWithSlack
 --- old/make/hotspot/symbols/symbols-solaris-dtrace-compiler1	2020-05-20 18:08:19.459663773 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,34 +0,0 @@
