@@ -4,19 +4,21 @@
 #
 
 #
-$THOME/build/unpack difftastic-0.60.0
-cd difftastic-0.60.0
+$THOME/build/unpack difftastic-0.62.0
+cd difftastic-0.62.0
 #
-# -- release took hours without finishing, so don't
+# in the past --release took hours without finishing
 #
-cargo build
+cargo build --release
 
 rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/bin
 mkdir -p /tmp/ll/usr/share/difftastic
+mkdir -p /tmp/ll/usr/share/man/man1
 
-ginstall -s -Dm755 ./target/debug/difft -t /tmp/ll/usr/bin
+ginstall -s -Dm755 ./target/release/difft -t /tmp/ll/usr/bin
 cp LICENSE* README.md /tmp/ll/usr/share/difftastic
+cp difft.1 /tmp/ll/usr/share/man/man1
 cd ..
 
 ${THOME}/build/create_pkg TRIBdifftastic /tmp/ll
