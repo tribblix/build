@@ -595,7 +595,7 @@ diff -urN /tmp/a/orderAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/or
 diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
 --- /tmp/a/os_solaris_x86.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2024-09-16 14:41:34.008006119 +0100
-@@ -0,0 +1,590 @@
+@@ -0,0 +1,523 @@
 +/*
 + * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -694,22 +694,9 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +size_t os::_vm_internal_thread_min_stack_allowed = 64 * K;
 +#endif // _LP64
 +
-+#ifdef AMD64
 +#define REG_SP REG_RSP
 +#define REG_PC REG_RIP
 +#define REG_FP REG_RBP
-+#else
-+#define REG_SP UESP
-+#define REG_PC EIP
-+#define REG_FP EBP
-+// 4900493 counter to prevent runaway LDTR refresh attempt
-+
-+static volatile int ldtr_refresh = 0;
-+// the libthread instruction that faults because of the stale LDTR
-+
-+static const unsigned char movlfs[] = { 0x8e, 0xe0    // movl %eax,%fs
-+                       };
-+#endif // AMD64
 +
 +char* os::non_memory_address_word() {
 +  // Must never look like an address returned by reserve_memory,
@@ -940,34 +927,6 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +        // integer divide by zero
 +        stub = SharedRuntime::continuation_for_implicit_exception(thread, pc, SharedRuntime::IMPLICIT_DIVIDE_BY_ZERO);
 +      }
-+#ifndef AMD64
-+      else if (sig == SIGFPE && info->si_code == FPE_FLTDIV) {
-+        // floating-point divide by zero
-+        stub = SharedRuntime::continuation_for_implicit_exception(thread, pc, SharedRuntime::IMPLICIT_DIVIDE_BY_ZERO);
-+      }
-+      else if (sig == SIGFPE && info->si_code == FPE_FLTINV) {
-+        // The encoding of D2I in i486.ad can cause an exception prior
-+        // to the fist instruction if there was an invalid operation
-+        // pending. We want to dismiss that exception. From the win_32
-+        // side it also seems that if it really was the fist causing
-+        // the exception that we do the d2i by hand with different
-+        // rounding. Seems kind of weird. QQQ TODO
-+        // Note that we take the exception at the NEXT floating point instruction.
-+        if (pc[0] == 0xDB) {
-+            assert(pc[0] == 0xDB, "not a FIST opcode");
-+            assert(pc[1] == 0x14, "not a FIST opcode");
-+            assert(pc[2] == 0x24, "not a FIST opcode");
-+            return true;
-+        } else {
-+            assert(pc[-3] == 0xDB, "not an flt invalid opcode");
-+            assert(pc[-2] == 0x14, "not an flt invalid opcode");
-+            assert(pc[-1] == 0x24, "not an flt invalid opcode");
-+        }
-+      }
-+      else if (sig == SIGFPE ) {
-+        tty->print_cr("caught SIGFPE, info 0x%x.", info->si_code);
-+      }
-+#endif // !AMD64
 +
 +        // QQQ It doesn't seem that we need to do this on x86 because we should be able
 +        // to return properly from the handler without this extra stuff on the back side.
@@ -1082,7 +1041,6 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +
 +  const ucontext_t *uc = (const ucontext_t*)context;
 +  st->print_cr("Registers:");
-+#ifdef AMD64
 +  st->print(  "RAX=" INTPTR_FORMAT, uc->uc_mcontext.gregs[REG_RAX]);
 +  st->print(", RBX=" INTPTR_FORMAT, uc->uc_mcontext.gregs[REG_RBX]);
 +  st->print(", RCX=" INTPTR_FORMAT, uc->uc_mcontext.gregs[REG_RCX]);
@@ -1105,26 +1063,12 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +  st->cr();
 +  st->print(  "RIP=" INTPTR_FORMAT, uc->uc_mcontext.gregs[REG_RIP]);
 +  st->print(", RFLAGS=" INTPTR_FORMAT, uc->uc_mcontext.gregs[REG_RFL]);
-+#else
-+  st->print(  "EAX=" INTPTR_FORMAT, uc->uc_mcontext.gregs[EAX]);
-+  st->print(", EBX=" INTPTR_FORMAT, uc->uc_mcontext.gregs[EBX]);
-+  st->print(", ECX=" INTPTR_FORMAT, uc->uc_mcontext.gregs[ECX]);
-+  st->print(", EDX=" INTPTR_FORMAT, uc->uc_mcontext.gregs[EDX]);
-+  st->cr();
-+  st->print(  "ESP=" INTPTR_FORMAT, uc->uc_mcontext.gregs[UESP]);
-+  st->print(", EBP=" INTPTR_FORMAT, uc->uc_mcontext.gregs[EBP]);
-+  st->print(", ESI=" INTPTR_FORMAT, uc->uc_mcontext.gregs[ESI]);
-+  st->print(", EDI=" INTPTR_FORMAT, uc->uc_mcontext.gregs[EDI]);
-+  st->cr();
-+  st->print(  "EIP=" INTPTR_FORMAT, uc->uc_mcontext.gregs[EIP]);
-+  st->print(", EFLAGS=" INTPTR_FORMAT, uc->uc_mcontext.gregs[EFL]);
-+#endif // AMD64
 +  st->cr();
 +  st->cr();
 +}
 +
 +void os::print_register_info(outputStream *st, const void *context, int& continuation) {
-+  const int register_count = AMD64_ONLY(16) NOT_AMD64(8);
++  const int register_count = 16;
 +  int n = continuation;
 +  assert(n >= 0 && n <= register_count, "Invalid continuation value");
 +  if (context == nullptr || n == register_count) {
@@ -1137,7 +1081,6 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +    continuation = n + 1;
 +# define CASE_PRINT_REG(n, str, id) case n: st->print(str); print_location(st, uc->uc_mcontext.gregs[REG_##id]);
 +    switch (n) {
-+#ifdef AMD64
 +    CASE_PRINT_REG( 0, "RAX=", RAX); break;
 +    CASE_PRINT_REG( 1, "RBX=", RBX); break;
 +    CASE_PRINT_REG( 2, "RCX=", RCX); break;
@@ -1154,16 +1097,6 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +    CASE_PRINT_REG(13, "R13=", R13); break;
 +    CASE_PRINT_REG(14, "R14=", R14); break;
 +    CASE_PRINT_REG(15, "R15=", R15); break;
-+#else
-+    CASE_PRINT_REG(0, "EAX=", EAX); break;
-+    CASE_PRINT_REG(1, "EBX=", EBX); break;
-+    CASE_PRINT_REG(2, "ECX=", ECX); break;
-+    CASE_PRINT_REG(3, "EDX=", EDX); break;
-+    CASE_PRINT_REG(4, "ESP=", ESP); break;
-+    CASE_PRINT_REG(5, "EBP=", EBP); break;
-+    CASE_PRINT_REG(6, "ESI=", ESI); break;
-+    CASE_PRINT_REG(7, "EDI=", EDI); break;
-+#endif // AMD64
 +    }
 +# undef CASE_PRINT_REG
 +    ++n;
@@ -1189,7 +1122,7 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 diff -urN /tmp/a/os_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.hpp
 --- /tmp/a/os_solaris_x86.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.hpp	2024-09-16 14:41:33.995588707 +0100
-@@ -0,0 +1,57 @@
+@@ -0,0 +1,43 @@
 +/*
 + * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1220,21 +1153,7 @@ diff -urN /tmp/a/os_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +  //
 +  // NOTE: we are back in class os here, not Solaris
 +  //
-+#ifdef AMD64
 +  static void setup_fpu() {}
-+#else
-+  static int32_t  (*atomic_xchg_func)        (int32_t,  volatile int32_t*);
-+  static int32_t  (*atomic_cmpxchg_func)     (int32_t,  volatile int32_t*, int32_t);
-+  static int64_t  (*atomic_cmpxchg_long_func)(int64_t,  volatile int64_t*, int64_t);
-+  static int32_t  (*atomic_add_func)         (int32_t,  volatile int32_t*);
-+
-+  static int32_t  atomic_xchg_bootstrap        (int32_t,  volatile int32_t*);
-+  static int32_t  atomic_cmpxchg_bootstrap     (int32_t,  volatile int32_t*, int32_t);
-+  static int64_t  atomic_cmpxchg_long_bootstrap(int64_t,  volatile int64_t*, int64_t);
-+  static int32_t  atomic_add_bootstrap         (int32_t,  volatile int32_t*);
-+
-+  static void setup_fpu();
-+#endif // AMD64
 +
 +  static juint cpu_microcode_revision();
 +
@@ -1293,7 +1212,7 @@ diff -urN /tmp/a/os_solaris_x86.inline.hpp b/src/hotspot/os_cpu/solaris_x86/os_s
 diff -urN /tmp/a/prefetch_solaris_x86.inline.hpp b/src/hotspot/os_cpu/solaris_x86/prefetch_solaris_x86.inline.hpp
 --- /tmp/a/prefetch_solaris_x86.inline.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os_cpu/solaris_x86/prefetch_solaris_x86.inline.hpp	2024-09-16 14:41:33.969397130 +0100
-@@ -0,0 +1,42 @@
+@@ -0,0 +1,38 @@
 +/*
 + * Copyright (c) 2003, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1324,15 +1243,11 @@ diff -urN /tmp/a/prefetch_solaris_x86.inline.hpp b/src/hotspot/os_cpu/solaris_x8
 +#include "runtime/prefetch.hpp"
 +
 +inline void Prefetch::read (const void *loc, intx interval) {
-+#ifdef AMD64
 +  __asm__ ("prefetcht0 (%0,%1,1)" : : "r" (loc), "r" (interval));
-+#endif // AMD64
 +}
 +
 +inline void Prefetch::write(void *loc, intx interval) {
-+#ifdef AMD64
 +  __asm__ ("prefetcht0 (%0,%1,1)" : : "r" (loc), "r" (interval));
-+#endif // AMD64
 +}
 +
 +#endif // OS_CPU_SOLARIS_X86_PREFETCH_SOLARIS_X86_INLINE_HPP

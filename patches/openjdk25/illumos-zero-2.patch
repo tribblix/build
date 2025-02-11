@@ -658,7 +658,7 @@ diff -ur -N /tmp/g/os_solaris_zero.cpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 diff -ur -N /tmp/g/os_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.hpp
 --- /tmp/g/os_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/os_solaris_zero.hpp	2020-09-01 22:01:25.502220121 +0000
-@@ -0,0 +1,62 @@
+@@ -0,0 +1,48 @@
 +/*
 + * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -689,21 +689,7 @@ diff -ur -N /tmp/g/os_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/os_sola
 +  //
 +  // NOTE: we are back in class os here, not Solaris
 +  //
-+#ifdef AMD64
 +  static void setup_fpu() {}
-+#else
-+  static int32_t  (*atomic_xchg_func)        (int32_t,  volatile int32_t*);
-+  static int32_t  (*atomic_cmpxchg_func)     (int32_t,  volatile int32_t*, int32_t);
-+  static int64_t  (*atomic_cmpxchg_long_func)(int64_t,  volatile int64_t*, int64_t);
-+  static int32_t  (*atomic_add_func)         (int32_t,  volatile int32_t*);
-+
-+  static int32_t  atomic_xchg_bootstrap        (int32_t,  volatile int32_t*);
-+  static int32_t  atomic_cmpxchg_bootstrap     (int32_t,  volatile int32_t*, int32_t);
-+  static int64_t  atomic_cmpxchg_long_bootstrap(int64_t,  volatile int64_t*, int64_t);
-+  static int32_t  atomic_add_bootstrap         (int32_t,  volatile int32_t*);
-+
-+  static void setup_fpu() {}
-+#endif // AMD64
 +
 +  static juint cpu_microcode_revision();
 +

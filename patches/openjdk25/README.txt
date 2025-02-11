@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Remove 32-bit x86 paths.
+
 25+9
 
 Trivial patch noise.
