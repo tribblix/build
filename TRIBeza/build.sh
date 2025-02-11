@@ -6,7 +6,7 @@
 #
 git clone https://github.com/eza-community/eza
 cd eza
-git checkout v0.20.10
+git checkout v0.20.20
 env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --release
 
 rm -fr /tmp/ll
