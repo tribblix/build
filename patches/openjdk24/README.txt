@@ -2,6 +2,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: configure by forcing LOCALE to /bin/true, rather than setting
+SORT. This falls back to the C locale, which works on both illumos and
+Solaris 11, unlike the SORT fix which only works on illumos.
+
 Cleanup: Remove 32-bit x86 paths.
 
 24+35, 24+36
@@ -226,7 +230,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-source-date=current \
 --with-jobs=4 \
 DATE=/usr/gnu/bin/date \
-SORT=/usr/gnu/bin/sort \
+LOCALE=/bin/true \
 STRIP=/usr/gnu/bin/strip
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images

@@ -19,6 +19,9 @@ zap install autoconf
 # looks like dtrace is busted, illumos and Solaris have diverged
 # enough to trip it up, so --enable-dtrace=no
 #
+# LOCALE so locale detection fails and we correctly fall back to
+# the C locale, so that sort doesn't fail
+#
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
 #
@@ -36,7 +39,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-source-date=current \
 --with-jobs=4 \
 DATE=/usr/gnu/bin/date \
-SORT=/usr/gnu/bin/sort \
+LOCALE=/bin/true \
 STRIP=/usr/gnu/bin/strip
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all

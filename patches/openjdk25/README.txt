@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: configure by forcing LOCALE to /bin/true, rather than setting
+SORT. This falls back to the C locale, which works on both illumos and
+Solaris 11, unlike the SORT fix which only works on illumos.
+
 Cleanup: Remove 32-bit x86 paths.
 
 25+9
@@ -76,7 +80,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-source-date=current \
 --with-jobs=4 \
 DATE=/usr/gnu/bin/date \
-SORT=/usr/gnu/bin/sort \
+LOCALE=/bin/true \
 STRIP=/usr/gnu/bin/strip
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images
