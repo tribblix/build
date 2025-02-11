@@ -1,0 +1,4 @@
+PKG="TRIBblix-postgis17"
+NAME="PostGIS for PostgreSQL 17"
+VERSION="3.5.2.0"
+ZAP_URL="https://postgis.net/"
