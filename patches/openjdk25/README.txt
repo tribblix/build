@@ -4,6 +4,9 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Remove Execution protection violation code, which was only
+for 32-bit, guarded on other platforms, and disabled by default.
+
 Cleanup: configure by forcing LOCALE to /bin/true, rather than setting
 SORT. This falls back to the C locale, which works on both illumos and
 Solaris 11, unlike the SORT fix which only works on illumos.

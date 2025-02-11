@@ -2,6 +2,9 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: Remove Execution protection violation code, which was only
+for 32-bit, guarded on other platforms, and disabled by default.
+
 Cleanup: configure by forcing LOCALE to /bin/true, rather than setting
 SORT. This falls back to the C locale, which works on both illumos and
 Solaris 11, unlike the SORT fix which only works on illumos.

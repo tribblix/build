@@ -593,7 +593,7 @@ diff -urN /tmp/a/orderAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/or
 diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
 --- /tmp/a/os_solaris_x86.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2024-09-16 14:41:34.008006119 +0100
-@@ -0,0 +1,522 @@
+@@ -0,0 +1,447 @@
 +/*
 + * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -941,81 +941,6 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +      address addr = JNI_FastGetField::find_slowcase_pc(pc);
 +      if (addr != (address)-1) {
 +        stub = addr;
-+      }
-+    }
-+  }
-+
-+  // Execution protection violation
-+  //
-+  // Preventative code for future versions of Solaris which may
-+  // enable execution protection when running the 32-bit VM on AMD64.
-+  //
-+  // This should be kept as the last step in the triage.  We don't
-+  // have a dedicated trap number for a no-execute fault, so be
-+  // conservative and allow other handlers the first shot.
-+  //
-+  // Note: We don't test that info->si_code == SEGV_ACCERR here.
-+  // this si_code is so generic that it is almost meaningless; and
-+  // the si_code for this condition may change in the future.
-+  // Furthermore, a false-positive should be harmless.
-+  if (UnguardOnExecutionViolation > 0 &&
-+      (sig == SIGSEGV || sig == SIGBUS) &&
-+      uc->uc_mcontext.gregs[TRAPNO] == T_PGFLT) {  // page fault
-+    int page_size = os::vm_page_size();
-+    address addr = (address) info->si_addr;
-+    address pc = (address) uc->uc_mcontext.gregs[REG_PC];
-+    // Make sure the pc and the faulting address are sane.
-+    //
-+    // If an instruction spans a page boundary, and the page containing
-+    // the beginning of the instruction is executable but the following
-+    // page is not, the pc and the faulting address might be slightly
-+    // different - we still want to unguard the 2nd page in this case.
-+    //
-+    // 15 bytes seems to be a (very) safe value for max instruction size.
-+    bool pc_is_near_addr =
-+      (pointer_delta((void*) addr, (void*) pc, sizeof(char)) < 15);
-+    bool instr_spans_page_boundary =
-+      (align_down((intptr_t) pc ^ (intptr_t) addr,
-+                       (intptr_t) page_size) > 0);
-+
-+    if (pc == addr || (pc_is_near_addr && instr_spans_page_boundary)) {
-+      static volatile address last_addr =
-+        (address) os::non_memory_address_word();
-+
-+      // In conservative mode, don't unguard unless the address is in the VM
-+      if (addr != last_addr &&
-+          (UnguardOnExecutionViolation > 1 || os::address_is_in_vm(addr))) {
-+
-+        // Make memory rwx and retry
-+        address page_start = align_down(addr, page_size);
-+        bool res = os::protect_memory((char*) page_start, page_size,
-+                                      os::MEM_PROT_RWX);
-+
-+        log_debug(os)("Execution protection violation "
-+                      "at " INTPTR_FORMAT
-+                      ", unguarding " INTPTR_FORMAT ": %s, errno=%d", p2i(addr),
-+                      p2i(page_start), (res ? "success" : "failed"), errno);
-+        stub = pc;
-+
-+        // Set last_addr so if we fault again at the same address, we don't end
-+        // up in an endless loop.
-+        //
-+        // There are two potential complications here.  Two threads trapping at
-+        // the same address at the same time could cause one of the threads to
-+        // think it already unguarded, and abort the VM.  Likely very rare.
-+        //
-+        // The other race involves two threads alternately trapping at
-+        // different addresses and failing to unguard the page, resulting in
-+        // an endless loop.  This condition is probably even more unlikely than
-+        // the first.
-+        //
-+        // Although both cases could be avoided by using locks or thread local
-+        // last_addr, these solutions are unnecessary complication: this
-+        // handler is a best-effort safety net, not a complete solution.  It is
-+        // disabled by default and should only be used as a workaround in case
-+        // we missed any no-execute-unsafe VM code.
-+
-+        last_addr = addr;
 +      }
 +    }
 +  }
