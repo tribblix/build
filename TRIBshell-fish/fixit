@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # assumes gnu find
 #
 gsed -i s:find:/usr/gnu/bin/find: usr/share/fish/functions/__fish_print_commands.fish

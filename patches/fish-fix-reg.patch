@@ -18,7 +18,7 @@ We need to rename the regular file constant in order to prevent a gcc compiler e
      whiteout,  // whiteout (from BSD)
 --- fish-3.6.0/src/wutil.cpp.orig	2023-01-08 10:47:17.199812493 +0000
 +++ fish-3.6.0/src/wutil.cpp	2023-01-08 10:48:38.986129968 +0000
-@@ -78,7 +78,7 @@
+@@ -71,7 +71,7 @@
          case DT_BLK:
              return dir_entry_type_t::blk;
          case DT_REG:
@@ -27,7 +27,7 @@ We need to rename the regular file constant in order to prevent a gcc compiler e
          case DT_LNK:
              return dir_entry_type_t::lnk;
          case DT_SOCK:
-@@ -106,7 +106,7 @@
+@@ -99,7 +99,7 @@
          case S_IFBLK:
              return dir_entry_type_t::blk;
          case S_IFREG:
@@ -38,7 +38,7 @@ We need to rename the regular file constant in order to prevent a gcc compiler e
          case S_IFSOCK:
 --- fish-3.6.0/src/fish_tests.cpp.orig	2023-01-07 15:12:25.000000000 +0000
 +++ fish-3.6.0/src/fish_tests.cpp	2023-01-08 10:49:07.581582097 +0000
-@@ -1755,9 +1755,9 @@
+@@ -1748,9 +1748,9 @@
          if (entry->name == dirname) {
              expected = dir_entry_type_t::dir;
          } else if (entry->name == regname) {
@@ -50,3 +50,14 @@ We need to rename the regular file constant in order to prevent a gcc compiler e
          } else if (entry->name == dirlinkname) {
              expected = dir_entry_type_t::dir;
          } else if (entry->name == badlinkname) {
+--- fish-3.7.1-64bit/src/wildcard.cpp.orig	Tue Mar 19 03:40:45 2024
++++ fish-3.7.1-64bit/src/wildcard.cpp	Wed Feb 12 16:25:28 2025
+@@ -386,7 +386,7 @@
+     }
+ 
+     // regular file *excludes* broken links - we have no use for them as commands.
+-    const bool is_regular_file = entry.check_type() == dir_entry_type_t::reg;
++    const bool is_regular_file = entry.check_type() == dir_entry_type_t::regr;
+     if (executables_only && (!is_regular_file || waccess(filepath, X_OK) != 0)) {
+         return false;
+     }
