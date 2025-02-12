@@ -6,7 +6,7 @@ mkdir e2
 cd e2
 git clone https://github.com/etcd-io/etcd
 cd etcd
-env PATH=/usr/versions/go-1.22/bin:$PATH gmake
+env PATH=/usr/versions/go-1.23/bin:$PATH gmake
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/etcd/bin
