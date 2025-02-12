@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # v2 is written in go; stick with v1 on SPARC
 #
 # everything is done by the fixit script

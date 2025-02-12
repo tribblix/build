@@ -4,8 +4,6 @@
 #
 # v2 is written in go; stick with v1 on SPARC
 #
-# everything is done by the fixit script
-#
 mkdir p
 cd p
 env GOPATH=`pwd` go install github.com/orgrim/pg_back@latest
