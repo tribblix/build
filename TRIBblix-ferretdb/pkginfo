@@ -1,0 +1,4 @@
+PKG="TRIBblix-ferretdb"
+NAME="Open Source MongoDB alternative"
+VERSION="2.0.0rc1.0"
+ZAP_URL="https://www.ferretdb.com/"
