@@ -1926,3 +1926,4 @@ go1.24.0.src.tar.gz d14120614acb29d12bcab72bd689f257eb4be9e0b6f88a8fb7e41ac65f85
 forgejo-src-10.0.1.tar.gz 3c6be3d48481da4ec38d754bd19ea3696408dbdb575a5648b125f4df4911bcca
 git-lfs-v3.6.1.tar.gz 1417b7ee9a8fba8d649a89f070fdcde8b2593ca2caa74e3e808d2bb35d5ca5f7
 git-lfs-3.6.1.tar.gz 1417b7ee9a8fba8d649a89f070fdcde8b2593ca2caa74e3e808d2bb35d5ca5f7
+openssl-3.0.16.tar.gz 57e03c50feab5d31b152af2b764f10379aecd8ee92f16c985983ce4a99f7ef86
