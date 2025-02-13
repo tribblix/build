@@ -1,17 +1,6 @@
 #!/bin/sh
 #
-# we've never shipped la files for pcre so it's safe to delete them
-#
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
-rm usr/lib/lib*.la
-rm usr/lib/${ARCH64}/lib*.la
+# SPDX-License-Identifier: CDDL-1.0
 #
 # remove html docs
 #
