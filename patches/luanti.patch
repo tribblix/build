@@ -47,7 +47,7 @@
  	static const MoonParams getMoonDefaults()
 --- a/src/gui/touchcontrols.cpp	Sun Nov 10 18:17:53 2024
 +++ b/src/gui/touchcontrols.cpp	Tue Feb  4 19:08:08 2025
-@@ -652,7 +652,7 @@
+@@ -591,7 +591,7 @@
  					(!m_fixed_joystick && distance_sq > touch_threshold_sq)) {
  				m_joystick_has_really_moved = true;
  
@@ -58,7 +58,7 @@
  				if (distance <= m_touchscreen_threshold) {
 --- a/src/network/clientpackethandler.cpp	Sun Nov 10 18:17:53 2024
 +++ b/src/network/clientpackethandler.cpp	Tue Feb  4 19:11:36 2025
-@@ -1327,7 +1327,7 @@
+@@ -1330,7 +1330,7 @@
  		} catch (...) {}
  
  		// Use default skybox settings:
@@ -67,7 +67,7 @@
  		MoonParams moon = SkyboxDefaults::getMoonDefaults();
  		StarParams stars = SkyboxDefaults::getStarDefaults();
  
-@@ -1338,8 +1338,8 @@
+@@ -1341,8 +1341,8 @@
  			skybox.fog_moon_tint = video::SColor(255, 255, 255, 255);
  			skybox.fog_sun_tint = video::SColor(255, 255, 255, 255);
  		} else {
@@ -78,7 +78,7 @@
  			moon.visible = false;
  			stars.visible = false;
  		}
-@@ -1352,7 +1352,7 @@
+@@ -1355,7 +1355,7 @@
  
  		ClientEvent *sun_event = new ClientEvent();
  		sun_event->type = CE_SET_SUN;
@@ -87,7 +87,7 @@
  		m_client_event_queue.push(sun_event);
  
  		ClientEvent *moon_event = new ClientEvent();
-@@ -1406,14 +1406,14 @@
+@@ -1409,14 +1409,14 @@
  
  void Client::handleCommand_HudSetSun(NetworkPacket *pkt)
  {
