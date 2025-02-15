@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-# the install puts DESTDIR into the link
-#
-rm usr/include/janet.h
-ln -s janet/janet.h usr/include
