@@ -4,4 +4,4 @@
 #
 # multiple files get installed mode 0664 by default
 #
-chmod -R og-w usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.2.0/gems
+chmod -R og-w usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.3.0/gems

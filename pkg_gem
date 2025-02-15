@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -36,7 +36,7 @@ STD_DESTINATION="usr/versions"
 RUBYVER="3"
 # the full version ends up in the path, so you'll need to repackage if
 # you change the minor version
-RUBYFULLVER="3.2.0"
+RUBYFULLVER="3.3.0"
 
 case $# in
 0|1)

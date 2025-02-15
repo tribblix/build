@@ -4,11 +4,11 @@
 #
 # filenames with spaces
 #
-rm -fr usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.2.0/gems/mini_portile2-2.8.7/test
-rm -fr usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.2.0/gems/mini_portile2-2.8.8/test
+rm -fr usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.3.0/gems/mini_portile2-2.8.7/test
+rm -fr usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.3.0/gems/mini_portile2-2.8.8/test
 # this is already supplied (but an older version) by ruby itself
 rm -f usr/versions/ruby-3/bin/racc
 #
 # multiple files get installed mode 0664 by default
 #
-chmod -R og-w usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.2.0/gems
+chmod -R og-w usr/versions/ruby-3/lib/ruby/vendor_ruby/gems/3.3.0/gems
