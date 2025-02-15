@@ -6,11 +6,11 @@
 #
 VERSION=22
 
-#mkdir -p usr/bin
-#ln -s ../versions/node-v${VERSION}/bin/node usr/bin/node
-#ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/npm
-#ln -s ../versions/node-v${VERSION}/bin/npx usr/bin/npx
-#ln -s ../versions/node-v${VERSION}/bin/corepack usr/bin/corepack
+mkdir -p usr/bin
+ln -s ../versions/node-v${VERSION}/bin/node usr/bin/node
+ln -s ../versions/node-v${VERSION}/bin/npm usr/bin/npm
+ln -s ../versions/node-v${VERSION}/bin/npx usr/bin/npx
+ln -s ../versions/node-v${VERSION}/bin/corepack usr/bin/corepack
 
 #
 # we don't have systemtap
