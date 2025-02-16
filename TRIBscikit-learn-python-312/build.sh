@@ -12,8 +12,7 @@
 # PATH so it can find the cython executable
 # it drops -m64 somewhere, so force with CC
 #
-# it wants openmp, but ought to correctly work out that it won't work here
-# if it doesn't, you may need to edit openmp_helpers.py and make
-# check_openmp_support() unconditionally return False
+# it wants openmp, and won't build without it, so explicitly tell it
+# where the libraries are to be found at runtime
 #
-env CC="gcc -m64" LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.12/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-learn-python-312 scikit_learn-1.6.1
+env CC="gcc -m64" LDFLAGS="-m64 -R/usr/versions/gcc-10/lib/amd64" CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.12/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-learn-python-312 scikit_learn-1.6.1
