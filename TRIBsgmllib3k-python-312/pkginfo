@@ -1,4 +1,4 @@
 PKG="TRIBsgmllib3k-python-312"
 NAME="Python sgmllib3k"
 VERSION="1.0.0.0"
-ZAP_URL="https://pypi.org/project/sgmllib3k"
+ZAP_URL="https://pypi.org/project/sgmllib3k/"

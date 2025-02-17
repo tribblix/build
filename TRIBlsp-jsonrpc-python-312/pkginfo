@@ -1,4 +1,4 @@
 PKG="TRIBlsp-jsonrpc-python-312"
 NAME="Python python-lsp-jsonrpc"
 VERSION="1.1.2.0"
-ZAP_URL="https://pypi.org/project/python-lsp-jsonrpc"
+ZAP_URL="https://pypi.org/project/python-lsp-jsonrpc/"

@@ -1,4 +1,4 @@
 PKG="TRIBbcrypt-python-312"
 NAME="Python bcrypt"
 VERSION="3.2.2.0"
-ZAP_URL="https://pypi.org/project/bcrypt"
+ZAP_URL="https://pypi.org/project/bcrypt/"

@@ -1,4 +1,4 @@
 PKG="TRIBmergedeep-python-312"
 NAME="Python mergedeep"
 VERSION="1.3.4.0"
-ZAP_URL="https://pypi.org/project/mergedeep"
+ZAP_URL="https://pypi.org/project/mergedeep/"

@@ -1,4 +1,4 @@
 PKG="TRIBfreetype-python-312"
 NAME="Python freetype-py"
 VERSION="2.5.1.0"
-ZAP_URL="https://pypi.org/project/freetype-py"
+ZAP_URL="https://pypi.org/project/freetype-py/"

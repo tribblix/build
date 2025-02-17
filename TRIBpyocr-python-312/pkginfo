@@ -1,4 +1,4 @@
 PKG="TRIBpyocr-python-312"
 NAME="Python pyocr"
 VERSION="0.8.5.0"
-ZAP_URL="https://pypi.org/project/pyocr"
+ZAP_URL="https://pypi.org/project/pyocr/"

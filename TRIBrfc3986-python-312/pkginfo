@@ -1,4 +1,4 @@
 PKG="TRIBrfc3986-python-312"
 NAME="Python rfc3986"
 VERSION="2.0.0.0"
-ZAP_URL="https://pypi.org/project/rfc3986"
+ZAP_URL="https://pypi.org/project/rfc3986/"

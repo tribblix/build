@@ -1,4 +1,4 @@
 PKG="TRIBiniconfig-python-312"
 NAME="Python iniconfig"
 VERSION="2.0.0.0"
-ZAP_URL="https://pypi.org/project/iniconfig"
+ZAP_URL="https://pypi.org/project/iniconfig/"

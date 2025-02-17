@@ -1,4 +1,4 @@
 PKG="TRIBfuturist-python-312"
 NAME="Python futurist"
 VERSION="3.0.0.0"
-ZAP_URL="https://pypi.org/project/futurist"
+ZAP_URL="https://pypi.org/project/futurist/"

@@ -1,4 +1,4 @@
 PKG="TRIBpmapper-python-312"
 NAME="Python principalmapper"
 VERSION="1.1.5.1"
-ZAP_URL="https://pypi.org/project/principalmapper"
+ZAP_URL="https://pypi.org/project/principalmapper/"

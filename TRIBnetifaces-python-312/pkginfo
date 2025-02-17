@@ -1,4 +1,4 @@
 PKG="TRIBnetifaces-python-312"
 NAME="Python netifaces"
 VERSION="0.11.0.0"
-ZAP_URL="https://pypi.org/project/netifaces"
+ZAP_URL="https://pypi.org/project/netifaces/"

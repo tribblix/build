@@ -1,4 +1,4 @@
 PKG="TRIBxdg-python-312"
 NAME="Implementation of XDG standards in Python"
 VERSION="0.28.0"
-ZAP_URL="https://pypi.org/project/pyxdg"
+ZAP_URL="https://pypi.org/project/pyxdg/"

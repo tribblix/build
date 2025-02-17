@@ -1,4 +1,4 @@
 PKG="TRIBpartd-python-312"
 NAME="Python partd"
 VERSION="1.4.2.0"
-ZAP_URL="https://pypi.org/project/partd"
+ZAP_URL="https://pypi.org/project/partd/"

@@ -1,4 +1,4 @@
 PKG="TRIBwatchdog-python-312"
 NAME="Python watchdog"
 VERSION="6.0.0.0"
-ZAP_URL="https://pypi.org/project/watchdog"
+ZAP_URL="https://pypi.org/project/watchdog/"

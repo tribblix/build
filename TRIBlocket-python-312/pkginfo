@@ -1,4 +1,4 @@
 PKG="TRIBlocket-python-312"
 NAME="Python locket"
 VERSION="1.0.0.0"
-ZAP_URL="https://pypi.org/project/locket"
+ZAP_URL="https://pypi.org/project/locket/"

@@ -1,4 +1,4 @@
 PKG="TRIBpyxlsb-python-312"
 NAME="Python pyxlsb"
 VERSION="1.0.10.0"
-ZAP_URL="https://pypi.org/project/pyxlsb"
+ZAP_URL="https://pypi.org/project/pyxlsb/"

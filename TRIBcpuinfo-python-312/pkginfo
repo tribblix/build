@@ -1,4 +1,4 @@
 PKG="TRIBcpuinfo-python-312"
 NAME="Python py-cpuinfo"
 VERSION="9.0.0.0"
-ZAP_URL="https://pypi.org/project/py-cpuinfo"
+ZAP_URL="https://pypi.org/project/py-cpuinfo/"

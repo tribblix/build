@@ -1,4 +1,4 @@
 PKG="TRIBjsonpointer-python-312"
 NAME="Python jsonpointer"
 VERSION="3.0.0.0"
-ZAP_URL="https://pypi.org/project/jsonpointer"
+ZAP_URL="https://pypi.org/project/jsonpointer/"

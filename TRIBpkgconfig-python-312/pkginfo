@@ -1,4 +1,4 @@
 PKG="TRIBpkgconfig-python-312"
 NAME="Python pkgconfig"
 VERSION="1.5.5.0"
-ZAP_URL="https://pypi.org/project/pkgconfig"
+ZAP_URL="https://pypi.org/project/pkgconfig/"

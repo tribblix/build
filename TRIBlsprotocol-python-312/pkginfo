@@ -1,4 +1,4 @@
 PKG="TRIBlsprotocol-python-312"
 NAME="Python lsprotocol"
 VERSION="2023.0.1.0"
-ZAP_URL="https://pypi.org/project/lsprotocol"
+ZAP_URL="https://pypi.org/project/lsprotocol/"

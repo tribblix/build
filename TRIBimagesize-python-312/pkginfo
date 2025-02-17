@@ -1,4 +1,4 @@
 PKG="TRIBimagesize-python-312"
 NAME="Python imagesize"
 VERSION="1.4.1.0"
-ZAP_URL="https://pypi.org/project/imagesize"
+ZAP_URL="https://pypi.org/project/imagesize/"

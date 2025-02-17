@@ -1,4 +1,4 @@
 PKG="TRIBmutagen-python-312"
 NAME="Python mutagen"
 VERSION="1.47.0.0"
-ZAP_URL="https://pypi.org/project/mutagen"
+ZAP_URL="https://pypi.org/project/mutagen/"

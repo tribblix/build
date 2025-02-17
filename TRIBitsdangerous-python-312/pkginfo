@@ -1,4 +1,4 @@
 PKG="TRIBitsdangerous-python-312"
 NAME="Python itsdangerous"
 VERSION="2.2.0.0"
-ZAP_URL="https://pypi.org/project/itsdangerous"
+ZAP_URL="https://pypi.org/project/itsdangerous/"

@@ -1,4 +1,4 @@
 PKG="TRIBsortedcontainers-python-312"
 NAME="Python sortedcontainers"
 VERSION="2.4.0.0"
-ZAP_URL="https://pypi.org/project/sortedcontainers"
+ZAP_URL="https://pypi.org/project/sortedcontainers/"

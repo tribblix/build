@@ -1,4 +1,4 @@
 PKG="TRIBptyprocess-python-312"
 NAME="Python ptyprocess"
 VERSION="0.7.0.0"
-ZAP_URL="https://pypi.org/project/ptyprocess"
+ZAP_URL="https://pypi.org/project/ptyprocess/"

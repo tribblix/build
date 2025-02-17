@@ -1,4 +1,4 @@
 PKG="TRIBtexttable-python-312"
 NAME="Python texttable"
 VERSION="1.7.0.0"
-ZAP_URL="https://pypi.org/project/texttable"
+ZAP_URL="https://pypi.org/project/texttable/"

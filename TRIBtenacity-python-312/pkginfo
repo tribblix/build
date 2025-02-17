@@ -1,4 +1,4 @@
 PKG="TRIBtenacity-python-312"
 NAME="Python tenacity"
 VERSION="9.0.0.0"
-ZAP_URL="https://pypi.org/project/tenacity"
+ZAP_URL="https://pypi.org/project/tenacity/"

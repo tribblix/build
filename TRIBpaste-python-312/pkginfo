@@ -1,4 +1,4 @@
 PKG="TRIBpaste-python-312"
 NAME="Python paste"
 VERSION="3.10.1.0"
-ZAP_URL="https://pypi.org/project/paste"
+ZAP_URL="https://pypi.org/project/paste/"

@@ -1,4 +1,4 @@
 PKG="TRIBterminado-python-312"
 NAME="Python terminado"
 VERSION="0.18.1.0"
-ZAP_URL="https://pypi.org/project/terminado"
+ZAP_URL="https://pypi.org/project/terminado/"

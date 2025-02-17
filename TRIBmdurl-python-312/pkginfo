@@ -1,4 +1,4 @@
 PKG="TRIBmdurl-python-312"
 NAME="Python mdurl"
 VERSION="0.1.2.0"
-ZAP_URL="https://pypi.org/project/mdurl"
+ZAP_URL="https://pypi.org/project/mdurl/"

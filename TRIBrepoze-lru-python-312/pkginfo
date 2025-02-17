@@ -1,4 +1,4 @@
 PKG="TRIBrepoze-lru-python-312"
 NAME="Python repoze.lru"
 VERSION="0.7.0"
-ZAP_URL="https://pypi.org/project/repoze.lru"
+ZAP_URL="https://pypi.org/project/repoze.lru/"

@@ -1,4 +1,4 @@
 PKG="TRIBgixy-python-312"
 NAME="Nginx configuration security checker"
 VERSION="0.1.21.1"
-ZAP_URL="https://pypi.org/project/gixy"
+ZAP_URL="https://pypi.org/project/gixy/"

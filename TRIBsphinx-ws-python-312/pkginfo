@@ -1,4 +1,4 @@
 PKG="TRIBsphinx-ws-python-312"
 NAME="Python sphinxcontrib-websupport"
 VERSION="2.0.0.0"
-ZAP_URL="https://pypi.org/project/sphinxcontrib-websupport"
+ZAP_URL="https://pypi.org/project/sphinxcontrib-websupport/"

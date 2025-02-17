@@ -1,4 +1,4 @@
 PKG="TRIBnbformat-python-312"
 NAME="Python nbformat"
 VERSION="5.10.4.0"
-ZAP_URL="https://pypi.org/project/nbformat"
+ZAP_URL="https://pypi.org/project/nbformat/"

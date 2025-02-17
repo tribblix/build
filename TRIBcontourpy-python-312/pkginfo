@@ -1,4 +1,4 @@
 PKG="TRIBcontourpy-python-312"
 NAME="Python contourpy"
 VERSION="1.3.1.0"
-ZAP_URL="https://pypi.org/project/contourpy"
+ZAP_URL="https://pypi.org/project/contourpy/"

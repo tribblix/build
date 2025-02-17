@@ -1,4 +1,4 @@
 PKG="TRIBamqp-python-312"
 NAME="Python amqp"
 VERSION="5.3.1.0"
-ZAP_URL="https://pypi.org/project/amqp"
+ZAP_URL="https://pypi.org/project/amqp/"

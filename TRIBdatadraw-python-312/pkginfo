@@ -1,4 +1,4 @@
 PKG="TRIBdatadraw-python-312"
 NAME="Python datadraw"
 VERSION="0.7.1.0"
-ZAP_URL="https://pypi.org/project/datadraw"
+ZAP_URL="https://pypi.org/project/datadraw/"
