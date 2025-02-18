@@ -30,6 +30,13 @@ PDIR="/var/sadm/pkg"
 
 STATUS=0
 
+MYARCH=$(uname -p)
+case $MYARCH in
+    sparc)
+	OVDIR=${THOME}/overlays.sparc
+	;;
+esac
+
 #
 # if no arguments, shortcut for the package I'm looking at right now
 #
