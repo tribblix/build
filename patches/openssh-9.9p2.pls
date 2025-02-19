@@ -7,4 +7,3 @@
 -p1 ssh/0018-Don-t-call-do_pam_setcred-twice.patch
 -p1 ssh/0028-Don-t-use-krb5-config-to-check-for-GSSAPI-on-Illumos.patch
 -p1 ssh/sshd_config.patch
--p1 ssh/patch-CVE-2024-6387

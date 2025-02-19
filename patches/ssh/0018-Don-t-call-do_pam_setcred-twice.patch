@@ -33,7 +33,7 @@ diff --git a/platform.c b/platform.c
 index ee313da..8362a08 100644
 --- a/platform.c
 +++ b/platform.c
-@@ -146,7 +146,7 @@ platform_setusercontext(struct passwd *pw)
+@@ -101,7 +101,7 @@ platform_setusercontext(struct passwd *pw)
  void
  platform_setusercontext_post_groups(struct passwd *pw)
  {

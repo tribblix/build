@@ -18,7 +18,7 @@ diff --git a/Makefile.in b/Makefile.in
 index d401787..c124ef6 100644
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -382,7 +382,16 @@ install-nokeys: $(CONFIGFILES) $(MANPAGES) $(TARGETS) install-files install-sysc
+@@ -393,7 +393,16 @@ install-nokeys: $(CONFIGFILES) $(MANPAGES) $(TARGETS) install-files install-sysc
  install-nosysconf: $(CONFIGFILES) $(MANPAGES) $(TARGETS) install-files
  
  check-config:

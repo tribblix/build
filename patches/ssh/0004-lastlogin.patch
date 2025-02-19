@@ -1,6 +1,6 @@
 --- openssh-7.4p1.orig/sshd_config.5	Mon Dec 19 06:59:41 2016
 +++ openssh-7.4p1/sshd_config.5	Wed Dec 21 12:03:05 2016
-@@ -1577,8 +1577,9 @@
+@@ -1683,8 +1683,9 @@
  .Xr sshd 8
  should print the date and time of the last user login when a user logs
  in interactively.
@@ -12,7 +12,7 @@
  .It Cm PrintMotd
  Specifies whether
  .Xr sshd 8
-@@ -2094,6 +2095,7 @@
+@@ -2219,6 +2220,7 @@
  (though not necessary) that it be world-readable.
  .El
  .Sh SEE ALSO

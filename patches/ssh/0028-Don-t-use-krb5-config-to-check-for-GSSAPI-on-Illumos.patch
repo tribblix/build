@@ -11,7 +11,7 @@ diff --git a/configure.ac b/configure.ac
 index 1846eb2..580fa5c 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -4760,6 +4760,11 @@ AC_ARG_WITH([kerberos5],
+@@ -4786,6 +4786,11 @@ AC_ARG_WITH([kerberos5],
  			AC_PATH_TOOL([KRB5CONF], [krb5-config],
  				     [$KRB5ROOT/bin/krb5-config],
  				     [$KRB5ROOT/bin:$PATH])
@@ -23,7 +23,7 @@ index 1846eb2..580fa5c 100644
  			if test -x $KRB5CONF ; then
  				K5CFLAGS="`$KRB5CONF --cflags`"
  				K5LIBS="`$KRB5CONF --libs`"
-@@ -4801,7 +4806,7 @@ AC_ARG_WITH([kerberos5],
+@@ -4827,7 +4832,7 @@ AC_ARG_WITH([kerberos5],
  						 AC_CHECK_LIB([des], [des_cbc_encrypt],
  						   [K5LIBS="$K5LIBS -ldes"])
  					       ], [ AC_MSG_RESULT([no])
