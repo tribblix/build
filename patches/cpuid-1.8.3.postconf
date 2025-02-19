@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # easier than trying to pass arguments through the build system
 #
 sed -i s:/usr/local:/usr: GNUmakefile
