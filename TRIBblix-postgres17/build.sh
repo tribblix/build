@@ -4,5 +4,5 @@
 #
 # postgres 17
 #
-${THOME}/build/dobuild +64only -P /opt/tribblix/postgres17 postgresql-17.3 -C "--without-readline --with-perl --with-openssl" -M world
-${THOME}/build/genpkg -I install-world TRIBblix-postgres17 postgresql-17.3
+${THOME}/build/dobuild +64only -P /opt/tribblix/postgres17 postgresql-17.4 -C "--without-readline --with-perl --with-openssl" -M world
+${THOME}/build/genpkg -I install-world TRIBblix-postgres17 postgresql-17.4
