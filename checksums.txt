@@ -2004,3 +2004,4 @@ google_cloud_core-2.4.2.tar.gz a4fcb0e2fcfd4bfe963837fad6d10943754fd79c1a50097d6
 patroni-4.0.5.tar.gz 252d1e7d9c9007fa130b7f367be706cf4aefe9837a09ef20aa80f2164fcc520f
 pg_activity-3.6.0.tar.gz 4effb6adabd484fd813a045dd008ebf930aa08556193a24576e2fabb2a2ec1bf
 googleapis_common_protos-1.68.0.tar.gz 95d38161f4f9af0d9423eed8fb7b64ffd2568c3464eb542ff02c5bfa1953ab3c
+stevedore-5.4.1.tar.gz 3135b5ae50fe12816ef291baff420acb727fcd356106e3e9cbfa9e5985cd6f4b
