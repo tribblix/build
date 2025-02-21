@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # remove files that don't apply to us
 #
 rm -fr usr/share/doc/mutt/samples/iconv
