@@ -2013,3 +2013,4 @@ palemoon-33.6.0.1.solaris2.11-x86_64-illumos.tar.xz eea02bf73568abf4acda0eecc847
 apache-arrow-19.0.1.tar.gz acb76266e8b0c2fbb7eb15d542fbb462a73b3fd1e32b80fad6c2fafd95a51160
 pyarrow-19.0.1.tar.gz 3bf266b485df66a400f282ac0b6d1b500b9d2ae73314a153dbe97d6d5cc8a99e
 urllib3-2.3.0.tar.gz f8c5449b3cf0861679ce7e0503c7b44b5ec981bec0d1d3795a07f1ba96f0204d
+diffoscope-289.tar.gz b9b2e598e62eb2220376e252692ac534d8d921d4314ec288d8c7415d3041dd9d
