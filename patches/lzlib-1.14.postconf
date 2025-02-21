@@ -1,2 +1,5 @@
 #!/bin/sh
-gsed -i s:--soname:-soname: Makefile
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+sed -i s:--soname:-soname: Makefile

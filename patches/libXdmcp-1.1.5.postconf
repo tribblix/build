@@ -1,3 +1,6 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 sed -i 's;-version-number;-Wl,-M$(top_srcdir)/mapfile-vers -version-number;' Makefile
 cp ${PATCHDIR}/libXdmcp.mapfile mapfile-vers

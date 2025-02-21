@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the build fails running automake to create the gentoo Makefile
 # seeing as we can never possibly want any gentoo components, simply
 # don't do it

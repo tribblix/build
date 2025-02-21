@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # cmake insists on picking up a 32-bit libSDL2
 #
 sed -i s:/usr/lib/libSDL2.so:/usr/lib/64/libSDL2.so: tribblix_build/CMakeFiles/openttd.dir/build.make

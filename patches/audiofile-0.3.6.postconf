@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # there's a call to bzero, but the file includes string.h not strings.h
 #
-gsed -i s:string.h:strings.h: libaudiofile/CAF.cpp
+sed -i s:string.h:strings.h: libaudiofile/CAF.cpp

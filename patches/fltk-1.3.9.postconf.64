@@ -1,7 +1,9 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fltk doesn't use LDFLAGS when constructing shared libraries,
 # so it ignores the -m64 we set. Fix the variable it does use.
 # Only for 64-bit, though,
 #
-gsed -i 's:DSOFLAGS	= -L.:DSOFLAGS	= -m64 -L.:' makeinclude
+sed -i 's:DSOFLAGS	= -L.:DSOFLAGS	= -m64 -L.:' makeinclude

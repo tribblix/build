@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is where our timezone files live
 #
 gsed -i s:/usr/share/zoneinfo/posix/:/usr/share/lib/zoneinfo/: plugins/clock/clock.c

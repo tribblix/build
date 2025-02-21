@@ -1,3 +1,6 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 sed -i s:DARWIN:SOLARIS: common/slp_socket.h
 sed -i 's:\$(localstatedir):\$(DESTDIR)\$(localstatedir):' etc/Makefile

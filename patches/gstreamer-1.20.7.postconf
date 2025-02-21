@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the registry is binary and specific to wordsize
 # so we need different gstreamer registries for 32 and
 # 64-bit applications, otherwise one will create the

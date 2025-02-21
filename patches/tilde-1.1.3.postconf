@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # something is confused, it tries to create the final binary src/tilde
 # but that's a symlink needed by the build
 #

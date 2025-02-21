@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # there's no configure, so put the right Makefile into place
 #
 mv Makefile.Solaris Makefile

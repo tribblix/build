@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # time-admin is the one polkit consumer
 #
 sed -i '/time-admin/d' capplets/Makefile*

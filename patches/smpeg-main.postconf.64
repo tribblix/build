@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # configure lies to us
 #
-gsed -i 's:CCASFLAGS = :CCASFLAGS = -m64:' Makefile
+sed -i 's:CCASFLAGS = :CCASFLAGS = -m64:' Makefile

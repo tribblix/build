@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # force no linkage against libgcc_s
 #
 perl -pi -e 's#(\$CC.*\$compiler_flags)#$1 -nostdlib#g;' libtool

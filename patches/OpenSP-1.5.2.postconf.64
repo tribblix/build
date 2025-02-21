@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # libtool had one job, and failed totally
 #
 sed -i 's:sys_lib_search_path_spec=.*:sys_lib_search_path_spec="":' libtool

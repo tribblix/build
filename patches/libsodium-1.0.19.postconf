@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the sparc build fails, most obviously in make check where all the
 # tests coredump
 #

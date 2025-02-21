@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # configure doesn't know about us
 #
 sed -i s:/include/linux:/include/solaris: Makefile

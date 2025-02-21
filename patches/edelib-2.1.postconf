@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # it converts some paths to absolute rather than prefixed
 # which breaks make install
 #

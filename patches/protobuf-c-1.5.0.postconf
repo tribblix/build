@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # protoc looks for standard files installed in /usr/include
 # but the build supplies "-I.", so symlink them here
 #

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the makefiles don't really get built by configure in the normal way
 #
 sed -i 's:\$(bindir):\$(DESTDIR)\$(bindir):' Makefile

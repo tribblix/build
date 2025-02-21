@@ -1,13 +1,15 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need to use gnu find
 #
-gsed -i s:/usr/bin/find:/usr/gnu/bin/find: `find . -name Makefile`
+sed -i s:/usr/bin/find:/usr/gnu/bin/find: `find . -name Makefile`
 #
 # LDFLAGS isn't propagated consistently, which is most important for
 # 64-bit builds
 #
-gsed -i 's:LDFLAGS:USER_LD_FLAGS:' libAfterConf/Makefile
-gsed -i 's:LDFLAGS:USER_LD_FLAGS:' libAfterImage/Makefile
-gsed -i 's:LDFLAGS:USER_LD_FLAGS:' libAfterStep/Makefile
-gsed -i 's:LDFLAGS:USER_LD_FLAGS:' libASGTK/Makefile
+sed -i 's:LDFLAGS:USER_LD_FLAGS:' libAfterConf/Makefile
+sed -i 's:LDFLAGS:USER_LD_FLAGS:' libAfterImage/Makefile
+sed -i 's:LDFLAGS:USER_LD_FLAGS:' libAfterStep/Makefile
+sed -i 's:LDFLAGS:USER_LD_FLAGS:' libASGTK/Makefile

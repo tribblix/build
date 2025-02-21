@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # convert mapfile invocation from gnu syntax
 #
-gsed -i 's:--version-script=:-M -Wl,:' Makefile
+sed -i 's:--version-script=:-M -Wl,:' Makefile

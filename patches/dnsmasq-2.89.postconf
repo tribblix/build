@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 sed -i 's:sort -k:/usr/gnu/bin/sort -k:' bld/get-version
 #
 # this is where the dhcp lease file is stored

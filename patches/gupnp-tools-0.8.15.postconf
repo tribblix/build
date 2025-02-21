@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # full path, or it can't load the file at runtime
 #
 sed -i s:share/gupnp-tools:/usr/share/gupnp-tools: build/config.h

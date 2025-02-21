@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # an AWK variable is passed to the Makefiles but isn't used
 #
-gsed -i 's:awk :gawk :' man/Makefile
+sed -i 's:awk :gawk :' man/Makefile

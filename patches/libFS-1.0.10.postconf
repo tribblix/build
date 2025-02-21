@@ -1,2 +1,5 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 cp ${PATCHDIR}/libFS.mapfile mapfile-vers

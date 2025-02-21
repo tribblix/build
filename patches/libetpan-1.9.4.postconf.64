@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # there isn't a configure, so the configure step will fail
 # and we rerun it here
 #

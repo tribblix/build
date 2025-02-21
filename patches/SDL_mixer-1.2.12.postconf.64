@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # configure lies to us
 #
-gsed -i 's:SDL_CFLAGS = :SDL_CFLAGS = -m64 :' Makefile
+sed -i 's:SDL_CFLAGS = :SDL_CFLAGS = -m64 :' Makefile

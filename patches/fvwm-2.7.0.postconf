@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-# tweak the programs menu so it's sane on Tribblix
+# SPDX-License-Identifier: CDDL-1.0
+#
+# tweak the programs menu so it's more useful on Tribblix
 #
 sed -i s:xemacs:emacs:g default-config/config
 sed -i s:XEmacs:Emacs:g default-config/config
