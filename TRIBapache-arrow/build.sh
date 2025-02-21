@@ -11,5 +11,5 @@
 # as the SONAME gets bumped, consumers (ie pyarrow) will need to
 # be update and rebuilt at the same time as this package
 #
-$THOME/build/cmbuild -64only -S cpp apache-arrow-19.0.0 -C "-DARROW_JEMALLOC=OFF -DARROW_BUILD_STATIC=OFF -DARROW_COMPUTE=ON -DARROW_FILESYSTEM=ON -DARROW_CSV=ON -DARROW_DATASET=ON -DARROW_JSON=ON -DARROW_PARQUET=ON"
-${THOME}/build/genpkg TRIBapache-arrow apache-arrow-19.0.0
+$THOME/build/cmbuild -64only -S cpp apache-arrow-19.0.1 -C "-DARROW_JEMALLOC=OFF -DARROW_BUILD_STATIC=OFF -DARROW_COMPUTE=ON -DARROW_FILESYSTEM=ON -DARROW_CSV=ON -DARROW_DATASET=ON -DARROW_JSON=ON -DARROW_PARQUET=ON"
+${THOME}/build/genpkg TRIBapache-arrow apache-arrow-19.0.1
