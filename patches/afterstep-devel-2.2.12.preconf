@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the sparc customization shouldn't be
 #
 sed -i 's:-Wl,-export-dynamic::' libAfterImage/configure

@@ -1,2 +1,5 @@
 #!/bin/sh
-gsed -i /XIElib.h/d xlsextensions.c
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+sed -i '/XIElib.h/d' xlsextensions.c

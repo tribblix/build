@@ -1,8 +1,11 @@
 #!/bin/sh
-gsed -i s:/usr/local:/usr: tests/Makefile
-gsed -i s:/usr/local:/usr: lgi/Makefile
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+sed -i s:/usr/local:/usr: tests/Makefile
+sed -i s:/usr/local:/usr: lgi/Makefile
 #
 # it uses the version to decide where to install the files, we need
 # to install them into 5.3
 #
-gsed -i s:5.1:5.3: lgi/Makefile
+sed -i s:5.1:5.3: lgi/Makefile

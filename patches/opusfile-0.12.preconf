@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # missing include for FIONREAD
 #
 gsed -i 's:#include <string.h>:#include <string.h>\n#include <sys/filio.h>:' src/http.c

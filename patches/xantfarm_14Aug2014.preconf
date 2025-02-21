@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 sed -i s:SYSV:SVR4: xantfarm.c
 # the Imakefile sets CCOPTIONS which ignores 64-bit
 sed -i 's:-ansi:-m64 -ansi:' Imakefile

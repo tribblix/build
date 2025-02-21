@@ -1,2 +1,5 @@
 #!/bin/sh
-gsed -i '/DG_DISABLE_DEPRECATED/d' glade/Makefile.in
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+sed -i '/DG_DISABLE_DEPRECATED/d' glade/Makefile.in

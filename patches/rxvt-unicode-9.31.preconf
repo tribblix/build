@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # urxvt used to bundle this, we now have to build it separately
 #
 $THOME/build/cmbuild -64only libptytty-2.0 -P /tmp/libptytty -C "-DBUILD_SHARED_LIBS=no -DBUILD_STATIC_LIBS=on"

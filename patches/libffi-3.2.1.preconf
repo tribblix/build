@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we follow omnios here
 #
-gsed -i s:-fexceptions:-funwind-tables: configure
+sed -i s:-fexceptions:-funwind-tables: configure

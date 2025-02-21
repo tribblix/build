@@ -1,2 +1,5 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 sed -i 's:-Wl,--version-script=:-Wl,-M -Wl,:' libgphoto2_port/libgphoto2_port/Makefile.in

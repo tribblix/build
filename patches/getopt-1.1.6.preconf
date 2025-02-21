@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # there's no configure script, so hack the Makefile
 #
 sed -i s:/usr/local:/usr/gnu: Makefile

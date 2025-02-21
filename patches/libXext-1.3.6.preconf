@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 cp -r ${PATCHDIR}/libXext/* .
 cp ${PATCHDIR}/libXext.mapfile mapfile-vers
 autoreconf -vi

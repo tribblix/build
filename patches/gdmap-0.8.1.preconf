@@ -1,2 +1,5 @@
 #!/bin/sh
-gsed -i 's: -DGTK_DISABLE_DEPRECATED::' configure
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+sed -i 's: -DGTK_DISABLE_DEPRECATED::' configure

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the minimum version of gtk is declared to be too high
 #
 sed -i s:3.24.0:3.22.0: configure

@@ -1,2 +1,5 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 cat makefile.solaris_x86 | sed 's:ALLFLAGS=:ALLFLAGS=-m64 :' > makefile.machine

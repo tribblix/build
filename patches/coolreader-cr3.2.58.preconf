@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#
+# SPDX-License-Identifier: CDDL-1.0
 #
 sed -i 's:restrict$::' crengine/src/xxhash.h
 env PATH=/usr/gnu/bin:$PATH ./thirdparty-deploy.sh

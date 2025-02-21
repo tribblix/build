@@ -1,3 +1,6 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 cp ${PATCHDIR}/libXi.mapfile mapfile-vers
 sed -i 's;-version-number;-Wl,-M$(top_srcdir)/mapfile-vers -version-number;' src/Makefile.in

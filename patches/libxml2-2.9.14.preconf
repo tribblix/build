@@ -1,4 +1,6 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 /usr/bin/autoreconf -if
 cp ${PATCHDIR}/libxml2.mapfile libxml2.syms

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # configure has the wrong sparc flags
 #
 sed -i 's: -mv8::' configure

@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 for file in `find src/include -name '*.h'`
 do
     /usr/bin/dos2unix $file $file

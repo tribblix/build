@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # autoconf correctly detected whether libelf would work; meson doesn't
 #
 # construct a fake check that's guaranteed to fail

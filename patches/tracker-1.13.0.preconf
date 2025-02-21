@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we have uuid, but not the pc file for it
 #
 gsed -i s:uuid:: configure

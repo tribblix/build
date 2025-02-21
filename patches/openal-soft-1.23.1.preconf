@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 sed -i 's:Wl,--version-script=:Wl,-M :' CMakeLists.txt
 #
 # otherwise we'll try and package a filename with a space in it

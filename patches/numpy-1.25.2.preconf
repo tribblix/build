@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # specify the right place to look for openblas
 #
 ARCH64=`${THOME}/build/getarch`

@@ -1,3 +1,6 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 sed -i '/#define _POSIX_C_SOURCE 200809L/d' configure
 sed -i 's:DLLDFLAGS=-G:DLLDFLAGS=-shared:' configure

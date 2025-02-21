@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 cp -r ${PATCHDIR}/libXmu/* .
 cp ${PATCHDIR}/mapfile-Xmu .
 cp ${PATCHDIR}/mapfile-Xmuu .

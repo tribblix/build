@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the configure tests for -Wl,--as-needed -Wl,--gc-sections
 # completely fail to perform the test correctly. Easier to fix the
 # result than correct the test

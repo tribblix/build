@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the install instructions say you shouldn't do this, but
 # the build cannot work without it
 #
