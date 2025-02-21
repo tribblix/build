@@ -4,6 +4,12 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+11
+
+Minor patch noise.
+
+Needed to fix pipewire, add an extra hunk to illumos-port-27.patch
+
 25+10
 
 Much patch noise, it appears there's an attempt to guard Makefiles

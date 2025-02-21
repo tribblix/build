@@ -900,31 +900,20 @@
    BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libMonitorWithDeadObjectTest.c libTestPsig.c exeGetCreatedJavaVMs.c libTestUnloadedClass.cpp
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
-@@ -55,9 +55,9 @@
+@@ -55,8 +55,8 @@
  BUILD_JDK_JTREG_EXECUTABLES_JDK_LIBS_exeCallerAccessTest := java.base:libjvm
  BUILD_JDK_JTREG_EXECUTABLES_JDK_LIBS_exeNullCallerTest := java.base:libjvm
  
 -BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libstringPlatformChars := java.base:libjava java.base:libjvm
 +BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libstringPlatformChars := java.base:libjava
--BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libNewDirectByteBuffer := java.base:libjava java.base:libjvm
 -BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libGetXSpace := java.base:libjava java.base:libjvm
-+BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libNewDirectByteBuffer := java.base:libjava
 +BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libGetXSpace := java.base:libjava
  
  # Platform specific setup
  ifeq ($(call isTargetOs, windows), true)
-@@ -69,7 +69,7 @@
-   BUILD_JDK_JTREG_EXECUTABLES_LIBS_exerevokeall := advapi32.lib
-   BUILD_JDK_JTREG_EXECUTABLES_CFLAGS_exeNullCallerTest := /EHsc
- else
--  BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libDirectIO := java.base:libjava java.base:libjvm
-+  BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libDirectIO := java.base:libjava
-   BUILD_JDK_JTREG_LIBRARIES_LDFLAGS_libNativeThread := -pthread
- 
-   # java.lang.foreign tests
-@@ -85,9 +85,6 @@
+@@ -82,9 +82,6 @@
+   BUILD_JDK_JTREG_EXCLUDE += exerevokeall.c
    ifeq ($(call isTargetOs, linux), true)
-     BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libInheritedChannel := java.base:libjava
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
 -  else ifeq ($(call isTargetOs, solaris), true)
 -    BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libInheritedChannel := java.base:libjava java.base:libjvm
@@ -1056,7 +1045,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -512,7 +512,7 @@
+@@ -511,7 +511,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
