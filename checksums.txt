@@ -2025,3 +2025,4 @@ roman_numerals_py-3.1.0.tar.gz be4bf804f083a4ce001b5eb7e3c0862479d10f94c936f6c4e
 rpds_py-0.23.1.tar.gz 7f3240dcfa14d198dba24b8b9cb3b108c06b68d45b7babd9eefc1038fdf7e707
 scikit_image-0.25.2.tar.gz e5a37e6cd4d0c018a7a55b9d601357e3382826d3888c10d0213fc63bff977dde
 decorator-5.2.0.tar.gz 1cf2ab68f8c1c7eae3895d82ab0daab41294cfbe6fbdebf50b44307299980762
+oslo_cache-3.10.1.tar.gz cb8203f1d40ac3d4fc3d0dcee0faafccf6987cba48ff0dde912fce8d9eff1c71
