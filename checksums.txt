@@ -2022,3 +2022,4 @@ keystonemiddleware-10.9.0.tar.gz e24d286bf26bcb75fa91af0a40c8e2cb8f113a357e185c6
 python_openstackclient-7.3.1.tar.gz d382072d92ee53375a5999fd4142ddcb5f012c85392ffd0aa7415792ad4080b0
 sphinx-8.2.1.tar.gz e4b932951b9c18b039f73b72e4e63afe967d90408700ec222b981ac24647c01e
 roman_numerals_py-3.1.0.tar.gz be4bf804f083a4ce001b5eb7e3c0862479d10f94c936f6c4e5f250aa5ff5bd2d
+rpds_py-0.23.1.tar.gz 7f3240dcfa14d198dba24b8b9cb3b108c06b68d45b7babd9eefc1038fdf7e707
