@@ -2029,3 +2029,4 @@ oslo_cache-3.10.1.tar.gz cb8203f1d40ac3d4fc3d0dcee0faafccf6987cba48ff0dde912fce8
 oslo_concurrency-7.1.0.tar.gz df8a877f8002b07d69f1d0e70dbcef4920d39249aaa62e478fad216b3dd414cb
 oslo_config-9.7.1.tar.gz 5558b34bcc2b52f2208e80fcad955a4f7b2c41bb245b6451d43a621ad1263bbd
 oslo_context-5.7.1.tar.gz 0c511fe153732aff0c1b3b44abd2f51008a83c707bb929bee01e1255ac964889
+oslo_db-17.2.0.tar.gz 0511364b136e0a888154bbe544b657d1902e8ff0274d51e6e4df90cd4849c21e
