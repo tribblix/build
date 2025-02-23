@@ -2,6 +2,9 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: Remove the mapfile fragments in make/hotspots/symbols;
+they're in the wrong place and no longer used as of 23+12.
+
 Cleanup: Remove long unused sysThreadAvailableStackWithSlack()
 
 Cleanup: Remove Execution protection violation code, which was only

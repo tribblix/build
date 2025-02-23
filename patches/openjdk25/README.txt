@@ -4,6 +4,9 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Remove the mapfile fragments in make/hotspots/symbols;
+they're in the wrong place and no longer used as of 23+12.
+
 25+11
 
 Minor patch noise.
