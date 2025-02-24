@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: Remove unused global UseOSErrorReporting.
+
 Cleanup: Remove the mapfile fragments in make/hotspots/symbols;
 they're in the wrong place and no longer used as of 23+12.
 

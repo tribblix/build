@@ -1427,7 +1427,7 @@ diff -urN /tmp/a/dtrace/jhelper.d b/src/hotspot/os/solaris/dtrace/jhelper.d
 diff -urN /tmp/a/globals_solaris.hpp b/src/hotspot/os/solaris/globals_solaris.hpp
 --- /tmp/a/globals_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/globals_solaris.hpp	2024-10-15 14:59:36.866277900 +0100
-@@ -0,0 +1,49 @@
+@@ -0,0 +1,48 @@
 +/*
 + * Copyright (c) 2005, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1473,7 +1473,6 @@ diff -urN /tmp/a/globals_solaris.hpp b/src/hotspot/os/solaris/globals_solaris.hp
 +define_pd_global(size_t, PreTouchParallelChunkSize, 1 * G);
 +define_pd_global(bool, UseLargePages, true);
 +define_pd_global(bool, UseLargePagesIndividualAllocation, false);
-+define_pd_global(bool, UseOSErrorReporting, false);
 +define_pd_global(bool, UseThreadPriorities, false);
 +
 +#endif // OS_SOLARIS_GLOBALS_SOLARIS_HPP

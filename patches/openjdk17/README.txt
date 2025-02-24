@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
+Cleanup: Remove unused global UseOSErrorReporting.
+
 17.0.14
 
 Minor patch noise.
