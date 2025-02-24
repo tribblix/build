@@ -1425,7 +1425,7 @@ diff -urN /tmp/a/globals_solaris.hpp b/src/hotspot/os/solaris/globals_solaris.hp
 +#define OS_SOLARIS_GLOBALS_SOLARIS_HPP
 +
 +//
-+// Defines Solaris specific flags. They are not available on other platforms.
++// Declare Solaris specific flags. They are not available on other platforms.
 +//
 +#define RUNTIME_OS_FLAGS(develop, \
 +                         develop_pd, \
@@ -1447,7 +1447,7 @@ diff -urN /tmp/a/globals_solaris.hpp b/src/hotspot/os/solaris/globals_solaris.hp
 diff -urN /tmp/a/osThread_solaris.cpp b/src/hotspot/os/solaris/osThread_solaris.cpp
 --- /tmp/a/osThread_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/osThread_solaris.cpp	2024-09-16 14:41:33.966705744 +0100
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,41 @@
 +/*
 + * Copyright (c) 1998, 2014, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1478,10 +1478,6 @@ diff -urN /tmp/a/osThread_solaris.cpp b/src/hotspot/os/solaris/osThread_solaris.
 +
 +#include <signal.h>
 +
-+ // ***************************************************************
-+ // Platform dependent initialization and cleanup
-+ // ***************************************************************
-+
 +OSThread::OSThread()
 +  : _thread_id(0),
 +    _caller_sigmask(),
@@ -1496,7 +1492,7 @@ diff -urN /tmp/a/osThread_solaris.cpp b/src/hotspot/os/solaris/osThread_solaris.
 diff -urN /tmp/a/osThread_solaris.hpp b/src/hotspot/os/solaris/osThread_solaris.hpp
 --- /tmp/a/osThread_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/osThread_solaris.hpp	2024-09-16 14:41:33.966795992 +0100
-@@ -0,0 +1,98 @@
+@@ -0,0 +1,99 @@
 +/*
 + * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1571,19 +1567,19 @@ diff -urN /tmp/a/osThread_solaris.hpp b/src/hotspot/os/solaris/osThread_solaris.
 +  }
 +  SuspendResume sr;
 +
-+ private:
++private:
 +  void* _siginfo;
 +  ucontext_t* _ucontext;
 +
-+ public:
++public:
 +  void set_siginfo(void* ptr)             { _siginfo = ptr;   }
-+  ucontext_t* ucontext() const { return _ucontext; }
-+  void set_ucontext(ucontext_t* ptr) { _ucontext = ptr; }
++  ucontext_t* ucontext() const            { return _ucontext; }
++  void set_ucontext(ucontext_t* ptr)      { _ucontext = ptr;  }
 +
-+ private:
++private:
 +  Monitor* _startThread_lock;     // sync parent and child in thread creation
 +
-+ public:
++public:
 +
 +  Monitor* startThread_lock() const {
 +    return _startThread_lock;
@@ -1594,11 +1590,12 @@ diff -urN /tmp/a/osThread_solaris.hpp b/src/hotspot/os/solaris/osThread_solaris.
 +    return (uintx)_thread_id;
 +  }
 +};
++
 +#endif // OS_SOLARIS_OSTHREAD_SOLARIS_HPP
 diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cpp
 --- /tmp/a/os_perf_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_perf_solaris.cpp	2024-09-16 14:41:33.967040032 +0100
-@@ -0,0 +1,807 @@
+@@ -0,0 +1,806 @@
 +/*
 + * Copyright (c) 2012, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -2273,7 +2270,6 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +bool SystemProcessInterface::initialize() {
 +  _impl = new SystemProcessInterface::SystemProcesses();
 +  return _impl->initialize();
-+
 +}
 +
 +SystemProcessInterface::~SystemProcessInterface() {
@@ -2751,7 +2747,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  //
 +  // Obtain the JAVA_HOME value from the location of libjvm.so.
 +  // This library should be located at:
-+  // <JAVA_HOME>/jre/lib/<arch>/{client|server}/libjvm.so.
++  // <JAVA_HOME>/lib/{client|server}/libjvm.so.
 +  //
 +  // If "/jre/lib/" appears at the right place in the path, then we
 +  // assume libjvm.so is installed in a JDK and we use this path.
@@ -3324,7 +3320,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +}
 +
 +bool os::dll_address_to_function_name(address addr, char *buf,
-+                                      int buflen, int * offset,
++                                      int buflen, int *offset,
 +                                      bool demangle) {
 +  // buf is not optional, but offset is optional
 +  assert(buf != NULL, "sanity check");
@@ -3352,13 +3348,14 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    // no matching symbol so try for just file info
 +    if (dlinfo.dli_fname != NULL && dlinfo.dli_fbase != NULL) {
 +      if (Decoder::decode((address)(addr - (address)dlinfo.dli_fbase),
-+                            buf, buflen, offset, dlinfo.dli_fname, demangle)) {
++                          buf, buflen, offset, dlinfo.dli_fname, demangle)) {
 +        return true;
 +      }
 +    }
 +  }
++
 +  buf[0] = '\0';
-+  if (offset != NULL) *offset  = -1;
++  if (offset != NULL) *offset = -1;
 +  return false;
 +}
 +
@@ -3368,7 +3365,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  assert(buf != NULL, "sanity check");
 +
 +  Dl_info dlinfo;
-+
 +  if (dladdr((void*)addr, &dlinfo) != 0) {
 +    if (dlinfo.dli_fname != NULL) {
 +      jio_snprintf(buf, buflen, "%s", dlinfo.dli_fname);
@@ -3378,7 +3374,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    }
 +    return true;
 +  }
-+
 +  buf[0] = '\0';
 +  if (offset) *offset = -1;
 +  return false;
@@ -3586,7 +3581,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  }
 +
 +  if (lib_arch.endianess != arch_array[running_arch_index].endianess) {
-+    ::snprintf(diag_msg_buf, diag_msg_max_length-1," (Possible cause: endianness mismatch)");
++    ::snprintf(diag_msg_buf, diag_msg_max_length-1, " (Possible cause: endianness mismatch)");
 +    return NULL;
 +  }
 +
@@ -3643,7 +3638,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +}
 +
 +void os::print_os_info(outputStream* st) {
-+  st->print("OS:");
++  st->print_cr("OS:");
 +
 +  os::Solaris::print_distro_info(st);
 +
@@ -3779,9 +3774,9 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +  if (Arguments::sun_java_launcher_is_altjvm()) {
 +    // Support for the java launcher's '-XXaltjvm=<path>' option. Typical
-+    // value for buf is "<JAVA_HOME>/jre/lib/<arch>/<vmtype>/libjvm.so".
++    // value for buf is "<JAVA_HOME>/jre/lib/<vmtype>/libjvm.so".
 +    // If "/jre/lib/" appears at the right place in the string, then
-+    // assume we are installed in a JDK and we're done.  Otherwise, check
++    // assume we are installed in a JDK and we're done. Otherwise, check
 +    // for a JAVA_HOME environment variable and fix up the path so it
 +    // looks like libjvm.so is installed there (append a fake suffix
 +    // hotspot/libjvm.so).
@@ -3796,7 +3791,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +      char* java_home_var = ::getenv("JAVA_HOME");
 +      if (java_home_var != NULL && java_home_var[0] != 0) {
 +        char* jrelib_p;
-+        int   len;
++        int len;
 +
 +        // Check the current module name "libjvm.so".
 +        p = strrchr(buf, '/');
@@ -3805,10 +3800,11 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +        if (os::realpath(java_home_var, buf, buflen) == NULL) {
 +          return;
 +        }
++
 +        // determine if this is a legacy image or modules image
 +        // modules image doesn't have "jre" subdirectory
 +        len = strlen(buf);
-+        assert(len < buflen, "Ran out of buffer space");
++        assert(len < buflen, "Ran out of buffer room");
 +        jrelib_p = buf + len;
 +        snprintf(jrelib_p, buflen-len, "/jre/lib");
 +        if (0 != access(buf, F_OK)) {
@@ -4808,7 +4804,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +int os::Solaris::_dev_zero_fd = -1;
 +
-+// this is called _before_ the global arguments have been parsed
++// this is called _before_ most of the global arguments have been parsed
 +void os::init(void) {
 +  _initial_pid = getpid();
 +
@@ -4962,7 +4958,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  fd = ::open64(path, oflag, mode);
 +  if (fd == -1) return -1;
 +
-+  // If the open succeeded, the file might still be a directory
++  //If the open succeeded, the file might still be a directory
 +  {
 +    struct stat64 buf64;
 +    int ret = ::fstat64(fd, &buf64);
@@ -5027,8 +5023,8 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +// are used by JVM M&M and JVMTI to get user+sys or user CPU time
 +// of a thread.
 +//
-+// current_thread_cpu_time() and thread_cpu_time(Thread *)
-+// returns the fast estimate available on the platform.
++// current_thread_cpu_time() and thread_cpu_time(Thread*) returns
++// the fast estimate available on the platform.
 +
 +// hrtime_t gethrvtime() return value includes
 +// user time but does not include system time
@@ -5508,7 +5504,7 @@ diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 diff -urN /tmp/a/os_solaris.inline.hpp b/src/hotspot/os/solaris/os_solaris.inline.hpp
 --- /tmp/a/os_solaris.inline.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.inline.hpp	2024-09-16 14:41:33.968292953 +0100
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,70 @@
 +/*
 + * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5566,17 +5562,15 @@ diff -urN /tmp/a/os_solaris.inline.hpp b/src/hotspot/os/solaris/os_solaris.inlin
 +  return r;
 +}
 +
-+
 +// Bang the shadow pages if they need to be touched to be mapped.
 +inline void os::map_stack_shadow_pages(address sp) {
 +}
 +
-+// stubbed-out trim-native support
-+inline bool os::can_trim_native_heap() { return false; }
++// Trim-native support
++inline bool os::can_trim_native_heap() {
++  return false;
++}
 +inline bool os::trim_native_heap(os::size_change_t* rss_change) { return false; }
-+
-+//////////////////////////////////////////////////////////////////////////////
-+////////////////////////////////////////////////////////////////////////////////
 +
 +inline bool os::numa_has_group_homing()     { return true;  }
 +

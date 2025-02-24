@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: closer alignment of formatting in os and os_cpu with the
+corresponding linux files, to make it easier to identify genuine
+differences between the port.
+
 Cleanup: Remove unused global UseOSErrorReporting.
 
 Cleanup: Remove the mapfile fragments in make/hotspots/symbols;
