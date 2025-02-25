@@ -8,5 +8,8 @@
 # the dependency tree starts to expand
 # Which is why we --disable-runtime
 #
-${THOME}/build/dobuild -64 libpsl-0.21.5 -C "--disable-static --disable-dependency-tracking --enable-builtin --disable-runtime"
+# Download the current list
+#
+${THOME}/build/TRIBlibpsl/get_pslfile
+${THOME}/build/dobuild -64 libpsl-0.21.5 -C "--disable-static --disable-dependency-tracking --enable-builtin --disable-runtime --with-psl-file=/tmp/psl/public_suffix_list.dat"
 ${THOME}/build/genpkg TRIBlibpsl libpsl-0.21.5

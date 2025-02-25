@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# download the current list
+#
+PSL_FILE=/tmp/psl/public_suffix_list.dat
+if [ ! -f "${PSL_FILE}" ]; then
+    mkdir -p /tmp/psl
+    wget -O "${PSL_FILE}" https://publicsuffix.org/list/public_suffix_list.dat
+fi
