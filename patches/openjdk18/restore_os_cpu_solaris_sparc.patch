@@ -1265,7 +1265,7 @@ diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/thread_solaris_sparc.cpp 
 diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/thread_solaris_sparc.hpp b/src/hotspot/os_cpu/solaris_sparc/thread_solaris_sparc.hpp
 --- a/src/hotspot/os_cpu/solaris_sparc/thread_solaris_sparc.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_sparc/thread_solaris_sparc.hpp	2023-04-16 11:42:17.120749608 +0000
-@@ -0,0 +1,89 @@
+@@ -0,0 +1,82 @@
 +/*
 + * Copyright (c) 1998, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1346,13 +1346,6 @@ diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/thread_solaris_sparc.hpp 
 +private:
 +  bool pd_get_top_frame(frame* fr_addr, void* ucontext,
 +    bool isInJava, bool makeWalkable);
-+public:
-+
-+  // These routines are only used on cpu architectures that
-+  // have separate register stacks (Itanium).
-+  static bool register_stack_overflow() { return false; }
-+  static void enable_register_stack_guard() {}
-+  static void disable_register_stack_guard() {}
 +
 +#endif // OS_CPU_SOLARIS_SPARC_THREAD_SOLARIS_SPARC_HPP
 diff -ur --new-file a/src/hotspot/os_cpu/solaris_sparc/vmStructs_solaris_sparc.hpp b/src/hotspot/os_cpu/solaris_sparc/vmStructs_solaris_sparc.hpp

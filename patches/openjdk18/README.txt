@@ -5,6 +5,12 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Forked off into the jdk18 repo; mainline is now jdk19.
 
+Cleanup: remove unused register stack functions. See the bug
+8253457: Remove unimplemented register stack functions
+The change for that not only removed the itanium only register
+stack functions, but also the base_of_stack_pointer routines
+which I keep for now as they were implemented and used on sparc.
+
 Cleanup: remove 32-bit SSE check
 
 Cleanup: os::is_allocatable() is always true on 64-bit

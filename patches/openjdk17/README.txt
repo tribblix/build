@@ -3,6 +3,12 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
+Cleanup: remove unused register stack functions. See the bug
+8253457: Remove unimplemented register stack functions
+The change for that not only removed the itanium only register
+stack functions, but also the base_of_stack_pointer routines
+which I keep for now as they were implemented and used on sparc.
+
 Cleanup: Remove unused global UseOSErrorReporting.
 
 17.0.14
