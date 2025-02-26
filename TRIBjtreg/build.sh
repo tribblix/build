@@ -5,7 +5,7 @@
 
 git clone https://github.com/openjdk/jtreg
 cd jtreg
-git checkout jtreg-7.4+1
+git checkout jtreg-7.5.1+1
 
 env PATH=/usr/gnu/bin:$PATH bash make/build.sh --jdk /usr/jdk/instances/jdk11
 
