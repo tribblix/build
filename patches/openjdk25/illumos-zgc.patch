@@ -284,7 +284,7 @@
 +#endif // OS_SOLARIS_GC_Z_ZPHYSICALMEMORYBACKING_SOLARIS_HPP
 --- a/make/autoconf/jvm-features.m4	Wed Nov  6 16:41:41 2024
 +++ b/make/autoconf/jvm-features.m4	Wed Nov 20 14:20:08 2024
-@@ -319,6 +319,7 @@
+@@ -347,6 +347,7 @@
      if test "x$OPENJDK_TARGET_CPU" = "xx86_64"; then
        if test "x$OPENJDK_TARGET_OS" = "xlinux" || \
            test "x$OPENJDK_TARGET_OS" = "xwindows" || \
