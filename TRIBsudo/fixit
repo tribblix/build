@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we don't want to package sudoers, because then that would
 # (a) lead to package validation errors, and
 # (b) overwrite changes on update

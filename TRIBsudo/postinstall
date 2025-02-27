@@ -1,6 +1,12 @@
 #!/sbin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # put an unpackaged sudoers file in place
+#
+# we only copy in a pristine one if there isn't one, which should
+# only occur the very first time sudo is installed, subsequently
+# the sudoers file will be preserved
 #
 if [ -f ${BASEDIR}/etc/sudoers ]; then
     /usr/bin/chown root:root ${BASEDIR}/etc/sudoers
