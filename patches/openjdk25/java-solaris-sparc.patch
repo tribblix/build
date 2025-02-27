@@ -1606,8 +1606,8 @@
 -#endif
  
  #if defined(__linux__) || defined(_ALLBSD_SOURCE)
- static const char *ETC_TIMEZONE_FILE = "/etc/timezone";
-@@ -62,8 +57,8 @@
+ static const char *ZONEINFO_DIR = "/usr/share/zoneinfo";
+@@ -61,8 +56,8 @@
  
  static const char popularZones[][4] = {"UTC", "GMT"};
  
@@ -1617,7 +1617,7 @@
  
  /*
   * remove repeated path separators ('/') in the given 'path'.
-@@ -173,13 +168,6 @@
+@@ -172,13 +167,6 @@
           */
          if ((strcmp(dp->d_name, "ROC") == 0)
              || (strcmp(dp->d_name, "posixrules") == 0)
@@ -1631,7 +1631,7 @@
              || (strcmp(dp->d_name, "localtime") == 0)) {
              continue;
          }
-@@ -251,8 +239,6 @@
+@@ -250,8 +238,6 @@
      return possibleMatch;
  }
  
@@ -1640,7 +1640,7 @@
  /*
   * Performs Linux specific mapping and returns a zone ID
   * if found. Otherwise, NULL is returned.
-@@ -364,183 +350,6 @@
+@@ -336,183 +322,6 @@
      return tz;
  }
  
@@ -1824,7 +1824,7 @@
  #elif defined(_AIX)
  static const char *ETC_ENVIRONMENT_FILE = "/etc/environment";
  
-@@ -707,15 +516,6 @@
+@@ -679,15 +488,6 @@
              free((void *) freetz);
          }
  #else

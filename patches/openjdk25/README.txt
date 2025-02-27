@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+12
+
+Trivial patch noise.
+
 Cleanup: remove unused register stack functions. See the bug
 8253457: Remove unimplemented register stack functions
 The change for that not only removed the itanium only register
