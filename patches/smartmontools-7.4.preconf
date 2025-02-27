@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# switch the Makefile over to putting the man pages in the right place
+# rather than the traditional SunOS locations
+#
+sed -i s:@OS_SOLARIS_TRUE@:@OS_SOLARIS_SWITCH@:g Makefile.in
+sed -i s:@OS_SOLARIS_FALSE@:@OS_SOLARIS_TRUE@:g Makefile.in
+sed -i s:@OS_SOLARIS_SWITCH@:@OS_SOLARIS_FALSE@:g Makefile.in
