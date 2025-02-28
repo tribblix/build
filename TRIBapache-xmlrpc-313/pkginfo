@@ -1,4 +1,4 @@
 PKG="TRIBapache-xmlrpc-313"
 NAME="Apache XML-RPC"
-VERSION="3.1.3"
+VERSION="3.1.3.1"
 ZAP_URL="https://ws.apache.org/xmlrpc/"
