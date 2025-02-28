@@ -1,9 +1,15 @@
 #!/bin/sh
 #
-# was originally 1.5.0 but now everything is updated we can just ship 1.5.4
+# SPDX-License-Identifier: CDDL-1.0
+#
+# ship old 1.5.4 and 1.5.5 during transition
 #
 mkdir -p usr/share/jfreechart-1.5.4
 cp ${THOME}/tarballs/jfreechart-1.5.4.jar usr/share/jfreechart-1.5.4
+mkdir -p usr/share/jfreechart-1.5.5
+cp ${THOME}/tarballs/jfreechart-1.5.5.jar usr/share/jfreechart-1.5.5
 
-cd usr/share/jfreechart-1.5.4
+
+cd usr/share/jfreechart-1.5.5
 wget https://www.gnu.org/licenses/lgpl-3.0-standalone.html
+cp lgpl-3.0-standalone.html ../jfreechart-1.5.4
