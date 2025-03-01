@@ -8,10 +8,3 @@ cd usr/bin
 ln -s ../../usr/versions/python-${PYVERS}/bin/scons .
 ln -s ../../usr/versions/python-${PYVERS}/bin/sconsign .
 ln -s ../../usr/versions/python-${PYVERS}/bin/scons-configure-cache .
-cd ../..
-mkdir -p usr/share/man/man1
-cd usr/share/man/man1
-# yes they are installed in a slightly odd place
-ln -s ../../../../usr/versions/python-${PYVERS}/scons.1
-ln -s ../../../../usr/versions/python-${PYVERS}/sconsign.1
-ln -s ../../../../usr/versions/python-${PYVERS}/scons-time.1
