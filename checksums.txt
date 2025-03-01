@@ -2091,3 +2091,4 @@ python_barbicanclient-7.1.0.tar.gz 1394b72a7a2c46378d78a7f3a3c8fbec5fe7f8598ae5e
 python_keystoneclient-5.6.0.tar.gz 721de2aec7710076389c674ee27b6712e97d86c7e0ff487b0b4409c8fcee10e7
 s3transfer-0.11.3.tar.gz edae4977e3a122445660c7c114bba949f9d191bae3b34a096f18a1c8c354527a
 claws-mail-4.3.1.tar.xz d8adf210c767ab58252dfc5ab3c69e603d7ffdb7281a1e3340d2d86062f468a6
+scala3-3.3.5.tar.gz 255406d7a2f4ff745b6a125cf850f3ea96b34f26f9be7c6a3f8dbbda5d136a52
