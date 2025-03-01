@@ -2089,3 +2089,4 @@ starlette-0.46.0.tar.gz b359e4567456b28d473d0193f34c0de0ed49710d75ef183a74a5ce04
 python_designateclient-6.2.0.tar.gz d25c8f136c4ff1dedd4255df620ddacb6949740a1324f6ac1d3c593b320380ed
 python_barbicanclient-7.1.0.tar.gz 1394b72a7a2c46378d78a7f3a3c8fbec5fe7f8598ae5ead47522afd8ffdb1696
 python_keystoneclient-5.6.0.tar.gz 721de2aec7710076389c674ee27b6712e97d86c7e0ff487b0b4409c8fcee10e7
+s3transfer-0.11.3.tar.gz edae4977e3a122445660c7c114bba949f9d191bae3b34a096f18a1c8c354527a
