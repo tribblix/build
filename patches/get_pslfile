@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# download the current list
+# download the current public suffix list for TRIBlibpsl
 #
 PSL_FILE=/tmp/psl/public_suffix_list.dat
 if [ ! -f "${PSL_FILE}" ]; then
