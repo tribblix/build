@@ -6,6 +6,11 @@ mkdir e2
 cd e2
 git clone https://github.com/etcd-io/etcd
 cd etcd
+#
+# it must be a release version, otherwise patroni (and others) will choke
+# on trying to talk to it
+#
+git checkout v3.5.18
 env PATH=/usr/versions/go-1.23/bin:$PATH gmake
 
 rm -fr /tmp/ee
