@@ -4,7 +4,7 @@
 #
 # take most of the options and the bsm audit patches from OI
 #
-# -A to regenerate configure becase we patch configure.ac to get
+# -A to regenerate configure because we patch configure.ac to get
 # the man pages in the right (post-IPD4) places
 #
 # there's a custom config file installed by the fixit script
