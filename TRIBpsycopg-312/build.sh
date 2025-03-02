@@ -11,4 +11,7 @@
 # just a binary download from pypi and illumos isn't provided, but the
 # [c] extra, aka "local installation", should be equivalent
 #
-env PATH=/opt/tribblix/postgres15/bin:$PATH LD_RUN_PATH=/opt/tribblix/postgres15/lib $THOME/build/pkg_setup_py TRIBpsycopg-312 psycopg-3.2.5 psycopg_pool-3.2.5 psycopg_c-3.2.5
+# note that python already links with -R (for ncurses) so will ignore
+# LD_RUN_PATH, hence LDFLAGS so it can find libpq at runtime
+#
+env LDFLAGS=-R/opt/tribblix/postgres15/lib PATH=/opt/tribblix/postgres15/bin:$PATH $THOME/build/pkg_setup_py TRIBpsycopg-312 psycopg-3.2.5 psycopg_pool-3.2.5 psycopg_c-3.2.5
