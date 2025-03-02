@@ -4,4 +4,4 @@
 #
 # bundle with the cli
 #
-${THOME}/build/pkg_pep518 TRIBfastapi-python-312 fastapi-0.115.10 fastapi_cli-0.0.7
+${THOME}/build/pkg_pep518 TRIBfastapi-python-312 fastapi-0.115.11 fastapi_cli-0.0.7
