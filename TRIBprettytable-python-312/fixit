@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the egg seems to be mode 0600
 #
 chmod -R a+r usr/versions

@@ -4,4 +4,5 @@
 #
 # test files are unpackageable as the names contain spaces
 #
-rm -fr usr/versions/python-3.12/lib/python3.12/site-packages/nbclient/tests
+PYVERS=3.12
+rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/nbclient/tests

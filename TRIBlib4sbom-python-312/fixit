@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # these not only look wrong, they conflict with other packages
 #
 PYVERS=3.12

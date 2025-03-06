@@ -4,5 +4,6 @@
 #
 # filenames with spaces
 #
-mv 'usr/versions/python-3.12/lib/python3.12/site-packages/scipy/io/tests/data/Transparent Busy.ani' usr/versions/python-3.12/lib/python3.12/site-packages/scipy/io/tests/data/TransparentBusy.ani
-sed -i 's:Transparent Busy.ani:TransparentBusy.ani:' usr/versions/python-3.12/lib/python3.12/site-packages/scipy/io/tests/test_wavfile.py
+PYVERS=3.12
+mv 'usr/versions/python-3.12/lib/python3.12/site-packages/scipy/io/tests/data/Transparent Busy.ani' usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/scipy/io/tests/data/TransparentBusy.ani
+sed -i 's:Transparent Busy.ani:TransparentBusy.ani:' usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/scipy/io/tests/test_wavfile.py

@@ -2,12 +2,11 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# add a convenience link
-#
+PYVERS=3.12
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/versions/python-3.12/bin/* .
+ln -s ../../usr/versions/python-${PYVERS}/bin/* .
 cd ../..
 mkdir -p usr/share/man/man1
 cd usr/share/man/man1
-ln -s ../../../../usr/versions/python-3.12/share/man/man1/*.1 .
+ln -s ../../../../usr/versions/python-${PYVERS}/share/man/man1/*.1 .

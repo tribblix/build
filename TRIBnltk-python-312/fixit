@@ -4,4 +4,5 @@
 #
 # multiple files get installed mode 066 by default
 #
-chmod -R og-w usr/versions/python-3.12/lib/python3.12/site-packages/nltk*
+PYVERS=3.12
+chmod -R og-w usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/nltk*

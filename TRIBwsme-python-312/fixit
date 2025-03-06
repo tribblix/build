@@ -4,4 +4,5 @@
 #
 # some of the permissions here are wide open
 #
-chmod -R og-w usr/versions/python-3.12/lib/python3.12/site-packages/simplegeneric*
+PYVERS=3.12
+chmod -R og-w usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/simplegeneric*

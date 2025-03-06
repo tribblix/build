@@ -6,9 +6,7 @@ PYVERS=3.12
 #
 # clean up tests, some files have interesting names
 #
-rm -fr usr/versions/python-3.12/lib/python3.12/site-packages/pelican/tests
-#
-# add a convenience link
+rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/pelican/tests
 #
 mkdir -p usr/bin
 cd usr/bin
