@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# put in the regular path
-#
 VERSION=3.29
 mkdir usr/bin
 cd usr/bin

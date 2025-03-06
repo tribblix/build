@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# put a wrapper in the regular path
+# place a wrapper in the normal path
 #
 mkdir -p usr/bin
 cd usr/bin

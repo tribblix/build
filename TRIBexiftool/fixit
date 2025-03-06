@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# move the binary to regular path
-#
 mkdir -p usr/bin
 mv usr/perl5/5.34/bin/exiftool usr/bin
 rmdir usr/perl5/5.34/bin
