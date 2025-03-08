@@ -4,6 +4,12 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+13
+
+Trivial patch noise.
+
+Removal of c1 and c2 in src/hotspot/os/solaris/vmStructs_solaris.hpp.
+
 25+12
 
 Trivial patch noise.
