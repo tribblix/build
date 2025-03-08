@@ -2146,3 +2146,4 @@ apache-arrow-adbc-17.tar.gz bd57320441eb67ed0ab19d42af5fa6983cc1f396e3f7cfbfac8f
 adbc_driver_manager-1.5.0.tar.gz db3f7a0e3f7d9c4df2e117b411407f8b1e0f202d9c2516f42cdf2d44415ac0d4
 adbc_driver_postgresql-1.5.0.tar.gz 3fc569ecd816838529e4778d5a5bd3678b6e35204d0b6428335e6bb3549312e8
 jdk-jdk-25-13.tar.gz 92ff4f1ae35f9bc1de1fdebbbd78c42d54ba05f25889257b7dc53c9566caf7d1
+snac2-2.73.tar.gz b4ebba0d7990690ba5027d855b9d595d029993fc82d2c4edd99c9159b826d9da
