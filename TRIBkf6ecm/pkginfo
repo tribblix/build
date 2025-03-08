@@ -1,4 +1,4 @@
 PKG="TRIBkf6ecm"
 NAME="KDE6 extra-cmake-modules"
-VERSION="6.11.0.0"
+VERSION="6.11.0.1"
 ZAP_URL="https://download.kde.org/stable/frameworks/6.11/"
