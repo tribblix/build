@@ -2148,3 +2148,4 @@ adbc_driver_postgresql-1.5.0.tar.gz 3fc569ecd816838529e4778d5a5bd3678b6e35204d0b
 jdk-jdk-25-13.tar.gz 92ff4f1ae35f9bc1de1fdebbbd78c42d54ba05f25889257b7dc53c9566caf7d1
 snac2-2.73.tar.gz b4ebba0d7990690ba5027d855b9d595d029993fc82d2c4edd99c9159b826d9da
 emacs-30.1.tar.xz 6ccac1ae76e6af93c6de1df175e8eb406767c23da3dd2a16aa67e3124a6f138f
+qt-everywhere-src-6.6.3.tar.xz 69d0348fef415da98aa890a34651e9cfb232f1bffcee289b7b4e21386bf36104

@@ -4,9 +4,6 @@ P TRIBcups
 P TRIBdouble-conversion
 P TRIBgdk-pixbuf
 P TRIBgraphics-jasper
-P TRIBgstreamer1
-P TRIBgstreamer1-plugins-bad
-P TRIBgstreamer1-plugins-base
 P TRIBharfbuzz
 P TRIBhunspell
 P TRIBimage-libjpeg
@@ -25,6 +22,7 @@ P TRIBlibmng
 P TRIBlibwebp
 P TRIBlibxcb
 P TRIBlibxkbcommon
+P TRIBprotobuf
 P TRIBsvc-opengl-ogl-select
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
