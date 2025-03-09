@@ -5,6 +5,6 @@
 # ipython-pygments-lexers used to be included in IPython, now spun out,
 # but package together
 #
-# ipython build uses setuptool, ipython-pygments-lexers uses flit-core
+# ipython build uses setuptools, ipython-pygments-lexers uses flit-core
 #
-${THOME}/build/pkg_pep518 -N TRIBipython-python-312 ipython-9.0.1 ipython_pygments_lexers-1.1.1
+${THOME}/build/pkg_pep518 -N TRIBipython-python-312 ipython-9.0.2 ipython_pygments_lexers-1.1.1
