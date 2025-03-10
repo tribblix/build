@@ -6,7 +6,7 @@
 # rather than package them
 #
 VERSION=1.12.8
-cd ${BASEDIR}/usr/versions/freeplane-${VERSION}/doc
+cd "${BASEDIR}/usr/versions/freeplane-${VERSION}/doc" || exit 0
 if [ -d Images ]; then
   /usr/bin/rm -fr Images
 fi
