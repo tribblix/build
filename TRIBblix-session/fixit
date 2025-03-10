@@ -10,5 +10,7 @@ case $(uname -p) in
 sparc)
     rm -f usr/share/tribblix-session/e19.*
     rm -f usr/share/tribblix-session/leftwm.*
+    rm -f usr/bin/startxephyr
+    rm -f usr/share/man/man1/startxephyr.1
     ;;
 esac
