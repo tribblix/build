@@ -5,5 +5,5 @@
 # don't rely on the owner being in the password file
 # (will fail if installing to an alternate root)
 #
-/usr/bin/chown -hR 114:114 ${BASEDIR}/opt/tribblix/zabbix/apache2/logs
-/usr/bin/chown -hR 115:115 ${BASEDIR}/opt/tribblix/zabbix/db
+/usr/bin/chown -hR 114:114 "${BASEDIR}/opt/tribblix/zabbix/apache2/logs"
+/usr/bin/chown -hR 115:115 "${BASEDIR}/opt/tribblix/zabbix/db"

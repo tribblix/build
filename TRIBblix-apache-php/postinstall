@@ -5,4 +5,4 @@
 # don't rely on the owner being in the password file
 # (will fail if installing to an alternate root)
 #
-/usr/bin/chown -hR 127:127 ${BASEDIR}/opt/tribblix/phpweb/apache2/logs
+/usr/bin/chown -hR 127:127 "${BASEDIR}/opt/tribblix/phpweb/apache2/logs"

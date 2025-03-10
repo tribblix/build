@@ -5,7 +5,7 @@
 # themes has files whose names contain spaces, so we unpack them
 # rather than package them
 #
-cd ${BASEDIR}/usr/share/fish/tools/web_config
+cd "${BASEDIR}/usr/share/fish/tools/web_config" || exit 0
 if [ -f themes.tar ]; then
   /usr/bin/tar xf themes.tar
   /usr/bin/chown -hR root:root themes

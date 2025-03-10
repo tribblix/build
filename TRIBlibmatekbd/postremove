@@ -7,6 +7,6 @@
 if [ "${BASEDIR}" = "/" ]; then
   /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas
 else
-  env LD_LIBRARY_PATH=${BASEDIR}/usr/lib ${BASEDIR}/usr/bin/glib-compile-schemas ${BASEDIR}/usr/share/glib-2.0/schemas
+  env LD_LIBRARY_PATH="${BASEDIR}/usr/lib" "${BASEDIR}/usr/bin/glib-compile-schemas" "${BASEDIR}/usr/share/glib-2.0/schemas"
 fi
 exit 0

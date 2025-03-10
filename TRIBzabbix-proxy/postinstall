@@ -5,4 +5,4 @@
 # don't rely on the owner being in the password file
 # (will fail if installing to an alternate root)
 #
-/usr/bin/chown -hR 112:112 ${BASEDIR}/var/zabbix_proxy
+/usr/bin/chown -hR 112:112 "${BASEDIR}/var/zabbix_proxy"

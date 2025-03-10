@@ -5,7 +5,7 @@
 # themes has files whose names contain spaces, so we unpack them
 # rather than package them
 #
-cd ${BASEDIR}/usr/share/fish/tools/web_config
+cd "${BASEDIR}/usr/share/fish/tools/web_config" || exit 0
 if [ -d themes ]; then
   /usr/bin/rm -fr themes
 fi
