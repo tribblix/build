@@ -1,4 +1,4 @@
 PKG="TRIBlibvncserver"
 NAME="LibVNCServer/LibVNCClient"
-VERSION="0.9.14.2"
+VERSION="0.9.15.0"
 ZAP_URL="http://libvnc.github.io/"
