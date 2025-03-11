@@ -1,4 +1,0 @@
-#!/bin/sh
-#
-$THOME/build/cmbuild -64 leveldb-1.23 -C "-DLEVELDB_BUILD_BENCHMARKS=OFF -DLEVELDB_BUILD_TESTS=OFF -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=OFF"
-${THOME}/build/genpkg TRIBleveldb leveldb-1.23

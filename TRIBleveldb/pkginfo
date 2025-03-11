@@ -1,4 +1,0 @@
-PKG="TRIBleveldb"
-NAME="Fast key-value storage library"
-VERSION="1.23.0"
-ZAP_URL="https://github.com/google/leveldb"
