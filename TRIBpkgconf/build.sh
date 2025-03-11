@@ -6,5 +6,5 @@
 # a supplement (see also the fixit file which will need to be
 # adjusted if we retire pkg-config at some future time)
 #
-${THOME}/build/dobuild -64only pkgconf-2.3.0
-${THOME}/build/genpkg TRIBpkgconf pkgconf-2.3.0
+${THOME}/build/dobuild -64only -A pkgconf-pkgconf-2.4.3
+${THOME}/build/genpkg TRIBpkgconf pkgconf-pkgconf-2.4.3
