@@ -1,4 +1,4 @@
 PKG="TRIBbrotli"
 NAME="Brotli compression format"
-VERSION="1.0.9.0"
+VERSION="1.1.0.0"
 ZAP_URL="https://github.com/google/brotli"
