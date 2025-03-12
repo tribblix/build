@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# just copy the files out of the repo
+#
+(cd ${THOME}/desktop-cache ; tar cf - lib var) | tar xf -

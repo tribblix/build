@@ -1,7 +1,5 @@
-#!/bin/tcsh
+#!/bin/sh
 #
-rm -fr /tmp/ts
-mkdir /tmp/ts
-(cd ${THOME}/desktop-cache ; tar cf - lib var) | ( cd /tmp/ts ; tar xf -)
-${THOME}/build/create_pkg TRIBsvc-gnome-desktop-cache /tmp/ts
-rm -fr /tmp/ts
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/genpkg TRIBsvc-gnome-desktop-cache
