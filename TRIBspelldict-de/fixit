@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+ARCHIVE="igerman98-20161207"
+$THOME/build/unpack "${ARCHIVE}"
+cd "${ARCHIVE}"
+sed -i 's:-i latin1:-i ISO8859-1:' Makefile
+gmake hunspell-all AFFIX_EXPANDER=aspell
+cd ..
+
+mkdir -p usr/share/hunspell
+cp "${ARCHIVE}"/hunspell/de_{AT,CH,DE}.{aff,dic} usr/share/hunspell
+rm -fr "${ARCHIVE}"
+cd usr/share/hunspell
+#
+# symlinks
+#
+# these aliases derived from the OI list
+#
+ln -s de_CH.aff de_de_LI.aff
+ln -s de_CH.dic de_de_LI.dic
+for alt in de_BE de_LU
+do
+    ln -s de_DE.aff ${alt}.aff
+    ln -s de_DE.dic ${alt}.dic
+done
