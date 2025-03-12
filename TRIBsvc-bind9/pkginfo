@@ -1,4 +1,4 @@
 PKG="TRIBsvc-bind9"
 NAME="BIND named service"
-VERSION="9.9.9.2"
+VERSION="9.18.34.0"
 ZAP_URL="https://www.isc.org/downloads/bind/"
