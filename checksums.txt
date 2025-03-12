@@ -2184,3 +2184,4 @@ libvncserver-LibVNCServer-0.9.15.tar.gz 62352c7795e231dfce044beb96156065a05a05c9
 sqlalchemy-2.0.39.tar.gz 5d2d1fe548def3267b4c70a8568f108d1fed7cbbeccb9cc166e05af2abc25c22
 python-debian-1.0.1.tar.gz 3ada9b83a3d671b58081782c0969cffa0102f6ce433fbbc7cf21275b8b5cc771
 pipdeptree-2.25.1.tar.gz 8fb788c97b8b605bdd105a6eb847bd762caa49c4942176b31eee162ba2cc7389
+palemoon-33.6.1.solaris2.11-x86_64-illumos.tar.xz a118c7c78e2e15e0c8eead788f14c35d333f7a6702aa0c1a8d1cac7b89ec8f71
