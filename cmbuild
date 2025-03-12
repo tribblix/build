@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -237,7 +237,7 @@ fi
 #
 # 64-bit files go in these subdirectories
 # adjust sparc builds, editing the rpath at install time corrupts
-# the 64-bit sparc binaries renedring them unusable
+# the 64-bit sparc binaries rendering them unusable
 #
 case `uname -p` in
 sparc)
