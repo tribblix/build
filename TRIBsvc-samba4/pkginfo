@@ -1,4 +1,4 @@
 PKG="TRIBsvc-samba4"
 NAME="A simple samba service"
-VERSION="1.0"
+VERSION="1.1"
 ZAP_URL="https://www.samba.org/"

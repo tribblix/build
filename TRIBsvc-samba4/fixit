@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # populate the package, files and directories
 #
 
@@ -9,4 +11,4 @@ mkdir -p var/samba
 
 cp ${BUILDROOT}/patches/samba.xml var/svc/manifest/network
 
-cp ${BUILDROOT}/patches/smb.conf etc/samba/smb.conf
+cp ${BUILDROOT}/patches/smb.conf etc/samba/smb.conf.dist

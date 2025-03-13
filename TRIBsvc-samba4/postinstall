@@ -1,0 +1,29 @@
+#!/sbin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# put an unpackaged smb.conf file in place
+#
+# we only copy in a pristine one if there isn't one, which should
+# only occur the very first time this package is installed; subsequent
+# updates will leave the active smb.conf alone
+#
+if [ ! -f "${BASEDIR}/etc/samba/smb.conf" ]; then
+    #
+    # create a new one, set up with the correct IP address for this host
+    #
+    IFACE=$(/usr/sbin/route -n get default | /usr/bin/grep interface: | /usr/bin/awk '{print $NF}')
+    # /_b is what we get in the global zone
+    IP1=$(/usr/sbin/ipadm show-addr -p -o addr "${IFACE}/_b" 2>/dev/null)
+    # /_a is an exclusive-ip zone
+    if [ -z "${IP1}" ]; then
+	IP1=$(/usr/sbin/ipadm show-addr -p -o addr "${IFACE}/_a" 2>/dev/null)
+    fi
+    # /? is a shared-ip zone, but cannot be selected, so grep
+    if [ -z "${IP1}" ]; then
+	IP1=$(/usr/sbin/ipadm show-addr | grep  "^${IFACE}/" | awk '{print $NF}')
+    fi
+    if [ -f "${BASEDIR}/etc/samba/smb.conf.dist" ]; then
+	cat "${BASEDIR}/etc/samba/smb.conf.dist" | sed "s:XX.XX.XX.XX/YY:${IP1}:" > "${BASEDIR}/etc/samba/smb.conf"
+    fi
+fi
