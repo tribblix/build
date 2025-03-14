@@ -1,0 +1,4 @@
+PKG="TRIBkf6sonnet"
+NAME="KF6Sonnet"
+VERSION="6.11.0.0"
+ZAP_URL="https://download.kde.org/stable/frameworks/6.11/"
