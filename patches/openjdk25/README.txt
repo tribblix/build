@@ -4,6 +4,13 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+14
+
+The Makefiles around threading libraries were reworked. While tidying
+that up, as all current versions of Solaris and illumos don't need any
+explicit threading libraries at all, it's all in libc, remove use of
+-lthread.
+
 25+13
 
 Trivial patch noise.

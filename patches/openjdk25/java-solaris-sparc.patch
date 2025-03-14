@@ -186,7 +186,7 @@
          # this is an error
 --- old/make/autoconf/libraries.m4	2020-05-20 17:58:41.188560546 -0700
 +++ new/make/autoconf/libraries.m4	2020-05-20 17:58:40.768552482 -0700
-@@ -133,15 +133,13 @@
+@@ -133,7 +133,7 @@
    BASIC_JVM_LIBS="$LIBM"
  
    # Dynamic loading library
@@ -195,15 +195,7 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS $LIBDL"
    fi
  
-   # Threading library
-   if test "x$OPENJDK_TARGET_OS" = xlinux || test "x$OPENJDK_TARGET_OS" = xaix; then
-     BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lpthread"
--  elif test "x$OPENJDK_TARGET_OS" = xsolaris; then
--    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lthread"
-   fi
- 
-   # librt for legacy clock_gettime
-@@ -158,12 +156,6 @@
+@@ -156,12 +156,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -486,7 +478,7 @@
      DISABLED_WARNINGS_clang_UnixNativeDispatcher.c := unused-variable, \
 +    JDK_LIBS := libjava libnet, \
 -    JDK_LIBS := libjava libjvm libnet, \
-     LIBS_linux := $(LIBDL) -lpthread, \
+     LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
 -    LIBS_solaris := -lsocket -lposix4 $(LIBDL) -lsendfile, \
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
@@ -497,8 +489,8 @@
        LIBS_linux := $(LIBDL), \
 -      LIBS_solaris := $(LIBDL), \
        LIBS_aix := $(LIBDL), \
+       ONLY_EXPORTED := true, \
    ))
- 
 --- old/make/modules/java.base/gensrc/GensrcMisc.gmk	2020-05-20 17:59:11.161136042 -0700
 +++ new/make/modules/java.base/gensrc/GensrcMisc.gmk	2020-05-20 17:59:10.769128515 -0700
 @@ -141,21 +141,6 @@
@@ -545,7 +537,7 @@
 @@ -189,7 +188,6 @@
      DISABLED_WARNINGS_clang_java_md_macosx.m := unused-variable, \
      LIBS_unix := $(LIBZ_LIBS), \
-     LIBS_linux := $(LIBDL) -lpthread, \
+     LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
 -    LIBS_solaris := $(LIBDL), \
      LIBS_macosx := \
          -framework ApplicationServices \
@@ -619,7 +611,7 @@
 +      JDK_LIBS := libawt java.base:libjava, \
        LIBS_unix := $(LIBDL) $(LIBM) $(X_LIBS) -lX11 -lXext -lXi -lXrender \
            -lXtst, \
-       LIBS_linux := -lpthread, \
+       LIBS_linux := $(LIBPTHREAD), \
 @@ -405,7 +403,7 @@
  endif
  
@@ -659,7 +651,7 @@
  
 @@ -262,7 +262,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS), \
-       LIBS_unix := $(LIBM) -lpthread, \
+       LIBS_unix := $(LIBM) $(LIBPTHREAD), \
        LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
 -      LIBS_solaris := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
        LIBS_macosx := -liconv \
@@ -724,7 +716,7 @@
 -    JDK_LIBS := java.base:libjava java.base:libjvm, \
 +    JDK_LIBS := java.base:libjava, \
      LIBS_linux := $(LIBDL), \
--    LIBS_solaris := -ldl -lstdc++ -lthread -lproc, \
+-    LIBS_solaris := -ldl -lstdc++ -lproc, \
      LIBS_macosx := \
          -framework CoreFoundation \
          -framework Foundation \
@@ -733,7 +725,7 @@
 @@ -39,7 +39,6 @@
          include \
          libjdwp/export, \
-     LIBS_linux := -lpthread, \
+     LIBS_linux := $(LIBPTHREAD), \
 -    LIBS_solaris := -lnsl -lsocket, \
      LIBS_windows := iphlpapi.lib ws2_32.lib, \
  ))
@@ -800,7 +792,7 @@
 @@ -42,7 +42,6 @@
            java.base:libnio/ch, \
        JDK_LIBS := java.base:libjava java.base:libnet, \
-       LIBS_linux := $(LIBDL) -lpthread, \
+       LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
 -      LIBS_solaris := -lsocket, \
    ))
  
@@ -917,7 +909,7 @@
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
 -  else ifeq ($(call isTargetOs, solaris), true)
 -    BUILD_JDK_JTREG_LIBRARIES_JDK_LIBS_libInheritedChannel := java.base:libjava java.base:libjvm
--    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -lsocket -lnsl -lthread -ldl
+-    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -lsocket -lnsl -ldl
    endif
    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeNullCallerTest := $(LIBCXX)
  endif
@@ -4659,7 +4651,7 @@
 -        SRC := $(TOPDIR)/src/java.base/solaris/native/libjvm_dtrace, \
 -        CFLAGS := $(JNI_INCLUDE_FLAGS) -m64 -G -mt -KPIC -xldscope=hidden, \
 -        LDFLAGS := -m64 -mt -xnolib $(SHARED_LIBRARY_FLAGS), \
--        LIBS := $(LIBDL) -lthread -ldoor, \
+-        LIBS := $(LIBDL) -ldoor, \
 -        OBJECT_DIR := $(LIBJVM_DTRACE_OUTPUTDIR)/objs, \
 -    ))
 -
