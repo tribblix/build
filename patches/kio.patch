@@ -1,0 +1,25 @@
+Don't make fperm constexpr, because if you do it gets elided and then
+the linker can't find the symbol when it wants it.
+
+--- kio-6.11.0-64bit/src/widgets/kpropertiesdialog.cpp~	Fri Feb  7 14:01:52 2025
++++ kio-6.11.0-64bit/src/widgets/kpropertiesdialog.cpp	Fri Mar 14 19:18:34 2025
+@@ -74,7 +74,7 @@
+ 
+ using namespace KDEPrivate;
+ 
+-constexpr mode_t KFilePermissionsPropsPlugin::fperm[3][4] = {
++mode_t KFilePermissionsPropsPlugin::fperm[3][4] = {
+     {S_IRUSR, S_IWUSR, S_IXUSR, S_ISUID},
+     {S_IRGRP, S_IWGRP, S_IXGRP, S_ISGID},
+     {S_IROTH, S_IWOTH, S_IXOTH, S_ISVTX},
+--- kio-6.11.0-64bit/src/widgets/kpropertiesdialogbuiltin_p.h~	Fri Feb  7 14:01:52 2025
++++ kio-6.11.0-64bit/src/widgets/kpropertiesdialogbuiltin_p.h	Fri Mar 14 19:19:36 2025
+@@ -138,7 +138,7 @@
+     static const mode_t permissionsMasks[3];
+     static const mode_t standardPermissions[4];
+ 
+-    static const mode_t fperm[3][4];
++    static mode_t fperm[3][4];
+ 
+     class KFilePermissionsPropsPluginPrivate;
+     std::unique_ptr<KFilePermissionsPropsPluginPrivate> d;
