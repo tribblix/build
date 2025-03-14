@@ -1,0 +1,11 @@
+--- kitemviews-6.11.0-64bit/src/kcategorydrawer.cpp~	Fri Feb  7 14:02:07 2025
++++ kitemviews-6.11.0-64bit/src/kcategorydrawer.cpp	Fri Mar 14 17:35:21 2025
+@@ -78,7 +78,7 @@
+         QRect backgroundRect(option.rect);
+         backgroundRect.setLeft(fontMetrics.horizontalAdvance(category) + sidePadding * 2);
+         backgroundRect.setRight(backgroundRect.right() - sidePadding);
+-        backgroundRect.setTop(backgroundRect.top() + topPadding + ceil(fontMetrics.height() / 2));
++        backgroundRect.setTop(backgroundRect.top() + topPadding + ceil((double) fontMetrics.height() / 2));
+         backgroundRect.setHeight(1);
+         painter->save();
+         painter->setBrush(backgroundColor);
