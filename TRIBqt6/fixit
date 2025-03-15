@@ -27,13 +27,3 @@ ln -s ../../../versions/Qt-${VERSION}/lib/${ARCH64}/pkgconfig/* .
 cd ../../../versions/Qt-${VERSION}/lib/${ARCH64}/pkgconfig
 gsed -i -e 's: -L${libdir}: -L${libdir} -R${libdir}:' *
 cd ../../../../../..
-
-exit 0
-
-mkdir -p usr/lib/pkgconfig
-
-cd usr/lib/pkgconfig
-ln -s ../../versions/Qt-${VERSION}/lib/pkgconfig/* .
-cd ../../versions/Qt-${VERSION}/lib/pkgconfig
-gsed -i -e 's: -L${libdir}: -L${libdir} -R${libdir}:' *
-cd ../../../../..
