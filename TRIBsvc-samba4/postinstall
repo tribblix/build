@@ -21,7 +21,7 @@ if [ ! -f "${BASEDIR}/etc/samba/smb.conf" ]; then
     fi
     # /? is a shared-ip zone, but cannot be selected, so grep
     if [ -z "${IP1}" ]; then
-	IP1=$(/usr/sbin/ipadm show-addr | grep  "^${IFACE}/" | awk '{print $NF}')
+	IP1=$(/usr/sbin/ipadm show-addr | grep "^${IFACE}/" | awk '{print $NF}')
     fi
     if [ -f "${BASEDIR}/etc/samba/smb.conf.dist" ]; then
 	cat "${BASEDIR}/etc/samba/smb.conf.dist" | sed "s:XX.XX.XX.XX/YY:${IP1}:" > "${BASEDIR}/etc/samba/smb.conf"
