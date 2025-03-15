@@ -1,0 +1,4 @@
+PKG="TRIBkde-klines"
+NAME="klines"
+VERSION="24.12.3.0"
+ZAP_URL="https://download.kde.org/stable/release-service/24.12.3/src/"
