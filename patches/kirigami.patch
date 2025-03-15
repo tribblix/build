@@ -1,0 +1,35 @@
+--- kirigami-6.11.0-64bit/src/imagecolors.cpp~	Fri Feb  7 14:02:02 2025
++++ kirigami-6.11.0-64bit/src/imagecolors.cpp	Sat Mar 15 10:33:52 2025
+@@ -249,13 +249,13 @@
+     // https://en.wikipedia.org/wiki/Color_difference
+     // Using RGB distance for performance, as CIEDE2000 is too complicated
+     if (qRed(color1) - qRed(color2) < 128) {
+-        return 2 * pow(qRed(color1) - qRed(color2), 2) //
+-            + 4 * pow(qGreen(color1) - qGreen(color2), 2) //
+-            + 3 * pow(qBlue(color1) - qBlue(color2), 2);
++      return 2 * pow((double)qRed(color1) - qRed(color2), 2) //
++            + 4 * pow((double)qGreen(color1) - qGreen(color2), 2) //
++            + 3 * pow((double)qBlue(color1) - qBlue(color2), 2);
+     } else {
+-        return 3 * pow(qRed(color1) - qRed(color2), 2) //
+-            + 4 * pow(qGreen(color1) - qGreen(color2), 2) //
+-            + 2 * pow(qBlue(color1) - qBlue(color2), 2);
++        return 3 * pow((double)qRed(color1) - qRed(color2), 2) //
++            + 4 * pow((double)qGreen(color1) - qGreen(color2), 2) //
++            + 2 * pow((double)qBlue(color1) - qBlue(color2), 2);
+     }
+ }
+ 
+--- kirigami-6.11.0-64bit/CMakeLists.txt~	Fri Feb  7 14:02:02 2025
++++ kirigami-6.11.0-64bit/CMakeLists.txt	Sat Mar 15 10:39:12 2025
+@@ -115,8 +115,8 @@
+     PURPOSE "Accelerates palette generation in Kirigami.ImageColors"
+ )
+ if(OpenMP_CXX_FOUND)
+-    set(HAVE_OpenMP TRUE)
+-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
++#    set(HAVE_OpenMP TRUE)
++#    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+ endif()
+ 
+ include_directories("${CMAKE_CURRENT_BINARY_DIR}")
