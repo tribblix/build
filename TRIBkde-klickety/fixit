@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# everything gets prefixed into Qt, but things like sounds and images
+# are expected to be pulled in from /usr/share as normal
+#
+mkdir usr/share
+mv usr/versions/Qt-6/share/klickety usr/share
+mv usr/versions/Qt-6/share/icons usr/share
+mv usr/versions/Qt-6/share/applications usr/share
+mv usr/versions/Qt-6/bin usr
