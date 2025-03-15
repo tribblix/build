@@ -1,0 +1,11 @@
+--- palapeli-24.12.3-64bit/src/engine/puzzlepreview.cpp~	Sun Mar  2 02:33:48 2025
++++ palapeli-24.12.3-64bit/src/engine/puzzlepreview.cpp	Sat Mar 15 16:53:41 2025
+@@ -63,7 +63,7 @@
+ 	setImage(md.image);
+ 	setWindowTitle(i18nc("@title:window", "%1 - Preview", md.name));
+ 	// Set hover-zoom so that 3x3 pieces would be visible on a square grid.
+-	m_hoverZoom = sqrt(md.pieceCount)/3.0;
++	m_hoverZoom = sqrt((double)md.pieceCount)/3.0;
+ 	if (m_hoverZoom < 1)
+ 		m_hoverZoom = 1;
+ }
