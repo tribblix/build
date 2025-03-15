@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBlibarchive-c-python-312 libarchive-c-5.1
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_setup_py TRIBlibarchive-c-python-312 libarchive_c-5.2
