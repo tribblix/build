@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -52,13 +52,17 @@ fi
 
 #
 # just walk through all the depend files
+# if we can't find a dependency here, look for it in illumos
+# and then in the old legacy opensxce
 #
 for dep in $(sort -u ./*/depend* | awk '{print $2}')
 do
     if [ ! -d "$dep" ]; then
 	if [ ! -f "../illumos-pkgs-${ILVER}/pkgs/${dep}.0.${ILREL}.zap" ]; then
-	    echo "Missing dependency $dep"
-	    grep -x "P ${dep}" ./*/depend*
+	    if [ ! -f "../opensxce-pkgs/pkgs/${dep}.2014.zap" ]; then
+		echo "Missing dependency $dep"
+		grep -x "P ${dep}" ./*/depend*
+	    fi
 	fi
     fi
 done
