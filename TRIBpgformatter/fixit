@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 /bin/rm -fr usr/perl5/5.34/lib
 mkdir -p usr/bin
 cd usr/bin
