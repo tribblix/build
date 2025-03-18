@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fixes up prototype files, by setting the correct permissions
 # for existing directories
 #
