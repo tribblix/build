@@ -15,13 +15,13 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
 # like the catalog, but neatly formatted as html
 #
-RELVER=m33
+RELVER=m36.1
 THOME=${THOME:-/packages/localsrc/Tribblix}
 PKGDIR=${THOME}/illumos-pkgs-${RELVER}/pkgs
 
@@ -87,7 +87,7 @@ do
   FMRI=${FMRI/pkg:\/\/on-nightly\//}
   FMRI=${FMRI/pkg:\/\/omnios\//}
   echo "<li>IPS name: ${FMRI}</li>"
-  echo "<li><a href=\"${PNAME}.${PKGVERS}.zap\">Download</a> [MD5: ${PKGCKSUM}]</li>"
+  #echo "<li><a href=\"${PNAME}.${PKGVERS}.zap\">Download</a> [MD5: ${PKGCKSUM}]</li>"
   for mypkgdep in $DEPLIST
   do
       if [ -f "${mypkgdep}.0.${RELNUM}.zap" ]; then

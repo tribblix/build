@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -90,7 +90,7 @@ do
     fi
     echo "<ul>"
     echo "<li>Version: ${PKGVERS}</li>"
-    echo "<li><a href=\"${PKG}.${PKGVERS}.zap\">Download</a> [MD5: ${PKGCKSUM}]</li>"
+    #echo "<li><a href=\"${PKG}.${PKGVERS}.zap\">Download</a> [MD5: ${PKGCKSUM}]</li>"
     for mydep in $DEPLIST
     do
         if [ -d "$mydep" ]; then
