@@ -1,4 +1,4 @@
 PKG="TRIBca-bundle"
 NAME="CA certificate bundle"
-VERSION="20241231.0"
+VERSION="20250225.0"
 ZAP_URL="https://curl.se/docs/caextract.html"
