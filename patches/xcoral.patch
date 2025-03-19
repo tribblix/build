@@ -21,7 +21,7 @@ https://www.perkin.org.uk/posts/solaris-portability-cfmakeraw.html
          // The slave side of the PTY becomes the standard input and outputs of the child process
 --- a/Makefile.in	Sun Mar 17 14:57:45 2024
 +++ b/Makefile.in	Thu Dec 12 16:28:21 2024
-@@ -93,14 +93,14 @@
+@@ -93,11 +93,11 @@
  	$(CC) -g -o $(PROGRAM) $(OBJS) $(SMACOBJS) $(LDOPTIONS) $(LDLIBS)
  
  install: $(PROGRAM) $(MISCFILES)
@@ -35,10 +35,5 @@ https://www.perkin.org.uk/posts/solaris-portability-cfmakeraw.html
 -	(set -x;$(INSTALL) $$i $(XC_LIBDIR) );\
 +	(set -x;$(INSTALL) $$i $(DESTDIR)/$(XC_LIBDIR) );\
  	done
--	sed "s:smaclibdir:$(XC_LIBDIR):" $(XC_LIBDIR)/utilities.sc > $(XC_LIBDIR)/xx
--	mv $(XC_LIBDIR)/xx $(XC_LIBDIR)/utilities.sc
-+	sed "s:smaclibdir:$(XC_LIBDIR):" $(DESTDIR)/$(XC_LIBDIR)/utilities.sc > $(DESTDIR)/$(XC_LIBDIR)/xx
-+	mv $(DESTDIR)/$(XC_LIBDIR)/xx $(DESTDIR)/$(XC_LIBDIR)/utilities.sc
  	@echo ""
  	@echo "  ==============================================================="
- 	@echo " "
