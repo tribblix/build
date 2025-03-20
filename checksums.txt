@@ -2277,3 +2277,4 @@ libimagequant-2.18.0.tar.gz 790d2593a587f9a27cec6245ee7a212b34b0aa63cac6383e550e
 sbom4python-0.12.3-py2.py3-none-any.whl 46ac0698c268db0565791ebd53eef04d71190b2e29697a5b36253e7766033880
 trove_classifiers-2025.3.19.19.tar.gz 98e9d396fe908d5f43b7454fa4c43d17cd0fdadf046f45fb38a5e3af8d959ecd
 setuptools_scm-8.2.1.tar.gz 51cfdd1deefc9b8c08d1a61e940a59c4dec39eb6c285d33fa2f1b4be26c7874d
+platformdirs-4.3.7.tar.gz eb437d586b6a0986388f0d6f74aa0cde27b48d0e3d66843640bfb6bdcdb6e351
