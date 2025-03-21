@@ -1,7 +1,7 @@
 diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListener_solaris.cpp
 --- /tmp/a/attachListener_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/attachListener_solaris.cpp	2024-09-16 14:41:33.965885977 +0100
-@@ -0,0 +1,718 @@
+@@ -0,0 +1,693 @@
 +/*
 + * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -691,31 +691,6 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +void AttachListener::pd_data_dump() {
 +  os::signal_notify(SIGQUIT);
 +}
-+
-+static jint enable_dprobes(AttachOperation* op, outputStream* out) {
-+  const char* probe = op->arg(0);
-+  if (probe == NULL || probe[0] == '\0') {
-+    out->print_cr("No probe specified");
-+    return JNI_ERR;
-+  } else {
-+    char *end;
-+    long val = strtol(probe, &end, 10);
-+    if (end == probe || val < 0 || val > INT_MAX) {
-+      out->print_cr("invalid probe type");
-+      return JNI_ERR;
-+    } else {
-+      int probe_typess = (int) val;
-+      DTrace::enable_dprobes(probe_typess);
-+      return JNI_OK;
-+    }
-+  }
-+}
-+
-+// platform specific operations table
-+static AttachOperationFunctionInfo funcs[] = {
-+  { "enabledprobes", enable_dprobes },
-+  { NULL, NULL }
-+};
 +
 +void AttachListener::pd_detachall() {
 +  DTrace::detach_all_clients();

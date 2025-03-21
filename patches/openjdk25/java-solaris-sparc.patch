@@ -517,16 +517,7 @@
  ifeq ($(UNLIMITED_CRYPTO), true)
 --- old/make/modules/java.base/lib/CoreLibraries.gmk	2020-05-20 17:59:12.217156318 -0700
 +++ new/make/modules/java.base/lib/CoreLibraries.gmk	2020-05-20 17:59:11.829148868 -0700
-@@ -33,7 +33,7 @@
- ################################################################################
- 
- LIBVERIFY_OPTIMIZATION := HIGH
--ifeq ($(call isTargetOs, solaris linux)+$(COMPILE_WITH_DEBUG_SYMBOLS), true+true)
-+ifeq ($(call isTargetOs, linux)+$(COMPILE_WITH_DEBUG_SYMBOLS), true+true)
-   LIBVERIFY_OPTIMIZATION := LOW
- endif
- 
-@@ -68,7 +68,6 @@
+@@ -63,7 +63,6 @@
      DISABLED_WARNINGS_clang_TimeZone_md.c := unused-variable, \
      JDK_LIBS := libjvm, \
      LIBS_linux := $(LIBDL), \
@@ -534,7 +525,7 @@
      LIBS_aix := $(LIBDL) $(LIBM), \
      LIBS_macosx := \
          -framework CoreFoundation \
-@@ -189,7 +188,6 @@
+@@ -184,7 +183,6 @@
      DISABLED_WARNINGS_clang_java_md_macosx.m := unused-variable, \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
@@ -649,15 +640,15 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -262,7 +262,6 @@
-       LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS), \
+@@ -266,7 +266,6 @@
+       LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS) $(ICONV_LIBS), \
        LIBS_unix := $(LIBM) $(LIBPTHREAD), \
        LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
 -      LIBS_solaris := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
-       LIBS_macosx := -liconv \
+       LIBS_macosx := \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -312,7 +311,7 @@
+@@ -316,7 +315,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif
@@ -668,28 +659,19 @@
  
 --- old/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.469237961 -0700
 +++ new/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.081230511 -0700
-@@ -41,7 +41,6 @@
-     JDK_LIBS := java.base:libjava java.base:libjli java.base:libjvm, \
+@@ -44,7 +44,6 @@
+     LIBS := $(ICONV_LIBS), \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := $(LIBDL), \
-     LIBS_aix := $(LIBDL) -liconv, \
-     LIBS_macosx := -liconv \
+     LIBS_aix := $(LIBDL), \
+     LIBS_macosx := \
          -framework ApplicationServices \
 --- old/make/modules/java.management/Lib.gmk	2020-05-20 17:59:17.481257392 -0700
 +++ new/make/modules/java.management/Lib.gmk	2020-05-20 17:59:17.145250941 -0700
-@@ -32,7 +32,7 @@
- ################################################################################
- 
- LIBMANAGEMENT_OPTIMIZATION := HIGH
--ifeq ($(call isTargetOs, solaris linux)+$(COMPILE_WITH_DEBUG_SYMBOLS), true+true)
-+ifeq ($(call isTargetOs, linux)+$(COMPILE_WITH_DEBUG_SYMBOLS), true+true)
-   LIBMANAGEMENT_OPTIMIZATION := LOW
- endif
- 
-@@ -42,7 +42,6 @@
-     DISABLED_WARNINGS_gcc_VMManagementImpl.c := unused-variable, \
-     DISABLED_WARNINGS_clang_VMManagementImpl.c := unused-variable, \
+@@ -35,7 +35,6 @@
+     NAME := management, \
+     OPTIMIZATION := HIGH, \
      JDK_LIBS := java.base:libjava java.base:libjvm, \
 -    LIBS_solaris := -lkstat, \
      LIBS_aix := -lperfstat, \
@@ -730,26 +712,17 @@
      LIBS_windows := iphlpapi.lib ws2_32.lib, \
  ))
  
-@@ -75,7 +74,6 @@
-         java.base:libjava, \
+@@ -77,7 +76,6 @@
      JDK_LIBS := java.base:libjvm, \
+     LIBS := $(ICONV_LIBS), \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := $(LIBDL), \
-     LIBS_macosx := -liconv, \
-     LIBS_aix := -liconv, \
  ))
+ 
+ TARGETS += $(BUILD_LIBJDWP)
 --- old/make/modules/jdk.management/Lib.gmk	2020-05-20 17:59:24.761397176 -0700
 +++ new/make/modules/jdk.management/Lib.gmk	2020-05-20 17:59:24.373389726 -0700
-@@ -39,7 +39,7 @@
- endif
- 
- LIBMANAGEMENT_EXT_OPTIMIZATION := HIGH
--ifeq ($(call isTargetOs, solaris linux)+$(COMPILE_WITH_DEBUG_SYMBOLS), true+true)
-+ifeq ($(call isTargetOs, linux)+$(COMPILE_WITH_DEBUG_SYMBOLS), true+true)
-   LIBMANAGEMENT_EXT_OPTIMIZATION := LOW
- endif
- 
-@@ -51,7 +51,6 @@
+@@ -46,7 +46,6 @@
      DISABLED_WARNINGS_clang_UnixOperatingSystem.c := format-nonliteral, \
      CFLAGS := $(LIBMANAGEMENT_EXT_CFLAGS), \
      JDK_LIBS := java.base:libjava java.base:libjvm, \
@@ -3290,7 +3263,7 @@
                  cmd[2] = "env LC_ALL=C " + command;
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.605138318 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.221130945 -0700
-@@ -853,51 +853,25 @@
+@@ -853,55 +853,27 @@
                          isAttributeCategorySupported(JobSheets.class)) {
              ncomps+=1;
          }
@@ -3316,7 +3289,9 @@
 -                execCmd[n++] = "-o job-sheets=standard";
 -            }
 -            if ((pFlags & OPTIONS) != 0) {
--                execCmd[n++] = "-o " + options;
+-                for (String option : options.trim().split(" ")) {
+-                    execCmd[n++] = "-o " + option;
+-                }
 -            }
 -        } else {
 -            execCmd = new String[ncomps];
@@ -3337,7 +3312,9 @@
 -                execCmd[n++] = "-o job-sheets=standard";
 -            }
 -            if ((pFlags & OPTIONS) != 0) {
--                execCmd[n++] = "-o" + options;
+-                for (String option : options.trim().split(" ")) {
+-                    execCmd[n++] = "-o " + option;
+-                }
 -            }
 +        execCmd = new String[ncomps];
 +        execCmd[n++] = "/usr/bin/lpr";
@@ -3357,7 +3334,9 @@
 +            execCmd[n++] = "-o job-sheets=standard";
 +        }
 +        if ((pFlags & OPTIONS) != 0) {
-+            execCmd[n++] = "-o" + options;
++            for (String option : options.trim().split(" ")) {
++                execCmd[n++] = "-o " + option;
++            }
          }
          execCmd[n++] = spoolFile;
          if (IPPPrintService.debugPrint) {

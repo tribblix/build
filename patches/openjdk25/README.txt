@@ -4,6 +4,13 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+15
+
+More mucking about with Makefiles
+
+Removed AttachOperationFunctionInfo and enable_dprobes from
+attachListener, failed to compile.
+
 25+14
 
 The Makefiles around threading libraries were reworked. While tidying
