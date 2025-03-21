@@ -1,4 +1,4 @@
 PKG="TRIBsys-lib-freetype-2"
 NAME="A freely available library to render fonts"
-VERSION="2.10.4.1"
+VERSION="2.13.3.0"
 ZAP_URL="https://freetype.org/"
