@@ -1,4 +1,4 @@
 PKG="TRIByt-dlp-python-312"
 NAME="Python yt-dlp"
-VERSION="2025.2.19.0"
+VERSION="2025.3.21.0"
 ZAP_URL="https://pypi.org/project/yt-dlp/"

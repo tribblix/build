@@ -4,4 +4,4 @@
 #
 # dependencies are for the [default] extra
 #
-${THOME}/build/pkg_pep518 -N TRIByt-dlp-python-312 yt_dlp-2025.2.19
+${THOME}/build/pkg_pep518 -N TRIByt-dlp-python-312 yt_dlp-2025.3.21
