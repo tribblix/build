@@ -1,7 +1,9 @@
 #!/bin/sh
 #
-VERSION=3.0.8
-mv usr/versions/testssl.sh-3.0.8 usr/versions/testssl.sh
+# SPDX-License-Identifier: CDDL-1.0
+#
+VERSION=3.0.9
+mv "usr/versions/testssl.sh-${VERSION}" usr/versions/testssl.sh
 #
 # cleanup
 #
@@ -22,5 +24,5 @@ rmdir usr/versions/testssl.sh/doc
 # wrapper
 #
 mkdir -p usr/bin
-cp ${BUILDROOT}/patches/testssl.sh usr/bin/testssl.sh
+cp "${BUILDROOT}/patches/testssl.sh" usr/bin/testssl.sh
 chmod a+x usr/bin/testssl.sh

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a wrapper for the real testssl.sh
 #
 # it does a sanity check and then launches the real thing with
