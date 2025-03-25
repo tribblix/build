@@ -1,4 +1,4 @@
 PKG="TRIBpytz-python-312"
 NAME="Python pytz"
-VERSION="2025.1.0"
+VERSION="2025.2.0"
 ZAP_URL="https://pypi.org/project/pytz/"
