@@ -1,4 +1,4 @@
 PKG="TRIBtatsu-python-312"
-NAME="Python tatsu"
-VERSION="5.13.1.0"
-ZAP_URL="https://pypi.org/project/tatsu/"
+NAME="Python TatSu=LTS"
+VERSION="5.13.1.1"
+ZAP_URL="https://pypi.org/project/TatSu-LTS/"
