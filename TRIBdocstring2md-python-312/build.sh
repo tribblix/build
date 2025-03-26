@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBdocstring2md-python-312 docstring-to-markdown-0.15
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 -N TRIBdocstring2md-python-312 docstring_to_markdown-0.16
