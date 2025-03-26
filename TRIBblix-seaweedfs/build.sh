@@ -2,14 +2,14 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# the version number is a bit arbitrary as we're building from a current
-# git checkout, but use the latest release as the pkg version as that's
-# what weed reports itself
+# check out the latest version
 #
 mkdir w
 cd w
 git clone https://github.com/seaweedfs/seaweedfs
-cd seaweedfs/weed
+cd seaweedfs
+git checkout 3.85
+cd weed
 env PATH=/usr/versions/go-1.23/bin:$PATH GOPATH=`pwd` gmake
 cd ..
 #
