@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -141,6 +141,13 @@ fi
 # end loop
 #
 done
+
+#
+# we delete direct_url.json, as it contains the build location which makes
+# the package non-reproducible, and makes a mess of `pip `freeze`
+#
+find "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages" -name direct_url.json -exec rm {} \;
+sed -i '/\/direct_url.json,sha/d' $(find "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages" -name RECORD)
 
 #
 # compile separately, to avoid install paths and timestamps ending up
