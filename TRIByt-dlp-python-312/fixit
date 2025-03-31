@@ -11,3 +11,10 @@ mkdir -p usr/share/man/man1
 mv usr/versions/python-${PYVERS}/share/man/man1/* usr/share/man/man1
 rmdir usr/versions/python-${PYVERS}/share/man/man1
 rmdir usr/versions/python-${PYVERS}/share/man
+#
+# shell completions
+#
+mkdir -p usr/share
+mv usr/versions/python-${PYVERS}/share/bash-completion usr/share
+mv usr/versions/python-${PYVERS}/share/fish usr/share
+mv usr/versions/python-${PYVERS}/share/zsh usr/share
