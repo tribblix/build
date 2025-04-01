@@ -398,7 +398,7 @@ diff -urN /tmp/a/javaThread_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/jav
 +
 +frame JavaThread::pd_last_frame() {
 +  assert(has_last_Java_frame(), "must have last_Java_sp() when suspended");
-+  vmassert(_anchor.last_Java_pc() != NULL, "not walkable");
++  vmassert(_anchor.last_Java_pc() != nullptr, "not walkable");
 +  return frame(_anchor.last_Java_sp(), _anchor.last_Java_fp(), _anchor.last_Java_pc());
 +}
 +
@@ -438,9 +438,9 @@ diff -urN /tmp/a/javaThread_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/jav
 +  intptr_t* ret_sp;
 +  address addr = os::fetch_frame_from_context(uc, &ret_sp, &ret_fp);
 +
-+  // Something would really have to be screwed up to get a NULL pc
++  // Something would really have to be screwed up to get a null pc
 +
-+  if (addr == NULL) {
++  if (addr == nullptr) {
 +    // ucontext wasn't useful
 +    return false;
 +  }
@@ -448,12 +448,12 @@ diff -urN /tmp/a/javaThread_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/jav
 +  // If sp and fp are nonsense just leave them out
 +
 +  if (!jt->is_in_full_stack((address)ret_sp)) {
-+    ret_sp = NULL;
-+    ret_fp = NULL;
++    ret_sp = nullptr;
++    ret_fp = nullptr;
 +  } else {
 +    // sp is reasonable is fp reasonable?
 +    if (!jt->is_in_stack_range_incl((address)ret_fp, (address)ret_sp)) {
-+      ret_fp = NULL;
++      ret_fp = nullptr;
 +    }
 +  }
 +
@@ -511,7 +511,7 @@ diff -urN /tmp/a/javaThread_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/jav
 +    return byte_offset_of(JavaThread, _anchor) + JavaFrameAnchor::last_Java_fp_offset();
 +  }
 +
-+  intptr_t* base_of_stack_pointer()                  { return NULL; }
++  intptr_t* base_of_stack_pointer()                  { return nullptr; }
 +  void record_base_of_stack_pointer()            {}
 +
 +  bool pd_get_top_frame_for_signal_handler(frame* fr_addr, void* ucontext,
