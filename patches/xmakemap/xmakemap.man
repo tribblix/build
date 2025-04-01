@@ -20,13 +20,12 @@
 .\" FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 .\" DEALINGS IN THE SOFTWARE.
 .\"
-.TH xmakemap 1 "23 August 2001"
+.TH XMAKEMAP 1 "August 23, 2001"
 .SH NAME
 xmakemap \- make a keyboard mapping to be used as input to xmodmap
 .SH SYNOPSIS
 .B xmakemap
 .SH DESCRIPTION
-.PP
 .B xmakemap
 will produce a keyboard mapping in a form that is suitable
 as input to the
@@ -46,9 +45,9 @@ on the file (i.e., $HOME/.xmodmaprc).
 For example:
 .IP
 .nf
-\fLxmakemap > $HOME/.xmodmaprc
+xmakemap > $HOME/.xmodmaprc
 [... make necessary customization to $HOME/.xmodmaprc ...]
-xmodmap $HOME/.xmodmaprc\fP
+xmodmap $HOME/.xmodmaprc
 .fi
 .LP
 If you would like your keytable to be customized each time you start
@@ -58,10 +57,9 @@ startup file for your desktop environment.
 For example:
 .IP
 .nf
-\fLif [ -f $HOME/.xmodmaprc ]; then
+if [ -f $HOME/.xmodmaprc ]; then
     xmodmap $HOME/.xmodmaprc
-fi\fP
-.LP
+fi
 .SH NOTES
 An X server must be running to use
 .BR xmakemap .
