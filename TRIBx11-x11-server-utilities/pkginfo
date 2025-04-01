@@ -1,4 +1,4 @@
 PKG="TRIBx11-x11-server-utilities"
 NAME="X11 server utilities"
-VERSION="1.0.9"
+VERSION="1.0.10"
 ZAP_URL="https://www.x.org/releases/individual/app/"
