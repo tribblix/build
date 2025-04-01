@@ -108,8 +108,8 @@ usage(void)
 	die("Couldn't inquire current translation");
     }
     fprintf(stderr, "kbd_mode {-a | -e | -n | -u }\n");
-    fprintf(stderr, "\tfor ascii, encoded (normal) SunView events,\n");
-    fprintf(stderr, " \tnon-encoded, or unencoded SunView events, resp.\n");
+    fprintf(stderr, "\tfor ascii, encoded (normal) X11 events,\n");
+    fprintf(stderr, " \tnon-encoded, or unencoded X11 events, resp.\n");
     fprintf(stderr, "Current mode is %s.\n",
 		(   translate == 0 ?    "n (non-translated bytes)"      :
 		 (  translate == 1 ?    "a (ascii bytes)"               :

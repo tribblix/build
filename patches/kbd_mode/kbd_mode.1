@@ -19,22 +19,22 @@
 .\" FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 .\" DEALINGS IN THE SOFTWARE.
 .\"
-.TH kbd_mode 1 "5 Aug 2011"
+.TH KBD_MODE 1 "April 1, 2025"
 .IX "kbd_mode" "" "\f3kbd_mode\f1(1) \(em keyboard translation utility" ""
 .IX "keyboard" "trans" "keyboard" "translation utility \(em \f3kbd_mode\f1(1)"
 .SH NAME
 kbd_mode \- change the keyboard translation mode
 .SH SYNOPSIS
-.B kbd_mode -a | -n |
-.B -e | -u
+.B kbd_mode -a | -e | -n | -u
 .SH DESCRIPTION
 .IX "keyboard" "reset" "keyboard" "resetting input \(em \f3kbd_mode\f1(1)" ""
 .B kbd_mode
 sets the translation mode of the console's keyboard (\f3/dev/kbd\f1)
-to one of the four values defined for 
-.SB KIOCTRANS 
+to one of the four values defined for the
+.SB KIOCTRANS
+.BR ioctl()
 in
-.BR kb (7M) .
+.BR kb (4M) .
 This is useful when a program that resets the translation mode
 terminates abnormally and fails to restore the original translation mode.
 .LP
@@ -45,15 +45,15 @@ desires untranslated events (\f3kbd_mode -u\f1).
 .TP
 .B -a
 ASCII: the keyboard will generate simple ASCII characters.
-.TP 
-.B -n
-None: the keyboard will generate unencoded bytes
-\- a distinct value for up and down on each switch on the keyboard.
 .TP
 .B -e
 Events: the keyboard will generate firm_events
 with ASCII characters in the \fIvalue\fP field.
-.TP 
+.TP
+.B -n
+None: the keyboard will generate unencoded bytes
+\- a distinct value for up and down on each switch on the keyboard.
+.TP
 .B -u
 Unencoded: the keyboard will generate input events
 with unencoded bytes in the \fIvalue\fP field
@@ -64,4 +64,5 @@ such as those desired by the X server.
 .fi
 .SH "SEE ALSO"
 .BR kbd (1),
-.BR kb (7M)
+.BR Xorg (1),
+.BR kb (4M)
