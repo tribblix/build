@@ -29,7 +29,7 @@ There's a warning:
 
 OpenJDK 64-Bit Zero VM warning: Unsupported locking mode for this CPU.
 
-which you can gt around by passing -XX:LockingMode=0 or -XX:LockingMode=1
+which you can get around by passing -XX:LockingMode=0 or -XX:LockingMode=1
 
 The two patches above are now applied by default, so we at least catch
 any source incompatibilities early.
