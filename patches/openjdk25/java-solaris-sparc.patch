@@ -26,7 +26,7 @@
  src/utils/IdealGraphVisualizer : hotspot/src/share/tools/IdealGraphVisualizer
 --- old/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:24.212234589 -0700
 +++ new/make/RunTestsPrebuilt.gmk	2020-05-20 17:58:23.828227215 -0700
-@@ -170,8 +170,6 @@
+@@ -169,8 +169,6 @@
      OPENJDK_TARGET_OS := linux
    else ifeq ($(UNAME_OS), Darwin)
      OPENJDK_TARGET_OS := macosx
@@ -35,7 +35,7 @@
    else
      OPENJDK_TARGET_OS := $(UNAME_OS)
    endif
-@@ -184,28 +182,15 @@
+@@ -183,28 +181,15 @@
  # Assume little endian unless otherwise specified
  OPENJDK_TARGET_CPU_ENDIAN := little
  
@@ -72,7 +72,7 @@
  endif
  
  OPENJDK_TARGET_CPU_ARCH := $(OPENJDK_TARGET_CPU)
-@@ -230,11 +215,6 @@
+@@ -229,11 +214,6 @@
  else ifeq ($(OPENJDK_TARGET_OS), macosx)
    NUM_CORES := $(shell /usr/sbin/sysctl -n hw.ncpu)
    MEMORY_SIZE := $(shell $(EXPR) `/usr/sbin/sysctl -n hw.memsize` / 1024 / 1024)
@@ -525,7 +525,7 @@
      LIBS_aix := $(LIBDL) $(LIBM), \
      LIBS_macosx := \
          -framework CoreFoundation \
-@@ -184,7 +183,6 @@
+@@ -192,7 +191,6 @@
      DISABLED_WARNINGS_clang_java_md_macosx.m := unused-variable, \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
@@ -575,7 +575,7 @@
    LIBAWT_EXCLUDE_FILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -127,7 +127,6 @@
+@@ -137,7 +137,6 @@
      JDK_LIBS := java.base:libjava java.base:libjvm, \
      LIBS_unix := $(LIBM), \
      LIBS_linux := $(LIBDL), \
@@ -583,7 +583,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework ApplicationServices \
-@@ -193,9 +192,8 @@
+@@ -204,9 +203,8 @@
        DISABLED_WARNINGS_gcc_X11SurfaceData.c := unused-function, \
        DISABLED_WARNINGS_clang_X11Renderer.c := unused-function, \
        DISABLED_WARNINGS_clang_X11SurfaceData.c := unused-function, \
@@ -594,7 +594,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -284,7 +282,7 @@
+@@ -299,7 +297,7 @@
        DISABLED_WARNINGS_clang_aix_sun_awt_X11_GtkFileDialogPeer.c := \
            parentheses, \
        DISABLED_WARNINGS_clang_aix_awt_InputMethod.c := unused-function sign-compare, \
@@ -603,7 +603,7 @@
        LIBS_unix := $(LIBDL) $(LIBM) $(X_LIBS) -lX11 -lXext -lXi -lXrender \
            -lXtst, \
        LIBS_linux := $(LIBPTHREAD), \
-@@ -405,7 +403,7 @@
+@@ -420,7 +418,7 @@
  endif
  
  ifeq ($(call isTargetOsType, unix)+$(call isTargetOs, macosx), true+false)
@@ -612,7 +612,7 @@
    ifeq ($(ENABLE_HEADLESS_ONLY), false)
      LIBJAWT_JDK_LIBS_unix += libawt_xawt
    else
-@@ -425,7 +423,6 @@
+@@ -440,7 +438,6 @@
      LDFLAGS_windows := $(LDFLAGS_CXX_JDK), \
      LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
      JDK_LIBS_unix := $(LIBJAWT_JDK_LIBS_unix), \
@@ -622,7 +622,7 @@
      LIBS_macosx := -framework Cocoa, \
 --- old/make/modules/java.desktop/lib/ClientLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
 +++ new/make/modules/java.desktop/lib/ClientLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
-@@ -92,7 +92,7 @@
+@@ -90,7 +90,7 @@
      DISABLED_WARNINGS_gcc := format-nonliteral stringop-truncation type-limits \
          unused-variable, \
      DISABLED_WARNINGS_clang := format-nonliteral, \
@@ -631,7 +631,7 @@
      LIBS_unix := $(LCMS_LIBS) $(LIBM), \
  ))
  
-@@ -129,7 +129,7 @@
+@@ -127,7 +127,7 @@
      DISABLED_WARNINGS_gcc_jcmaster.c := implicit-fallthrough, \
      DISABLED_WARNINGS_gcc_jdphuff.c := shift-negative-value, \
      DISABLED_WARNINGS_clang_imageioJPEG.c := unused-but-set-variable, \
@@ -640,7 +640,7 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -266,7 +266,6 @@
+@@ -264,7 +264,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS) $(ICONV_LIBS), \
        LIBS_unix := $(LIBM) $(LIBPTHREAD), \
        LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
@@ -648,7 +648,7 @@
        LIBS_macosx := \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -316,7 +315,7 @@
+@@ -314,7 +313,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif
@@ -852,17 +852,17 @@
  EXP="${EXP}|Note: Recompile with -Xlint:deprecation for details."
 --- old/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:33.301561154 -0700
 +++ new/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:32.909553627 -0700
-@@ -878,10 +878,6 @@
- BUILD_HOTSPOT_JTREG_EXECUTABLES_JDK_LIBS_exesigtest := java.base:libjvm
- BUILD_HOTSPOT_JTREG_EXECUTABLES_JDK_LIBS_exedaemonDestroy := java.base:libjvm
+@@ -78,10 +78,6 @@
+   HOTSPOT_JTREG_EXCLUDE += libTestSVEWithJNI.c
+ endif
  
 -ifeq ($(call isTargetOs, solaris), true)
--    BUILD_HOTSPOT_JTREG_EXCLUDE += libterminatedThread.c
+-    HOTSPOT_JTREG_EXCLUDE += libterminatedThread.c
 -endif
 -
  ifeq ($(call isTargetOs, windows), true)
-   BUILD_HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
-   BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libCompleteExit.c libMonitorWithDeadObjectTest.c libTestPsig.c exeGetCreatedJavaVMs.c libTestUnloadedClass.cpp
+   HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
+   HOTSPOT_JTREG_LIBRARIES_JDK_LIBS_libnativeStack := java.base:libjvm
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
 @@ -55,8 +55,8 @@
@@ -1010,7 +1010,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -511,7 +511,7 @@
+@@ -512,7 +512,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {

@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+16
+
+Minor patch noise.
+
 25+15
 
 More mucking about with Makefiles
