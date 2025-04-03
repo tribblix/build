@@ -1,0 +1,22 @@
+Allow builds with clang
+
+--- a/make/autoconf/toolchain.m4	Tue Apr  1 14:13:45 2025
++++ b/make/autoconf/toolchain.m4	Wed Apr  2 12:02:47 2025
+@@ -39,7 +39,7 @@
+ 
+ # These toolchains are valid on different platforms
+ VALID_TOOLCHAINS_linux="gcc clang"
+-VALID_TOOLCHAINS_solaris="gcc"
++VALID_TOOLCHAINS_solaris="gcc clang"
+ VALID_TOOLCHAINS_macosx="clang"
+ VALID_TOOLCHAINS_aix="clang"
+ VALID_TOOLCHAINS_windows="microsoft"
+@@ -627,7 +627,7 @@
+     LDCXX="$CXX"
+     # Force use of lld, since that is what we expect when setting flags later on
+     if test "x$TOOLCHAIN_TYPE" = xclang; then
+-      if test "x$OPENJDK_BUILD_OS" != "xmacosx"; then
++      if test "x$OPENJDK_BUILD_OS" != "xmacosx" -a "x$OPENJDK_BUILD_OS" != "xsolaris"; then
+         LD="$LD -fuse-ld=lld"
+         LDCXX="$LDCXX -fuse-ld=lld"
+       fi
