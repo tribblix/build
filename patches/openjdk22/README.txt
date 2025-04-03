@@ -5,6 +5,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 22 now switched to the jdk22 stabilisation repo
 
+Cleanup: Define -D_REENTRANT for non-gcc (ie clang) builds
+
 Cleanup: remove unused register stack functions. See the bug
 8253457: Remove unimplemented register stack functions
 The change for that not only removed the itanium only register

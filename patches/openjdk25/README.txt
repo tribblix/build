@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Define -D_REENTRANT for non-gcc (ie clang) builds
+
 Cleanup: Replacing usage of NULL with nullptr.
 
 25+16

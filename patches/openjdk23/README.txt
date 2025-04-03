@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: Define -D_REENTRANT for non-gcc (ie clang) builds
+
 Cleanup: remove unused register stack functions. See the bug
 8253457: Remove unimplemented register stack functions
 The change for that not only removed the itanium only register
