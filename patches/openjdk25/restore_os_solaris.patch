@@ -1641,8 +1641,8 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +};
 +
 +static int get_info(const char* path, void* info, size_t s, off_t o) {
-+  assert(path != NULL, "path is NULL!");
-+  assert(info != NULL, "info is NULL!");
++  assert(path != nullptr, "path is null!");
++  assert(info != nullptr, "info is null!");
 +
 +  int fd = -1;
 +
@@ -1666,9 +1666,9 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +static int read_cpustat(kstat_ctl_t* kstat_ctrl, CPUPerfTicks* load, cpu_stat_t* cpu_stat) {
-+  assert(kstat_ctrl != NULL, "kstat_ctrl pointer is NULL!");
-+  assert(load != NULL, "load pointer is NULL!");
-+  assert(cpu_stat != NULL, "cpu_stat pointer is NULL!");
++  assert(kstat_ctrl != nullptr, "kstat_ctrl pointer is null!");
++  assert(load != nullptr, "load pointer is null!");
++  assert(cpu_stat != nullptr, "cpu_stat pointer is null!");
 +
 +  if (load->kstat == NULL) {
 +    // no handle.
@@ -1683,7 +1683,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +static double get_cpu_load(int which_logical_cpu, CPUPerfCounters* counters) {
-+  assert(counters != NULL, "counters pointer is NULL!");
++  assert(counters != nullptr, "counters pointer is null!");
 +
 +  cpu_stat_t  cpu_stat = {0};
 +
@@ -1724,7 +1724,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +static int get_boot_time(uint64_t* time) {
-+  assert(time != NULL, "time pointer is NULL!");
++  assert(time != nullptr, "time pointer is null!");
 +  setutxent();
 +  for(;;) {
 +    struct utmpx* u;
@@ -1742,8 +1742,8 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +static int get_noof_context_switches(CPUPerfCounters* counters, uint64_t* switches) {
-+  assert(switches != NULL, "switches pointer is NULL!");
-+  assert(counters != NULL, "counter pointer is NULL!");
++  assert(switches != nullptr, "switches pointer is null!");
++  assert(counters != nullptr, "counter pointer is null!");
 +  *switches = 0;
 +  uint64_t s = 0;
 +
@@ -1764,8 +1764,8 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +static int perf_context_switch_rate(CPUPerfCounters* counters, double* rate) {
-+  assert(counters != NULL, "counters is NULL!");
-+  assert(rate != NULL, "rate pointer is NULL!");
++  assert(counters != nullptr, "counters is null!");
++  assert(rate != nullptr, "rate pointer is null!");
 +  static pthread_mutex_t contextSwitchLock = PTHREAD_MUTEX_INITIALIZER;
 +  static uint64_t lastTime = 0;
 +  static uint64_t lastSwitches = 0;
@@ -1842,7 +1842,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +bool CPUPerformanceInterface::CPUPerformance::initialize() {
 +  // initialize kstat control structure,
 +  _counters.kstat_ctrl = kstat_open();
-+  assert(_counters.kstat_ctrl != NULL, "error initializing kstat control structure!");
++  assert(_counters.kstat_ctrl != nullptr, "error initializing kstat control structure!");
 +
 +  if (NULL == _counters.kstat_ctrl) {
 +    return false;
@@ -1890,7 +1890,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +int CPUPerformanceInterface::CPUPerformance::cpu_load(int which_logical_cpu, double* cpu_load) {
-+  assert(cpu_load != NULL, "cpu_load pointer is NULL!");
++  assert(cpu_load != nullptr, "cpu_load pointer is null!");
 +  double t = .0;
 +  if (-1 == which_logical_cpu) {
 +    for (int i = 0; i < _counters.nProcs; i++) {
@@ -1907,7 +1907,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +int CPUPerformanceInterface::CPUPerformance::cpu_load_total_process(double* cpu_load) {
-+  assert(cpu_load != NULL, "cpu_load pointer is NULL!");
++  assert(cpu_load != nullptr, "cpu_load pointer is null!");
 +
 +  psinfo_t info;
 +
@@ -1922,9 +1922,9 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +int CPUPerformanceInterface::CPUPerformance::cpu_loads_process(double* pjvmUserLoad, double* pjvmKernelLoad, double* psystemTotalLoad) {
-+  assert(pjvmUserLoad != NULL, "pjvmUserLoad not inited");
-+  assert(pjvmKernelLoad != NULL, "pjvmKernelLoad not inited");
-+  assert(psystemTotalLoad != NULL, "psystemTotalLoad not inited");
++  assert(pjvmUserLoad != nullptr, "pjvmUserLoad not inited");
++  assert(pjvmKernelLoad != nullptr, "pjvmKernelLoad not inited");
++  assert(psystemTotalLoad != nullptr, "psystemTotalLoad not inited");
 +
 +  static uint64_t lastTime;
 +  static uint64_t lastUser, lastKernel;
@@ -2207,9 +2207,9 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +int SystemProcessInterface::SystemProcesses::system_processes(SystemProcess** system_processes, int* no_of_sys_processes) const {
-+  assert(system_processes != NULL, "system_processes pointer is NULL!");
-+  assert(no_of_sys_processes != NULL, "system_processes counter pointer is NULL!");
-+  assert(_iterator != NULL, "iterator is NULL!");
++  assert(system_processes != nullptr, "system_processes pointer is null!");
++  assert(no_of_sys_processes != nullptr, "system_processes counter pointer is null!");
++  assert(_iterator != nullptr, "iterator is null!");
 +
 +  // initialize pointers
 +  *no_of_sys_processes = 0;
@@ -3153,7 +3153,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  assert(is_primordial_thread(), "Call only for primordial thread");
 +
 +  JavaThread* jt = (JavaThread *)thr;
-+  assert(jt != NULL, "Sanity check");
++  assert(jt != nullptr, "Sanity check");
 +  size_t stack_size;
 +  address base = jt->stack_base();
 +  if (Arguments::created_by_java_launcher()) {
@@ -3205,7 +3205,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +// Free Solaris resources related to the OSThread
 +void os::free_thread(OSThread* osthread) {
-+  assert(osthread != NULL, "os::free_thread but osthread not set");
++  assert(osthread != nullptr, "os::free_thread but osthread not set");
 +
 +  // We are told to free resources of the argument thread,
 +  // but we can only really operate on the current thread.
@@ -3281,7 +3281,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    if (dladdr(CAST_FROM_FN_PTR(void *, os::address_is_in_vm), &dlinfo) != 0) {
 +      libjvm_base_addr = (address)dlinfo.dli_fbase;
 +    }
-+    assert(libjvm_base_addr !=NULL, "Cannot obtain base address for libjvm");
++    assert(libjvm_base_addr != nullptr, "Cannot obtain base address for libjvm");
 +  }
 +
 +  if (dladdr((void *)addr, &dlinfo) != 0) {
@@ -3298,7 +3298,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +                                      int buflen, int *offset,
 +                                      bool demangle) {
 +  // buf is not optional, but offset is optional
-+  assert(buf != NULL, "sanity check");
++  assert(buf != nullptr, "sanity check");
 +
 +  Dl_info dlinfo;
 +
@@ -3337,7 +3337,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +bool os::dll_address_to_library_name(address addr, char* buf,
 +                                     int buflen, int* offset) {
 +  // buf is not optional, but offset is optional
-+  assert(buf != NULL, "sanity check");
++  assert(buf != nullptr, "sanity check");
 +
 +  Dl_info dlinfo;
 +  if (dladdr((void*)addr, &dlinfo) != 0) {
@@ -3876,7 +3876,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +void os::pd_commit_memory_or_exit(char* addr, size_t bytes, bool exec,
 +                                  const char* mesg) {
-+  assert(mesg != NULL, "mesg must be specified");
++  assert(mesg != nullptr, "mesg must be specified");
 +  int err = os::Solaris::commit_memory_impl(addr, bytes, exec);
 +  if (err != 0) {
 +    // the caller wants all commit errors to exit with the specified mesg:
@@ -3926,7 +3926,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +void os::pd_commit_memory_or_exit(char* addr, size_t bytes,
 +                                  size_t alignment_hint, bool exec,
 +                                  const char* mesg) {
-+  assert(mesg != NULL, "mesg must be specified");
++  assert(mesg != nullptr, "mesg must be specified");
 +  int err = os::Solaris::commit_memory_impl(addr, bytes, alignment_hint, exec);
 +  if (err != 0) {
 +    // the caller wants all commit errors to exit with the specified mesg:
@@ -5199,7 +5199,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  const char* p = get_current_directory(buffer, bufferSize);
 +
 +  if (p == NULL) {
-+    assert(p != NULL, "failed to get current directory");
++    assert(p != nullptr, "failed to get current directory");
 +    return 0;
 +  }
 +
