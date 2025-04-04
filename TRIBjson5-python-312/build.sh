@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBjson5-python-312 json5-0.10.0
+${THOME}/build/pkg_pep518 -N TRIBjson5-python-312 json5-0.12.0
