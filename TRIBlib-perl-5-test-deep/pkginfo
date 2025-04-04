@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-test-deep"
 NAME="Perl Test::Deep module"
-VERSION="1.204.0"
+VERSION="1.205.0"
 ZAP_URL="https://metacpan.org/pod/Test::Deep"
