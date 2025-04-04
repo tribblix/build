@@ -969,7 +969,7 @@
  #endif
 --- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
-@@ -456,8 +456,6 @@
+@@ -453,8 +453,6 @@
      case lir_neg:
      case lir_f2hf:
      case lir_hf2f:
@@ -978,7 +978,7 @@
      {
        assert(op->as_Op1() != nullptr, "must be");
        LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1745,8 +1743,6 @@
+@@ -1724,8 +1722,6 @@
       case lir_convert:               s = "convert";       break;
       case lir_alloc_object:          s = "alloc_obj";     break;
       case lir_monaddr:               s = "mon_addr";      break;
@@ -989,7 +989,7 @@
       case lir_cmp_l2i:               s = "cmp_l2i";       break;
 --- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -945,8 +945,6 @@
+@@ -934,8 +934,6 @@
        , lir_f2hf
        , lir_hf2f
        , lir_safepoint
@@ -998,7 +998,7 @@
        , lir_unwind
        , lir_load_klass
    , end_op1
-@@ -2242,9 +2240,6 @@
+@@ -2204,9 +2202,6 @@
    void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
    void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
  
@@ -1021,7 +1021,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -174,7 +174,6 @@
+@@ -184,7 +184,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \
@@ -1057,7 +1057,7 @@
  MemBaseline MemTracker::_baseline;
 --- old/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -34,11 +34,9 @@
+@@ -35,11 +35,9 @@
  #include "utilities/debug.hpp"
  #include "utilities/nativeCallStack.hpp"
  

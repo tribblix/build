@@ -4,6 +4,12 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+17
+
+Minor patch noise.
+
+Boot jdk is now jdk24.
+
 Cleanup: Define -D_REENTRANT for non-gcc (ie clang) builds
 
 Cleanup: Replacing usage of NULL with nullptr.
@@ -136,7 +142,7 @@ Start with no changes from 24+27.
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk23 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk24 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
