@@ -4,4 +4,4 @@
 #
 # needs rust and gnu msgfmt
 #
-env LD_RUN_PATH=/usr/versions/python-3.12/lib ${THOME}/build/pkg_setup_py -gnu TRIBbreezy-python-312 breezy-3.3.10
+env LD_RUN_PATH=/usr/versions/python-3.12/lib ${THOME}/build/pkg_pep518 -N TRIBbreezy-python-312 breezy-3.3.10
