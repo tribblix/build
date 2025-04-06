@@ -1,4 +1,4 @@
 PKG="TRIBlib-desktop-at-spi2"
 NAME="GNOME accessibility technology software library"
-VERSION="2.40.3.0"
+VERSION="2.42.1.0"
 ZAP_URL="https://download.gnome.org/sources/at-spi2-core/"
