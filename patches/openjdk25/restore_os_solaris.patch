@@ -5278,7 +5278,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 --- /tmp/a/os_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.hpp	2024-09-16 14:41:33.968210379 +0100
-@@ -0,0 +1,186 @@
+@@ -0,0 +1,183 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5364,9 +5364,6 @@ diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 +  static pthread_setname_np_func_t _pthread_setname_np;
 +
 + public:
-+  // Large Page Support--ISM.
-+  static bool largepage_range(char* addr, size_t size);
-+
 +  static address handler_start, handler_end; // start and end pc of thr_sighndlrinfo
 +
 +  static bool valid_ucontext(Thread* thread, const ucontext_t* valid, const ucontext_t* suspect);
