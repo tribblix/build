@@ -4,6 +4,9 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: remove cond_init and friends. They were defined as the
+pthread equivalents but aren't used anywhere any more.
+
 25+17
 
 Minor patch noise.
