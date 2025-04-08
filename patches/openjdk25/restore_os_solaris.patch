@@ -2380,7 +2380,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-09-16 14:41:33.968071187 +0100
-@@ -0,0 +1,2891 @@
+@@ -0,0 +1,2894 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -4740,6 +4740,9 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  return addr;
 +}
 +
++// there's more context to this handler in the gate, look at
++// thr_sighndlrinfo() in usr/src/lib/libc/port/threads/thr.c
++// and the notes in usr/src/lib/libc/port/gen/walkstack.c
 +void os::Solaris::libthread_init() {
 +  lwp_priocntl_init();
 +
