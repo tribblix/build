@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: remove unused first argument to mpss_sanity_check().
+
 Cleanup: remove unused large_page_range.
 
 Cleanup: remove cond_init and friends. They were defined as the
