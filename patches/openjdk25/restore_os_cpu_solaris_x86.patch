@@ -587,7 +587,7 @@ diff -urN /tmp/a/orderAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/or
 diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
 --- /tmp/a/os_solaris_x86.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2024-09-16 14:41:34.008006119 +0100
-@@ -0,0 +1,447 @@
+@@ -0,0 +1,445 @@
 +/*
 + * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -729,16 +729,16 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +const ucontext_t* os::Solaris::get_valid_uc_in_signal_handler(Thread *thread,
 +  const ucontext_t *uc) {
 +
-+  const ucontext_t *retuc = NULL;
++  const ucontext_t *retuc = nullptr;
 +
-+  if (uc != NULL) {
-+    if (uc->uc_link == NULL) {
++  if (uc != nullptr) {
++    if (uc->uc_link == nullptr) {
 +      // cannot validate without uc_link so accept current ucontext
 +      retuc = uc;
 +    } else if (os::Solaris::valid_ucontext(thread, uc, uc->uc_link)) {
 +      // first ucontext is valid so try the next one
 +      uc = uc->uc_link;
-+      if (uc->uc_link == NULL) {
++      if (uc->uc_link == nullptr) {
 +        // cannot validate without uc_link so accept current ucontext
 +        retuc = uc;
 +      } else if (os::Solaris::valid_ucontext(thread, uc, uc->uc_link)) {
@@ -774,14 +774,14 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +  address  epc;
 +  const ucontext_t *uc = (const ucontext_t*)ucVoid;
 +
-+  if (uc != NULL) {
++  if (uc != nullptr) {
 +    epc = os::Posix::ucontext_get_pc(uc);
 +    if (ret_sp) *ret_sp = os::Solaris::ucontext_get_sp(uc);
 +    if (ret_fp) *ret_fp = os::Solaris::ucontext_get_fp(uc);
 +  } else {
-+    epc = NULL;
-+    if (ret_sp) *ret_sp = (intptr_t *)NULL;
-+    if (ret_fp) *ret_fp = (intptr_t *)NULL;
++    epc = nullptr;
++    if (ret_sp) *ret_sp = (intptr_t *)nullptr;
++    if (ret_fp) *ret_fp = (intptr_t *)nullptr;
 +  }
 +
 +  return epc;
@@ -848,20 +848,20 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +bool PosixSignals::pd_hotspot_signal_handler(int sig, siginfo_t* info,
 +                                             ucontext_t* uc, JavaThread* thread) {
 +
-+  if (info == NULL || info->si_code <= 0 || info->si_code == SI_NOINFO) {
++  if (info == nullptr || info->si_code <= 0 || info->si_code == SI_NOINFO) {
 +    // can't decode this kind of signal
-+    info = NULL;
++    info = nullptr;
 +  } else {
 +    assert(sig == info->si_signo, "bad siginfo");
 +  }
 +
 +  // decide if this trap can be handled by a stub
-+  address stub = NULL;
++  address stub = nullptr;
 +
-+  address pc          = NULL;
++  address pc          = nullptr;
 +
 +  //%note os_trap_1
-+  if (info != NULL && uc != NULL && thread != NULL) {
++  if (info != nullptr && uc != nullptr && thread != nullptr) {
 +    // factor me: getPCfromContext
 +    pc = (address) uc->uc_mcontext.gregs[REG_PC];
 +
@@ -902,10 +902,10 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +        // here if the underlying file has been truncated.
 +        // Do not crash the VM in such a case.
 +        CodeBlob* cb = CodeCache::find_blob(pc);
-+        if (cb != NULL) {
++        if (cb != nullptr) {
 +          nmethod* nm = cb->as_nmethod_or_null();
 +          bool is_unsafe_memory_access = thread->doing_unsafe_access() && UnsafeMemoryAccess::contains_pc(pc);
-+          if ((nm != NULL && nm->has_unsafe_access()) || is_unsafe_memory_access) {
++          if ((nm != nullptr && nm->has_unsafe_access()) || is_unsafe_memory_access) {
 +            address next_pc = Assembler::locate_next_instruction(pc);
 +            if (is_unsafe_memory_access) {
 +              next_pc = UnsafeMemoryAccess::page_error_continue_pc(pc);
@@ -939,12 +939,10 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +    }
 +  }
 +
-+  if (stub != NULL) {
++  if (stub != nullptr) {
 +    // save all thread context in case we need to restore it
++    if (thread != nullptr) thread->set_saved_exception_pc(pc);
 +
-+    if (thread != NULL) thread->set_saved_exception_pc(pc);
-+    // 12/02/99: On Sparc it appears that the full context is also saved
-+    // but as yet, no one looks at or restores that saved context
 +    os::Posix::ucontext_set_pc(uc, stub);
 +    return true;
 +  }
@@ -953,7 +951,7 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +}
 +
 +void os::print_context(outputStream *st, const void *context) {
-+  if (context == NULL) return;
++  if (context == nullptr) return;
 +
 +  const ucontext_t *uc = (const ucontext_t*)context;
 +  st->print_cr("Registers:");
