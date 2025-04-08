@@ -2403,3 +2403,4 @@ pip_audit-2.9.0.tar.gz 0b998410b58339d7a231e5aa004326a294e4c7c6295289cdc9d5e1ef0
 narwhals-1.34.0.tar.gz bdd3fa60bea1f1e8b698e483be18dd43af13290da12dba69ea16dc1f3edbb8f7
 mercurial-7.0.1.tar.gz 0f4cde42ec6c15f7ff93d421e7a842fdb30ee7951b1dbc4aacaac06eac764b48
 publicsuffixlist-1.0.2.20250408.tar.gz 2c36d48261dba30e88448d08dacd9ec91bfd97f854a47f6e6ccc5ccf5ae9e2e2
+pikepdf-9.7.0.tar.gz ab54895a246768a2660cafe48052dbf5425c76f6f04e0f53b911df6cfd7e1c95
