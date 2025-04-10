@@ -4,6 +4,9 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Remove the use of lp rather than lpr; all supported systems
+can or even should be using CUPS rather than legacy lp.
+
 Cleanup: Remove /usr/bin/sh override in PrintServiceLookupProvider.java.
 
 Cleanup: nullptr in solaris_x86.
