@@ -3252,15 +3252,6 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
-@@ -843,7 +839,7 @@
-         ArrayList<String> results = null;
-         try {
-             final String[] cmd = new String[3];
--            if (isSysV() || isAIX()) {
-+            if (isAIX()) {
-                 cmd[0] = "/usr/bin/sh";
-                 cmd[1] = "-c";
-                 cmd[2] = "env LC_ALL=C " + command;
 --- old/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.605138318 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/UnixPrintJob.java	2020-05-20 18:02:39.221130945 -0700
 @@ -853,55 +853,27 @@

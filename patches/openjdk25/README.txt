@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Remove /usr/bin/sh override in PrintServiceLookupProvider.java.
+
 Cleanup: nullptr in solaris_x86.
 
 Cleanup: remove unused first argument to mpss_sanity_check().

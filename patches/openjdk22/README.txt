@@ -5,6 +5,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 22 now switched to the jdk22 stabilisation repo
 
+Cleanup: Remove /usr/bin/sh override in PrintServiceLookupProvider.java.
+
 Cleanup: Define -D_REENTRANT for non-gcc (ie clang) builds
 
 Cleanup: remove unused register stack functions. See the bug

@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: Remove /usr/bin/sh override in PrintServiceLookupProvider.java.
+
 Cleanup: Define -D_REENTRANT for non-gcc (ie clang) builds
 
 Cleanup: remove unused register stack functions. See the bug
