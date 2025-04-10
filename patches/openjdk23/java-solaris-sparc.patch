@@ -3378,7 +3378,15 @@
      static boolean isLinux() {
          return OSInfo.getOSType() == OSInfo.OSType.LINUX;
      }
-@@ -305,7 +301,7 @@
+@@ -160,7 +156,6 @@
+ 
+     static boolean isBSD() {
+         return (OSInfo.getOSType() == OSInfo.OSType.LINUX ||
+-                OSInfo.getOSType() == OSInfo.OSType.SOLARIS ||
+                 OSInfo.getOSType() == OSInfo.OSType.MACOSX);
+     }
+ 
+@@ -306,7 +301,7 @@
                  }
              }
          } else {
@@ -3387,7 +3395,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -489,7 +485,7 @@
+@@ -490,7 +485,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -3396,7 +3404,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -660,7 +656,7 @@
+@@ -661,7 +656,7 @@
                  psuri = printerInfo[1];
              }
          } else {
@@ -3405,102 +3413,6 @@
                  defaultPrinter = getDefaultPrinterNameSysV();
              } else if (isAIX()) {
                  defaultPrinter = getDefaultPrinterNameAIX();
---- old/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.629157980 -0700
-+++ new/src/java.desktop/unix/classes/sun/print/UnixPrintService.java	2020-05-20 18:02:40.293151529 -0700
-@@ -220,31 +220,6 @@
-         return name;
-     }
- 
--    private PrinterIsAcceptingJobs getPrinterIsAcceptingJobsSysV() {
--        String command = "/usr/bin/lpstat -a " + printer;
--        String[] results= PrintServiceLookupProvider.execCmd(command);
--
--        if (results != null && results.length > 0) {
--            if (results[0].startsWith(printer + " accepting requests")) {
--                return PrinterIsAcceptingJobs.ACCEPTING_JOBS;
--            }
--            else if (results[0].startsWith(printer)) {
--                /* As well as "myprinter accepting requests", look for
--                 * "myprinter@somehost accepting requests".
--                 */
--                int index = printer.length();
--                String str = results[0];
--                if (str.length() > index &&
--                    str.charAt(index) == '@' &&
--                    str.indexOf(" accepting requests", index) > 0 &&
--                    str.indexOf(" not accepting requests", index) == -1) {
--                   return PrinterIsAcceptingJobs.ACCEPTING_JOBS;
--                }
--            }
--        }
--        return PrinterIsAcceptingJobs.NOT_ACCEPTING_JOBS ;
--    }
--
-     private PrinterIsAcceptingJobs getPrinterIsAcceptingJobsBSD() {
-         if (PrintServiceLookupProvider.cmdIndex ==
-             PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -322,9 +297,7 @@
-     }
- 
-     private PrinterIsAcceptingJobs getPrinterIsAcceptingJobs() {
--        if (PrintServiceLookupProvider.isSysV()) {
--            return getPrinterIsAcceptingJobsSysV();
--        } else if (PrintServiceLookupProvider.isBSD()) {
-+        if (PrintServiceLookupProvider.isBSD()) {
-             return getPrinterIsAcceptingJobsBSD();
-         } else if (PrintServiceLookupProvider.isAIX()) {
-             return getPrinterIsAcceptingJobsAIX();
-@@ -351,14 +324,6 @@
-         }
-     }
- 
--    private QueuedJobCount getQueuedJobCountSysV() {
--        String command = "/usr/bin/lpstat -R " + printer;
--        String[] results= PrintServiceLookupProvider.execCmd(command);
--        int qlen = (results == null) ? 0 : results.length;
--
--        return new QueuedJobCount(qlen);
--    }
--
-     private QueuedJobCount getQueuedJobCountBSD() {
-         if (PrintServiceLookupProvider.cmdIndex ==
-             PrintServiceLookupProvider.UNINITIALIZED) {
-@@ -415,9 +380,7 @@
-     }
- 
-     private QueuedJobCount getQueuedJobCount() {
--        if (PrintServiceLookupProvider.isSysV()) {
--            return getQueuedJobCountSysV();
--        } else if (PrintServiceLookupProvider.isBSD()) {
-+        if (PrintServiceLookupProvider.isBSD()) {
-             return getQueuedJobCountBSD();
-         } else if (PrintServiceLookupProvider.isAIX()) {
-             return getQueuedJobCountAIX();
-@@ -426,13 +389,6 @@
-         }
-     }
- 
--    private PrintServiceAttributeSet getSysVServiceAttributes() {
--        PrintServiceAttributeSet attrs = new HashPrintServiceAttributeSet();
--        attrs.add(getQueuedJobCountSysV());
--        attrs.add(getPrinterIsAcceptingJobsSysV());
--        return attrs;
--    }
--
-     private PrintServiceAttributeSet getBSDServiceAttributes() {
-         PrintServiceAttributeSet attrs = new HashPrintServiceAttributeSet();
-         attrs.add(getQueuedJobCountBSD());
-@@ -471,9 +427,7 @@
-     }
- 
-     private PrintServiceAttributeSet getDynamicAttributes() {
--        if (PrintServiceLookupProvider.isSysV()) {
--            return getSysVServiceAttributes();
--        } else if (PrintServiceLookupProvider.isAIX()) {
-+        if (PrintServiceLookupProvider.isAIX()) {
-             return getAIXServiceAttributes();
-         } else {
-             return getBSDServiceAttributes();
 --- old/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.805218963 -0700
 +++ new/src/java.desktop/unix/native/common/awt/fontpath.c	2020-05-20 18:02:43.465212435 -0700
 @@ -57,57 +57,7 @@
