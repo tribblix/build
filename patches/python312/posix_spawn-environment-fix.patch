@@ -13,7 +13,7 @@ https://github.com/python/cpython/pull/113120
 diff -wpruN --no-dereference '--exclude=*.orig' a~/Lib/subprocess.py a/Lib/subprocess.py
 --- a~/Lib/subprocess.py	1970-01-01 00:00:00
 +++ a/Lib/subprocess.py	1970-01-01 00:00:00
-@@ -1760,9 +1760,6 @@ class Popen:
+@@ -1755,9 +1755,6 @@ class Popen:
                           c2pread, c2pwrite,
                           errread, errwrite):
              """Execute program using os.posix_spawn()."""
@@ -22,7 +22,7 @@ diff -wpruN --no-dereference '--exclude=*.orig' a~/Lib/subprocess.py a/Lib/subpr
 -
              kwargs = {}
              if restore_signals:
-                 # Lazy import to improve module import time
+                 # See _Py_RestoreSignals() in Python/pylifecycle.c
 diff -wpruN --no-dereference '--exclude=*.orig' a~/Modules/posixmodule.c a/Modules/posixmodule.c
 --- a~/Modules/posixmodule.c	1970-01-01 00:00:00
 +++ a/Modules/posixmodule.c	1970-01-01 00:00:00

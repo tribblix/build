@@ -9,7 +9,7 @@ https://github.com/python/cpython/pull/113118
 diff -wpruN --no-dereference '--exclude=*.orig' a~/Lib/subprocess.py a/Lib/subprocess.py
 --- a~/Lib/subprocess.py	1970-01-01 00:00:00
 +++ a/Lib/subprocess.py	1970-01-01 00:00:00
-@@ -746,6 +746,7 @@ def _use_posix_spawn():
+@@ -744,6 +744,7 @@ def _use_posix_spawn():
  # guarantee the given libc/syscall API will be used.
  _USE_POSIX_SPAWN = _use_posix_spawn()
  _USE_VFORK = True
@@ -17,7 +17,7 @@ diff -wpruN --no-dereference '--exclude=*.orig' a~/Lib/subprocess.py a/Lib/subpr
  
  
  class Popen:
-@@ -1754,7 +1755,7 @@ class Popen:
+@@ -1749,7 +1750,7 @@ class Popen:
                      errread, errwrite)
  
  
@@ -26,7 +26,7 @@ diff -wpruN --no-dereference '--exclude=*.orig' a~/Lib/subprocess.py a/Lib/subpr
                           p2cread, p2cwrite,
                           c2pread, c2pwrite,
                           errread, errwrite):
-@@ -1786,6 +1787,10 @@ class Popen:
+@@ -1778,6 +1779,10 @@ class Popen:
              ):
                  if fd != -1:
                      file_actions.append((os.POSIX_SPAWN_DUP2, fd, fd2))
@@ -37,7 +37,7 @@ diff -wpruN --no-dereference '--exclude=*.orig' a~/Lib/subprocess.py a/Lib/subpr
              if file_actions:
                  kwargs['file_actions'] = file_actions
  
-@@ -1833,7 +1838,7 @@ class Popen:
+@@ -1825,7 +1830,7 @@ class Popen:
              if (_USE_POSIX_SPAWN
                      and os.path.dirname(executable)
                      and preexec_fn is None
@@ -46,7 +46,7 @@ diff -wpruN --no-dereference '--exclude=*.orig' a~/Lib/subprocess.py a/Lib/subpr
                      and not pass_fds
                      and cwd is None
                      and (p2cread == -1 or p2cread > 2)
-@@ -1845,7 +1850,7 @@ class Popen:
+@@ -1837,7 +1842,7 @@ class Popen:
                      and gids is None
                      and uid is None
                      and umask < 0):
@@ -58,7 +58,7 @@ diff -wpruN --no-dereference '--exclude=*.orig' a~/Lib/subprocess.py a/Lib/subpr
 diff -wpruN --no-dereference '--exclude=*.orig' a~/Lib/test/test_subprocess.py a/Lib/test/test_subprocess.py
 --- a~/Lib/test/test_subprocess.py	1970-01-01 00:00:00
 +++ a/Lib/test/test_subprocess.py	1970-01-01 00:00:00
-@@ -1607,6 +1607,7 @@ class ProcessTestCase(BaseTestCase):
+@@ -1599,6 +1599,7 @@ class ProcessTestCase(BaseTestCase):
      @unittest.skipIf(not sysconfig.get_config_var("HAVE_VFORK"),
                       "vfork() not enabled by configure.")
      @mock.patch("subprocess._fork_exec")
