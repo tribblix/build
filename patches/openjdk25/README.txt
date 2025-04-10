@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+18
+
+Minor patch noise.
+
 Cleanup: Remove the use of lp rather than lpr; all supported systems
 can or even should be using CUPS rather than legacy lp.
 
