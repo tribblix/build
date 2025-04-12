@@ -1,4 +1,4 @@
 PKG="TRIBhttpcore-python-312"
 NAME="Python httpcore"
-VERSION="1.0.7.0"
+VERSION="1.0.8.0"
 ZAP_URL="https://pypi.org/project/httpcore/"
