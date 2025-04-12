@@ -687,7 +687,7 @@
    #
    # Setup the assembler (AS)
    #
--  if test "x$OPENJDK_TARGET_OS" = xsolaris; then
+-  if test "x$TOOLCHAIN_TYPE" = xsolstudio; then
 -    UTIL_LOOKUP_TOOLCHAIN_PROGS(AS, as)
 -    UTIL_FIXUP_EXECUTABLE(AS)
 -    if test "x$AS" = x; then
