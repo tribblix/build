@@ -4,6 +4,9 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Remove more Studio-specific flags, still present in
+DTrace. This doesn't make DTrace build, but is one prroblem less.
+
 25+18
 
 Minor patch noise.

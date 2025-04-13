@@ -2,6 +2,9 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: Remove more Studio-specific flags, still present in
+DTrace. This doesn't make DTrace build, but is one prroblem less.
+
 Cleanup: Remove the use of lp rather than lpr; all supported systems
 can or even should be using CUPS rather than legacy lp.
 
