@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: Move the mapfiles (symbol files) to the right place.
+
 Cleanup: Remove the use of lp rather than lpr; all supported systems
 can or even should be using CUPS rather than legacy lp.
 

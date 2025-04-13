@@ -607,9 +607,9 @@
 -    # Additional mapfiles that are only used when dtrace is enabled
 -    ifeq ($(call check-jvm-feature, compiler2), true)
 -      # This also covers the case of compiler1+compiler2.
--      SYMBOLS_SRC += $(TOPDIR)/make/hotspot/symbols/symbols-solaris-dtrace-compiler2
+-      SYMBOLS_SRC += $(TOPDIR)/make/data/hotspot-symbols/symbols-solaris-dtrace-compiler2
 -    else ifeq ($(call check-jvm-feature, compiler1), true)
--      SYMBOLS_SRC += $(TOPDIR)/make/hotspot/symbols/symbols-solaris-dtrace-compiler1
+-      SYMBOLS_SRC += $(TOPDIR)/make/data/hotspot-symbols/symbols-solaris-dtrace-compiler1
 -    endif
 -  endif
 -endif
@@ -5664,7 +5664,7 @@
 -    }
 -    return generateJvmOffsets(gen_var);
 -}
---- old/make/hotspot/symbols/symbols-solaris	2020-05-20 18:08:18.759650332 -0700
+--- old/make/data/hotspot-symbols/symbols-solaris	2020-05-20 18:08:18.759650332 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,25 +0,0 @@
 -#
@@ -5692,7 +5692,7 @@
 -
 -JVM_handle_solaris_signal
 -sysThreadAvailableStackWithSlack
---- old/make/hotspot/symbols/symbols-solaris-dtrace-compiler1	2020-05-20 18:08:19.459663773 -0700
+--- old/make/data/hotspot-symbols/symbols-solaris-dtrace-compiler1	2020-05-20 18:08:19.459663773 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,34 +0,0 @@
 -#
@@ -5729,7 +5729,7 @@
 -__1cSDeoptimizationBlobG__vtbl_
 -
 -__JvmOffsets
---- old/make/hotspot/symbols/symbols-solaris-dtrace-compiler2	2020-05-20 18:08:20.203678058 -0700
+--- old/make/data/hotspot-symbols/symbols-solaris-dtrace-compiler2	2020-05-20 18:08:20.203678058 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,36 +0,0 @@
 -#

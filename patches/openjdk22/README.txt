@@ -5,6 +5,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 22 now switched to the jdk22 stabilisation repo
 
+Cleanup: Move the mapfiles (symbol files) to the right place.
+
 Cleanup: Remove the use of lp rather than lpr; all supported systems
 can or even should be using CUPS rather than legacy lp.
 

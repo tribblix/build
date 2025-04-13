@@ -5,6 +5,8 @@ See also README-zero.txt for patches to build a project zero variant.
 
 Forked off into the jdk18 repo; mainline is now jdk19.
 
+Cleanup: Move the mapfiles (symbol files) to the right place.
+
 Cleanup: Remove /usr/bin/sh override in PrintServiceLookupProvider.java.
 
 Cleanup: remove unused register stack functions. See the bug
