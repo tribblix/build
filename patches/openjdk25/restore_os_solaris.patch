@@ -4896,7 +4896,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  // these functions registered and atexit() does not set errno. In Solaris
 +  // 8 and later, there is no limit to the number of functions registered
 +  // and atexit() sets errno. In addition, in Solaris 8 and later, atexit
-+  // functions are called upon dlclose(3DL) in addition to return from main
++  // functions are called upon dlclose(3C) in addition to return from main
 +  // and exit(3C).
 +
 +  if (PerfAllowAtExitRegistration) {
