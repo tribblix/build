@@ -10,7 +10,7 @@ rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/pelican/t
 #
 # this obviously isn't relevant for us
 #
-rm -fr  usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/pelican/build/aarch64-apple-darwin
+rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/pelican/build/aarch64-apple-darwin
 rmdir usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/pelican/build
 #
 mkdir -p usr/bin
