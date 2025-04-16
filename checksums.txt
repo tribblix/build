@@ -2466,3 +2466,4 @@ jdk17u-jdk-17.0.15-ga.tar.gz ae623441d95d0563690f85edad765a12fc89bbb89ed1877ec5c
 jdk21u-jdk-21.0.7-ga.tar.gz d8637e7d6fece0757b7fada49d32d0b3334a15a110445acef8cfea64b4672ca2
 prompt_toolkit-3.0.51.tar.gz 931a162e3b27fc90c86f1b48bb1fb2c528c2761475e57c9c06de13311c7b54ed
 kombu-5.5.3.tar.gz 021a0e11fcfcd9b0260ef1fb64088c0e92beb976eb59c1dfca7ddd4ad4562ea2
+googleapis_common_protos-1.70.0.tar.gz 0e1b44e0ea153e6594f9f394fef15193a68aaaea2d843f83e2742717ca753257
