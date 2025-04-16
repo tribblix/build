@@ -3,6 +3,18 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+21.0.7
+
+Minor patch noise.
+
+Needed to fix up jline due to updates, to match changes in other
+platforms.
+
+Fix incorrect LDFLAGS in TestFilesCompilation.gmk, see
+illumos-port-28.patch
+
+os::print_tos_pc() has been centralized, so remove our copy.
+
 Cleanup: Move the mapfiles (symbol files) to the right place.
 
 Cleanup: Remove the use of lp rather than lpr; all supported systems
