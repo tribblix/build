@@ -1,4 +1,4 @@
 PKG="TRIBerlang"
 NAME="Erlang OTP"
-VERSION="26.2.3.0"
+VERSION="26.2.5.11.0"
 ZAP_URL="https://www.erlang.org/"
