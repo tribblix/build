@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk24-src"
 NAME="OpenJDK24 src.zip"
-VERSION="24.36.0"
+VERSION="24.0.1.0"
 ZAP_URL="https://openjdk.org/"

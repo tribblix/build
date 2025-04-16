@@ -7,8 +7,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-24-36
-cd jdk-jdk-24-36
+${THOME}/build/unpack jdk24u-jdk-24.0.1-ga
+cd jdk24u-jdk-24.0.1-ga
 
 #
 # jdk24 needs autoconf installed
@@ -42,7 +42,7 @@ DATE=/usr/gnu/bin/date \
 LOCALE=/bin/true \
 STRIP=/usr/gnu/bin/strip
 
-env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
+env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images
 
 #
 # first testing looks like this:
@@ -50,9 +50,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "24-internal" 2025-03-18
-# OpenJDK Runtime Environment (build 24-internal-adhoc.ptribble.jdk-jdk-24-36)
-# OpenJDK 64-Bit Server VM (build 24-internal-adhoc.ptribble.jdk-jdk-24-36, mixed mode, sharing)
+# openjdk version "24.0.1-internal" 2025-04-15
+# OpenJDK Runtime Environment (build 24.0.1-internal-adhoc.ptribble.jdk24u-jdk-24.0.1-ga)
+# OpenJDK 64-Bit Server VM (build 24.0.1-internal-adhoc.ptribble.jdk24u-jdk-24.0.1-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
