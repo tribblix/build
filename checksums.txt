@@ -2469,3 +2469,4 @@ kombu-5.5.3.tar.gz 021a0e11fcfcd9b0260ef1fb64088c0e92beb976eb59c1dfca7ddd4ad4562
 googleapis_common_protos-1.70.0.tar.gz 0e1b44e0ea153e6594f9f394fef15193a68aaaea2d843f83e2742717ca753257
 google_auth-2.39.0.tar.gz 73222d43cdc35a3aeacbfdcaf73142a97839f10de930550d89ebfe1d0a00cde7
 google_api_python_client-2.167.0.tar.gz a458d402572e1c2caf9db090d8e7b270f43ff326bd9349c731a86b19910e3995
+beautifulsoup4-4.13.4.tar.gz dbb3c4e1ceae6aefebdaf2423247260cd062430a410e38c66f2baa50a8437195
