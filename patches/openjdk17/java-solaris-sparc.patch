@@ -609,7 +609,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -178,7 +146,6 @@
+@@ -156,7 +153,6 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -1156,7 +1156,7 @@
 -
  ifeq ($(call isTargetOs, windows), true)
      BUILD_HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
-     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libnativeStack.c
+     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libnativeStack.c exeGetCreatedJavaVMs.c
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
 @@ -75,9 +75,6 @@
@@ -3986,7 +3986,7 @@
   * Since winsock doesn't have the equivalent of strerror(errno)
 --- old/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.588024347 -0700
 +++ new/src/java.desktop/share/classes/sun/awt/FontConfiguration.java	2020-05-20 18:01:41.204016974 -0700
-@@ -1440,22 +1440,6 @@
+@@ -1437,22 +1437,6 @@
                  }
              }
          }
@@ -4525,7 +4525,7 @@
          return imInfo;
 --- old/src/java.desktop/unix/classes/sun/font/MFontConfiguration.java	2020-05-20 18:02:37.405096076 -0700
 +++ new/src/java.desktop/unix/classes/sun/font/MFontConfiguration.java	2020-05-20 18:02:37.021088702 -0700
-@@ -68,59 +68,7 @@
+@@ -66,59 +66,7 @@
       */
      protected void initReorderMap() {
          reorderMap = new HashMap<>();
@@ -4585,7 +4585,7 @@
          reorderMap.put("UTF-8.ja.JP", "japanese-iso10646");
          reorderMap.put("UTF-8.ko.KR", "korean-iso10646");
          reorderMap.put("UTF-8.zh.TW", "chinese-tw-iso10646");
-@@ -131,12 +79,7 @@
+@@ -129,12 +77,7 @@
          reorderMap.put("GB2312", "chinese-gb18030");
          reorderMap.put("Big5", "chinese-big5");
          reorderMap.put("EUC-KR", "korean");
@@ -4599,7 +4599,7 @@
      }
  
      /**
-@@ -145,10 +88,7 @@
+@@ -143,10 +86,7 @@
      protected void setOsNameAndVersion(){
          super.setOsNameAndVersion();
  
@@ -5125,7 +5125,7 @@
  }
 --- old/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.697524107 -0700
 +++ new/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.357517578 -0700
-@@ -700,17 +700,10 @@
+@@ -709,17 +709,10 @@
          lib = expand(lib);
          int i = lib.indexOf("/$ISA/");
          if (i != -1) {
