@@ -244,7 +244,7 @@ diff --git a/src/hotspot/cpu/ppc/ppc.ad b/src/hotspot/cpu/ppc/ppc.ad
 index 27dad6cff94..8bbbc3d4aa3 100644
 --- a/src/hotspot/cpu/ppc/ppc.ad
 +++ b/src/hotspot/cpu/ppc/ppc.ad
-@@ -3774,8 +3774,6 @@ frame %{
+@@ -3775,8 +3775,6 @@ frame %{
  
    stack_alignment(frame::alignment_in_bytes);
  
@@ -253,7 +253,7 @@ index 27dad6cff94..8bbbc3d4aa3 100644
    // Number of outgoing stack slots killed above the
    // out_preserve_stack_slots for calls to C. Supports the var-args
    // backing area for register parms.
-@@ -3800,40 +3798,6 @@ frame %{
+@@ -3801,40 +3799,6 @@ frame %{
    //    4 what apparently works and saves us some spills.
    return_addr(STACK 4);
  

@@ -597,13 +597,6 @@ diff --git a/src/hotspot/share/runtime/vframeArray.hpp b/src/hotspot/share/runti
 index 25ed7fd5ed8..fa2ab054186 100644
 --- a/src/hotspot/share/runtime/vframeArray.hpp
 +++ b/src/hotspot/share/runtime/vframeArray.hpp
-@@ -1,5 +1,5 @@
- /*
-- * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
-+ * Copyright (c) 1997, 2021, Oracle and/or its affiliates. All rights reserved.
-  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-  *
-  * This code is free software; you can redistribute it and/or modify it
 @@ -30,6 +30,7 @@
  #include "runtime/deoptimization.hpp"
  #include "runtime/frame.hpp"

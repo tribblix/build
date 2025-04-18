@@ -32,7 +32,7 @@ index f821de98a51..d5d1aca378e 100644
  #include "memory/resourceArea.hpp"
  #include "oops/objArrayOop.inline.hpp"
  #include "oops/oop.inline.hpp"
-@@ -219,7 +220,6 @@ void JfrDCmd::invoke(JfrJavaArguments& method, TRAPS) const {
+@@ -236,7 +237,6 @@ void JfrDCmd::invoke(JfrJavaArguments& method, TRAPS) const {
    JfrJavaArguments constructor_args(&constructor_result);
    constructor_args.set_klass(javaClass(), CHECK);
  
@@ -40,7 +40,7 @@ index f821de98a51..d5d1aca378e 100644
    HandleMark hm(THREAD);
    JNIHandleBlockManager jni_handle_management(THREAD);
  
-@@ -241,12 +241,10 @@ void JfrDCmd::parse(CmdLine* line, char delim, TRAPS) {
+@@ -258,12 +258,10 @@ void JfrDCmd::parse(CmdLine* line, char delim, TRAPS) {
  }
  
  void JfrDCmd::execute(DCmdSource source, TRAPS) {
@@ -54,7 +54,7 @@ index f821de98a51..d5d1aca378e 100644
    JavaValue result(T_OBJECT);
    JfrJavaArguments execute(&result, javaClass(), "execute", signature, CHECK);
    jstring argument = JfrJavaSupport::new_string(_args, CHECK);
-@@ -271,13 +269,92 @@ void JfrDCmd::print_help(const char* name) const {
+@@ -288,13 +286,92 @@ void JfrDCmd::print_help(const char* name) const {
    static const char signature[] = "()[Ljava/lang/String;";
    JavaThread* thread = JavaThread::current();
    JavaValue result(T_OBJECT);
@@ -150,7 +150,7 @@ index f821de98a51..d5d1aca378e 100644
  }
  
  GrowableArray<const char*>* JfrDCmd::argument_name_array() const {
-@@ -387,7 +464,6 @@ void JfrConfigureFlightRecorderDCmd::execute(DCmdSource source, TRAPS) {
+@@ -404,7 +481,6 @@ void JfrConfigureFlightRecorderDCmd::execute(DCmdSource source, TRAPS) {
      return;
    }
  
