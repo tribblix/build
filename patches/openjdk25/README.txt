@@ -6,6 +6,8 @@ work.
 
 Cleanup: Trust gethostname rather than second-guessing.
 
+Cleanup: Remove unused OPENJDK_$1_CPU_ISADIR.
+
 25+19
 
 Minor patch noise.

@@ -221,25 +221,7 @@
      *darwin*)
        VAR_OS=macosx
        VAR_OS_TYPE=unix
-@@ -476,17 +472,6 @@
-   fi
-   AC_SUBST(OPENJDK_$1_CPU_LEGACY_LIB)
- 
--  # OPENJDK_$1_CPU_ISADIR is normally empty. On 64-bit Solaris systems, it is set to
--  # /amd64 or /sparcv9. This string is appended to some library paths, like this:
--  # /usr/lib${OPENJDK_$1_CPU_ISADIR}/libexample.so
--  OPENJDK_$1_CPU_ISADIR=""
--  if test "x$OPENJDK_$1_OS" = xsolaris; then
--    if test "x$OPENJDK_$1_CPU" = xx86_64; then
--      OPENJDK_$1_CPU_ISADIR="/amd64"
--    fi
--  fi
--  AC_SUBST(OPENJDK_$1_CPU_ISADIR)
--
-   # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
-   OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
-   if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -618,9 +603,6 @@
+@@ -607,9 +603,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
