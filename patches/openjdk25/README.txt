@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Trust gethostname rather than second-guessing.
+
 25+19
 
 Minor patch noise.
