@@ -4,8 +4,15 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+19
+
+Minor patch noise.
+
+Rework jvm_path() to match other platforms, as sun_java_launcher_is_altjvm()
+has been removed.
+
 Cleanup: Remove more Studio-specific flags, still present in
-DTrace. This doesn't make DTrace build, but is one prroblem less.
+DTrace. This doesn't make DTrace build, but is one problem less.
 
 25+18
 

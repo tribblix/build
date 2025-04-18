@@ -1021,7 +1021,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -184,7 +184,6 @@
+@@ -188,7 +188,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \
@@ -1228,7 +1228,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1885,8 +1885,6 @@
+@@ -1899,8 +1899,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1237,7 +1237,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1951,8 +1949,6 @@
+@@ -1965,8 +1963,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1835,7 +1835,7 @@
  #endif
 --- old/src/java.base/unix/native/libjava/java_props_md.c	2020-05-20 18:01:13.743489712 -0700
 +++ new/src/java.base/unix/native/libjava/java_props_md.c	2020-05-20 18:01:13.351482185 -0700
-@@ -323,27 +323,6 @@
+@@ -324,27 +324,6 @@
          }
  #endif
  
