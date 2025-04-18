@@ -18,3 +18,4 @@
 -p1+-R openjdk17/0001-8270491-SEGV-at-read_string_field-oopDesc-char-const.patch
 -p1+-R openjdk17/0001-8268702-JFR-diagnostic-commands-lack-argument-descri.patch
 -p1 openjdk17/sparc-noflatten.patch
+-p1 openjdk17/fix-allocate_new_tlab-crash.patch
