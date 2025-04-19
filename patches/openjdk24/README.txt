@@ -2,6 +2,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Fix: Correct type argument to sema_init.
+
 Cleanup: Duplicate check for SC_CLK_TCK.
 
 24.0.1

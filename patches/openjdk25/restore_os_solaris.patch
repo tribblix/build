@@ -460,7 +460,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +  int status = pthread_mutex_init(&_mutex, NULL);
 +  assert_status(status==0, status, "mutex_init");
 +
-+  status = ::sema_init(&_wakeup, 0, NULL, NULL);
++  status = ::sema_init(&_wakeup, 0, 0, NULL);
 +  assert_status(status==0, status, "sema_init");
 +
 +  set_head(NULL);

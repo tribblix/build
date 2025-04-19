@@ -5,6 +5,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 22 now switched to the jdk22 stabilisation repo
 
+Fix: Correct type argument to sema_init.
+
 Cleanup: Duplicate check for SC_CLK_TCK.
 
 Cleanup: Remove more Studio-specific flags, still present in
