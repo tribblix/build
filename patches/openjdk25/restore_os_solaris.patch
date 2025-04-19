@@ -1,6 +1,6 @@
-diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListener_solaris.cpp
---- /tmp/a/attachListener_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/attachListener_solaris.cpp	2024-09-16 14:41:33.965885977 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListener_solaris.cpp
+--- /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/attachListener_solaris.cpp	2025-04-19 12:11:00.533694492 +0100
 @@ -0,0 +1,693 @@
 +/*
 + * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
@@ -115,7 +115,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +  };
 +
 +  static void set_door_path(char* path) {
-+    if (path == NULL) {
++    if (path == nullptr) {
 +      _door_path[0] = '\0';
 +      _has_door_path = false;
 +    } else {
@@ -167,7 +167,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +
 +  SolarisAttachOperation(char* name) : AttachOperation(name) {
 +    set_socket(-1);
-+    set_next(NULL);
++    set_next(nullptr);
 +  }
 +};
 +
@@ -178,8 +178,8 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +bool SolarisAttachListener::_atexit_registered = false;
 +pthread_mutex_t SolarisAttachListener::_mutex;
 +sema_t SolarisAttachListener::_wakeup;
-+SolarisAttachOperation* SolarisAttachListener::_head = NULL;
-+SolarisAttachOperation* SolarisAttachListener::_tail = NULL;
++SolarisAttachOperation* SolarisAttachListener::_head = nullptr;
++SolarisAttachOperation* SolarisAttachListener::_tail = nullptr;
 +
 +// Supporting class to help split a buffer into individual components
 +class ArgumentIterator : public StackObj {
@@ -197,7 +197,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +      if (_pos < _end) {
 +        _pos += 1;
 +      }
-+      return NULL;
++      return nullptr;
 +    }
 +    char* res = _pos;
 +    char* next_pos = strchr(_pos, '\0');
@@ -212,7 +212,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +// Calls from the door function to check that the client credentials
 +// match this process. Returns 0 if credentials okay, otherwise -1.
 +static int check_credentials() {
-+  ucred_t *cred_info = NULL;
++  ucred_t *cred_info = nullptr;
 +  int ret = -1; // deny by default
 +
 +  // get client credentials
@@ -246,7 +246,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +  *err = SolarisAttachListener::ATTACH_ERROR_BADREQUEST;
 +
 +  if (arg_size < 2 || argp[arg_size-1] != '\0') {
-+    return NULL;   // no ver or not null terminated
++    return nullptr;   // no ver or not null terminated
 +  }
 +
 +  // Use supporting class to iterate over the buffer
@@ -254,30 +254,30 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +
 +  // First check the protocol version
 +  char* ver = args.next();
-+  if (ver == NULL) {
-+    return NULL;
++  if (ver == nullptr) {
++    return nullptr;
 +  }
 +  if (atoi(ver) != SolarisAttachListener::ATTACH_PROTOCOL_VER) {
 +    *err = SolarisAttachListener::ATTACH_ERROR_BADVERSION;
-+    return NULL;
++    return nullptr;
 +  }
 +
 +  // Get command name and create the operation
 +  char* name = args.next();
-+  if (name == NULL || strlen(name) > AttachOperation::name_length_max) {
-+    return NULL;
++  if (name == nullptr || strlen(name) > AttachOperation::name_length_max) {
++    return nullptr;
 +  }
 +  SolarisAttachOperation* op = new SolarisAttachOperation(name);
 +
 +  // Iterate over the arguments
 +  for (int i=0; i<AttachOperation::arg_count_max; i++) {
 +    char* arg = args.next();
-+    if (arg == NULL) {
-+      op->set_arg(i, NULL);
++    if (arg == nullptr) {
++      op->set_arg(i, nullptr);
 +    } else {
 +      if (strlen(arg) > AttachOperation::arg_length_max) {
 +        delete op;
-+        return NULL;
++        return nullptr;
 +      }
 +      op->set_arg(i, arg);
 +    }
@@ -294,7 +294,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +                           door_desc_t* dt, uint_t n_desc)
 +  {
 +    int return_fd = -1;
-+    SolarisAttachOperation* op = NULL;
++    SolarisAttachOperation* op = nullptr;
 +
 +    // wait up to 10 seconds for listener to be up and running
 +    jint res = 0;
@@ -331,7 +331,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +    if (res == 0) {
 +      int err;
 +      op = create_operation(argp, arg_size, &err);
-+      res = (op == NULL) ? (jint)err : 0;
++      res = (op == nullptr) ? (jint)err : 0;
 +    }
 +
 +    // create a pair of connected sockets. Store the file descriptor
@@ -358,7 +358,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +      desc.d_data.d_desc.d_descriptor = return_fd;
 +      door_return((char*)&res, sizeof(res), &desc, 1);
 +    } else {
-+      door_return((char*)&res, sizeof(res), NULL, 0);
++      door_return((char*)&res, sizeof(res), nullptr, 0);
 +    }
 +  }
 +}
@@ -375,7 +375,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +      char* path = SolarisAttachListener::door_path();
 +      ::fdetach(path);
 +      ::unlink(path);
-+      SolarisAttachListener::set_door_path(NULL);
++      SolarisAttachListener::set_door_path(nullptr);
 +    }
 +  }
 +}
@@ -393,7 +393,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +  }
 +
 +  // create the door descriptor
-+  int dd = ::door_create(enqueue_proc, NULL, 0);
++  int dd = ::door_create(enqueue_proc, nullptr, 0);
 +  if (dd < 0) {
 +    return -1;
 +  }
@@ -457,14 +457,14 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +    return -1;
 +  }
 +
-+  int status = pthread_mutex_init(&_mutex, NULL);
++  int status = pthread_mutex_init(&_mutex, nullptr);
 +  assert_status(status==0, status, "mutex_init");
 +
-+  status = ::sema_init(&_wakeup, 0, 0, NULL);
++  status = ::sema_init(&_wakeup, 0, 0, nullptr);
 +  assert_status(status==0, status, "sema_init");
 +
-+  set_head(NULL);
-+  set_tail(NULL);
++  set_head(nullptr);
++  set_tail(nullptr);
 +
 +  return 0;
 +}
@@ -479,7 +479,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +      ;
 +    if (res) {
 +      warning("sema_wait failed: %s", os::strerror(res));
-+      return NULL;
++      return nullptr;
 +    }
 +
 +    // lock the list
@@ -488,10 +488,10 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +
 +    // remove the head of the list
 +    SolarisAttachOperation* op = head();
-+    if (op != NULL) {
++    if (op != nullptr) {
 +      set_head(op->next());
-+      if (head() == NULL) {
-+        set_tail(NULL);
++      if (head() == nullptr) {
++        set_tail(nullptr);
 +      }
 +    }
 +
@@ -499,7 +499,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +    pthread_mutex_unlock(mutex());
 +
 +    // if we got an operation when return it.
-+    if (op != NULL) {
++    if (op != nullptr) {
 +      return op;
 +    }
 +  }
@@ -512,8 +512,8 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +  assert(res == 0, "mutex_lock failed");
 +
 +  // enqueue at tail
-+  op->set_next(NULL);
-+  if (head() == NULL) {
++  op->set_next(nullptr);
++  if (head() == nullptr) {
 +    set_head(op);
 +  } else {
 +    tail()->set_next(op);
@@ -695,9 +695,9 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +void AttachListener::pd_detachall() {
 +  DTrace::detach_all_clients();
 +}
-diff -urN /tmp/a/c1_globals_solaris.hpp b/src/hotspot/os/solaris/c1_globals_solaris.hpp
---- /tmp/a/c1_globals_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/c1_globals_solaris.hpp	2024-09-16 14:41:33.965962792 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/c1_globals_solaris.hpp b/src/hotspot/os/solaris/c1_globals_solaris.hpp
+--- /tmp/a/src/hotspot/os/solaris/c1_globals_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/c1_globals_solaris.hpp	2025-04-19 12:08:38.473802906 +0100
 @@ -0,0 +1,36 @@
 +/*
 + * Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
@@ -735,9 +735,9 @@ diff -urN /tmp/a/c1_globals_solaris.hpp b/src/hotspot/os/solaris/c1_globals_sola
 +//
 +
 +#endif // OS_SOLARIS_C1_GLOBALS_SOLARIS_HPP
-diff -urN /tmp/a/c2_globals_solaris.hpp b/src/hotspot/os/solaris/c2_globals_solaris.hpp
---- /tmp/a/c2_globals_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/c2_globals_solaris.hpp	2024-09-16 14:41:33.966036351 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/c2_globals_solaris.hpp b/src/hotspot/os/solaris/c2_globals_solaris.hpp
+--- /tmp/a/src/hotspot/os/solaris/c2_globals_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/c2_globals_solaris.hpp	2025-04-19 12:08:38.473944298 +0100
 @@ -0,0 +1,36 @@
 +/*
 + * Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
@@ -775,9 +775,9 @@ diff -urN /tmp/a/c2_globals_solaris.hpp b/src/hotspot/os/solaris/c2_globals_sola
 +//
 +
 +#endif // OS_SOLARIS_C2_GLOBALS_SOLARIS_HPP
-diff -urN /tmp/a/decoder_solaris.cpp b/src/hotspot/os/solaris/decoder_solaris.cpp
---- /tmp/a/decoder_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/decoder_solaris.cpp	2024-09-16 14:41:33.989898931 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/decoder_solaris.cpp b/src/hotspot/os/solaris/decoder_solaris.cpp
+--- /tmp/a/src/hotspot/os/solaris/decoder_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/decoder_solaris.cpp	2025-04-19 12:08:38.474078787 +0100
 @@ -0,0 +1,45 @@
 +/*
 + * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
@@ -824,9 +824,9 @@ diff -urN /tmp/a/decoder_solaris.cpp b/src/hotspot/os/solaris/decoder_solaris.cp
 +  return false;
 +}
 +
-diff -urN /tmp/a/dtrace/jhelper.d b/src/hotspot/os/solaris/dtrace/jhelper.d
---- /tmp/a/dtrace/jhelper.d	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/dtrace/jhelper.d	2024-09-16 14:41:33.966540246 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/dtrace/jhelper.d b/src/hotspot/os/solaris/dtrace/jhelper.d
+--- /tmp/a/src/hotspot/os/solaris/dtrace/jhelper.d	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/dtrace/jhelper.d	2025-04-19 10:36:47.382874053 +0100
 @@ -0,0 +1,540 @@
 +/*
 + * Copyright (c) 2003, 2018, Oracle and/or its affiliates. All rights reserved.
@@ -1368,9 +1368,9 @@ diff -urN /tmp/a/dtrace/jhelper.d b/src/hotspot/os/solaris/dtrace/jhelper.d
 +{
 +  NULL;
 +}
-diff -urN /tmp/a/globals_solaris.hpp b/src/hotspot/os/solaris/globals_solaris.hpp
---- /tmp/a/globals_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/globals_solaris.hpp	2024-09-16 14:41:33.966625738 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/globals_solaris.hpp b/src/hotspot/os/solaris/globals_solaris.hpp
+--- /tmp/a/src/hotspot/os/solaris/globals_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/globals_solaris.hpp	2025-04-19 12:08:38.474213266 +0100
 @@ -0,0 +1,47 @@
 +/*
 + * Copyright (c) 2005, 2020, Oracle and/or its affiliates. All rights reserved.
@@ -1419,9 +1419,9 @@ diff -urN /tmp/a/globals_solaris.hpp b/src/hotspot/os/solaris/globals_solaris.hp
 +define_pd_global(bool, UseThreadPriorities, false);
 +
 +#endif // OS_SOLARIS_GLOBALS_SOLARIS_HPP
-diff -urN /tmp/a/osThread_solaris.cpp b/src/hotspot/os/solaris/osThread_solaris.cpp
---- /tmp/a/osThread_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/osThread_solaris.cpp	2024-09-16 14:41:33.966705744 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/osThread_solaris.cpp b/src/hotspot/os/solaris/osThread_solaris.cpp
+--- /tmp/a/src/hotspot/os/solaris/osThread_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/osThread_solaris.cpp	2025-04-19 12:08:38.474344343 +0100
 @@ -0,0 +1,41 @@
 +/*
 + * Copyright (c) 1998, 2014, Oracle and/or its affiliates. All rights reserved.
@@ -1464,9 +1464,9 @@ diff -urN /tmp/a/osThread_solaris.cpp b/src/hotspot/os/solaris/osThread_solaris.
 +OSThread::~OSThread() {
 +  delete _startThread_lock;
 +}
-diff -urN /tmp/a/osThread_solaris.hpp b/src/hotspot/os/solaris/osThread_solaris.hpp
---- /tmp/a/osThread_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/osThread_solaris.hpp	2024-09-16 14:41:33.966795992 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/osThread_solaris.hpp b/src/hotspot/os/solaris/osThread_solaris.hpp
+--- /tmp/a/src/hotspot/os/solaris/osThread_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/osThread_solaris.hpp	2025-04-19 12:08:38.474502387 +0100
 @@ -0,0 +1,99 @@
 +/*
 + * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
@@ -1567,9 +1567,9 @@ diff -urN /tmp/a/osThread_solaris.hpp b/src/hotspot/os/solaris/osThread_solaris.
 +};
 +
 +#endif // OS_SOLARIS_OSTHREAD_SOLARIS_HPP
-diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cpp
---- /tmp/a/os_perf_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/os_perf_solaris.cpp	2024-09-16 14:41:33.967040032 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cpp
+--- /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/os_perf_solaris.cpp	2025-04-19 12:08:38.474976285 +0100
 @@ -0,0 +1,806 @@
 +/*
 + * Copyright (c) 2012, 2019, Oracle and/or its affiliates. All rights reserved.
@@ -1670,13 +1670,13 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +  assert(load != nullptr, "load pointer is null!");
 +  assert(cpu_stat != nullptr, "cpu_stat pointer is null!");
 +
-+  if (load->kstat == NULL) {
++  if (load->kstat == nullptr) {
 +    // no handle.
 +    return OS_ERR;
 +  }
 +  if (kstat_read(kstat_ctrl, load->kstat, cpu_stat) == OS_ERR) {
 +    // disable handle for this CPU
-+     load->kstat = NULL;
++     load->kstat = nullptr;
 +     return OS_ERR;
 +  }
 +  return OS_OK;
@@ -1697,7 +1697,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +  }
 +
 +  uint_t* usage = cpu_stat.cpu_sysinfo.cpu;
-+  if (usage == NULL) {
++  if (usage == nullptr) {
 +    return .0;
 +  }
 +
@@ -1728,7 +1728,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +  setutxent();
 +  for(;;) {
 +    struct utmpx* u;
-+    if ((u = getutxent()) == NULL) {
++    if ((u = getutxent()) == nullptr) {
 +      break;
 +    }
 +    if (u->ut_type == BOOT_TIME) {
@@ -1835,8 +1835,8 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +
 +CPUPerformanceInterface::CPUPerformance::CPUPerformance() {
 +  _counters.nProcs = 0;
-+  _counters.jvmTicks = NULL;
-+  _counters.kstat_ctrl = NULL;
++  _counters.jvmTicks = nullptr;
++  _counters.kstat_ctrl = nullptr;
 +}
 +
 +bool CPUPerformanceInterface::CPUPerformance::initialize() {
@@ -1844,7 +1844,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +  _counters.kstat_ctrl = kstat_open();
 +  assert(_counters.kstat_ctrl != nullptr, "error initializing kstat control structure!");
 +
-+  if (NULL == _counters.kstat_ctrl) {
++  if (nullptr == _counters.kstat_ctrl) {
 +    return false;
 +  }
 +
@@ -1867,9 +1867,9 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +  // Get kstat cpu_stat counters for every CPU
 +  // loop over kstat to find our cpu_stat(s)
 +  int i = 0;
-+  for (kstat_t* kstat = _counters.kstat_ctrl->kc_chain; kstat != NULL; kstat = kstat->ks_next) {
++  for (kstat_t* kstat = _counters.kstat_ctrl->kc_chain; kstat != nullptr; kstat = kstat->ks_next) {
 +    if (strncmp(kstat->ks_module, "cpu_stat", 8) == 0) {
-+      if (kstat_read(_counters.kstat_ctrl, kstat, NULL) == OS_ERR) {
++      if (kstat_read(_counters.kstat_ctrl, kstat, nullptr) == OS_ERR) {
 +        continue;
 +      }
 +      if (i == _counters.nProcs) {
@@ -1884,7 +1884,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +
 +CPUPerformanceInterface::CPUPerformance::~CPUPerformance() {
 +  FREE_C_HEAP_ARRAY(char, _counters.jvmTicks);
-+  if (_counters.kstat_ctrl != NULL) {
++  if (_counters.kstat_ctrl != nullptr) {
 +    kstat_close(_counters.kstat_ctrl);
 +  }
 +}
@@ -1984,7 +1984,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +CPUPerformanceInterface::CPUPerformanceInterface() {
-+  _impl = NULL;
++  _impl = nullptr;
 +}
 +
 +bool CPUPerformanceInterface::initialize() {
@@ -1993,7 +1993,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +CPUPerformanceInterface::~CPUPerformanceInterface(void) {
-+  if (_impl != NULL) {
++  if (_impl != nullptr) {
 +    delete _impl;
 +  }
 +}
@@ -2069,7 +2069,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +  char buffer[PATH_MAX] = {0};
 +  uint64_t size = 0;
 +  bool result = false;
-+  FILE *fp = NULL;
++  FILE *fp = nullptr;
 +
 +  if (atoi(entry->d_name) != 0) {
 +    jio_snprintf(buffer, PATH_MAX, "/proc/%s", entry->d_name);
@@ -2077,7 +2077,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +    if (is_dir(buffer)) {
 +      memset(buffer, 0, PATH_MAX);
 +      jio_snprintf(buffer, PATH_MAX, "/proc/%s/psinfo", entry->d_name);
-+      if ((fp = fopen(buffer, "r")) != NULL) {
++      if ((fp = fopen(buffer, "r")) != nullptr) {
 +        int nread = 0;
 +        psinfo_t psinfo_data;
 +        if ((nread = fread(&psinfo_data, 1, sizeof(psinfo_t), fp)) != -1) {
@@ -2090,7 +2090,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +    }
 +  }
 +
-+  if (fp != NULL) {
++  if (fp != nullptr) {
 +    fclose(fp);
 +  }
 +
@@ -2098,10 +2098,10 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +char* SystemProcessInterface::SystemProcesses::ProcessIterator::allocate_string(const char* str) const {
-+  if (str != NULL) {
++  if (str != nullptr) {
 +    return os::strdup_check_oom(str, mtInternal);
 +  }
-+  return NULL;
++  return nullptr;
 +}
 +
 +int SystemProcessInterface::SystemProcesses::ProcessIterator::current(SystemProcess* process_info) {
@@ -2112,8 +2112,8 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +  char psinfo_path[PATH_MAX] = {0};
 +  jio_snprintf(psinfo_path, PATH_MAX, "/proc/%s/psinfo", _entry->d_name);
 +
-+  FILE *fp = NULL;
-+  if ((fp = fopen(psinfo_path, "r")) == NULL) {
++  FILE *fp = nullptr;
++  if ((fp = fopen(psinfo_path, "r")) == nullptr) {
 +    return OS_ERR;
 +  }
 +
@@ -2124,11 +2124,11 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +    return OS_ERR;
 +  }
 +
-+  char *exe_path = NULL;
-+  if ((psinfo_data.pr_fname != NULL) &&
-+      (psinfo_data.pr_psargs != NULL)) {
++  char *exe_path = nullptr;
++  if ((psinfo_data.pr_fname != nullptr) &&
++      (psinfo_data.pr_psargs != nullptr)) {
 +    char *path_substring = strstr(psinfo_data.pr_psargs, psinfo_data.pr_fname);
-+    if (path_substring != NULL) {
++    if (path_substring != nullptr) {
 +      int len = path_substring - psinfo_data.pr_psargs;
 +      exe_path = NEW_C_HEAP_ARRAY(char, len+1, mtInternal);
 +      jio_snprintf(exe_path, len, "%s", psinfo_data.pr_psargs);
@@ -2141,11 +2141,11 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +  process_info->set_path(allocate_string(exe_path));
 +  process_info->set_command_line(allocate_string(psinfo_data.pr_psargs));
 +
-+  if (exe_path != NULL) {
++  if (exe_path != nullptr) {
 +    FREE_C_HEAP_ARRAY(char, exe_path);
 +  }
 +
-+  if (fp != NULL) {
++  if (fp != nullptr) {
 +    fclose(fp);
 +  }
 +
@@ -2159,7 +2159,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +
 +  do {
 +    _entry = os::readdir(_dir);
-+    if (_entry == NULL) {
++    if (_entry == nullptr) {
 +      // Error or reached end.  Could use errno to distinguish those cases.
 +      _valid = false;
 +      return OS_ERR;
@@ -2171,14 +2171,14 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +SystemProcessInterface::SystemProcesses::ProcessIterator::ProcessIterator() {
-+  _dir = NULL;
-+  _entry = NULL;
++  _dir = nullptr;
++  _entry = nullptr;
 +  _valid = false;
 +}
 +
 +bool SystemProcessInterface::SystemProcesses::ProcessIterator::initialize() {
 +  _dir = os::opendir("/proc");
-+  _entry = NULL;
++  _entry = nullptr;
 +  _valid = true;
 +  next_process();
 +
@@ -2186,13 +2186,13 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +SystemProcessInterface::SystemProcesses::ProcessIterator::~ProcessIterator() {
-+  if (_dir != NULL) {
++  if (_dir != nullptr) {
 +    os::closedir(_dir);
 +  }
 +}
 +
 +SystemProcessInterface::SystemProcesses::SystemProcesses() {
-+  _iterator = NULL;
++  _iterator = nullptr;
 +}
 +
 +bool SystemProcessInterface::SystemProcesses::initialize() {
@@ -2201,7 +2201,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +SystemProcessInterface::SystemProcesses::~SystemProcesses() {
-+  if (_iterator != NULL) {
++  if (_iterator != nullptr) {
 +    delete _iterator;
 +  }
 +}
@@ -2213,14 +2213,14 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +
 +  // initialize pointers
 +  *no_of_sys_processes = 0;
-+  *system_processes = NULL;
++  *system_processes = nullptr;
 +
 +  while (_iterator->is_valid()) {
 +    SystemProcess* tmp = new SystemProcess();
 +    _iterator->current(tmp);
 +
 +    //if already existing head
-+    if (*system_processes != NULL) {
++    if (*system_processes != nullptr) {
 +      //move "first to second"
 +      tmp->set_next(*system_processes);
 +    }
@@ -2239,7 +2239,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +SystemProcessInterface::SystemProcessInterface() {
-+  _impl = NULL;
++  _impl = nullptr;
 +}
 +
 +bool SystemProcessInterface::initialize() {
@@ -2248,13 +2248,13 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +SystemProcessInterface::~SystemProcessInterface() {
-+  if (_impl != NULL) {
++  if (_impl != nullptr) {
 +    delete _impl;
 +  }
 +}
 +
 +CPUInformationInterface::CPUInformationInterface() {
-+  _cpu_info = NULL;
++  _cpu_info = nullptr;
 +}
 +
 +bool CPUInformationInterface::initialize() {
@@ -2269,23 +2269,23 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +CPUInformationInterface::~CPUInformationInterface() {
-+  if (_cpu_info != NULL) {
-+    if (_cpu_info->cpu_name() != NULL) {
++  if (_cpu_info != nullptr) {
++    if (_cpu_info->cpu_name() != nullptr) {
 +      const char* cpu_name = _cpu_info->cpu_name();
 +      FREE_C_HEAP_ARRAY(char, cpu_name);
-+      _cpu_info->set_cpu_name(NULL);
++      _cpu_info->set_cpu_name(nullptr);
 +    }
-+    if (_cpu_info->cpu_description() != NULL) {
++    if (_cpu_info->cpu_description() != nullptr) {
 +      const char* cpu_desc = _cpu_info->cpu_description();
 +      FREE_C_HEAP_ARRAY(char, cpu_desc);
-+      _cpu_info->set_cpu_description(NULL);
++      _cpu_info->set_cpu_description(nullptr);
 +    }
 +    delete _cpu_info;
 +  }
 +}
 +
 +int CPUInformationInterface::cpu_information(CPUInformation& cpu_info) {
-+  if (_cpu_info == NULL) {
++  if (_cpu_info == nullptr) {
 +    return OS_ERR;
 +  }
 +
@@ -2318,12 +2318,12 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +int NetworkPerformanceInterface::NetworkPerformance::network_utilization(NetworkInterface** network_interfaces) const
 +{
 +  kstat_ctl_t* ctl = kstat_open();
-+  if (ctl == NULL) {
++  if (ctl == nullptr) {
 +    return OS_ERR;
 +  }
 +
-+  NetworkInterface* ret = NULL;
-+  for (kstat_t* k = ctl->kc_chain; k != NULL; k = k->ks_next) {
++  NetworkInterface* ret = nullptr;
++  for (kstat_t* k = ctl->kc_chain; k != nullptr; k = k->ks_next) {
 +    if (strcmp(k->ks_class, "net") != 0) {
 +      continue;
 +    }
@@ -2331,7 +2331,7 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +      continue;
 +    }
 +
-+    if (kstat_read(ctl, k, NULL) == -1) {
++    if (kstat_read(ctl, k, nullptr) == -1) {
 +      return OS_ERR;
 +    }
 +
@@ -2360,11 +2360,11 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +}
 +
 +NetworkPerformanceInterface::NetworkPerformanceInterface() {
-+  _impl = NULL;
++  _impl = nullptr;
 +}
 +
 +NetworkPerformanceInterface::~NetworkPerformanceInterface() {
-+  if (_impl != NULL) {
++  if (_impl != nullptr) {
 +    delete _impl;
 +  }
 +}
@@ -2377,9 +2377,9 @@ diff -urN /tmp/a/os_perf_solaris.cpp b/src/hotspot/os/solaris/os_perf_solaris.cp
 +int NetworkPerformanceInterface::network_utilization(NetworkInterface** network_interfaces) const {
 +  return _impl->network_utilization(network_interfaces);
 +}
-diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
---- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-09-16 14:41:33.968071187 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
+--- /tmp/a/src/hotspot/os/solaris/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/os_solaris.cpp	2025-04-19 12:08:38.483600745 +0100
 @@ -0,0 +1,2868 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
@@ -2543,9 +2543,9 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +address os::Solaris::handler_start;  // start pc of thr_sighndlrinfo
 +address os::Solaris::handler_end;    // end pc of thr_sighndlrinfo
 +
-+address os::Solaris::_main_stack_base = NULL;  // 4352906 workaround
++address os::Solaris::_main_stack_base = nullptr;  // 4352906 workaround
 +
-+os::Solaris::pthread_setname_np_func_t os::Solaris::_pthread_setname_np = NULL;
++os::Solaris::pthread_setname_np_func_t os::Solaris::_pthread_setname_np = nullptr;
 +
 +// "default" initializers for missing libc APIs
 +extern "C" {
@@ -2587,7 +2587,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  // Workaround 4352906, avoid calls to thr_stksegment by
 +  // thr_main after the first one (it looks like we trash
 +  // some data, causing the value for ss_sp to be incorrect).
-+  if (!_is_primordial_thread || os::Solaris::_main_stack_base == NULL) {
++  if (!_is_primordial_thread || os::Solaris::_main_stack_base == nullptr) {
 +    stack_t st = get_stack_info();
 +    if (_is_primordial_thread) {
 +      // cache initial value of stack base
@@ -2595,7 +2595,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    }
 +    return (address)st.ss_sp;
 +  } else {
-+    guarantee(os::Solaris::_main_stack_base != NULL, "Attempt to use null cached stack base");
++    guarantee(os::Solaris::_main_stack_base != nullptr, "Attempt to use null cached stack base");
 +    return os::Solaris::_main_stack_base;
 +  }
 +}
@@ -2696,7 +2696,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  if (pset_bind(PS_QUERY, P_PID, pid, &pset) == 0) {
 +    uint_t pset_cpus;
 +    // Query the number of cpus available to us.
-+    if (pset_info(pset, NULL, &pset_cpus, NULL) == 0) {
++    if (pset_info(pset, nullptr, &pset_cpus, nullptr) == 0) {
 +      assert(pset_cpus > 0 && pset_cpus <= online_cpus, "sanity check");
 +      return pset_cpus;
 +    }
@@ -2706,7 +2706,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +}
 +
 +void os::set_native_thread_name(const char *name) {
-+  if (Solaris::_pthread_setname_np != NULL) {
++  if (Solaris::_pthread_setname_np != nullptr) {
 +    // Only the first 31 bytes of 'name' are processed by pthread_setname_np
 +    // but we explicitly copy into a size-limited buffer to avoid any
 +    // possible overflow.
@@ -2766,20 +2766,20 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    // Now cut the path to <java_home>/jre if we can.
 +    *(strrchr(buf, '/')) = '\0'; // Get rid of /libjvm.so.
 +    pslash = strrchr(buf, '/');
-+    if (pslash != NULL) {
++    if (pslash != nullptr) {
 +      *pslash = '\0';            // Get rid of /{client|server|hotspot}.
 +    }
 +    Arguments::set_dll_dir(buf);
 +
-+    if (pslash != NULL) {
++    if (pslash != nullptr) {
 +      pslash = strrchr(buf, '/');
-+      if (pslash != NULL) {
++      if (pslash != nullptr) {
 +        *pslash = '\0';        // Get rid of /lib.
 +      }
 +    }
 +    Arguments::set_java_home(buf);
 +    if (!set_boot_path('/', ':')) {
-+      vm_exit_during_initialization("Failed setting boot class path.", NULL);
++      vm_exit_during_initialization("Failed setting boot class path.", nullptr);
 +    }
 +  }
 +
@@ -2953,22 +2953,22 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  // One less thread is executing
 +  // When the VMThread gets here, the main thread may have already exited
 +  // which frees the CodeHeap containing the Atomic::dec code
-+  if (thread != VMThread::vm_thread() && VMThread::vm_thread() != NULL) {
++  if (thread != VMThread::vm_thread() && VMThread::vm_thread() != nullptr) {
 +    Atomic::dec(&os::Solaris::_os_thread_count);
 +  }
 +
 +  log_info(os, thread)("Thread finished (tid: %zu).", os::current_thread_id());
 +
-+  thr_exit(NULL);
++  thr_exit(nullptr);
 +  ShouldNotReachHere();
 +
-+  return NULL;
++  return nullptr;
 +}
 +
 +static OSThread* create_os_thread(Thread* thread, thread_t thread_id) {
 +  // Allocate the OSThread object
 +  OSThread* osthread = new OSThread();
-+  if (osthread == NULL) return NULL;
++  if (osthread == nullptr) return nullptr;
 +
 +  // Store info on the Solaris thread into the OSThread
 +  osthread->set_thread_id(thread_id);
@@ -2992,7 +2992,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  thread->verify_not_published();
 +#endif
 +  OSThread* osthread = create_os_thread(thread, thr_self());
-+  if (osthread == NULL) {
++  if (osthread == nullptr) {
 +    return false;
 +  }
 +
@@ -3018,9 +3018,9 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +#ifdef ASSERT
 +  thread->verify_not_published();
 +#endif
-+  if (_starting_thread == NULL) {
++  if (_starting_thread == nullptr) {
 +    _starting_thread = create_os_thread(thread, main_thread);
-+    if (_starting_thread == NULL) {
++    if (_starting_thread == nullptr) {
 +      return false;
 +    }
 +  }
@@ -3067,7 +3067,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +                       size_t req_stack_size) {
 +  // Allocate the OSThread object
 +  OSThread* osthread = new OSThread();
-+  if (osthread == NULL) {
++  if (osthread == nullptr) {
 +    return false;
 +  }
 +
@@ -3083,7 +3083,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    // trying to reserve some.
 +    const size_t VirtualMemoryBangSize = 20*K*K;
 +    char* mem = os::reserve_memory(VirtualMemoryBangSize);
-+    if (mem == NULL) {
++    if (mem == nullptr) {
 +      delete osthread;
 +      return false;
 +    } else {
@@ -3105,7 +3105,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  osthread->set_lwp_id(-1);
 +  osthread->set_thread_id(-1);
 +
-+  status = thr_create(NULL, stack_size, thread_native_entry, thread, flags, &tid);
++  status = thr_create(nullptr, stack_size, thread_native_entry, thread, flags, &tid);
 +
 +  char buf[64];
 +  if (status == 0) {
@@ -3122,7 +3122,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  }
 +
 +  if (status != 0) {
-+    thread->set_osthread(NULL);
++    thread->set_osthread(nullptr);
 +    // Need to clean up stuff we've allocated so far
 +    delete osthread;
 +    return false;
@@ -3214,7 +3214,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +  // Restore caller's signal mask
 +  sigset_t sigmask = osthread->caller_sigmask();
-+  pthread_sigmask(SIG_SETMASK, &sigmask, NULL);
++  pthread_sigmask(SIG_SETMASK, &sigmask, nullptr);
 +
 +  delete osthread;
 +}
@@ -3277,7 +3277,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  static address libjvm_base_addr;
 +  Dl_info dlinfo;
 +
-+  if (libjvm_base_addr == NULL) {
++  if (libjvm_base_addr == nullptr) {
 +    if (dladdr(CAST_FROM_FN_PTR(void *, os::address_is_in_vm), &dlinfo) != 0) {
 +      libjvm_base_addr = (address)dlinfo.dli_fbase;
 +    }
@@ -3310,18 +3310,18 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  if (dladdr1((void *)addr, &dlinfo, (void **)&info,
 +                     RTLD_DL_SYMENT) != 0) {
 +    // see if we have a matching symbol that covers our address
-+    if (dlinfo.dli_saddr != NULL &&
++    if (dlinfo.dli_saddr != nullptr &&
 +          (char *)dlinfo.dli_saddr + info->st_size > (char *)addr) {
-+      if (dlinfo.dli_sname != NULL) {
++      if (dlinfo.dli_sname != nullptr) {
 +        if (!(demangle && Decoder::demangle(dlinfo.dli_sname, buf, buflen))) {
 +          jio_snprintf(buf, buflen, "%s", dlinfo.dli_sname);
 +        }
-+        if (offset != NULL) *offset = addr - (address)dlinfo.dli_saddr;
++        if (offset != nullptr) *offset = addr - (address)dlinfo.dli_saddr;
 +        return true;
 +      }
 +    }
 +    // no matching symbol so try for just file info
-+    if (dlinfo.dli_fname != NULL && dlinfo.dli_fbase != NULL) {
++    if (dlinfo.dli_fname != nullptr && dlinfo.dli_fbase != nullptr) {
 +      if (Decoder::decode((address)(addr - (address)dlinfo.dli_fbase),
 +                          buf, buflen, offset, dlinfo.dli_fname, demangle)) {
 +        return true;
@@ -3330,7 +3330,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  }
 +
 +  buf[0] = '\0';
-+  if (offset != NULL) *offset = -1;
++  if (offset != nullptr) *offset = -1;
 +  return false;
 +}
 +
@@ -3341,10 +3341,10 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +  Dl_info dlinfo;
 +  if (dladdr((void*)addr, &dlinfo) != 0) {
-+    if (dlinfo.dli_fname != NULL) {
++    if (dlinfo.dli_fname != nullptr) {
 +      jio_snprintf(buf, buflen, "%s", dlinfo.dli_fname);
 +    }
-+    if (dlinfo.dli_fbase != NULL && offset != NULL) {
++    if (dlinfo.dli_fbase != nullptr && offset != nullptr) {
 +      *offset = addr - (address)dlinfo.dli_fbase;
 +    }
 +    return true;
@@ -3358,27 +3358,27 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  Dl_info dli;
 +  // Sanity check?
 +  if (dladdr(CAST_FROM_FN_PTR(void *, os::get_loaded_modules_info), &dli) == 0 ||
-+      dli.dli_fname == NULL) {
++      dli.dli_fname == nullptr) {
 +    return 1;
 +  }
 +
 +  void * handle = dlopen(dli.dli_fname, RTLD_LAZY);
-+  if (handle == NULL) {
++  if (handle == nullptr) {
 +    return 1;
 +  }
 +
 +  Link_map *map;
 +  dlinfo(handle, RTLD_DI_LINKMAP, &map);
-+  if (map == NULL) {
++  if (map == nullptr) {
 +    dlclose(handle);
 +    return 1;
 +  }
 +
-+  while (map->l_prev != NULL) {
++  while (map->l_prev != nullptr) {
 +    map = map->l_prev;
 +  }
 +
-+  while (map != NULL) {
++  while (map != nullptr) {
 +    // Iterate through all map entries and call callback with fields of interest
 +    if(callback(map->l_name, (address)map->l_addr, (address)0, param)) {
 +      dlclose(handle);
@@ -3419,24 +3419,24 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  log_info(os)("attempting shared library load of %s", filename);
 +
 +  void * result= ::dlopen(filename, RTLD_LAZY);
-+  if (result != NULL) {
++  if (result != nullptr) {
 +    // Successful loading
-+    Events::log(NULL, "Loaded shared library %s", filename);
++    Events::log(nullptr, "Loaded shared library %s", filename);
 +    log_info(os)("shared library load of %s was successful", filename);
 +    return result;
 +  }
 +
 +  Elf32_Ehdr elf_head;
 +  const char* error_report = ::dlerror();
-+  if (error_report == NULL) {
++  if (error_report == nullptr) {
 +    error_report = "dlerror returned no error description";
 +  }
-+  if (ebuf != NULL && ebuflen > 0) {
++  if (ebuf != nullptr && ebuflen > 0) {
 +    ::strncpy(ebuf, error_report, ebuflen-1);
 +    ebuf[ebuflen-1]='\0';
 +  }
 +
-+  Events::log(NULL, "Loading shared library %s failed, %s", filename, error_report);
++  Events::log(nullptr, "Loading shared library %s failed, %s", filename, error_report);
 +  log_info(os)("shared library load of %s failed, %s", filename, error_report);
 +
 +  int diag_msg_max_length=ebuflen-strlen(ebuf);
@@ -3444,7 +3444,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +  if (diag_msg_max_length==0) {
 +    // No more space in ebuf for additional diagnostics message
-+    return NULL;
++    return nullptr;
 +  }
 +
 +
@@ -3452,7 +3452,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +  if (file_descriptor < 0) {
 +    // Can't open library, report dlerror() message
-+    return NULL;
++    return nullptr;
 +  }
 +
 +  bool failed_to_read_elf_head=
@@ -3462,13 +3462,13 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  ::close(file_descriptor);
 +  if (failed_to_read_elf_head) {
 +    // file i/o error - report dlerror() msg
-+    return NULL;
++    return nullptr;
 +  }
 +
 +  if (elf_head.e_ident[EI_DATA] != LITTLE_ENDIAN_ONLY(ELFDATA2LSB) BIG_ENDIAN_ONLY(ELFDATA2MSB)) {
 +    // handle invalid/out of range endianness values
 +    if (elf_head.e_ident[EI_DATA] == 0 || elf_head.e_ident[EI_DATA] > 2) {
-+      return NULL;
++      return nullptr;
 +    }
 +    change_endianness(elf_head.e_machine);
 +  }
@@ -3521,7 +3521,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  // Identify compatibility class for VM's architecture and library's architecture
 +  // Obtain string descriptions for architectures
 +
-+  arch_t lib_arch={elf_head.e_machine,0,elf_head.e_ident[EI_CLASS], elf_head.e_ident[EI_DATA], NULL};
++  arch_t lib_arch={elf_head.e_machine,0,elf_head.e_ident[EI_CLASS], elf_head.e_ident[EI_DATA], nullptr};
 +  int running_arch_index=-1;
 +
 +  for (unsigned int i=0; i < ARRAY_SIZE(arch_array); i++) {
@@ -3539,11 +3539,11 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  if (running_arch_index == -1) {
 +    // Even though running architecture detection failed
 +    // we may still continue with reporting dlerror() message
-+    return NULL;
++    return nullptr;
 +  }
 +
 +  if (lib_arch.compat_class != arch_array[running_arch_index].compat_class) {
-+    if (lib_arch.name != NULL) {
++    if (lib_arch.name != nullptr) {
 +      ::snprintf(diag_msg_buf, diag_msg_max_length-1,
 +                 " (Possible cause: can't load %s .so on a %s platform)",
 +                 lib_arch.name, arch_array[running_arch_index].name);
@@ -3552,28 +3552,28 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +                 " (Possible cause: can't load this .so (machine code=0x%x) on a %s platform)",
 +                 lib_arch.code, arch_array[running_arch_index].name);
 +    }
-+    return NULL;
++    return nullptr;
 +  }
 +
 +  if (lib_arch.endianess != arch_array[running_arch_index].endianess) {
 +    ::snprintf(diag_msg_buf, diag_msg_max_length-1, " (Possible cause: endianness mismatch)");
-+    return NULL;
++    return nullptr;
 +  }
 +
 +  // ELF file class/capacity : 0 - invalid, 1 - 32bit, 2 - 64bit
 +  if (lib_arch.elf_class > 2 || lib_arch.elf_class < 1) {
 +    ::snprintf(diag_msg_buf, diag_msg_max_length-1, " (Possible cause: invalid ELF file class)");
-+    return NULL;
++    return nullptr;
 +  }
 +
 +  if (lib_arch.elf_class != arch_array[running_arch_index].elf_class) {
 +    ::snprintf(diag_msg_buf, diag_msg_max_length-1,
 +               " (Possible cause: architecture word width mismatch, can't load %d-bit .so on a %d-bit platform)",
 +               (int) lib_arch.elf_class * 32, arch_array[running_arch_index].elf_class * 32);
-+    return NULL;
++    return nullptr;
 +  }
 +
-+  return NULL;
++  return nullptr;
 +}
 +
 +static inline time_t get_mtime(const char* filename) {
@@ -3636,7 +3636,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +void os::get_summary_os_info(char* buf, size_t buflen) {
 +  strncpy(buf, "Solaris", buflen);  // default to plain solaris
 +  FILE* fp = fopen("/etc/release", "r");
-+  if (fp != NULL) {
++  if (fp != nullptr) {
 +    char tmp[256];
 +    // Only get the first line and chop out everything but the os name.
 +    if (fgets(tmp, sizeof(tmp), fp)) {
@@ -3645,7 +3645,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +      while (*ptr != '\0' && (*ptr == ' ' || *ptr == '\t' || *ptr == '\n')) ptr++;
 +      if (*ptr != '\0') {
 +        char* nl = strchr(ptr, '\n');
-+        if (nl != NULL) *nl = '\0';
++        if (nl != nullptr) *nl = '\0';
 +        strncpy(buf, ptr, buflen);
 +      }
 +    }
@@ -3660,9 +3660,9 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  int nmap = 0;
 +  int fd = ::open("/proc/self/map",O_RDONLY);
 +  if (fd >= 0) {
-+    prmap_t *p = NULL;
++    prmap_t *p = nullptr;
 +    char *mbuff = (char *) calloc(read_chunk, sizeof(prmap_t));
-+    if (NULL == mbuff) {
++    if (nullptr == mbuff) {
 +      ::close(fd);
 +      return status;
 +    }
@@ -3745,7 +3745,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  if (Arguments::executing_unit_tests()) {
 +    // Look for JAVA_HOME in the environment.
 +    char* java_home_var = ::getenv("JAVA_HOME");
-+    if (java_home_var != NULL && java_home_var[0] != 0) {
++    if (java_home_var != nullptr && java_home_var[0] != 0) {
 +
 +      // Check the current module name "libjvm.so".
 +      const char* p = strrchr(buf, '/');
@@ -3822,7 +3822,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  int prot = exec ? PROT_READ|PROT_WRITE|PROT_EXEC : PROT_READ|PROT_WRITE;
 +  size_t size = bytes;
 +  char *res = Solaris::mmap_chunk(addr, size, MAP_PRIVATE|MAP_FIXED, prot);
-+  if (res != NULL) {
++  if (res != nullptr) {
 +    if (UseNUMAInterleaving) {
 +        numa_make_global(addr, bytes);
 +    }
@@ -3988,7 +3988,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +      assert(bottom <= cur, "Sanity check");
 +      // Check if the node has memory
 +      if (Solaris::lgrp_resources(Solaris::lgrp_cookie(), ids[cur],
-+                                  NULL, 0, LGRP_RSRC_MEM) > 0) {
++                                  nullptr, 0, LGRP_RSRC_MEM) > 0) {
 +        ids[bottom++] = ids[cur];
 +      }
 +    }
@@ -4051,7 +4051,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  char *res = Solaris::mmap_chunk(addr, size,
 +                                MAP_PRIVATE|MAP_FIXED|MAP_NORESERVE,
 +                                PROT_NONE);
-+  if (res == NULL) {
++  if (res == nullptr) {
 +    ErrnoPreserver ep;
 +    log_trace(os, map)("mmap failed: " RANGEFMT " errno=(%s)",
 +                       RANGEFMTARGS(addr, size),
@@ -4065,7 +4065,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  char *b = (char *)mmap(addr, size, prot, flags, os::Solaris::_dev_zero_fd, 0);
 +
 +  if (b == MAP_FAILED) {
-+    return NULL;
++    return nullptr;
 +  }
 +  return b;
 +}
@@ -4081,7 +4081,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +}
 +
 +char* os::pd_reserve_memory(size_t bytes, bool exec) {
-+  char* addr = Solaris::anon_mmap(NULL, bytes);
++  char* addr = Solaris::anon_mmap(nullptr, bytes);
 +
 +  return addr;
 +}
@@ -4089,8 +4089,8 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +char* os::pd_attempt_map_memory_to_file_at(char* requested_addr, size_t bytes, int file_desc) {
 +  assert(file_desc >= 0, "file_desc is not valid");
 +  char* result = pd_attempt_reserve_memory_at(requested_addr, bytes, !ExecMem);
-+  if (result != NULL) {
-+    if (replace_existing_mapping_with_file_mapping(result, bytes, file_desc) == NULL) {
++  if (result != nullptr) {
++    if (replace_existing_mapping_with_file_mapping(result, bytes, file_desc) == nullptr) {
 +      vm_exit_during_initialization(err_msg("Error in mapping Java heap at the given filesystem directory"));
 +    }
 +  }
@@ -4116,11 +4116,11 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    return addr;
 +  }
 +
-+  if (addr != NULL) {
++  if (addr != nullptr) {
 +    pd_unmap_memory(addr, bytes);
 +  }
 +
-+  return NULL;
++  return nullptr;
 +}
 +
 +static int anon_munmap(char * addr, size_t size) {
@@ -4142,7 +4142,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +static bool solaris_mprotect(char* addr, size_t bytes, int prot) {
 +  assert(addr == (char*)align_down((uintptr_t)addr, os::vm_page_size()),
 +         "addr must be page aligned");
-+  Events::log(NULL, "Protecting memory [" INTPTR_FORMAT "," INTPTR_FORMAT "] with protection modes %x", p2i(addr), p2i(addr+bytes), prot);
++  Events::log(nullptr, "Protecting memory [" INTPTR_FORMAT "," INTPTR_FORMAT "] with protection modes %x", p2i(addr), p2i(addr+bytes), prot);
 +  int retVal = mprotect(addr, bytes, prot);
 +  return retVal == 0;
 +}
@@ -4239,7 +4239,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +char* os::pd_reserve_memory_special(size_t size, size_t alignment, size_t page_size, char* addr, bool exec) {
 +  fatal("os::reserve_memory_special should not be called on Solaris.");
-+  return NULL;
++  return nullptr;
 +}
 +
 +bool os::pd_release_memory_special(char* base, size_t bytes) {
@@ -4699,7 +4699,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +static address resolve_symbol_lazy(const char* name) {
 +  address addr = (address) dlsym(RTLD_DEFAULT, name);
-+  if (addr == NULL) {
++  if (addr == nullptr) {
 +    // RTLD_DEFAULT was not defined on some early versions of 2.5.1
 +    addr = (address) dlsym(RTLD_NEXT, name);
 +  }
@@ -4708,7 +4708,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +static address resolve_symbol(const char* name) {
 +  address addr = resolve_symbol_lazy(name);
-+  if (addr == NULL) {
++  if (addr == nullptr) {
 +    fatal("resolve_symbol failed (%s)", dlerror());
 +  }
 +  return addr;
@@ -4736,7 +4736,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +bool os::Solaris::liblgrp_init() {
 +  void *handle = dlopen("liblgrp.so.1", RTLD_LAZY);
-+  if (handle != NULL) {
++  if (handle != nullptr) {
 +    os::Solaris::set_lgrp_home(CAST_TO_FN_PTR(lgrp_home_func_t, dlsym(handle, "lgrp_home")));
 +    os::Solaris::set_lgrp_init(CAST_TO_FN_PTR(lgrp_init_func_t, dlsym(handle, "lgrp_init")));
 +    os::Solaris::set_lgrp_fini(CAST_TO_FN_PTR(lgrp_fini_func_t, dlsym(handle, "lgrp_fini")));
@@ -4792,7 +4792,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  // dynamic lookup of functions that may not be available in our lowest
 +  // supported Solaris release
 +  void * handle = dlopen("libc.so.1", RTLD_LAZY);
-+  if (handle != NULL) {
++  if (handle != nullptr) {
 +    Solaris::_pthread_setname_np =  // from 11.3
 +        (Solaris::pthread_setname_np_func_t)dlsym(handle, "pthread_setname_np");
 +  }
@@ -4961,9 +4961,9 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  return fd;
 +}
 +
-+const intptr_t thr_time_off  = (intptr_t)(&((prusage_t *)(NULL))->pr_utime);
-+const intptr_t thr_time_size = (intptr_t)(&((prusage_t *)(NULL))->pr_ttime) -
-+                               (intptr_t)(&((prusage_t *)(NULL))->pr_utime);
++const intptr_t thr_time_off  = (intptr_t)(&((prusage_t *)(nullptr))->pr_utime);
++const intptr_t thr_time_size = (intptr_t)(&((prusage_t *)(nullptr))->pr_ttime) -
++                               (intptr_t)(&((prusage_t *)(nullptr))->pr_utime);
 +
 +
 +// JVMTI & JVM monitoring and management support
@@ -5067,18 +5067,18 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  memset(&dlinfo, 0, sizeof(dlinfo));
 +  if (dladdr(addr, &dlinfo) != 0) {
 +    st->print(PTR_FORMAT ": ", p2i(addr));
-+    if (dlinfo.dli_sname != NULL && dlinfo.dli_saddr != NULL) {
++    if (dlinfo.dli_sname != nullptr && dlinfo.dli_saddr != nullptr) {
 +      st->print("%s+" PTR_FORMAT, dlinfo.dli_sname,
 +                p2i(addr) - p2i(dlinfo.dli_saddr));
-+    } else if (dlinfo.dli_fbase != NULL) {
++    } else if (dlinfo.dli_fbase != nullptr) {
 +      st->print("<offset " PTR_FORMAT ">", p2i(addr) - p2i(dlinfo.dli_fbase));
 +    } else {
 +      st->print("<absolute address>");
 +    }
-+    if (dlinfo.dli_fname != NULL) {
++    if (dlinfo.dli_fname != nullptr) {
 +      st->print(" in %s", dlinfo.dli_fname);
 +    }
-+    if (dlinfo.dli_fbase != NULL) {
++    if (dlinfo.dli_fbase != nullptr) {
 +      st->print(" at " PTR_FORMAT, p2i(dlinfo.dli_fbase));
 +    }
 +    st->cr();
@@ -5175,7 +5175,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +int os::get_core_path(char* buffer, size_t bufferSize) {
 +  const char* p = get_current_directory(buffer, bufferSize);
 +
-+  if (p == NULL) {
++  if (p == nullptr) {
 +    assert(p != nullptr, "failed to get current directory");
 +    return 0;
 +  }
@@ -5249,9 +5249,9 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +  return res;
 +} // end: os::pd_dll_unload()
-diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
---- /tmp/a/os_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/os_solaris.hpp	2024-09-16 14:41:33.968210379 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
+--- /tmp/a/src/hotspot/os/solaris/os_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/os_solaris.hpp	2025-04-19 12:08:38.476634208 +0100
 @@ -0,0 +1,183 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
@@ -5400,23 +5400,23 @@ diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 +  static void set_lgrp_cookie_stale(lgrp_cookie_stale_func_t func) { _lgrp_cookie_stale = func; }
 +  static void set_lgrp_cookie(lgrp_cookie_t cookie)  { _lgrp_cookie = cookie; }
 +
-+  static id_t lgrp_home(idtype_t type, id_t id)      { return _lgrp_home != NULL ? _lgrp_home(type, id) : -1; }
-+  static lgrp_cookie_t lgrp_init(lgrp_view_t view)   { return _lgrp_init != NULL ? _lgrp_init(view) : 0; }
-+  static int lgrp_fini(lgrp_cookie_t cookie)         { return _lgrp_fini != NULL ? _lgrp_fini(cookie) : -1; }
-+  static lgrp_id_t lgrp_root(lgrp_cookie_t cookie)   { return _lgrp_root != NULL ? _lgrp_root(cookie) : -1; }
++  static id_t lgrp_home(idtype_t type, id_t id)      { return _lgrp_home != nullptr ? _lgrp_home(type, id) : -1; }
++  static lgrp_cookie_t lgrp_init(lgrp_view_t view)   { return _lgrp_init != nullptr ? _lgrp_init(view) : 0; }
++  static int lgrp_fini(lgrp_cookie_t cookie)         { return _lgrp_fini != nullptr ? _lgrp_fini(cookie) : -1; }
++  static lgrp_id_t lgrp_root(lgrp_cookie_t cookie)   { return _lgrp_root != nullptr ? _lgrp_root(cookie) : -1; }
 +  static int lgrp_children(lgrp_cookie_t  cookie,  lgrp_id_t  parent,
 +                           lgrp_id_t *lgrp_array, uint_t lgrp_array_size) {
-+    return _lgrp_children != NULL ? _lgrp_children(cookie, parent, lgrp_array, lgrp_array_size) : -1;
++    return _lgrp_children != nullptr ? _lgrp_children(cookie, parent, lgrp_array, lgrp_array_size) : -1;
 +  }
 +  static int lgrp_resources(lgrp_cookie_t  cookie,  lgrp_id_t  lgrp,
 +                            lgrp_id_t *lgrp_array, uint_t lgrp_array_size,
 +                            lgrp_rsrc_t type) {
-+    return _lgrp_resources != NULL ? _lgrp_resources(cookie, lgrp, lgrp_array, lgrp_array_size, type) : -1;
++    return _lgrp_resources != nullptr ? _lgrp_resources(cookie, lgrp, lgrp_array, lgrp_array_size, type) : -1;
 +  }
 +
-+  static int lgrp_nlgrps(lgrp_cookie_t cookie)       { return _lgrp_nlgrps != NULL ? _lgrp_nlgrps(cookie) : -1; }
++  static int lgrp_nlgrps(lgrp_cookie_t cookie)       { return _lgrp_nlgrps != nullptr ? _lgrp_nlgrps(cookie) : -1; }
 +  static int lgrp_cookie_stale(lgrp_cookie_t cookie) {
-+    return _lgrp_cookie_stale != NULL ? _lgrp_cookie_stale(cookie) : -1;
++    return _lgrp_cookie_stale != nullptr ? _lgrp_cookie_stale(cookie) : -1;
 +  }
 +  static lgrp_cookie_t lgrp_cookie()                 { return _lgrp_cookie; }
 +
@@ -5436,9 +5436,9 @@ diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 +
 +};
 +#endif // OS_SOLARIS_OS_SOLARIS_HPP
-diff -urN /tmp/a/os_solaris.inline.hpp b/src/hotspot/os/solaris/os_solaris.inline.hpp
---- /tmp/a/os_solaris.inline.hpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/os_solaris.inline.hpp	2024-09-16 14:41:33.968292953 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.inline.hpp b/src/hotspot/os/solaris/os_solaris.inline.hpp
+--- /tmp/a/src/hotspot/os/solaris/os_solaris.inline.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/os_solaris.inline.hpp	2025-04-19 12:08:38.476774425 +0100
 @@ -0,0 +1,70 @@
 +/*
 + * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
@@ -5510,9 +5510,9 @@ diff -urN /tmp/a/os_solaris.inline.hpp b/src/hotspot/os/solaris/os_solaris.inlin
 +inline bool os::numa_has_group_homing()     { return true;  }
 +
 +#endif // OS_SOLARIS_OS_SOLARIS_INLINE_HPP
-diff -urN /tmp/a/vmStructs_solaris.hpp b/src/hotspot/os/solaris/vmStructs_solaris.hpp
---- /tmp/a/vmStructs_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
-+++ b/src/hotspot/os/solaris/vmStructs_solaris.hpp	2024-09-16 14:41:33.968376996 +0100
+diff -urN /tmp/a/src/hotspot/os/solaris/vmStructs_solaris.hpp b/src/hotspot/os/solaris/vmStructs_solaris.hpp
+--- /tmp/a/src/hotspot/os/solaris/vmStructs_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/src/hotspot/os/solaris/vmStructs_solaris.hpp	2025-04-19 12:08:38.476907592 +0100
 @@ -0,0 +1,44 @@
 +/*
 + * Copyright (c) 2015, 2019, Oracle and/or its affiliates. All rights reserved.
