@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: Duplicate check for SC_CLK_TCK.
+
 21.0.7
 
 Minor patch noise.

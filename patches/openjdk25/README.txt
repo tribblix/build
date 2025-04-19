@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Duplicate check for SC_CLK_TCK.
+
 Cleanup: Trust gethostname rather than second-guessing.
 
 Cleanup: Remove unused OPENJDK_$1_CPU_ISADIR.

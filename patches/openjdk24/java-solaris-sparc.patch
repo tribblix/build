@@ -3858,15 +3858,6 @@
      struct task_basic_info t_info;
      mach_msg_type_number_t t_info_count = TASK_BASIC_INFO_COUNT;
  
-@@ -268,7 +182,7 @@
-      * BSDNOTE: FreeBSD implements _SC_CLK_TCK since FreeBSD 5, so
-      *          add a magic to handle it
-      */
--#if defined(__solaris__) || defined(_SC_CLK_TCK)
-+#if defined(_SC_CLK_TCK)
-     clk_tck = (jlong) sysconf(_SC_CLK_TCK);
- #elif defined(__linux__) || defined(_ALLBSD_SOURCE)
-     clk_tck = 100;
 --- old/src/jdk.sctp/unix/classes/sun/nio/ch/sctp/SctpNet.java	2020-05-20 18:03:38.442268035 -0700
 +++ new/src/jdk.sctp/unix/classes/sun/nio/ch/sctp/SctpNet.java	2020-05-20 18:03:38.054260584 -0700
 @@ -42,12 +42,6 @@
