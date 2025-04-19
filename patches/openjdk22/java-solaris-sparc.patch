@@ -541,15 +541,7 @@
        DEST := $(CONF_DST_DIR)/sdp, \
 --- old/make/modules/java.base/Launcher.gmk	2020-05-20 17:59:09.001094567 -0700
 +++ new/make/modules/java.base/Launcher.gmk	2020-05-20 17:59:08.617087194 -0700
-@@ -64,7 +64,6 @@
-       CFLAGS := $(CFLAGS_JDKEXE) \
-           -I$(TOPDIR)/src/$(MODULE)/share/native/libjli, \
-       CFLAGS_linux := -fPIC, \
--      CFLAGS_solaris := -KPIC, \
-       LDFLAGS := $(LDFLAGS_JDKEXE), \
-       OUTPUT_DIR := $(SUPPORT_OUTPUTDIR)/modules_libs/$(MODULE), \
-   ))
-@@ -74,7 +73,7 @@
+@@ -73,7 +73,7 @@
  
  ################################################################################
  
