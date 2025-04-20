@@ -4,6 +4,9 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: remove solaris-specific X11CNS11643, we should be the same as
+everything else.
+
 Cleanup: remove dtraceAttacher and last unused (since 25+15) bits of
 dtrace from attachListener. Removes illumos-port-17.patch
 
