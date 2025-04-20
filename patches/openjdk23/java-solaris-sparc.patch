@@ -2873,7 +2873,7 @@
 -            }
 -
 -            /*
--             * We try to get tcp_maxbuf (and udp_max_buf) using
+-             * We try to get tcp_max_buf (and udp_max_buf) using
 -             * an ioctl() that isn't available on all versions of Solaris.
 -             * If that fails, we use the search algorithm in findMaxBuf()
 -             */
