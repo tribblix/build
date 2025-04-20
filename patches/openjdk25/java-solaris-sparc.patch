@@ -4366,7 +4366,7 @@
 -        OUTPUT_DIR := $(JVM_LIB_OUTPUTDIR), \
 -        SRC := $(TOPDIR)/src/java.base/solaris/native/libjvm_dtrace, \
 -        CFLAGS := $(JNI_INCLUDE_FLAGS) -m64 -G -fPIC -fvisibility=hidden, \
--        LDFLAGS := -m64 -xnolib $(SHARED_LIBRARY_FLAGS), \
+-        LDFLAGS := -m64 $(SHARED_LIBRARY_FLAGS), \
 -        LIBS := $(LIBDL) -ldoor, \
 -        OBJECT_DIR := $(LIBJVM_DTRACE_OUTPUTDIR)/objs, \
 -    ))
@@ -4379,7 +4379,7 @@
 -        OUTPUT_DIR := $(JVM_LIB_OUTPUTDIR), \
 -        SRC := $(TOPDIR)/src/java.base/solaris/native/libjvm_db, \
 -        CFLAGS := -I$(DTRACE_GENSRC_DIR) $(JNI_INCLUDE_FLAGS) -m64 -G -fPIC -fvisibility=hidden, \
--        LDFLAGS := -m64 -xnolib $(SHARED_LIBRARY_FLAGS), \
+-        LDFLAGS := -m64 $(SHARED_LIBRARY_FLAGS), \
 -        OBJECT_DIR := $(LIBJVM_DB_OUTPUTDIR)/objs, \
 -    ))
 -
@@ -4478,7 +4478,7 @@
 -    endif
 -
 -    DTRACE_FLAGS := -64 -G
--    DTRACE_CPP_FLAGS := -D_LP64
+-    DTRACE_CPP_FLAGS := -D_LP64 -x c
 -
 -    # Make sure we run our selected compiler for preprocessing instead of letting
 -    # the dtrace tool pick it on it's own.
