@@ -4864,9 +4864,9 @@
 -        classLoadingService.o \
 -        compileBroker.o \
 -        gcVMOperations.o \
--        hashtable.o \
 -        instanceKlass.o \
 -        java.o \
+-        javaThread.o \
 -        jni.o \
 -        jvm.o \
 -        memoryManager.o \
@@ -4875,7 +4875,7 @@
 -        runtimeService.o \
 -        sharedRuntime.o \
 -        synchronizer.o \
--        thread.o \
+-        threads.o \
 -        unsafe.o \
 -        vmThread.o \
 -    )

@@ -5214,7 +5214,7 @@
 -endif
 --- old/make/hotspot/lib/JvmDtraceObjects.gmk	2020-05-20 18:08:17.355623374 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,122 +0,0 @@
+@@ -1,123 +0,0 @@
 -#
 -# Copyright (c) 2013, 2019, Oracle and/or its affiliates. All rights reserved.
 -# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5283,6 +5283,7 @@
 -        hashtable.o \
 -        instanceKlass.o \
 -        java.o \
+-        javaThread.o \
 -        jni.o \
 -        jvm.o \
 -        memoryManager.o \
@@ -5291,7 +5292,7 @@
 -        runtimeService.o \
 -        sharedRuntime.o \
 -        synchronizer.o \
--        thread.o \
+-        threads.o \
 -        unsafe.o \
 -        vmThread.o \
 -    )
