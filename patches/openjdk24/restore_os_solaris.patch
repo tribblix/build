@@ -354,7 +354,7 @@ diff -urN /tmp/a/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListe
 +    if (res == 0) {
 +      door_desc_t desc;
 +      // DOOR_RELEASE flag makes sure fd is closed after passing it to
-+      // the client.  See door_return(3DOOR) man page.
++      // the client.  See door_return(3C) man page.
 +      desc.d_attributes = DOOR_DESCRIPTOR | DOOR_RELEASE;
 +      desc.d_data.d_desc.d_descriptor = return_fd;
 +      door_return((char*)&res, sizeof(res), &desc, 1);
@@ -5342,7 +5342,7 @@ diff -urN /tmp/a/os_solaris.hpp b/src/hotspot/os/solaris/os_solaris.hpp
 +
 +// Solaris_OS defines the interface to Solaris operating systems
 +
-+// see thr_setprio(3T) for the basis of these numbers
++// see thr_setprio(3C) for the basis of these numbers
 +#define MinimumPriority 0
 +#define NormalPriority  64
 +#define MaximumPriority 127
