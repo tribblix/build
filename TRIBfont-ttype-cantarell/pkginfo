@@ -1,0 +1,4 @@
+PKG="TRIBfont-ttype-cantarell"
+NAME="Cantarell fonts"
+VERSION="1.0.0"
+ZAP_URL="https://fonts.google.com/specimen/Cantarell?query=cantarell"
