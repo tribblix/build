@@ -4,6 +4,9 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: remove dtraceAttacher and last unused (since 25+15) bits of
+dtrace from attachListener. Removes illumos-port-17.patch
+
 Cleanup: more dtrace fixes.
 
 Cleanup: Correct DTRACE_INSTRUMENTED_OBJS.

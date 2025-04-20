@@ -1,7 +1,7 @@
 diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot/os/solaris/attachListener_solaris.cpp
 --- /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/attachListener_solaris.cpp	2025-04-19 12:11:00.533694492 +0100
-@@ -0,0 +1,693 @@
+@@ -0,0 +1,692 @@
 +/*
 + * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,7 +30,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot
 +#include "runtime/interfaceSupport.inline.hpp"
 +#include "runtime/os.inline.hpp"
 +#include "services/attachListener.hpp"
-+#include "services/dtraceAttacher.hpp"
 +#include "utilities/vmError.hpp"
 +
 +#include <door.h>
@@ -693,7 +692,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot
 +}
 +
 +void AttachListener::pd_detachall() {
-+  DTrace::detach_all_clients();
++  listener_cleanup();
 +}
 diff -urN /tmp/a/src/hotspot/os/solaris/c1_globals_solaris.hpp b/src/hotspot/os/solaris/c1_globals_solaris.hpp
 --- /tmp/a/src/hotspot/os/solaris/c1_globals_solaris.hpp	1970-01-01 01:00:00.000000000 +0100

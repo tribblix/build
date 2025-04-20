@@ -16,7 +16,6 @@
 -p1 openjdk25/illumos-port-11.patch
 -p1 openjdk25/illumos-port-12.patch
 -p1 openjdk25/illumos-port-16.patch
--p1 openjdk25/illumos-port-17.patch
 -p1 openjdk25/illumos-pollerprovider.patch
 -p1 openjdk25/illumos-port-18.patch
 -p1 openjdk25/illumos-port-20.patch
