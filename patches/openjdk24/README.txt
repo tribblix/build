@@ -2,6 +2,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: unnecessary use of thread instead of pthread.
+
 Cleanup: SolarisFileSystem is always for 5.11 and up.
 
 Cleanup: no need for -lposix4 and -lrt.

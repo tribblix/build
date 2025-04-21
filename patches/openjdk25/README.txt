@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: unnecessary use of thread instead of pthread.
+
 Cleanup: SolarisFileSystem is always for 5.11 and up.
 
 Cleanup: no need for -lposix4 and -lrt.

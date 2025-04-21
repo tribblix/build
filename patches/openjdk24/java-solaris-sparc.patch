@@ -1005,18 +1005,6 @@
  
  // Platform Mutex/Monitor implementation
  
---- old/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:46.085806620 -0700
-+++ new/src/hotspot/os/posix/vmError_posix.cpp	2020-05-20 17:59:45.745800092 -0700
-@@ -41,9 +41,6 @@
- #include <sys/syscall.h>
- #include <unistd.h>
- #endif
--#ifdef SOLARIS
--#include <thread.h>
--#endif
- #ifdef AIX
- #include <unistd.h>
- #endif
 --- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
 +++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
 @@ -452,8 +452,6 @@
@@ -3004,39 +2992,15 @@
  }
 --- old/src/java.base/unix/native/libnio/ch/NativeThread.c	2020-05-20 18:01:33.783874502 -0700
 +++ new/src/java.base/unix/native/libnio/ch/NativeThread.c	2020-05-20 18:01:33.371866591 -0700
-@@ -40,9 +40,6 @@
+@@ -40,8 +40,6 @@
  #elif defined(_AIX)
    /* Also defined in net/aix_close.c */
    #define INTERRUPT_SIGNAL (SIGRTMAX - 1)
 -#elif defined(__solaris__)
--  #include <thread.h>
 -  #define INTERRUPT_SIGNAL (SIGRTMAX - 2)
  #elif defined(_ALLBSD_SOURCE)
    /* Also defined in net/bsd_close.c */
    #define INTERRUPT_SIGNAL SIGIO
-@@ -76,22 +73,14 @@
- JNIEXPORT jlong JNICALL
- Java_sun_nio_ch_NativeThread_current0(JNIEnv *env, jclass cl)
- {
--#ifdef __solaris__
--    return (jlong)thr_self();
--#else
-     return (jlong)pthread_self();
--#endif
- }
- 
- JNIEXPORT void JNICALL
- Java_sun_nio_ch_NativeThread_signal0(JNIEnv *env, jclass cl, jlong thread)
- {
-     int ret;
--#ifdef __solaris__
--    ret = thr_kill((thread_t)thread, INTERRUPT_SIGNAL);
--#else
-     ret = pthread_kill((pthread_t)thread, INTERRUPT_SIGNAL);
--#endif
- #ifdef MACOSX
-     if (ret != 0 && ret != ESRCH)
- #else
 --- old/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.943896775 -0700
 +++ new/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.515888557 -0700
 @@ -25,7 +25,6 @@
