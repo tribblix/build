@@ -2,6 +2,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: no need for -lposix4 and -lrt.
+
 Cleanup: more dtrace fixes.
 
 Cleanup: Correct DTRACE_INSTRUMENTED_OBJS.

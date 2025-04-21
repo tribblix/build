@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: no need for -lposix4 and -lrt.
+
 Cleanup: fix zgc so it builds again.
 
 Cleanup: no need to patch socket_md.c, we're pthreads.

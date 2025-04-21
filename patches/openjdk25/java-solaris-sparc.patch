@@ -201,7 +201,7 @@
  
 -  if test "x$OPENJDK_TARGET_OS" = xsolaris; then
 -    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lsocket -lsched -ldoor -lnsl \
--        -lrt -lkstat"
+-        -lkstat"
 -    BASIC_JVM_LIBS="$BASIC_JVM_LIBS $LIBCXX_JVM"
 -  fi
 -
@@ -466,7 +466,7 @@
 +    JDK_LIBS := libjava libnet, \
 -    JDK_LIBS := libjava libjvm libnet, \
      LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
--    LIBS_solaris := -lsocket -lposix4 $(LIBDL) -lsendfile, \
+-    LIBS_solaris := -lsocket $(LIBDL) -lsendfile, \
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation \
