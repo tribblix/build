@@ -6723,7 +6723,7 @@
 -}
 --- old/src/java.base/solaris/classes/sun/nio/fs/SolarisFileSystem.java	2020-05-20 18:10:20.625990118 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,121 +0,0 @@
+@@ -1,106 +0,0 @@
 -/*
 - * Copyright (c) 2008, 2012, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -6761,31 +6761,16 @@
 - */
 -
 -class SolarisFileSystem extends UnixFileSystem {
--    private final boolean hasSolaris11Features;
 -
 -    SolarisFileSystem(UnixFileSystemProvider provider, String dir) {
 -        super(provider, dir);
--
--        // check os.version
--        String osversion = System.getProperty("os.version");
--        String[] vers = Util.split(osversion, '.');
--        assert vers.length >= 2;
--        int majorVersion = Integer.parseInt(vers[0]);
--        int minorVersion = Integer.parseInt(vers[1]);
--        this.hasSolaris11Features =
--            (majorVersion > 5 || (majorVersion == 5 && minorVersion >= 11));
 -    }
 -
 -    @Override
 -    public WatchService newWatchService()
 -        throws IOException
 -    {
--        // FEN available since Solaris 11
--        if (hasSolaris11Features) {
--            return new SolarisWatchService(this);
--        } else {
--            return new PollingWatchService();
--        }
+-        return new SolarisWatchService(this);
 -    }
 -
 -
