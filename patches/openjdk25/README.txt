@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Tidy conditionals in MFontConfiguration.java.
+
 Fix: Enable a minimal DTrace build. This just enables the shared
 probes, as also available on MacOS and Linux. The solaris-specific
 probes, and libjvm_db, are not provided and may be completely removed

@@ -3057,7 +3057,7 @@
       */
      protected void initReorderMap() {
          reorderMap = new HashMap<>();
--        if (osName == null) {  /* null means SunOS */
+-        if (osName.equals("SunOS")) {
 -            initReorderMapForSolaris();
 -        } else {
 -            initReorderMapForLinux();
@@ -3113,32 +3113,6 @@
          reorderMap.put("UTF-8.ja.JP", "japanese-iso10646");
          reorderMap.put("UTF-8.ko.KR", "korean-iso10646");
          reorderMap.put("UTF-8.zh.TW", "chinese-tw-iso10646");
-@@ -130,12 +78,7 @@
-         reorderMap.put("GB2312", "chinese-gb18030");
-         reorderMap.put("Big5", "chinese-big5");
-         reorderMap.put("EUC-KR", "korean");
--        if (osName.equals("Sun")){
--            reorderMap.put("GB18030", "chinese-cn-iso10646");
--        }
--        else {
--            reorderMap.put("GB18030", "chinese-gb18030");
--        }
-+        reorderMap.put("GB18030", "chinese-gb18030");
-     }
- 
-     /**
-@@ -144,10 +87,7 @@
-     protected void setOsNameAndVersion(){
-         super.setOsNameAndVersion();
- 
--        if (osName.equals("SunOS")) {
--            //don't care os name on Solaris
--            osName = null;
--        } else if (osName.equals("Linux")) {
-+        if (osName.equals("Linux")) {
-             try {
-                 File f;
-                 if ((f = new File("/etc/fedora-release")).canRead()) {
 --- old/src/java.desktop/unix/classes/sun/print/PrintServiceLookupProvider.java	2020-05-20 18:02:38.501117121 -0700
 +++ new/src/java.desktop/unix/classes/sun/print/PrintServiceLookupProvider.java	2020-05-20 18:02:38.117109747 -0700
 @@ -139,10 +139,6 @@
