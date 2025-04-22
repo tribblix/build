@@ -2501,3 +2501,4 @@ lib4package-0.3.2-py2.py3-none-any.whl 6466d7274ab94f0ec7a15aaa5620752ce483b3aff
 lib4sbom-0.8.3-py2.py3-none-any.whl f166b110204cb50c867fb80023fd54bb7070b5cf4ff5a40362df9597dc72f378
 lib4sbom-0.8.4-py2.py3-none-any.whl 380d123426348ece43cae8976b49e6ebc4e85bccd6db02dc394a2fa97cf6776c
 bottle-0.13.3.tar.gz 1c23aeb30aa8a13f39c60c0da494530ddd5de3da235bc431b818a50d999de49f
+pycairo-1.28.0.tar.gz 26ec5c6126781eb167089a123919f87baa2740da2cca9098be8b3a6b91cc5fbc
