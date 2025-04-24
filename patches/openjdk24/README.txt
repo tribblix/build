@@ -2,6 +2,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Cleanup: Enable dtrace probes and libjvm_dtrace by default.
+
 Cleanup: unnecessary use of thread instead of pthread.
 
 Cleanup: SolarisFileSystem is always for 5.11 and up.
@@ -269,7 +271,6 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk23 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
---disable-dtrace \
 --disable-warnings-as-errors \
 --with-source-date=current \
 --with-jobs=4 \

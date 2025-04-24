@@ -364,12 +364,16 @@
      DTRACE_CPP_FLAGS := -D_LP64 -x c
    else ifeq ($(call isTargetOs, linux), true)
      DTRACE_CPP_FLAGS := -x c
-@@ -54,59 +51,4 @@
+@@ -54,63 +51,4 @@
    TARGETS += $(patsubst $(DTRACE_SOURCE_DIR)/%.d, \
        $(DTRACE_GENSRC_DIR)/%.h, $(wildcard $(DTRACE_SOURCE_DIR)/*.d))
  
--  ifeq ($(call isTargetOs, solaris), true)
+-  ifeq ($(call isTargetOs, notsolarisyet), true)
 -    ############################################################################
+-    # This is currently disabled. If you enable DTrace, the shared probes
+-    # will be built, but the solaris-specific code doesn't currently work
+-    # at all, and may be removed in future.
+-    #
 -    # First we need to generate the dtraceGenOffsets tool. When run, this will
 -    # produce two header files and a C++ file. Note that generateJvmOffsets.cpp
 -    # is using the same JVM_CFLAGS as libjvm.so.
@@ -4472,7 +4476,7 @@
 -
 --- old/make/hotspot/lib/CompileDtraceLibraries.gmk	2020-05-20 18:08:16.611609088 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,62 +0,0 @@
+@@ -1,64 +0,0 @@
 -#
 -# Copyright (c) 2013, 2019, Oracle and/or its affiliates. All rights reserved.
 -# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -4531,13 +4535,15 @@
 -        OBJECT_DIR := $(LIBJVM_DB_OUTPUTDIR)/objs, \
 -    ))
 -
--    TARGETS += $(BUILD_LIBJVM_DTRACE) $(BUILD_LIBJVM_DB)
+-    # Skip libjvm_db, as it doesn't currently build
+-    # TARGETS += $(BUILD_LIBJVM_DTRACE) $(BUILD_LIBJVM_DB)
+-    TARGETS += $(BUILD_LIBJVM_DTRACE)
 -
 -  endif
 -endif
 --- old/make/hotspot/lib/JvmDtraceObjects.gmk	2020-05-20 18:08:17.355623374 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,122 +0,0 @@
+@@ -1,124 +0,0 @@
 -#
 -# Copyright (c) 2013, 2019, Oracle and/or its affiliates. All rights reserved.
 -# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -4578,7 +4584,9 @@
 -    DTRACE_OBJ := $(JVM_OUTPUTDIR)/objs/dtrace.o
 -    DTRACE_JHELPER_OBJ := $(JVM_OUTPUTDIR)/objs/dtrace_jhelper.o
 -
--    DTRACE_EXTRA_OBJECT_FILES := $(DTRACE_OBJ) $(DTRACE_JHELPER_OBJ)
+-    # Skip DTRACE_JHELPER_OBJ as that won't currently build
+-    # DTRACE_EXTRA_OBJECT_FILES := $(DTRACE_OBJ) $(DTRACE_JHELPER_OBJ)
+-    DTRACE_EXTRA_OBJECT_FILES := $(DTRACE_OBJ)
 -
 -    ############################################################################
 -    # Generate DTRACE_OBJ which is linked with libjvm.so. It depends on a set of
