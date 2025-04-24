@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: remove libjvm_dtrace, as it was associated with attachListener.
+
+Cleanup: enable dtrace probes by default.
+
 Cleanup: unnecessary use of thread instead of pthread.
 
 Cleanup: SolarisFileSystem is always for 5.11 and up.
@@ -210,7 +214,6 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk24 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
---disable-dtrace \
 --disable-warnings-as-errors \
 --with-source-date=current \
 --with-jobs=4 \
