@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
+Cleanup: remove the unshuffle_list.txt hunk.
+
 Cleanup: Move the mapfiles (symbol files) to the right place.
 
 Cleanup: Remove /usr/bin/sh override in PrintServiceLookupProvider.java.
