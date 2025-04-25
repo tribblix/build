@@ -4,6 +4,14 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+20
+
+Trivial patch noise.
+
+Cleanup: remove the java_props_md to reduce misalignment.
+
+Cleanup: remove the unshuffle_list.txt hunk.
+
 Cleanup: remove libjvm_dtrace, as it was associated with attachListener.
 
 Cleanup: enable dtrace probes by default.
