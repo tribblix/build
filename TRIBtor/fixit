@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+
+# add an SMF manifest
+mkdir -p lib/svc/manifest/system
+cp ${BUILDROOT}/patches/tor.xml lib/svc/manifest/system
+mkdir -p lib/svc/method
+cp ${BUILDROOT}/patches/tor.sh lib/svc/method

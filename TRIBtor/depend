@@ -1,0 +1,4 @@
+P TRIBcompress-xz
+P TRIBcompress-zstd
+P TRIBlib-security-openssl
+P TRIBlib-zlib

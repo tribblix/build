@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# dirty hack to build a static libevent
+#
+${THOME}/build/dobuild +64only libevent-2.1.12-stable -P /tmp/mc -C "--enable-static --disable-shared"
+rm -fr /tmp/mc
+cd libevent-2.1.12-stable-64bit
+gmake install
+cd ..
