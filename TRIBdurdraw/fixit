@@ -5,5 +5,5 @@
 PYVERS=3.12
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/versions/python-${PYVERS}/bin/durdraw .
+ln -s ../../usr/versions/python-${PYVERS}/bin/dur* .
 cd ../..
