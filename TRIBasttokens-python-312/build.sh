@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_setup_py TRIBasttokens-python-312 asttokens-2.4.1
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 -N TRIBasttokens-python-312 asttokens-3.0.0
