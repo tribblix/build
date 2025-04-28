@@ -2554,3 +2554,4 @@ asttokens-3.0.0.tar.gz 0dcd8baa8d62b0c1d118b399b2ddba3c4aff271d0d7a9e0d4c1681c79
 sympy-1.14.0.tar.gz d3d3fe8df1e5a0b42f0e7bdf50541697dbe7d23746e894990c030e2b05e72517
 barman-3.13.3.tar.gz 0ebc81caf4f9d8a9ca986d364a5cd6398ec90b5ef0292985e6551b8aba501114
 jedi_language_server-0.45.1.tar.gz 8c0c6b4eaeffdbb87be79e9897c9929ffeddf875dff7c1c36dd67768e294942b
+pymdown_extensions-10.15.tar.gz 0e5994e32155f4b03504f939e501b981d306daf7ec2aa1cd2eb6bd300784f8f7
