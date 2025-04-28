@@ -4,4 +4,4 @@
 #
 # optionally uses tkinter for the gui
 #
-${THOME}/build/pkg_setup_py TRIBimg2pdf-python-312 img2pdf-0.6.0
+${THOME}/build/pkg_setup_py TRIBimg2pdf-python-312 img2pdf-0.6.1
