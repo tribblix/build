@@ -1,4 +1,4 @@
 PKG="TRIBgsettings-desktop-schemas"
 NAME="GNOME desktop setting schemas"
-VERSION="3.6.1.1"
+VERSION="3.38.0.0"
 ZAP_URL="https://download.gnome.org/sources/gsettings-desktop-schemas/"
