@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+VERSION=10.0.0.0
+
+cd usr/versions/jruby-${VERSION}
+rm -f bin/*.bat
+rm -f bin/jruby.sh
+rm -f bin/*.exe
+rm -f bin/*.dll
+rm -fr lib/ruby/stdlib/ffi/platform/*linux
+rm -fr lib/ruby/stdlib/ffi/platform/*darwin
+rm -fr lib/ruby/stdlib/ffi/platform/*cygwin
+rm -fr lib/ruby/stdlib/ffi/platform/*windows
+rm -fr lib/ruby/stdlib/ffi/platform/*bsd
+rm -fr lib/ruby/stdlib/ffi/platform/*bsd12
+rm -fr lib/ruby/stdlib/ffi/platform/*aix
+rm -fr lib/ruby/stdlib/ffi/platform/*gnu
+rm -fr lib/ruby/stdlib/ffi/platform/*haiku
+rm -fr lib/ruby/stdlib/ffi/platform/*msys
+rm -fr lib/ruby/stdlib/ffi/platform/i386-solaris
+rm -fr lib/jni/*Windows
+rm -fr lib/jni/*Linux
+rm -fr lib/jni/*BSD
+rm -fr lib/jni/*AIX
+rm -fr lib/jni/Darwin
+rm -fr lib/jni/i386-SunOS
+# below due to lack of jdk21 support
+rm -fr lib/ruby/stdlib/ffi/platform/sparc*
+rm -fr lib/jni/sparc*
+
+#
+# don't make default yet
+#
+exit 0
+mkdir -p usr/bin
+ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
+ln -s ../../usr/versions/jruby-${VERSION}/bin/jrubyc usr/bin/
+ln -s ../../usr/versions/jruby-${VERSION}/bin/jgem usr/bin/
+ln -s ../../usr/versions/jruby-${VERSION}/bin/jirb usr/bin/
