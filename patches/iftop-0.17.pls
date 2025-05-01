@@ -1,6 +1,0 @@
--p0 iftop/01.configure.patch
--p1 iftop/02.iftop.8.patch
--p0 iftop/03.ui.c.patch
--p0 iftop/04.Makefile.am.patch
--p0 iftop/05.Makefile.in.patch
--p0 iftop/06.addrs_dlpi.c.patch

@@ -21,7 +21,7 @@
  By default, \fBiftop\fP will look up the hostnames associated with addresses it
  finds in packets. This can cause substantial traffic of itself, and may result
  in a confusing display. You may wish to suppress display of DNS traffic by
-@@ -286,10 +295,17 @@
+@@ -306,10 +315,17 @@
  \fB~/.iftoprc\fP
  Configuration file for iftop.
  
