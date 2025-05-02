@@ -849,9 +849,9 @@
  endif
 --- old/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.533642413 -0700
 +++ new/src/hotspot/cpu/x86/globalDefinitions_x86.hpp	2020-05-20 17:59:37.197635961 -0700
-@@ -54,7 +54,7 @@
- #define DEFAULT_PADDING_SIZE DEFAULT_CACHE_LINE_SIZE
- #endif
+@@ -48,7 +48,7 @@
+ // hardware. If not, DEFAULT_CACHE_LINE_SIZE might as well suffice.
+ #define DEFAULT_PADDING_SIZE (DEFAULT_CACHE_LINE_SIZE*2)
  
 -#if defined(LINUX) || defined(SOLARIS) || defined(__APPLE__)
 +#if defined(LINUX) || defined(__APPLE__)
@@ -881,7 +881,7 @@
  #define SHUTDOWN3_SIGNAL SIGTERM
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -596,7 +596,7 @@
+@@ -597,7 +597,7 @@
    st->print("%ld", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -890,7 +890,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -614,12 +614,6 @@
+@@ -615,12 +615,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -970,7 +970,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -188,7 +188,6 @@
+@@ -189,7 +189,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \
@@ -1149,7 +1149,7 @@
  inline int g_isnan(float  f) { return isnan(f); }
 --- old/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:46.046957918 -0700
 +++ new/src/hotspot/share/utilities/macros.hpp	2020-05-20 18:00:45.666950622 -0700
-@@ -418,14 +418,6 @@
+@@ -415,14 +415,6 @@
  #define NOT_AIX(code) code
  #endif
  
@@ -1177,7 +1177,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1899,8 +1899,6 @@
+@@ -1923,8 +1923,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1186,7 +1186,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1965,8 +1963,6 @@
+@@ -1989,8 +1987,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");

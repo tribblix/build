@@ -302,7 +302,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot
 +      sleep(1); // 1 second
 +      sleep_count++;
 +      if (sleep_count > 10) { // try for 10 seconds
-+        debug_only(warning("door_call when not enabled"));
++        DEBUG_ONLY(warning("door_call when not enabled"));
 +        res = (jint)SolarisAttachListener::ATTACH_ERROR_INTERNAL;
 +        break;
 +      }
@@ -558,7 +558,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot
 +
 +    // write operation result
 +    char msg[32];
-+    sprintf(msg, "%d\n", res);
++    snprintf(msg, sizeof(msg), "%d\n", res);
 +    int rc = write_fully(this->socket(), msg, strlen(msg));
 +
 +    // write any result data
@@ -657,7 +657,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot
 +  char fn[PATH_MAX + 1];
 +  int ret;
 +  struct stat64 st;
-+  sprintf(fn, ".attach_pid%d", os::current_process_id());
++  snprintf(fn, sizeof(fn), ".attach_pid%d", os::current_process_id());
 +  RESTARTABLE(::stat64(fn, &st), ret);
 +  if (ret == -1) {
 +    log_trace(attach)("Failed to find attach file: %s, trying alternate", fn);
@@ -777,7 +777,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/c2_globals_solaris.hpp b/src/hotspot/os/
 diff -urN /tmp/a/src/hotspot/os/solaris/decoder_solaris.cpp b/src/hotspot/os/solaris/decoder_solaris.cpp
 --- /tmp/a/src/hotspot/os/solaris/decoder_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/decoder_solaris.cpp	2025-04-19 12:08:38.474078787 +0100
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,46 @@
 +/*
 + * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -804,6 +804,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/decoder_solaris.cpp b/src/hotspot/os/sol
 +
 +#include "jvm.h"
 +#include "utilities/decoder_elf.hpp"
++#include "utilities/permitForbiddenFunctions.hpp"
 +
 +#include <cxxabi.h>
 +
@@ -816,9 +817,9 @@ diff -urN /tmp/a/src/hotspot/os/solaris/decoder_solaris.cpp b/src/hotspot/os/sol
 +  // may use different malloc/realloc mechanism that allocates 'buf'.
 +  if ((result = abi::__cxa_demangle(symbol, nullptr, nullptr, &status)) != nullptr) {
 +    jio_snprintf(buf, buflen, "%s", result);
-+      // call c library's free
-+      ALLOW_C_FUNCTION(::free, ::free(result);)
-+      return true;
++    // call c library's free
++    permit_forbidden_function::free(result);
++    return true;
 +  }
 +  return false;
 +}
@@ -2379,7 +2380,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/src/hotspot/os/solaris/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2025-04-19 12:08:38.483600745 +0100
-@@ -0,0 +1,2868 @@
+@@ -0,0 +1,2816 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -2503,9 +2504,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +
 +#define MAX_PATH (2 * K)
 +
-+// for timer info max values which include all bits
-+#define ALL_64_BITS CONST64(0xFFFFFFFFFFFFFFFF)
-+
 +// Here are some liblgrp types from sys/lgrp_user.h to be able to
 +// compile on older systems without this header file.
 +
@@ -2532,12 +2530,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +int prio_policy1[CriticalPriority+1] = {
 +  -99999,  0, 16,  32,  48,  64,
 +          80, 96, 112, 124, 127, 127 };
-+
-+// System parameters used internally
-+static clock_t clock_tics_per_sec = 100;
-+
-+// For diagnostics to print a message once. see run_periodic_checks
-+static bool check_addr0_done = false;
 +
 +address os::Solaris::handler_start;  // start pc of thr_sighndlrinfo
 +address os::Solaris::handler_end;    // end pc of thr_sighndlrinfo
@@ -2747,7 +2739,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +#define SYS_EXT_DIR     "/usr/jdk/packages"
 +#define EXTENSIONS_DIR  "/lib/ext"
 +
-+  // Buffer that fits several sprintfs.
++  // Buffer that fits several snprintfs.
 +  // Note that the space for the colon and the trailing null are provided
 +  // by the nulls included by the sizeof operator.
 +  const size_t bufsize =
@@ -2834,7 +2826,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +    // libraries, the new path component /usr/jdk/packages is added here.
 +
 +    // Construct the invariant part of ld_library_path.
-+    sprintf(common_path, SYS_EXT_DIR "/lib");
++    snprintf(common_path, bufsize, SYS_EXT_DIR "/lib");
 +
 +    // Struct size is more than sufficient for the path components obtained
 +    // through the dlinfo() call, so only add additional space for the path
@@ -2881,7 +2873,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  }
 +
 +  // Extensions directories.
-+  sprintf(buf, "%s" EXTENSIONS_DIR ":" SYS_EXT_DIR EXTENSIONS_DIR, Arguments::get_java_home());
++  os::snprintf_checked(buf, bufsize, "%s" EXTENSIONS_DIR ":" SYS_EXT_DIR EXTENSIONS_DIR, Arguments::get_java_home());
 +  Arguments::set_ext_dirs(buf);
 +
 +  FREE_C_HEAP_ARRAY(char, buf);
@@ -3081,7 +3073,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +    // Need to be at least 5Mb of unreserved address space. We do check by
 +    // trying to reserve some.
 +    const size_t VirtualMemoryBangSize = 20*K*K;
-+    char* mem = os::reserve_memory(VirtualMemoryBangSize);
++    char* mem = os::reserve_memory(VirtualMemoryBangSize, mtInternal);
 +    if (mem == nullptr) {
 +      delete osthread;
 +      return false;
@@ -3652,46 +3644,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  }
 +}
 +
-+static bool check_addr0(outputStream* st) {
-+  jboolean status = false;
-+  const int read_chunk = 200;
-+  int ret = 0;
-+  int nmap = 0;
-+  int fd = ::open("/proc/self/map",O_RDONLY);
-+  if (fd >= 0) {
-+    prmap_t *p = nullptr;
-+    char *mbuff = (char *) calloc(read_chunk, sizeof(prmap_t));
-+    if (nullptr == mbuff) {
-+      ::close(fd);
-+      return status;
-+    }
-+    while ((ret = ::read(fd, mbuff, read_chunk*sizeof(prmap_t))) > 0) {
-+      //check if read() has not read partial data
-+      if( 0 != ret % sizeof(prmap_t)){
-+        break;
-+      }
-+      nmap = ret / sizeof(prmap_t);
-+      p = (prmap_t *)mbuff;
-+      for(int i = 0; i < nmap; i++){
-+        if (p->pr_vaddr == 0x0) {
-+          st->print("Warning: Address: %zu, Size: %zuK, ",p->pr_vaddr, p->pr_size/1024);
-+          st->print("Mapped file: %s, ", p->pr_mapname[0] == '\0' ? "None" : p->pr_mapname);
-+          st->print("Access: ");
-+          st->print("%s",(p->pr_mflags & MA_READ)  ? "r" : "-");
-+          st->print("%s",(p->pr_mflags & MA_WRITE) ? "w" : "-");
-+          st->print("%s",(p->pr_mflags & MA_EXEC)  ? "x" : "-");
-+          st->cr();
-+          status = true;
-+        }
-+        p++;
-+      }
-+    }
-+    free(mbuff);
-+    ::close(fd);
-+  }
-+  return status;
-+}
-+
 +void os::get_summary_cpu_info(char* buf, size_t buflen) {
 +  // Get MHz with system call. We don't seem to already have this.
 +  processor_info_t stats;
@@ -3713,7 +3665,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  st->print(", physical " UINT64_FORMAT "k", os::physical_memory()>>10);
 +  st->print("(" UINT64_FORMAT "k free)", os::available_memory() >> 10);
 +  st->cr();
-+  (void) check_addr0(st);
 +}
 +
 +static int Maxsignum = 0;
@@ -3915,7 +3866,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +// Uncommit the pages in a specified region.
 +void os::pd_disclaim_memory(char* addr, size_t bytes) {
 +  if (posix_madvise(addr, bytes, MADV_FREE) < 0) {
-+    debug_only(warning("MADV_FREE failed."));
++    DEBUG_ONLY(warning("MADV_FREE failed."));
 +    return;
 +  }
 +}
@@ -3948,7 +3899,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +void os::numa_make_local(char *addr, size_t bytes, int lgrp_hint) {
 +  assert((intptr_t)addr % os::vm_page_size() == 0, "Address should be page-aligned.");
 +  if (posix_madvise(addr, bytes, MADV_ACCESS_LWP) < 0) {
-+    debug_only(warning("MADV_ACCESS_LWP failed."));
++    DEBUG_ONLY(warning("MADV_ACCESS_LWP failed."));
 +  }
 +}
 +
@@ -3956,7 +3907,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +void os::numa_make_global(char *addr, size_t bytes) {
 +  assert((intptr_t)addr % os::vm_page_size() == 0, "Address should be page-aligned.");
 +  if (posix_madvise(addr, bytes, MADV_ACCESS_MANY) < 0) {
-+    debug_only(warning("MADV_ACCESS_MANY failed."));
++    DEBUG_ONLY(warning("MADV_ACCESS_MANY failed."));
 +  }
 +}
 +
@@ -4230,7 +4181,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  mpss_struct.mha_flags = 0;
 +  // Upon successful completion, memcntl() returns 0
 +  if (memcntl(start, bytes, MC_HAT_ADVISE, (caddr_t) &mpss_struct, 0, 0)) {
-+    debug_only(warning("Attempt to use MPSS failed."));
++    DEBUG_ONLY(warning("Attempt to use MPSS failed."));
 +    return false;
 +  }
 +  return true;
@@ -4783,8 +4734,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +    fcntl(fd, F_SETFD, FD_CLOEXEC);
 +  }
 +
-+  clock_tics_per_sec = CLK_TCK;
-+
 +  // main_thread points to the thread that created/loaded the JVM.
 +  main_thread = thr_self();
 +
@@ -5005,7 +4954,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  jlong lwp_time;
 +  int fd;
 +
-+  sprintf(proc_name, "/proc/%d/lwp/%d/lwpusage",
++  snprintf(proc_name, sizeof(proc_name), "/proc/%d/lwp/%d/lwpusage",
 +          getpid(),
 +          thread->osthread()->lwp_id());
 +  fd = ::open(proc_name, O_RDONLY);
@@ -5036,14 +4985,14 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +}
 +
 +void os::current_thread_cpu_time_info(jvmtiTimerInfo *info_ptr) {
-+  info_ptr->max_value = ALL_64_BITS;      // will not wrap in less than 64 bits
++  info_ptr->max_value = all_bits_jlong;   // will not wrap in less than 64 bits
 +  info_ptr->may_skip_backward = false;    // elapsed time not wall time
 +  info_ptr->may_skip_forward = false;     // elapsed time not wall time
 +  info_ptr->kind = JVMTI_TIMER_USER_CPU;  // only user time is returned
 +}
 +
 +void os::thread_cpu_time_info(jvmtiTimerInfo *info_ptr) {
-+  info_ptr->max_value = ALL_64_BITS;      // will not wrap in less than 64 bits
++  info_ptr->max_value = all_bits_jlong;   // will not wrap in less than 64 bits
 +  info_ptr->may_skip_backward = false;    // elapsed time not wall time
 +  info_ptr->may_skip_forward = false;     // elapsed time not wall time
 +  info_ptr->kind = JVMTI_TIMER_USER_CPU;  // only user time is returned

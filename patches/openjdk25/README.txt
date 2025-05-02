@@ -4,6 +4,29 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+21
+
+Minor patch noise.
+
+Replace ALL_64_BITS with all_bits_jlong.
+
+Replace ALLOW_C_FUNCTION() with permit_forbidden_function::
+
+Remove clock_tics_per_sec
+
+Replace debug_only() with DEBUG_ONLY()
+
+Replace sprintf
+
+os::reserver_memory has an extra argument
+
+FORBID_C_FUNCTION is now a hard failure in hotspot, so use of
+sprintf() needed to be replaced by snprintf() or os::snprintf()
+
+FORBID_IMPORTED_C_FUNCTION likewise warns for free and calloc; remove
+check_addr0 which is the caller (and was used back in jdk11 as part of
+run_periodic_checks, but not any more)
+
 25+20
 
 Trivial patch noise.
