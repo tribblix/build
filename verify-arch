@@ -1,0 +1,102 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# {{{ CDDL HEADER
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source. A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+# }}}
+#
+# Copyright 2025 Peter Tribble
+#
+
+#
+# check consistency of declarations in arch.txt
+#
+# the checks aren't perfect, in that they assume x86 is default and sparc
+# is an exception, whereas they ought to check that the arch declarations
+# are actually that
+#
+
+DBG=""
+
+case $1 in
+    -v)
+	DBG="y"
+	;;
+esac
+
+THOME=${THOME:-/packages/localsrc/Tribblix}
+
+cd ${THOME}/build || exit 1
+
+for apkgf in */arch.txt
+do
+    myarch=$(<"${apkgf}")
+    case $myarch in
+	i386)
+	    xarch=sparc
+	    xpkgdir="pkgs.sparc"
+	    xovdir="overlays.sparc"
+	    ;;
+	sparc)
+	    xarch=i386
+	    xpkgdir="pkgs"
+	    xovdir="overlays"
+	    ;;
+	*)
+	    echo "FAIL: invalid arch in ${apkgf}"
+	    exit 1
+	    ;;
+    esac
+    pkg=${apkgf%%/*}
+    # check build requirements
+    for rpkgf in $(grep -lx "${pkg}" TRIB*/build_require)
+    do
+	rpkg=${rpkgf%%/*}
+	# FIXME check it's the same declaration
+	if [ -f "${rpkg}/arch.txt" ]; then
+	    if [ -n "${DBG}" ]; then
+		echo "OK: $pkg is a build requirement for $rpkg"
+	    fi
+	else
+	    echo "ERROR: missing arch.txt in $rpkg (build $pkg)"
+	fi
+    done
+    # check runtime dependencies
+    for rpkgf in $(grep -lx "P ${pkg}" TRIB*/depend)
+    do
+	rpkg=${rpkgf%%/*}
+	# FIXME check it's the same declaration
+	if [ -f "${rpkg}/arch.txt" ]; then
+	    if [ -n "${DBG}" ]; then
+		echo "OK: $pkg is a runtime requirement for $rpkg"
+	    fi
+	elif [ -f "${rpkg}/depend.${xarch}" ]; then
+	    #echo "WARN: check platform dependencies for $rpkg (run $pkg)"
+	    chkpkg=$(grep -lx "P ${pkg}" "${rpkg}/depend.${xarch}")
+	    if [ -n "${chkpkg}" ]; then
+		echo "ERROR: missing arch.txt in $rpkg (${xarch} run $pkg)"
+	    fi
+	else
+	    echo "ERROR: missing arch.txt in $rpkg (run $pkg)"
+	fi
+    done
+    # check overlays
+    for rpkgf in $(grep -lx "${pkg}" ../${xovdir}/*pkgs)
+    do
+	echo "ERROR: $pkg present in overlay $rpkgf"
+    done
+    # check for wrong packages
+    if [ -f ../"${xpkgdir}"/"${pkg}".* ]; then
+	echo "ERROR: found invalid ${xarch} package for $pkg"
+    fi
+done
