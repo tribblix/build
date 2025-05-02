@@ -5,6 +5,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 22 now switched to the jdk22 stabilisation repo
 
+Cleanup: remove the Studio type linkage block from the gcc header.
+
 Cleanup: remove the unshuffle_list.txt hunk.
 
 Cleanup: more dtrace fixes.

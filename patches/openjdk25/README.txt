@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: remove the Studio type linkage block from the gcc header.
+
 25+21
 
 Minor patch noise.

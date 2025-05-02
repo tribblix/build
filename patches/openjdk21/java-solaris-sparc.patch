@@ -1282,46 +1282,9 @@
  // NULL vs NULL_WORD:
  // On Linux NULL is defined as a special type '__null'. Assigning __null to
  // integer variable will cause gcc warning. Use NULL_WORD in places where a
-@@ -150,52 +101,8 @@
- 
+@@ -150,15 +101,7 @@
  #endif // !LINUX && !_ALLBSD_SOURCE
  
--
--#ifdef SOLARIS
--// ANSI C++ fixes
--// NOTE:In the ANSI committee's continuing attempt to make each version
--// of C++ incompatible with the previous version, you can no longer cast
--// pointers to functions without specifying linkage unless you want to get
--// warnings.
--//
--// This also means that pointers to functions can no longer be "hidden"
--// in opaque types like void * because at the invocation point warnings
--// will be generated. While this makes perfect sense from a type safety
--// point of view it causes a lot of warnings on old code using C header
--// files. Here are some typedefs to make the job of silencing warnings
--// a bit easier.
--//
--// The final kick in the teeth is that you can only have extern "C" linkage
--// specified at file scope. So these typedefs are here rather than in the
--// .hpp for the class (os:Solaris usually) that needs them.
--
--extern "C" {
--   typedef int (*int_fnP_thread_t_iP_uP_stack_tP_gregset_t)(thread_t, int*, unsigned *, stack_t*, gregset_t);
--   typedef int (*int_fnP_thread_t_i_gregset_t)(thread_t, int, gregset_t);
--   typedef int (*int_fnP_thread_t_i)(thread_t, int);
--   typedef int (*int_fnP_thread_t)(thread_t);
--
--   typedef int (*int_fnP_cond_tP_mutex_tP_timestruc_tP)(cond_t *cv, mutex_t *mx, timestruc_t *abst);
--   typedef int (*int_fnP_cond_tP_mutex_tP)(cond_t *cv, mutex_t *mx);
--
--   // typedef for missing API in libc
--   typedef int (*int_fnP_mutex_tP_i_vP)(mutex_t *, int, void *);
--   typedef int (*int_fnP_mutex_tP)(mutex_t *);
--   typedef int (*int_fnP_cond_tP_i_vP)(cond_t *cv, int scope, void *arg);
--   typedef int (*int_fnP_cond_tP)(cond_t *cv);
--};
--#endif // SOLARIS
--
  // checking for nanness
 -#ifdef SOLARIS
 -#ifdef SPARC
