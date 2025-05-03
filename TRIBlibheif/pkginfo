@@ -1,4 +1,4 @@
 PKG="TRIBlibheif"
 NAME="HEIF and AVIF file format decoder and encoder"
-VERSION="1.19.5.0"
+VERSION="1.19.8.0"
 ZAP_URL="https://github.com/strukturag/libheif"
