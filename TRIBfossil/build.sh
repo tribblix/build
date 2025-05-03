@@ -5,5 +5,5 @@
 # it's not a normal configure, so have to pass flags
 # directly as well to get 64-bit
 #
-env TRIBBLIX_CFLAGS=-m64 TRIBBLIX_LDFLAGS=-m64 ${THOME}/build/dobuild -64only fossil-src-2.25 -C --json
-${THOME}/build/genpkg TRIBfossil fossil-src-2.25
+env TRIBBLIX_CFLAGS=-m64 TRIBBLIX_LDFLAGS=-m64 ${THOME}/build/dobuild -64only fossil-src-2.26 -C --json
+${THOME}/build/genpkg TRIBfossil fossil-src-2.26
