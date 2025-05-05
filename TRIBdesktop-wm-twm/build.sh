@@ -1,4 +1,6 @@
 #!/bin/sh
 #
-${THOME}/build/dobuild -64only twm-1.0.12
-${THOME}/build/genpkg TRIBdesktop-wm-twm twm-1.0.12
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/dobuild -64only twm-1.0.13
+${THOME}/build/genpkg TRIBdesktop-wm-twm twm-1.0.13
