@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-ppix-utils"
 NAME="Perl PPIx::Utils module"
-VERSION="0.003.0"
+VERSION="0.004.0"
 ZAP_URL="https://metacpan.org/pod/PPIx::Utils"
