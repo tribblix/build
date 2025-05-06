@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: remove unused check_addr0_done.
+
 Cleanup: remove the Studio type linkage block from the gcc header.
 
 Cleanup: remove the unshuffle_list.txt hunk.

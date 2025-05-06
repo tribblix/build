@@ -2497,7 +2497,7 @@ diff -urN /tmp/a/os_share_solaris.hpp b/src/hotspot/os/solaris/os_share_solaris.
 diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2024-12-05 11:44:56.897756134 +0000
-@@ -0,0 +1,3942 @@
+@@ -0,0 +1,3939 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -2653,9 +2653,6 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +// System parameters used internally
 +static clock_t clock_tics_per_sec = 100;
-+
-+// For diagnostics to print a message once. see run_periodic_checks
-+static bool check_addr0_done = false;
 +
 +address os::Solaris::handler_start;  // start pc of thr_sighndlrinfo
 +address os::Solaris::handler_end;    // end pc of thr_sighndlrinfo
