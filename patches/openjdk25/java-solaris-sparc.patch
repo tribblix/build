@@ -991,7 +991,7 @@
  # include OS_HEADER(semaphore)
 --- old/src/hotspot/share/nmt/memTracker.cpp	2020-05-20 18:00:38.698816829 -0700
 +++ new/src/hotspot/share/nmt/memTracker.cpp	2020-05-20 18:00:38.318809532 -0700
-@@ -47,12 +47,6 @@
+@@ -48,12 +48,6 @@
  #include <windows.h>
  #endif
  
@@ -1003,12 +1003,12 @@
 -
  NMT_TrackingLevel MemTracker::_tracking_level = NMT_unknown;
  
- MemBaseline MemTracker::_baseline;
+ Deferred<MemBaseline> MemTracker::_baseline;
 --- old/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
-@@ -35,11 +35,9 @@
- #include "utilities/debug.hpp"
+@@ -37,11 +37,9 @@
  #include "utilities/nativeCallStack.hpp"
+ #include "utilities/deferred.hpp"
  
 -extern volatile bool NMT_stack_walkable;
 -
@@ -1019,7 +1019,7 @@
 +#define CALLER_PC  ((MemTracker::tracking_level() == NMT_detail) ?  \
                      NativeCallStack(1) : FAKE_CALLSTACK)
  
- class MemBaseline;
+ class MemTracker : AllStatic {
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
 @@ -620,13 +620,12 @@
