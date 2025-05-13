@@ -1,4 +1,0 @@
-PKG="TRIBpgagent"
-NAME="Job scheduler for PostgreSQL"
-VERSION="4.2.3.0"
-ZAP_URL="https://github.com/pgadmin-org/pgagent"
