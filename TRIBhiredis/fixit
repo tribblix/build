@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# not sure why it's dropped /usr/build/native/hiredis.targets in here
-#
-rm -fr usr/build
