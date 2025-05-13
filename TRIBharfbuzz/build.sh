@@ -9,5 +9,5 @@
 # should always be safe
 #
 zap install TRIBlibicu
-$THOME/build/mesonbuild -64 harfbuzz-10.0.1 -C "-Dintrospection=disabled -Dglib=enabled -Dcairo=enabled -Dicu=enabled -Dfreetype=enabled -Dgraphite2=enabled"
-${THOME}/build/genpkg TRIBharfbuzz harfbuzz-10.0.1
+$THOME/build/mesonbuild -64 harfbuzz-10.4.0 -C "-Dintrospection=disabled -Dglib=enabled -Dcairo=enabled -Dicu=enabled -Dfreetype=enabled -Dgraphite2=enabled"
+${THOME}/build/genpkg TRIBharfbuzz harfbuzz-10.4.0
