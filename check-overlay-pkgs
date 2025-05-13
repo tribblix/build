@@ -97,7 +97,11 @@ do
 	  PKGVERS=${PKGVERS//\"/}
       fi
       if [ ! -f "${PKGDIR}/${PKGI}.${PKGVERS}.zap" ]; then
-	  echo "ERROR: missing package $PKGI"
+	  # more expensive check from the current catalog
+	  PKGVERS=$(grep "^${PKGI}|" "${PKGDIR}/catalog" | awk -F'|' '{print $2}')
+	  if [ ! -f "${PKGDIR}/${PKGI}.${PKGVERS}.zap" ]; then
+	      echo "ERROR: missing package $PKGI"
+	  fi
       fi
   fi
 done
