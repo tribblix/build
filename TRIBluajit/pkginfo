@@ -1,4 +1,0 @@
-PKG="TRIBluajit"
-NAME="A Just-In-Time compiler for Lua"
-VERSION="2.1.0"
-ZAP_URL="http://luajit.org/"
