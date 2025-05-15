@@ -1,4 +1,0 @@
-PKG="TRIBcorosync"
-NAME="Corosync Cluster Engine"
-VERSION="2.4.6.0"
-ZAP_URL="http://corosync.github.io/corosync/"
