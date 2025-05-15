@@ -2664,3 +2664,4 @@ flask-3.1.1.tar.gz 284c7b8f2f58cb737f0cf1c30fd7eaf0ccfcde196099d24ecede3fc2005aa
 jupyter_server-2.16.0.tar.gz 65d4b44fdf2dcbbdfe0aa1ace4a842d4aaf746a2b7b168134d5aaed35621b7f6
 Module-Build-Tiny-0.052.tar.gz bd10452c9f24d4b4fe594126e3ad231bab6cebf16acda40a4e8dc784907eb87f
 sqlalchemy-2.0.41.tar.gz edba70118c4be3c2b1f90754d308d0b79c6fe2c0fdc52d8ddf603916f83f4db9
+reportlab-4.4.1.tar.gz 5f9b9fc0b7a48e8912c25ccf69d26b82980ab0da718e4f583fa720e8f8f5073f
