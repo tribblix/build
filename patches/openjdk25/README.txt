@@ -4,6 +4,12 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25+23
+
+Minor patch noise.
+
+Remove runtime/threadCritical.hpp include.
+
 25+22
 
 Minor patch noise.

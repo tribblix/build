@@ -584,7 +584,7 @@
 --- old/make/modules/java.desktop/lib/ClientLibraries.gmk	2020-05-20 17:59:15.341216302 -0700
 +++ new/make/modules/java.desktop/lib/ClientLibraries.gmk	2020-05-20 17:59:14.945208698 -0700
 @@ -90,7 +90,7 @@
-     DISABLED_WARNINGS_gcc := format-nonliteral stringop-truncation type-limits \
+     DISABLED_WARNINGS_gcc := format-nonliteral stringop-truncation \
          unused-variable, \
      DISABLED_WARNINGS_clang := format-nonliteral, \
 -    JDK_LIBS := libawt java.base:libjava java.base:libjvm, \
@@ -1131,7 +1131,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1080,7 +1080,7 @@
+@@ -1076,7 +1076,7 @@
  
  #ifndef PRODUCT
  
@@ -1142,7 +1142,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1923,8 +1923,6 @@
+@@ -1924,8 +1924,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1151,7 +1151,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1989,8 +1987,6 @@
+@@ -1990,8 +1988,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1445,7 +1445,7 @@
  }
  
  static const char*
-@@ -453,7 +446,7 @@
+@@ -494,7 +487,7 @@
  #endif
  
  /* vfork(2) is deprecated on Darwin */
@@ -1454,7 +1454,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -619,7 +612,7 @@
+@@ -660,7 +653,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -2914,7 +2914,7 @@
  #endif
 --- old/src/java.desktop/unix/classes/sun/awt/X11FontManager.java	2020-05-20 18:02:35.237054448 -0700
 +++ new/src/java.desktop/unix/classes/sun/awt/X11FontManager.java	2020-05-20 18:02:34.897047919 -0700
-@@ -686,8 +686,7 @@
+@@ -687,8 +687,7 @@
           * and do the best we can.
           */
          FontConfiguration mFontConfig = new MFontConfiguration(this);

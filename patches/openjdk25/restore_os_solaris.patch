@@ -2380,7 +2380,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/src/hotspot/os/solaris/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2025-04-19 12:08:38.483600745 +0100
-@@ -0,0 +1,2816 @@
+@@ -0,0 +1,2815 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -2440,7 +2440,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +#include "runtime/sharedRuntime.hpp"
 +#include "runtime/statSampler.hpp"
 +#include "runtime/stubRoutines.hpp"
-+#include "runtime/threadCritical.hpp"
 +#include "runtime/threads.hpp"
 +#include "runtime/timer.hpp"
 +#include "runtime/vm_version.hpp"
