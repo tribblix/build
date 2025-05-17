@@ -2680,3 +2680,4 @@ keystoneauth1-5.11.0.tar.gz 9af6a165fa0747ed739ffc34b115ea0d7cfc5630ee12948af94f
 keystonemiddleware-10.10.0.tar.gz 34e3ff7a61a6a2817dde2602d6129755de69afd7df26e61f85a400539698f566
 diffoscope-296.tar.gz a1e9f43052a8b99984ba0bb13649ba0b18fd7da65a359e4f87170c89f8da325e
 glance_store-4.10.0.tar.gz 513a389556880fdb5d02254d02af531ccd4cc0cccf89ea80078cdb6ff7479cf7
+oslo_config-9.8.0.tar.gz eea8009504abee672137c58bdabdaba185f496b93c85add246e2cdcebe9d08aa
