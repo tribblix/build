@@ -2686,3 +2686,4 @@ oslo_messaging-17.0.0.tar.gz dde993729f142bbb7a902ab9fa7bf17a93cf91c016ba854b68e
 oslo_metrics-0.12.0.tar.gz 0d9e24de7f46a677cfd8d6c8ca3201496590ad87ca45ca010a005c4dfdb056da
 oslo_rootwrap-7.6.0.tar.gz 31ffaf968932dfc3b539d6c9579b2337341aa3261097bf7807ce590364ff2def
 oslo_versionedobjects-3.7.0.tar.gz 9943c3af829a5957be7ea3947d701dbf4119890d4cab5e5e95696a692cc5ccf3
+prometheus_client-0.22.0.tar.gz 18da1d2241ac2d10c8d2110f13eedcd5c7c0c8af18c926e8731f04fc10cd575c
