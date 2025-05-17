@@ -2683,3 +2683,4 @@ glance_store-4.10.0.tar.gz 513a389556880fdb5d02254d02af531ccd4cc0cccf89ea80078cd
 oslo_config-9.8.0.tar.gz eea8009504abee672137c58bdabdaba185f496b93c85add246e2cdcebe9d08aa
 oslo_context-6.0.0.tar.gz 151e8228982d3885ed3fed288e8cddb26f894fb40cb8132129fa9e5b3e0ef0bd
 oslo_messaging-17.0.0.tar.gz dde993729f142bbb7a902ab9fa7bf17a93cf91c016ba854b68e7e09cfe1f6e1e
+oslo_metrics-0.12.0.tar.gz 0d9e24de7f46a677cfd8d6c8ca3201496590ad87ca45ca010a005c4dfdb056da
