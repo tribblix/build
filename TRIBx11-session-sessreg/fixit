@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 mkdir -p usr/X11/bin
 cd usr/X11/bin
 ln -s ../../bin/sessreg .
