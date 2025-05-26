@@ -4,4 +4,4 @@
 #
 # dependencies have the [excel] extra added
 #
-${THOME}/build/pkg_pep518 -N TRIBfava-python-312 fava-1.30.2
+${THOME}/build/pkg_pep518 -N TRIBfava-python-312 fava-1.30.3
