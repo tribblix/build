@@ -2700,3 +2700,4 @@ yt_dlp-2025.5.22.tar.gz ea73854c5dabc124f29a35a8fae9bc5d422ef3231bebeea2bdfa82ac
 typing_inspection-0.4.1.tar.gz 6ae134cc0203c33377d43188d4064e9b357dba58cff3185f22924610e70a9d28
 radicale-3.5.4.tar.gz 8c0e3300ee4d0e3f7ce2ce993c005c8708d39330b366ba08f5970ef33a22c6ff
 python_swiftclient-4.8.0.tar.gz 44162cab469368cafdc25e0c8c4e95a2b9db1a44456a48ce080fe2ca9a4b3863
+python_openstackclient-8.1.0.tar.gz 9b9c42b3f6bc4b4b480a6254fc560acb019787831e094396dbf9ac9ae571ae4b
