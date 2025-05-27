@@ -673,7 +673,7 @@
      LIBS_windows := iphlpapi.lib ws2_32.lib, \
  ))
  
-@@ -77,7 +76,6 @@
+@@ -78,7 +77,6 @@
      JDK_LIBS := java.base:libjvm, \
      LIBS := $(ICONV_LIBS), \
      LIBS_linux := $(LIBDL), \
@@ -959,7 +959,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -512,7 +512,7 @@
+@@ -528,7 +528,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -1254,15 +1254,15 @@
      private static enum LaunchMechanism {
          // order IS important!
          FORK,
-@@ -107,7 +104,6 @@
-                     return lm;      // All options are valid for Linux
+@@ -119,7 +116,6 @@
+                 }
                  case AIX:
                  case MACOS:
 -                case SOLARIS:
                      if (lm != LaunchMechanism.VFORK) {
                          return lm; // All but VFORK are valid
                      }
-@@ -356,44 +352,6 @@
+@@ -366,44 +362,6 @@
                  });
                  break;
  
@@ -1307,7 +1307,7 @@
              case AIX:
                  stdin = (fds[0] == -1) ?
                          ProcessBuilder.NullOutputStream.INSTANCE :
-@@ -510,32 +468,6 @@
+@@ -520,32 +478,6 @@
                  try { stderr.close(); } catch (IOException ignored) {}
                  break;
  
