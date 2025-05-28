@@ -4,4 +4,9 @@
 #
 # remove static plugins
 #
-rm -f usr/lib/xrdp/lib*.a
+/usr/bin/rm -f usr/lib/xrdp/lib*.a
+#
+# don't ship keys, create them on install
+#
+/usr/bin/rm -f etc/xrdp/cert.pem
+/usr/bin/rm -f etc/xrdp/key.pem

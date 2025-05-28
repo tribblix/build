@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# create the key for use with security_layer
+# we don't want to package it as we want each install to be unique
+#
+if [ ! -f /etc/xrdp/cert.pem ]; then
+    /usr/bin/mkdir -p /etc/xrdp
+    cat > /tmp/xrdp.$$.openssl.conf <<EOF
+[req]
+distinguished_name = req_distinguished_name
+x509_extensions = v3_ca
+
+[req_distinguished_name]
+
+[v3_ca]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always, issuer
+basicConstraints = CA:true
+EOF
+    /usr/bin/openssl req -x509 -newkey rsa:2048 -sha256 -nodes \
+		     -keyout /etc/xrdp/key.pem -out \
+		     /etc/xrdp/cert.pem -days 365 \
+		     -subj /C=US/ST=CA/L=Sunnyvale/O=xrdp/CN=www.xrdp.org \
+		     -config /tmp/xrdp.$$.openssl.conf
+    /usr/bin/chmod 0600 /etc/xrdp/key.pem /etc/xrdp/cert.pem
+    /usr/bin/rm -f /tmp/xrdp.$$.openssl.conf
+fi

@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# clean up unpackaged files
+# yes, this means they'll be recreated on package upgrades, but they
+# always were in the past
+#
+if [ -f /etc/xrdp/cert.pem ]; then
+    /usr/bin/rm -f /etc/xrdp/cert.pem
+    /usr/bin/rm -f /etc/xrdp/key.pem
+    /usr/bin/rmdir /etc/xrdp
+fi
+exit 0
