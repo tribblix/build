@@ -9,19 +9,19 @@
 # see the BLFS documentation, we build the same way
 #  http://www.linuxfromscratch.org/blfs/view/svn/pst/gs.html
 #
-${THOME}/build/dobuild ghostscript-10.03.1 -64only -C "--disable-compile-inits --with-system-libtiff --disable-gtk --without-libpaper --disable-dbus"
-cd ghostscript-10.03.1-64bit
+${THOME}/build/dobuild ghostscript-10.05.1 -64only -C "--disable-compile-inits --with-system-libtiff --disable-gtk --without-libpaper --disable-dbus"
+cd ghostscript-10.05.1-64bit
 gmake -j4 so
 rm -fr /tmp/ags
 gmake DESTDIR=/tmp/ags install
 gmake DESTDIR=/tmp/ags soinstall
 ginstall -v -m644 base/*.h /tmp/ags/usr/include/ghostscript/
-tar cf - examples | ( cd /tmp/ags/usr/share/ghostscript/10.03.1 ; tar xf -)
+tar cf - examples | ( cd /tmp/ags/usr/share/ghostscript/10.05.1 ; tar xf -)
 mkdir -p /tmp/ags/usr/share/ghostscript
 cd /tmp/ags/usr/share/ghostscript
 ${THOME}/build/unpack ghostscript-fonts-std-8.11
 ${THOME}/build/unpack gnu-gs-fonts-other-6.0
-rm -f ../doc/ghostscript/10.03.1/*.*
+rm -f ../doc/ghostscript/10.05.1/*.*
 cd
 ${THOME}/build/create_pkg TRIBgpl-ghostscript /tmp/ags
 rm -fr /tmp/ags
