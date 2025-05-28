@@ -77,3 +77,18 @@
      max_flba = FLBA{Float16Constants::positive_zero()};
    }
  
+--- a/cpp/src/arrow/compute/kernels/aggregate_var_std_internal.h	Tue Apr 22 18:59:37 2025
++++ b/cpp/src/arrow/compute/kernels/aggregate_var_std_internal.h	Wed May 28 15:54:55 2025
+@@ -88,10 +88,10 @@
+     double result;
+     // This may return NaN for m2 == 0 and m3 == 0, which is expected.
+     if (biased) {
+-      result = sqrt(count) * m3 / sqrt(m2 * m2 * m2);
++      result = sqrt((double)count) * m3 / sqrt(m2 * m2 * m2);
+     } else {
+       auto m2_avg = m2 / count;
+-      result = sqrt(count * (count - 1)) / (count - 2) * (m3 / count) /
++      result = sqrt((double)(count * (count - 1))) / (count - 2) * (m3 / count) /
+                sqrt(m2_avg * m2_avg * m2_avg);
+     }
+     return result;
