@@ -555,7 +555,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -299,7 +297,7 @@
+@@ -298,7 +296,7 @@
        DISABLED_WARNINGS_clang_aix_sun_awt_X11_GtkFileDialogPeer.c := \
            parentheses, \
        DISABLED_WARNINGS_clang_aix_awt_InputMethod.c := unused-function sign-compare, \
@@ -564,7 +564,7 @@
        LIBS_unix := $(LIBDL) $(LIBM) $(X_LIBS) -lX11 -lXext -lXi -lXrender \
            -lXtst, \
        LIBS_linux := $(LIBPTHREAD), \
-@@ -420,7 +418,7 @@
+@@ -419,7 +417,7 @@
  endif
  
  ifeq ($(call isTargetOsType, unix)+$(call isTargetOs, macosx), true+false)
@@ -573,7 +573,7 @@
    ifeq ($(ENABLE_HEADLESS_ONLY), false)
      LIBJAWT_JDK_LIBS_unix += libawt_xawt
    else
-@@ -440,7 +438,6 @@
+@@ -439,7 +437,6 @@
      LDFLAGS_windows := $(LDFLAGS_CXX_JDK), \
      LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
      JDK_LIBS_unix := $(LIBJAWT_JDK_LIBS_unix), \
@@ -881,7 +881,7 @@
  #define SHUTDOWN3_SIGNAL SIGTERM
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -597,7 +597,7 @@
+@@ -598,7 +598,7 @@
    st->print("%ld", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -890,7 +890,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -615,12 +615,6 @@
+@@ -616,12 +616,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -1142,7 +1142,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1924,8 +1924,6 @@
+@@ -1920,8 +1920,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1151,7 +1151,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1990,8 +1988,6 @@
+@@ -1986,8 +1984,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");

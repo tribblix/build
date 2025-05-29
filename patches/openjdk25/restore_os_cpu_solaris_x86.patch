@@ -587,7 +587,7 @@ diff -urN /tmp/a/orderAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/or
 diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
 --- /tmp/a/os_solaris_x86.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2024-09-16 14:41:34.008006119 +0100
-@@ -0,0 +1,445 @@
+@@ -0,0 +1,453 @@
 +/*
 + * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -688,6 +688,7 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +#define REG_SP REG_RSP
 +#define REG_PC REG_RIP
 +#define REG_FP REG_RBP
++#define REG_BCP REG_R13
 +
 +char* os::non_memory_address_word() {
 +  // Must never look like an address returned by reserve_memory,
@@ -800,6 +801,13 @@ diff -urN /tmp/a/os_solaris_x86.cpp b/src/hotspot/os_cpu/solaris_x86/os_solaris_
 +  // in compiled code, the stack banging is performed just after the return pc
 +  // has been pushed on the stack
 +  return frame(fr.sp() + 1, fr.fp(), (address)*(fr.sp()));
++}
++
++intptr_t* os::fetch_bcp_from_context(const void* ucVoid) {
++  assert(ucVoid != nullptr, "invariant");
++  const ucontext_t* uc = (const ucontext_t*)ucVoid;
++  assert(os::Posix::ucontext_is_interpreter(uc), "invariant");
++  return reinterpret_cast<intptr_t*>(uc->uc_mcontext.gregs[REG_BCP]);
 +}
 +
 +frame os::get_sender_for_C_frame(frame* fr) {
