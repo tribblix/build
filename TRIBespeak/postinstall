@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# voices has a directory name "!v" which SVR4 packaging really dislikes
+#
+cd "${BASEDIR}/usr/share/espeak-ng-data" || exit 0
+if [ -f voices.tar ]; then
+  /usr/bin/tar xf voices.tar
+  /usr/bin/chown -hR root:root voices
+  /usr/bin/chmod -R a+rX voices
+fi

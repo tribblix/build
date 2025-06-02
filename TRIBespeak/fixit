@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+cd usr/share/espeak-ng-data
+tar cf voices.tar voices
+rm -fr voices
