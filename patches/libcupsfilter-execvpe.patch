@@ -1,6 +1,6 @@
 --- a/cupsfilters/ghostscript.c	Tue Jun 20 13:36:35 2023
 +++ b/cupsfilters/ghostscript.c	Sat Sep 16 14:12:38 2023
-@@ -456,6 +456,7 @@
+@@ -453,6 +453,7 @@
    char *msg;
    int status = 65536;
    int wstatus;
@@ -8,7 +8,7 @@
  
    // Put Ghostscript command line argument into an array for the "exec()"
    // call
-@@ -613,7 +614,8 @@
+@@ -610,7 +611,8 @@
      }
  
      // Execute Ghostscript command line ...

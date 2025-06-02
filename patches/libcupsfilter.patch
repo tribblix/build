@@ -9,4 +9,14 @@ For S_IRUSR
 +#include <sys/stat.h>
  #include <cups/file.h>
  #include <cups/array.h>
- 
+ #include <cupsfilters/libcups2-private.h>
+--- a/cupsfilters/testfilters.c       Tue Feb 18 22:48:01 2025
++++ b/cupsfilters/testfilters.c        Mon Jun  2 10:20:22 2025
+@@ -1,6 +1,7 @@
+ #include <config.h>
+ #include <ctype.h>
+ #include <errno.h>
++#include <sys/stat.h>
+ #include <cupsfilters/filter.h>
+ #include <cups/cups.h>
+ #include <cups/array.h>
