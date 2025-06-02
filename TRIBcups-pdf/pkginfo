@@ -1,4 +1,4 @@
 PKG="TRIBcups-pdf"
 NAME="PDF printer backend for CUPS"
-VERSION="3.0.1.0"
+VERSION="3.0.2.0"
 ZAP_URL="https://www.cups-pdf.de/"

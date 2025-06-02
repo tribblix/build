@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-${THOME}/build/unpack cups-pdf_3.0.1
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/unpack cups-pdf_3.0.2
 # note that tarball and contents are slightly different names
-cd cups-pdf-3.0.1/src
-# setpdfwrite is removed from gs
-gpatch < ${THOME}/build/patches/cups-pdf-new-gs.patch
+cd cups-pdf-3.0.2/src
 gcc -O -m64 -s cups-pdf.c -o cups-pdf -lcups
 cd ..
 
@@ -26,3 +26,4 @@ mkdir -p /tmp/xs/var/spool/cups-pdf/SPOOL
 
 ${THOME}/build/create_pkg TRIBcups-pdf /tmp/xs
 rm -fr /tmp/xs
+cd ..
