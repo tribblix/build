@@ -9,9 +9,9 @@
 # see the BLFS documentation, we build the same way
 #  http://www.linuxfromscratch.org/blfs/view/svn/pst/gs.html
 #
-# separate build on sparc
+# on sparc need to disable tesseract due to compiler limitations
 #
-${THOME}/build/dobuild ghostscript-10.05.1 -64only -C "--disable-compile-inits --with-system-libtiff --disable-gtk --without-libpaper --disable-dbus"
+${THOME}/build/dobuild ghostscript-10.05.1 -64only -C "--disable-compile-inits --with-system-libtiff --disable-gtk --without-libpaper --disable-dbus --without-tesseract"
 cd ghostscript-10.05.1-64bit
 gmake -j4 so
 rm -fr /tmp/ags
