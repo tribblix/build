@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: use isnan() just like everyone else.
+
+Cleanup: only include <thread.h> where it's actually needed.
+
 25+25
 
 Trivial patch noise.

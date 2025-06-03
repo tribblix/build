@@ -1039,24 +1039,7 @@
    tty->print_cr("class metadata.");
 --- old/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.978937412 -0700
 +++ new/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.586929885 -0700
-@@ -50,32 +50,15 @@
- #endif
- #include <wchar.h>
- 
--#ifdef SOLARIS
--#include <ieeefp.h>
--#endif // SOLARIS
--
- #include <math.h>
- #include <time.h>
- #include <fcntl.h>
- #include <dlfcn.h>
- #include <pthread.h>
- 
--#ifdef SOLARIS
--#include <thread.h>
--#endif // SOLARIS
--
+@@ -59,15 +59,6 @@
  #include <limits.h>
  #include <errno.h>
  
@@ -1072,7 +1055,7 @@
  #if defined(LINUX) || defined(_ALLBSD_SOURCE) || defined(_AIX)
  #include <signal.h>
  #ifndef __OpenBSD__
-@@ -92,38 +71,8 @@
+@@ -84,33 +71,8 @@
  #include <sys/time.h>
  #endif // LINUX || _ALLBSD_SOURCE
  
@@ -1100,13 +1083,8 @@
 -
  // checking for nanness
 -#ifdef SOLARIS
--#ifdef SPARC
--inline int g_isnan(float  f) { return isnanf(f); }
--#else
--// isnanf() broken on Intel Solaris use isnand()
--inline int g_isnan(float  f) { return isnand(f); }
--#endif
--inline int g_isnan(double f) { return isnand(f); }
+-inline int g_isnan(float  f) { return isnan(f); }
+-inline int g_isnan(double f) { return isnan(f); }
 -#elif defined(__APPLE__)
 +#if defined(__APPLE__)
  inline int g_isnan(double f) { return isnan(f); }

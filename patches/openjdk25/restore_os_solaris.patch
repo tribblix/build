@@ -5386,7 +5386,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.hpp b/src/hotspot/os/solaris/
 diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.inline.hpp b/src/hotspot/os/solaris/os_solaris.inline.hpp
 --- /tmp/a/src/hotspot/os/solaris/os_solaris.inline.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.inline.hpp	2025-04-19 12:08:38.476774425 +0100
-@@ -0,0 +1,70 @@
+@@ -0,0 +1,71 @@
 +/*
 + * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -5420,6 +5420,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.inline.hpp b/src/hotspot/os/s
 +#include "os_posix.inline.hpp"
 +
 +// System includes
++#include <thread.h>
 +#include <sys/param.h>
 +#include <dlfcn.h>
 +#include <sys/socket.h>
