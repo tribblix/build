@@ -1,0 +1,3 @@
+PKG="TRIBswtpm"
+NAME="swtpm"
+VERSION="0.10.1.0"

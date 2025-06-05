@@ -1,0 +1,2 @@
+-p1 swtpm-illumos.patch
+-p1 swtpm-utsname.patch
