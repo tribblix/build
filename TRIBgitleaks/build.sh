@@ -4,9 +4,9 @@
 #
 git clone https://github.com/gitleaks/gitleaks.git
 cd gitleaks
-git checkout v8.23.1
+git checkout v8.27.0
 # needs gnu sort
-env PATH=/usr/versions/go-1.23/bin:/usr/gnu/bin:$PATH gmake build
+env PATH=/usr/versions/go-1.24/bin:/usr/gnu/bin:$PATH gmake build
 
 rm -fr /tmp/cgl
 mkdir -p /tmp/cgl/usr/bin
