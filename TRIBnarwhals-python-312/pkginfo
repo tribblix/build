@@ -1,4 +1,4 @@
 PKG="TRIBnarwhals-python-312"
 NAME="Python narwhals"
-VERSION="1.41.0.0"
+VERSION="1.41.1.0"
 ZAP_URL="https://pypi.org/project/narwhals/"
