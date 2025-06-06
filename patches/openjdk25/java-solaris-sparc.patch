@@ -1201,11 +1201,12 @@
  /*
 --- old/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.667181035 -0700
 +++ new/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.335174660 -0700
-@@ -85,7 +85,6 @@
+@@ -85,7 +85,7 @@
  
      /* check if SO_REUSEPORT is supported on this platform */
      REUSEPORT_available = reuseport_supported(IPv6_available);
 -    parseExclusiveBindProperty(env);
++
  
      return JNI_VERSION_1_2;
  }
@@ -2465,7 +2466,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -360,26 +206,6 @@
+@@ -373,26 +219,6 @@
      }
  }
  
@@ -2492,7 +2493,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -621,65 +447,6 @@
+@@ -634,65 +460,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -2558,7 +2559,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -794,20 +561,10 @@
+@@ -807,20 +574,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -2579,7 +2580,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -824,61 +581,8 @@
+@@ -837,61 +594,8 @@
      }
  #endif
  
@@ -2904,8 +2905,8 @@
              if (fcFontConfig.init()) {
 --- old/src/java.desktop/unix/classes/sun/font/MFontConfiguration.java	2020-05-20 18:02:37.405096076 -0700
 +++ new/src/java.desktop/unix/classes/sun/font/MFontConfiguration.java	2020-05-20 18:02:37.021088702 -0700
-@@ -68,59 +68,7 @@
-      */
+@@ -69,59 +69,7 @@
+     @Override
      protected void initReorderMap() {
          reorderMap = new HashMap<>();
 -        if (osName.equals("SunOS")) {
@@ -2985,7 +2986,7 @@
                  OSInfo.getOSType() == OSInfo.OSType.MACOSX);
      }
  
-@@ -286,7 +281,7 @@
+@@ -287,7 +282,7 @@
                  }
              }
          } else {
@@ -2994,7 +2995,7 @@
                  printers = getAllPrinterNamesSysV();
              } else if (isAIX()) {
                  printers = getAllPrinterNamesAIX();
-@@ -470,7 +465,7 @@
+@@ -471,7 +466,7 @@
          }
          /* fallback if nothing not having a printer at this point */
          PrintService printer = null;
@@ -3003,7 +3004,7 @@
              printer = getNamedPrinterNameSysV(name);
          } else if (isAIX()) {
              printer = getNamedPrinterNameAIX(name);
-@@ -625,7 +620,7 @@
+@@ -629,7 +624,7 @@
                  psuri = printerInfo[1];
              }
          } else {
