@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# duplicate files
+#
+PYVERS=3.12
+rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/docs
