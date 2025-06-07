@@ -19,7 +19,11 @@ wget https://curl.se/ca/cacert.pem
 cat cacert.pem | gawk 'split_after==1{n++;split_after=0} /-----END CERTIFICATE-----/ {split_after=1} {print > "cert" n ".pem"}'
 rm -fr /tmp/cab
 mkdir -p /tmp/cab/etc/openssl/certs
-cp cacert.pem /tmp/cab/etc/openssl
+#
+# the final cacert.pem is constructed by postinstall, and can be managed
+# with /usr/lib/zap/manage-cacerts
+#
+cp cacert.pem /tmp/cab/etc/openssl/cacert.pem.dist
 foreach file ( cert*.pem )
 cp $file /tmp/cab/etc/openssl/certs/`openssl x509 -noout -hash -in $file`.0
 end

@@ -1,0 +1,29 @@
+#!/sbin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# create a full cacert.pem from the main cacert.pem and any additional
+# local certificates
+#
+# the logic here must match that in /usr/lib/zap/manage-cacerts
+#
+# if there isn't a dist cacert.pem, then give up
+#
+PEMFILE="etc/openssl/cacert.pem"
+if [ ! -f "${BASEDIR}/${PEMFILE}.dist" ]; then
+    exit 0
+fi
+#
+# copy the dist file to a temporary file, then append any local certificates
+#
+/usr/bin/cp "${BASEDIR}/${PEMFILE}.dist" "${BASEDIR}/${PEMFILE}.tmp"
+if [ -d "${BASEDIR}/etc/openssl/certs.local" ]; then
+    for file in "${BASEDIR}/etc/openssl/certs.local"/*
+    do
+	cat "${file}" >> "${BASEDIR}/${PEMFILE}.tmp"
+    done
+fi
+#
+# and replace the main cacert.pem
+#
+/usr/bin/mv "${BASEDIR}/${PEMFILE}.tmp" "${BASEDIR}/${PEMFILE}"
