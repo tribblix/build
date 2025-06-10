@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -37,7 +37,7 @@ export PATH
 THOME=${THOME:-/packages/localsrc/Tribblix}
 BUILD="${THOME}/build"
 GMAKE="/usr/bin/make"
-WORKING_ROOT=`pwd`
+WORKING_ROOT=$(pwd)
 
 case $# in
     0)
@@ -134,7 +134,7 @@ done
 #
 # 64-bit flags
 #
-case `uname -p` in
+case $(uname -p) in
 sparc)
     IMAKE64FLAGS="-DSparc64Architecture=YES -DDefaultCCOptions=-m64"
     ;;
@@ -157,12 +157,12 @@ do
 		;;
 	esac
 	if [ "x$DO64" != "xfalse" ]; then
-	    cd ${WORKING_ROOT}
-	    if [ ! -d ${pkg}-64bit ]; then
+	    cd "${WORKING_ROOT}"
+	    if [ ! -d "${pkg}-64bit" ]; then
 		echo "Cannot find source directory ${pkg}-64bit"
 		exit 1
 	    fi
-	    cd ${pkg}-64bit
+	    cd "${pkg}-64bit"
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
 		${BUILD}/patches/${pkg}.preconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
@@ -177,12 +177,12 @@ do
 	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
-	    cd ${WORKING_ROOT}
-	    if [ ! -d ${pkg} ]; then
+	    cd "${WORKING_ROOT}"
+	    if [ ! -d "${pkg}" ]; then
 		echo "Cannot find source directory ${pkg}"
 		exit 1
 	    fi
-	    cd ${pkg}
+	    cd "${pkg}"
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi

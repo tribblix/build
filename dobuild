@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -35,7 +35,7 @@ export TZ
 THOME=${THOME:-/packages/localsrc/Tribblix}
 BUILD="${THOME}/build"
 GMAKE="/usr/bin/gmake"
-WORKING_ROOT=`pwd`
+WORKING_ROOT=$(pwd)
 
 case $# in
     0)
@@ -266,7 +266,7 @@ fi
 #
 # 64-bit files go in these subdirectories
 #
-case `uname -p` in
+case $(uname -p) in
 sparc)
     ARCH64="sparcv9"
     ;;
@@ -312,7 +312,7 @@ fi
 # default linker options
 #
 if [[ -n $DO_LD ]]; then
-case `uname -p` in
+case $(uname -p) in
 sparc)
     LD_OPTIONS="-M /usr/lib/ld/map.noexbss -M /usr/lib/ld/map.noexstk -M /usr/lib/ld/map.pagealign -Bdirect -z ignore"
     ;;
@@ -364,27 +364,27 @@ do
 		;;
 	esac
 	if [ "x$DO64" != "xfalse" ]; then
-	    cd ${WORKING_ROOT}
-	    if [ ! -d ${pkg}-64bit ]; then
+	    cd "${WORKING_ROOT}"
+	    if [ ! -d "${pkg}-64bit" ]; then
 		echo "Cannot find source directory ${pkg}-64bit"
 		exit 1
 	    fi
 	    if [[ -n $DO_LD ]]; then
-		cd ${pkg}-64bit
+		cd "${pkg}-64bit"
 		touch .tribblix_ldopts
 		cat >> .tribblix_ldopts <<EOF
 LD_OPTIONS="${LD_OPTIONS}"
 export LD_OPTIONS
 EOF
-		cd ${WORKING_ROOT}
+		cd "${WORKING_ROOT}"
 	    fi
 	    if [[ -n $SUBDIR ]]; then
-		cd ${pkg}-64bit
+		cd "${pkg}-64bit"
 		echo "${TSUBDIR}" > .tribblix_build_subdir
-		cd ${WORKING_ROOT}
+		cd "${WORKING_ROOT}"
 	    fi
-	    mkdir -p ${pkg}-64bit/${BUILDDIR}
-	    cd ${pkg}-64bit${SUBDIR}
+	    mkdir -p "${pkg}-64bit/${BUILDDIR}"
+	    cd "${pkg}-64bit${SUBDIR}"
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
 		${BUILD}/patches/${pkg}.preconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
@@ -397,7 +397,7 @@ EOF
 		    autoreconf -i -v -f
 		fi
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_CONF_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix=${IPREFIX} ${CONFARGS64} ${ECONFARGS64} --bindir=${IPREFIX}/${BINDIR64} ${LIBARGS64}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_CONF_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix="${IPREFIX}" ${CONFARGS64} ${ECONFARGS64} --bindir="${IPREFIX}/${BINDIR64}" ${LIBARGS64}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
@@ -414,27 +414,27 @@ EOF
 	    fi
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
-	    cd ${WORKING_ROOT}
+	    cd "${WORKING_ROOT}"
 	    if [ ! -d ${pkg} ]; then
 		echo "Cannot find source directory ${pkg}"
 		exit 1
 	    fi
 	    if [[ -n $DO_LD ]]; then
-		cd ${pkg}
+		cd "${pkg}"
 		touch .tribblix_ldopts
 		cat >> .tribblix_ldopts <<EOF
 LD_OPTIONS="${LD_OPTIONS}"
 export LD_OPTIONS
 EOF
-		cd ${WORKING_ROOT}
+		cd "${WORKING_ROOT}"
 	    fi
 	    if [[ -n $SUBDIR ]]; then
-		cd ${pkg}
+		cd "${pkg}"
 		echo "${TSUBDIR}" > .tribblix_build_subdir
-		cd ${WORKING_ROOT}
+		cd "${WORKING_ROOT}"
 	    fi
-	    mkdir -p ${pkg}/${BUILDDIR}
-	    cd ${pkg}${SUBDIR}
+	    mkdir -p "${pkg}/${BUILDDIR}"
+	    cd "${pkg}${SUBDIR}"
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
@@ -445,12 +445,12 @@ EOF
 		    autoreconf -i -v -f
 		fi
 	    fi
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_CONF_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix=${IPREFIX} ${LIBARGS32}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_CONF_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix="${IPREFIX}" ${LIBARGS32}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
 	    #
-	    # if we have MAKEARGS it need to be quoted, but if it's empty
+	    # if we have MAKEARGS it needs to be quoted, but if it's empty
 	    # then we would erroneously pass an empty string as an argument
 	    #
 	    if [ -n "${MAKEARGS}" ]; then

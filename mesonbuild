@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -35,7 +35,7 @@ export TZ
 
 THOME=${THOME:-/packages/localsrc/Tribblix}
 BUILD="${THOME}/build"
-WORKING_ROOT=`pwd`
+WORKING_ROOT=$(pwd)
 
 case $# in
     0)
@@ -206,7 +206,7 @@ fi
 #
 # 64-bit files go in these subdirectories
 #
-case `uname -p` in
+case $(uname -p) in
 sparc)
     ARCH64="sparcv9"
     ;;
@@ -229,7 +229,7 @@ fi
 # default linker options
 #
 if [[ -n $DO_LD ]]; then
-case `uname -p` in
+case $(uname -p) in
 sparc)
     LD_OPTIONS="-M /usr/lib/ld/map.noexbss -M /usr/lib/ld/map.noexstk -M /usr/lib/ld/map.pagealign -Bdirect -z ignore"
     ;;
@@ -281,59 +281,59 @@ do
 		;;
 	esac
 	if [ "x$DO64" != "xfalse" ]; then
-	    cd ${WORKING_ROOT}
-	    if [ ! -d ${pkg}-64bit ]; then
+	    cd "${WORKING_ROOT}"
+	    if [ ! -d "${pkg}-64bit" ]; then
 		echo "Cannot find source directory ${pkg}-64bit"
 		exit 1
 	    fi
 	    if [[ -n $DO_LD ]]; then
-		cd ${pkg}-64bit
+		cd "${pkg}-64bit"
 		touch .tribblix_ldopts
 		cat >> .tribblix_ldopts <<EOF
 LD_OPTIONS="${LD_OPTIONS}"
 export LD_OPTIONS
 EOF
-		cd ${WORKING_ROOT}
+		cd "${WORKING_ROOT}"
 	    fi
-	    cd ${pkg}-64bit
+	    cd "${pkg}-64bit"
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
 		${BUILD}/patches/${pkg}.preconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    echo "${BUILDDIR}" > .tribblix_meson_build
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_CONF_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS64} --libdir=${LIBDIR64} --bindir=${BINDIR64} ${BUILDDIR}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_CONF_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" meson setup --prefix="${IPREFIX}" --buildtype=release ${CONFARGS64} --libdir=${LIBDIR64} --bindir=${BINDIR64} "${BUILDDIR}"
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
 		${BUILD}/patches/${pkg}.postconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    env PATH=$TRIBBLIX_BUILD_PATH64 ninja -C ${BUILDDIR}
+	    env PATH=$TRIBBLIX_BUILD_PATH64 ninja -C "${BUILDDIR}"
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
-	    cd ${WORKING_ROOT}
-	    if [ ! -d ${pkg} ]; then
+	    cd "${WORKING_ROOT}"
+	    if [ ! -d "${pkg}" ]; then
 		echo "Cannot find source directory ${pkg}"
 		exit 1
 	    fi
 	    if [[ -n $DO_LD ]]; then
-		cd ${pkg}
+		cd "${pkg}"
 		touch .tribblix_ldopts
 		cat >> .tribblix_ldopts <<EOF
 LD_OPTIONS="${LD_OPTIONS}"
 export LD_OPTIONS
 EOF
-		cd ${WORKING_ROOT}
+		cd "${WORKING_ROOT}"
 	    fi
-	    cd ${pkg}
+	    cd "${pkg}"
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    echo "${BUILDDIR}" > .tribblix_meson_build
-	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_CONF_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" meson setup --prefix=${IPREFIX} --buildtype=release ${CONFARGS32} ${BUILDDIR}
+	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_CONF_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" meson setup --prefix="${IPREFIX}" --buildtype=release ${CONFARGS32} "${BUILDDIR}"
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
 		${BUILD}/patches/${pkg}.postconf
 	    fi
-	    env PATH=$TRIBBLIX_BUILD_PATH32 ninja -C ${BUILDDIR}
+	    env PATH=$TRIBBLIX_BUILD_PATH32 ninja -C "${BUILDDIR}"
 	fi
 done
