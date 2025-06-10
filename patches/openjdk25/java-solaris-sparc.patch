@@ -916,47 +916,6 @@
  
  // Platform Mutex/Monitor implementation
  
---- old/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:59.318060690 -0700
-+++ new/src/hotspot/share/c1/c1_LIR.cpp	2020-05-20 17:59:58.926053163 -0700
-@@ -453,8 +453,6 @@
-     case lir_neg:
-     case lir_f2hf:
-     case lir_hf2f:
--    case lir_pack64:         // input and result always valid
--    case lir_unpack64:       // input and result always valid
-     {
-       assert(op->as_Op1() != nullptr, "must be");
-       LIR_Op1* op1 = (LIR_Op1*)op;
-@@ -1724,8 +1722,6 @@
-      case lir_convert:               s = "convert";       break;
-      case lir_alloc_object:          s = "alloc_obj";     break;
-      case lir_monaddr:               s = "mon_addr";      break;
--     case lir_pack64:                s = "pack64";        break;
--     case lir_unpack64:              s = "unpack64";      break;
-      // LIR_Op2
-      case lir_cmp:                   s = "cmp";           break;
-      case lir_cmp_l2i:               s = "cmp_l2i";       break;
---- old/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.446082348 -0700
-+++ new/src/hotspot/share/c1/c1_LIR.hpp	2020-05-20 18:00:00.042074591 -0700
-@@ -934,8 +934,6 @@
-       , lir_f2hf
-       , lir_hf2f
-       , lir_safepoint
--      , lir_pack64
--      , lir_unpack64
-       , lir_unwind
-       , lir_load_klass
-   , end_op1
-@@ -2204,9 +2202,6 @@
-   void logical_or  (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_or,   left, right, dst)); }
-   void logical_xor (LIR_Opr left, LIR_Opr right, LIR_Opr dst) { append(new LIR_Op2(lir_logic_xor,  left, right, dst)); }
- 
--  void   pack64(LIR_Opr src, LIR_Opr dst) { append(new LIR_Op1(lir_pack64,   src, dst, T_LONG, lir_patch_none, NULL)); }
--  void unpack64(LIR_Opr src, LIR_Opr dst) { append(new LIR_Op1(lir_unpack64, src, dst, T_LONG, lir_patch_none, NULL)); }
--
-   void null_check(LIR_Opr opr, CodeEmitInfo* info, bool deoptimize_on_null = false);
-   void throw_exception(LIR_Opr exceptionPC, LIR_Opr exceptionOop, CodeEmitInfo* info) {
-     append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
 @@ -528,7 +528,7 @@
