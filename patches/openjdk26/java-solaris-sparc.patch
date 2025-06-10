@@ -1845,44 +1845,19 @@
      return &sact[sig];
 --- old/src/java.base/unix/native/libnet/NetworkInterface.c	2020-05-20 18:01:23.023667898 -0700
 +++ new/src/java.base/unix/native/libnet/NetworkInterface.c	2020-05-20 18:01:22.695661600 -0700
-@@ -37,12 +37,6 @@
+@@ -37,11 +37,6 @@
  #include <strings.h>
  #endif
  
 -#if defined(__solaris__)
 -#include <stropts.h>
--#include <sys/dlpi.h>
 -#include <sys/sockio.h>
 -#endif
 -
  #if defined(_ALLBSD_SOURCE)
  #include <net/ethernet.h>
  #include <net/if_dl.h>
-@@ -55,11 +49,6 @@
- 
- #if defined(__linux__)
-     #define _PATH_PROCNET_IFINET6 "/proc/net/if_inet6"
--#elif defined(__solaris__)
--    #ifndef SIOCGLIFHWADDR
--        #define SIOCGLIFHWADDR _IOWR('i', 192, struct lifreq)
--    #endif
--    #define DEV_PREFIX "/dev/"
- #endif
- 
- #ifdef LIFNAMSIZ
-@@ -146,11 +135,6 @@
-                              const struct in_addr *addr, unsigned char *buf);
- static int     getMTU(JNIEnv *env, int sock, const char *ifname);
- 
--#if defined(__solaris__)
--static int     getMacFromDevice(JNIEnv *env, const char *ifname,
--                                unsigned char *retbuf);
--#endif
--
- /******************* Java entry points *****************************/
- 
- /*
-@@ -1674,372 +1658,6 @@
+@@ -1663,265 +1658,6 @@
  
  #endif /* _AIX */
  
@@ -2072,7 +2047,6 @@
 -
 -/*
 - * Try to get the interface index.
-- * (Not supported on Solaris 2.6 or 7)
 - */
 -static int getIndex(int sock, const char *name) {
 -    struct lifreq if2;
@@ -2087,78 +2061,6 @@
 -}
 -
 -/*
-- * Solaris specific DLPI code to get hardware address from a device.
-- * Unfortunately, at least up to Solaris X, you have to have special
-- * privileges (i.e. be root).
-- */
--static int getMacFromDevice
--  (JNIEnv *env, const char *ifname, unsigned char *retbuf)
--{
--    char style1dev[MAXPATHLEN];
--    int fd;
--    dl_phys_addr_req_t dlpareq;
--    dl_phys_addr_ack_t *dlpaack;
--    dl_error_ack_t     *dlerack;
--    struct strbuf msg;
--    char buf[128];
--    int flags = 0;
--
--    // Device is in /dev.  e.g.: /dev/bge0
--    strcpy(style1dev, DEV_PREFIX);
--    strcat(style1dev, ifname);
--    if ((fd = open(style1dev, O_RDWR)) < 0) {
--        // Can't open it. We probably are missing the privilege.
--        // We'll have to try something else
--        return 0;
--    }
--
--    dlpareq.dl_primitive = DL_PHYS_ADDR_REQ;
--    dlpareq.dl_addr_type = DL_CURR_PHYS_ADDR;
--
--    msg.buf = (char *)&dlpareq;
--    msg.len = DL_PHYS_ADDR_REQ_SIZE;
--
--    if (putmsg(fd, &msg, NULL, 0) < 0) {
--        JNU_ThrowByNameWithMessageAndLastError
--            (env, JNU_JAVANETPKG "SocketException", "putmsg() failed");
--        return -1;
--    }
--
--    dlpaack = (dl_phys_addr_ack_t *)buf;
--
--    msg.buf = (char *)buf;
--    msg.len = 0;
--    msg.maxlen = sizeof (buf);
--    if (getmsg(fd, &msg, NULL, &flags) < 0) {
--        JNU_ThrowByNameWithMessageAndLastError
--            (env, JNU_JAVANETPKG "SocketException", "getmsg() failed");
--        return -1;
--    }
--
--    if (dlpaack->dl_primitive == DL_ERROR_ACK) {
--        dlerack = (dl_error_ack_t *)buf;
--        if (dlerack->dl_error_primitive != DL_PHYS_ADDR_REQ) {
--            JNU_ThrowByName(env, JNU_JAVANETPKG "SocketException",
--                           "Couldn't obtain physical address\n");
--            return -1;
--        }
--        if (dlerack->dl_errno == DL_UNSUPPORTED) {
--            // fallback to lookup in the ARP table
--            return 0;
--        }
--    }
--
--    if (msg.len < DL_PHYS_ADDR_ACK_SIZE || dlpaack->dl_primitive != DL_PHYS_ADDR_ACK) {
--        JNU_ThrowByName(env, JNU_JAVANETPKG "SocketException",
--                        "Couldn't obtain phys addr\n");
--        return -1;
--    }
--
--    memcpy(retbuf, &buf[dlpaack->dl_addr_offset], dlpaack->dl_addr_length);
--    return dlpaack->dl_addr_length;
--}
--
--/*
 - * Gets the Hardware address (usually MAC address) for the named interface.
 - * On return puts the data in buf, and returns the length, in byte, of the
 - * MAC address. Returns -1 if there is no hardware address on that interface.
@@ -2168,14 +2070,13 @@
 -   unsigned char *buf)
 -{
 -    struct lifreq if2;
--    int len, i, sock;
+-    int sock;
 -
 -    if ((sock = openSocketWithFallback(env, ifname)) < 0) {
 -        return -1;
 -    }
 -
--    // First, try the new (S11) SIOCGLIFHWADDR ioctl(). If that fails
--    // try the old way.
+-    // Use the new (S11) SIOCGLIFHWADDR ioctl().
 -    memset((char *)&if2, 0, sizeof(if2));
 -    strncpy(if2.lifr_name, ifname, sizeof(if2.lifr_name) - 1);
 -
@@ -2186,40 +2087,7 @@
 -        close(sock);
 -        return sp->sdl_alen;
 -    }
--
--    // On Solaris we have to use DLPI, but it will only work if we have
--    // privileged access (i.e. root). If that fails, we try a lookup
--    // in the ARP table, which requires an IPv4 address.
--    if (((len = getMacFromDevice(env, ifname, buf)) == 0) && (addr != NULL)) {
--        struct arpreq arpreq;
--        struct sockaddr_in *sin;
--        struct sockaddr_in ipAddr;
--
--        len = 6; //???
--
--        sin = (struct sockaddr_in *)&arpreq.arp_pa;
--        memset((char *)&arpreq, 0, sizeof(struct arpreq));
--        ipAddr.sin_port = 0;
--        ipAddr.sin_family = AF_INET;
--        memcpy(&ipAddr.sin_addr, addr, sizeof(struct in_addr));
--        memcpy(&arpreq.arp_pa, &ipAddr, sizeof(struct sockaddr_in));
--        arpreq.arp_flags= ATF_PUBL;
--
--        if (ioctl(sock, SIOCGARP, &arpreq) < 0) {
--            close(sock);
--            return -1;
--        }
--
--        memcpy(buf, &arpreq.arp_ha.sa_data[0], len);
--    }
 -    close(sock);
--
--    // all bytes to 0 means no hardware address
--    for (i = 0; i < len; i++) {
--        if (buf[i] != 0)
--            return len;
--    }
--
 -    return -1;
 -}
 -

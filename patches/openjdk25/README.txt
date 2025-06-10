@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: tidy away legacy code from NetworkInterface.
+
 25+26
 
 Now in rampdown.
