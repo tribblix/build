@@ -4,8 +4,9 @@
 #
 # cgi.pm needs URI and html-parser
 #
-${THOME}/build/unpack CGI-4.68
-cd CGI-4.68
+${THOME}/build/unpack CGI-4.69
+cd CGI-4.69
 perl Makefile.PL
 make
-${THOME}/build/genpkg TRIBlib-perl-5-cgi
+cd ..
+${THOME}/build/genpkg TRIBlib-perl-5-cgi CGI-4.69
