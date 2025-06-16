@@ -22,7 +22,7 @@ VERSION=1.10
 #
 # this is the default version of postgres we target
 #
-PGVERSION=15
+PGVERSION=17
 
 $THOME/build/unpack pg_back-${VERSION}
 
