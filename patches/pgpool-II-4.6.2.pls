@@ -1,2 +1,1 @@
--p1 pgpool-stdarg.patch
 -p1 pgpool-gmtoff.patch
