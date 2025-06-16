@@ -1,4 +1,4 @@
 PKG="TRIBwatchfiles-python-312"
 NAME="Python watchfiles"
-VERSION="1.0.5.0"
+VERSION="1.1.0.0"
 ZAP_URL="https://pypi.org/project/watchfiles/"
