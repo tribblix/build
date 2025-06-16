@@ -33,7 +33,7 @@ REPODIR="/var/repo"
 QUICKMODE=""
 PKGSKIP=""
 
-REPO="tribblix-m36"
+REPO="tribblix-m37"
 LREPODIR="${THOME}/pkgs"
 
 ACREATE="create-aliases-from-catalog"
