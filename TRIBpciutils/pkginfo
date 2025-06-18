@@ -1,4 +1,4 @@
 PKG="TRIBpciutils"
 NAME="The PCI Utilities"
-VERSION="3.12.0.0"
+VERSION="3.12.0.1"
 ZAP_URL="http://mj.ucw.cz/sw/pciutils/"
