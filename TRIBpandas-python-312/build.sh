@@ -13,9 +13,9 @@
 # html[*]: BeautifulSoup4[*],html5lib[*],lxml[*]
 # xml[*]: lxml[*]
 # compression[*]: zstandard[*]
-# postgresql: SQLAlchemy[*],psycopg2[*],adbc-driver-postgresql
+# postgresql[*]: SQLAlchemy[*],psycopg2[*],adbc-driver-postgresql[*]
 # mysql: SQLAlchemy[*],pymysql
-# sql-other: SQLAlchemy[*],adbc-driver-postgresql,adbc-driver-sqlite
+# sql-other: SQLAlchemy[*],adbc-driver-postgresql[*],adbc-driver-sqlite
 # pyarrow[*],feather[*],parquet[*]: pyarrow[*]
 #
 # note that calamine requires rust
@@ -30,4 +30,4 @@
 # PATH so it can find the cython executable
 # Need to pass -m64 down to meson
 #
-env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.12/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBpandas-python-312 pandas-2.2.3
+env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.12/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBpandas-python-312 pandas-2.3.0
