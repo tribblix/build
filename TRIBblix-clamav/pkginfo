@@ -1,4 +1,4 @@
 PKG="TRIBblix-clamav"
 NAME="ClamAV Anti-Virus"
-VERSION="1.0.8.0"
+VERSION="1.0.9.0"
 ZAP_URL="http://www.clamav.net/"
