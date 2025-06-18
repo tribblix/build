@@ -19,4 +19,4 @@ sed -i 's:-lkstat::' src/zabbix_server/Makefile
 #
 # this adds the RPATH for postgresql into the server
 #
-sed -i 's:-L/opt/tribblix/postgres15/lib:-L/opt/tribblix/postgres15/lib -R/opt/tribblix/postgres15/lib:' `find . -name Makefile`
+sed -i 's:-L/opt/tribblix/postgres17/lib:-L/opt/tribblix/postgres17/lib -R/opt/tribblix/postgres17/lib:' `find . -name Makefile`
