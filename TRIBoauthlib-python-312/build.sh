@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBoauthlib-python-312 oauthlib-3.2.2
+${THOME}/build/pkg_setup_py TRIBoauthlib-python-312 oauthlib-3.3.0
