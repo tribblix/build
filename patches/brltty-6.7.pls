@@ -1,3 +1,3 @@
--p1 brltty-mk4build.patch 
+-p1 brltty-mk4build.patch
 -p1 brltty-getrevid.patch
 -p1 brltty-no-libtinfo.patch
