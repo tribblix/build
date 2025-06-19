@@ -1,0 +1,13 @@
+P TRIBespeak
+P TRIBgnu-libiconv
+P TRIBlib-desktop-at-spi2
+P TRIBlib-expat
+P TRIBlibicu
+P TRIBncurses
+P TRIBsys-libdbus
+P TRIBtcl
+P TRIBx11-lib-toolkit-libxaw7
+P TRIBx11-lib-toolkit-libxt
+P TRIBx11-libx11
+P TRIBx11-libxfixes
+P TRIBx11-libxtst
