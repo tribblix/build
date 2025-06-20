@@ -2547,7 +2547,7 @@
  #include <sys/types.h>
  #include <sys/socket.h>
  #include <string.h>
-@@ -220,7 +220,7 @@
+@@ -226,7 +225,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canIPv6SocketJoinIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -2556,7 +2556,7 @@
      /* IPv6 sockets can join IPv4 multicast groups */
      return JNI_TRUE;
  #else
-@@ -232,7 +232,7 @@
+@@ -238,7 +237,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canJoin6WithIPv4Group0(JNIEnv* env, jclass cl)
  {
