@@ -14,7 +14,7 @@
 # xml[*]: lxml[*]
 # compression[*]: zstandard[*]
 # postgresql[*]: SQLAlchemy[*],psycopg2[*],adbc-driver-postgresql[*]
-# mysql: SQLAlchemy[*],pymysql
+# mysql[*]: SQLAlchemy[*],pymysql[*]
 # sql-other[*]: SQLAlchemy[*],adbc-driver-postgresql[*],adbc-driver-sqlite[*]
 # pyarrow[*],feather[*],parquet[*]: pyarrow[*]
 #
