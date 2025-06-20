@@ -981,7 +981,7 @@
  class MemTracker : AllStatic {
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -620,13 +620,12 @@
+@@ -619,13 +619,12 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -998,7 +998,7 @@
    tty->print_cr("class metadata.");
 --- old/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.978937412 -0700
 +++ new/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.586929885 -0700
-@@ -59,15 +59,6 @@
+@@ -59,23 +59,6 @@
  #include <limits.h>
  #include <errno.h>
  
@@ -1009,12 +1009,20 @@
 -#include <ucontext.h>
 -#include <setjmp.h>
 -#include <inttypes.h>
+-// leak from ctype.h, but used in hotspot
+-#ifdef _B
+-#undef _B
+-#endif 
+-// leak from regset.h, but used in hotspot
+-#ifdef ES
+-#undef ES
+-#endif
 -#endif // SOLARIS
 -
  #if defined(LINUX) || defined(_ALLBSD_SOURCE) || defined(_AIX)
  #include <signal.h>
  #ifndef __OpenBSD__
-@@ -84,33 +71,8 @@
+@@ -92,33 +71,8 @@
  #include <sys/time.h>
  #endif // LINUX || _ALLBSD_SOURCE
  

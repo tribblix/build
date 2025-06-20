@@ -4,6 +4,14 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+3
+
+Minor patch noise.
+
+Unfortunately, NMT has started to use variable names like  _B and ES
+that conflict with common macro names in our headers. For now, undef
+them in globalDefinitions_gcc.hpp.
+
 26+2
 
 os::jvm_path has been centralized.

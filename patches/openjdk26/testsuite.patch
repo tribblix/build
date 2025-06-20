@@ -183,13 +183,13 @@ suite. It would be nice to be complete, but that isn't true yet.
      }
 --- a/test/hotspot/gtest/runtime/test_committed_virtualmemory.cpp	Wed Jan  8 20:46:57 2025
 +++ b/test/hotspot/gtest/runtime/test_committed_virtualmemory.cpp	Tue Jan 21 10:47:29 2025
-@@ -250,7 +250,7 @@
+@@ -241,7 +241,7 @@
  
  }
  
 -#if !defined(_WINDOWS) && !defined(_AIX)
 +#if !defined(_WINDOWS) && !defined(_AIX) && !defined(__sun__)
- TEST_VM(CommittedVirtualMemory, test_committed_in_range){
+ TEST_VM(NMTCommittedVirtualMemory, test_committed_in_range){
    CommittedVirtualMemoryTest::test_committed_in_range(1024, 1024);
    CommittedVirtualMemoryTest::test_committed_in_range(2, 1);
 --- a/test/hotspot/gtest/runtime/test_os.cpp	Tue Jun 10 15:58:34 2025
