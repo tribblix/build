@@ -1,4 +1,4 @@
 PKG="TRIBpygments-312"
 NAME="Python syntax highlighter"
-VERSION="2.19.1.0"
+VERSION="2.19.2.0"
 ZAP_URL="https://pygments.org/"
