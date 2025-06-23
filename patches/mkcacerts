@@ -1,15 +1,21 @@
 #!/bin/bash
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 # Simple script to extract x509 certificates and create a JRE cacerts file.
 #
 # This comes straight from Linux from Scratch instructions for openjdk
 #
 # invoke as
 #
-# mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /usr/jdk/instances/jdk1.7.0/bin/keytool -s /usr/bin/openssl
+# mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /usr/jdk/instances/jdk1.8.0/bin/keytool -s /usr/bin/openssl
 #
 # and then
 #
-# cp /tmp/cacerts /usr/jdk/instances/jdk1.7.0/jre/lib/security
+# cp /tmp/cacerts /usr/jdk/instances/jdk1.8.0/jre/lib/security
+#
+# Note that, in Tribblix, we build the cacerts file with jdk8
+# and use the same file for all later releases
 #
 function get_args()
     {
