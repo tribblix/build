@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# actually, we do almost all the installation here
+# we do all the installation here
 #
 
 #
@@ -17,10 +17,36 @@ cd ../../..
 
 mkdir -p usr/bin
 cd usr/bin
+
+#
+# different architectures have different versions of java available
+# the version here must match the depend file(s)
+#
+
+case `uname -p` in
+sparc)
+
 cat > josm <<_EOF
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 exec /usr/jdk/instances/jdk17/bin/java -jar /usr/share/josm/josm-tested.jar
 _EOF
+;;
+
+*)
+cat > josm <<_EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+exec /usr/jdk/instances/jdk21/bin/java -jar /usr/share/josm/josm-tested.jar
+_EOF
+;;
+
+esac
+
 chmod a+x josm
 cd ../..
 
