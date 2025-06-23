@@ -2,23 +2,49 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# actually, we do almost all the installation here
+# we do all the installation here
 #
 
 #
 #
 mkdir -p usr/share/jmapviewer
 cd usr/share/jmapviewer
-${THOME}/build/unpack JMapViewer-2.22
+${THOME}/build/unpack JMapViewer-2.25
 rm JMapViewer_src.jar
 cd ../../..
 
 mkdir -p usr/bin
 cd usr/bin
+
+#
+# different architectures have different versions of java available
+# the version here must match the depend file(s)
+#
+
+case `uname -p` in
+sparc)
+
 cat > jmapviewer <<_EOF
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 exec /usr/jdk/instances/jdk17/bin/java -jar /usr/share/jmapviewer/JMapViewer_Demo.jar
 _EOF
+;;
+
+*)
+cat > jmapviewer <<_EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+exec /usr/jdk/instances/jdk21/bin/java -jar /usr/share/jmapviewer/JMapViewer_Demo.jar
+_EOF
+;;
+
+esac
+
 chmod a+x jmapviewer
 cd ../..
 
