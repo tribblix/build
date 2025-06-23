@@ -2949,3 +2949,4 @@ graphviz-0.21.tar.gz 20743e7183be82aaaa8ad6c93f8893c923bd6658a04c32ee115edb3c8a8
 pypdf-5.6.1.tar.gz dde36cd67afe3afd733a562a0dd08a3c1dcdf01fe01de13785291319c8a883ff
 apache-activemq-6.1.7-bin.tar.gz 75cc41109a897745d44aca27358568f3cbe0cd58fc6bbff035a83c4ddf48d316
 backrefs-5.9.tar.gz 808548cb708d66b82ee231f962cb36faaf4f2baab032f2fbb783e9c2fdddaa59
+snowballstemmer-3.0.1.tar.gz 6d5eeeec8e9f84d4d56b847692bacf79bc2c8e90c7f80ca4444ff8b6f2e52895
