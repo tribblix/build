@@ -5,7 +5,7 @@
 # Images has files whose names contain spaces, so we unpack them
 # rather than package them
 #
-VERSION=1.12.8
+VERSION=1.12.11
 cd "${BASEDIR}/usr/versions/freeplane-${VERSION}/doc" || exit 0
 if [ -f Images.tar ]; then
   /usr/bin/tar xf Images.tar

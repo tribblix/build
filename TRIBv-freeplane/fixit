@@ -5,13 +5,22 @@
 # the directory is versioned
 # also fix VERSION in preremove and postinstall
 #
-VERSION=1.12.8
+VERSION=1.12.11
 mkdir -p usr/bin
 rm -f usr/versions/freeplane-${VERSION}/freeplane.exe
 rm -f usr/versions/freeplane-${VERSION}/freeplaneConsole.exe
 rm -f usr/versions/freeplane-${VERSION}/freeplane.bat
 rm -f usr/versions/freeplane-${VERSION}/*.dll
 rm -f usr/versions/freeplane-${VERSION}/libflatlaf-linux-x86_64.so
+
+#
+# different architectures have different versions of java available
+# the version here must match the depend file(s)
+#
+
+case `uname -p` in
+sparc)
+
 cat > usr/bin/freeplane <<EOF
 #!/bin/sh
 #
@@ -21,6 +30,22 @@ JAVA_HOME=/usr/jdk/instances/jdk17
 export JAVA_HOME
 exec /usr/versions/freeplane-${VERSION}/freeplane.sh "\$@"
 EOF
+;;
+
+*)
+
+cat > usr/bin/freeplane <<EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+JAVA_HOME=/usr/jdk/instances/jdk21
+export JAVA_HOME
+exec /usr/versions/freeplane-${VERSION}/freeplane.sh "\$@"
+EOF
+;;
+esac
+
 chmod a+x usr/bin/freeplane
 
 #
@@ -35,7 +60,7 @@ rm -fr Images
 #
 cd ../../../..
 mkdir -p usr/share/icons/hicolor/32x32/apps
-cp usr/versions/freeplane-${VERSION}/freeplane.png -resize 48x48 usr/share/icons/hicolor/32x32/apps/freeplane-icon.png
+cp usr/versions/freeplane-${VERSION}/freeplane.png usr/share/icons/hicolor/32x32/apps/freeplane-icon.png
 mkdir -p usr/share/applications
 cd usr/share/applications
 cat > freeplane.desktop << _EOF
