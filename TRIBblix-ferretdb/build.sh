@@ -6,6 +6,7 @@
 #
 git clone https://github.com/FerretDB/FerretDB
 cd FerretDB
+git checkout v2.3.1
 
 #
 cd tools
