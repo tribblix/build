@@ -1,4 +1,0 @@
-PKG="TRIBblix-imaginary"
-NAME="Image processing microservice"
-VERSION="1.2.4.3"
-ZAP_URL="https://github.com/h2non/imaginary"
