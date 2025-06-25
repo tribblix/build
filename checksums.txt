@@ -2957,3 +2957,4 @@ python_dotenv-1.1.1.tar.gz a8a6399716257f45be6a007360200409fce5cda2661e3dec71d23
 icewm-3.8.0.tar.lz 525df5fc9d328bd3ead25f2e262d2a15bdfa8fe7828d98f111a064dd169ac18f
 multidict-6.5.1.tar.gz a835ea8103f4723915d7d621529c80ef48db48ae0c818afcabe0f95aa1febc3a
 license_expression-30.4.3.tar.gz 49f439fea91c4d1a642f9f2902b58db1d42396c5e331045f41ce50df9b40b1f2
+eventlet-0.40.1.tar.gz aee74de74ac6634a1dac1ed58dc93b5dc2abaef3c7b5e76fd7f195f1662f25ef
