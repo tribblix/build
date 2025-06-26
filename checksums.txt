@@ -2959,3 +2959,4 @@ multidict-6.5.1.tar.gz a835ea8103f4723915d7d621529c80ef48db48ae0c818afcabe0f95aa
 license_expression-30.4.3.tar.gz 49f439fea91c4d1a642f9f2902b58db1d42396c5e331045f41ce50df9b40b1f2
 eventlet-0.40.1.tar.gz aee74de74ac6634a1dac1ed58dc93b5dc2abaef3c7b5e76fd7f195f1662f25ef
 yt_dlp-2025.6.25.tar.gz 242b648e1a18ab04bdd4cc175a317fe8ec3ad7d0175eee9f981912624b3d6c8b
+google_api_python_client-2.174.0.tar.gz 9eb7616a820b38a9c12c5486f9b9055385c7feb18b20cbafc5c5a688b14f3515
