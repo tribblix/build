@@ -7,6 +7,15 @@
 mkdir -p usr/bin
 rm -f usr/versions/Umlet/umlet.exe
 rm -f usr/versions/Umlet/Umlet.exe
+
+#
+# different architectures have different versions of java available
+# the version here must match the depend file(s)
+#
+
+case `uname -p` in
+sparc)
+
 cat > usr/bin/umlet <<EOF
 #!/bin/sh
 #
@@ -16,6 +25,25 @@ JAVA_HOME=/usr/jdk/instances/jdk17
 export JAVA_HOME
 exec /usr/versions/Umlet/umlet.sh "\$@"
 EOF
+
+;;
+
+*)
+
+cat > usr/bin/umlet <<EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+JAVA_HOME=/usr/jdk/instances/jdk21
+export JAVA_HOME
+exec /usr/versions/Umlet/umlet.sh "\$@"
+EOF
+
+;;
+
+esac
+
 chmod 755 usr/bin/umlet
 
 #
