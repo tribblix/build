@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# SSP doesn't work in 32-bit, but the only consumer is 64-bit wireshark
-# so we no longer need to ship a 32-bit library
+# SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/cmbuild +64 libssh-0.9.7
-${THOME}/build/genpkg TRIBlibssh libssh-0.9.7
+env TRIBBLIX_CFLAGS=-D_POSIX_PTHREAD_SEMANTICS ${THOME}/build/cmbuild +64 libssh-0.11.2 -C -DWITH_EXAMPLES=OFF
+${THOME}/build/genpkg TRIBlibssh libssh-0.11.2
