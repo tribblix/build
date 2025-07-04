@@ -2995,3 +2995,4 @@ rich_argparse-1.7.1.tar.gz d7a493cde94043e41ea68fb43a74405fa178de981bf7b800f7a3b
 google_api_python_client-2.175.0.tar.gz f6d5b5c0141194a72cebef33feb1377fa668b3f14dc90a2fae258dbbbdcdb30c
 fonttools-4.58.5.tar.gz b2a35b0a19f1837284b3a23dd64fd7761b8911d50911ecd2bdbaf5b2d1b5df9c
 notebook-7.4.4.tar.gz 392fd501e266f2fb3466c6fcd3331163a2184968cb5c5accf90292e01dfe528c
+dulwich-0.23.1.tar.gz 3d30e11a882817059b134fa9918d2ec5c95c3a3bd2e21034a368cf9e50d27ae3
