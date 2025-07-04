@@ -2993,3 +2993,4 @@ Mojolicious-9.41.tar.gz c13db80169698fa3d76901cf03a06ef78fb496ed0b9275b4f558f6e8
 cmd2-2.7.0.tar.gz 81d8135b46210e1d03a5a810baf859069a62214788ceeec3588f44eed86fbeeb
 rich_argparse-1.7.1.tar.gz d7a493cde94043e41ea68fb43a74405fa178de981bf7b800f7a3bd02ac5c27be
 google_api_python_client-2.175.0.tar.gz f6d5b5c0141194a72cebef33feb1377fa668b3f14dc90a2fae258dbbbdcdb30c
+fonttools-4.58.5.tar.gz b2a35b0a19f1837284b3a23dd64fd7761b8911d50911ecd2bdbaf5b2d1b5df9c
