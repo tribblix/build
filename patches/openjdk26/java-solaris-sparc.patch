@@ -962,12 +962,12 @@
 -
  NMT_TrackingLevel MemTracker::_tracking_level = NMT_unknown;
  
- Deferred<MemBaseline> MemTracker::_baseline;
+ DeferredStatic<MemBaseline> MemTracker::_baseline;
 --- old/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.774837489 -0700
 +++ new/src/hotspot/share/nmt/memTracker.hpp	2020-05-20 18:00:39.374829809 -0700
 @@ -37,11 +37,9 @@
+ #include "utilities/deferredStatic.hpp"
  #include "utilities/nativeCallStack.hpp"
- #include "utilities/deferred.hpp"
  
 -extern volatile bool NMT_stack_walkable;
 -

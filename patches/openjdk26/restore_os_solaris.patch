@@ -2300,7 +2300,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/src/hotspot/os/solaris/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2025-04-19 12:08:38.483600745 +0100
-@@ -0,0 +1,2751 @@
+@@ -0,0 +1,2746 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -2573,7 +2573,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +size_t os::rss() { return (size_t)0; }
 +
 +static hrtime_t first_hrtime = 0;
-+static const hrtime_t hrtime_hz = 1000*1000*1000;
 +static volatile hrtime_t max_hrtime = 0;
 +
 +
@@ -3169,10 +3168,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  // Avoiding excessive CAS operations to hot RW locations is critical.
 +  // See https://blogs.oracle.com/dave/entry/cas_and_cache_trivia_invalidate
 +  return (prev == obsv) ? now : obsv;
-+}
-+
-+double os::elapsedVTime() {
-+  return (double)gethrvtime() / (double)hrtime_hz;
 +}
 +
 +// DLL functions
