@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBcmd2-python-312 cmd2-2.6.2
+${THOME}/build/pkg_pep518 -N TRIBcmd2-python-312 cmd2-2.7.0
