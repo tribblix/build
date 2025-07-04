@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+4
+
+Removed c{1,2}_globals_solaris.hpp like the other oses did.
+
 26+3
 
 Minor patch noise.

@@ -2301,7 +2301,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -373,26 +219,6 @@
+@@ -376,26 +222,6 @@
      }
  }
  
@@ -2328,7 +2328,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -634,65 +460,6 @@
+@@ -637,65 +463,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -2394,7 +2394,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -807,20 +574,10 @@
+@@ -810,20 +577,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -2415,7 +2415,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -837,61 +594,8 @@
+@@ -840,61 +597,8 @@
      }
  #endif
  
@@ -2983,7 +2983,7 @@
  
 --- old/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:49.005318809 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/jgss/wrapper/SunNativeProvider.java	2020-05-20 18:02:48.665312280 -0700
-@@ -84,9 +84,6 @@
+@@ -83,9 +83,6 @@
          String defaultLib = System.getProperty("sun.security.jgss.lib");
          if (defaultLib == null || defaultLib.trim().equals("")) {
              gssLibs = switch (OperatingSystem.current()) {
