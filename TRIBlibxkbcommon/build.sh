@@ -2,5 +2,8 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/dobuild -64only libxkbcommon-0.8.2
-${THOME}/build/genpkg TRIBlibxkbcommon libxkbcommon-0.8.2
+# xkbregistry pulls in libxml2 as an extra dependency, and wasn't
+# present in the earlier versions we shipped
+#
+$THOME/build/mesonbuild -64only libxkbcommon-xkbcommon-1.10.0 -C "-Denable-wayland=false -Denable-xkbregistry=false"
+${THOME}/build/genpkg TRIBlibxkbcommon libxkbcommon-xkbcommon-1.10.0
