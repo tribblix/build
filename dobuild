@@ -39,9 +39,9 @@ WORKING_ROOT=$(pwd)
 
 case $# in
     0)
-	echo "Usage: $0 [-64|+64|-64only|+64only] [-gnu] src_name \\"
-        echo "  [-B|-S subdir] [-P alt_prefix] [-C configure_args] \\"
-	echo "  [-M make_args] [-J parallelism] [-L]"
+	echo "Usage: $0 [-64|+64|-64only|+64only] [-A] [-gnu] src_name \\"
+        echo "  [-B|-S subdir] [-P|+P alt_prefix] [-C|+C configure_args] \\"
+	echo "   [-E|+E sysconf_dir] [-M make_args] [-J parallelism] [-L]"
 	exit 1
 	;;
 esac
@@ -104,6 +104,7 @@ BUILDGNU="false"
 # Other arguments are
 # package name
 # -A automatically run autogen.sh
+# -B out of tree build directory
 # -S subdir
 # -P alternate_prefix
 # +P alternate library prefix
