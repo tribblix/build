@@ -3921,9 +3921,9 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +}
 +
 +size_t os::Solaris::page_size_for_alignment(size_t alignment) {
-+  assert(is_aligned(alignment, (size_t) os::vm_page_size()),
++  assert(is_aligned(alignment, os::vm_page_size()),
 +         SIZE_FORMAT " is not aligned to " SIZE_FORMAT,
-+         alignment, (size_t) os::vm_page_size());
++         alignment, os::vm_page_size());
 +
 +  const int page_sizes_max = 9;
 +  size_t _illumos_page_sizes[page_sizes_max];
@@ -3934,7 +3934,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +    }
 +  }
 +
-+  return (size_t) os::vm_page_size();
++  return os::vm_page_size();
 +}
 +
 +int os::Solaris::commit_memory_impl(char* addr, size_t bytes,
@@ -3946,7 +3946,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +
 +    // The syscall memcntl requires an exact page size (see man memcntl for details).
 +    size_t page_size = page_size_for_alignment(alignment_hint);
-+    if (page_size > (size_t) os::vm_page_size()) {
++    if (page_size > os::vm_page_size()) {
 +      (void)Solaris::setup_large_pages(addr, bytes, page_size);
 +    }
 +  }
@@ -3996,7 +3996,7 @@ diff -urN /tmp/a/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 +  assert((intptr_t)(addr + bytes) % alignment_hint == 0, "End should be aligned.");
 +  if (UseLargePages) {
 +    size_t page_size = Solaris::page_size_for_alignment(alignment_hint);
-+    if (page_size > (size_t) os::vm_page_size()) {
++    if (page_size > os::vm_page_size()) {
 +      Solaris::setup_large_pages(addr, bytes, page_size);
 +    }
 +  }
