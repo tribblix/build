@@ -5,4 +5,8 @@
 # orjson needs rust, but is now an optional dependency (not
 # even declared)
 #
-${THOME}/build/pkg_pep518 -N TRIBglances-python-312 glances-4.3.0.8
+# the "ip" extra declares a dependency on netifaces2 which is
+# non-portable and doesn't work, but netifaces might actually
+# work
+#
+${THOME}/build/pkg_pep518 -N TRIBglances-python-312 glances-4.3.2
