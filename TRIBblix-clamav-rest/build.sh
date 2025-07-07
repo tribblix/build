@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # clamav-rest
 #
 # seems to not bump the jarfile version
