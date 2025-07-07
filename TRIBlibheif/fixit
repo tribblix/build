@@ -6,3 +6,7 @@ rm -f usr/lib/gdk-pixbuf-2.0/2.10.0/loaders/*.la
 rm -f usr/lib/*/gdk-pixbuf-2.0/2.10.0/loaders/*.la
 rm -f usr/lib/gdk-pixbuf-2.0/2.10.0/loaders/*.a
 rm -f usr/lib/*/gdk-pixbuf-2.0/2.10.0/loaders/*.a
+#
+# just in case the build for this managed to succeed
+#
+rm -f usr/bin/heif-view
