@@ -1,4 +1,4 @@
 PKG="TRIBtext-less"
 NAME="Gnu less"
-VERSION="661.0"
+VERSION="679.0"
 ZAP_URL="http://www.greenwoodsoftware.com/less/"
