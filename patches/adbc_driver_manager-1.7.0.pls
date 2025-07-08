@@ -1,0 +1,1 @@
+-p1 adbc_driver_manager.patch
