@@ -365,31 +365,31 @@ do
 		;;
 	esac
 	if [ "x$DO64" != "xfalse" ]; then
-	    cd "${WORKING_ROOT}"
+	    cd "${WORKING_ROOT}" || exit 1
 	    if [ ! -d "${pkg}-64bit" ]; then
 		echo "Cannot find source directory ${pkg}-64bit"
 		exit 1
 	    fi
 	    if [[ -n $DO_LD ]]; then
-		cd "${pkg}-64bit"
+		cd "${pkg}-64bit" || exit 1
 		touch .tribblix_ldopts
 		cat >> .tribblix_ldopts <<EOF
 LD_OPTIONS="${LD_OPTIONS}"
 export LD_OPTIONS
 EOF
-		cd "${WORKING_ROOT}"
+		cd "${WORKING_ROOT}" || exit 1
 	    fi
 	    if [[ -n $SUBDIR ]]; then
-		cd "${pkg}-64bit"
+		cd "${pkg}-64bit" || exit 1
 		echo "${TSUBDIR}" > .tribblix_build_subdir
-		cd "${WORKING_ROOT}"
+		cd "${WORKING_ROOT}" || exit 1
 	    fi
 	    mkdir -p "${pkg}-64bit/${BUILDDIR}"
-	    cd "${pkg}-64bit${SUBDIR}"
+	    cd "${pkg}-64bit${SUBDIR}" || exit 1
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
-		${BUILD}/patches/${pkg}.preconf.64
+		"${BUILD}/patches/${pkg}.preconf.64"
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
-		${BUILD}/patches/${pkg}.preconf
+		"${BUILD}/patches/${pkg}.preconf"
 	    fi
 	    if [ -n "${AUTOGEN}" ]; then
 		if [ -f autogen.sh ]; then
@@ -400,9 +400,9 @@ EOF
 	    fi
 	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_CONF_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O -m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O -m64 ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure --prefix="${IPREFIX}" ${CONFARGS64} ${ECONFARGS64} --bindir="${IPREFIX}/${BINDIR64}" ${LIBARGS64}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
-		${BUILD}/patches/${pkg}.postconf.64
+		"${BUILD}/patches/${pkg}.postconf.64"
 	    elif [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
-		${BUILD}/patches/${pkg}.postconf
+		"${BUILD}/patches/${pkg}.postconf"
 	    fi
 	    #
 	    # if we have MAKEARGS it need to be quoted, but if it's empty
@@ -415,29 +415,29 @@ EOF
 	    fi
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
-	    cd "${WORKING_ROOT}"
-	    if [ ! -d ${pkg} ]; then
+	    cd "${WORKING_ROOT}" || exit 1
+	    if [ ! -d "${pkg}" ]; then
 		echo "Cannot find source directory ${pkg}"
 		exit 1
 	    fi
 	    if [[ -n $DO_LD ]]; then
-		cd "${pkg}"
+		cd "${pkg}" || exit 1
 		touch .tribblix_ldopts
 		cat >> .tribblix_ldopts <<EOF
 LD_OPTIONS="${LD_OPTIONS}"
 export LD_OPTIONS
 EOF
-		cd "${WORKING_ROOT}"
+		cd "${WORKING_ROOT}" || exit 1
 	    fi
 	    if [[ -n $SUBDIR ]]; then
-		cd "${pkg}"
+		cd "${pkg}" || exit 1
 		echo "${TSUBDIR}" > .tribblix_build_subdir
-		cd "${WORKING_ROOT}"
+		cd "${WORKING_ROOT}" || exit 1
 	    fi
 	    mkdir -p "${pkg}/${BUILDDIR}"
-	    cd "${pkg}${SUBDIR}"
+	    cd "${pkg}${SUBDIR}" || exit 1
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
-		${BUILD}/patches/${pkg}.preconf
+		"${BUILD}/patches/${pkg}.preconf"
 	    fi
 	    if [ -n "${AUTOGEN}" ]; then
 		if [ -f autogen.sh ]; then
@@ -448,7 +448,7 @@ EOF
 	    fi
 	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_CONF_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-O ${TRIBBLIX_CFLAGS}" CXXFLAGS="-O ${TRIBBLIX_CXXFLAGS}" ${SRCDIR}/configure ${CONFARGS32} ${ECONFARGS32} --prefix="${IPREFIX}" ${LIBARGS32}
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
-		${BUILD}/patches/${pkg}.postconf
+		"${BUILD}/patches/${pkg}.postconf"
 	    fi
 	    #
 	    # if we have MAKEARGS it needs to be quoted, but if it's empty

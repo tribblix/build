@@ -75,7 +75,6 @@ do
   PNAME=${ZPKG%%.*}
   PKGVERS=${PKG#*.}
   PKGNAME=$(unzip -p "$ZPKG" "${PNAME}/pkginfo" 2>/dev/null | awk -F= '{if ($1 == "NAME") print $NF}')
-  PKGCKSUM=$(<"${ZPKG}.md5")
   if [ -f catalog ]; then
       DEPLIST=$(grep "^${PKG}|" catalog |awk -F'|' '{print $3}')
   else
@@ -87,7 +86,6 @@ do
   FMRI=${FMRI/pkg:\/\/on-nightly\//}
   FMRI=${FMRI/pkg:\/\/omnios\//}
   echo "<li>IPS name: ${FMRI}</li>"
-  #echo "<li><a href=\"${PNAME}.${PKGVERS}.zap\">Download</a> [MD5: ${PKGCKSUM}]</li>"
   for mypkgdep in $DEPLIST
   do
       if [ -f "${mypkgdep}.0.${RELNUM}.zap" ]; then

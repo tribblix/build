@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -99,19 +99,19 @@ GMAKE="/usr/bin/gmake"
 #
 # sanity check
 #
-if [ ! -d $BUILD ]; then
+if [ ! -d "$BUILD" ]; then
    bail "unable to find build directory $BUILD"
 fi
-if [ ! -d $BROOT ]; then
-   mkdir -p ${BROOT}
+if [ ! -d "$BROOT" ]; then
+   mkdir -p "${BROOT}"
 fi
-if [ ! -d $BROOT ]; then
+if [ ! -d "$BROOT" ]; then
    bail "unable to find temporary directory $BROOT"
 fi
-if [ ! -x $GMAKE ]; then
+if [ ! -x "$GMAKE" ]; then
    bail "unable to find $GMAKE"
 fi
-if [ ! -f ${BUILD}/${PKGNAME}/pkginfo ]; then
+if [ ! -f "${BUILD}/${PKGNAME}/pkginfo" ]; then
    echo "Please create ${BUILD}/${PKGNAME}/pkginfo"
    bail "missing package data"
 fi
@@ -120,8 +120,8 @@ fi
 # define and create working location
 #
 BDIR="${BROOT}/pkg.$$"
-rm -fr ${BDIR}
-mkdir $BDIR
+rm -fr "${BDIR}"
+mkdir "$BDIR"
 
 #
 # normally we want the makefiles to use ginstall rather than the
@@ -146,47 +146,47 @@ case $# in
 	if [ -f .tribblix_ldopts ]; then
 	    . ./.tribblix_ldopts
 	fi
-	if [ -x ${BUILD}/${PKGNAME}/fixpreinstall ]; then
-	    ${BUILD}/${PKGNAME}/fixpreinstall $BDIR
+	if [ -x "${BUILD}/${PKGNAME}/fixpreinstall" ]; then
+	    "${BUILD}/${PKGNAME}/fixpreinstall" "$BDIR"
 	fi
-	$GMAKE -k $INSTALLWHAT ${DESTDIRNAME}=$BDIR $MYINSTALL $MAKEARGS
-	if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
-	    ${BUILD}/${PKGNAME}/fixinstall $BDIR
+	$GMAKE -k $INSTALLWHAT "${DESTDIRNAME}"=$BDIR $MYINSTALL $MAKEARGS
+	if [ -x "${BUILD}/${PKGNAME}/fixinstall" ]; then
+	    "${BUILD}/${PKGNAME}/fixinstal"l "$BDIR"
 	fi
 	;;
 *)
 	shift
-	for SOFTDIR in $*
+	for SOFTDIR in "$@"
 	do
-	    if [ ! -d ${SOFTDIR}-64bit ]; then
-		if [ ! -d ${SOFTDIR} ]; then
+	    if [ ! -d "${SOFTDIR}-64bit" ]; then
+		if [ ! -d "${SOFTDIR}" ]; then
 		    bail "missing directory ${SOFTDIR}"
 		fi
 	    fi
 	done
-	for SOFTDIR in $*
+	for SOFTDIR in "$@"
 	do
-	    if [ -d ${SOFTDIR}-64bit ]; then
-		cd ${SOFTDIR}-64bit
+	    if [ -d "${SOFTDIR}-64bit" ]; then
+		cd "${SOFTDIR}-64bit" || exit 1
 		if [ -f .tribblix_ldopts ]; then
 		    . ./.tribblix_ldopts
 		fi
 		if [ -f .tribblix_build_subdir ]; then
-		    cd $(cat .tribblix_build_subdir)
+		    cd "$(cat .tribblix_build_subdir)" || exit 1
 		fi
 		if [ -f .tribblix_cmake_build ]; then
-		    cd $(cat .tribblix_cmake_build)
+		    cd "$(cat .tribblix_cmake_build)" || exit 1
 		fi
-		if [ -x ${BUILD}/${PKGNAME}/fixpreinstall.64 ]; then
-		    ${BUILD}/${PKGNAME}/fixpreinstall.64 $BDIR
+		if [ -x "${BUILD}/${PKGNAME}/fixpreinstall.64" ]; then
+		    "${BUILD}/${PKGNAME}/fixpreinstall.64" "$BDIR"
 		fi
 		if [ -f .tribblix_meson_build ]; then
-		    env DESTDIR=$BDIR ninja -C $(cat .tribblix_meson_build) install
+		    env DESTDIR=$BDIR ninja -C "$(cat .tribblix_meson_build)" install
 		else
-		    $GMAKE -k $INSTALLWHAT ${DESTDIRNAME}=$BDIR $MYINSTALL $MAKEARGS
+		    $GMAKE -k $INSTALLWHAT "${DESTDIRNAME}"=$BDIR $MYINSTALL $MAKEARGS
 		fi
-		if [ -x ${BUILD}/${PKGNAME}/fixinstall.64 ]; then
-		    ${BUILD}/${PKGNAME}/fixinstall.64 $BDIR
+		if [ -x "${BUILD}/${PKGNAME}/fixinstall.64" ]; then
+		    "${BUILD}/${PKGNAME}/fixinstall.64" "$BDIR"
 		fi
 		if [ -f ../.tribblix_cmake_build ]; then
 		    cd ..
@@ -196,27 +196,27 @@ case $# in
 		fi
 		cd ..
 	    fi
-	    if [ -d ${SOFTDIR} ]; then
-		cd ${SOFTDIR}
+	    if [ -d "${SOFTDIR}" ]; then
+		cd "${SOFTDIR}" || exit 1
 		if [ -f .tribblix_ldopts ]; then
 		    . ./.tribblix_ldopts
 		fi
 		if [ -f .tribblix_build_subdir ]; then
-		    cd $(cat .tribblix_build_subdir)
+		    cd "$(cat .tribblix_build_subdir)" || exit 1
 		fi
 		if [ -f .tribblix_cmake_build ]; then
-		    cd $(cat .tribblix_cmake_build)
+		    cd "$(cat .tribblix_cmake_build)" || exit 1
 		fi
-		if [ -x ${BUILD}/${PKGNAME}/fixpreinstall ]; then
-		    ${BUILD}/${PKGNAME}/fixpreinstall $BDIR
+		if [ -x "${BUILD}/${PKGNAME}/fixpreinstall" ]; then
+		    "${BUILD}/${PKGNAME}/fixpreinstall" "$BDIR"
 		fi
 		if [ -f .tribblix_meson_build ]; then
-		    env DESTDIR=$BDIR ninja -C $(cat .tribblix_meson_build) install
+		    env DESTDIR=$BDIR ninja -C "$(cat .tribblix_meson_build)" install
 		else
-		    $GMAKE -k $INSTALLWHAT ${DESTDIRNAME}=$BDIR $MYINSTALL $MAKEARGS
+		    $GMAKE -k $INSTALLWHAT "${DESTDIRNAME}"=$BDIR $MYINSTALL $MAKEARGS
 		fi
-		if [ -x ${BUILD}/${PKGNAME}/fixinstall ]; then
-		    ${BUILD}/${PKGNAME}/fixinstall $BDIR
+		if [ -x "${BUILD}/${PKGNAME}/fixinstall" ]; then
+		    "${BUILD}/${PKGNAME}/fixinstall" "$BDIR"
 		fi
 		if [ -f ../.tribblix_cmake_build ]; then
 		    cd ..
@@ -233,7 +233,7 @@ esac
 #
 # create the SVR4 package
 #
-${BUILD}/create_pkg ${PKGNAME} ${BDIR} ${BROOT}
+"${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
 
 # remove our temporary files
 rm -fr ${BDIR}

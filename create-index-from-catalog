@@ -60,11 +60,6 @@ do
   rline=${rline#*\|}
   #pick the third field
   DEPLIST=${rline%%\|*}
-  #strip off two fields
-  rline=${rline#*\|}
-  rline=${rline#*\|}
-  #pick the 5th field
-  PKGCKSUM=${rline%%\|*}
   PKGI=${PKG}/pkginfo
   if [ -f "${PKGI}" ]; then
     PKGNAME=""
@@ -90,7 +85,6 @@ do
     fi
     echo "<ul>"
     echo "<li>Version: ${PKGVERS}</li>"
-    #echo "<li><a href=\"${PKG}.${PKGVERS}.zap\">Download</a> [MD5: ${PKGCKSUM}]</li>"
     for mydep in $DEPLIST
     do
         if [ -d "$mydep" ]; then
