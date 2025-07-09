@@ -60,12 +60,12 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk21 jdk21
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk21 .
-#jdk21 is LTS, but don't make it the default yet
-#ln -s openjdk21 latest
-#mkdir -p /tmp/jdk/usr/bin
-#cd /tmp/jdk/usr/bin
-#ln -s ../jdk/latest/bin/* .
-#rm -f amd64 sparcv9
+#jdk21 is LTS and now the default
+ln -s openjdk21 latest
+mkdir -p /tmp/jdk/usr/bin
+cd /tmp/jdk/usr/bin
+ln -s ../jdk/latest/bin/* .
+rm -f amd64 sparcv9
 
 #
 # need to create a certificate bundle

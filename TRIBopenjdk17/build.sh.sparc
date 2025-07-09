@@ -31,6 +31,8 @@ zap install autoconf
 # use jdk17 as the boot jdk, it's LTS so we don't depend on the
 # unsupported jdk16
 #
+# sparc needs --disable-jvm-feature-jfr
+#
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk17 \
 --with-native-debug-symbols=none \
@@ -38,6 +40,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --enable-deprecated-ports=yes \
+--disable-jvm-feature-jfr \
 --with-jobs=3
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
@@ -45,7 +48,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # first testing looks like this:
 #
-# cd build/solaris-x86_64-server-release/images/jdk
+# cd build/solaris-sparcv9-server-release/images/jdk
 # ./bin/java -version
 #
 # openjdk version "17.0.15-internal" 2025-04-15
@@ -56,18 +59,18 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 rm -fr /tmp/jdk
 mkdir -p /tmp/jdk/usr/versions/openjdk17
 mkdir -p /tmp/jdk/usr/jdk/instances
-(cd build/solaris-x86_64-server-release/images/jdk; tar cf - *) | ( cd /tmp/jdk/usr/versions/openjdk17 ; tar xf -)
+(cd build/solaris-sparcv9-server-release/images/jdk; tar cf - *) | ( cd /tmp/jdk/usr/versions/openjdk17 ; tar xf -)
 cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk17 jdk17
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk17 .
-# no longer default on x86
-#ln -s openjdk17 latest
-#mkdir -p /tmp/jdk/usr/bin
-#cd /tmp/jdk/usr/bin
-#ln -s ../jdk/latest/bin/* .
-#rm -f amd64 sparcv9
-#cd /tmp/jdk/usr/versions/openjdk17
+# still default on sparc
+ln -s openjdk17 latest
+mkdir -p /tmp/jdk/usr/bin
+cd /tmp/jdk/usr/bin
+ln -s ../jdk/latest/bin/* .
+rm -f amd64 sparcv9
+cd /tmp/jdk/usr/versions/openjdk17
 rm `find . -name '*.diz'`
 
 #
