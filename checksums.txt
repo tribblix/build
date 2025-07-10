@@ -3064,3 +3064,4 @@ oslo_service-4.2.2.tar.gz ee404c3b8258e7f5b5d302f633edab57108e928c18a6fd9302d5ff
 oslo_middleware-6.6.0.tar.gz 6ccb9c80f189febc5cc50e113c0e894c992c3697dfd6fe722ff84fccdb5ba526
 xarray-2025.7.1.tar.gz 2884bf5672b540fcc6ff8c20a3196bda0d78fbfb4d67398d60526e97c2faceef
 google_api_python_client-2.176.0.tar.gz 2b451cdd7fd10faeb5dd20f7d992f185e1e8f4124c35f2cdcc77c843139a4cf1
+httpd-2.4.64.tar.bz2 120b35a2ebf264f277e20f9a94f870f2063342fbff0861404660d7dd0ab1ac29
