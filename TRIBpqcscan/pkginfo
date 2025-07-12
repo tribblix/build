@@ -1,0 +1,4 @@
+PKG="TRIBpqcscan"
+NAME="Post-Quantum Cryptography Scanner"
+VERSION="0.7.0.0"
+ZAP_URL="https://github.com/anvilsecure/pqcscan"
