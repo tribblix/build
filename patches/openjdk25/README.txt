@@ -4,11 +4,11 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
-25+30
+25+30, 25+31
 
 No changes.
 
-25+29, 25+28
+25+28, 25+29
 
 Trivial patch noise.
 
