@@ -2,4 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBpikepdf-python-312 pikepdf-9.9.0
+# need pybind11 v3 to restore -N
+#
+${THOME}/build/pkg_pep518 TRIBpikepdf-python-312 pikepdf-9.10.0
