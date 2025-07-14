@@ -1,4 +1,4 @@
 PKG="TRIBgnu-texinfo"
 NAME="Gnu texinfo"
-VERSION="7.1.1.0"
+VERSION="7.2.0"
 ZAP_URL="https://www.gnu.org/software/texinfo/"
