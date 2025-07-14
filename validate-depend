@@ -87,3 +87,8 @@ for dep in $(grep '^[ ]*$' ./*/depend* ./*/build_require*)
 do
     echo "Blank line in $dep"
 done
+
+#
+# and malformed depend files
+#
+grep -v '^[PI] ' ./*/depend*
