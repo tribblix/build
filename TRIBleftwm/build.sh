@@ -11,11 +11,11 @@
 #
 
 #
-$THOME/build/unpack leftwm-0.5.1
-cd leftwm-0.5.1
+$THOME/build/unpack leftwm-0.5.4
+cd leftwm-0.5.4
 # cargo build --release
 # need to be specific, defaults to journald == systemd
-env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --profile optimized --no-default-features --features=lefthk,file-log
+env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --profile optimized --no-default-features --features=lefthk,file-log,xlib
 cd ..
 #
 # note leftwm-theme is the theme manager, it doesn't actually contain any
@@ -44,7 +44,7 @@ rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/bin
 mkdir -p /tmp/ll/usr/share/man/man1
 
-cd leftwm-0.5.1
+cd leftwm-0.5.4
 ginstall -s -Dm755 ./target/optimized/leftwm ./target/optimized/leftwm-worker ./target/optimized/leftwm-state ./target/optimized/leftwm-check ./target/optimized/leftwm-command ./target/optimized/lefthk-worker -t /tmp/ll/usr/bin
 ginstall -m644 ./leftwm/doc/leftwm.1 -t /tmp/ll/usr/share/man/man1
 cd ..
