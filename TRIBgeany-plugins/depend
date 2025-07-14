@@ -1,11 +1,9 @@
 P TRIBenchant
 P TRIBgdk-pixbuf
 P TRIBgeany
-P TRIBgpgme
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
 P TRIBlibgit2
-P TRIBlibsoup
 P TRIBlibxml2
