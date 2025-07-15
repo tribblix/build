@@ -2,6 +2,10 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+24.0.2
+
+Minor patch noise.
+
 Cleanup: remove unused check_addr0_done.
 
 Cleanup: remove the Studio type linkage block from the gcc header.

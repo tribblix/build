@@ -2,13 +2,13 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# jdk mainline has been migrated to git
-# go to https://github.com/openjdk/jdk/tags
+# jdk has been migrated to git
+# go to https://github.com/openjdk/jdk24u/tags
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk24u-jdk-24.0.1-ga
-cd jdk24u-jdk-24.0.1-ga
+${THOME}/build/unpack jdk24u-jdk-24.0.2-ga
+cd jdk24u-jdk-24.0.2-ga
 
 #
 # jdk24 needs autoconf installed
@@ -50,9 +50,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "24.0.1-internal" 2025-04-15
-# OpenJDK Runtime Environment (build 24.0.1-internal-adhoc.ptribble.jdk24u-jdk-24.0.1-ga)
-# OpenJDK 64-Bit Server VM (build 24.0.1-internal-adhoc.ptribble.jdk24u-jdk-24.0.1-ga, mixed mode, sharing)
+# openjdk version "24.0.2-internal" 2025-07-15
+# OpenJDK Runtime Environment (build 24.0.2-internal-adhoc.ptribble.jdk24u-jdk-24.0.2-ga)
+# OpenJDK 64-Bit Server VM (build 24.0.2-internal-adhoc.ptribble.jdk24u-jdk-24.0.2-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

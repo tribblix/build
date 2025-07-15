@@ -102,8 +102,8 @@
 -  OUT=$REAL_CPU`echo $OUT | sed -e 's/[^-]*//'`
 -fi
 -
- # Test and fix cygwin on x86_64
- echo $OUT | grep 86-pc-cygwin > /dev/null 2> /dev/null
+ # Test and fix cygwin/msys CPUs
+ echo $OUT | grep -e "-pc-cygwin" > /dev/null 2> /dev/null
  if test $? != 0; then
 --- old/make/autoconf/build-performance.m4	2020-05-20 17:58:29.436334895 -0700
 +++ new/make/autoconf/build-performance.m4	2020-05-20 17:58:29.052327522 -0700
@@ -414,7 +414,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -176,7 +173,6 @@
+@@ -174,7 +171,6 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -594,7 +594,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -280,7 +278,7 @@
+@@ -284,7 +282,7 @@
        DISABLED_WARNINGS_clang_aix_sun_awt_X11_GtkFileDialogPeer.c := \
            parentheses, \
        DISABLED_WARNINGS_clang_aix_awt_InputMethod.c := unused-function sign-compare, \
@@ -603,7 +603,7 @@
        LIBS_unix := $(LIBDL) $(LIBM) $(X_LIBS) -lX11 -lXext -lXi -lXrender \
            -lXtst, \
        LIBS_linux := -lpthread, \
-@@ -401,7 +399,7 @@
+@@ -405,7 +403,7 @@
  endif
  
  ifeq ($(call isTargetOsType, unix)+$(call isTargetOs, macosx), true+false)
@@ -612,7 +612,7 @@
    ifeq ($(ENABLE_HEADLESS_ONLY), false)
      LIBJAWT_JDK_LIBS_unix += libawt_xawt
    else
-@@ -421,7 +419,6 @@
+@@ -425,7 +423,6 @@
      LDFLAGS_windows := $(LDFLAGS_CXX_JDK), \
      LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
      JDK_LIBS_unix := $(LIBJAWT_JDK_LIBS_unix), \
@@ -640,7 +640,7 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -258,7 +258,6 @@
+@@ -259,7 +259,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS), \
        LIBS_unix := $(LIBM) -lpthread, \
        LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
@@ -648,7 +648,7 @@
        LIBS_macosx := -liconv \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -308,7 +307,7 @@
+@@ -309,7 +308,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif
@@ -1579,7 +1579,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -618,7 +611,7 @@
+@@ -620,7 +613,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -2985,8 +2985,8 @@
  #else
 --- old/src/java.base/unix/native/libnio/fs/UnixNativeDispatcher.c	2020-05-20 18:01:37.127938711 -0700
 +++ new/src/java.base/unix/native/libnio/fs/UnixNativeDispatcher.c	2020-05-20 18:01:36.787932182 -0700
-@@ -46,17 +46,10 @@
- #include <sys/xattr.h>
+@@ -50,17 +50,10 @@
+ #include <sys/ea.h>
  #endif
  
 -/* For POSIX-compliant getpwuid_r, getgrgid_r on Solaris */
@@ -3004,7 +3004,7 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -346,8 +339,7 @@
+@@ -350,8 +343,7 @@
  
      /* system calls that might not be available at run time */
  
