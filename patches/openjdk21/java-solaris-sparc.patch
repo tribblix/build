@@ -140,7 +140,7 @@
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -285,7 +285,7 @@
+@@ -284,7 +284,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -149,7 +149,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -298,7 +298,7 @@
+@@ -297,7 +297,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -811,7 +811,7 @@
      LIBS_windows := $(JDKLIB_LIBS) ws2_32.lib iphlpapi.lib, \
  ))
  
-@@ -66,7 +65,6 @@
+@@ -67,7 +66,6 @@
          $(call SET_SHARED_LIBRARY_ORIGIN), \
      LIBS := $(JDKLIB_LIBS), \
      LIBS_linux := $(LIBDL), \
@@ -1282,7 +1282,7 @@
  // NULL vs NULL_WORD:
  // On Linux NULL is defined as a special type '__null'. Assigning __null to
  // integer variable will cause gcc warning. Use NULL_WORD in places where a
-@@ -150,15 +101,7 @@
+@@ -147,15 +102,7 @@
  #endif // !LINUX && !_ALLBSD_SOURCE
  
  // checking for nanness
@@ -1318,7 +1318,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1082,7 +1082,7 @@
+@@ -1083,7 +1083,7 @@
  
  #ifndef PRODUCT
  
@@ -1329,7 +1329,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1899,8 +1899,6 @@
+@@ -1910,8 +1910,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1338,7 +1338,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1965,8 +1963,6 @@
+@@ -1976,8 +1974,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
