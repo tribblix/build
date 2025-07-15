@@ -1,0 +1,26 @@
+--- aide-0.19.1-64bit/src/aide.c~	Fri Jul  4 19:27:53 2025
++++ aide-0.19.1-64bit/src/aide.c	Tue Jul 15 14:24:26 2025
+@@ -35,6 +35,10 @@
+ #define PCRE2_CODE_UNIT_WIDTH 8
+ #include <pcre2.h>
+ 
++#ifdef __sun__
++#include <termios.h>
++#endif
++
+ #include <unistd.h>
+ 
+ #include "attributes.h"
+--- aide-0.19.1-64bit/src/progress.c~	Sun Apr  6 07:49:38 2025
++++ aide-0.19.1-64bit/src/progress.c	Tue Jul 15 14:24:57 2025
+@@ -28,6 +28,10 @@
+ #include <sys/ioctl.h>
+ #include <unistd.h>
+ 
++#ifdef __sun__
++#include <termios.h>
++#endif
++
+ #include "aide.h"
+ #include "progress.h"
+ #include "log.h"

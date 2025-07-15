@@ -1,6 +1,6 @@
 --- aide-0.17.4/configure~	Wed Jan 19 20:13:03 2022
 +++ aide-0.17.4/configure	Mon Jan 24 08:24:39 2022
-@@ -5963,10 +5963,6 @@
+@@ -6161,10 +6161,6 @@
      if ld_supports_flag -z,now; then
        EXTRA_LDFLAGS="$EXTRA_LDFLAGS -Wl,-z,now"
      fi

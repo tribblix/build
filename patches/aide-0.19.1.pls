@@ -1,1 +1,2 @@
 -p1 aide-configure.patch
+-p1 aide-termios.patch
