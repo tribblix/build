@@ -3,6 +3,10 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
+17.0.16
+
+Minor patch noise.
+
 Cleanup: remove unused check_addr0_done.
 
 Cleanup: remove the unshuffle_list.txt hunk.

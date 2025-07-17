@@ -10,8 +10,8 @@
 # just pull the ga tag
 #
 cd ~/ud
-${THOME}/build/unpack jdk17u-jdk-17.0.15-ga
-cd jdk17u-jdk-17.0.15-ga
+${THOME}/build/unpack jdk17u-jdk-17.0.16-ga
+cd jdk17u-jdk-17.0.16-ga
 
 #
 # jdk17 needs autoconf installed
