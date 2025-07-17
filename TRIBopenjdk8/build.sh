@@ -15,11 +15,11 @@
 # check the build number corresponding to GA here
 # https://github.com/openjdk/jdk8u/tags
 # so you use the correct --with-build-number below
-# ga for 8u452 was b09
+# ga for 8u462 was b08
 #
 cd ~/ud
-${THOME}/build/unpack jdk8u-jdk8u452-ga
-cd jdk8u-jdk8u452-ga
+${THOME}/build/unpack jdk8u-jdk8u462-ga
+cd jdk8u-jdk8u462-ga
 
 #
 # The fcs is magic to hide the milestone from the version string.
@@ -29,7 +29,7 @@ cd jdk8u-jdk8u452-ga
 # new gcc build
 #
 env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin bash ./configure \
---with-milestone=fcs --with-update-version=452 --with-build-number=b09 \
+--with-milestone=fcs --with-update-version=462 --with-build-number=b08 \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk1.8.0 \
 --with-toolchain-type=gcc \
 --with-native-debug-symbols=none \
@@ -46,9 +46,9 @@ env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin gmake all USE_GCC=1 AS=/usr/gnu/bin/
 #
 # cd build/solaris-x86_64-normal-server-release/images/j2sdk-image
 # ./bin/java -version
-# openjdk version "1.8.0_452"
-# OpenJDK Runtime Environment (build 1.8.0_452-b09)
-# OpenJDK 64-Bit Server VM (build 25.452-b09, mixed mode)
+# openjdk version "1.8.0_462"
+# OpenJDK Runtime Environment (build 1.8.0_462-b08)
+# OpenJDK 64-Bit Server VM (build 25.462-b08, mixed mode)
 #
 
 #
@@ -61,7 +61,6 @@ env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin gmake all USE_GCC=1 AS=/usr/gnu/bin/
 #
 ${THOME}/build/patches/mkcacerts -f /etc/openssl/cacert.pem -o /tmp/cacerts -k /usr/jdk/instances/jdk1.8.0/bin/keytool -s /usr/bin/openssl
 
-
 rm -fr /tmp/jdk
 mkdir -p /tmp/jdk/usr/versions/openjdk8
 mkdir -p /tmp/jdk/usr/jdk/instances
@@ -70,7 +69,8 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk8 jdk1.8.0
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk8 .
-# latest is now jdk17
+# no longer default
+
 cp /tmp/cacerts /tmp/jdk/usr/versions/openjdk8/jre/lib/security
 
 #
