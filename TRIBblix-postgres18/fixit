@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# don't ship html docs
+#
+rm -fr opt/tribblix/postgres18/share/doc/html
