@@ -3130,3 +3130,4 @@ mercurial-7.0.3.tar.gz 59fc84640524da6f1938ea7e4eb0cd579fc7fedaaf563a916cb4f9dac
 retrying-1.4.1.tar.gz 4d206e0ed2aff5ef2f3cd867abb9511e9e8f31127c5aca20f1d5246e476903b0
 s3transfer-0.13.1.tar.gz c3fdba22ba1bd367922f27ec8032d6a1cf5f10c934fb5d68cf60fd5a23d936cf
 jupyter_lsp-2.2.6.tar.gz 0566bd9bb04fd9e6774a937ed01522b555ba78be37bebef787c8ab22de4c0361
+jsonschema-4.25.0.tar.gz e63acf5c11762c0e6672ffb61482bdf57f0876684d8d249c0fe2d730d48bc55f
