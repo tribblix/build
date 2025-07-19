@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # have a slightly more relevant config
 #
 cp ${BUILDROOT}/patches/uwm.appmenu usr/share/uwm/config/appmenu

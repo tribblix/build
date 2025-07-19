@@ -50,8 +50,8 @@ LINE;
 SUBMENU "Editors" {
   ITEM "gvim":"gvim";
   ITEM "Nedit":"nedit";
-  ITEM "Xcoral":"xcoral";
   ITEM "Emacs":"emacs";
+  ITEM "Geany":"geany";
 }
 
 LINE;
@@ -59,6 +59,7 @@ LINE;
 SUBMENU "Web" {
   ITEM "Pale Moon":"palemoon";
   ITEM "NetSurf":"netsurf-gtk";
+  ITEM "Dillo":"dillo";
   ITEM "HexChat":"hexchat";
 }
 
@@ -70,6 +71,7 @@ SUBMENU "Office" {
   ITEM "Gnumeric":"gnumeric";
   ITEM "Grisbi":"grisbi";
   ITEM "Calendar":"osmo";
+  ITEM "Claws Mail":"claws-mail";
 }
 
 LINE;
