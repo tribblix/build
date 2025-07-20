@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -61,7 +61,13 @@ case $1 in
 	;;
 esac
 
-while getopts "b:n:" opt; do
+#
+# with -b checkout the given branch
+# with -n handle tarball name mismatches
+# with -N the tarball is missing the top level
+#
+DODIR=""
+while getopts "b:n:N" opt; do
     case $opt in
     b)
 	BRANCHARGS="-b $OPTARG"
@@ -73,6 +79,10 @@ while getopts "b:n:" opt; do
 	shift
 	shift
 	;;
+    N)
+	DODIR="y"
+	shift
+	;;
     esac
 done
 
@@ -81,7 +91,7 @@ case $# in
 	pkg=$1
 	;;
 *)
-	echo "Usage: $0 [+32|-64|+64] [-b branch] [-n dirname] filename"
+	echo "Usage: $0 [+32|-64|+64] [-b branch] [-n dirname] [-N] filename"
 	exit 1
 	;;
 esac
@@ -100,6 +110,15 @@ esac
 if [ "x${pkg}" = "x${upkg}" ]; then
     echo "ERROR: -n name must differ from primary name"
     exit 1
+fi
+
+#
+# if we were given -N then the archive doesn't have a top-level
+# directory, so we fake one that matches the name
+# we have to do this here as the name wasn't known when the -N was parsed
+#
+if [ -n "${DODIR}" ]; then
+    DODIR="${pkg}"
 fi
 
 #
@@ -191,7 +210,12 @@ do
 	if [ -n "${DONEUNPACK}" ]; then
 	    echo "ERROR: multiple $pkg sources $DONEUNPACK and $filetype"
 	fi
-        gtar axf "${SRCDIR}/${pkg}${filetype}"
+	if [ -n "${DODIR}" ]; then
+	    mkdir -m 0755 "${DODIR}"
+            gtar -C "${DODIR}" -axf "${SRCDIR}/${pkg}${filetype}"
+	else
+            gtar -axf "${SRCDIR}/${pkg}${filetype}"
+	fi
 	if [ -n "${upkg}" ]; then
 	    mv "${upkg}" "${pkg}"
 	fi
@@ -199,7 +223,12 @@ do
         if [ "x$DO64" != "xfalse" ]; then
             mv "${pkg}" "${pkg}-64bit"
             if [ "x$DO32" != "xfalse" ]; then
-                gtar axf "${SRCDIR}/${pkg}${filetype}"
+		if [ -n "${DODIR}" ]; then
+		    mkdir -m 0755 "${DODIR}"
+                    gtar -C "${DODIR}" -axf "${SRCDIR}/${pkg}${filetype}"
+		else
+                    gtar -axf "${SRCDIR}/${pkg}${filetype}"
+		fi
 		if [ -n "${upkg}" ]; then
 		    mv "${upkg}" "${pkg}"
 		fi
