@@ -1,0 +1,18 @@
+#!/bin/ksh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# the man page was copied from OmniOS
+#
+mkdir -p usr/share/man/man1
+cp ${BUILDROOT}/patches/7zz.1 usr/share/man/man1
+
+#
+# compat links for the old 7z/7za/7zr shipped by p7zip
+#
+ln -s 7zz usr/bin/7z
+ln -s 7zz usr/bin/7za
+ln -s 7zz usr/bin/7zr
+ln -s 7zz.1 usr/share/man/man1/7z.1
+ln -s 7zz.1 usr/share/man/man1/7za.1
+ln -s 7zz.1 usr/share/man/man1/7zr.1

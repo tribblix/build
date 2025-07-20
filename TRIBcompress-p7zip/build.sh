@@ -1,14 +1,14 @@
 #!/bin/sh
 #
-# 64-bit by postconf edits to the makefile
+# SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/dobuild p7zip_16.02
-cd p7zip_16.02
-gmake 7z
-gmake 7zr
-rm -fr /tmp/gg
-gmake install DEST_DIR=/tmp/gg DEST_BIN=/usr/bin DEST_HOME=/usr DEST_SHARE=/usr/lib DEST_SHARE_DOC=/usr/share/doc DEST_MAN=/usr/share/man
-cp contrib/gzip-like_CLI_wrapper_for_7z/p7zip /tmp/gg/usr/bin
-cp contrib/gzip-like_CLI_wrapper_for_7z/man1/p7zip.1 /tmp/gg/usr/share/man/man1
-rm -fr /tmp/gg/usr/share/doc
-${THOME}/build/create_pkg TRIBcompress-p7zip /tmp/gg
+# replaces the old p7zip, but keep the package and command names
+# for compatibility
+#
+$THOME/build/unpack -N 7z2500-src
+cd 7z2500-src/CPP/7zip/Bundles/Alone2
+gmake -j8 -f ../../cmpl_gcc.mak CC=gcc CXX=g++ LOCAL_FLAGS_SYS=-m64 LDFLAGS=-m64 LIB2=
+#
+# see fixit and fixinstall for the actual installation
+#
+${THOME}/build/genpkg TRIBcompress-p7zip
