@@ -2879,7 +2879,7 @@
  #endif
 --- old/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:46.009261282 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:45.625253909 -0700
-@@ -401,12 +401,7 @@
+@@ -404,12 +404,7 @@
              xrenderLibHandle = dlopen("libXrender.so", RTLD_LAZY | RTLD_GLOBAL);
          }
  
