@@ -1,4 +1,4 @@
 PKG="TRIBdatamash"
 NAME="GNU datamash for basic numeric,textual and statistical operations"
-VERSION="1.8.0"
+VERSION="1.9.0"
 ZAP_URL="https://www.gnu.org/software/datamash/"
