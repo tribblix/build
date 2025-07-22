@@ -1,4 +1,4 @@
 PKG="TRIBpy-serializable-python-312"
 NAME="Python py-serializable"
-VERSION="2.0.0.0"
+VERSION="2.1.0.0"
 ZAP_URL="https://pypi.org/project/py-serializable/"
