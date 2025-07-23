@@ -1,0 +1,98 @@
+Using common words conflicts with system headers. Specifically WRAP
+conflicts with termios.
+
+--- scipy-1.16.0/scipy/ndimage/src/_rank_filter_1d.cpp~	Sun Jun 22 02:57:22 2025
++++ scipy-1.16.0/scipy/ndimage/src/_rank_filter_1d.cpp	Wed Jul 23 10:06:37 2025
+@@ -19,11 +19,11 @@
+ };
+ 
+ typedef enum {
+-  NEAREST = 0,
+-  WRAP = 1,
+-  REFLECT = 2,
+-  MIRROR = 3,
+-  CONSTANT = 4,
++  SP_NEAREST = 0,
++  SP_WRAP = 1,
++  SP_REFLECT = 2,
++  SP_MIRROR = 3,
++  SP_CONSTANT = 4,
+ } Mode;
+ 
+ /*--- Helper Functions ---*/
+@@ -161,27 +161,27 @@
+   T *data = new T[win_len]();
+ 
+   switch (mode) {
+-  case REFLECT:
++  case SP_REFLECT:
+     for (i = win_len - lim - 1; i > -1; i--) {
+       MediatorInsert(data, m, in_arr[i]);
+     }
+     break;
+-  case CONSTANT:
++  case SP_CONSTANT:
+     for (i = win_len - lim; i > 0; i--) {
+       MediatorInsert(data, m, cval);
+     }
+     break;
+-  case NEAREST:
++  case SP_NEAREST:
+     for (i = win_len - lim; i > 0; i--) {
+       MediatorInsert(data, m, in_arr[0]);
+     }
+     break;
+-  case MIRROR:
++  case SP_MIRROR:
+     for (i = win_len - lim; i > 0; i--) {
+       MediatorInsert(data, m, in_arr[i]);
+     }
+     break;
+-  case WRAP:
++  case SP_WRAP:
+     if (win_len % 2 == 0) {
+         offset = 2;
+     }
+@@ -202,7 +202,7 @@
+     out_arr[i - lim] = data[m->heap[0]];
+   }
+   switch (mode) {
+-  case REFLECT:
++  case SP_REFLECT:
+     arr_len_thresh = arr_len - 1;
+     for (i = 0; i < lim; i++) {
+       MediatorInsert(data, m, in_arr[arr_len_thresh - i]);
+@@ -209,13 +209,13 @@
+       out_arr[lim2 + i] = data[m->heap[0]];
+     }
+     break;
+-  case CONSTANT:
++  case SP_CONSTANT:
+     for (i = 0; i < lim; i++) {
+       MediatorInsert(data, m, cval);
+       out_arr[lim2 + i] = data[m->heap[0]];
+     }
+     break;
+-  case NEAREST:
++  case SP_NEAREST:
+     arr_len_thresh = arr_len - 1;
+     for (i = 0; i < lim; i++) {
+       MediatorInsert(data, m, in_arr[arr_len_thresh]);
+@@ -222,7 +222,7 @@
+       out_arr[lim2 + i] = data[m->heap[0]];
+     }
+     break;
+-  case MIRROR:
++  case SP_MIRROR:
+     arr_len_thresh = arr_len - 2;
+     for (i = 0; i < lim; i++) {
+       MediatorInsert(data, m, in_arr[arr_len_thresh - i]);
+@@ -229,7 +229,7 @@
+       out_arr[lim2 + i] = data[m->heap[0]];
+     }
+     break;
+-  case WRAP:
++  case SP_WRAP:
+     for (i = 0; i < lim; i++) {
+       MediatorInsert(data, m, in_arr[i]);
+       out_arr[lim2 + i] = data[m->heap[0]];
