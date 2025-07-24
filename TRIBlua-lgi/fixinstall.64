@@ -28,9 +28,5 @@ esac
 # the lgi install doesn't really pick up the 64-bit install locations
 # at all
 #
-# note that we install 64-bit first, then run this to move the shared
-# library, then install 32-bit
-#
-
 mkdir -p ${DESTDIR}/usr/lib/${ARCH64}/lua/5.3/lgi
 mv ${DESTDIR}/usr/lib/lua/5.3/lgi/corelgilua51.so ${DESTDIR}/usr/lib/${ARCH64}/lua/5.3/lgi/corelgilua51.so
