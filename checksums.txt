@@ -3165,3 +3165,4 @@ globus_sdk-3.61.0.tar.gz 6b9c9f05a095ec7c26b94cbf22ed9dcecd8b4309a8ac17bf823cb34
 google_api_python_client-2.177.0.tar.gz 9ffd2b57d68f5afa7e6ac64e2c440534eaa056cbb394812a62ff94723c31b50e
 reportlab-4.4.3.tar.gz 073b0975dab69536acd3251858e6b0524ed3e087e71f1d0d1895acb50acf9c7b
 uharfbuzz-0.51.0.tar.gz fbddcff72e2f6af5ce6b22ede1f91f6c019cb9dee6b5bf81f1bdbfdf83c1d47b
+publicsuffixlist-1.0.2.20250724.tar.gz 79928f8a475ae56b63c524be9d919fb5c31516316b64c78756df57025e50416b
