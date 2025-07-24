@@ -1,10 +1,11 @@
+# SPDX-FileCopyrightText: 2025 Peter Tribble
+# SPDX-License-Identifier: CDDL-1.0
 [Desktop Entry]
-Encoding=UTF-8
 Name=Lynx
 Comment=Text-only browser
 Exec=lynx
 Icon=lynx
 Terminal=true
 Type=Application
-Categories=Network;
+Categories=Network;WebBrowser;
 StartupNotify=true

@@ -1,10 +1,11 @@
+# SPDX-FileCopyrightText: 2025 Peter Tribble
+# SPDX-License-Identifier: CDDL-1.0
 [Desktop Entry]
-Encoding=UTF-8
 Name=Pale Moon Browser
 Comment=Browse the World Wide Web
 Exec=palemoon
 Icon=web-browser
 Terminal=false
 Type=Application
-Categories=Network;
+Categories=Network;WebBrowser;
 StartupNotify=true
