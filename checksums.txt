@@ -3166,3 +3166,4 @@ google_api_python_client-2.177.0.tar.gz 9ffd2b57d68f5afa7e6ac64e2c440534eaa056cb
 reportlab-4.4.3.tar.gz 073b0975dab69536acd3251858e6b0524ed3e087e71f1d0d1895acb50acf9c7b
 uharfbuzz-0.51.0.tar.gz fbddcff72e2f6af5ce6b22ede1f91f6c019cb9dee6b5bf81f1bdbfdf83c1d47b
 publicsuffixlist-1.0.2.20250724.tar.gz 79928f8a475ae56b63c524be9d919fb5c31516316b64c78756df57025e50416b
+nettle-3.10.2.tar.gz fe9ff51cb1f2abb5e65a6b8c10a92da0ab5ab6eaf26e7fc2b675c45f1fb519b5
