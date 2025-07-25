@@ -3174,3 +3174,5 @@ libSM-1.2.6.tar.xz be7c0abdb15cbfd29ac62573c1c82e877f9d4047ad15321e7ea97d1e43d83
 narwhals-1.48.1.tar.gz b375cfdfc20b84b5ac0926f34c5c1373eb23ebea48d47bf75e282161cda63e34
 rich-14.1.0.tar.gz e497a48b844b0320d45007cdebfeaeed8db2a4f4bcf49f15e455cfc4af11eaa8
 pmd-dist-7.16.0-bin.zip 8f9fed9eaac4fb1fb9882f8820570dcb1d8647ada158437ba28424a07a48edfd
+pygraphviz-1.14.tar.gz c10df02377f4e39b00ae17c862f4ee7e5767317f1c6b2dfd04cea6acc7fc2bea
+dnsviz-0.11.1.tar.gz 203b1aa2e3aa09af415a96a0afc98eef4acf845ab8af57bf9f7569bd13161717

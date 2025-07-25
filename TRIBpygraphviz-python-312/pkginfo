@@ -1,0 +1,4 @@
+PKG="TRIBpygraphviz-python-312"
+NAME="Python pygraphviz"
+VERSION="1.14.0"
+ZAP_URL="https://pypi.org/project/pygraphviz/"
