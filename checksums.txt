@@ -3191,3 +3191,4 @@ xapian-core-1.4.29.tar.xz c55c9bc8613ad3ec2c218eafca088c218ab7cddcba7ef08f3af0e5
 xapian-omega-1.4.29.tar.xz 4fba4e9d496b4e4dba0a409ce2342e5958a69c6ab3e60ee4dda25be5c20cf83e
 xapian-bindings-1.4.29.tar.xz 1740e927bb6850ef67d99a0b808a1b7c9af3f16c15577e0261bbd3fc016fc8ce
 grep-3.12.tar.xz 2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9
+libmicrohttpd-1.0.2.tar.gz df324fcd0834175dab07483133902d9774a605bfa298025f69883288fd20a8c7
