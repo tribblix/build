@@ -1,4 +1,4 @@
 PKG="TRIBpdsh"
-NAME="high performance, parallel remote shell utility"
-VERSION="2.34.0"
+NAME="High performance, parallel remote shell utility"
+VERSION="2.35.0"
 ZAP_URL="https://github.com/chaos/pdsh"
