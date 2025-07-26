@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is the CLI, delete Qt files
 #
 rm -f usr/lib/libQZint.so*
