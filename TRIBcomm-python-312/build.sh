@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_pep518 TRIBcomm-python-312 comm-0.2.2
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 -N TRIBcomm-python-312 comm-0.2.3
