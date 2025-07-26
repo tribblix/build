@@ -2995,7 +2995,7 @@
                          "libgssapi_krb5.so",
 --- old/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:50.089339623 -0700
 +++ new/src/java.security.jgss/share/classes/sun/security/krb5/Config.java	2020-05-20 18:02:49.705332249 -0700
-@@ -905,8 +905,6 @@
+@@ -981,8 +981,6 @@
              if (name == null) {
                  name = "c:\\winnt\\krb5.ini";
              }
