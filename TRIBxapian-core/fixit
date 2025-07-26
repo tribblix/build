@@ -1,8 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # clean up a bit
 #
 rm -fr usr/share/doc/xapian-core/apidoc
-#
-rm -f usr/lib/lib*.la
-rm -f usr/lib/*/lib*.la
