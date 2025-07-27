@@ -1,4 +1,4 @@
 PKG="TRIBx11-info-clients"
 NAME="xdpyinfo, xdriinfo, xlsatoms, xlsclients, xlsfonts, xvinfo, xwininfo"
-VERSION="1.0.10"
+VERSION="1.0.11"
 ZAP_URL="https://www.x.org/releases/individual/app/"
