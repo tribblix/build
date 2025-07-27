@@ -7,4 +7,8 @@
 #
 # get the fixit script to do all the work
 #
+# note that the jfreechart URLs lead to the source, the binary jar we
+# need to package is best obtained from maven at
+# https://central.sonatype.com/artifact/org.jfree/jfreechart/versions
+#
 ${THOME}/build/genpkg TRIBjfreechart-150
