@@ -1,6 +1,6 @@
 --- a/ui/curses.c	Sun Feb  5 07:27:33 2017
 +++ b/ui/curses.c	Sat Jun  3 11:39:49 2017
-@@ -800,8 +800,10 @@
+@@ -995,8 +995,10 @@
      raw();
      noecho();
      start_color();
