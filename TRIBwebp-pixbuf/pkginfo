@@ -1,4 +1,4 @@
 PKG="TRIBwebp-pixbuf"
 NAME="WebP pixbuf loader"
-VERSION="0.2.4.0"
+VERSION="0.2.7.0"
 ZAP_URL="https://github.com/aruiz/webp-pixbuf-loader"
