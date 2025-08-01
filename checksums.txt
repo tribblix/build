@@ -3230,3 +3230,4 @@ webp-pixbuf-loader-0.2.4.tar.gz 54f448383d1c384409bd1690cdde9b44535c346855902e29
 webp-pixbuf-loader-0.2.7.tar.gz 61ce5e8e036043f9d0e78c1596a621788e879c52aedf72ab5e78a8c44849411a
 palemoon-33.8.1.1.solaris2.11-x86_64-illumos.tar.xz 8a9e7d482313dac2bc74bf5f19e13daf6367ccb3528be0eae6cebfc87243fe72
 packageurl_python-0.17.3.tar.gz 719995f0c7f706890277ba57ec95afcaa9696c836a7675770a1279b01a41f7be
+pygithub-2.7.0.tar.gz 7cd6eafabb09b5369afba3586d86b1f1ad6f1326d2ff01bc47bb26615dce4cbb
