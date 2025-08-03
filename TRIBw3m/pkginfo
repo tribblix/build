@@ -1,0 +1,4 @@
+PKG="TRIBw3m"
+NAME="w3m"
+VERSION="0.5.4"
+ZAP_URL="https://git.sr.ht/~rkta/w3m"
