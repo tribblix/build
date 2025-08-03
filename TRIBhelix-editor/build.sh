@@ -6,6 +6,7 @@
 #
 git clone https://github.com/helix-editor/helix
 cd helix
+git checkout 25.07.1
 cargo build --release
 
 #
