@@ -1,0 +1,4 @@
+PKG="TRIBlib-perl-5-config-inifiles"
+NAME="Perl Config::IniFiles module"
+VERSION="3.000003.0"
+ZAP_URL="https://metacpan.org/pod/Config::IniFiles"
