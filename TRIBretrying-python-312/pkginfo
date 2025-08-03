@@ -1,4 +1,4 @@
 PKG="TRIBretrying-python-312"
 NAME="Python retrying"
-VERSION="1.4.1.0"
+VERSION="1.4.2.0"
 ZAP_URL="https://pypi.org/project/retrying/"
