@@ -1,0 +1,11 @@
+--- kirigami-addons-1.9.0-64bit/src/dateandtime/infinitecalendarviewmodel.cpp~	Fri Jul  4 00:01:28 2025
++++ kirigami-addons-1.9.0-64bit/src/dateandtime/infinitecalendarviewmodel.cpp	Mon Aug  4 14:19:52 2025
+@@ -55,7 +55,7 @@
+         break;
+     }
+     case DecadeScale: {
+-        const int firstYear = ((floor(m_currentDate.date().year() / 10)) * 10) - 1; // E.g. For 2020 have view start at 2019...
++      const int firstYear = ((floor((double)m_currentDate.date().year() / 10)) * 10) - 1; // E.g. For 2020 have view start at 2019...
+         QDateTime firstDay(QDate(firstYear, m_currentDate.date().month(), 1), {});
+         firstDay = firstDay.addYears(((-m_datesToAdd * 12) / 2) + 10); // 3 * 4 grid so 12 years, end at 2030, and align for mid index to be current decade
+ 
