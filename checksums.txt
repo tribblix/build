@@ -3254,3 +3254,4 @@ Config-IniFiles-3.000003.tar.gz 3c457b65d98e5ff40bdb9cf814b0d5983eb0c53fb8696bda
 IO-Stringy-2.113.tar.gz 51220fcaf9f66a639b69d251d7b0757bf4202f4f9debd45bdd341a6aca62fe4e
 coreutils-9.7.tar.xz e8bb26ad0293f9b5a1fc43fb42ba970e312c66ce92c1b0b16713d7500db251bf
 maxima-5.48.0.tar.gz 75af2bf1894df2a17aef8a5c378d72d4d53c669b9f47d60ec5ba8c8676c4aaab
+kolourpaint-24.12.3.tar.xz d1097d88df9f7c81325bcbcca6a2e740d3ec877bc9e107aafbeb6c69053f70c1
