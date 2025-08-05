@@ -7,7 +7,7 @@
 /usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
 #
 # libdir puts the libraries where we want them
-# now move the pkgconfig files back
+# now move the pkgconfig files back to a more predictable location
 #
 case `uname -p` in
 sparc)
@@ -18,9 +18,10 @@ i386)
   ;;
 esac
 
-mkdir -p usr/lib
 mkdir -p usr/lib/${ARCH64}
-mv usr/lib/xorg/pkgconfig usr/lib
+if [ -d usr/lib/xorg/pkgconfig ]; then
+    mv usr/lib/xorg/pkgconfig usr/lib
+fi
 mv usr/lib/xorg/${ARCH64}/pkgconfig usr/lib/${ARCH64}
 
 #
@@ -31,7 +32,9 @@ mv usr/lib/xorg/${ARCH64}/pkgconfig usr/lib/${ARCH64}
 # this will remove the directory if it's empty
 # if there are manpages, then it will have no effect
 #
-/usr/bin/rmdir usr/share
+if [ -d usr/share ]; then
+    /usr/bin/rmdir usr/share
+fi
 
 #
 # remove static archives
