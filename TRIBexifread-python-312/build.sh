@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBexifread-python-312 exifread-3.3.2
+${THOME}/build/pkg_pep518 -N TRIBexifread-python-312 exifread-3.4.0
