@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# we've never shipped la files for libffi so it's safe to delete them
+# SPDX-License-Identifier: CDDL-1.0
 #
 case `uname -p` in
 sparc)
@@ -10,8 +10,6 @@ i386)
   ARCH64="amd64"
   ;;
 esac
-rm usr/lib/lib*.la
-rm usr/lib/${ARCH64}/lib*.la
 #
 # fixinstall.64 saved the 64-bit ffi.h for us, now
 # we wrap it
