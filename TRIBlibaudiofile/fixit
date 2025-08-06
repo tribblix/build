@@ -2,23 +2,11 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
 
 #
 # stupid libtool embeds the relative build-time pathname of the library
 # in the binaries, so we need to fix that
 #
 cd usr/bin
-elfedit -e 'dyn:value -dynndx -s 1 libaudiofile.so' sfinfo
-elfedit -e 'dyn:value -dynndx -s 1 libaudiofile.so' sfconvert
-
-cd $ARCH64
 elfedit -e 'dyn:value -dynndx -s 1 libaudiofile.so' sfinfo
 elfedit -e 'dyn:value -dynndx -s 1 libaudiofile.so' sfconvert
