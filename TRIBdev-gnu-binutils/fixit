@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # gcc444 for illumos build thinks it knows where gas lives
 #
 mkdir -p usr/sfw/bin

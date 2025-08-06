@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-
+# SPDX-License-Identifier: CDDL-1.0
 #
 # fix up the pc file - none of the directories it adds with -L make sense
 #

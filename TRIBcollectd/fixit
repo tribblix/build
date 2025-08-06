@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # move any perl manpages that end up in the wrong place
 #
 mv usr/man/man3 usr/share/man

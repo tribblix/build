@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # These are old closed binaries from DevPro
 # They used to be supplied as part of the make package, but that is now
 # delivered by illumos, with just make, so the old as and sccs bits that

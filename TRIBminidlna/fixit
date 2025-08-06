@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need to put the manifest under var for sparse-root zone support
 #
 mkdir -p var/svc/manifest/network

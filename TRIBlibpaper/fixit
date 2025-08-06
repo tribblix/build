@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the paperconf utility is marked as deprecated for removal
 # so don't bother shipping it now
 #

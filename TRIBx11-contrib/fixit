@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # not the old naming convention
 #
 # the man pages haven't been moved at this point

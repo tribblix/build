@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 VERSION=v1.22.19
 #
 # convenience symlinks don't actually work

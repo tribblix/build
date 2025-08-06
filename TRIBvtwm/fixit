@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # have a slightly more relevant config
 #
 cp ${BUILDROOT}/patches/system.vtwmrc usr/share/X11/vtwm/system.vtwmrc

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # clean up
 #
 gunzip usr/share/man/man1/ctwm.1.gz

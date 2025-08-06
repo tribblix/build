@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # extract out xorriso-tcltk into a separate package
 #
 XDIR=/tmp/xor-gui.$$

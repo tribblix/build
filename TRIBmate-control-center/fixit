@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # remove the following files as they conflict with shared-mime-info
 # need to update the mime cache in postinstall
 #

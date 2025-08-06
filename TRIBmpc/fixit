@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # libmpdclient is statically linked so don't expose it
 #
 rm -fr usr/include/mpd

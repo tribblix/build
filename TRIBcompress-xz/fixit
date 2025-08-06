@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -fr usr/share/doc/xz/examples_old
 rm -fr usr/share/doc/xz/examples
 rm -fr usr/share/doc/xz/api

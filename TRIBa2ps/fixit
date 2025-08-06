@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-# the only lib is static, which gets automatically elided
-# so make sure to remove the .la file too
+# SPDX-License-Identifier: CDDL-1.0
 #
-rm -f usr/lib/liba2ps.la
+# the only file here should be automatically elided
+#
 rmdir usr/lib

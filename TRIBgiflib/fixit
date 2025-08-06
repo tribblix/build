@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # only ship the 64-bit binaries
 #
 case `uname -p` in

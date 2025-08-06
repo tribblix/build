@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we don't use this, really we don't
 #
 rm -fr usr/lib/systemd

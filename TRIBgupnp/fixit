@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # it does need uuid, but that comes from the base os and
 # there is no uuid.pc file for it
 #

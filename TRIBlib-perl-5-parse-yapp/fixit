@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 /bin/rm -fr usr/perl5/5.34/lib
 #
 # put the command in the normal path so the samba

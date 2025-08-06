@@ -1,3 +1,6 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 cd usr/bin
 ln -s mupdf-x11 mupdf

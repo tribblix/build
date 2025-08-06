@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this creates the data-docbook package
 #
 # in OI this is now split into 5 packages, we keep them as one

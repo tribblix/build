@@ -1,3 +1,5 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${BUILDROOT}/unpack bootstrap-trunk-x86_64-20230910

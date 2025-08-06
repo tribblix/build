@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # replace the menu with something more appropriate
 #
 cp ${BUILDROOT}/patches/openbox-menu.xml usr/etc/xdg/openbox/menu.xml

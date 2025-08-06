@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # put a versioned binary in the normal path
 #
 mkdir -p usr/bin

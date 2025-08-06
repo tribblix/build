@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # don't need build artefacts
 #
 rm -f usr/lib/evince/3/backends/lib*.a

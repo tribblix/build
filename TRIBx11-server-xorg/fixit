@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -f `find usr -name '*.la'`
 #
 # this is shipped by TRIBx11-server-xserver-common

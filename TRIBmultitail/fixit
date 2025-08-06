@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # actually use the conf file
 #
 mv etc/multitail.conf.new etc/multitail.conf

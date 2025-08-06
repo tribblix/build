@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -f usr/lib/libcanberra-0.30/*.la
 rm -f usr/lib/*/libcanberra-0.30/*.la
 rm -f usr/lib/gtk-3.0/modules/*.la

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the libltdl shared library runtime is delivered by the TRIBlibltdl
 # package, so remove that from here
 #

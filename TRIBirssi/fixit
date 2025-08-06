@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # fix perl
 #
 rm -f usr/perl5/site_perl/5.*/*-solaris-thread-multi-64/perllocal.pod

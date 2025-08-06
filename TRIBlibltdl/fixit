@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this package only ships the libltdl runtime, remove the rest of libtool
 #
 # the removals here should be exactly complementary to those

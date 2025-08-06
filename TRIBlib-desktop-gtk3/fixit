@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # populate the immodule cache
 #
 # do this once at package creation rather than

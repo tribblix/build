@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # originally, the name was "Terminal"
 # install a symlink so anything using that name won't break
 #

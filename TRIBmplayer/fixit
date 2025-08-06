@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # add the default skin, without which things will fail
 #
 mkdir -p usr/share/mplayer/skins

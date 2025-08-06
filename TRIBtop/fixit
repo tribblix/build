@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we only want the 64-bit variant, without isaexec
 #
 rm -fr usr/bin/`uname -p`

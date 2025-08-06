@@ -1,4 +1,6 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -fr usr/share/man/??
 rm -fr usr/share/doc

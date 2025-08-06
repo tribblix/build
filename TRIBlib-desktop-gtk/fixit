@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # see /lib/svc/method/input-method-cache
 #
 case `uname -p` in

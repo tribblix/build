@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # remove anything that conflicts with the illumos supplied pieces
 #
 rm -fr etc var usr/sbin usr/lib usr/include

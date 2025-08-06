@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we don't use /usr/games
 #
 mv usr/games usr/bin

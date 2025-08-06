@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # cleanup junk from the source tree
 #
 if [ -d usr/versions/plan9 ]; then

@@ -1,2 +1,5 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 gunzip usr/share/man/man1/*.gz

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # symlinks so the X server can find the fonts
 #
 mkdir -p etc/X11/fontpath.d

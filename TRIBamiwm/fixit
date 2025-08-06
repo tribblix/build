@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this gets the install location embedded, fix it back
 #
 rm -f usr/bin/requestchoice

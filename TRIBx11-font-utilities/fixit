@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we have to build font-util both 32 and 64 so we ship both
 # versions of the pc file, but don't need 32 and 64-bit binaries
 #

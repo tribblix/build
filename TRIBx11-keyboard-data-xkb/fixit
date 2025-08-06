@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # HAL needs this as /usr/X11/lib/X11/xkb/xkbtable.map.
 #
 mkdir -p usr/share/X11/xkb

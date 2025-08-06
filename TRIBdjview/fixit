@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the project is called djview, the desktop file calls it djview4
 # so install the binary under that name
 #

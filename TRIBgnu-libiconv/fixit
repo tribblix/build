@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -f usr/gnu/lib/charset.alias
 #
 # don't want the html docs

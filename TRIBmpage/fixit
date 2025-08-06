@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # put the man pages in the right place
 #
 mv usr/man usr/share

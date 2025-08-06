@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # add symlinks needed for fpc to run
 #
 ln -s /usr/gnu/bin/ld usr/versions/fpc/bin/gld

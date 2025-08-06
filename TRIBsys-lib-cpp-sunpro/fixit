@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # These are old closed binaries from DevPro
 #
 # The tarball was created on an older system, we just unpack it here

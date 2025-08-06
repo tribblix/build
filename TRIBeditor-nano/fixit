@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -f usr/lib/charset.alias
 rm -fr usr/share/man/fr
 rm -fr usr/share/doc

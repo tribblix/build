@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # these binaries are only useful on windows
 #
 rm -f usr/bin/vsyasm

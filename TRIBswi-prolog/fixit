@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # get pkgconfig in the right place
 #
 case `uname -p` in

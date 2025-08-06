@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # some files have "odd" names incompatible with SVR4 packaging
 #
 mv usr/share/samba/setup/cn=samba.ldif usr/share/samba/setup/cn-samba.ldif

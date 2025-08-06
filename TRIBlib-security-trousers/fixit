@@ -1,5 +1,8 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
+#
 
 /bin/rm -f usr/lib/libtspi.la
 /bin/rm -f usr/lib/*/libtspi.la

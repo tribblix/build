@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # put things in the right place
 #
 mkdir -p usr/bin usr/share/applications usr/share/pixmaps
