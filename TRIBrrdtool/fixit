@@ -8,8 +8,6 @@ rmdir usr/man/man3 usr/man
 #
 rm -fr usr/share/doc
 rm -fr usr/share/rrdtool
-rm -f usr/lib/librrd.la
-rm -f usr/lib/*/librrd.la
 #
 # fix perl location
 #

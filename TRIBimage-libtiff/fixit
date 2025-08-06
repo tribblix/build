@@ -4,21 +4,7 @@
 #
 # clean up and move
 #
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
-#
 # the TRIBlibtiff-compat package ships older versions
-#
-# we never shipped .la files before, don't do so now
-#
-rm -f usr/lib/lib*.la
-rm -f usr/lib/${ARCH64}/lib*.la
 #
 # man pages are 3tiff not plain 3
 #

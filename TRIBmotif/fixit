@@ -2,11 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# kill .la files for Motif
-#
-/bin/rm -f usr/lib/lib*.la
-/bin/rm -f usr/lib/*/lib*.la
-#
 # these are programming demos
 #
 /bin/rm -fr usr/share/Xm

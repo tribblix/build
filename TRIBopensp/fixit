@@ -2,5 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-rm -f usr/lib/lib*.la
 rm -fr usr/share/doc/OpenSP/doc

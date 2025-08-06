@@ -8,5 +8,3 @@ mkdir -p usr/versions/python-3.12/lib/python3.12
 mv usr/lib/python3.12/site-packages usr/versions/python-3.12/lib/python3.12
 rmdir usr/lib/python3.12
 rm -fr usr/share/doc
-rm -f usr/lib/lib*.la
-rm -f usr/lib/*/lib*.la

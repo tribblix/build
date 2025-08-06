@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-rm -f usr/lib/lib*.la
-rm -f usr/lib/*/lib*.la
 mkdir -p var/net-snmp
 #
 # this is really a WIP app, undocumented, and removing it

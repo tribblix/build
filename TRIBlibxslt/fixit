@@ -2,32 +2,12 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# we never shipped .la files before, no need to do so now
-#
-case `uname -p` in
-sparc)
-  ARCH64="sparcv9"
-  ;;
-i386)
-  ARCH64="amd64"
-  ;;
-esac
-rm usr/lib/libxslt.la
-rm usr/lib/${ARCH64}/libxslt.la
-rm usr/lib/libexslt.la
-rm usr/lib/${ARCH64}/libexslt.la
-#
 # remove docs (gtk-doc is done automatically)
 #
 rm -fr usr/share/doc
 #
 # put python in the right place
 #
-if [ -d usr/lib/python3.11 ]; then
-    rm -f usr/lib/python3.11/site-packages/libxsltmod.la
-    mkdir -p usr/versions/python-3.11/lib
-    mv usr/lib/python3.11 usr/versions/python-3.11/lib
-fi
 if [ -d usr/lib/python3.12 ]; then
     rm -f usr/lib/python3.12/site-packages/libxsltmod.la
     mkdir -p usr/versions/python-3.12/lib

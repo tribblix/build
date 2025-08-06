@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-#
 case `uname -p` in
 sparc)
   ARCH64="sparcv9"
@@ -17,6 +16,3 @@ rm -f usr/lib/${ARCH64}/charset.alias
 
 rm -f usr/bin/idn2_noinstall
 rm -f usr/bin/${ARCH64}/idn2_noinstall
-
-rm -f usr/lib/libidn2.la
-rm -f usr/lib/${ARCH64}/libidn2.la

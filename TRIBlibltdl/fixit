@@ -10,5 +10,3 @@
 rm -fr usr/bin
 rm -fr usr/include
 rm -fr usr/share
-rm usr/lib/lib*.la
-rm usr/lib/*/lib*.la

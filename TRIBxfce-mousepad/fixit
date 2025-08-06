@@ -12,4 +12,3 @@ i386)
 esac
 
 mkdir -p usr/lib/${ARCH64}/mousepad/plugins
-rm -f usr/lib/${ARCH64}/libmousepad.la

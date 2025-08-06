@@ -2,12 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-#
-
-/bin/rm -f usr/lib/libtspi.la
-/bin/rm -f usr/lib/*/libtspi.la
-
-#
 # solaris auths
 #
 mkdir -p etc/security/auth_attr.d

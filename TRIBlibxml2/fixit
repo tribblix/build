@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# we never shipped .la files before, no need to do so now
-#
 case `uname -p` in
 sparc)
   ARCH64="sparcv9"
@@ -12,8 +10,6 @@ i386)
   ARCH64="amd64"
   ;;
 esac
-rm usr/lib/libxml2.la
-rm usr/lib/${ARCH64}/libxml2.la
 #
 # don't ship anything to do with cmake
 #
