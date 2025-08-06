@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# we don't ship .la files
-#
-/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`

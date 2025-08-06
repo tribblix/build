@@ -1,3 +1,0 @@
-#!/bin/sh
-rm -f usr/lib/libfl.la
-rm -f usr/lib/*/libfl.la
