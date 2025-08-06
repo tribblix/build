@@ -3277,3 +3277,4 @@ palemoon-33.8.1.2.solaris2.11-x86_64-illumos.tar.xz ddc2b39cc1217e2262324e57d44d
 apache-groovy-binary-5.0.0-rc-1.zip d248907a133cdb02eae2a7973e746abbf18241726e1d006eea579025ad7b234e
 opendal-0.46.0.tar.gz 334aa4c5b3cc0776598ef8d3c154f074f6a9d87981b951d70db1407efed3b06c
 trove_classifiers-2025.8.6.13.tar.gz 5a0abad839d2ed810f213ab133d555d267124ddea29f1d8a50d6eca12a50ae6e
+packageurl_python-0.17.5.tar.gz a7be3f3ba70d705f738ace9bf6124f31920245a49fa69d4b416da7037dd2de61
