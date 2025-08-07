@@ -4,6 +4,7 @@
 #
 git clone https://github.com/makeworld-the-better-one/amfora
 cd amfora
+git checkout v1.11.0
 gmake
 
 rm -fr /tmp/af123
