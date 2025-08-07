@@ -8,14 +8,14 @@ mkdir w
 cd w
 git clone https://github.com/seaweedfs/seaweedfs
 cd seaweedfs
-git checkout 3.85
+git checkout 3.96
 cd weed
-env PATH=/usr/versions/go-1.23/bin:$PATH GOPATH=`pwd` gmake
+env PATH=/usr/versions/go-1.24/bin:$PATH GOPATH=`pwd` gmake
 cd ..
 #
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/seaweedfs/bin
 cp weed/bin/weed /tmp/ee/opt/tribblix/seaweedfs/bin
-cp README.md /tmp/ee/opt/tribblix/seaweedfs
+cp README.md LICENSE /tmp/ee/opt/tribblix/seaweedfs
 ${THOME}/build/create_pkg TRIBblix-seaweedfs /tmp/ee
 rm -fr /tmp/ee
