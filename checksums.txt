@@ -3291,3 +3291,4 @@ haproxy-2.6.22.tar.gz 4c0797f450f997dc287d2c7aafa7a0e5b7a2d71593a2cd58e664e8f3ae
 nginx-prometheus-exporter-1.4.2.tar.gz 5940cf805cf695599934d7f68e6482ccb074925c25f91c18d5947c38bd37ed1d
 memcached_exporter-0.15.3.tar.gz 4bfc14aed8b057481a31168f7222c2b8a38e2a6819b0d2f74a0bd3041d737c27
 postgres_exporter-0.17.1.tar.gz e1401b3af6e59cd0a880dedf22a5b425840a9edd079efdca235dd7ebe996cd37
+pgbouncer_exporter-0.11.0.tar.gz 5a24879edb9f017c48760df20d76c23e692afc6596643f3a8f44f2a857d90a6d
