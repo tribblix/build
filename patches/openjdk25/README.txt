@@ -4,7 +4,7 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
-25+30, 25+31, 25+32, 25+33, 25+34
+25+30, 25+31, 25+32, 25+33, 25+34, 25+35
 
 No changes.
 
