@@ -601,7 +601,7 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -264,7 +264,6 @@
+@@ -265,7 +265,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS) $(ICONV_LIBS), \
        LIBS_unix := $(LIBM) $(LIBPTHREAD), \
        LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
@@ -609,7 +609,7 @@
        LIBS_macosx := \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -314,7 +313,7 @@
+@@ -315,7 +314,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif
@@ -1087,7 +1087,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1920,8 +1920,6 @@
+@@ -1937,8 +1937,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1096,7 +1096,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1986,8 +1984,6 @@
+@@ -2003,8 +2001,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
