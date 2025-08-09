@@ -1,4 +1,4 @@
 PKG="TRIBtornado-python-312"
 NAME="Python tornado"
-VERSION="6.5.1.0"
+VERSION="6.5.2.0"
 ZAP_URL="https://pypi.org/project/tornado/"
