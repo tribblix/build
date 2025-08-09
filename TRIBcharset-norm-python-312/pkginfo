@@ -1,4 +1,4 @@
 PKG="TRIBcharset-norm-python-312"
 NAME="Python charset-normalizer"
-VERSION="3.4.2.0"
+VERSION="3.4.3.0"
 ZAP_URL="https://pypi.org/project/charset-normalizer/"
