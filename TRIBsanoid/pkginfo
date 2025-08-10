@@ -1,0 +1,4 @@
+PKG="TRIBsanoid"
+NAME="sanoid replication for ZFS"
+VERSION="2.3.0.0"
+ZAP_URL="https://github.com/jimsalterjrs/sanoid"

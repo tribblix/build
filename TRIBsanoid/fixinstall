@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+mkdir -p ${DESTDIR}/etc/sanoid
+cp sanoid.defaults.conf ${DESTDIR}/etc/sanoid
+chmod 0444 ${DESTDIR}/etc/sanoid/sanoid.defaults.conf
+
+mkdir -p ${DESTDIR}/usr/sbin
+cp sanoid syncoid findoid sleepymutex -p ${DESTDIR}/usr/sbin
+chmod 755 ${DESTDIR}/usr/sbin/*
+
+mkdir -p ${DESTDIR}/usr/share/sanoid
+cp README.md LICENSE sanoid.conf ${DESTDIR}/usr/share/sanoid
+chmod 0644 ${DESTDIR}/usr/share/sanoid/*
