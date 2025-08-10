@@ -1,4 +1,4 @@
 PKG="TRIBmaxima"
 NAME="maxima"
-VERSION="5.48.0.0"
+VERSION="5.48.1.0"
 ZAP_URL="https://sourceforge.net/projects/maxima/"
