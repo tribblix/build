@@ -19,11 +19,11 @@
 # subsequent updates are a lot simpler, but you have to make
 # sure the previous package is installed
 #
-${THOME}/build/unpack sbcl-2.4.11-source
-cd sbcl-2.4.11
-env GNUMAKE=gmake sh make.sh --prefix=/usr/versions/sbcl-2.4.11
+${THOME}/build/unpack sbcl-2.5.7-source
+cd sbcl-2.5.7
+env GNUMAKE=gmake sh make.sh --prefix=/usr/versions/sbcl-2.5.7
 rm -fr /tmp/l2
-env INSTALL_ROOT=/tmp/l2/usr/versions/sbcl-2.4.11 sh install.sh
+env INSTALL_ROOT=/tmp/l2/usr/versions/sbcl-2.5.7 sh install.sh
 ${THOME}/build/create_pkg TRIBsbcl /tmp/l2
 rm -fr /tmp/l2
 cd ..

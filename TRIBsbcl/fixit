@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: CDDL-1.0
 #
 
-VERSION=2.4.11
+VERSION=2.5.7
 
 mkdir -p usr/bin usr/share/man/man1
 cd usr/bin

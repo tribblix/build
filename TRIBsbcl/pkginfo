@@ -1,4 +1,4 @@
 PKG="TRIBsbcl"
 NAME="Steel Bank Common Lisp"
-VERSION="2.4.11.0"
+VERSION="2.5.7.0"
 ZAP_URL="http://www.sbcl.org/"
