@@ -3316,3 +3316,4 @@ yt_dlp-2025.8.11.tar.gz dc7c120a367fe55e0f711613dc80ea29d3a4e0ed8d66104cebfbe3d3
 kiwisolver-1.4.9.tar.gz c3b22c26c6fd6811b0ae8363b95ca8ce4ea3c202d3d0975b2914310ceb1bcc4d
 optipng-7.9.1.tar.gz c2579be58c2c66dae9d63154edcb3d427fef64cb00ec0aff079c9d156ec46f29
 pg_exporter-1.0.1.tar.gz d4b9038373931fa56fb9beeeff8dedffa32b20b0c877f4d6586059c6738cdf6e
+ruby-3.4.5.tar.gz 1d88d8a27b442fdde4aa06dc99e86b0bbf0b288963d8433112dd5fac798fd5ee
