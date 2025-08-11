@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+
+#
+# there is no make install, simply copy the file
+#
+mkdir -p ${DESTDIR}/opt/tribblix/prometheus/sbin
+cp pg_exporter ${DESTDIR}/opt/tribblix/prometheus/sbin
+
+#
+# also install the sample configs
+#
+mkdir -p ${DESTDIR}/opt/tribblix/prometheus/pg_exporter/config
+cp config/*.yml ${DESTDIR}/opt/tribblix/prometheus/pg_exporter/config
