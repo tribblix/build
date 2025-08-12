@@ -3321,3 +3321,4 @@ wrapt-1.17.3.tar.gz f66eb08feaa410fe4eebd17f2a2c8e2e46d3476e9f8c783daa8e09e0faa6
 sqlalchemy-2.0.43.tar.gz 788bfcef6787a7764169cfe9859fe425bf44559619e1d9f56f5bddf2ebf6f417
 rich_toolkit-0.15.0.tar.gz 3f5730e9f2d36d0bfe01cf723948b7ecf4cc355d2b71e2c00e094f7963128c09
 multidict-6.6.4.tar.gz d2d4e4787672911b48350df02ed3fa3fffdc2f2e8ca06dd6afdf34189b76a9dd
+markdown_it_py-4.0.0.tar.gz cb0a2b4aa34f932c007117b194e945bd74e0ec24133ceb5bac59009cda1cb9f3
