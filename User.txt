@@ -1,14 +1,13 @@
-Userid allocation for Tribblix.
-
-Start at 101, leaving 100 and below for illumos.
-
-By default, reserve the group id as well
-
-Packages in [square brackets] are deprecated, the Userid is still
-recorded here for historical purposes, and should not be reused for a
-different package.
-
-
+# Userid allocation for Tribblix.
+#
+# Start at 101, leaving 100 and below for illumos.
+#
+# By default, reserve the group id as well
+#
+# Packages in [square brackets] are deprecated, the Userid is still
+# recorded here for historical purposes, and should not be reused for a
+# different package.
+#
 23  chrony  	    TRIBchrony
 27  postfix 	    [TRIBpostfix]
 28  postdrop	    [TRIBpostfix (group only)]
