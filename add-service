@@ -1,0 +1,338 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# {{{ CDDL HEADER
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source. A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+# }}}
+#
+# Copyright 2025 Peter Tribble
+#
+
+#
+# this script will generate all the smf machinery, including users
+# and privileges, to enable an SMF service for a package
+#
+
+#
+# many assumptions are made, among them:
+# - the package is in a directory named after the project in /opt/tribblix
+# - there's a project directory in /var
+#
+
+SPROJ=""
+SPROJX=""
+SUSER=""
+SUID=""
+SPKG=""
+
+bail() {
+    echo "ERROR: $1"
+    exit 1
+}
+
+#
+# arguments
+# we require the name of the project, in most cases this alone should do
+# the right thing
+#
+# we optionally ask for
+# -u the username to run the service as
+#    if not given, matches the name of the project
+# -i the id of that user
+#    if not given, chosen automatically
+# -p the name of the package
+#    if not given, set to TRIBblix-${project}
+#
+#  the name of the "project" is embedded in certain paths
+#
+while getopts "u:i:p:" opt; do
+    case $opt in
+    u)
+	SUSER="$OPTARG"
+	;;
+    i)
+	SUID="$OPTARG"
+	;;
+    p)
+	SPKG="$OPTARG"
+	;;
+    *)
+        bail "unrecognized option"
+        ;;
+    esac
+done
+shift $((OPTIND-1))
+
+#
+# at this point we must have exactly 1 argument, the name of the project
+#
+case $# in
+    1)
+	SPROJ="$1"
+	;;
+    *)
+	bail "invalid usage"
+	;;
+esac
+
+#
+# if no user, use the project name
+#
+if [ -z "${SUSER}" ]; then
+    SUSER="${SPROJ}"
+fi
+#
+# if no package, use the standardized form
+#
+if [ -z "${SPKG}" ]; then
+    SPKG="TRIBblix-${SPROJ}"
+fi
+#
+# this is the extended name of the project
+# simply capitalize the project name
+#
+if [ -z "${SPROJX}" ]; then
+    typeset -u SC1
+    SC1=${SPROJ:0:1}
+    SPROJX="${SC1}${SPROJ:1}"
+fi
+
+cd "${THOME}/build" || bail "no build repo"
+
+if [ ! -d "${SPKG}" ]; then
+    bail "no such package ${SPKG}"
+fi
+
+#
+# check the user isn't already in use
+#
+OUSER=$(grep -v '^#' User.txt| awk -v user="$SUSER" '{if ($2 == user) print $1}')
+if [ -n "${OUSER}" ]; then
+    bail "user $SUSER already in use (uid ${OUSER})"
+fi
+#
+# if we have a UID, check it isn't in use
+# if not supplied, choose the next one
+#
+if [ -n "${SUID}" ]; then
+    OUID=$(grep -v '^#' User.txt| awk -v id="$SUID" '{if ($1 == id) print $2}')
+    if [ -n "${OUID}" ]; then
+	bail "requested uid ${SUID} already in use (user ${OUID})"
+    fi
+else
+    NUID=$(tail -1 User.txt| awk '{print $1}')
+    SUID=$((NUID+1))
+    OUID=$(grep -v '^#' User.txt| awk -v id=$SUID '{if ($1 == id) print $2}')
+    if [ -n "${OUID}" ]; then
+	bail "generated uid ${SUID} already in use (user ${OUID})"
+    fi
+fi
+
+#
+# date for copyright messages
+#
+YDATE=$(date '+%Y')
+
+#
+# set OUTROOT to drop the files in a different root, for testing
+#
+OUTROOT="."
+#OUTROOT="/tmp/build"
+if [ ! -d "${OUTROOT}/patches" ]; then
+    mkdir -p "${OUTROOT}/${SPKG}"
+    mkdir -p "${OUTROOT}/patches"
+fi
+
+#
+# these are the files we will create
+#
+SUATTR="${OUTROOT}/${SPKG}/user_attr"
+SPASSWD="${OUTROOT}/${SPKG}/passwd"
+SGROUP="${OUTROOT}/${SPKG}/group"
+SFIXIT="${OUTROOT}/${SPKG}/fixit"
+SFIXPROTO="${OUTROOT}/${SPKG}/fixproto"
+SRESTART="${OUTROOT}/${SPKG}/restart_fmri_list"
+SMANIFEST="${OUTROOT}/patches/${SPROJ}.xml"
+SMETHOD="${OUTROOT}/patches/svc-${SPROJ}"
+
+for FCHECK in "${SUATTR}" "${SPASSWD}" "${SGROUP}" "${SFIXIT}" "${SFIXPROTO}" "${SRESTART}" "${SMANIFEST}" "${SMETHOD}"
+do
+    if [ -f "${FCHECK}" ]; then
+	bail "${FCHECK} already exists"
+    fi
+done
+
+#
+# now populate files
+#
+echo "${SUSER}::::type=normal;auths=tribblix.smf.manage.${SPROJ},tribblix.smf.modify.${SPROJ}" > "${SUATTR}"
+
+echo "${SUSER}:x:${SUID}:${SUID}:${SPROJX}:/opt/tribblix/${SPROJ}:" > "${SPASSWD}"
+
+echo "${SUSER}::${SUID}:" > "${SGROUP}"
+
+# TODO
+
+cat > "${SFIXIT}" <<EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp \${BUILDROOT}/patches/${SPROJ}.xml var/svc/manifest/network
+
+#
+# where config and logs live
+#
+mkdir -p var/${SPROJ}
+
+
+mkdir -p opt/tribblix/${SPROJ}/bin
+cd opt/tribblix/${SPROJ}/bin
+#
+# copy in a startup wrapper
+#
+cp \${BUILDROOT}/patches/svc-${SPROJ} svc-${SPROJ}
+chmod 755 svc-${SPROJ}
+EOF
+
+cat > "${SFIXPROTO}" <<EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+awk '
+{if (\$3 ~ /^var\/${SPROJ}/) { \$6 = "${SUSER}" ; \$5 = "${SUSER}" }}
+{print}
+'
+EOF
+
+cat > "${SRESTART}" <<EOF
+svc:/system/manifest-import:default
+EOF
+
+cat > "${SMANIFEST}" <<EOF
+<?xml version="1.0"?>
+
+<!--
+SPDX-FileCopyrightText: ${YDATE} Peter Tribble
+
+SPDX-License-Identifier: CDDL-1.0
+-->
+
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<service_bundle type='manifest' name='${SPROJ}'>
+<service name='network/${SPROJ}' type='service' version='1'>
+<create_default_instance enabled='false' />
+<single_instance />
+
+<dependency name='fs-local' grouping='require_all' restart_on='none' type='service'>
+  <service_fmri value='svc:/system/filesystem/local' />
+</dependency>
+
+<dependency name='network' grouping='optional_all' restart_on='error' type='service'>
+  <service_fmri value='svc:/milestone/network' />
+</dependency>
+
+<exec_method type='method' name='start' exec='/opt/tribblix/${SPROJ}/bin/svc-${SPROJ} start' timeout_seconds='60'>
+  <method_context working_directory='/opt/tribblix/${SPROJ}'>
+    <method_credential user='${SUSER}' group='${SUSER}' />
+  </method_context>
+</exec_method>
+
+<exec_method type='method' name='stop' exec=':kill' timeout_seconds='60'>
+</exec_method>
+
+<exec_method type='method' name='refresh' exec=':kill -HUP' timeout_seconds='60'>
+</exec_method>
+
+<property_group name='startd' type='framework'>
+  <!-- sub-process core dumps shouldn't restart session -->
+  <propval name='ignore_error' type='astring' value='core,signal' />
+</property_group>
+
+<property_group name='general' type='framework'>
+  <!-- allow management of this service -->
+  <propval name='action_authorization' type='astring' value='tribblix.smf.manage.${SPROJ}' />
+  <propval name='value_authorization' type='astring' value='tribblix.smf.modify.${SPROJ}' />
+</property_group>
+
+<stability value='External' />
+
+<template>
+  <common_name>
+    <loctext xml:lang='C'>${SPROJX} server</loctext>
+  </common_name>
+</template>
+
+</service>
+</service_bundle>
+EOF
+
+cat > "${SMETHOD}" <<EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# Copyright ${YDATE} Peter Tribble
+#
+# wrapper to start ${SPROJ}
+#
+
+VDIR=/var/${SPROJ}
+APPNAME=/opt/tribblix/${SPROJ}/bin/${SPROJ}
+
+#
+# if this is the first run, try and configure with some sensible
+# defaults; if we can't then disable ourself
+# we ship a user_attr entry via packaging to make this work
+#
+# we can't create the top level directories as we lack permission, these
+# must be created by packaging
+#
+if [ ! -d "\${VDIR}" ]; then
+    /usr/sbin/svcadm disable svc:/network/${SPROJ}:default
+    exit 0
+fi
+# and the binary must exist
+if [ ! -f "\${APPNAME}" ]; then
+    /usr/sbin/svcadm disable svc:/network/${SPROJ}:default
+    exit 0
+fi
+
+cd /opt/tribblix/${SPROJ} || exit 0
+
+#
+# only support start, the smf manifest handles the others internally
+#
+case \$1 in
+    start)
+	exec \${APPNAME}
+	;;
+esac
+
+exit 0
+EOF
+
+
+# add to User.txt
+printf "%s %s\t    %s\n" "${SUID}" "${SUSER}" "${SPKG}" >> User.txt
+
+echo "Now modify ${SMETHOD} to suit the needs of this application"
