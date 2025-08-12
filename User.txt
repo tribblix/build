@@ -39,3 +39,4 @@
 131 promnode	    TRIBblix-promnode
 132 dnsmasq	    TRIBdnsmasq
 133 mysql	    TRIBblix-mariadb
+134 forgejo	    TRIBblix-forgejo

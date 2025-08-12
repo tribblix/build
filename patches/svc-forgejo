@@ -1,0 +1,60 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# Copyright 2025 Peter Tribble
+#
+# wrapper to start forgejo
+#
+
+VDIR=/var/forgejo
+EDIR=/etc/forgejo
+APPNAME=/opt/tribblix/forgejo/bin/forgejo
+CONFIG="${EDIR}/app.ini"
+
+#
+# if this is the first run, try and configure with some sensible
+# defaults; if we can't then disable ourself
+# we ship a user_attr entry via packaging to make this work
+#
+# we can't create the top level directories as we lack permission, these
+# must be created by packaging
+#
+if [ ! -d "${VDIR}" ]; then
+    /usr/sbin/svcadm disable svc:/network/forgejo:default
+    exit 0
+fi
+if [ ! -d "${VDIR}/custom" ]; then
+    mkdir -m 0755 "${VDIR}/custom"
+fi
+if [ ! -d "${VDIR}/log" ]; then
+    mkdir -m 0755 "${VDIR}/log"
+fi
+if [ ! -d "${EDIR}" ]; then
+    /usr/sbin/svcadm disable svc:/network/forgejo:default
+    exit 0
+fi
+# if the config doesn't exist give up
+# the postinstall script should have created this
+if [ ! -f "${CONFIG}" ]; then
+    /usr/sbin/svcadm disable svc:/network/forgejo:default
+    exit 0
+fi
+# and the binary must exist
+if [ ! -f "${APPNAME}" ]; then
+    /usr/sbin/svcadm disable svc:/network/forgejo:default
+    exit 0
+fi
+
+cd /opt/tribblix/forgejo || exit 0
+
+#
+# only support start, the smf manifest handles the others internally
+#
+case $1 in
+    start)
+	exec ${APPNAME} web --config "${CONFIG}" --work-path "${VDIR}" --custom-path "${VDIR}/custom" --pid "${VDIR}/log/forgejo.pid"
+	;;
+esac
+
+exit 0

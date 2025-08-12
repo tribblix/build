@@ -1,0 +1,18 @@
+#!/sbin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# put an unpackaged app.ini file in place
+#
+# we only copy in a pristine one if there isn't one, which should
+# only occur the very first time forgejo is installed, subsequently
+# the file will be preserved
+#
+CFILE="/etc/forgejo/app.ini"
+if [ -f "${BASEDIR}/${CFILE}" ]; then
+    /usr/bin/chown root:root "${BASEDIR}/${CFILE}"
+    exit 0
+fi
+if [ -f "${BASEDIR}/${CFILE}.dist" ]; then
+    cp -p "${BASEDIR}/${CFILE}.dist" "${BASEDIR}/${CFILE}"
+fi

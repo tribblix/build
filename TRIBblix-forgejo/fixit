@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+
+#
+# need to put the manifest under var for sparse-root zone support
+#
+mkdir -p var/svc/manifest/network
+cp ${BUILDROOT}/patches/forgejo.xml var/svc/manifest/network
+
+#
+# where config and logs live
+#
+mkdir -p etc/forgejo
+mkdir -p var/forgejo
+#
+# this is the minimal starting config
+# postinstall copies this to app.ini
+#
+cat > etc/forgejo/app.ini.dist <<EOF
+RUN_USER        = forgejo
+RUN_MODE        = prod
+
+[server]
+PROTOCOL        = http
+DISABLE_SSH     = true
+
+[database]
+LOG_SQL         = false
+EOF
+chmod 0644 etc/forgejo/app.ini.dist
+
+cd opt/tribblix/forgejo/bin
+#
+# copy in a startup wrapper
+#
+cp ${BUILDROOT}/patches/svc-forgejo svc-forgejo
+chmod 755 svc-forgejo
