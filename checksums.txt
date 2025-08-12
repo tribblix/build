@@ -3318,3 +3318,4 @@ optipng-7.9.1.tar.gz c2579be58c2c66dae9d63154edcb3d427fef64cb00ec0aff079c9d156ec
 pg_exporter-1.0.1.tar.gz d4b9038373931fa56fb9beeeff8dedffa32b20b0c877f4d6586059c6738cdf6e
 ruby-3.4.5.tar.gz 1d88d8a27b442fdde4aa06dc99e86b0bbf0b288963d8433112dd5fac798fd5ee
 wrapt-1.17.3.tar.gz f66eb08feaa410fe4eebd17f2a2c8e2e46d3476e9f8c783daa8e09e0faa666d0
+sqlalchemy-2.0.43.tar.gz 788bfcef6787a7764169cfe9859fe425bf44559619e1d9f56f5bddf2ebf6f417
