@@ -11621,7 +11621,7 @@
 -}
 --- old/src/jdk.attach/solaris/classes/sun/tools/attach/VirtualMachineImpl.java	2020-05-20 18:10:38.606335320 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,273 +0,0 @@
+@@ -1,272 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11659,7 +11659,7 @@
 -import java.io.FileNotFoundException;
 -
 -/*
-- * Solaris implementation of HotSpotVirtualMachine.
+- * Solaris implementation of HotSpotVirtualMachine
 - */
 -@SuppressWarnings("restricted")
 -public class VirtualMachineImpl extends HotSpotVirtualMachine {
@@ -11681,7 +11681,7 @@
 -        throws AttachNotSupportedException, IOException
 -    {
 -        super(provider, vmid);
--        // This provider only understands process-ids (pids).
+-        // This provider only understands pids
 -        int pid;
 -        try {
 -            pid = Integer.parseInt(vmid);
@@ -11698,9 +11698,9 @@
 -        try {
 -            fd = openDoor(pid);
 -        } catch (FileNotFoundException fnf1) {
--            File f = createAttachFile(pid);
+-            File f = createAttachFile(pid).getCanonicalFile();
 -            try {
--                sigquit(pid);
+-                sendQuitTo(pid);
 -
 -                // give the target VM time to start the attach mechanism
 -                final int delay_step = 100;
@@ -11722,7 +11722,7 @@
 -                    time_spend += delay;
 -                    if (time_spend > timeout/2 && fd == -1) {
 -                        // Send QUIT again to give target VM the last chance to react
--                        sigquit(pid);
+-                        sendQuitTo(pid);
 -                    }
 -                } while (time_spend <= timeout && fd == -1);
 -                if (fd  == -1) {
@@ -11859,14 +11859,13 @@
 -
 -    // On Solaris a simple handshake is used to start the attach mechanism
 -    // if not already started. The client creates a .attach_pid<pid> file in the
--    // target VM's working directory (or temporary directory), and the SIGQUIT
--    // handler checks for the file.
+-    // target VM's working directory (or temp directory), and the SIGQUIT handler
+-    // checks for the file.
 -    private File createAttachFile(int pid) throws IOException {
 -        String fn = ".attach_pid" + pid;
 -        String path = "/proc/" + pid + "/cwd/" + fn;
 -        File f = new File(path);
 -        try {
--            f = f.getCanonicalFile();
 -            f.createNewFile();
 -        } catch (IOException x) {
 -            f = new File(tmpdir, fn);
@@ -11877,15 +11876,15 @@
 -
 -    //-- native methods
 -
+-    static native void sendQuitTo(int pid) throws IOException;
+-
+-    static native void checkPermissions(String path) throws IOException;
+-
 -    static native int open(String path) throws IOException;
 -
 -    static native void close(int fd) throws IOException;
 -
 -    static native int read(int fd, byte buf[], int off, int buflen) throws IOException;
--
--    static native void checkPermissions(String path) throws IOException;
--
--    static native void sigquit(int pid) throws IOException;
 -
 -    // enqueue a command (and arguments) to the given door
 -    static native int enqueue(int fd, String cmd, Object ... args)
@@ -11897,7 +11896,7 @@
 -}
 --- old/src/jdk.attach/solaris/native/libattach/VirtualMachineImpl.c	2020-05-20 18:10:39.306348760 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,389 +0,0 @@
+@@ -1,383 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2018, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11939,12 +11938,6 @@
 -#include "sun_tools_attach_VirtualMachineImpl.h"
 -
 -#define ROOT_UID 0
--
--#define RESTARTABLE(_cmd, _result) do { \
--  do { \
--    _result = _cmd; \
--  } while((_result == -1) && (errno == EINTR)); \
--} while(0)
 -
 -/*
 - * Declare library specific JNI_Onload entry if static build
@@ -12100,10 +12093,10 @@
 -
 -/*
 - * Class:     sun_tools_attach_VirtualMachineImpl
-- * Method:    sigquit
+- * Method:    sendQuitTo
 - * Signature: (I)V
 - */
--JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_sigquit
+-JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_sendQuitTo
 -  (JNIEnv *env, jclass cls, jint pid)
 -{
 -    if (kill((pid_t)pid, SIGQUIT) == -1) {
