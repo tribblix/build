@@ -11621,7 +11621,7 @@
 -}
 --- old/src/jdk.attach/solaris/classes/sun/tools/attach/VirtualMachineImpl.java	2020-05-20 18:10:38.606335320 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,272 +0,0 @@
+@@ -1,273 +0,0 @@
 -/*
 - * Copyright (c) 2005, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11755,6 +11755,7 @@
 -     */
 -    InputStream execute(String cmd, Object ... args) throws AgentLoadException, IOException {
 -        assert args.length <= 3;                // includes null
+-        checkNulls(args);
 -
 -        // first check that we are still attached
 -        int door;
