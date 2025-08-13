@@ -3149,17 +3149,6 @@
        return "linux";
      } else if (os.equals("FreeBSD")) {
        return "bsd";
---- old/src/jdk.hotspot.agent/share/native/libsaproc/ps_core_common.c	2020-05-20 18:03:18.605887161 -0700
-+++ new/src/jdk.hotspot.agent/share/native/libsaproc/ps_core_common.c	2020-05-20 18:03:18.277880863 -0700
-@@ -22,8 +22,6 @@
-  *
-  */
- 
--#include <jni.h> // just include something, or else solaris compiler will complain that this file is empty
--
- #if defined(LINUX) || defined(__APPLE__)
- #include <unistd.h>
- #include <fcntl.h>
 --- old/src/jdk.hotspot.agent/test/libproc/libproctest.sh	2020-05-20 18:03:20.517923873 -0700
 +++ new/src/jdk.hotspot.agent/test/libproc/libproctest.sh	2020-05-20 18:03:20.133916500 -0700
 @@ -59,10 +59,8 @@
