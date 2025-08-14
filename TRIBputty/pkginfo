@@ -1,4 +1,4 @@
 PKG="TRIBputty"
 NAME="Putty terminal client"
 VERSION="0.83.0"
-ZAP_URL="https://www.chiark.greenend.org.uk/~sgtatham/putty/"
+ZAP_URL="https://putty.software/"
