@@ -1014,7 +1014,7 @@
  #if defined(LINUX) || defined(_ALLBSD_SOURCE) || defined(_AIX)
  #include <signal.h>
  #ifndef __OpenBSD__
-@@ -84,10 +71,7 @@
+@@ -81,10 +72,7 @@
  #endif // LINUX || _ALLBSD_SOURCE
  
  // checking for nanness

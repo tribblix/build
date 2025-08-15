@@ -7,8 +7,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk-jdk-25-35
-cd jdk-jdk-25-35
+${THOME}/build/unpack jdk-jdk-25-36
+cd jdk-jdk-25-36
 
 #
 # jdk25 needs autoconf installed
@@ -48,8 +48,8 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images
 # ./bin/java -version
 #
 # openjdk version "25-internal" 2025-09-16
-# OpenJDK Runtime Environment (build 25-internal-adhoc.ptribble.jdk-jdk-25-35)
-# OpenJDK 64-Bit Server VM (build 25-internal-adhoc.ptribble.jdk-jdk-25-35, mixed mode, sharing)
+# OpenJDK Runtime Environment (build 25-internal-adhoc.ptribble.jdk-jdk-25-36)
+# OpenJDK 64-Bit Server VM (build 25-internal-adhoc.ptribble.jdk-jdk-25-36, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
