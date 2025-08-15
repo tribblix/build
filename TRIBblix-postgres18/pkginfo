@@ -1,4 +1,4 @@
 PKG="TRIBblix-postgres18"
 NAME="PostgreSQL database"
-VERSION="18.beta2.0"
+VERSION="18.beta3.0"
 ZAP_URL="https://www.postgresql.org/"
