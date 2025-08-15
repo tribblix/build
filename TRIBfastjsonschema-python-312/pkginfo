@@ -1,4 +1,4 @@
 PKG="TRIBfastjsonschema-python-312"
 NAME="Python fastjsonschema"
-VERSION="2.21.1.0"
+VERSION="2.21.2.0"
 ZAP_URL="https://pypi.org/project/fastjsonschema/"

@@ -3338,3 +3338,4 @@ google_api_python_client-2.179.0.tar.gz 76a774a49dd58af52e74ce7114db387e58f0aaf6
 glance_store-5.1.0.tar.gz cf3cb7ccefe38b980a4e36a7e092dc5af9bcdf61665bedae1350cedcc3ab19e9
 fonttools-4.59.1.tar.gz 74995b402ad09822a4c8002438e54940d9f1ecda898d2bb057729d7da983e4cb
 filelock-3.19.1.tar.gz 66eda1888b0171c998b35be2bcc0f6d75c388a7ce20c3f3f37aa8e96c2dddf58
+fastjsonschema-2.21.2.tar.gz b1eb43748041c880796cd077f1a07c3d94e93ae84bba5ed36800a33554ae05de
