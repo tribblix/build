@@ -1,4 +1,4 @@
 PKG="TRIBjson5-python-312"
 NAME="Python json5"
-VERSION="0.12.0.0"
+VERSION="0.12.1.0"
 ZAP_URL="https://pypi.org/project/json5/"
