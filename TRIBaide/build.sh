@@ -4,5 +4,5 @@
 #
 # there's a patch to disable pie and fix headers
 #
-${THOME}/build/dobuild -64only aide-0.19.1
-${THOME}/build/genpkg TRIBaide aide-0.19.1
+${THOME}/build/dobuild -64only aide-0.19.2
+${THOME}/build/genpkg TRIBaide aide-0.19.2
