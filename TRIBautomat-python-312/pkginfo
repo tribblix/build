@@ -1,0 +1,4 @@
+PKG="TRIBautomat-python-312"
+NAME="Python Automat"
+VERSION="25.4.16.0"
+ZAP_URL="https://pypi.org/project/Automat/"
