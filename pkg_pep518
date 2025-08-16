@@ -155,6 +155,12 @@ do
 # unpack
 #
 "${BUILD}/unpack" "${PFILE}"
+case $PFILE in
+    https://*)
+	PFILE=${PFILE##*/}
+	PFILE=${PFILE%.git}
+	;;
+esac
 if [ ! -d "${PFILE}" ]; then
     echo "Missing source directory $PFILE"
     exit 1
@@ -167,7 +173,7 @@ fi
 # any preconf actions run here
 #
 if [ -x "${BUILD}/patches/${PFILE}.preconf" ]; then
-    ${BUILD}/patches/${PFILE}.preconf
+    "${BUILD}/patches/${PFILE}.preconf"
 fi
 #
 # use pip to install

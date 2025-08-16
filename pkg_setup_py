@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 202 Peter Tribble
 #
 
 #
@@ -149,6 +149,12 @@ do
 # unpack
 #
 "${BUILD}/unpack" "${PFILE}"
+case $PFILE in
+    https://*)
+	PFILE=${PFILE##*/}
+	PFILE=${PFILE%.git}
+	;;
+esac
 if [ ! -d "${PFILE}" ]; then
     echo "Missing source directory $PFILE"
     exit 1
@@ -162,7 +168,7 @@ fi
 # any preconf actions run here
 #
 if [ -x "${BUILD}/patches/${PFILE}.preconf" ]; then
-    ${BUILD}/patches/${PFILE}.preconf
+    "${BUILD}/patches/${PFILE}.preconf"
 fi
 #
 # build and install using setup.py
