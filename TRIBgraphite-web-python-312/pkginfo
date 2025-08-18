@@ -1,0 +1,4 @@
+PKG="TRIBgraphite-web-python-312"
+NAME="Python graphite"
+VERSION="1.2.0.0"
+ZAP_URL="https://github.com/graphite-project/graphite-web"
