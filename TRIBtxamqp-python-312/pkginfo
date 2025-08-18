@@ -1,0 +1,4 @@
+PKG="TRIBtxamqp-python-312"
+NAME="Python txAMQP"
+VERSION="0.8.2.0"
+ZAP_URL="https://pypi.org/project/txAMQP/"
