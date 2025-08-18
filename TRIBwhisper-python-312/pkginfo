@@ -1,0 +1,4 @@
+PKG="TRIBwhisper-python-312"
+NAME="Python Graphite whisper"
+VERSION="1.1.10.g0"
+ZAP_URL="https://github.com/graphite-project/whisper"

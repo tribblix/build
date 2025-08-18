@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# this rewrites the install prefix to match the Tribblix layout
+#
+sed -i s:/opt/graphite:/opt/tribblix/graphite:g $(find * -type f)

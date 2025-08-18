@@ -1,0 +1,4 @@
+PKG="TRIBcarbon-python-312"
+NAME="Python Graphite carbon"
+VERSION="1.2.0.g0"
+ZAP_URL="https://github.com/graphite-project/carbon"
