@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -47,7 +47,7 @@ fi
 if [ $# -gt 0 ]; then
     for file in "$@"
     do
-	for pkgstr in $(grep -E 'build/(unpack|pkg_pep518|pkg_setup_py)' "${file}/build.sh" | awk '{print $NF}')
+	for pkgstr in $(grep -E 'build/(unpack|pkg_pep518|pkg_setup_py)' "${file}/build.sh" | grep -v https:// | awk '{print $NF}')
 	do
 	    pkgver=${pkgstr##*-}
 	    pkgname=${pkgstr%-*}
@@ -63,7 +63,7 @@ fi
 #
 # we skip commix, which isn't updated on PyPi
 #
-grep -E -H 'build/(unpack|pkg_pep518|pkg_setup_py)' TRIB{mog,pgactivity,pgbarman,s3cmd,scons}/build.sh | while read -r ffile fpkgstr
+grep -E -H 'build/(unpack|pkg_pep518|pkg_setup_py)' TRIB{mog,pgactivity,pgbarman,s3cmd,scons}/build.sh | grep -v https:// | while read -r ffile fpkgstr
 do
     file=${ffile%%/*}
     pkgstr=${fpkgstr##* }
@@ -75,7 +75,7 @@ done
 #
 # first look at packages built from wheels
 #
-grep -E -H 'build/pkg_wheel' *-${PY3VER}/build.sh | while read -r ffile fpkgname fwheel
+grep -E -H 'build/pkg_wheel' *-${PY3VER}/build.sh | grep -v https:// | while read -r ffile fpkgname fwheel
 do
     file=${ffile%%/*}
     #
@@ -90,7 +90,7 @@ do
     "${CHECKER}" -w "${file}" "${pkgname}" "${pkgver}"
 done
 
-grep -E -H 'build/(unpack|pkg_pep518|pkg_setup_py)' *-${PY3VER}/build.sh | while read -r ffile fpkgstr
+grep -E -H 'build/(unpack|pkg_pep518|pkg_setup_py)' *-${PY3VER}/build.sh | grep -v https:// | while read -r ffile fpkgstr
 do
     file=${ffile%%/*}
     pkgstr=${fpkgstr##* }
