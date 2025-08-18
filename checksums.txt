@@ -3358,3 +3358,4 @@ zope.interface-7.2.tar.gz 8b49f1a3d1ee4cdaf5b32d2e738362c7f5e40ac8b46dd7d1a65e82
 twisted-25.5.0.tar.gz 1deb272358cb6be1e3e8fc6f9c8b36f78eb0fa7c2233d2dbe11ec6fee04ea316
 zstandard-0.24.0.tar.gz fe3198b81c00032326342d973e526803f183f97aa9e9a98e3f897ebafe21178f
 pypdf-6.0.0.tar.gz 282a99d2cc94a84a3a3159f0d9358c0af53f85b4d28d76ea38b96e9e5ac2a08d
+feedgenerator-2.2.1.tar.gz 0eaa955f1f0bcb5b87ac195af740f06ff9fff4a40ed30b8a7c6bbebb264d4dd1
