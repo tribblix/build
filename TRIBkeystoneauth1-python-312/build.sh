@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBkeystoneauth1-python-312 keystoneauth1-5.11.1
+${THOME}/build/pkg_pep518 -N TRIBkeystoneauth1-python-312 keystoneauth1-5.12.0

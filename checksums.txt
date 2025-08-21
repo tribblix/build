@@ -3389,3 +3389,4 @@ oslo_limit-2.8.0.tar.gz ec5891b98ead3ac457454c0ec115f92a5f8400b47cc59cc09d75f723
 osc_lib-4.2.0.tar.gz 99718f06a990c1ad6fb9034bbed9655390a2ea83cef71a53781e7e9abd9f20ce
 python_openstackclient-8.2.0.tar.gz d612af18dfc66cc8f31e6ce96690b6c273ade8a240ec40b7f4835a8896fbbe01
 keystonemiddleware-10.12.0.tar.gz 0da92b4af5178410e15a1b99f56d9cdeb2546eed088c69bc39e666fe09f869bf
+keystoneauth1-5.12.0.tar.gz dd113c2f3dcb418d9f761c73b8cd43a96ddfa8a612b51c576822381f39ca4ae8
