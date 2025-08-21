@@ -1,4 +1,4 @@
 PKG="TRIBv-jruby-10"
 NAME="JRuby 10"
-VERSION="10.0.0.1.1"
+VERSION="10.0.2.0.0"
 ZAP_URL="https://www.jruby.org/"
