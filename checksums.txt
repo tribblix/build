@@ -3390,3 +3390,4 @@ osc_lib-4.2.0.tar.gz 99718f06a990c1ad6fb9034bbed9655390a2ea83cef71a53781e7e9abd9
 python_openstackclient-8.2.0.tar.gz d612af18dfc66cc8f31e6ce96690b6c273ade8a240ec40b7f4835a8896fbbe01
 keystonemiddleware-10.12.0.tar.gz 0da92b4af5178410e15a1b99f56d9cdeb2546eed088c69bc39e666fe09f869bf
 keystoneauth1-5.12.0.tar.gz dd113c2f3dcb418d9f761c73b8cd43a96ddfa8a612b51c576822381f39ca4ae8
+jupyter_server-2.17.0.tar.gz c38ea898566964c888b4772ae1ed58eca84592e88251d2cfc4d171f81f7e99d5
