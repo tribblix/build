@@ -1,4 +1,4 @@
 PKG="TRIBosc-lib-python-312"
 NAME="Python osc-lib"
-VERSION="4.1.0.0"
+VERSION="4.2.0.0"
 ZAP_URL="https://pypi.org/project/osc-lib/"
