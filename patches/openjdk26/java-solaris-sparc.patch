@@ -1064,7 +1064,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1937,8 +1937,6 @@
+@@ -1949,8 +1949,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1073,7 +1073,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -2003,8 +2001,6 @@
+@@ -2015,8 +2013,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -2582,16 +2582,16 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -350,8 +343,7 @@
- 
-     /* system calls that might not be available at run time */
- 
--#if defined(__solaris__) || defined(_ALLBSD_SOURCE)
+@@ -357,8 +350,7 @@
+     my_openat_func = (openat_func*) dlsym(RTLD_DEFAULT, "open64at");
+     my_fstatat_func = (fstatat_func*) dlsym(RTLD_DEFAULT, "stat64at");
+     my_fdopendir_func = (fdopendir_func*) dlsym(RTLD_DEFAULT, "fdopendir64");
+-#elif defined(__solaris__) || defined(_ALLBSD_SOURCE)
 -    /* Solaris 64-bit does not have openat64/fstatat64 */
-+#if defined(_ALLBSD_SOURCE)
++#elif defined(_ALLBSD_SOURCE)
      my_openat_func = (openat_func*) openat;
      my_fstatat_func = (fstatat_func*) fstatat;
- #else
+     my_fdopendir_func = (fdopendir_func*) fdopendir;
 --- old/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:38.255960369 -0700
 +++ new/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:37.863952843 -0700
 @@ -117,8 +117,6 @@
