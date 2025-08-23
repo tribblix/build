@@ -1,4 +1,4 @@
 PKG="TRIBbat"
 NAME="BAT - a cat clone with wings"
-VERSION="0.24.0.0"
+VERSION="0.25.0.0"
 ZAP_URL="https://github.com/sharkdp/bat"

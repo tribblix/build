@@ -1,9 +1,12 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 #
 git clone https://github.com/sharkdp/bat.git
 cd bat
+git checkout v0.25.0
 env AR=/usr/gnu/bin/ar cargo build --release
 
 rm -fr /tmp/ll
