@@ -1,4 +1,4 @@
 PKG="TRIBblix-promnode"
 NAME="Prometheus node exporter"
-VERSION="1.8.2.1"
+VERSION="1.9.1.0"
 ZAP_URL="https://prometheus.io/"
