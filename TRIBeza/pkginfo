@@ -1,4 +1,4 @@
 PKG="TRIBeza"
 NAME="eza - A modern alternative to ls"
-VERSION="0.20.20.0"
+VERSION="0.20.22.0"
 ZAP_URL="https://eza.rocks/"

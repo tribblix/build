@@ -4,9 +4,11 @@
 #
 
 #
+# 0.20.23 and later have a broken libc crate
+#
 git clone https://github.com/eza-community/eza
 cd eza
-git checkout v0.20.20
+git checkout v0.20.22
 env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --release
 
 rm -fr /tmp/ll
