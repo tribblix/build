@@ -12,14 +12,14 @@ cd p1
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.23/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.24/bin:$PATH gmake build
 cd ..
 
 #
-$THOME/build/unpack blackbox_exporter-0.25.0
-cd blackbox_exporter-0.25.0
+$THOME/build/unpack blackbox_exporter-0.27.0
+cd blackbox_exporter-0.27.0
 
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.23/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.24/bin:$PATH gmake build
 cd ..
 
 ${THOME}/build/genpkg TRIBblix-promblackbox
