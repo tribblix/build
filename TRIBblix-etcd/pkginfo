@@ -1,4 +1,4 @@
 PKG="TRIBblix-etcd"
 NAME="Etcd distributed key-value store"
-VERSION="3.5.18.0"
+VERSION="3.6.4.0"
 ZAP_URL="https://github.com/etcd-io/etcd"
