@@ -1,0 +1,4 @@
+PKG="TRIBcopyparty-python-312"
+NAME="Python copyparty"
+VERSION="1.19.5.0"
+ZAP_URL="https://pypi.org/project/copyparty/"
