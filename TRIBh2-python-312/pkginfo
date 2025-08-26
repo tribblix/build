@@ -1,4 +1,4 @@
 PKG="TRIBh2-python-312"
 NAME="Python h2, hpack, hyperframe"
-VERSION="4.2.0.0"
+VERSION="4.3.0.0"
 ZAP_URL="https://pypi.org/project/h2/"
