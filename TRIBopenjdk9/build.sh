@@ -1,19 +1,22 @@
-#!/bin/tcsh
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
 #
 # You first need to download the tarballs
 # this method from BLFS
 #
 cd /tmp
 wget https://hg.openjdk.org/jdk9/jdk9/archive/jdk-9+181.tar.bz2
-foreach file ( corba hotspot jaxp jaxws langtools jdk nashorn )
-wget https://hg.openjdk.org/jdk9/jdk9/${file}/archive/jdk-9+181.tar.bz2 -O ${file}-jdk-9+181.tar.bz2
-end
+for file in corba hotspot jaxp jaxws langtools jdk nashorn
+do
+  wget https://hg.openjdk.org/jdk9/jdk9/${file}/archive/jdk-9+181.tar.bz2 -O ${file}-jdk-9+181.tar.bz2
+done
 pbzcat jdk-9+181.tar.bz2 | tar xf -
 mv jdk9-jdk-9+181 openjdk9
-foreach file ( corba hotspot jaxp jaxws langtools jdk nashorn )
-pbzcat ${file}-jdk-9+181.tar.bz2 | tar xf -
-mv ${file}-jdk-9+181 openjdk9/$file
-end
+for file in corba hotspot jaxp jaxws langtools jdk nashorn
+  pbzcat ${file}-jdk-9+181.tar.bz2 | tar xf -
+  mv ${file}-jdk-9+181 openjdk9/$file
+done
 tar cf ${THOME}/tarballs/openjdk9.tar openjdk9
 gzip ${THOME}/tarballs/openjdk9.tar
 
@@ -126,12 +129,7 @@ cd /tmp/jdk/usr/jdk/instances
 ln -s ../../versions/openjdk9 jdk9
 cd /tmp/jdk/usr/jdk
 ln -s ../versions/openjdk9 .
-#jdk9 is already EOF, this is just for build/test so it's never "latest"
-#ln -s openjdk9 latest
-#mkdir -p /tmp/jdk/usr/bin
-#cd /tmp/jdk/usr/bin
-#ln -s ../jdk/latest/bin/* .
-#rm -f amd64 sparcv9
+# jdk9 is already EOF, no default links
 cd /tmp/jdk/usr/versions
 rm `find . -name '*.diz'`
 
