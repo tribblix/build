@@ -2,9 +2,9 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-VERSION=4.9.3
+VERSION=4.9.4
 mkdir -p usr/bin
 rm -f usr/versions/spotbugs-${VERSION}/bin/spotbugs.bat
 chmod a+x usr/versions/spotbugs-${VERSION}/bin/spotbugs
 ln -s ../../usr/versions/spotbugs-${VERSION}/bin/spotbugs usr/bin
-cp ${THOME}/tarballs/findsecbugs-plugin-1.12.0.jar usr/versions/spotbugs-${VERSION}/plugin/
+cp ${THOME}/tarballs/findsecbugs-plugin-1.14.0.jar usr/versions/spotbugs-${VERSION}/plugin/
