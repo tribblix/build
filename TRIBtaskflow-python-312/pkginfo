@@ -1,4 +1,4 @@
 PKG="TRIBtaskflow-python-312"
 NAME="Python taskflow"
-VERSION="6.0.1.0"
+VERSION="6.0.2.0"
 ZAP_URL="https://pypi.org/project/taskflow/"
