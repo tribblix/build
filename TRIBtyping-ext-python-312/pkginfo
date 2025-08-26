@@ -1,4 +1,4 @@
 PKG="TRIBtyping-ext-python-312"
 NAME="Python typing-extensions"
-VERSION="4.14.1.0"
+VERSION="4.15.0.0"
 ZAP_URL="https://pypi.org/project/typing-extensions/"
