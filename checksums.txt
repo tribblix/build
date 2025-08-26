@@ -3436,3 +3436,4 @@ oslo_upgradecheck-2.6.0.tar.gz 189246e7ef9aa8fa57e5a4df6b2168ff69572571b43bded63
 oslo_utils-9.1.0.tar.gz 01c3875e7cca005b59465c429f467113b5f4b04211cbd534c9ac2f152276d3b3
 oslo_versionedobjects-3.8.0.tar.gz b66e45f62e1d7852183ce570a7f927149b8bf909f218f48ec12d43dcbdb27ffa
 supervisor-4.3.0.tar.gz 4a2bf149adf42997e1bb44b70c43b613275ec9852c3edacca86a9166b27e945e
+palemoon-33.8.2.solaris2.11-x86_64-illumos.tar.xz d9d8295ee04cacb915aab9736bfee4f6484416eeb6e0e371b6bbeeba086c4608
