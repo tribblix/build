@@ -3434,3 +3434,4 @@ oslo_rootwrap-7.7.0.tar.gz cb267e3cc51dbf25fc7dad0dc6ddacef3a1f0a0fda6ab57937824
 oslo_serialization-5.8.0.tar.gz 5871a62b23f98cacd5518482941ae6d2a983e2936ed52d543ad08685dc6d2343
 oslo_upgradecheck-2.6.0.tar.gz 189246e7ef9aa8fa57e5a4df6b2168ff69572571b43bded63faaff676a8542d6
 oslo_utils-9.1.0.tar.gz 01c3875e7cca005b59465c429f467113b5f4b04211cbd534c9ac2f152276d3b3
+oslo_versionedobjects-3.8.0.tar.gz b66e45f62e1d7852183ce570a7f927149b8bf909f218f48ec12d43dcbdb27ffa
