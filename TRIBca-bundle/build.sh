@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/bin/sh
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
@@ -24,9 +24,10 @@ mkdir -p /tmp/cab/etc/openssl/certs
 # with /usr/lib/zap/manage-cacerts
 #
 cp cacert.pem /tmp/cab/etc/openssl/cacert.pem.dist
-foreach file ( cert*.pem )
-cp $file /tmp/cab/etc/openssl/certs/`openssl x509 -noout -hash -in $file`.0
-end
+for file in cert*.pem
+do
+  cp $file /tmp/cab/etc/openssl/certs/`openssl x509 -noout -hash -in $file`.0
+done
 cd /tmp/cab/etc
 ln -s openssl ssl
 ${THOME}/build/create_pkg TRIBca-bundle /tmp/cab
