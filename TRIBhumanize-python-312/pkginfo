@@ -1,4 +1,4 @@
 PKG="TRIBhumanize-python-312"
 NAME="Python humanize"
-VERSION="4.12.3.0"
+VERSION="4.13.0.0"
 ZAP_URL="https://pypi.org/project/humanize/"
