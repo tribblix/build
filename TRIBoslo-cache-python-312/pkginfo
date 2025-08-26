@@ -1,4 +1,4 @@
 PKG="TRIBoslo-cache-python-312"
 NAME="Python oslo.cache"
-VERSION="3.11.0.0"
+VERSION="3.12.0.0"
 ZAP_URL="https://pypi.org/project/oslo.cache/"
