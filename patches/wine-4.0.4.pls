@@ -1,3 +1,0 @@
--p1 wine3-ld.patch
--p1 wine-regset.patch
--p1 wine3-sysinfo.patch

@@ -4,5 +4,5 @@
 #
 # wine
 #
-${THOME}/build/dobuild +gnu wine-4.0.4
-${THOME}/build/genpkg -gnu TRIBwine wine-4.0.4
+${THOME}/build/dobuild -gnu wine-5.0.5 -C "--with-oss MSGFMT=/usr/gnu/bin/msgfmt" -M -k
+${THOME}/build/genpkg -gnu TRIBwine wine-5.0.5

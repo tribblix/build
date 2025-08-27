@@ -1,0 +1,27 @@
+--- wine-4.17/configure.orig	2022-08-18 09:20:50.879757659 +0000
++++ wine-4.17/configure	2022-08-18 09:23:59.929503472 +0000
+@@ -9292,13 +9292,19 @@
+     ;;
+ 
+   *)
+-    case $host_cpu in
+-      *i[3456789]86*)
+-        DLLFLAGS="$DLLFLAGS -fno-PIC"
+-        LDDLLFLAGS="-fno-PIC" ;;
+-      *)
++    case $host_os in
++      solaris2*)
+         DLLFLAGS="$DLLFLAGS -fPIC"
+         LDDLLFLAGS="-fPIC" ;;
++      *)
++        case $host_cpu in
++          *i[3456789]86*)
++            DLLFLAGS="$DLLFLAGS -fno-PIC"
++            LDDLLFLAGS="-fno-PIC" ;;
++          *)
++            DLLFLAGS="$DLLFLAGS -fPIC"
++            LDDLLFLAGS="-fPIC" ;;
++        esac ;;
+     esac
+     { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether we can build a GNU style ELF dll" >&5
+ $as_echo_n "checking whether we can build a GNU style ELF dll... " >&6; }

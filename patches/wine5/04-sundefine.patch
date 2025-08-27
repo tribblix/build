@@ -1,0 +1,22 @@
+Don't use sun as a variable name, because that's a preprocessor define.
+
+--- a/dlls/msvcrt/locale.c	Fri Apr 16 15:34:12 2021
++++ b/dlls/msvcrt/locale.c	Wed Aug 27 15:37:20 2025
+@@ -53,7 +53,7 @@
+ #define MSVCRT_LEADBYTE  0x8000
+ #define MSVCRT_C1_DEFINED 0x200
+ 
+-static const MSVCRT_wchar_t sun[] = {'S','u','n',0};
++static const MSVCRT_wchar_t XXsun[] = {'S','u','n',0};
+ static const MSVCRT_wchar_t mon[] = {'M','o','n',0};
+ static const MSVCRT_wchar_t tue[] = {'T','u','e',0};
+ static const MSVCRT_wchar_t wed[] = {'W','e','d',0};
+@@ -112,7 +112,7 @@
+     MAKELCID(LANG_ENGLISH, SORT_DEFAULT),
+ #endif
+     {1, 0},
+-    {{sun, mon, tue, wed, thu, fri, sat,
++    {{XXsun, mon, tue, wed, thu, fri, sat,
+       sunday, monday, tuesday, wednesday, thursday, friday, saturday,
+       jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec,
+       january, february, march, april, may, june, july,

@@ -1,0 +1,7 @@
+-p1 wine5/01-winebuild.patch
+-p1 wine5/02-winebuild.patch
+-p1 wine5/03-ntdll-virtual.patch
+-p1 wine5/04-sundefine.patch
+-p1 wine5/05-configure_fPIC.patch
+-p1 wine5/06-config.h.patch
+-p1 wine5/07-winegcc_ar.patch

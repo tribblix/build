@@ -1,0 +1,18 @@
+I've seen build problems with the assembler arbitrarily creating
+64-bit objects which leads to a mismatch, so be explicit that we're
+32-bit by default.
+
+--- a/tools/winebuild/main.c	Fri Apr 16 15:34:12 2021
++++ b/tools/winebuild/main.c	Wed Aug 27 15:34:46 2025
+@@ -44,7 +44,11 @@
+ int kill_at = 0;
+ int verbose = 0;
+ int link_ext_symbols = 0;
++#if defined(__sun)
++int force_pointer_size = 4;
++#else
+ int force_pointer_size = 0;
++#endif
+ int unwind_tables = 0;
+ int unix_lib = 0;
+ 
