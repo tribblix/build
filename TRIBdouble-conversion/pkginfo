@@ -1,4 +1,4 @@
 PKG="TRIBdouble-conversion"
 NAME="The Google double-conversion library"
-VERSION="3.1.5.0"
+VERSION="3.3.1.0"
 ZAP_URL="https://github.com/google/double-conversion"
