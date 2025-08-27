@@ -1,13 +1,23 @@
-#!/bin/tcsh
+#!/bin/sh
 #
 # SPDX-License-Identifier: CDDL-1.0
+#
+
+${THOME}/build/pkg_tarball -T TRIBblix-prometheus prometheus-3.5.0.illumos-amd64
+
+exit 0
+#
+# below is the build from source variant, it's simpler to package the
+# officially published binaries rather than go through the complexities
+# of the manual build, but save the details here for reference
+#
 #
 # requires go, node, yarn
 #
 
 mkdir p1
 cd p1
-setenv GOPATH `pwd`
+GOPATH=`pwd`
 mkdir -p $GOPATH/src/github.com/prometheus
 cd $GOPATH/src/github.com/prometheus
 

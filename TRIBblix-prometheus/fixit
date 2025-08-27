@@ -1,0 +1,5 @@
+#!/bin/tcsh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+mv opt/tribblix/prometheus-3.5.0.illumos-amd64 opt/tribblix/prometheus

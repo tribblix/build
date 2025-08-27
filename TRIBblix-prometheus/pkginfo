@@ -1,4 +1,4 @@
 PKG="TRIBblix-prometheus"
 NAME="Prometheus monitoring server"
-VERSION="2.53.3.0"
+VERSION="3.5.0.0"
 ZAP_URL="https://prometheus.io/"
