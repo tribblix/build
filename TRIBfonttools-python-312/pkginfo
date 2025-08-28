@@ -1,4 +1,4 @@
 PKG="TRIBfonttools-python-312"
 NAME="Python fonttools"
-VERSION="4.59.1.0"
+VERSION="4.59.2.0"
 ZAP_URL="https://pypi.org/project/fonttools/"
