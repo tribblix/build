@@ -1,4 +1,4 @@
 PKG="TRIBjupyter-lsp-python-312"
 NAME="Python jupyter-lsp"
-VERSION="2.2.6.0"
+VERSION="2.3.0.0"
 ZAP_URL="https://pypi.org/project/jupyter-lsp/"
