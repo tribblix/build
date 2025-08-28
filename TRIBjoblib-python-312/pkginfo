@@ -1,4 +1,4 @@
 PKG="TRIBjoblib-python-312"
 NAME="Python joblib"
-VERSION="1.5.1.0"
+VERSION="1.5.2.0"
 ZAP_URL="https://pypi.org/project/joblib/"
