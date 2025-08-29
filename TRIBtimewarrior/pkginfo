@@ -1,4 +1,4 @@
 PKG="TRIBtimewarrior"
 NAME="Timewarrior - track time from the command line"
-VERSION="1.7.1.0"
+VERSION="1.9.1.0"
 ZAP_URL="https://timewarrior.net/"
