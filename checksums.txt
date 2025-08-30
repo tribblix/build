@@ -3474,3 +3474,4 @@ setuptools_rust-1.12.0.tar.gz d94a93f0c97751c17014565f07bdc324bee45d396cd1bba83d
 regex-2025.8.29.tar.gz 731ddb27a0900fa227dfba976b4efccec8c1c6fba147829bb52e71d49e91a5d7
 publicsuffixlist-1.0.2.20250830.tar.gz 8b34dfae6db49b865046ec4e86c8d84e9cd129af2f7a1a5d97017862bb8add8f
 futurist-3.2.1.tar.gz 01dd4f30acdfbb2e2eb6091da565eded82d8cbaf6c48a36cc7f73c11cfa7fb3f
+ipython-9.5.0.tar.gz 129c44b941fe6d9b82d36fc7a7c18127ddb1d6f02f78f867f402e2e3adde3113
