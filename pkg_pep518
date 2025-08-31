@@ -208,6 +208,10 @@ sed -i '/\/direct_url.json,sha/d' $(find "${BDIR}/usr/versions/python-${PYVER}/l
 python${PYVER} -m compileall -f -p / -s "${BDIR}" --invalidation-mode unchecked-hash "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages"
 
 "${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
+if [ -x /usr/bin/pyproject-dependencies ]; then
+    echo "Declared dependencies:"
+    /usr/bin/pyproject-dependencies "$@"
+fi
 cd /
 
 # remove our temporary files
