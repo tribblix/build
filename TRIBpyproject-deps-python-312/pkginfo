@@ -1,4 +1,4 @@
 PKG="TRIBpyproject-deps-python-312"
 NAME="Python pyproject-dependencies"
-VERSION="1.3.2.0"
+VERSION="1.3.2.1"
 ZAP_URL="https://pypi.org/project/pyproject-dependencies/"
