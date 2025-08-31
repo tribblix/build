@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-net-http"
 NAME="Perl Net::HTTP module"
-VERSION="6.23.0"
+VERSION="6.24.0"
 ZAP_URL="https://metacpan.org/dist/Net-HTTP"
