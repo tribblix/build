@@ -1,0 +1,4 @@
+PKG="TRIBprocmail"
+NAME="Procmail Mail Processing Program"
+VERSION="3.24.0"
+ZAP_URL="https://github.com/BuGlessRB/procmail"

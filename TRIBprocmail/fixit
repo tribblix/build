@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# The Makefile doesn't understand DESTDIR, so the install uses BASENAME
+# instead, but that drops the prefix, so we relocate the installed files
+# out of the root
+#
+mkdir -p usr/share
+mv bin usr
+mv man usr/share
