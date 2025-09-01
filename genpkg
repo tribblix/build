@@ -151,7 +151,7 @@ case $# in
 	fi
 	$GMAKE -k $INSTALLWHAT "${DESTDIRNAME}"=$BDIR $MYINSTALL $MAKEARGS
 	if [ -x "${BUILD}/${PKGNAME}/fixinstall" ]; then
-	    "${BUILD}/${PKGNAME}/fixinstal"l "$BDIR"
+	    "${BUILD}/${PKGNAME}/fixinstall" "$BDIR"
 	fi
 	;;
 *)
