@@ -1,4 +1,4 @@
 PKG="TRIBcryptography-python-312"
 NAME="Python cryptographic recipes and primitives"
-VERSION="44.0.3.0"
+VERSION="45.0.7.0"
 ZAP_URL="https://pypi.org/project/cryptography/"
