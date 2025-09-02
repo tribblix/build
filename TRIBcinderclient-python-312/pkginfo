@@ -1,4 +1,4 @@
 PKG="TRIBcinderclient-python-312"
 NAME="Python python-cinderclient"
-VERSION="9.7.0.0"
+VERSION="9.8.0.0"
 ZAP_URL="https://pypi.org/project/python-cinderclient/"
