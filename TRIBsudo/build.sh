@@ -9,8 +9,8 @@
 #
 # there's a custom config file installed by the fixit script
 #
-${THOME}/build/dobuild -A -64only sudo-1.9.17p1 -C "--disable-hardening --with-project --with-rundir=/var/run/sudo --with-pam --with-pam-login --disable-pam-session --with-tty-tickets --without-insults --without-lecture --with-ignore-dot --with-bsm-audit"
+${THOME}/build/dobuild -A -64only sudo-1.9.17p2 -C "--disable-hardening --with-project --with-rundir=/var/run/sudo --with-pam --with-pam-login --disable-pam-session --with-tty-tickets --without-insults --without-lecture --with-ignore-dot --with-bsm-audit"
 #
 # hack to avoid the install trying to chown the files
 #
-${THOME}/build/genpkg -I "install INSTALL_OWNER=" TRIBsudo sudo-1.9.17p1
+${THOME}/build/genpkg -I "install INSTALL_OWNER=" TRIBsudo sudo-1.9.17p2
