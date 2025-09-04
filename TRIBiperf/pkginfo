@@ -1,4 +1,4 @@
 PKG="TRIBiperf"
 NAME="iperf3 networking bandwidth measurement"
-VERSION="3.18.0"
+VERSION="3.19.1.0"
 ZAP_URL="http://software.es.net/iperf/"
