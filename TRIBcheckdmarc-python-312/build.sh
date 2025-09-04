@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBcheckdmarc-python-312 checkdmarc-5.10.3
+${THOME}/build/pkg_pep518 -N TRIBcheckdmarc-python-312 checkdmarc-5.10.5
