@@ -1,4 +1,4 @@
 PKG="TRIBpipe-viewer"
 NAME="Pipe Viewer - pipeline progress monitor"
-VERSION="1.9.31.0"
+VERSION="1.9.34.0"
 ZAP_URL="http://www.ivarch.com/programs/pv.shtml"
