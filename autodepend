@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2024 Peter Tribble
 #
 
 #
@@ -29,8 +29,7 @@
 # not normally be recorded for applications
 #   TRIBsys-library TRIBsys-lib-math TRIBgcc4runtime SUNWcs
 #
-# for the most part assumes a shared object, although modules for runtimes
-# should also catch the dependency on the runtime itself
+# assumes a shared object
 #
 
 case $1 in
@@ -47,12 +46,12 @@ case $# in
 	;;
 esac
 
-if [ ! -e "$1" ]; then
+if [ ! -e $1 ]; then
    echo "$1 not found"
    exit 1
 fi
 
-case $(uname -p) in
+case `uname -p` in
 sparc)
   ARCH64="sparcv9"
   ;;
@@ -78,8 +77,8 @@ fi
 #
 getdeps()
 {
-rpathlist=$(/usr/bin/dump -Lv "$@" 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u)
-for dep in $(/usr/bin/dump -Lv "$@" 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort -u | sed 's:\+:\\\\+:g')
+rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u`
+for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort -u | sed 's:\+:\\\\+:g'`
 do
   # split multiple directories in the RPATH here
   for rpath in ${rpathlist/:/ }
@@ -97,8 +96,8 @@ done
 #
 getlongdeps()
 {
-rpathlist=$(/usr/bin/dump -Lv "$@" 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u)
-for dep in $(/usr/bin/ldd "$@" 2>/dev/null| $EGREP / | awk '{print $1}' | sort -u | sed 's:\+:\\\\+:g')
+rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u`
+for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort -u | sed 's:\+:\\\\+:g'`
 do
   for rpath in $rpathlist
   do
@@ -110,12 +109,11 @@ done
 
 #
 # find any other dependencies
-# pick runtime modules based on file path, assuming files end up being
-# installed inside the runtime
+# pick runtime modules based on file path
 #
 getotherdeps()
 {
-    for file in "$@"
+    for file in $*
     do
 	case $file in
 	    *usr/versions/python-3.11/*)
@@ -124,17 +122,8 @@ getotherdeps()
 	    *usr/versions/python-3.12/*)
 		echo TRIBv-python-312
 		;;
-	    *usr/versions/python-3.13/*)
-		echo TRIBv-python-313
-		;;
-	    *usr/versions/python-3.14/*)
-		echo TRIBv-python-314
-		;;
 	    *usr/versions/python-2.7/*)
 		echo TRIBv-python-27
-		;;
-	    *usr/versions/ruby-3/*)
-		echo TRIBv-ruby-3
 		;;
 	    *usr/perl5/*)
 		echo TRIBperl-534
@@ -145,9 +134,9 @@ getotherdeps()
 
 case $STYLE in
     'recurse')
-	(getlongdeps "$@" ; getotherdeps "$@") | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
+	(getlongdeps $* ; getotherdeps $*) | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
 	exit 0
 	;;
 esac
 
-(getdeps "$@" ; getotherdeps "$@") | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
+(getdeps $* ; getotherdeps $*) | awk '{print "P "$NF}'|sort -u| $EGREP -v '^P (TRIBsys-library|TRIBsys-lib-math|TRIBgcc4runtime|TRIBv-gcc7|TRIBv-gcc10|SUNWcs|TRIBpkgsrc64|TRIBdev-illumos-gcc|TRIBdev-illumos-gcc7|TRIBdev-illumos-gcc10)$'
