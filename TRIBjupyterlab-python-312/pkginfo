@@ -1,4 +1,4 @@
 PKG="TRIBjupyterlab-python-312"
 NAME="Python jupyterlab"
-VERSION="4.4.6.0"
+VERSION="4.4.7.0"
 ZAP_URL="https://pypi.org/project/jupyterlab/"
