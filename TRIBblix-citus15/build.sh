@@ -6,5 +6,5 @@
 #
 # there is a citus-stat patch
 #
-${THOME}/build/dobuild +64only citus-13.0.1 -C PG_CONFIG=/opt/tribblix/postgres15/bin/pg_config
-${THOME}/build/genpkg TRIBblix-citus15 citus-13.0.1
+${THOME}/build/dobuild +64only citus-13.1.0 -C PG_CONFIG=/opt/tribblix/postgres15/bin/pg_config
+${THOME}/build/genpkg TRIBblix-citus15 citus-13.1.0
