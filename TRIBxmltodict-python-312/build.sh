@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBxmltodict-python-312 xmltodict-0.14.2
+${THOME}/build/pkg_setup_py TRIBxmltodict-python-312 xmltodict-0.15.0
