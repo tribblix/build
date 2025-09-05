@@ -1,4 +1,4 @@
 PKG="TRIBrich-toolkit-python-312"
 NAME="Python rich-toolkit"
-VERSION="0.15.0.0"
+VERSION="0.15.1.0"
 ZAP_URL="https://pypi.org/project/rich-toolkit/"
