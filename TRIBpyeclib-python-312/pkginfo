@@ -1,4 +1,4 @@
 PKG="TRIBpyeclib-python-312"
 NAME="Python pyeclib"
-VERSION="1.6.4.0"
+VERSION="1.7.0.0"
 ZAP_URL="https://pypi.org/project/pyeclib/"
