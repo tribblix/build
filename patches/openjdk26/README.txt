@@ -4,6 +4,19 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+14
+
+Needed to include <thread.h> in osThread_solaris.hpp
+
+Types of physical_memory, free_memory, available_memory have changed.
+physical_memory() and _physical_memory are now size_t rather than
+julong.
+free_memory() is now a bool free_memory(&value), likewise
+available_memory, total_swap_space, free_swap_space
+
+bare snprintf() is deprecated and breaks the build; replace by either
+os::snprintf_checked(), or use os::snprintf and don't ignore the return
+
 26+13
 
 Trivial patch noise.

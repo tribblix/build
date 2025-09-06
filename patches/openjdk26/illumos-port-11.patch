@@ -2,8 +2,8 @@
 +++ b/src/hotspot/share/runtime/os.cpp	Thu Jan 14 11:44:00 2021
 @@ -91,6 +91,7 @@
  
- # include <signal.h>
  # include <errno.h>
+ # include <signal.h>
 +# include <alloca.h>
  
  OSThread*         os::_starting_thread    = nullptr;

@@ -397,10 +397,10 @@ diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot
 +    return -1;
 +  }
 +
-+  int n = snprintf(door_path, PATH_MAX, "%s/.java_pid%d",
++  int n = os::snprintf(door_path, PATH_MAX, "%s/.java_pid%d",
 +                   os::get_temp_directory(), os::current_process_id());
 +  if (n < (int)PATH_MAX) {
-+    snprintf(initial_path, PATH_MAX, "%s.tmp", door_path);
++    (void) os::snprintf(initial_path, PATH_MAX, "%s.tmp", door_path);
 +  }
 +  if (n >= (int)PATH_MAX) {
 +    return -1;
@@ -558,7 +558,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot
 +
 +    // write operation result
 +    char msg[32];
-+    snprintf(msg, sizeof(msg), "%d\n", res);
++    (void) os::snprintf(msg, sizeof(msg), "%d\n", res);
 +    int rc = write_fully(this->socket(), msg, strlen(msg));
 +
 +    // write any result data
@@ -596,7 +596,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot
 +  struct stat64 st;
 +  int ret;
 +
-+  int n = snprintf(fn, sizeof(fn), "%s/.java_pid%d",
++  int n = os::snprintf(fn, sizeof(fn), "%s/.java_pid%d",
 +           os::get_temp_directory(), os::current_process_id());
 +  assert(n < sizeof(fn), "java_pid file name buffer overflow");
 +
@@ -657,11 +657,11 @@ diff -urN /tmp/a/src/hotspot/os/solaris/attachListener_solaris.cpp b/src/hotspot
 +  char fn[PATH_MAX + 1];
 +  int ret;
 +  struct stat64 st;
-+  snprintf(fn, sizeof(fn), ".attach_pid%d", os::current_process_id());
++  (void) os::snprintf(fn, sizeof(fn), ".attach_pid%d", os::current_process_id());
 +  RESTARTABLE(::stat64(fn, &st), ret);
 +  if (ret == -1) {
 +    log_trace(attach)("Failed to find attach file: %s, trying alternate", fn);
-+    snprintf(fn, sizeof(fn), "%s/.attach_pid%d",
++    (void) os::snprintf(fn, sizeof(fn), "%s/.attach_pid%d",
 +             os::get_temp_directory(), os::current_process_id());
 +    RESTARTABLE(::stat64(fn, &st), ret);
 +    if (ret == -1) {
@@ -1381,7 +1381,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/osThread_solaris.cpp b/src/hotspot/os/so
 diff -urN /tmp/a/src/hotspot/os/solaris/osThread_solaris.hpp b/src/hotspot/os/solaris/osThread_solaris.hpp
 --- /tmp/a/src/hotspot/os/solaris/osThread_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/osThread_solaris.hpp	2025-04-19 12:08:38.474502387 +0100
-@@ -0,0 +1,99 @@
+@@ -0,0 +1,101 @@
 +/*
 + * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1412,6 +1412,8 @@ diff -urN /tmp/a/src/hotspot/os/solaris/osThread_solaris.hpp b/src/hotspot/os/so
 +#include "runtime/osThreadBase.hpp"
 +#include "suspendResume_posix.hpp"
 +#include "utilities/globalDefinitions.hpp"
++
++#include <thread.h>
 +
 +class OSThread : public OSThreadBase {
 +  friend class VMStructs;
@@ -2294,7 +2296,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/src/hotspot/os/solaris/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2025-04-19 12:08:38.483600745 +0100
-@@ -0,0 +1,2741 @@
+@@ -0,0 +1,2746 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -2527,40 +2529,43 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +jint os::Solaris::_os_thread_limit = 0;
 +volatile jint os::Solaris::_os_thread_count = 0;
 +
-+julong os::available_memory() {
-+  return Solaris::available_memory();
++bool os::available_memory(size_t& value) {
++  return Solaris::available_memory(value);
 +}
 +
-+julong os::free_memory() {
-+  return Solaris::available_memory();
++bool os::free_memory(size_t& value) {
++  return Solaris::available_memory(value);
 +}
 +
-+julong os::Solaris::available_memory() {
-+  return (julong)sysconf(_SC_AVPHYS_PAGES) * os::vm_page_size();
++bool os::Solaris::available_memory(size_t& value) {
++  julong available = (julong)sysconf(_SC_AVPHYS_PAGES) * os::vm_page_size();
++  value = static_cast<size_t>(available);
++  return true;
 +}
 +
-+julong os::Solaris::_physical_memory = 0;
++size_t os::Solaris::_physical_memory = 0;
 +
-+jlong os::total_swap_space() {
-+  struct anoninfo ai;
-+  pgcnt_t allocated, reserved, available;
-+  int ret = swapctl(SC_AINFO, &ai);
-+  if (ret == -1) {
-+    return -1;
-+  }
-+  return  (jlong)(ai.ani_max * sysconf(_SC_PAGESIZE));
-+}
-+
-+jlong os::free_swap_space() {
++jlong os::total_swap_space(size_t& value) {
 +  struct anoninfo ai;
 +  int ret = swapctl(SC_AINFO, &ai);
 +  if (ret == -1) {
-+    return -1;
++    return false;
 +  }
-+  return (jlong)(ai.ani_free * sysconf(_SC_PAGESIZE));
++  value = static_cast<size_t>(ai.ani_max * sysconf(_SC_PAGESIZE));
++  return true;
 +}
 +
-+julong os::physical_memory() {
++jlong os::free_swap_space(size_t& value) {
++  struct anoninfo ai;
++  int ret = swapctl(SC_AINFO, &ai);
++  if (ret == -1) {
++    return false;
++  }
++  value = static_cast<size_t>(ai.ani_free * sysconf(_SC_PAGESIZE));
++  return true;
++}
++
++size_t os::physical_memory() {
 +  return Solaris::physical_memory();
 +}
 +
@@ -2572,8 +2577,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +
 +void os::Solaris::initialize_system_info() {
 +  set_processor_count(sysconf(_SC_NPROCESSORS_CONF));
-+  _physical_memory = (julong)sysconf(_SC_PHYS_PAGES) *
-+                                     (julong)sysconf(_SC_PAGESIZE);
++  _physical_memory = static_cast<size_t>(sysconf(_SC_PHYS_PAGES)) * static_cast<size_t>(sysconf(_SC_PAGESIZE));
 +}
 +
 +uint os::processor_id() {
@@ -2613,7 +2617,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +    // but we explicitly copy into a size-limited buffer to avoid any
 +    // possible overflow.
 +    char buf[32];
-+    snprintf(buf, sizeof(buf), "%s", name);
++    (void) os::snprintf(buf, sizeof(buf), "%s", name);
 +    buf[sizeof(buf) - 1] = '\0';
 +    Solaris::_pthread_setname_np(pthread_self(), buf);
 +  }
@@ -2737,7 +2741,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +    // libraries, the new path component /usr/jdk/packages is added here.
 +
 +    // Construct the invariant part of ld_library_path.
-+    snprintf(common_path, bufsize, SYS_EXT_DIR "/lib");
++    (void) os::snprintf(common_path, bufsize, SYS_EXT_DIR "/lib");
 +
 +    // Struct size is more than sufficient for the path components obtained
 +    // through the dlinfo() call, so only add additional space for the path
@@ -3438,11 +3442,11 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +
 +  if (lib_arch.compat_class != arch_array[running_arch_index].compat_class) {
 +    if (lib_arch.name != nullptr) {
-+      ::snprintf(diag_msg_buf, diag_msg_max_length-1,
++      os::snprintf_checked(diag_msg_buf, diag_msg_max_length-1,
 +                 " (Possible cause: can't load %s .so on a %s platform)",
 +                 lib_arch.name, arch_array[running_arch_index].name);
 +    } else {
-+      ::snprintf(diag_msg_buf, diag_msg_max_length-1,
++      os::snprintf_checked(diag_msg_buf, diag_msg_max_length-1,
 +                 " (Possible cause: can't load this .so (machine code=0x%x) on a %s platform)",
 +                 lib_arch.code, arch_array[running_arch_index].name);
 +    }
@@ -3450,18 +3454,18 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  }
 +
 +  if (lib_arch.endianess != arch_array[running_arch_index].endianess) {
-+    ::snprintf(diag_msg_buf, diag_msg_max_length-1, " (Possible cause: endianness mismatch)");
++    os::snprintf_checked(diag_msg_buf, diag_msg_max_length-1, " (Possible cause: endianness mismatch)");
 +    return nullptr;
 +  }
 +
 +  // ELF file class/capacity : 0 - invalid, 1 - 32bit, 2 - 64bit
 +  if (lib_arch.elf_class > 2 || lib_arch.elf_class < 1) {
-+    ::snprintf(diag_msg_buf, diag_msg_max_length-1, " (Possible cause: invalid ELF file class)");
++    os::snprintf_checked(diag_msg_buf, diag_msg_max_length-1, " (Possible cause: invalid ELF file class)");
 +    return nullptr;
 +  }
 +
 +  if (lib_arch.elf_class != arch_array[running_arch_index].elf_class) {
-+    ::snprintf(diag_msg_buf, diag_msg_max_length-1,
++    os::snprintf_checked(diag_msg_buf, diag_msg_max_length-1,
 +               " (Possible cause: architecture word width mismatch, can't load %d-bit .so on a %d-bit platform)",
 +               (int) lib_arch.elf_class * 32, arch_array[running_arch_index].elf_class * 32);
 +    return nullptr;
@@ -3555,7 +3559,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  if (processor_info(id, &stats) != -1) {
 +    clock = stats.pi_clock;  // pi_processor_type isn't more informative than below
 +  }
-+  snprintf(buf, buflen, "64 bit %d MHz", clock);
++  os::snprintf_checked(buf, buflen, "64 bit %d MHz", clock);
 +}
 +
 +void os::pd_print_cpu_info(outputStream* st, char* buf, size_t buflen) {
@@ -3565,8 +3569,11 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +void os::print_memory_info(outputStream* st) {
 +  st->print("Memory:");
 +  st->print(" %zuk page", os::vm_page_size()>>10);
-+  st->print(", physical " UINT64_FORMAT "k", os::physical_memory()>>10);
-+  st->print("(" UINT64_FORMAT "k free)", os::available_memory() >> 10);
++  size_t phys_mem = physical_memory();
++  st->print(", physical %zuk", phys_mem >> 10);
++  size_t avail_mem = 0;
++  (void)os::available_memory(avail_mem);
++  st->print("%zuk free)", avail_mem >> 10);
 +  st->cr();
 +}
 +
@@ -4793,7 +4800,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  jlong lwp_time;
 +  int fd;
 +
-+  snprintf(proc_name, sizeof(proc_name), "/proc/%d/lwp/%d/lwpusage",
++  os::snprintf_checked(proc_name, sizeof(proc_name), "/proc/%d/lwp/%d/lwpusage",
 +          getpid(),
 +          thread->osthread()->lwp_id());
 +  fd = ::open(proc_name, O_RDONLY);
@@ -5030,7 +5037,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +      error_report = "dlerror returned no error description";
 +    }
 +    if (ebuf != nullptr && ebuflen > 0) {
-+      snprintf(ebuf, ebuflen - 1, "%s", error_report);
++      os::snprintf_checked(ebuf, ebuflen - 1, "%s", error_report);
 +    }
 +  }
 +
@@ -5141,10 +5148,10 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.hpp b/src/hotspot/os/solaris/
 +
 + protected:
 +  // Solaris-specific interface goes here
-+  static julong available_memory();
-+  static julong free_memory();
-+  static julong physical_memory() { return _physical_memory; }
-+  static julong _physical_memory;
++  static bool available_memory(size_t& value);
++  static bool free_memory(size_t& value);
++  static size_t physical_memory() { return _physical_memory; }
++  static size_t _physical_memory;
 +  static void initialize_system_info();
 +  static int _dev_zero_fd;
 +  static int get_dev_zero_fd() { return _dev_zero_fd; }
