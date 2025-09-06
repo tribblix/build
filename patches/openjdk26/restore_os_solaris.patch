@@ -2545,7 +2545,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +
 +size_t os::Solaris::_physical_memory = 0;
 +
-+jlong os::total_swap_space(size_t& value) {
++bool os::total_swap_space(size_t& value) {
 +  struct anoninfo ai;
 +  int ret = swapctl(SC_AINFO, &ai);
 +  if (ret == -1) {
@@ -2555,7 +2555,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  return true;
 +}
 +
-+jlong os::free_swap_space(size_t& value) {
++bool os::free_swap_space(size_t& value) {
 +  struct anoninfo ai;
 +  int ret = swapctl(SC_AINFO, &ai);
 +  if (ret == -1) {
