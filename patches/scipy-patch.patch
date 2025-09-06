@@ -20,7 +20,26 @@ conflicts with termios.
  } Mode;
  
  /*--- Helper Functions ---*/
-@@ -161,27 +161,27 @@
+@@ -159,13 +159,13 @@
+   /* in _filters.py ensures that this function isn't called otherwise. xref gh-23293 for details. */
+   if (lim2 < 0 && arr_len == 1) {
+       switch (mode) {
+-          case REFLECT:
+-          case NEAREST:
+-          case WRAP:
+-          case MIRROR:
++          case SP_REFLECT:
++          case SP_NEAREST:
++          case SP_WRAP:
++          case SP_MIRROR:
+               out_arr[0] = in_arr[0];
+               return;
+-          case CONSTANT:
++          case SP_CONSTANT:
+               if (win_len == 1) {
+                   out_arr[0] = in_arr[0];
+               }
+@@ -180,27 +180,27 @@
    T *data = new T[win_len]();
  
    switch (mode) {
@@ -53,7 +72,7 @@ conflicts with termios.
      if (win_len % 2 == 0) {
          offset = 2;
      }
-@@ -202,7 +202,7 @@
+@@ -221,7 +221,7 @@
      out_arr[i - lim] = data[m->heap[0]];
    }
    switch (mode) {
@@ -62,7 +81,7 @@ conflicts with termios.
      arr_len_thresh = arr_len - 1;
      for (i = 0; i < lim; i++) {
        MediatorInsert(data, m, in_arr[arr_len_thresh - i]);
-@@ -209,13 +209,13 @@
+@@ -228,13 +228,13 @@
        out_arr[lim2 + i] = data[m->heap[0]];
      }
      break;
@@ -78,7 +97,7 @@ conflicts with termios.
      arr_len_thresh = arr_len - 1;
      for (i = 0; i < lim; i++) {
        MediatorInsert(data, m, in_arr[arr_len_thresh]);
-@@ -222,7 +222,7 @@
+@@ -241,7 +241,7 @@
        out_arr[lim2 + i] = data[m->heap[0]];
      }
      break;
@@ -87,7 +106,7 @@ conflicts with termios.
      arr_len_thresh = arr_len - 2;
      for (i = 0; i < lim; i++) {
        MediatorInsert(data, m, in_arr[arr_len_thresh - i]);
-@@ -229,7 +229,7 @@
+@@ -248,7 +248,7 @@
        out_arr[lim2 + i] = data[m->heap[0]];
      }
      break;
