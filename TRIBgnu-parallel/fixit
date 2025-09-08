@@ -5,3 +5,9 @@
 # the docs largely duplicate the man pages
 #
 rm -fr usr/gnu/share/doc/parallel
+#
+# put shell completions where shells look for them
+#
+mkdir -p usr/share
+mv usr/gnu/share/zsh usr/share/zsh
+mv usr/gnu/share/bash-completion usr/share/bash-completion
