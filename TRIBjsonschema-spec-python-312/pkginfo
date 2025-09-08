@@ -1,4 +1,4 @@
 PKG="TRIBjsonschema-spec-python-312"
 NAME="Python jsonschema-specifications"
-VERSION="2025.4.1.0"
+VERSION="2025.9.1.0"
 ZAP_URL="https://pypi.org/project/jsonschema-specifications/"
