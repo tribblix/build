@@ -1,4 +1,4 @@
 PKG="TRIBxmltodict-python-312"
 NAME="Python xmltodict"
-VERSION="0.15.0.0"
+VERSION="0.15.1.0"
 ZAP_URL="https://pypi.org/project/xmltodict/"
