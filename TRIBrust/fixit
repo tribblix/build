@@ -11,3 +11,6 @@ mkdir -p usr/share/man/man1
 cd usr/share/man/man1
 ln -s ../../../versions/rust/share/man/man1/*.1 .
 cd ../../../..
+
+mkdir -p usr/share
+mv usr/versions/rust/share/zsh usr/share
