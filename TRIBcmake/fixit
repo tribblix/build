@@ -2,13 +2,18 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-VERSION=3.29
+VERSION=3
+FULLVERSION=3.31
+
+mkdir usr/share
+mv usr/versions/cmake-${VERSION}/share/bash-completion usr/share
+
 mkdir usr/bin
 cd usr/bin
 ln -s ../versions/cmake-${VERSION}/bin/c* .
 cd ../versions/cmake-${VERSION}/bin
 strip c*
-cd ../share/cmake-${VERSION}/Help/generator
+cd ../share/cmake-${FULLVERSION}/Help/generator
 for file in *
 do
     nfile=${file// /_}
