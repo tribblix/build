@@ -1,4 +1,4 @@
 PKG="TRIBlibpsl"
 NAME="libpsl"
-VERSION="0.21.5.1"
+VERSION="0.21.5.2"
 ZAP_URL="https://github.com/rockdaboot/libpsl"
