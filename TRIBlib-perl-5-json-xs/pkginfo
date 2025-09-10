@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-json-xs"
 NAME="Perl JSON::XS module"
-VERSION="4.03.0"
+VERSION="4.04.0"
 ZAP_URL="https://metacpan.org/pod/JSON::XS"
