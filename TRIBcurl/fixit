@@ -16,18 +16,9 @@ esac
 if [ -x usr/bin/${ARCH64}/curl ]; then
   mv usr/bin/${ARCH64}/curl usr/bin/curl
 fi
-
-#
-# add wcurl
-#
-mkdir -p usr/bin
-curl -fLO https://github.com/curl/wcurl/releases/latest/download/wcurl
-mv wcurl usr/bin/wcurl
-chmod 755 usr/bin/wcurl
-mkdir -p usr/share/man/man1
-curl -fLO https://github.com/curl/wcurl/releases/latest/download/wcurl.1
-mv wcurl.1 usr/share/man/man1/wcurl.1
-chmod 0644 usr/share/man/man1/wcurl.1
+if [ -x usr/bin/${ARCH64}/wcurl ]; then
+  mv usr/bin/${ARCH64}/wcurl usr/bin/wcurl
+fi
 
 #
 # In 8.11.0 the shipped pc files blindly referred to requirements that do not

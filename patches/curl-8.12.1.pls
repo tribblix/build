@@ -1,1 +1,0 @@
--p1 curl-man.patch
