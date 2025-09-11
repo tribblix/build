@@ -2,9 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# may need to rename the downloaded tarball, like so:
-#  mv cups-2.4.12-source.tar.gz cups-2.4.12.tar.gz
-#
 
 #
 # illumos-gate needs the cups headers for smbsrv to build with smb
@@ -21,5 +18,5 @@
 #
 # don't use openssl, we've built against gnutls in the past
 #
-env CC=gcc CXX=g++ TRIBBLIX_CFLAGS="-D_XOPEN_SOURCE=600 -D__EXTENSIONS__" TRIBBLIX_LDFLAGS=-lsocket ${THOME}/build/dobuild -64only cups-2.4.12 -C "--sysconfdir=/etc --localstatedir=/var --with-smfmanifestdir=/lib/svc/manifest/application --with-cups-user=lp --with-cups-group=lp --disable-gssapi --with-tls=gnutls --with-archflags=-m64"
-$THOME/build/genpkg TRIBcups cups-2.4.12
+env CC=gcc CXX=g++ TRIBBLIX_CFLAGS="-D_XOPEN_SOURCE=600 -D__EXTENSIONS__" TRIBBLIX_LDFLAGS=-lsocket ${THOME}/build/dobuild -64only -n cups-2.4.14 cups-2.4.14-source -C "--sysconfdir=/etc --localstatedir=/var --with-smfmanifestdir=/lib/svc/manifest/application --with-cups-user=lp --with-cups-group=lp --disable-gssapi --with-tls=gnutls --with-archflags=-m64"
+$THOME/build/genpkg TRIBcups cups-2.4.14-source

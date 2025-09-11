@@ -1,6 +1,6 @@
 --- a/configure	Thu May 26 07:17:21 2022
 +++ b/configure	Fri Jul 29 19:42:00 2022
-@@ -8274,7 +8274,7 @@
+@@ -8506,7 +8506,7 @@
    return 0;
  }
  _ACEOF
