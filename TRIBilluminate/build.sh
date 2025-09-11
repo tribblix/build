@@ -10,5 +10,5 @@
 # then copy the package into our own format
 #
 mkdir -p /tmp/pct
-mv /tmp/TRIBilluminate.pkg /tmp/pct/TRIBilluminate.1.1.pkg
-${THOME}/build/pkg2zap /tmp/pct/TRIBilluminate.1.1.pkg /tmp/pct
+mv /tmp/TRIBilluminate.pkg /tmp/pct/TRIBilluminate.1.2.pkg
+${THOME}/build/pkg2zap /tmp/pct/TRIBilluminate.1.2.pkg /tmp/pct
