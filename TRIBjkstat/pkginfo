@@ -1,4 +1,4 @@
 PKG="TRIBjkstat"
 NAME="JKstat"
-VERSION="1.8.0"
+VERSION="1.9.0"
 ZAP_URL="http://www.petertribble.co.uk/Solaris/jkstat.html"
