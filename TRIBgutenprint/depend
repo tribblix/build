@@ -3,3 +3,4 @@ P TRIBgimp
 P TRIBlib-desktop-gtk
 P TRIBlib-glib2
 P TRIBlib-zlib
+P TRIBlibusb

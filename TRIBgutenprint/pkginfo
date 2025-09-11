@@ -1,4 +1,4 @@
 PKG="TRIBgutenprint"
 NAME="CUPS printer drivers"
-VERSION="5.3.4.0"
+VERSION="5.3.5.0"
 ZAP_URL="https://sourceforge.net/projects/gimp-print/"
