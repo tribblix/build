@@ -1,4 +1,4 @@
 PKG="TRIBjattack"
 NAME="Java game based on Tetris Attack"
-VERSION="1.6.0"
+VERSION="1.7.0"
 ZAP_URL="http://www.petertribble.co.uk/Fun/jattack.html"
