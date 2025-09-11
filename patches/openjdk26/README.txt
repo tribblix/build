@@ -4,6 +4,12 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+15
+
+Minor patch noise.
+
+Remove unused numa_topology_changed().
+
 26+14
 
 Needed to include <thread.h> in osThread_solaris.hpp

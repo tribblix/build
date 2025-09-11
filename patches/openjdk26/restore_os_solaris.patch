@@ -2296,7 +2296,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/src/hotspot/os/solaris/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2025-04-19 12:08:38.483600745 +0100
-@@ -0,0 +1,2746 @@
+@@ -0,0 +1,2733 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -3799,19 +3799,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +    return 1;
 +  }
 +  return bottom;
-+}
-+
-+// Detect the topology change. Typically happens during CPU plugging-unplugging.
-+bool os::numa_topology_changed() {
-+  int is_stale = Solaris::lgrp_cookie_stale(Solaris::lgrp_cookie());
-+  if (is_stale != -1 && is_stale) {
-+    Solaris::lgrp_fini(Solaris::lgrp_cookie());
-+    Solaris::lgrp_cookie_t c = Solaris::lgrp_init(Solaris::LGRP_VIEW_CALLER);
-+    assert(c != 0, "Failure to initialize LGRP API");
-+    Solaris::set_lgrp_cookie(c);
-+    return true;
-+  }
-+  return false;
 +}
 +
 +// Get the group id of the current LWP.

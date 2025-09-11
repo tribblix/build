@@ -79,7 +79,7 @@
  endif
 --- old/make/autoconf/basic_tools.m4	2020-05-20 17:58:27.308294035 -0700
 +++ new/make/autoconf/basic_tools.m4	2020-05-20 17:58:26.972287584 -0700
-@@ -289,8 +289,6 @@
+@@ -274,8 +274,6 @@
      TAR_TYPE="bsd"
    elif test "x$($TAR --version | $GREP "busybox")" != "x"; then
      TAR_TYPE="busybox"
@@ -305,7 +305,7 @@
      DTRACE_CPP_FLAGS := -D_LP64 -x c
    else ifeq ($(call isTargetOs, linux), true)
      DTRACE_CPP_FLAGS := -x c
-@@ -58,66 +55,6 @@
+@@ -59,66 +56,6 @@
    TARGETS += $(patsubst $(DTRACE_SOURCE_DIR)/%.d, \
        $(DTRACE_GENSRC_DIR)/%.h, $(wildcard $(DTRACE_SOURCE_DIR)/*.d))
  
@@ -793,24 +793,6 @@
      elif [ "$OPENJDK_TARGET_OS" = "aix" ]; then
          $OBJDUMP -T $ORIG_OTHER_FILE 2> /dev/null | $GREP -v $NAME | $AWK '{print $2, $3, $4, $5}' | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.other
          $OBJDUMP -T $ORIG_THIS_FILE  2> /dev/null | $GREP -v $NAME | $AWK '{print $2, $3, $4, $5}' | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.this
---- old/make/scripts/hide_important_warnings_from_javac.sh	2020-05-20 17:59:30.069499096 -0700
-+++ new/make/scripts/hide_important_warnings_from_javac.sh	2020-05-20 17:59:29.733492644 -0700
-@@ -22,13 +22,8 @@
- # questions.
- #
- 
--if [ -x /usr/bin/ggrep ] ; then
--    # Gnu grep on Solaris
--    # (reference configure and build/solaris-i586-clientANDserver-release/spec.gmk
--    GREP=/usr/bin/ggrep
--else
--    GREP=grep
--fi
-+GREP=grep
-+
- #
- EXP="Note: Some input files use or override a deprecated API."
- EXP="${EXP}|Note: Recompile with -Xlint:deprecation for details."
 --- old/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:33.301561154 -0700
 +++ new/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:32.909553627 -0700
 @@ -78,10 +78,6 @@
@@ -881,7 +863,7 @@
  #define SHUTDOWN3_SIGNAL SIGTERM
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -600,7 +600,7 @@
+@@ -599,7 +599,7 @@
    st->print("%ld", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -890,7 +872,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -618,12 +618,6 @@
+@@ -617,12 +617,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -907,7 +889,7 @@
 +++ new/src/hotspot/os/posix/os_posix.inline.hpp	2020-05-20 17:59:44.701780046 -0700
 @@ -34,10 +34,8 @@
  #include <sys/socket.h>
- #include <netdb.h>
+ #include <unistd.h>
  
 -#ifndef SOLARIS
  // Aix does not have NUMA support but need these for compilation.
@@ -981,7 +963,7 @@
  class MemTracker : AllStatic {
 --- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
 +++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -619,13 +619,12 @@
+@@ -658,13 +658,12 @@
    tty->print_cr("  findm(intptr_t pc) - finds Method*");
    tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
    tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
@@ -1053,7 +1035,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1076,7 +1076,7 @@
+@@ -1080,7 +1080,7 @@
  
  #ifndef PRODUCT
  
