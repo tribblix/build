@@ -1,4 +1,4 @@
 PKG="TRIBkar"
 NAME="Kstat Activity Reporter"
-VERSION="1.9"
+VERSION="1.10"
 ZAP_URL="http://www.petertribble.co.uk/Solaris/kar.html"

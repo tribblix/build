@@ -11,7 +11,7 @@
 # then copy the packages
 #
 mkdir -p /tmp/pct
-mv /tmp/TRIBkar-i386.pkg /tmp/pct/TRIBkar.1.9.pkg
-mv /tmp/TRIBkar-sparc.pkg ${THOME}/pkgs.sparc/TRIBkar.1.9.pkg
-${THOME}/build/pkg2zap /tmp/pct/TRIBkar.1.9.pkg /tmp/pct
-${THOME}/build/pkg2zap ${THOME}/pkgs.sparc/TRIBkar.1.9.pkg ${THOME}/pkgs.sparc
+mv /tmp/TRIBkar-i386.pkg /tmp/pct/TRIBkar.1.10.pkg
+mv /tmp/TRIBkar-sparc.pkg ${THOME}/pkgs.sparc/TRIBkar.1.10.pkg
+${THOME}/build/pkg2zap /tmp/pct/TRIBkar.1.10.pkg /tmp/pct
+${THOME}/build/pkg2zap ${THOME}/pkgs.sparc/TRIBkar.1.10.pkg ${THOME}/pkgs.sparc
