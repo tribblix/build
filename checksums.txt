@@ -3589,3 +3589,4 @@ gutenprint-5.3.5.tar.xz f5a9f47de28530b1ae2069cfbc647a9a641baeeabe809bb0ef2b3ec5
 trove_classifiers-2025.9.11.17.tar.gz 931ca9841a5e9c9408bc2ae67b50d28acf85bef56219b56860876dd1f2d024dd
 httplib2-0.31.0.tar.gz ac7ab497c50975147d4f7b1ade44becc7df2f8954d42b38b3d69c515f531135c
 openstacksdk-4.7.1.tar.gz 23348aa69c6cc6c1ed0e8f03fb42b156519ed8cfcd143e783ef5c1dd800ad9f1
+publicsuffixlist-1.0.2.20250911.tar.gz d50d69dece74c428c3bbfe8f1e90c81444160fecdb54ada51d4738b5e8fbc81b
