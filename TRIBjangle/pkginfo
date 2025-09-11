@@ -1,4 +1,4 @@
 PKG="TRIBjangle"
 NAME="Java SNMP viewer"
-VERSION="0.18"
+VERSION="0.19"
 ZAP_URL="http://www.petertribble.co.uk/Solaris/jangle.html"
