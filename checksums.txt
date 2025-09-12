@@ -3597,3 +3597,5 @@ protobuf-6.32.1.tar.gz ee2469e4a021474ab9baafea6cd070e5bf27c7d29433504ddea1a4ee5
 pynacl-1.6.0.tar.gz cb36deafe6e2bce3b286e5d1f3e1c246e0ccdb8808ddb4550bb2792f2df298f2
 zope_interface-8.0.tar.gz b14d5aac547e635af749ce20bf49a3f5f93b8a854d2a6b1e95d4d5e5dc618f7d
 swift-2.36.0.tar.gz deab5dfbee179ba07d4cf7cabf1f39b3bd7f1f3f2a16b84df9747d4eebdf1d7c
+sbcl-2.5.8-source.tar.bz2 a7603e855095f635de021710a4e720d74d0b3e7c3e7ac520fe358897f586a9ae
+sbcl-2.0.4-sparc-solaris-binary.tar.bz2 284e98ec4dbc7bf2455c656e1ff711b485de7f1a8b2f49f955aabecbb24cc350
