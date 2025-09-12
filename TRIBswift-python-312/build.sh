@@ -4,4 +4,4 @@
 #
 # part of openstack
 #
-${THOME}/build/pkg_setup_py TRIBswift-python-312 swift-2.35.1
+${THOME}/build/pkg_pep518 -N TRIBswift-python-312 swift-2.36.0
