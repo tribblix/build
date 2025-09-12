@@ -3595,3 +3595,4 @@ dask-2025.9.0.tar.gz 37a3e73f3bba43e2b9de38a33b315c18a881d2108aba078685bab8e5c2c
 pikepdf-9.11.0.tar.gz 5ad6bffba08849c21eee273ba0b6fcd4b6a9cff81bcbca6988f87a765ba62163
 protobuf-6.32.1.tar.gz ee2469e4a021474ab9baafea6cd070e5bf27c7d29433504ddea1a4ee5850f68d
 pynacl-1.6.0.tar.gz cb36deafe6e2bce3b286e5d1f3e1c246e0ccdb8808ddb4550bb2792f2df298f2
+zope_interface-8.0.tar.gz b14d5aac547e635af749ce20bf49a3f5f93b8a854d2a6b1e95d4d5e5dc618f7d
