@@ -3599,3 +3599,4 @@ zope_interface-8.0.tar.gz b14d5aac547e635af749ce20bf49a3f5f93b8a854d2a6b1e95d4d5
 swift-2.36.0.tar.gz deab5dfbee179ba07d4cf7cabf1f39b3bd7f1f3f2a16b84df9747d4eebdf1d7c
 sbcl-2.5.8-source.tar.bz2 a7603e855095f635de021710a4e720d74d0b3e7c3e7ac520fe358897f586a9ae
 sbcl-2.0.4-sparc-solaris-binary.tar.bz2 284e98ec4dbc7bf2455c656e1ff711b485de7f1a8b2f49f955aabecbb24cc350
+pmd-dist-7.17.0-bin.zip 440f6855769c1a651cebd735133cba188df077881af31bd923766b869482bebd
