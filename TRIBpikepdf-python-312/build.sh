@@ -4,4 +4,4 @@
 #
 # need pybind11 v3 to restore -N
 #
-${THOME}/build/pkg_pep518 TRIBpikepdf-python-312 pikepdf-9.10.2
+${THOME}/build/pkg_pep518 TRIBpikepdf-python-312 pikepdf-9.11.0

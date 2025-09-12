@@ -1,4 +1,4 @@
 PKG="TRIBpikepdf-python-312"
 NAME="Python pikepdf"
-VERSION="9.10.2.0"
+VERSION="9.11.0.0"
 ZAP_URL="https://pypi.org/project/pikepdf/"
