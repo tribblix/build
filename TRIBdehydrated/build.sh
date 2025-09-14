@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # pull source, copy out the files we need
 #
 git clone https://github.com/dehydrated-io/dehydrated.git
@@ -7,7 +9,7 @@ git clone https://github.com/dehydrated-io/dehydrated.git
 # get the matching commit
 #
 cd dehydrated
-git checkout v0.7.1
+git checkout v0.7.2
 rm -fr /tmp/dhd
 mkdir -p /tmp/dhd/usr/bin
 mkdir -p /tmp/dhd/usr/share/man/man1

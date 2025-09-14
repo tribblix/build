@@ -1,4 +1,4 @@
 PKG="TRIBdehydrated"
 NAME="letsencrypt/acme client implemented as a shell-script"
-VERSION="0.7.1.0"
+VERSION="0.7.2.0"
 ZAP_URL="https://github.com/dehydrated-io/dehydrated"

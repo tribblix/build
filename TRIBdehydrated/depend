@@ -1,3 +1,4 @@
 P TRIBcurl
 P TRIBlib-security-openssl
 P TRIBtext-gawk
+P TRIBtext-utilities
