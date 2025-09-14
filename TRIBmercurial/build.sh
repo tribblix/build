@@ -8,4 +8,4 @@
 # it shows up in the list of modules and can be used directly by
 # other python modules
 #
-$THOME/build/pkg_pep518 -N -v 312 TRIBmercurial mercurial-7.1
+$THOME/build/pkg_pep518 -N -v 312 TRIBmercurial mercurial-7.1.1
