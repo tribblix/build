@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# this is the generic autoconf stuff, not useful here
+#
+rm -f usr/share/util-macros/INSTALL
+rmdir usr/share/util-macros
