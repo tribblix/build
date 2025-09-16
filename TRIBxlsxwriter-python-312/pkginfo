@@ -1,4 +1,4 @@
 PKG="TRIBxlsxwriter-python-312"
 NAME="Python XlsxWriter"
-VERSION="3.2.8.0"
+VERSION="3.2.9.0"
 ZAP_URL="https://pypi.org/project/xlsxwriter/"
