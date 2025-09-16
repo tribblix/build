@@ -1,4 +1,4 @@
 PKG="TRIBbeancount-python-312"
 NAME="Python beancount"
-VERSION="3.1.0.5"
+VERSION="3.2.0.0"
 ZAP_URL="https://pypi.org/project/beancount/"
