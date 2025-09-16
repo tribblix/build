@@ -1,4 +1,4 @@
 PKG="TRIBdev-build-imake"
 NAME="imake"
-VERSION="1.0.10.0"
+VERSION="1.0.10.1"
 ZAP_URL="https://www.x.org/releases/individual/util/"
