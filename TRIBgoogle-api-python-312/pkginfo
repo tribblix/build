@@ -1,4 +1,4 @@
 PKG="TRIBgoogle-api-python-312"
 NAME="Python google-api-python-client"
-VERSION="2.181.0.0"
+VERSION="2.182.0.0"
 ZAP_URL="https://pypi.org/project/google-api-python-client/"
