@@ -1,4 +1,4 @@
 PKG="TRIBgopher"
 NAME="Gopher CLI client"
-VERSION="3.0.17.1"
+VERSION="3.0.19.0"
 ZAP_URL="https://github.com/jgoerzen/gopher"
