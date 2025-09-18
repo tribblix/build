@@ -36,7 +36,7 @@ From GCC documentation:
 diff -wpruN '--exclude=*.orig' a~/nss/lib/freebl/gcm.c a/nss/lib/freebl/gcm.c
 --- a~/nss/lib/freebl/gcm.c	1970-01-01 00:00:00
 +++ a/nss/lib/freebl/gcm.c	1970-01-01 00:00:00
-@@ -241,6 +241,7 @@ bmul32(uint32_t x, uint32_t y, uint32_t
+@@ -245,6 +245,7 @@ bmul32(uint32_t x, uint32_t y, uint32_t
      *r_low = (uint32_t)z;
  }
  
@@ -47,7 +47,7 @@ diff -wpruN '--exclude=*.orig' a~/nss/lib/freebl/gcm.c a/nss/lib/freebl/gcm.c
 diff -wpruN '--exclude=*.orig' a~/nss/lib/freebl/rijndael.c a/nss/lib/freebl/rijndael.c
 --- a~/nss/lib/freebl/rijndael.c	1970-01-01 00:00:00
 +++ a/nss/lib/freebl/rijndael.c	1970-01-01 00:00:00
-@@ -810,6 +810,7 @@ rijndael_decryptECB(AESContext *cx, unsi
+@@ -814,6 +814,7 @@ rijndael_decryptECB(AESContext *cx, unsi
      return SECSuccess;
  }
  

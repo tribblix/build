@@ -44,10 +44,13 @@ fi
 #
 # also assume we're in the nss directory that the build ran from
 #
+# the commented out symlinks are shipped in the nspr package, which this
+# package depends on
+#
 mkdir -p ${DESTDIR}/usr/lib/mps/${ARCH64}
-ln -s ${ARCH64} ${DESTDIR}/usr/lib/mps/64
+#ln -s ${ARCH64} ${DESTDIR}/usr/lib/mps/64
 mkdir -p ${DESTDIR}/usr/lib/mps/secv1/${ARCH64}
-ln -s ${ARCH64} ${DESTDIR}/usr/lib/mps/secv1/64
+#ln -s ${ARCH64} ${DESTDIR}/usr/lib/mps/secv1/64
 mkdir -p ${DESTDIR}/usr/include/mps
 mkdir -p ${DESTDIR}/usr/lib/pkgconfig
 mkdir -p ${DESTDIR}/usr/lib/${ARCH64}/pkgconfig
@@ -99,8 +102,8 @@ includedir=/usr/include/mps
 
 Name: NSS
 Description: Network Security Services
-Version: 3.93
-Requires: nspr >= 4.35
+Version: 3.116
+Requires: nspr >= 4.37
 Libs: -L/usr/lib/mps -R/usr/lib/mps -lnss3 -lsmime3 -lssl3 -lnssutil3
 Cflags: -I/usr/include/mps
 EOF
@@ -113,8 +116,8 @@ includedir=/usr/include/mps
 
 Name: NSS
 Description: Network Security Services
-Version: 3.93
-Requires: nspr >= 4.35
+Version: 3.116
+Requires: nspr >= 4.37
 Libs: -L/usr/lib/mps/${ARCH64} -R/usr/lib/mps/${ARCH64} -lnss3 -lsmime3 -lssl3 -lnssutil3
 Cflags: -I/usr/include/mps
 EOF

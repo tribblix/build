@@ -80,7 +80,7 @@ includedir=/usr/include/mps
 
 Name: NSPR
 Description: The Netscape Portable Runtime
-Version: 4.35
+Version: 4.37
 Libs: -L/usr/lib/mps -R/usr/lib/mps -lplds4 -lplc4 -lnspr4
 Cflags: -I/usr/include/mps
 EOF
@@ -93,7 +93,7 @@ includedir=/usr/include/mps
 
 Name: NSPR
 Description: The Netscape Portable Runtime
-Version: 4.35
+Version: 4.37
 Libs: -L/usr/lib/mps/${ARCH64} -R/usr/lib/mps/${ARCH64} -lplds4 -lplc4 -lnspr4
 Cflags: -I/usr/include/mps
 EOF
