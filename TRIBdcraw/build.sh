@@ -4,12 +4,10 @@
 # but what you want is the tarball from https://dechifro.org/dcraw/archive/
 # because that has the message files included
 #
-${THOME}/build/unpack dcraw-9.28.0
-cd dcraw
+# the unpacked directory name doesn't match the tarball
 #
-# manual because the directory name doesn't match the tarball
-#
-gpatch -p1 < ${THOME}/build/patches/dcraw.patch
+${THOME}/build/unpack -n dcraw dcraw-9.28.0
+cd dcraw-9.28.0
 #
 gcc -O4 -m64 -o dcraw dcraw.c -Wall -Wno-unused-result -Wno-array-bounds -Wno-maybe-uninitialized -Wno-unused-but-set-variable -lm -ljasper -ljpeg -llcms2 -DLOCALEDIR=\"/usr/share/locale\"
 rm -fr /tmp/dr

@@ -1,4 +1,4 @@
 PKG="TRIBdcraw"
 NAME="dcraw - Decoding raw digital photos"
 VERSION="9.28.0.1"
-ZAP_URL="https://www.dechifro.org/dcraw/"
+ZAP_URL="https://dechifro.org/dcraw/"
