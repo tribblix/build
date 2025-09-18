@@ -1,4 +1,4 @@
 PKG="TRIBspotbugs"
 NAME="SpotBugs - Find bugs in Java Programs"
-VERSION="4.9.4.0"
+VERSION="4.9.6.0"
 ZAP_URL="https://spotbugs.github.io/"
