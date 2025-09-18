@@ -1,4 +1,4 @@
 PKG="TRIBwhitenoise-python-312"
 NAME="Python whitenoise"
-VERSION="6.10.0.0"
+VERSION="6.11.0.0"
 ZAP_URL="https://pypi.org/project/whitenoise/"
