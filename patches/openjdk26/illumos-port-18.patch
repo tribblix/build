@@ -1,7 +1,7 @@
 --- a/src/hotspot/share/runtime/mutex.hpp	Wed Jul  6 08:12:32 2022
 +++ b/src/hotspot/share/runtime/mutex.hpp	Thu Jul  7 13:59:23 2022
 @@ -29,7 +29,7 @@
- #include "runtime/atomic.hpp"
+ #include "runtime/atomicAccess.hpp"
  #include "runtime/semaphore.hpp"
  
 -#if defined(LINUX) || defined(AIX) || defined(BSD)

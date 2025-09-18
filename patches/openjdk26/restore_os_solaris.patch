@@ -2339,7 +2339,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +#include "prims/jniFastGetField.hpp"
 +#include "prims/jvm_misc.hpp"
 +#include "runtime/arguments.hpp"
-+#include "runtime/atomic.hpp"
++#include "runtime/atomicAccess.hpp"
 +#include "runtime/globals.hpp"
 +#include "runtime/globals_extension.hpp"
 +#include "runtime/interfaceSupport.inline.hpp"
@@ -2858,9 +2858,9 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +
 +  // One less thread is executing
 +  // When the VMThread gets here, the main thread may have already exited
-+  // which frees the CodeHeap containing the Atomic::dec code
++  // which frees the CodeHeap containing the AtomicAccess::dec code
 +  if (thread != VMThread::vm_thread() && VMThread::vm_thread() != nullptr) {
-+    Atomic::dec(&os::Solaris::_os_thread_count);
++    AtomicAccess::dec(&os::Solaris::_os_thread_count);
 +  }
 +
 +  log_info(os, thread)("Thread finished (tid: %zu).", os::current_thread_id());
@@ -3034,7 +3034,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +    return false;
 +  }
 +
-+  Atomic::inc(&os::Solaris::_os_thread_count);
++  AtomicAccess::inc(&os::Solaris::_os_thread_count);
 +
 +  // Store info on the Solaris thread into the OSThread
 +  osthread->set_thread_id(tid);
@@ -3151,7 +3151,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  if (now <= prev) {
 +    return prev;   // same or retrograde time;
 +  }
-+  const hrtime_t obsv = Atomic::cmpxchg(&max_hrtime, prev, now);
++  const hrtime_t obsv = AtomicAccess::cmpxchg(&max_hrtime, prev, now);
 +  assert(obsv >= prev, "invariant");   // Monotonicity
 +  // If the CAS succeeded then we're done and return "now".
 +  // If the CAS failed and the observed value "obsv" is >= now then

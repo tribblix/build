@@ -1,6 +1,6 @@
-diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/atomic_solaris_zero.hpp
---- /tmp/g/atomic_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
-+++ b/src/hotspot/os_cpu/solaris_zero/atomic_solaris_zero.hpp	2020-08-27 09:48:36.864797068 +0000
+diff -ur -N /tmp/g/atomicAccess_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/atomicAccess_solaris_zero.hpp
+--- /tmp/g/atomicAccess_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
++++ b/src/hotspot/os_cpu/solaris_zero/atomicAccess_solaris_zero.hpp	2020-08-27 09:48:36.864797068 +0000
 @@ -0,0 +1,182 @@
 +/*
 + * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
@@ -26,8 +26,8 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 + *
 + */
 +
-+#ifndef OS_CPU_SOLARIS_X86_ATOMIC_SOLARIS_X86_HPP
-+#define OS_CPU_SOLARIS_X86_ATOMIC_SOLARIS_X86_HPP
++#ifndef OS_CPU_SOLARIS_X86_ATOMICACCESS_SOLARIS_X86_HPP
++#define OS_CPU_SOLARIS_X86_ATOMICACCESS_SOLARIS_X86_HPP
 +
 +inline int32_t _Atomic_add(int32_t add_value, volatile int32_t* dest) {
 +  int32_t rv = add_value;
@@ -82,7 +82,7 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +}
 +
 +template<size_t byte_size>
-+struct Atomic::PlatformAdd {
++struct AtomicAccess::PlatformAdd {
 +  template<typename D, typename I>
 +  D add_then_fetch(D volatile* dest, I add_value, atomic_memory_order order) const;
 +
@@ -95,7 +95,7 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +// Not using add_using_helper; see comment for cmpxchg.
 +template<>
 +template<typename D, typename I>
-+inline D Atomic::PlatformAdd<4>::add_then_fetch(D volatile* dest, I add_value,
++inline D AtomicAccess::PlatformAdd<4>::add_then_fetch(D volatile* dest, I add_value,
 +                                               atomic_memory_order order) const {
 +  STATIC_ASSERT(4 == sizeof(I));
 +  STATIC_ASSERT(4 == sizeof(D));
@@ -107,7 +107,7 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +// Not using add_using_helper; see comment for cmpxchg.
 +template<>
 +template<typename D, typename I>
-+inline D Atomic::PlatformAdd<8>::add_then_fetch(D volatile* dest, I add_value,
++inline D AtomicAccess::PlatformAdd<8>::add_then_fetch(D volatile* dest, I add_value,
 +                                               atomic_memory_order order) const {
 +  STATIC_ASSERT(8 == sizeof(I));
 +  STATIC_ASSERT(8 == sizeof(D));
@@ -118,7 +118,7 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +
 +template<>
 +template<typename T>
-+inline T Atomic::PlatformXchg<4>::operator()(T volatile* dest,
++inline T AtomicAccess::PlatformXchg<4>::operator()(T volatile* dest,
 +                                             T exchange_value,
 +                                             atomic_memory_order order) const {
 +  STATIC_ASSERT(4 == sizeof(T));
@@ -129,7 +129,7 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +
 +template<>
 +template<typename T>
-+inline T Atomic::PlatformXchg<8>::operator()(T volatile* dest,
++inline T AtomicAccess::PlatformXchg<8>::operator()(T volatile* dest,
 +                                             T exchange_value,
 +                                             atomic_memory_order order) const {
 +  STATIC_ASSERT(8 == sizeof(T));
@@ -146,7 +146,7 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +
 +template<>
 +template<typename T>
-+inline T Atomic::PlatformCmpxchg<1>::operator()(T volatile* dest,
++inline T AtomicAccess::PlatformCmpxchg<1>::operator()(T volatile* dest,
 +                                                T compare_value,
 +                                                T exchange_value,
 +                                                atomic_memory_order order) const {
@@ -159,7 +159,7 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +
 +template<>
 +template<typename T>
-+inline T Atomic::PlatformCmpxchg<4>::operator()(T volatile* dest,
++inline T AtomicAccess::PlatformCmpxchg<4>::operator()(T volatile* dest,
 +                                                T compare_value,
 +                                                T exchange_value,
 +                                                atomic_memory_order order) const {
@@ -172,7 +172,7 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +
 +template<>
 +template<typename T>
-+inline T Atomic::PlatformCmpxchg<8>::operator()(T volatile* dest,
++inline T AtomicAccess::PlatformCmpxchg<8>::operator()(T volatile* dest,
 +                                                T compare_value,
 +                                                T exchange_value,
 +                                                atomic_memory_order order) const {
@@ -183,7 +183,7 @@ diff -ur -N /tmp/g/atomic_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/ato
 +                         PrimitiveConversions::cast<int64_t>(compare_value)));
 +}
 +
-+#endif // OS_CPU_SOLARIS_X86_ATOMIC_SOLARIS_X86_HPP
++#endif // OS_CPU_SOLARIS_X86_ATOMICACCESS_SOLARIS_X86_HPP
 diff -ur -N /tmp/g/bytes_solaris_zero.inline.hpp b/src/hotspot/os_cpu/solaris_zero/bytes_solaris_zero.inline.hpp
 --- /tmp/g/bytes_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/bytes_solaris_zero.hpp	2020-08-31 18:20:25.351780484 +0000

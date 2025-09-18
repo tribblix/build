@@ -183,7 +183,7 @@ suite. It would be nice to be complete, but that isn't true yet.
      }
 --- a/test/hotspot/gtest/runtime/test_committed_virtualmemory.cpp	Wed Jan  8 20:46:57 2025
 +++ b/test/hotspot/gtest/runtime/test_committed_virtualmemory.cpp	Tue Jan 21 10:47:29 2025
-@@ -249,7 +249,7 @@
+@@ -260,7 +260,7 @@
  
  }
  
