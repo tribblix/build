@@ -1,4 +1,4 @@
 PKG="TRIBnsd"
 NAME="Authoritative DNS name server"
-VERSION="4.12.0.0"
+VERSION="4.13.0.0"
 ZAP_URL="https://nlnetlabs.nl/projects/nsd/about/"
