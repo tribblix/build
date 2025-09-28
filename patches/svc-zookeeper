@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # wrapper to start zookeeper, with valid arguments
 #
 
@@ -15,7 +17,8 @@ if [ ! -f "${ZDIR}/conf/zoo.cfg" ]; then
     exit 0
 fi
 
-cd /opt/tribblix/zookeeper
+# 96 is SMF_EXIT_ERR_CONFIG
+cd /opt/tribblix/zookeeper || exit 96
 
 #
 # don't support restart here, as that first deos a stop which makes smf

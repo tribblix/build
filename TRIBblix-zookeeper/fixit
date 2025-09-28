@@ -7,7 +7,7 @@
 # need to put the manifest under var for sparse-root zone support
 #
 mkdir -p var/svc/manifest/network
-cp ${BUILDROOT}/patches/zookeeper.xml var/svc/manifest/network
+cp "${BUILDROOT}/patches/zookeeper.xml" var/svc/manifest/network
 
 #
 # where config and logs live
@@ -29,21 +29,21 @@ cat > var/zookeeper/conf/zookeeper-env.sh <<EOF
 ZOO_LOG_DIR=/var/zookeeper/logs
 EOF
 
-cd opt/tribblix
+cd opt/tribblix || exit 1
 #
 # Normalize the directory name
 #
-VERSION="3.9.3"
+VERSION="3.9.4"
 mv apache-zookeeper-${VERSION}-bin zookeeper
 
 #
 # clean up a bit
 #
-cd zookeeper
+cd zookeeper || exit 1
 rm -f bin/*.cmd
 
 #
 # copy in a startup wrapper
 #
-cp ${BUILDROOT}/patches/svc-zookeeper bin/svc-zookeeper
+cp "${BUILDROOT}/patches/svc-zookeeper" bin/svc-zookeeper
 chmod a+x bin/svc-zookeeper
