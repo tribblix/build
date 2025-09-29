@@ -1,4 +1,4 @@
 PKG="TRIBtyper-python-312"
 NAME="Python typer"
-VERSION="0.17.4.0"
+VERSION="0.19.2.0"
 ZAP_URL="https://pypi.org/project/typer/"
