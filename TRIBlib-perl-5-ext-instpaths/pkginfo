@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-ext-instpaths"
 NAME="Perl Extutils::InstallPaths module"
-VERSION="0.014.0"
+VERSION="0.015.0"
 ZAP_URL="https://metacpan.org/pod/ExtUtils::InstallPaths"

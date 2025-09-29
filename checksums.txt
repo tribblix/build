@@ -3665,3 +3665,4 @@ publicsuffixlist-1.0.2.20250927.tar.gz bdb02e97ecf7e8729d281d0c11cba8eeec7cc2be6
 markupsafe-3.0.3.tar.gz 722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698
 postgresql-18.0.tar.bz2 0d5b903b1e5fe361bca7aa9507519933773eb34266b1357c4e7780fdee6d6078
 apache-zookeeper-3.9.4-bin.tar.gz c5b7cbda0b1b59d724e552d33775983f8a366bf651ba484937d0559d97bf0ae9
+ExtUtils-InstallPaths-0.015.tar.gz 7d64eb2dfa87ead010cdf55c8a1bdfde50b7b5852d7cb8cf2304f55bea2eb007
