@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBanyio-python-312 anyio-4.10.0
+${THOME}/build/pkg_pep518 -N TRIBanyio-python-312 anyio-4.11.0
