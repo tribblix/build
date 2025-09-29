@@ -1,4 +1,4 @@
 PKG="TRIBblix-php-84pg"
 NAME="PHP8.4 postgres module"
-VERSION="8.4.12.0"
+VERSION="8.4.13.0"
 ZAP_URL="https://www.php.net/"
