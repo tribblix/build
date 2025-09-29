@@ -128,7 +128,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
 +++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -452,9 +452,6 @@
+@@ -421,9 +421,6 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_FILE_OFFSET_BITS=64"
@@ -264,9 +264,9 @@
        DISABLED_WARNINGS_gcc := unused-function unused-variable, \
 @@ -159,7 +158,6 @@
        LDFLAGS := $$($1_LDFLAGS), \
-       LDFLAGS_linux := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
-       LDFLAGS_macosx := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
--      LDFLAGS_solaris := $$(call SET_EXECUTABLE_ORIGIN,/../lib), \
+       LDFLAGS_linux := $$(call SetExecutableOrigin,/../lib), \
+       LDFLAGS_macosx := $$(call SetExecutableOrigin,/../lib), \
+-      LDFLAGS_solaris := $$(call SetExecutableOrigin,/../lib), \
        LDFLAGS_FILTER_OUT := $$($1_LDFLAGS_FILTER_OUT), \
        JDK_LIBS := $$($1_JDK_LIBS), \
        JDK_LIBS_windows := $$($1_JDK_LIBS_windows), \
@@ -604,8 +604,8 @@
 @@ -265,7 +265,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS) $(ICONV_LIBS), \
        LIBS_unix := $(LIBM) $(LIBPTHREAD), \
-       LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
--      LIBS_solaris := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
+       LIBS_linux := $(X_LIBS) -lX11 -lXext, \
+-      LIBS_solaris := $(X_LIBS) -lX11 -lXext, \
        LIBS_macosx := \
            -framework ApplicationServices \
            -framework Cocoa \
@@ -618,16 +618,6 @@
      HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
    endif
  
---- old/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.469237961 -0700
-+++ new/make/modules/java.instrument/Lib.gmk	2020-05-20 17:59:16.081230511 -0700
-@@ -44,7 +44,6 @@
-     LIBS := $(ICONV_LIBS), \
-     LIBS_unix := $(LIBZ_LIBS), \
-     LIBS_linux := $(LIBDL), \
--    LIBS_solaris := $(LIBDL), \
-     LIBS_aix := $(LIBDL), \
-     LIBS_macosx := \
-         -framework ApplicationServices \
 --- old/make/modules/java.management/Lib.gmk	2020-05-20 17:59:17.481257392 -0700
 +++ new/make/modules/java.management/Lib.gmk	2020-05-20 17:59:17.145250941 -0700
 @@ -35,7 +35,6 @@
@@ -726,7 +716,7 @@
 @@ -42,7 +42,6 @@
            java.base:libnio/ch, \
        JDK_LIBS := java.base:libjava java.base:libnet, \
-       LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
+       LIBS_linux := $(LIBDL), \
 -      LIBS_solaris := -lsocket, \
    ))
  
@@ -961,23 +951,6 @@
                      NativeCallStack(1) : FAKE_CALLSTACK)
  
  class MemTracker : AllStatic {
---- old/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.782876045 -0700
-+++ new/src/hotspot/share/utilities/debug.cpp	2020-05-20 18:00:41.442869517 -0700
-@@ -658,13 +658,12 @@
-   tty->print_cr("  findm(intptr_t pc) - finds Method*");
-   tty->print_cr("  find(intptr_t x)   - finds & prints nmethod/stub/bytecode/oop based on pointer into it");
-   tty->print_cr("  pns(void* sp, void* fp, void* pc)  - print native (i.e. mixed) stack trace. E.g.");
--  tty->print_cr("                   pns($sp, $rbp, $pc) on Linux/amd64 and Solaris/amd64 or");
-+  tty->print_cr("                   pns($sp, $rbp, $pc) on Linux/amd64 or");
-   tty->print_cr("                   pns($sp, $ebp, $pc) on Linux/x86 or");
-   tty->print_cr("                   pns($sp, $fp, $pc)  on Linux/AArch64 or");
-   tty->print_cr("                   pns($sp, 0, $pc)    on Linux/ppc64 or");
-   tty->print_cr("                   pns($sp, $s8, $pc)  on Linux/mips or");
-   tty->print_cr("                   pns($sp, $fp, $pc)  on Linux/RISC-V");
--  tty->print_cr("                   pns($sp + 0x7ff, 0, $pc) on Solaris/SPARC");
-   tty->print_cr("                 - in gdb do 'set overload-resolution off' before calling pns()");
-   tty->print_cr("                 - in dbx do 'frame 1' before calling pns()");
-   tty->print_cr("class metadata.");
 --- old/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.978937412 -0700
 +++ new/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.586929885 -0700
 @@ -57,23 +57,6 @@

@@ -4,6 +4,15 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+17
+
+Moderate patch noise.
+
+Now assumes a sufficiently modern ld that understands -soname as
+equivalent to -h.
+
+The --disable-new-dtags nonsense has moved around.
+
 26+16
 
 Rename of atomic -> atomicaccess, Atomic:: -> AtomicAccess::
