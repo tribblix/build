@@ -1,4 +1,4 @@
 PKG="TRIByaml-python-312"
 NAME="PyYAML"
-VERSION="6.0.2.0"
+VERSION="6.0.3.0"
 ZAP_URL="https://pypi.org/project/PyYAML/"
