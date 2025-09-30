@@ -1,0 +1,4 @@
+PKG="TRIBmsrest-python-312"
+NAME="Python msrest"
+VERSION="0.7.1.0"
+ZAP_URL="https://pypi.org/project/msrest/"
