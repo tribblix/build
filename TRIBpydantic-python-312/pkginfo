@@ -1,4 +1,4 @@
 PKG="TRIBpydantic-python-312"
 NAME="Python pydantic"
-VERSION="2.11.7.0"
+VERSION="2.11.9.0"
 ZAP_URL="https://pypi.org/project/pydantic/"
