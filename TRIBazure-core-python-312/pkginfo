@@ -1,0 +1,4 @@
+PKG="TRIBazure-core-python-312"
+NAME="Python azure-core"
+VERSION="1.35.1.0"
+ZAP_URL="https://pypi.org/project/azure-core/"
