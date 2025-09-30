@@ -1,4 +1,4 @@
 PKG="TRIBfastimport-python-312"
 NAME="Python fastimport"
-VERSION="0.9.14.0"
+VERSION="0.9.16.0"
 ZAP_URL="https://pypi.org/project/fastimport/"
