@@ -1,0 +1,4 @@
+PKG="TRIBisodate-python-312"
+NAME="Python isodate"
+VERSION="0.7.2.0"
+ZAP_URL="https://pypi.org/project/isodate/"
