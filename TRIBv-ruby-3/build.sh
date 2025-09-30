@@ -8,5 +8,7 @@
 #
 # NOTE: if you bump the minor version, update pkg_gem to match
 #
-${THOME}/build/dobuild +64only ruby-3.4.5 -P /usr/versions/ruby-3 -C "ac_cv_func_dl_iterate_phdr=no stack_protector=no" -L
-${THOME}/build/genpkg TRIBv-ruby-3 ruby-3.4.5
+# NOTE: any update will require the gems to be rebuilt
+#
+${THOME}/build/dobuild +64only ruby-3.4.6 -P /usr/versions/ruby-3 -C "ac_cv_func_dl_iterate_phdr=no stack_protector=no" -L
+${THOME}/build/genpkg TRIBv-ruby-3 ruby-3.4.6

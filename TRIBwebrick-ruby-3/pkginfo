@@ -1,4 +1,4 @@
 PKG="TRIBwebrick-ruby-3"
 NAME="Ruby webrick"
-VERSION="1.9.1.1"
+VERSION="1.9.1.2"
 ZAP_URL="https://github.com/ruby/webrick"

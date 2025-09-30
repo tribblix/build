@@ -1,4 +1,4 @@
 PKG="TRIBnanoc-ruby-3"
 NAME="Ruby nanoc"
-VERSION="4.13.5.1"
+VERSION="4.13.5.2"
 ZAP_URL="https://nanoc.app/"
