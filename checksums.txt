@@ -3721,3 +3721,5 @@ publicsuffixlist-1.0.2.20251001.tar.gz 02099ae44b20459e7bda04ecd79130b26b467fe37
 pypdf-6.1.1.tar.gz 10f44d49bf2a82e54c3c5ba3cdcbb118f2a44fc57df8ce51d6fb9b1ed9bfbe8b
 beautifulsoup4-4.14.2.tar.gz 2a98ab9f944a11acee9cc848508ec28d9228abfd522ef0fad6a02a72e0ded69e
 openssl-3.0.18.tar.gz d80c34f5cf902dccf1f1b5df5ebb86d0392e37049e5d73df1b3abae72e4ffe8b
+django-4.2.25.tar.gz 2391ab3d78191caaae2c963c19fd70b99e9751008da22a0adcc667c5a4f8d311
+django-5.2.7.tar.gz e0f6f12e2551b1716a95a63a1366ca91bbcd7be059862c1b18f989b1da356cdd
