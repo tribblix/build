@@ -1,4 +1,4 @@
 PKG="TRIBlib-security-openssl"
 NAME="OpenSSL toolkit"
-VERSION="3.0.17.0"
+VERSION="3.0.18.0"
 ZAP_URL="https://openssl-library.org/"

@@ -11,8 +11,8 @@
 # we were seeing in the b2 and aws s3 clients
 #
 
-${THOME}/build/unpack -64 openssl-3.0.17
-cd openssl-3.0.17
+${THOME}/build/unpack -64 openssl-3.0.18
+cd openssl-3.0.18
 env __CNF_CFLAGS="-D_REENTRANT" __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=1.1.1 --prefix=/usr
 gmake -j 6
 cd ..
@@ -20,7 +20,7 @@ cd ..
 # you might have thought that asking for a solaris64-x86_64 build
 # would actually do the right thing, but no ...
 #
-cd openssl-3.0.17-64bit
+cd openssl-3.0.18-64bit
 env __CNF_CFLAGS="-D_REENTRANT -m64" __CNF_LDFLAGS="-m64 -z aslr -z ignore" ./Configure solaris64-x86_64-gcc shared threads zlib --api=1.1.1 --prefix=/usr --libdir=lib/amd64 enable-ec_nistp_64_gcc_128
 gmake -j 6
 cd ..
@@ -28,4 +28,4 @@ cd ..
 #
 # much easier now install understands DESTDIR
 #
-${THOME}/build/genpkg TRIBlib-security-openssl openssl-3.0.17
+${THOME}/build/genpkg TRIBlib-security-openssl openssl-3.0.18
