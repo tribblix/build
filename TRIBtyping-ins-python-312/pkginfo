@@ -1,4 +1,4 @@
 PKG="TRIBtyping-ins-python-312"
 NAME="Python typing-inspection"
-VERSION="0.4.1.0"
+VERSION="0.4.2.0"
 ZAP_URL="https://pypi.org/project/typing-inspection/"
