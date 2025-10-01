@@ -1,4 +1,4 @@
 PKG="TRIBbeautifulsoup4-python-312"
 NAME="Python beautifulsoup4"
-VERSION="4.13.5.0"
+VERSION="4.14.2.0"
 ZAP_URL="https://pypi.org/project/beautifulsoup4/"
