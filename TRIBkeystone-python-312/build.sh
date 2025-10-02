@@ -4,4 +4,4 @@
 #
 # not available for sparc due to the jsonschema4 dependency
 #
-${THOME}/build/pkg_setup_py TRIBkeystone-python-312 keystone-27.0.0
+${THOME}/build/pkg_pep518 -N TRIBkeystone-python-312 keystone-28.0.0
