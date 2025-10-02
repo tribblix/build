@@ -1,4 +1,0 @@
-PKG="TRIBblix-repmgr15"
-NAME="Replication manager for PostgreSQL clusters"
-VERSION="5.5.0.0"
-ZAP_URL="https://repmgr.org/"

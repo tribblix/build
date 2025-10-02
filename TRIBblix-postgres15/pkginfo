@@ -1,4 +1,0 @@
-PKG="TRIBblix-postgres15"
-NAME="PostgreSQL database"
-VERSION="15.14.0"
-ZAP_URL="https://www.postgresql.org/"

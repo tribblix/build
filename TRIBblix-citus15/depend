@@ -1,5 +1,0 @@
-P TRIBblix-postgres15
-P TRIBcompress-lz4
-P TRIBcompress-zstd
-P TRIBcurl
-P TRIBlib-security-openssl

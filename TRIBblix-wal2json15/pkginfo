@@ -1,4 +1,0 @@
-PKG="TRIBblix-wal2json15"
-NAME="JSON output plugin for changeset extraction"
-VERSION="2.6.0"
-ZAP_URL="https://github.com/eulerto/wal2json"
