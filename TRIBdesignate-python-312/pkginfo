@@ -1,4 +1,4 @@
 PKG="TRIBdesignate-python-312"
 NAME="Python designate"
-VERSION="20.0.0.0"
+VERSION="21.0.0.0"
 ZAP_URL="https://pypi.org/project/designate/"
