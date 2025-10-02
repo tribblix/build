@@ -1,4 +1,4 @@
 PKG="TRIBglance-python-312"
 NAME="Python glance"
-VERSION="30.0.0.0"
+VERSION="31.0.0.0"
 ZAP_URL="https://pypi.org/project/glance/"
