@@ -3728,3 +3728,4 @@ google_api_python_client-2.184.0.tar.gz ef2a3330ad058cdfc8a558d199c051c3356f6ed0
 keystone-28.0.0.tar.gz 53bd2332fa095836a9f16015dbf061ec202c0b4c9a392138be508272699ebd88
 designate-21.0.0.tar.gz 9bca4f8adfa2286c7f699e3ffeb4a968bc7cc26e1f031b22dc011252baa2cd88
 glance-31.0.0.tar.gz 587ffdf4b9caabeaaef7000bb9e34df3e511cdf226267ba861f5d72f02d093ea
+patroni-4.1.0.tar.gz 35c31431bc83b58b9b45426ed08daf06cdf20b5ea1e721daaae49ab4aeff841f
