@@ -1,4 +1,4 @@
 PKG="TRIBpi-heif-python-312"
 NAME="Python pi-heif"
-VERSION="1.1.0.0"
+VERSION="1.1.1.0"
 ZAP_URL="https://pypi.org/project/pi-heif/"
