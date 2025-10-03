@@ -4,6 +4,13 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+18
+
+Memory types (see 26+14 notes) have changed again. The attempt to
+use size_t now replaced by a specific physical_memory_size_type.
+
+os::numa_has_group_homing() has been removed
+
 26+17
 
 Moderate patch noise.
