@@ -6,8 +6,8 @@
 #
 # Valkey is the open fork of redis, which is no longer freely licensed
 #
-env CC=gcc BUILD_TLS=yes ${THOME}/build/dobuild valkey-7.2.10 -P /opt/tribblix/valkey
-cd valkey-7.2.10
+env CC=gcc BUILD_TLS=yes ${THOME}/build/dobuild valkey-7.2.11 -P /opt/tribblix/valkey
+cd valkey-7.2.11
 # some of the tests fail in tcl
 gmake test CC=gcc BUILD_TLS=yes
 rm -fr /tmp/rr
