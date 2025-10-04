@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-${THOME}/build/pkg_tarball TRIBnetbeans netbeans-21-bin
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_tarball TRIBnetbeans netbeans-27-bin

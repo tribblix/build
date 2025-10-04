@@ -8,6 +8,7 @@ cd usr/versions/netbeans
 rm -fr ide/bin/nativeexecution/Windows*
 rm -fr ide/bin/nativeexecution/Linux*
 rm -fr ide/bin/nativeexecution/MacOSX*
+rm -fr java/maven/lib/jansi-native/Windows
 rm -fr profiler/lib/deployed/cvm
 rm -fr profiler/lib/deployed/jdk15/hpux*
 rm -fr profiler/lib/deployed/jdk15/linux*
@@ -19,12 +20,16 @@ rm -fr profiler/lib/deployed/jdk16/mac*
 rm -fr profiler/lib/deployed/jdk16/win*
 rm -f bin/*.exe
 rm -f platform/lib/*.exe
-rm -f platform/lib/*.dll
 rm -fr harness/launchers/*.exe
+rm -f platform/lib/*.dll
+rm -f platform/modules/lib/*.dll
+rm -f platform/modules/lib/*/*.dll
+rm -f ide/modules/lib/*/*.dll
 rm -fr platform/modules/lib/aarch64
 rm -fr platform/modules/lib/riscv64
 rm -f platform/modules/lib/*.dylib
 rm -f platform/modules/lib/*/*.dylib
+rm -f ide/modules/lib/*/*.dylib
 cd ../../..
 
 mkdir -p usr/bin

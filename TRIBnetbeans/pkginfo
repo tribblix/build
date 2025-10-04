@@ -1,4 +1,4 @@
 PKG="TRIBnetbeans"
 NAME="NetBeans Development Environment"
-VERSION="21.0"
+VERSION="27.0"
 ZAP_URL="https://netbeans.apache.org/"
