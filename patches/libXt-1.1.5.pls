@@ -1,2 +1,0 @@
--p1 libxt.patch
--p1 libxt-pc.patch
