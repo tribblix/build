@@ -1,4 +1,4 @@
 PKG="TRIBscons"
 NAME="SCons Python-based build system"
-VERSION="4.9.1.0"
+VERSION="4.10.0.0"
 ZAP_URL="https://www.scons.org/"
