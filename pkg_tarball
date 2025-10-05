@@ -15,8 +15,16 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
+
+#
+# fix environment
+#
+LC_ALL=C
+export LC_ALL
+TZ=UTC
+export TZ
 
 #
 # package something that's already a tarball, assumed to be into
