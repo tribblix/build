@@ -4,7 +4,7 @@
 #
 mkdir ff
 cd ff
-env GOPATH=`pwd` go install github.com/ffuf/ffuf/v2@latest
+env GOPATH=`pwd` go install github.com/ffuf/ffuf/v2@v2.1.0
 
 rm -fr /tmp/ef
 mkdir -p /tmp/ef/usr/bin
