@@ -4,7 +4,7 @@
 #
 # Note the v3 in the path
 #
-env GOPATH=`pwd` go install github.com/vultr/vultr-cli/v3@latest
+env GOPATH=`pwd` go install github.com/vultr/vultr-cli/v3@v3.8.0
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
 mkdir -p /tmp/cs/usr/share/vultr-cli
