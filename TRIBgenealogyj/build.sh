@@ -1,32 +1,7 @@
 #!/bin/sh
 #
-# this isn't really a script but a recipe
+# SPDX-License-Identifier: CDDL-1.0
 #
-# old way - run the installer
-#
-# java -jar ${THOME}/tarballs/genj_install-3.0.jar
-#
-# accept the defaults, but set the installation path to
-# /tmp/gg/usr/versions/GenealogyJ
-#
-#
-# the installation puts the files responsible for desktop
-# integration into your own account
-# ~/.local/share/applications/Genealogy J-1470600529980.desktop
-# ~/.local/share/applications/GenJ Homepage-1470600529988.desktop
-# ~/.config/menus/applications-merged/GenealogyJ.menu
-#
-# I think we can ignore the uninstaller, and really the only one we want
-# here is the desktop file
-#
-
-#
-# just in case someone tries to run this as a script and ignores the
-# instructions
-#
-# if [ ! -d /tmp/gg/usr/versions/GenealogyJ ]; then
-#    exit 1
-# fi
 
 #
 # new build, just a zip download
@@ -60,6 +35,12 @@ cd /tmp/gg/usr/bin
 ln -s ../../usr/versions/GenealogyJ/run.sh genealogyj
 sed -i s:grep:/usr/gnu/bin/grep: /tmp/gg/usr/versions/GenealogyJ/run.sh
 
+#
+# newer java busted by modularity
+#
+sed -i 's:-Xmx512m:--add-opens java.desktop/java.awt=ALL-UNNAMED -Xmx512m:' /tmp/gg/usr/versions/GenealogyJ/run.sh
+
 # and package it
 cd
 ${THOME}/build/create_pkg TRIBgenealogyj /tmp/gg
+rm -fr /tmp/gg
