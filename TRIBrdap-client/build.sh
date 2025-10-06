@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-env GOPATH=`pwd` go install github.com/openrdap/rdap/cmd/rdap@latest
+env GOPATH=`pwd` go install github.com/openrdap/rdap/cmd/rdap@v0.9.1
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
 mkdir -p /tmp/cs/usr/share/rdap
