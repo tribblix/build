@@ -1,0 +1,4 @@
+PKG="TRIBblix-garage"
+NAME="Garage - distributed object storage"
+VERSION="2.1.0.0"
+ZAP_URL="https://garagehq.deuxfleurs.fr/"
