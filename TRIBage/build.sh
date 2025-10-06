@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-env GOPATH=`pwd` go install filippo.io/age/cmd/...@latest
+env GOPATH=`pwd` go install filippo.io/age/cmd/...@v1.2.1
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
 mkdir -p /tmp/cs/usr/share/age
