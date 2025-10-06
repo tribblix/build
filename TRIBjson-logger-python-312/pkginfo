@@ -1,4 +1,4 @@
 PKG="TRIBjson-logger-python-312"
 NAME="Python python-json-logger"
-VERSION="3.3.0.0"
+VERSION="4.0.0.0"
 ZAP_URL="https://pypi.org/project/python-json-logger/"
