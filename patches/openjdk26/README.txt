@@ -4,6 +4,9 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: exit early if passed null arguments in dll_load, like Linux
+does. Fixes a gtest crash.
+
 Cleanup: the masking of _B (see 26+3) didn't work on all systems, so
 add illumos-vmatree.patch to fix it where it's actually a problem and
 don't put it in globalDefinitions_gcc.hpp where it can break something
