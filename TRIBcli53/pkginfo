@@ -1,4 +1,4 @@
 PKG="TRIBcli53"
 NAME="AWS cli for Route 53"
-VERSION="0.8.25.0"
+VERSION="0.8.25.1"
 ZAP_URL="https://github.com/barnybug/cli53"

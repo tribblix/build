@@ -4,7 +4,7 @@
 #
 
 #
-env GOPATH=`pwd` go install github.com/barnybug/cli53/cmd/cli53@latest
+env GOPATH=`pwd` go install github.com/barnybug/cli53/cmd/cli53@v0.8.25
 
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
