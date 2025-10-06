@@ -6,6 +6,10 @@
 #
 mkdir p
 cd p
+#
+# we ought not to use @latest, but using an explicit version fails with
+# an invalid version error
+#
 env GOPATH=`pwd` go install github.com/orgrim/pg_back@latest
 
 #
