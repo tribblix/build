@@ -945,12 +945,12 @@
  #include <wchar.h>
  
 -#ifdef SOLARIS
--#include <sys/trap.h>
--#include <sys/regset.h>
--#include <sys/procset.h>
--#include <ucontext.h>
--#include <setjmp.h>
 -#include <inttypes.h>
+-#include <setjmp.h>
+-#include <sys/procset.h>
+-#include <sys/regset.h>
+-#include <sys/trap.h>
+-#include <ucontext.h>
 -// leak from regset.h, but used in hotspot
 -#ifdef ES
 -#undef ES

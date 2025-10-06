@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: Sort some of the includes, as there's a test that checks.
+
 Cleanup: exit early if passed null arguments in dll_load, like Linux
 does. Fixes a gtest crash.
 
