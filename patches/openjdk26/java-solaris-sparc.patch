@@ -940,7 +940,7 @@
  class MemTracker : AllStatic {
 --- old/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.978937412 -0700
 +++ new/src/hotspot/share/utilities/globalDefinitions_gcc.hpp	2020-05-20 18:00:44.586929885 -0700
-@@ -57,23 +57,6 @@
+@@ -57,19 +57,6 @@
  #include <time.h>
  #include <wchar.h>
  
@@ -951,10 +951,6 @@
 -#include <ucontext.h>
 -#include <setjmp.h>
 -#include <inttypes.h>
--// leak from ctype.h, but used in hotspot
--#ifdef _B
--#undef _B
--#endif 
 -// leak from regset.h, but used in hotspot
 -#ifdef ES
 -#undef ES
