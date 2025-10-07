@@ -8,4 +8,4 @@ env TRIBBLIX_LDFLAGS=-lsocket TRIBBLIX_CFLAGS="-DHAVE_SYS_IOCCOM_H=1 -D_XOPEN_SO
 #
 # ginstall is correctly detected, but not always used
 #
-env PATH=/usr/gnu/bin:$PATH ${THOME}/build/genpkg TRIBswtpm swtpm-0.10.1
+${THOME}/build/genpkg -gnu TRIBswtpm swtpm-0.10.1
