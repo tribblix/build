@@ -128,18 +128,12 @@ if [ ! -f "${THOME}/tarballs/${PFILE}" ]; then
     exit 1
 fi
 #
-# no preconf possible for ready-built wheels
+# no preconf or fixinstall possible for ready-built wheels
 #
 #
 # use pip to install
 #
 python${PYVER} -mpip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-compile --no-warn-script-location --root="${BDIR}" -I "${THOME}/tarballs/${PFILE}"
-#
-# run fixinstall here, while we're still cd'ed into the module
-#
-if [ -x "${BUILD}/${PKGNAME}/fixinstall" ]; then
-    "${BUILD}/${PKGNAME}/fixinstall" $BDIR
-fi
 #
 # end loop
 #
