@@ -40,8 +40,16 @@ RUBYFULLVER="3.4.0"
 
 case $# in
 0|1)
-	echo "Usage: $0 pkg_name file_root [gem_args]"
+	echo "Usage: $0 pkg_name [-gnu] file_root [gem_args]"
 	exit 1
+	;;
+esac
+
+case $1 in
+    -gnu)
+	PATH=/usr/gnu/bin:$PATH
+	export PATH
+	shift
 	;;
 esac
 

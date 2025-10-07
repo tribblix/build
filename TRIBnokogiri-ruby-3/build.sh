@@ -6,4 +6,4 @@
 # -m64 via CC (which it doesn't override)
 # also uses Makefiles with gnu syntax
 #
-env CC="gcc -m64" PATH=/usr/gnu/bin:$PATH ${THOME}/build/pkg_gem TRIBnokogiri-ruby-3 nokogiri -- --use-system-libraries
+env CC="gcc -m64" ${THOME}/build/pkg_gem -gnu TRIBnokogiri-ruby-3 nokogiri -- --use-system-libraries
