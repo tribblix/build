@@ -71,7 +71,7 @@ BUILD="${THOME}/build"
 BROOT="/tmp/pct"
 
 #
-# verify that our arguments refer to a package and to a file
+# verify that our arguments refer to a package
 #
 if [ ! -d "$BUILD" ]; then
    echo "ERROR: unable to find build directory $BUILD"
@@ -109,11 +109,14 @@ fi
 # we assume it has to be 3.X
 #
 case $SPYVER in
-    311)
-	PYVER=3.11
-	;;
     312)
 	PYVER=3.12
+	;;
+    313)
+	PYVER=3.13
+	;;
+    314)
+	PYVER=3.14
 	;;
     *)
 	echo "Unrecognised python version $SPYVER"
