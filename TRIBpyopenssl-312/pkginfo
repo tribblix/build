@@ -1,4 +1,4 @@
 PKG="TRIBpyopenssl-312"
 NAME="Python OpenSSL wrapper"
-VERSION="25.1.0.0"
+VERSION="25.3.0.0"
 ZAP_URL="https://pypi.org/project/pyOpenSSL/"
