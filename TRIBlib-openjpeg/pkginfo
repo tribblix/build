@@ -1,4 +1,4 @@
 PKG="TRIBlib-openjpeg"
 NAME="Open-source C-Library for JPEG 2000"
-VERSION="2.5.3.1"
+VERSION="2.5.4.0"
 ZAP_URL="https://www.openjpeg.org/"
