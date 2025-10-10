@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+19
+
+Trivial patch noise.
+
 Cleanup: Sort some of the includes, as there's a test that checks.
 
 Cleanup: exit early if passed null arguments in dll_load, like Linux
