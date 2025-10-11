@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-ppix-regexp"
 NAME="Perl PPIx::Regexp module"
-VERSION="0.090.0"
+VERSION="0.091.0"
 ZAP_URL="https://metacpan.org/pod/PPIx::Regexp"
