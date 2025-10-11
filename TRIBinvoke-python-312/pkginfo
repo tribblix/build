@@ -1,4 +1,4 @@
 PKG="TRIBinvoke-python-312"
 NAME="Python invoke"
-VERSION="2.2.0.0"
+VERSION="2.2.1.0"
 ZAP_URL="https://pypi.org/project/invoke/"
