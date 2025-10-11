@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-mojolicious"
 NAME="Perl Mojolicious module"
-VERSION="9.41.0"
+VERSION="9.42.0"
 ZAP_URL="https://metacpan.org/pod/Mojolicious"
