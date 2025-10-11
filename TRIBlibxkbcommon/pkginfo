@@ -1,4 +1,4 @@
 PKG="TRIBlibxkbcommon"
 NAME="xkbcommon - a keyboard handling library"
-VERSION="1.10.0.0"
+VERSION="1.12.0.0"
 ZAP_URL="https://xkbcommon.org/"
