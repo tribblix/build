@@ -1,0 +1,482 @@
+#!/usr/bin/python3.12
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+
+#
+# {{{ CDDL HEADER
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source. A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+# }}}
+
+# Copyright 2021 OmniOS Community Edition (OmniOSce) Association.
+# Copyright 2025 Peter Tribble
+
+#
+# this is very similar in structure to the bhyve brand init, modified
+# as necessary because qemu takes slightly different arguments
+#
+
+import getopt
+import logging
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
+import yaml
+import xml.etree.ElementTree as etree
+from pprint import pprint, pformat
+
+xmlfile = '/etc/zone.xml'
+uuidfile = '/etc/uuid'
+testmode = False
+
+try:
+    opts, args = getopt.getopt(sys.argv[1:], "tx:u:")
+except getopt.GetoptError:
+    print("init [-t] [-x <xml file>] [-u <uuid file>]")
+    sys.exit(2)
+for opt, arg in opts:
+    if opt == '-t':
+        testmode = True
+    elif opt == '-x':
+        xmlfile = arg
+    elif opt == '-u':
+        uuidfile = arg
+
+if testmode:
+    logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+else:
+    logging.basicConfig(filename='/tmp/init.log', filemode='a',
+        level=logging.DEBUG)
+
+# Default values
+opts = {
+    'arch':             None,
+    #'bootorder':        'cd',
+    'cloud-init':       'off',
+    'console':          'zconsole,id=console0',
+    'cpu':              None,
+    'diskif':           'virtio-blk-pci',
+    'extra':            '',
+    'netif':            'virtio-net-pci',
+    'ram':              '1G',
+    'rng':              'off',
+    'rtc':              'base=utc',
+    'uuid':             None,
+    'vcpus':            '1',
+    'vga':              'off',
+    'vnc':              'off',
+}
+
+aliases = {
+    'netif': {
+        'virtio':       'virtio-net-pci',
+    },
+    'diskif': {
+        'virtio':       'virtio-blk-pci',
+    },
+    'vnc': {
+        'on':   'unix:/tmp/vm.vnc',
+    }
+}
+
+try:
+    with open(uuidfile) as file:
+        uuid = file.read().strip()
+        logging.info('Zone UUID: {0}'.format(uuid))
+except:
+    uuid = None
+
+def fatal(msg):
+    logging.error(msg)
+    print(msg, file=sys.stderr)
+    sys.exit(1)
+
+if not os.path.isfile(xmlfile):
+    fatal(f'Cannot find zone XML file at {xmlfile}')
+
+try:
+    cfg = etree.parse(xmlfile)
+except:
+    fatal(f'Could not parse {xmlfile}')
+
+root = cfg.getroot()
+logging.info('Parsed {0}'.format(xmlfile))
+
+name = root.get('name')
+zonepath = root.get('zonepath')
+zoneroot = f'{zonepath}/root'
+
+##############################################################################
+
+def boolv(s, var, ignore=False):
+    if s in ['true', 'yes', 'on', '1']:
+        return True
+    if s in ['false', 'no', 'off', '0']:
+        return False
+    if not ignore:
+        fatal(f'Invalid value {s} for boolean variable {var}')
+    return None
+
+def opt(tag):
+    global opts, root
+    try:
+        el = root.find('./attr[@name="{0}"]'.format(tag))
+        opts[tag] = el.get('value').strip()
+        logging.debug('Found custom {0} attribute - "{1}"'
+            .format(tag, opts[tag]))
+        if tag in aliases:
+            try:
+                opts[tag] = aliases[tag][opts[tag]]
+                logging.debug('  Alias expanded to {0}'.format(opts[tag]))
+            except KeyError:
+                pass
+    except:
+        pass
+
+def diskpath(arg):
+    if arg.startswith('/dev'):
+        return arg
+    return '/dev/zvol/rdsk/{0}'.format(arg)
+
+# Look for attributes of the form <type> or <type>N and generate a list.
+def build_devlist(type, maxval):
+    devlist = {}
+    for dev in root.findall('./attr[@name]'):
+        m = re.search(rf'^{type}(\d+)$', dev.get('name').strip())
+        if not m: continue
+        k = int(m.group(1))
+        if k in devlist:
+            logging.error(
+                '{}{} appears more than once in configuration'.format(type, k))
+            sys.exit(1)
+        if (k > maxval):
+            logging.error('{}{} slot out of range'.format(type, k))
+            sys.exit(1)
+        devlist[k] = dev.get('value').strip()
+
+    # Now insert plain <type> tags into the list, using available slots in order
+    avail = sorted(set(range(0, maxval)).difference(sorted(devlist.keys())))
+    for dev in root.findall(f'./attr[@name="{type}"]'):
+        try:
+            k = avail.pop(0)
+        except IndexError:
+            logging.error('{}: no more available slots'.format(type))
+            sys.exit(1)
+        devlist[k] = dev.get('value').strip()
+
+    logging.debug('{} list: \n{}'.format(type, pformat(devlist)))
+
+    return devlist
+
+def build_cloudinit_image(uuid, src):
+    logging.info('Generating cloud-init data')
+
+    #### Metadata
+
+    meta_data = {
+        'instance-id':      uuid,
+        'local-hostname':   name,
+    }
+
+    #### Userdata
+
+    user_data = {
+        'hostname':         name,
+        'disable_root':     False,
+    }
+
+    def file_or_string(f):
+        if os.path.isabs(f) and os.path.isfile(f):
+            try:
+                with open(f) as fh:
+                    f = fh.read()
+            except Exception as e:
+                fatal(f'Could not read from {f}: {e}')
+        return f.strip()
+
+    if (v := root.find('./attr[@name="password"]')) is not None:
+        user_data['password'] = file_or_string(v.get('value'))
+        user_data['chpasswd'] = { 'expire': False }
+        user_data['ssh-pwauth'] = True
+
+    if (v := root.find('./attr[@name="sshkey"]')) is not None:
+        v = file_or_string(v.get('value'))
+        user_data['ssh_authorized_keys'] = [v]
+        user_data['users'] = [
+            'default',
+            {'name': 'root', 'ssh_authorized_keys': [v]}
+        ]
+
+    #### Network
+
+    network_data = {}
+
+    addresses = root.findall('./network[@allowed-address]')
+    if addresses is not None:
+        nsdone = False
+        network_data['version'] = 2
+        network_data['ethernets'] = {}
+
+        for a in addresses:
+            vnic = a.get('physical')
+            addr = a.get('allowed-address')
+            rtr = a.get('defrouter')
+
+            p = subprocess.run([ '/usr/sbin/dladm',
+                'show-vnic', '-p', '-o', 'MACADDRESS', vnic ],
+                capture_output=True, text=True)
+            if p.returncode != 0:
+                logging.warning(f'Could not find MAC address for VNIC {vnic}')
+                continue
+            mac = p.stdout.strip()
+            mac = ':'.join(l.zfill(2) for l in mac.split(':'))
+
+            data = {
+                'match':        { 'macaddress': mac },
+                'set-name':     vnic,
+                'addresses':    [addr],
+            }
+            if rtr:
+                data['gateway4'] = rtr
+
+            if not nsdone:
+                domain = root.find('./attr[@name="dns-domain"]')
+                resolvers = root.find('./attr[@name="resolvers"]')
+                if resolvers is not None or domain is not None:
+                    nsdata = {}
+                    if domain is not None:
+                        nsdata['search'] = [domain.get('value').strip()]
+                    if resolvers is not None:
+                        nsdata['addresses'] = \
+                            resolvers.get('value').strip().split(',')
+                    data['nameservers'] = nsdata
+                nsdone = True
+
+            network_data['ethernets'][vnic] = data
+
+    logging.debug('Metadata:\n' + yaml.dump(meta_data))
+    logging.debug('Userdata:\n' + yaml.dump(user_data))
+    logging.debug('Netdata:\n' + yaml.dump(network_data))
+
+    if testmode:
+        return
+
+    dir = tempfile.mkdtemp(dir=f'/', prefix='cloud-init.')
+
+    with open(f'{dir}/meta-data', 'w') as fh:
+        yaml.dump(meta_data, fh)
+
+    if os.path.isabs(src) and os.path.isfile(src):
+        logging.info(f'Using supplied cloud-init user-data file from {src}')
+        shutil.copyfile(src, f'{dir}/user-data')
+    else:
+        with open(f'{dir}/user-data', 'w') as fh:
+            fh.write('#cloud-config\n')
+            yaml.dump(user_data, fh)
+
+    if network_data:
+        with open(f'{dir}/network-config', 'w') as fh:
+            yaml.dump(network_data, fh)
+
+    #### Build image
+
+    cidir = f'/cloud-init'
+    seed = f'/cloud-init.iso'
+    if os.path.exists(cidir):
+        shutil.rmtree(cidir)
+    os.rename(dir, cidir)
+    logging.info('Building cloud-init ISO image')
+    try:
+        subprocess.run([
+            '/usr/bin/mkisofs',
+            '-full-iso9660-filenames',
+            '-untranslated-filenames',
+            '-rock',
+            '-volid', 'CIDATA',
+            '-o', seed,
+            cidir
+        ], capture_output=False)
+        os.chmod(seed, mode=0o644)
+    except Exception as e:
+        fatal(f'Could not create cloud-init ISO image: {e}')
+
+def add_disk(path, boot=False, intf=None, media="disk", index=-1):
+    global args
+
+    if not intf:
+        intf = opts["diskif"]
+
+    if index < 0:
+        index = add_disk.index
+        add_disk.index += 1
+    elif index > add_disk.index:
+        add_disk.index = index
+
+    if media == "cdrom":
+        args.extend(["-cdrom", path])
+    else:
+        node = f"{media}{index}"
+        path = diskpath(path)
+        devstr = f'{intf},drive={node},serial={node}'
+        # if boot:
+        #    devstr += ',boot=on'
+        args.extend(
+            [
+                '-blockdev',
+                f'driver=host_device,filename={path},node-name={node},discard=unmap',
+                '-device',
+                devstr,
+            ]
+        )
+
+
+add_disk.index = 0
+
+##############################################################################
+
+for tag in opts.keys():
+    opt(tag)
+
+for a in ["arch", "cpu"]:
+    if not opts[a]:
+        fatal(f'The "{a}" attribute is required')
+
+qemu = f'/usr/bin/qemu-system-{opts["arch"]}'
+if not os.path.exists(qemu):
+    fatal(f'{qemu} not found')
+args = [qemu]
+if opts["arch"] == "aarch64":
+    args.extend(["-machine", 'virt'])
+args.extend(["-cpu", opts['cpu']])
+
+ser = uuid
+
+if boolv(opts['cloud-init'], 'cloud-init', ignore=True) is not False:
+    if opts['cloud-init'].startswith(('http://', 'https://')):
+        ser = 'ds=nocloud-net;s={};i={}'.format(opts['cloud-init'], uuid)
+    else:
+        build_cloudinit_image(uuid, opts['cloud-init'])
+        ser = f'ds=nocloud;i={uuid}'
+        add_disk("/cloud-init.iso", boot=False, intf="ide", media="cdrom")
+
+if uuid:
+    args.extend(["-uuid", uuid])
+
+args.extend([
+    "-smbios",
+    "type=1,manufacturer={},product={},version={},serial={},uuid={},family={}".format("Tribblix", "Tribblix HVM", "1.0", ser, uuid, "Virtual Machine"),
+])
+
+args.extend([
+    "-smp", opts['vcpus'],
+    "-m", opts['ram'],
+])
+
+# Console
+
+args.extend(
+    [
+        "-chardev",
+        opts["console"],
+        "-serial",
+        "chardev:console0",
+    ]
+)
+
+# CDROM
+
+for i, v in build_devlist("cdrom", 5).items():
+    add_disk(v, boot=False, intf="ide", media="cdrom")
+
+# If the disks are not using IDE, then reset their index as there is no need
+# to leave room for the CDROM.
+if opts["diskif"] != "ide":
+    add_disk.index = 0
+
+# Bootdisk
+
+try:
+    bootdisk = root.find('./attr[@name="bootdisk"]')
+    add_disk(bootdisk.get("value").strip(), boot=True)
+except:
+    pass
+
+# Additional Disks
+for i, v in build_devlist('disk', 16).items():
+    add_disk(v)
+
+# Network
+
+i = 0
+for f in root.findall('./network[@physical]'):
+    ifname = f.get('physical').strip()
+    netif = f.find("./net-attr[@name='netif']")
+
+    netif = netif.get('value') if netif is not None else opts['netif']
+
+#    args.extend([
+#        '-net', 'nic,name=net{0},model={1}'
+#        .format(i, netif)
+#    ])
+    args.extend([
+        '-device', '{1},netdev=net{0}'
+        .format(i, netif)
+    ])
+    args.extend([
+        '-netdev', 'vnic,id=net{0},ifname={1}'
+        .format(i, ifname)
+    ])
+    i += 1
+
+# Display
+
+if boolv(opts["vnc"], "vnc", ignore=True) is False:
+    args.extend(["-display", "none"])
+else:
+    args.extend(["-display", "vnc=:0"])
+    args.extend(["-vnc", opts["vnc"]])
+
+# RNG
+
+if boolv(opts["rng"], "rng"):
+    args.extend(
+        [
+            "-object",
+            "rng-builtin,id=random",
+        ]
+    )
+
+# Extra options
+
+if len(opts['extra']):
+    args.extend(opts['extra'].split(' '))
+
+logging.info('Final arguments: {0}'.format(pformat(args)))
+logging.info('{0}'.format(' '.join(args)))
+
+if testmode:
+    sys.exit(0)
+
+while True:
+    logging.info('Starting qemu')
+    ret = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    logging.info("Qemu exited {0}".format(ret.returncode))
+    logging.error("Error {0}".format(ret.stderr))
+    logging.debug("Output {0}".format(ret.stdout))
+    if ret.returncode != 0: break
+
+# Vim hints
+# vim:ts=4:sw=4:et:fdm=marker

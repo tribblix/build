@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+case `uname -p` in
+    i386)
+	mkdir -p usr/lib/brand/emu
+	mkdir -p usr/share/man/man7
+	cd usr/lib/brand/emu
+	cp -p ${BUILDROOT}/patches/emu/* .
+	mv emu.7 ../../../share/man/man7
+	;;
+esac

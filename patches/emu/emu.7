@@ -1,0 +1,464 @@
+.\"
+.\" SPDX-License-Identifier: CDDL-1.0
+.\" This file and its contents are supplied under the terms of the
+.\" Common Development and Distribution License ("CDDL"), version 1.0.
+.\" You may only use this file in accordance with the terms of version
+.\" 1.0 of the CDDL.
+.\"
+.\" A full copy of the text of the CDDL should have accompanied this
+.\" source.  A copy of the CDDL is also available via the Internet at
+.\" http://www.illumos.org/license/CDDL.
+.\"
+.\" Copyright 2016, Joyent, Inc.
+.\" Copyright 2016, OmniTI Computer Consulting, Inc. All Rights Reserved.
+.\" Copyright 2023 OmniOS Community Edition (OmniOSce) Association.
+.\" Copyright 2025 Peter Tribble
+.\"
+.Dd October 10, 2025
+.Dt EMU 7
+.Os Tribblix
+.Sh NAME
+.Nm emu
+.Nd zone brand for running a virtual machine instance under the QEMU hypervisor
+.Sh DESCRIPTION
+An
+.Em emu
+branded zone
+uses the
+.Xr brands 7
+framework to provide an environment for running a virtual machine under the
+QEMU hypervisor.
+.Pp
+.Sy NOTE :
+This brand requires that the
+.Sq TRIBqemu
+package be installed in the global zone.
+Some of the less common CPU architectures will require the
+.Sq TRIBqemu-extra
+package to also be installed.
+.Sh CONFIGURATION
+.Nm
+zones are configured mostly via custom attributes in the zone configuration.
+.Pp
+Supported attributes are:
+.Bl -tag -width Ds
+.\" arch
+.It Ic arch Ar architecture
+.Pp
+The emulated architecture for the guest; one of:
+.Bl -item -offset indent -compact
+.It
+aarch64
+.It
+alpha
+.It
+arm
+.It
+avr
+.It
+cris
+.It
+hppa
+.It
+i386
+.It
+loongarch64
+.It
+m68k
+.It
+microblaze
+.It
+microblazeel
+.It
+mips
+.It
+mips64
+.It
+mips64el
+.It
+mipsel
+.It
+nios2
+.It
+or1k
+.It
+ppc
+.It
+ppc64
+.It
+riscv32
+.It
+riscv64
+.It
+rx
+.It
+s390x
+.It
+sh4
+.It
+sh4eb
+.It
+sparc
+.It
+sparc64
+.It
+tricore
+.It
+x86_64
+.It
+xtensa
+.It
+xtensaeb
+.El
+.Pp
+There is no default, this option must be specified.
+.\" bootdisk
+.It Ic bootdisk Ar path Ns Op , Ns serial Ns = Ns Ar serial
+.Pp
+Specifies a ZFS volume dataset name which will be attached to
+the guest as the boot disk.
+Additional disks can be specified using the
+.Sy disk
+attribute, see below.
+.Pp
+If the optional serial number is not provided, one will be automatically
+generated from the disk index.
+The ZFS volume must also be mapped into the zone using a
+.Sy device
+block as shown in the example below.
+.Pp
+A suitable ZFS volume can be created using the
+.Ql zfs create -V
+command, for example:
+.Pp
+.Dl zfs create -V 30G rpool/bootdisk2
+.\" cdrom
+.It Ic cdrom Ns Oo Ar N Oc Ar path
+.Pp
+Specifies the path to one or more CD/DVD image
+.Pq Pa .iso
+files that will be inserted into virtual CD/DVD drive(s) in the guest.
+To specify multiple image files, create multiple attributes with different
+values of
+.Ar N ,
+starting with 0.
+If only a single CD image is required,
+.Ar N
+can be omitted.
+.Pp
+Each image file must also be mapped into the zone using an
+.Sy fs
+block, as shown in the example below.
+.\" cloud-init
+.It Xo Ic cloud-init
+.Sm off
+.Ar on | off | filename | URL
+.Sm on
+.Xc
+.Pp
+When this option is enabled, and set to
+.Ar on
+or a
+.Ar filename ,
+the guest will be booted with a small CD image attached that provides
+configuration data that
+.Ic cloud-init
+can use to automatically configure the guest operating system.
+When a file is provided, this is used directly for the provided
+.Pa user-data .
+If any network interfaces are configured with an
+.Sy allowed-address
+property, then that address will be provided along with the configuration
+data.
+See also the
+.Ic dns-domain ,
+.Ic password ,
+.Ic resolvers
+and
+.Sy sshkey
+options.
+.Pp
+If a
+.Ar URL
+is provided, then that is passed to the guest system as the source of the
+full meta-data.
+.\" console
+.It Ic console Ar options
+.Pp
+This parameter configures where the guest's console device is presented.
+The default value is
+.Pa zconsole,id=console0
+which means that the guest's console can be accessed via:
+.Pp
+.Dl zlogin -C <zone>
+.\" cpu
+.It Ic cpu Ar model
+.Pp
+Select the CPU model.
+The available models depend on the selected architecture.
+For further help, run the qemu emulator for an architecture directly with
+.Fl cpu Ic help :
+.Bd -literal -offset indent
+% qemu-system-aarch64 -cpu help
+Available CPUs:
+  a64fx
+  arm1026
+  arm1136
+  arm1136-r2
+  arm1176
+  ...
+.Ed
+.\" disk
+.It Ic disk Ns Oo Ar N Oc Ar dataset Ns Op , Ns serial Ns = Ns Ar serial
+.Pp
+Specifies one or more ZFS volume dataset names which will be attached to
+the guest as disks.
+To attach multiple disks, create multiple attributes with different values of
+.Ar N .
+In that case, the disk will be presented on target
+.Ar N .
+If only a single disk is required,
+.Ar N
+can be omitted.
+The disks specified via the
+.Sy disk
+attribute are in addition to the system boot disk, which is specified using
+.Sy bootdisk .
+.Pp
+If the optional serial number is not provided, one will be automatically
+generated from the disk index.
+Each ZFS volume must also be mapped into the zone using a
+.Sy device
+block as shown in the example below.
+.\" diskif
+.It Ic diskif Ar type
+.Pp
+Specifies the type of interface to which the disks will be attached.
+Available options are:
+.Bl -bullet
+.It
+.Sy virtio Pq default
+.El
+.\" netif
+.It Ic netif Ar type
+.Pp
+Specifies the type of network interface that will be used for the interfaces
+presented to the guest.
+Available options are:
+.Bl -bullet
+.It
+.Sy virtio-net-pci Pq default
+.It
+.Sy virtio-net-device
+.It
+.Sy e1000
+.El
+.\" password
+.It Xo Ic password
+.Sm off
+.Ar string | hash | filename
+.Sm on
+.Xc
+.Pp
+When the
+.Ic cloud-init
+option is enabled, the provided
+.Ar password
+will be passed to the guest which can use it to set the password for the
+default user.
+Depending on the guest, this may be the root user or a distribution-dependant
+initial user.
+The password can be provided as a fixed string, a pre-computed hash or a path
+to a file that contains the desired password or password hash, relative to
+the global zone root.
+.\" ram
+.It Ic ram Ar size Ns Op KMGT
+.Pp
+Specify the guest's physical memory size.
+The
+.Ar size
+argument may be suffixed with one of
+.Ar K ,
+.Ar M ,
+.Ar G
+or
+.Ar T
+to indicate a multiple of kibibytes, mebibytes, gibibytes or tebibytes.
+If no suffix is given, the value is assumed to be in mebibytes.
+.Pp
+The default value, if this attribute is not specified, is
+.Sy 1G .
+.\" dns-domain
+.It Ic dns-domain Ar domainname
+.Pp
+The DNS domain name for the guest.
+Included in the data passed to the guest when the
+.Ic cloud-init
+option is enabled.
+.\" extra
+.It Ic extra Ns Op Ar N
+.Pp
+Any extra
+.Ar options
+to be passed directly to the
+.Nm
+hypervisor.
+To add multiple options, create multiple attributes with different values of
+.Ar N .
+If only a single extra option is required,
+.Ar N
+can be omitted.
+.\" resolvers
+.It Ic resolvers Ar resolver Ns Oo \&, Ns Ar resolver Ns \&... Oc
+.Pp
+A comma-delimited list of DNS resolver IP addresses.
+These are included in the data passed to the guest when the
+.Ic cloud-init
+option is enabled.
+.\" rng
+.It Xo Ic rng
+.Sm off
+.Ar on | off
+.Sm on
+.Xc
+.Pp
+Set to
+.Ar on
+to attach a virtio random number generator
+.Pq RNG
+to the guest
+.Pq default: Ar off .
+.\" sshkey
+.It Xo Ic sshkey
+.Sm off
+.Ar string | filename
+.Xc
+.Sm on
+.Pp
+When the
+.Ic cloud-init
+option is enabled, the provided
+.Ar sshkey
+will be passed to the guest which can use it to set the authorised SSH keys
+for the default user and/or the root user.
+.Ar sshkey
+can be provided as a fixed string or a path to a file that contains the desired
+public key.
+.\" uuid
+.It Ic uuid Ar uuid
+.Pp
+Specifies the unique identifier for the virtual machine.
+If this attribute is not set, a random UUID will be generated when the zone
+is first installed.
+.\" vcpus
+.It Ic vcpus Ar number
+.Pp
+Specify the number of guest virtual CPUs.
+The default value is
+.Sy 1 .
+.\" vga
+.It Ic vga Ar off Ns | Ns Ar on
+.Pp
+Select whether the guest is booted with or without a display device.
+Setting this attribute to
+.Sy off
+results in a
+.Dq headless
+guest.
+.\" vnc
+.It Xo Ic vnc
+.Sm off
+.Ar on
+|
+.Ar off
+|
+.Ar options
+.Xc
+.Sm on
+.Pp
+This parameter controls whether a virtual framebuffer is attached to the
+guest and made available via VNC.
+Available options are:
+.Bl -tag -width Ds
+.It Cm on
+An alias for
+.Sy unix:/tmp/vm.vnc
+which creates the VNC socket within
+.Pa /tmp
+inside the zone.
+.It Cm off
+Disable the framebuffer.
+This is the same as omitting the
+.Ic vnc
+attribute.
+.It Cm unix Ns \&: Ns Ar path
+Sets up a VNC server on a UNIX socket at the specified
+.Ar path .
+Note that this path is relative to the zone root.
+.El
+.El
+.Sh EXAMPLES
+An example
+.Em emu
+zone is shown below:
+.sp
+.Bd -literal -offset indent
+create -t emu
+set zonepath=/zones/emu
+add net
+    set allowed-address=10.0.0.112/24
+    set physical=vm0
+end
+add device
+    set match=/dev/zvol/rdsk/rpool/emu
+end
+add attr
+    set name=arch
+    set type=string
+    set value=aarch64
+end
+add attr
+    set name=cpu
+    set type=string
+    set value=cortex-a53
+end
+add attr
+    set name=ram
+    set type=string
+    set value=2G
+end
+add attr
+    set name=vcpus
+    set type=string
+    set value=8
+end
+add attr
+    set name=bootdisk
+    set type=string
+    set value=rpool/emu0
+end
+add fs
+    set dir=/rpool/iso/debian-9.4.0-aarch64-netinst.iso
+    set special=/rpool/iso/debian-9.4.0-aarch64-netinst.iso
+    set type=lofs
+    add options ro
+    add options nodevices
+end
+add attr
+    set name=cdrom
+    set type=string
+    set value=/rpool/iso/debian-9.4.0-aarch64-netinst.iso
+end
+.Ed
+.sp
+.Sh SEE ALSO
+.Xr mdb 1 ,
+.Xr proc 1 ,
+.Xr brands 7 ,
+.Xr privileges 7 ,
+.Xr resource_controls 7 ,
+.Xr zones 7 ,
+.Xr dtrace 8 ,
+.Xr zfs 8 ,
+.Xr zoneadm 8 ,
+.Xr zonecfg 8

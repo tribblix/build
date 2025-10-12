@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# No actions are necessary to upgrade emu zones
+#
+exit 0
