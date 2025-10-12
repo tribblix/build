@@ -1,4 +1,4 @@
 PKG="TRIBv-python-312-tests"
 NAME="Python 3.12 test files"
-VERSION="3.12.11.0"
+VERSION="3.12.12.0"
 ZAP_URL="https://www.python.org/"
