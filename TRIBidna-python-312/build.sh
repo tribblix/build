@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 TRIBidna-python-312 idna-3.10
+${THOME}/build/pkg_pep518 -N TRIBidna-python-312 idna-3.11
