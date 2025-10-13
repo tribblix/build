@@ -1,0 +1,4 @@
+PKG="TRIBasn1crypto-python-312"
+NAME="Python asn1crypto"
+VERSION="1.5.1.0"
+ZAP_URL="https://pypi.org/project/asn1crypto/"
