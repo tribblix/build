@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_tarball TRIBv-tomcat-11 apache-tomcat-11.0.12
+${THOME}/build/pkg_tarball TRIBv-tomcat-11 apache-tomcat-11.0.13
