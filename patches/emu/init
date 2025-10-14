@@ -360,7 +360,7 @@ if not os.path.exists(qemu):
 args = [qemu]
 if opts["arch"] == "aarch64":
     args.extend(["-machine", 'virt'])
-args.extend(["-cpu", opts['cpu']])
+    args.extend(["-cpu", opts['cpu']])
 
 ser = uuid
 
