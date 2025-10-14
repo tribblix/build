@@ -10,9 +10,9 @@
 
 git clone https://github.com/openjdk/jtreg
 cd jtreg
-git checkout jtreg-7.5.2+1
+git checkout jtreg-8.1+1
 
-env PATH=/usr/gnu/bin:$PATH bash make/build.sh --jdk /usr/jdk/instances/jdk11
+env PATH=/usr/gnu/bin:$PATH bash make/build.sh --jdk /usr/jdk/instances/jdk17
 
 rm -fr /tmp/jtb
 mkdir -p /tmp/jtb/usr/versions
