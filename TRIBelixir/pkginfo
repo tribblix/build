@@ -1,0 +1,4 @@
+PKG="TRIBelixir"
+NAME="Elixir, a dynamic, functional language"
+VERSION="1.18.4.0"
+ZAP_URL="https://elixir-lang.org/"

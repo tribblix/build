@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# simply unpack, but make sure that you get the right version
+# to match the installed erlang version
+#
+# also note that the filename isn't versioned, and unpacks directly
+# into .
+#
+mkdir -p usr/bin
+mkdir -p usr/share/man/man1
+mkdir -p usr/versions/elixir
+
+cd usr/versions/elixir
+$THOME/build/unpack elixir-otp-26
+rm -f bin/*.bat
+rm -f bin/mix.ps1
+cd ../../..
+
+cd usr/bin
+ln -s ../../usr/versions/elixir/bin/* .
+cd ../..
+
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/elixir/man/*.1 .
+cd ../../../..
