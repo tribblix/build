@@ -3860,3 +3860,4 @@ merge3-0.0.16.tar.gz 0852de4381cb46be5ef4ed49e3ac20c5a4a0cd46a8ff4bbb870bc27aab5
 ocrmypdf-16.11.1.tar.gz 838ab69e0ee0f04feea0d5861a17badecab6d3beaed0e29a97058eadda58cbb1
 patiencediff-0.2.18.tar.gz a678d8252bfb060f1f280fd32d47d917d323e93e1a94ff4ddaaba693a6f66aad
 yt_dlp-2025.10.14.tar.gz b18436aa9bb6f04354fd78d31ad9eeaae8c81b6a859f07072b25c18cd6c25844
+watchfiles-1.1.1.tar.gz a173cb5c16c4f40ab19cecf48a534c409f7ea983ab8fed0741304a1c0a31b3f2
