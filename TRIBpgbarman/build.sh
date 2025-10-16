@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py -v 312 TRIBpgbarman barman-3.16.0
+${THOME}/build/pkg_setup_py -v 312 TRIBpgbarman barman-3.16.1
