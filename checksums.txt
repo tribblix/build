@@ -3868,3 +3868,4 @@ rabbitmq-server-generic-unix-3.13.7.tar.xz 45e5423c43f15c9d2b6ee5947f8e4f256fcfa
 postgres_exporter-0.18.1.tar.gz 1dcd1ecc341a5a7f6cc70a93c53469714e651f5c7560aecd1616cceacaf0f1f6
 nginx-prometheus-exporter-1.5.1.tar.gz 07596477c797412ab6602b1961947c0619e76b4e59e367fc48807d9d6f195566
 pg_exporter-1.0.2.tar.gz 39351f039eba0f534f4093cdb375c2f23a218ab3b752be683ed108a94d1e1cf7
+opentelemetry-collector-0.137.0.tar.gz 20387bf3151a802e5bdcac92e5d91d4266954570b7dd5220abdd26591b811e9f
