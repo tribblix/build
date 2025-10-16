@@ -5,5 +5,4 @@
 # build together, as they're joined at the hip and version locked
 # note that pydantic needs an *exact* version of pydantic_core
 #
-${THOME}/build/pkg_pep518 -N TRIBpydantic-python-312 pydantic_core-2.41.3 pydantic-2.12.1
- 
+${THOME}/build/pkg_pep518 -N TRIBpydantic-python-312 pydantic_core-2.41.4 pydantic-2.12.2
