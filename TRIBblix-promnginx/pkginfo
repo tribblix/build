@@ -1,4 +1,4 @@
 PKG="TRIBblix-promnginx"
 NAME="Prometheus nginx exporter"
-VERSION="1.4.2.0"
+VERSION="1.5.1.0"
 ZAP_URL="https://github.com/nginxinc/nginx-prometheus-exporter"
