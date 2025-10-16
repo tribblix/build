@@ -3858,3 +3858,4 @@ internetarchive-5.6.1.tar.gz 879cf7fd490085761634a638d43d36abd77c0355354ffcf5e7a
 humanize-4.14.0.tar.gz 2fa092705ea640d605c435b1ca82b2866a1b601cdf96f076d70b79a855eba90d
 merge3-0.0.16.tar.gz 0852de4381cb46be5ef4ed49e3ac20c5a4a0cd46a8ff4bbb870bc27aab543306
 ocrmypdf-16.11.1.tar.gz 838ab69e0ee0f04feea0d5861a17badecab6d3beaed0e29a97058eadda58cbb1
+patiencediff-0.2.18.tar.gz a678d8252bfb060f1f280fd32d47d917d323e93e1a94ff4ddaaba693a6f66aad
