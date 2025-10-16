@@ -7,7 +7,7 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="3.13.0"
+VERSION="3.13.7"
 mv rabbitmq_server-${VERSION} rabbitmq
 
 #
