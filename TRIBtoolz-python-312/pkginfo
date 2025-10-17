@@ -1,4 +1,4 @@
 PKG="TRIBtoolz-python-312"
 NAME="Python toolz"
-VERSION="1.0.0.0"
+VERSION="1.1.0.0"
 ZAP_URL="https://pypi.org/project/toolz/"
