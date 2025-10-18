@@ -5,7 +5,7 @@
 # clean up other platforms
 # links into normal PATH
 #
-VERSION=4.0.28
+VERSION=4.0.29
 rm usr/versions/groovy-${VERSION}/bin/*.bat
 mkdir -p usr/bin
 cd usr/bin
