@@ -2518,9 +2518,9 @@
 -#endif
 -
  #ifdef __linux__
+ #include <stdint.h> // For uintXX_t types used in statx support
  #include <sys/syscall.h>
- #include <sys/sysmacros.h> // makedev macros
-@@ -357,8 +350,7 @@
+@@ -351,8 +344,7 @@
      my_openat_func = (openat_func*) dlsym(RTLD_DEFAULT, "open64at");
      my_fstatat_func = (fstatat_func*) dlsym(RTLD_DEFAULT, "stat64at");
      my_fdopendir_func = (fdopendir_func*) dlsym(RTLD_DEFAULT, "fdopendir64");
