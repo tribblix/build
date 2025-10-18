@@ -1,4 +1,4 @@
 PKG="TRIBjupyter-core-python-312"
 NAME="Python jupyter-core"
-VERSION="5.8.1.0"
+VERSION="5.9.1.0"
 ZAP_URL="https://pypi.org/project/jupyter-core/"
