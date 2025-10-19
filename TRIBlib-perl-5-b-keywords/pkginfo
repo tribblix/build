@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-b-keywords"
 NAME="Perl B::Keywords module"
-VERSION="1.28.0"
+VERSION="1.29.0"
 ZAP_URL="https://metacpan.org/pod/B::Keywords"
