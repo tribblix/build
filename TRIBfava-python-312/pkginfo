@@ -1,4 +1,0 @@
-PKG="TRIBfava-python-312"
-NAME="Python fava"
-VERSION="1.30.7.0"
-ZAP_URL="https://pypi.org/project/fava/"
