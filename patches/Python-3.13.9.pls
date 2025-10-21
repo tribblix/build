@@ -1,0 +1,7 @@
+-p1 python313/asyncio-watcher.patch
+-p1 python313/default-lib-path.patch
+-p1 python313/disable_epoll.patch
+-p1 python313/dont-use-ccs.patch
+-p1 python313/mod-posix-sched_priority.patch
+-p1 python313/mod-shutil-sendfile.patch
+-p1 python313/termios-set-before-get.patch

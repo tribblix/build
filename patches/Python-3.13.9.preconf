@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# tweak the configure script rather than patching configure.ac
+#
+sed -i s:x=epoll_create:x=NOepoll_create: configure
+sed -i s:sys/epoll.h:sys/NOepoll.h: configure

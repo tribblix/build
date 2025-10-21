@@ -1,0 +1,131 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+VERSION="3.13"
+
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# first strip out the tests
+#
+TESTDIR=/tmp/ptest.$$
+rm -fr $TESTDIR
+mkdir -p $TESTDIR
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/sqlite3/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/sqlite3/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/lib-tk/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib2to3/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/lib2to3/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/json/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib/idle_test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/email/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/email/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/ctypes/test | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/ctypes/test
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/distutils/tests | ( cd $TESTDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/distutils/tests
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_ctypes_test.so | ( cd $TESTDIR ; tar xf -)
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_testcapi.so | ( cd $TESTDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_ctypes_test.so
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_testcapi.so
+#
+# having copied them off, package them
+#
+$THOME/build/create_pkg TRIBv-python-313-tests $TESTDIR
+rm -fr $TESTDIR
+
+#
+# next strip out the idle/tkinter components so base python doesn't
+# drag in tk and x11
+#
+PTKDIR=/tmp/ptkidle.$$
+mkdir -p $PTKDIR
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter*.so | ( cd $PTKDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/lib/python${VERSION}/lib-dynload/_tkinter*.so
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter | ( cd $PTKDIR ; tar xf -)
+tar cf - usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib | ( cd $PTKDIR ; tar xf -)
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/tkinter
+rm -fr usr/versions/python-${VERSION}/lib/python${VERSION}/idlelib
+tar cf - usr/versions/python-${VERSION}/bin/idle* | ( cd $PTKDIR ; tar xf -)
+rm -f usr/versions/python-${VERSION}/bin/idle*
+mkdir -p $PTKDIR/usr/bin
+ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} $PTKDIR/usr/bin
+####ln -s ../../usr/versions/python-${VERSION}/bin/idle3 $PTKDIR/usr/bin
+#
+# having copied them off, package them
+#
+$THOME/build/create_pkg TRIBv-python-313-tkinter $PTKDIR
+rm -fr $PTKDIR
+
+#
+# mark as externally managed
+# the text of this message is subject to some refinement
+#
+cat > usr/versions/python-3.13/lib/python3.13/EXTERNALLY-MANAGED <<EOF
+[externally-managed]
+Error=System Python packages are managed using the zap utility. If you
+ wish to install your own modules, you should use an alternative.
+
+ Either create a venv, using python3.13 -m venv path/to/venv
+
+ Or use pipx, which should be included as part of the python313 overlay
+EOF
+
+#
+# if not yet the primary version, only the version-specific
+# symlinks are created
+#
+mkdir -p usr/bin
+mkdir -p usr/lib/${ARCH64}/pkgconfig
+cd usr/versions/python-${VERSION}/bin
+ln -s python${VERSION} python
+cd ../../../..
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python${VERSION}.1 .
+####ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 .
+####ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 python.1
+cd ../../../..
+cd usr/bin
+#
+# symlinks for this specific version
+#
+ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION} .
+ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION}-config .
+ln -s ../../usr/versions/python-${VERSION}/bin/pydoc${VERSION} .
+##ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
+#
+# symlinks for general version
+#
+####ln -s ../../usr/versions/python-${VERSION}/bin/python3 .
+####ln -s ../../usr/versions/python-${VERSION}/bin/python3-config .
+####ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
+##ln -s ../../usr/versions/python-${VERSION}/bin/pip3 .
+#
+# symlinks for bare unversioned names
+#
+####ln -s ../../usr/versions/python-${VERSION}/bin/python3 python
+##ln -s ../../usr/versions/python-${VERSION}/bin/pip3 pip
+#
+cd ../lib
+cd $ARCH64
+cd pkgconfig
+ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}.pc .
+####ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python3.pc .
+ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}-embed.pc .
+cd ..
