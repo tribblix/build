@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -121,6 +121,12 @@ getotherdeps()
 		;;
 	    *usr/versions/python-3.12/*)
 		echo TRIBv-python-312
+		;;
+	    *usr/versions/python-3.13/*)
+		echo TRIBv-python-313
+		;;
+	    *usr/versions/python-3.14/*)
+		echo TRIBv-python-314
 		;;
 	    *usr/versions/python-2.7/*)
 		echo TRIBv-python-27
