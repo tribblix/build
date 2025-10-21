@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-VERSION=4.9.6
+VERSION=4.9.8
 mkdir -p usr/bin
 rm -f usr/versions/spotbugs-${VERSION}/bin/spotbugs.bat
 chmod a+x usr/versions/spotbugs-${VERSION}/bin/spotbugs
