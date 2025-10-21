@@ -3906,3 +3906,4 @@ fastapi_cli-0.0.14.tar.gz ddfb5de0a67f77a8b3271af1460489bd4d7f4add73d11fbfac6138
 googleapis_common_protos-1.71.0.tar.gz 1aec01e574e29da63c80ba9f7bbf1ccfaacf1da877f23609fe236ca7c72a2e2e
 psycopg-3.2.11.tar.gz 398bb484ed44361e041c8f804ed7af3d2fcefbffdace1d905b7446c319321706
 psycopg_c-3.2.11.tar.gz b3104bcbd62e34cfc736bbdaa4cdcb7e9bfc9a4c0a1f0992cac0f68ea941a450
+typer-0.20.0.tar.gz 1aaf6494031793e4876fb0bacfa6a912b551cf43c1e63c800df8b1a866720c37
