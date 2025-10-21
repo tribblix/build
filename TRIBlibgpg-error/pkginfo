@@ -1,4 +1,4 @@
 PKG="TRIBlibgpg-error"
 NAME="Gnu libgpg-error"
-VERSION="1.51.1"
+VERSION="1.56.0"
 ZAP_URL="https://www.gnupg.org/related_software/libgpg-error/index.html"
