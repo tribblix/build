@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
+/usr/bin/rm -f `/usr/bin/find usr/lib -name '*.a'`

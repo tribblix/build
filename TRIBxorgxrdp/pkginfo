@@ -1,0 +1,4 @@
+PKG="TRIBxorgxrdp"
+NAME="xorgxrdp"
+VERSION="0.10.4.0"
+ZAP_URL="https://github.com/neutrinolabs/xorgxrdp"
