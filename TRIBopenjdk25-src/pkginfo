@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk25-src"
 NAME="OpenJDK25 src.zip"
-VERSION="25.36.0"
+VERSION="25.0.1.0"
 ZAP_URL="https://openjdk.org/"
