@@ -10,3 +10,8 @@
 #
 /usr/bin/rm -f etc/xrdp/cert.pem
 /usr/bin/rm -f etc/xrdp/key.pem
+#
+# our Xorg does not allow -logfile, see report in
+# https://github.com/tribblix/build/issues/17#issuecomment-3434605990
+#
+sed -i -e '/param=-logfile/d' -e '/param=.xorgxrdp.%s.log/d' etc/xrdp/sesman.ini
