@@ -10,8 +10,8 @@
 # just pull the ga tag
 #
 cd ~/ud
-${THOME}/build/unpack jdk17u-jdk-17.0.16-ga
-cd jdk17u-jdk-17.0.16-ga
+${THOME}/build/unpack jdk17u-jdk-17.0.17-ga
+cd jdk17u-jdk-17.0.17-ga
 
 #
 # jdk17 needs autoconf installed
@@ -48,9 +48,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "17.0.16-internal" 2025-07-15
-# OpenJDK Runtime Environment (build 17.0.16-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.16-ga)
-# OpenJDK 64-Bit Server VM (build 17.0.16-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.16-ga, mixed mode, sharing)
+# openjdk version "17.0.17-internal" 2025-10-21
+# OpenJDK Runtime Environment (build 17.0.17-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.17-ga)
+# OpenJDK 64-Bit Server VM (build 17.0.17-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.17-ga, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -67,8 +67,6 @@ ln -s ../versions/openjdk17 .
 #cd /tmp/jdk/usr/bin
 #ln -s ../jdk/latest/bin/* .
 #rm -f amd64 sparcv9
-#cd /tmp/jdk/usr/versions/openjdk17
-rm `find . -name '*.diz'`
 
 #
 # need to create a certificate bundle

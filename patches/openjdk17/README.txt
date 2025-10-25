@@ -3,6 +3,12 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
+17.0.17
+
+Minor patch noise.
+
+Don't use a fixed 32-bit path to dlopen libXrender
+
 17.0.16
 
 Minor patch noise.

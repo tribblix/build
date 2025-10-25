@@ -825,7 +825,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -392,7 +391,6 @@
+@@ -396,7 +395,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -833,7 +833,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -450,7 +448,7 @@
+@@ -454,7 +452,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -842,7 +842,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -627,10 +625,7 @@
+@@ -631,10 +629,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -854,7 +854,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -657,7 +652,6 @@
+@@ -661,7 +656,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1122,7 +1122,7 @@
 -
  ifeq ($(call isTargetOs, windows), true)
      BUILD_HOTSPOT_JTREG_EXECUTABLES_CFLAGS_exeFPRegs := -MT
-     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libnativeStack.c exeGetCreatedJavaVMs.c
+     BUILD_HOTSPOT_JTREG_EXCLUDE += exesigtest.c libterminatedThread.c libTestJNI.c libnativeStack.c exeGetCreatedJavaVMs.c libTestUnloadedClass.cpp
 --- old/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.437582966 -0700
 +++ new/make/test/JtregNativeJdk.gmk	2020-05-20 17:59:34.045575440 -0700
 @@ -75,9 +75,6 @@
@@ -4058,7 +4058,7 @@
       */
 --- old/src/java.desktop/share/classes/sun/font/FileFontStrike.java	2020-05-20 18:01:46.908126498 -0700
 +++ new/src/java.desktop/share/classes/sun/font/FileFontStrike.java	2020-05-20 18:01:46.528119201 -0700
-@@ -224,24 +224,6 @@
+@@ -223,24 +223,6 @@
              !((TrueTypeFont)fileFont).useEmbeddedBitmapsForSize(intPtSize)) {
              useNatives = true;
          }
@@ -4873,13 +4873,13 @@
  #endif
 --- old/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:46.009261282 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:45.625253909 -0700
-@@ -401,12 +401,7 @@
+@@ -404,12 +404,7 @@
              xrenderLibHandle = dlopen("libXrender.so", RTLD_LAZY | RTLD_GLOBAL);
          }
  
 -#if defined(__solaris__)
 -        if (xrenderLibHandle == NULL) {
--            xrenderLibHandle = dlopen("/usr/lib/libXrender.so.1",
+-            xrenderLibHandle = dlopen("libXrender.so.1",
 -                                      RTLD_LAZY | RTLD_GLOBAL);
 -        }
 -#elif defined(_AIX)
@@ -5054,7 +5054,7 @@
          _writer = new BufferedWriter(writer, BUFFER_SIZE);
 --- old/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.681504598 -0700
 +++ new/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.345498147 -0700
-@@ -98,7 +98,7 @@
+@@ -99,7 +99,7 @@
              (PrivilegedAction<String>) () -> System.getProperty("os.name"));
  
          private static final String SJISName = getSJISName();
@@ -5063,7 +5063,7 @@
          private DelegatableDecoder detectedDecoder = null;
  
          public Decoder(Charset cs) {
-@@ -226,24 +226,11 @@
+@@ -227,24 +227,11 @@
           * Returned Shift_JIS Charset name is OS dependent
           */
          private static String getSJISName() {

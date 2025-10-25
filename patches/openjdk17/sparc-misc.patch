@@ -40,7 +40,7 @@ diff -ur jdk-jdk-15-26/src/hotspot/cpu/zero/bytecodeInterpreter_zero.hpp jdk-jdk
 diff -ur jdk-jdk-15-26/src/hotspot/os/posix/os_posix.cpp jdk-jdk-15-25/src/hotspot/os/posix/os_posix.cpp
 --- jdk-jdk-15-26/src/hotspot/os/posix/signals_posix.cpp	   :: 
 +++ jdk-jdk-15-25/src/hotspot/os/posix/signals_posix.cpp	   :: 
-@@ -923,6 +923,21 @@
+@@ -933,6 +933,21 @@
  #if defined(IA64) && !defined(AIX)
      { SIGSEGV, SEGV_PSTKOVF, "SEGV_PSTKOVF", "Paragraph stack overflow" },
  #endif
