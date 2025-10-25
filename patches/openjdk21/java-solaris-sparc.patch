@@ -694,7 +694,7 @@
      LIBS_aix := $(LIBDL),\
      LIBS_macosx := -lmlib_image \
          -framework Cocoa \
-@@ -403,7 +402,6 @@
+@@ -407,7 +406,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LIBS_unix := -lawt -ljvm -ljava, \
        LIBS_linux := $(LIBM) $(LIBDL), \
@@ -702,7 +702,7 @@
    ))
  
    $(BUILD_LIBAWT_HEADLESS): $(BUILD_LIBAWT)
-@@ -461,7 +459,7 @@
+@@ -465,7 +463,7 @@
                          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
                          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
     endif
@@ -711,7 +711,7 @@
       HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES -DHB_NO_VISIBILITY
     endif
  
-@@ -635,10 +633,7 @@
+@@ -639,10 +637,7 @@
    ifeq ($(call isTargetOs, macosx), true)
      JAWT_LIBS := -lawt_lwawt
    else
@@ -723,7 +723,7 @@
      ifeq ($(ENABLE_HEADLESS_ONLY), false)
        JAWT_LIBS += -lawt_xawt
      else
-@@ -665,7 +660,6 @@
+@@ -669,7 +664,6 @@
        LDFLAGS_unix := -L$(INSTALL_LIBRARIES_HERE), \
        LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
        LIBS_unix := $(JAWT_LIBS) $(JDKLIB_LIBS), \
@@ -1329,7 +1329,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1910,8 +1910,6 @@
+@@ -1918,8 +1918,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1338,7 +1338,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1976,8 +1974,6 @@
+@@ -1984,8 +1982,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -2032,7 +2032,7 @@
  #endif
 --- old/src/java.base/unix/native/libjava/java_props_md.c	2020-05-20 18:01:13.743489712 -0700
 +++ new/src/java.base/unix/native/libjava/java_props_md.c	2020-05-20 18:01:13.351482185 -0700
-@@ -323,27 +323,6 @@
+@@ -325,27 +325,6 @@
          }
  #endif
  
@@ -3543,7 +3543,7 @@
  #endif
 --- old/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:46.009261282 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:45.625253909 -0700
-@@ -402,12 +402,7 @@
+@@ -405,12 +405,7 @@
              xrenderLibHandle = dlopen("libXrender.so", RTLD_LAZY | RTLD_GLOBAL);
          }
  
@@ -3723,7 +3723,7 @@
          _writer = new BufferedWriter(writer, BUFFER_SIZE);
 --- old/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.681504598 -0700
 +++ new/src/jdk.charsets/share/classes/sun/nio/cs/ext/JISAutoDetect.java	2020-05-20 18:02:58.345498147 -0700
-@@ -94,7 +94,7 @@
+@@ -95,7 +95,7 @@
      private static class Decoder extends CharsetDecoder {
  
          private static final String SJISName = getSJISName();
@@ -3732,7 +3732,7 @@
          private DelegatableDecoder detectedDecoder = null;
  
          public Decoder(Charset cs) {
-@@ -222,24 +222,11 @@
+@@ -223,24 +223,11 @@
           * Returned Shift_JIS Charset name is OS dependent
           */
          private static String getSJISName() {
