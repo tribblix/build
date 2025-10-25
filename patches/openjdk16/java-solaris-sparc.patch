@@ -6117,7 +6117,7 @@
  
 -#if defined(__solaris__)
 -        if (xrenderLibHandle == NULL) {
--            xrenderLibHandle = dlopen("/usr/lib/libXrender.so.1",
+-            xrenderLibHandle = dlopen("libXrender.so.1",
 -                                      RTLD_LAZY | RTLD_GLOBAL);
 -        }
 -#elif defined(_AIX)
