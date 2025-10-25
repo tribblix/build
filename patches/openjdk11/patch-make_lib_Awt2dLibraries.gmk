@@ -23,4 +23,4 @@ Support SunOS/gcc.  XXX: retain solstudio support.
 +   endif
    endif
    # hb-ft.cc is not presently needed, and requires freetype 2.4.2 or later.
-   LIBFONTMANAGER_EXCLUDE_FILES += libharfbuzz/hb-ft.cc
+   # hb-subset and hb-style APIs are not needed, excluded to cut on compilation time.
