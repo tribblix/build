@@ -1,4 +1,4 @@
 PKG="TRIBnikto"
 NAME="Nikto2 web server scanner"
 VERSION="2.5.0.1"
-ZAP_URL="https://cirt.net/nikto2/"
+ZAP_URL="https://cirt.net/nikto/"
