@@ -27,8 +27,8 @@ TZ=UTC
 export TZ
 
 #
-# package one or more python project(s) that use the new pep518 style, rather
-# than the old setup.py mechanism
+# package one or more python project(s) that use the new pep518 style, can
+# also handle modules using the old setup.py mechanism
 #
 
 #
@@ -169,9 +169,6 @@ if [ ! -d "${PFILE}" ]; then
     exit 1
 fi
 cd "${PFILE}" || exit 1
-if [ ! -f pyproject.toml ]; then
-    echo "WARNING: No pyproject.toml, is this really a pep518 project?"
-fi
 #
 # any preconf actions run here
 #
