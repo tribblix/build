@@ -1,4 +1,4 @@
 PKG="TRIBmatplot-inline-python-312"
 NAME="Python matplotlib-inline"
-VERSION="0.1.7.0"
+VERSION="0.2.1.0"
 ZAP_URL="https://pypi.org/project/matplotlib-inline/"
