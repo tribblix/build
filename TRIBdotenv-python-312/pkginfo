@@ -1,4 +1,4 @@
 PKG="TRIBdotenv-python-312"
 NAME="Python python-dotenv"
-VERSION="1.1.1.0"
+VERSION="1.2.1.0"
 ZAP_URL="https://pypi.org/project/python-dotenv/"
