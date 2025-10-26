@@ -1,4 +1,4 @@
 PKG="TRIBbreezy-python-312"
 NAME="Python breezy"
-VERSION="3.3.11.0"
+VERSION="3.3.15.0"
 ZAP_URL="https://pypi.org/project/breezy/"
