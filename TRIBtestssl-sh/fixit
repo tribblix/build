@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-VERSION=3.2.0
+VERSION=3.2.1
 mv "usr/versions/testssl.sh-${VERSION}" usr/versions/testssl.sh
 #
 # cleanup

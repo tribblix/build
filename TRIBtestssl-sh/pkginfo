@@ -1,4 +1,4 @@
 PKG="TRIBtestssl-sh"
 NAME="testssl.sh"
-VERSION="3.2.0.0"
+VERSION="3.2.1.0"
 ZAP_URL="https://testssl.sh/"
