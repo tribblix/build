@@ -54,7 +54,7 @@ diff -ur a/src/hotspot/share/opto/generateOptoStub.cpp b/src/hotspot/share/opto/
 diff -ur a/src/hotspot/share/runtime/vmStructs.cpp b/src/hotspot/share/runtime/vmStructs.cpp
 --- a/src/hotspot/share/runtime/vmStructs.cpp	   :: 
 +++ b/src/hotspot/share/runtime/vmStructs.cpp	   :: 
-@@ -2057,6 +2057,12 @@
+@@ -2058,6 +2058,12 @@
                                                                            \
    declare_preprocessor_constant("ASSERT", DEBUG_ONLY(1) NOT_DEBUG(0))     \
                                                                            \

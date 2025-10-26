@@ -286,7 +286,7 @@ diff --git a/src/hotspot/share/runtime/thread.cpp b/src/hotspot/share/runtime/th
 index 8aed9a450b6..50ecc4d4688 100644
 --- a/src/hotspot/share/runtime/thread.cpp
 +++ b/src/hotspot/share/runtime/thread.cpp
-@@ -1677,7 +1677,7 @@ void JavaThread::check_and_handle_async_exceptions() {
+@@ -1676,7 +1676,7 @@ void JavaThread::check_and_handle_async_exceptions() {
  void JavaThread::handle_special_runtime_exit_condition(bool check_asyncs) {
  
    if (is_obj_deopt_suspend()) {
@@ -299,7 +299,7 @@ diff --git a/src/hotspot/share/runtime/thread.hpp b/src/hotspot/share/runtime/th
 index 9700d6be2a5..9a3fe0efe6e 100644
 --- a/src/hotspot/share/runtime/thread.hpp
 +++ b/src/hotspot/share/runtime/thread.hpp
-@@ -1429,7 +1429,7 @@ class JavaThread: public Thread {
+@@ -1428,7 +1428,7 @@ class JavaThread: public Thread {
   public:
    // Accessing frames
    frame last_frame() {

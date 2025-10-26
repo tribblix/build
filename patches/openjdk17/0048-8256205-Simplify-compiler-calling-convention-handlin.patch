@@ -52,7 +52,7 @@ diff --git a/src/hotspot/cpu/aarch64/aarch64.ad b/src/hotspot/cpu/aarch64/aarch6
 index a9df812c634..2ec3d26ac81 100644
 --- a/src/hotspot/cpu/aarch64/aarch64.ad
 +++ b/src/hotspot/cpu/aarch64/aarch64.ad
-@@ -4040,13 +4040,6 @@ frame %{
+@@ -4035,13 +4035,6 @@ frame %{
    // Stack alignment requirement
    stack_alignment(StackAlignmentInBytes); // Alignment size in bytes (128-bit -> 16 bytes)
  
@@ -66,7 +66,7 @@ index a9df812c634..2ec3d26ac81 100644
    // Number of outgoing stack slots killed above the out_preserve_stack_slots
    // for calls to C.  Supports the var-args backing area for register parms.
    varargs_C_out_slots_killed(frame::arg_reg_save_area_bytes/BytesPerInt);
-@@ -4065,25 +4058,6 @@ frame %{
+@@ -4060,25 +4053,6 @@ frame %{
                          Compile::current()->fixed_slots()),
                         stack_alignment_in_slots()));
  
@@ -244,7 +244,7 @@ diff --git a/src/hotspot/cpu/ppc/ppc.ad b/src/hotspot/cpu/ppc/ppc.ad
 index 27dad6cff94..8bbbc3d4aa3 100644
 --- a/src/hotspot/cpu/ppc/ppc.ad
 +++ b/src/hotspot/cpu/ppc/ppc.ad
-@@ -3775,8 +3775,6 @@ frame %{
+@@ -3776,8 +3776,6 @@ frame %{
  
    stack_alignment(frame::alignment_in_bytes);
  
@@ -253,7 +253,7 @@ index 27dad6cff94..8bbbc3d4aa3 100644
    // Number of outgoing stack slots killed above the
    // out_preserve_stack_slots for calls to C. Supports the var-args
    // backing area for register parms.
-@@ -3801,40 +3799,6 @@ frame %{
+@@ -3802,40 +3800,6 @@ frame %{
    //    4 what apparently works and saves us some spills.
    return_addr(STACK 4);
  
@@ -971,7 +971,7 @@ index 95369e6272e..ef2b688c7f1 100644
    BufferBlob* buf = buffer_blob(); // the temporary code buffer in CodeCache
    CodeBuffer buffer(buf);
    short buffer_locs[20];
-@@ -3075,11 +3074,8 @@ void AdapterHandlerLibrary::create_native_wrapper(const methodHandle& method) {
+@@ -3076,11 +3075,8 @@ void AdapterHandlerLibrary::create_native_wrapper(const methodHandle& method) {
        assert(si.slots() == total_args_passed, "");
        BasicType ret_type = si.return_type();
  
@@ -985,7 +985,7 @@ index 95369e6272e..ef2b688c7f1 100644
  
        // Generate the compiled-to-native wrapper code
        nm = SharedRuntime::generate_native_wrapper(&_masm, method, compile_id, sig_bt, regs, ret_type, critical_entry);
-@@ -3123,7 +3119,7 @@ void AdapterHandlerLibrary::create_native_wrapper(const methodHandle& method) {
+@@ -3124,7 +3120,7 @@ void AdapterHandlerLibrary::create_native_wrapper(const methodHandle& method) {
  VMReg SharedRuntime::name_for_receiver() {
    VMRegPair regs;
    BasicType sig_bt = T_OBJECT;
@@ -994,7 +994,7 @@ index 95369e6272e..ef2b688c7f1 100644
    // Return argument 0 register.  In the LP64 build pointers
    // take 2 registers, but the VM wants only the 'main' name.
    return regs.first();
-@@ -3154,7 +3150,7 @@ VMRegPair *SharedRuntime::find_callee_arguments(Symbol* sig, bool has_receiver,
+@@ -3155,7 +3151,7 @@ VMRegPair *SharedRuntime::find_callee_arguments(Symbol* sig, bool has_receiver,
    assert(cnt < 256, "grow table size");
  
    int comp_args_on_stack;
