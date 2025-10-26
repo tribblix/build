@@ -1,4 +1,4 @@
 PKG="TRIBb2sdk-python-312"
 NAME="Python b2sdk"
-VERSION="2.10.0.0"
+VERSION="2.10.1.0"
 ZAP_URL="https://pypi.org/project/b2sdk/"
