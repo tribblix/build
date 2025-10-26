@@ -15,6 +15,10 @@
 # which also pulls in readline
 #
 
+#
+# there's a separate build script for sparc
+#
+
 env CURSES_CFLAGS="-DHAVE_NCURSESW -D_XOPEN_SOURCE_EXTENDED" TRIBBLIX_CFLAGS="-D_XOPEN_SOURCE=600 -D__EXTENSIONS__=1 -I/usr/gnu/include -I/usr/gnu/include/ncursesw" TRIBBLIX_LDFLAGS="-L/usr/gnu/lib/`$THOME/build/getarch` -R/usr/gnu/lib/`$THOME/build/getarch`" ${THOME}/build/dobuild +64only Python-3.13.9 -P /usr/versions/python-3.13 -L -C "--enable-shared ac_cv_func_hstrerror=no --enable-optimizations --without-ensurepip"
 
 #
