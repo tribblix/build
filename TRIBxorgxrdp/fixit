@@ -8,4 +8,4 @@
 # our Xorg is older, so need this fix, see report in
 # https://github.com/tribblix/build/issues/17#issuecomment-3434605990
 #
-sed -i 's:GPUDevice:#GPUDevice:' etc/X11/xrdp/xorg.conf 
+sed -i 's:GPUDevice:#GPUDevice:' etc/X11/xrdp/xorg.conf
