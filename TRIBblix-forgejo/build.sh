@@ -2,14 +2,14 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-$THOME/build/unpack forgejo-src-12.0.3
-cd forgejo-src-12.0.3
+$THOME/build/unpack forgejo-src-13.0.2
+cd forgejo-src-13.0.2
 #
 # download the proper tarball, not the automated source dump
 # this way, the assets are pregenerated and all you have to do
 # is build the binary
 #
-env TAGS="bindata timetzdata sqlite sqlite_unlock_notify" gmake build
+env PATH=/usr/versions/go-1.25/bin:$PATH TAGS="bindata timetzdata sqlite sqlite_unlock_notify" gmake build
 
 #
 # yes, the executable is called gitea, because forgejo is a gitea
