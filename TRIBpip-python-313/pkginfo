@@ -1,4 +1,4 @@
 PKG="TRIBpip-python-313"
 NAME="Python pip"
-VERSION="25.2.0"
+VERSION="25.3.0"
 ZAP_URL="https://pypi.org/project/pip/"
