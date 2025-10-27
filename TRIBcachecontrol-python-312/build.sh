@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # pip-audit requires CacheControl[filecache] which adds filelock
 # as a dependency
 #

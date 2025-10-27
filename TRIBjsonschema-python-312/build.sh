@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is an *old* build of jsonschema
 #
 # the *new* build is TRIBjsonschema4-python-312, but that has a lot
