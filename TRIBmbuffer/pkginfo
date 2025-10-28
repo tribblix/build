@@ -1,4 +1,4 @@
 PKG="TRIBmbuffer"
 NAME="mbuffer - tool for buffering data streams"
-VERSION="2025.08.09.0"
+VERSION="2025.10.25.0"
 ZAP_URL="http://www.maier-komor.de/mbuffer.html"
