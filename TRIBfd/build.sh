@@ -6,14 +6,8 @@
 #
 git clone https://github.com/sharkdp/fd.git
 cd fd
+git checkout v10.3.0
 #
-# disable jemalloc, as it can't build it sanely
-# Cargo.toml src/main.rs
-# simplest is to replace one of the target os in the guard by "illumos"
-#
-cargo build --release
-# needs the same users tweak as exa, if you haven't done that already
-sed -i s:solaris:illumos: ${HOME}/.cargo/registry/src/github.com-1ecc6299db9ec823/users-0.11.0/src/*.rs
 cargo build --release
 
 rm -fr /tmp/ll
