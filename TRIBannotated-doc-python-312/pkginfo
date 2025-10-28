@@ -1,0 +1,4 @@
+PKG="TRIBannotated-doc-python-312"
+NAME="Python annotated-doc"
+VERSION="0.0.3.0"
+ZAP_URL="https://pypi.org/project/annotated-doc/"
