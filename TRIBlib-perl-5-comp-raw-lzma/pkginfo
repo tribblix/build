@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-comp-raw-lzma"
 NAME="Perl Compress::Raw::Lzma module"
-VERSION="2.213.0"
+VERSION="2.214.0"
 ZAP_URL="https://metacpan.org/pod/Compress::Raw::Lzma"
