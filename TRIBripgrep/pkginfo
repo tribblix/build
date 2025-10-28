@@ -1,4 +1,4 @@
 PKG="TRIBripgrep"
 NAME="Recursive line-oriented search tool"
-VERSION="14.1.1.0"
+VERSION="15.1.0.0"
 ZAP_URL="https://github.com/BurntSushi/ripgrep"

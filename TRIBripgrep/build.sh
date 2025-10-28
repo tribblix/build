@@ -2,8 +2,8 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/unpack ripgrep-14.1.1
-cd ripgrep-14.1.1
+${THOME}/build/unpack ripgrep-15.1.0
+cd ripgrep-15.1.0
 
 env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig cargo build --release
 
