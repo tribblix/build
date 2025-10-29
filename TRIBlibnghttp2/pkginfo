@@ -1,4 +1,4 @@
 PKG="TRIBlibnghttp2"
 NAME="HTTP/2 C library"
-VERSION="1.65.0.0"
+VERSION="1.68.0.0"
 ZAP_URL="https://github.com/tatsuhiro-t/nghttp2"
