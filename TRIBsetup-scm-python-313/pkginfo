@@ -1,0 +1,4 @@
+PKG="TRIBsetup-scm-python-313"
+NAME="Python setuptools-scm"
+VERSION="9.2.2.0"
+ZAP_URL="https://pypi.org/project/setuptools-scm/"
