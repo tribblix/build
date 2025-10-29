@@ -1,4 +1,4 @@
 PKG="TRIBalembic-python-312"
 NAME="Python alembic"
-VERSION="1.17.0.0"
+VERSION="1.17.1.0"
 ZAP_URL="https://pypi.org/project/alembic/"
