@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+VERSION="3.13"
+cd usr/versions/python-${VERSION}/lib/python${VERSION}/site-packages
+tar cf setuptools.tar setuptools
+rm -fr setuptools
