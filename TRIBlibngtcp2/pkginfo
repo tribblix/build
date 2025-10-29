@@ -1,4 +1,4 @@
 PKG="TRIBlibngtcp2"
 NAME="libngtcp2"
-VERSION="1.12.0.0"
+VERSION="1.17.0.0"
 ZAP_URL="https://github.com/ngtcp2/ngtcp2"
