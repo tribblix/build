@@ -4,11 +4,14 @@
 #
 # just name off the primary version
 #
-VERSION=1.9.3
+VERSION=1.9.8
 mkdir -p usr/bin
 rm -f usr/versions/projectlibre-${VERSION}/projectlibre.bat
 cat > usr/bin/projectlibre <<EOF
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 exec /usr/versions/projectlibre-${VERSION}/projectlibre.sh "\$@"
 EOF
 chmod a+x usr/bin/projectlibre
