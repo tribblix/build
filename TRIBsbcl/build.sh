@@ -27,11 +27,11 @@
 #
 # must rebuild maxima if sbcl is updated
 #
-${THOME}/build/unpack sbcl-2.5.8-source
-cd sbcl-2.5.8
-env GNUMAKE=gmake sh make.sh --prefix=/usr/versions/sbcl-2.5.8
+${THOME}/build/unpack sbcl-2.5.10-source
+cd sbcl-2.5.10
+env GNUMAKE=gmake sh make.sh --prefix=/usr/versions/sbcl-2.5.10
 rm -fr /tmp/l2
-env INSTALL_ROOT=/tmp/l2/usr/versions/sbcl-2.5.8 sh install.sh
+env INSTALL_ROOT=/tmp/l2/usr/versions/sbcl-2.5.10 sh install.sh
 ${THOME}/build/create_pkg TRIBsbcl /tmp/l2
 rm -fr /tmp/l2
 cd ..
