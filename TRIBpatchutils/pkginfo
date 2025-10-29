@@ -1,4 +1,4 @@
 PKG="TRIBpatchutils"
 NAME="patchutils"
-VERSION="0.4.2.1"
+VERSION="0.4.4.0"
 ZAP_URL="http://cyberelk.net/tim/software/patchutils/"
