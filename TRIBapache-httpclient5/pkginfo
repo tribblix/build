@@ -1,4 +1,0 @@
-PKG="TRIBapache-httpclient5"
-NAME="Apache HttpComponents Client v5"
-VERSION="5.4.2.0"
-ZAP_URL="https://hc.apache.org/"
