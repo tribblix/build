@@ -1,4 +1,0 @@
-PKG="TRIBx11-server-xephyr"
-NAME="Xephyr server (empty for compat)"
-VERSION="1.16.4.0"
-ZAP_URL="https://www.x.org/"
