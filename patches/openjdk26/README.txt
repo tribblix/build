@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+21
+
+Boot jdk now must be 25.
+
 26+20
 
 Trivial patch noise.
@@ -125,7 +129,7 @@ Start with no changes from 25+26. (Still reports as 25.)
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk24 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk25 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-warnings-as-errors \
