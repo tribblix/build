@@ -1,4 +1,4 @@
 PKG="TRIBgauth-h2-python-312"
 NAME="Python google-auth-httplib2"
-VERSION="0.2.0.0"
+VERSION="0.2.1.0"
 ZAP_URL="https://pypi.org/project/google-auth-httplib2/"
