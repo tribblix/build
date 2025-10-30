@@ -18,7 +18,7 @@ The patches here are for code that's only built in debug mode.
    Compile* _C;
 --- a/src/hotspot/share/utilities/vmError.cpp	Thu Nov 21 11:00:15 2024
 +++ b/src/hotspot/share/utilities/vmError.cpp	Thu Nov 21 12:00:25 2024
-@@ -80,6 +80,9 @@
+@@ -81,6 +81,9 @@
  #ifndef PRODUCT
  #include <signal.h>
  #endif // PRODUCT
