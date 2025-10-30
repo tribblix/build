@@ -1,4 +1,4 @@
 PKG="TRIBxyzservices-python-312"
 NAME="Python xyzservices"
-VERSION="2025.4.0.0"
+VERSION="2025.10.0.0"
 ZAP_URL="https://pypi.org/project/xyzservices/"
