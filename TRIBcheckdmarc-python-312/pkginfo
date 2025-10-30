@@ -1,4 +1,4 @@
 PKG="TRIBcheckdmarc-python-312"
 NAME="Python checkdmarc"
-VERSION="5.12.23.0"
+VERSION="5.12.24.0"
 ZAP_URL="https://pypi.org/project/checkdmarc/"
