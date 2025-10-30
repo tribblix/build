@@ -1,4 +1,4 @@
 PKG="TRIBos-service-types-python-312"
 NAME="Python os-service-types"
-VERSION="1.8.0.0"
+VERSION="1.8.1.0"
 ZAP_URL="https://pypi.org/project/os-service-types/"
