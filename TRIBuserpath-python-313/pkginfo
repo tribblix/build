@@ -1,0 +1,4 @@
+PKG="TRIBuserpath-python-313"
+NAME="Python userpath"
+VERSION="1.9.2.1"
+ZAP_URL="https://pypi.org/project/userpath/"

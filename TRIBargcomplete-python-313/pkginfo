@@ -1,0 +1,4 @@
+PKG="TRIBargcomplete-python-313"
+NAME="Python argcomplete"
+VERSION="3.6.3.0"
+ZAP_URL="https://pypi.org/project/argcomplete/"

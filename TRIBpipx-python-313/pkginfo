@@ -1,0 +1,4 @@
+PKG="TRIBpipx-python-313"
+NAME="Python pipx"
+VERSION="1.8.0.0"
+ZAP_URL="https://pypi.org/project/pipx/"
