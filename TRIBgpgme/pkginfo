@@ -1,4 +1,4 @@
 PKG="TRIBgpgme"
 NAME="GnuPG Made Easy (GPGME)"
-VERSION="1.24.2.0"
+VERSION="1.24.3.0"
 ZAP_URL="https://www.gnupg.org/related_software/gpgme/index.html"
