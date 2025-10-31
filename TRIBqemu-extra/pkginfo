@@ -1,4 +1,4 @@
 PKG="TRIBqemu-extra"
 NAME="Extra systems for QEMU"
-VERSION="8.1.0.0"
+VERSION="8.1.5.0"
 ZAP_URL="https://www.qemu.org/"

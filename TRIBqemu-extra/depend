@@ -14,8 +14,10 @@ P TRIBlibsdl2
 P TRIBlibsdl2-image
 P TRIBlibslirp
 P TRIBlibssh
-P TRIBlibxkbcommon
+P TRIBlibusb
 P TRIBqemu
 P TRIBsnappy
 P TRIBvte
+P TRIBx11-lib-mesa
+P TRIBx11-libepoxy
 P TRIBx11-libx11
