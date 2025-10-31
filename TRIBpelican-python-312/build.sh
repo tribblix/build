@@ -9,4 +9,4 @@
 #
 # and pandoc, which makes this only useful on x86
 #
-${THOME}/build/pkg_pep518 TRIBpelican-python-312 pelican-4.11.0
+${THOME}/build/pkg_pep518 TRIBpelican-python-312 pelican-4.11.0.post0
