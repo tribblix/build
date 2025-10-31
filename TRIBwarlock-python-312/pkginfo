@@ -1,0 +1,4 @@
+PKG="TRIBwarlock-python-312"
+NAME="Python warlock"
+VERSION="2.1.0.0"
+ZAP_URL="https://pypi.org/project/warlock/"
