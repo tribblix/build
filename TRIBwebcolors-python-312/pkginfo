@@ -1,4 +1,4 @@
 PKG="TRIBwebcolors-python-312"
 NAME="Python webcolors"
-VERSION="24.11.1.0"
+VERSION="25.10.0.0"
 ZAP_URL="https://pypi.org/project/webcolors/"
