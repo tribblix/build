@@ -1,4 +1,4 @@
 PKG="TRIBpinentry-gtk"
 NAME="GTK Dialog for GnuPG"
-VERSION="1.3.0.1"
+VERSION="1.3.2.0"
 ZAP_URL="https://gnupg.org/related_software/pinentry/index.html"
