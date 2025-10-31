@@ -1,4 +1,4 @@
 PKG="TRIBwireshark"
 NAME="Wireshark network protocol analyzer CLI"
-VERSION="3.6.22.0"
+VERSION="3.6.24.0"
 ZAP_URL="https://www.wireshark.org/"

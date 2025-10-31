@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# this builds the main wireshark package
+# the qt package isn't built on sparc
+#
+# needs a little extra help with kerberos
+#
+
+env TRIBBLIX_LDFLAGS="-lsocket -lnsl" TRIBBLIX_CFLAGS="-D__EXTENSIONS__ -I/usr/include/kerberosv5" ${THOME}/build/cmbuild -64only -gnu wireshark-3.6.24 -C "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE -DBUILD_wireshark=OFF"
+
+${THOME}/build/genpkg TRIBwireshark wireshark-3.6.24
