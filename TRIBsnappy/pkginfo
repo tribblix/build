@@ -1,4 +1,4 @@
 PKG="TRIBsnappy"
 NAME="Snappy - a fast compression/decompression library"
-VERSION="1.1.3.2"
+VERSION="1.2.2.0"
 ZAP_URL="https://github.com/google/snappy"
