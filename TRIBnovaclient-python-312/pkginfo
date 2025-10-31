@@ -1,0 +1,4 @@
+PKG="TRIBnovaclient-python-312"
+NAME="Python python-novaclient"
+VERSION="18.11.0.0"
+ZAP_URL="https://pypi.org/project/python-novaclient/"

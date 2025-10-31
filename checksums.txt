@@ -4025,3 +4025,4 @@ bluefish-2.2.18.tar.bz2 c5bc69e5154c0bfe2ead5adb8dd9abb8a67185d4f9b1ae2fce7b2094
 tor-0.4.8.19.tar.gz 3cb649a1d33ba6a65f109d224534e93aaf0a6de84a5b1cb4b054bfa06bb74f5a
 warlock-2.1.0.tar.gz 82319ba017341e7fcdc81efc2be9dd2f8237a0da07c71476b5425651b317b1c9
 python_glanceclient-4.10.0.tar.gz ff6c2d42a1767c5cfa3cd1d22a3732d38ab113d471ad22c4ee64a1bd3941b103
+python_novaclient-18.11.0.tar.gz 0a31ae20779d4cd171bb29c1fe4e6b22b9c7d97c79670db5149bbdfac03f57dc
