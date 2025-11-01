@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-ppi"
 NAME="Perl PPI module"
-VERSION="1.283.0"
+VERSION="1.284.0"
 ZAP_URL="https://metacpan.org/pod/PPI"
