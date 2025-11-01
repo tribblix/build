@@ -1,0 +1,4 @@
+PKG="TRIBopenjph"
+NAME="openjph"
+VERSION="0.25.0.0"
+ZAP_URL="https://openjph.org/"
