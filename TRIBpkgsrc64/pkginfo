@@ -1,4 +1,4 @@
 PKG="TRIBpkgsrc64"
 NAME="pkgsrc 64-bit bootstrap kit"
-VERSION="20230910.0"
+VERSION="20240116.0"
 ZAP_URL="https://pkgsrc.smartos.org/install-on-illumos/"
