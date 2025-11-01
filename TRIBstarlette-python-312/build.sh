@@ -4,4 +4,4 @@
 #
 # check the version is within the range permitted by fastapi before updating
 #
-${THOME}/build/pkg_pep518 -N TRIBstarlette-python-312 starlette-0.49.1
+${THOME}/build/pkg_pep518 -N TRIBstarlette-python-312 starlette-0.49.2
