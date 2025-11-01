@@ -1,4 +1,4 @@
 PKG="TRIBmsgpack-python-312"
 NAME="Python msgpack"
-VERSION="1.1.0.0"
+VERSION="1.1.2.0"
 ZAP_URL="https://pypi.org/project/msgpack/"
