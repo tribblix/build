@@ -1,4 +1,0 @@
-PKG="TRIBoverrides-python-312"
-NAME="Python overrides"
-VERSION="7.7.0.0"
-ZAP_URL="https://pypi.org/project/overrides/"

@@ -1,4 +1,0 @@
-PKG="TRIBpytest-python-312"
-NAME="Python pytest"
-VERSION="8.4.2.0"
-ZAP_URL="https://pypi.org/project/pytest/"

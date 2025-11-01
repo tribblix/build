@@ -1,4 +1,0 @@
-PKG="TRIBbottle-python-312"
-NAME="Python bottle"
-VERSION="0.13.4.0"
-ZAP_URL="https://pypi.org/project/bottle/"
