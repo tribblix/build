@@ -1,4 +1,4 @@
 PKG="TRIBjupyterlab-wdgts-python-312"
 NAME="Python jupyterlab-widgets"
-VERSION="3.0.15.0"
+VERSION="3.0.16.0"
 ZAP_URL="https://pypi.org/project/jupyterlab-widgets/"
