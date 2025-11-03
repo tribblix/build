@@ -1,4 +1,4 @@
 PKG="TRIBfastapi-python-312"
 NAME="Python fastapi"
-VERSION="0.120.4.0"
+VERSION="0.121.0.0"
 ZAP_URL="https://pypi.org/project/fastapi/"
