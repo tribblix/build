@@ -7,8 +7,8 @@
 #
 # the redis build is implicitly 64-bit already
 #
-env CC=gcc BUILD_TLS=yes ${THOME}/build/dobuild redis-6.2.20 -P /opt/tribblix/redis
-cd redis-6.2.20
+env CC=gcc BUILD_TLS=yes ${THOME}/build/dobuild redis-6.2.21 -P /opt/tribblix/redis
+cd redis-6.2.21
 # some of the tests might fail in tcl
 gmake test CC=gcc BUILD_TLS=yes
 rm -fr /tmp/rr
