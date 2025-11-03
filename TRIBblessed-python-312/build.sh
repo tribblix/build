@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBblessed-python-312 blessed-1.22.0
+${THOME}/build/pkg_pep518 -N TRIBblessed-python-312 blessed-1.23.0
