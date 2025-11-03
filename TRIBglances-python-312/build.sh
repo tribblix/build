@@ -9,4 +9,4 @@
 # non-portable and doesn't work, but netifaces might actually
 # work well enough
 #
-${THOME}/build/pkg_pep518 -N TRIBglances-python-312 glances-4.3.3
+${THOME}/build/pkg_pep518 -N TRIBglances-python-312 glances-4.4.1
