@@ -1,0 +1,4 @@
+PKG="TRIBtroveclient-python-312"
+NAME="Python python-troveclient"
+VERSION="8.9.0.0"
+ZAP_URL="https://pypi.org/project/python-troveclient/"
