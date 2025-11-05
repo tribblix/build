@@ -1,4 +1,4 @@
 PKG="TRIBimageio-python-312"
 NAME="Python imageio"
-VERSION="2.37.0.0"
+VERSION="2.37.2.0"
 ZAP_URL="https://pypi.org/project/imageio/"

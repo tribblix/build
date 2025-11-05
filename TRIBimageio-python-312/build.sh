@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBimageio-python-312 imageio-2.37.0
+${THOME}/build/pkg_pep518 -N TRIBimageio-python-312 imageio-2.37.2
