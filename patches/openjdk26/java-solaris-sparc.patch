@@ -254,7 +254,7 @@
    # set. Some files get their write permissions removed after being copied to the
 --- old/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.820745492 -0700
 +++ new/make/common/modules/LauncherCommon.gmk	2020-05-20 17:58:50.488739117 -0700
-@@ -151,7 +151,6 @@
+@@ -170,7 +170,6 @@
            -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
            -DPROGNAME='"$1"' \
            $$($1_CFLAGS), \
@@ -262,7 +262,7 @@
        EXTRA_HEADER_DIRS := java.base:libjvm, \
        JAVA_HEADERS := false, \
        DISABLED_WARNINGS_gcc := unused-function unused-variable, \
-@@ -159,7 +158,6 @@
+@@ -178,7 +177,6 @@
        LDFLAGS := $$($1_LDFLAGS), \
        LDFLAGS_linux := $$(call SetExecutableOrigin,/../lib), \
        LDFLAGS_macosx := $$(call SetExecutableOrigin,/../lib), \
@@ -412,17 +412,6 @@
      -ignorePath x86_32 \
      -ignorePath zero \
        #
---- old/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.941074214 -0700
-+++ new/make/modules/java.base/Copy.gmk	2020-05-20 17:59:07.553066764 -0700
-@@ -145,7 +145,7 @@
- 
- TARGETS += $(NET_PROPERTIES_DST)
- 
--ifeq ($(call isTargetOs, solaris linux), true)
-+ifeq ($(call isTargetOs, linux), true)
-   $(eval $(call SetupCopyFiles, COPY_SDP_CONF, \
-       FILES := $(TOPDIR)/src/java.base/$(OPENJDK_TARGET_OS_TYPE)/conf/sdp/sdp.conf.template, \
-       DEST := $(CONF_DST_DIR)/sdp, \
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
 @@ -57,7 +57,6 @@
@@ -1019,17 +1008,6 @@
 -    tty->print  ("/usr/bin/sh -c ");
  #endif
      tty->print_cr("\"%s\"...", cmd);
- 
---- old/src/java.base/share/classes/sun/net/sdp/SdpSupport.java	2020-05-20 18:00:49.295020283 -0700
-+++ new/src/java.base/share/classes/sun/net/sdp/SdpSupport.java	2020-05-20 18:00:48.903012757 -0700
-@@ -39,7 +39,7 @@
-  */
- 
- public final class SdpSupport {
--    private static final boolean isSupported = (OperatingSystem.isSolaris() || OperatingSystem.isLinux());
-+    private static final boolean isSupported = OperatingSystem.isLinux();
-     private static final JavaIOFileDescriptorAccess fdAccess =
-         SharedSecrets.getJavaIOFileDescriptorAccess();
  
 --- old/src/java.base/share/classes/sun/nio/ch/SocketOptionRegistry.java.template	2020-05-20 18:00:51.403060759 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/SocketOptionRegistry.java.template	2020-05-20 18:00:51.019053386 -0700
@@ -2005,33 +1983,6 @@
  /** BSD **/
  #if defined(_ALLBSD_SOURCE)
  
---- old/src/java.base/unix/native/libnet/SdpSupport.c	2020-05-20 18:01:27.335750694 -0700
-+++ new/src/java.base/unix/native/libnet/SdpSupport.c	2020-05-20 18:01:26.955743397 -0700
-@@ -27,11 +27,7 @@
- #include <sys/socket.h>
- #include <errno.h>
- 
--#if defined(__solaris__)
--  #if !defined(PROTO_SDP)
--    #define PROTO_SDP       257
--  #endif
--#elif defined(__linux__)
-+#if defined(__linux__)
-   #if !defined(AF_INET_SDP)
-     #define AF_INET_SDP     27
-   #endif
-@@ -48,10 +44,7 @@
- {
-     int s;
- 
--#if defined(__solaris__)
--    int domain = ipv6_available() ? AF_INET6 : AF_INET;
--    s = socket(domain, SOCK_STREAM, PROTO_SDP);
--#elif defined(__linux__)
-+#if defined(__linux__)
-     /**
-      * IPv6 not supported by SDP on Linux
-      */
 --- old/src/java.base/unix/native/libnet/net_util_md.c	2020-05-20 18:01:28.435771815 -0700
 +++ new/src/java.base/unix/native/libnet/net_util_md.c	2020-05-20 18:01:28.059764595 -0700
 @@ -36,14 +36,6 @@

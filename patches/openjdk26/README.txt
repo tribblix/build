@@ -4,6 +4,12 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+23
+
+All the SDP stuff has gone, so don't patch it.
+
+update_lgrp_id() has been removed.
+
 26+22
 
 Trivial patch noise.

@@ -2296,7 +2296,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/src/hotspot/os/solaris/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2025-04-19 12:08:38.483600745 +0100
-@@ -0,0 +1,2732 @@
+@@ -0,0 +1,2724 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -2826,10 +2826,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  log_info(os, thread)("Thread is alive (tid: %zu).",
 +    os::current_thread_id());
 +
-+  if (UseNUMA) {
-+    thread->update_lgrp_id();
-+  }
-+
 +  // Our priority was set when we were created, and stored in the
 +  // osthread, but couldn't be passed through to our LWP until now.
 +  // So read back the priority and set it again.
@@ -2876,10 +2872,6 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  // Store info on the Solaris thread into the OSThread
 +  osthread->set_thread_id(thread_id);
 +  osthread->set_lwp_id(_lwp_self());
-+
-+  if (UseNUMA) {
-+    thread->update_lgrp_id();
-+  }
 +
 +  // Initial thread state is INITIALIZED, not SUSPENDED
 +  osthread->set_state(INITIALIZED);
