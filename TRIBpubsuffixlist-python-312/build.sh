@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBpubsuffixlist-python-312 publicsuffixlist-1.0.2.20251029
+${THOME}/build/pkg_pep518 -N TRIBpubsuffixlist-python-312 publicsuffixlist-1.0.2.20251109
