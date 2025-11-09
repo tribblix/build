@@ -1,4 +1,4 @@
 PKG="TRIBv-visualvm"
 NAME="VisualVM All-in-One Java Troubleshooting Tool"
-VERSION="2.1.10.0"
+VERSION="2.2.0"
 ZAP_URL="https://visualvm.github.io/"
