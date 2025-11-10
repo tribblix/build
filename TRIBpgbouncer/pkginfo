@@ -1,4 +1,4 @@
 PKG="TRIBpgbouncer"
 NAME="Lightweight connection pooler for PostgreSQL"
-VERSION="1.24.1.0"
+VERSION="1.25.0.0"
 ZAP_URL="http://www.pgbouncer.org/"
