@@ -1,4 +1,4 @@
 PKG="TRIBv-tomcat-10"
 NAME="Tomcat 10"
-VERSION="10.1.48.0"
+VERSION="10.1.49.0"
 ZAP_URL="https://tomcat.apache.org/"
