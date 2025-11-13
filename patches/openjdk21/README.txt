@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Fix: restore support for extended attributes - see xattrs.patch
+
 21.0.9
 
 Minor patch noise.

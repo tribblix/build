@@ -35,3 +35,4 @@
 -p1 openjdk25/testsuite.patch
 -p1 openjdk25/illumos-port-29.patch
 -p1 openjdk25/fastdebug.patch
+-p1 openjdk25/xattrs.patch

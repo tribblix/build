@@ -2,6 +2,8 @@ See also README-zero.txt for note on a project zero variant.
 
 JDK 24 now that jdk23 has been branched off.
 
+Fix: restore support for extended attributes - see xattrs.patch
+
 24.0.2
 
 Minor patch noise.

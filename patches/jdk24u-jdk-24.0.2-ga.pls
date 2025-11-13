@@ -36,3 +36,4 @@
 -p1 openjdk24/testsuite.patch
 -p1 openjdk24/illumos-port-29.patch
 -p1 openjdk24/fastdebug.patch
+-p1 openjdk24/xattrs.patch

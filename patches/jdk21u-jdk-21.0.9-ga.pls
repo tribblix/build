@@ -39,3 +39,4 @@
 -p1 openjdk21/illumos-port-28.patch
 -p1 openjdk21/testsuite.patch
 -p1 openjdk21/fastdebug.patch
+-p1 openjdk21/xattrs.patch

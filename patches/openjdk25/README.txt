@@ -4,6 +4,8 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Fix: restore support for extended attributes - see xattrs.patch
+
 25.0.1
 
 Trivial patch noise.
