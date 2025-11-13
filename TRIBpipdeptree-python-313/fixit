@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+PYVERS=3.13
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/python-${PYVERS}/bin/pipdeptree ./pipdeptree3.13
