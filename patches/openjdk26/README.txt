@@ -4,6 +4,12 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+24
+
+Trivial patch noise.
+
+Fixes around JavaThreadPDAccess due to removal od x86 support.
+
 26+23
 
 All the SDP stuff has gone, so don't patch it.

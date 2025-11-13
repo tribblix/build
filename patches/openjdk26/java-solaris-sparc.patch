@@ -2984,8 +2984,8 @@
 -import sun.jvm.hotspot.runtime.solaris_amd64.SolarisAMD64JavaThreadPDAccess;
  import sun.jvm.hotspot.runtime.win32_amd64.Win32AMD64JavaThreadPDAccess;
  import sun.jvm.hotspot.runtime.win32_aarch64.Win32AARCH64JavaThreadPDAccess;
- import sun.jvm.hotspot.runtime.linux_x86.LinuxX86JavaThreadPDAccess;
-@@ -95,9 +94,7 @@
+ import sun.jvm.hotspot.runtime.linux_amd64.LinuxAMD64JavaThreadPDAccess;
+@@ -93,9 +92,7 @@
  
          access = null;
          // FIXME: find the platform specific PD class by reflection?
@@ -12226,7 +12226,7 @@
 -}
 --- old/src/jdk.hotspot.agent/share/classes/sun/jvm/hotspot/runtime/solaris_amd64/SolarisAMD64JavaThreadPDAccess.java	2020-05-20 18:11:11.186960833 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,140 +0,0 @@
+@@ -1,139 +0,0 @@
 -/*
 - * Copyright (c) 2004, 2020, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12259,7 +12259,6 @@
 -import sun.jvm.hotspot.debugger.amd64.*;
 -import sun.jvm.hotspot.runtime.*;
 -import sun.jvm.hotspot.runtime.amd64.*;
--import sun.jvm.hotspot.runtime.x86.*;
 -import sun.jvm.hotspot.types.*;
 -import sun.jvm.hotspot.utilities.*;
 -import sun.jvm.hotspot.utilities.Observable;
@@ -12316,14 +12315,14 @@
 -        }
 -        Address pc =  thread.getLastJavaPC();
 -        if ( pc != null ) {
--            return new X86Frame(thread.getLastJavaSP(), fp, pc);
+-            return new AMD64Frame(thread.getLastJavaSP(), fp, pc);
 -        } else {
--            return new X86Frame(thread.getLastJavaSP(), fp);
+-            return new AMD64Frame(thread.getLastJavaSP(), fp);
 -        }
 -    }
 -
 -    public RegisterMap newRegisterMap(JavaThread thread, boolean updateMap) {
--        return new X86RegisterMap(thread, updateMap);
+-        return new AMD64RegisterMap(thread, updateMap);
 -    }
 -
 -    public Frame getCurrentFrameGuess(JavaThread thread, Address addr) {
@@ -12334,9 +12333,9 @@
 -            return null;
 -        }
 -        if (guesser.getPC() == null) {
--            return new X86Frame(guesser.getSP(), guesser.getFP());
+-            return new AMD64Frame(guesser.getSP(), guesser.getFP());
 -        } else {
--            return new X86Frame(guesser.getSP(), guesser.getFP(), guesser.getPC());
+-            return new AMD64Frame(guesser.getSP(), guesser.getFP(), guesser.getPC());
 -        }
 -    }
 -
