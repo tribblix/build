@@ -4126,3 +4126,4 @@ pikepdf-10.0.2.tar.gz 7c85a2526253e35575edb2e28cdc740d004be4b7c5fda954f0e721ee1c
 barman-3.16.2.tar.gz ab0c6f4f5cfc0cc12b087335bdd5def2edbca32bc1bf553cc5a9e78cd83df43a
 tblib-3.2.2.tar.gz e9a652692d91bf4f743d4a15bc174c0b76afc750fe8c7b6d195cc1c1d6d2ccec
 linode_metadata-0.3.2.tar.gz e7fb476303ff69c21dc825b5beefb32923f2c1ab475b0c5c50d6c2e7d4c87017
+pyleri-1.5.0.tar.gz 0715a433e5b97e3d2fd8f74b4e57871e365eb3a1c7a09fb70d2f78700fd25e4c
