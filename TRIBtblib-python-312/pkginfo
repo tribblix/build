@@ -1,4 +1,4 @@
 PKG="TRIBtblib-python-312"
 NAME="Python tblib"
-VERSION="3.2.1.0"
+VERSION="3.2.2.0"
 ZAP_URL="https://pypi.org/project/tblib/"
