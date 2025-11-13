@@ -1,4 +1,4 @@
 PKG="TRIBblix-citus17"
 NAME="Scalable PostgreSQL for multi-tenant and real-time analytics workloads"
-VERSION="13.1.0.0"
+VERSION="13.2.0.0"
 ZAP_URL="https://github.com/citusdata/citus"
