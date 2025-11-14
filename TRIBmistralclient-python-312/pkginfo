@@ -1,4 +1,4 @@
 PKG="TRIBmistralclient-python-312"
 NAME="Python python-mistralclient"
-VERSION="6.0.0.0"
+VERSION="6.1.0.0"
 ZAP_URL="https://pypi.org/project/python-mistralclient/"
