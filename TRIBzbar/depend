@@ -1,0 +1,7 @@
+P TRIBgdk-pixbuf
+P TRIBimage-libjpeg
+P TRIBimagemagick
+P TRIBlib-desktop-gtk3
+P TRIBlib-glib2
+P TRIBx11-libx11
+P TRIBx11-libxv
