@@ -9,12 +9,12 @@ P TRIBx11-libice
 P TRIBx11-libsm
 P TRIBx11-libx11
 P TRIBx11-libxcomposite
+P TRIBx11-libxcursor
 P TRIBx11-libxdamage
 P TRIBx11-libxext
 P TRIBx11-libxfixes
 P TRIBx11-libxft
 P TRIBx11-libxinerama
-P TRIBx11-libxpm
 P TRIBx11-libxrandr
 P TRIBx11-libxrender
 P TRIBx11-libxres
