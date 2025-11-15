@@ -1,4 +1,4 @@
 PKG="TRIBtypes-dateutil-python-312"
 NAME="Python types-python-dateutil"
-VERSION="2.9.0.20251108.0"
+VERSION="2.9.0.20251115.0"
 ZAP_URL="https://pypi.org/project/types-python-dateutil/"
