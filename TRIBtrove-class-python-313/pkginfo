@@ -1,4 +1,4 @@
 PKG="TRIBtrove-class-python-313"
 NAME="Python trove-classifiers"
-VERSION="2025.9.11.17.0"
+VERSION="2025.11.14.15.0"
 ZAP_URL="https://pypi.org/project/trove-classifiers/"
