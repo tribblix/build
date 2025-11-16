@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2025 Peter Tribble
 #
 
 #
@@ -37,10 +37,6 @@ case $1 in
 	BUILDER=pkg_pep518
 	shift
 	;;
-    -s)
-	BUILDER=pkg_setup_py
-	shift
-	;;
     -w)
 	BUILDER=pkg_wheel
 	PKGVERS=$2
@@ -48,7 +44,7 @@ case $1 in
 	shift
 	;;
     *)
-	echo "Usage: $0 -s|-p pkg_name tarball_name"
+	echo "Usage: $0 -p pkg_name tarball_name"
 	echo "       $0 -w pkg_version pkg_name tarball_name"
 	exit 1
 	;;
@@ -60,7 +56,7 @@ case $# in
 	TBALL=$2
 	;;
 *)
-	echo "Usage: $0 -s|-p pkg_name tarball_name"
+	echo "Usage: $0 -p pkg_name tarball_name"
 	echo "       $0 -w pkg_version pkg_name tarball_name"
 	exit 1
 	;;
@@ -130,9 +126,4 @@ cat > "$PY312NAME/build.sh" <<EOF
 \${THOME}/build/$BUILDER $PY312NAME $TBALL
 EOF
 chmod a+x "$PY312NAME/build.sh"
-case $BUILDER in
-    pkg_setup_py)
-	echo "TRIBsetuptools-python-$PY312VER" > "$PY312NAME/build_require"
-	;;
-esac
 fi
