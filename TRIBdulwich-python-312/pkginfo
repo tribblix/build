@@ -1,4 +1,4 @@
 PKG="TRIBdulwich-python-312"
 NAME="Python dulwich"
-VERSION="0.24.8.0"
+VERSION="0.24.10.0"
 ZAP_URL="https://pypi.org/project/dulwich/"
