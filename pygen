@@ -25,12 +25,16 @@
 #
 
 #
-# package for 3.12
+# package for 3.12 by default, but have code for 3.13 and 3.14
 #
 
 PY312VER=312
+PY313VER=313
+PY314VER=314
 
 DO312="yes"
+DO313=""
+DO314=""
 
 case $1 in
     -p)
@@ -63,6 +67,8 @@ case $# in
 esac
 
 PY312NAME=TRIB${pkg_name}-python-${PY312VER}
+PY313NAME=TRIB${pkg_name}-python-${PY313VER}
+PY314NAME=TRIB${pkg_name}-python-${PY314VER}
 
 #
 # check we're within the SVR4 package name length limit
@@ -76,6 +82,18 @@ fi
 if [ -n "$DO312" ]; then
     if [ -d "$PY312NAME" ]; then
 	echo "$PY312NAME already exists"
+	exit 1
+    fi
+fi
+if [ -n "$DO313" ]; then
+    if [ -d "$PY313NAME" ]; then
+	echo "$PY313NAME already exists"
+	exit 1
+    fi
+fi
+if [ -n "$DO314" ]; then
+    if [ -d "$PY314NAME" ]; then
+	echo "$PY314NAME already exists"
 	exit 1
     fi
 fi
@@ -126,4 +144,58 @@ cat > "$PY312NAME/build.sh" <<EOF
 \${THOME}/build/$BUILDER $PY312NAME $TBALL
 EOF
 chmod a+x "$PY312NAME/build.sh"
+fi
+
+if [ -n "$DO313" ]; then
+#
+# python 3.13
+#
+mkdir "$PY313NAME"
+echo "P TRIBv-python-$PY313VER" > "$PY313NAME/depend"
+cat > "$PY313NAME/pkginfo" <<EOF
+PKG="${PY313NAME}"
+NAME="Python $PNAME"
+VERSION="${PVER}.0"
+ZAP_URL="https://pypi.org/project/${PNAME}/"
+EOF
+cat > "$PY313NAME/build.sh" <<EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+\${THOME}/build/$BUILDER $PY313NAME $TBALL
+EOF
+chmod a+x "$PY313NAME/build.sh"
+case $BUILDER in
+    pkg_pep518)
+	echo "TRIBpip-python-313" > "$PY313NAME/build_require"
+	;;
+esac
+fi
+
+if [ -n "$DO314" ]; then
+#
+# python 3.14
+#
+mkdir "$PY314NAME"
+echo "P TRIBv-python-$PY314VER" > "$PY314NAME/depend"
+cat > "$PY314NAME/pkginfo" <<EOF
+PKG="${PY314NAME}"
+NAME="Python $PNAME"
+VERSION="${PVER}.0"
+ZAP_URL="https://pypi.org/project/${PNAME}/"
+EOF
+cat > "$PY314NAME/build.sh" <<EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+\${THOME}/build/$BUILDER $PY314NAME $TBALL
+EOF
+chmod a+x "$PY314NAME/build.sh"
+case $BUILDER in
+    pkg_pep518)
+	echo "TRIBpip-python-314" > "$PY314NAME/build_require"
+	;;
+esac
 fi
