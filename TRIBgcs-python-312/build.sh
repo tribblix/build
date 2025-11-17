@@ -4,4 +4,4 @@
 #
 # dependencies include the [protobuf] extra
 #
-${THOME}/build/pkg_pep518 TRIBgcs-python-312 google_cloud_storage-3.5.0
+${THOME}/build/pkg_pep518 -N TRIBgcs-python-312 google_cloud_storage-3.6.0
