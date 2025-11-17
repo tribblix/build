@@ -4,4 +4,4 @@
 #
 # in 0.23.1 -N chokes on the license-files entry in pyproject.toml
 #
-${THOME}/build/pkg_pep518 TRIBrpds-py-python-312 rpds_py-0.28.0
+${THOME}/build/pkg_pep518 TRIBrpds-py-python-312 rpds_py-0.29.0
