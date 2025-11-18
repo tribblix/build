@@ -4,4 +4,4 @@
 #
 # (built in python)
 #
-${THOME}/build/pkg_pep518 -N -v 312 TRIBscons scons-4.10.0
+${THOME}/build/pkg_pep518 -N -v 312 TRIBscons scons-4.10.1
