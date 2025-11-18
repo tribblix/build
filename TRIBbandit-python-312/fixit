@@ -6,3 +6,8 @@ PYVERS=3.12
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../../usr/versions/python-${PYVERS}/bin/* .
+cd ../..
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/python-3.12/share/man/man1/bandit.1 .
+cd ../../../..
