@@ -1,4 +1,4 @@
 PKG="TRIBvale"
 NAME="Editorial style guide and checker"
-VERSION="3.12.0.0"
+VERSION="3.13.0.0"
 ZAP_URL="https://vale.sh/"
