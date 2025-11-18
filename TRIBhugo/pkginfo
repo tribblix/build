@@ -1,4 +1,4 @@
 PKG="TRIBhugo"
 NAME="Hugo static site generator"
-VERSION="0.151.0.0"
+VERSION="0.152.2.0"
 ZAP_URL="https://gohugo.io/"
