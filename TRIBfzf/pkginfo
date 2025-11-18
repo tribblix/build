@@ -1,4 +1,4 @@
 PKG="TRIBfzf"
 NAME="fzf - command line fuzzy finder"
-VERSION="0.65.1.0"
+VERSION="0.67.0.0"
 ZAP_URL="https://github.com/junegunn/fzf"
