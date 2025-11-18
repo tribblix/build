@@ -1,4 +1,4 @@
 PKG="TRIBrestic"
 NAME="Backups done right"
-VERSION="0.18.0.0"
+VERSION="0.18.1.0"
 ZAP_URL="https://restic.net/"
