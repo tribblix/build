@@ -4,7 +4,7 @@
 #
 mkdir h
 cd h
-env GOPATH=`pwd` go install github.com/hetznercloud/cli/cmd/hcloud@v1.53.0
+env GOPATH=`pwd` PATH=/usr/versions/go-1.25/bin:$PATH go install github.com/hetznercloud/cli/cmd/hcloud@v1.57.0
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
 mkdir -p /tmp/cs/usr/share/hcloud
