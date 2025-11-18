@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-env PATH=/usr/versions/go-1.24/bin:$PATH GOPATH=`pwd` go install github.com/gohugoio/hugo@v0.151.0
+env PATH=/usr/versions/go-1.25/bin:$PATH GOPATH=`pwd` go install github.com/gohugoio/hugo@v0.152.2
 
 rm -fr /tmp/ll
 mkdir -p /tmp/ll/usr/bin
