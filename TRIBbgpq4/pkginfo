@@ -1,0 +1,4 @@
+PKG="TRIBbgpq4"
+NAME="bgpq4"
+VERSION="1.15.0"
+ZAP_URL="https://github.com/bgp/bgpq4"
