@@ -1,4 +1,4 @@
 PKG="TRIBblix-zones"
 NAME="Tribblix zone brands"
-VERSION="0.36.0"
+VERSION="0.38.0"
 ZAP_URL="https://github.com/tribblix/tribblix-zones"
