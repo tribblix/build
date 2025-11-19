@@ -1,4 +1,4 @@
 PKG="TRIBliboqs"
 NAME="Open source C library for quantum-safe cryptographic algorithms"
-VERSION="0.14.0.0"
+VERSION="0.15.0.0"
 ZAP_URL="https://openquantumsafe.org/liboqs/"
