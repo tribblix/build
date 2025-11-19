@@ -1,4 +1,4 @@
 PKG="TRIBironicclient-python-312"
 NAME="Python python-ironicclient"
-VERSION="5.13.0.0"
+VERSION="5.14.0.0"
 ZAP_URL="https://pypi.org/project/python-ironicclient/"
