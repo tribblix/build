@@ -1,4 +1,4 @@
 PKG="TRIBbind9"
 NAME="ISC BIND dns server and utilities"
-VERSION="9.18.41.0"
+VERSION="9.18.42.0"
 ZAP_URL="https://www.isc.org/downloads/bind/"

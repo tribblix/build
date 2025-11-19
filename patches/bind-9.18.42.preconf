@@ -7,5 +7,5 @@
 # explicitly specify -fPIC, as otherwise it will get turned off by building
 # libuv as a purely static library
 #
-(cd /tmp ; env TRIBBLIX_CFLAGS=-fPIC $THOME/build/dobuild -64only libuv-v1.49.2 -C "--enable-static --disable-shared")
+(cd /tmp ; env TRIBBLIX_CFLAGS=-fPIC $THOME/build/dobuild -A -64only libuv-v1.51.0 -C "--enable-static --disable-shared")
 autoreconf -vi
