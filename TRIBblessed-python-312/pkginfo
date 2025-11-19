@@ -1,4 +1,4 @@
 PKG="TRIBblessed-python-312"
 NAME="Python blessed"
-VERSION="1.24.0.0"
+VERSION="1.25.0.0"
 ZAP_URL="https://pypi.org/project/blessed/"
