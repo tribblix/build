@@ -1,4 +1,4 @@
 PKG="TRIBshtab-python-312"
 NAME="Python shtab"
-VERSION="1.7.2.0"
+VERSION="1.8.0.0"
 ZAP_URL="https://pypi.org/project/shtab/"
