@@ -37,4 +37,4 @@
 -p1 openjdk23/jvmci-os.patch
 -p1 openjdk23/testsuite.patch
 -p1 openjdk23/fastdebug.patch
--p1 openjdk23/xcattrs.patch
+-p1 openjdk23/xattrs.patch
