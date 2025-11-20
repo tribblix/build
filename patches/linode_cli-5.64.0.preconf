@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# linode has a list of known web browsers, but Pale Moon is missing
+# note that we will also need to patch the webbrowser module in
+# python itself
+#
+sed -i s:safari:palemoon: linodecli/configuration/helpers.py
