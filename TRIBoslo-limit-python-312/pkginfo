@@ -1,4 +1,4 @@
 PKG="TRIBoslo-limit-python-312"
 NAME="Python oslo.limit"
-VERSION="2.8.0.0"
+VERSION="2.9.0.0"
 ZAP_URL="https://pypi.org/project/oslo.limit/"
