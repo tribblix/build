@@ -1,4 +1,4 @@
 PKG="TRIBpylsp-server-python-312"
 NAME="Python python-lsp-server"
-VERSION="1.13.1.0"
+VERSION="1.13.2.0"
 ZAP_URL="https://pypi.org/project/python-lsp-server/"
