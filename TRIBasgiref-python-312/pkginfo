@@ -1,4 +1,4 @@
 PKG="TRIBasgiref-python-312"
 NAME="Python asgiref"
-VERSION="3.10.0.0"
+VERSION="3.11.0.0"
 ZAP_URL="https://pypi.org/project/asgiref/"

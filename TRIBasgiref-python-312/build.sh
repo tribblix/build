@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBasgiref-python-312 asgiref-3.10.0
+${THOME}/build/pkg_pep518 -N TRIBasgiref-python-312 asgiref-3.11.0
