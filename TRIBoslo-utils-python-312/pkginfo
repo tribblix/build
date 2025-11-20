@@ -1,4 +1,4 @@
 PKG="TRIBoslo-utils-python-312"
 NAME="Python oslo.utils"
-VERSION="9.1.0.0"
+VERSION="9.2.0.0"
 ZAP_URL="https://pypi.org/project/oslo.utils/"
