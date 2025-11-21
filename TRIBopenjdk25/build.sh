@@ -34,6 +34,12 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --with-source-date=current \
+--with-vendor-name=Tribblix \
+--with-vendor-url=http://tribblix.org/ \
+--with-vendor-bug-url=http://www.tribblix.org/feedback.html \
+--with-vendor-vm-bug-url=http://www.tribblix.org/feedback.html \
+--with-version-pre=ga \
+--with-version-opt=Tribblix \
 --with-jobs=4 \
 DATE=/usr/gnu/bin/date \
 LOCALE=/bin/true \
@@ -47,9 +53,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "25.0.1-internal" 2025-10-21
-# OpenJDK Runtime Environment (build 25.0.1-internal-adhoc.ptribble.jdk25u-jdk-25.0.1-ga)
-# OpenJDK 64-Bit Server VM (build 25.0.1-internal-adhoc.ptribble.jdk25u-jdk-25.0.1-ga, mixed mode, sharing)
+# openjdk version "25.0.1-ga" 2025-10-21
+# OpenJDK Runtime Environment (build 25.0.1-ga-Tribblix)
+# OpenJDK 64-Bit Server VM (build 25.0.1-ga-Tribblix, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
