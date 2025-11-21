@@ -28,7 +28,7 @@ zap install autoconf
 # we're recognized as solaris, JEP 362 deprecated the solaris and sparc
 # ports, so we need to explicitly re-enable it
 #
-# use jdk17 as the boot jdk, it's LTS so we don't depend on the
+# use a previous jdk17 as the boot jdk, it's LTS so we don't depend on the
 # unsupported jdk16
 #
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
@@ -38,6 +38,12 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-dtrace \
 --disable-warnings-as-errors \
 --enable-deprecated-ports=yes \
+--with-vendor-name=Tribblix \
+--with-vendor-url=http://tribblix.org/ \
+--with-vendor-bug-url=http://www.tribblix.org/feedback.html \
+--with-vendor-vm-bug-url=http://www.tribblix.org/feedback.html \
+--with-version-pre=ga \
+--with-version-opt=Tribblix \
 --with-jobs=3
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
@@ -48,9 +54,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 # cd build/solaris-x86_64-server-release/images/jdk
 # ./bin/java -version
 #
-# openjdk version "17.0.17-internal" 2025-10-21
-# OpenJDK Runtime Environment (build 17.0.17-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.17-ga)
-# OpenJDK 64-Bit Server VM (build 17.0.17-internal+0-adhoc.ptribble.jdk17u-jdk-17.0.17-ga, mixed mode, sharing)
+# openjdk version "17.0.17-ga" 2025-10-21
+# OpenJDK Runtime Environment (build 17.0.17-ga+0-Tribblix)
+# OpenJDK 64-Bit Server VM (build 17.0.17-ga+0-Tribblix, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
