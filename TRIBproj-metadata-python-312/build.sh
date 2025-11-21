@@ -4,4 +4,4 @@
 #
 # needed by meson-python
 #
-${THOME}/build/pkg_pep518 -N TRIBproj-metadata-python-312 pyproject_metadata-0.9.1
+${THOME}/build/pkg_pep518 -N TRIBproj-metadata-python-312 pyproject_metadata-0.10.0
