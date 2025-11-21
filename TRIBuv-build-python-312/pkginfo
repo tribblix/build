@@ -1,4 +1,4 @@
 PKG="TRIBuv-build-python-312"
 NAME="Python uv-build"
-VERSION="0.9.8.0"
+VERSION="0.9.11.0"
 ZAP_URL="https://pypi.org/project/uv-build/"
