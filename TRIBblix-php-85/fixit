@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# remove the created httpd.conf; we will fix that in package postinstall
+#
+rm -f opt/tribblix/apache2/conf/httpd.conf
+rm -f opt/tribblix/apache2/conf/httpd.conf.bak
+rmdir opt/tribblix/apache2/conf

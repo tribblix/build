@@ -1,0 +1,15 @@
+I TRIBblix-php-8
+I TRIBblix-php-83
+I TRIBblix-php-84
+P TRIBblix-apache-24
+P TRIBcompress-bzip2
+P TRIBcurl
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBlib-gmp
+P TRIBlib-security-openssl
+P TRIBlib-zlib
+P TRIBlibsodium
+P TRIBlibxml2
+P TRIBlibzip
+P TRIBsys-lib-freetype-2

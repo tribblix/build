@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# add the php module to httpd.conf
+#
+if [ ! -x /opt/tribblix/apache2/bin/apxs ]; then
+  exit 0
+fi
+cp -p /opt/tribblix/apache2/conf/httpd.conf /opt/tribblix/apache2/conf/httpd.conf.pre-php
+/opt/tribblix/apache2/bin/apxs -e -a -n php libphp.so
+echo "AddType application/x-httpd-php .php .phtml" >> /opt/tribblix/apache2/conf/httpd.conf
+exit 0
