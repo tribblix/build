@@ -1,4 +1,4 @@
 PKG="TRIBopenjdk21"
 NAME="OpenJDK 21"
-VERSION="21.0.9.0"
+VERSION="21.0.9.1"
 ZAP_URL="https://openjdk.org/"
