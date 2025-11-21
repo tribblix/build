@@ -4,13 +4,17 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+25
+
+Trivial patch noise.
+
 Fix: restore support for extended attributes - see xattrs.patch
 
 26+24
 
 Trivial patch noise.
 
-Fixes around JavaThreadPDAccess due to removal od x86 support.
+Fixes around JavaThreadPDAccess due to removal of x86 support.
 
 26+23
 
