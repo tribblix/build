@@ -4,4 +4,4 @@
 #
 # there are a lot of possible dependencies, but all are in extras
 #
-${THOME}/build/pkg_pep518 -N TRIBnarwhals-python-312 narwhals-1.48.1
+${THOME}/build/pkg_pep518 -N TRIBnarwhals-python-312 narwhals-2.12.0
