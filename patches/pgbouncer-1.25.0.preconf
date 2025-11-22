@@ -9,3 +9,9 @@ rm -fr /tmp/mc
 cd libevent-2.1.12-stable-64bit
 gmake install
 cd ..
+#
+# sparc builds fails because of incorrect typedefs; x86 uses SIMD in a
+# different code path so doesn't hit this
+#
+sed -i s:uint64:uint64_t: include/common/simd.h
+sed -i 's:(int64):(int64_t):' include/common/simd.h
