@@ -1,0 +1,4 @@
+PKG="TRIBkerchunk-python-312"
+NAME="Python kerchunk"
+VERSION="0.2.9.0"
+ZAP_URL="https://pypi.org/project/kerchunk/"
