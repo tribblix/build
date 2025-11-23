@@ -1,4 +1,4 @@
 PKG="TRIBscipy-python-312"
 NAME="Python scipy"
-VERSION="1.16.1.0"
+VERSION="1.16.3.0"
 ZAP_URL="https://pypi.org/project/scipy/"
