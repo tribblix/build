@@ -5,4 +5,4 @@
 # the [jupyter] extra would also pull in
 # notebook ipytree ipywidgets
 #
-${THOME}/build/pkg_pep518 -N TRIBzarr-python-312 zarr-2.18.7
+${THOME}/build/pkg_pep518 -N TRIBzarr-python-312 zarr-3.1.5

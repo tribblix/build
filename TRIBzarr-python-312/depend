@@ -1,5 +1,7 @@
-P TRIBasciitree-python-312
-P TRIBfasteners-python-312
+P TRIBdonfig-python-312
+P TRIBgoogle-crc32c-python-312
 P TRIBnumcodecs-python-312
 P TRIBnumpy-python-312
+P TRIBpackaging-python-312
+P TRIBtyping-ext-python-312
 P TRIBv-python-312

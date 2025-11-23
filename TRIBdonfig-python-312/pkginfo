@@ -1,0 +1,4 @@
+PKG="TRIBdonfig-python-312"
+NAME="Python donfig"
+VERSION="0.8.1.post1.0"
+ZAP_URL="https://pypi.org/project/donfig/"
