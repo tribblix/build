@@ -2,8 +2,9 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# there's a patch:
-# need to copy in a custom setup.cfg so as to skip the codecs that
-# won't build due to us not having the external libraries they need
+# there's a patch for setup.py to disable lerc (we don't have), jpegxr
+# (won't build) and tiff (too old) and add in brotli, bz2, gif, snappy
 #
-${THOME}/build/pkg_setup_py TRIBimagecodecs-python-312 imagecodecs-2024.1.1
+# downrev due to cython version dependency
+#
+${THOME}/build/pkg_setup_py TRIBimagecodecs-python-312 imagecodecs-2025.3.30

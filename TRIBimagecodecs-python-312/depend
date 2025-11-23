@@ -9,6 +9,7 @@ P TRIBimage-libpng
 P TRIBlib-lcms2
 P TRIBlib-openjpeg
 P TRIBlib-zlib
+P TRIBlibdeflate
 P TRIBlibwebp
 P TRIBnumpy-python-312
 P TRIBsnappy

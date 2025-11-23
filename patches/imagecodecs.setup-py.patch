@@ -1,0 +1,27 @@
+--- a/setup.py	Sat Mar 22 04:53:53 2025
++++ b/setup.py	Sun Nov 23 10:24:35 2025
+@@ -281,17 +281,21 @@
+         'shared',
+         'imcd',
+         'bmp',
++        'brotli',
++        'bz2',
+         'cms',
+         'deflate',
++        'gif',
+         'jpeg2k',
+         'jpeg8',
+         # 'jpegxl',  # requires v0.10
+-        'jpegxr',
+-        'lerc',  # requires v4
++        #'jpegxr',
++        #'lerc',  # requires v4
+         'lz4',
+         'lzma',
+         'png',
+-        'tiff',  # requires v4.6
++        'snappy',
++        #'tiff',  # requires v4.6
+         'webp',
+         'zlib',
+         'zstd',

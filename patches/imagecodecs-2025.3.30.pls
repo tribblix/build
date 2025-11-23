@@ -1,0 +1,1 @@
+-p1 imagecodecs.setup-py.patch
