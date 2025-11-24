@@ -1,0 +1,4 @@
+PKG="TRIBpyqt5-python-312"
+NAME="Python PyQt5"
+VERSION="5.15.11.0"
+ZAP_URL="https://pypi.org/project/PyQt5/"
