@@ -1,0 +1,4 @@
+PKG="TRIBpyqt-builder-python-312"
+NAME="Python pyqt-builder"
+VERSION="1.19.0.0"
+ZAP_URL="https://pypi.org/project/pyqt-builder/"
