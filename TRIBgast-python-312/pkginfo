@@ -1,4 +1,4 @@
 PKG="TRIBgast-python-312"
 NAME="Python gast"
-VERSION="0.5.5.0"
+VERSION="0.6.0.0"
 ZAP_URL="https://pypi.org/project/gast/"
