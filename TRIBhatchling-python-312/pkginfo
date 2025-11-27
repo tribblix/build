@@ -1,4 +1,4 @@
 PKG="TRIBhatchling-python-312"
 NAME="Python hatchling"
-VERSION="1.27.0.1"
+VERSION="1.28.0.0"
 ZAP_URL="https://pypi.org/project/hatchling/"
