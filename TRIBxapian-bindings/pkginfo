@@ -1,4 +1,4 @@
 PKG="TRIBxapian-bindings"
 NAME="Xapian bindings for perl, python, ruby, tcl"
-VERSION="1.4.29.0"
+VERSION="1.4.30.0"
 ZAP_URL="https://xapian.org/"

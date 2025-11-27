@@ -1,4 +1,4 @@
 PKG="TRIBxapian-omega"
 NAME="Omega - application built on Xapian"
-VERSION="1.4.29.0"
+VERSION="1.4.30.0"
 ZAP_URL="https://xapian.org/"
