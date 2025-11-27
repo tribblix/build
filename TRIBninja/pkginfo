@@ -1,4 +1,4 @@
 PKG="TRIBninja"
 NAME="Ninja build system"
-VERSION="1.13.1.0"
+VERSION="1.13.2.0"
 ZAP_URL="https://ninja-build.org/"
