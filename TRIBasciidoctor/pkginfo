@@ -1,4 +1,4 @@
 PKG="TRIBasciidoctor"
 NAME="Asciidoctor"
-VERSION="2.0.26.0"
+VERSION="2.0.26.1"
 ZAP_URL="https://asciidoctor.org/"

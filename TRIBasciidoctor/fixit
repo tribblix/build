@@ -5,7 +5,7 @@
 # put command in the default path
 #
 VERSION=3
-AVERSION=2.0.23
+AVERSION=2.0.26
 mkdir -p usr/bin usr/share/man/man1
 ln -s ../../usr/versions/ruby-${VERSION}/bin/asciidoctor usr/bin
 ln -s ../../../../usr/versions/ruby-${VERSION}/lib/ruby/vendor_ruby/gems/3.4.0/gems/asciidoctor-${AVERSION}/man/asciidoctor.1 usr/share/man/man1
