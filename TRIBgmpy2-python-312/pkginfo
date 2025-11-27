@@ -1,4 +1,4 @@
 PKG="TRIBgmpy2-python-312"
 NAME="Python gmpy2"
-VERSION="2.2.1.0"
+VERSION="2.2.2.0"
 ZAP_URL="https://pypi.org/project/gmpy2/"

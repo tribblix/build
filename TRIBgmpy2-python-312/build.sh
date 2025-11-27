@@ -25,8 +25,8 @@ PYVER="3.12"
 BUILD="${THOME}/build"
 BDIR="/tmp/pct/pkg.$$"
 rm -fr ${BDIR}
-$THOME/build/unpack gmpy2-2.2.1
-cd gmpy2-2.2.1
+$THOME/build/unpack gmpy2-2.2.2
+cd gmpy2-2.2.2
 python${PYVER} setup.py build_ext --static-dir=/tmp/.gmpy22static
 
 #
