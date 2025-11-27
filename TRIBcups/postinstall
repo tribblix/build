@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# 2.4.15 complains that IdleExitTimeout isn't valid and refuses to start
+#
+# this is to fix up any old versions preserved by packaging
+# new installs will have this fixed at source
+#
+sed -i /IdleExitTimeout/d ${BASEDIR}/etc/cups/cupsd.conf

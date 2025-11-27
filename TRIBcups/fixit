@@ -7,3 +7,8 @@
 rm -fr etc/rc5.d
 mkdir -p var/cache/cups
 chmod 770 var/cache/cups
+#
+# 2.4.15 complains that IdleExitTimeout isn't valid and refuses to start
+#
+sed -i /IdleExitTimeout/d etc/cups/cupsd.conf
+sed -i /IdleExitTimeout/d etc/cups/cupsd.conf.default

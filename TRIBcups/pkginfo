@@ -1,4 +1,4 @@
 PKG="TRIBcups"
 NAME="CUPS print subsystem"
-VERSION="2.4.14.0"
+VERSION="2.4.15.0"
 ZAP_URL="https://github.com/OpenPrinting/cups"
