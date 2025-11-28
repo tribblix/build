@@ -1,4 +1,4 @@
 PKG="TRIBincremental-python-312"
 NAME="Python incremental"
-VERSION="24.7.2.0"
+VERSION="24.11.0.0"
 ZAP_URL="https://pypi.org/project/incremental/"
