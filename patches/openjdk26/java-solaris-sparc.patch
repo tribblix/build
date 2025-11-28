@@ -126,18 +126,6 @@
      MEMORY_SIZE=`/usr/sbin/prtconf 2> /dev/null | grep "^Memory [[Ss]]ize" | awk '{ print [$]3 }'`
      FOUND_MEM=yes
    elif test -x /usr/sbin/sysctl; then
---- old/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.492355171 -0700
-+++ new/make/autoconf/flags-cflags.m4	2020-05-20 17:58:30.108347798 -0700
-@@ -421,9 +421,6 @@
-   if test "x$OPENJDK_TARGET_OS" = xlinux; then
-     CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
-     CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_FILE_OFFSET_BITS=64"
--  elif test "x$OPENJDK_TARGET_OS" = xsolaris; then
--    CFLAGS_OS_DEF_JVM="-DSOLARIS"
--    CFLAGS_OS_DEF_JDK="-D__solaris__ -D_REENTRANT"
-   elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
-     CFLAGS_OS_DEF_JVM="-D_ALLBSD_SOURCE -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE"
-     CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
 @@ -280,7 +280,7 @@
@@ -590,7 +578,7 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -265,7 +265,6 @@
+@@ -266,7 +266,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS) $(ICONV_LIBS), \
        LIBS_unix := $(LIBM) $(LIBPTHREAD), \
        LIBS_linux := $(X_LIBS) -lX11 -lXext, \
@@ -598,7 +586,7 @@
        LIBS_macosx := \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -315,7 +314,7 @@
+@@ -316,7 +315,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif
@@ -842,7 +830,7 @@
  #define SHUTDOWN3_SIGNAL SIGTERM
 --- old/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.965746713 -0700
 +++ new/src/hotspot/os/posix/os_posix.cpp	2020-05-20 17:59:42.629740261 -0700
-@@ -599,7 +599,7 @@
+@@ -618,7 +618,7 @@
    st->print("%ld", sysconf(_SC_CHILD_MAX));
  
    print_rlimit(st, ", THREADS", RLIMIT_THREADS);
@@ -851,7 +839,7 @@
    print_rlimit(st, ", NPROC", RLIMIT_NPROC);
  #endif
  
-@@ -617,12 +617,6 @@
+@@ -636,12 +636,6 @@
    print_rlimit(st, ", MEMLOCK", RLIMIT_MEMLOCK, true);
  #endif
  
@@ -991,7 +979,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1961,8 +1961,6 @@
+@@ -1962,8 +1962,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1000,7 +988,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -2027,8 +2025,6 @@
+@@ -2028,8 +2026,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");

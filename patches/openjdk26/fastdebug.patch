@@ -6,7 +6,7 @@ The patches here are for code that's only built in debug mode.
 
 --- a/src/hotspot/share/opto/type.cpp	Fri Oct 11 20:42:42 2024
 +++ b/src/hotspot/share/opto/type.cpp	Thu Nov 21 11:50:19 2024
-@@ -936,6 +936,9 @@
+@@ -938,6 +938,9 @@
    assert(Compile::current()->_type_verify == nullptr || Compile::current()->_type_verify->empty_cache(), "cache should have been discarded");
  }
  

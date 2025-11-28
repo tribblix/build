@@ -1,6 +1,28 @@
---- make/autoconf/flags-ldflags.m4~	Wed Apr 15 14:26:49 2020
-+++ make/autoconf/flags-ldflags.m4	Wed Apr 15 14:28:01 2020
-@@ -126,10 +126,12 @@
+--- a/make/autoconf/flags-ldflags.m4	Wed Apr 15 14:26:49 2020
++++ b/make/autoconf/flags-ldflags.m4	Wed Apr 15 14:28:01 2020
+@@ -72,7 +72,9 @@
+     fi
+ 
+     BASIC_LDFLAGS_JVM_ONLY=""
+-    LDFLAGS_LTO="-flto=auto -fuse-linker-plugin -fno-strict-aliasing"
++    if test "x$OPENJDK_TARGET_OS" != xsolaris; then
++      LDFLAGS_LTO="-flto=auto -fuse-linker-plugin -fno-strict-aliasing"
++    fi
+ 
+     LDFLAGS_CXX_PARTIAL_LINKING="$MACHINE_FLAG -r"
+ 
+@@ -80,7 +82,9 @@
+     BASIC_LDFLAGS_JVM_ONLY="-mno-omit-leaf-frame-pointer -mstack-alignment=16 \
+         -fPIC"
+ 
+-    LDFLAGS_LTO="-flto=auto -fuse-linker-plugin -fno-strict-aliasing"
++    if test "x$OPENJDK_TARGET_OS" != xsolaris; then
++      LDFLAGS_LTO="-flto=auto -fuse-linker-plugin -fno-strict-aliasing"
++    fi
+     LDFLAGS_CXX_PARTIAL_LINKING="$MACHINE_FLAG -r"
+ 
+     if test "x$OPENJDK_TARGET_OS" = xlinux; then
+@@ -136,10 +140,12 @@
  
    # Setup LDFLAGS for linking executables
    if test "x$TOOLCHAIN_TYPE" = xgcc; then

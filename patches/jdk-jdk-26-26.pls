@@ -2,9 +2,9 @@
 -p1 openjdk26/restore_os_solaris.patch
 -p1 openjdk26/restore_os_cpu_solaris_x86.patch
 -p0 openjdk26/patch-make_GenerateLinkOptData.gmk
--p0 openjdk26/tribblix-flags-cflags.patch
+-p1 openjdk26/tribblix-flags-cflags.patch
 -p0 openjdk26/tribblix-flags-ldflags.patch
--p0 openjdk26/tribblix-flags-ldflags3.patch
+-p1 openjdk26/tribblix-flags-ldflags3.patch
 -p1 openjdk26/illumos-port-2.patch
 -p1 openjdk26/illumos-port-3.patch
 -p1 openjdk26/illumos-port-5.patch

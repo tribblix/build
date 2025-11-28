@@ -4,6 +4,13 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+26
+
+Minor patch noise, mostly due to LTO in CFLAGS and LDFLAGS. And needed
+additional work to disable the LTO options which don't work on illumos.
+
+Implement an empty numa_set_thread_affinity()
+
 26+25
 
 Trivial patch noise.
