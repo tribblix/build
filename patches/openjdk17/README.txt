@@ -3,6 +3,9 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
+Cleanup: finish up UnixOperatingSystem.c in jdk.management, and align
+with changes in other platforms.
+
 17.0.17
 
 Minor patch noise.

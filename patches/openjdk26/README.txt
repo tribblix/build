@@ -4,6 +4,9 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+Cleanup: finish up UnixOperatingSystem.c in jdk.management, and align
+with changes in other platforms.
+
 26+26
 
 Minor patch noise, mostly due to LTO in CFLAGS and LDFLAGS. And needed

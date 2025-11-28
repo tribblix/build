@@ -12486,7 +12486,7 @@
 -}
 --- old/src/jdk.management/solaris/native/libmanagement_ext/UnixOperatingSystem.c	2020-05-20 18:12:18.112245724 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,254 +0,0 @@
+@@ -1,276 +0,0 @@
 -/*
 - * Copyright (c) 2011, 2019, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -12732,12 +12732,34 @@
 -Java_com_sun_management_internal_OperatingSystemImpl_getSingleCpuLoad0
 -(JNIEnv *env, jobject mbean, jint cpu_number)
 -{
--    return -1.0;
+-    return get_cpu_load(cpu_number);
+-}
+-
+-JNIEXPORT jlong JNICALL
+-Java_com_sun_management_internal_OperatingSystemImpl_getHostTotalCpuTicks0
+-(JNIEnv *env, jobject mbean)
+-{
+-    return -1;
 -}
 -
 -JNIEXPORT jint JNICALL
 -Java_com_sun_management_internal_OperatingSystemImpl_getHostConfiguredCpuCount0
 -(JNIEnv *env, jobject mbean)
 -{
--    return -1;
+-    int n = sysconf(_SC_NPROCESSORS_CONF);
+-    if (n <= 0) {
+-        n = 1;
+-    }
+-    return n;
+-}
+-
+-JNIEXPORT jint JNICALL
+-Java_com_sun_management_internal_OperatingSystemImpl_getHostOnlineCpuCount0
+-(JNIEnv *env, jobject mbean)
+-{
+-    int n = sysconf(_SC_NPROCESSORS_ONLN);
+-    if (n <= 0) {
+-        n = 1;
+-    }
+-    return n;
 -}
