@@ -30,13 +30,18 @@ export TZ
 # package one or more python project(s) that use the old setup.py mechanism
 #
 
+XDEPS=""
 #
 # Arguments
+# -q - quick, don't check dependencies with pyproject-dependencies
 # -v - specify version of python (for packages that don't embed the python
 #      version in the package name)
 #
-while getopts "v:" opt; do
+while getopts "qv:" opt; do
     case $opt in
+	q)
+	    XDEPS="no"
+	    ;;
 	v)
 	    SPYVER="$OPTARG"
 	    ;;
@@ -196,9 +201,11 @@ done
 python${PYVER} -m compileall -f -p / -s "${BDIR}" --invalidation-mode unchecked-hash "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages"
 
 "${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
-if [ -x /usr/bin/pyproject-dependencies ]; then
-    echo "Declared dependencies:"
-    /usr/bin/pyproject-dependencies "$@"
+if [ -z "${XDEPS}" ]; then
+    if [ -x /usr/bin/pyproject-dependencies ]; then
+	echo "Declared dependencies:"
+	/usr/bin/pyproject-dependencies "$@"
+    fi
 fi
 cd /
 

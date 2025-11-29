@@ -31,16 +31,21 @@ export TZ
 # also handle modules using the old setup.py mechanism
 #
 
+XARGS=""
+XDEPS=""
 #
 # Arguments
+# -q - quick, don't check dependencies with pyproject-dependencies
 # -v - specify version of python (for packages that don't embed the python
 #      version in the package name)
 # -N - enables --no-build-isolation
 # -C - passed through to pip
 #
-XARGS=""
-while getopts "v:C:N" opt; do
+while getopts "qv:C:N" opt; do
     case $opt in
+	q)
+	    XDEPS="no"
+	    ;;
 	v)
 	    SPYVER="$OPTARG"
 	    ;;
@@ -208,9 +213,11 @@ sed -i '/\/direct_url.json,sha/d' $(find "${BDIR}/usr/versions/python-${PYVER}/l
 python${PYVER} -m compileall -f -p / -s "${BDIR}" --invalidation-mode unchecked-hash "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages"
 
 "${BUILD}/create_pkg" "${PKGNAME}" "${BDIR}" "${BROOT}"
-if [ -x /usr/bin/pyproject-dependencies ]; then
-    echo "Declared dependencies:"
-    /usr/bin/pyproject-dependencies "$@"
+if [ -z "${XDEPS}" ]; then
+    if [ -x /usr/bin/pyproject-dependencies ]; then
+	echo "Declared dependencies:"
+	/usr/bin/pyproject-dependencies "$@"
+    fi
 fi
 cd /
 

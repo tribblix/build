@@ -7,4 +7,4 @@
 #
 # downrev due to cython version dependency
 #
-${THOME}/build/pkg_setup_py TRIBimagecodecs-python-312 imagecodecs-2025.3.30
+${THOME}/build/pkg_setup_py -q TRIBimagecodecs-python-312 imagecodecs-2025.3.30
