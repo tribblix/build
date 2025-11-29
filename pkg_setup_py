@@ -30,27 +30,23 @@ export TZ
 # package one or more python project(s) that use the old setup.py mechanism
 #
 
-while [[ $# -gt 0 ]]; do
-case $1 in
-    -v)
-	SPYVER=$2
-	shift
-	shift
-	;;
-    -gnu)
-	PATH=/usr/gnu/bin:$PATH
-	export PATH
-	shift
-	;;
-    -*)
-	echo "ERROR: invalid option $1"
-	exit 1
-	;;
-    *)
-	break
-	;;
-esac
+#
+# Arguments
+# -v - specify version of python (for packages that don't embed the python
+#      version in the package name)
+#
+while getopts "v:" opt; do
+    case $opt in
+	v)
+	    SPYVER="$OPTARG"
+	    ;;
+	*)
+            echo "ERROR: invalid option $OPTARG"
+            exit 1
+            ;;
+    esac
 done
+shift $((OPTIND-1))
 
 case $# in
 0|1)
