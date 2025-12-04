@@ -1,4 +1,4 @@
 PKG="TRIBgreenlet-python-312"
 NAME="Python greenlet"
-VERSION="3.2.4.0"
+VERSION="3.3.0.0"
 ZAP_URL="https://pypi.org/project/greenlet/"
