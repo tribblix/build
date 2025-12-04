@@ -3,6 +3,10 @@
 # SPDX-License-Identifier: CDDL-1.0
 #
 # clean up other platforms
+# links into normal PATH
 #
-VERSION=5.0.2
+VERSION=5.0.3
 rm usr/versions/groovy-${VERSION}/bin/*.bat
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../versions/groovy-${VERSION}/bin/* .
