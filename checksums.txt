@@ -4294,3 +4294,4 @@ github_archive-7.0.1.tar.gz bbfae4467b48d9b5b227be4b99c21c832172ad7fe6a4e47a654c
 pip_audit-2.10.0.tar.gz 427ea5bf61d1d06b98b1ae29b7feacc00288a2eced52c9c58ceed5253ef6c2a4
 tomli-2.3.0.tar.gz 64be704a875d2a59753d80ee8a533c3fe183e3f06807ff7dc2232938ccb01549
 tomli_w-1.2.0.tar.gz 2dd14fac5a47c27be9cd4c976af5a12d87fb1f0b4512f81d69cce3b35ae25021
+cyclonedx_python_lib-11.6.0.tar.gz 7fb85a4371fa3a203e5be577ac22b7e9a7157f8b0058b7448731474d6dea7bf0
