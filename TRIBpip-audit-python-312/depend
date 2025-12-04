@@ -6,5 +6,6 @@ P TRIBpip-req-parser-python-312
 P TRIBplatformdirs-python-312
 P TRIBrequests-python-312
 P TRIBrich-python-312
-P TRIBtoml-python-312
+P TRIBtomli-python-312
+P TRIBtomli-w-python-312
 P TRIBv-python-312

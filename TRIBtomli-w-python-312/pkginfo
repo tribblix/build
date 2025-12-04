@@ -1,0 +1,4 @@
+PKG="TRIBtomli-w-python-312"
+NAME="Python tomli-w"
+VERSION="1.2.0.0"
+ZAP_URL="https://pypi.org/project/tomli-w/"
