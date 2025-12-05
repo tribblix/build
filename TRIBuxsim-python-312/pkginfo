@@ -1,4 +1,4 @@
 PKG="TRIBuxsim-python-312"
 NAME="Python uxsim"
-VERSION="1.10.2.0"
+VERSION="1.11.0.0"
 ZAP_URL="https://pypi.org/project/uxsim/"
