@@ -372,7 +372,7 @@
  ################################################################################
  # Setup compilation of the main Hotspot native library (libjvm).
  
-@@ -186,7 +183,6 @@
+@@ -188,7 +185,6 @@
      EXCLUDES := $(JVM_EXCLUDES), \
      EXCLUDE_FILES := $(JVM_EXCLUDE_FILES), \
      EXCLUDE_PATTERNS := $(JVM_EXCLUDE_PATTERNS), \
@@ -578,7 +578,7 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -266,7 +266,6 @@
+@@ -265,7 +265,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS) $(ICONV_LIBS), \
        LIBS_unix := $(LIBM) $(LIBPTHREAD), \
        LIBS_linux := $(X_LIBS) -lX11 -lXext, \
@@ -586,7 +586,7 @@
        LIBS_macosx := \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -316,7 +315,7 @@
+@@ -315,7 +314,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif

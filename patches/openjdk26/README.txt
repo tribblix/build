@@ -4,6 +4,12 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+26+27
+
+Now branched off for stabilization.
+
+More reworking of flags-ldflags.m4
+
 Cleanup: finish up UnixOperatingSystem.c in jdk.management, and align
 with changes in other platforms.
 
