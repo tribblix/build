@@ -2,11 +2,10 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# we don't ship .la files for base libraries
+# we don't ship .la files
 #
 /usr/bin/rm -f `/usr/bin/find usr/lib -name '*.la'`
 #
-# compat symlink
+# compat symlinks provided automatically by use of the
+# --enable-replace flag to ./configure
 #
-cd usr/bin
-ln -s sox_ng sox

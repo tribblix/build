@@ -1,4 +1,4 @@
 PKG="TRIBsox"
 NAME="SoX, the Swiss Army knife of sound processing programs"
-VERSION="14.4.4.0"
+VERSION="14.4.5.1.0"
 ZAP_URL="https://codeberg.org/sox_ng/sox_ng"
