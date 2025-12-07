@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-exporter-tiny"
 NAME="Perl Exporter::Tiny module"
-VERSION="1.006002.0"
+VERSION="1.006003.0"
 ZAP_URL="https://metacpan.org/pod/Exporter::Tiny"
