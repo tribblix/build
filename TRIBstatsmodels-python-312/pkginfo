@@ -1,4 +1,4 @@
 PKG="TRIBstatsmodels-python-312"
 NAME="Python statsmodels"
-VERSION="0.14.5.0"
+VERSION="0.14.6.0"
 ZAP_URL="https://pypi.org/project/statsmodels/"
