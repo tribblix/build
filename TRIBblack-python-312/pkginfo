@@ -1,4 +1,4 @@
 PKG="TRIBblack-python-312"
 NAME="Python black"
-VERSION="25.11.0.0"
+VERSION="25.12.0.0"
 ZAP_URL="https://pypi.org/project/black/"
