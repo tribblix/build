@@ -4345,3 +4345,4 @@ black-25.12.0.tar.gz 8d3dd9cea14bff7ddc0eb243c811cdb1a011ebb4800a5f0335a01a68654
 c-ares-1.34.6.tar.gz 912dd7cc3b3e8a79c52fd7fb9c0f4ecf0aaa73e45efda880266a2d6e26b84ef5
 apache-tomcat-11.0.15.zip 44bac1d21ba43a05b0357c8af54f9dd8bd5dbabafd68947f607bb76e0f20e2ff
 urllib3-2.6.1.tar.gz 5379eb6e1aba4088bae84f8242960017ec8d8e3decf30480b3a1abdaa9671a3f
+networkx-3.6.1.tar.gz 26b7c357accc0c8cde558ad486283728b65b6a95d85ee1cd66bafab4c8168509

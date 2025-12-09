@@ -1,4 +1,4 @@
 PKG="TRIBnetworkx-python-312"
 NAME="Python networkx"
-VERSION="3.6.0"
+VERSION="3.6.1.0"
 ZAP_URL="https://pypi.org/project/networkx/"
