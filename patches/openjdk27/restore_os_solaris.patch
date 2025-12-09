@@ -4694,8 +4694,8 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +
 +    if (ret != -1) {
 +      if ((st_mode & S_IFMT) == S_IFDIR) {
-+        errno = EISDIR;
 +        ::close(fd);
++        errno = EISDIR;
 +        return -1;
 +      }
 +    } else {

@@ -1,5 +1,7 @@
 JDK 27 now that jdk26 has been branched off.
 
+Cleanup: errno alignment with 8366272
+
 27+1
 
 No changes.
