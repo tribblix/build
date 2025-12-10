@@ -1,4 +1,4 @@
 PKG="TRIBmdown-ext-python-312"
 NAME="Python pymdown-extensions"
-VERSION="10.17.2.0"
+VERSION="10.18.0"
 ZAP_URL="https://pypi.org/project/pymdown-extensions/"
