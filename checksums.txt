@@ -4347,3 +4347,4 @@ apache-tomcat-11.0.15.zip 44bac1d21ba43a05b0357c8af54f9dd8bd5dbabafd68947f607bb7
 urllib3-2.6.1.tar.gz 5379eb6e1aba4088bae84f8242960017ec8d8e3decf30480b3a1abdaa9671a3f
 networkx-3.6.1.tar.gz 26b7c357accc0c8cde558ad486283728b65b6a95d85ee1cd66bafab4c8168509
 apache-tomcat-10.1.50.zip 355ddbb7c53e7c710fbd58ba919170aec29e961e9152a8892b012d7b2afbe4b1
+sqlalchemy-2.0.45.tar.gz 1632a4bda8d2d25703fdad6363058d882541bdaaee0e5e3ddfa0cd3229efce88
