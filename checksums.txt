@@ -4364,3 +4364,4 @@ reportlab-4.4.6.tar.gz 8792c87c23dd034d17530e6ebe4164d61bcc8f7b0eac203fe13cc03cc
 pymdown_extensions-10.19.tar.gz 01bb917ea231f9ce14456fa9092cdb95ac3e5bd32202a3ee61dbd5ad2dd9ef9b
 azure_core-1.37.0.tar.gz 7064f2c11e4b97f340e8e8c6d923b822978be3016e46b7bc4aa4b337cfb48aee
 cachetools-6.2.3.tar.gz 64e0a4ddf275041dd01f5b873efa87c91ea49022b844b8c5d1ad3407c0f42f1f
+automaton-3.3.0.tar.gz d73cf7ba6da43ef2adf75c49dad334fd24116ceea0dd4e6ba1e720740439a293
