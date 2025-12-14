@@ -2,8 +2,8 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-$THOME/build/unpack forgejo-src-13.0.2
-cd forgejo-src-13.0.2
+$THOME/build/unpack forgejo-src-13.0.3
+cd forgejo-src-13.0.3
 #
 # download the proper tarball, not the automated source dump
 # this way, the assets are pregenerated and all you have to do
