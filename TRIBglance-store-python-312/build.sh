@@ -4,4 +4,4 @@
 #
 # add dependencies for [swift]
 #
-${THOME}/build/pkg_setup_py TRIBglance-store-python-312 glance_store-5.2.0
+${THOME}/build/pkg_pep518 -N TRIBglance-store-python-312 glance_store-5.3.0
