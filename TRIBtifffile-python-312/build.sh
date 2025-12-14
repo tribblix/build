@@ -5,4 +5,4 @@
 # declared dependencies cover direct and the [codecs] and [plot] extras
 # the scikit-image overlay includes the [all] extra
 #
-${THOME}/build/pkg_pep518 -N TRIBtifffile-python-312 tifffile-2025.10.16
+${THOME}/build/pkg_pep518 -N TRIBtifffile-python-312 tifffile-2025.12.12
