@@ -1,4 +1,4 @@
 PKG="TRIBblix-gogs"
 NAME="Self-hosted git server."
-VERSION="0.14.0+dev.5"
+VERSION="0.14.0+dev.6"
 ZAP_URL="https://gogs.io/"
