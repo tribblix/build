@@ -578,7 +578,7 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -265,7 +265,6 @@
+@@ -264,7 +264,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS) $(ICONV_LIBS), \
        LIBS_unix := $(LIBM) $(LIBPTHREAD), \
        LIBS_linux := $(X_LIBS) -lX11 -lXext, \
@@ -586,7 +586,7 @@
        LIBS_macosx := \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -315,7 +314,7 @@
+@@ -314,7 +313,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif
