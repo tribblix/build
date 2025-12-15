@@ -1,4 +1,4 @@
 PKG="TRIBrpds-py-python-312"
 NAME="Python rpds-py"
-VERSION="0.29.0.0"
+VERSION="0.30.0.0"
 ZAP_URL="https://pypi.org/project/rpds-py/"
