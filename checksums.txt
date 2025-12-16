@@ -4393,3 +4393,4 @@ google_auth-2.45.0.tar.gz 90d3f41b6b72ea72dd9811e765699ee491ab24139f34ebf1ca2b9c
 google_auth_httplib2-0.3.0.tar.gz 177898a0175252480d5ed916aeea183c2df87c1f9c26705d74ae6b951c268b0b
 google_crc32c-1.8.0.tar.gz a428e25fb7691024de47fecfbff7ff957214da51eddded0da0ae0e0f03a2cf79
 jupyterlab-4.5.1.tar.gz 09da1ddfbd9eec18b5101dbb8515612aa1e47443321fb99503725a88e93d20d9
+notebook-7.5.1.tar.gz b2fb4cef4d47d08c33aecce1c6c6e84be05436fbd791f88fce8df9fbca088b75
