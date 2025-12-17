@@ -4416,3 +4416,4 @@ adbc_driver_manager-1.9.0.tar.gz d6687acf57f92e469e78d53df6baf70ab62f8886ba8f2e0
 adbc_driver_sqlite-1.9.0.tar.gz 446db7ee9e269fc21241b4325267dfb828528179ad54729c11965616db70e21e
 adbc_driver_postgresql-1.9.0.tar.gz 32148a0965815b718908ba8ffd28cb78b7ab33fcddd4566315369319c9ce7f4e
 rich_toolkit-0.17.1.tar.gz 5af54df8d1dd9c8530e462e1bdcaed625c9b49f5a55b035aa0ba1c17bdb87c9a
+python_multipart-0.0.21.tar.gz 7137ebd4d3bbf70ea1622998f902b97a29434a9e8dc40eb203bbcf7c2a2cba92
