@@ -1,5 +1,5 @@
---- apache-arrow-adbc-14-64bit/c/driver/postgresql/postgres_util.h~	Fri Aug 30 02:24:44 2024
-+++ apache-arrow-adbc-14-64bit/c/driver/postgresql/postgres_util.h	Sat Sep 21 12:00:47 2024
+--- a/c/driver/postgresql/postgres_util.h	Fri Aug 30 02:24:44 2024
++++ b/c/driver/postgresql/postgres_util.h	Sat Sep 21 12:00:47 2024
 @@ -27,7 +27,7 @@
  #include <netinet/in.h>
  #endif
@@ -9,10 +9,10 @@
  #include <endian.h>
  #elif defined(__APPLE__)
  #include <libkern/OSByteOrder.h>
---- apache-arrow-adbc-19-64bit/c/driver_manager/current_arch.h~	Wed Jul  2 05:24:58 2025
-+++ apache-arrow-adbc-19-64bit/c/driver_manager/current_arch.h	Tue Jul  8 20:29:03 2025
-@@ -30,6 +30,8 @@
-   static const std::string platform = "freebsd";
+--- a/c/driver_manager/current_arch.h	Wed Jul  2 05:24:58 2025
++++ b/c/driver_manager/current_arch.h	Tue Jul  8 20:29:03 2025
+@@ -53,6 +53,8 @@
+   static const std::string platform = "openbsd";
  #elif defined(__linux__)
    static const std::string platform = "linux";
 +#elif defined(__sun__)
@@ -20,7 +20,7 @@
  #else
    static const std::string platform = "unknown";
  #endif
-@@ -56,7 +58,7 @@
+@@ -107,7 +109,7 @@
  // but apparently it doesn't define __USE_GNU inside of features.h
  // while gcc DOES define that.
  // see https://stackoverflow.com/questions/58177815/how-to-actually-detect-musl-libc
