@@ -1,4 +1,4 @@
 PKG="TRIBadbc-postgresql-python-312"
 NAME="Python adbc-driver-postgresql"
-VERSION="1.7.0.0"
+VERSION="1.9.0.0"
 ZAP_URL="https://pypi.org/project/adbc-driver-postgresql/"

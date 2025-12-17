@@ -1,7 +1,7 @@
---- adbc_driver_manager-1.7.0/adbc_driver_manager/current_arch.h~	Wed Jul  2 05:25:30 2025
-+++ adbc_driver_manager-1.7.0/adbc_driver_manager/current_arch.h	Tue Jul  8 20:34:54 2025
-@@ -30,6 +30,8 @@
-   static const std::string platform = "freebsd";
+--- a/adbc_driver_manager/current_arch.h	Wed Jul  2 05:25:30 2025
++++ b/adbc_driver_manager/current_arch.h	Tue Jul  8 20:34:54 2025
+@@ -53,6 +53,8 @@
+   static const std::string platform = "openbsd";
  #elif defined(__linux__)
    static const std::string platform = "linux";
 +#elif defined(__sun__)
@@ -9,7 +9,7 @@
  #else
    static const std::string platform = "unknown";
  #endif
-@@ -56,7 +58,7 @@
+@@ -107,7 +109,7 @@
  // but apparently it doesn't define __USE_GNU inside of features.h
  // while gcc DOES define that.
  // see https://stackoverflow.com/questions/58177815/how-to-actually-detect-musl-libc
