@@ -4409,3 +4409,4 @@ publicsuffixlist-1.0.2.20251217.tar.gz f5e8dbbf240cba4c1c5d426fefd7285362fb6047b
 cmd2-3.0.0.tar.gz f6fab21d2b344a3ab9fe174a6286c9fb4f43a185ad1dfacd13ef017a26a2c333
 apache-maven-3.9.12-bin.tar.gz fa2c9948729296c23afd18fd01a90f62cdda09a46191b54a8bc3764c2eee812e
 pikepdf-10.0.3.tar.gz ff12a044d79e342eff6bc8b27dfd4c24b395943052169bb43eea4a23a4100e56
+apache-arrow-22.0.0.tar.gz 131250cd24dec0cddde04e2ad8c9e2bc43edc5e84203a81cf71cf1a33a6e7e0f

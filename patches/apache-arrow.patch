@@ -1,6 +1,15 @@
 --- a/cpp/src/arrow/vendored/xxhash/xxhash.h	Wed Mar 13 13:37:59 2024
 +++ b/cpp/src/arrow/vendored/xxhash/xxhash.h	Mon Apr 22 16:13:05 2024
-@@ -2160,7 +2160,7 @@
+@@ -1696,7 +1696,7 @@
+ 
+ #ifndef XXH_NO_XXH3
+ 
+-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L) /* >= C11 */
++#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L) && !defined(__cplusplus) /* >= C11 */
+ #  define XXH_ALIGN(n)      _Alignas(n)
+ #elif defined(__cplusplus) && (__cplusplus >= 201103L) /* >= C++11 */
+ /* In C++ alignas() is a keyword */
+@@ -2509,7 +2509,7 @@
  
  /* note: use after variable declarations */
  #ifndef XXH_STATIC_ASSERT
@@ -11,12 +20,12 @@
  #    define XXH_STATIC_ASSERT_WITH_MESSAGE(c,m) do { static_assert((c),m); } while(0)
 --- a/cpp/src/arrow/util/value_parsing.h	Wed Mar 13 13:37:59 2024
 +++ b/cpp/src/arrow/util/value_parsing.h	Mon Apr 22 16:15:57 2024
-@@ -822,7 +822,7 @@
+@@ -824,7 +824,7 @@
    if (!ignore_time_in_day) {
      secs += (std::chrono::hours(result.tm_hour) + std::chrono::minutes(result.tm_min) +
               std::chrono::seconds(result.tm_sec));
--#ifndef _WIN32
-+#ifndef __sun
+-#if !defined(_WIN32) && !defined(_AIX)
++#if !defined(_WIN32) && !defined(_AIX) && !defined(__sun)
      secs -= std::chrono::seconds(result.tm_gmtoff);
  #endif
    }
@@ -31,7 +40,7 @@
  
    /// \brief Return true if the value is NaN
    constexpr bool is_nan() const { return (bits_ & 0x7fff) > 0x7c00; }
-@@ -158,8 +158,8 @@
+@@ -161,8 +161,8 @@
      return (lhs.bits() == rhs.bits()) || (lhs.is_zero() && rhs.is_zero());
    }
    static constexpr bool CompareLt(Float16 lhs, Float16 rhs) {
@@ -42,7 +51,7 @@
          // Both are negative
          return lhs.bits() > rhs.bits();
        } else {
-@@ -166,7 +166,7 @@
+@@ -169,7 +169,7 @@
          // Handle +/-0
          return !lhs.is_zero() || rhs.bits() != 0;
        }
@@ -51,20 +60,9 @@
        return false;
      } else {
        // Both are positive
---- a/cpp/src/arrow/compare.cc	Mon Apr 22 17:53:15 2024
-+++ b/cpp/src/arrow/compare.cc	Mon Apr 22 18:46:54 2024
-@@ -107,7 +107,7 @@
-     Float16 f_x = Float16::FromBits(x);
-     Float16 f_y = Float16::FromBits(y);
-     if (x == y) {
--      return Flags::signed_zeros_equal || (f_x.signbit() == f_y.signbit());
-+      return Flags::signed_zeros_equal || (f_x.arsignbit() == f_y.arsignbit());
-     }
-     if (Flags::nans_equal && f_x.is_nan() && f_y.is_nan()) {
-       return true;
 --- a/cpp/src/parquet/statistics.cc	Tue Apr 16 15:48:56 2024
 +++ b/cpp/src/parquet/statistics.cc	Mon Apr 22 20:21:56 2024
-@@ -384,10 +384,10 @@
+@@ -389,10 +389,10 @@
      return ::std::nullopt;
    }
  
@@ -92,3 +90,25 @@
                 sqrt(m2_avg * m2_avg * m2_avg);
      }
      return result;
+--- a/cpp/src/arrow/compare.cc	Mon Oct 20 15:48:39 2025
++++ b/cpp/src/arrow/compare.cc	Wed Dec 17 12:11:03 2025
+@@ -111,7 +111,7 @@
+     Float16 f_x = Float16::FromBits(x);
+     Float16 f_y = Float16::FromBits(y);
+     if (f_x == f_y) {
+-      return Flags::signed_zeros_equal || (f_x.signbit() == f_y.signbit());
++      return Flags::signed_zeros_equal || (f_x.arsignbit() == f_y.arsignbit());
+     }
+     if (Flags::nans_equal && f_x.is_nan() && f_y.is_nan()) {
+       return true;
+--- a/cpp/src/arrow/compute/kernels/base_arithmetic_internal.h	Mon Oct 20 15:48:39 2025
++++ b/cpp/src/arrow/compute/kernels/base_arithmetic_internal.h	Wed Dec 17 12:16:59 2025
+@@ -653,7 +653,7 @@
+     return arg.is_nan()
+                ? arg
+                : (arg.is_zero() ? Float16::zero()
+-                                : (arg.signbit() ? -Float16::one() : Float16::one()));
++                                : (arg.arsignbit() ? -Float16::one() : Float16::one()));
+   }
+ 
+   template <typename T, typename Arg>
