@@ -1,4 +1,4 @@
 PKG="TRIBpydo-python-312"
 NAME="Python pydo"
-VERSION="0.22.0.0"
+VERSION="0.23.0.0"
 ZAP_URL="https://pypi.org/project/pydo/"
