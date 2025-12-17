@@ -1,4 +1,4 @@
 PKG="TRIBcmd2-python-312"
 NAME="Python cmd2"
-VERSION="2.7.0.0"
+VERSION="3.0.0.0"
 ZAP_URL="https://pypi.org/project/cmd2/"
