@@ -1,4 +1,4 @@
 PKG="TRIBv-apache-maven-39"
 NAME="Apache Maven 3.9"
-VERSION="3.9.11.0"
+VERSION="3.9.12.0"
 ZAP_URL="https://maven.apache.org/"
