@@ -578,7 +578,7 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -264,7 +264,6 @@
+@@ -265,7 +265,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS) $(ICONV_LIBS), \
        LIBS_unix := $(LIBM) $(LIBPTHREAD), \
        LIBS_linux := $(X_LIBS) -lX11 -lXext, \
@@ -586,7 +586,7 @@
        LIBS_macosx := \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -314,7 +313,7 @@
+@@ -315,7 +314,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif
@@ -865,7 +865,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -189,7 +189,6 @@
+@@ -190,7 +190,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \
@@ -1049,12 +1049,11 @@
  /*
 --- old/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.667181035 -0700
 +++ new/src/java.base/share/native/libnet/net_util.c	2020-05-20 18:00:57.335174660 -0700
-@@ -85,7 +85,7 @@
+@@ -85,7 +85,6 @@
  
      /* check if SO_REUSEPORT is supported on this platform */
      REUSEPORT_available = reuseport_supported(IPv6_available);
 -    parseExclusiveBindProperty(env);
-+
  
      return JNI_VERSION_1_2;
  }
@@ -2104,7 +2103,7 @@
  void
  NET_ThrowNew(JNIEnv *env, int errorNumber, char *msg) {
      char fullMsg[512];
-@@ -252,50 +142,6 @@
+@@ -249,50 +139,6 @@
      }
  #endif
  
@@ -2155,7 +2154,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -376,26 +222,6 @@
+@@ -373,26 +219,6 @@
      }
  }
  
@@ -2182,7 +2181,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -637,65 +463,6 @@
+@@ -634,65 +460,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -2248,7 +2247,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -810,20 +577,10 @@
+@@ -807,20 +574,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -2269,7 +2268,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -840,61 +597,8 @@
+@@ -837,61 +594,8 @@
      }
  #endif
  
@@ -2342,9 +2341,9 @@
  #elif defined(AIX) || defined(MACOSX)
  #define SO_REUSEPORT 0x0200
  #else
-@@ -82,8 +80,4 @@
- void NET_ThrowByNameWithLastError(JNIEnv *env, const char *name,
-                                   const char *defaultDetail);
+@@ -95,8 +93,4 @@
+         }                                       \
+     }
  
 -#ifdef __solaris__
 -int net_getParam(char *driver, char *param);
