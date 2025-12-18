@@ -1,4 +1,4 @@
 PKG="TRIBblix-activemq"
 NAME="ActiveMQ"
-VERSION="6.1.8.0"
+VERSION="6.2.0.0"
 ZAP_URL="https://activemq.apache.org/"
