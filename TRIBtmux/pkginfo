@@ -1,4 +1,4 @@
 PKG="TRIBtmux"
 NAME="tmux terminal multiplexer"
-VERSION="3.5a.0"
+VERSION="3.6a.0"
 ZAP_URL="https://tmux.github.io/"
