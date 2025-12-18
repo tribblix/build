@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-$THOME/build/unpack opentelemetry-collector-0.137.0
-cd opentelemetry-collector-0.137.0
+$THOME/build/unpack opentelemetry-collector-0.142.0
+cd opentelemetry-collector-0.142.0
 
-env PATH=/usr/versions/go-1.24/bin:$PATH gmake otelcorecol
+env PATH=/usr/versions/go-1.25/bin:$PATH gmake otelcorecol
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/otel/bin

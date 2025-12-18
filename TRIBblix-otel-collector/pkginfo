@@ -1,4 +1,4 @@
 PKG="TRIBblix-otel-collector"
 NAME="OpenTelemetry Collector"
-VERSION="0.137.0.0"
+VERSION="0.142.0.0"
 ZAP_URL="https://github.com/open-telemetry/opentelemetry-collector"
