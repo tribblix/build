@@ -1,4 +1,4 @@
 PKG="TRIBblix-php-8"
 NAME="PHP8 for Apache"
-VERSION="8.2.29.0"
+VERSION="8.2.30.0"
 ZAP_URL="https://www.php.net/"
