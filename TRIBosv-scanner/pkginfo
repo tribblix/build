@@ -1,4 +1,4 @@
 PKG="TRIBosv-scanner"
 NAME="OSV vulnerability scanner"
-VERSION="2.1.0.0"
+VERSION="2.2.2.0"
 ZAP_URL="https://github.com/google/osv-scanner"

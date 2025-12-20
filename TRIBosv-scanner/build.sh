@@ -2,7 +2,9 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-env GOPATH=`pwd` PATH=/usr/versions/go-1.24/bin:$PATH go install github.com/google/osv-scanner/v2/cmd/osv-scanner@v2.1.0
+# v2.2.3 pulls in broken modernc
+#
+env GOPATH=`pwd` PATH=/usr/versions/go-1.25/bin:$PATH go install github.com/google/osv-scanner/v2/cmd/osv-scanner@v2.2.2
 
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
