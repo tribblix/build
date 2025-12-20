@@ -1,4 +1,4 @@
 PKG="TRIBblix-coredns"
 NAME="CoreDNS: DNS and Service Discovery."
-VERSION="1.12.3.0"
+VERSION="1.13.2.0"
 ZAP_URL="https://coredns.io/"
