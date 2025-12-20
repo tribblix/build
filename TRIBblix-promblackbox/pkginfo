@@ -1,4 +1,4 @@
 PKG="TRIBblix-promblackbox"
 NAME="Prometheus blackbox exporter"
-VERSION="0.27.0.0"
+VERSION="0.28.0.0"
 ZAP_URL="https://prometheus.io/"
