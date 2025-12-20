@@ -1,4 +1,4 @@
 PKG="TRIBblix-prommemcached"
 NAME="Prometheus memcached exporter"
-VERSION="0.15.3.0"
+VERSION="0.15.4.0"
 ZAP_URL="https://prometheus.io/"

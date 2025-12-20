@@ -12,14 +12,14 @@ cd p1
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.24/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.25/bin:$PATH gmake build
 cd ..
 
 #
-$THOME/build/unpack memcached_exporter-0.15.3
-cd memcached_exporter-0.15.3
+$THOME/build/unpack memcached_exporter-0.15.4
+cd memcached_exporter-0.15.4
 
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.24/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.25/bin:$PATH gmake build
 cd ..
 
 ${THOME}/build/genpkg TRIBblix-prommemcached
