@@ -1,4 +1,4 @@
 PKG="TRIBscikit-image-python-312"
 NAME="Python scikit-image"
-VERSION="0.25.2.0"
+VERSION="0.26.0.0"
 ZAP_URL="https://pypi.org/project/scikit-image/"

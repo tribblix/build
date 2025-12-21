@@ -12,4 +12,7 @@
 # PATH so it can find the cython executable
 # Need to pass -m64 down to meson
 #
-env LDFLAGS=-m64 CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.12/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-image-python-312 scikit_image-0.25.2
+# the -D__STDC_NO_ATOMICS__=1 is to force Cython not to pull in stdatomic.h
+# from C++ code, to avoid '_Atomic' does not name a type
+#
+env LDFLAGS=-m64 CXXFLAGS="-m64 -D__STDC_NO_ATOMICS__=1" CFLAGS=-m64 PATH=/usr/versions/python-3.12/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-image-python-312 scikit_image-0.26.0
