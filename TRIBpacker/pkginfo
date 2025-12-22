@@ -1,0 +1,4 @@
+PKG="TRIBpacker"
+NAME="Packer - create machine images"
+VERSION="1.14.3.0"
+ZAP_URL="https://github.com/hashicorp/packer"
