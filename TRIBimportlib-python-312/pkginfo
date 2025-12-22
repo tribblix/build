@@ -1,4 +1,4 @@
 PKG="TRIBimportlib-python-312"
 NAME="Python importlib-metadata"
-VERSION="8.7.0.0"
+VERSION="8.7.1.0"
 ZAP_URL="https://pypi.org/project/importlib-metadata/"
