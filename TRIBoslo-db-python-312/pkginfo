@@ -1,4 +1,4 @@
 PKG="TRIBoslo-db-python-312"
 NAME="Python oslo.db"
-VERSION="17.4.0.1"
+VERSION="17.4.0.2"
 ZAP_URL="https://pypi.org/project/oslo.db/"
