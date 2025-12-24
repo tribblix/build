@@ -1,0 +1,4 @@
+PKG="TRIBpyproj-python-312"
+NAME="Python pyproj"
+VERSION="3.7.2.0"
+ZAP_URL="https://pypi.org/project/pyproj/"
