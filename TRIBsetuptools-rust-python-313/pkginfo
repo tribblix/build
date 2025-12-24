@@ -1,0 +1,4 @@
+PKG="TRIBsetuptools-rust-python-313"
+NAME="Python setuptools-rust"
+VERSION="1.12.0.0"
+ZAP_URL="https://pypi.org/project/setuptools-rust/"

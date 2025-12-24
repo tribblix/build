@@ -1,0 +1,4 @@
+PKG="TRIBsemver-python-313"
+NAME="Python semantic-version"
+VERSION="2.10.0.0"
+ZAP_URL="https://pypi.org/project/semantic-version/"
