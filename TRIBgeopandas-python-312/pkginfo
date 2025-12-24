@@ -1,0 +1,4 @@
+PKG="TRIBgeopandas-python-312"
+NAME="Python geopandas"
+VERSION="1.1.2.0"
+ZAP_URL="https://pypi.org/project/geopandas/"
