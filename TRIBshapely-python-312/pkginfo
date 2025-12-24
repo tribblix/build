@@ -1,0 +1,4 @@
+PKG="TRIBshapely-python-312"
+NAME="Python shapely"
+VERSION="2.1.2.0"
+ZAP_URL="https://pypi.org/project/shapely/"
