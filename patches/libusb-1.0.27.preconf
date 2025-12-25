@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-# https://github.com/libusb/libusb/issues/1465
-#
-sed -i s:larg-:link_arg-:g libusb/os/sunos_usb.c
