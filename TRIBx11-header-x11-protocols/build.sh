@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a composite package
 #
 # we version it as 1.0.x to reflect that its is an arbitrary

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # (with bzip2, security fixes)
 #
 ${THOME}/build/unpack unzip60

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # zap install TRIBlib-desktop-atk-bridge
 # zap install TRIBlib-desktop-at-spi2
 # zap install TRIBx11-libepoxy (as of 3.16.7)

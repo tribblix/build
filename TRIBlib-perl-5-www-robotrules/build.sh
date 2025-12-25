@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack WWW-RobotRules-6.02
 cd WWW-RobotRules-6.02
 perl Makefile.PL

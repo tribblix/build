@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # it really does depend on libaudiofile, it's linked in using the full
 # pathname which might not get picked up
 #

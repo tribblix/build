@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a multistage build
 #
 ${THOME}/build/dobuild -64only libtranscript-0.3.3

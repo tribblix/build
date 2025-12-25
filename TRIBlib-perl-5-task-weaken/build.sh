@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Task-Weaken-1.06
 cd Task-Weaken-1.06
 perl Makefile.PL

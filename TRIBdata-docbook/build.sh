@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # you need to download the files
 # and the fixit script does the rest of the work
 #

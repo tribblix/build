@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this was inherited as a merge of several utilities
 #
 # we no longer ship the old xcolor, cmap_alloc, or cmap_compact

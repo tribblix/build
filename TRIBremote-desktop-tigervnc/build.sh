@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # our own tigervnc
 #
 # we turn off H264 to avoid pulling ffmpeg

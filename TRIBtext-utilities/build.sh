@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # a bit fiddly as we only want hexdump for now
 #
 ${THOME}/build/unpack util-linux-2.37.4

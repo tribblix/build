@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # needs ncurses
 # cannot enable utf8 as that requires ncursesw
 # patch to disable use of gmtoff

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # build mod_perl
 # it's split into 2 packages, one for the apache half, the other for the
 # perl half, as they go in different places

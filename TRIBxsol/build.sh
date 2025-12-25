@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 mkdir xsol
 cd xsol
 ${THOME}/build/unpack xsol-0.31.source

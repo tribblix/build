@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
 #
 $THOME/build/unpack photoflare-1.6.13
 cd photoflare-1.6.13

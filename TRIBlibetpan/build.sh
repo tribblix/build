@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the postconf script replaces the configure step
 # arguments to configure need to go in the postconf script
 #

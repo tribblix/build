@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # explicitly tell it what vte and gtk to use
 #
 # there aren't any published releases on github, so use the latest

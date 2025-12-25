@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need to have the matching Xorg server that you're building for installed
 #
 $THOME/build/unpack xf86-video-cirrus-1.5.3

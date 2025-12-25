@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this gcc7 build is designed purely as a compiler for illumos-gate
 # at some point in the future it will be promoted to the primary compiler
 # for Tribblix, which would be repackaged in a different location, split

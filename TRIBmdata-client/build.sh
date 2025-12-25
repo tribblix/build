@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # https://github.com/TritonDataCenter/mdata-client/archive/release-20230504.tar.gz
 #
 ${THOME}/build/unpack mdata-client-release-20230504

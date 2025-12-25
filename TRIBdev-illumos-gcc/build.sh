@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # download the tarball like so
 #
 # wget https://github.com/illumos/gcc/archive/gcc-4.4.4-il-4.tar.gz

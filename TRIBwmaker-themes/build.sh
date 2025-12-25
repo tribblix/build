@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # some of the wmaker theme backgrounds are added to xfce as well
 #
 rm -fr /tmp/pth

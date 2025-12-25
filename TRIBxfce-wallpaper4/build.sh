@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 rm -fr /tmp/ss
 mkdir -p /tmp/ss/usr/share/backgrounds/xfce
 #

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Class-Inspector-1.36
 cd Class-Inspector-1.36
 perl Makefile.PL

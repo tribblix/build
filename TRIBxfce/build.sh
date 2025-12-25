@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # I build a single merged package
 # as some of the components require prior ones installed,
 # the first build will be a multistage process

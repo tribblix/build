@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we only build 64-bit as the only consumers are scipy/numpy which are
 # in a 64-bit python
 #

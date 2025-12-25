@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Test-Exception-0.43
 cd Test-Exception-0.43
 perl Makefile.PL

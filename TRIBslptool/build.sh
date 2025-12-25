@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # openslp largely duplicates what we have in tree, and as shipped by
 # the TRIBsvc-net-slp package, so this package only ships the slptool
 # binary. In future it's conceivable that the whole of illumos slp

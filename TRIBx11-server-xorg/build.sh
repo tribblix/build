@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # Xorg
 #
 ${THOME}/build/unpack xorg-server-1.16.4

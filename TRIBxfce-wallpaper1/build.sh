@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # The image files come from
 # http://petertribble.co.uk/Fun/wallpaper1.html
 # the Tribblix package uses the 1600x1200 images (without the 1600_ prefix)

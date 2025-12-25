@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we need a copy of pkg5 for illumos-gate builds
 # this puts together a minimal set that ought to work
 #

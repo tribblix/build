@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this replaces the illumos-gate version, hence the awkward package name
 # apart from being more modern, this version is also *not* behind mailwrapper
 #

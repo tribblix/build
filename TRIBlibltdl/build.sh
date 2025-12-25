@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this package supplies the runtime libltdl libraries
 # to avoid having to install the whole of libtool
 #

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # a mirror of the source is at https://github.com/ncruces/dcraw
 # but what you want is the tarball from https://dechifro.org/dcraw/archive/
 # because that has the message files included

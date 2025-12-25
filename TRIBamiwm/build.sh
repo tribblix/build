@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need to set CC as it doesn't otherwise pass -m64 when linking
 #
 env CC="gcc -m64" ${THOME}/build/dobuild -64only amiwm0.22pl2 -J 1

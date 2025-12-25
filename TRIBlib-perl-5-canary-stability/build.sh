@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Canary-Stability-2013
 cd Canary-Stability-2013
 perl Makefile.PL

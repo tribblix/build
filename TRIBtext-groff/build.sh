@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # there's a patch+preconf for 1.23.0 that fixes a regression, most obviously
 # seen as 'aws help' being blank
 #

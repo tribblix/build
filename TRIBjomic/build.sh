@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # Run the installer. It places files into ~/Jomic and the desktop file into
 # ~/.kde/share/applnk/Graphics/Jomic.desktop
 # Then convert those files into a package

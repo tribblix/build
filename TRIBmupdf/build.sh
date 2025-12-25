@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 $THOME/build/unpack mupdf-1.23.11-source
 cd mupdf-1.23.11-source

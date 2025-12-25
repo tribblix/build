@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # you may have to repackage the tarball to get the correct directory name in it
 # there's a preconf script to change the PREFIX
 #

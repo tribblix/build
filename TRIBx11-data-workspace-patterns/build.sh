@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is just a set of files
 # you can either grab them from
 #  https://github.com/oracle/solaris-xorg/tree/master/open-src/data/workspace-patterns

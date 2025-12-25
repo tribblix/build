@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/dobuild -64only xdaliclock-2.44 -S X11
 cd xdaliclock-2.44-64bit/X11
 rm -fr /tmp/xd

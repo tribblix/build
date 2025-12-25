@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # It wants a vpnc-script installed first; the argument here is to tell it
 # where it's going to be packaged.
 # And it needs tun/tap installed (the headers at least)

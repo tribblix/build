@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # Note: to build this on current systems requires a couple of changes
 # so you can either go downrev, or apply fixes/workarounds
 # 1. It isn't compatible with gmake 4.3, using 4.2.1 is fine if you can

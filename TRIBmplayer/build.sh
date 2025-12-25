@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # It's not an autoconf configure
 #
 # versioning is interesting, it has 2 parts and we used the wrong

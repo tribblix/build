@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this builds and packages *both* parts together, the vanilla and XS
 #
 ${THOME}/build/unpack List-MoreUtils-XS-0.430

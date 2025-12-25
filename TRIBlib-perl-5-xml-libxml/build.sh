@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # later versions changed dependencies dramatically
 #
 $THOME/build/unpack XML-LibXML-2.0134

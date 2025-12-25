@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # explicitly tell the build where gm4 is, otherwise it will pick the
 # 64-bit symlink which we may not support in perpetuity
 #

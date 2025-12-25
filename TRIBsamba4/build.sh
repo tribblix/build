@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # SPARC needs --without-ldap --without-ads
 #
 # disable spotlight otherwise it pulls in gnome tracker and the dependency

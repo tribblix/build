@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # just a Makefile, set variables to bypass its settings
 #
 $THOME/build/unpack tuxpaint-stamps-2023.05.19

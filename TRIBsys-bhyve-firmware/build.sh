@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we cheat a bit here, and use the prebuilt omnios files
 #
 # on an omnios box (or omnios alien zone):

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack File-Which-1.27
 cd File-Which-1.27
 perl Makefile.PL

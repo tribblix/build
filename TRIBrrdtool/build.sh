@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the python modules fail to configure
 # disable ruby as its install doesn't honor DESTDIR
 #

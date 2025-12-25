@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # You first need to download the tarballs
 #
 # now a single tarball, 74M

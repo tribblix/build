@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 # yes, it unpacks into . rather than it's own directory
 mkdir bazel-6.3.2

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Class-Tiny-1.008
 cd Class-Tiny-1.008
 perl Makefile.PL

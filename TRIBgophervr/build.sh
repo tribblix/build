@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Current-GopherVR-source
 cd gophervr
 gsed -i s:/usr/local/lib/hershey:/usr/share/lib/hershey: libvogl/hershey/src/htext.c

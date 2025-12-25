@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # BULLET3 is a GPU-only version, which wouldn't work for us in all
 # likelihood, and the current consumer (enlightenment) doesn't need it
 #

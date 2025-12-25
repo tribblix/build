@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # use the illumos-xview source and cd to clients/olvwm-4.1
 #
 make -f Makefile.sunpro CC=gcc OPENWINHOME=/usr MORECCFLAGS="-DOW_I18N_L3 -DSHAPE -DSVR4 -DSYSV"

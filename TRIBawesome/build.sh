@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # Needs gobject-introspection, fixed for pango and gdk-pixbuf
 # Needs TRIBlibxdg-basedir, lua, lgi
 #

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # rename the source tarball
 # mv fltk-1.3.9-source.tar.bz2 fltk-1.3.9.tar.bz2
 #

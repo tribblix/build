@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 echo "Read the instructions, don't run this blindly"
 exit 0
 

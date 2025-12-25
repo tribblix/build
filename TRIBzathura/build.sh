@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # you must uninstall the old copy of zathura first, because otherwise
 # the build won't pull girara as a subproject
 #

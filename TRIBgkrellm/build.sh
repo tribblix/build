@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#
+# SPDX-License-Identifier: CDDL-1.0
 #
 ${THOME}/build/unpack gkrellm-2.3.11
 cd gkrellm-2.3.11

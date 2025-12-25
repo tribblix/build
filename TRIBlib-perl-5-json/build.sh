@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack JSON-4.10
 cd JSON-4.10
 perl Makefile.PL

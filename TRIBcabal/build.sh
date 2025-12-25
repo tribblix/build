@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # NOTE: if calling cabal, you may need to use the absolute path
 # /usr/bin/cabal
 # if you just use 'cabal' from the PATH it may get easily confused and fail

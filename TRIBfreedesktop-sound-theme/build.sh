@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # download from
 # https://people.freedesktop.org/~mccann/dist/sound-theme-freedesktop-0.8.tar.bz2
 #

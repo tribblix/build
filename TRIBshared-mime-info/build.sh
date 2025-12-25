@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the files installed into /usr/share/mime/application should be group
 # root, as enforced by ../fixproto, otherwise the mime-cache service
 # will change the group

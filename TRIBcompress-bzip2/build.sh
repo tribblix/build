@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # The legacy SONAME from OI is just a .1
 # Ignore the default -g to keep the size down
 #

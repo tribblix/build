@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a collection of extra themes for Xfce
 #
 rm -fr /tmp/xth

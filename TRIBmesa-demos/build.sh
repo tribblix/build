@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # alternate prefix to avoid dumping a lot of potentially conflicting
 # commands into /usr/bin
 #

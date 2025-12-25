@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Module-Build-0.4234
 cd Module-Build-0.4234
 perl Build.PL

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # enabling GraphicsMagick leads to a SEGV with libjpeg-turbo 2 or later
 # our librsvg is too old
 #

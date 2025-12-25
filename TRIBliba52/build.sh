@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need to use the Adelie Linux update; the original was always
 # broken in 64-bit mode
 #

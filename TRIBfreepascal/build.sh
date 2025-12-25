@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # to bootstrap the build, first install the binary download
 # (fpc-3.2.2.sparc-solaris.tar or fpc-3.2.2.x86_64-solaris.tar)
 # into /tmp/f and add a couple of symlinks

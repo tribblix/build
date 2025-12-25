@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # legacy build, now needs a patch to handle -fno-common being the
 # default as of gcc10
 #

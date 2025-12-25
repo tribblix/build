@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need to build 32-bit with --disable-largefile because of procfs
 # perl to find pod2man for the manual pages
 #

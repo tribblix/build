@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # while we could replace --version-script= with -M to use symbol
 # versioning, the mapfile isn't correct for us which fails the build
 #

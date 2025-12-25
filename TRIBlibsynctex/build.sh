@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a manual build copied from OI
 #
 git clone https://github.com/jlaurens/synctex

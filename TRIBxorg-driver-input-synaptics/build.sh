@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need to have the matching Xorg server that you're building for installed
 #
 # requires bash to run the configure script

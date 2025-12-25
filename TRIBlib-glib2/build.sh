@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # later versions appear to break Xfce with /usr/libexec/at-spi-bus-launcher
 # reporting "Failed to launch bus: Failed to connect to session bus"
 #

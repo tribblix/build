@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this gcc10 build is designed purely as the compiler for illumos-gate
 #
 # while it builds on sparc, illumos-gate will not work with gcc10 on sparc

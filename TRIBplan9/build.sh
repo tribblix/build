@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # no versioned releases, built from master which had its latest
 # commit on Mar 31 2023, hence the version number
 #

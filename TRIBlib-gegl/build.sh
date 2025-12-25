@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # new meson build
 #
 # we need GNU msgfmt (hence PATH) but our own ar, hence AR

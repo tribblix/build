@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # I think -Dgl_api=opengl is the same as what --disable-gles2 meant for
 # the old configure script
 #

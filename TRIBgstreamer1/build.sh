@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # note that we have to install both 32-bit and 64-bit files into /usr/libexec
 # as gst-plugin-scanner populates the registry and needs to match
 #

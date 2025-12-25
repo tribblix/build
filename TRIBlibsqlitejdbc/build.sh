@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # the sqlite-jdbc distribution includes native libraries for linux,
 # mac and windows packaged up in the jar file. This package ships one
 # for Tribblix so that it will work here too.

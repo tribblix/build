@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack zip30
 cd zip30
 gmake -f unix/Makefile generic CC="gcc -m64"

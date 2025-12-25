@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # separate package for sccs (as illumos now supplies make)
 # Save the old binaries like so
 # (cd / ; tar cf ${THOME}/build/patches/binary-sccs-files.tar -I ${THOME}/build/patches/binary-sccs-files.txt)

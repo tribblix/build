@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#
+# SPDX-License-Identifier: CDDL-1.0
 #
 ${THOME}/build/unpack XEphem-4.1.0
 cd XEphem-4.1.0/GUI/xephem

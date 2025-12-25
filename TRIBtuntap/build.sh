@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # needs the illumos versions of the gcc compiler
 # zap install TRIBdev-illumos-gcc10
 #

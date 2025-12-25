@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # flac, modplug, mpg123, ogg(vorbis) are dlopen'ed so don't show up in the
 # automatic dependency check
 #

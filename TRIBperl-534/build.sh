@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # System perl (to replace 5.22), flags from omnios (so we're as
 # compatible as possible)
 #

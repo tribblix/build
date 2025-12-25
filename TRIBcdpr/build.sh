@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # there's a postconf script that sets the Makefile up with the
 # right flags, including for a 64-bit build
 #

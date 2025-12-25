@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Sub-Uplevel-0.2800
 cd Sub-Uplevel-0.2800
 perl Makefile.PL

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Text-Diff-1.45
 cd Text-Diff-1.45
 perl Makefile.PL

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # needed for the illumos build
 #  - hal discovery addons (in TRIBsvc-hal)
 #    /usr/lib/hal/hald-probe-network-printer

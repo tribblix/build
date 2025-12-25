@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # use the same flags to configure as OI
 # --enable-float for fftw3f
 #

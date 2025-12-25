@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # packaging requires mkfontscale from x11-font-utilities
 # package requires fontconfig to provide the fc-cache service
 #

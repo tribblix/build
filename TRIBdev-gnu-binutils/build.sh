@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # we use the same version and patches as OI
 #
 # need --enable-warn-rwx-segments=no otherwise the gate build fails as

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a few of the programs from the X11R6 contrib tape
 #
 # https://www.x.org/releases/X11R6/

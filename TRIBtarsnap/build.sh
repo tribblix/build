@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # there is no pre-built tarsnap for illumos
 # so we have to build from source
 #

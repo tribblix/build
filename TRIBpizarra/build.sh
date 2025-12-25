@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 git clone https://gitlab.com/categulario/pizarra-gtk.git
 cd pizarra-gtk
 cargo build --release

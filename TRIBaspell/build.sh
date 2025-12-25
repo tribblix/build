@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # aspell is a build dependency for dictionaries, it is not intended
 # to be supported in its own right
 #

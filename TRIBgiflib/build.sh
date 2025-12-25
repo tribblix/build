@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # later versions appear to not be binary compatible (although
 # they should be)
 #

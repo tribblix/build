@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # easier to pull the tarball from the omnios mirror
 # https://mirrors.omnios.org/iso-codes/
 #

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # seems to ignore bindir, so +64 actually puts the binary in
 # /usr/bin where we want it, even though it shouldn't
 #

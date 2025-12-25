@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # openssl 1.0.2 updates
 # As of 1.0.2g, ignore md2 but must explicitly enable ssl2 to retain binary
 # compatibility

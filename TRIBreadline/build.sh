@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # try parking in /usr/gnu to partially hide it
 #
 # notes that we need to explicitly link against curses

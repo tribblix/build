@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # 2.3.5 and earlier failed with parallel make and needed -J 1
 #
 # force posix readdir_r, required as that's the only readdir_r

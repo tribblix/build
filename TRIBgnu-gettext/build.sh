@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this package ships a number of shared libraries which have the version number
 # embedded, but fortunately I haven't (yet) found any consumers so updating
 # should be safe

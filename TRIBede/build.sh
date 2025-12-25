@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # desktop based on fltk
 # needs jam (I used ftjam) installed
 # and edelib

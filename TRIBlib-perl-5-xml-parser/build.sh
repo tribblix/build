@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # [this is a combination package; the original OI version had XML::Parser
 #  and XML::Simple]
 #

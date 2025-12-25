@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # use autotools rather than cmake as it handles the dual 32/64 install
 # properly
 #

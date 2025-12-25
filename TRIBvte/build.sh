@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this is a patched vte, that handles home/end/pgup/pgdown sanely
 # without requiring shift
 #

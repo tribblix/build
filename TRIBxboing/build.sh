@@ -1,8 +1,9 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # I think space inserts a coin; i iconifies; mouse left and right. It
 # runs way too fast to play, for me. xboing -speed 1 is about right...
-#
 #
 ${THOME}/build/unpack xboing2.4
 cd xboing

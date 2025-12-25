@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # this gcc10 build is derived from the illumos gcc10 build, and should be kept
 # in sync with it. This package differs from the base illumos version in that
 # it (a) ships fortran, and (b) has the runtime components split out

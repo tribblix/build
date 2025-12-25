@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack TermReadKey-2.38
 cd TermReadKey-2.38
 perl Makefile.PL

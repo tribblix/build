@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack ted-2.23
 cd Ted-2.23
 make CONFIGURE_OPTIONS=--with-MOTIF

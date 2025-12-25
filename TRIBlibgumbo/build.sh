@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # This is a fork of the archived and unmaintained original which was
 # at https://github.com/google/gumbo-parser
 #

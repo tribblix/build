@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # urxvt used to bundle libptytty, we now have to build it separately
 # as a preconf script
 #

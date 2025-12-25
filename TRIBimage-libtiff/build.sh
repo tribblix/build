@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # see TRIBlibtiff-compat for the 3.x legacy files
 #
 # stick at 4.4.0; 4.5.0 revs the SONAME

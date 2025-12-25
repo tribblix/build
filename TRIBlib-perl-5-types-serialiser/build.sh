@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 ${THOME}/build/unpack Types-Serialiser-1.01
 cd Types-Serialiser-1.01
 perl Makefile.PL

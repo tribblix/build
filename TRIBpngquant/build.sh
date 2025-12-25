@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # later versions (3.x) are rust-based, stay with the 2.x branch
 # for wider portability
 #

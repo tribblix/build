@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # jdk mainline has been migrated to git
 # go to https://github.com/openjdk/jdk16/tags
 #

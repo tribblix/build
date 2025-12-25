@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # needs libgmp
 #
 # we disable xpce, which drags in a lot of dependencies, but also doesn't

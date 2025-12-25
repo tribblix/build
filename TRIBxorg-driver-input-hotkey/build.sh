@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # need to have the matching Xorg server that you're building for installed
 #
 # needs the hotkey patch applied to Xorg

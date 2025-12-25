@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # you have to build gtk3 applications against a new
 # version of this library, otherwise they will pull in
 # gtk2 as a transitive dependency and bad things will

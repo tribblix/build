@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # [the original tarball is named AfterStep, rename it]
 #
 # there are a couple of patches via debian needed for current gcc

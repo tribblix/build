@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # NOTE: top used to be built with Studio; building with gcc resulted in a huge
 # memory leak. That appears to no longer be the case.
 #

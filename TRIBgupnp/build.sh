@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # gupnp [needs gssdp]
 #
 # stay downrev; 1.0.7 requires GLib2 2.66
