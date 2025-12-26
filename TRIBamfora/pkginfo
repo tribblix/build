@@ -1,4 +1,4 @@
 PKG="TRIBamfora"
 NAME="amfora gemini client"
-VERSION="1.11.0.0"
+VERSION="1.11.0.1"
 ZAP_URL="https://github.com/makeworld-the-better-one/amfora"
