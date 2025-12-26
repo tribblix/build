@@ -1,4 +1,4 @@
 PKG="TRIBffuf"
 NAME="Fast web fuzzer written in Go."
-VERSION="2.1.0.4"
+VERSION="2.1.0.5"
 ZAP_URL="https://github.com/ffuf/ffuf"
