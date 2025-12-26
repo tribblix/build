@@ -1,4 +1,4 @@
 PKG="TRIBhey"
 NAME="HTTP load generator"
-VERSION="0.1.4.8"
+VERSION="0.1.4.9"
 ZAP_URL="https://github.com/rakyll/hey"
