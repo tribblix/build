@@ -1,4 +1,4 @@
 PKG="TRIBdoxygen"
 NAME="Generate documentation from source code"
-VERSION="1.9.8.0"
+VERSION="1.15.0.0"
 ZAP_URL="https://www.doxygen.nl/index.html"

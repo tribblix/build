@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# need to disable this, otherwise LTO gets turned on and we get
+# error: '-fno-fat-lto-objects' are supported only with linker plugin
+#
+sed -i 's:CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE:CMAKE_INTERPROCEDURAL_OPTIMIZATION FALSE:' CMakeLists.txt
