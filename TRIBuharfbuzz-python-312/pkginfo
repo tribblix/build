@@ -1,4 +1,4 @@
 PKG="TRIBuharfbuzz-python-312"
 NAME="Python uharfbuzz"
-VERSION="0.53.1.0"
+VERSION="0.53.2.0"
 ZAP_URL="https://pypi.org/project/uharfbuzz/"
