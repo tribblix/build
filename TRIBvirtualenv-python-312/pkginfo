@@ -1,4 +1,4 @@
 PKG="TRIBvirtualenv-python-312"
 NAME="Python virtualenv"
-VERSION="20.35.4.0"
+VERSION="20.36.0.0"
 ZAP_URL="https://pypi.org/project/virtualenv/"
