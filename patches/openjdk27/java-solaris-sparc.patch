@@ -640,7 +640,7 @@
      LIBS_windows := iphlpapi.lib ws2_32.lib, \
  ))
  
-@@ -78,7 +77,6 @@
+@@ -63,7 +62,6 @@
      JDK_LIBS := java.base:libjvm, \
      LIBS := $(ICONV_LIBS), \
      LIBS_linux := $(LIBDL), \
