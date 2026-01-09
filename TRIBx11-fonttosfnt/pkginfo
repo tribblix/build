@@ -1,4 +1,4 @@
 PKG="TRIBx11-fonttosfnt"
 NAME="fonttosfnt"
-VERSION="1.2.4.0"
+VERSION="1.2.5.0"
 ZAP_URL="https://www.x.org/releases/individual/app/"
