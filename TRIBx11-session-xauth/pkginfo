@@ -1,4 +1,4 @@
 PKG="TRIBx11-session-xauth"
 NAME="xauth"
-VERSION="1.1.4.0"
+VERSION="1.1.5.0"
 ZAP_URL="https://www.x.org/releases/individual/app/"
