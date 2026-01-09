@@ -1,4 +1,4 @@
 PKG="TRIBmanilaclient-python-312"
 NAME="Python python-manilaclient"
-VERSION="5.7.0.0"
+VERSION="5.7.1.0"
 ZAP_URL="https://pypi.org/project/python-manilaclient/"
