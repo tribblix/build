@@ -4529,3 +4529,4 @@ oslo_policy-4.8.0.tar.gz 6e3788c9b768ffe77632ccabac187c337ad5948cf9378ec38a7507c
 oslo_messaging-17.2.0.tar.gz 66b4f1ae7dacc796a6bb249da86fc65858fdcfd73bf46cf290579854e02f08da
 oslo_config-10.2.0.tar.gz 6d282113f2fb2ee4d40c8becdb4ac39917c3f447c3bb355abf47f0d6181edffc
 oslo_concurrency-7.3.0.tar.gz db04201ba7d9cb5afdc90a82d8fa727e1e148ac19bd091845d30ceea77f1eb76
+badkeys-0.0.16.tar.gz c9d292ea1c78f6076662b923d854620f08dce46df1d4c162185625c7bfe58030
