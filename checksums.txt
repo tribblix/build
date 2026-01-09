@@ -4519,3 +4519,4 @@ zope_interface-8.2.tar.gz afb20c371a601d261b4f6edb53c3c418c249db1a9717b0baafc9a9
 python_manilaclient-5.7.1.tar.gz 05d154567bd25fbca2b474a53ff1b30f68f3bc5f2f87d078415550aea6305bd4
 uv_build-0.9.22.tar.gz f10f1096b47a82185bba1e8cda2fec60c20162b085b96963aff705ef741551c6
 python_openstackclient-8.3.0.tar.gz cc7b32e45f0b8eed9215e0218aea02526619a5e7b0682b2781769134afd76ff8
+pypdf-6.6.0.tar.gz 4c887ef2ea38d86faded61141995a3c7d068c9d6ae8477be7ae5de8a8e16592f
