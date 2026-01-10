@@ -1,0 +1,4 @@
+PKG="TRIBlibpass-python-312"
+NAME="Python libpass"
+VERSION="1.9.3.0"
+ZAP_URL="https://pypi.org/project/libpass/"

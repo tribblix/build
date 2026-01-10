@@ -1,7 +1,8 @@
 P TRIBargon2-cffi-python-312
 P TRIBbcrypt-python-312
 P TRIBdefusedxml-python-312
-P TRIBpasslib-python-312
+P TRIBlibpass-python-312
+P TRIBpackaging-python-312
 P TRIBpika-python-312
 P TRIBrequests-python-312
 P TRIBv-python-312
