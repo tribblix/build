@@ -1,4 +1,4 @@
 PKG="TRIBfsspec-python-312"
 NAME="Python fsspec"
-VERSION="2025.12.0.0"
+VERSION="2026.1.0.0"
 ZAP_URL="https://pypi.org/project/fsspec/"
