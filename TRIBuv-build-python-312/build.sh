@@ -7,4 +7,4 @@
 # (or similar), edit src/unix.rs and add illumos to the list of platforms
 # for the allocate function, at line ~100
 #
-${THOME}/build/pkg_pep518 -N TRIBuv-build-python-312 uv_build-0.9.22
+${THOME}/build/pkg_pep518 -N TRIBuv-build-python-312 uv_build-0.9.24
