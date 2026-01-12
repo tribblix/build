@@ -1,4 +1,4 @@
 PKG="TRIBterraform"
 NAME="Terraform infrastructure builder"
-VERSION="1.13.0.0"
+VERSION="1.14.3.0"
 ZAP_URL="https://github.com/hashicorp/terraform"
