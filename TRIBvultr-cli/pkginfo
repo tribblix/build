@@ -1,4 +1,4 @@
 PKG="TRIBvultr-cli"
 NAME="Vultr official CLI"
-VERSION="3.8.0.0"
+VERSION="3.8.0.1"
 ZAP_URL="https://github.com/vultr/vultr-cli"
