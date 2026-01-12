@@ -1,4 +1,4 @@
 PKG="TRIBpgback"
 NAME="Simple backup script for PostgreSQL"
-VERSION="2.6.0.1"
+VERSION="2.6.0.2"
 ZAP_URL="https://github.com/orgrim/pg_back"
