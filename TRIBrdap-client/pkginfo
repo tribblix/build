@@ -1,4 +1,4 @@
 PKG="TRIBrdap-client"
 NAME="RDAP client"
-VERSION="0.9.1.1"
+VERSION="0.9.1.2"
 ZAP_URL="https://github.com/openrdap/rdap"
