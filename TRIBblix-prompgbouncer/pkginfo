@@ -1,4 +1,4 @@
 PKG="TRIBblix-prompgbouncer"
 NAME="Prometheus pgbouncer exporter"
-VERSION="0.11.0.0"
+VERSION="0.11.0.1"
 ZAP_URL="https://github.com/prometheus-community/pgbouncer_exporter"

@@ -12,12 +12,12 @@ cd p1
 #
 git clone https://github.com/prometheus/promu.git
 cd promu
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.24/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.25/bin:$PATH gmake build
 cd ..
 
 $THOME/build/unpack pgbouncer_exporter-0.11.0
 cd pgbouncer_exporter-0.11.0
-env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.24/bin:$PATH gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.25/bin:$PATH gmake build
 
 ${THOME}/build/genpkg TRIBblix-prompgbouncer
 cd ..
