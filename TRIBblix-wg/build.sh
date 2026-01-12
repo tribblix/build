@@ -22,7 +22,7 @@ cd ../../..
 #
 git clone https://github.com/nshalman/wireguard-go
 cd wireguard-go
-env PATH=/usr/versions/go-1.24/bin:$PATH gmake
+env PATH=/usr/versions/go-1.25/bin:$PATH gmake
 cp wireguard-go /tmp/wg123/opt/tribblix/wireguard/bin
 cp README.md /tmp/wg123/opt/tribblix/wireguard/doc
 cd ../..

@@ -1,4 +1,4 @@
 PKG="TRIBblix-wg"
 NAME="wireguard vpn utilities"
-VERSION="1.9"
+VERSION="1.10"
 ZAP_URL="https://github.com/nshalman/wireguard-go"
