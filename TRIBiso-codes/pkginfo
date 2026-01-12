@@ -1,4 +1,4 @@
 PKG="TRIBiso-codes"
 NAME="iso-codes"
-VERSION="4.15.0.0"
+VERSION="4.19.0.0"
 ZAP_URL="https://salsa.debian.org/iso-codes-team/iso-codes"
