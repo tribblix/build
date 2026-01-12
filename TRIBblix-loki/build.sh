@@ -23,19 +23,19 @@ git checkout v3.4.5
 # return errors.New("Unsupported\n")
 #
 cp vendor/github.com/fsouza/fake-gcs-server/internal/backend/time_{linux,solaris}.go
-env PATH=/usr/versions/go-1.24/bin:$PATH gmake loki
+env PATH=/usr/versions/go-1.25/bin:$PATH gmake loki
 ls -l ./cmd/loki/loki
 
 #
 # build logcli too
 #
-env PATH=/usr/versions/go-1.24/bin:$PATH gmake logcli
+env PATH=/usr/versions/go-1.25/bin:$PATH gmake logcli
 ls -l ./cmd/logcli/logcli
 
 #
 # and loki-canary
 #
-env PATH=/usr/versions/go-1.24/bin:$PATH gmake loki-canary
+env PATH=/usr/versions/go-1.25/bin:$PATH gmake loki-canary
 ls -l ./cmd/loki-canary/loki-canary
 
 #
@@ -44,7 +44,7 @@ ls -l ./cmd/loki-canary/loki-canary
 # vendor/github.com/grafana/tail/watch/file_posix.go - build solaris
 # vendor/github.com/grafana/tail/tail_posix.go - build solaris
 #
-env PATH=/usr/versions/go-1.24/bin:$PATH gmake promtail
+env PATH=/usr/versions/go-1.25/bin:$PATH gmake promtail
 ls -l ./clients/cmd/promtail/promtail
 
 rm -fr /tmp/ee
