@@ -4586,3 +4586,4 @@ pyqt5_sip-12.18.0.tar.gz 71c37db75a0664325de149f43e2a712ec5fa1f90429a21dafbca005
 protobuf-6.33.4.tar.gz dc2e61bca3b10470c1912d166fe0af67bfc20eb55971dcef8dfa48ce14f0ed91
 publicsuffixlist-1.0.2.20260114.tar.gz 3cefa4a292841d406a6c5a07bc65504156ecb1be1dd99cd730b98b6332f1d52d
 google_cloud_storage-3.8.0.tar.gz cc67952dce84ebc9d44970e24647a58260630b7b64d72360cedaf422d6727f28
+google_api_python_client-2.188.0.tar.gz 5c469db6614f071009e3e5bb8b6aeeccae3beb3647fa9c6cd97f0d551edde0b6
