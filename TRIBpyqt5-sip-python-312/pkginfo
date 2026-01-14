@@ -1,4 +1,4 @@
 PKG="TRIBpyqt5-sip-python-312"
 NAME="Python pyqt5-sip"
-VERSION="12.17.2.0"
+VERSION="12.18.0.0"
 ZAP_URL="https://pypi.org/project/pyqt5-sip/"
