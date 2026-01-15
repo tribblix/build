@@ -1,4 +1,4 @@
 PKG="TRIBprom-client-python-312"
 NAME="Python prometheus-client"
-VERSION="0.24.0.0"
+VERSION="0.24.1.0"
 ZAP_URL="https://pypi.org/project/prometheus-client/"
