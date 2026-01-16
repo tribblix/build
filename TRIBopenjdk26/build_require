@@ -1,0 +1,14 @@
+TRIBautoconf
+TRIBcups
+TRIBdev-gnu-binutils
+TRIBfile-gnu-coreutils
+TRIBopenjdk25
+TRIBshell-bash
+TRIBx11-lib-toolkit-libxt
+TRIBx11-libice
+TRIBx11-libsm
+TRIBx11-libxext
+TRIBx11-libxi
+TRIBx11-libxrandr
+TRIBx11-libxrender
+TRIBx11-libxtst

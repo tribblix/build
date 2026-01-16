@@ -1,0 +1,4 @@
+PKG="TRIBopenjdk26-src"
+NAME="OpenJDK26 src.zip"
+VERSION="26.31.0"
+ZAP_URL="https://openjdk.org/"

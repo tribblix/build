@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# squirrel away src.zip into its own package
+#
+VERSION="26"
+
+EXTRADIR=/tmp/ptest.$$
+rm -fr $EXTRADIR
+mkdir -p $EXTRADIR
+
+tar cf - usr/versions/*/lib/src.zip | (cd $EXTRADIR ; tar xf -)
+rm -f usr/versions/*/lib/src.zip
+
+$THOME/build/create_pkg TRIBopenjdk${VERSION}-src $EXTRADIR
+
+rm -fr $EXTRADIR
