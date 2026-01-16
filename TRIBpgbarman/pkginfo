@@ -1,4 +1,4 @@
 PKG="TRIBpgbarman"
 NAME="Backup and Recovery for PostgreSQL"
-VERSION="3.16.2.0"
+VERSION="3.17.0.0"
 ZAP_URL="https://www.pgbarman.org/"
