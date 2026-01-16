@@ -9,4 +9,4 @@
 #
 # used by the pandas and scikit-image build
 #
-${THOME}/build/pkg_pep518 TRIBmesonpy-python-312 meson_python-0.18.0
+${THOME}/build/pkg_pep518 TRIBmesonpy-python-312 meson_python-0.19.0
