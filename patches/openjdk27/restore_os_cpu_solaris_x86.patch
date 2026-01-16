@@ -1165,7 +1165,7 @@ diff -urN /tmp/a/prefetch_solaris_x86.inline.hpp b/src/hotspot/os_cpu/solaris_x8
 +#ifndef OS_CPU_SOLARIS_X86_PREFETCH_SOLARIS_X86_INLINE_HPP
 +#define OS_CPU_SOLARIS_X86_PREFETCH_SOLARIS_X86_INLINE_HPP
 +
-+#include "runtime/prefetch.hpp"
++// Included in runtime/prefetch.inline.hpp
 +
 +inline void Prefetch::read (const void *loc, intx interval) {
 +  __asm__ ("prefetcht0 (%0,%1,1)" : : "r" (loc), "r" (interval));
