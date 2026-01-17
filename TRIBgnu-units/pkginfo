@@ -1,4 +1,4 @@
 PKG="TRIBgnu-units"
 NAME="Gnu Units"
-VERSION="2.23.1"
+VERSION="2.24.0"
 ZAP_URL="https://www.gnu.org/software/units/"
