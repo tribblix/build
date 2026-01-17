@@ -1,0 +1,18 @@
+The native compiler on Tribblix, like OpenIndiana, is gcc. Modify GNU make
+to suit. We don't define GCC_IS_NATIVE since this also modifies the native
+lex and yacc defitions and makes the POSIX tests fail.
+
+This patch is taken from OmniOS via OpenIndiana.
+--- a/src/default.c
++++ b/src/default.c
+@@ -529,8 +529,8 @@
+     "CC", "gcc",
+     "OBJC", "gcc",
+ #else
+-    "CC", "cc",
+-    "OBJC", "cc",
++    "CC", "gcc",
++    "OBJC", "gcc",
+ #endif
+ #ifdef MAKE_CXX
+     "CXX", MAKE_CXX,

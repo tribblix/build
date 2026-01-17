@@ -1,0 +1,1 @@
+-p1 make-gcc-default.patch
