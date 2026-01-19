@@ -4630,3 +4630,4 @@ soupsieve-2.8.2.tar.gz 78a66b0fdee2ab40b7199dc3e747ee6c6e231899feeaae0b9b98a353a
 pytokens-0.4.0.tar.gz 6b0b03e6ea7c9f9d47c5c61164b69ad30f4f0d70a5d9fe7eac4d19f24f77af2d
 dill-0.4.1.tar.gz 423092df4182177d4d8ba8290c8a5b640c66ab35ec7da59ccfa00f6fa3eea5fa
 copyparty-1.20.2.tar.gz dbc3beba54e5f2d2c6a6d4d3446a1d14774593a2252d7aadf91b54819f1564f5
+keystonemiddleware-11.0.0.tar.gz 20e9aaf9e3740fdd720e93addd38f37af1931d7ebf6a07693708ea05c34c08a5
