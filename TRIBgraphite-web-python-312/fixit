@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# whitenoise version detection is busted
+# force the default to be what we ship
+#
+sed -i "s: '0'): '6'):" opt/tribblix/graphite/webapp/graphite/wsgi.py
+#
+# this is the search index, we create it so fixproto can set ownership
+#
+touch opt/tribblix/graphite/storage/index

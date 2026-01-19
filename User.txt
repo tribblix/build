@@ -40,3 +40,5 @@
 132 dnsmasq	    TRIBdnsmasq
 133 mysql	    TRIBblix-mariadb
 134 forgejo	    TRIBblix-forgejo
+135 carbon	    TRIBgraphite-web-python-312 (in graphite group)
+136 graphite	    TRIBgraphite-web-python-312
