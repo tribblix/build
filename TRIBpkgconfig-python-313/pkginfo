@@ -1,0 +1,4 @@
+PKG="TRIBpkgconfig-python-313"
+NAME="Python pkgconfig"
+VERSION="1.5.5.0"
+ZAP_URL="https://pypi.org/project/pkgconfig/"
