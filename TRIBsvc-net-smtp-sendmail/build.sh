@@ -21,8 +21,8 @@ gmake -j 6
 gmake install
 cd ../..
 
-${THOME}/build/unpack sendmail.8.18.1
-cd sendmail-8.18.1
+${THOME}/build/unpack sendmail.8.18.2
+cd sendmail-8.18.2
 cp ${THOME}/build/patches/sendmail/site.config.m4 devtools/Site
 sed -i s:chown:true: sendmail/Makefile.m4
 sed -i s:chgrp:true: sendmail/Makefile.m4
