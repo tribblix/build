@@ -1,4 +1,4 @@
 PKG="TRIBfastbencode-python-312"
 NAME="Python fastbencode"
-VERSION="0.3.7.0"
+VERSION="0.3.9.0"
 ZAP_URL="https://pypi.org/project/fastbencode/"
