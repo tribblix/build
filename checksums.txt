@@ -4633,3 +4633,4 @@ copyparty-1.20.2.tar.gz dbc3beba54e5f2d2c6a6d4d3446a1d14774593a2252d7aadf91b5481
 keystonemiddleware-11.0.0.tar.gz 20e9aaf9e3740fdd720e93addd38f37af1931d7ebf6a07693708ea05c34c08a5
 bandit-1.9.3.tar.gz ade4b9b7786f89ef6fc7344a52b34558caec5da74cb90373aed01de88472f774
 sendmail.8.18.2.tar.gz 1a085faa8ace52cffde2f5e9bc611bdb5f81481caaabf46f0437b719ca089d2f
+soupsieve-2.8.3.tar.gz 3267f1eeea4251fb42728b6dfb746edc9acaffc4a45b27e19450b676586e8349
