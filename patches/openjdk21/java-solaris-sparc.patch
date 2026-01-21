@@ -1110,7 +1110,7 @@
      append(new LIR_Op2(lir_throw, exceptionPC, exceptionOop, LIR_OprFact::illegalOpr, info));
 --- old/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.798165911 -0700
 +++ new/src/hotspot/share/cds/classListParser.cpp	2020-05-20 18:00:04.402158309 -0700
-@@ -452,7 +452,7 @@
+@@ -487,7 +487,7 @@
  // This function is used for loading classes for customized class loaders
  // during archive dumping.
  InstanceKlass* ClassListParser::load_class_from_source(Symbol* class_name, TRAPS) {
@@ -1131,7 +1131,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1599,10 +1599,8 @@
+@@ -1601,10 +1601,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1144,7 +1144,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1884,8 +1882,7 @@
+@@ -1886,8 +1884,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1329,7 +1329,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1918,8 +1918,6 @@
+@@ -1919,8 +1919,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1338,7 +1338,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1984,8 +1982,6 @@
+@@ -1985,8 +1983,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -1360,7 +1360,7 @@
  
 --- old/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:50.351040561 -0700
 +++ new/src/java.base/share/classes/sun/nio/ch/Net.java	2020-05-20 18:00:49.963033111 -0700
-@@ -512,7 +512,7 @@
+@@ -522,7 +522,7 @@
      private static native boolean isReusePortAvailable0();
  
      /*
@@ -1730,7 +1730,7 @@
  }
  
  static const char*
-@@ -454,7 +447,7 @@
+@@ -495,7 +488,7 @@
  #endif
  
  /* vfork(2) is deprecated on Darwin */
@@ -1739,7 +1739,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -620,7 +613,7 @@
+@@ -661,7 +654,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/
@@ -1772,7 +1772,7 @@
  
  #if defined(_ALLBSD_SOURCE)
  #define stat64 stat
-@@ -81,7 +76,7 @@
+@@ -80,7 +75,7 @@
  static const char *ETC_ENVIRONMENT_FILE = "/etc/environment";
  #endif
  
@@ -1781,7 +1781,7 @@
  
  /*
   * remove repeated path separators ('/') in the given 'path'.
-@@ -191,13 +186,6 @@
+@@ -190,13 +185,6 @@
           */
          if ((strcmp(dp->d_name, "ROC") == 0)
              || (strcmp(dp->d_name, "posixrules") == 0)
@@ -1795,7 +1795,7 @@
              || (strcmp(dp->d_name, "localtime") == 0)) {
              continue;
          }
-@@ -269,8 +257,6 @@
+@@ -268,8 +256,6 @@
      return possibleMatch;
  }
  
@@ -1804,7 +1804,7 @@
  /*
   * Performs Linux specific mapping and returns a zone ID
   * if found. Otherwise, NULL is returned.
-@@ -382,183 +368,6 @@
+@@ -354,183 +340,6 @@
      return tz;
  }
  
@@ -1988,7 +1988,7 @@
  #elif defined(_AIX)
  
  static char *
-@@ -852,15 +533,6 @@
+@@ -696,15 +505,6 @@
              free((void *) freetz);
          }
  #else
@@ -3137,7 +3137,7 @@
  #else
 --- old/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.943896775 -0700
 +++ new/src/java.base/unix/native/libnio/ch/Net.c	2020-05-20 18:01:34.515888557 -0700
-@@ -215,7 +215,7 @@
+@@ -220,7 +220,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canIPv6SocketJoinIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -3146,7 +3146,7 @@
      /* IPv6 sockets can join IPv4 multicast groups */
      return JNI_TRUE;
  #else
-@@ -227,7 +227,7 @@
+@@ -232,7 +232,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canJoin6WithIPv4Group0(JNIEnv* env, jclass cl)
  {
