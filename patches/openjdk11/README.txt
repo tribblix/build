@@ -3,6 +3,12 @@ https://github.com/TritonDataCenter/pkgsrc-joyent/tree/master/openjdk11
 
 This set of patches for jdk11u
 
+11.0.30
+
+Minor patch noise.
+
+Needed to change LANGSTD_CFLAGS="-std=c99" to gnu99 for us.
+
 11.0.29
 
 Trivial patch noise.
