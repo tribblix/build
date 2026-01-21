@@ -4,6 +4,10 @@ IMPORTANT: note that the build target has changed, from 'all' to
 'product-images', as 'all' tries to build a static image which doesn't
 work.
 
+25.0.2
+
+Minor patch noise.
+
 Cleanup: finish up UnixOperatingSystem.c in jdk.management, and align
 with changes in other platforms.
 

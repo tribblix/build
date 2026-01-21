@@ -169,7 +169,7 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS $LIBDL"
    fi
  
-@@ -150,12 +150,6 @@
+@@ -146,12 +146,6 @@
      BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"
    fi
  
@@ -601,7 +601,7 @@
      LIBS := $(LIBJPEG_LIBS), \
  ))
  
-@@ -264,7 +264,6 @@
+@@ -265,7 +265,6 @@
        LIBS := $(GIFLIB_LIBS) $(LIBJPEG_LIBS) $(LIBZ_LIBS) $(PNG_LIBS) $(ICONV_LIBS), \
        LIBS_unix := $(LIBM) $(LIBPTHREAD), \
        LIBS_linux := $(LIBDL) $(X_LIBS) -lX11 -lXext, \
@@ -609,7 +609,7 @@
        LIBS_macosx := \
            -framework ApplicationServices \
            -framework Cocoa \
-@@ -314,7 +313,7 @@
+@@ -315,7 +314,7 @@
          -DHAVE_SYSCONF -DHAVE_SYS_MMAN_H -DHAVE_UNISTD_H \
          -DHB_NO_PRAGMA_GCC_DIAGNOSTIC
    endif
@@ -837,7 +837,7 @@
  
  # Platform specific setup
  ifeq ($(call isTargetOs, windows), true)
-@@ -82,9 +82,6 @@
+@@ -83,9 +83,6 @@
    BUILD_JDK_JTREG_EXCLUDE += exerevokeall.c
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1056,7 +1056,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1920,8 +1920,6 @@
+@@ -1921,8 +1921,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -1065,7 +1065,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -1986,8 +1984,6 @@
+@@ -1987,8 +1985,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
@@ -2574,16 +2574,16 @@
  #ifdef __linux__
  #include <sys/syscall.h>
  #include <sys/sysmacros.h> // makedev macros
-@@ -350,8 +343,7 @@
- 
-     /* system calls that might not be available at run time */
- 
--#if defined(__solaris__) || defined(_ALLBSD_SOURCE)
+@@ -357,8 +350,7 @@
+     my_openat_func = (openat_func*) dlsym(RTLD_DEFAULT, "open64at");
+     my_fstatat_func = (fstatat_func*) dlsym(RTLD_DEFAULT, "stat64at");
+     my_fdopendir_func = (fdopendir_func*) dlsym(RTLD_DEFAULT, "fdopendir64");
+-#elif defined(__solaris__) || defined(_ALLBSD_SOURCE)
 -    /* Solaris 64-bit does not have openat64/fstatat64 */
-+#if defined(_ALLBSD_SOURCE)
++#elif defined(_ALLBSD_SOURCE)
      my_openat_func = (openat_func*) openat;
      my_fstatat_func = (fstatat_func*) fstatat;
- #else
+     my_fdopendir_func = (fdopendir_func*) fdopendir;
 --- old/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:38.255960369 -0700
 +++ new/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:37.863952843 -0700
 @@ -117,8 +117,6 @@
@@ -2848,7 +2848,7 @@
  #endif
 --- old/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:46.009261282 -0700
 +++ new/src/java.desktop/unix/native/libawt_xawt/awt/awt_GraphicsEnv.c	2020-05-20 18:02:45.625253909 -0700
-@@ -401,12 +401,7 @@
+@@ -404,12 +404,7 @@
              xrenderLibHandle = dlopen("libXrender.so", RTLD_LAZY | RTLD_GLOBAL);
          }
  
