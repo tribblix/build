@@ -12,10 +12,7 @@
 # requires python2, and also requires TRIBopenssl11-compat because
 # hashlib is linked against openssl11
 #
-# the two tweaks you'll need are
-#   ac_add_options --disable-gconf
-#   ac_add_options --disable-pulseaudio
-# because Tribblix does not ship those, and create g-prefixed links for
+# create g-prefixed links for
 #   gnm greadelf
 # somewhere in your path
 #
@@ -27,6 +24,9 @@
 # git checkout release && git submodule update
 #
 # and then the build
+#
+# the mozconfig is fairly standard, it disables anything we don't ship such
+# as pulseaudio (and used to disable gconf, but palemoon no longer uses it)
 #
 # cp $THOME/build/patches/palemoon.mozconfig .mozconfig
 # ./mach build
@@ -44,9 +44,9 @@
 # but I've found that doesn't work
 #
 # This will create a tarball
-#  palemoon-33.9.1.solaris2.11-x86_64-illumos.tar.xz
+#  palemoon-34.0.1.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-33.9.1.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-34.0.1.solaris2.11-x86_64-illumos
