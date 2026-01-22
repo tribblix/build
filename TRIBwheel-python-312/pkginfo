@@ -1,4 +1,4 @@
 PKG="TRIBwheel-python-312"
 NAME="Python wheel"
-VERSION="0.45.1.0"
+VERSION="0.46.2.0"
 ZAP_URL="https://pypi.org/project/wheel/"
