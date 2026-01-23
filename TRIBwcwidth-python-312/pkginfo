@@ -1,4 +1,4 @@
 PKG="TRIBwcwidth-python-312"
 NAME="Python wcwidth"
-VERSION="0.3.0.0"
+VERSION="0.3.1.0"
 ZAP_URL="https://pypi.org/project/wcwidth/"
