@@ -1,4 +1,4 @@
 PKG="TRIBhttplib2-python-312"
 NAME="Python httplib2"
-VERSION="0.31.1.0"
+VERSION="0.31.2.0"
 ZAP_URL="https://pypi.org/project/httplib2/"
