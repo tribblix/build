@@ -2296,7 +2296,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/os_solaris.cpp
 --- /tmp/a/src/hotspot/os/solaris/os_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/os_solaris.cpp	2025-04-19 12:08:38.483600745 +0100
-@@ -0,0 +1,2727 @@
+@@ -0,0 +1,2751 @@
 +/*
 + * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -2533,7 +2533,15 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  return Solaris::available_memory(value);
 +}
 +
++bool os::Machine::available_memory(size_t& value) {
++  return Solaris::available_memory(value);
++}
++
 +bool os::free_memory(physical_memory_size_type& value) {
++  return Solaris::available_memory(value);
++}
++
++bool os::Machine::free_memory(physical_memory_size_type& value) {
 +  return Solaris::available_memory(value);
 +}
 +
@@ -2546,6 +2554,10 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +physical_memory_size_type os::Solaris::_physical_memory = 0;
 +
 +bool os::total_swap_space(physical_memory_size_type& value) {
++  return Machine::total_swap_space(value);
++}
++
++bool os::Machine::total_swap_space(physical_memory_size_type& value) {
 +  struct anoninfo ai;
 +  int ret = swapctl(SC_AINFO, &ai);
 +  if (ret == -1) {
@@ -2556,6 +2568,10 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +}
 +
 +bool os::free_swap_space(physical_memory_size_type& value) {
++  return Machine::free_swap_space(value);
++}
++
++bool os::Machine::free_swap_space(physical_memory_size_type& value) {
 +  struct anoninfo ai;
 +  int ret = swapctl(SC_AINFO, &ai);
 +  if (ret == -1) {
@@ -2566,6 +2582,10 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +}
 +
 +physical_memory_size_type os::physical_memory() {
++  return Solaris::physical_memory();
++}
++
++physical_memory_size_type os::Machine::physical_memory() {
 +  return Solaris::physical_memory();
 +}
 +
@@ -2595,6 +2615,10 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +    return ActiveProcessorCount;
 +  }
 +
++  return Machine::active_processor_count();
++}
++
++int os::Machine::active_processor_count() {
 +  int online_cpus = sysconf(_SC_NPROCESSORS_ONLN);
 +  pid_t pid = getpid();
 +  psetid_t pset = PS_NONE;
