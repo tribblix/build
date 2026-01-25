@@ -1,4 +1,4 @@
 PKG="TRIBstunnel"
 NAME="TLS encrypting proxy"
-VERSION="5.74.0"
+VERSION="5.76.0"
 ZAP_URL="https://www.stunnel.org/"
