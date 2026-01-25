@@ -1,0 +1,3 @@
+PKG="TRIBfail2ban"
+NAME="fail2ban"
+VERSION="1.1.0.0"

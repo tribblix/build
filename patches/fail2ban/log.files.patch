@@ -1,0 +1,11 @@
+--- fail2ban-1.1.0/config/jail.conf.orig
++++ fail2ban-1.1.0/config/jail.conf
+@@ -33,7 +33,7 @@
+ [INCLUDES]
+ 
+ #before = paths-distro.conf
+-before = paths-debian.conf
++before = paths-tribblix.conf
+ 
+ # The DEFAULT allows a global definition of the options. They can be overridden
+ # in each jail afterwards.

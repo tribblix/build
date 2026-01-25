@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fix script run in the install context
+# assumes you're in the directory containing the built software
+# the argument is DESTDIR
+#
+
+case $# in
+1)
+	DESTDIR=$1
+	;;
+*)
+	exit 0
+	;;
+esac
+
+if [ ! -d "${DESTDIR}" ]; then
+   exit 0
+fi
+
+#
+# local package tweaks below
+#
+mkdir -p ${DESTDIR}/lib/svc/method
+mkdir -p ${DESTDIR}/lib/svc/manifest/network
+cp files/solaris-svc-fail2ban ${DESTDIR}/lib/svc/method/svc-fail2ban
+cp files/solaris-fail2ban.xml ${DESTDIR}/lib/svc/manifest/network

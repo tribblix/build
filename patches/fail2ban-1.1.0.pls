@@ -1,0 +1,5 @@
+-p1 fail2ban/dont-use-iptables.patch
+-p1 fail2ban/fix-ipf-path.patch
+-p1 fail2ban/log.files.patch
+-p1 fail2ban/solaris-readme.patch
+-p1 fail2ban/use-correct-paths.patch
