@@ -1,0 +1,4 @@
+PKG="TRIBpyserial-python-312"
+NAME="Python pyserial"
+VERSION="3.5.0"
+ZAP_URL="https://pypi.org/project/pyserial/"
