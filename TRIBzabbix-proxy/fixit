@@ -2,6 +2,10 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
+# delete this, as it's also shipped in the server package
+#
+rm -f opt/tribblix/zabbix/bin/zabbix_js
+#
 # need to put the manifest under var for sparse-root zone support
 #
 mkdir -p var/svc/manifest/network
