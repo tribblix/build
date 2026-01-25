@@ -6,6 +6,6 @@
 #
 # uses the same trick as memcached to build a static libevent
 #
-${THOME}/build/dobuild -64only tor-0.4.8.19 -C "--enable-static-libevent --with-libevent-dir=/tmp/mc --sysconfdir=/etc --localstatedir=/var --disable-dependency-tracking"
-${THOME}/build/genpkg TRIBtor tor-0.4.8.19
+${THOME}/build/dobuild -64only tor-0.4.8.21 -C "--enable-static-libevent --with-libevent-dir=/tmp/mc --sysconfdir=/etc --localstatedir=/var --disable-dependency-tracking"
+${THOME}/build/genpkg TRIBtor tor-0.4.8.21
 rm -fr /tmp/mc
