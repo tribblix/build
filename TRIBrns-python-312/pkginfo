@@ -1,0 +1,4 @@
+PKG="TRIBrns-python-312"
+NAME="Python rns"
+VERSION="1.1.3.0"
+ZAP_URL="https://pypi.org/project/rns/"
