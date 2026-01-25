@@ -1,4 +1,4 @@
 PKG="TRIBmultipart-python-312"
 NAME="Python python-multipart"
-VERSION="0.0.21.0"
+VERSION="0.0.22.0"
 ZAP_URL="https://pypi.org/project/python-multipart/"
