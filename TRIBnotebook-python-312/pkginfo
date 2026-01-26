@@ -1,4 +1,4 @@
 PKG="TRIBnotebook-python-312"
 NAME="Python notebook"
-VERSION="7.5.2.0"
+VERSION="7.5.3.0"
 ZAP_URL="https://pypi.org/project/notebook/"
