@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBpathspec-python-312 pathspec-1.0.3
+${THOME}/build/pkg_pep518 -N TRIBpathspec-python-312 pathspec-1.0.4
