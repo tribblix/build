@@ -1,4 +1,4 @@
 PKG="TRIBx11-libxxf86vm"
 NAME="libXxf86vm"
-VERSION="1.1.6.0"
+VERSION="1.1.7.0"
 ZAP_URL="https://www.x.org/releases/individual/lib/"
