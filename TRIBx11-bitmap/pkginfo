@@ -1,4 +1,4 @@
 PKG="TRIBx11-bitmap"
 NAME="bitmap"
-VERSION="1.1.1.0"
+VERSION="1.1.2.0"
 ZAP_URL="https://www.x.org/releases/individual/app/"
