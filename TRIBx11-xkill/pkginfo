@@ -1,4 +1,4 @@
 PKG="TRIBx11-xkill"
 NAME="xkill"
-VERSION="1.0.6.0"
+VERSION="1.0.7.0"
 ZAP_URL="https://www.x.org/releases/individual/app/"
