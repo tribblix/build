@@ -20,7 +20,7 @@
  #    define XXH_STATIC_ASSERT_WITH_MESSAGE(c,m) do { static_assert((c),m); } while(0)
 --- a/cpp/src/arrow/util/value_parsing.h	Wed Mar 13 13:37:59 2024
 +++ b/cpp/src/arrow/util/value_parsing.h	Mon Apr 22 16:15:57 2024
-@@ -824,7 +824,7 @@
+@@ -833,7 +833,7 @@
    if (!ignore_time_in_day) {
      secs += (std::chrono::hours(result.tm_hour) + std::chrono::minutes(result.tm_min) +
               std::chrono::seconds(result.tm_sec));
@@ -92,7 +92,7 @@
      return result;
 --- a/cpp/src/arrow/compare.cc	Mon Oct 20 15:48:39 2025
 +++ b/cpp/src/arrow/compare.cc	Wed Dec 17 12:11:03 2025
-@@ -111,7 +111,7 @@
+@@ -109,7 +109,7 @@
      Float16 f_x = Float16::FromBits(x);
      Float16 f_y = Float16::FromBits(y);
      if (f_x == f_y) {

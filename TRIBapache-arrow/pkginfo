@@ -1,4 +1,4 @@
 PKG="TRIBapache-arrow"
 NAME="apache-arrow"
-VERSION="22.0.0.0"
+VERSION="23.0.0.0"
 ZAP_URL="https://arrow.apache.org/"
