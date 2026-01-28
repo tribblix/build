@@ -7,4 +7,4 @@
 #
 # needs a patch. just like adbc itself
 #
-${THOME}/build/pkg_setup_py TRIBadbc-manager-python-312 adbc_driver_manager-1.9.0
+${THOME}/build/pkg_pep518 -N TRIBadbc-manager-python-312 adbc_driver_manager-1.10.0
