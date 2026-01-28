@@ -4,7 +4,7 @@
 #
 # just name off the primary version
 #
-VERSION=11.0.15
+VERSION=11.0.18
 cd usr/versions
 ln -s apache-tomcat-${VERSION} tomcat11
 chmod a+x apache-tomcat-${VERSION}/bin/*.sh
