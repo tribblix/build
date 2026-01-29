@@ -9,6 +9,11 @@
 # all of which come from what OI ship as sun-ext-protos
 #
 
+#
+# there's also a patch to add in some of the extra sun changes
+# to print and xinerama
+#
+
 # new merged build
 # we want the pc files to end up in /usr/lib/pkgconfig, whereas
 # the default here was to put them under /usr/share

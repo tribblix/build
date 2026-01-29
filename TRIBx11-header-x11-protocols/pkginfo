@@ -1,4 +1,4 @@
 PKG="TRIBx11-header-x11-protocols"
 NAME="X11 headers and proto files"
-VERSION="2025.1.0"
+VERSION="2025.1.1"
 ZAP_URL="https://xorg.freedesktop.org/releases/individual/proto/"

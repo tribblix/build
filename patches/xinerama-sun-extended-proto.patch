@@ -8,8 +8,8 @@ For more info, see:
  http://blogs.sun.com/alanc/entry/xinerama_protocol_clashes_on_solaris
 
 diff -urp -x '*~' -x '*.orig' panoramiXproto.h panoramiXproto.h
---- a/panoramiXproto.h	2009-08-26 18:39:59.000000000 -0700
-+++ b/panoramiXproto.h	2009-11-02 14:56:50.107356009 -0800
+--- a/include/X11/extensions/panoramiXproto.h	2009-08-26 18:39:59.000000000 -0700
++++ b/include/X11/extensions/panoramiXproto.h	2009-11-02 14:56:50.107356009 -0800
 @@ -190,4 +190,83 @@ typedef struct {
  } xXineramaScreenInfo;
  #define sz_XineramaScreenInfo 8
@@ -93,4 +93,4 @@ diff -urp -x '*~' -x '*.orig' panoramiXproto.h panoramiXproto.h
 +#define sz_xXineramaInfoReq 8
 +#endif /* SUNSOFT & !XORGSERVER */
 +
- #endif 
+ #endif

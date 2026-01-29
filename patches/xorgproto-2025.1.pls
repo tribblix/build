@@ -1,1 +1,2 @@
 -p1 xinerama-sun-extended-proto.patch
+-p1 printproto-6725007.patch
