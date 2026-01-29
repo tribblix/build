@@ -1,4 +1,4 @@
 PKG="TRIBrust"
 NAME="Rust"
-VERSION="1.89.0.0"
+VERSION="1.93.0.0"
 ZAP_URL="https://www.rust-lang.org/"
