@@ -1,4 +1,4 @@
 PKG="TRIBx11-libxrandr"
 NAME="libXrandr"
-VERSION="1.5.4.0"
+VERSION="1.5.5.0"
 ZAP_URL="https://www.x.org/releases/individual/lib/"
