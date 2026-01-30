@@ -1,4 +1,4 @@
 PKG="TRIBautopage-python-312"
 NAME="Python autopage"
-VERSION="0.5.2.0"
+VERSION="0.6.0.0"
 ZAP_URL="https://pypi.org/project/autopage/"
