@@ -1,4 +1,4 @@
 PKG="TRIBpytokens-python-312"
 NAME="Python pytokens"
-VERSION="0.4.0.0"
+VERSION="0.4.1.0"
 ZAP_URL="https://pypi.org/project/pytokens/"
