@@ -1,0 +1,43 @@
+From 44699dcc691ee266d22df1795625599a8e112504 Mon Sep 17 00:00:00 2001
+From: rainerjung <rainer.jung@kippdata.de>
+Date: Wed, 28 Jan 2026 11:15:53 +0100
+Subject: [PATCH] Sparc asm: remove whitespace that breaks asm syntax in
+ generated files
+
+This fixes #29808.
+
+Reviewed-by: Neil Horman <nhorman@openssl.org>
+Reviewed-by: Tomas Mraz <tomas@openssl.org>
+Reviewed-by: Matt Caswell <matt@openssl.org>
+Reviewed-by: Paul Dale <paul.dale@oracle.com>
+MergeDate: Thu Jan 29 14:22:50 2026
+(Merged from https://github.com/openssl/openssl/pull/29817)
+---
+ include/crypto/sparc_arch.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/include/crypto/sparc_arch.h b/include/crypto/sparc_arch.h
+index 8e72c3504f7a7..9d20c6f8a77cb 100644
+--- a/include/crypto/sparc_arch.h
++++ b/include/crypto/sparc_arch.h
+@@ -80,9 +80,9 @@
+ #if defined(__arch64__)
+ 
+ #define SPARC_LOAD_ADDRESS(SYM, reg) \
+-    setx SYM, % o7, reg;
++    setx SYM, %o7, reg;
+ #define LDPTR ldx
+-#define SIZE_T_CC % xcc
++#define SIZE_T_CC %xcc
+ #define STACK_FRAME 192
+ #define STACK_BIAS 2047
+ #define STACK_7thARG (STACK_BIAS + 176)
+@@ -92,7 +92,7 @@
+ #define SPARC_LOAD_ADDRESS(SYM, reg) \
+     set SYM, reg;
+ #define LDPTR ld
+-#define SIZE_T_CC % icc
++#define SIZE_T_CC %icc
+ #define STACK_FRAME 112
+ #define STACK_BIAS 0
+ #define STACK_7thARG 92

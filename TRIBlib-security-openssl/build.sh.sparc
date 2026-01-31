@@ -11,6 +11,11 @@
 # we were seeing in the b2 and aws s3 clients
 #
 
+#
+# there's a patch for sparc that's specific to 3.0.19
+# see https://github.com/openssl/openssl/issues/29808
+#
+
 ${THOME}/build/unpack -64 openssl-3.0.19
 cd openssl-3.0.19
 env __CNF_CFLAGS="-D_REENTRANT" __CNF_LDFLAGS="-z ignore" ./Configure solaris-sparcv9-gcc shared threads zlib --api=1.1.1 --prefix=/usr
