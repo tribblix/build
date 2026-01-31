@@ -3224,19 +3224,6 @@
          sctpHandleSocketError(env, errno);
          return NULL;
      }
---- old/src/jdk.security.auth/unix/native/libjaas/Unix.c	2020-05-20 18:03:43.842371720 -0700
-+++ new/src/jdk.security.auth/unix/native/libjaas/Unix.c	2020-05-20 18:03:43.450364193 -0700
-@@ -32,10 +32,6 @@
- #include <stdlib.h>
- #include <string.h>
- 
--/* For POSIX-compliant getpwuid_r on Solaris */
--#if defined(__solaris__)
--#define _POSIX_PTHREAD_SEMANTICS
--#endif
- #include <pwd.h>
- 
- /*
 --- old/src/java.desktop/solaris/data/fontconfig/fontconfig.properties	2020-05-20 18:08:13.719553558 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
 @@ -1,516 +0,0 @@

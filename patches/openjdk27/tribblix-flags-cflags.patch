@@ -1,6 +1,6 @@
 --- a/make/autoconf/flags-cflags.m4	Wed Nov 26 22:17:19 2025
 +++ b/make/autoconf/flags-cflags.m4	Fri Nov 28 12:46:32 2025
-@@ -302,7 +302,9 @@
+@@ -298,7 +298,9 @@
      C_O_FLAG_NONE="-O0"
  
      if test "x$TOOLCHAIN_TYPE" = xgcc; then
@@ -11,7 +11,7 @@
      else
        C_O_FLAG_LTO="-flto -fno-strict-aliasing"
      fi
-@@ -452,6 +454,9 @@
+@@ -448,6 +450,9 @@
    if test "x$OPENJDK_TARGET_OS" = xlinux; then
      CFLAGS_OS_DEF_JVM="-DLINUX -D_FILE_OFFSET_BITS=64"
      CFLAGS_OS_DEF_JDK="-D_GNU_SOURCE -D_REENTRANT -D_FILE_OFFSET_BITS=64"
@@ -21,7 +21,7 @@
    elif test "x$OPENJDK_TARGET_OS" = xmacosx; then
      CFLAGS_OS_DEF_JVM="-D_ALLBSD_SOURCE -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE"
      CFLAGS_OS_DEF_JDK="-D_ALLBSD_SOURCE -D_DARWIN_UNLIMITED_SELECT"
-@@ -506,6 +511,7 @@
+@@ -502,6 +507,7 @@
  
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE -D_REENTRANT"
@@ -29,7 +29,7 @@
    elif test "x$TOOLCHAIN_TYPE" = xclang; then
      ALWAYS_DEFINES_JVM="-D_GNU_SOURCE"
    elif test "x$TOOLCHAIN_TYPE" = xmicrosoft; then
-@@ -528,8 +534,8 @@
+@@ -524,8 +530,8 @@
    fi
  
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
@@ -40,7 +40,7 @@
      # reduce lib size on linux in link step, this needs also special compile flags
      # do this on s390x also for libjvm (where serviceability agent is not supported)
      if test "x$ENABLE_LINKTIME_GC" = xtrue; then
-@@ -589,7 +595,12 @@
+@@ -585,7 +591,12 @@
  
    # CFLAGS C language level for JDK sources (hotspot only uses C++)
    if test "x$TOOLCHAIN_TYPE" = xgcc || test "x$TOOLCHAIN_TYPE" = xclang; then

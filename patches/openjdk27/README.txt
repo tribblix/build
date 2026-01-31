@@ -1,5 +1,9 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+7
+
+Rework of libjaas, drop hunk entirely.
+
 27+6
 
 Changes for the shuffling associated with containerization and the
