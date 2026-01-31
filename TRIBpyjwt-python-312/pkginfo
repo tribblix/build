@@ -1,4 +1,4 @@
 PKG="TRIBpyjwt-python-312"
 NAME="Python PyJWT"
-VERSION="2.10.1.0"
+VERSION="2.11.0.0"
 ZAP_URL="https://pypi.org/project/PyJWT/"
