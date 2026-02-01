@@ -1,4 +1,4 @@
 PKG="TRIBpoetry-core-python-313"
 NAME="Python poetry-core"
-VERSION="2.3.0.0"
+VERSION="2.3.1.0"
 ZAP_URL="https://pypi.org/project/poetry-core/"
