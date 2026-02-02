@@ -4781,3 +4781,4 @@ Compress-Raw-Lzma-2.217.tar.gz e22addebc155b1be0de8a85ab74cafeed96107d6362fccdcc
 lib4sbom-0.9.4-py3-none-any.whl d9dacf944b29e914c010659c9be527b24a0e227eeab3edf6888d83544a8a0fac
 gunicorn-25.0.1.tar.gz 573e053aa950246e307ea908bd7ddce1870d41a40aec0c935938c586f0b9b946
 google_cloud_storage-3.9.0.tar.gz f2d8ca7db2f652be757e92573b2196e10fbc09649b5c016f8b422ad593c641cc
+narwhals-2.16.0.tar.gz 155bb45132b370941ba0396d123cf9ed192bf25f39c4cea726f2da422ca4e145
