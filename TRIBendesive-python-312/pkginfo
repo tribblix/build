@@ -1,4 +1,4 @@
 PKG="TRIBendesive-python-312"
 NAME="Python endesive"
-VERSION="2.19.2.0"
+VERSION="2.19.3.0"
 ZAP_URL="https://pypi.org/project/endesive/"
