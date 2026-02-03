@@ -1,4 +1,4 @@
 PKG="TRIBproto-plus-python-312"
 NAME="Python proto-plus"
-VERSION="1.27.0.0"
+VERSION="1.27.1.0"
 ZAP_URL="https://pypi.org/project/proto-plus/"
