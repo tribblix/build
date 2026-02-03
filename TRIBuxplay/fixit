@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# we aren't Linux, so ignore the systemd files
+#
+rm -fr usr/share/doc/uxplay/systemd
+#
+# the README files are duplicated
+#
+if [ -f usr/share/doc/uxplay/README.txt ]; then
+    rm -f usr/share/doc/uxplay/README.html
+    rm -f usr/share/doc/uxplay/README.md
+fi

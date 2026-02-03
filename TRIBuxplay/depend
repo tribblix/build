@@ -6,6 +6,7 @@ P TRIBlib-glib2
 P TRIBlib-security-openssl
 P TRIBlibplist
 P TRIBsvc-net-dns-mdns
+P TRIBsys-libdbus
 P TRIBx11-libice
 P TRIBx11-libsm
 P TRIBx11-libx11

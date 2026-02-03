@@ -1,4 +1,4 @@
 PKG="TRIBuxplay"
 NAME="UxPlay AirPlay Unix mirroring server"
-VERSION="1.72.2.0"
+VERSION="1.73.0"
 ZAP_URL="https://github.com/FDH2/UxPlay"
