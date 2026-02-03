@@ -1,4 +1,4 @@
 PKG="TRIBfping"
 NAME="fast parallel ping"
-VERSION="5.2.0"
+VERSION="5.5.0"
 ZAP_URL="http://fping.org/"
