@@ -1,4 +1,4 @@
 PKG="TRIBdjango4-python-312"
 NAME="Django 4 web framework"
-VERSION="4.2.27.0"
+VERSION="4.2.28.0"
 ZAP_URL="https://www.djangoproject.com/"
