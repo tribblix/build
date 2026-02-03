@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 TRIBsend2trash-python-312 Send2Trash-1.8.3
+${THOME}/build/pkg_pep518 -N TRIBsend2trash-python-312 send2trash-2.1.0
