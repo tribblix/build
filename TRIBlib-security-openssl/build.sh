@@ -11,6 +11,10 @@
 # we were seeing in the b2 and aws s3 clients
 #
 
+#
+# there are staged patches for 3.5.5 ready to switch at the next release
+#
+
 ${THOME}/build/unpack -64 openssl-3.0.19
 cd openssl-3.0.19
 env __CNF_CFLAGS="-D_REENTRANT" __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=1.1.1 --prefix=/usr

@@ -12,6 +12,10 @@
 #
 
 #
+# there are staged patches for 3.5.5 ready to switch at the next release
+#
+
+#
 # there's a patch for sparc that's specific to 3.0.19
 # see https://github.com/openssl/openssl/issues/29808
 #
