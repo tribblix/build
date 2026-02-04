@@ -1,11 +1,11 @@
 --- a/src/detection/localip/localip_linux.c	Mon Nov 18 06:57:05 2024
 +++ b/src/detection/localip/localip_linux.c	Wed Nov 20 08:50:25 2024
-@@ -22,7 +22,7 @@
+@@ -30,7 +30,7 @@
  #include <net/if_media.h>
  #include <net/if_dl.h>
- #else
+ #elif !defined(__GNU__)
 -#include <netpacket/packet.h>
 +/* #include <netpacket/packet.h> */
  #endif
- #ifdef __sun
+ #if defined(__sun) || defined(__HAIKU__)
  #include <sys/sockio.h>

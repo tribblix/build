@@ -1,4 +1,4 @@
 PKG="TRIBfastfetch"
 NAME="fastfetch"
-VERSION="2.30.1.0"
+VERSION="2.58.0.0"
 ZAP_URL="https://github.com/fastfetch-cli/fastfetch"
