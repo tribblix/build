@@ -2,7 +2,7 @@ TRIBautoconf
 TRIBcups
 TRIBdev-gnu-binutils
 TRIBfile-gnu-coreutils
-TRIBopenjdk24
+TRIBopenjdk25
 TRIBshell-bash
 TRIBx11-lib-toolkit-libxt
 TRIBx11-libice

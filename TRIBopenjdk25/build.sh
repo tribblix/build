@@ -25,10 +25,11 @@ zap install autoconf
 # the gobjcopy stuff doesn't actually work, so disable it
 # --with-native-debug-symbols=none
 #
-# use jdk24 as the boot jdk
+# use a previous jdk25 as the boot jdk, it's LTS so we don't depend on the
+# unsupported jdk24
 #
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk24 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk25 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-dtrace \
