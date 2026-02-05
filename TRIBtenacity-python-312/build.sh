@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBtenacity-python-312 tenacity-9.1.2
+${THOME}/build/pkg_pep518 -N TRIBtenacity-python-312 tenacity-9.1.3
