@@ -6,6 +6,7 @@
 #
 # There's a preconf patch to disable epoll
 #
+zap uninstall TRIBgnu-gettext
 
 #
 # XPG6 to make _socket and _ssl work
@@ -19,10 +20,10 @@
 # there's a separate build script for sparc
 #
 
-env CURSES_CFLAGS="-DHAVE_NCURSESW -D_XOPEN_SOURCE_EXTENDED" TRIBBLIX_CFLAGS="-D_XOPEN_SOURCE=600 -D__EXTENSIONS__=1 -I/usr/gnu/include -I/usr/gnu/include/ncursesw" TRIBBLIX_LDFLAGS="-L/usr/gnu/lib/`$THOME/build/getarch` -R/usr/gnu/lib/`$THOME/build/getarch`" ${THOME}/build/dobuild +64only Python-3.13.11 -P /usr/versions/python-3.13 -L -C "--enable-shared ac_cv_func_hstrerror=no --enable-optimizations --without-ensurepip"
+env CURSES_CFLAGS="-DHAVE_NCURSESW -D_XOPEN_SOURCE_EXTENDED" TRIBBLIX_CFLAGS="-D_XOPEN_SOURCE=600 -D__EXTENSIONS__=1 -I/usr/gnu/include -I/usr/gnu/include/ncursesw" TRIBBLIX_LDFLAGS="-L/usr/gnu/lib/`$THOME/build/getarch` -R/usr/gnu/lib/`$THOME/build/getarch`" ${THOME}/build/dobuild +64only Python-3.13.12 -P /usr/versions/python-3.13 -L -C "--enable-shared ac_cv_func_hstrerror=no --enable-optimizations --without-ensurepip"
 
 #
 # the tests and tkinter packages will be split out and created as part of
 # the packaging step
 #
-${THOME}/build/genpkg TRIBv-python-313 Python-3.13.11
+${THOME}/build/genpkg TRIBv-python-313 Python-3.13.12

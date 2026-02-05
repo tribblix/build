@@ -1,4 +1,4 @@
 PKG="TRIBv-python-313"
 NAME="Python 3.13"
-VERSION="3.13.11.0"
+VERSION="3.13.12.0"
 ZAP_URL="https://www.python.org/"
