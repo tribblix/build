@@ -1,5 +1,9 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+8
+
+Trivial patch noise.
+
 27+7
 
 Rework of libjaas, drop hunk entirely.

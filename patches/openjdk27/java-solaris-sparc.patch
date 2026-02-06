@@ -513,7 +513,7 @@
    LIBAWT_EXCLUDE_FILES += awt_Font.c CUPSfuncs.c fontpath.c X11Color.c
  endif
  
-@@ -137,7 +137,6 @@
+@@ -141,7 +141,6 @@
      JDK_LIBS := java.base:libjava java.base:libjvm, \
      LIBS_unix := $(LIBM), \
      LIBS_linux := $(LIBDL), \
@@ -521,7 +521,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework ApplicationServices \
-@@ -204,9 +203,8 @@
+@@ -216,9 +215,8 @@
        DISABLED_WARNINGS_gcc_X11SurfaceData.c := unused-function, \
        DISABLED_WARNINGS_clang_X11Renderer.c := unused-function, \
        DISABLED_WARNINGS_clang_X11SurfaceData.c := unused-function, \
@@ -532,7 +532,7 @@
        STATIC_LIB_EXCLUDE_OBJS := $(LIBAWT_HEADLESS_STATIC_EXCLUDE_OBJS), \
    ))
  
-@@ -298,7 +296,7 @@
+@@ -310,7 +308,7 @@
        DISABLED_WARNINGS_clang_aix_sun_awt_X11_GtkFileDialogPeer.c := \
            parentheses, \
        DISABLED_WARNINGS_clang_aix_awt_InputMethod.c := unused-function sign-compare, \
@@ -541,7 +541,7 @@
        LIBS_unix := $(LIBDL) $(LIBM) $(X_LIBS) -lX11 -lXext -lXi -lXrender \
            -lXtst, \
        LIBS_linux := $(LIBPTHREAD), \
-@@ -419,7 +417,7 @@
+@@ -431,7 +429,7 @@
  endif
  
  ifeq ($(call isTargetOsType, unix)+$(call isTargetOs, macosx), true+false)
@@ -550,7 +550,7 @@
    ifeq ($(ENABLE_HEADLESS_ONLY), false)
      LIBJAWT_JDK_LIBS_unix += libawt_xawt
    else
-@@ -439,7 +437,6 @@
+@@ -451,7 +449,6 @@
      LDFLAGS_windows := $(LDFLAGS_CXX_JDK), \
      LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
      JDK_LIBS_unix := $(LIBJAWT_JDK_LIBS_unix), \
@@ -2103,7 +2103,7 @@
  void
  NET_ThrowNew(JNIEnv *env, int errorNumber, char *msg) {
      char fullMsg[512];
-@@ -249,50 +139,6 @@
+@@ -250,50 +140,6 @@
      }
  #endif
  
@@ -2154,7 +2154,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -373,26 +219,6 @@
+@@ -399,26 +245,6 @@
      }
  }
  
@@ -2181,7 +2181,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -634,65 +460,6 @@
+@@ -660,65 +486,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -2247,7 +2247,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -807,20 +574,10 @@
+@@ -833,20 +600,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -2268,7 +2268,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -837,61 +594,8 @@
+@@ -863,61 +620,8 @@
      }
  #endif
  
@@ -2341,7 +2341,7 @@
  #elif defined(AIX) || defined(MACOSX)
  #define SO_REUSEPORT 0x0200
  #else
-@@ -95,8 +93,4 @@
+@@ -96,8 +94,4 @@
          }                                       \
      }
  
