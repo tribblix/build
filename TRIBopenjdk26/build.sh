@@ -6,8 +6,8 @@
 # go to https://github.com/openjdk/jdk/tags
 #
 
-${THOME}/build/unpack jdk-jdk-26-33
-cd jdk-jdk-26-33
+${THOME}/build/unpack jdk-jdk-26-34
+cd jdk-jdk-26-34
 
 #
 # jdk26 needs autoconf installed
@@ -44,7 +44,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-vendor-vm-bug-url=http://www.tribblix.org/feedback.html \
 --with-version-opt=Tribblix \
 --with-jobs=4 \
---with-version-pre=33 \
+--with-version-pre=34 \
 DATE=/usr/gnu/bin/date \
 LOCALE=/bin/true \
 STRIP=/usr/gnu/bin/strip
@@ -56,9 +56,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images
 #
 # ./build/solaris-x86_64-server-release/images/jdk/bin/java -version
 #
-# openjdk version "26-33" 2026-03-17
-# OpenJDK Runtime Environment (build 26-33-Tribblix)
-# OpenJDK 64-Bit Server VM (build 26-33-Tribblix, mixed mode, sharing)
+# openjdk version "26-34" 2026-03-17
+# OpenJDK Runtime Environment (build 26-34-Tribblix)
+# OpenJDK 64-Bit Server VM (build 26-34-Tribblix, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
