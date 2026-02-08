@@ -12,9 +12,9 @@
 .\" Copyright 2016, Joyent, Inc.
 .\" Copyright 2016, OmniTI Computer Consulting, Inc. All Rights Reserved.
 .\" Copyright 2023 OmniOS Community Edition (OmniOSce) Association.
-.\" Copyright 2025 Peter Tribble
+.\" Copyright 2026 Peter Tribble
 .\"
-.Dd October 10, 2025
+.Dd February 8, 2026
 .Dt EMU 7
 .Os Tribblix
 .Sh NAME
@@ -398,7 +398,7 @@ Note that this path is relative to the zone root.
 .El
 .El
 .Sh EXAMPLES
-An example
+Example 1: An example
 .Em emu
 zone is shown below:
 .sp
@@ -438,8 +438,8 @@ add attr
     set value=rpool/emu0
 end
 add fs
-    set dir=/rpool/iso/debian-9.4.0-aarch64-netinst.iso
-    set special=/rpool/iso/debian-9.4.0-aarch64-netinst.iso
+    set dir=/rpool/iso/debian-9.4.0-arm64-netinst.iso
+    set special=/rpool/iso/debian-9.4.0-arm64-netinst.iso
     set type=lofs
     add options ro
     add options nodevices
@@ -447,18 +447,32 @@ end
 add attr
     set name=cdrom
     set type=string
-    set value=/rpool/iso/debian-9.4.0-aarch64-netinst.iso
+    set value=/rpool/iso/debian-9.4.0-arm64-netinst.iso
 end
+.Ed
+.Pp
+Example 2: A similar configuration, this time using the
+.Xr zap 1
+create-zone subcommand.
+.sp
+.Bd -literal -offset indent
+zap create-zone -z emu1 \
+-x 10.0.0.112 \
+-t emu \
+-V 8G \
+-c 8 \
+-M aarch64:cortex-a53 \
+-I /rpool/iso/debian-9.4.0-arm64-netinst.iso
 .Ed
 .sp
 .Sh SEE ALSO
 .Xr mdb 1 ,
 .Xr proc 1 ,
+.Xr zap 1 ,
 .Xr brands 7 ,
 .Xr privileges 7 ,
 .Xr resource_controls 7 ,
 .Xr zones 7 ,
-.Xr dtrace 8 ,
 .Xr zfs 8 ,
 .Xr zoneadm 8 ,
 .Xr zonecfg 8

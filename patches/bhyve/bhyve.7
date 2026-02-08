@@ -11,9 +11,9 @@
 .\" Copyright 2016, Joyent, Inc.
 .\" Copyright 2016, OmniTI Computer Consulting, Inc. All Rights Reserved.
 .\" Copyright 2021 OmniOS Community Edition (OmniOSce) Association.
-.\" Copyright 2024 Peter Tribble
+.\" Copyright 2026 Peter Tribble
 .\"
-.Dd July 31, 2024
+.Dd February 8, 2026
 .Dt BHYVE 7
 .Os Tribblix
 .Sh NAME
@@ -598,15 +598,31 @@ add attr
     set value=websites,/data/websites,ro
 end
 .Ed
+.Pp
+Much of the above complexity can be avoided by using the
+.Xr zap 1
+create-zone subcommand.
+A similar configuration to the above might be.
+.Bd -literal -offset indent
+zap create-zone -z bhyve1 \
+-x 10.0.0.112 \
+-t bhyve \
+-V 8G \
+-m 2G \
+-c 8 \
+-s /data/websites \
+-I /rpool/iso/debian-9.4.0-amd64-netinst.iso
+.sp
+.Ed
 .Sh SEE ALSO
 .Xr mdb 1 ,
 .Xr proc 1 ,
+.Xr zap 1 ,
 .Xr brands 7 ,
 .Xr privileges 7 ,
 .Xr resource_controls 7 ,
 .Xr zones 7 ,
 .Xr bhyve 8 ,
-.Xr dtrace 8 ,
 .Xr zfs 8 ,
 .Xr zoneadm 8 ,
 .Xr zonecfg 8
