@@ -1,0 +1,4 @@
+PKG="TRIBpbr-python-313"
+NAME="Python pbr"
+VERSION="7.0.3.0"
+ZAP_URL="https://pypi.org/project/pbr/"
