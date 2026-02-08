@@ -1,4 +1,4 @@
 PKG="TRIBmaturin-python-312"
 NAME="Python maturin"
-VERSION="1.10.2.0"
+VERSION="1.11.5.0"
 ZAP_URL="https://pypi.org/project/maturin/"
