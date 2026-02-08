@@ -1,0 +1,4 @@
+PKG="TRIBcython-python-313"
+NAME="Python Cython"
+VERSION="3.2.4.0"
+ZAP_URL="https://pypi.org/project/Cython/"
