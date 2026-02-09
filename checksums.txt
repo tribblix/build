@@ -4853,3 +4853,4 @@ python_debian-1.1.0.tar.gz afe3c7267d81c29c79ab44d803a0756d0796b0e41bb0a05c5cafc
 apache_libcloud-3.9.0.tar.gz ace0a87f6d9709c561390f4cb8fcc3b6ddd82af8cddc6f6807fdfeff5aa51a4a
 pypdf-6.7.0.tar.gz eb95e244d9f434e6cfd157272283339ef586e593be64ee699c620f756d5c3f7e
 setuptools-82.0.0.tar.gz 22e0a2d69474c6ae4feb01951cb69d515ed23728cf96d05513d36e42b62b37cb
+glances-4.5.0.1.tar.gz c07321e06c7dbde9a5563cb2bfbdead21a6f970ea553f839c188b970be27ceb3

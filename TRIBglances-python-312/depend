@@ -1,6 +1,5 @@
 P TRIBdefusedxml-python-312
-P TRIBnetifaces-python-312
-P TRIBorjson-python-312
+P TRIBjinja-python-312
 P TRIBpackaging-python-312
 P TRIBprom-client-python-312
 P TRIBpsutil-python-312
