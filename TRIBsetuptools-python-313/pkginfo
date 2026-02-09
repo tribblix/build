@@ -1,4 +1,4 @@
 PKG="TRIBsetuptools-python-313"
 NAME="Python setuptools"
-VERSION="81.0.0.0"
+VERSION="82.0.0.0"
 ZAP_URL="https://pypi.org/project/setuptools/"
