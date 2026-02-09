@@ -1,2 +1,5 @@
+P TRIBbrotli
+P TRIBcompress-zstd
 P TRIBlib-gmp
+P TRIBlib-zlib
 P TRIBnettle

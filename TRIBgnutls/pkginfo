@@ -1,4 +1,4 @@
 PKG="TRIBgnutls"
 NAME="Gnu TLS"
-VERSION="3.6.16.4"
+VERSION="3.8.12.0"
 ZAP_URL="https://www.gnutls.org/"
