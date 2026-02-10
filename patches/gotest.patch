@@ -1,0 +1,13 @@
+See https://github.com/golang/go/issues/77530
+
+--- a/src/cmd/link/dwarf_test.go	Tue Feb 10 01:22:00 2026
++++ b/src/cmd/link/dwarf_test.go	Tue Feb 10 20:56:39 2026
+@@ -426,7 +426,7 @@
+ 		{"-s", false},     // -s implies -w
+ 		{"-s -w=0", true}, // -w=0 negates the implied -w
+ 	}
+-	if testenv.HasCGO() && runtime.GOOS != "solaris" { // Solaris linker doesn't support the -S flag
++	if testenv.HasCGO() && runtime.GOOS != "solaris" && runtime.GOOS != "illumos" { // Solaris linker doesn't support the -S flag
+ 		tests = append(tests,
+ 			testCase{"-w -linkmode=external", false},
+ 			testCase{"-s -linkmode=external", false},
