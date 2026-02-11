@@ -1,0 +1,4 @@
+PKG="TRIBpyinstrument-python-312"
+NAME="Python pyinstrument"
+VERSION="5.1.2.0"
+ZAP_URL="https://pypi.org/project/pyinstrument/"
