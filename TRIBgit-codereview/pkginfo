@@ -1,0 +1,4 @@
+PKG="TRIBgit-codereview"
+NAME="git-codereview"
+VERSION="1.18.0.0"
+ZAP_URL="https://go.dev/doc/contribute#git-codereview_install"
