@@ -9,6 +9,6 @@
 #
 # separate build script for sparc as it needs to retain 32-bit
 #
-${THOME}/build/dobuild -64only libfontenc-1.1.8
+${THOME}/build/dobuild -64only libfontenc-1.1.9
 ${THOME}/build/dobuild encodings-1.1.0 -C "--disable-gzip-small-encodings --disable-gzip-large-encodings"
-${THOME}/build/genpkg TRIBx11-libfontenc libfontenc-1.1.8 encodings-1.1.0
+${THOME}/build/genpkg TRIBx11-libfontenc libfontenc-1.1.9 encodings-1.1.0

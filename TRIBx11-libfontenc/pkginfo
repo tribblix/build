@@ -1,4 +1,4 @@
 PKG="TRIBx11-libfontenc"
 NAME="libfontenc"
-VERSION="1.1.8.1"
+VERSION="1.1.9.0"
 ZAP_URL="https://www.x.org/releases/individual/lib/"
