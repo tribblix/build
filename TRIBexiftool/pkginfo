@@ -1,4 +1,4 @@
 PKG="TRIBexiftool"
 NAME="ExifTool"
-VERSION="13.44.0"
+VERSION="13.50.0"
 ZAP_URL="https://exiftool.org/"

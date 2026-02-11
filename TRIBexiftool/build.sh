@@ -6,8 +6,8 @@
 # Archive::Zip we already had, Compress::Raw:Lzma and POSIX::strptime were easy
 # others send you down the rabbit hole
 #
-${THOME}/build/unpack Image-ExifTool-13.44
-cd Image-ExifTool-13.44
+${THOME}/build/unpack Image-ExifTool-13.50
+cd Image-ExifTool-13.50
 perl Makefile.PL
 make
 ${THOME}/build/genpkg TRIBexiftool
