@@ -1,4 +1,4 @@
 PKG="TRIBpillow-python-312"
 NAME="Python pillow"
-VERSION="12.1.0.0"
+VERSION="12.1.1.0"
 ZAP_URL="https://pypi.org/project/pillow/"
