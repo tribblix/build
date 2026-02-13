@@ -1,6 +1,6 @@
 --- /dev/null	Sun May 15 10:42:57 2022
 +++ a/src/java.base/solaris/classes/sun/nio/ch/DefaultPollerProvider.java	Sun May 15 10:17:39 2022
-@@ -0,0 +1,44 @@
+@@ -0,0 +1,57 @@
 +/*
 + * Copyright (c) 2022, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,21 +33,34 @@
 + * Default PollerProvider for illumos/Solaris.
 + */
 +class DefaultPollerProvider extends PollerProvider {
-+    DefaultPollerProvider() { }
++    DefaultPollerProvider(Poller.Mode mode) {
++        if (mode != Poller.Mode.SYSTEM_THREADS) {
++            throw new UnsupportedOperationException();
++        }
++        super(mode);
++    }
++
++    DefaultPollerProvider() {
++        this(Poller.Mode.SYSTEM_THREADS);
++    }
 +
 +    @Override
 +    Poller readPoller(boolean subPoller) throws IOException {
++        if (subPoller)
++            throw new UnsupportedOperationException();
 +        return new SolarisEventPortPoller(subPoller, true);
 +    }
 +
 +    @Override
 +    Poller writePoller(boolean subPoller) throws IOException {
++        if (subPoller)
++            throw new UnsupportedOperationException();
 +        return new SolarisEventPortPoller(subPoller, false);
 +    }
 +}
 --- /dev/null
 +++ a/src/java.base/solaris/classes/sun/nio/ch/SolarisEventPortPoller.java
-@@ -0,0 +1,105 @@
+@@ -0,0 +1,110 @@
 +/*
 +* Copyright (c) 2008, 2020, Oracle and/or its affiliates. All rights reserved.
 +* DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -108,12 +121,17 @@
 +    }
 +    
 +    @Override
++    void close() {
++        pollArray.free();
++    }
++
++    @Override
 +    int fdVal() {
 +        return epid;
 +    }
 +
 +    @Override
-+    void implRegister(int fdVal) throws IOException {
++    void implStartPoll(int fdVal) throws IOException {
 +        boolean result = SolarisEventPort.port_associate(epid, PORT_SOURCE_FD, fdVal, event);
 +        // 'SolarisEventPort.c' will already throw an IOException if the native 'port_associate' method returns
 +        // an error code which is not 'EBADFD'.
@@ -123,7 +141,7 @@
 +    }
 +
 +    @Override
-+    void implDeregister(int fdVal, boolean polled) {
++    void implStopPoll(int fdVal, boolean polled) {
 +        // event is disabled if already polled
 +        if (!polled) {
 +            try{

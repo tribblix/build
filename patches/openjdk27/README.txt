@@ -1,5 +1,11 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+9
+
+PollerProvider rework. This may need to be redone; I've taken the
+simplistic implementation from aix, which isn't specialised for
+virtual threads.
+
 27+8
 
 Trivial patch noise.
