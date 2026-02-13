@@ -1,4 +1,4 @@
 PKG="TRIBblix-php-84intl"
 NAME="PHP8.4 intl module"
-VERSION="8.4.17.0"
+VERSION="8.4.18.0"
 ZAP_URL="https://www.php.net/"
