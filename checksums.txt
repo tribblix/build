@@ -4884,3 +4884,4 @@ postgresql-17.8.tar.bz2 a88d195dd93730452d0cfa1a11896720d6d1ba084bc2be7d7fc557fa
 fastapi-0.129.0.tar.gz 61315cebd2e65df5f97ec298c888f9de30430dd0612d59d6480beafbc10655af
 fastapi_cli-0.0.21.tar.gz 457134b8f3e08d2d203a18db923a18bbc1a01d9de36fbe1fa7905c4d02a0e5c0
 filelock-3.21.2.tar.gz cfd218cfccf8b947fce7837da312ec3359d10ef2a47c8602edd59e0bacffb708
+google_api_python_client-2.190.0.tar.gz 5357f34552e3724d80d2604c8fa146766e0a9d6bb0afada886fafed9feafeef6
