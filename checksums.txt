@@ -4885,3 +4885,4 @@ fastapi-0.129.0.tar.gz 61315cebd2e65df5f97ec298c888f9de30430dd0612d59d6480beafbc
 fastapi_cli-0.0.21.tar.gz 457134b8f3e08d2d203a18db923a18bbc1a01d9de36fbe1fa7905c4d02a0e5c0
 filelock-3.21.2.tar.gz cfd218cfccf8b947fce7837da312ec3359d10ef2a47c8602edd59e0bacffb708
 google_api_python_client-2.190.0.tar.gz 5357f34552e3724d80d2604c8fa146766e0a9d6bb0afada886fafed9feafeef6
+platformdirs-4.7.0.tar.gz fd1a5f8599c85d49b9ac7d6e450bc2f1aaf4a23f1fe86d09952fe20ad365cf36
