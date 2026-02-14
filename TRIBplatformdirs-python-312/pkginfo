@@ -1,4 +1,4 @@
 PKG="TRIBplatformdirs-python-312"
 NAME="Python platformdirs"
-VERSION="4.7.0.0"
+VERSION="4.8.0.0"
 ZAP_URL="https://pypi.org/project/platformdirs/"
