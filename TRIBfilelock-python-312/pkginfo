@@ -1,4 +1,4 @@
 PKG="TRIBfilelock-python-312"
 NAME="Python filelock"
-VERSION="3.21.2.0"
+VERSION="3.23.0.0"
 ZAP_URL="https://pypi.org/project/filelock/"
