@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBplatformdirs-python-313 platformdirs-4.8.0
+${THOME}/build/pkg_pep518 -N TRIBplatformdirs-python-313 platformdirs-4.9.1
