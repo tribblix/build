@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: CDDL-1.0
 #
 # this builds static versions of mpc/mpfr
-# gmpy2 v2.2 needs newer versions than 2.1 did
+# gmpy2 v2.2 and later need newer versions than 2.1 did
 #
 GMPY2DIR=/tmp/.gmpy22static
 $THOME/build/dobuild +64only -P ${GMPY2DIR} -C "--enable-static --disable-shared --with-pic" mpfr-4.2.1
