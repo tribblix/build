@@ -1,0 +1,4 @@
+PKG="TRIBpycparser-python-313"
+NAME="Python pycparser"
+VERSION="3.0.0"
+ZAP_URL="https://pypi.org/project/pycparser/"
