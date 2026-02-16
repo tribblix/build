@@ -1,4 +1,4 @@
 PKG="TRIBtor"
 NAME="Tor"
-VERSION="0.4.8.21.0"
+VERSION="0.4.8.22.0"
 ZAP_URL="https://www.torproject.org/"
