@@ -1,4 +1,4 @@
 PKG="TRIBoqs-provider"
 NAME="oqs-provider"
-VERSION="0.10.0.1"
+VERSION="0.11.0.0"
 ZAP_URL="https://github.com/open-quantum-safe/oqs-provider"
