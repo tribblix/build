@@ -1,4 +1,4 @@
 PKG="TRIBosmnx-python-312"
 NAME="Python osmnx"
-VERSION="2.0.7.0"
+VERSION="2.1.0.0"
 ZAP_URL="https://pypi.org/project/osmnx/"
