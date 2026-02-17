@@ -4929,3 +4929,4 @@ oslo_serialization-5.9.1.tar.gz 086ab78a15f33f02e647bdb3ca36632480d94cf661cf1fb1
 oslo_i18n-6.7.2.tar.gz b1241ad3eee216e9dc9acb4336fce0bd79c4c286751ee70dfa42ff2f9763d34f
 oslo_limit-2.10.0.tar.gz 9968ad38592cc0d591fec67e9acdfea39a6fb875bff4ad07cce5502f8a278447
 oslo_context-6.3.0.tar.gz e504f8df02c5cce7fc984f867fbdfaaa1d4d4b9b88978e291f6e5cb89df5a3e0
+oslo_config-10.3.0.tar.gz c405a40a8b05aa97bb5c24bb0b849981a7a5b7d56304df40632722312c58eaca

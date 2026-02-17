@@ -1,4 +1,4 @@
 PKG="TRIBoslo-config-python-312"
 NAME="Python oslo.config"
-VERSION="10.2.0.0"
+VERSION="10.3.0.0"
 ZAP_URL="https://pypi.org/project/oslo.config/"
