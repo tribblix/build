@@ -4931,3 +4931,4 @@ oslo_limit-2.10.0.tar.gz 9968ad38592cc0d591fec67e9acdfea39a6fb875bff4ad07cce5502
 oslo_context-6.3.0.tar.gz e504f8df02c5cce7fc984f867fbdfaaa1d4d4b9b88978e291f6e5cb89df5a3e0
 oslo_config-10.3.0.tar.gz c405a40a8b05aa97bb5c24bb0b849981a7a5b7d56304df40632722312c58eaca
 oslo_cache-4.1.0.tar.gz 5896fd4b56846ef31ef6ae50b66f33bdfdb7ade86d42e6224f0b4ca839fb2ecd
+osc_lib-4.4.0.tar.gz 6a615d744f03fba513d92eb4760a9cd5baa96e3d8530611fe53b217062bf317e
