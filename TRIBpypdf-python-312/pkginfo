@@ -1,4 +1,4 @@
 PKG="TRIBpypdf-python-312"
 NAME="Python pypdf"
-VERSION="6.7.0.0"
+VERSION="6.7.1.0"
 ZAP_URL="https://pypi.org/project/pypdf/"
