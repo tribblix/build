@@ -1,4 +1,4 @@
 PKG="TRIBoslo-upgcheck-python-312"
 NAME="Python oslo.upgradecheck"
-VERSION="2.7.0.0"
+VERSION="2.7.1.0"
 ZAP_URL="https://pypi.org/project/oslo.upgradecheck/"
