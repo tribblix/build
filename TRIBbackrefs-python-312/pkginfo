@@ -1,4 +1,4 @@
 PKG="TRIBbackrefs-python-312"
 NAME="Python backrefs"
-VERSION="6.1.0"
+VERSION="6.2.0"
 ZAP_URL="https://pypi.org/project/backrefs/"
