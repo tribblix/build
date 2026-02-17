@@ -1,4 +1,4 @@
 PKG="TRIBcliff-python-312"
 NAME="Python cliff"
-VERSION="4.13.1.0"
+VERSION="4.13.2.0"
 ZAP_URL="https://pypi.org/project/cliff/"
