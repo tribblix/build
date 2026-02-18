@@ -4938,3 +4938,4 @@ oslo_middleware-8.0.0.tar.gz 38ca82fcb39736c75e69abcacec5ea9577be9731d73fefb9ea3
 openstacksdk-4.10.0.tar.gz 5dde9ae3f1e2411a87ff57b2d78da53fac8eae9e5bac8e5870927cb62ddfc033
 python_openstackclient-9.0.0.tar.gz 8cdca0a274ef5e423f31a07c7117432e4ce5b72d95e3eba5b06e1c831eb3018e
 keystonemiddleware-12.0.0.tar.gz 234ff0b5d35541ac1113396339e2d6e26b1f7a1d7867bca223f488073e207cd4
+glances-4.5.0.5.tar.gz 64b407e725103bb748962975dbbd0b7738b45d5d67d878ce939d6764d79271a5
