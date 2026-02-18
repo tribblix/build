@@ -22,7 +22,7 @@ cd opt/tribblix
 #
 # Normalize the directory name
 #
-VERSION="6.2.0"
+VERSION="6.2.1"
 mv apache-activemq-${VERSION} activemq
 
 #
