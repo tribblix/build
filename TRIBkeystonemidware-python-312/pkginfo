@@ -1,4 +1,4 @@
 PKG="TRIBkeystonemidware-python-312"
 NAME="Python keystonemiddleware"
-VERSION="11.0.0.0"
+VERSION="12.0.0.0"
 ZAP_URL="https://pypi.org/project/keystonemiddleware/"
