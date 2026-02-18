@@ -3,18 +3,10 @@
 # SPDX-License-Identifier: CDDL-1.0
 #
 VERSION=9.4.14.0
-#
-# make default
-#
-mkdir -p usr/bin
-ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
-ln -s ../../usr/versions/jruby-${VERSION}/bin/jrubyc usr/bin/
-ln -s ../../usr/versions/jruby-${VERSION}/bin/jgem usr/bin/
-ln -s ../../usr/versions/jruby-${VERSION}/bin/jirb usr/bin/
 
 cd usr/versions/jruby-${VERSION}
 rm -f bin/*.bat
-rm -f bin/jruby.sh bin/jruby.bash bin/jruby200.sh
+rm -f bin/jruby.bash bin/jruby200.sh
 rm -f bin/*.exe
 rm -f bin/*.dll
 rm -fr lib/ruby/stdlib/ffi/platform/*linux
@@ -34,3 +26,23 @@ rm -fr lib/jni/*BSD
 rm -fr lib/jni/*AIX
 rm -fr lib/jni/Darwin
 rm -fr lib/jni/i386-SunOS
+
+cd ../../..
+#
+# bashisms
+#
+sed -i s:/bin/sh:/bin/bash: usr/versions/jruby-${VERSION}/bin/jruby
+sed -i s:/bin/sh:/bin/bash: usr/versions/jruby-${VERSION}/bin/ruby
+sed -i 's:set -u:set -u \nPAGER=less:' usr/versions/jruby-${VERSION}/bin/jruby.sh
+#
+# make default on sparc
+#
+case `uname -p` in
+sparc)
+    mkdir -p usr/bin
+    ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
+    ln -s ../../usr/versions/jruby-${VERSION}/bin/jrubyc usr/bin/
+    ln -s ../../usr/versions/jruby-${VERSION}/bin/jgem usr/bin/
+    ln -s ../../usr/versions/jruby-${VERSION}/bin/jirb usr/bin/
+    ;;
+esac

@@ -4,4 +4,4 @@
 #
 # not available on sparc due to jdk21 requirement
 #
-${THOME}/build/pkg_tarball TRIBv-jruby-10 jruby-dist-10.0.2.0-bin
+${THOME}/build/pkg_tarball TRIBv-jruby-10 jruby-dist-10.0.3.0-bin

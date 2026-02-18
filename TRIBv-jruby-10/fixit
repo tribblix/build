@@ -2,11 +2,10 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-VERSION=10.0.2.0
+VERSION=10.0.3.0
 
 cd usr/versions/jruby-${VERSION}
 rm -f bin/*.bat
-rm -f bin/jruby.sh
 rm -f bin/*.exe
 rm -f bin/*.dll
 rm -fr lib/ruby/stdlib/ffi/platform/*linux
@@ -30,10 +29,16 @@ rm -fr lib/jni/i386-SunOS
 rm -fr lib/ruby/stdlib/ffi/platform/sparc*
 rm -fr lib/jni/sparc*
 
+cd ../../..
 #
-# don't make default yet
+# bashisms
 #
-exit 0
+sed -i s:/bin/sh:/bin/bash: usr/versions/jruby-${VERSION}/bin/jruby
+sed -i s:/bin/sh:/bin/bash: usr/versions/jruby-${VERSION}/bin/ruby
+sed -i 's:set -u:set -u \nPAGER=less:' usr/versions/jruby-${VERSION}/bin/jruby.sh
+#
+# make default (but sparc still defaults to 9.x)
+#
 mkdir -p usr/bin
 ln -s ../../usr/versions/jruby-${VERSION}/bin/jruby usr/bin/
 ln -s ../../usr/versions/jruby-${VERSION}/bin/jrubyc usr/bin/
