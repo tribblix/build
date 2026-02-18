@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBoslo-policy-python-312 oslo_policy-4.8.0
+${THOME}/build/pkg_pep518 -N TRIBoslo-policy-python-312 oslo_policy-5.0.0
