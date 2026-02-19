@@ -1,4 +1,4 @@
 PKG="TRIBfpdf2-python-312"
 NAME="Python fpdf2"
-VERSION="2.8.5.0"
+VERSION="2.8.6.0"
 ZAP_URL="https://pypi.org/project/fpdf2/"
