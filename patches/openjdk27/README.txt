@@ -1,5 +1,9 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+10
+
+os::remove_stack_guard_pages() now returns void not bool
+
 27+9
 
 PollerProvider rework. This may need to be redone; I've taken the

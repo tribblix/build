@@ -3741,8 +3741,8 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +  return os::commit_memory(addr, size, !ExecMem);
 +}
 +
-+bool os::remove_stack_guard_pages(char* addr, size_t size) {
-+  return os::uncommit_memory(addr, size);
++void os::remove_stack_guard_pages(char* addr, size_t size) {
++  os::uncommit_memory(addr, size);
 +}
 +
 +// Change the page size in a given range.

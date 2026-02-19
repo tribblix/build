@@ -179,8 +179,8 @@ suite. It would be nice to be complete, but that isn't true yet.
    CommittedVirtualMemoryTest::test_committed_in_range(2, 1);
 --- a/test/hotspot/gtest/runtime/test_os.cpp	Tue Jun 10 15:58:34 2025
 +++ b/test/hotspot/gtest/runtime/test_os.cpp	Tue Jun 10 15:54:10 2025
-@@ -1139,7 +1139,7 @@
-   EXPECT_TRUE(os::release_memory(base, size));
+@@ -1164,7 +1164,7 @@
+   os::release_memory(base, size);
  }
  
 -#if !defined(_AIX)
