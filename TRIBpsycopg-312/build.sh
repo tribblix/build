@@ -14,4 +14,4 @@
 # note that python already links with -R (for ncurses) so will ignore
 # LD_RUN_PATH, hence LDFLAGS so it can find libpq at runtime
 #
-env LDFLAGS=-R/opt/tribblix/postgres17/lib PATH=/opt/tribblix/postgres17/bin:$PATH $THOME/build/pkg_pep518 -N TRIBpsycopg-312 psycopg-3.3.2 psycopg_pool-3.3.0 psycopg_c-3.3.2
+env LDFLAGS=-R/opt/tribblix/postgres17/lib PATH=/opt/tribblix/postgres17/bin:$PATH $THOME/build/pkg_pep518 -N TRIBpsycopg-312 psycopg-3.3.3 psycopg_pool-3.3.0 psycopg_c-3.3.3
