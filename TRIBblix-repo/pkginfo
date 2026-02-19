@@ -1,4 +1,0 @@
-PKG="TRIBblix-repo"
-NAME="Tribblix nginx repo server"
-VERSION="0.36.1"
-ZAP_URL="https://pkgs.tribblix.org/"
