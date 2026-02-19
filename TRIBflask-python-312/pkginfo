@@ -1,4 +1,4 @@
 PKG="TRIBflask-python-312"
-NAME="Python flask"
-VERSION="3.1.2.0"
-ZAP_URL="https://pypi.org/project/flask/"
+NAME="Python Flask"
+VERSION="3.1.3.0"
+ZAP_URL="https://pypi.org/project/Flask/"
