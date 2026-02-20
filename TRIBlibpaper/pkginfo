@@ -1,4 +1,4 @@
 PKG="TRIBlibpaper"
 NAME="libpaper"
-VERSION="2.2.5.0"
+VERSION="2.2.7.0"
 ZAP_URL="https://github.com/rrthomas/libpaper"
