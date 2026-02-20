@@ -1,4 +1,4 @@
 PKG="TRIBsocat"
 NAME="socat - Multipurpose relay"
-VERSION="1.8.1.0.0"
+VERSION="1.8.1.1.0"
 ZAP_URL="http://www.dest-unreach.org/socat/"
