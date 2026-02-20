@@ -1,4 +1,4 @@
 PKG="TRIBgnumeric"
 NAME="Gnumeric spreadsheet"
-VERSION="1.12.59.0"
+VERSION="1.12.60.0"
 ZAP_URL="http://www.gnumeric.org/"

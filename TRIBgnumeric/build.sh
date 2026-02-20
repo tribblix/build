@@ -2,5 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/dobuild -64only +gnu gnumeric-1.12.59
-${THOME}/build/genpkg TRIBgnumeric gnumeric-1.12.59
+# needs a patch to ensure bool is defined
+#
+${THOME}/build/dobuild -64only +gnu gnumeric-1.12.60
+${THOME}/build/genpkg TRIBgnumeric gnumeric-1.12.60
