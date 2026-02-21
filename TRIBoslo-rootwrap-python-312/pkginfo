@@ -1,4 +1,4 @@
 PKG="TRIBoslo-rootwrap-python-312"
 NAME="Python oslo.rootwrap"
-VERSION="7.8.0.0"
+VERSION="7.9.0.0"
 ZAP_URL="https://pypi.org/project/oslo.rootwrap/"
