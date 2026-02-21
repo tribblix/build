@@ -1,0 +1,5 @@
+-p1 neovim/libuv.patch
+-p1 neovim/link-gcc_s.patch
+-p1 neovim/illumos-support.patch
+-p1 neovim/illumos-luajit-umem-workaround.patch
+-p1 neovim/use-system-default-tty-modes.patch
