@@ -1,4 +1,4 @@
 PKG="TRIBkeystoneauth1-python-312"
 NAME="Python keystoneauth1"
-VERSION="5.13.0.0"
+VERSION="5.13.1.0"
 ZAP_URL="https://pypi.org/project/keystoneauth1/"
