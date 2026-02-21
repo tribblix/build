@@ -1,4 +1,4 @@
 PKG="TRIBpipdeptree-python-313"
 NAME="Python pipdeptree"
-VERSION="2.30.0.0"
+VERSION="2.31.0.0"
 ZAP_URL="https://pypi.org/project/pipdeptree/"

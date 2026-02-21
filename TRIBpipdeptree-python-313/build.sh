@@ -9,4 +9,4 @@
 # because it would pull in graphviz and most of the desktop stack which
 # would not be what's wanted by default
 #
-${THOME}/build/pkg_pep518 -N TRIBpipdeptree-python-313 pipdeptree-2.30.0
+${THOME}/build/pkg_pep518 -N TRIBpipdeptree-python-313 pipdeptree-2.31.0
