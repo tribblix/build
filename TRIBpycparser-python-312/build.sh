@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBpycparser-python-312 pycparser-2.23
+${THOME}/build/pkg_pep518 -N TRIBpycparser-python-312 pycparser-3.0
