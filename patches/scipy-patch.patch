@@ -3,7 +3,7 @@ conflicts with termios.
 
 --- scipy-1.16.0/scipy/ndimage/src/_rank_filter_1d.cpp~	Sun Jun 22 02:57:22 2025
 +++ scipy-1.16.0/scipy/ndimage/src/_rank_filter_1d.cpp	Wed Jul 23 10:06:37 2025
-@@ -19,11 +19,11 @@
+@@ -49,11 +49,11 @@
  };
  
  typedef enum {
@@ -20,7 +20,7 @@ conflicts with termios.
  } Mode;
  
  /*--- Helper Functions ---*/
-@@ -159,13 +159,13 @@
+@@ -172,13 +172,13 @@
    /* in _filters.py ensures that this function isn't called otherwise. xref gh-23293 for details. */
    if (lim2 < 0 && arr_len == 1) {
        switch (mode) {
@@ -33,38 +33,38 @@ conflicts with termios.
 +          case SP_WRAP:
 +          case SP_MIRROR:
                out_arr[0] = in_arr[0];
-               return;
+               return 0;
 -          case CONSTANT:
 +          case SP_CONSTANT:
                if (win_len == 1) {
                    out_arr[0] = in_arr[0];
                }
-@@ -180,27 +180,27 @@
-   T *data = new T[win_len]();
+@@ -199,27 +199,27 @@
+   }
  
    switch (mode) {
 -  case REFLECT:
 +  case SP_REFLECT:
      for (i = win_len - lim - 1; i > -1; i--) {
-       MediatorInsert(data, m, in_arr[i]);
+       MediatorInsert(data.get(), m.get(), in_arr[i]);
      }
      break;
 -  case CONSTANT:
 +  case SP_CONSTANT:
      for (i = win_len - lim; i > 0; i--) {
-       MediatorInsert(data, m, cval);
+       MediatorInsert(data.get(), m.get(), cval);
      }
      break;
 -  case NEAREST:
 +  case SP_NEAREST:
      for (i = win_len - lim; i > 0; i--) {
-       MediatorInsert(data, m, in_arr[0]);
+       MediatorInsert(data.get(), m.get(), in_arr[0]);
      }
      break;
 -  case MIRROR:
 +  case SP_MIRROR:
      for (i = win_len - lim; i > 0; i--) {
-       MediatorInsert(data, m, in_arr[i]);
+       MediatorInsert(data.get(), m.get(), in_arr[i]);
      }
      break;
 -  case WRAP:
@@ -72,7 +72,7 @@ conflicts with termios.
      if (win_len % 2 == 0) {
          offset = 2;
      }
-@@ -221,7 +221,7 @@
+@@ -240,34 +240,34 @@
      out_arr[i - lim] = data[m->heap[0]];
    }
    switch (mode) {
@@ -80,15 +80,14 @@ conflicts with termios.
 +  case SP_REFLECT:
      arr_len_thresh = arr_len - 1;
      for (i = 0; i < lim; i++) {
-       MediatorInsert(data, m, in_arr[arr_len_thresh - i]);
-@@ -228,13 +228,13 @@
+       MediatorInsert(data.get(), m.get(), in_arr[arr_len_thresh - i]);
        out_arr[lim2 + i] = data[m->heap[0]];
      }
      break;
 -  case CONSTANT:
 +  case SP_CONSTANT:
      for (i = 0; i < lim; i++) {
-       MediatorInsert(data, m, cval);
+       MediatorInsert(data.get(), m.get(), cval);
        out_arr[lim2 + i] = data[m->heap[0]];
      }
      break;
@@ -96,8 +95,7 @@ conflicts with termios.
 +  case SP_NEAREST:
      arr_len_thresh = arr_len - 1;
      for (i = 0; i < lim; i++) {
-       MediatorInsert(data, m, in_arr[arr_len_thresh]);
-@@ -241,7 +241,7 @@
+       MediatorInsert(data.get(), m.get(), in_arr[arr_len_thresh]);
        out_arr[lim2 + i] = data[m->heap[0]];
      }
      break;
@@ -105,13 +103,12 @@ conflicts with termios.
 +  case SP_MIRROR:
      arr_len_thresh = arr_len - 2;
      for (i = 0; i < lim; i++) {
-       MediatorInsert(data, m, in_arr[arr_len_thresh - i]);
-@@ -248,7 +248,7 @@
+       MediatorInsert(data.get(), m.get(), in_arr[arr_len_thresh - i]);
        out_arr[lim2 + i] = data[m->heap[0]];
      }
      break;
 -  case WRAP:
 +  case SP_WRAP:
      for (i = 0; i < lim; i++) {
-       MediatorInsert(data, m, in_arr[i]);
+       MediatorInsert(data.get(), m.get(), in_arr[i]);
        out_arr[lim2 + i] = data[m->heap[0]];
