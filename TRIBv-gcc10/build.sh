@@ -37,7 +37,7 @@ cd build
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
 ../configure --prefix=/usr/versions/gcc-10 --enable-languages=c,c++,objc \
   --with-pkgversion="illumos/Tribblix 10.3.0" \
-  --with-bugurl="http://www.tribblix.org/feedback.html" \
+  --with-bugurl="https://www.tribblix.org/feedback.html" \
   --with-slibdir=/usr/lib \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/gnu/bin/as --with-gnu-as \
@@ -52,7 +52,7 @@ env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
 ../configure --prefix=/usr/versions/gcc-10 --enable-languages=c,c++,objc \
   --with-pkgversion="illumos/Tribblix 10.3.0" \
-  --with-bugurl="http://www.tribblix.org/feedback.html" \
+  --with-bugurl="https://www.tribblix.org/feedback.html" \
   --with-slibdir=/usr/lib \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/ccs/bin/as --without-gnu-as \
@@ -73,7 +73,7 @@ cd fbuild
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
 ../configure --prefix=/usr/versions/gcc-10 --enable-languages=fortran \
   --with-pkgversion="illumos/Tribblix 10.3.0" \
-  --with-bugurl="http://www.tribblix.org/feedback.html" \
+  --with-bugurl="https://www.tribblix.org/feedback.html" \
   --with-slibdir=/usr/lib \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/gnu/bin/as --with-gnu-as \
@@ -87,7 +87,7 @@ env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
 ../configure --prefix=/usr/versions/gcc-10 --enable-languages=fortran \
   --with-pkgversion="illumos/Tribblix 10.3.0" \
-  --with-bugurl="http://www.tribblix.org/feedback.html" \
+  --with-bugurl="https://www.tribblix.org/feedback.html" \
   --with-slibdir=/usr/lib \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/ccs/bin/as --without-gnu-as \

@@ -42,7 +42,7 @@ cd build
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
 ../configure --prefix=/opt/gcc/7.5.0 --enable-languages=c,c++,objc \
   --with-pkgversion="illumos/Tribblix 7.5.0" \
-  --with-bugurl="http://www.tribblix.org/feedback.html" \
+  --with-bugurl="https://www.tribblix.org/feedback.html" \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/gnu/bin/as --with-gnu-as \
   --enable-__cxa_atexit \
@@ -54,7 +54,7 @@ env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu
 env MSGFMT=/usr/gnu/bin/msgfmt GMSGFMT=/usr/gnu/bin/msgfmt PATH=${PATH}:/usr/gnu/bin LD_OPTIONS="-zignore -zcombreloc -Bdirect -i" \
 ../configure --prefix=/opt/gcc/7.5.0 --enable-languages=c,c++,objc \
   --with-pkgversion="illumos/Tribblix 7.5.0" \
-  --with-bugurl="http://www.tribblix.org/feedback.html" \
+  --with-bugurl="https://www.tribblix.org/feedback.html" \
   --without-gnu-ld --with-ld=/usr/bin/ld \
   --with-as=/usr/ccs/bin/as --without-gnu-as
 

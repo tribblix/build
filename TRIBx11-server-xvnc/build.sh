@@ -66,7 +66,7 @@ env PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig \
 --with-xkb-path=/usr/share/X11/xkb \
 --with-os-name="illumos" \
 --with-vendor-name="Tribblix" \
---with-vendor-web="http://www.tribblix.org/" \
+--with-vendor-web="https://www.tribblix.org/" \
 --without-int10 \
 --disable-selective-werror \
 --with-fontdir=/usr/share/fonts/X11 \

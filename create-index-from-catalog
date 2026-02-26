@@ -101,7 +101,7 @@ done < "$CATALOG"
 cat <<EOF
 </dl>
 <hr>
-<p><a href="http://www.tribblix.org/">Tribblix</a></p>
+<p><a href="https://www.tribblix.org/">Tribblix</a></p>
 </body>
 </html>
 EOF
