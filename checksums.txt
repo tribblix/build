@@ -5038,3 +5038,4 @@ python_mistralclient-6.2.0.tar.gz 6169ef9ddf3f473628060545125c6ccfd7ea088e109af4
 python_novaclient-18.12.0.tar.gz ead3db2a3dd43a89bb5a56f62f87362a76e7ef9c01938699ff6c1a060f0e9eab
 python_swiftclient-4.10.0.tar.gz 981891abc7fb355b266e823df3ecb80e5c267c57934fb5094bb102ddaf7e51be
 radicale-3.6.1.tar.gz 5b5529c093fc3a6e9eba6a3280d930ea6573b485a1bd8d25b7daa6ee70f5224b
+pypdf-6.7.3.tar.gz eca55c78d0ec7baa06f9288e2be5c4e8242d5cbb62c7a4b94f2716f8e50076d2
