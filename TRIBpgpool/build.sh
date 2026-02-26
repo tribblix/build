@@ -4,8 +4,8 @@
 #
 # needs a patch and postconf
 #
-# specify LD_LRUN_PATH so that pgproto also picks it up and can find
+# specify LD_RUN_PATH so that pgproto also picks it up and can find
 # libpq at runtime
 #
-env LD_RUN_PATH=/opt/tribblix/postgres17/lib PATH=/opt/tribblix/postgres17/bin:$PATH ${THOME}/build/dobuild -64only pgpool-II-4.6.5 -C "--sysconfdir=/etc --with-openssl"
-${THOME}/build/genpkg TRIBpgpool pgpool-II-4.6.5
+env LD_RUN_PATH=/opt/tribblix/postgres17/lib PATH=/opt/tribblix/postgres17/bin:$PATH ${THOME}/build/dobuild -64only pgpool-II-4.6.6 -C "--sysconfdir=/etc --with-openssl"
+${THOME}/build/genpkg TRIBpgpool pgpool-II-4.6.6
