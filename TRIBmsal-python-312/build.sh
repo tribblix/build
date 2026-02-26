@@ -7,4 +7,4 @@
 #
 # bundle the extensions here for convenience
 #
-${THOME}/build/pkg_setup_py TRIBmsal-python-312 msal-1.34.0 msal_extensions-1.3.1
+${THOME}/build/pkg_pep518 -N TRIBmsal-python-312 msal-1.35.0 msal_extensions-1.3.1
