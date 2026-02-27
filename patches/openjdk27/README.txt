@@ -1,5 +1,10 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+11
+
+Functions release_memory_special() pd_release_memory_special() have
+been removed.
+
 27+10
 
 os::remove_stack_guard_pages() now returns void not bool

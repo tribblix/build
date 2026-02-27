@@ -183,7 +183,7 @@
      *darwin*)
        VAR_OS=macosx
        VAR_OS_TYPE=unix
-@@ -607,9 +603,6 @@
+@@ -613,9 +609,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
