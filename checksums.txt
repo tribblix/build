@@ -5049,3 +5049,4 @@ pgpool-II-4.6.6.tar.gz a4021c06b9fbdca975e62bf15a54d93e1b38854c53b5ad9d53cd082ec
 postgresql-18.3.tar.bz2 d95663fbbf3a80f81a9d98d895266bdcb74ba274bcc04ef6d76630a72dee016f
 postgresql-17.9.tar.bz2 3b9a62538a8da151e807a3ddb1198e8605f2032544d78f403ae883d27ecf1ee4
 whitenoise-6.12.0.tar.gz f723ebb76a112e98816ff80fcea0a6c9b8ecde835f8ddda25df7a30a3c2db6ad
+notebook-7.5.4.tar.gz b928b2ba22cb63aa83df2e0e76fe3697950a0c1c4a41b84ebccf1972b1bb5771
