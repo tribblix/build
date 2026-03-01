@@ -5070,3 +5070,4 @@ python_keystoneclient-5.8.0.tar.gz 3ca87c67c404298ce862310b569f545a58acf75cd5685
 python_manilaclient-6.0.0.tar.gz 110c2c6f067315713e28a0c7d92c650ba1bca05bdd5e8d9b2b86c928965fad5c
 python_troveclient-8.10.0.tar.gz cacce41846bde5f7716a2da4de0a3d25c1c99c33af05c079efd1f44211792ce9
 regex-2026.2.28.tar.gz a729e47d418ea11d03469f321aaf67cdee8954cde3ff2cf8403ab87951ad10f2
+blessed-1.32.0.tar.gz d4090e9908cf86bea15a5275845c8bfc69c4c34eb6d22de07c65d26f1e54a918
