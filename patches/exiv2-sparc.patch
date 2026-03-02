@@ -1,7 +1,7 @@
 --- a/meson.build	Mon Nov  6 12:17:09 2023
 +++ b/meson.build	Tue Nov 21 11:21:58 2023
-@@ -55,11 +55,7 @@
- deps += cpp.find_library('procstat', required: host_machine.system() == 'freebsd')
+@@ -57,11 +57,7 @@
+ deps += cpp.find_library('nsl', required: host_machine.system() == 'sunos')
  
  if cpp.get_argument_syntax() == 'gcc' and cpp.version().version_compare('<9')
 -  if host_machine.system() == 'linux' and cpp.get_define('_LIBCPP_VERSION', prefix: '#include <new>') == ''

@@ -1,2 +1,0 @@
--p1 exiv2-futils.patch
--p1 exiv2-sparc.patch
