@@ -1,0 +1,42 @@
+--- a/src/histogram.cc	Sat Mar 23 13:56:32 2024
++++ b/src/histogram.cc	Mon Mar  2 21:47:23 2026
+@@ -312,7 +312,7 @@
+ 		}
+ 
+ 	if (max > 0)
+-		logmax = log(max);
++	  logmax = std::log(max);
+ 	else
+ 		logmax = 1.0;
+ 
+@@ -384,7 +384,7 @@
+ 				if (v[chanmax] == 0)
+ 					pt = 0;
+ 				else if (histogram->histogram_mode)
+-					pt = (static_cast<gdouble>(log(v[chanmax]))) / logmax * (height - 1);
++				  pt = (static_cast<gdouble>(std::log(v[chanmax]))) / logmax * (height - 1);
+ 				else
+ 					pt = (static_cast<gdouble>(v[chanmax])) / max * (height - 1);
+ 
+--- a/src/pan-view/pan-folder.cc	Sat Mar 23 13:56:32 2024
++++ b/src/pan-view/pan-folder.cc	Mon Mar  2 21:49:17 2026
+@@ -273,7 +273,7 @@
+ 	x += PAN_BOX_BORDER;
+ 	y += PAN_BOX_BORDER;
+ 
+-	grid_size = static_cast<gint>(sqrt(g_list_length(f)) + 0.9);
++	grid_size = static_cast<gint>(std::sqrt(g_list_length(f)) + 0.9);
+ 	grid_count = 0;
+ 	x_start = x;
+ 	y_height = y;
+--- a/src/pan-view/pan-calendar.cc	Sat Mar 23 13:56:32 2024
++++ b/src/pan-view/pan-calendar.cc	Mon Mar  2 21:49:43 2026
+@@ -117,7 +117,7 @@
+ 			}
+ 		}
+ 
+-	grid = static_cast<gint>(sqrt(g_list_length(list)) + 0.5);
++	grid = static_cast<gint>(std::sqrt(g_list_length(list)) + 0.5);
+ 
+ 	x = pi_day->x + pi_day->width + 4;
+ 	y = pi_day->y;
