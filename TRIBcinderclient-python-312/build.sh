@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_setup_py TRIBcinderclient-python-312 python_cinderclient-9.8.0
+${THOME}/build/pkg_pep518 -N TRIBcinderclient-python-312 python_cinderclient-9.9.0
