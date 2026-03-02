@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-timedate"
 NAME="Perl TimeDate module"
-VERSION="2.33.0"
+VERSION="2.34.0"
 ZAP_URL="https://metacpan.org/dist/TimeDate"
