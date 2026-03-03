@@ -5086,3 +5086,4 @@ python_cinderclient-9.9.0.tar.gz 697e4d12c249f39b41ecf4fa6fcb8c38cbf2d6b2d84d6f5
 geeqie-2.4.tar.xz f2b7d1290786fdd1afec09bbe0217f327ff1ee7c80363563e8a108d03aec77da
 sqlalchemy-2.0.48.tar.gz 5ca74f37f3369b45e1f6b7b06afb182af1fd5dde009e4ffd831830d98cbe5fe7
 pypdf-6.7.5.tar.gz 40bb2e2e872078655f12b9b89e2f900888bb505e88a82150b64f9f34fa25651d
+google_api_python_client-2.191.0.tar.gz 858c22fd46f51a65cee365a78aec2054e6d47b50434bee4ba62e91ac0944aea1
