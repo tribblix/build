@@ -51,7 +51,7 @@ bail() {
 }
 
 #
-# with -q avoid the the file list
+# with -q avoid the file list
 # with many version updates it is unnecessary, and expensive
 #
 # with -n just refresh the metadata, there are no packages
