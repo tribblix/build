@@ -1,5 +1,9 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+12
+
+Trivial patch noise.
+
 27+11
 
 Functions release_memory_special() pd_release_memory_special() have
