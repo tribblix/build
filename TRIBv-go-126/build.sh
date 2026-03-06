@@ -11,11 +11,7 @@
 #
 chmod -R u+w go
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.26.0.src
-# temporary
-cd go
-gpatch -p1 < ${THOME}/build/patches/gotest.patch
-cd ..
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.26.1.src
 #
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.26 GOROOT_BOOTSTRAP=/usr/versions/go-1.25 ./all.bash
