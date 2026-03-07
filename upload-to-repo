@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -33,7 +33,7 @@ REPODIR="/var/repo"
 QUICKMODE=""
 PKGSKIP=""
 
-REPO="tribblix-m38"
+REPO="tribblix-m39"
 LREPODIR="${THOME}/pkgs"
 
 ACREATE="create-aliases-from-catalog"
