@@ -33,7 +33,7 @@ cd opt/tribblix || exit 1
 #
 # Normalize the directory name
 #
-VERSION="3.9.4"
+VERSION="3.9.5"
 mv apache-zookeeper-${VERSION}-bin zookeeper
 
 #
