@@ -1,5 +1,6 @@
 P TRIBcompress-bzip2
 P TRIBcompress-xz
+P TRIBcompress-zstd
 P TRIBcurl
 P TRIBgfortran4runtime
 P TRIBgnu-libiconv
