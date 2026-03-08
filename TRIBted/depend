@@ -3,6 +3,7 @@ P TRIBimage-libpng
 P TRIBimage-libtiff
 P TRIBlib-pcre
 P TRIBlib-zlib
+P TRIBlibpaper
 P TRIBmotif
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
@@ -13,4 +14,3 @@ P TRIBx11-libx11
 P TRIBx11-libxext
 P TRIBx11-libxft
 P TRIBx11-libxpm
-P TRIBx11-libxrender

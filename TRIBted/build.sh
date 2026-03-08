@@ -4,7 +4,8 @@
 #
 ${THOME}/build/unpack ted-2.23
 cd Ted-2.23
-make CONFIGURE_OPTIONS=--with-MOTIF
+make CONFIGURE_OPTIONS="--with-MOTIF CFLAGS=-m64 LDFLAGS=-m64"
+rm -fr /tmp/ted1
 mkdir -p /tmp/ted1/usr/bin
 mkdir -p /tmp/ted1/usr/share/Ted
 mkdir -p /tmp/ted1/usr/share/applications
@@ -13,3 +14,4 @@ cat tedPackage/TedDatadir.tar | ( cd /tmp/ted1/usr/share/Ted ; tar xf -)
 cat tedPackage/Ted.desktop.in | sed s:@DATADIR@:/usr/share: > /tmp/ted1/usr/share/applications/Ted.desktop
 ${THOME}/build/create_pkg TRIBted /tmp/ted1
 rm -fr /tmp/ted1
+cd ..
