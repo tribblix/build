@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+
+#
+# the search for libtiff will find multiple, and doesn't sort
+# so picks the oldest
+#
+sed -i 's:libtiff.so.\[0-9\]:libtiff.so.\[6-9\]:' configure
