@@ -1,12 +1,17 @@
 P TRIBgiflib
+P TRIBharfbuzz
 P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-libtiff
+P TRIBlib-desktop-atkmm
 P TRIBlib-desktop-cairo
 P TRIBlib-desktop-gtk3
+P TRIBlib-desktop-gtkmm3
 P TRIBlib-desktop-pango
 P TRIBlib-glib2
+P TRIBlib-glibmm
 P TRIBlib-zlib
+P TRIBlibsigcpp
 P TRIBlibspiro
 P TRIBlibxml2
 P TRIBsys-lib-freetype-2
