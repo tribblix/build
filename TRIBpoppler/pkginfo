@@ -1,4 +1,4 @@
 PKG="TRIBpoppler"
 NAME="Poppler PDF utilities"
-VERSION="22.12.0.1"
+VERSION="22.12.0.2"
 ZAP_URL="https://poppler.freedesktop.org/"
