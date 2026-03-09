@@ -1,4 +1,5 @@
 P TRIBgdk-pixbuf
+P TRIBgraphics-jasper
 P TRIBimage-libjpeg
 P TRIBimage-libpng
 P TRIBimage-librsvg
@@ -13,3 +14,4 @@ P TRIBlib-lcms2
 P TRIBlibraw
 P TRIBlibwebp
 P TRIBopenexr
+P TRIBpoppler
