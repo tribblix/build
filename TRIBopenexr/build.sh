@@ -2,7 +2,12 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# 3.2 bumps the SONAME
+# 3.2 bumped the SONAME
 #
-${THOME}/build/cmbuild -64only openexr-3.1.13
-${THOME}/build/genpkg TRIBopenexr openexr-3.1.13
+# note that we need to package a full copy of Imath, as the cmake and
+# pkgconfig files reference it, and if you don't then you can't build
+# anything against it
+#
+${THOME}/build/cmbuild -64only Imath-3.2.2 -C "-DCMAKE_PREFIX_PATH=/usr/lib/`${THOME}/build/getarch`/cmake"
+${THOME}/build/cmbuild -64only openexr-3.4.6 -C "-DCMAKE_PREFIX_PATH=/usr/lib/`${THOME}/build/getarch`/cmake"
+${THOME}/build/genpkg TRIBopenexr Imath-3.2.2 openexr-3.4.6
