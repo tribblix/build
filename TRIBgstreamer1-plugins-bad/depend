@@ -1,5 +1,6 @@
 P TRIBcompress-bzip2
 P TRIBcurl
+P TRIBfluidsynth
 P TRIBgstreamer1
 P TRIBgstreamer1-plugins-base
 P TRIBimage-librsvg
@@ -21,3 +22,4 @@ P TRIBopenal
 P TRIBopenexr
 P TRIBopus
 P TRIBx11-libx11
+P TRIBzbar
