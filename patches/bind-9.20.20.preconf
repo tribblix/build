@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# need private copy of libuv
+#
+# explicitly specify -fPIC, as otherwise it will get turned off by building
+# libuv as a purely static library
+#
+(cd /tmp ; env TRIBBLIX_CFLAGS=-fPIC $THOME/build/dobuild -A -64only libuv-v1.51.0 -C "--enable-static --disable-shared")
+#
+# need a private https://liburcu.org/
+# this is installed so pkg-config can query it and get the correct answers
+# assuming TRIBBLIX_PKG_CONFIG_PATH is used
+# otherwise it struggles to find multiple libraries
+#
+(cd /tmp ; env TRIBBLIX_CFLAGS=-fPIC $THOME/build/dobuild -64only userspace-rcu-0.15.6 -P /tmp/urcu -C "--disable-dependency-tracking --enable-static --disable-shared" ; cd userspace-rcu-0.15.6-64bit ; gmake install)
+autoreconf -vi

@@ -12,5 +12,10 @@
 zap i TRIBlibtool
 zap d TRIBjson-c
 zap d TRIBlibedit
-env LIBUV_CFLAGS=-I/tmp/libuv-v1.51.0-64bit/include LIBUV_LIBS="/tmp/libuv-v1.51.0-64bit/.libs/libuv.a -lkstat -lsendfile" TRIBBLIX_CFLAGS=-D_XPG4_2 TRIBBLIX_LDFLAGS=-lsocket ${THOME}/build/dobuild -64only bind-9.18.46 -C "--sysconfdir=/etc --localstatedir=/var --without-python --disable-geoip --disable-dependency-tracking"
-${THOME}/build/genpkg TRIBbind9 bind-9.18.46
+env LIBUV_CFLAGS=-I/tmp/libuv-v1.51.0-64bit/include LIBUV_LIBS="/tmp/libuv-v1.51.0-64bit/.libs/libuv.a -lkstat -lsendfile" TRIBBLIX_PKG_CONFIG_PATH=/tmp/urcu/lib/`$THOME/build/getarch`/pkgconfig TRIBBLIX_CFLAGS=-D_XPG4_2 TRIBBLIX_LDFLAGS=-lsocket ${THOME}/build/dobuild -64only bind-9.20.20 -C "--sysconfdir=/etc --localstatedir=/var --without-python --disable-geoip --disable-dependency-tracking"
+${THOME}/build/genpkg TRIBbind9 bind-9.20.20
+
+#
+# clean up
+#
+rm -fr /tmp/urcu /tmp/libuv-v1.51.0-64bit /tmp/userspace-rcu-0.15.6-64bit
