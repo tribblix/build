@@ -18,12 +18,12 @@ diff --git a/Makefile.in b/Makefile.in
 index d401787..c124ef6 100644
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -393,7 +393,16 @@ install-nokeys: $(CONFIGFILES) $(MANPAGES) $(TARGETS) install-files install-sysc
+@@ -417,7 +417,16 @@ install-nokeys: $(CONFIGFILES) $(MANPAGES) $(TARGETS) install-files install-sysc
  install-nosysconf: $(CONFIGFILES) $(MANPAGES) $(TARGETS) install-files
  
  check-config:
 -	-$(DESTDIR)$(sbindir)/sshd -t -f $(DESTDIR)$(sysconfdir)/sshd_config
-+# On Solaris, to workaround OpenSSH's unlucky mixing of 'building ssh' and
++# On illumos, to workaround OpenSSH's unlucky mixing of 'building ssh' and
 +# 'running ssh', on build machine the following requisites shouldn't be
 +# enforced:
 +#     1) existence of privsep user sshd
@@ -32,7 +32,7 @@ index d401787..c124ef6 100644
 +#
 +#	-$(DESTDIR)$(sbindir)/sshd -t -f $(DESTDIR)$(sysconfdir)/sshd_config
 +#
-+	@echo 'Oracle Solaris: skipping check-config'
++	@echo 'Tribblix: skipping check-config'
  
  install-files:
  	$(MKDIR_P) $(DESTDIR)$(bindir)
