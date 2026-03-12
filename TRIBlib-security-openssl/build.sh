@@ -11,25 +11,21 @@
 # we were seeing in the b2 and aws s3 clients
 #
 
-#
-# there are staged patches for 3.5.5 ready to switch at the next release
-#
-
-${THOME}/build/unpack -64 openssl-3.0.19
-cd openssl-3.0.19
-env __CNF_CFLAGS="-D_REENTRANT" __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=1.1.1 --prefix=/usr
+${THOME}/build/unpack -64 openssl-3.5.5
+cd openssl-3.5.5
+env __CNF_CFLAGS="-D_REENTRANT" __CNF_LDFLAGS="-z aslr -z ignore" ./Configure solaris-x86-gcc shared threads zlib --api=3.0 --prefix=/usr
 gmake -j 6
 cd ..
 #
 # you might have thought that asking for a solaris64-x86_64 build
 # would actually do the right thing, but no ...
 #
-cd openssl-3.0.19-64bit
-env __CNF_CFLAGS="-D_REENTRANT -m64" __CNF_LDFLAGS="-m64 -z aslr -z ignore" ./Configure solaris64-x86_64-gcc shared threads zlib --api=1.1.1 --prefix=/usr --libdir=lib/amd64 enable-ec_nistp_64_gcc_128
+cd openssl-3.5.5-64bit
+env __CNF_CFLAGS="-D_REENTRANT -m64" __CNF_LDFLAGS="-m64 -z aslr -z ignore" ./Configure solaris64-x86_64-gcc shared threads zlib --api=3.0 --prefix=/usr --libdir=lib/amd64 enable-ec_nistp_64_gcc_128
 gmake -j 6
 cd ..
 
 #
 # much easier now install understands DESTDIR
 #
-${THOME}/build/genpkg TRIBlib-security-openssl openssl-3.0.19
+${THOME}/build/genpkg TRIBlib-security-openssl openssl-3.5.5
