@@ -6,6 +6,7 @@ P TRIBcompress-zstd
 P TRIBgiflib
 P TRIBimage-libjpeg
 P TRIBimage-libpng
+P TRIBimage-libtiff
 P TRIBlib-lcms2
 P TRIBlib-openjpeg
 P TRIBlib-zlib

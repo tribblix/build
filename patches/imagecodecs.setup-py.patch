@@ -1,6 +1,6 @@
 --- a/setup.py	Sat Mar 22 04:53:53 2025
 +++ b/setup.py	Sun Nov 23 10:24:35 2025
-@@ -281,17 +281,21 @@
+@@ -287,17 +287,21 @@
          'shared',
          'imcd',
          'bmp',
@@ -19,9 +19,8 @@
          'lz4',
          'lzma',
          'png',
--        'tiff',  # requires v4.6
+         'tiff',  # requires v4.6
 +        'snappy',
-+        #'tiff',  # requires v4.6
          'webp',
          'zlib',
          'zstd',
