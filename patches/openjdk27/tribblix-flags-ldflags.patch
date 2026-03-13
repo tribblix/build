@@ -43,7 +43,7 @@
      LDFLAGS_CXX_PARTIAL_LINKING="$MACHINE_FLAG -r"
  
      if test "x$OPENJDK_TARGET_OS" = xlinux; then
-@@ -130,10 +138,12 @@
+@@ -134,10 +142,12 @@
  
    # Setup LDFLAGS for linking executables
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
@@ -60,7 +60,7 @@
      fi
    fi
  
-@@ -185,7 +195,9 @@
+@@ -189,7 +199,9 @@
          test "x${OPENJDK_$1_CPU}" = xmips64el; then
        $1_CPU_LDFLAGS="${$1_CPU_LDFLAGS} -Wl,--hash-style=sysv"
      else

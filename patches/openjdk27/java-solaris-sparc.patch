@@ -128,7 +128,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -280,7 +280,7 @@
+@@ -284,7 +284,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -137,7 +137,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -293,7 +293,7 @@
+@@ -297,7 +297,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -541,7 +541,7 @@
        LIBS_unix := $(LIBDL) $(LIBM) $(X_LIBS) -lX11 -lXext -lXi -lXrender \
            -lXtst, \
        LIBS_linux := $(LIBPTHREAD), \
-@@ -431,7 +429,7 @@
+@@ -434,7 +432,7 @@
  endif
  
  ifeq ($(call isTargetOsType, unix)+$(call isTargetOs, macosx), true+false)
@@ -550,7 +550,7 @@
    ifeq ($(ENABLE_HEADLESS_ONLY), false)
      LIBJAWT_JDK_LIBS_unix += libawt_xawt
    else
-@@ -451,7 +449,6 @@
+@@ -454,7 +452,6 @@
      LDFLAGS_windows := $(LDFLAGS_CXX_JDK), \
      LDFLAGS_macosx := -Wl$(COMMA)-rpath$(COMMA)@loader_path, \
      JDK_LIBS_unix := $(LIBJAWT_JDK_LIBS_unix), \
@@ -1530,7 +1530,7 @@
  #elif defined(_AIX)
  static const char *ETC_ENVIRONMENT_FILE = "/etc/environment";
  
-@@ -679,15 +488,6 @@
+@@ -701,15 +510,6 @@
              free((void *) freetz);
          }
  #else
