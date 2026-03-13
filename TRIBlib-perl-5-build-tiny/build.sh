@@ -2,8 +2,8 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/unpack Module-Build-Tiny-0.052
-cd Module-Build-Tiny-0.052
+${THOME}/build/unpack Module-Build-Tiny-0.053
+cd Module-Build-Tiny-0.053
 perl Build.PL
 ./Build
 rm -fr /tmp/mbt
