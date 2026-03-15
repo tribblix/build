@@ -1,0 +1,4 @@
+PKG="TRIBxxhash-python-312"
+NAME="Python xxhash"
+VERSION="3.6.0.0"
+ZAP_URL="https://pypi.org/project/xxhash/"
