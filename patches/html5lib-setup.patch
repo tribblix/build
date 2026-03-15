@@ -1,0 +1,20 @@
+Current setuptools doesn't have pkg_resources.
+
+Taken from https://github.com/html5lib/html5lib-python/pull/592
+
+--- a/setup.py	Tue Jun 23 00:23:02 2020
++++ b/setup.py	Sun Mar 15 15:42:46 2026
+@@ -6,9 +6,11 @@
+ 
+ from os.path import join, dirname
+ from setuptools import setup, find_packages, __version__ as setuptools_version
+-from pkg_resources import parse_version
+ 
+-import pkg_resources
++try:
++    import pkg_resources
++except ImportError:
++    pkg_resources = None
+ 
+ try:
+     import _markerlib.markers
