@@ -1,0 +1,2 @@
+-p1 gst-base-socket.patch
+-p1 gst-base-uint.patch

@@ -11,9 +11,12 @@ P TRIBlib-glib2
 P TRIBlib-zlib
 P TRIBlibflac
 P TRIBlibspeex
+P TRIBlibxml2
 P TRIBmpg123
+P TRIBnettle
 P TRIBtaglib
 P TRIBx11-libx11
 P TRIBx11-libxdamage
 P TRIBx11-libxext
 P TRIBx11-libxfixes
+P TRIBx11-libxtst

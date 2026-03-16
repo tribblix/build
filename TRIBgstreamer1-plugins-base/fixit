@@ -4,3 +4,8 @@
 #
 rm -f usr/lib/gstreamer-1.0/*.la
 rm -f usr/lib/*/gstreamer-1.0/*.la
+#
+# conflict with files installed and owned by other packages
+#
+rm -fr usr/include/GL
+rm -fr usr/include/KHR

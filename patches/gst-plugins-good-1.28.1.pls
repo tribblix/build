@@ -1,0 +1,2 @@
+-p1 gst-good-ioctl.patch
+-p1 gst-good-flvmux.patch
