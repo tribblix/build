@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -71,14 +71,20 @@ esac
 
 #
 # with -b checkout the given branch
+# with -c checkout the given commit
 # with -n handle tarball name mismatches
 # with -N the tarball is missing the top level
 #
 DODIR=""
-while getopts "b:n:N" opt; do
+while getopts "b:c:n:N" opt; do
     case $opt in
     b)
 	BRANCHARGS="-b $OPTARG"
+	shift
+	shift
+	;;
+    c)
+	COMMITARGS="$OPTARG"
 	shift
 	shift
 	;;
@@ -170,6 +176,13 @@ dopatch() {
       cd ..
   fi
 }
+
+case $pkg in
+    /*)
+	RM32=false
+	RM64=false
+	;;
+esac
 
 #
 # delete old copies
@@ -275,15 +288,55 @@ fi
 #
 case $pkg in
     https://*)
+	if [ -n "${DONEUNPACK}" ]; then
+	    echo "ERROR: multiple $pkg sources $DONEUNPACK and https://"
+	fi
 	spkg=${pkg##*/}
 	spkg=${spkg%.git}
 	/usr/bin/rm -fr "${spkg}" "${spkg}-64bit"
 	git clone $BRANCHARGS "$pkg"
+	if [ -n "$COMMITARGS" ]; then
+	    cd "$spkg" || exit 1
+	    git checkout "$COMMITARGS"
+	    cd ..
+	fi
 	dopatch "${spkg}"
 	if [ "x$DO64" != "xfalse" ]; then
 	    mv "${spkg}" "${spkg}-64bit"
 	    if [ "x$DO32" != "xfalse" ]; then
 		git clone $BRANCHARGS "$pkg"
+		if [ -n "$COMMITARGS" ]; then
+		    cd "$spkg" || exit 1
+		    git checkout "$COMMITARGS"
+		    cd ..
+		fi
+		dopatch "${spkg}"
+	    fi
+	fi
+	;;
+    /*)
+	if [ -n "${DONEUNPACK}" ]; then
+	    echo "ERROR: multiple $pkg sources $DONEUNPACK and absolute path"
+	fi
+	spkg=${pkg##*/}
+	spkg=${spkg%.git}
+	/usr/bin/rm -fr "${spkg}" "${spkg}-64bit"
+	git clone $BRANCHARGS "$pkg"
+	if [ -n "$COMMITARGS" ]; then
+	    cd "$spkg" || exit 1
+	    git checkout "$COMMITARGS"
+	    cd ..
+	fi
+	dopatch "${spkg}"
+	if [ "x$DO64" != "xfalse" ]; then
+	    mv "${spkg}" "${spkg}-64bit"
+	    if [ "x$DO32" != "xfalse" ]; then
+		git clone $BRANCHARGS "$pkg"
+		if [ -n "$COMMITARGS" ]; then
+		    cd "$spkg" || exit 1
+		    git checkout "$COMMITARGS"
+		    cd ..
+		fi
 		dopatch "${spkg}"
 	    fi
 	fi
