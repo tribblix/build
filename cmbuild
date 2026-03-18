@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -107,6 +107,7 @@ BUILDGNU="false"
 # -B subdirectory to use rather than the default
 # +B run cmake directly in the source tree, not in a build subdir
 # -b branch for git checkout
+# -c commit for git checkout
 # -n wrong name of dir that tarball unpacks into
 #
 IPREFIX="/usr"
@@ -210,6 +211,11 @@ case $1 in
 	BRANCHARGS="-b $1"
 	shift
 	;;
+-c)
+	shift
+	BRANCHARGS="-c $1"
+	shift
+	;;
 -n)
 	shift
 	UNPACK_FLAGS="${UNPACK_FLAGS} -n $1"
@@ -310,6 +316,10 @@ do
 	${UNPACKER} ${UNPACK_FLAGS} ${BRANCHARGS} ${pkg}
 	case $pkg in
 	    https://*)
+		pkg=${pkg##*/}
+		pkg=${pkg%.git}
+		;;
+	    /*)
 		pkg=${pkg##*/}
 		pkg=${pkg%.git}
 		;;

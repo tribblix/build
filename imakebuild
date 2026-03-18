@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -152,6 +152,10 @@ do
 	${UNPACKER} ${UNPACK_FLAGS} ${pkg}
 	case $pkg in
 	    https://*)
+		pkg=${pkg##*/}
+		pkg=${pkg%.git}
+		;;
+	    /*)
 		pkg=${pkg##*/}
 		pkg=${pkg%.git}
 		;;

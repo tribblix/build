@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -101,6 +101,7 @@ BUILDGNU="false"
 # -L disable LD_OPTIONS
 # -B subdirectory to use rather than the default
 # -b branch for git checkout
+# -c commit for git checkout
 # -n wrong name of dir that tarball unpacks into
 #
 IPREFIX="/usr"
@@ -177,6 +178,11 @@ case $1 in
 -b)
 	shift
 	BRANCHARGS="-b $1"
+	shift
+	;;
+-c)
+	shift
+	BRANCHARGS="-c $1"
 	shift
 	;;
 -n)
@@ -276,6 +282,10 @@ do
 	${UNPACKER} ${UNPACK_FLAGS} ${BRANCHARGS} ${pkg}
 	case $pkg in
 	    https://*)
+		pkg=${pkg##*/}
+		pkg=${pkg%.git}
+		;;
+	    /*)
 		pkg=${pkg##*/}
 		pkg=${pkg%.git}
 		;;
