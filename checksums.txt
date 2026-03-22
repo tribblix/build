@@ -5270,3 +5270,4 @@ TimeDate-2.35.tar.gz baddd0306ae2e86e9ec28d3de5439e514643e80b3735e43bd0fbb426d73
 jsonpointer-3.1.0.tar.gz f9b39abd59ba8c1de8a4ff16141605d2a8dacc4dd6cf399672cf237bfe47c211
 uv_build-0.10.12.tar.gz e37047736eda373e7fb3a79399ca4e3c30d9be88e436276ebb7b243bcded428c
 importlib_metadata-9.0.0.tar.gz a4f57ab599e6a2e3016d7595cfd72eb4661a5106e787a95bcc90c7105b831efc
+mkdocs_material-9.7.6.tar.gz 00bdde50574f776d328b1862fe65daeaf581ec309bd150f7bff345a098c64a69
