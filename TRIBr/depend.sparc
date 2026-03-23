@@ -1,5 +1,6 @@
 P TRIBcompress-bzip2
 P TRIBcompress-xz
+P TRIBcompress-zstd
 P TRIBcurl
 P TRIBgfortran4runtime
 P TRIBgnu-libiconv
@@ -11,6 +12,7 @@ P TRIBlib-desktop-pango
 P TRIBlib-glib2
 P TRIBlib-pcre2
 P TRIBlib-zlib
+P TRIBlibdeflate
 P TRIBlibicu
 P TRIBreadline
 P TRIBtcl
