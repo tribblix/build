@@ -12,8 +12,6 @@ index ccafc012..edffe839 100644
  
  #include "avrdude.h"
  #include "libavrdude.h"
-diff --git a/src/whereami.c b/src/whereami.c
-index 8147905e..e65f47a4 100644
 diff --git a/src/buspirate.c b/src/buspirate.c
 index 39681c17..dbfa0f19 100644
 --- a/src/buspirate.c
