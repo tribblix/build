@@ -14,21 +14,6 @@ index ccafc012..edffe839 100644
  #include "libavrdude.h"
 diff --git a/src/whereami.c b/src/whereami.c
 index 8147905e..e65f47a4 100644
---- a/src/whereami.c
-+++ b/src/whereami.c
-@@ -17,7 +17,11 @@ extern "C" {
- #include <stdlib.h>
- 
- #ifndef PATH_MAX
--#define PATH_MAX _MAX_PATH
-+#ifndef _MAX_PATH
-+#  define PATH_MAX 1024
-+#else
-+#  define PATH_MAX _MAX_PATH
-+#endif
- #endif
- 
- #include "avrdude.h"
 diff --git a/src/buspirate.c b/src/buspirate.c
 index 39681c17..dbfa0f19 100644
 --- a/src/buspirate.c
@@ -43,3 +28,17 @@ index 39681c17..dbfa0f19 100644
  
  #include "avrdude.h"
  #include "libavrdude.h"
+diff --git a/src/whereami.c b/src/whereami.c
+index 8147905e..8a7b74c0 100644
+--- a/src/whereami.c
++++ b/src/whereami.c
+@@ -15,6 +15,9 @@ extern "C" {
+ 
+ #if !defined(WAI_MALLOC) || !defined(WAI_FREE) || !defined(WAI_REALLOC)
+ #include <stdlib.h>
++#ifdef __sun
++#include <limits.h>
++#endif
+ 
+ #ifndef PATH_MAX
+ #define PATH_MAX _MAX_PATH
