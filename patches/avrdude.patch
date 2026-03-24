@@ -1,0 +1,45 @@
+diff --git a/src/stk500.c b/src/stk500.c
+index ccafc012..edffe839 100644
+--- a/src/stk500.c
++++ b/src/stk500.c
+@@ -33,6 +33,9 @@
+ #include <string.h>
+ #include <errno.h>
+ #include <unistd.h>
++#ifdef __sun
++#include <alloca.h>
++#endif
+ 
+ #include "avrdude.h"
+ #include "libavrdude.h"
+diff --git a/src/whereami.c b/src/whereami.c
+index 8147905e..e65f47a4 100644
+--- a/src/whereami.c
++++ b/src/whereami.c
+@@ -17,7 +17,11 @@ extern "C" {
+ #include <stdlib.h>
+ 
+ #ifndef PATH_MAX
+-#define PATH_MAX _MAX_PATH
++#ifndef _MAX_PATH
++#  define PATH_MAX 1024
++#else
++#  define PATH_MAX _MAX_PATH
++#endif
+ #endif
+ 
+ #include "avrdude.h"
+diff --git a/src/buspirate.c b/src/buspirate.c
+index 39681c17..dbfa0f19 100644
+--- a/src/buspirate.c
++++ b/src/buspirate.c
+@@ -39,6 +39,9 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
++#ifdef __sun
++#include <alloca.h>
++#endif
+ 
+ #include "avrdude.h"
+ #include "libavrdude.h"
