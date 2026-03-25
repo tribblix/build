@@ -1,0 +1,4 @@
+PKG="TRIBvcs-versioning-python-313"
+NAME="Python vcs-versioning"
+VERSION="1.0.1.0"
+ZAP_URL="https://pypi.org/project/vcs-versioning/"
