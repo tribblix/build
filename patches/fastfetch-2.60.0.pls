@@ -1,0 +1,2 @@
+-p1 fastfetch.patch
+-p1 fastfetch-tribblix.patch

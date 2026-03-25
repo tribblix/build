@@ -1,0 +1,32 @@
+diff -urN fastfetch-2.60.0/src/logo/ascii/tribblix.txt ../fastfetch-2.60.0-64bit/src/logo/ascii/tribblix.txt
+--- a/src/logo/ascii/tribblix.txt	1970-01-01 01:00:00.000000000 +0100
++++ b/src/logo/ascii/tribblix.txt	2026-03-25 17:39:06.318097146 +0000
+@@ -0,0 +1,7 @@
++ _____     _  _    _   _ _ _   _ 
++|_   _| _ (_) | _  | _ |(_)\ \/ /
++  | |  / \| | |/ \ |/ \|| | \  /
++  | |  |  | | | O| | O||| | /  \
++  |_|  |  |_| |\_/ |\_/||_|/_/\_\
++
++  The retro illumos distribution
+diff -urN fastfetch-2.60.0/src/logo/builtin.c ../fastfetch-2.60.0-64bit/src/logo/builtin.c
+--- a/src/logo/builtin.c	2026-03-07 03:08:19.000000000 +0000
++++ b/src/logo/builtin.c	2026-03-25 17:39:35.329116784 +0000
+@@ -4930,6 +4930,17 @@
+             FF_COLOR_FG_BLUE
+         },
+     },
++    // Tribblix
++    {
++        .names = {"Tribblix"},
++        .lines = FASTFETCH_DATATEXT_LOGO_TRIBBLIX,
++        .colors = {
++            FF_COLOR_FG_GREEN,
++            FF_COLOR_FG_CYAN,
++        },
++        .colorKeys = FF_COLOR_FG_YELLOW,
++        .colorTitle = FF_COLOR_FG_DEFAULT,
++    },
+     // Trisquel
+     {
+         .names = {"Trisquel"},
