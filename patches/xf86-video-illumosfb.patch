@@ -1,0 +1,25 @@
+From 768c3665f0eeb470385bb88027617064afbb553e Mon Sep 17 00:00:00 2001
+From: Peter Tribble <peter.tribble@gmail.com>
+Date: Thu, 26 Mar 2026 20:53:32 +0000
+Subject: [PATCH] Try older Xorg
+
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 40782bc..e4e474e 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -48,7 +48,7 @@ AC_ARG_WITH(xorg-module-dir,
+ AC_SUBST([moduledir])
+ 
+ # Check for required Xorg packages
+-PKG_CHECK_MODULES(XORG, [xorg-server >= 1.18 xproto fontsproto])
++PKG_CHECK_MODULES(XORG, [xorg-server >= 1.16 xproto fontsproto])
+ 
+ # Substitutions for the man page
+ DRIVER_NAME=illumosfb
+-- 
+2.53.0
+

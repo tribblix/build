@@ -1,0 +1,4 @@
+PKG="TRIBxorg-driver-video-illumos"
+NAME="Xorg illumosfb driver"
+VERSION="1.0"
+ZAP_URL="https://github.com/LuminousMonkey/xf86-video-illumosfb"
