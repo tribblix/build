@@ -5345,3 +5345,4 @@ ipython-9.12.0.tar.gz 01daa83f504b693ba523b5a407246cabde4eb4513285a3c6acaff11a66
 github_archive-7.0.5.tar.gz b62a6c5f5e94a434b4bae0d65c68e394aa1d02bd46064fe6b492e9ce4d535b47
 json5-0.14.0.tar.gz b3f492fad9f6cdbced8b7d40b28b9b1c9701c5f561bef0d33b81c2ff433fefcb
 vcs_versioning-1.1.1.tar.gz fabd75a3cab7dd8ac02fe24a3a9ba936bf258667b5a62ed468c9a1da0f5775bc
+publicsuffixlist-1.0.2.20260328.tar.gz 449e504159441c2d60fb62cc7b74c48fa62d14735a5f88ab84e4d0eb866733fe
