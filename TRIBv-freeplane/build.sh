@@ -5,4 +5,4 @@
 # note that different architectures are packaged separately as the java
 # dependency (and the path inside the wrapper) differs
 #
-${THOME}/build/pkg_tarball TRIBv-freeplane freeplane_bin-1.12.11
+${THOME}/build/pkg_tarball TRIBv-freeplane freeplane_bin-1.13.2
