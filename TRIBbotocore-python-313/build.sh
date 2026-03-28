@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBbotocore-python-313 botocore-1.42.73
+${THOME}/build/pkg_pep518 -N TRIBbotocore-python-313 botocore-1.42.78
