@@ -128,7 +128,7 @@
    elif test -x /usr/sbin/sysctl; then
 --- old/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.812457321 -0700
 +++ new/make/autoconf/jdk-options.m4	2020-05-20 17:58:35.432450025 -0700
-@@ -284,7 +284,7 @@
+@@ -291,7 +291,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xexternal; then
  
@@ -137,7 +137,7 @@
        if test "x$OBJCOPY" = x; then
          # enabling of enable-debug-symbols and can't find objcopy
          # this is an error
-@@ -297,7 +297,7 @@
+@@ -304,7 +304,7 @@
      ZIP_EXTERNAL_DEBUG_SYMBOLS=false
    elif test "x$with_native_debug_symbols" = xzipped; then
  
@@ -786,7 +786,7 @@
  
  # Platform specific setup
  ifeq ($(call isTargetOs, windows), true)
-@@ -84,9 +84,6 @@
+@@ -88,9 +88,6 @@
    BUILD_JDK_JTREG_EXCLUDE += exerevokeall.c
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -1255,7 +1255,7 @@
  
 --- old/src/java.base/unix/native/libjava/ProcessImpl_md.c	2020-05-20 18:01:09.319404766 -0700
 +++ new/src/java.base/unix/native/libjava/ProcessImpl_md.c	2020-05-20 18:01:08.935397393 -0700
-@@ -230,14 +230,7 @@
+@@ -232,14 +232,7 @@
  static const char*
  defaultPath(void)
  {
@@ -1271,7 +1271,7 @@
  }
  
  static const char*
-@@ -495,7 +488,7 @@
+@@ -497,7 +490,7 @@
  #endif
  
  /* vfork(2) is deprecated on Darwin */
@@ -1280,7 +1280,7 @@
  static pid_t
  vforkChild(ChildStuff *c) {
      volatile pid_t resultPid;
-@@ -661,7 +654,7 @@
+@@ -742,7 +735,7 @@
  startChild(JNIEnv *env, jobject process, ChildStuff *c, const char *helperpath) {
      switch (c->mode) {
  /* vfork(2) is deprecated on Darwin*/

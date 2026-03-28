@@ -1,5 +1,9 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+15
+
+Trivial patch noise.
+
 27+14
 
 Added a no-op implementation of print_open_file_descriptors()
