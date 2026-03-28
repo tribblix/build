@@ -1,4 +1,0 @@
-PKG="TRIBminio-server"
-NAME="Minio Server"
-VERSION="2025.07.23.0"
-ZAP_URL="https://min.io/"
