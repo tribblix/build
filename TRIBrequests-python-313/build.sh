@@ -5,4 +5,4 @@
 # in addition to the mandatory dependencies, we add PySocks, as
 # httpie requires the socks extra
 #
-${THOME}/build/pkg_pep518 -N TRIBrequests-python-313 requests-2.33.0
+${THOME}/build/pkg_pep518 -N TRIBrequests-python-313 requests-2.33.1
