@@ -1,4 +1,11 @@
 <?xml version="1.0"?>
+
+<!--
+SPDX-FileCopyrightText: 2026 Peter Tribble
+
+SPDX-License-Identifier: CDDL-1.0
+-->
+
 <!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
 <service_bundle type='manifest' name='named'>
 <service name='network/named' type='service' version='1'>
