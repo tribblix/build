@@ -1,5 +1,11 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+16
+
+For ProcessImpl, VFORK has been removed.
+
+Boot jdk bumped to jdk26.
+
 27+15
 
 Trivial patch noise.
@@ -72,7 +78,7 @@ file, and all patches now -p1.
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk25 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk26 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-warnings-as-errors \
