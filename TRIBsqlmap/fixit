@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-VERSION=1.9
+VERSION=1.10
 mv usr/versions/sqlmap-${VERSION} usr/versions/sqlmap
 mkdir -p usr/bin
 cd usr/bin
