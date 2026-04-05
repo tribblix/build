@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# meson messes with the RPATH, but autotools messes with version-script
+#
+sed -i '/Wl,-version-script/d' va/Makefile*
