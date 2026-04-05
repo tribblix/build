@@ -5421,3 +5421,4 @@ mercurial-7.2.1.tar.gz f750f86c5734a8df776a003db45e9a9df4e398a770479ea4cc19b61e9
 uharfbuzz-0.53.6.tar.gz d5bbf33ea5bcb0bfda5436e2ada91b39d4a63cc29fa81022932209aafefba28e
 radicale-3.7.0.tar.gz 0c70356330da373adf65ef2ec2a0ea938ab18dabc6b045a1b1778cc41b7834df
 mate-control-center-1.26.1.tar.xz e05f492a3b657aa56fc58f7cf71bc8c80df8e25351fde4db4f523ab8db5b5608
+imagination-3.6.tar.gz 85dfa14acfe78a8a721c86c0056ce6bd1b517e9b7e6ab9fb3a5864b7d37a2d8d
