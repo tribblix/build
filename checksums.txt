@@ -5423,3 +5423,4 @@ radicale-3.7.0.tar.gz 0c70356330da373adf65ef2ec2a0ea938ab18dabc6b045a1b1778cc41b
 mate-control-center-1.26.1.tar.xz e05f492a3b657aa56fc58f7cf71bc8c80df8e25351fde4db4f523ab8db5b5608
 imagination-3.6.tar.gz 85dfa14acfe78a8a721c86c0056ce6bd1b517e9b7e6ab9fb3a5864b7d37a2d8d
 python_multipart-0.0.24.tar.gz 9574c97e1c026e00bc30340ef7c7d76739512ab4dfd428fec8c330fa6a5cc3c8
+fabric-3.2.3.tar.gz dcbd2c47ad87688facaef5cc11aab6d1ec9ed05645fed97a5de7204d5d17cc44
