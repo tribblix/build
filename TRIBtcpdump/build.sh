@@ -6,5 +6,5 @@
 # build area rather than the system
 #
 rm -fr libpcap-*
-${THOME}/build/dobuild -64only tcpdump-4.99.5
-${THOME}/build/genpkg TRIBtcpdump tcpdump-4.99.5
+${THOME}/build/dobuild -64only tcpdump-4.99.6
+${THOME}/build/genpkg TRIBtcpdump tcpdump-4.99.6
