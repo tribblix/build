@@ -1,0 +1,4 @@
+PKG="TRIBdjango6-python-312"
+NAME="Django 6 web framework"
+VERSION="6.0.4.0"
+ZAP_URL="https://www.djangoproject.com/"
