@@ -9,7 +9,7 @@
 #
 # the tarball has some test files with UTF-8 filenames
 #
-# ignore any detected libtiff dependecny, that's from a test file
+# ignore any detected libtiff dependency, that's from a test file
 #
 chmod -R u+w go
 rm -fr go
