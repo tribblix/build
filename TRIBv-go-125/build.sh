@@ -9,9 +9,11 @@
 #
 # the tarball has some test files with UTF-8 filenames
 #
+# ignore any detected libtiff dependency, that's from a test file
+#
 chmod -R u+w go
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.25.8.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.25.9.src
 cd go/src
 env GOROOT_FINAL=/usr/versions/go-1.25 GOROOT_BOOTSTRAP=/usr/versions/go-1.24 ./all.bash
 cd ..
