@@ -5448,3 +5448,4 @@ python_discovery-1.2.2.tar.gz 876e9c57139eb757cb5878cbdd9ae5379e5d96266c99ef7311
 nbconvert-7.17.1.tar.gz 34d0d0a7e73ce3cbab6c5aae8f4f468797280b01fd8bd2ca746da8569eddd7d2
 go1.26.2.src.tar.gz 2e91ebb6947a96e9436fb2b3926a8802efe63a6d375dffec4f82aa9dbd6fd43b
 go1.25.9.src.tar.gz 0ec9ef8ebcea097aac37decae9f09a7218b451cd96be7d6ed513d8e4bcf909cf
+openssl-3.5.6.tar.gz deae7c80cba99c4b4f940ecadb3c3338b13cb77418409238e57d7f31f2a3b736

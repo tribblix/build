@@ -1,2 +1,0 @@
--p1 openssl-35-libs.patch
--p1 openssl-sparc-asm.patch
