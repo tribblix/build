@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# sparc downrev because later versions need rust
+#
+${THOME}/build/pkg_setup_py TRIBbcrypt-python-313 bcrypt-3.2.2

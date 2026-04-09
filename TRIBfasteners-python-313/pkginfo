@@ -1,0 +1,4 @@
+PKG="TRIBfasteners-python-313"
+NAME="Python fasteners"
+VERSION="0.20.0"
+ZAP_URL="https://pypi.org/project/fasteners/"
