@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -37,6 +37,19 @@ esac
 THOME=${THOME:-/packages/localsrc/Tribblix}
 
 cd "${THOME}/build" || exit 1
+
+#
+# the first check is that if there's an architecture version file, then
+# there should also be a matching build.sh for that architecture
+#
+for vpkgf in */version.*
+do
+    # simply substitute the name
+    bpkgf=${vpkgf/version/build.sh}
+    if [ ! -f "${bpkgf}" ]; then
+	echo "Missing ${bpkgf}"
+    fi
+done
 
 for apkgf in */arch.txt
 do
