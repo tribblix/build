@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# later versions require a rust toolchain to build
+#
+# therefore, 3.3.2 is the newest version we can use on sparc
+# which also limits the pyOpenSSL on sparc to v21 or below
+#
+${THOME}/build/pkg_setup_py TRIBcryptography-python-313 cryptography-3.3.2
