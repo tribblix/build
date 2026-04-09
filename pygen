@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -36,6 +36,30 @@ DO312="yes"
 DO313=""
 DO314=""
 
+#
+# select python version first
+#
+case $1 in
+    -312)
+	shift
+	DO312="yes"
+	DO313=""
+	DO314=""
+	;;
+    -313)
+	shift
+	DO312=""
+	DO313="yes"
+	DO314=""
+	;;
+    -314)
+	shift
+	DO312=""
+	DO313=""
+	DO314="yes"
+	;;
+esac
+
 case $1 in
     -p)
 	BUILDER=pkg_pep518
@@ -48,8 +72,8 @@ case $1 in
 	shift
 	;;
     *)
-	echo "Usage: $0 -p pkg_name tarball_name"
-	echo "       $0 -w pkg_version pkg_name tarball_name"
+	echo "Usage: $0 [-312|-313|-314] -p pkg_name tarball_name"
+	echo "       $0 [-312|-313|-314] -w pkg_version pkg_name tarball_name"
 	exit 1
 	;;
 esac
@@ -60,8 +84,8 @@ case $# in
 	TBALL=$2
 	;;
 *)
-	echo "Usage: $0 -p pkg_name tarball_name"
-	echo "       $0 -w pkg_version pkg_name tarball_name"
+	echo "Usage: $0 [-312|-313|-314] -p pkg_name tarball_name"
+	echo "       $0 [-312|-313|-314] -w pkg_version pkg_name tarball_name"
 	exit 1
 	;;
 esac
