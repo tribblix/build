@@ -1,0 +1,4 @@
+PKG="TRIBlegacy-cgi-python-313"
+NAME="Python legacy-cgi"
+VERSION="2.6.4.0"
+ZAP_URL="https://pypi.org/project/legacy-cgi/"
