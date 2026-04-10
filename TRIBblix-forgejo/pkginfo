@@ -1,4 +1,4 @@
 PKG="TRIBblix-forgejo"
 NAME="Forgejo - self-hosted lightweight software forge"
-VERSION="14.0.3.0"
+VERSION="14.0.4.0"
 ZAP_URL="https://forgejo.org/"
