@@ -5462,3 +5462,4 @@ legacy_cgi-2.6.4.tar.gz abb9dfc7835772f7c9317977c63253fd22a7484b5c9bbcdca60a29dc
 apache-activemq-6.2.4-bin.tar.gz fe3bf23bc70343aeba8bc279dd25cf4b95b2066379199c0ae9355a0f15f12613
 virtualenv-21.2.1.tar.gz b66ffe81301766c0d5e2208fc3576652c59d44e7b731fc5f5ed701c9b537fa78
 zope_interface-8.3.tar.gz e1a9de7d0b5b5c249a73b91aebf4598ce05e334303af6aa94865893283e9ff10
+prometheus_client-0.25.0.tar.gz 5e373b75c31afb3c86f1a52fa1ad470c9aace18082d39ec0d2f918d11cc9ba28
