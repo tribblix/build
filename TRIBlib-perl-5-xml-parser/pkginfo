@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-xml-parser"
 NAME="Perl XML::Parser and associated modules"
-VERSION="2.56.0"
+VERSION="2.57.0"
 ZAP_URL="https://metacpan.org/dist/XML-Parser"
