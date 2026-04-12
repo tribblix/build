@@ -1,0 +1,4 @@
+PKG="TRIBpyperclip-python-313"
+NAME="Python pyperclip"
+VERSION="1.11.0.0"
+ZAP_URL="https://pypi.org/project/pyperclip/"
