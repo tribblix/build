@@ -1,4 +1,4 @@
 PKG="TRIBpyogrio-python-312"
 NAME="Python pyogrio"
-VERSION="0.12.1.0"
+VERSION="0.12.1.1"
 ZAP_URL="https://pypi.org/project/pyogrio/"
