@@ -1,0 +1,4 @@
+PKG="TRIBprettytable-python-313"
+NAME="Python prettytable"
+VERSION="3.17.0.0"
+ZAP_URL="https://pypi.org/project/prettytable/"
