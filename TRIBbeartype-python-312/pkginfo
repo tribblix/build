@@ -1,0 +1,4 @@
+PKG="TRIBbeartype-python-312"
+NAME="Python beartype"
+VERSION="0.22.9.0"
+ZAP_URL="https://pypi.org/project/beartype/"
