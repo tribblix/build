@@ -1,0 +1,4 @@
+PKG="TRIBuritools-python-312"
+NAME="Python uritools"
+VERSION="6.0.1.0"
+ZAP_URL="https://pypi.org/project/uritools/"
