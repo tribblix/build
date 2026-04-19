@@ -1,5 +1,9 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+18
+
+Minor patch noise.
+
 27+17
 
 No changes.

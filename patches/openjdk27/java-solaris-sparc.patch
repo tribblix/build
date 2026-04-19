@@ -619,10 +619,10 @@
  
 --- old/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.653337499 -0700
 +++ new/make/modules/jdk.hotspot.agent/Lib.gmk	2020-05-20 17:59:21.257329896 -0700
-@@ -70,9 +70,8 @@
-     CFLAGS := $(LIBSAPROC_CFLAGS), \
+@@ -77,9 +77,8 @@
      CXXFLAGS := $(LIBSAPROC_CFLAGS) $(LIBSAPROC_CXXFLAGS), \
      EXTRA_SRC := $(LIBSAPROC_EXTRA_SRC), \
+     EXCLUDE_FILES := $(LIBSAPROC_EXCLUDE_FILES), \
 -    JDK_LIBS := java.base:libjava java.base:libjvm, \
 +    JDK_LIBS := java.base:libjava, \
      LIBS_linux := $(LIBDL), \
@@ -979,7 +979,7 @@
  #include <netinet/in.h>
 --- old/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:48.214999546 -0700
 +++ new/src/hotspot/share/utilities/vmError.cpp	2020-05-20 18:00:47.822992019 -0700
-@@ -1971,8 +1971,6 @@
+@@ -1970,8 +1970,6 @@
        out.print_raw   ("#   Executing ");
  #if defined(LINUX) || defined(_ALLBSD_SOURCE)
        out.print_raw   ("/bin/sh -c ");
@@ -988,7 +988,7 @@
  #elif defined(_WINDOWS)
        out.print_raw   ("cmd /C ");
  #endif
-@@ -2037,8 +2035,6 @@
+@@ -2036,8 +2034,6 @@
      tty->print("#   Executing ");
  #if defined(LINUX)
      tty->print  ("/bin/sh -c ");
