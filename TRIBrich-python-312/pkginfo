@@ -1,4 +1,4 @@
 PKG="TRIBrich-python-312"
 NAME="Python rich"
-VERSION="14.3.4.0"
+VERSION="15.0.0.0"
 ZAP_URL="https://pypi.org/project/rich/"
