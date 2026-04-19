@@ -4,7 +4,7 @@
 #
 # experimental build
 #
-# SONAME isn't necessarily stable (despite the "stable" in the filename)
+# SONAME isn't necessarily stable
 #
-env TRIBBLIX_LDFLAGS="-lsocket -lnsl" ${THOME}/build/cmbuild -64only wolfssl-5.9.0-stable -C -DWOLFSSL_WOLFSSH=yes
-${THOME}/build/genpkg TRIBwolfssl wolfssl-5.9.0-stable
+env TRIBBLIX_LDFLAGS="-lsocket -lnsl" ${THOME}/build/cmbuild -64only wolfssl-5.9.1 -C -DWOLFSSL_WOLFSSH=yes
+${THOME}/build/genpkg TRIBwolfssl wolfssl-5.9.1
