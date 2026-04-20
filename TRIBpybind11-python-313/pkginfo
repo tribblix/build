@@ -1,4 +1,4 @@
-PKG="TRIBpybind11-python-312"
+PKG="TRIBpybind11-python-313"
 NAME="Python pybind11"
 VERSION="3.0.4.0"
 ZAP_URL="https://pypi.org/project/pybind11/"
