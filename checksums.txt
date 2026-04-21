@@ -5555,3 +5555,4 @@ postgres_exporter-0.19.1.tar.gz 4b71d7d7950aac017df6ec41e815cbb3f50c20e23b19d82f
 pgbouncer_exporter-0.12.0.tar.gz d0ad42455a494ba662748a117cbede73fafe0e4542ee1a2d77cd05d2ce4b8d1f
 memcached_exporter-0.16.0.tar.gz b8b83564d7f7573620ac822a57601c4e6c9126fcee2cc6eae8c3fe231d684dbe
 editres-1.1.0.tar.xz 0acefd3061aa0f1271e65c0d584378f760be004fdb8bcfb17ab345cd408e9faa
+libXpm-3.5.19.tar.xz ad3576d689221a39dc728f0e0dc02ca7bb6a0d724c9a77fd1bfa1e9af83be900
