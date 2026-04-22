@@ -282,7 +282,7 @@
      *darwin*)
        VAR_OS=macosx
        VAR_OS_TYPE=unix
-@@ -470,19 +466,6 @@
+@@ -476,19 +472,6 @@
    fi
    AC_SUBST(OPENJDK_$1_CPU_LEGACY_LIB)
  
@@ -302,7 +302,7 @@
    # Setup OPENJDK_$1_CPU_OSARCH, which is used to set the os.arch Java system property
    OPENJDK_$1_CPU_OSARCH="$OPENJDK_$1_CPU"
    if test "x$OPENJDK_$1_OS" = xlinux && test "x$OPENJDK_$1_CPU" = xx86; then
-@@ -610,9 +595,6 @@
+@@ -618,9 +601,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -312,34 +312,6 @@
    if test "x$OPENJDK_TARGET_OS" = "xlinux"; then
      RELEASE_FILE_OS_NAME=Linux
    fi
-@@ -669,25 +651,9 @@
-   PLATFORM_SET_MODULE_TARGET_OS_VALUES
-   PLATFORM_SET_RELEASE_FILE_OS_VALUES
-   PLATFORM_SETUP_LEGACY_VARS
--  PLATFORM_CHECK_DEPRECATION
--])
- 
--AC_DEFUN([PLATFORM_CHECK_DEPRECATION],
--[
--  UTIL_ARG_ENABLE(NAME: deprecated-ports, DEFAULT: false,
--      RESULT: ENABLE_DEPRECATED_PORTS,
--      DESC: [suppress the error when configuring for a deprecated port])
--
--  if test "x$OPENJDK_TARGET_OS" = xsolaris || \
--      (test "x$OPENJDK_TARGET_CPU_ARCH" = xsparc && \
--      test "x$with_jvm_variants" != xzero); then
--    if test "x$ENABLE_DEPRECATED_PORTS" = "xtrue"; then
--      AC_MSG_WARN([The Solaris and SPARC ports are deprecated and may be removed in a future release.])
--    else
--      AC_MSG_ERROR(m4_normalize([The Solaris and SPARC ports are deprecated and may be removed in a
--        future release. Use --enable-deprecated-ports=yes to suppress this error.]))
--    fi
--  fi
-+  # Deprecated in JDK 15
-+  UTIL_DEPRECATED_ARG_ENABLE(deprecated-ports)
- ])
- 
- AC_DEFUN_ONCE([PLATFORM_SETUP_OPENJDK_BUILD_OS_VERSION],
 --- old/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.488604709 -0700
 +++ new/make/autoconf/spec.gmk.in	2020-05-20 17:58:43.064596567 -0700
 @@ -85,7 +85,6 @@

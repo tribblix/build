@@ -10,8 +10,8 @@
 # just pull the ga tag
 #
 cd ~/ud
-${THOME}/build/unpack jdk17u-jdk-17.0.18-ga
-cd jdk17u-jdk-17.0.18-ga
+${THOME}/build/unpack jdk17u-jdk-17.0.19-ga
+cd jdk17u-jdk-17.0.19-ga
 
 #
 # jdk17 needs autoconf installed
@@ -37,7 +37,6 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-toolchain-type=gcc \
 --disable-dtrace \
 --disable-warnings-as-errors \
---enable-deprecated-ports=yes \
 --with-vendor-name=Tribblix \
 --with-vendor-url=http://tribblix.org/ \
 --with-vendor-bug-url=https://www.tribblix.org/feedback.html \
@@ -53,9 +52,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # ./build/solaris-x86_64-server-release/images/jdk/bin/java -version
 #
-# openjdk version "17.0.18-ga" 2026-01-20
-# OpenJDK Runtime Environment (build 17.0.18-ga+0-Tribblix)
-# OpenJDK 64-Bit Server VM (build 17.0.18-ga+0-Tribblix, mixed mode, sharing)
+# openjdk version "17.0.19-ga" 2026-04-21
+# OpenJDK Runtime Environment (build 17.0.19-ga+0-Tribblix)
+# OpenJDK 64-Bit Server VM (build 17.0.19-ga+0-Tribblix, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
