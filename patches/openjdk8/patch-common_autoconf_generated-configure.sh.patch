@@ -1,7 +1,7 @@
 diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/common/autoconf/generated-configure.sh
 --- a~/common/autoconf/generated-configure.sh	1970-01-01 00:00:00
 +++ a/common/autoconf/generated-configure.sh	1970-01-01 00:00:00
-@@ -4166,7 +4166,7 @@ VALID_TOOLCHAINS_all="gcc clang solstudi
+@@ -4165,7 +4165,7 @@ VALID_TOOLCHAINS_all="gcc clang solstudi
  
  # These toolchains are valid on different platforms
  VALID_TOOLCHAINS_linux="gcc clang"
@@ -10,7 +10,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
  VALID_TOOLCHAINS_macosx="gcc clang"
  VALID_TOOLCHAINS_aix="xlc"
  VALID_TOOLCHAINS_windows="microsoft"
-@@ -42421,6 +42421,14 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42439,6 +42439,14 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
        SET_SHARED_LIBRARY_ORIGIN="$SET_EXECUTABLE_ORIGIN"
        SET_SHARED_LIBRARY_NAME='-Xlinker -install_name -Xlinker @rpath/$1'
        SET_SHARED_LIBRARY_MAPFILE=''
@@ -25,7 +25,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
      else
        # Default works for linux, might work on other platforms as well.
        SHARED_LIBRARY_FLAGS='-shared'
-@@ -42489,11 +42497,6 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42487,11 +42495,6 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
  
  
  
@@ -37,7 +37,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
    # The (cross) compiler is now configured, we can now test capabilities
    # of the target platform.
  
-@@ -42592,6 +42595,11 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42590,6 +42593,11 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
          C_O_FLAG_HI="-Os"
          C_O_FLAG_NORM="-Os"
          C_O_FLAG_NONE=""
@@ -49,10 +49,10 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
        else
          C_O_FLAG_HIGHEST="-O3"
          C_O_FLAG_HI="-O3"
-@@ -42650,12 +42658,12 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42634,12 +42642,12 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
      CFLAGS_JDK="${CFLAGS_JDK} -qchars=signed -q64 -qfullpath -qsaveopt"
      CXXFLAGS_JDK="${CXXFLAGS_JDK} -qchars=signed -q64 -qfullpath -qsaveopt"
-   elif test "x$TOOLCHAIN_TYPE" = xgcc; then
+   elif test "x$TOOLCHAIN_TYPE" = xgcc -o "x$TOOLCHAIN_TYPE" = xclang; then
 -    LEGACY_HOST_CFLAGS="$LEGACY_HOST_CFLAGS -fstack-protector"
 -    LEGACY_TARGET_CFLAGS="$LEGACY_TARGET_CFLAGS -fstack-protector"
 -    LEGACY_HOST_CXXFLAGS="$LEGACY_HOST_CXXFLAGS -fstack-protector"
@@ -67,16 +67,16 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
        LEGACY_HOST_LDFLAGS="$LEGACY_HOST_LDFLAGS -Wl,-z,relro"
        LEGACY_TARGET_LDFLAGS="$LEGACY_TARGET_LDFLAGS -Wl,-z,relro"
      fi
-@@ -42788,7 +42796,7 @@ fi
-   if test "x$TOOLCHAIN_TYPE" = xgcc; then
+@@ -42772,7 +42780,7 @@ fi
+   if test "x$TOOLCHAIN_TYPE" = xgcc -o "x$TOOLCHAIN_TYPE" = xclang; then
      # these options are used for both C and C++ compiles
      CCXXFLAGS_JDK="$CCXXFLAGS $CCXXFLAGS_JDK -Wall -Wno-parentheses -Wextra -Wno-unused -Wno-unused-parameter -Wformat=2 \
--        -pipe -fstack-protector -D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
-+        -pipe -D_GNU_SOURCE -D_REENTRANT -D_LARGEFILE64_SOURCE"
+-        -pipe -fstack-protector"
++        -pipe"
      case $OPENJDK_TARGET_CPU_ARCH in
        arm )
          # on arm we don't prevent gcc to omit frame pointer but do prevent strict aliasing
-@@ -44768,11 +44776,6 @@ fi
+@@ -44758,11 +44766,6 @@ fi
  
    if test "x$OPENJDK_TARGET_OS" = xsolaris; then
      OPENWIN_HOME="/usr/openwin"
