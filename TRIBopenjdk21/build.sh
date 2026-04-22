@@ -7,8 +7,8 @@
 #
 
 cd ~/ud
-${THOME}/build/unpack jdk21u-jdk-21.0.10-ga
-cd jdk21u-jdk-21.0.10-ga
+${THOME}/build/unpack jdk21u-jdk-21.0.11-ga
+cd jdk21u-jdk-21.0.11-ga
 
 #
 # jdk21 needs autoconf installed
@@ -41,7 +41,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --with-vendor-vm-bug-url=https://www.tribblix.org/feedback.html \
 --with-version-pre=ga \
 --with-version-opt=Tribblix \
---with-jobs=3 \
+--with-jobs=4 \
 DATE=/usr/gnu/bin/date \
 STRIP=/usr/gnu/bin/strip
 
@@ -52,9 +52,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # ./build/solaris-x86_64-server-release/images/jdk/bin/java -version
 #
-# openjdk version "21.0.10-ga" 2026-01-20
-# OpenJDK Runtime Environment (build 21.0.10-ga-Tribblix)
-# OpenJDK 64-Bit Server VM (build 21.0.10-ga-Tribblix, mixed mode, sharing)
+# openjdk version "21.0.11-ga" 2026-04-21
+# OpenJDK Runtime Environment (build 21.0.11-ga-Tribblix)
+# OpenJDK 64-Bit Server VM (build 21.0.11-ga-Tribblix, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
