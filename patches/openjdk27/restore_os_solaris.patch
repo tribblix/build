@@ -1799,7 +1799,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 +}
 +
 +CPUPerformanceInterface::CPUPerformance::~CPUPerformance() {
-+  FREE_C_HEAP_ARRAY(char, _counters.jvmTicks);
++  FREE_C_HEAP_ARRAY(_counters.jvmTicks);
 +  if (_counters.kstat_ctrl != nullptr) {
 +    kstat_close(_counters.kstat_ctrl);
 +  }
@@ -2058,7 +2058,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 +  process_info->set_command_line(allocate_string(psinfo_data.pr_psargs));
 +
 +  if (exe_path != nullptr) {
-+    FREE_C_HEAP_ARRAY(char, exe_path);
++    FREE_C_HEAP_ARRAY(exe_path);
 +  }
 +
 +  if (fp != nullptr) {
@@ -2188,12 +2188,12 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_perf_solaris.cpp b/src/hotspot/os/sol
 +  if (_cpu_info != nullptr) {
 +    if (_cpu_info->cpu_name() != nullptr) {
 +      const char* cpu_name = _cpu_info->cpu_name();
-+      FREE_C_HEAP_ARRAY(char, cpu_name);
++      FREE_C_HEAP_ARRAY(cpu_name);
 +      _cpu_info->set_cpu_name(nullptr);
 +    }
 +    if (_cpu_info->cpu_description() != nullptr) {
 +      const char* cpu_desc = _cpu_info->cpu_description();
-+      FREE_C_HEAP_ARRAY(char, cpu_desc);
++      FREE_C_HEAP_ARRAY(cpu_desc);
 +      _cpu_info->set_cpu_description(nullptr);
 +    }
 +    delete _cpu_info;
@@ -2738,7 +2738,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +
 +    // Determine search path count and required buffer size.
 +    if (dlinfo(RTLD_SELF, RTLD_DI_SERINFOSIZE, (void *)info) == -1) {
-+      FREE_C_HEAP_ARRAY(char, buf);
++      FREE_C_HEAP_ARRAY(buf);
 +      vm_exit_during_initialization("dlinfo SERINFOSIZE request", dlerror());
 +    }
 +
@@ -2749,8 +2749,8 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +
 +    // Obtain search path information.
 +    if (dlinfo(RTLD_SELF, RTLD_DI_SERINFO, (void *)info) == -1) {
-+      FREE_C_HEAP_ARRAY(char, buf);
-+      FREE_C_HEAP_ARRAY(char, info);
++      FREE_C_HEAP_ARRAY(buf);
++      FREE_C_HEAP_ARRAY(info);
 +      vm_exit_during_initialization("dlinfo SERINFO request", dlerror());
 +    }
 +
@@ -2807,15 +2807,15 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +    // Callee copies into its own buffer.
 +    Arguments::set_library_path(library_path);
 +
-+    FREE_C_HEAP_ARRAY(char, library_path);
-+    FREE_C_HEAP_ARRAY(char, info);
++    FREE_C_HEAP_ARRAY(library_path);
++    FREE_C_HEAP_ARRAY(info);
 +  }
 +
 +  // Extensions directories.
 +  os::snprintf_checked(buf, bufsize, "%s" EXTENSIONS_DIR ":" SYS_EXT_DIR EXTENSIONS_DIR, Arguments::get_java_home());
 +  Arguments::set_ext_dirs(buf);
 +
-+  FREE_C_HEAP_ARRAY(char, buf);
++  FREE_C_HEAP_ARRAY(buf);
 +
 +#undef SYS_EXT_DIR
 +#undef EXTENSIONS_DIR
@@ -4614,7 +4614,7 @@ diff -urN /tmp/a/src/hotspot/os/solaris/os_solaris.cpp b/src/hotspot/os/solaris/
 +      size_t lgrp_limit = os::numa_get_groups_num();
 +      uint *lgrp_ids = NEW_C_HEAP_ARRAY(uint, lgrp_limit, mtInternal);
 +      size_t lgrp_num = os::numa_get_leaf_groups(lgrp_ids, lgrp_limit);
-+      FREE_C_HEAP_ARRAY(uint, lgrp_ids);
++      FREE_C_HEAP_ARRAY(lgrp_ids);
 +      if (lgrp_num < 2) {
 +        // There's only one locality group, disable NUMA
 +        UseNUMA = false;

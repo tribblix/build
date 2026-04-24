@@ -968,7 +968,7 @@
  #define NOT_WINDOWS(code)
 --- old/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:47.142978963 -0700
 +++ new/src/hotspot/share/utilities/ostream.cpp	2020-05-20 18:00:46.754971513 -0700
-@@ -1080,7 +1080,7 @@
+@@ -1075,7 +1075,7 @@
  
  #ifndef PRODUCT
  

@@ -1,5 +1,9 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+19
+
+FREE_C_HEAP_ARRAY has lost its first argument.
+
 27+18
 
 Minor patch noise.
