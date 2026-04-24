@@ -1,0 +1,4 @@
+PKG="TRIBazure-identity-python-313"
+NAME="Python azure-identity"
+VERSION="1.25.3.0"
+ZAP_URL="https://pypi.org/project/azure-identity/"
