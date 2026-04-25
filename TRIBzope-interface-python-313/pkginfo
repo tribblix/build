@@ -1,4 +1,4 @@
-PKG="TRIBzope-interface-python-312"
+PKG="TRIBzope-interface-python-313"
 NAME="Python zope.interface"
 VERSION="8.4.0"
 ZAP_URL="https://pypi.org/project/zope.interface/"
