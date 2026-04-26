@@ -8,5 +8,5 @@
 # TRIBlibsdl-image still uses 1.4
 #
 ${THOME}/build/dobuild -64 libpng-1.4.22 -C --sysconfdir=/etc
-${THOME}/build/dobuild -64 libpng-1.6.57 -C --sysconfdir=/etc
-${THOME}/build/genpkg TRIBimage-libpng libpng-1.4.22 libpng-1.6.57
+${THOME}/build/dobuild -64 libpng-1.6.58 -C --sysconfdir=/etc
+${THOME}/build/genpkg TRIBimage-libpng libpng-1.4.22 libpng-1.6.58
