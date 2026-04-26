@@ -11,5 +11,5 @@
 #
 ${THOME}/build/dobuild -64only bdftopcf-1.1.2
 ${THOME}/build/mesonbuild -64only mkfontscale-1.2.4
-${THOME}/build/dobuild -64 font-util-1.4.1
-${THOME}/build/genpkg TRIBx11-font-utilities bdftopcf-1.1.2 mkfontscale-1.2.4 font-util-1.4.1
+${THOME}/build/dobuild -64 font-util-1.4.2
+${THOME}/build/genpkg TRIBx11-font-utilities bdftopcf-1.1.2 mkfontscale-1.2.4 font-util-1.4.2
