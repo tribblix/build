@@ -6,3 +6,11 @@
 #
 rm -fr usr/share/doc/gnupg/examples/systemd-user
 sed -i '/systemd/d' usr/share/doc/gnupg/examples/README
+#
+# we can no longer rename as gpg2 at configure time
+#
+mv usr/bin/gpg usr/bin/gpg2
+mv usr/bin/gpgsplit usr/bin/gpgsplit2
+mv usr/bin/gpgv usr/bin/gpgv2
+mv usr/share/man/man1/gpg.1 usr/share/man/man1/gpg2.1
+mv usr/share/man/man1/gpgv.1 usr/share/man/man1/gpgv2.1
