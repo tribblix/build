@@ -1,0 +1,10 @@
+--- dillo-3.3.0-64bit/src/IO/control.c~	Wed Apr  8 20:49:09 2026
++++ dillo-3.3.0-64bit/src/IO/control.c	Sun Apr 26 17:52:38 2026
+@@ -31,6 +31,7 @@
+ #include <sys/stat.h>
+ #include <sys/un.h>
+ #include <unistd.h>
++#include <sys/filio.h>
+ 
+ #include "iowatch.hh"
+ #include "uicmd.hh"
