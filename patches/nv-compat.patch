@@ -1,0 +1,16 @@
+Logged as an issue #7
+
+--- a/src/compat-api.h	Sat Apr 25 21:14:46 2026
++++ b/src/compat-api.h	Mon Apr 27 09:34:27 2026
+@@ -28,9 +28,11 @@
+ #ifndef COMPAT_API_H
+ #define COMPAT_API_H
+ 
++/*
+ #ifndef XNFcalloc
+ #define XNFcalloc(n) XNFcallocarray(n, 1)
+ #endif
++*/
+ 
+ #ifndef GLYPH_HAS_GLYPH_PICTURE_ACCESSOR
+ #define GetGlyphPicture(g, s) GlyphPicture((g))[(s)->myNum]
