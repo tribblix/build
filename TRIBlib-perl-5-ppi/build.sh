@@ -5,9 +5,9 @@
 # testing also requires
 # Class::Inspector Test::NoWarnings Test::Object Test::SubCalls
 #
-${THOME}/build/unpack PPI-1.284
-cd PPI-1.284
+${THOME}/build/unpack PPI-1.291
+cd PPI-1.291
 perl Makefile.PL
 make
 cd ..
-${THOME}/build/genpkg TRIBlib-perl-5-ppi PPI-1.284
+${THOME}/build/genpkg TRIBlib-perl-5-ppi PPI-1.291
