@@ -1,0 +1,4 @@
+PKG="TRIBperl-542"
+NAME="Perl 5.42"
+VERSION="5.42.2.0"
+ZAP_URL="https://www.perl.org/"
