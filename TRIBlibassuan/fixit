@@ -14,4 +14,3 @@ i386)
   ;;
 esac
 rm -f usr/bin/${ARCH64}/libassuan-config
-
