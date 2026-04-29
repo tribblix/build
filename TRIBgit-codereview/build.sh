@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-env GOPATH=`pwd` go install golang.org/x/review/git-codereview@v1.18.0
+env PATH=/usr/versions/go-1.26/bin:$PATH GOPATH=`pwd` go install golang.org/x/review/git-codereview@v1.19.0
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
 mkdir -p /tmp/cs/usr/share/git-codereview
