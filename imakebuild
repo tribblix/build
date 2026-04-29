@@ -161,12 +161,12 @@ do
 		;;
 	esac
 	if [ "x$DO64" != "xfalse" ]; then
-	    cd "${WORKING_ROOT}"
+	    cd "${WORKING_ROOT}" || exit 1
 	    if [ ! -d "${pkg}-64bit" ]; then
 		echo "Cannot find source directory ${pkg}-64bit"
 		exit 1
 	    fi
-	    cd "${pkg}-64bit"
+	    cd "${pkg}-64bit" || exit 1
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
 		${BUILD}/patches/${pkg}.preconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
@@ -181,12 +181,12 @@ do
 	    ${GMAKE} ${GMAKEFLAGS} ${MAKEARGS}
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
-	    cd "${WORKING_ROOT}"
+	    cd "${WORKING_ROOT}" || exit 1
 	    if [ ! -d "${pkg}" ]; then
 		echo "Cannot find source directory ${pkg}"
 		exit 1
 	    fi
-	    cd "${pkg}"
+	    cd "${pkg}" || exit 1
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi

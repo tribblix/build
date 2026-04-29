@@ -325,26 +325,26 @@ do
 		;;
 	esac
 	if [ "x$DO64" != "xfalse" ]; then
-	    cd "${WORKING_ROOT}"
+	    cd "${WORKING_ROOT}" || exit 1
 	    if [ ! -d "${pkg}-64bit" ]; then
 		echo "Cannot find source directory ${pkg}-64bit"
 		exit 1
 	    fi
 	    if [[ -n $DO_LD ]]; then
-		cd "${pkg}-64bit"
+		cd "${pkg}-64bit" || exit 1
 		touch .tribblix_ldopts
 		cat >> .tribblix_ldopts <<EOF
 LD_OPTIONS="${LD_OPTIONS}"
 export LD_OPTIONS
 EOF
-		cd "${WORKING_ROOT}"
+		cd "${WORKING_ROOT}" || exit 1
 	    fi
 	    if [[ -n $SUBDIR ]]; then
-		cd "${pkg}-64bit"
+		cd "${pkg}-64bit" || exit 1
 		echo "${TSUBDIR}" > .tribblix_build_subdir
-		cd "${WORKING_ROOT}"
+		cd "${WORKING_ROOT}" || exit 1
 	    fi
-	    cd "${pkg}-64bit${SUBDIR}"
+	    cd "${pkg}-64bit${SUBDIR}" || exit 1
 	    if [ -x "${BUILD}/patches/${pkg}.preconf.64" ]; then
 		${BUILD}/patches/${pkg}.preconf.64
 	    elif [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
@@ -353,7 +353,7 @@ EOF
 	    if [[ -n $BFLAG ]]; then
 		echo "${BUILDDIR}" > .tribblix_cmake_build
 		mkdir "${BUILDDIR}"
-		cd "${BUILDDIR}"
+		cd "${BUILDDIR}" || exit 1
 	    fi
 	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/${ARCH64}/pkgconfig PATH=$TRIBBLIX_CONF_PATH64 LDFLAGS="-m64 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m64 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m64 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH="${IPREFIX}" -DLIB_INSTALL_DIR="${IPREFIX}/${LIBDIR64}" -DBIN_INSTALL_DIR="${IPREFIX}/${BINDIR64}" -DCMAKE_INSTALL_LIBDIR="${IPREFIX}/${LIBDIR64}" -DCMAKE_INSTALL_BINDIR="${IPREFIX}/${BINDIR64}" ${FIXUP_FLAGS} ${CONFARGS64} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf.64" ]; then
@@ -367,33 +367,33 @@ EOF
 	    fi
 	fi
 	if [ "x$DO32" != "xfalse" ]; then
-	    cd ${WORKING_ROOT}
+	    cd ${WORKING_ROOT} || exit 1
 	    if [ ! -d "${pkg}" ]; then
 		echo "Cannot find source directory ${pkg}"
 		exit 1
 	    fi
 	    if [[ -n $DO_LD ]]; then
-		cd "${pkg}"
+		cd "${pkg}" || exit 1
 		touch .tribblix_ldopts
 		cat >> .tribblix_ldopts <<EOF
 LD_OPTIONS="${LD_OPTIONS}"
 export LD_OPTIONS
 EOF
-		cd "${WORKING_ROOT}"
+		cd "${WORKING_ROOT}" || exit 1
 	    fi
 	    if [[ -n $SUBDIR ]]; then
-		cd "${pkg}"
+		cd "${pkg}" || exit 1
 		echo "${TSUBDIR}" > .tribblix_build_subdir
-		cd "${WORKING_ROOT}"
+		cd "${WORKING_ROOT}" || exit 1
 	    fi
-	    cd "${pkg}${SUBDIR}"
+	    cd "${pkg}${SUBDIR}" || exit 1
 	    if [ -x "${BUILD}/patches/${pkg}.preconf" ]; then
 		${BUILD}/patches/${pkg}.preconf
 	    fi
 	    if [[ -n $BFLAG ]]; then
 		echo "${BUILDDIR}" > .tribblix_cmake_build
 		mkdir "${BUILDDIR}"
-		cd "${BUILDDIR}"
+		cd "${BUILDDIR}" || exit 1
 	    fi
 	    env PKG_CONFIG_PATH=${TRIBBLIX_PKG_CONFIG_PATH}/usr/lib/pkgconfig PATH=$TRIBBLIX_CONF_PATH32 LDFLAGS="-m32 ${TRIBBLIX_LDFLAGS}" CFLAGS="-m32 ${TRIBBLIX_CFLAGS}" CXXFLAGS="-m32 ${TRIBBLIX_CXXFLAGS}" cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH="${IPREFIX}" -DLIB_INSTALL_DIR="${IPREFIX}/${LIBDIR32}" -DBIN_INSTALL_DIR="${IPREFIX}/${BINDIR32}" -DCMAKE_INSTALL_LIBDIR="${IPREFIX}/${LIBDIR32}" -DCMAKE_INSTALL_BINDIR="${IPREFIX}/${BINDIR32}" ${FIXUP_FLAGS} ${CONFARGS32} $BDIR
 	    if [ -x "${BUILD}/patches/${pkg}.postconf" ]; then
