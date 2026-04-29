@@ -1,0 +1,4 @@
+PKG="TRIBcloudpickle-python-313"
+NAME="Python cloudpickle"
+VERSION="3.1.2.0"
+ZAP_URL="https://pypi.org/project/cloudpickle/"
