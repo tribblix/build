@@ -1,4 +1,4 @@
 PKG="TRIBzrepl"
 NAME="ZFS replication"
-VERSION="0.7.0.0"
+VERSION="0.7.0.1"
 ZAP_URL="https://zrepl.github.io/"

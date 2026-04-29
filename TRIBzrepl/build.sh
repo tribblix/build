@@ -8,7 +8,7 @@ git clone https://github.com/zrepl/zrepl
 cd zrepl
 git checkout v0.7.0
 #
-env PATH=${HOME}/go/bin:${PATH} GOPATH=${HOME}/go gmake zrepl-bin
+env PATH=${HOME}/go/bin:/usr/versions/go-1.26/bin:${PATH} GOPATH=${HOME}/go gmake zrepl-bin
 
 rm -fr /tmp/rr
 mkdir -p /tmp/rr/usr/bin
