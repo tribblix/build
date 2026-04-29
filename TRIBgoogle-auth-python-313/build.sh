@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 -N TRIBgoogle-auth-python-313 google_auth-2.49.2

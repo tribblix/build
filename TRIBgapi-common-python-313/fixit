@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# permissions all messed up
+#
+chmod -R a+r usr/versions
+#
+# duplicate files
+#
+PYVERS=3.13
+rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/docs
