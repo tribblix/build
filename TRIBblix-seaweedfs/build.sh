@@ -4,7 +4,7 @@
 #
 mkdir w
 cd w
-env PATH=/usr/versions/go-1.25/bin:$PATH GOPATH=`pwd` go install github.com/seaweedfs/seaweedfs/weed@4.16
+env PATH=/usr/versions/go-1.26/bin:$PATH GOPATH=`pwd` go install github.com/seaweedfs/seaweedfs/weed@4.22
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/seaweedfs/bin
