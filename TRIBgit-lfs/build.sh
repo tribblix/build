@@ -5,7 +5,7 @@
 # it's a straight makefile
 # ignore the env noise, it's non-portable
 #
-${THOME}/build/dobuild -n git-lfs-3.7.1 git-lfs-v3.7.1
+env PATH=/usr/versions/go-1.26/bin:$PATH ${THOME}/build/dobuild -n git-lfs-3.7.1 git-lfs-v3.7.1
 #
 # there's no make install, so fixinstall does all the work
 #
