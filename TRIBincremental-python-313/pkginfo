@@ -1,0 +1,4 @@
+PKG="TRIBincremental-python-313"
+NAME="Python incremental"
+VERSION="24.11.0.0"
+ZAP_URL="https://pypi.org/project/incremental/"

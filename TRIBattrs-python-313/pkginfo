@@ -1,0 +1,4 @@
+PKG="TRIBattrs-python-313"
+NAME="Python attrs"
+VERSION="26.1.0.0"
+ZAP_URL="https://pypi.org/project/attrs/"
