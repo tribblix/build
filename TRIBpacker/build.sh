@@ -9,8 +9,8 @@ mkdir -p src/github.com/hashicorp
 cd src/github.com/hashicorp
 git clone https://github.com/hashicorp/packer
 cd packer
-git checkout v1.14.3
-env PATH=/usr/versions/go-1.25/bin:$PATH go build -o bin/packer .
+git checkout v1.15.3
+env PATH=/usr/versions/go-1.26/bin:$PATH go build -o bin/packer .
 
 
 rm -fr /tmp/cgp
