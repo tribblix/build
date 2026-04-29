@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-git clone https://github.com/makeworld-the-better-one/amfora
+git clone https://github.com/makew0rld/amfora
 cd amfora
 git checkout v1.11.0
-gmake
+env PATH=/usr/versions/go-1.26/bin:$PATH gmake
 
 rm -fr /tmp/af123
 mkdir -p /tmp/af123/usr/bin
