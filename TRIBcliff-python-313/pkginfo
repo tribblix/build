@@ -1,0 +1,4 @@
+PKG="TRIBcliff-python-313"
+NAME="Python cliff"
+VERSION="4.13.3.0"
+ZAP_URL="https://pypi.org/project/cliff/"
