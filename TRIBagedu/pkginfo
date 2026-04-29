@@ -1,4 +1,4 @@
 PKG="TRIBagedu"
 NAME="Show du with access times"
-VERSION="20241013.3622eda.0"
+VERSION="20260410.3622eda.0"
 ZAP_URL="https://www.chiark.greenend.org.uk/~sgtatham/agedu/"
