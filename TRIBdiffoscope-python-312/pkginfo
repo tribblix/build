@@ -1,4 +1,4 @@
 PKG="TRIBdiffoscope-python-312"
 NAME="Python diffoscope"
-VERSION="317.0"
+VERSION="318.0"
 ZAP_URL="https://pypi.org/project/diffoscope/"
