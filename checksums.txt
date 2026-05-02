@@ -5664,3 +5664,4 @@ uritools-6.1.0.tar.gz be97e452528e7a42ef0a4df68364ddd77833e982c5bac5cdcfee15c81f
 typer-0.25.1.tar.gz 9616eb8853a09ffeabab1698952f33c6f29ffdbceb4eaeecf571880e8d7664cc
 rich_argparse-1.8.0.tar.gz 679df3d832fa94ad6e4bdb07ded088cd7ea2dddc58ae9b2b46346a40b06cbc0c
 parso-0.8.7.tar.gz eaaac4c9fdd5e9e8852dc778d2d7405897ec510f2a298071453e5e3a07914bb1
+google_auth-2.50.0.tar.gz f35eafb191195328e8ce10a7883970877e7aeb49c2bfaa54aa0e394316d353d0
