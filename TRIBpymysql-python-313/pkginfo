@@ -1,4 +1,4 @@
-PKG="TRIBpymysql-python-312"
+PKG="TRIBpymysql-python-313"
 NAME="Python pymysql"
 VERSION="1.1.3.0"
 ZAP_URL="https://pypi.org/project/pymysql/"
