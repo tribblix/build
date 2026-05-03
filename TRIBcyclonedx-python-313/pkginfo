@@ -1,0 +1,4 @@
+PKG="TRIBcyclonedx-python-313"
+NAME="Python cyclonedx-python-lib"
+VERSION="11.7.0.0"
+ZAP_URL="https://pypi.org/project/cyclonedx-python-lib/"
