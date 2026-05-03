@@ -1,0 +1,4 @@
+PKG="TRIBwebsockets-python-313"
+NAME="Python websockets"
+VERSION="16.0.0"
+ZAP_URL="https://pypi.org/project/websockets/"
