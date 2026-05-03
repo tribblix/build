@@ -1,0 +1,4 @@
+PKG="TRIBpygls-python-313"
+NAME="Python pygls"
+VERSION="2.1.1.0"
+ZAP_URL="https://pypi.org/project/pygls/"

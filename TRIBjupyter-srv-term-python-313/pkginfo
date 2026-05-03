@@ -1,0 +1,4 @@
+PKG="TRIBjupyter-srv-term-python-313"
+NAME="Python jupyter-server-terminals"
+VERSION="0.5.4.0"
+ZAP_URL="https://pypi.org/project/jupyter-server-terminals/"
