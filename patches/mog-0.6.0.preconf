@@ -4,4 +4,4 @@
 #
 # we need the file from file-magic
 #
-sed -i "s:\['file':\['file-5.45':" mog/__init__.py
+sed -i "s:\['file':\['file-5.47':" mog/__init__.py

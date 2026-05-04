@@ -5,7 +5,7 @@
 # don't conflict with the solaris standard
 #
 
-VERSION=5.45
+VERSION=5.47
 #
 mv usr/bin/file usr/bin/file-${VERSION}
 mv usr/share/man/man1/file.1 usr/share/man/man1/file-${VERSION}.1
