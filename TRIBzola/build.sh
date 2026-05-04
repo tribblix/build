@@ -6,7 +6,7 @@
 #
 git clone https://github.com/getzola/zola.git
 cd zola
-git checkout v0.20.0
+git checkout v0.22.1
 cargo build --release
 
 rm -fr /tmp/ll
