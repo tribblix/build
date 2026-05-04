@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# adds click as a dependency for the [cli] extra
+#
+${THOME}/build/pkg_pep518 -N TRIBdotenv-python-313 python_dotenv-1.2.2
