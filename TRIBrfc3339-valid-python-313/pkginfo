@@ -1,0 +1,4 @@
+PKG="TRIBrfc3339-valid-python-313"
+NAME="Python rfc3339-validator"
+VERSION="0.1.4.0"
+ZAP_URL="https://pypi.org/project/rfc3339-validator/"

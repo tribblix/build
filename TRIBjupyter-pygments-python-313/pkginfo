@@ -1,0 +1,4 @@
+PKG="TRIBjupyter-pygments-python-313"
+NAME="Python jupyterlab-pygments"
+VERSION="0.3.0.0"
+ZAP_URL="https://pypi.org/project/jupyterlab-pygments/"
