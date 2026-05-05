@@ -1,4 +1,4 @@
-PKG="TRIBfabric-python-312"
+PKG="TRIBfabric-python-313"
 NAME="Python fabric"
 VERSION="3.2.3.0"
 ZAP_URL="https://pypi.org/project/fabric/"

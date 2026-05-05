@@ -1,4 +1,4 @@
-PKG="TRIBrpyc-python-312"
+PKG="TRIBrpyc-python-313"
 NAME="Python rpyc"
 VERSION="6.0.2.0"
 ZAP_URL="https://pypi.org/project/rpyc/"
