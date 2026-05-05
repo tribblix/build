@@ -5703,3 +5703,4 @@ pyopenssl-26.2.0.tar.gz 8c6fcecd1183a7fc897548dfe388b0cdb7f37e018200d8409cf33959
 jupyter_server-2.18.0.tar.gz 568b27bce4320a53c3eebf1bdcbee9acf48a8ab7f66ec83d900ca9909d4fb770
 gunicorn-26.0.0.tar.gz ca9346f85e3a4aeeb64d491045c16b9a35647abd37ea15efe53080eb8b090baf
 blessed-1.39.0.tar.gz b04fc7141a20a3b2ade6cad741051f1e3ac59cc1e7e90915ed1f9e521332bea4
+pip-26.1.1.tar.gz d36762751d156a4ee895de8af39aa0abeeeb577f93a2eca6ab62467bbf0f8a78
