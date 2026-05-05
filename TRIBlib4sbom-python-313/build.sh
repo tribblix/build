@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_wheel TRIBlib4sbom-python-313 lib4sbom-0.10.4-py3-none-any.whl

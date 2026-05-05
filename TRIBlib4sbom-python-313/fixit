@@ -4,6 +4,6 @@
 #
 # these not only look wrong, they conflict with other packages
 #
-PYVERS=3.12
+PYVERS=3.13
 rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/test
 rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/tools

@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-PYVERS=3.12
+PYVERS=3.13
 rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/test
 mkdir -p usr/bin
 cd usr/bin
