@@ -1,0 +1,4 @@
+PKG="TRIBpysyncobj-python-313"
+NAME="Python pysyncobj"
+VERSION="0.3.15.0"
+ZAP_URL="https://pypi.org/project/pysyncobj/"
