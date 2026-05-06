@@ -1,0 +1,4 @@
+PKG="TRIBunidecode-python-313"
+NAME="Python Unidecode"
+VERSION="1.4.0.0"
+ZAP_URL="https://pypi.org/project/Unidecode/"
