@@ -1,4 +1,4 @@
-PKG="TRIBuwsgitop-python-312"
+PKG="TRIBuwsgitop-python-313"
 NAME="Python uwsgitop"
 VERSION="0.12.1"
 ZAP_URL="https://pypi.org/project/uwsgitop/"
