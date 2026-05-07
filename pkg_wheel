@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -120,6 +120,13 @@ case $SPYVER in
 	exit 1
 	;;
 esac
+
+#
+# set the PATH to prefer the specified version of python
+# so we pick up the right python tools
+#
+PATH="/usr/versions/python-${PYVER}/bin:$PATH"
+export PATH
 
 #
 # define and create working location
