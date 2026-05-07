@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBproto-plus-python-313 proto_plus-1.27.2
+${THOME}/build/pkg_pep518 -N TRIBproto-plus-python-313 proto_plus-1.28.0
