@@ -1,4 +1,4 @@
-PKG="TRIBfeedparser-python-312"
+PKG="TRIBfeedparser-python-313"
 NAME="Python feedparser"
 VERSION="6.0.12.0"
 ZAP_URL="https://pypi.org/project/feedparser/"

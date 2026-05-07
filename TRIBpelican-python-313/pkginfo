@@ -1,4 +1,4 @@
-PKG="TRIBpelican-python-312"
+PKG="TRIBpelican-python-313"
 NAME="Python pelican"
 VERSION="4.12.0.0"
 ZAP_URL="https://pypi.org/project/pelican/"
