@@ -1,4 +1,4 @@
-PKG="TRIBsympy-python-312"
+PKG="TRIBsympy-python-313"
 NAME="Python sympy"
 VERSION="1.14.0.0"
 ZAP_URL="https://pypi.org/project/sympy/"
