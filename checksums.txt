@@ -5738,3 +5738,5 @@ google_cloud_core-2.6.0.tar.gz e76149739f90fac1fc6757c09f47eaccb3145b54adbd7759b
 google_auth-2.51.0.tar.gz a8191008d6aaace30f0823daa3f0073c734f8b4da8b8de074b5151aa9aa732c5
 google_auth_httplib2-0.4.0.tar.gz d5b030a204b7a4b4d553ba9ca701b62481ee2b74419325580be70f7d85ffed35
 tor-0.4.8.24.tar.gz 411d083f9047bcd39f31bb316dd0a537fb2566fbed02cbfc0e6464528526743a
+apache-groovy-binary-4.0.32.zip f03e8838b56c202d8c864d462f6117d3512fdb6d1db9afcd47dfd1af81683f50
+apache-groovy-binary-5.0.6.zip 14300bca33dc6a911ed5e2c6bc5b83b63fa8a5278e791820ff7e70fc76d06e1d

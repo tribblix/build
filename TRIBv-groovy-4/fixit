@@ -4,5 +4,5 @@
 #
 # clean up other platforms
 #
-VERSION=4.0.31
+VERSION=4.0.32
 rm usr/versions/groovy-${VERSION}/bin/*.bat
