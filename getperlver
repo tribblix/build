@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# {{{ CDDL HEADER
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source. A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+# }}}
+#
+# Copyright 2026 Peter Tribble
+#
+
+#
+# a little helper to return the correct perl version on this architecture
+# necessary because x86 and sparc might get out of sync
+#
+# with -p return the package version eg 5xx
+# otherwise return the directory name used eg 5.xx
+#
+# this script is also called directly from the perl module fixit scripts
+#
+# yes, in the case where different architectures are in sync, these
+# will both be the same
+#
+case $(uname -p) in
+sparc)
+    PERLVER=34
+    ;;
+i386)
+    PERLVER=34
+    ;;
+esac
+
+case $1 in
+    -p)
+	echo "5${PERLVER}"
+	exit 0
+	;;
+esac
+echo "5.${PERLVER}"
+exit 0

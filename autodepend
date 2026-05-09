@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -31,6 +31,9 @@
 #
 # assumes a shared object
 #
+
+THOME=${THOME:-/packages/localsrc/Tribblix}
+PERLVER=$("${THOME}"/build/getperlver -p)
 
 case $1 in
     -l)
@@ -132,7 +135,7 @@ getotherdeps()
 		echo TRIBv-python-27
 		;;
 	    *usr/perl5/*)
-		echo TRIBperl-534
+		echo "TRIBperl-${PERLVER}"
 		;;
 	esac
     done

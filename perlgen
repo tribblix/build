@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -23,6 +23,8 @@
 #
 # you may need to modify the depend file
 #
+
+THOME=${THOME:-/packages/localsrc/Tribblix}
 
 case $# in
 2)
@@ -36,6 +38,7 @@ case $# in
 esac
 
 PKGNAME=TRIBlib-perl-5-${pkg_name}
+PERLVER=$("${THOME}"/build/getperlver -p)
 
 #
 # check we're within the SVR4 package name length limit
@@ -64,7 +67,7 @@ PVER=${TBALL##*-}
 #
 
 mkdir "$PKGNAME"
-echo "P TRIBperl-534" > "$PKGNAME/depend"
+echo "P TRIBperl-${PERLVER}" > "$PKGNAME/depend"
 cat > "$PKGNAME/pkginfo" <<EOF
 PKG="${PKGNAME}"
 NAME="Perl $PNAME module"
@@ -93,6 +96,6 @@ cat > "$PKGNAME/fixit" <<EOF
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-/bin/rm -fr usr/perl5/5.34/lib
+/bin/rm -fr usr/perl5/\$(\${THOME}/build/getperlver)/lib
 EOF
 chmod a+x "$PKGNAME/fixit"
