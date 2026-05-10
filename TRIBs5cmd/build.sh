@@ -6,7 +6,7 @@ mkdir 5
 cd 5
 git clone https://github.com/peak/s5cmd
 cd s5cmd
-env GOPATH=`pwd`/.. gmake build
+env GOPATH=`pwd`/.. PATH=/usr/versions/go-1.26/bin:$PATH gmake build
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
