@@ -8,7 +8,7 @@ cd c
 
 git clone https://github.com/knqyf263/crtsh
 cd crtsh
-env GOPATH=`pwd`/.. go install
+env GOPATH=`pwd`/.. /usr/versions/go-1.26/bin/go install
 cd ..
 
 rm -fr /tmp/ee
