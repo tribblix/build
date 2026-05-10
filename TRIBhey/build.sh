@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-env GOPATH=`pwd` go install github.com/rakyll/hey@v0.1.4
+env GOPATH=`pwd` /usr/versions/go-1.26/bin/go install github.com/rakyll/hey@v0.1.5
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
 mkdir -p /tmp/cs/usr/share/hey
