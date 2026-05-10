@@ -4,5 +4,5 @@
 #
 # this module installs stuff here, which is unusual
 #
-/bin/rm -f usr/perl5/5.34/lib/*/perllocal.pod
-rmdir usr/perl5/5.34/lib/*
+/bin/rm -f usr/perl5/$(${THOME}/build/getperlver)/lib/*/perllocal.pod
+rmdir usr/perl5/$(${THOME}/build/getperlver)/lib/*

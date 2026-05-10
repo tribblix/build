@@ -5,4 +5,4 @@
 # this is one half of mod_perl, delete the other half
 #
 rm -fr opt
-rm -fr usr/perl5/5.34/lib/*-solaris-thread-multi-64
+rm -fr usr/perl5/$(${THOME}/build/getperlver)/lib/*-solaris-thread-multi-64

@@ -3,12 +3,12 @@
 # SPDX-License-Identifier: CDDL-1.0
 #
 mkdir -p usr/bin
-mv usr/perl5/5.34/bin/exiftool usr/bin
-rmdir usr/perl5/5.34/bin
+mv usr/perl5/$(${THOME}/build/getperlver)/bin/exiftool usr/bin
+rmdir usr/perl5/$(${THOME}/build/getperlver)/bin
 # and the man page
 mkdir -p usr/share/man/man1
-mv usr/perl5/5.34/man/man1/exiftool.1 usr/share/man/man1
-rmdir usr/perl5/5.34/man/man1
+mv usr/perl5/$(${THOME}/build/getperlver)/man/man1/exiftool.1 usr/share/man/man1
+rmdir usr/perl5/$(${THOME}/build/getperlver)/man/man1
 # leave the man3 pages inside perl as they're associated with
 # the module rather than the utility
-rm -fr usr/perl5/5.34/lib
+rm -fr usr/perl5/$(${THOME}/build/getperlver)/lib

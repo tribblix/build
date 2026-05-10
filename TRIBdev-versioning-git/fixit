@@ -12,6 +12,6 @@ cd ../../..
 #
 # it doesn't know where perl is
 #
-mkdir -p usr/perl5/site_perl/5.34
-mv usr/share/perl5/* usr/perl5/site_perl/5.34
+mkdir -p usr/perl5/site_perl/$(${THOME}/build/getperlver)
+mv usr/share/perl5/* usr/perl5/site_perl/$(${THOME}/build/getperlver)
 rmdir usr/share/perl5

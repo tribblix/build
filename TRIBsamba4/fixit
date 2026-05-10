@@ -18,7 +18,7 @@ mv usr/share/man/man8/smbd.8 usr/share/man/man8/samba-smbd.8
 # this is where our perl really lives
 #
 if [ -d usr/share/perl5 ]; then
-    mkdir -p usr/perl5/5.34/lib
-    mv usr/share/perl5/* usr/perl5/5.34/lib
+    mkdir -p usr/perl5/$(${THOME}/build/getperlver)/lib
+    mv usr/share/perl5/* usr/perl5/$(${THOME}/build/getperlver)/lib
     rmdir usr/share/perl5
 fi

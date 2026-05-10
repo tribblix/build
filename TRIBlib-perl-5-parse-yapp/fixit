@@ -2,11 +2,11 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-/bin/rm -fr usr/perl5/5.34/lib
+/bin/rm -fr usr/perl5/$(${THOME}/build/getperlver)/lib
 #
 # put the command in the normal path so the samba
 # build can find it
 #
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/perl5/5.34/bin/yapp .
+ln -s ../../usr/perl5/$(${THOME}/build/getperlver)/bin/yapp .

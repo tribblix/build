@@ -2,16 +2,16 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-/bin/rm -fr usr/perl5/5.34/lib
+/bin/rm -fr usr/perl5/$(${THOME}/build/getperlver)/lib
 #
 # put the command in the normal path so users can find it
 #
 mkdir -p usr/bin
 cd usr/bin
-ln -s ../../usr/perl5/5.34/bin/perltidy .
+ln -s ../../usr/perl5/$(${THOME}/build/getperlver)/bin/perltidy .
 cd ../..
 
 mkdir -p usr/share/man/man1
 cd usr/share/man/man1
-ln -s ../../../../usr/perl5/5.34/man/man1/perltidy.1 .
+ln -s ../../../../usr/perl5/$(${THOME}/build/getperlver)/man/man1/perltidy.1 .
 cd ../../../..
