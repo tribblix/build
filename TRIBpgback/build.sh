@@ -10,7 +10,7 @@ cd p
 # we ought not to use @latest, but using an explicit version fails with
 # an invalid version error
 #
-env GOPATH=`pwd` go install github.com/orgrim/pg_back@latest
+env GOPATH=`pwd` /usr/versions/go-1.26/bin/go install github.com/orgrim/pg_back@latest
 
 #
 # copy the binary
