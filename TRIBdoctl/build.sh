@@ -5,7 +5,7 @@
 # specify version explicitly, rather than @latest
 # later versions fail to build
 #
-env GOPATH=`pwd` go install github.com/digitalocean/doctl/cmd/doctl@v1.79
+env GOPATH=`pwd` /usr/versions/go-1.26/bin/go install github.com/digitalocean/doctl/cmd/doctl@v1.79
 rm -fr /tmp/cs
 mkdir -p /tmp/cs/usr/bin
 mkdir -p /tmp/cs/usr/share/doctl
