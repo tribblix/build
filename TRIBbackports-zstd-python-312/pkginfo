@@ -1,4 +1,0 @@
-PKG="TRIBbackports-zstd-python-312"
-NAME="Python backports-zstd"
-VERSION="1.4.0.0"
-ZAP_URL="https://pypi.org/project/backports-zstd/"
