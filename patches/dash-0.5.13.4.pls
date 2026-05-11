@@ -1,1 +1,2 @@
 -p1 dash-configure-stat64.patch
+-p1 dash-dtype.patch

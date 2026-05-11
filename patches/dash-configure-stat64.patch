@@ -1,6 +1,6 @@
 --- dash-0.5.12/configure.ac.orig	2022-12-11 07:33:43.000000000 +0000
 +++ dash-0.5.12/configure.ac	2023-01-06 11:13:22.359719502 +0000
-@@ -140,12 +140,13 @@
+@@ -161,12 +161,13 @@
  fi
  
  dnl Check for stat64 (dietlibc/klibc).
@@ -20,7 +20,7 @@
  
  AC_CHECK_FUNC(glob64,, [
  	AC_DEFINE(glob64_t, glob_t, [64-bit operations are the same as 32-bit])
-@@ -155,12 +156,12 @@
+@@ -176,12 +177,12 @@
  ])
  
  dnl OS X apparently has stat64 but not open64.
