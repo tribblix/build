@@ -11,8 +11,8 @@ mkdir tf
 cd tf
 git clone https://github.com/hashicorp/terraform
 cd terraform
-git checkout v1.14.3
-env PATH=/usr/versions/go-1.25/bin:$PATH go install .
+git checkout v1.15.2
+env PATH=/usr/versions/go-1.26/bin:$PATH go install .
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/usr/bin
