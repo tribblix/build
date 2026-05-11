@@ -36,7 +36,7 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
 --disable-warnings-as-errors \
 --with-source-date=current \
 --with-vendor-name=Tribblix \
---with-vendor-url=http://tribblix.org/ \
+--with-vendor-url=https://www.tribblix.org/ \
 --with-vendor-bug-url=https://www.tribblix.org/feedback.html \
 --with-vendor-vm-bug-url=https://www.tribblix.org/feedback.html \
 --with-version-pre=ga \

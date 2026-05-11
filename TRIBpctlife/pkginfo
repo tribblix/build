@@ -1,4 +1,4 @@
 PKG="TRIBpctlife"
 NAME="Life implementation in Java"
 VERSION="1.8.0"
-ZAP_URL="http://www.petertribble.co.uk/Fun/pctlife.html"
+ZAP_URL="https://www.petertribble.co.uk/Fun/pctlife.html"

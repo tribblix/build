@@ -1,4 +1,4 @@
 PKG="TRIBjproc"
 NAME="JProc"
 VERSION="1.8"
-ZAP_URL="http://www.petertribble.co.uk/Solaris/jproc.html"
+ZAP_URL="https://www.petertribble.co.uk/Solaris/jproc.html"
