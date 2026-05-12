@@ -5,3 +5,7 @@
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../../usr/versions/diff-so-fancy/diff-so-fancy
+cd ../..
+mkdir -p usr/share/man/man1
+cd usr/share/man/man1
+ln -s ../../../../usr/versions/diff-so-fancy/docs/diff-so-fancy.1 .
