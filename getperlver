@@ -35,7 +35,7 @@ sparc)
     PERLVER=34
     ;;
 i386)
-    PERLVER=34
+    PERLVER=42
     ;;
 esac
 

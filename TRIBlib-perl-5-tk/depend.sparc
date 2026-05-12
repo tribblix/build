@@ -1,0 +1,7 @@
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBlib-zlib
+P TRIBperl-534
+P TRIBsys-lib-fontconfig
+P TRIBx11-libx11
+P TRIBx11-libxft

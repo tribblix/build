@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-encode-locale"
 NAME="Perl Encode::Locale module"
-VERSION="1.05.1"
+VERSION="1.05.2"
 ZAP_URL="https://metacpan.org/dist/Encode-Locale"
