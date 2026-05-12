@@ -6,5 +6,5 @@ P TRIBgnutls
 P TRIBlib-zlib
 P TRIBlibgcrypt
 P TRIBncurses
-P TRIBperl-542
+P TRIBperl-534
 P TRIBtcl
