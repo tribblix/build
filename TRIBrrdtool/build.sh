@@ -5,5 +5,7 @@
 # the python modules fail to configure
 # disable ruby as its install doesn't honor DESTDIR
 #
-${THOME}/build/dobuild -64only rrdtool-1.8.0 -C "--disable-lua --disable-tcl --disable-python --disable-ruby"
-${THOME}/build/genpkg TRIBrrdtool rrdtool-1.8.0
+# needs a patch to get PATH_MAX defined
+#
+${THOME}/build/dobuild -64only rrdtool-1.9.0 -C "--disable-lua --disable-tcl --disable-python --disable-ruby"
+${THOME}/build/genpkg TRIBrrdtool rrdtool-1.9.0
