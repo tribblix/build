@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -28,19 +28,19 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 # xref against this illumos catalog
 #
-ILVER=m36.1
+ILVER=m39
 ARCH=i386
 case $(pwd) in
     */overlays.lx)
-	ILVER=m36lx.1
+	ILVER=m39lx
 	ARCH=i386
 	;;
     */overlays.sparc)
-	ILVER=m32.sparc
+	ILVER=m34.sparc
 	ARCH=sparc
 	;;
     */overlays)
-	ILVER=m36.1
+	ILVER=m39
 	ARCH=i386
 	;;
     *)

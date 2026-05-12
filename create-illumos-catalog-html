@@ -15,13 +15,13 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
 # like the catalog, but neatly formatted as html
 #
-RELVER=m36.1
+RELVER=m39
 THOME=${THOME:-/packages/localsrc/Tribblix}
 PKGDIR=${THOME}/illumos-pkgs-${RELVER}/pkgs
 

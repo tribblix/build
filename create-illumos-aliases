@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -23,7 +23,7 @@
 #  alias|name
 #
 THOME=${THOME:-/packages/localsrc/Tribblix}
-PKGDIR=${THOME}/illumos-pkgs-m33/pkgs
+PKGDIR=${THOME}/illumos-pkgs-m39/pkgs
 
 case $# in
 1)

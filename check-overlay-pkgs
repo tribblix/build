@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -26,18 +26,18 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 # xref against this illumos version
 #
-ILVER=m36.1
-PILVER=36.1
+ILVER=m39
+PILVER=39
 PKGDIR=${THOME}/pkgs
 ARCH="i386"
 case $(pwd) in
     *lx)
-	ILVER=m36lx.1
-	PILVER=36lx.1
+	ILVER=m39lx
+	PILVER=39lx
 	;;
     *sparc)
-	ILVER=m32.sparc
-	PILVER=32
+	ILVER=m34.sparc
+	PILVER=34
 	PKGDIR=${THOME}/pkgs.sparc
 	ARCH="sparc"
 	;;
