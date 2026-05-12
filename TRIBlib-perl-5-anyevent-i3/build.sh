@@ -4,8 +4,8 @@
 #
 # this is actually shipped with the i3 tarball
 #
-${THOME}/build/unpack i3-4.24
-cd i3-4.24
+${THOME}/build/unpack i3-4.25.1
+cd i3-4.25.1
 cd AnyEvent-I3
 perl Makefile.PL
 make
