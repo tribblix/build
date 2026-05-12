@@ -1,0 +1,4 @@
+PKG="TRIBsip-python-313"
+NAME="Python sip"
+VERSION="6.15.3.0"
+ZAP_URL="https://pypi.org/project/sip/"
