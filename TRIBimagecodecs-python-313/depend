@@ -1,0 +1,17 @@
+P TRIBbrotli
+P TRIBcompress-bzip2
+P TRIBcompress-lz4
+P TRIBcompress-xz
+P TRIBcompress-zstd
+P TRIBgiflib
+P TRIBimage-libjpeg
+P TRIBimage-libpng
+P TRIBimage-libtiff
+P TRIBlib-lcms2
+P TRIBlib-openjpeg
+P TRIBlib-zlib
+P TRIBlibdeflate
+P TRIBlibwebp
+P TRIBnumpy-python-313
+P TRIBsnappy
+P TRIBv-python-313

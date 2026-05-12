@@ -1,0 +1,4 @@
+PKG="TRIBnumpy-python-313"
+NAME="NumPy package for scientific computing with Python"
+VERSION="2.4.4.0"
+ZAP_URL="https://numpy.org/"

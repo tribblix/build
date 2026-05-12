@@ -1,0 +1,4 @@
+PKG="TRIBzarr-python-313"
+NAME="Python zarr"
+VERSION="3.2.1.0"
+ZAP_URL="https://pypi.org/project/zarr/"
