@@ -6,5 +6,5 @@
 #
 $THOME/build/cmbuild -64only libptytty-2.0 -P /tmp/libptytty -C "-DBUILD_SHARED_LIBS=no -DBUILD_STATIC_LIBS=on"
 
-cd libptytty-2.0-64bit/build
+cd libptytty-2.0-64bit/tribblix_build
 gmake install

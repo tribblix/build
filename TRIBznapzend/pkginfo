@@ -1,4 +1,4 @@
 PKG="TRIBznapzend"
 NAME="znapzend"
-VERSION="0.23.2.0"
+VERSION="0.23.2.1"
 ZAP_URL="https://github.com/oetiker/znapzend"
