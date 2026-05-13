@@ -1,0 +1,4 @@
+PKG="TRIBseaborn-python-313"
+NAME="Python seaborn"
+VERSION="0.13.2.0"
+ZAP_URL="https://pypi.org/project/seaborn/"

@@ -1,0 +1,4 @@
+PKG="TRIBmatplotlib-python-313"
+NAME="Python matplotlib"
+VERSION="3.10.9.0"
+ZAP_URL="https://pypi.org/project/matplotlib/"
