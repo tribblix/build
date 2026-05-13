@@ -1,0 +1,4 @@
+PKG="TRIBglance-store-python-313"
+NAME="Python glance-store"
+VERSION="5.4.0.0"
+ZAP_URL="https://pypi.org/project/glance-store/"
