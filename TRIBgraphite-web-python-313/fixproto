@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# fixes up prototype files, by setting the correct permissions
+# for existing directories
+#
+awk '
+{if ($3 ~ /^opt\/tribblix\/graphite\/storage\/log\/webapp/) { $6 = "graphite" ; $5 = "graphite" }}
+{if ($3 ~ /^opt\/tribblix\/graphite\/storage\/whisper/) { $6 = "graphite" ; $5 = "carbon" }}
+{if ($3 == "opt/tribblix/graphite/storage/log") { $6 = "graphite" ; $5 = "carbon" }}
+{if ($3 == "opt/tribblix/graphite/storage/index") { $6 = "graphite" ; $5 = "graphite" }}
+{print}
+'
