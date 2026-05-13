@@ -1,0 +1,4 @@
+PKG="TRIBnltk-python-313"
+NAME="Python nltk"
+VERSION="3.9.4.0"
+ZAP_URL="https://pypi.org/project/nltk/"
