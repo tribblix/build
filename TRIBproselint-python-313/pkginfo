@@ -1,0 +1,4 @@
+PKG="TRIBproselint-python-313"
+NAME="Python proselint"
+VERSION="0.14.0.1"
+ZAP_URL="https://pypi.org/project/proselint/"

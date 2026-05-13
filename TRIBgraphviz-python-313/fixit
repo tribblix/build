@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# multiple files get installed mode 066 by default
+#
+PYVERS=3.13
+chmod og-w usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/graphviz*.egg-info/*
