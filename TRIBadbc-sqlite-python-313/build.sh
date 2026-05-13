@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# dependencies added for the [dbapi] extension
+#
+env ADBC_SQLITE_LIBRARY=/usr/lib/amd64/libadbc_driver_sqlite.so ${THOME}/build/pkg_pep518 -N TRIBadbc-sqlite-python-313 adbc_driver_sqlite-1.10.0

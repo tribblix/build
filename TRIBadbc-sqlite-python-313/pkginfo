@@ -1,4 +1,4 @@
-PKG="TRIBadbc-sqlite-python-312"
+PKG="TRIBadbc-sqlite-python-313"
 NAME="Python adbc-driver-sqlite"
 VERSION="1.10.0.0"
 ZAP_URL="https://pypi.org/project/adbc-driver-sqlite/"
