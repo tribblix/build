@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+${THOME}/build/pkg_pep518 -N TRIBuxsim-python-313 uxsim-1.13.0
