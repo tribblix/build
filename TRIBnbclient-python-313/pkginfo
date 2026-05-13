@@ -1,0 +1,4 @@
+PKG="TRIBnbclient-python-313"
+NAME="Python nbclient"
+VERSION="0.10.4.0"
+ZAP_URL="https://pypi.org/project/nbclient/"
