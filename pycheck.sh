@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -32,7 +32,7 @@
 THOME=${THOME:-/packages/localsrc/Tribblix}
 cd "${THOME}/build" || exit 1
 
-PY3VER=312
+PY3VER=313
 CHECKER=${THOME}/build/pkgpycheck.sh
 
 if [ ! -x /usr/bin/curl ]; then
@@ -63,7 +63,7 @@ fi
 #
 # we skip commix, which isn't updated on PyPi
 #
-grep -E -H 'build/(unpack|pkg_pep518|pkg_setup_py)' TRIB{mog,pgactivity,pgbarman,s3cmd,scons}/build.sh | grep -v https:// | while read -r ffile fpkgstr
+grep -E -H 'build/(unpack|pkg_pep518|pkg_setup_py)' TRIB{mercurial,mog,pgactivity,pgbarman,s3cmd,scons}/build.sh | grep -v https:// | while read -r ffile fpkgstr
 do
     file=${ffile%%/*}
     pkgstr=${fpkgstr##* }
