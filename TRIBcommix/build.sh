@@ -5,4 +5,4 @@
 # depends on python
 # needs the gnureadline module
 #
-${THOME}/build/pkg_pep518 -v 312 TRIBcommix commix-4.1
+${THOME}/build/pkg_pep518 -N -v 313 TRIBcommix commix-4.1
