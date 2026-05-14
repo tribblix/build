@@ -8,4 +8,4 @@ sed -i s:etc/xdg:usr/etc/xdg:g usr/bin/fvwm-menu-desktop
 #
 # make sure we use the right python
 #
-sed -i 's:/usr/bin/python3$:/usr/bin/python3.12:' usr/bin/fvwm-menu-desktop
+sed -i 's:/usr/bin/python3$:/usr/bin/python3.13:' usr/bin/fvwm-menu-desktop
