@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-exit 0
 PYVERS=3.13
 mkdir -p usr/bin
 cd usr/bin
