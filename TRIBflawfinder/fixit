@@ -4,4 +4,4 @@
 #
 # explicitly use a given python
 #
-sed -i 's:/usr/bin/env python:/usr/bin/python3.12:' usr/bin/flawfinder
+sed -i 's:/usr/bin/env python:/usr/bin/python3.13:' usr/bin/flawfinder
