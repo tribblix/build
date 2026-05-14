@@ -25,15 +25,15 @@
 #
 
 #
-# package for 3.12 by default, but have code for 3.13 and 3.14
+# package for 3.13 by default, but have code for 3.12 and 3.14
 #
 
 PY312VER=312
 PY313VER=313
 PY314VER=314
 
-DO312="yes"
-DO313=""
+DO312=""
+DO313="yes"
 DO314=""
 
 #
