@@ -5,5 +5,4 @@
 PYVERS=3.13
 mkdir -p usr/bin
 cd usr/bin
-# NOTE version-specific binary
-ln -s ../../usr/versions/python-${PYVERS}/bin/pipx pipx3.13
+ln -s ../../usr/versions/python-${PYVERS}/bin/pipx .
