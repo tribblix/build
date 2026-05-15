@@ -65,7 +65,7 @@ tar cf - usr/versions/python-${VERSION}/bin/idle* | ( cd $PTKDIR ; tar xf -)
 rm -f usr/versions/python-${VERSION}/bin/idle*
 mkdir -p $PTKDIR/usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/idle${VERSION} $PTKDIR/usr/bin
-####ln -s ../../usr/versions/python-${VERSION}/bin/idle3 $PTKDIR/usr/bin
+ln -s ../../usr/versions/python-${VERSION}/bin/idle3 $PTKDIR/usr/bin
 #
 # having copied them off, package them
 #
@@ -98,8 +98,8 @@ cd ../../../..
 mkdir -p usr/share/man/man1
 cd usr/share/man/man1
 ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python${VERSION}.1 .
-####ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 .
-####ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 python.1
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 .
+ln -s ../../../../usr/versions/python-${VERSION}/share/man/man1/python3.1 python.1
 cd ../../../..
 cd usr/bin
 #
@@ -108,24 +108,21 @@ cd usr/bin
 ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION} .
 ln -s ../../usr/versions/python-${VERSION}/bin/python${VERSION}-config .
 ln -s ../../usr/versions/python-${VERSION}/bin/pydoc${VERSION} .
-##ln -s ../../usr/versions/python-${VERSION}/bin/pip${VERSION} .
 #
 # symlinks for general version
 #
-####ln -s ../../usr/versions/python-${VERSION}/bin/python3 .
-####ln -s ../../usr/versions/python-${VERSION}/bin/python3-config .
-####ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
-##ln -s ../../usr/versions/python-${VERSION}/bin/pip3 .
+ln -s ../../usr/versions/python-${VERSION}/bin/python3 .
+ln -s ../../usr/versions/python-${VERSION}/bin/python3-config .
+ln -s ../../usr/versions/python-${VERSION}/bin/pydoc3 .
 #
 # symlinks for bare unversioned names
 #
-####ln -s ../../usr/versions/python-${VERSION}/bin/python3 python
-##ln -s ../../usr/versions/python-${VERSION}/bin/pip3 pip
+ln -s ../../usr/versions/python-${VERSION}/bin/python3 python
 #
 cd ../lib
 cd $ARCH64
 cd pkgconfig
 ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}.pc .
-####ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python3.pc .
+ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python3.pc .
 ln -s ../../../versions/python-${VERSION}/lib/pkgconfig/python-${VERSION}-embed.pc .
 cd ..

@@ -6,8 +6,6 @@
 #
 # There's a preconf patch to disable epoll
 #
-# now default
-#
 zap uninstall TRIBgnu-gettext
 
 #
