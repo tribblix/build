@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2024 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -123,7 +123,7 @@ case $BUILDER in
 	echo "TRIBcmake" > "$PNAME/build_require"
 	;;
     mesonbuild)
-	echo "TRIBmeson-python-312" > "$PNAME/build_require"
+	echo "TRIBmeson-python-313" > "$PNAME/build_require"
 	echo "TRIBninja" >> "$PNAME/build_require"
 	;;
 esac
