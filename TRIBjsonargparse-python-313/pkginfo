@@ -1,4 +1,4 @@
 PKG="TRIBjsonargparse-python-313"
 NAME="Python jsonargparse"
-VERSION="4.48.0.0"
+VERSION="4.49.0.0"
 ZAP_URL="https://pypi.org/project/jsonargparse/"
