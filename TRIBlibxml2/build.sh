@@ -21,6 +21,7 @@ cd ../..
 # python3.12 is 64-bit
 rm -fr /tmp/lxp
 cd libxml2-2.9.14-64bit/python
+gpatch -p2 < ${THOME}/build/patches/libxml2-py313.patch 
 /usr/versions/python-3.13/bin/python3 setup.py build
 /usr/versions/python-3.13/bin/python3 setup.py install --root=/tmp/lxp
 ${THOME}/build/create_pkg TRIBlibxml2-python-313 /tmp/lxp
