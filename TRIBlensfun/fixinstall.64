@@ -8,5 +8,5 @@
 DESTDIR=$1
 
 cd apps
-python3.12 setup.py build
-python3.12 setup.py install --root=${DESTDIR}
+python3.13 setup.py build
+python3.13 setup.py install --root=${DESTDIR}
