@@ -8,8 +8,8 @@ rm -fr usr/share/doc
 #
 # put python in the right place
 #
-if [ -d usr/lib/python3.12 ]; then
-    rm -f usr/lib/python3.12/site-packages/libxsltmod.la
-    mkdir -p usr/versions/python-3.12/lib
-    mv usr/lib/python3.12 usr/versions/python-3.12/lib
+if [ -d usr/lib/python3.13 ]; then
+    rm -f usr/lib/python3.13/site-packages/libxsltmod.la
+    mkdir -p usr/versions/python-3.13/lib
+    mv usr/lib/python3.13 usr/versions/python-3.13/lib
 fi
