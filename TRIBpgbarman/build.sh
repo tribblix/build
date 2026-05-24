@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N -v 313 TRIBpgbarman barman-3.18.0
+${THOME}/build/pkg_pep518 -N -v 313 TRIBpgbarman barman-3.19.0
