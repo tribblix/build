@@ -5931,3 +5931,4 @@ oslo_metrics-0.16.0.tar.gz 7eeefd97906f89b450cf6085b19aea0350acdbbf6dd9ffdbfdeec
 oslo_middleware-8.1.0.tar.gz 974f5a822505fe07bfe2451f699a64cfc20ce1bab30ee1e311ad21123f144335
 oslo_policy-5.1.0.tar.gz 382f0285836215c4dd60d453c508c2043e0b82c531177b8c05863ebb7b222834
 oslo_serialization-5.10.0.tar.gz 79a71cde2651afd5dc7f065a56e4a100a4d4127ef1b17f798a6d09cea24976b6
+oslo_service-4.6.0.tar.gz c216163e70ca491dff690a557dddbec35eeb8e56a7e3cba3c1fffc8fea5e5f86
