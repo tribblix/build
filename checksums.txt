@@ -5930,3 +5930,4 @@ oslo_messaging-18.1.0.tar.gz 2e867a1fbdbd5257b63c9b1256914bb7e258ee51b5ef525ca49
 oslo_metrics-0.16.0.tar.gz 7eeefd97906f89b450cf6085b19aea0350acdbbf6dd9ffdbfdeec960bdec06c9
 oslo_middleware-8.1.0.tar.gz 974f5a822505fe07bfe2451f699a64cfc20ce1bab30ee1e311ad21123f144335
 oslo_policy-5.1.0.tar.gz 382f0285836215c4dd60d453c508c2043e0b82c531177b8c05863ebb7b222834
+oslo_serialization-5.10.0.tar.gz 79a71cde2651afd5dc7f065a56e4a100a4d4127ef1b17f798a6d09cea24976b6
