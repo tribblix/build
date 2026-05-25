@@ -12,13 +12,13 @@ diff -urN fastfetch-2.60.0/src/logo/ascii/tribblix.txt ../fastfetch-2.60.0-64bit
 diff -urN fastfetch-2.60.0/src/logo/builtin.c ../fastfetch-2.60.0-64bit/src/logo/builtin.c
 --- a/src/logo/builtin.c	2026-03-07 03:08:19.000000000 +0000
 +++ b/src/logo/builtin.c	2026-03-25 17:39:35.329116784 +0000
-@@ -4930,6 +4930,17 @@
-             FF_COLOR_FG_BLUE
+@@ -5002,6 +5002,17 @@
+             FF_COLOR_FG_BLUE,
          },
      },
 +    // Tribblix
 +    {
-+        .names = {"Tribblix"},
++        .names = { "Tribblix" },
 +        .lines = FASTFETCH_DATATEXT_LOGO_TRIBBLIX,
 +        .colors = {
 +            FF_COLOR_FG_GREEN,
@@ -29,4 +29,4 @@ diff -urN fastfetch-2.60.0/src/logo/builtin.c ../fastfetch-2.60.0-64bit/src/logo
 +    },
      // Trisquel
      {
-         .names = {"Trisquel"},
+         .names = { "Trisquel" },

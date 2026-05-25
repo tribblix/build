@@ -4,5 +4,5 @@
 #
 # there's a regular patch, and a custom patch to add our logo
 #
-${THOME}/build/cmbuild -64only fastfetch-2.60.0 -C -DENABLE_DRM=OFF
-${THOME}/build/genpkg TRIBfastfetch fastfetch-2.60.0
+${THOME}/build/cmbuild -64only fastfetch-2.63.1 -C -DENABLE_DRM=OFF
+${THOME}/build/genpkg TRIBfastfetch fastfetch-2.63.1
