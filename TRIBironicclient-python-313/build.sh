@@ -4,4 +4,4 @@
 #
 # the [cli] extra adds openstackclient as a dependency
 #
-${THOME}/build/pkg_pep518 -N TRIBironicclient-python-313 python_ironicclient-6.0.0
+${THOME}/build/pkg_pep518 -N TRIBironicclient-python-313 python_ironicclient-6.1.0
