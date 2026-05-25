@@ -1,4 +1,4 @@
-#!/usr/bin/python3.12
+#!/usr/bin/python3.13
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
@@ -18,7 +18,7 @@
 # }}}
 
 # Copyright 2021 OmniOS Community Edition (OmniOSce) Association.
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 
 #
 # this is very similar in structure to the bhyve brand init, modified
