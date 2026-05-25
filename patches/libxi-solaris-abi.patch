@@ -15,7 +15,7 @@ diff --git a/src/Makefile.in b/src/Makefile.in
 index 2f58bbb..6c0f927 100644
 --- a/src/Makefile.in
 +++ b/src/Makefile.in
-@@ -442,7 +442,7 @@ AM_CFLAGS = $(XI_CFLAGS) \
+@@ -479,7 +479,7 @@ AM_CFLAGS = $(XI_CFLAGS) \
              $(MALLOC_ZERO_CFLAGS) \
              $(CWARNFLAGS)
  
