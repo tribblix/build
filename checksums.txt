@@ -5955,3 +5955,4 @@ checkdmarc-5.16.2.tar.gz 22fc92be41cb614a2f2df8caf8eac71ef40cdb4e86ef06a11db92f3
 openstacksdk-4.13.0.tar.gz ab5b0d7e3a42de3dbc78497b31b5be53abf77a962986b3a621821e07e38c69a2
 python_openstackclient-10.0.0.tar.gz 3de316bf303b3c8b5e8793c85fe1b8e40534649bc43175246a8ff8c8246b099d
 cython-3.2.5.tar.gz 3dd42e4cf36ad15f265bdfec2337cc00c688c8eb6d374ffd13bb19437c27bba1
+dulwich-1.2.4.tar.gz 72fc77c4e2c7e4358a78c6f71383baceea496ee0cedb13508f52a1a7656e8bb9

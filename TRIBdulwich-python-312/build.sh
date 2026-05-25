@@ -4,4 +4,4 @@
 #
 # breezy sometimes pins a specific version
 #
-${THOME}/build/pkg_pep518 -N TRIBdulwich-python-312 dulwich-1.2.1
+${THOME}/build/pkg_pep518 -N TRIBdulwich-python-312 dulwich-1.2.4
