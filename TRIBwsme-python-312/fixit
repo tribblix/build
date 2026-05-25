@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-# some of the permissions here are wide open
-#
-PYVERS=3.12
-chmod -R og-w usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/simplegeneric*

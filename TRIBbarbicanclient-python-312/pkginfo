@@ -1,4 +1,0 @@
-PKG="TRIBbarbicanclient-python-312"
-NAME="Python python-barbicanclient"
-VERSION="7.4.0.0"
-ZAP_URL="https://pypi.org/project/python-barbicanclient/"
