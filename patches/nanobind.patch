@@ -1,0 +1,41 @@
+It looks like nanabind (needed for pikepdf) has never met SunOS before.
+
+Remove the assumption about a gnuish linker.
+
+We hide alloca() away, so it's not visible in headers by default. Note
+in nb_call.h that the header is included before the namespace declaration,
+if it's inside the namespace it gets demoted to local binding and fails.
+
+--- nanobind-2.12.0/cmake/nanobind-config.cmake~	Wed Nov  9 12:37:21 2022
++++ nanobind-2.12.0/cmake/nanobind-config.cmake	Tue May 26 08:43:21 2026
+@@ -219,9 +219,6 @@
+     nanobind_lto(${TARGET_NAME})
+ 
+     nanobind_strip(${TARGET_NAME})
+-  elseif(NOT WIN32 AND NOT APPLE)
+-    target_compile_options(${TARGET_NAME} PUBLIC $<${NB_OPT_SIZE}:-ffunction-sections -fdata-sections>)
+-    target_link_options(${TARGET_NAME} PUBLIC $<${NB_OPT_SIZE}:-Wl,--gc-sections>)
+   endif()
+ 
+   set_target_properties(${TARGET_NAME} PROPERTIES
+--- nanobind-2.12.0/src/nb_func.cpp~	Wed Nov  9 12:37:21 2022
++++ nanobind-2.12.0/src/nb_func.cpp	Tue May 26 08:48:41 2026
+@@ -10,6 +10,7 @@
+ #include "nb_internals.h"
+ #include "buffer.h"
+ #include "nb_ft.h"
++#include <alloca.h>
+ 
+ /// Maximum number of arguments supported by 'nb_vectorcall_simple'
+ #define NB_MAXARGS_SIMPLE 8
+--- nanobind-2.12.0/include/nanobind/nb_call.h~	Wed Nov  9 12:37:21 2022
++++ nanobind-2.12.0/include/nanobind/nb_call.h	Tue May 26 09:06:27 2026
+@@ -7,6 +7,8 @@
+     BSD-style license that can be found in the LICENSE file.
+ */
+ 
++#include <alloca.h>
++
+ NAMESPACE_BEGIN(NB_NAMESPACE)
+ NAMESPACE_BEGIN(detail)
+ 
