@@ -4,5 +4,5 @@
 #
 # disable the example utilities, which would pull in libSDL and Qt
 #
-${THOME}/build/dobuild +64 libde265-1.0.16 -C "--disable-sherlock265 --disable-dec265"
-${THOME}/build/genpkg TRIBlibde265 libde265-1.0.16
+env TRIBBLIX_CXXFLAGS=-DHAVE_ALLOCA_H=1 ${THOME}/build/cmbuild +64 libde265-1.0.19 -C "-DENABLE_DECODER=OFF"
+${THOME}/build/genpkg TRIBlibde265 libde265-1.0.19
