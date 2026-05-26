@@ -1,4 +1,4 @@
 PKG="TRIBhttptools-python-313"
 NAME="Python httptools"
-VERSION="0.7.1.0"
+VERSION="0.8.0.0"
 ZAP_URL="https://pypi.org/project/httptools/"
