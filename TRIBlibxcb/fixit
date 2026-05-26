@@ -4,7 +4,7 @@
 #
 # move the python stuff to the right place
 #
-mkdir -p usr/versions/python-3.12/lib/python3.12
-mv usr/lib/python3.12/site-packages usr/versions/python-3.12/lib/python3.12
-rmdir usr/lib/python3.12
+mkdir -p usr/versions/python-3.13/lib/python3.13
+mv usr/lib/python3.13/site-packages usr/versions/python-3.13/lib/python3.13
+rmdir usr/lib/python3.13
 rm -fr usr/share/doc

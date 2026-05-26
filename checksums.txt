@@ -5978,3 +5978,13 @@ scikit_build_core-0.12.2.tar.gz 562e0bbc9de1a354c87825ccf732080268d6582a0200f648
 zope_interface-8.5.tar.gz 7a3ba1c5877f0f3e3906b02ddf793abed2becc2948116414ce0e1dd820b68d6d
 httptools-0.8.0.tar.gz 6b2a32f18d97e16e90827d7a819ffa8dbd8cc245fc4e1fa9d1095b54ef4bd999
 libde265-1.0.19.tar.gz bb19a0b485d2643e0eeb7e91f3ab32d1ad617e7c487dbedc91214ca3dbd8d7eb
+xcb-proto-1.16.0.tar.xz a75a1848ad2a89a82d841a51be56ce988ff3c63a8d6bf4383ae3219d8d915119
+libpthread-stubs-0.5.tar.xz 59da566decceba7c2a7970a4a03b48d9905f1262ff94410a649224e33d2442bc
+libxcb-1.16.1.tar.xz f24d187154c8e027b358fc7cb6588e35e33e6a92f11c668fe77396a7ae66e311
+xcb-util-0.4.1.tar.xz 5abe3bbbd8e54f0fa3ec945291b7e8fa8cfd3cccc43718f8758430f94126e512
+xcb-util-wm-0.4.2.tar.xz 62c34e21d06264687faea7edbf63632c9f04d55e72114aa4a57bb95e4f888a0b
+xcb-util-image-0.4.1.tar.xz ccad8ee5dadb1271fd4727ad14d9bd77a64e505608766c4e98267d9aede40d3d
+xcb-util-keysyms-0.4.1.tar.xz 7c260a5294412aed429df1da2f8afd3bd07b7cba3fec772fba15a613a6d5c638
+xcb-util-renderutil-0.3.10.tar.xz 3e15d4f0e22d8ddbfbb9f5d77db43eacd7a304029bf25a6166cc63caa96d04ba
+xcb-util-cursor-0.1.5.tar.xz 0caf99b0d60970f81ce41c7ba694e5eaaf833227bb2cbcdb2f6dc9666a663c57
+xcb-util-errors-1.0.1.tar.xz 5628c87b984259ad927bacd8a42958319c36bdf4b065887803c9d820fb80f357
