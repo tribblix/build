@@ -5988,3 +5988,4 @@ xcb-util-keysyms-0.4.1.tar.xz 7c260a5294412aed429df1da2f8afd3bd07b7cba3fec772fba
 xcb-util-renderutil-0.3.10.tar.xz 3e15d4f0e22d8ddbfbb9f5d77db43eacd7a304029bf25a6166cc63caa96d04ba
 xcb-util-cursor-0.1.5.tar.xz 0caf99b0d60970f81ce41c7ba694e5eaaf833227bb2cbcdb2f6dc9666a663c57
 xcb-util-errors-1.0.1.tar.xz 5628c87b984259ad927bacd8a42958319c36bdf4b065887803c9d820fb80f357
+gpgme-2.1.0.tar.bz2 841c5ea53fc26259f4fbf0e8bde982dea1b8a1ca0cb77e681c82b050566bf92b
