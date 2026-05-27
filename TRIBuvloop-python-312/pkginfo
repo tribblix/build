@@ -1,4 +1,0 @@
-PKG="TRIBuvloop-python-312"
-NAME="Python uvloop"
-VERSION="0.22.1.0"
-ZAP_URL="https://pypi.org/project/uvloop/"

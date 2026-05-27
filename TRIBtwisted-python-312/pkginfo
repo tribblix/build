@@ -1,4 +1,0 @@
-PKG="TRIBtwisted-python-312"
-NAME="Python Twisted"
-VERSION="26.4.0.0"
-ZAP_URL="https://pypi.org/project/Twisted/"
