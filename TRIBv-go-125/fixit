@@ -12,6 +12,8 @@ rm -fr usr/versions/go-${VERSION}/test
 rm -f usr/versions/go-${VERSION}/favicon.ico
 rm -f usr/versions/go-${VERSION}/robots.txt
 
+# no longer default
+exit 0
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../versions/go-${VERSION}/bin/* .

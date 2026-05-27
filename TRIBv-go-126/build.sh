@@ -5,7 +5,7 @@
 # either uninstall gdb, or run make.bash rather than all.bash, as the gdb
 # test fails on Tribblix
 #
-# 1.26 release, not yet default
+# 1.26 release, now default
 #
 # the tarball has some test files with UTF-8 filenames
 #
