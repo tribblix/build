@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-# test files are unpackageable as the names contain spaces
-#
-PYVERS=3.12
-rm -fr usr/versions/python-${PYVERS}/lib/python${PYVERS}/site-packages/nbclient/tests

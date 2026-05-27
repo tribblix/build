@@ -1,4 +1,0 @@
-PKG="TRIBwdgtsnbextension-python-312"
-NAME="Python widgetsnbextension"
-VERSION="4.0.15.0"
-ZAP_URL="https://pypi.org/project/widgetsnbextension/"

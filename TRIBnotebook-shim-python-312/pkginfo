@@ -1,4 +1,0 @@
-PKG="TRIBnotebook-shim-python-312"
-NAME="Python notebook-shim"
-VERSION="0.2.4.0"
-ZAP_URL="https://pypi.org/project/notebook-shim/"

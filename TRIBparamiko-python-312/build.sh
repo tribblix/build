@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-${THOME}/build/pkg_pep518 -N TRIBparamiko-python-312 paramiko-5.0.0

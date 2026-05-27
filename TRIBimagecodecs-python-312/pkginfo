@@ -1,4 +1,0 @@
-PKG="TRIBimagecodecs-python-312"
-NAME="Python imagecodecs"
-VERSION="2025.8.2.0"
-ZAP_URL="https://pypi.org/project/imagecodecs/"

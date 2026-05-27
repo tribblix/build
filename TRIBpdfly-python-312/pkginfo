@@ -1,4 +1,0 @@
-PKG="TRIBpdfly-python-312"
-NAME="Python pdfly"
-VERSION="0.5.1.0"
-ZAP_URL="https://pypi.org/project/pdfly/"

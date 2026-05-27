@@ -1,4 +1,0 @@
-PKG="TRIBtomlkit-python-312"
-NAME="Python tomlkit"
-VERSION="0.15.0.0"
-ZAP_URL="https://pypi.org/project/tomlkit/"
