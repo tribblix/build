@@ -6007,3 +6007,4 @@ virtualenv-21.4.1.tar.gz 2ca543c713b72840ceffd94e9bdedfbd09a661defa1f7f69e5429ad
 python_discovery-1.4.0.tar.gz eb8bc7daad3c226c147e45bb4e970a1feb1bf4048ee178e6db59e197b8010ce3
 vala-0.56.19.tar.xz 5ad7cbbfcc0de61b403d6797c9ef60455bfbebd8e162aec33b5b0b097adfb9d5
 gst-editing-services-1.28.1.tar.xz 3d6000cbe1356beebe2a573dabd496e92348c30c843ffa13050469ec3da115dc
+glib-2.82.5.tar.xz 05c2031f9bdf6b5aba7a06ca84f0b4aced28b19bf1b50c6ab25cc675277cbc3f
