@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+
+#
+# manpages might be compressed
+#
+gunzip usr/share/man/man*/*.gz
+gunzip usr/share/man/*/man*/*.gz
