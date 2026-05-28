@@ -23,17 +23,17 @@
 #
 # 64-bit needs extra help
 #
-env CC="gcc -m64" AR=/usr/bin/ar ${THOME}/build/mesonbuild +64 -gnu gdk-pixbuf-2.42.10 -C '-Dtests=false -Dinstalled_tests=false -Dman=false'
+env CC="gcc -m64" AR=/usr/bin/ar ${THOME}/build/mesonbuild +64 -gnu gdk-pixbuf-2.42.12 -C '-Dtests=false -Dinstalled_tests=false -Dman=false'
 #
 env CC="gcc -m64" ${THOME}/build/mesonbuild +64 atk-2.38.0
 #
-env CC="gcc -m64" $THOME/build/mesonbuild +64 harfbuzz-9.0.0 -C "-Dglib=enabled -Dcairo=enabled -Dicu=enabled -Dfreetype=enabled -Dgraphite2=enabled"
+env CC="gcc -m64" $THOME/build/mesonbuild +64 harfbuzz-11.3.3 -C "-Dglib=enabled -Dcairo=enabled -Dicu=enabled -Dfreetype=enabled -Dgraphite2=enabled"
 #
 # pango needs the harfbuzz files installed first
 #
 env CC="gcc -m64" ${THOME}/build/mesonbuild +64 pango-1.50.14
 #
-# gtk needs the atk and gdk-pixbuf files installed first
+# gtk needs the atk and gdk-pixbuf and pango files installed first
 #
 # gtk can fail to build the gir files
 # if it does, copy them from the installed system (from a prior version
@@ -44,11 +44,11 @@ env CC="gcc -m64" ${THOME}/build/dobuild +64 -gnu gtk+-3.24.34 -C --disable-cups
 #
 # mesonbuild breaks in "interesting" ways, so run by hand
 #
-$THOME/build/unpack +64 gobject-introspection-1.72.1
-cd gobject-introspection-1.72.1-64bit
-env CC="gcc -m64" PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig PATH=/usr/versions/python-3.12/bin:$PATH meson setup --prefix=/usr --libdir=/usr/lib/`$THOME/build/getarch` --bindir=/usr/bin/`$THOME/build/getarch` tribblix_build
-env CC="gcc -m64" PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig PATH=/usr/versions/python-3.12/bin:$PATH ninja -C tribblix_build
+$THOME/build/unpack +64 gobject-introspection-1.84.0
+cd gobject-introspection-1.84.0-64bit
+env CC="gcc -m64" PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig PATH=/usr/versions/python-3.13/bin:$PATH meson setup --prefix=/usr --libdir=/usr/lib/`$THOME/build/getarch` --bindir=/usr/bin/`$THOME/build/getarch` tribblix_build
+env CC="gcc -m64" PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig PATH=/usr/versions/python-3.13/bin:$PATH ninja -C tribblix_build
 echo tribblix_build > .tribblix_meson_build
 cd ..
 
-${THOME}/build/genpkg TRIBgobject-introspection gobject-introspection-1.72.1
+env CC="gcc -m64" PKG_CONFIG_PATH=/usr/lib/`$THOME/build/getarch`/pkgconfig PATH=/usr/versions/python-3.13/bin:$PATH ${THOME}/build/genpkg TRIBgobject-introspection gobject-introspection-1.84.0

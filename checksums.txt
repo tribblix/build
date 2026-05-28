@@ -6008,3 +6008,7 @@ python_discovery-1.4.0.tar.gz eb8bc7daad3c226c147e45bb4e970a1feb1bf4048ee178e6db
 vala-0.56.19.tar.xz 5ad7cbbfcc0de61b403d6797c9ef60455bfbebd8e162aec33b5b0b097adfb9d5
 gst-editing-services-1.28.1.tar.xz 3d6000cbe1356beebe2a573dabd496e92348c30c843ffa13050469ec3da115dc
 glib-2.82.5.tar.xz 05c2031f9bdf6b5aba7a06ca84f0b4aced28b19bf1b50c6ab25cc675277cbc3f
+gobject-introspection-1.84.0.tar.xz 945b57da7ec262e5c266b89e091d14be800cc424277d82a02872b7d794a84779
+atk-2.38.0.tar.xz ac4de2a4ef4bd5665052952fe169657e65e895c5057dffb3c2a810f6191a0c36
+pango-1.50.14.tar.xz 1d67f205bfc318c27a29cfdfb6828568df566795df0cb51d2189cde7f2d581e8
+gtk+-3.24.34.tar.xz dbc69f90ddc821b8d1441f00374dc1da4323a2eafa9078e61edbe5eeefa852ec

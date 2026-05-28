@@ -15,5 +15,5 @@ i386)
   ;;
 esac
 
-sed -i 's:/usr/bin/env python3:/usr/bin/python3.12:' usr/bin/${ARCH64}/g-ir-annotation-tool
-sed -i 's:/usr/bin/env python3:/usr/bin/python3.12:' usr/bin/${ARCH64}/g-ir-scanner
+sed -i 's:/usr/bin/env python3:/usr/bin/python3.13:' usr/bin/${ARCH64}/g-ir-annotation-tool
+sed -i 's:/usr/bin/env python3:/usr/bin/python3.13:' usr/bin/${ARCH64}/g-ir-scanner
