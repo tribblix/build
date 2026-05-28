@@ -11,7 +11,7 @@
  library_def = {'lib': gst_rtsp}
 --- gst-plugins-base-1.28.0/meson.build.orig
 +++ gst-plugins-base-1.28.0/meson.build
-@@ -323,6 +323,21 @@
+@@ -332,6 +332,21 @@
  
  core_conf.set('HAVE_LIBDRM', libdrm_dep.found())
  

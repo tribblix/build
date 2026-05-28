@@ -4,7 +4,7 @@ This needs more work. With this patch the error code returned changes from 1 to 
 
 --- gst-plugins-good-1.28.0/gst/flv/gstflvmux.c.orig	2026-01-27 18:02:33.000000000 +0100
 +++ gst-plugins-good-1.28.0/gst/flv/gstflvmux.c	2026-02-27 16:47:52.186053941 +0100
-@@ -2753,16 +2753,12 @@
+@@ -2744,16 +2744,12 @@
            break;
          }
  
@@ -26,7 +26,7 @@ This needs more work. With this patch the error code returned changes from 1 to 
              (GST_CLOCK_TIME_IS_VALID (t) && t < best_ts)) {
            gst_object_replace ((GstObject **) & best, GST_OBJECT (apad));
            best_ts = t;
-@@ -2986,8 +2982,8 @@
+@@ -2977,8 +2973,8 @@
  gst_flv_mux_get_next_time (GstAggregator * aggregator)
  {
    GstFlvMux *mux = GST_FLV_MUX (aggregator);
@@ -37,7 +37,7 @@ This needs more work. With this patch the error code returned changes from 1 to 
  
    GST_OBJECT_LOCK (aggregator);
    if (mux->state == GST_FLV_MUX_STATE_HEADER &&
-@@ -2995,12 +2991,11 @@
+@@ -2986,12 +2982,11 @@
            || (mux->video_pads
                && !gst_flv_mux_pads_codec_valid (mux->video_pads))))
      goto wait_for_data;
