@@ -1,4 +1,4 @@
 PKG="TRIBlibsoup3"
 NAME="GNOME libsoup-3"
-VERSION="3.6.6.0"
+VERSION="3.6.6.1"
 ZAP_URL="https://download.gnome.org/sources/libsoup/"
