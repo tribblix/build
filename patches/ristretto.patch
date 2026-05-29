@@ -1,0 +1,12 @@
+--- ristretto-0.14.0-64bit/src/main.c~	Sun Mar  8 11:04:12 2026
++++ ristretto-0.14.0-64bit/src/main.c	Fri May 29 20:33:28 2026
+@@ -26,6 +26,9 @@
+ #include <sys/ioctl.h>
+ #include <unistd.h>
+ #include <xfconf/xfconf.h>
++#ifdef __sun
++#include <sys/filio.h>
++#endif
+ 
+ 
+ 
