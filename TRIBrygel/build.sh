@@ -2,7 +2,9 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# rygel [needs gupnp gupnp-av gupnp-dlna vala libmediaart tracker]
+# rygel, built using vala
+# needs gupnp gupnp-av gupnp-dlna libmediaart gst-editing-services
+# and it needs vapi and gir data for all of those
 #
-${THOME}/build/dobuild -gnu -64only rygel-0.36.2 -C "--disable-introspection --without-ui"
-${THOME}/build/genpkg TRIBrygel rygel-0.36.2
+env AR=/usr/bin/ar ${THOME}/build/mesonbuild -gnu -64only rygel-0.44.2 -C "-Dgtk=disabled -Dtests=false"
+${THOME}/build/genpkg TRIBrygel rygel-0.44.2

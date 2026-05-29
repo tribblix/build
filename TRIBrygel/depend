@@ -2,6 +2,7 @@ P TRIBdatabase-sqlite-3
 P TRIBgdk-pixbuf
 P TRIBgssdp
 P TRIBgstreamer1
+P TRIBgstreamer1-editing-services
 P TRIBgstreamer1-plugins-base
 P TRIBgupnp
 P TRIBgupnp-av
@@ -9,7 +10,7 @@ P TRIBgupnp-dlna
 P TRIBlib-glib2
 P TRIBlibgee
 P TRIBlibmediaart
-P TRIBlibsoup
+P TRIBlibsoup3
 P TRIBlibunistring
 P TRIBlibxml2
-P TRIBtracker
+P TRIBx11-libx11

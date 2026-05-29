@@ -4,7 +4,10 @@
 #
 # gupnp [needs gssdp]
 #
-# stay downrev; 1.0.7 requires GLib2 2.66
+
 #
-${THOME}/build/dobuild -64only gupnp-1.0.6 -C "UUID_CFLAGS=-I/usr/include/uuid UUID_LIBS=-luuid --disable-introspection --disable-dependency-tracking"
-${THOME}/build/genpkg TRIBgupnp gupnp-1.0.6
+# the compile might fail, but that's not serious, and can be avoided
+# by uninstalling xsltproc
+#
+env TRIBBLIX_LDFLAGS=-lsocket ${THOME}/build/mesonbuild -64only gupnp-1.6.10
+${THOME}/build/genpkg TRIBgupnp gupnp-1.6.10

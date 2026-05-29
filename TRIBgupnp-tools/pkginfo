@@ -1,4 +1,4 @@
 PKG="TRIBgupnp-tools"
 NAME="Gupnp tools"
-VERSION="0.8.15.1"
+VERSION="0.12.2.0"
 ZAP_URL="https://download.gnome.org/sources/gupnp-tools/"
