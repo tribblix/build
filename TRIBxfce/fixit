@@ -14,6 +14,11 @@ rm -f usr/lib/*/thunarx-3/thunar*.la
 rm -f usr/lib/*/gio/modules/libxfconfgsettingsbackend.la
 
 #
+# we aren't systemd
+#
+rm -fr usr/lib/systemd
+
+#
 # get all the icons in place
 # assumes the gnome icon theme is installed
 #
