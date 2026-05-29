@@ -6,6 +6,6 @@
  #include "utilities/vmError.hpp"
 +
 +#include <alloca.h>
- #if INCLUDE_JVMCI
- #include "jvmci/jvmci.hpp"
- #include "jvmci/jvmciEnv.hpp"
+ #if INCLUDE_JFR
+ #include "jfr/jfr.hpp"
+ #endif

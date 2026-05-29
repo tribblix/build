@@ -28,7 +28,6 @@
 -p1 openjdk27/illumos-port-27.patch
 -p1 openjdk27/illumos-port-28.patch
 -p1 openjdk27/illumos-attachlistener.patch
--p1 openjdk27/jvmci-os.patch
 -p1 openjdk27/testsuite.patch
 -p1 openjdk27/illumos-port-29.patch
 -p1 openjdk27/fastdebug.patch
