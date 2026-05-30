@@ -1,0 +1,4 @@
+PKG="TRIBawscli-v2"
+NAME="AWS Command Line Interface v2"
+VERSION="2.34.57.0"
+ZAP_URL="https://github.com/aws/aws-cli"

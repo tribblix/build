@@ -1,0 +1,65 @@
+Cheat by using the Linux epoll version, and don't mess with the linker.
+Ensure MIN and MAX are defined.
+
+Also need CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS=-m64
+
+--- a/crt/aws-c-io/CMakeLists.txt	Thu Mar 26 23:35:20 2026
++++ b/crt/aws-c-io/CMakeLists.txt	Wed Apr  1 15:33:21 2026
+@@ -127,6 +127,23 @@
+     list(APPEND EVENT_LOOP_DEFINES "KQUEUE")
+     set(USE_S2N ON)
+ 
++elseif (CMAKE_SYSTEM_NAME STREQUAL "SunOS")
++    option(USE_VSOCK
++	    "Build in support for VSOCK sockets"
++	    OFF)
++
++    file(GLOB AWS_IO_OS_HEADERS
++            )
++
++    file(GLOB AWS_IO_OS_SRC
++            "source/linux/*.c"
++            "source/posix/*.c"
++            )
++    set(PLATFORM_LIBS "")
++
++    list(APPEND EVENT_LOOP_DEFINES "EPOLL")
++    set(USE_S2N ON)
++
+ endif()
+ 
+ if (BYO_CRYPTO)
+--- a/setup.py	Thu Mar 26 23:35:29 2026
++++ b/setup.py	Wed Apr  1 15:38:20 2026
+@@ -578,7 +578,7 @@
+         # this prevents weird crashes if an application also ends up using
+         # libcrypto.so from the system's OpenSSL installation.
+         # Do this even if using system libcrypto, since it could still be a static lib.
+-        extra_link_args += ['-Wl,--exclude-libs,libcrypto.a']
++        #extra_link_args += ['-Wl,--exclude-libs,libcrypto.a']
+ 
+     if sys.platform != 'win32' or distutils.ccompiler.get_default_compiler() != 'msvc':
+         extra_compile_args += ['-Wno-strict-aliasing', '-std=gnu99']
+--- a/crt/s2n/api/s2n.h	Fri Feb 13 09:16:55 2026
++++ b/crt/s2n/api/s2n.h	Mon Apr  6 10:04:58 2026
+@@ -40,6 +40,20 @@
+ #include <sys/uio.h>
+ 
+ /**
++ * Add in case they get missed, in which case the compile will succeed but
++ * the shared library will be missing the symbols.
++ */
++#ifdef __sun
++#include <math.h>
++#endif
++#ifndef MIN
++#define MIN(a, b)       ((a) < (b) ? (a) : (b))
++#endif
++#ifndef MAX
++#define MAX(a, b)       ((a) < (b) ? (b) : (a))
++#endif
++
++/**
+  *  Function return code
+  */
+ #define S2N_SUCCESS 0

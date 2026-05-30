@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+rm -f usr/versions/aws/bin/aws.cmd
+mkdir -p usr/bin
+cd usr/bin
+ln -s ../../usr/versions/aws/bin/aws ./aws2
+cd ../..
+cd usr/versions/aws
+find lib -name direct_url.json -exec rm {} \;
+sed -i '/\/direct_url.json,sha/d' $(find lib -name RECORD)
