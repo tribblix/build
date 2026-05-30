@@ -11,5 +11,5 @@
 # then copy the package into our own format
 #
 mkdir -p /tmp/pct
-mv /tmp/TRIBpctlife.pkg /tmp/pct/TRIBpctlife.1.8.0.pkg
-${THOME}/build/pkg2zap /tmp/pct/TRIBpctlife.1.8.0.pkg /tmp/pct
+mv /tmp/TRIBpctlife.pkg /tmp/pct/TRIBpctlife.1.9.0.pkg
+${THOME}/build/pkg2zap /tmp/pct/TRIBpctlife.1.9.0.pkg /tmp/pct
