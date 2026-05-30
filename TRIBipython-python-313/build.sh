@@ -7,4 +7,4 @@
 #
 # ipython build uses setuptools, ipython-pygments-lexers uses flit-core
 #
-${THOME}/build/pkg_pep518 -N TRIBipython-python-313 ipython-9.13.0 ipython_pygments_lexers-1.1.1
+${THOME}/build/pkg_pep518 -N TRIBipython-python-313 ipython-9.14.0 ipython_pygments_lexers-1.1.1
