@@ -1,0 +1,122 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# Copyright 2026 Peter Tribble
+#
+# shortcut script to install a module in a venv
+#
+PYTHON=python3
+
+bail() {
+    echo "$1"
+    exit 1
+}
+
+BUILD_MODS=""
+PIP_MODS=""
+SOURCE_MODS=""
+ENVNAME=""
+
+#
+# flags:
+# -b list of modules only needed for building (deleted at end)
+# -n name of venv
+# -p list of modules to install in the venv
+# -s list of modules to build from source
+# -v version of python to use
+#
+while getopts "b:n:p:s:v:" opt; do
+    case $opt in
+	b)
+	    BUILD_MODS="$OPTARG"
+	    ;;
+	n)
+	    ENVNAME="$OPTARG"
+	    ;;
+	p)
+	    PIP_MODS="$OPTARG"
+	    ;;
+	s)
+	    SOURCE_MODS="$OPTARG"
+	    ;;
+	v)
+	    PYTHON="python$OPTARG"
+	    ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [ -z "${PIP_MODS}" ]; then
+    case $# in
+	0)
+	    bail "no argument supplied"
+	    ;;
+    esac
+fi
+
+#
+# there are two possible ways to use this script
+# for a quick throwaway venv, just give a list of arguments
+# for more serious use, supply the arguments above
+#
+# if we aren't given an explicit name for the venv, use the first module
+# on the command line, if there is one
+#
+if [ -z "${ENVNAME}" ]; then
+    if [ -z "$1" ]; then
+	bail "no name for the venv"
+    fi
+    ENVNAME="$1"
+fi
+
+#
+# ensure we have a valid python to start with
+#
+if [ ! -x "/usr/bin/${PYTHON}" ]; then
+    bail "no such python ${PYTHON}"
+fi
+
+$PYTHON -m venv "/tmp/venv.${ENVNAME}"
+
+if [ -f "/tmp/venv.${ENVNAME}/bin/activate" ]; then
+    .  "/tmp/venv.${ENVNAME}/bin/activate"
+else
+    bail "venv not created"
+fi
+
+#
+# first install any build dependencies
+#
+if [ -n "${BUILD_MODS}" ]; then
+    /tmp/venv."${ENVNAME}"/bin/pip install ${BUILD_MODS}
+fi
+
+#
+# install any direct pip dependencies and anything directly
+# on the command line
+#
+/tmp/venv."${ENVNAME}"/bin/pip install "$@" ${PIP_MODS}
+
+#
+# then install anything from source
+#
+for source_pkg in ${SOURCE_MODS}
+do
+    "$THOME/build/unpack" "$source_pkg"
+    cd "$source_pkg" || bail "cd to $source_pkg failed"
+    /tmp/venv."${ENVNAME}"/bin/pip install --no-deps --isolated --no-input --exists-action=a --disable-pip-version-check --no-warn-script-location --no-compile -I .
+    cd ..
+done
+
+#
+# uninstall any build dependencies
+#
+if [ -n "${BUILD_MODS}" ]; then
+    /tmp/venv."${ENVNAME}"/bin/pip uninstall -y ${BUILD_MODS}
+fi
+
+#
+# recompile
+#
+/tmp/venv."${ENVNAME}"/bin/python -m compileall -f -p / -s /tmp/venv."${ENVNAME}" --invalidation-mode unchecked-hash /tmp/venv."${ENVNAME}"
