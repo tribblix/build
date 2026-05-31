@@ -11,5 +11,5 @@
 # then copy the package into our own format
 #
 mkdir -p /tmp/pct
-mv /tmp/TRIBjangle.pkg /tmp/pct/TRIBjangle.0.19.pkg
-${THOME}/build/pkg2zap /tmp/pct/TRIBjangle.0.19.pkg /tmp/pct
+mv /tmp/TRIBjangle.pkg /tmp/pct/TRIBjangle.0.20.0.pkg
+${THOME}/build/pkg2zap /tmp/pct/TRIBjangle.0.20.0.pkg /tmp/pct
