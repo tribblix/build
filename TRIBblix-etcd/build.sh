@@ -10,7 +10,7 @@ cd etcd
 # it must be a release version, otherwise patroni (and others) will choke
 # on trying to talk to it
 #
-git checkout v3.6.10
+git checkout v3.6.11
 env PATH=/usr/versions/go-1.25/bin:$PATH gmake
 
 rm -fr /tmp/ee
