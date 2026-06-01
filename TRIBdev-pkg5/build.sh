@@ -30,19 +30,21 @@ cd pkg5
 #
 # and this is the one used for python 3.12 on m35
 #
-git checkout 145220ee6ceb537305371f55d6b50328f2e0f113
+#git checkout 145220ee6ceb537305371f55d6b50328f2e0f113
+#
+# and this is the one for python 3.13 on m40
+#
+git checkout a1e9480db2c8d4ccca03f794fe29d097d83e3526
 cd src
 
 #
-# we have 64-bit python 3.12, which may not be the default in the source
+# only use 3.13
 #
-#sed -i s:3.11:3.12: Makefile.com
-#sed -i s:python3.11:python3.12: `grep -rl python3.11 .`
-
+sed -i 's:PYVERSIONS = 3.12 3.13:PYVERSIONS = 3.13:' Makefile.com
 #
 # use a regular gcc
 #
-sed -i s:gcc-13:gcc: Makefile.com
+sed -i s:gcc-14:gcc: Makefile.com
 #
 # don't do the ctfconvert piece
 #
@@ -50,7 +52,7 @@ sed -i s:/opt/onbld/bin/i386/ctfconvert:true: Makefile.com
 #
 # align the PYTHONPATH with Tribblix so it can find modules
 #
-sed -i 's=:/usr/lib/python$PYVER/vendor-packages=:/usr/versions/python-3.12/lib/python3.12/site-packages=' ../tools/installmodules
+sed -i 's=:/usr/lib/python$PYVER/vendor-packages=:/usr/versions/python-3.13/lib/python3.13/site-packages=' ../tools/installmodules
 #
 # pkg has an odd way of fiddling the module path instead of using
 # the normal vendoring mechanism
@@ -63,15 +65,21 @@ sed -i '/sys.path.extend/d' modules/site_paths/__init__.py
 #
 sed -i 's:-L/lib ::' brand/ipkg/Makefile
 #
+# huh?
+#
+sed -i 's:-$(TRIPLET)::' cffi_src/Makefile.ext
+sed -i 's:-$(TRIPLET)::' modules/Makefile.ext
+sed -i 's:python$(USEPY) :cd ; python$(USEPY) :' modules/Makefile.mod
+#
 # NB gmake doesn't work
 #
-make install CC=gcc
+env PATH=/usr/versions/python-3.13/bin:$PATH make install CC=gcc
 cd ../proto/root_*
 
 #
 # I have no idea why this is required, but it doesn't work at all
 #
-sed -i 's:psinfo_size = 232:psinfo_size = 236:' usr/lib/python3.12/vendor-packages/pkg/misc.py
+sed -i 's:psinfo_size = 232:psinfo_size = 236:' usr/lib/python3.13/vendor-packages/pkg/misc.py
 
 #
 # we don't need anything to do with running a pkg server or any of the
@@ -81,9 +89,9 @@ rm -fr etc lib var
 rm -fr usr/include
 rm -fr usr/lib/brand usr/lib/zones
 rm usr/lib/pkg.*
-mkdir -p usr/versions/python-3.12/lib
-mv usr/lib/python3.12 usr/versions/python-3.12/lib
-mv usr/versions/python-3.12/lib/python3.12/vendor-packages usr/versions/python-3.12/lib/python3.12/site-packages
+mkdir -p usr/versions/python-3.13/lib
+mv usr/lib/python3.13 usr/versions/python-3.13/lib
+mv usr/versions/python-3.13/lib/python3.13/vendor-packages usr/versions/python-3.13/lib/python3.13/site-packages
 rm -fr usr/share/lib/pkg/web
 rm -f usr/share/lib/pkg/rad-invoke
 rm -fr usr/share/man/ja_JP.UTF-8 usr/share/man/zh_CN.UTF-8
@@ -98,6 +106,6 @@ mv usr/share/man/man7/pkg.keep usr/share/man/man7/pkg.7
 #
 # spaces...
 #
-mv 'usr/lib/pkg/python3.12/jaraco/text/Lorem ipsum.txt' 'usr/lib/pkg/python3.12/jaraco/text/Lorem_ipsum.txt'
+mv 'usr/lib/pkg/python3.13/jaraco/text/Lorem ipsum.txt' 'usr/lib/pkg/python3.13/jaraco/text/Lorem_ipsum.txt'
 
 ${THOME}/build/create_pkg TRIBdev-pkg5 `pwd`
