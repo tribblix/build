@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# there are a lot of possible dependencies, but all are in extras
+#
+# sparc downrev due to build switching to uv-build
+#
+${THOME}/build/pkg_pep518 -N TRIBnarwhals-python-312 narwhals-2.21.2
