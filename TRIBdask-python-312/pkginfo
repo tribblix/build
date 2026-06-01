@@ -1,4 +1,0 @@
-PKG="TRIBdask-python-312"
-NAME="Python dask"
-VERSION="2026.3.0.0"
-ZAP_URL="https://pypi.org/project/dask/"
