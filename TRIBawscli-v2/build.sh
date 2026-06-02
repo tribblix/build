@@ -8,6 +8,9 @@
 # currently experimental, but will become the preferred mechanism to deliver
 # the aws cli as the v1 modules will be deprecated
 #
+# fails to build on sparc as the s2n build in awscrt passes flags to
+# /usr/ccs/bin/as that it doesn't understand
+#
 
 VENV=t1-$$
 PVENV=/tmp/venv.${VENV}
