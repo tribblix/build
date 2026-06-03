@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBdjango6-python-313 django-6.0.5
+${THOME}/build/pkg_pep518 -N TRIBdjango6-python-313 django-6.0.6
