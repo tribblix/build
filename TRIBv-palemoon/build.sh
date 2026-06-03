@@ -9,8 +9,8 @@
 # first, build palemoon according to the instructions
 #   http://developer.palemoon.org/build/sunos/
 #
-# requires python2, and also requires TRIBopenssl11-compat because
-# hashlib is linked against openssl11
+# requires python3, note that pale moon is built on an older system
+# that has python 3.9, but any newer python will do
 #
 # create g-prefixed links for
 #   gnm greadelf
@@ -44,9 +44,9 @@
 # but I've found that doesn't work
 #
 # This will create a tarball
-#  palemoon-34.2.2.solaris2.11-x86_64-illumos.tar.xz
+#  palemoon-34.3.0.solaris2.11-x86_64-illumos.tar.xz
 # in the following directory
 #   obj-x86_64-pc-solaris2.11/dist
 # this is the tarball we unpack to create the package
 #
-${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-34.2.2.solaris2.11-x86_64-illumos
+${THOME}/build/pkg_tarball TRIBv-palemoon palemoon-34.3.0.solaris2.11-x86_64-illumos
