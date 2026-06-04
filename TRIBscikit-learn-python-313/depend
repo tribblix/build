@@ -2,5 +2,5 @@ P TRIBjoblib-python-313
 P TRIBnumpy-python-313
 P TRIBscipy-python-313
 P TRIBthreadpoolctl-python-313
-P TRIBv-gcc10
+P TRIBv-gcc14
 P TRIBv-python-313

@@ -15,4 +15,4 @@
 # it wants openmp, and won't build without it, so explicitly tell it
 # where the libraries are to be found at runtime
 #
-env CC="gcc -m64" LDFLAGS="-m64 -R/usr/versions/gcc-10/lib/amd64" CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.13/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-learn-python-313 scikit_learn-1.8.0
+env CC="gcc -m64" LDFLAGS="-m64 -R/usr/versions/gcc-14/lib/amd64" CXXFLAGS=-m64 CFLAGS=-m64 PATH=/usr/versions/python-3.13/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscikit-learn-python-313 scikit_learn-1.9.0
