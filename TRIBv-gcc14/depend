@@ -1,0 +1,6 @@
+P SUNWcs
+P TRIBcompress-zstd
+P TRIBgcc4runtime
+P TRIBsys-header
+P TRIBsys-lib-math
+P TRIBsys-library

@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-echo "See TRIBv-gcc10"
+echo "See TRIBv-gcc14"
