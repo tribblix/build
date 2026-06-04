@@ -1,0 +1,12 @@
+diff -wpruN --no-dereference '--exclude=*.orig' a~/configure a/configure
+--- a~/configure	1970-01-01 00:00:00
++++ a/configure	1970-01-01 00:00:00
+@@ -14462,7 +14462,7 @@ lt_prog_compiler_static=
+       ;;
+ 
+     solaris*)
+-      lt_prog_compiler_pic='-KPIC'
++      lt_prog_compiler_pic='-fPIC'
+       lt_prog_compiler_static='-Bstatic'
+       case $cc_basename in
+       f77* | f90* | f95* | sunf77* | sunf90* | sunf95*)

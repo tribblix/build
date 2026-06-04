@@ -14,13 +14,14 @@
 # the one case where the code gets called
 #
 # m31 and earlier were linked against net-snmp-5.7.3
+# m39 and earlier were linked against net-snmp-5.9.3
 #
 
 #
-${THOME}/build/unpack -64 net-snmp-5.9.3
+${THOME}/build/unpack -64 net-snmp-5.9.5.2
 
-cd net-snmp-5.9.3
-env LDFLAGS=-Wl,-zignore CFLAGS=-O CC=gcc CXX=g++ \
+cd net-snmp-5.9.5.2
+env LDFLAGS=-Wl,-zignore CPPFLAGS=-D__fd_mask=long CFLAGS=-O CC=gcc CXX=g++ \
     ./configure --prefix=/usr --with-defaults \
     --with-mibdirs=/etc/net-snmp/snmp/mibs --datadir=/etc/net-snmp \
     --with-default-snmp-version=3 \
@@ -37,7 +38,7 @@ env LDFLAGS=-Wl,-zignore CFLAGS=-O CC=gcc CXX=g++ \
     --without-kmem-usage --without-elf \
     --disable-static \
     --with-sys-contact=root@localhost \
-    --with-transports="UDP TCP UDPIPv6 TCPIPv6" \
+    --with-transports="Unix UDP TCP UDPIPv6 TCPIPv6" \
     --with-mib-modules="host disman/event-mib ucd-snmp/diskio udp-mib tcp-mib if-mib"
 #
 # fix library dependencies, configure guesses wrong
@@ -50,8 +51,8 @@ gmake -j 8
 
 cd ..
 
-cd net-snmp-5.9.3-64bit
-env LDFLAGS="-Wl,-zignore -m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" CC=gcc CXX=g++ \
+cd net-snmp-5.9.5.2-64bit
+env LDFLAGS="-Wl,-zignore -m64" CPPFLAGS=-D__fd_mask=long CFLAGS="-O -m64" CXXFLAGS="-O -m64" CC=gcc CXX=g++ \
     ./configure --prefix=/usr --with-defaults \
     --libdir=/usr/lib/`isainfo -k` \
     --with-mibdirs=/etc/net-snmp/snmp/mibs --datadir=/etc/net-snmp \
@@ -69,7 +70,7 @@ env LDFLAGS="-Wl,-zignore -m64" CFLAGS="-O -m64" CXXFLAGS="-O -m64" CC=gcc CXX=g
     --without-kmem-usage --without-elf \
     --disable-static \
     --with-sys-contact=root@localhost \
-    --with-transports="UDP TCP UDPIPv6 TCPIPv6" \
+    --with-transports="Unix UDP TCP UDPIPv6 TCPIPv6" \
     --with-mib-modules="host disman/event-mib ucd-snmp/diskio udp-mib tcp-mib if-mib"
 #
 # fix library dependencies, configure guesses wrong
@@ -87,10 +88,10 @@ cd ..
 # so do it the long way
 #
 rm -fr /tmp/ns
-cd net-snmp-5.9.3
+cd net-snmp-5.9.5.2
 gmake install DESTDIR=/tmp/ns
 cd ..
-cd net-snmp-5.9.3-64bit
+cd net-snmp-5.9.5.2-64bit
 gmake install DESTDIR=/tmp/ns
 cd ..
 ${THOME}/build/create_pkg TRIBnet-snmp /tmp/ns
