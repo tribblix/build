@@ -5,6 +5,4 @@
 # there's a patch for setup.py to disable lerc (we don't have), jpegxr
 # (won't build) and add in brotli, bz2, gif, snappy
 #
-# downrev due to cython version dependency
-#
-${THOME}/build/pkg_pep518 -N -q TRIBimagecodecs-python-313 imagecodecs-2025.8.2
+${THOME}/build/pkg_pep518 -N -q TRIBimagecodecs-python-313 imagecodecs-2026.5.10
