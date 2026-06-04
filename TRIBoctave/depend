@@ -12,6 +12,6 @@ P TRIBopenblas
 P TRIBsvc-opengl-ogl-select
 P TRIBsys-lib-fontconfig
 P TRIBsys-lib-freetype-2
-P TRIBv-gfortran10
+P TRIBv-gfortran14
 P TRIBx11-lib-mesa
 P TRIBx11-libx11
