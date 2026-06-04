@@ -1,4 +1,4 @@
 P TRIBcompress-zstd
 P TRIBlib-zlib
 P TRIBlibxml2
-P TRIBv-gcc10
+P TRIBv-gcc14
