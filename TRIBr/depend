@@ -17,8 +17,8 @@ P TRIBlibicu
 P TRIBreadline
 P TRIBtcl
 P TRIBtk
-P TRIBv-gcc10
-P TRIBv-gfortran10
+P TRIBv-gcc14
+P TRIBv-gfortran14
 P TRIBx11-lib-toolkit-libxt
 P TRIBx11-libx11
 P TRIBx11-libxmu
