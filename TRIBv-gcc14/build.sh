@@ -114,8 +114,7 @@ gmake -j 8
 cd ..
 
 #
-# plain install is ~1.1G on x86
-# with install-strip we get down to 372M
+# install-strip to reduce the size significantly
 #
 rm -fr /tmp/gc14
 cd build
@@ -251,16 +250,16 @@ ln -s ../../usr/versions/gcc-14/bin/gfortran .
 
 #
 # and put man pages somewhere more obvious
-# the man pages appear to be blank in this build
+# check the man pages aare no blank first
 #
-#cd /tmp/g14f-c
-#mkdir -p usr/share
-#mv usr/versions/gcc-14/share/man usr/share
-#cd /tmp/g14-c
-#mkdir -p usr/share/man/man1
-#mv usr/versions/gcc-14/share/man/man1/gcc.1 usr/share/man/man1
-#mv usr/versions/gcc-14/share/man/man1/g++.1 usr/share/man/man1
-#mv usr/versions/gcc-14/share/man/man1/cpp.1 usr/share/man/man1
+cd /tmp/g14f-c
+mkdir -p usr/share
+mv usr/versions/gcc-14/share/man usr/share
+cd /tmp/g14-c
+mkdir -p usr/share/man/man1
+mv usr/versions/gcc-14/share/man/man1/gcc.1 usr/share/man/man1
+mv usr/versions/gcc-14/share/man/man1/g++.1 usr/share/man/man1
+mv usr/versions/gcc-14/share/man/man1/cpp.1 usr/share/man/man1
 
 #
 # clean up
