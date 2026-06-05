@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# SPDX-License-Identifier: CDDL-1.0
-#
-# configure guesses wrong
-#
-sed -i 's:-Wl,--no-as-needed::' `find . -name Makefile`
