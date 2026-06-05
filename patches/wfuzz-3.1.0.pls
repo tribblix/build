@@ -1,2 +1,0 @@
--p1 wfuzz-pip.patch
--p1 wfuzz-loader.patch
