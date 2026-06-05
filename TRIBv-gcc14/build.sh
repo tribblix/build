@@ -250,7 +250,7 @@ ln -s ../../usr/versions/gcc-14/bin/gfortran .
 
 #
 # and put man pages somewhere more obvious
-# check the man pages aare no blank first
+# check the man pages are not blank first
 #
 cd /tmp/g14f-c
 mkdir -p usr/share

@@ -19,7 +19,7 @@ BROOT="/tmp/pct"
 PKGNAME="TRIBawscli-v2"
 
 #
-# for performance reaons build in /tmp
+# for performance reasons build in /tmp
 #
 TDIR=$(mktemp -d -p /tmp)
 cd $TDIR || exit 0
