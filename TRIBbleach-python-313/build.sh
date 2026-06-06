@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBbleach-python-313 bleach-6.3.0
+${THOME}/build/pkg_pep518 -N TRIBbleach-python-313 bleach-6.4.0
