@@ -1,5 +1,9 @@
 JDK 27 now that jdk26 has been branched off.
 
+27+25
+
+Minor patch noise.
+
 27+24
 
 Minor patch noise, associated with the JVMCI removal.

@@ -172,11 +172,11 @@ suite. It would be nice to be complete, but that isn't true yet.
  
  }
  
--#if !defined(_WINDOWS) && !defined(_AIX)
-+#if !defined(_WINDOWS) && !defined(_AIX) && !defined(__sun__)
- TEST_VM(NMTCommittedVirtualMemory, test_committed_in_range){
-   CommittedVirtualMemoryTest::test_committed_in_range(1024, 1024);
-   CommittedVirtualMemoryTest::test_committed_in_range(2, 1);
+-#if !defined(_AIX)
++#if !defined(_AIX) && !defined(__sun__)
+ TEST_VM(NMTCommittedVirtualMemory, test_first_resident_in_range){
+   CommittedVirtualMemoryTest::test_first_resident_in_range(1024, 1024);
+   CommittedVirtualMemoryTest::test_first_resident_in_range(2, 1);
 --- a/test/hotspot/gtest/runtime/test_os.cpp	Tue Jun 10 15:58:34 2025
 +++ b/test/hotspot/gtest/runtime/test_os.cpp	Tue Jun 10 15:54:10 2025
 @@ -1164,7 +1164,7 @@
