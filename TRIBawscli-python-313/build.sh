@@ -4,4 +4,4 @@
 #
 # needs botocore colorama s3transfer docutils rsa yaml
 #
-${THOME}/build/pkg_pep518 -N TRIBawscli-python-313 awscli-1.45.18
+${THOME}/build/pkg_pep518 -N TRIBawscli-python-313 awscli-1.45.24
