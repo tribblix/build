@@ -6165,3 +6165,4 @@ jdk-jdk-27-25.tar.gz bfafe4fb5511e5bc7fc665b3fa914546bd5b7166e6d0e7a33189fed1722
 jdk-jdk-28-0.tar.gz 808b7bbd65511dffcedffbe0f5faf974b54435eda93f5fbb2068278f7203190d
 jdk-jdk-28-1.tar.gz ef6d6a87ab1aeec230cb7c81a65592138b107e3a9a2f08a8a66aa85f9f9dbf3c
 pypdf-6.13.0.tar.gz 558683ec9daf6b91c280c322c84c32f5cc216afd3eaa3a37de5ae88ae0c3b787
+imagecodecs-2026.6.6.tar.gz c7b014f5c0e73ff455700b1db271415d3c35a3bddedca6527cb2eefcd2fa8a10
