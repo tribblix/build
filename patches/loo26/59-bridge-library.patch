@@ -1,0 +1,11 @@
+--- core-aea53c0ed1527ed1f8233972a27128e14d645e8f/bridges/Library_cpp_uno.mk.~1~	2023-11-08 16:50:26.000000000 -0500
++++ core-aea53c0ed1527ed1f8233972a27128e14d645e8f/bridges/Library_cpp_uno.mk	2023-11-11 05:26:54.075165147 -0500
+@@ -169,7 +169,7 @@
+ 
+ else ifeq ($(CPUNAME),X86_64)
+ 
+-ifneq ($(filter ANDROID DRAGONFLY FREEBSD LINUX NETBSD OPENBSD HAIKU,$(OS)),)
++ifneq ($(filter ANDROID DRAGONFLY FREEBSD LINUX NETBSD OPENBSD HAIKU SOLARIS ,$(OS)),)
+ bridges_SELECTED_BRIDGE := gcc3_linux_x86-64
+ bridge_asm_objects := call
+ bridge_noncallexception_noopt_objects := callvirtualmethod

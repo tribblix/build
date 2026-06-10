@@ -1,0 +1,11 @@
+--- core-b14583ba37a6d7ce398ccd3cf339f954785b03d8/sal/osl/unx/backtrace_solaris.c.old	2023-10-25 00:02:22.243649926 -0400
++++ core-b14583ba37a6d7ce398ccd3cf339f954785b03d8/sal/osl/unx/backtrace_solaris.c	2023-10-25 00:03:07.437923337 -0400
+@@ -41,7 +41,7 @@
+ 
+ #endif
+ 
+-#elif defined( INTEL )
++#elif defined( INTEL ) || defined( X86_64 )
+ 
+ #define FRAME_PTR_OFFSET 3
+ #define FRAME_OFFSET     0

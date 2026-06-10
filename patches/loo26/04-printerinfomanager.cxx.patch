@@ -1,0 +1,11 @@
+--- libreoffice-7.4.2.3/vcl/unx/generic/printer/printerinfomanager.cxx.~1~	2022-11-05 23:06:51.329804332 +0000
++++ libreoffice-7.4.2.3/vcl/unx/generic/printer/printerinfomanager.cxx	2022-11-05 23:12:43.474769943 +0000
+@@ -22,6 +22,8 @@
+ #include <unx/gendata.hxx>
+ #include <unx/helper.hxx>
+ 
++#include <vcl/strhelper.hxx>
++
+ #include <tools/urlobj.hxx>
+ #include <tools/config.hxx>
+ 

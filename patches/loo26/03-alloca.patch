@@ -1,0 +1,176 @@
+--- libreoffice-6.4.2.2/cppuhelper/source/tdmgr.cxx.1	2020-03-15 10:03:42.203329269 +0000
++++ libreoffice-6.4.2.2/cppuhelper/source/tdmgr.cxx	2020-03-15 10:04:42.704913414 +0000
+@@ -20,6 +20,9 @@
+ 
+ #include <sal/config.h>
+ #include <sal/log.hxx>
++#ifdef __sun__
++#include <alloca.h>
++#endif
+ 
+ #include <vector>
+ 
+--- libreoffice-6.4.2.2/cppu/source/helper/purpenv/helper_purpenv_Proxy.cxx.1	2020-03-16 07:58:41.300604523 +0000
++++ libreoffice-6.4.2.2/cppu/source/helper/purpenv/helper_purpenv_Proxy.cxx	2020-03-16 07:59:13.543460399 +0000
+@@ -20,6 +20,10 @@
+ 
+ #include "Proxy.hxx"
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #include <sal/log.hxx>
+ #include <uno/dispatcher.h>
+ #include <typelib/typedescription.hxx>
+--- libreoffice-7.2.5.2/vcl/source/helper/strhelper.cxx.orig	Wed Feb  9 11:40:19 2022
++++ libreoffice-7.2.5.2/vcl/source/helper/strhelper.cxx		Wed Feb  9 11:41:29 2022
+@@ -16,6 +16,9 @@
+  *   except in compliance with the License. You may obtain a copy of
+  *   the License at http://www.apache.org/licenses/LICENSE-2.0 .
+  */
++#ifdef __sun__
++#include <alloca.h>
++#endif
+ 
+ #include <strhelper.hxx>
+ 
+--- libreoffice-6.4.2.2/vcl/unx/generic/app/i18n_cb.cxx.1	2020-03-18 07:29:10.139990266 +0000
++++ libreoffice-6.4.2.2/vcl/unx/generic/app/i18n_cb.cxx	2020-03-18 07:29:53.640901720 +0000
+@@ -19,6 +19,9 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
++#ifdef __sun__
++#include <alloca.h>
++#endif
+ 
+ #include <osl/thread.h>
+ 
+--- libreoffice-6.4.2.2/vcl/unx/generic/app/wmadaptor.cxx.1	2020-04-06 15:08:28.061370256 +0000
++++ libreoffice-6.4.2.2/vcl/unx/generic/app/wmadaptor.cxx	2020-04-06 15:08:58.972919890 +0000
+@@ -36,6 +36,10 @@
+ #include <X11/Xutil.h>
+ #include <X11/Xatom.h>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ namespace vcl_sal {
+ 
+ class NetWMAdaptor : public WMAdaptor
+--- libreoffice-6.4.2.2/vcl/unx/generic/dtrans/X11_selection.cxx.1	2020-04-06 15:36:31.847536995 +0000
++++ libreoffice-6.4.2.2/vcl/unx/generic/dtrans/X11_selection.cxx	2020-04-06 15:37:04.488360772 +0000
+@@ -34,6 +34,10 @@
+ #include <X11/Xatom.h>
+ #include <X11/keysym.h>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #include <poll.h>
+ 
+ #include <sal/macros.h>
+--- libreoffice-6.4.2.2/vcl/unx/generic/window/salframe.cxx.1	2020-04-06 17:34:22.433987425 +0000
++++ libreoffice-6.4.2.2/vcl/unx/generic/window/salframe.cxx	2020-04-06 17:34:49.177033362 +0000
+@@ -21,6 +21,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #include <tools/debug.hxx>
+ 
+ #include <vcl/event.hxx>
+--- libreoffice-7.3.2.1/i18npool/source/transliteration/transliteration_body.cxx.old	2022-03-15 00:37:36.121606584 +0000
++++ libreoffice-7.3.2.1/i18npool/source/transliteration/transliteration_body.cxx	2022-03-15 00:37:53.289037132 +0000
+@@ -36,6 +36,10 @@
+ #include <memory>
+ #include <numeric>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ using namespace ::com::sun::star::uno;
+ using namespace ::com::sun::star::i18n;
+ using namespace ::com::sun::star::lang;
+--- libreoffice-7.4.2.3/sal/rtl/strtmpl.hxx.old	2022-11-06 23:45:11.068322984 +0000
++++ libreoffice-7.4.2.3/sal/rtl/strtmpl.hxx	2022-11-06 23:46:13.110249540 +0000
+@@ -40,6 +40,10 @@
+ #include <rtl/string.h>
+ #include <rtl/ustring.h>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #include <dragonbox/dragonbox.h>
+ 
+ void internRelease(rtl_uString*);
+--- libreoffice-7.5.1.1/basegfx/source/matrix/b2dhommatrix.cxx.old	2023-02-20 22:13:42.558423559 -0500
++++ libreoffice-7.5.1.1/basegfx/source/matrix/b2dhommatrix.cxx	2023-02-20 22:12:58.335447142 -0500
+@@ -24,6 +24,10 @@
+ #include <basegfx/matrix/b2dhommatrixtools.hxx>
+ #include <memory>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ namespace basegfx
+ {
+     typedef ::basegfx::internal::ImplHomMatrixTemplate< 3 > Impl2DHomMatrix_Base;
+--- core-aea53c0ed1527ed1f8233972a27128e14d645e8f/bridges/source/cpp_uno/gcc3_linux_x86-64/cpp2uno.cxx.old	2023-11-11 11:38:42.877498857 -0500
++++ core-aea53c0ed1527ed1f8233972a27128e14d645e8f/bridges/source/cpp_uno/gcc3_linux_x86-64/cpp2uno.cxx	2023-11-11 11:40:30.758415889 -0500
+@@ -34,6 +34,10 @@
+ #include <types.hxx>
+ #include <vtablefactory.hxx>
+ 
++#ifdef __sun__
++#include <alloca.h>
++#endif
++
+ #include "abi.hxx"
+ #include "call.hxx"
+ #include "rtti.hxx"
+--- core-9d74fdd4650abc8e7d94abd58539fc7cec112549/bridges/source/cpp_uno/gcc3_linux_x86-64/uno2cpp.cxx.old	2024-02-19 19:24:37.961578509 -0500
++++ core-9d74fdd4650abc8e7d94abd58539fc7cec112549/bridges/source/cpp_uno/gcc3_linux_x86-64/uno2cpp.cxx	2024-02-19 19:28:07.969396398 -0500
+@@ -33,6 +33,9 @@
+ #include "abi.hxx"
+ #include "callvirtualmethod.hxx"
+ #include "share.hxx"
++#ifdef __sun__
++#include <alloca.h>
++#endif
+ 
+ using namespace ::com::sun::star::uno;
+ 
+--- core-9d74fdd4650abc8e7d94abd58539fc7cec112549/bridges/source/jni_uno/jni_uno2java.cxx.old	2024-02-19 19:31:21.806270059 -0500
++++ core-9d74fdd4650abc8e7d94abd58539fc7cec112549/bridges/source/jni_uno/jni_uno2java.cxx	2024-02-19 19:31:59.181792851 -0500
+@@ -29,6 +29,9 @@
+ 
+ #include <rtl/ustrbuf.hxx>
+ #include <utility>
++#ifdef __sun__
++#include <alloca.h>
++#endif
+ 
+ #include "jni_bridge.h"
+ #include "jni_helper.h"
+--- core-9d74fdd4650abc8e7d94abd58539fc7cec112549/bridges/source/jni_uno/jni_java2uno.cxx.old	2024-02-19 19:32:41.800939198 -0500
++++ core-9d74fdd4650abc8e7d94abd58539fc7cec112549/bridges/source/jni_uno/jni_java2uno.cxx	2024-02-19 19:32:57.630705756 -0500
+@@ -22,6 +22,9 @@
+ 
+ #include <algorithm>
+ #include <cassert>
++#ifdef __sun__
++#include <alloca.h>
++#endif
+ 
+ #include "jni_bridge.h"
+ #include "jni_helper.h"

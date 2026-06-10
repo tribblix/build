@@ -1,0 +1,26 @@
+--- core-b14583ba37a6d7ce398ccd3cf339f954785b03d8/include/comphelper/errcode.hxx.~1~	2023-10-24 23:34:49.856823014 -0400
++++ core-b14583ba37a6d7ce398ccd3cf339f954785b03d8/include/comphelper/errcode.hxx	2023-10-24 23:38:05.004249806 -0400
+@@ -24,6 +24,10 @@
+ #include <o3tl/typed_flags_set.hxx>
+ #include <optional>
+ 
++#if defined(__sun)
++#include <climits>
++#endif
++
+ #if defined(DBG_UTIL)
+ #if __has_include(<version>)
+ #include <version>
+--- core-589fb36b663cbd68afc26419629a4a95bd593a89/sc/source/core/data/dptabsrc.cxx.old	2024-04-18 08:59:18.767792648 -0400
++++ core-589fb36b663cbd68afc26419629a4a95bd593a89/sc/source/core/data/dptabsrc.cxx	2024-04-18 09:00:31.796234893 -0400
+@@ -22,6 +22,10 @@
+ #include <algorithm>
+ #include <vector>
+ 
++#if defined(__sun)
++#include <climits>
++#endif
++
+ #include <comphelper/sequence.hxx>
+ #include <o3tl/any.hxx>
+ #include <o3tl/safeint.hxx>
