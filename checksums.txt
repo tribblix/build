@@ -6182,3 +6182,5 @@ httpd-2.4.68.tar.bz2 68c74d4df38c26bed4dfbdb8f3baf1eb532f3872357becc1bba5d136f6b
 openstacksdk-4.15.0.tar.gz 0fe87510e216af2110f4184dda0060d8313dffdc42876edbbe6e9cc946264e64
 jupyter_client-8.9.1.tar.gz a58f730dd9e728ba16ba1d62ebccf7ffe1ebbdbce4e95cfae941b7321ae1f4fa
 distlib-0.4.2.tar.gz baeb401c90f27acd15c4861ae0847d1e731c27ac3dbf4210643ba61fa1e813db
+ipykernel-7.3.0.tar.gz 9acaaaf97d16355166e4085afe9d225bfbdf2b7ef520f9df3be8f2b248275e09
+nest_asyncio2-1.7.2.tar.gz 1921d70b92cc4612c374928d081552efb59b83d91b2b789d935c665fa01729a8
