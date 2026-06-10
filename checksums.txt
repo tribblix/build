@@ -6189,3 +6189,4 @@ cyclonedx_python_lib-11.9.0.tar.gz 5d3b54834bbdfa2538b0e7eeda243f43c136d0a324d17
 palemoon-34.3.0.1.solaris2.11-x86_64-illumos.tar.xz f374098cd3c7c06b456a5fccef0a6d26d97b3112ec3b0dcb4cfa7464051796b1
 beautifulsoup4-4.15.0.tar.gz 288e3ca7d54b06f2ac191970bc275c1939cb46d450b255bf6718b04aa37ab4f7
 filelock-3.29.3.tar.gz 7fc1b3f39cf172fd8203812043c57b8a65aef9969f38b6704f628b881f761a84
+globus_sdk-4.8.0.tar.gz e54ea373aae39ef25fe0652c9e0d1dc9bcefacc65b08732baa0f8c09ea2910de
