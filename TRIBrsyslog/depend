@@ -3,3 +3,6 @@ P TRIBlib-zlib
 P TRIBlibestr
 P TRIBlibfastjson
 P TRIBlibgcrypt
+P TRIBlibyaml
+P TRIBprotobuf-c
+P TRIBsnappy
