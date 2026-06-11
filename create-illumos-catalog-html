@@ -21,7 +21,7 @@
 #
 # like the catalog, but neatly formatted as html
 #
-RELVER=m39
+RELVER=m40
 THOME=${THOME:-/packages/localsrc/Tribblix}
 PKGDIR=${THOME}/illumos-pkgs-${RELVER}/pkgs
 

@@ -26,14 +26,14 @@ THOME=${THOME:-/packages/localsrc/Tribblix}
 #
 # xref against this illumos version
 #
-ILVER=m39
-PILVER=39
+ILVER=m40
+PILVER=40
 PKGDIR=${THOME}/pkgs
 ARCH="i386"
 case $(pwd) in
     *lx)
-	ILVER=m39lx
-	PILVER=39lx
+	ILVER=m40lx
+	PILVER=40lx
 	;;
     *sparc)
 	ILVER=m34.sparc
