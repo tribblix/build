@@ -36,7 +36,7 @@ $THOME/build/patches/libreoffice-26.2.4.2.preconf
 # note that we specify 64-bit in multiple ways, as there are multiple
 # components which pick up on different things
 #
-env NOCONFIGURE=y ./autogen.sh 
+env NOCONFIGURE=y ./autogen.sh
 
 env CFLAGS="-m64" LDFLAGS="-m64" CXXFLAGS="-m64" \
 CC="gcc -m64" CXX="g++ -m64" AFLAGS="-m64" \
