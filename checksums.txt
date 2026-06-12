@@ -6209,3 +6209,4 @@ dask-2026.6.0.tar.gz ae3436bd31ebce2be75edf952bd1fc687a1f11ec03fe8b1bec2903d2223
 distributed-2026.6.0.tar.gz 88b836dc2d85340cad7e08f2611b9336a70ed018d88bc5a70c3721d4a7efcabd
 Config-IniFiles-3.001000.tar.gz fe62ceeeae84ff1790357a6564f7fb93dd61fbf94b34b78a7b58e92231cee08c
 HTTP-Message-7.02.tar.gz 78abef1d833146b48d17db219b1b03d53cbbe37a28ccdad0efdcc5833ca5c60c
+jdk-jdk-28-2.tar.gz ecc3791e481dfe16b793ffeeb4ad814e916fe5f4820d7944d70367ced7b4e4af
