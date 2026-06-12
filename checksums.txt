@@ -6208,3 +6208,4 @@ publicsuffixlist-1.0.2.20260611.tar.gz cf0151d45e32aa8d0eeeb2c76e141c68f971567b6
 dask-2026.6.0.tar.gz ae3436bd31ebce2be75edf952bd1fc687a1f11ec03fe8b1bec2903d222344a45
 distributed-2026.6.0.tar.gz 88b836dc2d85340cad7e08f2611b9336a70ed018d88bc5a70c3721d4a7efcabd
 Config-IniFiles-3.001000.tar.gz fe62ceeeae84ff1790357a6564f7fb93dd61fbf94b34b78a7b58e92231cee08c
+HTTP-Message-7.02.tar.gz 78abef1d833146b48d17db219b1b03d53cbbe37a28ccdad0efdcc5833ca5c60c
