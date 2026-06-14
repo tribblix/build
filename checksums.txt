@@ -6226,3 +6226,4 @@ PPIx-QuoteLike-0.024.tar.gz b71da7748be3a0ab7c19fe8a3ddf7fec480180342c8e76654d28
 PPIx-Regexp-0.092.tar.gz e9c669c01d7c951f9bfee899c147fc8c8ddd98d3f32329f94000c7b02f53366b
 sbom4python-0.12.6-py3-none-any.whl 17707e405ac8d85daba3066cd06a336ce18f93a3a4cb3e8293f369bdc016887d
 azure_storage_blob-12.30.0.tar.gz 2cd74d4d5731e5eb6b8d5c5056ee115a5e88f8fdf22517b739836fda685018be
+backports_zstd-1.6.0.tar.gz 80a7859ffe70bf239d7a2ce15293bdeb5b4280ff7dc326ffab312b0e254dbb24
