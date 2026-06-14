@@ -1,0 +1,44 @@
+--- engrampa-1.28.3-64bit/src/fr-command-ar.c~	Mon May  4 18:55:23 2026
++++ engrampa-1.28.3-64bit/src/fr-command-ar.c	Sun Jun 14 18:01:04 2026
+@@ -20,7 +20,7 @@
+  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+  */
+ 
+-#define _XOPEN_SOURCE /* strptime */
++#define _XOPEN_SOURCE 700 /* strptime */
+ 
+ #include <stdlib.h>
+ #include <string.h>
+--- engrampa-1.28.3-64bit/src/fr-command-dpkg.c~	Mon May  4 18:55:23 2026
++++ engrampa-1.28.3-64bit/src/fr-command-dpkg.c	Sun Jun 14 18:02:05 2026
+@@ -20,7 +20,7 @@
+  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+  */
+ 
+-#define _XOPEN_SOURCE /* strptime */
++#define _XOPEN_SOURCE 700 /* strptime */
+ 
+ #include <config.h>
+ #include <stdlib.h>
+--- engrampa-1.28.3-64bit/src/fr-command-nomarch.c~	Mon May  4 18:55:23 2026
++++ engrampa-1.28.3-64bit/src/fr-command-nomarch.c	Sun Jun 14 18:03:28 2026
+@@ -20,7 +20,7 @@
+  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+  */
+ 
+-#define _XOPEN_SOURCE /* strptime */
++#define _XOPEN_SOURCE 700 /* strptime */
+ 
+ #include <stdlib.h>
+ #include <string.h>
+--- engrampa-1.28.3-64bit/src/fr-command-unarchiver.c~	Mon May  4 18:55:23 2026
++++ engrampa-1.28.3-64bit/src/fr-command-unarchiver.c	Sun Jun 14 18:04:22 2026
+@@ -19,7 +19,7 @@
+  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+-#define _XOPEN_SOURCE       /* See feature_test_macros(7) */
++#define _XOPEN_SOURCE 700      /* See feature_test_macros(7) */
+ #include <time.h>
+ #include <stdio.h>
+ #include <stdlib.h>
