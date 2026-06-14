@@ -1,0 +1,22 @@
+--- marco-1.28.2-64bit/src/core/delete.c~	Wed Jan 21 21:55:29 2026
++++ marco-1.28.2-64bit/src/core/delete.c	Sun Jun 14 18:23:06 2026
+@@ -23,7 +23,7 @@
+  */
+ 
+ #define _GNU_SOURCE
+-#define _XOPEN_SOURCE /* for gethostname() and kill() */
++#define _XOPEN_SOURCE 700 /* for gethostname() and kill() */
+ 
+ #include <config.h>
+ #include <glib/gi18n-lib.h>
+--- marco-1.28.2-64bit/src/core/window-props.c~	Wed Jan 21 21:55:29 2026
++++ marco-1.28.2-64bit/src/core/window-props.c	Sun Jun 14 18:24:40 2026
+@@ -36,7 +36,7 @@
+  */
+ 
+ #define _GNU_SOURCE
+-#define _XOPEN_SOURCE /* for gethostname() */
++#define _XOPEN_SOURCE 700 /* for gethostname() */
+ 
+ #include <config.h>
+ #include <glib/gi18n-lib.h>
