@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-ppix-quotelike"
 NAME="Perl PPIx::QuoteLike module"
-VERSION="0.023.1"
+VERSION="0.024.0"
 ZAP_URL="https://metacpan.org/pod/PPIx::QuoteLike"

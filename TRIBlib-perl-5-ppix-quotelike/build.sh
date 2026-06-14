@@ -2,9 +2,9 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/unpack PPIx-QuoteLike-0.023
-cd PPIx-QuoteLike-0.023
+${THOME}/build/unpack PPIx-QuoteLike-0.024
+cd PPIx-QuoteLike-0.024
 perl Makefile.PL
 make
 cd ..
-${THOME}/build/genpkg TRIBlib-perl-5-ppix-quotelike PPIx-QuoteLike-0.023
+${THOME}/build/genpkg TRIBlib-perl-5-ppix-quotelike PPIx-QuoteLike-0.024
