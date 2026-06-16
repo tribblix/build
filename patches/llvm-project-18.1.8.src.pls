@@ -1,4 +1,0 @@
--p1 llvm18/add-__illumos__-preprocessor-definition.patch
--p1 llvm18/default-preprocessor-definition.patch
--p1 llvm18/no-sanitizer-runtime-lib-linking.patch
--p1 llvm18/no-ssp-linking.patch

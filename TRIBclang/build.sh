@@ -10,15 +10,19 @@
 # unpack it the once
 #
 
-${THOME}/build/unpack llvm-project-18.1.8.src
-cd llvm-project-18.1.8.src/clang
+${THOME}/build/unpack llvm-project-22.1.7.src
+cd llvm-project-22.1.7.src/clang
 
 mkdir tribblix_build
 cd tribblix_build
-env CXXFLAGS=-m64 CFLAGS=-m64 LDFLAGS=-m64 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/versions/llvm -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DGCC_INSTALL_PREFIX=/usr/versions/gcc-14 -DCLANG_VENDOR="Tribblix" -DCLANG_DEFAULT_RTLIB=libgcc -DCLANG_DEFAULT_CXX_STDLIB=libstdc++ -DLLVM_DIR=/usr/versions/llvm/lib/cmake/llvm -DLLVM_INCLUDE_TESTS=OFF ..
+env CXXFLAGS=-m64 CFLAGS=-m64 LDFLAGS="-m64 -lsocket" cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/versions/llvm -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCLANG_VENDOR="Tribblix" -DCLANG_DEFAULT_RTLIB=libgcc -DCLANG_DEFAULT_CXX_STDLIB=libstdc++ -DLLVM_DIR=/usr/versions/llvm/lib/cmake/llvm -DLLVM_INCLUDE_TESTS=OFF ..
 # this will take a while...
 # need to find the llvm libraries at build time
 env LD_LIBRARY_PATH=/usr/versions/llvm/lib gmake -j 4
 
+#
+# note the configuration files required to locate the gcc files at
+# runtime are created via the fixit script
+#
 ${THOME}/build/genpkg TRIBclang
 cd ../..

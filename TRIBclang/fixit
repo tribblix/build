@@ -5,3 +5,15 @@
 mkdir -p usr/bin
 cd usr/bin
 ln -s ../../usr/versions/llvm/bin/* .
+cd ../..
+#
+# in prior versions, where gcc lives was a configuration option and so set
+# at build time; now it's a configuration file that's read at runtime
+#
+cd usr/versions/llvm/bin
+cat > i386-pc-solaris2.11.cfg <<EOF
+--gcc-install-dir=/usr/versions/gcc-14/lib/gcc/i386-pc-solaris2.11/14.2.0
+EOF
+cat > x86_64-pc-solaris2.11.cfg <<EOF
+--gcc-install-dir=/usr/versions/gcc-14/lib/gcc/i386-pc-solaris2.11/14.2.0/amd64
+EOF

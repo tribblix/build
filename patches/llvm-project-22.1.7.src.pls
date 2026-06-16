@@ -1,0 +1,4 @@
+-p1 llvm22/add-__illumos__-preprocessor-definition.patch
+-p1 llvm22/default-preprocessor-definition.patch
+-p1 llvm22/no-sanitizer-runtime-lib-linking.patch
+-p1 llvm22/no-ssp-linking.patch

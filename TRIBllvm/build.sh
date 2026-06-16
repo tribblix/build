@@ -10,8 +10,8 @@
 # unpack it the once
 #
 
-${THOME}/build/unpack llvm-project-18.1.8.src
-cd llvm-project-18.1.8.src/llvm
+${THOME}/build/unpack llvm-project-22.1.7.src
+cd llvm-project-22.1.7.src/llvm
 
 #
 # need to disable assembly, as (a) it doesn't build properly, and
