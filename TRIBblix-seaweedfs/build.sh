@@ -4,11 +4,15 @@
 #
 mkdir w
 cd w
-env PATH=/usr/versions/go-1.26/bin:$PATH GOPATH=`pwd` go install github.com/seaweedfs/seaweedfs/weed@4.22
+
+$THOME/build/unpack -b 4.34 https://github.com/seaweedfs/seaweedfs
+cd seaweedfs/weed
+env GOPATH=`pwd`/../.. gmake install
+cd ../..
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/seaweedfs/bin
 cp bin/weed /tmp/ee/opt/tribblix/seaweedfs/bin
-cp pkg/mod/github.com/seaweedfs/seaweedfs@v*/README.md pkg/mod/github.com/seaweedfs/seaweedfs@v*/LICENSE /tmp/ee/opt/tribblix/seaweedfs
+cp seaweedfs/README.md seaweedfs/LICENSE /tmp/ee/opt/tribblix/seaweedfs
 ${THOME}/build/create_pkg TRIBblix-seaweedfs /tmp/ee
 rm -fr /tmp/ee
