@@ -1,4 +1,4 @@
 PKG="TRIBanyio-python-313"
 NAME="Python anyio"
-VERSION="4.13.0.0"
+VERSION="4.14.0.0"
 ZAP_URL="https://pypi.org/project/anyio/"
