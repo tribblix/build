@@ -2,19 +2,45 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-VERSION=1.4.1
+VERSION=2beta5
 mkdir -p usr/bin
 mkdir -p usr/share/pixmaps
 mkdir -p usr/share/applications
 
+mkdir -p usr/versions/jdiskreport
+cd usr/versions/jdiskreport
+curl -O https://www.jgoodies.com/download/jdiskreport2/jdiskreport-${VERSION}.jar
+cd ../../..
+
+case `uname -p` in
+sparc)
+
 cat > usr/bin/jdiskreport <<_EOF
 #!/bin/sh
-java -jar /usr/versions/jdiskreport-${VERSION}/jdiskreport-${VERSION}.jar
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+/usr/jdk/instances/jdk17/bin/java "\$@" -jar /usr/versions/jdiskreport/jdiskreport-${VERSION}.jar
 _EOF
+;;
+
+*)
+
+cat > usr/bin/jdiskreport <<_EOF
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+/usr/jdk/instances/jdk21/bin/java "\$@" -jar /usr/versions/jdiskreport/jdiskreport-${VERSION}.jar
+_EOF
+;;
+
+esac
+
 chmod a+x usr/bin/jdiskreport
 
-unzip -d . usr/versions/jdiskreport-${VERSION}/jdiskreport-${VERSION}.jar com/jgoodies/jdiskreport/resources/images/logo_64x64.png
-mv com/jgoodies/jdiskreport/resources/images/logo_64x64.png usr/share/pixmaps/jdiskreport.png
+unzip -d . usr/versions/jdiskreport/jdiskreport-${VERSION}.jar com/jgoodies/jdiskreport/gui/application/resources/images/jdiskreport-64x64.png
+mv com/jgoodies/jdiskreport/gui/application/resources/images/jdiskreport-64x64.png usr/share/pixmaps/jdiskreport.png
 rm -fr com
 
 cat > usr/share/applications/jdiskreport.desktop <<EOF
