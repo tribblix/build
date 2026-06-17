@@ -4,4 +4,4 @@
 #
 # dependencies cover the [full,crypto,fonts,image] extras
 #
-${THOME}/build/pkg_pep518 -N TRIBpypdf-python-313 pypdf-6.13.2
+${THOME}/build/pkg_pep518 -N TRIBpypdf-python-313 pypdf-6.13.3
