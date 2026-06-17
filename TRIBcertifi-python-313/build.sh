@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBcertifi-python-313 certifi-2026.5.20
+${THOME}/build/pkg_pep518 -N TRIBcertifi-python-313 certifi-2026.6.17
