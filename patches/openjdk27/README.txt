@@ -1,6 +1,6 @@
 JDK 27 now that jdk26 has been branched off.
 
-27+26
+27+26, 27+27
 
 No changes.
 

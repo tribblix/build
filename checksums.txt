@@ -6275,3 +6275,4 @@ notebook-7.6.0.tar.gz ea13e79e601bf273074895fdfb17dd3f2da916d3c045e0b9c47d18b16a
 jupyter_builder-1.0.2.tar.gz 6155d78a5325010532a6419ffcba89eac643fd1aa56ea83115e661924d6f6aab
 jupyterlab-4.6.0.tar.gz 6a8b88f2aae7ed4d012c634fc957c1a27f3aa217c32f0ced0175fac9ee17f9e5
 YAML-PP-v0.41.0.tar.gz 3ddfb2bdd2e7ef2d949dbd8ffb51439164c84d22bff615e47dbd8ea48ba75cae
+jdk-jdk-27-27.tar.gz e3d7d8bc1ce655c957cf3ef8147ba64d1347dc4917b6e5a8ab8888304be2c444
