@@ -6274,3 +6274,4 @@ jupyter_server-2.20.0.tar.gz b5778ba337d8015a3dc2b80803ecdd5ac18d3797fddf61a50ea
 notebook-7.6.0.tar.gz ea13e79e601bf273074895fdfb17dd3f2da916d3c045e0b9c47d18b16ab62481
 jupyter_builder-1.0.2.tar.gz 6155d78a5325010532a6419ffcba89eac643fd1aa56ea83115e661924d6f6aab
 jupyterlab-4.6.0.tar.gz 6a8b88f2aae7ed4d012c634fc957c1a27f3aa217c32f0ced0175fac9ee17f9e5
+YAML-PP-v0.41.0.tar.gz 3ddfb2bdd2e7ef2d949dbd8ffb51439164c84d22bff615e47dbd8ea48ba75cae
