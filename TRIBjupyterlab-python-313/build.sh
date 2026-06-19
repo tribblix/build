@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBjupyterlab-python-313 jupyterlab-4.5.8
+${THOME}/build/pkg_pep518 -N TRIBjupyterlab-python-313 jupyterlab-4.6.0
