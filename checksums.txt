@@ -6276,3 +6276,4 @@ jupyter_builder-1.0.2.tar.gz 6155d78a5325010532a6419ffcba89eac643fd1aa56ea83115e
 jupyterlab-4.6.0.tar.gz 6a8b88f2aae7ed4d012c634fc957c1a27f3aa217c32f0ced0175fac9ee17f9e5
 YAML-PP-v0.41.0.tar.gz 3ddfb2bdd2e7ef2d949dbd8ffb51439164c84d22bff615e47dbd8ea48ba75cae
 jdk-jdk-27-27.tar.gz e3d7d8bc1ce655c957cf3ef8147ba64d1347dc4917b6e5a8ab8888304be2c444
+jdk-jdk-28-3.tar.gz 58132d1adeed6098b2b6530b12dbc773c02e1f41799f39c980bfcde5204c467c

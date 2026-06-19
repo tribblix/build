@@ -762,7 +762,7 @@
          $OBJDUMP -T $ORIG_THIS_FILE  2> /dev/null | $GREP -v $NAME | $AWK '{print $2, $3, $4, $5}' | $SYM_SORT_CMD > $WORK_FILE_BASE.symbols.this
 --- old/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:33.301561154 -0700
 +++ new/make/test/JtregNativeHotspot.gmk	2020-05-20 17:59:32.909553627 -0700
-@@ -78,10 +78,6 @@
+@@ -81,10 +81,6 @@
    HOTSPOT_JTREG_EXCLUDE += libTestSVEWithJNI.c
  endif
  
