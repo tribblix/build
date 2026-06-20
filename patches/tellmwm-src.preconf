@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# there isn't a configure, so tweak the Makefile
+#
+# force 64-bit
+#
+sed -i 's:-O2:-O2 -m64:' Makefile
+sed -i 's:-L/usr/local/lib:-m64:' Makefile
+#
+# add DESTDIR to install targets
+#
+sed -i 's:\$(PREFIX):$(DESTDIR)$(PREFIX):' Makefile
+#
+# force sane install
+#
+sed -i 's:install :ginstall :' Makefile
