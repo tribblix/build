@@ -1,0 +1,4 @@
+PKG="TRIBpctgemini"
+NAME="Minimalist Gemini browser in Java"
+VERSION="1.0.0"
+ZAP_URL="https://github.com/ptribble/pctgemini"
