@@ -3,10 +3,12 @@
 # SPDX-License-Identifier: CDDL-1.0
 #
 # HAL needs this as /usr/X11/lib/X11/xkb/xkbtable.map.
+# see the definition of XKBTABLE_PATH in
+# usr/src/cmd/hal/probing/xkb/probe-xkb.c
 #
-mkdir -p usr/share/X11/xkb
-cp ${BUILDROOT}/patches/xkbtable.map usr/share/X11/xkb/xkbtable.map
+mkdir -p usr/share/xkeyboard-config-2
+cp ${BUILDROOT}/patches/xkbtable.map usr/share/xkeyboard-config-2/xkbtable.map
 mkdir -p usr/X11/lib/X11
 mkdir -p usr/X11/share/X11
-ln -s ../../../share/X11/xkb usr/X11/lib/X11
-ln -s ../../../share/X11/xkb usr/X11/share/X11/xkb
+ln -s ../../../share/xkeyboard-config-2 usr/X11/lib/X11/xkb
+ln -s ../../../share/xkeyboard-config-2 usr/X11/share/X11/xkb
