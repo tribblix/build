@@ -1,4 +1,4 @@
 PKG="TRIBlib-perl-5-dbi"
 NAME="Perl DBI module"
-VERSION="1.648.0"
+VERSION="1.649.0"
 ZAP_URL="https://metacpan.org/dist/DBI"
