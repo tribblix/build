@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBmutagen-python-313 mutagen-1.47.0
+${THOME}/build/pkg_pep518 -N TRIBmutagen-python-313 mutagen-1.48.0
