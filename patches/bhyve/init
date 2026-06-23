@@ -112,6 +112,7 @@ DISK_SLOT2      = 8
 PPT_SLOT        = 9
 RNG_SLOT        = 10
 VIRTFS_SLOT     = 11
+NET_SLOT2       = 12
 CINIT_SLOT      = 29
 VNC_SLOT        = 30
 LPC_SLOT_WIN    = 31
@@ -457,10 +458,16 @@ for f in root.findall('./network[@physical]'):
     if mask is not None:
         net_extra += ',feature_mask={}'.format(mask.get('value'))
 
-    args.extend([
-        '-s', '{0}:{1},{2},{3}{4}'
-        .format(NET_SLOT, i, netif, ifname, net_extra)
-    ])
+    if i < 8:
+        args.extend([
+            '-s', '{0}:{1},{2},{3}{4}'
+            .format(NET_SLOT, i, netif, ifname, net_extra)
+        ])
+    else:
+        args.extend([
+            '-s', '{0}:{1},{2},{3}{4}'
+            .format(NET_SLOT2, i - 8, netif, ifname, net_extra)
+        ])
     i += 1
 
 # VNC
