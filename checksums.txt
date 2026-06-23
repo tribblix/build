@@ -6307,3 +6307,4 @@ prettytable-3.18.0.tar.gz 439217116152244369caf3d9f1caf2f9fe29b03bd79e88d2928c8e
 setuptools_scm-10.1.1.tar.gz c9eed4754da1a25016d49c1b3cd09c7c8e65f816b5afb8195bf2ac3c6748f23a
 vcs_versioning-2.0.1.tar.gz 0e827e50ff98c3b74961bc9bab1bdb494d6ef9f9624bc0466afbafef23ff0d8c
 vcs_versioning-2.1.0.tar.gz 66d9e2c2afd792090bc381aec985d6cd82cb935be35910a742e0af31ca4be61e
+setuptools_scm-10.1.2.tar.gz 24079818acc46e99aae0d65b8d511fafe965970d9cbd060c7b9f7275ded520fb
