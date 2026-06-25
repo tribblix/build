@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBsetup-scm-python-312 setuptools_scm-10.1.2
+${THOME}/build/pkg_pep518 -N TRIBsetup-scm-python-312 setuptools_scm-10.2.0
