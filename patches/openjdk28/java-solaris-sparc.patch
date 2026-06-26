@@ -172,7 +172,7 @@
          comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib powrprof.lib uuid.lib \
 --- old/make/autoconf/platform.m4	2020-05-20 17:58:42.328582435 -0700
 +++ new/make/autoconf/platform.m4	2020-05-20 17:58:41.904574294 -0700
-@@ -202,10 +202,6 @@
+@@ -190,10 +190,6 @@
        VAR_OS=linux
        VAR_OS_TYPE=unix
        ;;
@@ -183,7 +183,7 @@
      *darwin*)
        VAR_OS=macosx
        VAR_OS_TYPE=unix
-@@ -613,9 +609,6 @@
+@@ -601,9 +597,6 @@
  
  AC_DEFUN([PLATFORM_SET_RELEASE_FILE_OS_VALUES],
  [
@@ -455,7 +455,7 @@
  ifeq ($(UNLIMITED_CRYPTO), true)
 --- old/make/modules/java.base/lib/CoreLibraries.gmk	2020-05-20 17:59:12.217156318 -0700
 +++ new/make/modules/java.base/lib/CoreLibraries.gmk	2020-05-20 17:59:11.829148868 -0700
-@@ -63,7 +63,6 @@
+@@ -61,7 +61,6 @@
      DISABLED_WARNINGS_clang_TimeZone_md.c := unused-variable, \
      JDK_LIBS := libjvm, \
      LIBS_linux := $(LIBDL), \
@@ -463,7 +463,7 @@
      LIBS_aix := $(LIBDL) $(LIBM), \
      LIBS_macosx := \
          -framework CoreFoundation \
-@@ -192,7 +191,6 @@
+@@ -190,7 +189,6 @@
      DISABLED_WARNINGS_clang_java_md_macosx.m := unused-variable, \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
