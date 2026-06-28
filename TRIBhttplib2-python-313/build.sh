@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBhttplib2-python-313 httplib2-0.31.2
+${THOME}/build/pkg_pep518 -N TRIBhttplib2-python-313 httplib2-0.32.0
