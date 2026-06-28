@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBxxhash-python-313 xxhash-3.7.1
+${THOME}/build/pkg_pep518 -N TRIBxxhash-python-313 xxhash-3.8.0
