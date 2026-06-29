@@ -10,5 +10,5 @@
 #
 # most dependencies are pulled in by the cli tools, not by the library
 #
-${THOME}/build/cmbuild -64only libheif-1.20.1 -C "-DWITH_JPEG_ENCODER=YES -DWITH_JPEG_DECODER=YES -DWITH_OpenJPEG_ENCODER=YES -DWITH_OpenJPEG_DECODER=YES -DCMAKE_PREFIX_PATH=/usr/lib/`${THOME}/build/getarch`/cmake"
-${THOME}/build/genpkg TRIBlibheif libheif-1.20.1
+${THOME}/build/cmbuild -64only libheif-1.23.1 -C "-DWITH_EXAMPLE_HEIF_VIEW=OFF -DWITH_JPEG_ENCODER=YES -DWITH_JPEG_DECODER=YES -DWITH_OpenJPEG_ENCODER=YES -DWITH_OpenJPEG_DECODER=YES -DCMAKE_PREFIX_PATH=/usr/lib/`${THOME}/build/getarch`/cmake"
+${THOME}/build/genpkg TRIBlibheif libheif-1.23.1
