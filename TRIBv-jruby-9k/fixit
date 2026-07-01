@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-VERSION=9.4.14.0
+VERSION=9.4.15.0
 
 cd usr/versions/jruby-${VERSION}
 rm -f bin/*.bat
