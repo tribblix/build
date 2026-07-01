@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+#
+# not all linkers are gnu, part 2
+#
+sed -i -e 's:"-Wl,:-Wl,:' -e 's:.map" :.map :' tribblix_build/libclamav/CMakeFiles/clamav.dir/link.txt
+sed -i -e 's:"-Wl,:-Wl,:' -e 's:.map" :.map :' tribblix_build/libclamunrar_iface/CMakeFiles/clamunrar_iface.dir/link.txt
+sed -i -e 's:"-Wl,:-Wl,:' -e 's:.map" :.map :' tribblix_build/libfreshclam/CMakeFiles/freshclam.dir/link.txt
+sed -i -e 's:"-Wl,:-Wl,:' -e 's:.map" :.map :' tribblix_build/libclamunrar/CMakeFiles/clamunrar.dir/link.txt
