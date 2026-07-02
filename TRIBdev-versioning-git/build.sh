@@ -5,5 +5,5 @@
 # the manual pages are unpacked with the fixit script, so remember
 # to update the version there too
 #
-${THOME}/build/dobuild -64only git-2.54.0 -C --with-perl=/usr/perl5/`${THOME}/build/getperlver`/bin/perl
-${THOME}/build/genpkg TRIBdev-versioning-git git-2.54.0
+env TRIBBLIX_CFLAGS=-D_XPG6 ${THOME}/build/dobuild -64only git-2.55.0 -C --with-perl=/usr/perl5/`${THOME}/build/getperlver`/bin/perl
+${THOME}/build/genpkg TRIBdev-versioning-git git-2.55.0
