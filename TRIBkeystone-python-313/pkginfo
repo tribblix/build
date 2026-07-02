@@ -1,4 +1,4 @@
 PKG="TRIBkeystone-python-313"
 NAME="Python keystone"
-VERSION="29.0.1.0"
+VERSION="29.0.2.0"
 ZAP_URL="https://pypi.org/project/keystone/"
