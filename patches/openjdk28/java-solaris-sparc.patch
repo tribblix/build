@@ -650,7 +650,7 @@
  TARGETS += $(BUILD_LIBJDWP)
 --- old/make/modules/jdk.management/Lib.gmk	2020-05-20 17:59:24.761397176 -0700
 +++ new/make/modules/jdk.management/Lib.gmk	2020-05-20 17:59:24.373389726 -0700
-@@ -46,7 +46,6 @@
+@@ -44,7 +44,6 @@
      DISABLED_WARNINGS_clang_UnixOperatingSystem.c := format-nonliteral, \
      CFLAGS := $(LIBMANAGEMENT_EXT_CFLAGS), \
      JDK_LIBS := java.base:libjava java.base:libjvm, \
