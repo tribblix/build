@@ -6400,3 +6400,4 @@ git-manpages-2.55.0.tar.xz a32d432f80df46a14a05d1104c72d5a13fe27e9feba9aa0f017e5
 python_ironicclient-6.2.0.tar.gz 02e4c73606e9ee35a1c4b99190d6964c3741c2f9cbe1611572b2268f847a77d2
 stevedore-5.9.0.tar.gz abbd0af7a38a8bbb1d6adea2e35b17609cf004eaac323e88a8d8963640dd2b3c
 keystone-29.0.2.tar.gz 6edeb1e51546f0e0f25e58fa11d48eed7afb953d0a7a8d1247ac31711595e079
+typing_extensions-4.16.0.tar.gz dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5
