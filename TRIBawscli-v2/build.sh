@@ -46,9 +46,9 @@ ${PVENV}/bin/pip install setuptools
 # unfortunately pep518 doesn't seem to pass LDFLAGS through
 # use the system libcrypto, the inbuilt one won't compile
 #
-$THOME/build/unpack awscrt-0.32.2
-cd awscrt-0.32.2
-env AWS_CRT_BUILD_USE_SYSTEM_LIBCRYPTO=1 ASFLAGS=-64 CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS="-m64 -lm -z rescan" ${PVENV}/bin/python setup.py build
+$THOME/build/unpack awscrt-0.35.0
+cd awscrt-0.35.0
+env AWS_CRT_BUILD_USE_SYSTEM_LIBCRYPTO=1 ASFLAGS=-64 CFLAGS="-m64 -D__EXTENSIONS__" CXXFLAGS=-m64 LDFLAGS="-m64 -lm -z rescan" ${PVENV}/bin/python setup.py build
 env AWS_CRT_BUILD_USE_SYSTEM_LIBCRYPTO=1 ASFLAGS=-64 CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS="-m64 -lm -z rescan" ${PVENV}/bin/python setup.py install
 
 #
@@ -70,8 +70,8 @@ cd ..
 # awscli uses flit_core
 #
 ${PVENV}/bin/pip install "flit_core<3.12.1"
-$THOME/build/unpack aws-cli-2.34.57
-cd aws-cli-2.34.57
+$THOME/build/unpack aws-cli-2.35.15
+cd aws-cli-2.35.15
 #
 # we definitely need no-build-isolation, because we need to use the
 # patched awscrt we've just installed
