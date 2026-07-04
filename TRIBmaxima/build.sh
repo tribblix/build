@@ -4,5 +4,5 @@
 #
 # rebuild this package if sbcl is updated
 #
-${THOME}/build/dobuild +64only maxima-5.48.1 -C --infodir=/usr/share/maxima/info
-${THOME}/build/genpkg TRIBmaxima maxima-5.48.1
+${THOME}/build/dobuild +64only maxima-5.49.0 -C --infodir=/usr/share/maxima/info
+${THOME}/build/genpkg TRIBmaxima maxima-5.49.0
