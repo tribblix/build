@@ -6431,3 +6431,4 @@ pymdown_extensions-11.0.1.tar.gz dd2905ae6fc5b75582fafb139a1266ffc754705efa902aa
 apache-groovy-binary-5.0.7.zip 2a84d2b2387b4b38ec7c9395e67273df7818b246897dcccacfdde30292a4f339
 pmd-dist-7.26.0-bin.zip 9f55cb7ff0e9f9a66dd2f005eaa370e84c8a4cd971b134aa14a930c4a283ebc9
 pycurl-7.47.0.tar.gz 5e3cf357939da8d4ceefe3c7f305afcf9b47cba66cfd95e7768ca43b38445e14
+haproxy-2.6.31.tar.gz 3203faba2fab0fc8bf6128374f11b3921544c5a5cbc450af5fb0413012a3786a
