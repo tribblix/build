@@ -46,7 +46,7 @@ cd "${THOME}/build" || exit 1
 for vpkgf in */version.*
 do
     # simply substitute the name
-    bpkgf=${vpkgf/version/build.sh}
+    bpkgf=${vpkgf/version./build.sh.}
     ppkgf=${vpkgf/version.*/pkginfo}
     if [ ! -f "${bpkgf}" ]; then
 	mver=$(grep ^VERSION $ppkgf|awk -F= '{print $2}'|sed 's:"::g')
