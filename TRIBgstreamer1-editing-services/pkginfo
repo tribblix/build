@@ -1,4 +1,4 @@
 PKG="TRIBgstreamer1-editing-services"
 NAME="GStreamer (stable) gst-editing-services plugin"
-VERSION="1.28.3.0"
+VERSION="1.28.4.0"
 ZAP_URL="https://gstreamer.freedesktop.org/"
