@@ -4,9 +4,21 @@
 #
 # the man pages come in a separate download
 #
+# sparc downrev due to rust dependency
+#
+case `uname -p` in
+sparc)
+  GITVER=2.54.0
+  ;;
+i386)
+  GITVER=2.55.0
+  ;;
+esac
+
+
 mkdir -p usr/share/man
 cd usr/share/man
-${BUILDROOT}/unpack git-manpages-2.55.0
+${BUILDROOT}/unpack git-manpages-${GITVER}
 chmod a+rx .
 cd ../../..
 #
