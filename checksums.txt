@@ -6429,3 +6429,4 @@ python_discovery-1.4.3.tar.gz ad57d7045a862460d4a235986c33f13ed707d3aeb9153fa47e
 dulwich-1.2.7.tar.gz 02378954bab6027a2fb41e00a0b40f8124c94fbc15a81c2b6f8bc5af09d09f45
 pymdown_extensions-11.0.1.tar.gz dd2905ae6fc5b75582fafb139a1266ffc754705efa902aa50067fa7ff4f94ec0
 apache-groovy-binary-5.0.7.zip 2a84d2b2387b4b38ec7c9395e67273df7818b246897dcccacfdde30292a4f339
+pmd-dist-7.26.0-bin.zip 9f55cb7ff0e9f9a66dd2f005eaa370e84c8a4cd971b134aa14a930c4a283ebc9
