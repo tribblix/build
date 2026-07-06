@@ -12956,7 +12956,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/frame_sparc.cpp b/src/hotspot/cpu/sp
 diff -ur --new-file a/src/hotspot/cpu/sparc/frame_sparc.hpp b/src/hotspot/cpu/sparc/frame_sparc.hpp
 --- a/src/hotspot/cpu/sparc/frame_sparc.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/cpu/sparc/frame_sparc.hpp	2023-04-16 11:42:11.061708986 +0000
-@@ -0,0 +1,245 @@
+@@ -0,0 +1,238 @@
 +/*
 + * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -13140,7 +13140,6 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/frame_sparc.hpp b/src/hotspot/cpu/sp
 +
 +  inline address* I0_addr() const;
 +  inline address* O0_addr() const;
-+  intptr_t*  younger_sp_addr_at(int index) const   { return &younger_sp()[index];    }
 +
 + public:
 +  // access to SPARC arguments and argument registers
@@ -13149,12 +13148,6 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/frame_sparc.hpp b/src/hotspot/cpu/sp
 +  intptr_t*     register_addr(Register reg) const {
 +    return sp_addr_at(reg->sp_offset_in_saved_window());
 +  }
-+
-+  // Assumes reg is an out register
-+  intptr_t*     out_register_addr(Register reg) const {
-+    return younger_sp_addr_at(reg->after_save()->sp_offset_in_saved_window());
-+  }
-+
 +
 +  // Interpreter frames
 +
