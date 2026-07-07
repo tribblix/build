@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# terminfo breaks completely
+# https://github.com/gwsw/less/issues/803
+#
+sed -i '/HAVE_TERMINFO/d' defines.h
