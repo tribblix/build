@@ -1,0 +1,4 @@
+PKG="TRIBslsa-verifier"
+NAME="SLSA provenance verifier"
+VERSION="2.7.1.0"
+ZAP_URL="https://github.com/slsa-framework/slsa-verifier"
