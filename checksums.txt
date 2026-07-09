@@ -6488,3 +6488,4 @@ uvicorn-0.51.0.tar.gz f6f4b69b657c312f516dd2d268ab9ae6f254b11e4bac504f37b2ab58b2
 virtualenv-21.6.0.tar.gz e18a4d750f2b64dea73e72ffde3922f3c52365fabdc8157ebd3da20d031c4734
 python_discovery-1.4.4.tar.gz 5cad33982d412c1f3ffb8f9ca4ea292c9680bca3942451d30b69c37fce53a4a3
 swift-2.38.0.tar.gz a7ac7a4d71134fb0622f16ce40df74381d5363b1696b6f495aad79db4ec22a2b
+python_barbicanclient-7.5.0.tar.gz 4886252aef4ac487ac43b5c30af02ec4a9c3da86e6efcc3a496a8851f02a6d6d
