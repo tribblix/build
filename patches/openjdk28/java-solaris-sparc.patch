@@ -455,15 +455,15 @@
  ifeq ($(UNLIMITED_CRYPTO), true)
 --- old/make/modules/java.base/lib/CoreLibraries.gmk	2020-05-20 17:59:12.217156318 -0700
 +++ new/make/modules/java.base/lib/CoreLibraries.gmk	2020-05-20 17:59:11.829148868 -0700
-@@ -61,7 +61,6 @@
-     DISABLED_WARNINGS_clang_TimeZone_md.c := unused-variable, \
+@@ -59,7 +59,6 @@
+         -DARCHPROPNAME='"$(OPENJDK_TARGET_CPU_OSARCH)"', \
      JDK_LIBS := libjvm, \
      LIBS_linux := $(LIBDL), \
 -    LIBS_solaris := -lsocket -lnsl -lscf $(LIBDL), \
      LIBS_aix := $(LIBDL) $(LIBM), \
      LIBS_macosx := \
          -framework CoreFoundation \
-@@ -190,7 +189,6 @@
+@@ -188,7 +187,6 @@
      DISABLED_WARNINGS_clang_java_md_macosx.m := unused-variable, \
      LIBS_unix := $(LIBZ_LIBS), \
      LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
@@ -1275,29 +1275,16 @@
  
  #include "jvm.h"
  #include "jni_util.h"
-@@ -44,11 +41,9 @@
+@@ -44,7 +41,7 @@
  #include "TimeZone_md.h"
  #include "path_util.h"
  
--#if !defined(__solaris__) || defined(__sparcv9) || defined(amd64)
- #define fileopen        fopen
- #define filegets        fgets
- #define fileclose       fclose
--#endif
- 
- #if defined(__linux__) || defined(_ALLBSD_SOURCE)
- static const char *ZONEINFO_DIR = "/usr/share/zoneinfo";
-@@ -61,8 +56,8 @@
- 
- static const char popularZones[][4] = {"UTC", "GMT"};
- 
 -#if defined(__linux__) || defined(MACOSX) || defined(__solaris__)
 +#if defined(__linux__) || defined(MACOSX)
- static char *isFileIdentical(char* buf, size_t size, char *pathname);
- 
- /*
-  * remove repeated path separators ('/') in the given 'path'.
-@@ -172,13 +167,6 @@
+ static const char *ZONEINFO_DIR = "/usr/share/zoneinfo";
+ static const char *DEFAULT_ZONEINFO_FILE = "/etc/localtime";
+ static const char popularZones[][4] = {"UTC", "GMT"};
+@@ -159,13 +156,6 @@
           */
          if ((strcmp(dp->d_name, "ROC") == 0)
              || (strcmp(dp->d_name, "posixrules") == 0)
@@ -1311,16 +1298,17 @@
              || (strcmp(dp->d_name, "localtime") == 0)) {
              continue;
          }
-@@ -250,8 +238,6 @@
+@@ -237,9 +227,6 @@
      return possibleMatch;
  }
  
+-#endif
 -#if defined(__linux__) || defined(MACOSX)
 -
  /*
   * Performs Linux specific mapping and returns a zone ID
   * if found. Otherwise, NULL is returned.
-@@ -336,183 +322,6 @@
+@@ -323,181 +311,6 @@
      return tz;
  }
  
@@ -1341,11 +1329,11 @@
 -    /*
 -     * Try the TZ entry in /etc/default/init.
 -     */
--    if ((fp = fileopen(SYS_INIT_FILE, "r")) != NULL) {
+-    if ((fp = fopen("/etc/default/init", "r")) != NULL) {
 -        char line[256];
 -        char quote = '\0';
 -
--        while (filegets(line, sizeof(line), fp) != NULL) {
+-        while (fgets(line, sizeof(line), fp) != NULL) {
 -            char *p = line;
 -            char *s;
 -            char c;
@@ -1384,7 +1372,7 @@
 -                break;
 -            }
 -        }
--        (void) fileclose(fp);
+-        (void) fclose(fp);
 -    }
 -    return tz;
 -}
@@ -1499,12 +1487,10 @@
 -    return tz;
 -}
 -
--#endif /* defined(__solaris__) */
--
  #elif defined(_AIX)
  static const char *ETC_ENVIRONMENT_FILE = "/etc/environment";
  
-@@ -709,15 +518,6 @@
+@@ -696,15 +507,6 @@
              free((void *) freetz);
          }
  #else
