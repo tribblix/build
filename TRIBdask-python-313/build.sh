@@ -18,4 +18,4 @@
 #
 # there's a distributed patch necessary to handle RLIMIT
 #
-${THOME}/build/pkg_pep518 -N TRIBdask-python-313 dask-2026.7.0 distributed-2026.7.0
+${THOME}/build/pkg_pep518 -N TRIBdask-python-313 dask-2026.7.1 distributed-2026.7.1
