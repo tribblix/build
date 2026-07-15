@@ -6553,3 +6553,4 @@ oslo_service-4.7.0.tar.gz 4d7f1c42d81377fb82d80ccfe7f5fc1dc046a542da0512a2374eac
 oslo_upgradecheck-2.8.0.tar.gz 7656ecc54a08191f86d9a21eb9bdf43fb7dc305b9cef4c9aa577a027f2ee3740
 DBI-1.651.tgz da621a23fa68e1e04fac824cfd3d41e8ffbab2ab3eba642a12499242e8be5253
 Mojolicious-9.48.tar.gz 26ff04152811fd5b1a36b47d99ec219c58995ba8e7b15ba02b33d0770a5eee98
+google_cloud_storage-3.13.0.tar.gz d11d8706ea1520fba0f21043bcb7897caf7015d76ce1ad9a4f60237e4d7a9f6c
