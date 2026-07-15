@@ -6557,3 +6557,4 @@ google_cloud_storage-3.13.0.tar.gz d11d8706ea1520fba0f21043bcb7897caf7015d76ce1a
 python_openstackclient-10.2.1.tar.gz aa9f969f072f24afb2e3a188495c840f6f6722429d39f45b468461272c097014
 rich_toolkit-0.20.3.tar.gz 223dd2cfba325ed55e94933b9e53f3aca13e9fdf76622bd564c18109a2273c1b
 apache-ivy-2.6.0-bin-with-deps.zip dabab3d4df505beb6b2deef38e2c2127dcf5401d9e4f0e84a6915b3fac757eaa
+xstdcmap-1.0.6.tar.xz 062a15722769799524eee542fc82ae778f5ac180b618295d913f34962b134ffe
