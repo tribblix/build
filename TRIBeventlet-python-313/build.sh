@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBeventlet-python-313 eventlet-0.41.0
+${THOME}/build/pkg_pep518 -N TRIBeventlet-python-313 eventlet-0.41.1
