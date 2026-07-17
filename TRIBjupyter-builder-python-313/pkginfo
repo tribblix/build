@@ -1,4 +1,4 @@
 PKG="TRIBjupyter-builder-python-313"
 NAME="Python jupyter-builder"
-VERSION="1.1.0.0"
+VERSION="1.1.1.0"
 ZAP_URL="https://pypi.org/project/jupyter-builder/"
