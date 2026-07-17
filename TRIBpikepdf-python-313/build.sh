@@ -5,4 +5,4 @@
 # as of v10.6 shifted from pybind to nanobind
 # must use -N as we have a patched nanobind to make this work
 #
-env CXXFLAGS=-m64 ${THOME}/build/pkg_pep518 -N TRIBpikepdf-python-313 pikepdf-10.9.1
+env CXXFLAGS=-m64 ${THOME}/build/pkg_pep518 -N TRIBpikepdf-python-313 pikepdf-10.10.0
