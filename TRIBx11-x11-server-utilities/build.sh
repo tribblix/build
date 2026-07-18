@@ -22,13 +22,13 @@ ${THOME}/build/dobuild -64only xinput-1.6.4
 ${THOME}/build/dobuild -64only xmodmap-1.0.11
 ${THOME}/build/dobuild -64only xprop-1.2.8
 ${THOME}/build/mesonbuild -64only xrandr-1.5.4
-${THOME}/build/dobuild -64only xrdb-1.2.2
+${THOME}/build/mesonbuild -64only xrdb-1.2.3
 ${THOME}/build/mesonbuild -64only xrefresh-1.1.1
-${THOME}/build/dobuild -64only xset-1.2.5
-${THOME}/build/dobuild -64only xsetroot-1.1.3
+${THOME}/build/mesonbuild -64only xset-1.2.6
+${THOME}/build/mesonbuild -64only xsetroot-1.1.4
 
 #
 # xmakemap installed by the fixit script
 #
 
-${THOME}/build/genpkg TRIBx11-x11-server-utilities rgb-1.1.0 xcmsdb-1.0.7 xgamma-1.0.7 xhost-1.0.10 xinput-1.6.4 xmodmap-1.0.11 xprop-1.2.8 xrandr-1.5.4 xrdb-1.2.2 xrefresh-1.1.1 xset-1.2.5 xsetroot-1.1.3
+${THOME}/build/genpkg TRIBx11-x11-server-utilities rgb-1.1.0 xcmsdb-1.0.7 xgamma-1.0.7 xhost-1.0.10 xinput-1.6.4 xmodmap-1.0.11 xprop-1.2.8 xrandr-1.5.4 xrdb-1.2.3 xrefresh-1.1.1 xset-1.2.6 xsetroot-1.1.4
