@@ -1,5 +1,9 @@
 JDK 28 now that jdk27 has been branched off.
 
+28+7
+
+Trivial patch noise.
+
 28+6
 
 Patch noise due to rework of timezone handling.
