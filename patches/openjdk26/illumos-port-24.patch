@@ -17,7 +17,7 @@ undocumented, while statvfs() gives the behaviour we actually want.
  
  #ifdef __cplusplus
  extern "C" {
-@@ -142,8 +146,13 @@
+@@ -141,8 +145,13 @@
      chars[len] = '\0';
      (*env)->ReleaseStringChars(env, root, strchars);
  
@@ -30,4 +30,4 @@ undocumented, while statvfs() gives the behaviour we actually want.
 +#endif
      free(chars);
      if (result < 0) {
-         JNU_ThrowByNameWithLastError(env, "java/lang/RuntimeException",
+         JNU_ThrowByNameWithLastError(env, "java/io/IOException",

@@ -6,8 +6,8 @@
 # go to https://github.com/openjdk/jdk/tags
 #
 
-${THOME}/build/unpack jdk26u-jdk-26.0.1-ga
-cd jdk26u-jdk-26.0.1-ga
+${THOME}/build/unpack jdk26u-jdk-26.0.2-ga
+cd jdk26u-jdk-26.0.2-ga
 
 #
 # jdk26 needs autoconf installed
@@ -56,9 +56,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images
 #
 # ./build/solaris-x86_64-server-release/images/jdk/bin/java -version
 #
-# openjdk version "26.0.1-ga" 2026-04-21
-# OpenJDK Runtime Environment (build 26.0.1-ga-Tribblix)
-# OpenJDK 64-Bit Server VM (build 26.0.1-ga-Tribblix, mixed mode, sharing)
+# openjdk version "26.0.2-ga" 2026-07-21
+# OpenJDK Runtime Environment (build 26.0.2-ga-Tribblix)
+# OpenJDK 64-Bit Server VM (build 26.0.2-ga-Tribblix, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk

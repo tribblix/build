@@ -22,7 +22,7 @@
      LDFLAGS_CXX_PARTIAL_LINKING="$MACHINE_FLAG -r"
  
      if test "x$OPENJDK_TARGET_OS" = xlinux; then
-@@ -134,10 +138,12 @@
+@@ -138,10 +142,12 @@
  
    # Setup LDFLAGS for linking executables
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
