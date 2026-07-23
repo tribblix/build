@@ -4,4 +4,4 @@
 #
 # depends on paramiko for the [ssh] extra
 #
-${THOME}/build/pkg_pep518 -N TRIBplumbum-python-313 plumbum-2.0.1
+${THOME}/build/pkg_pep518 -N TRIBplumbum-python-313 plumbum-2.0.2
