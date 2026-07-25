@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBinternetarchive-python-313 internetarchive-5.10.1
+${THOME}/build/pkg_pep518 -N TRIBinternetarchive-python-313 internetarchive-5.11.0
