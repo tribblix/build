@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBtqdm-python-313 tqdm-4.69.1
+${THOME}/build/pkg_pep518 -N TRIBtqdm-python-313 tqdm-4.70.0
