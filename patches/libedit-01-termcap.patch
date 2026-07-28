@@ -50,3 +50,21 @@
  #ifdef _REENTRANT
  #include <pthread.h>
  #endif
+@@ -217,7 +208,7 @@
+     const char *);
+ static void	terminal_init_arrow(EditLine *);
+ static void	terminal_reset_arrow(EditLine *);
+-static int	terminal_putc(int);
++static int	terminal_putc(char);
+ static void	terminal_tputs(EditLine *, const char *, int);
+ 
+ #ifdef _REENTRANT
+@@ -1196,7 +1187,7 @@
+  *	Add a character
+  */
+ static int
+-terminal_putc(int c)
++terminal_putc(char c)
+ {
+ 	if (terminal_outfile == NULL)
+ 		return -1;
