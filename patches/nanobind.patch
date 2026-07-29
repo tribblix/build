@@ -1,6 +1,8 @@
-It looks like nanabind (needed for pikepdf) has never met SunOS before.
+It looks like nanobind (needed for pikepdf) has never met SunOS before.
 
 Remove the assumption about a gnuish linker.
+
+Remove the -mtls-dialect flag, causes relocation errors when linking.
 
 We hide alloca() away, so it's not visible in headers by default. Note
 in nb_call.h that the header is included before the namespace declaration,
@@ -8,7 +10,23 @@ if it's inside the namespace it gets demoted to local binding and fails.
 
 --- nanobind-2.12.0/cmake/nanobind-config.cmake~	Wed Nov  9 12:37:21 2022
 +++ nanobind-2.12.0/cmake/nanobind-config.cmake	Tue May 26 08:43:21 2026
-@@ -219,9 +219,6 @@
+@@ -105,15 +104,6 @@
+ set(NB_OPT_SIZE $<OR:$<CONFIG:Release>,$<CONFIG:MinSizeRel>,$<CONFIG:RelWithDebInfo>> CACHE INTERNAL "")
+ 
+ # ---------------------------------------------------------------------------
+-# Probe for the faster TLSDESC thread-local storage ABI (Linux/x86_64)
+-# ---------------------------------------------------------------------------
+-
+-if (NOT (MSVC OR WIN32 OR APPLE))
+-  include(CheckCXXCompilerFlag)
+-  check_cxx_compiler_flag(-mtls-dialect=gnu2 NB_HAS_MTLS_GNU2)
+-endif()
+-
+-# ---------------------------------------------------------------------------
+ # Helper function to handle undefined CPython API symbols on macOS
+ # ---------------------------------------------------------------------------
+ 
+@@ -230,9 +230,6 @@
      nanobind_lto(${TARGET_NAME})
  
      nanobind_strip(${TARGET_NAME})
