@@ -1,4 +1,4 @@
 PKG="TRIBsk-build-core-python-313"
 NAME="Python scikit-build-core"
-VERSION="0.12.2.0"
+VERSION="1.0.3.0"
 ZAP_URL="https://pypi.org/project/scikit-build-core/"
