@@ -4,4 +4,4 @@
 #
 # fails inside docutils with -N
 #
-${THOME}/build/pkg_pep518 TRIBpipx-python-313 pipx-1.16.3
+${THOME}/build/pkg_pep518 TRIBpipx-python-313 pipx-1.16.5
