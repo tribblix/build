@@ -12,4 +12,4 @@
 #
 # needs a patch. just like adbc itself
 #
-env CXXFLAGS="-m64 -D__STDC_NO_ATOMICS__=1" ${THOME}/build/pkg_pep518 -N TRIBadbc-manager-python-313 adbc_driver_manager-1.10.0
+env CXXFLAGS="-m64 -D__STDC_NO_ATOMICS__=1" ${THOME}/build/pkg_pep518 -N TRIBadbc-manager-python-313 adbc_driver_manager-1.12.0
