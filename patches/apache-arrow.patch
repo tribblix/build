@@ -62,7 +62,7 @@
        // Both are positive
 --- a/cpp/src/parquet/statistics.cc	Tue Apr 16 15:48:56 2024
 +++ b/cpp/src/parquet/statistics.cc	Mon Apr 22 20:21:56 2024
-@@ -389,10 +389,10 @@
+@@ -422,10 +422,10 @@
      return ::std::nullopt;
    }
  
@@ -92,15 +92,15 @@
      return result;
 --- a/cpp/src/arrow/compare.cc	Mon Oct 20 15:48:39 2025
 +++ b/cpp/src/arrow/compare.cc	Wed Dec 17 12:11:03 2025
-@@ -109,7 +109,7 @@
+@@ -124,7 +124,7 @@
      Float16 f_x = Float16::FromBits(x);
      Float16 f_y = Float16::FromBits(y);
      if (f_x == f_y) {
 -      return Flags::signed_zeros_equal || (f_x.signbit() == f_y.signbit());
 +      return Flags::signed_zeros_equal || (f_x.arsignbit() == f_y.arsignbit());
      }
-     if (Flags::nans_equal && f_x.is_nan() && f_y.is_nan()) {
-       return true;
+     if constexpr (Flags::nans_equal) {
+       if (f_x.is_nan() && f_y.is_nan()) {
 --- a/cpp/src/arrow/compute/kernels/base_arithmetic_internal.h	Mon Oct 20 15:48:39 2025
 +++ b/cpp/src/arrow/compute/kernels/base_arithmetic_internal.h	Wed Dec 17 12:16:59 2025
 @@ -653,7 +653,7 @@
