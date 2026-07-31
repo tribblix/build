@@ -17,7 +17,7 @@ undocumented, while statvfs() gives the behaviour we actually want.
  
  #ifdef __cplusplus
  extern "C" {
-@@ -141,8 +145,13 @@
+@@ -140,8 +144,13 @@
      chars[len] = '\0';
      (*env)->ReleaseStringChars(env, root, strchars);
  
