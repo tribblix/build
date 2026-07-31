@@ -6717,3 +6717,4 @@ apache-arrow-adbc-24.tar.gz 2b4b420937f62f7ae56f46dbd6951a5e4ef0da43158080a58cb4
 adbc_driver_manager-1.12.0.tar.gz 45991f0c2de369d330c6a211ca2edbcce6389c5dc81cde70461bdeb6f8f7b268
 adbc_driver_postgresql-1.12.0.tar.gz 766a002531bb99b691d2b92e7d928dea21c24ea567c03a6ee1edb61fe95b9187
 adbc_driver_sqlite-1.12.0.tar.gz 18466a2f0c14f94cb0b17818157cc14ed6b93aef0a48ef648de945e9bac1540d
+tooz-9.0.1.tar.gz 2c332f668ad910b46b54e7f1db98166a0a79ce8c4d8148206d503c4517d4ceb0
