@@ -70,8 +70,8 @@ cd ..
 # awscli uses flit_core
 #
 ${PVENV}/bin/pip install "flit_core<3.12.1"
-$THOME/build/unpack aws-cli-2.36.2
-cd aws-cli-2.36.2
+$THOME/build/unpack aws-cli-2.36.14
+cd aws-cli-2.36.14
 #
 # we definitely need no-build-isolation, because we need to use the
 # patched awscrt we've just installed
