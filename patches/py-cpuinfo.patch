@@ -1,0 +1,18 @@
+py-cpuinfo is a build requirement for numcodecs
+
+It's unmaintained and gives the wrong answers on SunOS, ignore the incorrect
+detection on x86 as fixing that would need numcodecs to be fixed to not use
+cpu-specific flags, but do a minimal fix so it doesn't throw an exception on
+sparc which would fail the build entirely.
+
+--- py-cpuinfo-9.0.0/cpuinfo/cpuinfo.py~	Tue Oct 25 20:07:15 2022
++++ py-cpuinfo-9.0.0/cpuinfo/cpuinfo.py	Sat Aug  1 12:34:28 2026
+@@ -361,7 +361,7 @@
+ def _check_arch():
+ 	arch, bits = _parse_arch(DataSource.arch_string_raw)
+ 	if not arch in ['X86_32', 'X86_64', 'ARM_7', 'ARM_8',
+-	               'PPC_64', 'S390X', 'MIPS_32', 'MIPS_64',
++	               'PPC_64', 'S390X', 'SPARC_32', 'SPARC_64',
+ 				   "RISCV_32", "RISCV_64"]:
+ 		raise Exception("py-cpuinfo currently only works on X86 "
+ 		                "and some ARM/PPC/S390X/MIPS/RISCV CPUs.")
