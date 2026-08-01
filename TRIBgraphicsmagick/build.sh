@@ -6,5 +6,5 @@
 #
 zap uninstall TRIBgraphviz
 #
-${THOME}/build/dobuild -64only GraphicsMagick-1.3.46 -C "--enable-shared --disable-static --disable-openmp"
-${THOME}/build/genpkg TRIBgraphicsmagick GraphicsMagick-1.3.46
+${THOME}/build/dobuild -64only GraphicsMagick-1.3.48 -C "--enable-shared --disable-static --disable-openmp"
+${THOME}/build/genpkg TRIBgraphicsmagick GraphicsMagick-1.3.48
