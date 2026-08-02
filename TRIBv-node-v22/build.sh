@@ -4,5 +4,5 @@
 #
 # 64-bit only
 #
-env CC_host="gcc -m64" CC=gcc CXX=g++ ${THOME}/build/dobuild node-v22.22.3 -P /usr/versions/node-v22 -J 6 -C "--dest-cpu=x64"
-${THOME}/build/genpkg TRIBv-node-v22 node-v22.22.3
+env CC_host="gcc -m64" CC=gcc CXX=g++ ${THOME}/build/dobuild node-v22.23.2 -P /usr/versions/node-v22 -J 6 -C "--dest-cpu=x64"
+${THOME}/build/genpkg TRIBv-node-v22 node-v22.23.2
