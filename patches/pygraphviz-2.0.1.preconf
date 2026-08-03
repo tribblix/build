@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+case `uname -p` in
+sparc)
+  ARCH64="sparcv9"
+  ;;
+i386)
+  ARCH64="amd64"
+  ;;
+esac
+
+#
+# this is where the plugin libraries are found (ie gvplugin_*)
+#
+sed -i s:/opt/homebrew/lib/graphviz:/usr/lib/${ARCH64}/graphviz: setup.py
+
+#
+# remove the rest, so we don't pollute the runpath
+#
+sed -i '/\/opt\/local\/lib/d' setup.py
+sed -i '/\/usr\/local\/lib/d' setup.py
+sed -i '/\/usr\/lib64/d' setup.py
+sed -i '/\/usr\/lib\/x86_64/d' setup.py
+sed -i '/\/opt\/homebrew\/lib/d' setup.py
