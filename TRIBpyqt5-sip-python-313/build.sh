@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBpyqt5-sip-python-313 pyqt5_sip-12.18.0
+${THOME}/build/pkg_pep518 -N TRIBpyqt5-sip-python-313 pyqt5_sip-12.19.0
