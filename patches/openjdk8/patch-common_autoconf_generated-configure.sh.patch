@@ -10,7 +10,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
  VALID_TOOLCHAINS_macosx="gcc clang"
  VALID_TOOLCHAINS_aix="xlc"
  VALID_TOOLCHAINS_windows="microsoft"
-@@ -42439,6 +42439,14 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42451,6 +42451,14 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
        SET_SHARED_LIBRARY_ORIGIN="$SET_EXECUTABLE_ORIGIN"
        SET_SHARED_LIBRARY_NAME='-Xlinker -install_name -Xlinker @rpath/$1'
        SET_SHARED_LIBRARY_MAPFILE=''
@@ -25,7 +25,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
      else
        # Default works for linux, might work on other platforms as well.
        SHARED_LIBRARY_FLAGS='-shared'
-@@ -42487,11 +42495,6 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42499,11 +42507,6 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
  
  
  
@@ -37,7 +37,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
    # The (cross) compiler is now configured, we can now test capabilities
    # of the target platform.
  
-@@ -42590,6 +42593,11 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42602,6 +42605,11 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
          C_O_FLAG_HI="-Os"
          C_O_FLAG_NORM="-Os"
          C_O_FLAG_NONE=""
@@ -49,7 +49,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
        else
          C_O_FLAG_HIGHEST="-O3"
          C_O_FLAG_HI="-O3"
-@@ -42634,12 +42642,12 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -42646,12 +42654,12 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
      CFLAGS_JDK="${CFLAGS_JDK} -qchars=signed -q64 -qfullpath -qsaveopt"
      CXXFLAGS_JDK="${CXXFLAGS_JDK} -qchars=signed -q64 -qfullpath -qsaveopt"
    elif test "x$TOOLCHAIN_TYPE" = xgcc -o "x$TOOLCHAIN_TYPE" = xclang; then
@@ -67,7 +67,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
        LEGACY_HOST_LDFLAGS="$LEGACY_HOST_LDFLAGS -Wl,-z,relro"
        LEGACY_TARGET_LDFLAGS="$LEGACY_TARGET_LDFLAGS -Wl,-z,relro"
      fi
-@@ -42772,7 +42780,7 @@ fi
+@@ -42784,7 +42792,7 @@ fi
    if test "x$TOOLCHAIN_TYPE" = xgcc -o "x$TOOLCHAIN_TYPE" = xclang; then
      # these options are used for both C and C++ compiles
      CCXXFLAGS_JDK="$CCXXFLAGS $CCXXFLAGS_JDK -Wall -Wno-parentheses -Wextra -Wno-unused -Wno-unused-parameter -Wformat=2 \
@@ -76,7 +76,7 @@ diff -wpruN '--exclude=*.orig' a~/common/autoconf/generated-configure.sh a/commo
      case $OPENJDK_TARGET_CPU_ARCH in
        arm )
          # on arm we don't prevent gcc to omit frame pointer but do prevent strict aliasing
-@@ -44758,11 +44766,6 @@ fi
+@@ -44770,11 +44778,6 @@ fi
  
    if test "x$OPENJDK_TARGET_OS" = xsolaris; then
      OPENWIN_HOME="/usr/openwin"
