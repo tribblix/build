@@ -1,98 +1,51 @@
 #!/sbin/sh
 #
-# SPDX-License-Identifier: CDDL-1.0
-#
 # Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
-# Copyright 2015 Peter Tribble <peter.tribble@gmail.com>
+# Copyright 2016 Hans Rosenfeld <rosenfeld@grumpf.hope-2000.org>
+# Copyright 2024 OmniOS Community Edition (OmniOSce) Association.
 #
 
 . /lib/svc/share/ipf_include.sh
 . /lib/svc/share/smf_include.sh
 
-PIDFILE=/var/run/sshd.pid
-
-# Check if the privsep user exists and create it if not
-check_user()
-{
-    if [ ! -d /var/empty ]; then
-	mkdir -p /var/empty
-	chmod 755 /var/empty
-	chown root:bin /var/empty
-    fi
-    grep "^sshd:" /etc/group > /dev/null 2>&1
-    if [ $? -ne 0 ]; then
-	groupadd -g 92 sshd
-    fi
-    grep "^sshd:" /etc/passwd > /dev/null 2>&1
-    if [ $? -ne 0 ]; then
-	useradd -u 92 -g sshd -d /var/empty -c "OpenSSH privsep user" sshd
-    fi
-}
+rc=$SMF_EXIT_OK
 
 create_ipf_rules()
 {
 	FMRI=$1
 	ipf_file=`fmri_to_file ${FMRI} $IPF_SUFFIX`
+	ipf6_file=`fmri_to_file ${FMRI} $IPF6_SUFFIX`
 	policy=`get_policy ${FMRI}`
 
-	#
-	# Get port from /etc/ssh/sshd_config
-	#
-	tports=`grep "^Port" /etc/ssh/sshd_config 2>/dev/null | \
-	    awk '{print $2}'`
+	tports=`/usr/sbin/sshd -T 2>/dev/null | awk '/^port / {print $2}'`
 
 	echo "# $FMRI" >$ipf_file
+	echo "# $FMRI" >$ipf6_file
 	for port in $tports; do
-		generate_rules $FMRI $policy "tcp" "any" $port $ipf_file
+		generate_rules $FMRI $policy "tcp" $port $ipf_file
+		generate_rules $FMRI $policy "tcp" $port $ipf6_file _6
 	done
 }
 
-# This script is being used for two purposes: as part of an SMF
-# start/stop/refresh method, and as a sysidconfig(1M)/sys-unconfig(1M)
-# application.
-#
-# Both, the SMF methods and sysidconfig/sys-unconfig use different
-# arguments..
-
-case $1 in 
-	# sysidconfig/sys-unconfig arguments (-c and -u)
-'-c')
-	/usr/bin/ssh-keygen -A
-	;;
-
-'-u')
-	# sys-unconfig(1M) knows how to remove ssh host keys, so there's
-	# nothing to do here.
-	:
-	;;
-
-	# SMF arguments (start and restart [really "refresh"])
-
+case $1 in
 'ipfilter')
 	create_ipf_rules $2
 	;;
 
 'start')
-	#
-	# Check for privsep user, create any missing host keys
-	#
-	check_user
-	/usr/bin/ssh-keygen -A || exit $SMF_EXIT_ERR_FATAL
-	/usr/sbin/sshd
+	# If host keys don't exist when the service is started, create them.
+	# If we can't, we will flag this service as degraded but still allow it
+	# to attempt to start to end up with a system that is as functional as
+	# possible, and potentially has a running sshd to aid remote recovery.
+	/usr/bin/ssh-keygen -A || rc=$SMF_EXIT_MON_DEGRADE
+	/usr/sbin/sshd || rc=$SMF_EXIT_ERR_FATAL
 	;;
-
-'restart')
-	if [ -f "$PIDFILE" ]; then
-		/usr/bin/kill -HUP `/usr/bin/cat $PIDFILE`
-	fi
-	;;
-
 *)
-	echo "Usage: $0 { start | restart }"
-	exit 1
+	echo "Usage: $0 start"
+	rc=$SMF_ERROR_FATAL
 	;;
-esac	
+esac
 
-exit $?
+exit $rc
