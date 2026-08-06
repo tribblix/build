@@ -6801,3 +6801,4 @@ googleapis_common_protos-1.75.1.tar.gz d3042c6c5a2d4e67113104d6b6818b59b6bd92a19
 google_api_core-2.34.0.tar.gz 98a779fe72de956eb1c9c2f47ff4c4432a668ece1a002ec38bed07ec2698ae59
 google_auth-2.56.3.tar.gz 40e229fc901f0a305b553050e5fce562d509bee0435be053abfa91582b51b90c
 google_auth_httplib2-0.4.1.tar.gz 125b1bb4fcfdd2d97f19b673c1f46f831603d0acaffe415c8a35dadb312552a1
+google_resumable_media-2.10.1.tar.gz 224975032ddb73f7ed9e2f0f4cc08ed1b06874c52d48cc8533e3eb72980b21a0
