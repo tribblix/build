@@ -6804,3 +6804,4 @@ google_auth_httplib2-0.4.1.tar.gz 125b1bb4fcfdd2d97f19b673c1f46f831603d0acaffe41
 google_resumable_media-2.10.1.tar.gz 224975032ddb73f7ed9e2f0f4cc08ed1b06874c52d48cc8533e3eb72980b21a0
 google_cloud_core-2.6.1.tar.gz 1e044b131f2ae097b92312fa195164b0aeb6dc6a88e00231e1210516314c420c
 google_cloud_storage-3.13.1.tar.gz a80bf8cac2794808aa61c50c5f769ecbbe2d10331bacd0d69d30e59b14b346b2
+protobuf-7.35.1.tar.gz ce115a26fe0c39a2c29973d914d327e516a6455464489fe3cd1e51a1b354f81a
