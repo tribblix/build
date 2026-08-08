@@ -6829,3 +6829,4 @@ shtab-1.10.0.tar.gz 70ccd485d8b38d9458c42b4e911a3d29a685dbea4b9aa7ea2d03ebe1a6e6
 starlette-1.5.0.tar.gz 7d5f63a7e4981a9587fc2a0fbc44cfb6cc4c9181d8c26d7e948871ed5da8c3df
 jupyter_builder-1.2.2.tar.gz b6cea88f58e44b2c5eba96f28d2e0d16fd453d3ca6dc9c4492ff8a1f2e97f601
 diffoscope-327.tar.gz b5a398de17b180637cf091ba5c3c9fecde9dc8f5c2c80204ff8dd78e1b9d5358
+cursive-0.3.0.tar.gz 7a830b3e343542ab43912f84b96d6eb33cf336dad6e4fe1e06a96e06b5715056
