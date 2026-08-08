@@ -6827,3 +6827,4 @@ platformdirs-4.11.1.tar.gz bb1af68078f25e2f3e111e2d43b8d536df41b73c8a684b40bb018
 oslo_config-10.7.0.tar.gz 4f0fd4ca7ecfe511fbc0e012d3c63fce57009f360199e9e9cc2329ed55ec911e
 shtab-1.10.0.tar.gz 70ccd485d8b38d9458c42b4e911a3d29a685dbea4b9aa7ea2d03ebe1a6e6e94f
 starlette-1.5.0.tar.gz 7d5f63a7e4981a9587fc2a0fbc44cfb6cc4c9181d8c26d7e948871ed5da8c3df
+jupyter_builder-1.2.2.tar.gz b6cea88f58e44b2c5eba96f28d2e0d16fd453d3ca6dc9c4492ff8a1f2e97f601
