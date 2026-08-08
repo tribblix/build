@@ -6,7 +6,7 @@
 # in an isolated venv
 #
 # currently experimental, but will become the preferred mechanism to deliver
-# the aws cli as the v1 modules will be deprecated
+# the aws cli as the v1 modules are deprecated upstream
 #
 # fails to build on sparc as the s2n build in awscrt passes flags to
 # /usr/ccs/bin/as that it doesn't understand
@@ -70,8 +70,8 @@ cd ..
 # awscli uses flit_core
 #
 ${PVENV}/bin/pip install "flit_core<3.12.1"
-$THOME/build/unpack aws-cli-2.36.14
-cd aws-cli-2.36.14
+$THOME/build/unpack aws-cli-2.36.19
+cd aws-cli-2.36.19
 #
 # we definitely need no-build-isolation, because we need to use the
 # patched awscrt we've just installed
