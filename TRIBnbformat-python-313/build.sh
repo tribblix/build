@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 TRIBnbformat-python-313 nbformat-5.10.4
+${THOME}/build/pkg_pep518 TRIBnbformat-python-313 nbformat-5.11.0
