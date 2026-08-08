@@ -1,5 +1,7 @@
 JDK 27 now that jdk26 has been branched off.
 
+Cleanup: defaultPath() no longer includes SUNWspro.
+
 27+26, 27+27, 27+28, 27+29, 27+30, 27+31, 27+32, 27+33, 27+34
 
 No changes.

@@ -1,5 +1,7 @@
 JDK 28 now that jdk27 has been branched off.
 
+Cleanup: defaultPath() no longer includes SUNWspro.
+
 28+10
 
 Minor patch noise

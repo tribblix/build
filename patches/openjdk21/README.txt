@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for note on a project zero variant.
 
+Cleanup: defaultPath() no longer includes SUNWspro.
+
 21.0.12
 
 Types of physical_memory, free_memory, available_memory have changed.

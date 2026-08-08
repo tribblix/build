@@ -1247,17 +1247,15 @@
  
 --- old/src/java.base/unix/native/libjava/ProcessImpl_md.c	2020-05-20 18:01:09.319404766 -0700
 +++ new/src/java.base/unix/native/libjava/ProcessImpl_md.c	2020-05-20 18:01:08.935397393 -0700
-@@ -169,14 +169,7 @@
+@@ -169,12 +169,7 @@
  static const char*
  defaultPath(void)
  {
 -#ifdef __solaris__
--    /* These really are the Solaris defaults! */
--    return (geteuid() == 0 || getuid() == 0) ?
--        "/usr/xpg4/bin:/usr/bin:/opt/SUNWspro/bin:/usr/sbin" :
--        "/usr/xpg4/bin:/usr/bin:/opt/SUNWspro/bin:";
+-    /* Keep xpg4 for older systems. */
+-    return "/usr/xpg4/bin:/usr/bin:/usr/sbin";
 -#else
--    return ":/bin:/usr/bin";    /* glibc */
+-    return ":/bin:/usr/bin";
 -#endif
 +    return ":/bin:/usr/bin";
  }
