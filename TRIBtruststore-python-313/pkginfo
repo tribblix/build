@@ -1,0 +1,4 @@
+PKG="TRIBtruststore-python-313"
+NAME="Python truststore"
+VERSION="0.10.4.0"
+ZAP_URL="https://pypi.org/project/truststore/"
