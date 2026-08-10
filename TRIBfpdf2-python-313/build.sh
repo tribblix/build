@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBfpdf2-python-313 fpdf2-2.8.7
+${THOME}/build/pkg_pep518 -N TRIBfpdf2-python-313 fpdf2-2.8.8
