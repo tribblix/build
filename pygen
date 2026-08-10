@@ -37,6 +37,14 @@ DO313="yes"
 DO314=""
 
 #
+# build requirements
+#
+NEED_FLIT=""
+NEED_HATCH=""
+NEED_SETUPTOOLS=""
+NEED_ANY=""
+
+#
 # select python version first
 #
 case $1 in
@@ -72,11 +80,32 @@ case $1 in
 	shift
 	;;
     *)
-	echo "Usage: $0 [-312|-313|-314] -p pkg_name tarball_name"
+	echo "Usage: $0 [-312|-313|-314] -p [-f|-h|-s] pkg_name tarball_name"
 	echo "       $0 [-312|-313|-314] -w pkg_version pkg_name tarball_name"
 	exit 1
 	;;
 esac
+
+case $1 in
+    -s)
+	NEED_SETUPTOOLS="y"
+	NEED_ANY="y"
+	shift
+	;;
+    -f)
+	NEED_FLIT="y"
+	NEED_ANY="y"
+	shift
+	;;
+    -h)
+	NEED_HATCH="y"
+	NEED_ANY="y"
+	shift
+	;;
+esac
+if [ -n "${NEED_ANY}" ]; then
+    BUILDER="${BUILDER} -N"
+fi
 
 case $# in
 2)
@@ -84,7 +113,7 @@ case $# in
 	TBALL=$2
 	;;
 *)
-	echo "Usage: $0 [-312|-313|-314] -p pkg_name tarball_name"
+	echo "Usage: $0 [-312|-313|-314] -p [-f|-h|-s] pkg_name tarball_name"
 	echo "       $0 [-312|-313|-314] -w pkg_version pkg_name tarball_name"
 	exit 1
 	;;
@@ -168,6 +197,19 @@ cat > "$PY312NAME/build.sh" <<EOF
 \${THOME}/build/$BUILDER $PY312NAME $TBALL
 EOF
 chmod a+x "$PY312NAME/build.sh"
+touch "$PY312NAME/build_require"
+if [ -n "${NEED_FLIT}" ]; then
+    echo "TRIBflit-core-python-312" >> "$PY312NAME/build_require"
+fi
+if [ -n "${NEED_HATCH}" ]; then
+    echo "TRIBhatchling-python-312" >> "$PY312NAME/build_require"
+fi
+if [ -n "${NEED_SETUPTOOLS}" ]; then
+    echo "TRIBsetuptools-python-312" >> "$PY312NAME/build_require"
+fi
+if [ ! -s "$PY312NAME/build_require" ]; then
+    rm -f "$PY312NAME/build_require"
+fi
 fi
 
 if [ -n "$DO313" ]; then
@@ -190,11 +232,24 @@ cat > "$PY313NAME/build.sh" <<EOF
 \${THOME}/build/$BUILDER $PY313NAME $TBALL
 EOF
 chmod a+x "$PY313NAME/build.sh"
+touch "$PY313NAME/build_require"
+if [ -n "${NEED_FLIT}" ]; then
+    echo "TRIBflit-core-python-313" >> "$PY313NAME/build_require"
+fi
+if [ -n "${NEED_HATCH}" ]; then
+    echo "TRIBhatchling-python-313" >> "$PY313NAME/build_require"
+fi
 case $BUILDER in
-    pkg_pep518)
-	echo "TRIBpip-python-313" > "$PY313NAME/build_require"
+    pkg_pep518*)
+	echo "TRIBpip-python-313" >> "$PY313NAME/build_require"
 	;;
 esac
+if [ -n "${NEED_SETUPTOOLS}" ]; then
+    echo "TRIBsetuptools-python-313" >> "$PY313NAME/build_require"
+fi
+if [ ! -s "$PY313NAME/build_require" ]; then
+    rm -f "$PY313NAME/build_require"
+fi
 fi
 
 if [ -n "$DO314" ]; then
@@ -217,9 +272,22 @@ cat > "$PY314NAME/build.sh" <<EOF
 \${THOME}/build/$BUILDER $PY314NAME $TBALL
 EOF
 chmod a+x "$PY314NAME/build.sh"
+touch "$PY314NAME/build_require"
+if [ -n "${NEED_FLIT}" ]; then
+    echo "TRIBflit-core-python-314" >> "$PY314NAME/build_require"
+fi
+if [ -n "${NEED_HATCH}" ]; then
+    echo "TRIBhatchling-python-314" >> "$PY314NAME/build_require"
+fi
 case $BUILDER in
-    pkg_pep518)
-	echo "TRIBpip-python-314" > "$PY314NAME/build_require"
+    pkg_pep518*)
+	echo "TRIBpip-python-314" >> "$PY314NAME/build_require"
 	;;
 esac
+if [ -n "${NEED_SETUPTOOLS}" ]; then
+    echo "TRIBsetuptools-python-314" >> "$PY314NAME/build_require"
+fi
+if [ ! -s "$PY314NAME/build_require" ]; then
+    rm -f "$PY314NAME/build_require"
+fi
 fi
