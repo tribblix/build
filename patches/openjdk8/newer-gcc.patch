@@ -1,0 +1,44 @@
+Newer versions of gcc fail with
+
+error: friend declaration of ‘NativeCall* nativeCall_overwriting_at(address, address)’ specifies default arguments and isn’t the only declaration [-fpermissive]
+
+move the default argument, the same way that jdk11 does.
+
+--- a/hotspot/src/cpu/sparc/vm/nativeInst_sparc.hpp	Fri Apr 17 18:04:32 2026
++++ b/hotspot/src/cpu/sparc/vm/nativeInst_sparc.hpp	Tue Aug 11 21:46:52 2026
+@@ -341,7 +341,7 @@
+ // (used to manipulate inline caches, primitive & dll calls, etc.)
+ inline NativeCall* nativeCall_at(address instr);
+ inline NativeCall* nativeCall_overwriting_at(address instr,
+-                                             address destination);
++                                             address destination = NULL);
+ inline NativeCall* nativeCall_before(address return_address);
+ class NativeCall: public NativeInstruction {
+  public:
+@@ -370,7 +370,7 @@
+ 
+   // Creation
+   friend inline NativeCall* nativeCall_at(address instr);
+-  friend NativeCall* nativeCall_overwriting_at(address instr, address destination = NULL) {
++  friend NativeCall* nativeCall_overwriting_at(address instr, address destination) {
+     // insert a "blank" call:
+     NativeCall* call = (NativeCall*)instr;
+     call->set_long_at(0 * BytesPerInstWord, call_instruction(destination, instr));
+@@ -442,7 +442,7 @@
+ //      == sethi %hi54(addr), O7 ;  jumpl O7, %lo10(addr), O7 ;  <delay>
+ // That is, it is essentially the same as a NativeJump.
+ class NativeFarCall;
+-inline NativeFarCall* nativeFarCall_overwriting_at(address instr, address destination);
++inline NativeFarCall* nativeFarCall_overwriting_at(address instr, address destination = NULL);
+ inline NativeFarCall* nativeFarCall_at(address instr);
+ class NativeFarCall: public NativeInstruction {
+  public:
+@@ -481,7 +481,7 @@
+     return call;
+   }
+ 
+-  friend inline NativeFarCall* nativeFarCall_overwriting_at(address instr, address destination = NULL) {
++  friend inline NativeFarCall* nativeFarCall_overwriting_at(address instr, address destination) {
+     Unimplemented();
+     NativeFarCall* call = (NativeFarCall*)instr;
+     return call;
