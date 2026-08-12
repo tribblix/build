@@ -61,3 +61,4 @@
 -p1 openjdk8/tribblix-sparc2.patch
 -p1 openjdk8/tribblix-sparc3.patch
 -p1 openjdk8/newer-gcc.patch 
+-p1 openjdk8/no_libm1_linking.patch
