@@ -6870,3 +6870,4 @@ cyclonedx_python_lib-11.11.1.tar.gz e41f52bf399fc6346accd520a2b9a6e5a48b59f4dc27
 notebook-7.6.2.tar.gz cc02b5f0bb972160cccfe44ad8a1a202036206ba3439469c514f03aefa9ae807
 Mojolicious-9.49.tar.gz 281933d4f9b821f669a3e93a466daaad5596443ea2cb167fa7c019752bce6d66
 patroni-4.1.5.tar.gz 9233df8cef01ac62e92cf6e564afe80ada284d87d2b4393874d807dde753cd05
+cyclonedx_python_lib-11.11.2.tar.gz 1995edc423a813dde2bb839eea48ec1c8e1ad0861a2e11601ee249762cd135bd
