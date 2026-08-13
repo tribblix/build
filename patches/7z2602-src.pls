@@ -1,0 +1,1 @@
+-p1 7-zip-sha.patch 

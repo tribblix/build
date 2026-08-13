@@ -1,0 +1,25 @@
+Avoid the sha512 optimisation which our old as doesn't handle, and would
+be non-portable, by enabling it only for an implausibly high gcc version.
+
+--- a/C/Sha512.c	Tue Dec  3 11:00:00 2024
++++ b/C/Sha512.c	Thu Aug 13 11:25:22 2026
+@@ -13,7 +13,7 @@
+ #ifdef MY_CPU_X86_OR_AMD64
+   #if   defined(Z7_LLVM_CLANG_VERSION)  && (Z7_LLVM_CLANG_VERSION  >= 170001) \
+      || defined(Z7_APPLE_CLANG_VERSION) && (Z7_APPLE_CLANG_VERSION >= 170001) \
+-     || defined(Z7_GCC_VERSION)         && (Z7_GCC_VERSION         >= 140000) \
++     || defined(Z7_GCC_VERSION)         && (Z7_GCC_VERSION         >= 240000) \
+      || defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 2400) && (__INTEL_COMPILER <= 9900) \
+      || defined(_MSC_VER) && (_MSC_VER >= 1940)
+       #define Z7_COMPILER_SHA512_SUPPORTED
+--- a/C/Sha512Opt.c	Sun Nov 24 16:00:00 2024
++++ b/C/Sha512Opt.c	Thu Aug 13 11:25:25 2026
+@@ -11,7 +11,7 @@
+       #define USE_HW_SHA
+   #elif defined(Z7_LLVM_CLANG_VERSION)  && (Z7_LLVM_CLANG_VERSION  >= 170001) \
+      || defined(Z7_APPLE_CLANG_VERSION) && (Z7_APPLE_CLANG_VERSION >= 170001) \
+-     || defined(Z7_GCC_VERSION)         && (Z7_GCC_VERSION         >= 140000)
++     || defined(Z7_GCC_VERSION)         && (Z7_GCC_VERSION         >= 240000)
+       #define USE_HW_SHA
+       #if !defined(__INTEL_COMPILER)
+       // icc defines __GNUC__, but icc doesn't support __attribute__(__target__)
