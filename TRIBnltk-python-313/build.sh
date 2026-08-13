@@ -4,4 +4,4 @@
 #
 # there's a fixit file to correct permissions
 #
-${THOME}/build/pkg_pep518 -N TRIBnltk-python-313 nltk-3.10.2
+${THOME}/build/pkg_pep518 -N TRIBnltk-python-313 nltk-3.10.3
