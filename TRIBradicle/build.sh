@@ -6,9 +6,11 @@
 #
 # download the heartwood tarball from https://files.radicle.dev/releases/
 #
-mkdir heartwood-1.10.0
-cd heartwood-1.10.0
-${THOME}/build/unpack heartwood-1.10.0
+# yes the tarball doesn't have a top-level...
+#
+mkdir heartwood-1.10.1
+cd heartwood-1.10.1
+${THOME}/build/unpack heartwood-1.10.1
 
 #
 # build everything
