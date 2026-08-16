@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBsqlparse-python-313 sqlparse-0.5.5
+${THOME}/build/pkg_pep518 -N TRIBsqlparse-python-313 sqlparse-0.6.0
