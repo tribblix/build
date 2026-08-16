@@ -14,4 +14,4 @@
 # dependencies nab-index and nab-python are satisfied by the merged nab
 # package
 #
-${THOME}/build/pkg_pep518 -N TRIBpipdeptree-python-313 pipdeptree-4.2.0
+${THOME}/build/pkg_pep518 -N TRIBpipdeptree-python-313 pipdeptree-4.2.1
