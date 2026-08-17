@@ -4,4 +4,4 @@
 #
 # adds click as a dependency for the [cli] extra
 #
-${THOME}/build/pkg_pep518 -N TRIBdotenv-python-313 python_dotenv-1.2.2
+${THOME}/build/pkg_pep518 -N TRIBdotenv-python-313 python_dotenv-1.2.3
