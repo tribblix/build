@@ -1,0 +1,4 @@
+PKG="TRIBsyncthing"
+NAME="Syncthing continuous file synchronization"
+VERSION="2.1.3.0"
+ZAP_URL="https://syncthing.net/"
