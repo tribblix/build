@@ -1,0 +1,4 @@
+PKG="TRIBpygtfs-python-313"
+NAME="Python pygtfs"
+VERSION="0.1.11.0"
+ZAP_URL="https://pypi.org/project/pygtfs/"
