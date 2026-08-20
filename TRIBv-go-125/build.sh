@@ -13,7 +13,7 @@
 #
 chmod -R u+w go
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.25.13.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.25.14.src
 cd go/src
 # one of the new tests in 1.25.12 fails, use make.bash not all.bash
 env GOROOT_FINAL=/usr/versions/go-1.25 GOROOT_BOOTSTRAP=/usr/versions/go-1.24 ./make.bash
