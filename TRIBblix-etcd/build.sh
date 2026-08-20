@@ -10,8 +10,11 @@ cd etcd
 # it must be a release version, otherwise patroni (and others) will choke
 # on trying to talk to it
 #
-git checkout v3.6.14
-env PATH=/usr/versions/go-1.25/bin:$PATH gmake
+# note that it uses an exact version of go, which may mean you see it
+# downloading an older release to build with
+#
+git checkout v3.7.1
+env PATH=/usr/versions/go-1.26/bin:$PATH gmake
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/etcd/bin
