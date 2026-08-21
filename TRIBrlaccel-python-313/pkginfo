@@ -1,0 +1,4 @@
+PKG="TRIBrlaccel-python-313"
+NAME="Python rl-accel"
+VERSION="0.9.1.0"
+ZAP_URL="https://pypi.org/project/rl-accel/"
