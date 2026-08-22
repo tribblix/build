@@ -81,13 +81,11 @@ cat > usr/versions/python-3.12/lib/python3.12/EXTERNALLY-MANAGED <<EOF
 Error=System Python packages are managed using the zap utility. If you
  wish to install your own modules, you should use an alternative.
 
- Either create a venv, using python3.12 -m venv path/to/venv
-
- Or use pipx, which should be included as part of the python312 overlay
+ You should create a venv, using python3.12 -m venv path/to/venv
 EOF
 
 #
-# if not yet the primary version, only the version-specific
+# if not the primary version, only the version-specific
 # symlinks are created
 #
 mkdir -p usr/bin
