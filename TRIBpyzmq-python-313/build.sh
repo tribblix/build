@@ -6,4 +6,4 @@
 #
 # need to pass flags through to cmake
 #
-env CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS=-m64 ${THOME}/build/pkg_pep518 TRIBpyzmq-python-313 pyzmq-27.1.0
+env CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS=-m64 ${THOME}/build/pkg_pep518 TRIBpyzmq-python-313 pyzmq-27.2.0
