@@ -4,4 +4,4 @@
 #
 # include OSGridConverter in here
 #
-${THOME}/build/pkg_pep518 -N TRIBpybng-python-313 OSGridConverter-0.1.3 pybng-0.2.0 
+${THOME}/build/pkg_pep518 -N TRIBpybng-python-313 OSGridConverter-0.1.3 pybng-0.2.0
