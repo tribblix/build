@@ -11,9 +11,25 @@ cd ../..
 # at build time; now it's a configuration file that's read at runtime
 #
 cd usr/versions/llvm/bin
+
+case $(uname -p) in
+
+i386)
 cat > i386-pc-solaris2.11.cfg <<EOF
 --gcc-install-dir=/usr/versions/gcc-14/lib/gcc/i386-pc-solaris2.11/14.2.0
 EOF
 cat > x86_64-pc-solaris2.11.cfg <<EOF
 --gcc-install-dir=/usr/versions/gcc-14/lib/gcc/i386-pc-solaris2.11/14.2.0/amd64
 EOF
+    ;;
+
+sparc)
+cat > sparc-sun-solaris2.11.cfg <<EOF
+--gcc-install-dir=/usr/versions/gcc-10/lib/gcc/sparc-sun-solaris2.11/10.3.0
+EOF
+cat > sparc64-sun-solaris2.11.cfg <<EOF
+--gcc-install-dir=/usr/versions/gcc-10/lib/gcc/sparc-sun-solaris2.11/10.3.0/sparcv9
+EOF
+    ;;
+
+esac
