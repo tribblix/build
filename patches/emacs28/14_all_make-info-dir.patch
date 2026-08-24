@@ -1,0 +1,29 @@
+Make it build with mksh
+Patch from emacs-29 branch
+https://bugs.gentoo.org/930086
+https://debbugs.gnu.org/70484
+
+commit 42766f95e5c0e7eb9e21db964ed93c7e093cc0b9
+Author: Ulrich Müller <ulm@gentoo.org>
+Date:   Tue Apr 23 07:37:17 2024 +0200
+
+    * build-aux/make-info-dir: Avoid bashism (bug#70484).
+
+--- emacs-28.2/build-aux/make-info-dir
++++ emacs-28.2/build-aux/make-info-dir
+@@ -33,7 +33,8 @@
+ 
+ ## Header contains non-printing characters, so this is more
+ ## reliable than using awk.
+-cat <"${1?}" || exit
++test $# -ge 2 || exit 1
++cat <"$1"
+ shift
+ 
+ exec "${AWK-awk}" '
+@@ -101,4 +102,4 @@
+       if (data[dircat])
+         printf "\n%s\n%s", topic[dircat], data[dircat]
+   }
+-' "${@?}"
++' "$@"

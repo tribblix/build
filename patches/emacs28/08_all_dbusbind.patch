@@ -1,0 +1,50 @@
+Fix D-Bus session bus issue when running as a daemon
+Patch backported from emacs-29 branch
+https://bugs.gentoo.org/908438
+
+commit 1383efe01d0ee8ba3ea8da5ab41b07f5672191bf
+Author: Michael Albinus <michael.albinus@gmx.de>
+Date:   Mon Jun 12 12:45:38 2023 +0200
+
+    Fix setting $DBUS_SESSION_BUS_ADDRESS after Emacs has started
+
+--- emacs-28.2/doc/misc/dbus.texi
++++ emacs-28.2/doc/misc/dbus.texi
+@@ -1853,8 +1853,24 @@
+ corresponding bus.  For the system and session buses, this function is
+ called when loading @file{dbus.el}, there is no need to call it again.
+ 
+-The function returns the number of connections this Emacs session has
+-established to the @var{bus} under the same unique name
++If Emacs was invoked when there was no D-Bus session bus available
++yet, you can set the environment variable
++@env{DBUS_SESSION_BUS_ADDRESS} once the session bus daemon is running
++and offering the address.  Calling @code{dbus-init-bus} initializes
++the connection to the session bus.
++
++@lisp
++(setenv "DBUS_SESSION_BUS_ADDRESS" "unix:path=/run/user/1000/bus")
++
++@result{} "unix:path=/run/user/1000/bus"
++
++(dbus-init-bus :session)
++
++@result{} 2
++@end lisp
++
++@code{dbus-init-bus} returns the number of connections this Emacs
++session has established to the @var{bus} under the same unique name
+ (@pxref{dbus-get-unique-name}).  It depends on the libraries Emacs is
+ linked with, and on the environment Emacs is running.  For example, if
+ Emacs is linked with the GTK+ toolkit, and it runs in a GTK+-aware
+--- emacs-28.2/src/dbusbind.c
++++ emacs-28.2/src/dbusbind.c
+@@ -276,7 +276,7 @@
+ 
+ #define XD_DBUS_VALIDATE_BUS_ADDRESS(bus)				\
+   do {									\
+-    char const *session_bus_address = getenv ("DBUS_SESSION_BUS_ADDRESS"); \
++    char const *session_bus_address = egetenv ("DBUS_SESSION_BUS_ADDRESS"); \
+     if (STRINGP (bus))							\
+       {									\
+ 	DBusAddressEntry **entries;					\

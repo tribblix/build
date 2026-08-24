@@ -1,0 +1,30 @@
+org-mode should consider remote files unsafe
+Backported from emacs-29 branch
+https://bugs.gentoo.org/927727
+
+commit 2bc865ace050ff118db43f01457f95f95112b877
+Author: Ihor Radchenko <yantar92@posteo.net>
+Date:   Tue Feb 20 14:59:20 2024 +0300
+
+    org-file-contents: Consider all remote files unsafe
+
+--- emacs-28.2/lisp/org/org.el
++++ emacs-28.2/lisp/org/org.el
+@@ -4705,12 +4705,16 @@ org-file-contents
+ If NOCACHE is non-nil, do a fresh fetch of FILE even if cached version
+ is available.  This option applies only if FILE is a URL."
+   (let* ((is-url (org-url-p file))
++         (is-remote (condition-case nil
++                        (file-remote-p file)
++                      ;; In case of error, be safe.
++                      (t t)))
+          (cache (and is-url
+                      (not nocache)
+                      (gethash file org--file-cache))))
+     (cond
+      (cache)
+-     (is-url
++     ((or is-url is-remote)
+       (with-current-buffer (url-retrieve-synchronously file)
+ 	(goto-char (point-min))
+ 	;; Move point to after the url-retrieve header.

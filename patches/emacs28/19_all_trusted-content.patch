@@ -1,0 +1,262 @@
+Fix arbitrary code execution vulnerabiliy
+https://bugs.gentoo.org/945164
+https://lists.gnu.org/archive/html/emacs-devel/2024-11/msg00749.html
+
+Backported from Emacs 30.1, comprises and consolidates parts
+of the following commits from the emacs-30 branch::
+
+commit 5485ea6aef91c65a0ce300347db3c0ac138ad550
+Author: Stefan Kangas <stefankangas@gmail.com>
+Date:   Sun Jan 26 14:53:49 2025 +0100
+
+    Do not set `trusted-content` in major modes
+
+commit a720458fdd0283e3b7457632070504ff8962be86
+Author: Stefan Monnier <monnier@iro.umontreal.ca>
+Date:   Thu Jan 2 10:51:38 2025 -0500
+
+    (elisp-flymake-byte-compile): Improve UX with `debug-on-error`
+
+commit 8a0c9c234f15a7398d43da154f3463c92f69f9f5
+Author: Eli Zaretskii <eliz@gnu.org>
+Date:   Wed Dec 18 19:57:13 2024 +0200
+
+    Document 'trusted-content
+
+commit b9dc337ea7416ee7ee4d873a91f6d6d9f109c04c
+Author: Stefan Monnier <monnier@iro.umontreal.ca>
+Date:   Mon Dec 16 09:27:01 2024 -0500
+
+    * lisp/files.el (trusted-content-p): Make `:all` work in non-file buffers
+
+commit 8b6c6cffd1f772301e89353de5e057835af18a30
+Author: Stefan Monnier <monnier@iro.umontreal.ca>
+Date:   Sun Dec 15 17:05:55 2024 -0500
+
+    trusted-content: Adjust the last patch based on preliminary feedback
+
+commit b5158bd191422e46273c4d9412f2bf097e2da2e0
+Author: Stefan Monnier <monnier@iro.umontreal.ca>
+Date:   Tue Dec 10 16:26:31 2024 -0500
+
+    elisp-mode.el: Disable Flymake byte-compile backend in untrusted files
+
+commit 6cf7e676e9d4846a72d48f21168e92e4efcbf95a
+Author: Jens Schmidt <jschmidt4gnu@vodafonemail.de>
+Date:   Tue Sep 26 22:26:15 2023 +0200
+
+    Silence macro expansion during completion at point
+
+commit ecb1e6c71323127b0b6d171861376950d28073c0
+Author: Stefan Monnier <monnier@iro.umontreal.ca>
+Date:   Sat Aug 26 15:44:28 2023 -0400
+
+    (elisp--local-variables): Fix recent regression
+
+--- emacs-28.2/doc/emacs/misc.texi
++++ emacs-28.2/doc/emacs/misc.texi
+@@ -278,6 +278,39 @@
+ you can set @code{enable-local-variables} to @code{:all}.  @xref{Safe
+ File Variables}.
+ 
++@cindex trusted files and directories
++Loading a file of Emacs Lisp code with @code{load-file} or
++@code{load-library} (@pxref{Lisp Libraries}) can execute some of the
++Lisp code in the file being loaded, so you should only load Lisp files
++whose source you trust.  However, some Emacs features can in certain
++situations execute Lisp code even without your explicit command or
++request.  For example, Flymake, the on-the-fly syntax checker for Emacs
++(@pxref{Top,,, flymake, GNU Flymake}), if it is enabled, can
++automatically execute some of the code in a Lisp file you visit as part
++of its syntax-checking job.  Similarly, some completion commands
++(@pxref{Completion}) in buffers visiting Lisp files sometimes need to
++expand Lisp macros for best results.  In these cases, just visiting a
++Lisp file and performing some editing in it could trigger execution of
++Lisp code.  If the visited file came from an untrusted source, it could
++include dangerous or even malicious code that Emacs would execute in
++those situations.
++
++To protect against this, Emacs disables execution of Lisp code by
++Flymake, completion, and some other features, unless the visited file is
++@dfn{trusted}.  It is up to you to specify which files on your system
++should be trusted, by customizing the user option
++@code{trusted-content}.
++
++@defopt trusted-content
++The value of this option is @code{nil} by default, which means no file
++is trusted.  You can customize the variable to be a list of one or more
++names of trusted files and directories.  A file name that ends in a
++slash @file{/} is interpreted as a directory, which means all its files
++and subdirectories are also trusted.  A special value @code{:all} means
++@emph{all} the files and directories on your system should be trusted;
++@strong{this is not recommended}, as it opens a gaping security hole.
++@end defopt
++
+ @xref{Security Considerations,,, elisp, The Emacs Lisp Reference
+ Manual}, for more information about security considerations when using
+ Emacs as part of a larger application.
+--- emacs-28.2/lisp/files.el
++++ emacs-28.2/lisp/files.el
+@@ -631,6 +631,58 @@
+ This variable might be subject to change without notice.")
+ (put 'untrusted-content 'permanent-local t)
+ 
++(defcustom trusted-content nil
++  "List of files and directories whose content we trust.
++Be extra careful here since trusting means that Emacs might execute the
++code contained within those files and directories without an explicit
++request by the user.
++One important case when this might happen is when `flymake-mode' is
++enabled (for example, when it is added to a mode hook).
++Each element of the list should be a string:
++- If it ends in \"/\", it is considered as a directory name and means that
++  Emacs should trust all the files whose name has this directory as a prefix.
++- Otherwise, it is considered a file name.
++Use abbreviated file names.  For example, an entry \"~/mycode/\" means
++that Emacs will trust all the files in your directory \"mycode\".
++This variable can also be set to `:all', in which case Emacs will trust
++all files, which opens a gaping security hole.  Emacs Lisp authors
++should note that this value must never be set by a major or minor mode."
++  :type '(choice (repeat :tag "List" file)
++                 (const :tag "Trust everything (DANGEROUS!)" :all))
++  :version "30.1")
++(put 'trusted-content 'risky-local-variable t)
++
++(defun trusted-content-p ()
++  "Return non-nil if we trust the contents of the current buffer.
++Here, \"trust\" means that we are willing to run code found inside of it.
++See also `trusted-content'."
++  ;; We compare with `buffer-file-truename' i.s.o `buffer-file-name'
++  ;; to try and avoid marking as trusted a file that's merely accessed
++  ;; via a symlink that happens to be inside a trusted dir.
++  (and (not untrusted-content)
++       (or
++        (eq trusted-content :all)
++        (and
++         buffer-file-truename
++         (with-demoted-errors "trusted-content-p: %S"
++           (let ((exists (file-exists-p buffer-file-truename)))
++             (or
++              ;; We can't avoid trusting the user's init file.
++              (if (and exists user-init-file)
++                  (file-equal-p buffer-file-truename user-init-file)
++                (equal buffer-file-truename user-init-file))
++              (let ((file (abbreviate-file-name buffer-file-truename))
++                    (trusted nil))
++                (dolist (tf trusted-content)
++                  (when (or (if exists (file-equal-p tf file) (equal tf file))
++                            ;; We don't use `file-in-directory-p' here, because
++                            ;; we want to err on the conservative side: "guilty
++                            ;; until proven innocent".
++                            (and (string-suffix-p "/" tf)
++                                 (string-prefix-p tf file)))
++                    (setq trusted t)))
++                trusted))))))))
++
+ ;; This is an odd variable IMO.
+ ;; You might wonder why it is needed, when we could just do:
+ ;; (setq-local enable-local-variables nil)
+--- emacs-28.2/lisp/ielm.el
++++ emacs-28.2/lisp/ielm.el
+@@ -613,7 +613,8 @@
+     (unless (comint-check-proc buf-name)
+       (with-current-buffer (get-buffer-create buf-name)
+         (unless (zerop (buffer-size)) (setq old-point (point)))
+-        (inferior-emacs-lisp-mode)))
++        (inferior-emacs-lisp-mode)
++        (setq-local trusted-content :all)))
+     (pop-to-buffer-same-window buf-name)
+     (when old-point (push-mark old-point))))
+ 
+--- emacs-28.2/lisp/progmodes/elisp-mode.el
++++ emacs-28.2/lisp/progmodes/elisp-mode.el
+@@ -383,6 +383,44 @@
+ 
+ (defvar warning-minimum-log-level)
+ 
++(defvar elisp--local-macroenv
++  `((cl-eval-when . ,(lambda (&rest args) `(progn . ,(cdr args))))
++    (eval-when-compile . ,(lambda (&rest args) `(progn . ,args)))
++    (eval-and-compile . ,(lambda (&rest args) `(progn . ,args))))
++  "Environment to use while tentatively expanding macros.
++This is used to try and avoid the most egregious problems linked to the
++use of `macroexpand-all' as a way to find the \"underlying raw code\".")
++
++(defvar elisp--macroexpand-untrusted-warning t)
++
++(defun elisp--safe-macroexpand-all (sexp)
++  (if (not (trusted-content-p))
++      ;; FIXME: We should try and do better here, either using a notion
++      ;; of "safe" macros, or with `bwrap', or ...
++      (progn
++        (when elisp--macroexpand-untrusted-warning
++          (setq-local elisp--macroexpand-untrusted-warning nil) ;Don't spam!
++          (let ((inhibit-message t))      ;Only log.
++            (message "Completion of local vars is disabled in %s (untrusted content)"
++                     (buffer-name))))
++        sexp)
++    (let ((macroexpand-advice
++           (lambda (expander form &rest args)
++             (condition-case err
++                 (apply expander form args)
++               (error
++                (message "Ignoring macroexpansion error: %S" err) form)))))
++      (unwind-protect
++          ;; Silence any macro expansion errors when
++          ;; attempting completion at point (bug#58148).
++          (let ((inhibit-message t)
++                (warning-minimum-log-level :emergency))
++            (advice-add 'macroexpand :around macroexpand-advice)
++            (condition-case nil
++                (macroexpand-all sexp elisp--local-macroenv)
++              (error sexp)))
++        (advice-remove 'macroexpand macroexpand-advice)))))
++
+ (defun elisp--local-variables ()
+   "Return a list of locally let-bound variables at point."
+   (save-excursion
+@@ -398,17 +436,8 @@
+                        (car (read-from-string
+                              (concat txt "elisp--witness--lisp" closer)))
+                      ((invalid-read-syntax end-of-file) nil)))
+-             (macroexpand-advice (lambda (expander form &rest args)
+-                                   (condition-case nil
+-                                       (apply expander form args)
+-                                     (error form))))
+-             (sexp
+-              (unwind-protect
+-                  (let ((warning-minimum-log-level :emergency))
+-                    (advice-add 'macroexpand :around macroexpand-advice)
+-                    (macroexpand-all sexp))
+-                (advice-remove 'macroexpand macroexpand-advice)))
+-             (vars (elisp--local-variables-1 nil sexp)))
++             (vars (elisp--local-variables-1
++                    nil (elisp--safe-macroexpand-all sexp))))
+         (delq nil
+               (mapcar (lambda (var)
+                         (and (symbolp var)
+@@ -2054,6 +2083,14 @@
+   "A Flymake backend for elisp byte compilation.
+ Spawn an Emacs process that byte-compiles a file representing the
+ current buffer state and calls REPORT-FN when done."
++  (unless (trusted-content-p)
++    ;; FIXME: Use `bwrap' and friends to compile untrusted content.
++    ;; FIXME: We emit a message *and* signal an error, because by default
++    ;; Flymake doesn't display the warning it puts into "*flmake log*".
++    (message "Disabling elisp-flymake-byte-compile in %s (untrusted content)"
++             (buffer-name))
++    (user-error "Disabling elisp-flymake-byte-compile in %s (untrusted content)"
++                (buffer-name)))
+   (when elisp-flymake--byte-compile-process
+     (when (process-live-p elisp-flymake--byte-compile-process)
+       (kill-process elisp-flymake--byte-compile-process)))
+--- emacs-28.2/lisp/simple.el
++++ emacs-28.2/lisp/simple.el
+@@ -1785,6 +1785,7 @@
+           (set-syntax-table emacs-lisp-mode-syntax-table)
+           (add-hook 'completion-at-point-functions
+                     #'elisp-completion-at-point nil t)
++          (setq-local trusted-content :all)
+           (run-hooks 'eval-expression-minibuffer-setup-hook))
+       (read-from-minibuffer prompt initial-contents
+                             read-expression-map t

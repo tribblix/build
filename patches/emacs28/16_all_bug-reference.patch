@@ -1,0 +1,21 @@
+Fix bug-reference-fontify
+Patch backported from emacs-29 branch
+https://debbugs.gnu.org/61395
+
+commit 4f053afe8e792c6261d4be0376e2ef0c91353188
+Author: Tassilo Horn <tsdh@gnu.org>
+Date:   Fri Feb 10 19:22:56 2023 +0100
+
+    bug-reference: prevent match-data clobbering (bug#61395)
+
+--- emacs-28.2/lisp/progmodes/bug-reference.el
++++ emacs-28.2/lisp/progmodes/bug-reference.el
+@@ -176,7 +176,7 @@
+                   (re-search-forward bug-reference-bug-regexp end-line 'move))
+         (when (or (not bug-reference-prog-mode)
+                   ;; This tests for both comment and string syntax.
+-                  (nth 8 (syntax-ppss)))
++                  (nth 8 (save-match-data (syntax-ppss))))
+           (let* ((bounds (bug-reference--overlay-bounds))
+                  (overlay (or
+                            (let ((ov (pop overlays)))

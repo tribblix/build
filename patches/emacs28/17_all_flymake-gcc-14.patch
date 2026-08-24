@@ -1,0 +1,16 @@
+Fix flymake tests with GCC 14
+https://debbugs.gnu.org/71749
+https://bugs.gentoo.org/948422
+
+--- emacs-28.2/test/lisp/progmodes/flymake-tests.el
++++ emacs-28.2/test/lisp/progmodes/flymake-tests.el
+@@ -179,7 +179,8 @@
+     (flymake-tests--with-flymake
+         ("some-problems.h")
+       (flymake-goto-next-error)
+-      (should (eq 'flymake-warning (face-at-point)))
++      ;; implicit-int was promoted from warning to error in GCC 14
++      (should (memq (face-at-point) '(flymake-warning flymake-error)))
+       (flymake-goto-next-error)
+       (should (eq 'flymake-error (face-at-point)))
+       (should-error (flymake-goto-next-error nil nil t)))

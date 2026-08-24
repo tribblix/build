@@ -1,0 +1,194 @@
+Fix local command execution vulnerability in tramp
+Original patch by Michael Albinus <michael.albinus@gmx.de>,
+backported from Emacs 31
+
+--- emacs-28.2/lisp/net/tramp-gvfs.el
++++ emacs-28.2/lisp/net/tramp-gvfs.el
+@@ -1176,7 +1176,7 @@
+       (if (string-match-p "^\\(afp\\|davs?\\|smb\\)$" method)
+ 	  (when (string-match "^/[^/]+\\(/\\.\\./?\\)" localname)
+ 	    (setq localname (replace-match "/" t t localname 1)))
+-	(when (string-match "^/\\.\\./?" localname)
++	(when (string-match "\\`/\\.\\./?" localname)
+ 	  (setq localname (replace-match "/" t t localname))))
+       ;; There might be a double slash.  Remove this.
+       (while (string-match "//" localname)
+@@ -1269,8 +1269,8 @@
+   (setq filename (directory-file-name (expand-file-name filename)))
+   (with-parsed-tramp-file-name filename nil
+     (setq localname (tramp-compat-file-name-unquote localname))
+-    (if (or (and (string-match-p "^\\(afp\\|davs?\\|smb\\)$" method)
+-		 (string-match-p "^/?\\([^/]+\\)$" localname))
++    (if (or (and (string-match-p "\\`\\(afp\\|davs?\\|smb\\)\\'" method)
++		 (string-match-p "\\`/?\\([^/]+\\)\\'" localname))
+ 	    (string-equal localname "/"))
+ 	(tramp-gvfs-get-root-attributes filename)
+       (assoc
+@@ -1705,14 +1705,14 @@
+ (defun tramp-gvfs-file-name (object-path)
+   "Retrieve file name from D-Bus OBJECT-PATH."
+   (dbus-unescape-from-identifier
+-   (replace-regexp-in-string "^.*/\\([^/]+\\)$" "\\1" object-path)))
++   (replace-regexp-in-string "\\`.*/\\([^/]+\\)\\'" "\\1" object-path)))
+ 
+ (defun tramp-gvfs-url-host (url)
+   "Return the host name part of URL, a string.
+ We cannot use `url-host', because `url-generic-parse-url' returns
+ a downcased host name only."
+   (and (stringp url)
+-       (string-match "^[[:alnum:]]+://\\([^/:]+\\)" url)
++       (string-match "\\`[[:alnum:]]+://\\([^/:]+\\)" url)
+        (match-string 1 url)))
+ 
+ 
+@@ -1846,7 +1846,7 @@
+ 		   (cadr (assoc "ssl" (cadr mount-spec)))))
+ 	     (uri (tramp-gvfs-dbus-byte-array-to-string
+ 		   (cadr (assoc "uri" (cadr mount-spec))))))
+-	(when (string-match "^\\(afp\\|smb\\)" method)
++	(when (string-match "\\`\\(afp\\|smb\\)" method)
+ 	  (setq method (match-string 1 method)))
+ 	(when (and (string-equal "dav" method) (string-equal "true" ssl))
+ 	  (setq method "davs"))
+@@ -1948,7 +1948,7 @@
+ 		      (or
+ 		       (cadr (assoc "share" (cadr mount-spec)))
+ 		       (cadr (assoc "volume" (cadr mount-spec)))))))
+-	 (when (string-match "^\\(afp\\|smb\\)" method)
++	 (when (string-match "\\`\\(afp\\|smb\\)" method)
+ 	   (setq method (match-string 1 method)))
+ 	 (when (and (string-equal "dav" method) (string-equal "true" ssl))
+ 	   (setq method "davs"))
+@@ -1981,7 +1981,7 @@
+ 		(string-equal domain (tramp-file-name-domain vec))
+ 		(string-equal host (tramp-file-name-host vec))
+ 		(string-equal port (tramp-file-name-port vec))
+-		(string-match-p (concat "^/" (regexp-quote (or share "")))
++		(string-match-p (concat "\\`/" (regexp-quote (or share "")))
+ 				(tramp-file-name-unquote-localname vec)))
+ 	   ;; Set mountpoint and location.
+ 	   (tramp-set-file-property vec "/" "fuse-mountpoint" fuse-mountpoint)
+@@ -2007,7 +2007,7 @@
+ (defun tramp-gvfs-mount-spec-entry (key value)
+   "Construct a mount-spec entry to be used in a mount_spec.
+ It was \"a(say)\", but has changed to \"a{sv})\"."
+-  (if (string-match-p "^(aya{sv})" tramp-gvfs-mountlocation-signature)
++  (if (string-match-p "\\`(aya{sv})" tramp-gvfs-mountlocation-signature)
+       (list :dict-entry key
+ 	    (list :variant (tramp-gvfs-dbus-string-to-byte-array value)))
+     (list :struct key (tramp-gvfs-dbus-string-to-byte-array value))))
+@@ -2025,9 +2025,9 @@
+ 	 (port (if media
+ 		   (tramp-media-device-port media) (tramp-file-name-port vec)))
+ 	 (localname (tramp-file-name-unquote-localname vec))
+-	 (share (when (string-match "^/?\\([^/]+\\)" localname)
++	 (share (when (string-match "\\`/?\\([^/]+\\)" localname)
+ 		  (match-string 1 localname)))
+-	 (ssl (if (string-match-p "^davs\\|^nextcloud" method) "true" "false"))
++	 (ssl (if (string-match-p "\\`davs\\|\\`nextcloud" method) "true" "false"))
+ 	 (mount-spec
+           `(:array
+             ,@(cond
+@@ -2035,7 +2035,7 @@
+                 (list (tramp-gvfs-mount-spec-entry "type" "smb-share")
+                       (tramp-gvfs-mount-spec-entry "server" host)
+                       (tramp-gvfs-mount-spec-entry "share" share)))
+-               ((string-match-p "^dav\\|^nextcloud" method)
++               ((string-match-p "\\`dav\\|\\`nextcloud" method)
+                 (list (tramp-gvfs-mount-spec-entry "type" "dav")
+                       (tramp-gvfs-mount-spec-entry "host" host)
+                       (tramp-gvfs-mount-spec-entry "ssl" ssl)))
+@@ -2049,7 +2049,7 @@
+                ((string-equal "nextcloud" method)
+                 (list (tramp-gvfs-mount-spec-entry "type" "owncloud")
+                       (tramp-gvfs-mount-spec-entry "host" host)))
+-               ((string-match-p "^http" method)
++               ((string-match-p "\\`http" method)
+                 (list (tramp-gvfs-mount-spec-entry "type" "http")
+                       (tramp-gvfs-mount-spec-entry
+ 		       "uri"
+@@ -2066,8 +2066,8 @@
+             ,@(when port
+                 (list (tramp-gvfs-mount-spec-entry "port" port)))))
+ 	 (mount-pref
+-          (if (and (string-match-p "^dav" method)
+-                   (string-match "^/?[^/]+" localname))
++          (if (and (string-match-p "\\`dav" method)
++                   (string-match "\\`/?[^/]+" localname))
+               (match-string 0 localname)
+ 	    (tramp-gvfs-get-remote-prefix vec))))
+ 
+--- emacs-28.2/lisp/net/tramp-rclone.el
++++ emacs-28.2/lisp/net/tramp-rclone.el
+@@ -183,7 +183,7 @@
+     (delq nil
+ 	  (mapcar
+ 	   (lambda (line)
+-	     (when (string-match "^\\(\\S-+\\):$" line)
++	     (when (string-match "\\`\\(\\S-+\\):$" line)
+ 	       `(nil ,(match-string 1 line))))
+ 	   (tramp-process-lines nil tramp-rclone-program "listremotes")))))
+ 
+@@ -335,7 +335,7 @@
+ 	  (tramp-rclone-maybe-open-connection v)
+ 	  ;; TODO: This shall be handled by `expand-file-name'.
+ 	  (setq localname
+-		(replace-regexp-in-string "^\\." "" (or localname "")))
++		(replace-regexp-in-string "\\`\\." "" (or localname "")))
+ 	  (format "%s%s" (tramp-fuse-mounted-p v) localname)))
+     ;; It is a local file name.
+     filename))
+--- emacs-28.2/lisp/net/tramp-smb.el
++++ emacs-28.2/lisp/net/tramp-smb.el
+@@ -1669,7 +1669,7 @@
+   "Return the share name of LOCALNAME."
+   (save-match-data
+     (let ((localname (tramp-file-name-unquote-localname vec)))
+-      (when (string-match "^/?\\([^/]+\\)/" localname)
++      (when (string-match "\\`/?\\([^/]+\\)/" localname)
+ 	(match-string 1 localname)))))
+ 
+ (defun tramp-smb-get-localname (vec)
+@@ -1679,7 +1679,7 @@
+     (let ((localname (tramp-file-name-unquote-localname vec)))
+       (setq
+        localname
+-       (if (string-match "^/?[^/]+\\(/.*\\)" localname)
++       (if (string-match "\\`/?[^/]+\\(/.*\\)" localname)
+ 	   ;; There is a share, separated by "/".
+ 	   (if (not (tramp-smb-get-cifs-capabilities vec))
+ 	       (mapconcat
+@@ -1687,7 +1687,7 @@
+ 		(match-string 1 localname) "")
+ 	     (match-string 1 localname))
+ 	 ;; There is just a share.
+-	 (if (string-match "^/?\\([^/]+\\)$" localname)
++	 (if (string-match "\\`/?\\([^/]+\\)$" localname)
+ 	     (match-string 1 localname)
+ 	   "")))
+ 
+--- emacs-28.2/lisp/net/tramp.el
++++ emacs-28.2/lisp/net/tramp.el
+@@ -860,11 +860,11 @@
+ 
+ (defun tramp-build-prefix-regexp ()
+   "Return `tramp-prefix-regexp'."
+-  (concat "^" (regexp-quote tramp-prefix-format)))
++  (concat "\\`" (regexp-quote tramp-prefix-format)))
+ 
+ (defvar tramp-prefix-regexp nil ;Initialized when defining `tramp-syntax'!
+   "Regexp matching the very beginning of Tramp file names.
+-Should always start with \"^\".  Derived from `tramp-prefix-format'.")
++Should always start with \"\\\\=`\".  Derived from `tramp-prefix-format'.")
+ 
+ (defconst tramp-method-regexp-alist
+   '((default    . "[[:alnum:]-]+")
+@@ -903,7 +903,7 @@
+   "Regexp matching delimiter between method and user or host names.
+ Derived from `tramp-postfix-method-format'.")
+ 
+-(defconst tramp-user-regexp "[^/|: \t]+"
++(defconst tramp-user-regexp "[^/\\^$?*:;|[]{}()<>`'\" \t]+"
+   "Regexp matching user names.")
+ 
+ (defconst tramp-prefix-domain-format "%"

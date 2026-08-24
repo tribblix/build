@@ -1,0 +1,38 @@
+Fix denial-of-service issue in Gnus
+Patch from emacs-28 branch
+
+commit ae9bfed50dbf5043c0b47f20473ef43d8aeebebd
+Author: Eli Zaretskii <eliz@gnu.org>
+Date:   Mon Dec 19 19:01:04 2022 +0200
+
+    Fix storing email into nnmail by Gnus
+
+--- a/lisp/gnus/nnml.el
++++ b/lisp/gnus/nnml.el
+@@ -775,17 +775,22 @@
+ 	(nnml--encode-headers headers)
+ 	headers))))
+ 
++;; RFC2047-encode Subject and From, but leave invalid headers unencoded.
+ (defun nnml--encode-headers (headers)
+   (let ((subject (mail-header-subject headers))
+ 	(rfc2047-encoding-type 'mime))
+     (unless (string-match "\\`[[:ascii:]]*\\'" subject)
+-      (setf (mail-header-subject headers)
+-	    (mail-encode-encoded-word-string subject t))))
++      (let ((encoded-subject
++             (ignore-errors (mail-encode-encoded-word-string subject t))))
++        (if encoded-subject
++            (setf (mail-header-subject headers) encoded-subject)))))
+   (let ((from (mail-header-from headers))
+ 	(rfc2047-encoding-type 'address-mime))
+     (unless (string-match "\\`[[:ascii:]]*\\'" from)
+-      (setf (mail-header-from headers)
+-	    (rfc2047-encode-string from t)))))
++      (let ((encoded-from
++             (ignore-errors (rfc2047-encode-string from t))))
++        (if encoded-from
++            (setf (mail-header-from headers) encoded-from))))))
+ 
+ (defun nnml-get-nov-buffer (group &optional incrementalp)
+   (let ((buffer (gnus-get-buffer-create

@@ -1,0 +1,22 @@
+Fix ruby-mode.el local command injection vulnerability (CVE-2022-48338)
+Patch from emacs-28 branch
+https://bugs.gentoo.org/897950
+https://debbugs.gnu.org/60268
+
+commit 22fb5ff5126dc8bb01edaa0252829d853afb284f
+Author: Xi Lu <lx@shellcodes.org>
+Date:   Fri Dec 23 12:52:48 2022 +0800
+
+    Fix ruby-mode.el local command injection vulnerability (bug#60268)
+
+--- a/lisp/progmodes/ruby-mode.el
++++ b/lisp/progmodes/ruby-mode.el
+@@ -1819,7 +1819,7 @@
+       (setq feature-name (read-string "Feature name: " init))))
+   (let ((out
+          (substring
+-          (shell-command-to-string (concat "gem which " feature-name))
++          (shell-command-to-string (concat "gem which " (shell-quote-argument feature-name)))
+           0 -1)))
+     (if (string-match-p "\\`ERROR" out)
+         (user-error "%s" out)
