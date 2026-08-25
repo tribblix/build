@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBpbr-python-313 pbr-7.0.3
+${THOME}/build/pkg_pep518 -N TRIBpbr-python-313 pbr-7.1.1
