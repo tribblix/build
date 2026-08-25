@@ -5,7 +5,7 @@
 mkdir w
 cd w
 
-$THOME/build/unpack -b 4.34 https://github.com/seaweedfs/seaweedfs
+$THOME/build/unpack -b 4.44 https://github.com/seaweedfs/seaweedfs
 cd seaweedfs/weed
 env GOPATH=`pwd`/../.. gmake install
 cd ../..
