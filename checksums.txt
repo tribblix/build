@@ -7034,3 +7034,4 @@ googleapis_common_protos-1.75.2.tar.gz 8829a3d1e4508c5b7b9a6b9525f7fccff611f8531
 google_auth_httplib2-0.4.2.tar.gz 916225a6367e613c9af44d83f41688a599d3f687777846b8b91bec65085ed1f1
 google_auth-2.57.0.tar.gz 9b4f96d6a1feb5f7201231f47cfb3de08d8f176f8a61f9e461555116e95a8789
 google_resumable_media-2.10.2.tar.gz 1de441703cd298d75a419bfdc0066e9fc7b0a1de630df96eea8ce8f5c759358c
+google_cloud_core-2.7.0.tar.gz 874aaf89765db87a9b911b7a2ca7c5068554868eed9e75c7766affe342a2913d
