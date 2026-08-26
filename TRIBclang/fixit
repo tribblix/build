@@ -27,7 +27,7 @@ sparc)
 cat > sparc-sun-solaris2.11.cfg <<EOF
 --gcc-install-dir=/usr/versions/gcc-10/lib/gcc/sparc-sun-solaris2.11/10.3.0
 EOF
-cat > sparc64-sun-solaris2.11.cfg <<EOF
+cat > sparcv9-sun-solaris2.11-clang.cfg <<EOF
 --gcc-install-dir=/usr/versions/gcc-10/lib/gcc/sparc-sun-solaris2.11/10.3.0/sparcv9
 EOF
     ;;
