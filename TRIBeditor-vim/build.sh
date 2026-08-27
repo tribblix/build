@@ -10,5 +10,5 @@
 #
 # need to make with -k because msgfmt can't cope with one or more files
 #
-env TRIBBLIX_CFLAGS=-std=gnu99 ${THOME}/build/dobuild +gnu -64only vim-9.1.2132 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --without-x --disable-canberra" -M -k
-${THOME}/build/genpkg TRIBeditor-vim vim-9.1.2132
+env TRIBBLIX_CFLAGS="-std=gnu99 -Wno-error=incompatible-pointer-types" ${THOME}/build/dobuild +gnu -64only vim-9.2.1014 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --without-x --disable-canberra" -M -k
+${THOME}/build/genpkg TRIBeditor-vim vim-9.2.1014
