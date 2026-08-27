@@ -7046,3 +7046,5 @@ python_ironicclient-6.3.0.tar.gz ea3f9d4d0f6aeda0db78cc5d73a1a48b230fe6200abf5e5
 websockets-17.1.tar.gz acfea4c20bf54384883ea33b1240fc1db4f52e190823a4e2b334bc3e8bfca96a
 scons-4.11.1.tar.gz 4210d1a80a62e986029208117991b6347ccaaaab37b67463a3ff31ee065dc487
 python_mistralclient-6.3.0.tar.gz e12850903fc479794e528447c83f8d983fa677cf0dba25f942c2a2bc9d0d68de
+apache-groovy-binary-6.0.0-beta-3.zip eb8f5415382913ff84b6a0054403eec06e5c614e9a7ea451a38bdd1974c31914
+apache-groovy-binary-5.1.1.zip 51a5a86c638abc618273f9f318ad2d906fcd4fecbdc1b9fa3c9f47c8c3cd753b
