@@ -15,7 +15,7 @@
 #
 # }}}
 #
-# Copyright 2025 Peter Tribble
+# Copyright 2026 Peter Tribble
 #
 
 #
@@ -57,6 +57,14 @@ install_status() {
     fi
 }
 
+arch_status() {
+    pkg=$1
+    if [ -f "${pkg}/arch.txt" ]
+    then
+	echo "($(cat "${pkg}/arch.txt") only) "
+    fi
+}
+
 cd "$BDIR" || exit 1
 for dir in "$@"
 do
@@ -67,7 +75,7 @@ do
 	grep -lx "P $dir" TRIB*/depend TRIB*/depend.sparc | while read -r dep
 	do
 	    pkg=${dep%%/*}
-	    echo "  run-time ${pkg} ($(install_status "$pkg"))"
+	    echo "  run-time ${pkg} $(arch_status "$pkg")($(install_status "$pkg"))"
 	done
 	grep -lx "I $dir" TRIB*/depend TRIB*/depend.sparc | while read -r dep
 	do
