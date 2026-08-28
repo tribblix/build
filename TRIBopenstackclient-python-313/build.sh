@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBopenstackclient-python-313 python_openstackclient-10.2.1
+${THOME}/build/pkg_pep518 -N TRIBopenstackclient-python-313 python_openstackclient-10.3.0
