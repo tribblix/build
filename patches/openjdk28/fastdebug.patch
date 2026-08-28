@@ -6,14 +6,14 @@ The patches here are for code that's only built in debug mode.
 
 --- a/src/hotspot/share/opto/type.cpp	Fri Oct 11 20:42:42 2024
 +++ b/src/hotspot/share/opto/type.cpp	Thu Nov 21 11:50:19 2024
-@@ -1033,6 +1033,9 @@
-   assert(Compile::current()->_type_verify == nullptr || Compile::current()->_type_verify->empty_cache(), "cache should have been discarded");
- }
+@@ -1038,6 +1038,9 @@
+   }
+ };
  
 +#ifdef _C
 +#undef _C
 +#endif
- class VerifyMeet {
+ class VerifyMeetJoin {
  private:
    Compile* _C;
 --- a/src/hotspot/share/utilities/vmError.cpp	Thu Nov 21 11:00:15 2024
