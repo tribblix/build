@@ -1,0 +1,4 @@
+PKG="TRIBformulaic-python-313"
+NAME="Python formulaic"
+VERSION="1.2.2.0"
+ZAP_URL="https://pypi.org/project/formulaic/"

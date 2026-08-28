@@ -1,0 +1,4 @@
+PKG="TRIBinterface-meta-python-313"
+NAME="Python interface-meta"
+VERSION="2.0.1.0"
+ZAP_URL="https://pypi.org/project/interface-meta/"
