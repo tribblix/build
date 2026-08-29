@@ -7087,3 +7087,4 @@ testscenarios-0.7.0.tar.gz da185ee316d877021beb6395f2d80ced22a99c2876c42d54994e3
 zeroconf-0.151.1.tar.gz 2594832108af9a74eeebe87af96666ae24a006cb7eb8ba80073144dca8291610
 python_discovery-1.6.0.tar.gz 6393b4eae1be8b2182670635e7baff89ac21cb9f8e86fd1ff40c7b1144febb4c
 python_barbicanclient-7.6.0.tar.gz d2a79dfe49e0f7ab7412911b62147c7941dd9f9770323eb050a53c31b9322821
+python_keystoneclient-6.0.0.tar.gz d6ac3a09adf2319aaac5728e3bf7cbeaf952c295bd7831f1df9a573b25fbcf82
