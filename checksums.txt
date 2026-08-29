@@ -7091,3 +7091,4 @@ python_keystoneclient-6.0.0.tar.gz d6ac3a09adf2319aaac5728e3bf7cbeaf952c295bd783
 python_manilaclient-6.3.0.tar.gz 92d73667a1ac20ab083588e8912b59769be0706f20fb6e9845ec06d3d72723d4
 python_novaclient-18.13.1.tar.gz a9fe15f894ffb6b309ea5c282bd2c4bba929918c62736e6733a82ed915edd883
 python_swiftclient-4.11.0.tar.gz 9d96146f5c2948c08cbf221eecfc3b87f2f631f1995e5e5d6e1b800ea74233cc
+python_troveclient-8.11.0.tar.gz 4b5e5c82e455ab1472145de00992d1168df7f7409275e54f2249881e01d2a653
