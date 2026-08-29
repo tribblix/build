@@ -7088,3 +7088,4 @@ zeroconf-0.151.1.tar.gz 2594832108af9a74eeebe87af96666ae24a006cb7eb8ba80073144dc
 python_discovery-1.6.0.tar.gz 6393b4eae1be8b2182670635e7baff89ac21cb9f8e86fd1ff40c7b1144febb4c
 python_barbicanclient-7.6.0.tar.gz d2a79dfe49e0f7ab7412911b62147c7941dd9f9770323eb050a53c31b9322821
 python_keystoneclient-6.0.0.tar.gz d6ac3a09adf2319aaac5728e3bf7cbeaf952c295bd7831f1df9a573b25fbcf82
+python_manilaclient-6.3.0.tar.gz 92d73667a1ac20ab083588e8912b59769be0706f20fb6e9845ec06d3d72723d4
