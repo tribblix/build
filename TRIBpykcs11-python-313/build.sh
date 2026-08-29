@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -q TRIBpykcs11-python-313 pykcs11-1.5.18
+${THOME}/build/pkg_pep518 -q TRIBpykcs11-python-313 pykcs11-1.5.19
