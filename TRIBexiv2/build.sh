@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-$THOME/build/cmbuild -64only exiv2-0.28.8 -C "-DEXIV2_ENABLE_INIH=OFF"
+$THOME/build/cmbuild -64only exiv2-0.28.9 -C "-DEXIV2_ENABLE_INIH=OFF"
 
 #
 # SPARC is a bit messy, because it has gcc7 and needs libstdc++fs, but
@@ -15,4 +15,4 @@ $THOME/build/cmbuild -64only exiv2-0.28.8 -C "-DEXIV2_ENABLE_INIH=OFF"
 # in order)
 #
 
-${THOME}/build/genpkg TRIBexiv2 exiv2-0.28.8
+${THOME}/build/genpkg TRIBexiv2 exiv2-0.28.9
