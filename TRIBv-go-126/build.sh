@@ -13,7 +13,7 @@
 #
 chmod -R u+w go
 rm -fr go
-env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.26.7.src
+env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.26.8.src
 #
 cd go/src
 # one of the new tests in 1.26.5 fails, use make.bash not all.bash
