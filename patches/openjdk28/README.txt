@@ -1,5 +1,9 @@
 JDK 28 now that jdk27 has been branched off.
 
+28+14
+
+Minor change to solaris_x86.cpp matching all other os_cpu variants.
+
 28+13
 
 Minor patch noise.
