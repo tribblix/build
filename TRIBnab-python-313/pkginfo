@@ -1,4 +1,4 @@
 PKG="TRIBnab-python-313"
 NAME="Python nab-index"
-VERSION="0.0.14.0"
+VERSION="0.0.16.0"
 ZAP_URL="https://pypi.org/project/nab-project/"
