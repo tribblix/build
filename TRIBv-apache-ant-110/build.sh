@@ -6,4 +6,4 @@
 # apache-ivy-2.6.0-bin-with-deps.zip
 # svnant-1.3.1.zip
 #
-${THOME}/build/pkg_tarball TRIBv-apache-ant-110 apache-ant-1.10.17-bin
+${THOME}/build/pkg_tarball TRIBv-apache-ant-110 apache-ant-1.10.18-bin
