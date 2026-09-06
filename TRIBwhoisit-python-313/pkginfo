@@ -1,0 +1,4 @@
+PKG="TRIBwhoisit-python-313"
+NAME="Python whoisit"
+VERSION="4.0.4.0"
+ZAP_URL="https://pypi.org/project/whoisit/"
