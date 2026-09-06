@@ -1,0 +1,4 @@
+PKG="TRIBwhodap-python-313"
+NAME="Python whodap"
+VERSION="0.1.16.0"
+ZAP_URL="https://pypi.org/project/whodap/"
