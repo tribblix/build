@@ -7,5 +7,5 @@
 # sparc needs --disable-symvers, otherwise it complains about undefined
 # _lib_version in values-Xa.o having no version assigned
 #
-${THOME}/build/dobuild -64 pcre2-10.47 -C "--localstatedir=/var --disable-static --enable-rebuild-chartables --enable-newline-is-any --disable-stack-for-recursion --with-link-size=4 --with-match-limit=10000000 --with-pic --enable-pcre2grep-libz --enable-pcre2grep-libbz2 --enable-pcre2-8 --enable-pcre2-16 --enable-unicode"
-${THOME}/build/genpkg TRIBlib-pcre2 pcre2-10.47
+${THOME}/build/dobuild -64 pcre2-10.48 -C "--localstatedir=/var --disable-static --enable-rebuild-chartables --enable-newline-is-any --disable-stack-for-recursion --with-link-size=4 --with-match-limit=10000000 --with-pic --enable-pcre2grep-libz --enable-pcre2grep-libbz2 --enable-pcre2-8 --enable-pcre2-16 --enable-unicode"
+${THOME}/build/genpkg TRIBlib-pcre2 pcre2-10.48
