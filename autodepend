@@ -84,7 +84,7 @@ rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{pr
 for dep in `/usr/bin/dump -Lv $* 2>/dev/null| $EGREP NEEDED | awk '{print $NF}' | sort -u | sed 's:\+:\\\\+:g'`
 do
   # split multiple directories in the RPATH here
-  for rpath in ${rpathlist/:/ }
+  for rpath in ${rpathlist//:/ }
   do
       $MEGREP "^${rpath}/$dep( |=)" /var/sadm/install/contents
   done
@@ -102,7 +102,7 @@ getlongdeps()
 rpathlist=`/usr/bin/dump -Lv $* 2>/dev/null| $EGREP '(RPATH|RUNPATH)' | awk '{print $NF}' | sort -u`
 for dep in `/usr/bin/ldd $* 2>/dev/null| $EGREP / | awk '{print $1}' | sort -u | sed 's:\+:\\\\+:g'`
 do
-  for rpath in $rpathlist
+  for rpath in ${rpathlist//:/ }
   do
       $MEGREP "^${rpath}/$dep( |=)" /var/sadm/install/contents
   done
