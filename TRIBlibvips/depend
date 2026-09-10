@@ -1,7 +1,7 @@
 P TRIBimage-libexif
 P TRIBimage-libjpeg
+P TRIBimage-libpng
 P TRIBimage-librsvg
-P TRIBimage-libspng
 P TRIBimage-libtiff
 P TRIBimagemagick
 P TRIBlib-desktop-cairo
@@ -13,6 +13,7 @@ P TRIBlib-openjpeg
 P TRIBlib-zlib
 P TRIBlibarchive
 P TRIBlibheif
+P TRIBlibraw
 P TRIBlibwebp
 P TRIBopenexr
 P TRIBpoppler
