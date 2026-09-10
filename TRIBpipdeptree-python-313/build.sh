@@ -11,7 +11,7 @@
 #
 # sparc downrev as new version written in rust
 #
-# dependencies nab-index and nab-project are satisfied by the merged nab
+# dependencies nab nab-index and nab-project are satisfied by the merged nab
 # package
 #
-${THOME}/build/pkg_pep518 -N TRIBpipdeptree-python-313 pipdeptree-4.2.3
+${THOME}/build/pkg_pep518 -N TRIBpipdeptree-python-313 pipdeptree-4.2.5
