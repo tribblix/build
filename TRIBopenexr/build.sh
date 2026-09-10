@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-# sparc downrev as we need a newer gcc
-#
 # 3.2 bumped the SONAME
 #
 # note that we need to package a full copy of Imath, as the cmake and
