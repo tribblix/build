@@ -7212,3 +7212,4 @@ platformdirs-4.11.8.tar.gz f23abafea7dd4276d1f29104b83598d7dcc567cafd07c9c951e66
 pydantic_core-2.46.5.tar.gz 10416c15b8839ecc4ef4d0885da76da6fd0f67333a0eb8aff6d93c4b8f2910fc
 pydantic-2.13.5.tar.gz 51a9c5f7b2f8e636f04c6cada605d9b6a3bf1348fdf945a3d8869b19bba0ee08
 publicsuffixlist-1.0.2.20260910.tar.gz a768680c2a9fc21c23df3a512205fbe219275b07d6b2392ba912bb28b33afdae
+virtualenv-21.7.9.tar.gz a7e42d81d779dec8afd7dc4be71640fb959ea861bccfa5980cb4ad9f92e30675
