@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# on 64-bit builds, it takes the 32-bit path
+#
+sed -i s:HAVE_I386:HAVE_AMD64: meson.build

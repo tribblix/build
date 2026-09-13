@@ -1,0 +1,4 @@
+PKG="TRIBorc"
+NAME="liborc"
+VERSION="0.4.44.0"
+ZAP_URL="https://gstreamer.freedesktop.org/"
