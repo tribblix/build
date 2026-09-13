@@ -7251,3 +7251,4 @@ gst-plugins-good-1.28.7.tar.xz 87256969c82cf3bc8574301f3e7044a90de0ac500a5a27d8b
 gst-plugins-bad-1.28.7.tar.xz dc525383c18b2c265bbe6a43d498656cd918aaa130aa4e3abeabcdaa741c3ffe
 gst-editing-services-1.28.7.tar.xz 6ffc0e5ccec90aad6091d3fc01ad29c796375055e13b9378aff6b8e1c22468a3
 gst-libav-1.28.7.tar.xz 58da51dd39ecf1cf6faade34cc6412001be2e2e145bca8ae0f45336f60a36ab2
+apache-groovy-binary-6.0.0-RC-2.zip 16b43d5f1fa25a05556056d30309403a5852a4fd1cdcccf7c7cb55e7c05667db
