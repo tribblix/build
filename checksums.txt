@@ -7253,3 +7253,4 @@ gst-editing-services-1.28.7.tar.xz 6ffc0e5ccec90aad6091d3fc01ad29c796375055e13b9
 gst-libav-1.28.7.tar.xz 58da51dd39ecf1cf6faade34cc6412001be2e2e145bca8ae0f45336f60a36ab2
 apache-groovy-binary-6.0.0-RC-2.zip 16b43d5f1fa25a05556056d30309403a5852a4fd1cdcccf7c7cb55e7c05667db
 uvicorn-0.53.0.tar.gz a9356f0cb89b3b8621529c5d5eebd69bfe154f4c3f68b4cf2de47e45fa855c2e
+vcs_versioning-2.4.0.tar.gz cc4b66c02ae4cfb51e843910024f7142464c3391bb1f7e04608578b45046891b
