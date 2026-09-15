@@ -21,7 +21,7 @@ fi
 cd /opt/tribblix/zookeeper || exit 96
 
 #
-# don't support restart here, as that first deos a stop which makes smf
+# don't support restart here, as that first does a stop which makes smf
 # think the service has exited and it jumps in to do the restart anyway
 #
 case $1 in
