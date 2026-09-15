@@ -18164,7 +18164,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/javaFrameAnchor_sparc.hpp b/src/hots
 +public:
 +
 +   enum pd_Constants {
-+     flushed = 1                                 // winodows have flushed
++     flushed = 1                                 // windows have flushed
 +   };
 +
 +  int flags(void)                                { return _flags; }
