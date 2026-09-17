@@ -136,14 +136,18 @@ rm -fr ${BDIR}
 
 #
 # loop over arguments
+# separate loops so we check everything before installing anything
 #
 for PFILE in "$@"
 do
-
 if [ ! -f "${THOME}/tarballs/${PFILE}" ]; then
     echo "Missing source wheel $PFILE"
     exit 1
 fi
+done
+
+for PFILE in "$@"
+do
 #
 # no preconf or fixinstall possible for ready-built wheels
 #
