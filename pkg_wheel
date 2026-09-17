@@ -134,6 +134,33 @@ export PATH
 BDIR="${BROOT}/pkg.$$"
 rm -fr ${BDIR}
 
+CHECKSUMFILE="${THOME}/build/checksums.txt"
+#
+# copied from unpack, as they're no separate unpack step for a wheel
+# but we still want to verify the checksums
+#
+# we create a checksum of the file we're unpacking
+# if the file is listed in the checksum list, we compare the checksum
+# we've calculated and exit fatally if there's a mismatch
+# if the file isn't listed, we add it
+#
+dochecksum() {
+    #
+    # we're passed the full name, strip off the directory portion
+    #
+    FNAME=${1##*/}
+    CKSAVE=$(grep "^${FNAME} " "${CHECKSUMFILE}" | awk '{print $2}')
+    CKNOW=$(openssl sha256  "$1" | awk '{print $NF}')
+    if [ -n "${CKSAVE}" ]; then
+	if [ "${CKSAVE}" != "${CKNOW}" ]; then
+	    echo "ERROR: checksum mismatch for ${1}"
+	    exit 1
+	fi
+    else
+	echo "$FNAME ${CKNOW}" >> "${CHECKSUMFILE}"
+    fi
+}
+
 #
 # loop over arguments
 # separate loops so we check everything before installing anything
@@ -144,6 +171,11 @@ if [ ! -f "${THOME}/tarballs/${PFILE}" ]; then
     echo "Missing source wheel $PFILE"
     exit 1
 fi
+done
+
+for PFILE in "$@"
+do
+    dochecksum "${THOME}/tarballs/${PFILE}"
 done
 
 for PFILE in "$@"
