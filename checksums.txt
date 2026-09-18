@@ -7286,3 +7286,4 @@ wcwidth-0.8.4.tar.gz 2dae09efa25253ae2874188e86d6861af3b1652aef4118cdf3f0bda288a
 virtualenv-21.7.14.tar.gz 6f14bcaeb6c3438cd8c8cf3ab1805973592fb900e9b724427d1102aaa3db7fbb
 python_discovery-1.6.1.tar.gz cf87d3627dfb4412437fdd5b13eae402607722998d21567993aedbc59b23c15e
 jdk-jdk-28-16.tar.gz d0944b68bf8fc9d29c8a9775e86c3d488ecd3d83aa2779f452ef1c73a4b32982
+apache-groovy-binary-6.0.0-RC-3.zip 7b5d2a29fbbc5d07a22b7ddebcf38ded31c50c405bf7d4570915ce3e6ad1b30e
