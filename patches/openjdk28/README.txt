@@ -1,5 +1,13 @@
 JDK 28 now that jdk27 has been branched off.
 
+28+16
+
+Minor patch noise.
+
+Replace STATIC_ASSERT with static_assert.
+
+Copy the 28+14 tweak to zero, even though it's commented out there.
+
 28+15
 
 No changes

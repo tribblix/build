@@ -402,7 +402,7 @@
        #
 --- old/make/modules/java.base/Lib.gmk	2020-05-20 17:59:10.037114459 -0700
 +++ new/make/modules/java.base/Lib.gmk	2020-05-20 17:59:09.661107240 -0700
-@@ -57,7 +57,6 @@
+@@ -56,7 +56,6 @@
          -delayload:winhttp.dll, \
      JDK_LIBS := libjava libjvm, \
      LIBS_linux := $(LIBDL), \
@@ -410,10 +410,10 @@
      LIBS_aix := $(LIBDL), \
      LIBS_windows := advapi32.lib delayimp.lib iphlpapi.lib secur32.lib \
          winhttp.lib ws2_32.lib, \
-@@ -81,9 +80,8 @@
+@@ -79,9 +78,8 @@
+         libnio/fs \
          libjvm, \
-     DISABLED_WARNINGS_clang_Net.c := unused-function unused-variable, \
-     DISABLED_WARNINGS_clang_UnixNativeDispatcher.c := unused-variable, \
+     DISABLED_WARNINGS_clang_Net.c := unused-function, \
 +    JDK_LIBS := libjava libnet, \
 -    JDK_LIBS := libjava libjvm libnet, \
      LIBS_linux := $(LIBDL) $(LIBPTHREAD), \
@@ -421,7 +421,7 @@
      LIBS_aix := $(LIBDL), \
      LIBS_macosx := \
          -framework CoreFoundation \
-@@ -125,7 +123,6 @@
+@@ -123,7 +121,6 @@
        DISABLED_WARNINGS_gcc_jsig.c := unused-but-set-variable, \
        DISABLED_WARNINGS_clang_jsig.c := unused-but-set-variable, \
        LIBS_linux := $(LIBDL), \
@@ -786,7 +786,7 @@
  
  # Platform specific setup
  ifeq ($(call isTargetOs, windows), true)
-@@ -88,9 +88,6 @@
+@@ -89,9 +89,6 @@
    BUILD_JDK_JTREG_EXCLUDE += exerevokeall.c
    ifeq ($(call isTargetOs, linux), true)
      BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
@@ -2061,7 +2061,7 @@
  void
  NET_ThrowNew(JNIEnv *env, int errorNumber, char *msg) {
      char fullMsg[512];
-@@ -250,50 +140,6 @@
+@@ -240,50 +130,6 @@
      }
  #endif
  
@@ -2112,7 +2112,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -399,26 +245,6 @@
+@@ -388,26 +234,6 @@
      }
  }
  
@@ -2139,7 +2139,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -660,65 +486,6 @@
+@@ -649,65 +475,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -2205,7 +2205,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -833,20 +600,10 @@
+@@ -822,20 +589,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -2226,7 +2226,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -863,61 +620,8 @@
+@@ -852,61 +609,8 @@
      }
  #endif
  
@@ -2366,7 +2366,7 @@
  #include <sys/types.h>
  #include <sys/socket.h>
  #include <string.h>
-@@ -231,7 +230,7 @@
+@@ -205,7 +204,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canIPv6SocketJoinIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -2375,7 +2375,7 @@
      /* IPv6 sockets can join IPv4 multicast groups */
      return JNI_TRUE;
  #else
-@@ -243,7 +242,7 @@
+@@ -217,7 +216,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canJoin6WithIPv4Group0(JNIEnv* env, jclass cl)
  {

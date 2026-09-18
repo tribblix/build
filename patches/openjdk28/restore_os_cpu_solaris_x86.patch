@@ -137,8 +137,8 @@ diff -urN /tmp/a/atomicAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/a
 +template<typename D, typename I>
 +inline D AtomicAccess::PlatformAdd<4>::add_then_fetch(D volatile* dest, I add_value,
 +                                               atomic_memory_order order) const {
-+  STATIC_ASSERT(4 == sizeof(I));
-+  STATIC_ASSERT(4 == sizeof(D));
++  static_assert(4 == sizeof(I));
++  static_assert(4 == sizeof(D));
 +  return PrimitiveConversions::cast<D>(
 +    _Atomic_add(PrimitiveConversions::cast<int32_t>(add_value),
 +                reinterpret_cast<int32_t volatile*>(dest)));
@@ -149,8 +149,8 @@ diff -urN /tmp/a/atomicAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/a
 +template<typename D, typename I>
 +inline D AtomicAccess::PlatformAdd<8>::add_then_fetch(D volatile* dest, I add_value,
 +                                               atomic_memory_order order) const {
-+  STATIC_ASSERT(8 == sizeof(I));
-+  STATIC_ASSERT(8 == sizeof(D));
++  static_assert(8 == sizeof(I));
++  static_assert(8 == sizeof(D));
 +  return PrimitiveConversions::cast<D>(
 +    _Atomic_add_long(PrimitiveConversions::cast<int64_t>(add_value),
 +                     reinterpret_cast<int64_t volatile*>(dest)));
@@ -164,7 +164,7 @@ diff -urN /tmp/a/atomicAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/a
 +inline T AtomicAccess::PlatformXchg<4>::operator()(T volatile* dest,
 +                                             T exchange_value,
 +                                             atomic_memory_order order) const {
-+  STATIC_ASSERT(4 == sizeof(T));
++  static_assert(4 == sizeof(T));
 +  return PrimitiveConversions::cast<T>(
 +    _Atomic_xchg(PrimitiveConversions::cast<int32_t>(exchange_value),
 +                 reinterpret_cast<int32_t volatile*>(dest)));
@@ -175,7 +175,7 @@ diff -urN /tmp/a/atomicAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/a
 +inline T AtomicAccess::PlatformXchg<8>::operator()(T volatile* dest,
 +                                             T exchange_value,
 +                                             atomic_memory_order order) const {
-+  STATIC_ASSERT(8 == sizeof(T));
++  static_assert(8 == sizeof(T));
 +  return PrimitiveConversions::cast<T>(
 +    _Atomic_xchg_long(PrimitiveConversions::cast<int64_t>(exchange_value),
 +                      reinterpret_cast<int64_t volatile*>(dest)));
@@ -193,7 +193,7 @@ diff -urN /tmp/a/atomicAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/a
 +                                                T compare_value,
 +                                                T exchange_value,
 +                                                atomic_memory_order order) const {
-+  STATIC_ASSERT(1 == sizeof(T));
++  static_assert(1 == sizeof(T));
 +  return PrimitiveConversions::cast<T>(
 +    _Atomic_cmpxchg_byte(PrimitiveConversions::cast<int8_t>(exchange_value),
 +                         reinterpret_cast<int8_t volatile*>(dest),
@@ -206,7 +206,7 @@ diff -urN /tmp/a/atomicAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/a
 +                                                T compare_value,
 +                                                T exchange_value,
 +                                                atomic_memory_order order) const {
-+  STATIC_ASSERT(4 == sizeof(T));
++  static_assert(4 == sizeof(T));
 +  return PrimitiveConversions::cast<T>(
 +    _Atomic_cmpxchg(PrimitiveConversions::cast<int32_t>(exchange_value),
 +                    reinterpret_cast<int32_t volatile*>(dest),
@@ -219,7 +219,7 @@ diff -urN /tmp/a/atomicAccess_solaris_x86.hpp b/src/hotspot/os_cpu/solaris_x86/a
 +                                                T compare_value,
 +                                                T exchange_value,
 +                                                atomic_memory_order order) const {
-+  STATIC_ASSERT(8 == sizeof(T));
++  static_assert(8 == sizeof(T));
 +  return PrimitiveConversions::cast<T>(
 +    _Atomic_cmpxchg_long(PrimitiveConversions::cast<int64_t>(exchange_value),
 +                         reinterpret_cast<int64_t volatile*>(dest),
