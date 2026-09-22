@@ -5,7 +5,7 @@
 # clean up other platforms
 # don't yet put links into normal PATH
 #
-VERSION=6.0.0-RC-3
+VERSION=6.0.0
 rm usr/versions/groovy-${VERSION}/bin/*.bat
 #
 exit 0
