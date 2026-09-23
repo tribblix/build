@@ -7,6 +7,6 @@
 # pandoc is needed for the man pages; if it's not present then the build
 # fails, although a working package will still be generated
 #
-env TRIBBLIX_PKG_CONFIG_PATH=/tmp/mc/lib/pkgconfig ${THOME}/build/dobuild -64only pgbouncer-1.25.2
-${THOME}/build/genpkg TRIBpgbouncer pgbouncer-1.25.2
+env TRIBBLIX_PKG_CONFIG_PATH=/tmp/mc/lib/pkgconfig ${THOME}/build/dobuild -64only pgbouncer-1.26.0
+${THOME}/build/genpkg TRIBpgbouncer pgbouncer-1.26.0
 rm -fr /tmp/mc
