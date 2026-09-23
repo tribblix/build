@@ -1,4 +1,4 @@
 PKG="TRIBblix-varnish"
 NAME="Vinyl Cache"
-VERSION="8.0.2.0"
+VERSION="9.1.0.0"
 ZAP_URL="https://vinyl-cache.org/"
