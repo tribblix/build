@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBwhodap-python-313 whodap-0.1.16
+${THOME}/build/pkg_pep518 -N TRIBwhodap-python-313 whodap-0.2.0
