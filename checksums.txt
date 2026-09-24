@@ -7342,3 +7342,4 @@ palemoon-35.0.1.solaris2.11-x86_64-illumos.tar.xz 72add36c8241ccd02e1a1361fa6bb2
 jdk-jdk-28-17.tar.gz 8df8c4292d2aaa0b8985584d068427b4072de034c52cea2fcf73d16445ce061f
 gzip-1.15.tar.xz 9aa0cc780dec156b8282844833b342ab7cb08c25d2cd9a1869cdd0df31deff48
 rsync-3.5.1.tar.gz c55f9c9dc10fb8bec397b399a0fdded53cc9a2d8e30891bb0d63724d25c37bef
+Image-ExifTool-13.59.tar.gz 668ea3acececb7235fbd0f4900e72d5f12c9b07e5c778fd36cb1e9b5828fd65a
