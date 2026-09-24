@@ -2139,7 +2139,7 @@
  JNIEXPORT jint JNICALL
  NET_EnableFastTcpLoopback(int fd) {
      return 0;
-@@ -649,65 +475,6 @@
+@@ -657,65 +483,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -2205,7 +2205,7 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -822,20 +589,10 @@
+@@ -830,20 +597,10 @@
   *
   * Linux allows a socket to bind to 127.0.0.255 which must be
   * caught.
@@ -2226,7 +2226,7 @@
      int rv;
  
  #ifdef __linux__
-@@ -852,61 +609,8 @@
+@@ -860,61 +617,8 @@
      }
  #endif
  
@@ -2472,7 +2472,7 @@
          MACOSX,
          AIX,
          UNKNOWN
-@@ -96,7 +95,6 @@
+@@ -76,7 +75,6 @@
              // Map OperatingSystem enum values to OSType enum values.
              case WINDOWS -> WINDOWS;
              case LINUX -> LINUX;
