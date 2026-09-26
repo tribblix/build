@@ -5,7 +5,7 @@ Also need CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS=-m64
 
 --- a/crt/aws-c-io/CMakeLists.txt	Thu Mar 26 23:35:20 2026
 +++ b/crt/aws-c-io/CMakeLists.txt	Wed Apr  1 15:33:21 2026
-@@ -139,6 +139,23 @@
+@@ -154,6 +154,23 @@
      list(APPEND EVENT_LOOP_DEFINES "KQUEUE")
      set(USE_S2N ON)
  
