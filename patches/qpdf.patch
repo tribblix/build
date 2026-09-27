@@ -1,0 +1,10 @@
+--- a/qpdf/test_completion.cc	Sat Sep 26 22:35:09 2026
++++ b/qpdf/test_completion.cc	Sun Sep 27 16:41:07 2026
+@@ -79,6 +79,7 @@
+ # include <poll.h>
+ # include <set>
+ # include <sys/ioctl.h>
++# include <sys/termios.h>
+ # include <unistd.h>
+ 
+ static constexpr std::string_view test_prompt = "@TEST@";
