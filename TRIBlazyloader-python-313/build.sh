@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBlazyloader-python-313 lazy_loader-0.5
+${THOME}/build/pkg_pep518 -N TRIBlazyloader-python-313 lazy_loader-0.6
