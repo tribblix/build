@@ -7397,3 +7397,4 @@ xarray-2026.9.0.tar.gz 6abc69694c22fa1f0fb2f357ff4e41d88beb4477ed71091f944b7dbf6
 charset_normalizer-3.5.2.tar.gz 39de2a259fc954455c57274dc94c79d5842774e1247a016aff30bc0efed0f4ef
 google_api_core-2.40.0.tar.gz ebee7d1b138b5362beecec260e6e8988ac97346562c7382ccb6f0ad8435c599f
 google_cloud_core-2.8.0.tar.gz 365f8e4518ae81c8101b8dea5fc1c32a960badedb8b511f19db2843cbbd285d2
+cramjam-2.13.0.tar.gz 3c8f332b59b6c43fac9b2710aa3eeecffa5a6aa258350e782f7aa5db76ec5fa6
