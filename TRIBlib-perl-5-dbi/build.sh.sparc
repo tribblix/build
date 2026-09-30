@@ -5,9 +5,9 @@
 # sparc downrev due to build failure
 # https://github.com/perl5-dbi/dbi/issues/198
 #
-${THOME}/build/unpack DBI-1.654
-cd DBI-1.654
+${THOME}/build/unpack DBI-1.653
+cd DBI-1.653
 perl Makefile.PL
 make
 cd ..
-${THOME}/build/genpkg TRIBlib-perl-5-dbi DBI-1.654
+${THOME}/build/genpkg TRIBlib-perl-5-dbi DBI-1.653
