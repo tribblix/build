@@ -23,6 +23,7 @@ P TRIBoslo-messaging-python-313
 P TRIBoslo-middleware-python-313
 P TRIBoslo-policy-python-313
 P TRIBoslo-reports-python-313
+P TRIBoslo-service-python-313
 P TRIBoslo-upgcheck-python-313
 P TRIBoslo-utils-python-313
 P TRIBosprofiler-python-313
@@ -30,7 +31,6 @@ P TRIBpaste-python-313
 P TRIBpastedeploy-python-313
 P TRIBpbr-python-313
 P TRIBprettytable-python-313
-P TRIBretrying-python-313
 P TRIBroutes-python-313
 P TRIBsqlalchemy-python-313
 P TRIBstevedore-python-313
