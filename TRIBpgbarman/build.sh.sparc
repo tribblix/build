@@ -6,4 +6,6 @@
 # depend on snappy, and cramjam only on x86
 # packages are available for [azure,google]
 #
-${THOME}/build/pkg_pep518 -N -v 313 TRIBpgbarman barman-3.19.1
+# build from the wheel on sparc, as building from source requires uv-build
+#
+${THOME}/build/pkg_wheel -v 313 TRIBpgbarman barman-3.20.1-py3-none-any.whl
