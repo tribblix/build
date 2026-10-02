@@ -7437,3 +7437,4 @@ proto_plus-1.29.0.tar.gz cfb4e62ad7e13dd18f346cabbda00cab39930d36a05791fd81ddb07
 google_auth_httplib2-0.4.4.tar.gz b931de392c20cfaa351cd789274922bd8cdc001e0e9e96de31b39d71347f8e16
 google_cloud_storage-3.16.0.tar.gz 3f75cf8ad345d68ef33f0c69db8a8b3f34f160b1524e75d73890602b7b8a4d6e
 pdm_backend-2.5.0.tar.gz 7953b994563d3151755e3364b9d0cfe817ed0eaecdf27c8f777f412d26bcd98a
+pgpool-II-4.6.8.tar.gz eaf153a4fc9b546d5b5846f2677c12ec06e7aea71b60861b96976dd4d20919c9
