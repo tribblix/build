@@ -113,7 +113,7 @@ are missing, and all the attribute filenames get a "user." prefix.
   * Call this to throw an internal UnixException when a system/library
   * call fails
   */
-@@ -1471,6 +1571,8 @@
+@@ -1515,6 +1615,8 @@
      res = fgetxattr(fd, name, value, valueLen, 0, 0);
  #elif defined(_AIX)
      res = fgetea(fd, name, value, valueLen);
@@ -122,7 +122,7 @@ are missing, and all the attribute filenames get a "user." prefix.
  #else
      throwUnixException(env, ENOTSUP);
  #endif
-@@ -1494,6 +1596,8 @@
+@@ -1538,6 +1640,8 @@
      res = fsetxattr(fd, name, value, valueLen, 0, 0);
  #elif defined(_AIX)
      res = fsetea(fd, name, value, valueLen, 0);
@@ -131,7 +131,7 @@ are missing, and all the attribute filenames get a "user." prefix.
  #else
      throwUnixException(env, ENOTSUP);
  #endif
-@@ -1515,6 +1619,8 @@
+@@ -1559,6 +1663,8 @@
      res = fremovexattr(fd, name, 0);
  #elif defined(_AIX)
      res = fremoveea(fd, name);
@@ -140,7 +140,7 @@ are missing, and all the attribute filenames get a "user." prefix.
  #else
      throwUnixException(env, ENOTSUP);
  #endif
-@@ -1536,6 +1642,8 @@
+@@ -1580,6 +1686,8 @@
      res = flistxattr(fd, list, (size_t)size, 0);
  #elif defined(_AIX)
      res = flistea(fd, list, (size_t)size);

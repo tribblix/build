@@ -1,5 +1,9 @@
 JDK 28 now that jdk27 has been branched off.
 
+28+18
+
+Boot jdk bumped to jdk27.
+
 28+17
 
 Trivial patch noise.
@@ -69,7 +73,7 @@ Start with no changes from 27+25. (Still reports as 27.)
 Build:
 
 env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin bash ./configure \
---enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk26 \
+--enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk27 \
 --with-native-debug-symbols=none \
 --with-toolchain-type=gcc \
 --disable-warnings-as-errors \
