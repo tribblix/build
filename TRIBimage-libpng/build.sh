@@ -13,5 +13,5 @@
 # build fails completely with current gawk
 #
 ${THOME}/build/dobuild -64 libpng-1.4.22 -C "--sysconfdir=/etc --disable-static"
-${THOME}/build/dobuild -64 libpng-1.6.59 -C "--sysconfdir=/etc  --disable-static AWK=/usr/bin/awk"
+${THOME}/build/dobuild -64 libpng-1.6.59 -C "--sysconfdir=/etc --disable-static AWK=/usr/bin/awk"
 ${THOME}/build/genpkg TRIBimage-libpng libpng-1.4.22 libpng-1.6.59
