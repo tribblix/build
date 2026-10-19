@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBpytimeparse-python-313 pytimeparse-1.1.8
+${THOME}/build/pkg_pep518 -N TRIBpytimeparse-python-313 pytimeparse-1.1.10
