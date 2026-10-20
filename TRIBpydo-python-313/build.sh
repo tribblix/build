@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBpydo-python-313 pydo-0.43.0
+${THOME}/build/pkg_pep518 -N TRIBpydo-python-313 pydo-0.44.0
