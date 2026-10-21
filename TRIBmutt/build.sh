@@ -2,5 +2,5 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/dobuild mutt-2.3.3 -64only -C "--enable-imap --with-ssl --with-slang --enable-smtp --enable-sidebar --enable-gpgme LIBS=-lgpg-error"
-${THOME}/build/genpkg TRIBmutt mutt-2.3.3
+${THOME}/build/dobuild mutt-2.4.3 -64only -C "--enable-imap --with-ssl --with-slang --enable-smtp --enable-sidebar --enable-gpgme LIBS=-lgpg-error"
+${THOME}/build/genpkg TRIBmutt mutt-2.4.3
