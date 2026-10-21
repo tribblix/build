@@ -1131,7 +1131,7 @@
  
 --- old/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:31.194672744 -0700
 +++ new/src/hotspot/share/runtime/globals.hpp	2020-05-20 18:00:30.854666216 -0700
-@@ -1601,10 +1601,8 @@
+@@ -1607,10 +1607,8 @@
    product(int, ThreadPriorityPolicy, 0,                                     \
            "0 : Normal.                                                     "\
            "    VM chooses priorities that are appropriate for normal       "\
@@ -1144,7 +1144,7 @@
            "    priorities. However, with ThreadPriorityPolicy=0, VM will   "\
            "    not use the highest possible native priority,               "\
            "    THREAD_PRIORITY_TIME_CRITICAL, as it may interfere with     "\
-@@ -1886,8 +1884,7 @@
+@@ -1892,8 +1890,7 @@
    product(bool, WhiteBoxAPI, false, DIAGNOSTIC,                             \
            "Enable internal testing APIs")                                   \
                                                                              \
@@ -1986,7 +1986,7 @@
  #elif defined(_AIX)
  
  static char *
-@@ -696,15 +505,6 @@
+@@ -726,15 +535,6 @@
              free((void *) freetz);
          }
  #else

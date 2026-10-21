@@ -40,3 +40,4 @@
 -p1 openjdk21/testsuite.patch
 -p1 openjdk21/fastdebug.patch
 -p1 openjdk21/xattrs.patch
+-p1 openjdk21/fix-ipv6.patch
