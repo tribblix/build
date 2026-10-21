@@ -34,3 +34,4 @@
 -p1 openjdk27/fix-new-dtags.patch
 -p1 openjdk27/illumos-vmatree.patch
 -p1 openjdk27/xattrs.patch
+-p1 openjdk27/fix-ipv6.patch

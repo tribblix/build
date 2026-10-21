@@ -1,5 +1,9 @@
 JDK 27 now that jdk26 has been branched off.
 
+27.0.1
+
+Add ipv6 fix
+
 27+35
 
 No changes; first release candidate.
