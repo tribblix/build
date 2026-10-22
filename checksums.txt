@@ -7557,3 +7557,4 @@ google_api_core-2.42.0.tar.gz 82cf5daa2ef1b456d4e29ff1de1a5c2995c7be3ccf4fc60818
 google_auth-2.62.0.tar.gz 0bef0ce54bdf9ce226c5d66e4264413bd918141c31bbe49fb52eac882f513d69
 fastbencode-0.3.12.tar.gz a0d403f3122aae24d34d2682665e505925bba7a6d3246da482b7a2a9cdcea8fe
 cliff-4.17.0.tar.gz 3ad61eee415a48784b42d88bdae4e17eef2a704ef64dbc529bb7936f68f0a200
+cmd2-4.3.0.tar.gz 3f6c4b9619dbd0d1ba75789a099be82b65daf8ac1d97b8e4ecb112e76c72b100
