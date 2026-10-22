@@ -10,8 +10,8 @@
 # just pull the ga tag
 #
 cd ~/ud
-${THOME}/build/unpack jdk17u-jdk-17.0.20.1-ga
-cd jdk17u-jdk-17.0.20.1-ga
+${THOME}/build/unpack jdk17u-jdk-17.0.21-ga
+cd jdk17u-jdk-17.0.21-ga
 
 #
 # jdk17 needs autoconf installed
@@ -52,9 +52,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake all
 #
 # ./build/solaris-x86_64-server-release/images/jdk/bin/java -version
 #
-# openjdk version "17.0.20.1-ga" 2026-07-21
-# OpenJDK Runtime Environment (build 17.0.20.1-ga+0-Tribblix)
-# OpenJDK 64-Bit Server VM (build 17.0.20.1-ga+0-Tribblix, mixed mode, sharing)
+# openjdk version "17.0.21-ga" 2026-10-20
+# OpenJDK Runtime Environment (build 17.0.21-ga+0-Tribblix)
+# OpenJDK 64-Bit Server VM (build 17.0.21-ga+0-Tribblix, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
@@ -74,9 +74,6 @@ ln -s ../versions/openjdk17 .
 
 #
 # need to create a certificate bundle
-#
-# the jdk17 build appears to create a working one, but it uses
-# a horribly outdated set of certificates, so replace it
 #
 # this actually needs to be a JKS keystore, not a PKCS12 keystore
 # https://bugs.launchpad.net/ubuntu/+source/ca-certificates-java/+bug/1739631
