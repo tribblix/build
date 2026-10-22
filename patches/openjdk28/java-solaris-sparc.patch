@@ -1662,7 +1662,7 @@
  #if defined(_ALLBSD_SOURCE)
  #include <net/ethernet.h>
  #include <net/if_dl.h>
-@@ -1674,265 +1669,6 @@
+@@ -1676,265 +1671,6 @@
  
  #endif /* _AIX */
  
