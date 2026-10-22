@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBasync-lru-python-313 async_lru-2.3.0
+${THOME}/build/pkg_pep518 -N TRIBasync-lru-python-313 async_lru-2.4.0
