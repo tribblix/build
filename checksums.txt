@@ -7516,3 +7516,4 @@ python_discovery-1.6.4.tar.gz bc70d31f0ec5de11eda13d4d64c16e24b3506a65984684f2b6
 swift-2.38.3.tar.gz 561b2f8acc5ce834a0a2bac200e8ccd8784cb5c4a9e3731881d2e66dec4b6006
 wcwidth-0.9.3.tar.gz dfe7cfbd4cb59db9fe0931bd6091ab4a95b3acc5d56bfb50fa9fef0ccba5dc5c
 shtab-1.13.0.tar.gz 0a5be9d7ab2b4549e9a38252abcd5ecf5ec6813ecd80c6b06fa851bff55a5085
+publicsuffixlist-1.1.2.20261021.tar.gz e3b0cf0591881ef1a83cd575065c317e1ab56fd1fe30bc09a02763dfba52fa83
