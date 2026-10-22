@@ -14,5 +14,6 @@
 # assuming TRIBBLIX_PKG_CONFIG_PATH is used
 # otherwise it struggles to find multiple libraries
 #
-(cd /tmp ; env TRIBBLIX_CFLAGS=-fPIC $THOME/build/dobuild -64only userspace-rcu-0.15.6 -P /tmp/urcu -C "--disable-dependency-tracking --enable-static --disable-shared" ; cd userspace-rcu-0.15.6-64bit ; gmake install)
+(cd /tmp ; env TRIBBLIX_CFLAGS=-fPIC $THOME/build/dobuild -64only userspace-rcu-0.15.7 -P /tmp/urcu -C "--disable-dependency-tracking --enable-static --disable-shared" ; cd userspace-rcu-0.15.7-64bit ; gmake install)
+#
 autoreconf -vi
