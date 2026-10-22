@@ -4,4 +4,4 @@
 #
 # without -N, as otherwise the versioning is handled incorrectly
 #
-${THOME}/build/pkg_pep518 TRIBtoolz-python-313 toolz-1.1.0
+${THOME}/build/pkg_pep518 TRIBtoolz-python-313 toolz-1.2.0
