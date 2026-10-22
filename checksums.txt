@@ -7511,3 +7511,5 @@ palemoon-35.0.2.solaris2.11-x86_64-illumos.tar.xz 59059f0daef74e14279d55aff24ac1
 unbound-1.26.2.tar.gz d8ee7aa6bbb3ff1be7d9e57637d0d0ec2f18273a8efff1a0afe2c665858b96f7
 node-v22.23.4.tar.xz 7b9adc82d612d0a2a863d96c46de2292552e250cee51956ebbe0146c42aacae9
 node-v24.22.1.tar.xz 4f5379796280cdaeb0c2f358fd04b6a16cc4fb7dfa83b5a8c91a9d963b435231
+virtualenv-21.14.12.tar.gz bbcfb78e36c22ad70c6917c4aecb5e63477d3c138e9f88c946f320e31859c76a
+python_discovery-1.6.4.tar.gz bc70d31f0ec5de11eda13d4d64c16e24b3506a65984684f2b6c98cb83b2ea9df
