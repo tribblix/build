@@ -5,4 +5,4 @@
 # this depends on GEOS, but only via the C api, which is stable, so
 # shapely doesn't need to rebuilt if GEOS is updated
 #
-${THOME}/build/pkg_pep518 -N TRIBshapely-python-313 shapely-2.1.2
+env CFLAGS=-m64 ${THOME}/build/pkg_pep518 -N TRIBshapely-python-313 shapely-2.2.0
