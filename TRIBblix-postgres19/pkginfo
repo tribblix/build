@@ -1,4 +1,4 @@
 PKG="TRIBblix-postgres19"
 NAME="PostgreSQL database"
-VERSION="19.b4.0"
+VERSION="19.rc1.0"
 ZAP_URL="https://www.postgresql.org/"
