@@ -5,8 +5,8 @@
 # package awscli v2 and its dependencies (some of which are downrev)
 # in an isolated venv
 #
-# currently experimental, but will become the preferred mechanism to deliver
-# the aws cli as the v1 modules are deprecated upstream
+# will become the preferred mechanism to deliver the aws cli as v1
+# is deprecated upstream
 #
 # fails to build on sparc as the s2n build in awscrt passes flags to
 # /usr/ccs/bin/as that it doesn't understand
@@ -35,6 +35,11 @@ cd $TDIR || exit 0
 ${THOME}/build/venv-install -v 3.13 -p "colorama<0.4.7 distro<1.9.0 docutils<0.20.0 jmespath<1.1.0 prompt_toolkit<3.0.52 python-dateutil<=2.9.0 ruamel_yaml<=0.19.1 ruamel_yaml_clib<=0.2.15 urllib3<=2.6.3 wcwidth<0.3.0" -n "${VENV}"
 
 #
+# ensure pip itself is fully up to date
+#
+${PVENV}/bin/pip install -U pip
+
+#
 # we're going to build awscrt using setup.py, so we need setuptools
 #
 ${PVENV}/bin/pip install setuptools
@@ -49,8 +54,8 @@ ${PVENV}/bin/pip install setuptools
 # unfortunately pep518 doesn't seem to pass LDFLAGS through
 # use the system libcrypto, the inbuilt one won't compile
 #
-$THOME/build/unpack awscrt-0.37.0
-cd awscrt-0.37.0
+$THOME/build/unpack awscrt-0.38.0
+cd awscrt-0.38.0
 env AWS_CRT_BUILD_USE_SYSTEM_LIBCRYPTO=1 ASFLAGS=-64 CFLAGS="-m64 -D__EXTENSIONS__" CXXFLAGS=-m64 LDFLAGS="-m64 -lm -z rescan" ${PVENV}/bin/python setup.py build
 env AWS_CRT_BUILD_USE_SYSTEM_LIBCRYPTO=1 ASFLAGS=-64 CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS="-m64 -lm -z rescan" ${PVENV}/bin/python setup.py install
 
@@ -73,8 +78,8 @@ cd ..
 # awscli uses flit_core
 #
 ${PVENV}/bin/pip install "flit_core<3.12.1"
-$THOME/build/unpack aws-cli-2.37.4
-cd aws-cli-2.37.4
+$THOME/build/unpack aws-cli-2.38.5
+cd aws-cli-2.38.5
 #
 # we definitely need no-build-isolation, because we need to use the
 # patched awscrt we've just installed
