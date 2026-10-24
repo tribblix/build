@@ -4,4 +4,4 @@
 #
 # dependencies include the extras [pwhash,audiotags,thumbnails,zeromq]
 #
-${THOME}/build/pkg_pep518 -N TRIBcopyparty-python-313 copyparty-1.20.23
+${THOME}/build/pkg_pep518 -N TRIBcopyparty-python-313 copyparty-1.20.26
