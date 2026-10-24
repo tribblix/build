@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBtomli-python-313 tomli-2.4.1
+${THOME}/build/pkg_pep518 -N TRIBtomli-python-313 tomli-2.5.0
