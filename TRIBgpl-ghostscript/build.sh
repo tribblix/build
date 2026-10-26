@@ -11,19 +11,19 @@
 #
 # separate build on sparc
 #
-${THOME}/build/dobuild ghostscript-10.05.1 -64only -C "--disable-compile-inits --with-system-libtiff --disable-gtk --without-libpaper --disable-dbus"
-cd ghostscript-10.05.1-64bit
+env TRIBBLIX_CFLAGS=-Wno-error=incompatible-pointer-types ${THOME}/build/dobuild ghostscript-10.08.0 -64only -C "--disable-compile-inits --with-system-libtiff --disable-gtk --without-libpaper --disable-dbus"
+cd ghostscript-10.08.0-64bit
 gmake -j4 so
 rm -fr /tmp/ags
 gmake DESTDIR=/tmp/ags install
 gmake DESTDIR=/tmp/ags soinstall
 ginstall -v -m644 base/*.h /tmp/ags/usr/include/ghostscript/
-tar cf - examples | ( cd /tmp/ags/usr/share/ghostscript/10.05.1 ; tar xf -)
+tar cf - examples | ( cd /tmp/ags/usr/share/ghostscript/10.08.0 ; tar xf -)
 mkdir -p /tmp/ags/usr/share/ghostscript
 cd /tmp/ags/usr/share/ghostscript
 ${THOME}/build/unpack ghostscript-fonts-std-8.11
 ${THOME}/build/unpack gnu-gs-fonts-other-6.0
-rm -f ../doc/ghostscript/10.05.1/*.*
+rm -f ../doc/ghostscript/10.08.0/*.*
 cd
 ${THOME}/build/create_pkg TRIBgpl-ghostscript /tmp/ags
 rm -fr /tmp/ags

@@ -4,4 +4,4 @@
 #
 # remove the local copies so that the system libraries are used
 #
-rm -fr tiff freetype zlib jpeg libpng openjpeg
+rm -fr tiff freetype zlib jpeg libpng openjpeg brotli
