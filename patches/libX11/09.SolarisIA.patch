@@ -25,7 +25,7 @@ diff --git a/src/Makefile.am b/src/Makefile.am
 index ddad93c..677b0ee 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
-@@ -343,6 +343,9 @@ libX11_xcb_la_SOURCES = x11_xcb.c Xxcbint.h
+@@ -337,6 +337,9 @@ libX11_xcb_la_SOURCES = x11_xcb.c Xxcbint.h
  libX11_xcb_la_SOURCES = x11_xcb.c Xxcbint.h
  libX11_xcb_la_LDFLAGS = -version-number 1:0:0 -no-undefined
  

@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2016, Oracle and/or its affiliates. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -21,19 +21,8 @@
 # DEALINGS IN THE SOFTWARE.
 #
 
-diff --git a/nls/zh_TW/XI18N_OBJS b/nls/zh_TW/XI18N_OBJS
-index 0f471dd..b88ad49 100644
---- a/nls/zh_TW/XI18N_OBJS
-+++ b/nls/zh_TW/XI18N_OBJS
-@@ -3,5 +3,5 @@
- #	XI18N objects table for zh_TW locale
- #
- XLC	common/xlibi18n	_XlcGenericLoader	# XLC_open
--XIM	common/ximp40		_Ximp_OpenIM		# XIM_open
-+XIM	common/ximcp	_XimOpenIM _XimRegisterIMInstantiateCallback  _XimUnRegisterIMInstantiateCallback # XIM_open	XIM_register XIM_unregister
- XOM	common/xomGeneric	_XomGenericOpenOM # XOM_open
 diff --git a/nls/zh_TW/XLC_LOCALE.pre b/nls/zh_TW/XLC_LOCALE.pre
-index d75ece8..be84511 100644
+index ffbb462..b34d5bf 100644
 --- a/nls/zh_TW/XLC_LOCALE.pre
 +++ b/nls/zh_TW/XLC_LOCALE.pre
 @@ -20,14 +20,14 @@ fs0	{
@@ -63,7 +52,7 @@ index d75ece8..be84511 100644
  	font	{
  		primary	CNS11643.1986-2:GL
 @@ -45,7 +45,7 @@ fs2	{
- XCOMM 	fs3 class 
+ XCOMM 	fs3 class
  fs3	{
  	charset	{
 -		name	CNS11643.1986-14:GL
@@ -72,7 +61,7 @@ index d75ece8..be84511 100644
  	font	{
  		primary	CNS11643.1986-14:GL
 @@ -54,7 +54,7 @@ fs3	{
- XCOMM 	fs4 class 
+ XCOMM 	fs4 class
  fs4	{
  	charset	{
 -		name	CNS11643.1986-15:GL
@@ -81,7 +70,7 @@ index d75ece8..be84511 100644
  	font	{
  		primary	CNS11643.1986-15:GL
 @@ -63,7 +63,7 @@ fs4	{
- XCOMM 	fs5 class 
+ XCOMM 	fs5 class
  fs5	{
  	charset	{
 -		name	CNS11643.1986-16:GL

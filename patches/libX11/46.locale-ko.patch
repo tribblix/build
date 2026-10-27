@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2016, Oracle and/or its affiliates. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -21,19 +21,8 @@
 # DEALINGS IN THE SOFTWARE.
 #
 
-diff --git a/nls/ko/XI18N_OBJS b/nls/ko/XI18N_OBJS
-index 5ee5237..9a5ad42 100644
---- a/nls/ko/XI18N_OBJS
-+++ b/nls/ko/XI18N_OBJS
-@@ -3,5 +3,5 @@
- #	XI18N objects table for ko locale
- #
- XLC	common/xlibi18n	_XlcGenericLoader	# XLC_open
--XIM	common/ximp40	_Ximp_OpenIM		# XIM_open
-+XIM	common/ximcp   _XimOpenIM _XimRegisterIMInstantiateCallback  _XimUnRegisterIMInstantiateCallback # XIM_open    XIM_register XIM_unregister
- XOM	common/xomGeneric	_XomGenericOpenOM # XOM_open
 diff --git a/nls/ko/XLC_LOCALE.pre b/nls/ko/XLC_LOCALE.pre
-index bda77b7..5fca6cb 100644
+index dc79e66..97b1f39 100644
 --- a/nls/ko/XLC_LOCALE.pre
 +++ b/nls/ko/XLC_LOCALE.pre
 @@ -11,7 +11,7 @@ fs0	{

@@ -38,7 +38,7 @@ diff --git a/include/X11/Xlibint.h b/include/X11/Xlibint.h
 index 4431559..bc32bdf 100644
 --- a/include/X11/Xlibint.h
 +++ b/include/X11/Xlibint.h
-@@ -217,6 +217,10 @@ struct _XDisplay
+@@ -220,6 +220,10 @@ struct _XDisplay
  #endif
  };
  

@@ -3,6 +3,7 @@
 -p1 libX11/05.4614834.patch
 -p1 libX11/06.5039226.patch
 -p1 libX11/07.solaris-abi.patch
+-p1 libX11/06-solaris-kbd.patch
 -p1 libX11/09.SolarisIA.patch
 -p1 libX11/10.6789219.patch
 -p1 libX11/11.im-suneu-greek.patch

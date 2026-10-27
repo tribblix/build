@@ -24,7 +24,7 @@ diff --git a/src/Makefile.am b/src/Makefile.am
 index d46b493..ddad93c 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
-@@ -359,7 +359,9 @@ if XKB
+@@ -353,7 +353,9 @@ if XKB
  USE_XKB_LIBS = $(XKB_LIBS)
  endif
  
