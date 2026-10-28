@@ -14,7 +14,7 @@ diff --git a/src/hotspot/share/opto/library_call.cpp b/src/hotspot/share/opto/li
 index a9acf673318..43028fdb56f 100644
 --- a/src/hotspot/share/opto/library_call.cpp
 +++ b/src/hotspot/share/opto/library_call.cpp
-@@ -5988,22 +5988,10 @@ bool LibraryCallKit::inline_aescrypt_Block(vmIntrinsics::ID id) {
+@@ -6014,22 +6014,10 @@ bool LibraryCallKit::inline_aescrypt_Block(vmIntrinsics::ID id) {
    Node* k_start = get_key_start_from_aescrypt_object(aescrypt_object);
    if (k_start == nullptr) return false;
  
@@ -41,7 +41,7 @@ index a9acf673318..43028fdb56f 100644
  
    return true;
  }
-@@ -6086,25 +6074,11 @@ bool LibraryCallKit::inline_cipherBlockChaining_AESCrypt(vmIntrinsics::ID id) {
+@@ -6112,25 +6100,11 @@ bool LibraryCallKit::inline_cipherBlockChaining_AESCrypt(vmIntrinsics::ID id) {
    if (objRvec == nullptr) return false;
    Node* r_start = array_element_address(objRvec, intcon(0), T_BYTE);
  
@@ -72,7 +72,7 @@ index a9acf673318..43028fdb56f 100644
  
    // return cipher length (int)
    Node* retvalue = _gvn.transform(new ProjNode(cbcCrypt, TypeFunc::Parms));
-@@ -6183,16 +6157,11 @@ bool LibraryCallKit::inline_electronicCodeBook_AESCrypt(vmIntrinsics::ID id) {
+@@ -6209,16 +6183,11 @@ bool LibraryCallKit::inline_electronicCodeBook_AESCrypt(vmIntrinsics::ID id) {
    Node* k_start = get_key_start_from_aescrypt_object(aescrypt_object);
    if (k_start == nullptr) return false;
  
@@ -93,7 +93,7 @@ index a9acf673318..43028fdb56f 100644
  
    // return cipher length (int)
    Node* retvalue = _gvn.transform(new ProjNode(ecbCrypt, TypeFunc::Parms));
-@@ -6267,16 +6236,11 @@ bool LibraryCallKit::inline_counterMode_AESCrypt(vmIntrinsics::ID id) {
+@@ -6293,16 +6262,11 @@ bool LibraryCallKit::inline_counterMode_AESCrypt(vmIntrinsics::ID id) {
    Node* saved_encCounter_start = array_element_address(saved_encCounter, intcon(0), T_BYTE);
    Node* used = field_address_from_object(counterMode_object, "used", "I", /*is_exact*/ false);
  
@@ -114,7 +114,7 @@ index a9acf673318..43028fdb56f 100644
  
    // return cipher length (int)
    Node* retvalue = _gvn.transform(new ProjNode(ctrCrypt, TypeFunc::Parms));
-@@ -6308,17 +6272,6 @@ Node * LibraryCallKit::get_key_start_from_aescrypt_object(Node *aescrypt_object)
+@@ -6334,17 +6298,6 @@ Node * LibraryCallKit::get_key_start_from_aescrypt_object(Node *aescrypt_object)
    return k_start;
  }
  
@@ -142,8 +142,8 @@ index 476e1098fbf..cfff1d1052b 100644
    Node* get_key_start_from_aescrypt_object(Node* aescrypt_object);
 -  Node* get_original_key_start_from_aescrypt_object(Node* aescrypt_object);
    bool inline_ghash_processBlocks();
-   bool inline_base64_encodeBlock();
-   bool inline_base64_decodeBlock();
+   bool inline_kyberNtt();
+   bool inline_kyberInverseNtt();
 diff --git a/src/hotspot/share/opto/runtime.cpp b/src/hotspot/share/opto/runtime.cpp
 index 0bf1e175271..b5943bde690 100644
 --- a/src/hotspot/share/opto/runtime.cpp

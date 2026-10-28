@@ -552,7 +552,7 @@ diff --git a/src/hotspot/share/runtime/thread.cpp b/src/hotspot/share/runtime/th
 index 6a16838801b..1c3f8422eb9 100644
 --- a/src/hotspot/share/runtime/thread.cpp
 +++ b/src/hotspot/share/runtime/thread.cpp
-@@ -101,6 +101,7 @@
+@@ -103,6 +103,7 @@
  #include "runtime/safepointVerifiers.hpp"
  #include "runtime/serviceThread.hpp"
  #include "runtime/sharedRuntime.hpp"

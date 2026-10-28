@@ -190,7 +190,7 @@ diff -ur jdk-jdk-15-26/src/hotspot/share/interpreter/abstractInterpreter.hpp jdk
 diff -ur jdk-jdk-15-26/src/hotspot/share/jvmci/vmStructs_jvmci.cpp jdk-jdk-15-25/src/hotspot/share/jvmci/vmStructs_jvmci.cpp
 --- jdk-jdk-15-26/src/hotspot/share/jvmci/vmStructs_jvmci.cpp	   :: 
 +++ jdk-jdk-15-25/src/hotspot/share/jvmci/vmStructs_jvmci.cpp	   :: 
-@@ -772,6 +772,61 @@
+@@ -791,6 +791,61 @@
  
  #endif
  
