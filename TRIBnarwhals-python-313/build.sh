@@ -4,4 +4,7 @@
 #
 # there are a lot of possible dependencies, but all are in extras
 #
-${THOME}/build/pkg_pep518 -N TRIBnarwhals-python-313 narwhals-2.27.1
+# use a wheel build to avoid the uv-build dependency which isn't
+# available on sparc
+#
+${THOME}/build/pkg_wheel TRIBnarwhals-python-313 narwhals-2.28.0-py3-none-any.whl
