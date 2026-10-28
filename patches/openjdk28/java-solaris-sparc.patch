@@ -1059,7 +1059,7 @@
  }
 --- old/src/java.base/share/native/libnet/net_util.h	2020-05-20 18:00:58.723201311 -0700
 +++ new/src/java.base/share/native/libnet/net_util.h	2020-05-20 18:00:58.339193938 -0700
-@@ -142,8 +142,6 @@
+@@ -134,8 +134,6 @@
  JNIEXPORT jobject JNICALL
  NET_SockaddrToInetAddress(JNIEnv *env, SOCKETADDRESS *sa, int *port);
  
@@ -1930,8 +1930,8 @@
  
 --- old/src/java.base/unix/native/libnet/net_util_md.c	2020-05-20 18:01:28.435771815 -0700
 +++ new/src/java.base/unix/native/libnet/net_util_md.c	2020-05-20 18:01:28.059764595 -0700
-@@ -36,14 +36,6 @@
- #include <sys/utsname.h>
+@@ -35,14 +35,6 @@
+ #include <net/route.h>
  #endif
  
 -#if defined(__solaris__)
@@ -1945,7 +1945,7 @@
  #if defined(MACOSX)
  #include <sys/sysctl.h>
  #endif
-@@ -67,20 +59,6 @@
+@@ -66,20 +58,6 @@
      return 0;
  }
  
@@ -1966,7 +1966,7 @@
  void
  NET_ThrowByNameWithLastError(JNIEnv *env, const char *name,
                     const char *defaultDetail) {
-@@ -87,94 +65,6 @@
+@@ -86,94 +64,6 @@
      JNU_ThrowByNameWithMessageAndLastError(env, name, defaultDetail);
  }
  
@@ -2061,7 +2061,7 @@
  void
  NET_ThrowNew(JNIEnv *env, int errorNumber, char *msg) {
      char fullMsg[512];
-@@ -240,50 +130,6 @@
+@@ -239,50 +129,6 @@
      }
  #endif
  
@@ -2112,7 +2112,7 @@
      /*
       *  OK we may have the stack available in the kernel,
       *  we should also check if the APIs are available.
-@@ -388,26 +234,6 @@
+@@ -387,26 +233,6 @@
      }
  }
  
@@ -2136,10 +2136,10 @@
 -#endif
 -}
 -
- JNIEXPORT jint JNICALL
- NET_EnableFastTcpLoopback(int fd) {
-     return 0;
-@@ -657,65 +483,6 @@
+ /**
+  * See net_util.h for documentation
+  */
+@@ -651,65 +477,6 @@
          *iptos &= (IPTOS_TOS_MASK | IPTOS_PREC_MASK);
      }
  
@@ -2205,10 +2205,10 @@
  #ifdef _AIX
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
-@@ -830,20 +597,10 @@
+@@ -821,77 +588,14 @@
   *
-  * Linux allows a socket to bind to 127.0.0.255 which must be
-  * caught.
+  * Wrapper for bind system call - performs any necessary pre/post
+  * processing to deal with OS specific issues :-
 - *
 - * On Solaris with IPv6 enabled we must use an exclusive
 - * bind to guarantee a unique port number across the IPv4 and
@@ -2224,11 +2224,6 @@
 -    int arg, alen;
 -#endif
      int rv;
- 
- #ifdef __linux__
-@@ -860,61 +617,8 @@
-     }
- #endif
  
 -#if defined(__solaris__)
 -    /*
@@ -2299,7 +2294,7 @@
  #elif defined(AIX) || defined(MACOSX)
  #define SO_REUSEPORT 0x0200
  #else
-@@ -96,8 +94,4 @@
+@@ -85,8 +83,4 @@
          }                                       \
      }
  
@@ -2366,7 +2361,7 @@
  #include <sys/types.h>
  #include <sys/socket.h>
  #include <string.h>
-@@ -205,7 +204,7 @@
+@@ -200,7 +199,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canIPv6SocketJoinIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -2375,7 +2370,7 @@
      /* IPv6 sockets can join IPv4 multicast groups */
      return JNI_TRUE;
  #else
-@@ -217,7 +216,7 @@
+@@ -212,7 +211,7 @@
  JNIEXPORT jboolean JNICALL
  Java_sun_nio_ch_Net_canJoin6WithIPv4Group0(JNIEnv* env, jclass cl)
  {
@@ -2428,7 +2423,7 @@
      my_fdopendir_func = (fdopendir_func*) fdopendir;
 --- old/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:38.255960369 -0700
 +++ new/src/java.base/windows/native/libnet/net_util_md.c	2020-05-20 18:01:37.863952843 -0700
-@@ -117,8 +117,6 @@
+@@ -113,8 +113,6 @@
  
      return WSAStartup(MAKEWORD(2,2), &wsadata);
  }

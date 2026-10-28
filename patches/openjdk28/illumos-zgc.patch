@@ -1,6 +1,6 @@
 --- a/src/hotspot/os/solaris/gc/z/zLargePages_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/gc/z/zLargePages_solaris.cpp	2024-11-20 14:18:07.654674076 +0000
-@@ -0,0 +1,33 @@
+@@ -0,0 +1,38 @@
 +/*
 + * Copyright (c) 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,6 +26,11 @@
 +
 +#include "gc/z/zLargePages.hpp"
 +#include "runtime/globals.hpp"
++#include "utilities/debug.hpp"
++ 
++bool ZLargePages::pd_collapse(void* addr, size_t bytes) {
++  ShouldNotCallThis();
++}
 +
 +void ZLargePages::pd_initialize() {
 +  if (UseLargePages) {
@@ -36,7 +41,7 @@
 +}
 --- a/src/hotspot/os/solaris/gc/z/zNUMA_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/gc/z/zNUMA_solaris.cpp	2024-11-20 14:18:07.654815731 +0000
-@@ -0,0 +1,42 @@
+@@ -0,0 +1,44 @@
 +/*
 + * Copyright (c) 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -65,6 +70,8 @@
 +
 +void ZNUMA::pd_initialize() {
 +  _enabled = false;
++  _node_count = 1;
++  _bound_node_count = 1;
 +}
 +
 +uint32_t ZNUMA::count() {
@@ -81,7 +88,7 @@
 +}
 --- a/src/hotspot/os/solaris/gc/z/zPhysicalMemoryBacking_solaris.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/gc/z/zPhysicalMemoryBacking_solaris.cpp	2024-11-20 14:19:19.132400496 +0000
-@@ -0,0 +1,146 @@
+@@ -0,0 +1,150 @@
 +/*
 + * Copyright (c) 2019, 2023, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -140,7 +147,7 @@
 +  return _initialized;
 +}
 +
-+void ZPhysicalMemoryBacking::warn_commit_limits(size_t max_capacity) const {
++void ZPhysicalMemoryBacking::warn_commit_limits(size_t expected_capacity, size_t max_capacity) const {
 +  // Does nothing
 +}
 +
@@ -227,6 +234,10 @@
 +    ZErrno err;
 +    fatal("Failed to map memory (%s)", err.to_string());
 +  }
++}
++
++void ZPhysicalMemoryBacking::collapse(zaddress_unsafe addr, size_t size) const {
++  ShouldNotReachHere();
 +}
 --- a/src/hotspot/os/solaris/gc/z/zPhysicalMemoryBacking_solaris.hpp	1970-01-01 01:00:00.000000000 +0100
 +++ b/src/hotspot/os/solaris/gc/z/zPhysicalMemoryBacking_solaris.hpp	2024-11-20 14:18:07.655201364 +0000
