@@ -7672,3 +7672,4 @@ platformdirs-4.13.7.tar.gz f7f351c027d6632c30471124e1fdb6ac0fef9ccc5cbac1b34cb33
 pipx-1.18.7.tar.gz cdeac1c999977b1847bbbff6b39c14a7d27cf2284dddc911d4410bcaec4ccec4
 narwhals-2.28.0-py3-none-any.whl 1f69d6385ec30e2fa6e1fdeb37c562ecabd0f713f6f3e3b58a668c5c9df9567f
 merge3-1.0.0.tar.gz 4a8251068cdb2c1aba76d31ae6aff5e6a47c79a1ee1071d5a58f37bf09f2a790
+patiencediff-1.0.2.tar.gz bfeca9984ba88fd36745b64e1271a52b407a2919ecdd6aee850d0374a16e3457

@@ -4,4 +4,4 @@
 #
 # latest build needs rust, hold sparc downrev
 #
-${THOME}/build/pkg_pep518 -N TRIBpatiencediff-python-313 patiencediff-0.2.19
+${THOME}/build/pkg_pep518 -N TRIBpatiencediff-python-313 patiencediff-1.0.2
