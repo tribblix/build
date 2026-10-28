@@ -3,6 +3,8 @@ considerably modified. Cut from the jdk15 patches as of jdk15+32.
 
 See also README-zero.txt for patches to build a project zero variant.
 
+Cleanup: SPARC fixes for polling_page_offset() to polling_word_offset()
+
 17.0.21
 
 No changes.

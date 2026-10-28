@@ -13396,7 +13396,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/frame_sparc.inline.hpp b/src/hotspot
 diff -ur --new-file a/src/hotspot/cpu/sparc/gc/g1/g1BarrierSetAssembler_sparc.cpp b/src/hotspot/cpu/sparc/gc/g1/g1BarrierSetAssembler_sparc.cpp
 --- a/src/hotspot/cpu/sparc/gc/g1/g1BarrierSetAssembler_sparc.cpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/cpu/sparc/gc/g1/g1BarrierSetAssembler_sparc.cpp	2023-04-16 11:42:11.062189826 +0000
-@@ -0,0 +1,709 @@
+@@ -0,0 +1,720 @@
 +/*
 + * Copyright (c) 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -13774,6 +13774,17 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/gc/g1/g1BarrierSetAssembler_sparc.cp
 +  __ srlx(tmp, HeapRegion::LogOfHRGrainBytes, tmp);
 +
 +  __ cmp_and_brx_short(tmp, G0, Assembler::equal, Assembler::pt, filtered);
++
++  // Crosses regions, storing NULL? The check above (`new_val == G0`) only
++  // catches a compile-time-constant null (the JIT passing the G0 register
++  // literally); it says nothing about new_val's *runtime* contents when it
++  // is a real allocated register that happens to hold null at runtime (e.g.
++  // storing the result of a call that can return null). x86's
++  // g1_write_barrier_post has an explicit runtime check for exactly this
++  // (`cmpptr(new_val, NULL_WORD); jcc(equal, done)`); this port was missing
++  // the equivalent, so a region-crossing store of a runtime-null reference
++  // would fall through and unnecessarily dirty+enqueue the card.
++  __ cmp_and_brx_short(new_val, G0, Assembler::equal, Assembler::pt, filtered);
 +
 +  // If the "store_addr" register is an "in" or "local" register, move it to
 +  // a scratch reg so we can pass it as an argument.
@@ -15333,7 +15344,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/interp_masm_sparc.cpp b/src/hotspot/
 +    Label no_safepoint;
 +
 +    if (tbl.value() != sfpt_tbl.value()) {
-+      ldx(Address(G2_thread, JavaThread::polling_page_offset()), G3_scratch, 0);
++      ldx(Address(G2_thread, JavaThread::polling_word_offset()), G3_scratch, 0);
 +      // Armed page has poll_bit set, if poll bit is cleared just continue.
 +      and3(G3_scratch, SafepointMechanism::poll_bit(), G3_scratch);
 +
@@ -19168,7 +19179,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/macroAssembler_sparc.cpp b/src/hotsp
 +}
 +
 +void MacroAssembler::safepoint_poll(Label& slow_path, bool a, Register thread_reg, Register temp_reg) {
-+  ldx(Address(thread_reg, JavaThread::polling_page_offset()), temp_reg, 0);
++  ldx(Address(thread_reg, JavaThread::polling_word_offset()), temp_reg, 0);
 +  // Armed page has poll bit set.
 +  and3(temp_reg, SafepointMechanism::poll_bit(), temp_reg);
 +  br_notnull(temp_reg, a, Assembler::pn, slow_path);
@@ -52479,7 +52490,7 @@ diff -ur --new-file a/src/hotspot/cpu/sparc/templateTable_sparc.cpp b/src/hotspo
 +
 +  if (_desc->bytecode() != Bytecodes::_return_register_finalizer) {
 +    Label no_safepoint;
-+    __ ldx(Address(G2_thread, JavaThread::polling_page_offset()), G3_scratch, 0);
++    __ ldx(Address(G2_thread, JavaThread::polling_word_offset()), G3_scratch, 0);
 +    __ btst(SafepointMechanism::poll_bit(), G3_scratch);
 +    __ br(Assembler::zero, false, Assembler::pt, no_safepoint);
 +    __ delayed()->nop();
