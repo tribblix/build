@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# just can't handle LD_OPTIONS
+# disable -fstack-protector otherwise miniruby fails to link with
+# multiply defined symbols
+#
+# NOTE: if you bump the minor version, update pkg_gem to match
+#
+# NOTE: any update may require the gems to be rebuilt, check if nanoc
+# still works to see if it's needed
+#
+${THOME}/build/dobuild +64only ruby-4.0.9 -P /usr/versions/ruby-4 -C "ac_cv_func_dl_iterate_phdr=no stack_protector=no" -L
+${THOME}/build/genpkg TRIBv-ruby-4 ruby-4.0.9

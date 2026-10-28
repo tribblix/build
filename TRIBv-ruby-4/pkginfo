@@ -1,0 +1,4 @@
+PKG="TRIBv-ruby-4"
+NAME="Ruby 4"
+VERSION="4.0.9.0"
+ZAP_URL="https://www.ruby-lang.org/"
