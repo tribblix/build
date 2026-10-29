@@ -1,0 +1,1000 @@
+diff --git a/src/hotspot/cpu/sparc/c1_LIRGenerator_sparc.cpp b/src/hotspot/cpu/sparc/c1_LIRGenerator_sparc.cpp
+index 616ebca56..18c1c54b5 100644
+--- a/src/hotspot/cpu/sparc/c1_LIRGenerator_sparc.cpp
++++ b/src/hotspot/cpu/sparc/c1_LIRGenerator_sparc.cpp
+@@ -1268,3 +1268,7 @@ void LIRGenerator::volatile_field_load(LIR_Address* address, LIR_Opr result,
+                                        CodeEmitInfo* info) {
+   __ load(address, result, info);
+ }
++
++void LIRGenerator::do_continuation_doYield(Intrinsic* x) {
++  fatal("Continuation.doYield intrinsic is not implemented on this platform");
++}
+diff --git a/src/hotspot/cpu/sparc/continuationEntry_sparc.inline.hpp b/src/hotspot/cpu/sparc/continuationEntry_sparc.inline.hpp
+new file mode 100644
+index 000000000..3aa304ac6
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/continuationEntry_sparc.inline.hpp
+@@ -0,0 +1,46 @@
++/*
++ * Copyright (c) 2022, Oracle and/or its affiliates. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ *
++ */
++
++#ifndef CPU_SPARC_CONTINUATIONENTRY_SPARC_INLINE_HPP
++#define CPU_SPARC_CONTINUATIONENTRY_SPARC_INLINE_HPP
++
++#include "runtime/continuationEntry.hpp"
++
++// TODO: Implement
++
++inline frame ContinuationEntry::to_frame() const {
++  Unimplemented();
++  return frame();
++}
++
++inline intptr_t* ContinuationEntry::entry_fp() const {
++  Unimplemented();
++  return nullptr;
++}
++
++inline void ContinuationEntry::update_register_map(RegisterMap* map) const {
++  Unimplemented();
++}
++
++#endif // CPU_SPARC_CONTINUATIONENTRY_SPARC_INLINE_HPP
+diff --git a/src/hotspot/cpu/sparc/continuationFreezeThaw_sparc.inline.hpp b/src/hotspot/cpu/sparc/continuationFreezeThaw_sparc.inline.hpp
+new file mode 100644
+index 000000000..57f5a47d3
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/continuationFreezeThaw_sparc.inline.hpp
+@@ -0,0 +1,98 @@
++/*
++ * Copyright (c) 2019, 2022, Oracle and/or its affiliates. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ *
++ */
++
++#ifndef CPU_SPARC_CONTINUATION_SPARC_INLINE_HPP
++#define CPU_SPARC_CONTINUATION_SPARC_INLINE_HPP
++
++#include "oops/stackChunkOop.inline.hpp"
++#include "runtime/frame.hpp"
++#include "runtime/frame.inline.hpp"
++
++inline void FreezeBase::set_top_frame_metadata_pd(const frame& hf) {
++  Unimplemented();
++}
++
++template<typename FKind>
++inline frame FreezeBase::sender(const frame& f) {
++  Unimplemented();
++  return frame();
++}
++
++template<typename FKind> frame FreezeBase::new_heap_frame(frame& f, frame& caller) {
++  Unimplemented();
++  return frame();
++}
++
++void FreezeBase::adjust_interpreted_frame_unextended_sp(frame& f) {
++  Unimplemented();
++}
++
++inline void FreezeBase::relativize_interpreted_frame_metadata(const frame& f, const frame& hf) {
++  Unimplemented();
++}
++
++inline void FreezeBase::patch_pd(frame& hf, const frame& caller) {
++  Unimplemented();
++}
++
++inline void FreezeBase::patch_stack_pd(intptr_t* frame_sp, intptr_t* heap_sp) {
++  Unimplemented();
++}
++
++inline frame ThawBase::new_entry_frame() {
++  Unimplemented();
++  return frame();
++}
++
++template<typename FKind> frame ThawBase::new_stack_frame(const frame& hf, frame& caller, bool bottom) {
++  Unimplemented();
++  return frame();
++}
++
++inline void ThawBase::set_interpreter_frame_bottom(const frame& f, intptr_t* bottom) {
++  Unimplemented();
++}
++
++inline void ThawBase::derelativize_interpreted_frame_metadata(const frame& hf, const frame& f) {
++  Unimplemented();
++}
++
++inline intptr_t* ThawBase::align(const frame& hf, intptr_t* frame_sp, frame& caller, bool bottom) {
++  Unimplemented();
++  return NULL;
++}
++
++inline void ThawBase::patch_pd(frame& f, const frame& caller) {
++  Unimplemented();
++}
++
++void ThawBase::patch_chunk_pd(intptr_t* sp) {
++  Unimplemented();
++}
++
++inline void ThawBase::prefetch_chunk_pd(void* start, int size) {
++  Unimplemented();
++}
++
++#endif // CPU_SPARC_CONTINUATION_SPARC_INLINE_HPP
+diff --git a/src/hotspot/cpu/sparc/continuationHelper_sparc.inline.hpp b/src/hotspot/cpu/sparc/continuationHelper_sparc.inline.hpp
+new file mode 100644
+index 000000000..2777505cb
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/continuationHelper_sparc.inline.hpp
+@@ -0,0 +1,125 @@
++/*
++ * Copyright (c) 2022, Oracle and/or its affiliates. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ *
++ */
++
++#ifndef CPU_SPARC_CONTINUATIONHELPER_SPARC_INLINE_HPP
++#define CPU_SPARC_CONTINUATIONHELPER_SPARC_INLINE_HPP
++
++#include "runtime/continuationHelper.hpp"
++
++// TODO: Implement
++
++template<typename FKind>
++static inline intptr_t** link_address(const frame& f) {
++  Unimplemented();
++  return NULL;
++}
++
++inline int ContinuationHelper::frame_align_words(int size) {
++  Unimplemented();
++  return 0;
++}
++
++inline intptr_t* ContinuationHelper::frame_align_pointer(intptr_t* sp) {
++  Unimplemented();
++  return NULL;
++}
++
++template<typename FKind>
++inline void ContinuationHelper::update_register_map(const frame& f, RegisterMap* map) {
++  Unimplemented();
++}
++
++inline void ContinuationHelper::update_register_map_with_callee(const frame& f, RegisterMap* map) {
++  Unimplemented();
++}
++
++inline void ContinuationHelper::push_pd(const frame& f) {
++  Unimplemented();
++}
++
++inline void ContinuationHelper::set_anchor_to_entry_pd(JavaFrameAnchor* anchor, ContinuationEntry* cont) {
++  Unimplemented();
++}
++
++#ifdef ASSERT
++inline void ContinuationHelper::set_anchor_pd(JavaFrameAnchor* anchor, intptr_t* sp) {
++  Unimplemented();
++}
++
++inline bool ContinuationHelper::Frame::assert_frame_laid_out(frame f) {
++  Unimplemented();
++  return false;
++}
++#endif
++
++inline intptr_t** ContinuationHelper::Frame::callee_link_address(const frame& f) {
++  Unimplemented();
++  return NULL;
++}
++
++template<typename FKind>
++static inline intptr_t* real_fp(const frame& f) {
++  Unimplemented();
++  return NULL;
++}
++
++inline address* ContinuationHelper::InterpretedFrame::return_pc_address(const frame& f) {
++  Unimplemented();
++  return NULL;
++}
++
++inline void ContinuationHelper::InterpretedFrame::patch_sender_sp(frame& f, intptr_t* sp) {
++  Unimplemented();
++}
++
++inline address* ContinuationHelper::Frame::return_pc_address(const frame& f) {
++  Unimplemented();
++  return NULL;
++}
++
++inline address ContinuationHelper::Frame::real_pc(const frame& f) {
++  Unimplemented();
++  return NULL;
++}
++
++inline void ContinuationHelper::Frame::patch_pc(const frame& f, address pc) {
++  Unimplemented();
++}
++
++inline intptr_t* ContinuationHelper::InterpretedFrame::frame_top(const frame& f, InterpreterOopMap* mask) { // inclusive; this will be copied with the frame
++  Unimplemented();
++  return NULL;
++}
++
++inline intptr_t* ContinuationHelper::InterpretedFrame::frame_bottom(const frame& f) { // exclusive; this will not be copied with the frame
++  Unimplemented();
++  return NULL;
++}
++
++inline intptr_t* ContinuationHelper::InterpretedFrame::frame_top(const frame& f, int callee_argsize, bool callee_interpreted) {
++  Unimplemented();
++  return NULL;
++}
++
++#endif // CPU_SPARC_CONTINUATIONHELPER_SPARC_INLINE_HPP
+diff --git a/src/hotspot/cpu/sparc/frame_sparc.cpp b/src/hotspot/cpu/sparc/frame_sparc.cpp
+index 63902b694..ab519657a 100644
+--- a/src/hotspot/cpu/sparc/frame_sparc.cpp
++++ b/src/hotspot/cpu/sparc/frame_sparc.cpp
+@@ -327,6 +327,9 @@ void frame::init(intptr_t* sp, address pc, CodeBlob* cb) {
+   _pc = pc;
+   _cb = cb;
+   _sp_adjustment_by_callee = 0;
++  _oop_map = NULL;
++  _on_heap = false;
++  DEBUG_ONLY(_frame_index = -1;)
+   assert(pc == NULL && cb == NULL || pc != NULL, "can't have a cb and no pc!");
+   if (_cb == NULL && _pc != NULL ) {
+     _cb = CodeCache::find_blob(_pc);
+@@ -340,7 +343,12 @@ frame::frame(intptr_t* sp, unpatchable_t, address pc, CodeBlob* cb) {
+ 
+ frame::frame(intptr_t* sp, intptr_t* younger_sp, bool younger_frame_is_interpreted) :
+   _sp(sp),
++  _oop_map(NULL),
+   _deopt_state(unknown),
++  _on_heap(false),
++#ifdef ASSERT
++  _frame_index(-1),
++#endif
+   _younger_sp(younger_sp),
+   _sp_adjustment_by_callee(0) {
+   if (younger_sp == NULL) {
+@@ -455,64 +463,6 @@ frame frame::sender_for_interpreter_frame(RegisterMap *map) const {
+   return sender(map);
+ }
+ 
+-frame frame::sender_for_compiled_frame(RegisterMap *map) const {
+-  ShouldNotCallThis();
+-  return sender(map);
+-}
+-
+-frame frame::sender(RegisterMap* map) const {
+-  assert(map != NULL, "map must be set");
+-
+-  assert(CodeCache::find_blob_unsafe(_pc) == _cb, "inconsistent");
+-
+-  // Default is not to follow arguments; update it accordingly below
+-  map->set_include_argument_oops(false);
+-
+-  if (is_entry_frame()) return sender_for_entry_frame(map);
+-
+-  intptr_t* younger_sp = sp();
+-  intptr_t* sp         = sender_sp();
+-
+-  // Note:  The version of this operation on any platform with callee-save
+-  //        registers must update the register map (if not null).
+-  //        In order to do this correctly, the various subtypes of
+-  //        of frame (interpreted, compiled, glue, native),
+-  //        must be distinguished.  There is no need on SPARC for
+-  //        such distinctions, because all callee-save registers are
+-  //        preserved for all frames via SPARC-specific mechanisms.
+-  //
+-  //        *** HOWEVER, *** if and when we make any floating-point
+-  //        registers callee-saved, then we will have to copy over
+-  //        the RegisterMap update logic from the Intel code.
+-
+-  // The constructor of the sender must know whether this frame is interpreted so it can set the
+-  // sender's _sp_adjustment_by_callee field.  An osr adapter frame was originally
+-  // interpreted but its pc is in the code cache (for c1 -> osr_frame_return_id stub), so it must be
+-  // explicitly recognized.
+-
+-
+-  bool frame_is_interpreted = is_interpreted_frame();
+-  if (frame_is_interpreted) {
+-    map->make_integer_regs_unsaved();
+-    map->shift_window(sp, younger_sp);
+-  } else if (_cb != NULL) {
+-    // Update the locations of implicitly saved registers to be their
+-    // addresses in the register save area.
+-    // For %o registers, the addresses of %i registers in the next younger
+-    // frame are used.
+-    map->shift_window(sp, younger_sp);
+-    if (map->update_map()) {
+-      // Tell GC to use argument oopmaps for some runtime stubs that need it.
+-      // For C1, the runtime stub might not have oop maps, so set this flag
+-      // outside of update_register_map.
+-      map->set_include_argument_oops(_cb->caller_must_gc_arguments(map->thread()));
+-      if (_cb->oop_maps() != NULL) {
+-        OopMapSet::update_register_map(this, map);
+-      }
+-    }
+-  }
+-  return frame(sp, younger_sp, frame_is_interpreted);
+-}
+ 
+ 
+ void frame::patch_pc(Thread* thread, address pc) {
+@@ -727,6 +677,11 @@ BasicType frame::interpreter_frame_result(oop* oop_result, jvalue* value_result)
+ }
+ 
+ // Lesp pointer is one word lower than the top item on the stack.
++// Pointer beyond the "oldest/deepest" BasicObjectLock on stack.
++BasicObjectLock* frame::interpreter_frame_monitor_end() const {
++  return interpreter_frame_monitors();
++}
++
+ intptr_t* frame::interpreter_frame_tos_at(jint offset) const {
+   int index = (Interpreter::expr_offset_in_bytes(offset)/wordSize) - 1;
+   return &interpreter_frame_tos_address()[index];
+diff --git a/src/hotspot/cpu/sparc/frame_sparc.hpp b/src/hotspot/cpu/sparc/frame_sparc.hpp
+index 2805180af..b024f607c 100644
+--- a/src/hotspot/cpu/sparc/frame_sparc.hpp
++++ b/src/hotspot/cpu/sparc/frame_sparc.hpp
+@@ -110,7 +110,12 @@
+     callee_aggregate_return_pointer_sp_offset    = register_save_words_sp_offset + register_save_words,
+     callee_register_argument_save_area_sp_offset = callee_aggregate_return_pointer_sp_offset + callee_aggregate_return_pointer_words,
+     memory_parameter_word_sp_offset              = callee_register_argument_save_area_sp_offset + callee_register_argument_save_area_words,
+-    varargs_offset                               = memory_parameter_word_sp_offset
++    varargs_offset                               = memory_parameter_word_sp_offset,
++
++    metadata_words                               = 0,
++    frame_alignment                              = 16,
++    // size, in words, of maximum shift in frame position due to alignment
++    align_wiggle                                 = 1
+   };
+ 
+  private:
+@@ -155,6 +160,8 @@
+ 
+   void init(intptr_t* sp, address pc, CodeBlob* cb);
+ 
++  const ImmutableOopMap* get_oop_map() const;
++
+   // Walk from sp outward looking for old_sp, and return old_sp's predecessor
+   // (i.e. return the sp from the frame where old_sp is the fp).
+   // Register windows are assumed to be flushed for the stack in question.
+@@ -235,4 +242,9 @@
+ 
+   static jint interpreter_frame_expression_stack_direction() { return -1; }
+ 
++  inline intptr_t* interpreter_frame_last_sp() const;
++
++  template <typename RegisterMapT>
++  static void update_map_with_saved_link(RegisterMapT* map, intptr_t** link_addr);
++
+ #endif // CPU_SPARC_FRAME_SPARC_HPP
+diff --git a/src/hotspot/cpu/sparc/frame_sparc.inline.hpp b/src/hotspot/cpu/sparc/frame_sparc.inline.hpp
+index eea4430b9..d99f9d544 100644
+--- a/src/hotspot/cpu/sparc/frame_sparc.inline.hpp
++++ b/src/hotspot/cpu/sparc/frame_sparc.inline.hpp
+@@ -41,6 +41,9 @@ inline frame::frame() {
+   _cb = NULL;
+   _deopt_state = unknown;
+   _sp_adjustment_by_callee = 0;
++  _oop_map = NULL;
++  _on_heap = false;
++  DEBUG_ONLY(_frame_index = -1;)
+ }
+ 
+ // Accessors:
+@@ -62,7 +65,7 @@ inline intptr_t* frame::id(void) const { return unextended_sp(); }
+ inline bool frame::is_older(intptr_t* id) const   { assert(this->id() != NULL && id != NULL, "NULL frame id");
+                                                     return this->id() > id ; }
+ 
+-inline int frame::frame_size(RegisterMap* map) const { return sender_sp() - sp(); }
++inline int frame::frame_size() const { return sender_sp() - sp(); }
+ 
+ inline intptr_t* frame::link() const { return (intptr_t *)(fp()[FP->sp_offset_in_saved_window()] + STACK_BIAS); }
+ 
+@@ -132,10 +135,6 @@ inline BasicObjectLock* frame::interpreter_frame_monitor_begin()       const  {
+   return (BasicObjectLock *)fp_addr_at(-rounded_vm_local_words);
+ }
+ 
+-inline BasicObjectLock* frame::interpreter_frame_monitor_end()         const  {
+-  return interpreter_frame_monitors();
+-}
+-
+ 
+ inline void frame::interpreter_frame_set_monitor_end(BasicObjectLock* value) {
+   interpreter_frame_set_monitors(value);
+@@ -185,11 +184,124 @@ inline JavaCallWrapper** frame::entry_frame_call_wrapper_addr() const {
+ 
+ 
+ inline oop  frame::saved_oop_result(RegisterMap* map) const      {
+-  return *((oop*) map->location(O0->as_VMReg()));
++  return *((oop*) map->location(O0->as_VMReg(), nullptr));
+ }
+ 
+ inline void frame::set_saved_oop_result(RegisterMap* map, oop obj) {
+-  *((oop*) map->location(O0->as_VMReg())) = obj;
++  *((oop*) map->location(O0->as_VMReg(), nullptr)) = obj;
++}
++
++inline const ImmutableOopMap* frame::get_oop_map() const {
++  if (_cb == NULL) return NULL;
++  if (_cb->oop_maps() != NULL) {
++    NativePostCallNop* nop = nativePostCallNop_at(_pc);
++    if (nop != NULL && nop->displacement() != 0) {
++      int slot = ((nop->displacement() >> 24) & 0xff);
++      return _cb->oop_map_for_slot(slot, _pc);
++    }
++    const ImmutableOopMap* oop_map = OopMapSet::find_map(this);
++    return oop_map;
++  }
++  return NULL;
++}
++
++inline int frame::compiled_frame_stack_argsize() const {
++  Unimplemented();
++  return 0;
++}
++
++inline void frame::interpreted_frame_oop_map(InterpreterOopMap* mask) const {
++  Unimplemented();
++}
++
++inline intptr_t* frame::interpreter_frame_last_sp() const {
++  Unimplemented();
++  return NULL;
++}
++
++inline int frame::sender_sp_ret_address_offset() {
++  Unimplemented();
++  return 0;
++}
++
++inline void frame::set_unextended_sp(intptr_t* value) {
++  Unimplemented();
++}
++
++inline int frame::offset_unextended_sp() const {
++  Unimplemented();
++  return 0;
++}
++
++inline void frame::set_offset_unextended_sp(int value) {
++  Unimplemented();
++}
++
++//------------------------------------------------------------------------------
++// frame::sender
++
++inline frame frame::sender_for_compiled_frame(RegisterMap *map) const {
++  ShouldNotCallThis();
++  return sender(map);
++}
++
++inline frame frame::sender(RegisterMap* map) const {
++  assert(map != NULL, "map must be set");
++
++  assert(CodeCache::find_blob_unsafe(_pc) == _cb, "inconsistent");
++
++  // Default is not to follow arguments; update it accordingly below
++  map->set_include_argument_oops(false);
++
++  if (is_entry_frame()) return sender_for_entry_frame(map);
++
++  intptr_t* younger_sp = sp();
++  intptr_t* sp         = sender_sp();
++
++  // Note:  The version of this operation on any platform with callee-save
++  //        registers must update the register map (if not null).
++  //        In order to do this correctly, the various subtypes of
++  //        of frame (interpreted, compiled, glue, native),
++  //        must be distinguished.  There is no need on SPARC for
++  //        such distinctions, because all callee-save registers are
++  //        preserved for all frames via SPARC-specific mechanisms.
++  //
++  //        *** HOWEVER, *** if and when we make any floating-point
++  //        registers callee-saved, then we will have to copy over
++  //        the RegisterMap update logic from the Intel code.
++
++  // The constructor of the sender must know whether this frame is interpreted so it can set the
++  // sender's _sp_adjustment_by_callee field.  An osr adapter frame was originally
++  // interpreted but its pc is in the code cache (for c1 -> osr_frame_return_id stub), so it must be
++  // explicitly recognized.
++
++
++  bool frame_is_interpreted = is_interpreted_frame();
++  if (frame_is_interpreted) {
++    map->make_integer_regs_unsaved();
++    map->shift_window(sp, younger_sp);
++  } else if (_cb != NULL) {
++    // Update the locations of implicitly saved registers to be their
++    // addresses in the register save area.
++    // For %o registers, the addresses of %i registers in the next younger
++    // frame are used.
++    map->shift_window(sp, younger_sp);
++    if (map->update_map()) {
++      // Tell GC to use argument oopmaps for some runtime stubs that need it.
++      // For C1, the runtime stub might not have oop maps, so set this flag
++      // outside of update_register_map.
++      map->set_include_argument_oops(_cb->caller_must_gc_arguments(map->thread()));
++      if (_cb->oop_maps() != NULL) {
++        OopMapSet::update_register_map(this, map);
++      }
++    }
++  }
++  return frame(sp, younger_sp, frame_is_interpreted);
++}
++
++template <typename RegisterMapT>
++void frame::update_map_with_saved_link(RegisterMapT* map, intptr_t** link_addr) {
++  Unimplemented();
+ }
+ 
+ #endif // CPU_SPARC_FRAME_SPARC_INLINE_HPP
+diff --git a/src/hotspot/cpu/sparc/macroAssembler_sparc.hpp b/src/hotspot/cpu/sparc/macroAssembler_sparc.hpp
+index 8f805b9e5..e448a3f55 100644
+--- a/src/hotspot/cpu/sparc/macroAssembler_sparc.hpp
++++ b/src/hotspot/cpu/sparc/macroAssembler_sparc.hpp
+@@ -418,7 +418,11 @@ class Argument {
+  public:
+   enum {
+     n_register_parameters = 6,          // only 6 registers may contain integer parameters
+-    n_float_register_parameters = 16    // Can have up to 16 floating registers
++    n_float_register_parameters = 16,   // Can have up to 16 floating registers
++
++    // see SharedRuntime::java_calling_convention()
++    n_int_register_parameters_j = SPARC_ARGS_IN_REGS_NUM,
++    n_float_register_parameters_j = 8
+   };
+ 
+   // creation
+diff --git a/src/hotspot/cpu/sparc/nativeInst_sparc.hpp b/src/hotspot/cpu/sparc/nativeInst_sparc.hpp
+index a58fdff59..b6662bc77 100644
+--- a/src/hotspot/cpu/sparc/nativeInst_sparc.hpp
++++ b/src/hotspot/cpu/sparc/nativeInst_sparc.hpp
+@@ -811,4 +811,33 @@ class NativeIllegalInstruction: public NativeInstruction {
+   static void insert(address code_pos);
+ };
+ 
++class NativePostCallNop: public NativeInstruction {
++public:
++  bool check() const { Unimplemented(); return false; }
++  int displacement() const { return 0; }
++  void patch(jint diff) { Unimplemented(); }
++  void make_deopt() { Unimplemented(); }
++};
++
++inline NativePostCallNop* nativePostCallNop_at(address address) {
++  return NULL;
++}
++
++class NativeDeoptInstruction: public NativeInstruction {
++public:
++  address instruction_address() const       { Unimplemented(); return NULL; }
++  address next_instruction_address() const  { Unimplemented(); return NULL; }
++
++  void  verify() { Unimplemented(); }
++
++  static bool is_deopt_at(address instr) {
++    return false;
++  }
++
++  // MT-safe patching
++  static void insert(address code_pos) {
++    Unimplemented();
++  }
++};
++
+ #endif // CPU_SPARC_NATIVEINST_SPARC_HPP
+diff --git a/src/hotspot/cpu/sparc/registerMap_sparc.hpp b/src/hotspot/cpu/sparc/registerMap_sparc.hpp
+index b40e18215..fe134222f 100644
+--- a/src/hotspot/cpu/sparc/registerMap_sparc.hpp
++++ b/src/hotspot/cpu/sparc/registerMap_sparc.hpp
+@@ -35,7 +35,7 @@
+ 
+   address pd_location(VMReg reg) const;
+   address pd_location(VMReg base_reg, int slot_idx) const {
+-    return location(base_reg->next(slot_idx));
++    return location(base_reg->next(slot_idx), nullptr);
+   }
+   void pd_clear();
+   void pd_initialize_from(const RegisterMap* map) {
+diff --git a/src/hotspot/cpu/sparc/smallRegisterMap_sparc.inline.hpp b/src/hotspot/cpu/sparc/smallRegisterMap_sparc.inline.hpp
+new file mode 100644
+index 000000000..1de9d603c
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/smallRegisterMap_sparc.inline.hpp
+@@ -0,0 +1,87 @@
++/*
++ * Copyright (c) 2019, 2022, Oracle and/or its affiliates. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ *
++ */
++
++#ifndef CPU_SPARC_SMALLREGISTERMAP_SPARC_INLINE_HPP
++#define CPU_SPARC_SMALLREGISTERMAP_SPARC_INLINE_HPP
++
++#include "runtime/frame.inline.hpp"
++#include "runtime/registerMap.hpp"
++
++// Java frames don't have callee saved registers (except for rfp), so we can use a smaller RegisterMap
++class SmallRegisterMap {
++public:
++  static constexpr SmallRegisterMap* instance = nullptr;
++private:
++  static void assert_is_rfp(VMReg r) PRODUCT_RETURN
++                                     DEBUG_ONLY({ Unimplemented(); })
++public:
++  // as_RegisterMap is used when we didn't want to templatize and abstract over RegisterMap type to support SmallRegisterMap
++  // Consider enhancing SmallRegisterMap to support those cases
++  const RegisterMap* as_RegisterMap() const { return nullptr; }
++  RegisterMap* as_RegisterMap() { return nullptr; }
++
++  RegisterMap* copy_to_RegisterMap(RegisterMap* map, intptr_t* sp) const {
++    Unimplemented();
++    return map;
++  }
++
++  SmallRegisterMap() {}
++
++  SmallRegisterMap(const RegisterMap* map) {
++    Unimplemented();
++  }
++
++  inline address location(VMReg reg, intptr_t* sp) const {
++    Unimplemented();
++    return NULL;
++  }
++
++  inline void set_location(VMReg reg, address loc) { assert_is_rfp(reg); }
++
++  JavaThread* thread() const {
++  #ifndef ASSERT
++    guarantee (false, "");
++  #endif
++    return nullptr;
++  }
++
++  bool update_map()    const { return false; }
++  bool walk_cont()     const { return false; }
++  bool include_argument_oops() const { return false; }
++  void set_include_argument_oops(bool f)  {}
++  bool in_cont()       const { return false; }
++  stackChunkHandle stack_chunk() const { return stackChunkHandle(); }
++
++#ifdef ASSERT
++  bool should_skip_missing() const  { return false; }
++  VMReg find_register_spilled_here(void* p, intptr_t* sp) {
++    Unimplemented();
++    return NULL;
++  }
++  void print() const { print_on(tty); }
++  void print_on(outputStream* st) const { st->print_cr("Small register map"); }
++#endif
++};
++
++#endif // CPU_SPARC_SMALLREGISTERMAP_SPARC_INLINE_HPP
+diff --git a/src/hotspot/cpu/sparc/stackChunkFrameStream_sparc.inline.hpp b/src/hotspot/cpu/sparc/stackChunkFrameStream_sparc.inline.hpp
+new file mode 100644
+index 000000000..55d593aac
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/stackChunkFrameStream_sparc.inline.hpp
+@@ -0,0 +1,115 @@
++/*
++ * Copyright (c) 2019, 2022, Oracle and/or its affiliates. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ *
++ */
++
++#ifndef CPU_SPARC_STACKCHUNKFRAMESTREAM_SPARC_INLINE_HPP
++#define CPU_SPARC_STACKCHUNKFRAMESTREAM_SPARC_INLINE_HPP
++
++#include "interpreter/oopMapCache.hpp"
++#include "runtime/frame.inline.hpp"
++#include "runtime/registerMap.hpp"
++
++#ifdef ASSERT
++template <ChunkFrames frame_kind>
++inline bool StackChunkFrameStream<frame_kind>::is_in_frame(void* p0) const {
++  Unimplemented();
++  return true;
++}
++#endif
++
++template <ChunkFrames frame_kind>
++inline frame StackChunkFrameStream<frame_kind>::to_frame() const {
++  Unimplemented();
++  return frame();
++}
++
++template <ChunkFrames frame_kind>
++inline address StackChunkFrameStream<frame_kind>::get_pc() const {
++  Unimplemented();
++  return NULL;
++}
++
++template <ChunkFrames frame_kind>
++inline intptr_t* StackChunkFrameStream<frame_kind>::fp() const {
++  Unimplemented();
++  return NULL;
++}
++
++template <ChunkFrames frame_kind>
++inline intptr_t* StackChunkFrameStream<frame_kind>::derelativize(int offset) const {
++  Unimplemented();
++  return NULL;
++}
++
++template <ChunkFrames frame_kind>
++inline intptr_t* StackChunkFrameStream<frame_kind>::unextended_sp_for_interpreter_frame() const {
++  Unimplemented();
++  return NULL;
++}
++
++template <ChunkFrames frame_kind>
++intptr_t* StackChunkFrameStream<frame_kind>::next_sp_for_interpreter_frame() const {
++  Unimplemented();
++  return NULL;
++}
++
++template <ChunkFrames frame_kind>
++inline void StackChunkFrameStream<frame_kind>::next_for_interpreter_frame() {
++  Unimplemented();
++}
++
++template <ChunkFrames frame_kind>
++inline int StackChunkFrameStream<frame_kind>::interpreter_frame_size() const {
++  Unimplemented();
++  return 0;
++}
++
++template <ChunkFrames frame_kind>
++inline int StackChunkFrameStream<frame_kind>::interpreter_frame_stack_argsize() const {
++  Unimplemented();
++  return 0;
++}
++
++template <ChunkFrames frame_kind>
++inline int StackChunkFrameStream<frame_kind>::interpreter_frame_num_oops() const {
++  Unimplemented();
++  return 0;
++}
++
++template<>
++template<>
++inline void StackChunkFrameStream<ChunkFrames::Mixed>::update_reg_map_pd(RegisterMap* map) {
++  Unimplemented();
++}
++
++template<>
++template<>
++inline void StackChunkFrameStream<ChunkFrames::CompiledOnly>::update_reg_map_pd(RegisterMap* map) {
++  Unimplemented();
++}
++
++template <ChunkFrames frame_kind>
++template <typename RegisterMapT>
++inline void StackChunkFrameStream<frame_kind>::update_reg_map_pd(RegisterMapT* map) {}
++
++#endif // CPU_SPARC_STACKCHUNKFRAMESTREAM_SPARC_INLINE_HPP
+diff --git a/src/hotspot/cpu/sparc/stackChunkOop_sparc.inline.hpp b/src/hotspot/cpu/sparc/stackChunkOop_sparc.inline.hpp
+new file mode 100644
+index 000000000..7e83f4311
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/stackChunkOop_sparc.inline.hpp
+@@ -0,0 +1,36 @@
++/*
++ * Copyright (c) 2019, 2022, Oracle and/or its affiliates. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ *
++ */
++
++#ifndef CPU_SPARC_STACKCHUNKOOP_SPARC_INLINE_HPP
++#define CPU_SPARC_STACKCHUNKOOP_SPARC_INLINE_HPP
++
++inline void stackChunkOopDesc::relativize_frame_pd(frame& fr) const {
++  Unimplemented();
++}
++
++inline void stackChunkOopDesc::derelativize_frame_pd(frame& fr) const {
++  Unimplemented();
++}
++
++#endif // CPU_SPARC_STACKCHUNKOOP_SPARC_INLINE_HPP
+diff --git a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp b/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp
+index 00712589a..b46d5f066 100644
+--- a/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp
++++ b/src/hotspot/cpu/sparc/stubGenerator_sparc.cpp
+@@ -5729,12 +5729,14 @@ class StubGenerator: public StubCodeGenerator {
+   }
+ 
+  public:
+-  StubGenerator(CodeBuffer* code, bool all) : StubCodeGenerator(code) {
+-    _stub_count = !all ? 0x100 : 0x200;
+-    if (all) {
+-      generate_all();
+-    } else {
++  StubGenerator(CodeBuffer* code, int phase) : StubCodeGenerator(code) {
++    _stub_count = phase == 0 ? 0x100 : 0x200;
++    if (phase == 0) {
+       generate_initial();
++    } else if (phase == 1) {
++      return; // no continuation stubs on SPARC
++    } else {
++      generate_all();
+     }
+ 
+     // make sure this stub is available for all local calls
+@@ -5779,9 +5781,9 @@ class StubGenerator: public StubCodeGenerator {
+ }; // end class declaration
+ 
+ #define UCM_TABLE_MAX_ENTRIES 8
+-void StubGenerator_generate(CodeBuffer* code, bool all) {
++void StubGenerator_generate(CodeBuffer* code, int phase) {
+   if (UnsafeCopyMemory::_table == NULL) {
+     UnsafeCopyMemory::create_table(UCM_TABLE_MAX_ENTRIES);
+   }
+-  StubGenerator g(code, all);
++  StubGenerator g(code, phase);
+ }
+diff --git a/src/hotspot/cpu/sparc/templateInterpreterGenerator_sparc.cpp b/src/hotspot/cpu/sparc/templateInterpreterGenerator_sparc.cpp
+index 8484c950e..4758c40b8 100644
+--- a/src/hotspot/cpu/sparc/templateInterpreterGenerator_sparc.cpp
++++ b/src/hotspot/cpu/sparc/templateInterpreterGenerator_sparc.cpp
+@@ -38,6 +38,7 @@
+ #include "prims/jvmtiExport.hpp"
+ #include "prims/jvmtiThreadState.hpp"
+ #include "runtime/arguments.hpp"
++#include "runtime/continuation.hpp"
+ #include "runtime/deoptimization.hpp"
+ #include "runtime/frame.inline.hpp"
+ #include "runtime/jniHandles.hpp"
+@@ -797,6 +798,12 @@ void TemplateInterpreterGenerator::generate_fixed_frame(bool native_call) {
+ }
+ 
+ // Method entry for java.lang.ref.Reference.get.
++address TemplateInterpreterGenerator::generate_Continuation_doYield_entry(void) {
++  if (!Continuations::enabled()) return nullptr;
++  Unimplemented();
++  return NULL;
++}
++
+ address TemplateInterpreterGenerator::generate_Reference_get_entry(void) {
+   // Code: _aload_0, _getfield, _areturn
+   // parameter size = 1
+diff --git a/src/hotspot/share/runtime/signature.cpp b/src/hotspot/share/runtime/signature.cpp
+index 05c4bbfb9..2fb37b344 100644
+--- a/src/hotspot/share/runtime/signature.cpp
++++ b/src/hotspot/share/runtime/signature.cpp
+@@ -24,6 +24,9 @@
+ 
+ #include "precompiled.hpp"
+ #include "asm/assembler.hpp"
++#ifdef SPARC
++#include "asm/macroAssembler.hpp"
++#endif
+ #include "classfile/symbolTable.hpp"
+ #include "classfile/systemDictionary.hpp"
+ #include "classfile/vmSymbols.hpp"

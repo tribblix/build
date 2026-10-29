@@ -1,0 +1,452 @@
+diff --git a/src/hotspot/cpu/sparc/downcallLinker_sparc.cpp b/src/hotspot/cpu/sparc/downcallLinker_sparc.cpp
+new file mode 100644
+index 000000000..af69f2a58
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/downcallLinker_sparc.cpp
+@@ -0,0 +1,37 @@
++/*
++ * Copyright (c) 2020, Red Hat, Inc. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ */
++
++#include "precompiled.hpp"
++#include "prims/downcallLinker.hpp"
++#include "utilities/debug.hpp"
++
++RuntimeStub* DowncallLinker::make_downcall_stub(BasicType* signature,
++                                                int num_args,
++                                                BasicType ret_bt,
++                                                const ABIDescriptor& abi,
++                                                const GrowableArray<VMReg>& input_registers,
++                                                const GrowableArray<VMReg>& output_registers,
++                                                bool needs_return_buffer) {
++  Unimplemented();
++  return nullptr;
++}
+diff --git a/src/hotspot/cpu/sparc/foreignGlobals_sparc.cpp b/src/hotspot/cpu/sparc/foreignGlobals_sparc.cpp
+new file mode 100644
+index 000000000..918e89f3e
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/foreignGlobals_sparc.cpp
+@@ -0,0 +1,56 @@
++/*
++ * Copyright (c) 2020, Red Hat, Inc. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ */
++
++#include "precompiled.hpp"
++#include "code/vmreg.hpp"
++#include "prims/foreignGlobals.hpp"
++#include "utilities/debug.hpp"
++
++class MacroAssembler;
++
++const ABIDescriptor ForeignGlobals::parse_abi_descriptor(jobject jabi) {
++  Unimplemented();
++  return {};
++}
++
++VMReg ForeignGlobals::vmstorage_to_vmreg(int type, int index) {
++  Unimplemented();
++  return VMRegImpl::Bad();
++}
++
++int RegSpiller::pd_reg_size(VMReg reg) {
++  Unimplemented();
++  return -1;
++}
++
++void RegSpiller::pd_store_reg(MacroAssembler* masm, int offset, VMReg reg) {
++  Unimplemented();
++}
++
++void RegSpiller::pd_load_reg(MacroAssembler* masm, int offset, VMReg reg) {
++  Unimplemented();
++}
++
++void ArgumentShuffle::pd_generate(MacroAssembler* masm, VMReg tmp, int in_stk_bias, int out_stk_bias) const {
++  Unimplemented();
++}
+diff --git a/src/hotspot/cpu/sparc/foreignGlobals_sparc.hpp b/src/hotspot/cpu/sparc/foreignGlobals_sparc.hpp
+new file mode 100644
+index 000000000..6c2acd48d
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/foreignGlobals_sparc.hpp
+@@ -0,0 +1,29 @@
++/*
++ * Copyright (c) 2020, Red Hat, Inc. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ */
++
++#ifndef CPU_SPARC_VM_FOREIGN_GLOBALS_SPARC_HPP
++#define CPU_SPARC_VM_FOREIGN_GLOBALS_SPARC_HPP
++
++class ABIDescriptor {};
++
++#endif // CPU_SPARC_VM_FOREIGN_GLOBALS_SPARC_HPP
+diff --git a/src/hotspot/cpu/sparc/foreign_globals_sparc.cpp b/src/hotspot/cpu/sparc/foreign_globals_sparc.cpp
+deleted file mode 100644
+index b5f63ed0d..000000000
+--- a/src/hotspot/cpu/sparc/foreign_globals_sparc.cpp
++++ /dev/null
+@@ -1,41 +0,0 @@
+-/*
+- * Copyright (c) 2020, Red Hat, Inc. All rights reserved.
+- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+- *
+- * This code is free software; you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License version 2 only, as
+- * published by the Free Software Foundation.
+- *
+- * This code is distributed in the hope that it will be useful, but WITHOUT
+- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+- * version 2 for more details (a copy is included in the LICENSE file that
+- * accompanied this code).
+- *
+- * You should have received a copy of the GNU General Public License version
+- * 2 along with this work; if not, write to the Free Software Foundation,
+- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+- *
+- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
+- * or visit www.oracle.com if you need additional information or have any
+- * questions.
+- */
+-
+-#include "precompiled.hpp"
+-#include "prims/foreign_globals.hpp"
+-#include "utilities/debug.hpp"
+-
+-const ABIDescriptor ForeignGlobals::parse_abi_descriptor_impl(jobject jabi) const {
+-  Unimplemented();
+-  return {};
+-}
+-
+-const BufferLayout ForeignGlobals::parse_buffer_layout_impl(jobject jlayout) const {
+-  Unimplemented();
+-  return {};
+-}
+-
+-const CallRegs ForeignGlobals::parse_call_regs_impl(jobject jconv) const {
+-  Unimplemented();
+-  return {};
+-}
+diff --git a/src/hotspot/cpu/sparc/foreign_globals_sparc.hpp b/src/hotspot/cpu/sparc/foreign_globals_sparc.hpp
+deleted file mode 100644
+index c2a5fb756..000000000
+--- a/src/hotspot/cpu/sparc/foreign_globals_sparc.hpp
++++ /dev/null
+@@ -1,30 +0,0 @@
+-/*
+- * Copyright (c) 2020, Red Hat, Inc. All rights reserved.
+- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+- *
+- * This code is free software; you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License version 2 only, as
+- * published by the Free Software Foundation.
+- *
+- * This code is distributed in the hope that it will be useful, but WITHOUT
+- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+- * version 2 for more details (a copy is included in the LICENSE file that
+- * accompanied this code).
+- *
+- * You should have received a copy of the GNU General Public License version
+- * 2 along with this work; if not, write to the Free Software Foundation,
+- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+- *
+- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
+- * or visit www.oracle.com if you need additional information or have any
+- * questions.
+- */
+-
+-#ifndef CPU_SPARC_VM_FOREIGN_GLOBALS_SPARC_HPP
+-#define CPU_SPARC_VM_FOREIGN_GLOBALS_SPARC_HPP
+-
+-class BufferLayout {};
+-class ABIDescriptor {};
+-
+-#endif // CPU_SPARC_VM_FOREIGN_GLOBALS_SPARC_HPP
+diff --git a/src/hotspot/cpu/sparc/frame_sparc.cpp b/src/hotspot/cpu/sparc/frame_sparc.cpp
+index ab519657a..699ec12c8 100644
+--- a/src/hotspot/cpu/sparc/frame_sparc.cpp
++++ b/src/hotspot/cpu/sparc/frame_sparc.cpp
+@@ -448,12 +448,12 @@ frame frame::sender_for_entry_frame(RegisterMap *map) const {
+   return frame(last_Java_sp, frame::unpatchable, jfa->last_Java_pc());
+ }
+ 
+-OptimizedEntryBlob::FrameData* OptimizedEntryBlob::frame_data_for_frame(const frame& frame) const {
++UpcallStub::FrameData* UpcallStub::frame_data_for_frame(const frame& frame) const {
+   ShouldNotCallThis();
+   return nullptr;
+ }
+ 
+-bool frame::optimized_entry_frame_is_first() const {
++bool frame::upcall_stub_frame_is_first() const {
+   ShouldNotCallThis();
+   return false;
+ }
+diff --git a/src/hotspot/cpu/sparc/globals_sparc.hpp b/src/hotspot/cpu/sparc/globals_sparc.hpp
+index 49573cbb7..3baffcd77 100644
+--- a/src/hotspot/cpu/sparc/globals_sparc.hpp
++++ b/src/hotspot/cpu/sparc/globals_sparc.hpp
+@@ -80,6 +80,8 @@ define_pd_global(bool, CompactStrings, true);
+ 
+ define_pd_global(intx, InitArrayShortSize, 8*BytesPerLong);
+ 
++define_pd_global(bool, VMContinuations, false);
++
+ #define ARCH_FLAGS(develop, \
+                    product, \
+                    notproduct, \
+diff --git a/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp b/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp
+index 04680ee49..46156eb94 100644
+--- a/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp
++++ b/src/hotspot/cpu/sparc/sharedRuntime_sparc.cpp
+@@ -2951,12 +2951,3 @@ RuntimeStub* SharedRuntime::generate_resolve_blob(address destination, const cha
+   return RuntimeStub::new_runtime_stub(name, &buffer, frame_complete, frame_size_words, oop_maps, true);
+ }
+ 
+-#ifdef COMPILER2
+-RuntimeStub* SharedRuntime::make_native_invoker(address call_target,
+-                                                int shadow_space_bytes,
+-                                                const GrowableArray<VMReg>& input_registers,
+-                                                const GrowableArray<VMReg>& output_registers) {
+-  Unimplemented();
+-  return nullptr;
+-}
+-#endif
+diff --git a/src/hotspot/cpu/sparc/sparc.ad b/src/hotspot/cpu/sparc/sparc.ad
+index d6eea3a4d..29a067c45 100644
+--- a/src/hotspot/cpu/sparc/sparc.ad
++++ b/src/hotspot/cpu/sparc/sparc.ad
+@@ -578,11 +578,6 @@ int MachCallRuntimeNode::ret_addr_offset() {
+   }
+ }
+ 
+-int MachCallNativeNode::ret_addr_offset() {
+-  Unimplemented();
+-  return -1;
+-}
+-
+ // emit an interrupt that is caught by the debugger (for debugging compiler)
+ void emit_break(CodeBuffer &cbuf) {
+   C2_MacroAssembler _masm(&cbuf);
+@@ -1798,10 +1793,6 @@ bool Matcher::pd_clone_address_expressions(AddPNode* m, Matcher::MStack& mstack,
+   return clone_base_plus_offset_address(m, mstack, address_visited);
+ }
+ 
+-bool Parse::do_one_bytecode_targeted() {
+-  return false;
+-}
+-
+ %}
+ 
+ 
+diff --git a/src/hotspot/cpu/sparc/universalNativeInvoker_sparc.cpp b/src/hotspot/cpu/sparc/universalNativeInvoker_sparc.cpp
+deleted file mode 100644
+index 4dc56b742..000000000
+--- a/src/hotspot/cpu/sparc/universalNativeInvoker_sparc.cpp
++++ /dev/null
+@@ -1,31 +0,0 @@
+-/*
+- * Copyright (c) 2020, Red Hat, Inc. All rights reserved.
+- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+- *
+- * This code is free software; you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License version 2 only, as
+- * published by the Free Software Foundation.
+- *
+- * This code is distributed in the hope that it will be useful, but WITHOUT
+- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+- * version 2 for more details (a copy is included in the LICENSE file that
+- * accompanied this code).
+- *
+- * You should have received a copy of the GNU General Public License version
+- * 2 along with this work; if not, write to the Free Software Foundation,
+- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+- *
+- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
+- * or visit www.oracle.com if you need additional information or have any
+- * questions.
+- */
+-
+-#include "precompiled.hpp"
+-#include "prims/universalNativeInvoker.hpp"
+-#include "utilities/debug.hpp"
+-
+-address ProgrammableInvoker::generate_adapter(jobject jabi, jobject jlayout) {
+-  Unimplemented();
+-  return nullptr;
+-}
+diff --git a/src/hotspot/cpu/sparc/universalUpcallHandle_sparc.cpp b/src/hotspot/cpu/sparc/universalUpcallHandle_sparc.cpp
+deleted file mode 100644
+index d73197bc9..000000000
+--- a/src/hotspot/cpu/sparc/universalUpcallHandle_sparc.cpp
++++ /dev/null
+@@ -1,40 +0,0 @@
+-/*
+- * Copyright (c) 2020, Red Hat, Inc. All rights reserved.
+- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+- *
+- * This code is free software; you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License version 2 only, as
+- * published by the Free Software Foundation.
+- *
+- * This code is distributed in the hope that it will be useful, but WITHOUT
+- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+- * version 2 for more details (a copy is included in the LICENSE file that
+- * accompanied this code).
+- *
+- * You should have received a copy of the GNU General Public License version
+- * 2 along with this work; if not, write to the Free Software Foundation,
+- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+- *
+- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
+- * or visit www.oracle.com if you need additional information or have any
+- * questions.
+- */
+-
+-#include "precompiled.hpp"
+-#include "prims/universalUpcallHandler.hpp"
+-#include "utilities/debug.hpp"
+-
+-address ProgrammableUpcallHandler::generate_upcall_stub(jobject rec, jobject jabi, jobject jlayout) {
+-  Unimplemented();
+-  return nullptr;
+-}
+-
+-address ProgrammableUpcallHandler::generate_optimized_upcall_stub(jobject mh, Method* entry, jobject jabi, jobject jconv) {
+-  ShouldNotCallThis();
+-  return nullptr;
+-}
+-
+-bool ProgrammableUpcallHandler::supports_optimized_upcalls() {
+-  return false;
+-}
+diff --git a/src/hotspot/cpu/sparc/upcallLinker_sparc.cpp b/src/hotspot/cpu/sparc/upcallLinker_sparc.cpp
+new file mode 100644
+index 000000000..3e1fb0421
+--- /dev/null
++++ b/src/hotspot/cpu/sparc/upcallLinker_sparc.cpp
+@@ -0,0 +1,36 @@
++/*
++ * Copyright (c) 2020, Red Hat, Inc. All rights reserved.
++ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
++ *
++ * This code is free software; you can redistribute it and/or modify it
++ * under the terms of the GNU General Public License version 2 only, as
++ * published by the Free Software Foundation.
++ *
++ * This code is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
++ * version 2 for more details (a copy is included in the LICENSE file that
++ * accompanied this code).
++ *
++ * You should have received a copy of the GNU General Public License version
++ * 2 along with this work; if not, write to the Free Software Foundation,
++ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
++ *
++ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
++ * or visit www.oracle.com if you need additional information or have any
++ * questions.
++ */
++
++#include "precompiled.hpp"
++#include "prims/upcallLinker.hpp"
++#include "utilities/debug.hpp"
++
++address UpcallLinker::make_upcall_stub(jobject receiver, Method* entry,
++                                       BasicType* in_sig_bt, int total_in_args,
++                                       BasicType* out_sig_bt, int total_out_args,
++                                       BasicType ret_type,
++                                       jobject jabi, jobject jconv,
++                                       bool needs_return_buffer, int ret_buf_size) {
++  ShouldNotCallThis();
++  return nullptr;
++}
+diff --git a/src/hotspot/cpu/sparc/vmreg_sparc.cpp b/src/hotspot/cpu/sparc/vmreg_sparc.cpp
+index 6e251fbd1..c261a5dd0 100644
+--- a/src/hotspot/cpu/sparc/vmreg_sparc.cpp
++++ b/src/hotspot/cpu/sparc/vmreg_sparc.cpp
+@@ -49,8 +49,3 @@ void VMRegImpl::set_regName() {
+     regName[i] = "NON-GPR-FPR";
+   }
+ }
+-
+-VMReg VMRegImpl::vmStorageToVMReg(int type, int index) {
+-  Unimplemented();
+-  return VMRegImpl::Bad();
+-}
+diff --git a/src/hotspot/share/runtime/sharedRuntime.hpp b/src/hotspot/share/runtime/sharedRuntime.hpp
+index a2d5e33ca..b0df15053 100644
+--- a/src/hotspot/share/runtime/sharedRuntime.hpp
++++ b/src/hotspot/share/runtime/sharedRuntime.hpp
+@@ -366,6 +366,10 @@ class SharedRuntime: AllStatic {
+   // will be just above it. (
+   // return value is the maximum number of VMReg stack slots the convention will use.
+   static int java_calling_convention(const BasicType* sig_bt, VMRegPair* regs, int total_args_passed, int is_outgoing);
++  // For callers that only need the stack slots, which do not depend on is_outgoing.
++  static int java_calling_convention(const BasicType* sig_bt, VMRegPair* regs, int total_args_passed) {
++    return java_calling_convention(sig_bt, regs, total_args_passed, false);
++  }
+ 
+   static void check_member_name_argument_is_last_argument(const methodHandle& method,
+                                                           const BasicType* sig_bt,

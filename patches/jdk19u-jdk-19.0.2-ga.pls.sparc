@@ -1,0 +1,17 @@
+-p1+-R jdk19u-jdk-19.0.2-ga/0011-8256238-Remove-Matcher-pass_original_key_for_aes.patch
+-p1+-R jdk19u-jdk-19.0.2-ga/0048-8256205-Simplify-compiler-calling-convention-handlin.patch
+-p1 jdk19u-jdk-19.0.2-ga/restore_cpu_sparc.patch
+-p1 jdk19u-jdk-19.0.2-ga/restore_os_cpu_solaris_sparc.patch
+-p1 jdk19u-jdk-19.0.2-ga/TemplateInterpreterGenerator-sparc.patch
+-p1 jdk19u-jdk-19.0.2-ga/c1-sparc.patch
+-p1 jdk19u-jdk-19.0.2-ga/jfr-sparc.patch
+-p1 jdk19u-jdk-19.0.2-ga/memset-sparc.patch
+-p1 jdk19u-jdk-19.0.2-ga/stack_bias.25.patch
+-p1 jdk19u-jdk-19.0.2-ga/sparc-misc.patch
+-p1 jdk19u-jdk-19.0.2-ga/assembler-hpp.patch
+-p1 jdk19u-jdk-19.0.2-ga/sparc-linker.patch
+-p1 jdk19u-jdk-19.0.2-ga/sparc-safefetch.patch
+-p1 jdk19u-jdk-19.0.2-ga/sparc-stringopts.patch
+-p1 jdk19u-jdk-19.0.2-ga/sparc-make-walkable.patch
+-p1 jdk19u-jdk-19.0.2-ga/sparc-loom-stubs.patch
+-p1 jdk19u-jdk-19.0.2-ga/sparc-19u.patch

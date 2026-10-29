@@ -1,0 +1,15 @@
+The include was removed in
+8283541: Add Statical counters and some comments in PhaseStringOpts
+but is clearly necessary, although it only manifests on sparc, presumably
+on other platforms it's included indirectly.
+
+--- a/src/hotspot/share/opto/stringopts.cpp	2026-01-15 17:24:32.370477210 +0100
++++ b/src/hotspot/share/opto/stringopts.cpp	2026-01-15 16:50:45.225549095 +0100
+@@ -33,6 +33,7 @@
+ #include "opto/runtime.hpp"
+ #include "opto/stringopts.hpp"
+ #include "runtime/atomic.hpp"
++#include "runtime/sharedRuntime.hpp"
+ #include "runtime/stubRoutines.hpp"
+ 
+ #define __ kit.

@@ -1,0 +1,70 @@
+diff --git a/src/hotspot/cpu/sparc/frame_sparc.cpp b/src/hotspot/cpu/sparc/frame_sparc.cpp
+index 2f436cb56..63902b694 100644
+--- a/src/hotspot/cpu/sparc/frame_sparc.cpp
++++ b/src/hotspot/cpu/sparc/frame_sparc.cpp
+@@ -428,7 +428,11 @@ frame frame::sender_for_entry_frame(RegisterMap *map) const {
+   intptr_t* last_Java_sp = jfa->last_Java_sp();
+   // Since we are walking the stack now this nested anchor is obviously walkable
+   // even if it wasn't when it was stacked.
+-  jfa->make_walkable();
++  if (!jfa->walkable()) {
++    // Capture _last_Java_pc (if needed) and mark anchor walkable.
++    jfa->capture_last_Java_pc(_sp);
++  }
++  assert(jfa->last_Java_pc() != NULL, "No captured pc!");
+   map->clear();
+   map->make_integer_regs_unsaved();
+   map->shift_window(last_Java_sp, NULL);
+@@ -626,24 +630,26 @@ bool frame::is_interpreted_frame_valid(JavaThread* thread) const {
+ }
+ 
+ 
++void JavaFrameAnchor::capture_last_Java_pc(intptr_t* sp) {
++  if (last_Java_sp() != NULL && last_Java_pc() == NULL) {
++    // try and find the sp just younger than _last_Java_sp
++    intptr_t* _post_Java_sp = frame::next_younger_sp_or_null(last_Java_sp(), sp);
++    // Really this should never fail otherwise VM call must have non-standard
++    // frame linkage (bad) or stack is not properly flushed (worse).
++    guarantee(_post_Java_sp != NULL, "bad stack!");
++    _last_Java_pc = (address) _post_Java_sp[ I7->sp_offset_in_saved_window()] + frame::pc_return_offset;
++
++  }
++  set_window_flushed();
++}
++
+ void JavaFrameAnchor::make_walkable() {
+   if (walkable()) return;
+   // We always flush in case the profiler wants it but we won't mark
+   // the windows as flushed unless we have a last_Java_frame
+   intptr_t* sp = StubRoutines::Sparc::flush_callers_register_windows_func()();
+-  if (last_Java_sp() != NULL) {
+-    if (last_Java_pc() == NULL) {
+-      // try and find the sp just younger than _last_Java_sp
+-      intptr_t* _post_Java_sp = frame::next_younger_sp_or_null(last_Java_sp(), sp);
+-      if (_post_Java_sp == NULL) return;
+-      // Really this should never fail otherwise VM call must have non-standard
+-      // frame linkage (bad) or stack is not properly flushed (worse).
+-      // but we return and let callers deal with it
+-      // really this is a FIXME for the future
+-      guarantee(_post_Java_sp != NULL, "bad stack!");
+-      _last_Java_pc = (address) _post_Java_sp[ I7->sp_offset_in_saved_window()] + frame::pc_return_offset;
+-    }
+-    set_window_flushed();
++  if (last_Java_sp() != NULL ) {
++    capture_last_Java_pc(sp);
+   }
+ }
+ 
+diff --git a/src/hotspot/cpu/sparc/javaFrameAnchor_sparc.hpp b/src/hotspot/cpu/sparc/javaFrameAnchor_sparc.hpp
+index e5161fc6c..fa4402d5b 100644
+--- a/src/hotspot/cpu/sparc/javaFrameAnchor_sparc.hpp
++++ b/src/hotspot/cpu/sparc/javaFrameAnchor_sparc.hpp
+@@ -92,6 +92,8 @@ public:
+   // These are only used by friends
+ private:
+ 
++  void capture_last_Java_pc(intptr_t* sp);
++
+   void set_window_flushed( void) {
+     _flags |= flushed;
+     OrderAccess::fence();
