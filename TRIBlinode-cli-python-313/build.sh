@@ -4,4 +4,4 @@
 #
 # there's a preconf file as well
 #
-${THOME}/build/pkg_pep518 -N TRIBlinode-cli-python-313 linode_cli-5.69.0
+${THOME}/build/pkg_pep518 -N TRIBlinode-cli-python-313 linode_cli-5.70.0
