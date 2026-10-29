@@ -223,7 +223,7 @@ python${PYVER} -m compileall -f -p / -s "${BDIR}" --invalidation-mode unchecked-
 if [ -z "${XDEPS}" ]; then
     if [ -x /usr/bin/pyproject-dependencies ]; then
 	echo "Declared dependencies:"
-	/usr/bin/pyproject-dependencies "$@"
+	/usr/bin/pyproject-dependencies "$@" 2>/dev/null
     fi
 fi
 cd /
