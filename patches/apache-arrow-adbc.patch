@@ -9,9 +9,9 @@
  #include <endian.h>
  #elif defined(__APPLE__)
  #include <libkern/OSByteOrder.h>
---- a/c/driver_manager/current_arch.h	Wed Jul  2 05:24:58 2025
-+++ b/c/driver_manager/current_arch.h	Tue Jul  8 20:29:03 2025
-@@ -53,6 +53,8 @@
+--- a/c/driver_manager/adbc_driver_manager.cc	Wed Jul  2 05:24:58 2025
++++ b/c/driver_manager/adbc_driver_manager.cc	Tue Jul  8 20:29:03 2025
+@@ -114,6 +114,8 @@
    static const std::string platform = "openbsd";
  #elif defined(__linux__)
    static const std::string platform = "linux";
@@ -20,7 +20,7 @@
  #else
    static const std::string platform = "unknown";
  #endif
-@@ -107,7 +109,7 @@
+@@ -168,7 +168,7 @@
  // but apparently it doesn't define __USE_GNU inside of features.h
  // while gcc DOES define that.
  // see https://stackoverflow.com/questions/58177815/how-to-actually-detect-musl-libc
