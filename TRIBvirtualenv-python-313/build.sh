@@ -4,4 +4,4 @@
 #
 # python-discovery spun out into a separate module as of release 21
 #
-${THOME}/build/pkg_pep518 -N TRIBvirtualenv-python-313 virtualenv-21.15.1 python_discovery-1.6.7
+${THOME}/build/pkg_pep518 -N TRIBvirtualenv-python-313 virtualenv-21.15.2 python_discovery-1.9.0
