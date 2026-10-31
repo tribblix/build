@@ -2206,7 +2206,7 @@
      if (level == SOL_SOCKET) {
          if (opt == SO_SNDBUF || opt == SO_RCVBUF) {
 @@ -821,77 +588,14 @@
-  *
+ /*
   * Wrapper for bind system call - performs any necessary pre/post
   * processing to deal with OS specific issues :-
 - *
