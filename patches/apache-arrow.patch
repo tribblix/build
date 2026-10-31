@@ -62,7 +62,7 @@
        // Both are positive
 --- a/cpp/src/parquet/statistics.cc	Tue Apr 16 15:48:56 2024
 +++ b/cpp/src/parquet/statistics.cc	Mon Apr 22 20:21:56 2024
-@@ -422,10 +422,10 @@
+@@ -425,10 +425,10 @@
      return ::std::nullopt;
    }
  
@@ -103,7 +103,7 @@
        if (f_x.is_nan() && f_y.is_nan()) {
 --- a/cpp/src/arrow/compute/kernels/base_arithmetic_internal.h	Mon Oct 20 15:48:39 2025
 +++ b/cpp/src/arrow/compute/kernels/base_arithmetic_internal.h	Wed Dec 17 12:16:59 2025
-@@ -653,7 +653,7 @@
+@@ -728,7 +728,7 @@
      return arg.is_nan()
                 ? arg
                 : (arg.is_zero() ? Float16::zero()
