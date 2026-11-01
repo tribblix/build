@@ -7746,3 +7746,4 @@ filelock-4.2.6.tar.gz ee7af8ede36dcaf12e1016d9f7c3a63ecd5497d46f85dab21b8c779b8f
 platformdirs-4.14.2.tar.gz 6d13b4c1d66b7548dcec9e3db13c1ba9d9adb65041b5d07869313afc07e6e41b
 setuptools_gettext-0.1.20.tar.gz c82d3748859b83f9dd301ed7f564c5811980ba6ac1ef5cb285cb52d935ec4856
 setuptools_scm-10.3.4.tar.gz a69f28bfc245608781205e912faae437c2b2165773afa4e7b979d77447a69dd2
+multidict-7.2.1.tar.gz e8af3e6f1bdbc31fd762b094133b478b89988eaebc63cbe82b1d9e3bbd15cede
