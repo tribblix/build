@@ -1,7 +1,7 @@
 diff -ur -N /tmp/g/atomicAccess_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_zero/atomicAccess_solaris_zero.hpp
 --- /tmp/g/atomicAccess_solaris_zero.hpp	1970-01-01 01:00:00.000000000 +0000
 +++ b/src/hotspot/os_cpu/solaris_zero/atomicAccess_solaris_zero.hpp	2020-08-27 09:48:36.864797068 +0000
-@@ -0,0 +1,182 @@
+@@ -0,0 +1,185 @@
 +/*
 + * Copyright (c) 1999, 2019, Oracle and/or its affiliates. All rights reserved.
 + * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -115,6 +115,9 @@ diff -ur -N /tmp/g/atomicAccess_solaris_zero.hpp b/src/hotspot/os_cpu/solaris_ze
 +    _Atomic_add_long(PrimitiveConversions::cast<int64_t>(add_value),
 +                     reinterpret_cast<int64_t volatile*>(dest)));
 +}
++
++template<>
++struct AtomicAccess::PlatformXchg<1> : AtomicAccess::XchgUsingCmpxchg<1> {};
 +
 +template<>
 +template<typename T>
