@@ -2,8 +2,8 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/unpack pgbadger-13.2
-cd pgbadger-13.2
+${THOME}/build/unpack pgbadger-13.3
+cd pgbadger-13.3
 # you need to run a make to create the manpage
 perl Makefile.PL
 sed -i 's:sed -i.bak:gsed -i.bak:' Makefile
