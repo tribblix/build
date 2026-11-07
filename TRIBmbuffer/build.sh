@@ -4,5 +4,5 @@
 #
 # depends on libgcrypt, but via dlopen rather than being linked in
 #
-${THOME}/build/dobuild -64only mbuffer-20260511 -C --sysconfdir=/etc
-${THOME}/build/genpkg TRIBmbuffer mbuffer-20260511
+${THOME}/build/dobuild -64only mbuffer-20261024 -C --sysconfdir=/etc
+${THOME}/build/genpkg TRIBmbuffer mbuffer-20261024
