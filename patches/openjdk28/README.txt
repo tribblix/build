@@ -1,5 +1,16 @@
 JDK 28 now that jdk27 has been branched off.
 
+28+23
+
+Needed to put procfs.h back (and do it correctly this time) into
+OperatingSystemImpl.c
+
+Needed to configure with
+  --disable-jvm-feature-jvmti
+as otherwise we get
+  error: 'JvmtiExport' has not been declared
+in shared code (c1_LIRAssembler_x86.cpp)
+
 28+22
 
 Trivial patch noise.

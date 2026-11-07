@@ -2957,7 +2957,13 @@
        return "bsd";
 --- old/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:36.322227327 -0700
 +++ new/src/jdk.management/unix/native/libmanagement_ext/OperatingSystemImpl.c	2020-05-20 18:03:35.934219877 -0700
-@@ -77,63 +77,7 @@
+@@ -69,69 +69,10 @@
+ 
+ #endif /* _ALLBSD_SOURCE */
+ 
+-#ifdef __solaris__
+-#include <procfs.h>
+-#endif
  // true = get available swap in bytes
  // false = get total swap in bytes
  static jlong get_total_or_available_swap_space_size(JNIEnv* env, jboolean available) {
@@ -3022,7 +3028,7 @@
      int ret;
      jlong total = 0, avail = 0;
  
-@@ -182,37 +126,7 @@
+@@ -177,37 +121,7 @@
  Java_com_sun_management_internal_OperatingSystemImpl_getCommittedVirtualMemorySize0
    (JNIEnv *env, jobject mbean)
  {

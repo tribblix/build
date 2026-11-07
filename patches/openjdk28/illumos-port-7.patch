@@ -1,6 +1,6 @@
 --- a/src/hotspot/share/prims/methodHandles.cpp	Wed Aug 19 21:41:08 2020
 +++ b/src/hotspot/share/prims/methodHandles.cpp	Fri Aug 21 10:42:08 2020
-@@ -1334,6 +1334,10 @@
+@@ -1335,6 +1335,10 @@
  #define LANG "Ljava/lang/"
  #define JLINV "Ljava/lang/invoke/"
  
