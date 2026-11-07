@@ -1,4 +1,4 @@
 PKG="TRIBzeroconf-python-313"
 NAME="Python zeroconf"
-VERSION="0.153.0.0"
+VERSION="0.154.0.0"
 ZAP_URL="https://pypi.org/project/zeroconf/"
