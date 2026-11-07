@@ -1,4 +1,4 @@
 PKG="TRIBpubsuffixlist-python-313"
 NAME="Python publicsuffixlist"
-VERSION="1.1.2.20261106.0"
+VERSION="1.1.2.20261107.0"
 ZAP_URL="https://pypi.org/project/publicsuffixlist/"
