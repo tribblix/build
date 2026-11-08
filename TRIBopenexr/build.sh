@@ -9,5 +9,5 @@
 # anything against it
 #
 ${THOME}/build/cmbuild -64only Imath-3.2.2 -C "-DCMAKE_PREFIX_PATH=/usr/lib/`${THOME}/build/getarch`/cmake"
-${THOME}/build/cmbuild -64only openexr-3.4.13 -C "-DCMAKE_PREFIX_PATH=/usr/lib/`${THOME}/build/getarch`/cmake"
-${THOME}/build/genpkg TRIBopenexr Imath-3.2.2 openexr-3.4.13
+${THOME}/build/cmbuild -64only openexr-3.4.17 -C "-DCMAKE_PREFIX_PATH=/usr/lib/`${THOME}/build/getarch`/cmake"
+${THOME}/build/genpkg TRIBopenexr Imath-3.2.2 openexr-3.4.17
