@@ -3,10 +3,10 @@
 # SPDX-License-Identifier: CDDL-1.0
 #
 # 1.17.1 build pins some dependencies
-# meson-python>=0.15.0,<0.21.0
-# Cython>=3.0.8,<3.3.0
+# meson-python>=0.15.0,<0.22.0
+# Cython>=3.2.0,<3.3.0
 # pybind11>=2.13.2,<3.1.0
-# pythran>=0.14.0,<0.19.0
+# pythran>=0.18.1,<0.20.0
 # but we can try above the upper bound if necessary
 #
 # it's relatively hard work to get the build to be consistently 64-bit
@@ -18,4 +18,4 @@
 #
 # there's a patch to fix some conflicting enum names
 #
-env CXXFLAGS="-m64 -D__STDC_NO_ATOMICS__=1" CFLAGS=-m64 CC="gcc -m64" FFLAGS=-m64 FORTRANFLAGS=-m64 LDFLAGS=-m64 PATH=/usr/versions/python-3.13/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscipy-python-313 scipy-1.17.1
+env CXXFLAGS="-m64 -D__STDC_NO_ATOMICS__=1" CFLAGS=-m64 CC="gcc -m64" FFLAGS=-m64 FORTRANFLAGS=-m64 LDFLAGS=-m64 PATH=/usr/versions/python-3.13/bin:$PATH ${THOME}/build/pkg_pep518 -N TRIBscipy-python-313 scipy-1.18.1
