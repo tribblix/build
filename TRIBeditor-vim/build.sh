@@ -8,7 +8,7 @@
 # Now most of the space is actually the shared stuff
 # Wrapper? [exec -a $0 /usr/bin/vim.variant "$@"]
 #
-# need to make with -k because msgfmt can't cope with one or more files
+# needs gnu msgfmt
 #
-env TRIBBLIX_CFLAGS="-std=gnu99 -Wno-error=incompatible-pointer-types" ${THOME}/build/dobuild +gnu -64only vim-9.2.1225 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --enable-pixman=no --without-x --disable-canberra" -M -k
-${THOME}/build/genpkg TRIBeditor-vim vim-9.2.1225
+env TRIBBLIX_CFLAGS="-std=gnu99 -Wno-error=incompatible-pointer-types" ${THOME}/build/dobuild +gnu -64only vim-9.2.1310 -C "--with-compiledby=ptribble@tribblix --enable-gui=no --enable-pixman=no --without-x --disable-canberra"
+${THOME}/build/genpkg TRIBeditor-vim vim-9.2.1310
