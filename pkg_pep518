@@ -209,6 +209,14 @@ done
 #
 find "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages" -name direct_url.json -exec rm {} \;
 sed -i '/\/direct_url.json,sha/d' $(find "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages" -name RECORD)
+#
+# also filelock.cdx.json, which encodes the entire state of the build
+# system which is ephemeral, and also ends up being massive
+#
+find "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages" -name filelock.cdx.json -exec rm {} \;
+find "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages" -name sboms -type d -exec rmdir {} \;
+sed -i '/\/filelock.cdx.json,sha/d' $(find "${BDIR}/usr/versions/python-${PYVER}/lib/python${PYVER}/site-packages" -name RECORD)
+
 
 #
 # compile separately, to avoid install paths and timestamps ending up
