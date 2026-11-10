@@ -1,0 +1,4 @@
+PKG="TRIBpy-sbom-python-313"
+NAME="Python python-sbom"
+VERSION="0.3.1.0"
+ZAP_URL="https://pypi.org/project/python-sbom/"
