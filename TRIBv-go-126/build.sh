@@ -15,7 +15,7 @@
 #
 ##chmod -R u+w go
 ##rm -fr go
-##env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.26.10.src
+##env LANG=en_GB.UTF-8 ${THOME}/build/unpack go1.26.11.src
 ###
 ##cd go/src
 ### one of the new tests in 1.26.5 fails, use make.bash not all.bash
@@ -30,7 +30,7 @@
 #
 rm -fr /tmp/gg
 mkdir -p /tmp/gg/usr/versions
-(cd /tmp/gg/usr/versions ; $THOME/build/unpack go1.26.10.illumos-amd64)
+(cd /tmp/gg/usr/versions ; $THOME/build/unpack go1.26.11.illumos-amd64)
 mv /tmp/gg/usr/versions/go /tmp/gg/usr/versions/go-1.26
 # [package extras - godoc gopls gox]
 # need to not be at a valid GOROOT
