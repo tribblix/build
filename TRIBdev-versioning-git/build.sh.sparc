@@ -7,5 +7,5 @@
 #
 # sparc downrev due to rust dependency
 #
-env TRIBBLIX_CFLAGS=-D_XPG6 ${THOME}/build/dobuild -64only git-2.54.0 -C --with-perl=/usr/perl5/`${THOME}/build/getperlver`/bin/perl
-${THOME}/build/genpkg TRIBdev-versioning-git git-2.54.0
+env TRIBBLIX_CFLAGS=-D_XPG6 ${THOME}/build/dobuild -64only git-2.54.1 -C --with-perl=/usr/perl5/`${THOME}/build/getperlver`/bin/perl
+${THOME}/build/genpkg TRIBdev-versioning-git git-2.54.1

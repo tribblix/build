@@ -8,10 +8,10 @@
 #
 case `uname -p` in
 sparc)
-  GITVER=2.54.0
+  GITVER=2.54.1
   ;;
 i386)
-  GITVER=2.55.0
+  GITVER=2.56.1
   ;;
 esac
 
