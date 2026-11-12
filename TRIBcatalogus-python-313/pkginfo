@@ -1,0 +1,4 @@
+PKG="TRIBcatalogus-python-313"
+NAME="Python catalogus"
+VERSION="0.1.2.0"
+ZAP_URL="https://pypi.org/project/catalogus/"
