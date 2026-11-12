@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+# sparc uses wheel due to uv_build requirement
+#
+${THOME}/build/pkg_wheel TRIBosmnx-python-313 osmnx-2.1.1-py3-none-any.whl
