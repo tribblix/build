@@ -865,7 +865,7 @@
    // This #if condition should be in sync with the areCustomLoadersSupportedForCDS
 --- old/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.906590409 -0700
 +++ new/src/hotspot/share/runtime/abstract_vm_version.cpp	2020-05-20 18:00:26.522583036 -0700
-@@ -174,7 +174,6 @@
+@@ -178,7 +178,6 @@
  
  #define OS       LINUX_ONLY("linux")             \
                   WINDOWS_ONLY("windows")         \

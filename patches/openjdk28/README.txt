@@ -1,5 +1,11 @@
 JDK 28 now that jdk27 has been branched off.
 
+28+24
+
+Trivial patch noise.
+
+The 'JvmtiExport' problem in 28+23 has been fixed.
+
 28+23
 
 Needed to put procfs.h back (and do it correctly this time) into
