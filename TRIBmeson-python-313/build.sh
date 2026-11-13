@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBmeson-python-313 meson-1.11.2
+${THOME}/build/pkg_pep518 -N TRIBmeson-python-313 meson-1.12.1
