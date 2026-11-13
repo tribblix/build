@@ -1,4 +1,4 @@
 PKG="TRIBcabextract"
 NAME="Free Software for extracting Microsoft cabinet files"
-VERSION="1.11.0"
+VERSION="1.12.0"
 ZAP_URL="https://www.cabextract.org.uk/"
