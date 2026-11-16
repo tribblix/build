@@ -7,4 +7,4 @@
 #
 # sparc uses wheel due to unhelpful uv-build build requirement
 #
-${THOME}/build/pkg_wheel -N TRIBcachecontrol-python-313 cachecontrol-0.14.4-py3-none-any.whl
+${THOME}/build/pkg_wheel TRIBcachecontrol-python-313 cachecontrol-0.14.4-py3-none-any.whl
