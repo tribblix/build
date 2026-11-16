@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBfolium-python-313 folium-0.20.0
+${THOME}/build/pkg_pep518 -N TRIBfolium-python-313 folium-1.0.0
