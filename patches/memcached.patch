@@ -2,7 +2,7 @@ iov_base is caddr_t, not void*
 
 --- a/storage.c	2025-03-19 23:47:32.000000000 +0200
 +++ b/storage.c	2025-06-17 13:01:51.780686964 +0300
-@@ -310,7 +310,7 @@
+@@ -311,7 +311,7 @@
          }
  
          // fill the header so we can get the full data + crc back.
