@@ -6,8 +6,8 @@
 # go to https://github.com/openjdk/jdk/tags
 #
 
-${THOME}/build/unpack jdk27u-jdk-27.0.1-ga
-cd jdk27u-jdk-27.0.1-ga
+${THOME}/build/unpack jdk27u-jdk-27.0.1.1-ga
+cd jdk27u-jdk-27.0.1.1-ga
 
 #
 # jdk27 needs autoconf installed
@@ -56,9 +56,9 @@ env PATH=/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/gnu/bin gmake product-images
 #
 # ./build/solaris-x86_64-server-release/images/jdk/bin/java -version
 #
-# openjdk version "27.0.1-ga" 2026-10-20
-# OpenJDK Runtime Environment (build 27.0.1-ga-Tribblix)
-# OpenJDK 64-Bit Server VM (build 27.0.1-ga-Tribblix, mixed mode, sharing)
+# openjdk version "27.0.1.1-ga" 2026-11-17
+# OpenJDK Runtime Environment (build 27.0.1.1-ga-Tribblix)
+# OpenJDK 64-Bit Server VM (build 27.0.1.1-ga-Tribblix, mixed mode, sharing)
 #
 
 rm -fr /tmp/jdk
