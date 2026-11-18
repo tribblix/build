@@ -15,11 +15,11 @@
 # check the build number corresponding to GA here
 # https://github.com/openjdk/jdk8u/tags
 # so you use the correct --with-build-number below
-# ga for 8u512 was b09
+# ga for 8u514 was b01
 #
 cd ~/ud
-${THOME}/build/unpack jdk8u-jdk8u512-ga
-cd jdk8u-jdk8u512-ga
+${THOME}/build/unpack jdk8u-jdk8u514-ga
+cd jdk8u-jdk8u514-ga
 
 #
 # The fcs is magic to hide the milestone from the version string.
@@ -29,7 +29,7 @@ cd jdk8u-jdk8u512-ga
 # new gcc build
 #
 env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin bash ./configure \
---with-milestone=fcs --with-update-version=512 --with-build-number=b09 \
+--with-milestone=fcs --with-update-version=514 --with-build-number=b01 \
 --enable-unlimited-crypto --with-boot-jdk=/usr/jdk/instances/jdk1.8.0 \
 --with-toolchain-type=gcc \
 --with-native-debug-symbols=none \
@@ -45,9 +45,9 @@ env PATH=/usr/gnu/bin:/usr/bin:/usr/sfw/bin gmake all USE_GCC=1 AS=/usr/gnu/bin/
 # first testing looks like this:
 #
 # ./build/solaris-x86_64-normal-server-release/images/j2sdk-image/bin/java -version
-# openjdk version "1.8.0_512"
-# OpenJDK Runtime Environment (build 1.8.0_512-b09)
-# OpenJDK 64-Bit Server VM (build 25.512-b09, mixed mode)
+# openjdk version "1.8.0_514"
+# OpenJDK Runtime Environment (build 1.8.0_514-b01)
+# OpenJDK 64-Bit Server VM (build 25.514-b01, mixed mode)
 #
 
 #
