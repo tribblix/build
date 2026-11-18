@@ -2951,7 +2951,7 @@
  }
 --- old/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.697524107 -0700
 +++ new/src/jdk.crypto.cryptoki/share/classes/sun/security/pkcs11/Config.java	2020-05-20 18:02:59.357517578 -0700
-@@ -725,16 +725,10 @@
+@@ -725,10 +725,10 @@
          lib = expand(lib);
          int i = lib.indexOf("/$ISA/");
          if (i != -1) {
@@ -2959,13 +2959,7 @@
 +            // replace "/$ISA/" with "/"
              String prefix = lib.substring(0, i);
              String suffix = lib.substring(i + 5);
--            if (osName.equals("SunOS") && osArch.equals("amd64")) {
--                lib = prefix + "/amd64" + suffix;
--            } else if (osName.equals("SunOS") && osArch.equals("sparcv9")) {
--                lib = prefix + "/sparcv9" + suffix;
--            } else {
--                lib = prefix + suffix;
--            }
+-            lib = prefix + "/amd64" + suffix;
 +            lib = prefix + suffix;
          }
          if (DEBUG) {
