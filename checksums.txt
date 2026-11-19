@@ -8003,3 +8003,4 @@ oslo_versionedobjects-3.13.0.tar.gz ed38782afa457282c63fd6ab81db634b3bbfdd5daaeb
 python_designateclient-7.1.0.tar.gz e37c88c2c3e6b61bbd3651f24ef1a2f8b37ae272bc3466160702de67262ef10f
 python_ironicclient-6.4.0.tar.gz 092ade0fe1bf3fd8197adf168bad2e967fac9fb82faaee6c640cc4f8f7fcfab3
 python_manilaclient-6.4.0.tar.gz 20d13c802f68dab33c04b204a4b8864908b4b6eb6794cc6ee5b92385e6156943
+python_mistralclient-6.4.0.tar.gz cca5cd88ddefdaf1375a62049150d96a4841171a2c5fa306ed8b3f3544ddc107
