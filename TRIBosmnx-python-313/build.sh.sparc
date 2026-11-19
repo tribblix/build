@@ -4,4 +4,4 @@
 #
 # sparc uses wheel due to uv_build requirement
 #
-${THOME}/build/pkg_wheel TRIBosmnx-python-313 osmnx-2.1.2-py3-none-any.whl
+${THOME}/build/pkg_wheel TRIBosmnx-python-313 osmnx-2.2.0-py3-none-any.whl
