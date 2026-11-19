@@ -8001,3 +8001,4 @@ oslo_service-4.9.0.tar.gz c607768195ba2c8a9d3250be2b66ecb3e0e458fc2695ed914ec4f7
 oslo_upgradecheck-2.9.0.tar.gz ad873f62aa5735e196ae857be5bc7cf5844f1ef29b2e3bcac928b2dad5f22964
 oslo_versionedobjects-3.13.0.tar.gz ed38782afa457282c63fd6ab81db634b3bbfdd5daaeb34b4000eda5f220621d9
 python_designateclient-7.1.0.tar.gz e37c88c2c3e6b61bbd3651f24ef1a2f8b37ae272bc3466160702de67262ef10f
+python_ironicclient-6.4.0.tar.gz 092ade0fe1bf3fd8197adf168bad2e967fac9fb82faaee6c640cc4f8f7fcfab3
