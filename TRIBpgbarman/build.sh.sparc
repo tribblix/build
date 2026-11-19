@@ -8,4 +8,4 @@
 #
 # build from the wheel on sparc, as building from source requires uv-build
 #
-${THOME}/build/pkg_wheel -v 313 TRIBpgbarman barman-3.20.1-py3-none-any.whl
+${THOME}/build/pkg_wheel -v 313 TRIBpgbarman barman-3.21.0-py3-none-any.whl
