@@ -8000,3 +8000,4 @@ oslo_middleware-8.3.0.tar.gz 22cd39e9a0837896418c36866fd881444e0c653a5116a57bac8
 oslo_service-4.9.0.tar.gz c607768195ba2c8a9d3250be2b66ecb3e0e458fc2695ed914ec4f779aa0af7b1
 oslo_upgradecheck-2.9.0.tar.gz ad873f62aa5735e196ae857be5bc7cf5844f1ef29b2e3bcac928b2dad5f22964
 oslo_versionedobjects-3.13.0.tar.gz ed38782afa457282c63fd6ab81db634b3bbfdd5daaeb34b4000eda5f220621d9
+python_designateclient-7.1.0.tar.gz e37c88c2c3e6b61bbd3651f24ef1a2f8b37ae272bc3466160702de67262ef10f
