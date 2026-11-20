@@ -8028,3 +8028,4 @@ xlsxwriter-3.3.2.tar.gz a7ec4285416ee246753ad21c18ef6c161cdeaf2c29a7b9475236cce6
 pdfly-0.7.0-py3-none-any.whl 88ea469c208d00656977b0f56c42396eacb7b8b4a8fbb417b224c1417deb2ffa
 pypdf-7.1.1.tar.gz 2eff4e2fc5fb22a6d6711e6f1166cdc9ab5765d90cd0d77dfea3f4aa91a27b1d
 xlsxwriter-3.3.3.tar.gz ad3743bd5f96019ee75aae19a51e9c26faf03f218670b934dac1159692d0d5e3
+openstacksdk-4.24.0.tar.gz fb551350f7dfb80a5afd9dbf4d0e7cc6fa40517da58e5dcd27ae7b2f684e7c5b
