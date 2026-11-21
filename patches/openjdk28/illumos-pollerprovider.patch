@@ -60,7 +60,7 @@
 +}
 --- /dev/null
 +++ a/src/java.base/solaris/classes/sun/nio/ch/SolarisEventPortPoller.java
-@@ -0,0 +1,110 @@
+@@ -0,0 +1,115 @@
 +/*
 +* Copyright (c) 2008, 2020, Oracle and/or its affiliates. All rights reserved.
 +* DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -150,6 +150,11 @@
 +                // Ignore.
 +            }
 +        }
++    }
++
++    @Override
++    void wakeupPoller() throws IOException {
++        // nothing to do, poll wakes periodically
 +    }
 +
 +    @Override

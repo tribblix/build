@@ -1,5 +1,11 @@
 JDK 28 now that jdk27 has been branched off.
 
+28+25
+
+The Poller interface needs a wakeupPoller().
+
+Clean up some unused variables in audio code.
+
 28+24
 
 Trivial patch noise.

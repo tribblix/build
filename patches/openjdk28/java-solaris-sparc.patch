@@ -9878,7 +9878,7 @@
 -}
 --- old/src/java.desktop/solaris/native/libjsound/PLATFORM_API_SolarisOS_PCM.c	2020-05-20 18:10:35.046266971 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,627 +0,0 @@
+@@ -1,624 +0,0 @@
 -/*
 - * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -10466,7 +10466,6 @@
 -
 -INT64 DAUDIO_GetBytePosition(void* id, int isSource, INT64 javaBytePos) {
 -    SolPcmInfo* info = (SolPcmInfo*) id;
--    int ret;
 -    int pos;
 -    INT64 result = javaBytePos;
 -
@@ -10477,14 +10476,12 @@
 -        }
 -    }
 -
--    //printf("getbyteposition: javaBytePos=%d , return=%d\n", (int) javaBytePos, (int) result);
 -    return result;
 -}
 -
 -
 -void DAUDIO_SetBytePosition(void* id, int isSource, INT64 javaBytePos) {
 -    SolPcmInfo* info = (SolPcmInfo*) id;
--    int ret;
 -    int pos;
 -
 -    if (info) {
@@ -11090,7 +11087,7 @@
 -#endif // USE_PORTS
 --- old/src/java.desktop/solaris/native/libjsound/PLATFORM_API_SolarisOS_Utils.c	2020-05-20 18:10:36.498294848 -0700
 +++ /dev/null	2020-03-09 18:57:19.455001459 -0700
-@@ -1,193 +0,0 @@
+@@ -1,191 +0,0 @@
 -/*
 - * Copyright (c) 2002, 2007, Oracle and/or its affiliates. All rights reserved.
 - * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -11179,7 +11176,6 @@
 -
 -
 -void getAudioDevices(AudioDevicePath* adPath, int* count) {
--    int maxCount = *count;
 -    char* audiodev;
 -    char devsound[15];
 -    int i;
@@ -11231,7 +11227,6 @@
 -    int fd;
 -    int mixerMode;
 -    int len;
--    audio_info_t info;
 -    audio_device_t deviceInfo;
 -
 -    strncpy(adDesc->path, path, MAX_NAME_LENGTH);
