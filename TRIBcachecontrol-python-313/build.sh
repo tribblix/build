@@ -5,6 +5,6 @@
 # pip-audit requires CacheControl[filecache] which adds filelock
 # as a dependency
 #
-# sparc uses wheel due to unhelpful uv-build build requirement
+# uses wheel due to unhelpful uv-build build requirement
 #
-${THOME}/build/pkg_pep518 -N TRIBcachecontrol-python-313 cachecontrol-0.14.4
+${THOME}/build/pkg_wheel TRIBcachecontrol-python-313 cachecontrol-0.15.0-py3-none-any.whl
