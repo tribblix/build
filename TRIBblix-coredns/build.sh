@@ -2,9 +2,9 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-$THOME/build/unpack coredns-1.14.2
-cd coredns-1.14.2
-env PATH=/usr/versions/go-1.26/bin:$PATH gmake
+$THOME/build/unpack coredns-1.15.0
+cd coredns-1.15.0
+env PATH=/usr/versions/go-1.27/bin:$PATH gmake
 
 rm -fr /tmp/ee
 mkdir -p /tmp/ee/opt/tribblix/coredns/bin
