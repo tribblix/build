@@ -6,8 +6,11 @@
 # it's split into 2 packages, one for the apache half, the other for the
 # perl half, as they go in different places
 #
-${THOME}/build/unpack mod_perl-2.0.13
-cd mod_perl-2.0.13
+# there's a necessary patch, otherwise it fails
+# Don't know how to make target `static'
+#
+${THOME}/build/unpack mod_perl-2.0.14
+cd mod_perl-2.0.14
 perl Makefile.PL MP_APXS=/opt/tribblix/apache2/bin/apxs
 make
 #
