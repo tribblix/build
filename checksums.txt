@@ -8081,3 +8081,4 @@ ujson-6.1.0.tar.gz aef7ea4cd9e2e9f8a35c4538a9780d58c80d76c5da66a8dad269b4cc6d930
 ipython-9.19.1.tar.gz 8d717edbe293adcb1b9fdeaad7ccfb1573f62d91bc10f0ae62604dbf31e6acac
 packaging-26.4.tar.gz c4b671c41ddb9bf26e543c37723610d28fb6bf7affc4da17cf048d419d2c062a
 tomlkit-0.15.3.tar.gz b3c3020ec1a4bd469d12e31fb4da938e7f6ba758cdbec3fd9047db63120eaf81
+sbom4python-0.12.7-py3-none-any.whl 0f599b46f3bf5b42a463f4bb77135d766dc201d5b9d08bc290bf4058992551e9
