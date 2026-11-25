@@ -8085,3 +8085,4 @@ sbom4python-0.12.7-py3-none-any.whl 0f599b46f3bf5b42a463f4bb77135d766dc201d5b9d0
 jruby-dist-9.4.16.0-bin.tar.gz f8dd8041acacac70a150db3353062c6fa7f92653057ce83ed9c7925dd9293cda
 python_glanceclient-4.14.0.tar.gz 3b619250228b62b69d743efd3114c280fdf7f850d5599dd749e3426ce24200ad
 google_cloud_storage-3.17.2.tar.gz ef92d6520abd37c757a962f8702c72786ff833f8d5aa6ebeb528a0688189f64c
+babel-2.19.0.tar.gz fddd2cbbbac7c299af3c2880be23609c331bd94f0912baca6cb0abfe054dfc27
