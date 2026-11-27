@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
-${THOME}/build/pkg_pep518 -N TRIBuritools-python-313 uritools-6.1.5
+${THOME}/build/pkg_pep518 -N TRIBuritools-python-313 uritools-7.0.1
