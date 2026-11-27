@@ -5,4 +5,4 @@
 # dependencies cover the [brotli,crypto,fonts,image] extras
 # not crypto on sparc as pypdf 7 requires a newer cryptography module
 #
-${THOME}/build/pkg_pep518 -N TRIBpypdf-python-313 pypdf-7.1.1
+${THOME}/build/pkg_pep518 -N TRIBpypdf-python-313 pypdf-7.2.0
